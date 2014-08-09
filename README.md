@@ -1,8 +1,5 @@
-java-design-patterns
-====================
 
 Design pattern samples in Java.
-
 
 
 Abstract Factory
