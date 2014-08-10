@@ -20,5 +20,7 @@
   <modules>
     <module>abstract-factory</module>
     <module>builder</module>
+    <module>factory-method</module>
+    <module>shared</module>
   </modules>
 </project>
