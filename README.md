@@ -18,3 +18,6 @@ Intent: Specify the kinds of objects to create using a prototypical instance, an
 
 ##Singleton
 Intent: Ensure a class only has one instance, and provide a global point of access to it.
+
+##Adapter
+Intent: Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
