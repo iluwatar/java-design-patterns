@@ -23,5 +23,6 @@
     <module>factory-method</module>
     <module>prototype</module>
     <module>singleton</module>
+    <module>adapter</module>
   </modules>
 </project>
