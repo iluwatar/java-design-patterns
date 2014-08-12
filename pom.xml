@@ -24,5 +24,6 @@
     <module>prototype</module>
     <module>singleton</module>
     <module>adapter</module>
+    <module>bridge</module>
   </modules>
 </project>
