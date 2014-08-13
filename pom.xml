@@ -27,5 +27,22 @@
     <module>bridge</module>
     <module>composite</module>
     <module>decorator</module>
+    <module>facade</module>
   </modules>
+  
+<build>
+	<plugins>
+		<!-- Tell maven to compile using Java 1.7 -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.0</version>
+			<configuration>
+				<source>1.7</source>
+				<target>1.7</target>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
+  
 </project>
