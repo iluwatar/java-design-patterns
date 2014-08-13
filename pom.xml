@@ -26,5 +26,6 @@
     <module>adapter</module>
     <module>bridge</module>
     <module>composite</module>
+    <module>decorator</module>
   </modules>
 </project>
