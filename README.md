@@ -36,3 +36,7 @@
 
 ##Flyweight
 **Intent:** Use sharing to support large numbers of fine-grained objects efficiently.
+
+##Proxy
+**Intent:** Provide a surrogate or placeholder for another object to control access to it.
+
