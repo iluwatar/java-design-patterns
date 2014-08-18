@@ -45,3 +45,6 @@
 
 ##Command
 **Intent:** Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
+
+##Interpreter
+**Intent:** Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
