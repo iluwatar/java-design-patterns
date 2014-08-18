@@ -48,3 +48,6 @@
 
 ##Interpreter
 **Intent:** Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
+
+##Iterator
+**Intent:** Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
