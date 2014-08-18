@@ -32,6 +32,7 @@
     <module>proxy</module>
     <module>chain</module>
     <module>command</module>
+    <module>interpreter</module>
   </modules>
   
 <build>
