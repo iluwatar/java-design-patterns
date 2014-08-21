@@ -34,6 +34,7 @@
     <module>command</module>
     <module>interpreter</module>
     <module>iterator</module>
+    <module>mediator</module>
   </modules>
   
 <build>
