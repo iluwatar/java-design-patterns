@@ -18,8 +18,8 @@
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/builder/etc/builder.jpg "Builder")
 
-**Applicability:** Use the Abstract Factory pattern when
-
+**Applicability:** Use the Builder pattern when
+* the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
 
 ##Factory Method
 **Intent:** Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
