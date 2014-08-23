@@ -7,6 +7,12 @@
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/abstract-factory/etc/abstract-factory.jpg "Abstract Factory")
 
+**Applicability:** Use the Abstract Factory pattern when
+* a system should be independent of how its products are created, composed and represented
+* a system should be configured with one of multiple families of products
+* a family of related product objects is designed to be used together, and you need to enforce this constraint
+* you want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
+
 ##Builder
 **Intent:** Separate the construction of a complex object from its representation so that the same construction process can create different representations.
 
