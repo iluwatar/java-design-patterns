@@ -63,3 +63,10 @@
 
 ##State
 **Intent:** Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
+
+##Strategy
+**Intent:** Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
+
+##Template method
+**Intent:** Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
+
