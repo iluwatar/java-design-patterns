@@ -40,6 +40,7 @@
     <module>state</module>
     <module>strategy</module>
     <module>template-method</module>
+    <module>visitor</module>
   </modules>
   
 <build>
