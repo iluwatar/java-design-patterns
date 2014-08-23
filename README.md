@@ -16,6 +16,10 @@
 ##Builder
 **Intent:** Separate the construction of a complex object from its representation so that the same construction process can create different representations.
 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/builder/etc/builder.jpg "Builder")
+
+**Applicability:** Use the Abstract Factory pattern when
+
 
 ##Factory Method
 **Intent:** Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
