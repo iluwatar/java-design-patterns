@@ -60,3 +60,6 @@
 
 ##Observer
 **Intent:** Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
+
+##State
+**Intent:** Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
