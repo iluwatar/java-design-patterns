@@ -5,6 +5,7 @@
 ##Abstract Factory
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
 
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 ##Builder
 **Intent:** Separate the construction of a complex object from its representation so that the same construction process can create different representations.
