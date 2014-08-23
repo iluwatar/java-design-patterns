@@ -15,20 +15,23 @@ public class AlchemistShop {
 	}
 
 	private void fillShelves() {
-		topShelf.add(new InvisibilityPotion());
-		topShelf.add(new InvisibilityPotion());
-		topShelf.add(new StrengthPotion());
-		topShelf.add(new HealingPotion());
-		topShelf.add(new InvisibilityPotion());
-		topShelf.add(new StrengthPotion());
-		topShelf.add(new HealingPotion());
-		topShelf.add(new HealingPotion());
 		
-		bottomShelf.add(new PoisonPotion());
-		bottomShelf.add(new PoisonPotion());
-		bottomShelf.add(new PoisonPotion());
-		bottomShelf.add(new HolyWaterPotion());
-		bottomShelf.add(new HolyWaterPotion());
+		PotionFactory factory = new PotionFactory();
+		
+		topShelf.add(factory.createPotion(PotionType.INVISIBILITY));
+		topShelf.add(factory.createPotion(PotionType.INVISIBILITY));
+		topShelf.add(factory.createPotion(PotionType.STRENGTH));
+		topShelf.add(factory.createPotion(PotionType.HEALING));
+		topShelf.add(factory.createPotion(PotionType.INVISIBILITY));
+		topShelf.add(factory.createPotion(PotionType.STRENGTH));
+		topShelf.add(factory.createPotion(PotionType.HEALING));
+		topShelf.add(factory.createPotion(PotionType.HEALING));
+		
+		bottomShelf.add(factory.createPotion(PotionType.POISON));
+		bottomShelf.add(factory.createPotion(PotionType.POISON));
+		bottomShelf.add(factory.createPotion(PotionType.POISON));
+		bottomShelf.add(factory.createPotion(PotionType.HOLY_WATER));
+		bottomShelf.add(factory.createPotion(PotionType.HOLY_WATER));
 	}
 	
 	public void enumerate() {
