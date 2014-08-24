@@ -159,6 +159,13 @@
 ##Iterator
 **Intent:** Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/iterator/etc/iterator.jpg "Iterator")
+
+**Applicability:** Use the Iterator pattern
+* to access an aggregate object's contents without exposing its internal representation
+* to support multiple traversals of aggregate objects
+* to provide a uniform interface for traversing different aggregate structures
+
 ##Mediator
 **Intent:** Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.
 
