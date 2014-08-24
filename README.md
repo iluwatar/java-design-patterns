@@ -45,6 +45,12 @@
 ##Singleton
 **Intent:** Ensure a class only has one instance, and provide a global point of access to it.
 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/singleton/etc/singleton.jpg "Singleton")
+
+**Applicability:** Use the Singleton pattern when
+* the must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
+* when the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code
+
 ##Adapter
 **Intent:** Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 
