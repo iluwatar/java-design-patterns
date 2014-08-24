@@ -25,6 +25,13 @@
 ##Factory Method
 **Intent:** Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/factory-method/etc/factory-method.jpg "Factory Method")
+
+**Applicability:** Use the Factory Method pattern when
+* a class can't anticipate the class of objects it must create
+* a class wants its subclasses to specify the objects it creates
+* classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
+
 ##Prototype
 **Intent:** Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
