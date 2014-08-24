@@ -207,6 +207,14 @@
 ##Strategy
 **Intent:** Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/strategy/etc/strategy.jpg "Strategy")
+
+**Applicability:** Use the Strategy pattern when
+* many related classes differ only in their behavior. Stratefies provide a way to configure a class eith one of many behaviors
+* you need different variants of an algorithm. for example, you migh define algorithms reflecting different space/time trade-offs. Strategies can be used when these variants are implemented as a class hierarchy of algorithms
+* an algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex, algorithm-specific data structures
+* a class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move related conditional branches into their own Strategy class
+
 ##Template method
 **Intent:** Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 
