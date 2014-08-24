@@ -118,6 +118,13 @@
 ##Proxy
 **Intent:** Provide a surrogate or placeholder for another object to control access to it.
 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/proxy/etc/proxy.jpg "Proxy")
+
+**Applicability:** Proxy is applicable whenever there is a need for a more versatile or sophisticated reference to an object than a simple pointer. here are several common situations in which the Proxy pattern is applicable
+* a remote proxy provides a local representative for an object in a different address space.
+* a virtual proxy creates expensive objects on demand.
+* a protection proxy controls access to the original object. Protection proxies are useful when objects should have different access rights.
+
 ##Chain of responsibility
 **Intent:** Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
 
