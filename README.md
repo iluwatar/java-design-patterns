@@ -77,6 +77,12 @@
 ##Composite
 **Intent:** Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/composite/etc/composite.jpg "Composite")
+
+**Applicability:** Use the Composite pattern when
+* you want to represent part-whole hierarchies of objects
+* you want clients to be able to ignore the difference between compositions of objects and individual objects. Clients will treat all objects in the composite structure uniformly
+
 ##Decorator
 **Intent:** Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
 
