@@ -1,6 +1,10 @@
 
 #Design pattern samples in Java.
 
+## Build status:
+
+![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)
+
 
 ##Abstract Factory
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
