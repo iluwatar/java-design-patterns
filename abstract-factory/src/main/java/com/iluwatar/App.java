@@ -1,5 +1,14 @@
 package com.iluwatar;
 
+/**
+ * 
+ * The essence of the Abstract Factory pattern is a factory interface (KingdomFactory)
+ * and its implementations (ElfKingdomFactory, OrcKingdomFactory).
+ * 
+ * The example uses both concrete implementations to create a king, a castle and an
+ * army.
+ *
+ */
 public class App 
 {
     public static void main( String[] args )

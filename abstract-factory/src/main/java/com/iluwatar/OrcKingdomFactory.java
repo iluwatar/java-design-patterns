@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Concrete factory.
+ *
+ */
 public class OrcKingdomFactory implements KingdomFactory {
 
 	public Castle createCastle() {
