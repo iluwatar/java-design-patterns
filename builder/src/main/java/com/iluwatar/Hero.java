@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * The class with many parameters.
+ *
+ */
 public class Hero {
 
 	private final Profession profession;
@@ -72,7 +77,12 @@ public class Hero {
 		this.weapon = builder.weapon;
 		this.armor = builder.armor;
 	}
-	
+
+	/**
+	 * 
+	 * The builder class.
+	 *
+	 */
 	public static class HeroBuilder {
 
 		private final Profession profession;
@@ -113,7 +123,5 @@ public class Hero {
 		public Hero build() {
 			return new Hero(this);
 		}
-		
 	}
-	
 }
