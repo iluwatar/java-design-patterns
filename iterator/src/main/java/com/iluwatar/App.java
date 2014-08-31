@@ -1,5 +1,12 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Iterator (ItemIterator) adds abstraction layer on top of a 
+ * collection (TreasureChest). This way the collection can change 
+ * its internal implementation without affecting its clients.
+ *
+ */
 public class App 
 {
     public static void main( String[] args )

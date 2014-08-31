@@ -3,6 +3,11 @@ package com.iluwatar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * Collection class.
+ *
+ */
 public class TreasureChest {
 
 	private List<Item> items;
