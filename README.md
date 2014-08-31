@@ -66,7 +66,7 @@
 * you need to use several existing subclasses, but it's impractical to adapt their interface by subclassing every one. An object adapter can adapt the interface of its parent class.
 
 ##Bridge
-**Intent:** Decouple an abstraction from its implementationso that the two can vary independently.
+**Intent:** Decouple an abstraction from its implementation so that the two can vary independently.
 
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/bridge/etc/bridge.jpg "Bridge")
