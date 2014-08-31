@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Adapter class.
+ *
+ */
 public class GnomeEngineerAdapter {
 
 	private GoblinGlider glider;

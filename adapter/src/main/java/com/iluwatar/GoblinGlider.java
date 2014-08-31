@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Adaptee class.
+ *
+ */
 public class GoblinGlider {
 
 	public void attachGlider() {
