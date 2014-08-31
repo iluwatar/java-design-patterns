@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Mammoth has internal state that defines its behavior.
+ *
+ */
 public class Mammoth {
 	
 	private State state;
