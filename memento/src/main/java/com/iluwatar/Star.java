@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Star uses "mementos" to store and restore state.
+ *
+ */
 public class Star {
 	
 	private StarType type;

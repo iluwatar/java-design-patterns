@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Internal interface to memento.
+ *
+ */
 public class StarMementoInternal implements StarMemento {
 
 	private StarType type;
