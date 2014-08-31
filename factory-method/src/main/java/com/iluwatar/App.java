@@ -1,5 +1,13 @@
 package com.iluwatar;
 
+/**
+ * 
+ * In Factory Method we have an interface (Blacksmith) with a
+ * method for creating objects (manufactureWeapon). The concrete
+ * subclasses (OrcBlacksmith, ElfBlacksmith) then override the 
+ * method to produce objects of their liking.
+ *
+ */
 public class App 
 {
     public static void main( String[] args )
