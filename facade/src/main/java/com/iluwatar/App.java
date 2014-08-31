@@ -1,5 +1,11 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Facade (DwarvenGoldmineFacade) provides simpler interface to 
+ * subsystem.
+ *
+ */
 public class App 
 {
     public static void main( String[] args )
