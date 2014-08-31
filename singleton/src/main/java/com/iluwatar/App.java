@@ -1,5 +1,11 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Singleton pattern ensures that the class (IvoryTower) can have only
+ * one existing instance and provides global access to that instance.
+ *
+ */
 public class App 
 {
     public static void main( String[] args )
