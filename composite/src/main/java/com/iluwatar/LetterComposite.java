@@ -3,6 +3,11 @@ package com.iluwatar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * Composite interface.
+ *
+ */
 public abstract class LetterComposite {
 
 	private List<LetterComposite> children = new ArrayList<LetterComposite>();
