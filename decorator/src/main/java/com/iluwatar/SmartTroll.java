@@ -1,10 +1,10 @@
 package com.iluwatar;
 
-public class SmartTroll extends Troll {
+public class SmartTroll implements Hostile {
 
-	private Troll decorated;
+	private Hostile decorated;
 
-	public SmartTroll(Troll decorated) {
+	public SmartTroll(Hostile decorated) {
 		this.decorated = decorated;
 	}
 	

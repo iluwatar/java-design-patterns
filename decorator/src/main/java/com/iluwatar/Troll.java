@@ -1,6 +1,6 @@
 package com.iluwatar;
 
-public class Troll {
+public class Troll implements Hostile {
 
 	public void attack() {
 		System.out.println("The troll swings at you with a club!");
