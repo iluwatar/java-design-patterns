@@ -3,6 +3,12 @@ package com.iluwatar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * Weather can be observed by implementing WeatherObserver
+ * interface and registering as listener.
+ *
+ */
 public class Weather {
 
 	private WeatherType currentWeather;
