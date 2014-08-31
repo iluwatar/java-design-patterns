@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Template Method base class.
+ *
+ */
 public abstract class StealingMethod {
 
 	protected abstract String pickTarget();

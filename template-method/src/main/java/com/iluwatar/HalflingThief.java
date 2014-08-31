@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Halfling thief uses StealingMethod to steal.
+ *
+ */
 public class HalflingThief {
 
 	private StealingMethod method;
