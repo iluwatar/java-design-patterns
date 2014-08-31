@@ -1,5 +1,11 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Strategy (DragonSlayingStrategy) encapsulates the algorithm to use.
+ * The object (DragonSlayer) can alter its behavior by changing its strategy.
+ *
+ */
 public class App 
 {
     public static void main( String[] args )
