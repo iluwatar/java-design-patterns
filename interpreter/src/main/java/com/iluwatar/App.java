@@ -2,6 +2,12 @@ package com.iluwatar;
 
 import java.util.Stack;
 
+/**
+ * 
+ * Interpreter pattern breaks sentences into expressions (Expression)
+ * that can be evaluated and as a whole form the result.
+ *
+ */
 public class App 
 {
 	
