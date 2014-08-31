@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Implementation interface.
+ *
+ */
 public abstract class MagicWeaponImp {
 
 	public abstract void wieldImp();

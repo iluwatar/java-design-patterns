@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Abstraction interface.
+ *
+ */
 public abstract class MagicWeapon {
 
 	protected MagicWeaponImp imp;

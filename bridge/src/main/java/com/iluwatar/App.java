@@ -1,5 +1,14 @@
 package com.iluwatar;
 
+/**
+ * 
+ * In Bridge pattern both abstraction (MagicWeapon) 
+ * and implementation (MagicWeaponImp) have their 
+ * own class hierarchies. The interface of the
+ * implementations can be changed without affecting
+ * the clients.
+ *
+ */
 public class App 
 {
     public static void main( String[] args )
