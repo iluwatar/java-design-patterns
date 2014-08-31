@@ -2,6 +2,11 @@ package com.iluwatar;
 
 import java.util.EnumMap;
 
+/**
+ * 
+ * Flyweight.
+ *
+ */
 public class PotionFactory {
 
 	private EnumMap<PotionType, Potion> potions;

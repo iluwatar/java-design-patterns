@@ -3,6 +3,11 @@ package com.iluwatar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * The class that needs many objects.
+ *
+ */
 public class AlchemistShop {
 
 	List<Potion> topShelf;
