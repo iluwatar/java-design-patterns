@@ -1,5 +1,12 @@
 package com.iluwatar;
 
+/**
+ * 
+ * In Prototype we have a factory class (HeroFactoryImpl) producing
+ * objects by cloning existing ones. In this example the factory's
+ * prototype objects are given as constructor parameters.
+ *
+ */
 public class App 
 {
     public static void main( String[] args )

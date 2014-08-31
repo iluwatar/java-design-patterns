@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Concrete factory class.
+ *
+ */
 public class HeroFactoryImpl implements HeroFactory {
 
 	private Mage mage;
