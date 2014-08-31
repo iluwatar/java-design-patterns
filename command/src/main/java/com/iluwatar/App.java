@@ -1,5 +1,12 @@
 package com.iluwatar;
 
+/**
+ * 
+ * In Command pattern actions are objects that can
+ * be executed and undone. The commands in this example
+ * are spells cast by the wizard on the goblin.
+ *
+ */
 public class App 
 {
     public static void main( String[] args )
