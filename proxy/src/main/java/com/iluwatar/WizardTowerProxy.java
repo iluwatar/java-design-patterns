@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * The proxy controlling access to WizardTower.
+ *
+ */
 public class WizardTowerProxy extends WizardTower {
 
 	private static final int NUM_WIZARDS_ALLOWED = 3;
@@ -15,5 +20,4 @@ public class WizardTowerProxy extends WizardTower {
 			System.out.println(wizard + " is not allowed to enter!");
 		}
 	}
-	
 }
