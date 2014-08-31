@@ -1,5 +1,12 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Visitor pattern defines mechanism to apply operations
+ * (UnitVisitor) on nodes (Unit) in hierarchy. New operations 
+ * can be added without altering the node interface.
+ *
+ */
 public class App 
 {
     public static void main( String[] args )

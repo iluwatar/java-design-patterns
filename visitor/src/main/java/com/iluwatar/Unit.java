@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ *
+ * Interface for the nodes in hierarchy.
+ * 
+ */
 public abstract class Unit {
 
 	private Unit[] children;
