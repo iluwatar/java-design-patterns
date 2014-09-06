@@ -250,3 +250,7 @@ While the implementation is similar they solve different problems. The State pat
 **Q: What is the difference between Strategy and Template Method patterns?**
 
 In Template Method the algorithm is chosen at compile time via inheritance. With Strategy pattern the algorithm is chosen at runtime via composition.
+
+**Q: What is the difference between Proxy and Decorator patterns?**
+
+The difference is the intent of the patterns. While Proxy controls access to the object Decorator is used to add responsibilities to the object.
