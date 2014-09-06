@@ -238,3 +238,13 @@
 * an object structure contains many classes of objects with differing interfaces, and you want to perform operations on these objects that depend on their concrete classes
 * many distinct and unrelated operations need to be performed on objects in an object structure, and you want to avoid "polluting" their classes with these operations. Visitor lets you keep related operations together by defining them in one class. When the object structure is shared by many applications, use Visitor to put operations in just those applications that need them
 * the classes defining the object structure rarely change, but you often want to define new operations over the structure. Changing the object structure classes requires redefining the interface to all visitors, which is potentially costly. If the object structure classes change often, then it's probably better to define the operations in those classes
+
+
+
+# Frequently asked questions
+
+**Q: What is the difference between State and Strategy patterns?**
+A: While the implementation is similar they solve different problems. The State pattern deals with what state an object is in - it encapsulates state-dependent behavior. The Strategy pattern deals with how an object performs a certain task - it encapsulates an algorithm.
+
+**Q: What is the difference between Strategy and Template Method patterns?**
+A: In Template Method the algorithm is chosen at compile time via inheritance. With Strategy pattern the algorithm is chosen at runtime via composition.
