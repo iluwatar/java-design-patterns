@@ -13,7 +13,7 @@ public class IvoryTower {
 
 	public static IvoryTower getInstance() {
 		if(instance ==  null){
-			instance = IvoryTower();	
+			instance = new IvoryTower();	
 		}
 		return instance;
 	}
