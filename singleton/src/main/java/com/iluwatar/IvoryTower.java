@@ -7,12 +7,14 @@ package com.iluwatar;
  */
 public class IvoryTower {
 
-	private static IvoryTower instance = new IvoryTower();
+	private static IvoryTower instance;
 	
-	private IvoryTower() {
-	}
+	private IvoryTower() {}
 
 	public static IvoryTower getInstance() {
+		if(instance ==  null){
+			instance = IvoryTower();	
+		}
 		return instance;
 	}
 }
