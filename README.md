@@ -56,7 +56,7 @@
 * when the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code
 
 ##Adapter
-**Intent:** Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
+**Intent:** Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/adapter/etc/adapter.jpg "Adapter")
 
