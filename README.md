@@ -266,3 +266,9 @@ For a new pattern to be added you need to do the following steps:
 3. Create a simple class diagram from your example code. I've used [GenMyModel](https://www.genmymodel.com/) and its "Export as JPEG" feature.
 4. Add description of the pattern in README.md and link to the class diagram.
 5. Create a pull request.
+
+
+
+# License
+
+This projected is licensed under the terms of the MIT license.
