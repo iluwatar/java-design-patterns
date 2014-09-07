@@ -271,4 +271,4 @@ For a new pattern to be added you need to do the following steps:
 
 # License
 
-This projected is licensed under the terms of the MIT license.
+This project is licensed under the terms of the MIT license.
