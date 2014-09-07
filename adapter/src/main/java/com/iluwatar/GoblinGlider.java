@@ -2,21 +2,20 @@ package com.iluwatar;
 
 /**
  * 
- * Adaptee class.
+ * Device class (adaptee in the pattern).
  *
  */
 public class GoblinGlider {
 
 	public void attachGlider() {
-		System.out.println("glider attached");
+		System.out.println("Glider attached.");
 	}
 	
 	public void gainSpeed() {
-		System.out.println("gaining speed");
+		System.out.println("Gaining speed.");
 	}
 	
 	public void takeOff() {
-		System.out.println("lift-off!");
+		System.out.println("Lift-off!");
 	}
-	
 }

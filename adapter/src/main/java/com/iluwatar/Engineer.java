@@ -2,8 +2,7 @@ package com.iluwatar;
 
 /**
  * 
- * The interface the client knows how
- * to use.
+ * Engineers can operate devices.
  *
  */
 public interface Engineer {
