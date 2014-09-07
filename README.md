@@ -254,3 +254,16 @@ In Template Method the algorithm is chosen at compile time via inheritance. With
 **Q: What is the difference between Proxy and Decorator patterns?**
 
 The difference is the intent of the patterns. While Proxy controls access to the object Decorator is used to add responsibilities to the object.
+
+
+
+# How to contribute
+
+For a new pattern to be added you need to do the following steps:
+1. Fork the repository.
+2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation.
+3. Create a simple class diagram from your example code. I've used [GenMyModel](https://www.genmymodel.com/) and its "Export as JPEG" feature.
+4. Add description of the pattern in README.md and link to the class diagram.
+5. Create a pull request.
+
+
