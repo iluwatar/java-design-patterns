@@ -269,6 +269,13 @@ For a new pattern to be added you need to do the following steps:
 
 
 
+# Credits
+
+[Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
+[Effective Java (2nd Edition)](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683)
+
+
+
 # License
 
 This project is licensed under the terms of the MIT license.
