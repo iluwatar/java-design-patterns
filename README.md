@@ -189,6 +189,15 @@
 * a snapshot of an object's state must be saved so that it can be restored to that state later, and
 * a direct interface to obtaining the state would expose implementation details and break the object's encapsulation
 
+##Model-View-Presenter
+**Intent:** Apply a "Separation of Concerns" principle in a way that allows developers to build and test user interfaces.
+
+![alt text](https://github.com/pitsios-s/java-design-patterns/blob/master/model-view-presenter/etc/model-view-presenter.jpg "Model-View-Presenter")
+
+**Applicability:** Use the Model-View-Presenter in any of the following situations
+* when you want to improve the "Separation of Concerns" principle in presentation logic
+* when a user interface development and testing is necessary.
+
 ##Observer
 **Intent:** Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 
