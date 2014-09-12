@@ -1,3 +1,5 @@
+package com.iluwatar;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -7,7 +9,7 @@ import org.junit.Test;
  * This test case is responsible for testing our application
  * by taking advantage of the Model-View-Controller architectural pattern.
  */
-public class FileselectorPresenterTest {
+public class FileSelectorPresenterTest {
 	
 	/**
 	 * The Presenter component.

@@ -1,3 +1,5 @@
+package com.iluwatar;
+
 /**
  * Every instance of this class represents the Stub component in
  * the Model-View-Presenter architectural pattern.

@@ -1,3 +1,5 @@
+package com.iluwatar;
+
 /**
  * This interface represents the View component in the 
  * Model-View-Presenter pattern. It can be implemented 
