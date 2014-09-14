@@ -55,7 +55,7 @@ public class Hero {
 				sb.append(hairType);
 				sb.append(" ");
 			}
-			sb.append(hairType != HairType.BOLD ? "hair" : "head");
+			sb.append(hairType != HairType.BALD ? "hair" : "head");
 		}
 		if (armor != null) {
 			sb.append(" wearing ");
