@@ -38,7 +38,7 @@ public class App
 		System.out.println(warrior);
 
 		Hero thief = new HeroBuilder(Profession.THIEF, "Desmond")
-			.withHairType(HairType.BOLD)
+			.withHairType(HairType.BALD)
 			.withWeapon(Weapon.BOW)
 			.build();
 		System.out.println(thief);
