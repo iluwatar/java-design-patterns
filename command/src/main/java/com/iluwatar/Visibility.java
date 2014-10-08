@@ -2,14 +2,13 @@ package com.iluwatar;
 
 public enum Visibility {
 
-	VISIBLE,
-	INVISIBLE;
+	VISIBLE, INVISIBLE;
 
 	@Override
 	public String toString() {
-		
+
 		String s = "";
-		
+
 		switch (this) {
 		case INVISIBLE:
 			s = "invisible";
@@ -19,7 +18,7 @@ public enum Visibility {
 			break;
 		default:
 			break;
-		
+
 		}
 		return s;
 	}

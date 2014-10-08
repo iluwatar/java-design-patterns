@@ -6,5 +6,5 @@ public class ElfArmy implements Army {
 	public String toString() {
 		return "This is the Elven Army!";
 	}
-	
+
 }

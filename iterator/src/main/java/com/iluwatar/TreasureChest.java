@@ -6,12 +6,12 @@ import java.util.List;
 /**
  * 
  * Collection class.
- *
+ * 
  */
 public class TreasureChest {
 
 	private List<Item> items;
-	
+
 	public TreasureChest() {
 		items = new ArrayList<>();
 		items.add(new Item(ItemType.POTION, "Potion of courage"));
@@ -25,7 +25,7 @@ public class TreasureChest {
 		items.add(new Item(ItemType.WEAPON, "Steel halberd"));
 		items.add(new Item(ItemType.WEAPON, "Dagger of poison"));
 	}
-	
+
 	ItemIterator Iterator(ItemType type) {
 		return new TreasureChestItemIterator(this, type);
 	}
@@ -35,5 +35,5 @@ public class TreasureChest {
 		list.addAll(items);
 		return list;
 	}
-	
+
 }

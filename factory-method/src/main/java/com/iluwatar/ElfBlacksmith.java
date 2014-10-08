@@ -3,7 +3,7 @@ package com.iluwatar;
 /**
  * 
  * Concrete subclass for creating new objects.
- *
+ * 
  */
 public class ElfBlacksmith implements Blacksmith {
 

@@ -2,15 +2,13 @@ package com.iluwatar;
 
 public enum Size {
 
-	SMALL,
-	NORMAL,
-	LARGE;
+	SMALL, NORMAL, LARGE;
 
 	@Override
 	public String toString() {
-		
+
 		String s = "";
-		
+
 		switch (this) {
 		case LARGE:
 			s = "large";
@@ -27,5 +25,4 @@ public enum Size {
 		return s;
 	}
 
-	
 }

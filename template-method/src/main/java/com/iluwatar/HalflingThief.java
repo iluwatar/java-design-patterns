@@ -3,7 +3,7 @@ package com.iluwatar;
 /**
  * 
  * Halfling thief uses StealingMethod to steal.
- *
+ * 
  */
 public class HalflingThief {
 
@@ -12,11 +12,11 @@ public class HalflingThief {
 	public HalflingThief(StealingMethod method) {
 		this.method = method;
 	}
-	
+
 	public void steal() {
 		method.steal();
 	}
-	
+
 	public void changeMethod(StealingMethod method) {
 		this.method = method;
 	}

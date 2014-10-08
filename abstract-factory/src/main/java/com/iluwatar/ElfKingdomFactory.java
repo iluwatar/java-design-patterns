@@ -3,7 +3,7 @@ package com.iluwatar;
 /**
  * 
  * Concrete factory.
- *
+ * 
  */
 public class ElfKingdomFactory implements KingdomFactory {
 

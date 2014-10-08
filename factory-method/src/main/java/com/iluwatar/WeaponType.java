@@ -7,13 +7,18 @@ public enum WeaponType {
 	@Override
 	public String toString() {
 		String s = "";
-		switch(this) {
-		case SHORT_SWORD: s = "short sword"; break;
-		case SPEAR: s = "spear"; break;
-		case AXE: s = "axe"; break;
+		switch (this) {
+		case SHORT_SWORD:
+			s = "short sword";
+			break;
+		case SPEAR:
+			s = "spear";
+			break;
+		case AXE:
+			s = "axe";
+			break;
 		}
 		return s;
 	}
-	
-	
+
 }

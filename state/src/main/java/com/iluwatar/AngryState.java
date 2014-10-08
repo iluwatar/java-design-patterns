@@ -7,7 +7,7 @@ public class AngryState implements State {
 	public AngryState(Mammoth mammoth) {
 		this.mammoth = mammoth;
 	}
-	
+
 	@Override
 	public void observe() {
 		System.out.println(String.format("%s is furious!", mammoth));

@@ -3,11 +3,11 @@ package com.iluwatar;
 public class InvisibilitySpell extends Command {
 
 	private Target target;
-	
+
 	public InvisibilitySpell() {
 		target = null;
 	}
-	
+
 	@Override
 	public void execute(Target target) {
 		target.setVisibility(Visibility.INVISIBLE);

@@ -5,11 +5,11 @@ import java.util.List;
 public class Sentence extends LetterComposite {
 
 	public Sentence(List<Word> words) {
-		for (Word w: words) {
+		for (Word w : words) {
 			this.add(w);
 		}
 	}
-	
+
 	@Override
 	protected void printThisBefore() {
 		// nop
@@ -19,6 +19,5 @@ public class Sentence extends LetterComposite {
 	protected void printThisAfter() {
 		System.out.print(".");
 	}
-
 
 }

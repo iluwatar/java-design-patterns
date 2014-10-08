@@ -6,5 +6,5 @@ public class OrcArmy implements Army {
 	public String toString() {
 		return "This is the Orcish Army!";
 	}
-	
+
 }

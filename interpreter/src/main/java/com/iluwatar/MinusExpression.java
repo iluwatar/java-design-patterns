@@ -9,7 +9,7 @@ public class MinusExpression extends Expression {
 		this.leftExpression = leftExpression;
 		this.rightExpression = rightExpression;
 	}
-	
+
 	@Override
 	public int interpret() {
 		return leftExpression.interpret() - rightExpression.interpret();

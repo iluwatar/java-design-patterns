@@ -3,20 +3,20 @@ package com.iluwatar;
 /**
  * 
  * Star uses "mementos" to store and restore state.
- *
+ * 
  */
 public class Star {
-	
+
 	private StarType type;
 	private int ageYears;
 	private int massTons;
-	
+
 	public Star(StarType startType, int startAge, int startMass) {
 		this.type = startType;
 		this.ageYears = startAge;
 		this.massTons = startMass;
 	}
-	
+
 	public void timePasses() {
 		ageYears *= 2;
 		massTons *= 8;
@@ -41,7 +41,7 @@ public class Star {
 			break;
 		}
 	}
-	
+
 	StarMemento getMemento() {
 
 		StarMementoInternal state = new StarMementoInternal();
@@ -49,20 +49,21 @@ public class Star {
 		state.setMassTons(massTons);
 		state.setType(type);
 		return state;
-		
+
 	}
-	
+
 	void setMemento(StarMemento memento) {
-		
+
 		StarMementoInternal state = (StarMementoInternal) memento;
 		this.type = state.getType();
 		this.ageYears = state.getAgeYears();
 		this.massTons = state.getMassTons();
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
-		return String.format("%s age: %d years mass: %d tons", type.toString(), ageYears, massTons);
+		return String.format("%s age: %d years mass: %d tons", type.toString(),
+				ageYears, massTons);
 	}
 }

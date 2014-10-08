@@ -5,28 +5,28 @@ import java.util.List;
 
 /**
  * 
- * Weather can be observed by implementing WeatherObserver
- * interface and registering as listener.
- *
+ * Weather can be observed by implementing WeatherObserver interface and
+ * registering as listener.
+ * 
  */
 public class Weather {
 
 	private WeatherType currentWeather;
 	private List<WeatherObserver> observers;
-	
+
 	public Weather() {
 		observers = new ArrayList<>();
 		currentWeather = WeatherType.SUNNY;
 	}
-	
+
 	public void addObserver(WeatherObserver obs) {
 		observers.add(obs);
 	}
-	
+
 	public void removeObserver(WeatherObserver obs) {
 		observers.remove(obs);
 	}
-	
+
 	public void timePasses() {
 		switch (currentWeather) {
 		case COLD:
@@ -47,9 +47,9 @@ public class Weather {
 		System.out.println("The weather now changes to " + currentWeather);
 		notifyObservers();
 	}
-	
+
 	private void notifyObservers() {
-		for (WeatherObserver obs: observers) {
+		for (WeatherObserver obs : observers) {
 			obs.update(currentWeather);
 		}
 	}

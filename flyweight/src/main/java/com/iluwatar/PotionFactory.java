@@ -5,16 +5,16 @@ import java.util.EnumMap;
 /**
  * 
  * Flyweight.
- *
+ * 
  */
 public class PotionFactory {
 
 	private EnumMap<PotionType, Potion> potions;
-	
+
 	public PotionFactory() {
 		potions = new EnumMap<>(PotionType.class);
 	}
-	
+
 	Potion createPotion(PotionType type) {
 		Potion potion = potions.get(type);
 		if (potion == null) {
@@ -45,5 +45,5 @@ public class PotionFactory {
 		}
 		return potion;
 	}
-	
+
 }

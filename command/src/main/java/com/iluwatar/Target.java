@@ -5,7 +5,7 @@ public abstract class Target {
 	private Size size;
 
 	private Visibility visibility;
-	
+
 	public Size getSize() {
 		return size;
 	}
@@ -24,8 +24,9 @@ public abstract class Target {
 
 	@Override
 	public abstract String toString();
-	
+
 	public void printStatus() {
-		System.out.println(String.format("%s, size=%s visibility=%s", this, getSize(), getVisibility()));
+		System.out.println(String.format("%s, size=%s visibility=%s", this,
+				getSize(), getVisibility()));
 	}
 }

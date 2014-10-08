@@ -3,7 +3,7 @@ package com.iluwatar;
 /**
  * 
  * The class with many parameters.
- *
+ * 
  */
 public class Hero {
 
@@ -13,7 +13,7 @@ public class Hero {
 	private final HairColor hairColor;
 	private final Armor armor;
 	private final Weapon weapon;
-	
+
 	public Profession getProfession() {
 		return profession;
 	}
@@ -37,7 +37,7 @@ public class Hero {
 	public Weapon getWeapon() {
 		return weapon;
 	}
-	
+
 	@Override
 	public String toString() {
 
@@ -81,7 +81,7 @@ public class Hero {
 	/**
 	 * 
 	 * The builder class.
-	 *
+	 * 
 	 */
 	public static class HeroBuilder {
 
@@ -91,20 +91,21 @@ public class Hero {
 		private HairColor hairColor;
 		private Armor armor;
 		private Weapon weapon;
-		
+
 		public HeroBuilder(Profession profession, String name) {
 			if (profession == null || name == null) {
-				throw new NullPointerException("profession and name can not be null");
+				throw new NullPointerException(
+						"profession and name can not be null");
 			}
 			this.profession = profession;
 			this.name = name;
 		}
-		
+
 		public HeroBuilder withHairType(HairType hairType) {
 			this.hairType = hairType;
 			return this;
 		}
-		
+
 		public HeroBuilder withHairColor(HairColor hairColor) {
 			this.hairColor = hairColor;
 			return this;
@@ -114,12 +115,12 @@ public class Hero {
 			this.armor = armor;
 			return this;
 		}
-		
+
 		public HeroBuilder withWeapon(Weapon weapon) {
 			this.weapon = weapon;
 			return this;
 		}
-		
+
 		public Hero build() {
 			return new Hero(this);
 		}
