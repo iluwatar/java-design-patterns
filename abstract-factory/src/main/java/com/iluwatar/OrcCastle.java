@@ -6,5 +6,5 @@ public class OrcCastle implements Castle {
 	public String toString() {
 		return "This is the Orcish castle!";
 	}
-	
+
 }

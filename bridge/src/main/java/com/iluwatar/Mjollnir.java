@@ -19,7 +19,8 @@ public class Mjollnir extends FlyingMagicWeaponImp {
 
 	@Override
 	public void flyImp() {
-		System.out.println("Mjollnir hits the enemy in the air and returns back to the owner's hand");
+		System.out
+				.println("Mjollnir hits the enemy in the air and returns back to the owner's hand");
 	}
 
 }

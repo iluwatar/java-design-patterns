@@ -2,7 +2,7 @@ package com.iluwatar;
 
 public class Commander extends Unit {
 
-	public Commander(Unit ... children) {
+	public Commander(Unit... children) {
 		super(children);
 	}
 
@@ -11,7 +11,7 @@ public class Commander extends Unit {
 		visitor.visitCommander(this);
 		super.accept(visitor);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "commander";

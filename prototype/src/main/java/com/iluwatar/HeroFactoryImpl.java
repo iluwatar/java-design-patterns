@@ -3,7 +3,7 @@ package com.iluwatar;
 /**
  * 
  * Concrete factory class.
- *
+ * 
  */
 public class HeroFactoryImpl implements HeroFactory {
 
@@ -16,7 +16,7 @@ public class HeroFactoryImpl implements HeroFactory {
 		this.warlord = warlord;
 		this.beast = beast;
 	}
-	
+
 	public Mage createMage() {
 		try {
 			return mage.clone();
@@ -24,7 +24,7 @@ public class HeroFactoryImpl implements HeroFactory {
 			return null;
 		}
 	}
-	
+
 	public Warlord createWarlord() {
 		try {
 			return warlord.clone();
@@ -32,7 +32,7 @@ public class HeroFactoryImpl implements HeroFactory {
 			return null;
 		}
 	}
-	
+
 	public Beast createBeast() {
 		try {
 			return beast.clone();
@@ -40,5 +40,5 @@ public class HeroFactoryImpl implements HeroFactory {
 			return null;
 		}
 	}
-	
+
 }

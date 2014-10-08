@@ -5,7 +5,7 @@ public enum Action {
 	HUNT, TALE, GOLD, ENEMY;
 
 	public String toString() {
-		
+
 		String s = "";
 		switch (this) {
 		case ENEMY:

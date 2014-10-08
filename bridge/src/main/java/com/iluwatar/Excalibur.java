@@ -19,7 +19,8 @@ public class Excalibur extends BlindingMagicWeaponImp {
 
 	@Override
 	public void blindImp() {
-		System.out.println("bright light streams from Excalibur blinding the enemy");
+		System.out
+				.println("bright light streams from Excalibur blinding the enemy");
 	}
 
 }

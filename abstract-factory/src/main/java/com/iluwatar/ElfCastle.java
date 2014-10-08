@@ -6,5 +6,5 @@ public class ElfCastle implements Castle {
 	public String toString() {
 		return "This is the Elven castle!";
 	}
-	
+
 }

@@ -10,7 +10,7 @@ public class BlindingMagicWeapon extends MagicWeapon {
 	public BlindingMagicWeaponImp getImp() {
 		return (BlindingMagicWeaponImp) imp;
 	}
-	
+
 	@Override
 	public void wield() {
 		getImp().wieldImp();
@@ -29,5 +29,5 @@ public class BlindingMagicWeapon extends MagicWeapon {
 	public void blind() {
 		getImp().blindImp();
 	}
-	
+
 }

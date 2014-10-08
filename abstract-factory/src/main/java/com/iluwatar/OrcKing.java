@@ -6,5 +6,5 @@ public class OrcKing implements King {
 	public String toString() {
 		return "This is the Orc king!";
 	}
-	
+
 }

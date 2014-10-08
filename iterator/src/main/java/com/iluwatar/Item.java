@@ -9,7 +9,7 @@ public class Item {
 		this.setType(type);
 		this.name = name;
 	}
-	
+
 	@Override
 	public String toString() {
 		return name;

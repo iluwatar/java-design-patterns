@@ -6,5 +6,5 @@ public class ElfKing implements King {
 	public String toString() {
 		return "This is the Elven king!";
 	}
-	
+
 }

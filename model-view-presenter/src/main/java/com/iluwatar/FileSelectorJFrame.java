@@ -14,62 +14,62 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * This class is the GUI implementation of the View component
- * In the Model-View-Presenter pattern.
+ * This class is the GUI implementation of the View component In the
+ * Model-View-Presenter pattern.
  */
-public class FileSelectorJFrame extends JFrame implements FileSelectorView, ActionListener {
+public class FileSelectorJFrame extends JFrame implements FileSelectorView,
+		ActionListener {
 
 	/**
 	 * Default serial version ID.
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * The "OK" button for loading the file.
 	 */
 	private JButton OK;
-	
+
 	/**
 	 * The cancel button.
 	 */
 	private JButton cancel;
-	
+
 	/**
 	 * The information label.
 	 */
 	private JLabel info;
-	
+
 	/**
 	 * The contents label.
 	 */
 	private JLabel contents;
-	
+
 	/**
-	 * The text field for giving the name of the file
-	 * that we want to open.
+	 * The text field for giving the name of the file that we want to open.
 	 */
 	private JTextField input;
-	
+
 	/**
 	 * A text area that will keep the contents of the file opened.
 	 */
 	private JTextArea area;
-	
+
 	/**
 	 * The panel that will hold our widgets.
 	 */
 	private JPanel panel;
-	
+
 	/**
 	 * The Presenter component that the frame will interact with
 	 */
 	private FileSelectorPresenter presenter;
-	
+
 	/**
 	 * The name of the file that we want to read it's contents.
 	 */
 	private String fileName;
-	
+
 	/**
 	 * Constructor.
 	 */
@@ -78,7 +78,7 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
 		this.setBounds(100, 100, 500, 200);
-		
+
 		/*
 		 * Add the panel.
 		 */
@@ -87,28 +87,28 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
 		this.add(panel);
 		panel.setBounds(0, 0, 500, 200);
 		panel.setBackground(Color.LIGHT_GRAY);
-		
+
 		/*
 		 * Add the info label.
 		 */
 		this.info = new JLabel("File Name :");
 		this.panel.add(info);
 		info.setBounds(30, 10, 100, 30);
-		
+
 		/*
-		 * Add the contents label. 
+		 * Add the contents label.
 		 */
 		this.contents = new JLabel("File contents :");
 		this.panel.add(contents);
 		this.contents.setBounds(30, 100, 120, 30);
-		
+
 		/*
 		 * Add the text field.
 		 */
 		this.input = new JTextField(100);
 		this.panel.add(input);
 		this.input.setBounds(150, 15, 200, 20);
-		
+
 		/*
 		 * Add the text area.
 		 */
@@ -119,7 +119,7 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
 		this.panel.add(pane);
 		this.area.setEditable(false);
 		pane.setBounds(150, 100, 250, 80);
-		
+
 		/*
 		 * Add the OK button.
 		 */
@@ -127,28 +127,28 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
 		this.panel.add(OK);
 		this.OK.setBounds(250, 50, 100, 25);
 		this.OK.addActionListener(this);
-		
+
 		/*
-		 * Add the cancel button. 
+		 * Add the cancel button.
 		 */
 		this.cancel = new JButton("Cancel");
 		this.panel.add(this.cancel);
 		this.cancel.setBounds(380, 50, 100, 25);
 		this.cancel.addActionListener(this);
-		
+
 		this.presenter = null;
 		this.fileName = null;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == this.OK) {
+		if (e.getSource() == this.OK) {
 			this.fileName = this.input.getText();
 			presenter.fileNameChanged();
 			presenter.confirmed();
 		}
-		
-		else if(e.getSource() == this.cancel) {
+
+		else if (e.getSource() == this.cancel) {
 			presenter.cancelled();
 		}
 	}

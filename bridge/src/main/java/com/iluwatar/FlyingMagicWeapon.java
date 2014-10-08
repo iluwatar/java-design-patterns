@@ -5,11 +5,11 @@ public class FlyingMagicWeapon extends MagicWeapon {
 	public FlyingMagicWeapon(FlyingMagicWeaponImp imp) {
 		super(imp);
 	}
-	
+
 	public FlyingMagicWeaponImp getImp() {
 		return (FlyingMagicWeaponImp) imp;
 	}
-	
+
 	@Override
 	public void wield() {
 		getImp().wieldImp();
@@ -28,5 +28,5 @@ public class FlyingMagicWeapon extends MagicWeapon {
 	public void fly() {
 		getImp().flyImp();
 	}
-	
+
 }

@@ -12,5 +12,5 @@ public class ElfWeapon implements Weapon {
 	public String toString() {
 		return "Elven " + weaponType;
 	}
-	
+
 }

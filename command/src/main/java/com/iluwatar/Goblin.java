@@ -6,7 +6,7 @@ public class Goblin extends Target {
 		this.setSize(Size.NORMAL);
 		this.setVisibility(Visibility.VISIBLE);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Goblin";

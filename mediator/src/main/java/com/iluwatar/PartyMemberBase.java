@@ -31,7 +31,7 @@ public abstract class PartyMemberBase implements PartyMember {
 		}
 		System.out.println(s);
 	}
-	
+
 	@Override
 	public void act(Action action) {
 		if (party != null) {
@@ -42,5 +42,5 @@ public abstract class PartyMemberBase implements PartyMember {
 
 	@Override
 	public abstract String toString();
-	
+
 }

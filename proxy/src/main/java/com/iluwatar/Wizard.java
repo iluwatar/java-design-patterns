@@ -12,5 +12,5 @@ public class Wizard {
 	public String toString() {
 		return name;
 	}
-	
+
 }

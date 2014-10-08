@@ -13,7 +13,7 @@ public class TreasureChestItemIterator implements ItemIterator {
 		this.type = type;
 		this.idx = -1;
 	}
-	
+
 	@Override
 	public boolean hasNext() {
 		return findNextIdx() != -1;
@@ -27,9 +27,9 @@ public class TreasureChestItemIterator implements ItemIterator {
 		}
 		return null;
 	}
-	
+
 	private int findNextIdx() {
-		
+
 		List<Item> items = chest.getItems();
 		boolean found = false;
 		int tempIdx = idx;
@@ -39,7 +39,8 @@ public class TreasureChestItemIterator implements ItemIterator {
 				tempIdx = -1;
 				break;
 			}
-			if (type.equals(ItemType.ANY) || items.get(tempIdx).getType().equals(type)) {
+			if (type.equals(ItemType.ANY)
+					|| items.get(tempIdx).getType().equals(type)) {
 				break;
 			}
 		}

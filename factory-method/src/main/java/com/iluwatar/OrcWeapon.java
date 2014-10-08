@@ -12,5 +12,5 @@ public class OrcWeapon implements Weapon {
 	public String toString() {
 		return "Orcish " + weaponType;
 	}
-	
+
 }

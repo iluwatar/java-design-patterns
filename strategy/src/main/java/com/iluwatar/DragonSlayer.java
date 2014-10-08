@@ -3,7 +3,7 @@ package com.iluwatar;
 /**
  * 
  * DragonSlayer uses different strategies to slay the dragon.
- *
+ * 
  */
 public class DragonSlayer {
 
@@ -16,7 +16,7 @@ public class DragonSlayer {
 	public void changeStrategy(DragonSlayingStrategy strategy) {
 		this.strategy = strategy;
 	}
-	
+
 	public void goToBattle() {
 		strategy.execute();
 	}

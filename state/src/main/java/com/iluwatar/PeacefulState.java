@@ -1,7 +1,7 @@
 package com.iluwatar;
 
 public class PeacefulState implements State {
-	
+
 	private Mammoth mammoth;
 
 	public PeacefulState(Mammoth mammoth) {
@@ -17,5 +17,5 @@ public class PeacefulState implements State {
 	public void onEnterState() {
 		System.out.println(String.format("%s calms down.", mammoth));
 	}
-	
+
 }

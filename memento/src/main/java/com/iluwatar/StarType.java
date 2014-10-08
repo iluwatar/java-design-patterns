@@ -2,11 +2,7 @@ package com.iluwatar;
 
 public enum StarType {
 
-	SUN,
-	RED_GIANT,
-	WHITE_DWARF,
-	SUPERNOVA,
-	DEAD;
+	SUN, RED_GIANT, WHITE_DWARF, SUPERNOVA, DEAD;
 
 	@Override
 	public String toString() {
@@ -32,5 +28,5 @@ public enum StarType {
 		}
 		return s;
 	}
-	
+
 }
