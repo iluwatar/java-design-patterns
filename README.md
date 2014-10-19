@@ -283,6 +283,8 @@ For a new pattern to be added you need to do the following steps:
 4. Add description of the pattern in README.md and link to the class diagram.
 5. Create a pull request.
 
+If you want to edit the existing UML diagrams I can easily add you as an editor to the corresponding GenMyModel-project. Just drop me an email mentioning the pattern you are editing.
+
 
 
 # Credits
