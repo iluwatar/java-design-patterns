@@ -28,23 +28,9 @@ public class Weather {
 	}
 
 	public void timePasses() {
-		switch (currentWeather) {
-		case COLD:
-			currentWeather = WeatherType.SUNNY;
-			break;
-		case RAINY:
-			currentWeather = WeatherType.WINDY;
-			break;
-		case SUNNY:
-			currentWeather = WeatherType.RAINY;
-			break;
-		case WINDY:
-			currentWeather = WeatherType.COLD;
-			break;
-		default:
-			break;
-		}
-		System.out.println("The weather now changes to " + currentWeather);
+		WeatherType[] enumValues = WeatherType.values();
+		currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
+		System.out.println("The weather changed to " + currentWeather + ".");
 		notifyObservers();
 	}
 
