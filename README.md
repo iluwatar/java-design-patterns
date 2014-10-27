@@ -285,6 +285,8 @@ For a new pattern to be added you need to do the following steps:
 
 If you want to edit the existing UML diagrams I can easily add you as an editor to the corresponding GenMyModel-project. Just drop me an email mentioning the pattern you are editing.
 
+The is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern).
+
 
 
 # Credits
