@@ -55,6 +55,11 @@
 * the must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
 * when the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code
 
+**Typical Use Case:**
+* the logging class
+* managing a connection to a database
+* file manager
+
 ##Adapter
 **Intent:** Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 
@@ -125,9 +130,19 @@
 ![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/proxy/etc/proxy_1.png "Proxy")
 
 **Applicability:** Proxy is applicable whenever there is a need for a more versatile or sophisticated reference to an object than a simple pointer. here are several common situations in which the Proxy pattern is applicable
+
 * a remote proxy provides a local representative for an object in a different address space.
 * a virtual proxy creates expensive objects on demand.
 * a protection proxy controls access to the original object. Protection proxies are useful when objects should have different access rights.
+
+**Typical Use Case:**
+
+* Control access to another object
+* Lazy initialization
+* implement logging
+* facilitate network connection
+* to count references to an object
+
 
 ##Chain of responsibility
 **Intent:** Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
@@ -145,11 +160,18 @@
 ![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/command/etc/command_1.png "Command")
 
 **Applicability:** Use the Command pattern when you want to
+
 * parameterize objects by an action to perform. You can express such parameterization in a procedural language with a callback function, that is, a function that's registered somewhere to be called at a later point. Commands are an object-oriented replacement for callbacks.
 * specify, queue, and execute requests at different times. A Command object can have a lifetime independent of the original request. If the receiver of a request can be represented in an address space-independent way, then you can transfer a command object for the request to a different process and fulfill the request there
 * support undo. The Command's execute operation can store state for reversing its effects in the command itself. The Command interface must have an added Unexecute operation that reverses the effects of a previous call to execute. Executed commands are stored in a history list. Unlimited-level undo and redo is achieved by traversing this list backwards and forwards calling unexecute and execute, respectively
 * support logging changes so that they can be reapplied in case of a system crash. By augmenting the Command interface with load and store operations, you can keep a persistent log of changes. Recovering from a crash involves reloading logged commands from disk and re-executing them with the execute operation
 * structure a system around high-level operations build on primitive operations. Such a structure is common in information systems that support transactions. A transaction encapsulates a set of changes to data. The Command pattern offers a way to model transactions. Commands have a common interface, letting you invoke all transactions the same way. The pattern also makes it easy to extend the system with new transactions
+
+**Typical Use Case:**
+
+* to keep a history of requests
+* implement callback functionality
+* implement the undo functionality
 
 ##Interpreter
 **Intent:** Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
@@ -204,9 +226,15 @@
 ![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/observer/etc/observer_1.png "Observer")
 
 **Applicability:** Use the Observer pattern in any of the following situations
+
 * when an abstraction has two aspects, one dependent on the other. Encapsulating these aspects in separate objects lets you vary and reuse them independently
 * when a change to one object requires changing others, and you don't know how many objects need to be changed
 * when an object should be able to notify other objects without making assumptions about who these objects are. In other words, you don't want these objects tightly coupled
+
+**Typical Use Case:**
+
+* changing in one object leads to a change in other objects
+
 
 ##State
 **Intent:** Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
