@@ -303,17 +303,19 @@ The difference is the intent of the patterns. While Proxy controls access to the
 
 # How to contribute
 
-For a new pattern to be added you need to do the following steps:
+**To add a new pattern** you need to do the following steps:
 
 1. Fork the repository.
 2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation.
-3. Create a simple class diagram from your example code. I've used [GenMyModel](https://www.genmymodel.com/) and its "Export as JPEG" feature.
+3. Create a simple class diagram from your example code.
 4. Add description of the pattern in README.md and link to the class diagram.
 5. Create a pull request.
 
-If you want to edit the existing UML diagrams I can easily add you as an editor to the corresponding GenMyModel-project. Just drop me an email mentioning the pattern you are editing.
+**To edit the existing UML diagrams** you need one of the following:
+- [GenMyModel](http://genmymodel.com/)
+- [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home)
 
-There is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern).
+**For inspiration** there is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern).
 
 
 
