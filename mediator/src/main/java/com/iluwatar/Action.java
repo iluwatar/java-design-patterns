@@ -10,11 +10,11 @@ public enum Action {
 		case ENEMY:
 			return "spotted enemies";
 		case GOLD:
-            return "found gold";
+			return "found gold";
 		case HUNT:
-            return "hunted a rabbit";
+			return "hunted a rabbit";
 		case TALE:
-            return "tells a tale";
+			return "tells a tale";
 		}
 		return "";
 	}
