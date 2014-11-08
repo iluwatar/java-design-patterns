@@ -20,7 +20,7 @@
 ##Builder
 **Intent:** Separate the construction of a complex object from its representation so that the same construction process can create different representations.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/builder/etc/builder_1.png "Builder")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/builder/etc/builder_1.png "Builder")
 
 **Applicability:** Use the Builder pattern when
 * the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
@@ -29,7 +29,7 @@
 ##Factory Method
 **Intent:** Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/factory-method/etc/factory-method_1.png "Factory Method")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/factory-method/etc/factory-method_1.png "Factory Method")
 
 **Applicability:** Use the Factory Method pattern when
 * a class can't anticipate the class of objects it must create
@@ -39,7 +39,7 @@
 ##Prototype
 **Intent:** Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/prototype/etc/prototype_1.png "Prototype")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/prototype/etc/prototype_1.png "Prototype")
 
 **Applicability:** Use the Prototype pattern when a system should be independent of how its products are created, composed and represented; and
 * when the classes to instantiate are specified at run-time, for example, by dynamic loading; or
@@ -49,7 +49,7 @@
 ##Singleton
 **Intent:** Ensure a class only has one instance, and provide a global point of access to it.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/singleton/etc/singleton_1.png "Singleton")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/singleton/etc/singleton_1.png "Singleton")
 
 **Applicability:** Use the Singleton pattern when
 * the must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
@@ -63,7 +63,7 @@
 ##Adapter
 **Intent:** Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/adapter/etc/adapter_1.png "Adapter")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/adapter/etc/adapter_1.png "Adapter")
 
 **Applicability:** Use the Adapter pattern when
 * you want to use an existing class, and its interface does not match the one you need
@@ -74,7 +74,7 @@
 **Intent:** Decouple an abstraction from its implementation so that the two can vary independently.
 
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/bridge/etc/bridge_1.png "Bridge")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/bridge/etc/bridge_1.png "Bridge")
 
 **Applicability:** Use the Bridge pattern when
 * you want to avoid a permanent binding between an abstraction and its implementation. This might be the case, for example, when the implementation must be selected or switched at run-time.
@@ -86,7 +86,7 @@
 ##Composite
 **Intent:** Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/composite/etc/composite_1.png "Composite")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/composite/etc/composite_1.png "Composite")
 
 **Applicability:** Use the Composite pattern when
 * you want to represent part-whole hierarchies of objects
@@ -95,7 +95,7 @@
 ##Decorator
 **Intent:** Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/decorator/etc/decorator_1.png "Decorator")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/decorator/etc/decorator_1.png "Decorator")
 
 **Applicability:** Use Decorator
 * to add responsibilities to individual objects dynamically and transparently, that is, without affecting other objects
@@ -105,7 +105,7 @@
 ##Facade
 **Intent:** Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/facade/etc/facade_1.png "Facade")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/facade/etc/facade_1.png "Facade")
 
 **Applicability:** Use the Facade pattern when
 * you want to provide a simple interface to a complex subsystem. Subsystems often get more complex  as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the subsystem more reusable and easier to customize, but is also becomes harder to use for clients that don't need to customize it. A facade can provide a simple default view of the subsystem that is good enough for most clients. Only clients needing more customizability will need to look beyond the facade.
@@ -115,7 +115,7 @@
 ##Flyweight
 **Intent:** Use sharing to support large numbers of fine-grained objects efficiently.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/flyweight/etc/flyweight_1.png "Flyweight")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/flyweight/etc/flyweight_1.png "Flyweight")
 
 **Applicability:** The Flyweight pattern's effectiveness depends heavily on how and where it's used. Apply the Flyweight pattern when all of the following are true
 * an application uses a large number of objects
@@ -127,7 +127,7 @@
 ##Proxy
 **Intent:** Provide a surrogate or placeholder for another object to control access to it.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/proxy/etc/proxy_1.png "Proxy")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/proxy/etc/proxy_1.png "Proxy")
 
 **Applicability:** Proxy is applicable whenever there is a need for a more versatile or sophisticated reference to an object than a simple pointer. here are several common situations in which the Proxy pattern is applicable
 
@@ -147,7 +147,7 @@
 ##Chain of responsibility
 **Intent:** Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/chain/etc/chain_1.png "Chain of Responsibility")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/chain/etc/chain_1.png "Chain of Responsibility")
 
 **Applicability:** Use Chain of Responsibility when
 * more than one object may handle a request, and the handler isn't known a priori. The handler should be ascertained automatically
@@ -157,7 +157,7 @@
 ##Command
 **Intent:** Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/command/etc/command_1.png "Command")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/command/etc/command_1.png "Command")
 
 **Applicability:** Use the Command pattern when you want to
 
@@ -176,7 +176,7 @@
 ##Interpreter
 **Intent:** Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/interpreter/etc/interpreter_1.png "Interpreter")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/interpreter/etc/interpreter_1.png "Interpreter")
 
 **Applicability:** Use the Interpreter pattern when there is a language to interpret, and you can represent statements in the language as abstract syntax trees. The Interpreter pattern works best when
 * the grammar is simple. For complex grammars, the class hierarchy for the grammar becomes large and unmanageable. Tools such as parser generators are a better alternative in such cases. They can interpret expressions without building abstract syntax trees, which can save space and possibly time
@@ -185,7 +185,7 @@
 ##Iterator
 **Intent:** Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/iterator/etc/iterator_1.png "Iterator")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/iterator/etc/iterator_1.png "Iterator")
 
 **Applicability:** Use the Iterator pattern
 * to access an aggregate object's contents without exposing its internal representation
@@ -195,7 +195,7 @@
 ##Mediator
 **Intent:** Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/mediator/etc/mediator_1.png "Mediator")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/mediator/etc/mediator_1.png "Mediator")
 
 **Applicability:** Use the Mediator pattern when
 * a set of objects communicate in well-defined but complex ways. The resulting interdependencies are unstructured and difficult to understand
@@ -205,7 +205,7 @@
 ##Memento
 **Intent:** Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/memento/etc/memento_1.png "Memento")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/memento/etc/memento_1.png "Memento")
 
 **Applicability:** Use the Memento pattern when
 * a snapshot of an object's state must be saved so that it can be restored to that state later, and
@@ -214,7 +214,7 @@
 ##Model-View-Presenter
 **Intent:** Apply a "Separation of Concerns" principle in a way that allows developers to build and test user interfaces.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/model-view-presenter/etc/model-view-presenter_1.png "Model-View-Presenter")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/model-view-presenter/etc/model-view-presenter_1.png "Model-View-Presenter")
 
 **Applicability:** Use the Model-View-Presenter in any of the following situations
 * when you want to improve the "Separation of Concerns" principle in presentation logic
@@ -223,7 +223,7 @@
 ##Observer
 **Intent:** Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/observer/etc/observer_1.png "Observer")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/observer/etc/observer_1.png "Observer")
 
 **Applicability:** Use the Observer pattern in any of the following situations
 
@@ -239,7 +239,7 @@
 ##State
 **Intent:** Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/state/etc/state_1.png "State")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/state/etc/state_1.png "State")
 
 **Applicability:** Use the State pattern in either of the following cases
 * an object's behavior depends on its state, and it must change its behavior at run-time depending on that state
@@ -248,7 +248,7 @@
 ##Strategy
 **Intent:** Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/strategy/etc/strategy_1.png "Strategy")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/strategy/etc/strategy_1.png "Strategy")
 
 **Applicability:** Use the Strategy pattern when
 * many related classes differ only in their behavior. Stratefies provide a way to configure a class eith one of many behaviors
@@ -259,7 +259,7 @@
 ##Template method
 **Intent:** Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/template-method/etc/template-method_1.png "Template Method")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/template-method/etc/template-method_1.png "Template Method")
 
 **Applicability:** The Template Method pattern should be used
 * to implement the invariant parts of an algorithm once and leave it up to subclasses to implement the behavior that can vary
@@ -269,7 +269,7 @@
 ##Visitor
 **Intent:** Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/visitor/etc/visitor_1.png "Visitor")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/visitor/etc/visitor_1.png "Visitor")
 
 **Applicability:** Use the Visitor pattern when
 * an object structure contains many classes of objects with differing interfaces, and you want to perform operations on these objects that depend on their concrete classes
@@ -279,7 +279,7 @@
 ##Double Checked Locking
 **Intent:** Reduce the overhead of acquiring a lock by first testing the locking criterion (the "lock hint") without actually acquiring the lock. Only if the locking criterion check indicates that locking is required does the actual locking logic proceed.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/double-checked-locking/etc/double_checked_locking_1.png "Double Checked Locking")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/double-checked-locking/etc/double_checked_locking_1.png "Double Checked Locking")
 
 **Applicability:** Use the Double Checked Locking pattern when
 * there is a concurrent access in object creation, e.g. singleton, where you want to create single instance of the same class and checking if it's null or not maybe not be enough when there are two or more threads that checks if instance is null or not.
