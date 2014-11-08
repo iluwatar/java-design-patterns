@@ -9,7 +9,7 @@
 ##Abstract Factory
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
 
-![alt text](https://github.com/llitfkitfk/java-design-patterns/blob/master/abstract-factory/etc/abstract-factory_1.png "Abstract Factory")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/abstract-factory/etc/abstract-factory_1.png "Abstract Factory")
 
 **Applicability:** Use the Abstract Factory pattern when
 * a system should be independent of how its products are created, composed and represented
