@@ -29,17 +29,17 @@ public class FileLoader {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(new File(
 					this.fileName)));
-			String text = "";
-			String line = "";
+			StringBuilder sb = new StringBuilder();
+			String line;
 
 			while ((line = br.readLine()) != null) {
-				text += line + "\n";
+				sb.append(line).append('\n');
 			}
 
 			this.loaded = true;
 			br.close();
 
-			return text;
+			return sb.toString();
 		}
 
 		catch (Exception e) {

@@ -6,23 +6,16 @@ public enum Action {
 
 	public String toString() {
 
-		String s = "";
 		switch (this) {
 		case ENEMY:
-			s = "spotted enemies";
-			break;
+			return "spotted enemies";
 		case GOLD:
-			s = "found gold";
-			break;
+			return "found gold";
 		case HUNT:
-			s = "hunted a rabbit";
-			break;
+			return "hunted a rabbit";
 		case TALE:
-			s = "tells a tale";
-			break;
-		default:
-			break;
+			return "tells a tale";
 		}
-		return s;
-	};
+		return "";
+	}
 }

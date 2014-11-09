@@ -50,11 +50,7 @@ public class App {
 	}
 
 	public static boolean isOperator(String s) {
-		if (s.equals("+") || s.equals("-") || s.equals("*")) {
-			return true;
-		} else {
-			return false;
-		}
+		return s.equals("+") || s.equals("-") || s.equals("*");
 	}
 
 	public static Expression getOperatorInstance(String s, Expression left,
