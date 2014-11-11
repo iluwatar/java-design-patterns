@@ -6,7 +6,7 @@ public enum Armor {
 
 	@Override
 	public String toString() {
-		return name().toLowerCase();
+		return name().toLowerCase().replaceAll("_", " ");
 	}
 
 }
