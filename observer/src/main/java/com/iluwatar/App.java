@@ -24,9 +24,10 @@ public class App {
 		weather.timePasses();
 
 		// Generic observer inspired by Java Generics and Collection by Naftalin & Wadler
+		System.out.println("\n--Running generic version--");
 		GWeather gWeather = new GWeather();
-		gWeather.addObserver(new GHobbits());
 		gWeather.addObserver(new GOrcs());
+		gWeather.addObserver(new GHobbits());
 
 		gWeather.timePasses();
 		gWeather.timePasses();
