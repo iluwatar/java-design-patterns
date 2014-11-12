@@ -1,5 +1,9 @@
 package com.iluwatar;
 
+import com.iluwatar.generic.GHobbits;
+import com.iluwatar.generic.GOrcs;
+import com.iluwatar.generic.GWeather;
+
 /**
  * 
  * Observer pattern defines one-to-many relationship between objects. The target
@@ -18,6 +22,17 @@ public class App {
 		weather.timePasses();
 		weather.timePasses();
 		weather.timePasses();
+
+		// Generic observer inspired by Java Generics and Collection by Naftalin & Wadler
+		System.out.println("\n--Running generic version--");
+		GWeather gWeather = new GWeather();
+		gWeather.addObserver(new GOrcs());
+		gWeather.addObserver(new GHobbits());
+
+		gWeather.timePasses();
+		gWeather.timePasses();
+		gWeather.timePasses();
+		gWeather.timePasses();
 
 	}
 }
