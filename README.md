@@ -317,7 +317,7 @@ The difference is the intent of the patterns. While Proxy controls access to the
 
 **For inspiration** there is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern).
 
-**Links to applied patterns in real applications** are welcome. The links are added to the corresponding section of the `README.md`.
+**Links to patterns applied in real world applications** are welcome. The links should be added to the corresponding section of the `README.md`.
 
 
 
