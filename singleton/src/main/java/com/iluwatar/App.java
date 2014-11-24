@@ -24,7 +24,7 @@ public class App {
 
 		EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.getInstance();
 		EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.getInstance();
-		System.out.println("enumIvoryTower1=" + enumIvoryTower1.getDeclaringClass().getCanonicalName() + "@" + enumIvoryTower1.hashCode());
-		System.out.println("enumIvoryTower2=" + enumIvoryTower2.getDeclaringClass().getCanonicalName() + "@" + enumIvoryTower2.hashCode());
+		System.out.println("enumIvoryTower1=" + enumIvoryTower1);
+		System.out.println("enumIvoryTower2=" + enumIvoryTower2);
 	}
 }
