@@ -22,5 +22,9 @@ public class App {
 		System.out.println("threadSafeIvoryTower1=" + threadSafeIvoryTower1);
 		System.out.println("threadSafeIvoryTower2=" + threadSafeIvoryTower2);
 
+		EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.getInstance();
+		EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.getInstance();
+		System.out.println("enumIvoryTower1=" + enumIvoryTower1.getDeclaringClass().getCanonicalName() + "@" + enumIvoryTower1.hashCode());
+		System.out.println("enumIvoryTower2=" + enumIvoryTower2.getDeclaringClass().getCanonicalName() + "@" + enumIvoryTower2.hashCode());
 	}
 }
