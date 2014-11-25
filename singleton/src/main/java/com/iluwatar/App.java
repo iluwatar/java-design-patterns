@@ -22,8 +22,8 @@ public class App {
 		System.out.println("threadSafeIvoryTower1=" + threadSafeIvoryTower1);
 		System.out.println("threadSafeIvoryTower2=" + threadSafeIvoryTower2);
 
-		EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.getInstance();
-		EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.getInstance();
+		EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.INSTANCE;
+		EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
 		System.out.println("enumIvoryTower1=" + enumIvoryTower1);
 		System.out.println("enumIvoryTower2=" + enumIvoryTower2);
 	}
