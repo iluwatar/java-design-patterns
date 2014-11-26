@@ -4,8 +4,6 @@ public class SergeantVisitor implements UnitVisitor {
 
 	@Override
 	public void visitSoldier(Soldier soldier) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -15,8 +13,6 @@ public class SergeantVisitor implements UnitVisitor {
 
 	@Override
 	public void visitCommander(Commander commander) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
