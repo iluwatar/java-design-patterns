@@ -7,13 +7,6 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <distributionManagement>
-    <site>
-      <id>website</id>
-      <url>scp://webhost.company.com/www/website</url>
-    </site>
-  </distributionManagement>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>

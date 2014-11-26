@@ -7,9 +7,7 @@
     <artifactId>java-design-patterns</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>com.iluwatar</groupId>
   <artifactId>template-method</artifactId>
-  <version>1.0-SNAPSHOT</version>
   <name>template-method</name>
   <url>http://maven.apache.org</url>
   <dependencies>
