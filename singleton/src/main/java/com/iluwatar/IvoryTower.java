@@ -3,6 +3,8 @@ package com.iluwatar;
 /**
  * 
  * Singleton class.
+ * Eagerly initialized static instance guarantees thread
+ * safety.
  * 
  */
 public class IvoryTower {
