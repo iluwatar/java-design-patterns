@@ -3,6 +3,8 @@ package com.iluwatar;
 /**
  *
  * Thread-safe Singleton class.
+ * The instance is lazily initialized and thus needs synchronization
+ * mechanism.
  *
  */
 public class ThreadSafeLazyLoadedIvoryTower {
