@@ -36,7 +36,6 @@
     <module>template-method</module>
     <module>visitor</module>
     <module>double-checked-locking</module>
-    <module>private-class-data</module>
     <module>servant</module>
   </modules>
   

@@ -8,7 +8,6 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>servant</artifactId>
-  <version>1.0-SNAPSHOT</version>
   <name>servant</name>
   <url>http://maven.apache.org</url>
   <dependencies>
