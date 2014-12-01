@@ -10,11 +10,11 @@ public class Servant {
 	}
 
 	public void feed(Royalty r){
-		r.feed();
+		r.getFed();
 	}
 	
 	public void giveWine(Royalty r){
-		r.giveDrink();
+		r.getDrink();
 	}
 	
 	public void GiveCompliments(Royalty r){

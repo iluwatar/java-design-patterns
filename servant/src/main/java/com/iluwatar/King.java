@@ -5,12 +5,12 @@ public class King implements Royalty{
 	private boolean complimentReceived = false;
 	
 	@Override
-	public void feed() {
+	public void getFed() {
 		isHungry = false;
 	}
 
 	@Override
-	public void giveDrink() {
+	public void getDrink() {
 		isDrunk = true;
 	}
 	
