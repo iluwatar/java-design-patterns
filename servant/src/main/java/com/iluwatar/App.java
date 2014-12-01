@@ -18,7 +18,9 @@ public class App {
 		scenario(travis, 0);
 	}
 	
-	
+	/*
+	 * Can add a List with enum Actions for variable scenarios
+	 * */
 	public static void scenario(Servant servant, int compliment){
 		King k = new King();
 		Queen q = new Queen();
