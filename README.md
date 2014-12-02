@@ -52,7 +52,7 @@
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/singleton/etc/singleton_1.png "Singleton")
 
 **Applicability:** Use the Singleton pattern when
-* the must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
+* there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
 * when the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code
 
 **Typical Use Case:**
