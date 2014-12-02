@@ -1,12 +1,39 @@
 
-#Design pattern samples in Java.
+# Design pattern samples in Java.
 
 ## Build status:
 
 ![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)
 
+## <a name="list-of-design-patterns">List of Design Patterns</a>
 
-##Abstract Factory
+* [Abstract Factory](#abstract-factory)
+* [Builder](#builder)
+* [Factory Method](#factory-method)
+* [Prototype](#prototype)
+* [Singleton](#singleton)
+* [Adapter](#adapter)
+* [Bridge](#bridge)
+* [Composite](#composite)
+* [Decorator](#decorator)
+* [Facade](#facade)
+* [Flyweight](#flyweight)
+* [Proxy](#proxy)
+* [Chain of responsibility](#chain-of-responsibility)
+* [Command](#command)
+* [Interpreter](#interpreter)
+* [Iterator](#iterator)
+* [Mediator](#mediator)
+* [Memento](#memento)
+* [Model-View-Presenter](#model-view-presenter)
+* [Observer](#observer)
+* [State](#state)
+* [Strategy](#strategy)
+* [Template method](#template-method)
+* [Visitor](#visitor)
+* [Double Checked Locking](#double-checked-locking)
+
+## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/abstract-factory/etc/abstract-factory_1.png "Abstract Factory")
@@ -17,7 +44,7 @@
 * a family of related product objects is designed to be used together, and you need to enforce this constraint
 * you want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
 
-##Builder
+## <a name="builder">Builder</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Separate the construction of a complex object from its representation so that the same construction process can create different representations.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/builder/etc/builder_1.png "Builder")
@@ -26,7 +53,7 @@
 * the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
 * the construction process must allow different representations for the object that's constructed
 
-##Factory Method
+## <a name="factory-method">Factory Method</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/factory-method/etc/factory-method_1.png "Factory Method")
@@ -36,7 +63,7 @@
 * a class wants its subclasses to specify the objects it creates
 * classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
 
-##Prototype
+## <a name="prototype">Prototype</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/prototype/etc/prototype_1.png "Prototype")
@@ -46,7 +73,7 @@
 * to avoid building a class hierarchy of factories that parallels the class hierarchy of products; or
 * when instances of a class can have one of only a few different combinations of state. It may be more convenient to install a corresponding number of prototypes and clone them rather than instantiating the class manually, each time with the appropriate state
 
-##Singleton
+## <a name="singleton">Singleton</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Ensure a class only has one instance, and provide a global point of access to it.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/singleton/etc/singleton_1.png "Singleton")
@@ -60,7 +87,7 @@
 * managing a connection to a database
 * file manager
 
-##Adapter
+## <a name="adapter">Adapter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/adapter/etc/adapter_1.png "Adapter")
@@ -70,7 +97,7 @@
 * you want to create a reusable class that cooperates with unrelated or unforeseen classes, that is, classes that don't necessarily have compatible interfaces
 * you need to use several existing subclasses, but it's impractical to adapt their interface by subclassing every one. An object adapter can adapt the interface of its parent class.
 
-##Bridge
+## <a name="bridge">Bridge</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Decouple an abstraction from its implementation so that the two can vary independently.
 
 
@@ -83,7 +110,7 @@
 * you have a proliferation of classes. Such a class hierarchy indicates the need for splitting an object into two parts. Rumbaugh uses the term "nested generalizations" to refer to such class hierarchies
 * you want to share an implementation among multiple objects (perhaps using reference counting), and this fact should be hidden from the client. A simple example is Coplien's String class, in which multiple objects can share the same string representation.
 
-##Composite
+## <a name="composite">Composite</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/composite/etc/composite_1.png "Composite")
@@ -92,7 +119,7 @@
 * you want to represent part-whole hierarchies of objects
 * you want clients to be able to ignore the difference between compositions of objects and individual objects. Clients will treat all objects in the composite structure uniformly
 
-##Decorator
+## <a name="decorator">Decorator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/decorator/etc/decorator_1.png "Decorator")
@@ -102,7 +129,7 @@
 * for responsibilities that can be withdrawn
 * when extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of sublasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
 
-##Facade
+## <a name="facade">Facade</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/facade/etc/facade_1.png "Facade")
@@ -112,7 +139,7 @@
 * there are many dependencies between clients and the implementation classes of an abstraction. Introduce a facade to decouple the subsystem from clients and other subsystems, thereby promoting subsystem independence and portability.
 * you want to layer your subsystems. Use a facade to define an entry point to each subsystem level. If subsystems are dependent, the you can simplify the dependencies between them by making them communicate with each other solely through their facades
 
-##Flyweight
+## <a name="flyweight">Flyweight</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Use sharing to support large numbers of fine-grained objects efficiently.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/flyweight/etc/flyweight_1.png "Flyweight")
@@ -124,7 +151,7 @@
 * many groups of objects may be replaced by relatively few shared objects once extrinsic state is removed
 * the application doesn't depend on object identity. Since flyweight objects may be shared, identity tests will return true for conceptually distinct objects.
 
-##Proxy
+## <a name="proxy">Proxy</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a surrogate or placeholder for another object to control access to it.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/proxy/etc/proxy_1.png "Proxy")
@@ -144,7 +171,7 @@
 * to count references to an object
 
 
-##Chain of responsibility
+## <a name="chain-of-responsibility">Chain of responsibility</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/chain/etc/chain_1.png "Chain of Responsibility")
@@ -154,7 +181,7 @@
 * you want to issue a request to one of several objects without specifying the receiver explicitly
 * the set of objects that can handle a request should be specified dynamically
 
-##Command
+## <a name="command">Command</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/command/etc/command_1.png "Command")
@@ -173,7 +200,7 @@
 * implement callback functionality
 * implement the undo functionality
 
-##Interpreter
+## <a name="interpreter">Interpreter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/interpreter/etc/interpreter_1.png "Interpreter")
@@ -182,7 +209,7 @@
 * the grammar is simple. For complex grammars, the class hierarchy for the grammar becomes large and unmanageable. Tools such as parser generators are a better alternative in such cases. They can interpret expressions without building abstract syntax trees, which can save space and possibly time
 * efficiency is not a critical concern. The most efficient interpreters are usually not implemented by interpreting parse trees directly but by first translating them into another form. For example, regular expressions are often transformed into state machines. But even then, the translator can be implemented by the Interpreter pattern, so the pattern is still applicable
 
-##Iterator
+## <a name="iterator">Iterator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/iterator/etc/iterator_1.png "Iterator")
@@ -192,7 +219,7 @@
 * to support multiple traversals of aggregate objects
 * to provide a uniform interface for traversing different aggregate structures
 
-##Mediator
+## <a name="mediator">Mediator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/mediator/etc/mediator_1.png "Mediator")
@@ -202,7 +229,7 @@
 * reusing an object is difficult because it refers to and communicates with many other objects
 * a behavior that's distributed between several classes should be customizable without a lot of subclassing
 
-##Memento
+## <a name="memento">Memento</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/memento/etc/memento_1.png "Memento")
@@ -211,7 +238,7 @@
 * a snapshot of an object's state must be saved so that it can be restored to that state later, and
 * a direct interface to obtaining the state would expose implementation details and break the object's encapsulation
 
-##Model-View-Presenter
+## <a name="model-view-presenter">Model-View-Presenter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Apply a "Separation of Concerns" principle in a way that allows developers to build and test user interfaces.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/model-view-presenter/etc/model-view-presenter_1.png "Model-View-Presenter")
@@ -220,7 +247,7 @@
 * when you want to improve the "Separation of Concerns" principle in presentation logic
 * when a user interface development and testing is necessary.
 
-##Observer
+## <a name="observer">Observer</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/observer/etc/observer_1.png "Observer")
@@ -236,7 +263,7 @@
 * changing in one object leads to a change in other objects
 
 
-##State
+## <a name="state">State</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/state/etc/state_1.png "State")
@@ -245,7 +272,7 @@
 * an object's behavior depends on its state, and it must change its behavior at run-time depending on that state
 * operations have large, multipart conditional statements that depend on the object's state. This state is usually represented by one or more enumerated constants. Often, several operations will contain this same conditional structure. The State pattern puts each branch of the conditional in a separate class. This lets you treat the object's state as an object in its own right that can vary independently from other objects.
 
-##Strategy
+## <a name="strategy">Strategy</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/strategy/etc/strategy_1.png "Strategy")
@@ -256,7 +283,7 @@
 * an algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex, algorithm-specific data structures
 * a class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move related conditional branches into their own Strategy class
 
-##Template method
+## <a name="template-method">Template method</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/template-method/etc/template-method_1.png "Template Method")
@@ -266,7 +293,7 @@
 * when common behavior among subclasses should be factored and localized in a common class to avoid code duplication. This is good example of "refactoring to generalize" as described by Opdyke and Johnson. You first identify the differences in the existing code and then separate the differences into new operations. Finally, you replace the differing code with a template method that calls one of these new operations
 * to control subclasses extensions. You can define a template method that calls "hook" operations at specific points, thereby permitting extensions only at those points
 
-##Visitor
+## <a name="visitor">Visitor</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/visitor/etc/visitor_1.png "Visitor")
@@ -276,7 +303,7 @@
 * many distinct and unrelated operations need to be performed on objects in an object structure, and you want to avoid "polluting" their classes with these operations. Visitor lets you keep related operations together by defining them in one class. When the object structure is shared by many applications, use Visitor to put operations in just those applications that need them
 * the classes defining the object structure rarely change, but you often want to define new operations over the structure. Changing the object structure classes requires redefining the interface to all visitors, which is potentially costly. If the object structure classes change often, then it's probably better to define the operations in those classes
 
-##Double Checked Locking
+## <a name="double-checked-locking">Double Checked Locking</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Reduce the overhead of acquiring a lock by first testing the locking criterion (the "lock hint") without actually acquiring the lock. Only if the locking criterion check indicates that locking is required does the actual locking logic proceed.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/double-checked-locking/etc/double_checked_locking_1.png "Double Checked Locking")
