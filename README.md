@@ -36,6 +36,7 @@
 	
 * [Model-View-Presenter](#model-view-presenter)
 * [Double Checked Locking](#double-checked-locking)
+* [Servant](#servant)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -317,7 +318,7 @@
 * there is a concurrent access in object creation, e.g. singleton, where you want to create single instance of the same class and checking if it's null or not maybe not be enough when there are two or more threads that checks if instance is null or not.
 * there is a concurrent access on a method where method's behaviour changes according to the some constraints and these constraint change within this method.
 
-##Servant
+## <a name="servant">Servant</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Servant is used for providing some behavior to a group of classes. Instead of defining that behavior in each class - or when we cannot factor out this behavior in the common parent class - it is defined once in the Servant.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/servant/etc/servant-pattern.png "Servant")
