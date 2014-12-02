@@ -7,30 +7,34 @@
 
 ## <a name="list-of-design-patterns">List of Design Patterns</a>
 
-* [Abstract Factory](#abstract-factory)
-* [Builder](#builder)
-* [Factory Method](#factory-method)
-* [Prototype](#prototype)
-* [Singleton](#singleton)
-* [Adapter](#adapter)
-* [Bridge](#bridge)
-* [Composite](#composite)
-* [Decorator](#decorator)
-* [Facade](#facade)
-* [Flyweight](#flyweight)
-* [Proxy](#proxy)
-* [Chain of responsibility](#chain-of-responsibility)
-* [Command](#command)
-* [Interpreter](#interpreter)
-* [Iterator](#iterator)
-* [Mediator](#mediator)
-* [Memento](#memento)
+* Creational Patterns
+	* [Abstract Factory](#abstract-factory)
+	* [Builder](#builder)
+	* [Factory Method](#factory-method)
+	* [Prototype](#prototype)
+	* [Singleton](#singleton)
+* Structural Patterns
+	* [Adapter](#adapter)
+	* [Bridge](#bridge)
+	* [Composite](#composite)
+	* [Decorator](#decorator)
+	* [Facade](#facade)
+	* [Flyweight](#flyweight)
+	* [Proxy](#proxy)
+* Behavioral Patterns
+	* [Chain of responsibility](#chain-of-responsibility)
+	* [Command](#command)
+	* [Interpreter](#interpreter)
+	* [Iterator](#iterator)
+	* [Mediator](#mediator)
+	* [Memento](#memento)
+	* [Observer](#observer)
+	* [State](#state)
+	* [Strategy](#strategy)
+	* [Template method](#template-method)
+	* [Visitor](#visitor)
+	
 * [Model-View-Presenter](#model-view-presenter)
-* [Observer](#observer)
-* [State](#state)
-* [Strategy](#strategy)
-* [Template method](#template-method)
-* [Visitor](#visitor)
 * [Double Checked Locking](#double-checked-locking)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
@@ -238,14 +242,6 @@
 * a snapshot of an object's state must be saved so that it can be restored to that state later, and
 * a direct interface to obtaining the state would expose implementation details and break the object's encapsulation
 
-## <a name="model-view-presenter">Model-View-Presenter</a> [&#8593;](#list-of-design-patterns)
-**Intent:** Apply a "Separation of Concerns" principle in a way that allows developers to build and test user interfaces.
-
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/model-view-presenter/etc/model-view-presenter_1.png "Model-View-Presenter")
-
-**Applicability:** Use the Model-View-Presenter in any of the following situations
-* when you want to improve the "Separation of Concerns" principle in presentation logic
-* when a user interface development and testing is necessary.
 
 ## <a name="observer">Observer</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
@@ -302,6 +298,15 @@
 * an object structure contains many classes of objects with differing interfaces, and you want to perform operations on these objects that depend on their concrete classes
 * many distinct and unrelated operations need to be performed on objects in an object structure, and you want to avoid "polluting" their classes with these operations. Visitor lets you keep related operations together by defining them in one class. When the object structure is shared by many applications, use Visitor to put operations in just those applications that need them
 * the classes defining the object structure rarely change, but you often want to define new operations over the structure. Changing the object structure classes requires redefining the interface to all visitors, which is potentially costly. If the object structure classes change often, then it's probably better to define the operations in those classes
+
+## <a name="model-view-presenter">Model-View-Presenter</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Apply a "Separation of Concerns" principle in a way that allows developers to build and test user interfaces.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/model-view-presenter/etc/model-view-presenter_1.png "Model-View-Presenter")
+
+**Applicability:** Use the Model-View-Presenter in any of the following situations
+* when you want to improve the "Separation of Concerns" principle in presentation logic
+* when a user interface development and testing is necessary.
 
 ## <a name="double-checked-locking">Double Checked Locking</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Reduce the overhead of acquiring a lock by first testing the locking criterion (the "lock hint") without actually acquiring the lock. Only if the locking criterion check indicates that locking is required does the actual locking logic proceed.
