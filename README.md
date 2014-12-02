@@ -33,7 +33,6 @@
 	* [Strategy](#strategy)
 	* [Template method](#template-method)
 	* [Visitor](#visitor)
-	
 * [Model-View-Presenter](#model-view-presenter)
 * [Double Checked Locking](#double-checked-locking)
 * [Servant](#servant)
