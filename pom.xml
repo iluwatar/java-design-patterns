@@ -36,6 +36,7 @@
     <module>template-method</module>
     <module>visitor</module>
     <module>double-checked-locking</module>
+    <module>servant</module>
   </modules>
   
 <build>

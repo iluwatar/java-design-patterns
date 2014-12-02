@@ -285,6 +285,15 @@
 * there is a concurrent access in object creation, e.g. singleton, where you want to create single instance of the same class and checking if it's null or not maybe not be enough when there are two or more threads that checks if instance is null or not.
 * there is a concurrent access on a method where method's behaviour changes according to the some constraints and these constraint change within this method.
 
+##Servant
+**Intent:** Servant is used for providing some behavior to a group of classes. Instead of defining that behavior in each class - or when we cannot factor out this behavior in the common parent class - it is defined once in the Servant.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/servant/etc/servant.jpg "Servant")
+
+**Applicability:** Use the Servant pattern when
+* When we want some objects to perform a common action and don't want to define this action as a method in every class.
+
+
 # Frequently asked questions
 
 **Q: What is the difference between State and Strategy patterns?**
