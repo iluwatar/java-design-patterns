@@ -21,6 +21,15 @@ public class App {
 				.getInstance();
 		System.out.println("threadSafeIvoryTower1=" + threadSafeIvoryTower1);
 		System.out.println("threadSafeIvoryTower2=" + threadSafeIvoryTower2);
-
+		
+		InitializingOnDemandHolderIdiom demandHolderIdiom = InitializingOnDemandHolderIdiom.getInstance();
+		System.out.println(demandHolderIdiom);
+		InitializingOnDemandHolderIdiom demandHolderIdiom2 = InitializingOnDemandHolderIdiom.getInstance();
+		System.out.println(demandHolderIdiom2);
+		
+		ThreadSafeDoubleCheckLocking dcl1 = ThreadSafeDoubleCheckLocking.getInstance();
+		System.out.println(dcl1);
+		ThreadSafeDoubleCheckLocking dcl2 = ThreadSafeDoubleCheckLocking.getInstance();
+		System.out.println(dcl2);
 	}
 }
