@@ -1,6 +1,10 @@
 package com.iluwatar;
 
 /**
+ * Double check locking
+ * 
+ * http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html
+ * 
  * Broken under Java 1.4.
  * @author mortezaadi@gmail.com
  *

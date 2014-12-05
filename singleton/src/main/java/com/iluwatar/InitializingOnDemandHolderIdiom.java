@@ -3,6 +3,13 @@ package com.iluwatar;
 import java.io.Serializable;
 
 /**
+ * The Initialize-on-demand-holder idiom is a secure way of 
+ * creating lazy initialize singleton Object in Java.
+ * refer to "The CERT Oracle Secure Coding Standard for Java"
+ * By Dhruv Mohindra, Robert C. Seacord p.378
+ * 
+ * Singleton objects usually are heavy to create and sometimes need to serialize them.
+ * This class also shows how to preserve singleton in Serialized version of singleton.
  * 
  * @author mortezaadi@gmail.com
  *
