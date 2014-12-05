@@ -31,5 +31,15 @@ public class App {
 		EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
 		System.out.println("enumIvoryTower1=" + enumIvoryTower1);
 		System.out.println("enumIvoryTower2=" + enumIvoryTower2);
+		
+		InitializingOnDemandHolderIdiom demandHolderIdiom = InitializingOnDemandHolderIdiom.getInstance();
+		System.out.println(demandHolderIdiom);
+		InitializingOnDemandHolderIdiom demandHolderIdiom2 = InitializingOnDemandHolderIdiom.getInstance();
+		System.out.println(demandHolderIdiom2);
+		
+		ThreadSafeDoubleCheckLocking dcl1 = ThreadSafeDoubleCheckLocking.getInstance();
+		System.out.println(dcl1);
+		ThreadSafeDoubleCheckLocking dcl2 = ThreadSafeDoubleCheckLocking.getInstance();
+		System.out.println(dcl2);
 	}
 }
