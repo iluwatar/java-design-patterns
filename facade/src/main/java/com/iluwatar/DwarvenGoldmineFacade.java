@@ -3,6 +3,16 @@ package com.iluwatar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * DwarvenGoldmineFacade provides a single interface
+ * through which users can operate the subsystems.
+ * 
+ * This makes the goldmine easier to operate and
+ * cuts the dependencies from the goldmine user to
+ * the subsystems.
+ *
+ */
 public class DwarvenGoldmineFacade {
 
 	List<DwarvenMineWorker> workers;

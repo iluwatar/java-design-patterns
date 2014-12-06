@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * DwarvenCartOperator is one of the goldmine subsystems.
+ *
+ */
 public class DwarvenCartOperator extends DwarvenMineWorker {
 
 	@Override

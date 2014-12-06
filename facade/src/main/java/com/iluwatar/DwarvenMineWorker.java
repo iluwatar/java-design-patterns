@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * DwarvenMineWorker is one of the goldmine subsystems.
+ *
+ */
 public abstract class DwarvenMineWorker {
 
 	public void goToSleep() {

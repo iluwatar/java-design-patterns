@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * DwarvenTunnelDigger is one of the goldmine subsystems.
+ *
+ */
 public class DwarvenTunnelDigger extends DwarvenMineWorker {
 
 	@Override

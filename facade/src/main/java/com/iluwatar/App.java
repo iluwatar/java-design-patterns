@@ -3,6 +3,7 @@ package com.iluwatar;
 /**
  * 
  * Facade (DwarvenGoldmineFacade) provides simpler interface to subsystem.
+ * http://en.wikipedia.org/wiki/Facade_pattern
  * 
  */
 public class App {
