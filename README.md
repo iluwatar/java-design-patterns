@@ -178,13 +178,13 @@
 ## <a name="service-locator">Service Locator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate the processes involved in obtaining a service with a strong abstraction layer.
 
-![alt text](https://github.com/MSaifAsif/java-design-patterns/blob/master/service-locator/etc/service-locator.png "Proxy")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/service-locator/etc/service-locator.png "Proxy")
 
-**Applicability:** The service locator pattern is applicable whenever we want to locate/fetch various services using JNDI which, typically, is a redundant and expensive lookup. The service Locator pattern addresses this expensicve lookup by making use of caching techniques ie. for the very first time a particular service is requested, the service Locator looks up in JNDI, fetched the relavant service and then finally caches this service object. Now, further lookups of the same service via Service Locator is done in its cache which improves the performance of application to great extent.
+**Applicability:** The service locator pattern is applicable whenever we want to locate/fetch various services using JNDI which, typically, is a redundant and expensive lookup. The service Locator pattern addresses this expensive lookup by making use of caching techniques ie. for the very first time a particular service is requested, the service Locator looks up in JNDI, fetched the relavant service and then finally caches this service object. Now, further lookups of the same service via Service Locator is done in its cache which improves the performance of application to great extent.
 
 **Typical Use Case:**
 
-* When network hits are expesive and time consuming
+* When network hits are expensive and time consuming
 * lookups of services are done quite frequently
 * large number of services are being used
 
