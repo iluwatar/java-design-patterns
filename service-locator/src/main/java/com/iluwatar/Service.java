@@ -1,4 +1,4 @@
-package com.iluwater;
+package com.iluwatar;
 
 /**
  * This is going to be the parent service interface which we will

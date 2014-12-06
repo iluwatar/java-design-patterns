@@ -1,4 +1,4 @@
-package com.iluwater;
+package com.iluwatar;
 
 /**
  * For JNDI lookup of services from the web.xml. Will match name of the service name that
@@ -16,10 +16,10 @@ public class InitContext {
 	 */
 	public Object lookup(String serviceName){
 		if( serviceName.equals("jndi/serviceA") ){
-			System.out.println("Looking up service A and creating new serivce for A");
+			System.out.println("Looking up service A and creating new service for A");
 			return new ServiceImpl("jndi/serviceA");
 		} else if( serviceName.equals("jndi/serviceB") ){
-			System.out.println("Looking up service B and creating new serivce for B");
+			System.out.println("Looking up service B and creating new service for B");
 			return new ServiceImpl("jndi/serviceB");
 		} else {
 			return null;

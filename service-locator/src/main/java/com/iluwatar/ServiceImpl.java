@@ -1,4 +1,4 @@
-package com.iluwater;
+package com.iluwatar;
 
 /**
  * This is a single service implementation of a sample service. This is the actual 

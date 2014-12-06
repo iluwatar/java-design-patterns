@@ -1,4 +1,4 @@
-package com.iluwater;
+package com.iluwatar;
 
 import java.util.HashMap;
 import java.util.Map;

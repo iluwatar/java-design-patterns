@@ -1,4 +1,4 @@
-package com.iluwater;
+package com.iluwatar;
 /**
  * Service locator pattern, used to lookup jndi services 
  * and cache them for subsequent requests. 

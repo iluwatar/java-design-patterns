@@ -1,8 +1,8 @@
-package com.iluwater;
+package com.iluwatar;
 
 /**
  * The service locator module.
- * Will fetch service from cache, otherwise creats a fresh service and update cache
+ * Will fetch service from cache, otherwise creates a fresh service and update cache
  * 
  * @author saifasif
  *
