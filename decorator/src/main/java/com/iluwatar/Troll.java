@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Troll implements Hostile interface directly.
+ *
+ */
 public class Troll implements Hostile {
 
 	public void attack() {

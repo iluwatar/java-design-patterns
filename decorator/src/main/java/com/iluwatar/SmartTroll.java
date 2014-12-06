@@ -1,5 +1,12 @@
 package com.iluwatar;
 
+/**
+ * SmartTroll is a decorator for Hostile objects.
+ * The calls to the Hostile interface are intercepted
+ * and decorated. Finally the calls are delegated
+ * to the decorated Hostile object.
+ *
+ */
 public class SmartTroll implements Hostile {
 
 	private Hostile decorated;
