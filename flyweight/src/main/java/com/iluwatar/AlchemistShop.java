@@ -5,7 +5,8 @@ import java.util.List;
 
 /**
  * 
- * The class that needs many objects.
+ * AlchemistShop holds potions on its shelves.
+ * It uses PotionFactory to provide the potions.
  * 
  */
 public class AlchemistShop {
@@ -52,6 +53,5 @@ public class AlchemistShop {
 		for (Potion p : bottomShelf) {
 			p.drink();
 		}
-
 	}
 }

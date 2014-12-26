@@ -2,7 +2,7 @@ package com.iluwatar;
 
 /**
  * 
- * Interface for objects.
+ * Interface for Potions.
  * 
  */
 public interface Potion {

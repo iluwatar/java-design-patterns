@@ -7,5 +7,4 @@ public class StrengthPotion implements Potion {
 		System.out.println("You feel strong. (Potion="
 				+ System.identityHashCode(this) + ")");
 	}
-
 }
