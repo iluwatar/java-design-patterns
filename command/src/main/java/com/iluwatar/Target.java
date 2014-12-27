@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Base class for spell targets.
+ *
+ */
 public abstract class Target {
 
 	private Size size;

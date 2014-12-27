@@ -2,8 +2,9 @@ package com.iluwatar;
 
 /**
  * 
- * In Command pattern actions are objects that can be executed and undone. The
- * commands in this example are spells cast by the wizard on the goblin.
+ * In Command pattern actions are objects that can be executed and undone. 
+ * 
+ * In this example the commands are the spells cast by the wizard on the goblin.
  * 
  */
 public class App {

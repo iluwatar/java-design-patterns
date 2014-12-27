@@ -2,7 +2,7 @@ package com.iluwatar;
 
 /**
  * 
- * Interface for spells.
+ * Interface for Commands.
  * 
  */
 public abstract class Command {

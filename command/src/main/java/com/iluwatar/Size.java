@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Enumeration for target size.
+ *
+ */
 public enum Size {
 
 	SMALL, NORMAL, LARGE;
@@ -24,5 +29,4 @@ public enum Size {
 		}
 		return s;
 	}
-
 }

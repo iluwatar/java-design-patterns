@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Enumeration for target visibility.
+ *
+ */
 public enum Visibility {
 
 	VISIBLE, INVISIBLE;
