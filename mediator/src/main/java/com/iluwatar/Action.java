@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Action enumeration.
+ *
+ */
 public enum Action {
 
 	HUNT, TALE, GOLD, ENEMY;

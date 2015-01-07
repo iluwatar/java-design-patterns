@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Abstract base class for party members.
+ *
+ */
 public abstract class PartyMemberBase implements PartyMember {
 
 	protected Party party;

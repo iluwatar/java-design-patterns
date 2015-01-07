@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Rogue party member.
+ *
+ */
 public class Rogue extends PartyMemberBase {
 
 	@Override

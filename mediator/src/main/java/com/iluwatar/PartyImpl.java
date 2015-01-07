@@ -3,6 +3,11 @@ package com.iluwatar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * Party implementation.
+ *
+ */
 public class PartyImpl implements Party {
 
 	private List<PartyMember> members;
@@ -25,13 +30,4 @@ public class PartyImpl implements Party {
 		members.add(member);
 		member.joinedParty(this);
 	}
-
-	// somebody hunts for food, call for dinner
-
-	// somebody spots enemy, alert everybody
-
-	// somebody finds gold, deal the gold with everybody
-
-	// somebody tells a tale, call everybody to listen
-
 }
