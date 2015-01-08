@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Angry state.
+ *
+ */
 public class AngryState implements State {
 
 	private Mammoth mammoth;

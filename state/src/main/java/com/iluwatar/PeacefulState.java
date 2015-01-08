@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Peaceful state.
+ *
+ */
 public class PeacefulState implements State {
 
 	private Mammoth mammoth;
