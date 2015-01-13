@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Projectile strategy.
+ *
+ */
 public class ProjectileStrategy implements DragonSlayingStrategy {
 
 	@Override

@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Melee strategy.
+ *
+ */
 public class MeleeStrategy implements DragonSlayingStrategy {
 
 	@Override

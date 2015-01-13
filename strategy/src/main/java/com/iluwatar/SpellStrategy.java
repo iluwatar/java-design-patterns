@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Spell strategy.
+ *
+ */
 public class SpellStrategy implements DragonSlayingStrategy {
 
 	@Override

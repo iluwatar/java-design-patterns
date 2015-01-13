@@ -2,7 +2,7 @@ package com.iluwatar;
 
 /**
  * 
- * Strategy (DragonSlayingStrategy) encapsulates the algorithm to use. The
+ * Strategy (DragonSlayingStrategy) encapsulates an algorithm. The containing
  * object (DragonSlayer) can alter its behavior by changing its strategy.
  * 
  */
