@@ -2,8 +2,11 @@ package com.iluwatar;
 
 /**
  * 
- * Template Method (StealingMethod) defines skeleton for the algorithm and
- * subclasses (HitAndRunMethod, SubtleMethod) fill in the blanks.
+ * Template Method defines a skeleton for an algorithm. The algorithm subclasses 
+ * provide implementation for the blank parts.
+ * 
+ * In this example HalflingThief contains StealingMethod that can be changed. 
+ * First the thief hits with HitAndRunMethod and then with SubtleMethod.
  * 
  */
 public class App {

@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * SubtleMethod implementation of StealingMethod.
+ *
+ */
 public class SubtleMethod extends StealingMethod {
 
 	@Override

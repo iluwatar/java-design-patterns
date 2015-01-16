@@ -2,7 +2,7 @@ package com.iluwatar;
 
 /**
  * 
- * Template Method base class.
+ * StealingMethod defines skeleton for the algorithm.
  * 
  */
 public abstract class StealingMethod {

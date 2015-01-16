@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * HitAndRunMethod implementation of StealingMethod.
+ *
+ */
 public class HitAndRunMethod extends StealingMethod {
 
 	@Override
