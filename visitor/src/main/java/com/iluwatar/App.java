@@ -2,9 +2,14 @@ package com.iluwatar;
 
 /**
  * 
- * Visitor pattern defines mechanism to apply operations (UnitVisitor) on nodes
- * (Unit) in hierarchy. New operations can be added without altering the node
+ * Visitor pattern defines mechanism to apply operations on nodes
+ * in hierarchy. New operations can be added without altering the node
  * interface.
+ * 
+ * In this example there is a unit hierarchy beginning from Commander.
+ * This hierarchy is traversed by visitors. SoldierVisitor applies
+ * its operation on Soldiers, SergeantVisitor on Sergeants and so
+ * on.
  * 
  */
 public class App {

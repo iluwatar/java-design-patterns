@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Sergeant
+ *
+ */
 public class Sergeant extends Unit {
 
 	public Sergeant(Unit... children) {

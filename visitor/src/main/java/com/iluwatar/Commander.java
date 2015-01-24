@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Commander
+ *
+ */
 public class Commander extends Unit {
 
 	public Commander(Unit... children) {

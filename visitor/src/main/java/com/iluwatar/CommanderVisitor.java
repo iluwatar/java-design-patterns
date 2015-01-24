@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * CommanderVisitor
+ *
+ */
 public class CommanderVisitor implements UnitVisitor {
 
 	@Override
