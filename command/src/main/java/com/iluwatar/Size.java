@@ -1,32 +1,22 @@
 package com.iluwatar;
 
 /**
- * 
+ *
  * Enumeration for target size.
  *
  */
 public enum Size {
 
-	SMALL, NORMAL, LARGE;
+    SMALL("small"), NORMAL("normal"), LARGE("large"), UNDEFINED("");
+    
+    private String title;
 
-	@Override
+    Size(String title) {
+        this.title = title;
+    }
+
+    @Override
 	public String toString() {
-
-		String s = "";
-
-		switch (this) {
-		case LARGE:
-			s = "large";
-			break;
-		case NORMAL:
-			s = "normal";
-			break;
-		case SMALL:
-			s = "small";
-			break;
-		default:
-			break;
-		}
-		return s;
+        return title;
 	}
 }
