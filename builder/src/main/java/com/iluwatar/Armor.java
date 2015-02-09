@@ -2,11 +2,16 @@ package com.iluwatar;
 
 public enum Armor {
 
-	CLOTHES, LEATHER, CHAIN_MAIL, PLATE_MAIL;
+	CLOTHES("clothes"), LEATHER("leather"), CHAIN_MAIL("chain mail"), PLATE_MAIL("plate mail");
 
-	@Override
+    private String title;
+
+    Armor(String title) {
+        this.title = title;
+    }
+
+    @Override
 	public String toString() {
-		return name().toLowerCase().replaceAll("_", " ");
+		return title;
 	}
-
 }
