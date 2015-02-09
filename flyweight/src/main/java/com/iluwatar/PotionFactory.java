@@ -1,6 +1,7 @@
 package com.iluwatar;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * 
@@ -12,7 +13,7 @@ import java.util.EnumMap;
  */
 public class PotionFactory {
 
-	private EnumMap<PotionType, Potion> potions;
+	private final Map<PotionType, Potion> potions;
 
 	public PotionFactory() {
 		potions = new EnumMap<>(PotionType.class);
