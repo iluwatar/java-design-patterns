@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class PartyImpl implements Party {
 
-	private List<PartyMember> members;
+	private final List<PartyMember> members;
 
 	public PartyImpl() {
 		members = new ArrayList<>();

@@ -3,8 +3,8 @@ package com.iluwatar;
 public class Goblin extends Target {
 
 	public Goblin() {
-		this.setSize(Size.NORMAL);
-		this.setVisibility(Visibility.VISIBLE);
+		setSize(Size.NORMAL);
+		setVisibility(Visibility.VISIBLE);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.iluwatar;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class DwarvenGoldmineFacade {
 
-	List<DwarvenMineWorker> workers;
+	private final List<DwarvenMineWorker> workers;
 
 	public DwarvenGoldmineFacade() {
 		workers = new ArrayList<>();
@@ -25,23 +26,20 @@ public class DwarvenGoldmineFacade {
 	}
 
 	public void startNewDay() {
-		for (DwarvenMineWorker worker : workers) {
-			worker.wakeUp();
-			worker.goToMine();
-		}
+        makeActions(workers, DwarvenMineWorker.Action.WAKE_UP, DwarvenMineWorker.Action.GO_TO_MINE);
 	}
 
 	public void digOutGold() {
-		for (DwarvenMineWorker worker : workers) {
-			worker.work();
-		}
+        makeActions(workers, DwarvenMineWorker.Action.WORK);
 	}
 
 	public void endDay() {
-		for (DwarvenMineWorker worker : workers) {
-			worker.goHome();
-			worker.goToSleep();
-		}
+        makeActions(workers, DwarvenMineWorker.Action.GO_HOME, DwarvenMineWorker.Action.GO_TO_SLEEP);
 	}
 
+    private void makeActions(Collection<DwarvenMineWorker> workers, DwarvenMineWorker.Action... actions) {
+        for (DwarvenMineWorker worker : workers) {
+            worker.action(actions);
+        }
+    }
 }
