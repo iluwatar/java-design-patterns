@@ -5,9 +5,8 @@ public class Wizard extends Target {
 	private Command previousSpell;
 
 	public Wizard() {
-		this.setSize(Size.NORMAL);
-		this.setVisibility(Visibility.VISIBLE);
-		previousSpell = null;
+		setSize(Size.NORMAL);
+		setVisibility(Visibility.VISIBLE);
 	}
 
 	public void castSpell(Command command, Target target) {
