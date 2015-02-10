@@ -2,11 +2,16 @@ package com.iluwatar;
 
 public enum HairType {
 
-	BALD, SHORT, CURLY, LONG_STRAIGHT, LONG_CURLY;
+	BALD("bald"), SHORT("short"), CURLY("curly"), LONG_STRAIGHT("long straight"), LONG_CURLY("long curly");
 
-	@Override
+    private String title;
+
+    HairType(String title) {
+        this.title = title;
+    }
+
+    @Override
 	public String toString() {
-		return name().toLowerCase().replaceAll("_", " ");
+		return title;
 	}
-
 }
