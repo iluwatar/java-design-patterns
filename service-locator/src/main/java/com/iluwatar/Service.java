@@ -14,16 +14,15 @@ public interface Service {
 	/*
 	 * The human readable name of the service
 	 */
-	public String getName();
+	String getName();
 	
 	/*
 	 * Unique ID of the particular service
 	 */
-	public int getId();
+	int getId();
 	
 	/*
 	 * The workflow method that defines what this service does
 	 */
-	public void execute();
-
+	void execute();
 }
