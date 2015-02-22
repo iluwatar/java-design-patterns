@@ -315,6 +315,9 @@
 * many distinct and unrelated operations need to be performed on objects in an object structure, and you want to avoid "polluting" their classes with these operations. Visitor lets you keep related operations together by defining them in one class. When the object structure is shared by many applications, use Visitor to put operations in just those applications that need them
 * the classes defining the object structure rarely change, but you often want to define new operations over the structure. Changing the object structure classes requires redefining the interface to all visitors, which is potentially costly. If the object structure classes change often, then it's probably better to define the operations in those classes
 
+**Real world examples:**
+* [Apache Wicket](https://github.com/apache/wicket) component tree, see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
+
 ## <a name="model-view-presenter">Model-View-Presenter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Apply a "Separation of Concerns" principle in a way that allows developers to build and test user interfaces.
 
