@@ -61,6 +61,9 @@
 * the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
 * the construction process must allow different representations for the object that's constructed
 
+**Real world examples:**
+* [java.lang.StringBuilder](http://docs.oracle.com/javase/6/docs/api/java/lang/StringBuilder.html)
+
 ## <a name="factory-method">Factory Method</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
 
