@@ -49,6 +49,9 @@
 * a family of related product objects is designed to be used together, and you need to enforce this constraint
 * you want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
 
+**Real world examples:**
+* [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/6/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
+
 ## <a name="builder">Builder</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Separate the construction of a complex object from its representation so that the same construction process can create different representations.
 
