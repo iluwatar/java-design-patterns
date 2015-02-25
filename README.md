@@ -270,6 +270,9 @@
 * to support multiple traversals of aggregate objects
 * to provide a uniform interface for traversing different aggregate structures
 
+**Real world examples:**
+* [java.util.Iterator](http://docs.oracle.com/javase/6/docs/api/java/util/Iterator.html)
+
 ## <a name="mediator">Mediator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.
 
