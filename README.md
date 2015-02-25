@@ -310,6 +310,8 @@
 
 * changing in one object leads to a change in other objects
 
+**Real world examples:**
+* [java.util.Observer](http://docs.oracle.com/javase/6/docs/api/java/util/Observer.html)
 
 ## <a name="state">State</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
