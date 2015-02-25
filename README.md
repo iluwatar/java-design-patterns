@@ -178,6 +178,9 @@
 * many groups of objects may be replaced by relatively few shared objects once extrinsic state is removed
 * the application doesn't depend on object identity. Since flyweight objects may be shared, identity tests will return true for conceptually distinct objects.
 
+**Real world examples:**
+* [java.lang.Integer#valueOf(int)](http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html#valueOf%28int%29)
+
 ## <a name="proxy">Proxy</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a surrogate or placeholder for another object to control access to it.
 
