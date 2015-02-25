@@ -87,6 +87,9 @@
 * to avoid building a class hierarchy of factories that parallels the class hierarchy of products; or
 * when instances of a class can have one of only a few different combinations of state. It may be more convenient to install a corresponding number of prototypes and clone them rather than instantiating the class manually, each time with the appropriate state
 
+**Real world examples:**
+* [java.lang.Object#clone()](http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#clone%28%29)
+
 ## <a name="singleton">Singleton</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Ensure a class only has one instance, and provide a global point of access to it.
 
