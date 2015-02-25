@@ -74,6 +74,9 @@
 * a class wants its subclasses to specify the objects it creates
 * classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
 
+**Real world examples:**
+* [java.util.Calendar#getInstance()](http://docs.oracle.com/javase/6/docs/api/java/util/Calendar.html#getInstance%28%29)
+
 ## <a name="prototype">Prototype</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
