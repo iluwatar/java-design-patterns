@@ -226,6 +226,9 @@
 * you want to issue a request to one of several objects without specifying the receiver explicitly
 * the set of objects that can handle a request should be specified dynamically
 
+**Real world examples:**
+* [java.util.logging.Logger#log()](http://docs.oracle.com/javase/6/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29)
+
 ## <a name="command">Command</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
 
