@@ -292,6 +292,8 @@
 * a snapshot of an object's state must be saved so that it can be restored to that state later, and
 * a direct interface to obtaining the state would expose implementation details and break the object's encapsulation
 
+**Real world examples:**
+* [java.util.Date](http://docs.oracle.com/javase/6/docs/api/java/util/Date.html)
 
 ## <a name="observer">Observer</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
