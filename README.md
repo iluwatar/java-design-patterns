@@ -248,6 +248,9 @@
 * implement callback functionality
 * implement the undo functionality
 
+**Real world examples:**
+* [java.lang.Runnable](http://docs.oracle.com/javase/6/docs/api/java/lang/Runnable.html)
+
 ## <a name="interpreter">Interpreter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
 
