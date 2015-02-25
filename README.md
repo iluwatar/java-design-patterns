@@ -117,6 +117,9 @@
 * you want to create a reusable class that cooperates with unrelated or unforeseen classes, that is, classes that don't necessarily have compatible interfaces
 * you need to use several existing subclasses, but it's impractical to adapt their interface by subclassing every one. An object adapter can adapt the interface of its parent class.
 
+**Real world examples:**
+* [java.util.Arrays#asList()](http://docs.oracle.com/javase/6/docs/api/java/util/Arrays.html#asList%28T...%29)
+
 ## <a name="bridge">Bridge</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Decouple an abstraction from its implementation so that the two can vary independently.
 
