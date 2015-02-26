@@ -50,7 +50,7 @@
 * you want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
 
 **Real world examples:**
-* [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/6/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
+* [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
 
 ## <a name="builder">Builder</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Separate the construction of a complex object from its representation so that the same construction process can create different representations.
@@ -62,7 +62,7 @@
 * the construction process must allow different representations for the object that's constructed
 
 **Real world examples:**
-* [java.lang.StringBuilder](http://docs.oracle.com/javase/6/docs/api/java/lang/StringBuilder.html)
+* [java.lang.StringBuilder](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
 
 ## <a name="factory-method">Factory Method</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
@@ -75,7 +75,7 @@
 * classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
 
 **Real world examples:**
-* [java.util.Calendar#getInstance()](http://docs.oracle.com/javase/6/docs/api/java/util/Calendar.html#getInstance%28%29)
+* [java.util.Calendar#getInstance()](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance%28%29)
 
 ## <a name="prototype">Prototype</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
@@ -88,7 +88,7 @@
 * when instances of a class can have one of only a few different combinations of state. It may be more convenient to install a corresponding number of prototypes and clone them rather than instantiating the class manually, each time with the appropriate state
 
 **Real world examples:**
-* [java.lang.Object#clone()](http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html#clone%28%29)
+* [java.lang.Object#clone()](http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#clone%28%29)
 
 ## <a name="singleton">Singleton</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Ensure a class only has one instance, and provide a global point of access to it.
@@ -105,7 +105,7 @@
 * file manager
 
 **Real world examples:**
-* [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/6/docs/api/java/lang/Runtime.html#getRuntime%28%29)
+* [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29)
 
 ## <a name="adapter">Adapter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
@@ -118,7 +118,7 @@
 * you need to use several existing subclasses, but it's impractical to adapt their interface by subclassing every one. An object adapter can adapt the interface of its parent class.
 
 **Real world examples:**
-* [java.util.Arrays#asList()](http://docs.oracle.com/javase/6/docs/api/java/util/Arrays.html#asList%28T...%29)
+* [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList%28T...%29)
 
 ## <a name="bridge">Bridge</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Decouple an abstraction from its implementation so that the two can vary independently.
@@ -143,7 +143,7 @@
 * you want clients to be able to ignore the difference between compositions of objects and individual objects. Clients will treat all objects in the composite structure uniformly
 
 **Real world examples:**
-* [java.awt.Container](http://docs.oracle.com/javase/6/docs/api/java/awt/Container.html) and [java.awt.Component](http://docs.oracle.com/javase/6/docs/api/java/awt/Component.html)
+* [java.awt.Container](http://docs.oracle.com/javase/8/docs/api/java/awt/Container.html) and [java.awt.Component](http://docs.oracle.com/javase/8/docs/api/java/awt/Component.html)
 * [Apache Wicket](https://github.com/apache/wicket) component tree, see [Component](https://github.com/apache/wicket/blob/91e154702ab1ff3481ef6cbb04c6044814b7e130/wicket-core/src/main/java/org/apache/wicket/Component.java) and [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
 
 ## <a name="decorator">Decorator</a> [&#8593;](#list-of-design-patterns)
@@ -179,7 +179,7 @@
 * the application doesn't depend on object identity. Since flyweight objects may be shared, identity tests will return true for conceptually distinct objects.
 
 **Real world examples:**
-* [java.lang.Integer#valueOf(int)](http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html#valueOf%28int%29)
+* [java.lang.Integer#valueOf(int)](http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html#valueOf%28int%29)
 
 ## <a name="proxy">Proxy</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a surrogate or placeholder for another object to control access to it.
@@ -201,7 +201,7 @@
 * to count references to an object
 
 **Real world examples:**
-* [java.lang.reflect.Proxy](http://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Proxy.html)
+* [java.lang.reflect.Proxy](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)
 
 ## <a name="service-locator">Service Locator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate the processes involved in obtaining a service with a strong abstraction layer.
@@ -227,7 +227,7 @@
 * the set of objects that can handle a request should be specified dynamically
 
 **Real world examples:**
-* [java.util.logging.Logger#log()](http://docs.oracle.com/javase/6/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29)
+* [java.util.logging.Logger#log()](http://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29)
 
 ## <a name="command">Command</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
@@ -249,7 +249,7 @@
 * implement the undo functionality
 
 **Real world examples:**
-* [java.lang.Runnable](http://docs.oracle.com/javase/6/docs/api/java/lang/Runnable.html)
+* [java.lang.Runnable](http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html)
 
 ## <a name="interpreter">Interpreter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
@@ -271,7 +271,7 @@
 * to provide a uniform interface for traversing different aggregate structures
 
 **Real world examples:**
-* [java.util.Iterator](http://docs.oracle.com/javase/6/docs/api/java/util/Iterator.html)
+* [java.util.Iterator](http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)
 
 ## <a name="mediator">Mediator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.
@@ -293,7 +293,7 @@
 * a direct interface to obtaining the state would expose implementation details and break the object's encapsulation
 
 **Real world examples:**
-* [java.util.Date](http://docs.oracle.com/javase/6/docs/api/java/util/Date.html)
+* [java.util.Date](http://docs.oracle.com/javase/8/docs/api/java/util/Date.html)
 
 ## <a name="observer">Observer</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
@@ -311,7 +311,7 @@
 * changing in one object leads to a change in other objects
 
 **Real world examples:**
-* [java.util.Observer](http://docs.oracle.com/javase/6/docs/api/java/util/Observer.html)
+* [java.util.Observer](http://docs.oracle.com/javase/8/docs/api/java/util/Observer.html)
 
 ## <a name="state">State</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
