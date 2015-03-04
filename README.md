@@ -37,6 +37,7 @@
 * [Model-View-Presenter](#model-view-presenter)
 * [Double Checked Locking](#double-checked-locking)
 * [Servant](#servant)
+* [Null Object](#null-object)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -381,6 +382,14 @@
 
 **Applicability:** Use the Servant pattern when
 * When we want some objects to perform a common action and don't want to define this action as a method in every class.
+
+## <a name="null-object">Null Object</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Null Object is used instead of null values to simplify algorithm and avoid explicit null checking.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/null-object/etc/test.png "Null Object")
+
+**Applicability:** Use the Null Object pattern when
+* You want to avoid explicit null checks and keep algorithm elegant and easy to read.
 
 
 # Frequently asked questions
