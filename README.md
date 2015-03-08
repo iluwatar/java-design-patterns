@@ -384,12 +384,12 @@
 * When we want some objects to perform a common action and don't want to define this action as a method in every class.
 
 ## <a name="null-object">Null Object</a> [&#8593;](#list-of-design-patterns)
-**Intent:** Null Object is used instead of null values to simplify algorithm and avoid explicit null checking.
+**Intent:** In most object-oriented languages, such as Java or C#, references may be null. These references need to be checked to ensure they are not null before invoking any methods, because methods typically cannot be invoked on null references. Instead of using a null reference to convey absence of an object (for instance, a non-existent customer), one uses an object which implements the expected interface, but whose method body is empty. The advantage of this approach over a working default implementation is that a Null Object is very predictable and has no side effects: it does nothing.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/null-object/etc/test.png "Null Object")
 
 **Applicability:** Use the Null Object pattern when
-* You want to avoid explicit null checks and keep algorithm elegant and easy to read.
+* You want to avoid explicit null checks and keep the algorithm elegant and easy to read.
 
 
 # Frequently asked questions
@@ -434,6 +434,7 @@ The difference is the intent of the patterns. While Proxy controls access to the
 * [Effective Java (2nd Edition)](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683)
 * [Java Generics and Collections](http://www.amazon.com/Java-Generics-Collections-Maurice-Naftalin/dp/0596527756/)
 * [Let’s Modify the Objects-First Approach into Design-Patterns-First](http://edu.pecinovsky.cz/papers/2006_ITiCSE_Design_Patterns_First.pdf)
+* [Pattern Languages of Program Design](http://www.amazon.com/Pattern-Languages-Program-Design-Coplien/dp/0201607344/ref=sr_1_1)
 
 
 
