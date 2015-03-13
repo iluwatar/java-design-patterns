@@ -38,6 +38,7 @@
 * [Double Checked Locking](#double-checked-locking)
 * [Servant](#servant)
 * [Null Object](#null-object)
+* [Event Aggregator](#event-aggregator)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -390,6 +391,14 @@
 
 **Applicability:** Use the Null Object pattern when
 * You want to avoid explicit null checks and keep the algorithm elegant and easy to read.
+
+## <a name="event-aggregator">Event Aggregator</a> [&#8593;](#list-of-design-patterns)
+**Intent:** A system with lots of objects can lead to complexities when a client wants to subscribe to events. The client has to find and register for each object individually, if each object has multiple events then each event requires a separate subscription. An Event Aggregator acts as a single source of events for many objects. It registers for all the events of the many objects allowing clients to register with just the aggregator.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/event-aggregator/etc/classes.png "Event Aggregator")
+
+**Applicability:** Use the Event Aggregator pattern when
+* Event Aggregator is a good choice when you have lots of objects that are potential event sources. Rather than have the observer deal with registering with them all, you can centralize the registration logic to the Event Aggregator. As well as simplifying registration, a Event Aggregator also simplifies the memory management issues in using observers.
 
 
 # Frequently asked questions
