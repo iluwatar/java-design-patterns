@@ -3,7 +3,7 @@ package com.iluwatar;
 /**
  *
  * Singleton pattern ensures that the class (IvoryTower) can have only one
- * existing instance and provides global access to that instance.
+ * existing instance per java vm instance and provides global access to that it.
  *
  * http://stackoverflow.com/questions/70689/what-is-an-efficient-way-to-implement-a-singleton-pattern-in-java
  *
