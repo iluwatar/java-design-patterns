@@ -3,10 +3,16 @@ package com.iluwatar;
 /**
  *
  * Singleton pattern ensures that the class (IvoryTower) can have only one
- * existing instance per java vm instance and provides global access to that it.
- *
+ * existing instance per java classloader instance and provides global access to it. 
+ * 
  * http://stackoverflow.com/questions/70689/what-is-an-efficient-way-to-implement-a-singleton-pattern-in-java
  *
+ * The risk of this pattern is that bugs resulting from setting a singleton up in a distributed environment can 
+ * be tricky to debug, since it will work fine if you debug with a single classloader. Additionally, these
+ * problems can crop up a while after the implementation of a singleton, since they may start out synchronous and
+ * only become async with time, so you it may not be clear why you are seeing certain changes in behaviour.
+ * 
+ * http://stackoverflow.com/questions/17721263/singleton-across-jvm-or-application-instance-or-tomcat-instance
  */
 public class App {
 
