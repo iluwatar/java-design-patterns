@@ -7,13 +7,16 @@
 
 ## <a name="list-of-design-patterns">List of Design Patterns</a>
 
-* Creational Patterns
+### Creational Patterns
+
 	* [Abstract Factory](#abstract-factory)
 	* [Builder](#builder)
 	* [Factory Method](#factory-method)
 	* [Prototype](#prototype)
 	* [Singleton](#singleton)
-* Structural Patterns
+	
+### Structural Patterns
+
 	* [Adapter](#adapter)
 	* [Bridge](#bridge)
 	* [Composite](#composite)
@@ -22,7 +25,11 @@
 	* [Flyweight](#flyweight)
 	* [Proxy](#proxy)
 	* [Service Locator](#service-locator)
-* Behavioral Patterns
+	* [Model-View-Presenter](#model-view-presenter)
+	* [Servant](#servant)
+	* [Event Aggregator](#event-aggregator)
+ 
+### Behavioral Patterns
 	* [Chain of responsibility](#chain-of-responsibility)
 	* [Command](#command)
 	* [Interpreter](#interpreter)
@@ -34,11 +41,8 @@
 	* [Strategy](#strategy)
 	* [Template method](#template-method)
 	* [Visitor](#visitor)
-* [Model-View-Presenter](#model-view-presenter)
-* [Double Checked Locking](#double-checked-locking)
-* [Servant](#servant)
-* [Null Object](#null-object)
-* [Event Aggregator](#event-aggregator)
+	* [Double Checked Locking](#double-checked-locking)
+	* [Null Object](#null-object)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
