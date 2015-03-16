@@ -9,6 +9,8 @@
 
 ### Creational Patterns
 
+Creational design patterns abstract the instantiation process. They help make a system independent of how its objects are created, composed, and represented.
+
 * [Abstract Factory](#abstract-factory)
 * [Builder](#builder)
 * [Factory Method](#factory-method)
@@ -16,6 +18,8 @@
 * [Singleton](#singleton)
 	
 ### Structural Patterns
+
+Structural patterns are concerned with how classes and objects are composed to form larger structures.
 
 * [Adapter](#adapter)
 * [Bridge](#bridge)
@@ -30,6 +34,8 @@
 * [Event Aggregator](#event-aggregator)
  
 ### Behavioral Patterns
+
+Behavioral patterns are concerned with algorithms and the assignment of responsibilites between objects.
 
 * [Chain of responsibility](#chain-of-responsibility)
 * [Command](#command)
