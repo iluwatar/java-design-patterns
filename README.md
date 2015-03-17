@@ -439,7 +439,7 @@ The difference is the intent of the patterns. While Proxy controls access to the
 5. Create a pull request.
 
 **For creating/editing UML diagrams** you need one of the following:
-- [ObjectAid UML Explorer for Eclipse (recommended)](http://www.objectaid.com/home)
+- [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home) (recommended)
 - [GenMyModel](http://genmymodel.com/)
 
 **For inspiration** there is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern).
