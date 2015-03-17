@@ -438,9 +438,9 @@ The difference is the intent of the patterns. While Proxy controls access to the
 4. Add description of the pattern in README.md and link to the class diagram.
 5. Create a pull request.
 
-**To edit the existing UML diagrams** you need one of the following:
+**For creating/editing UML diagrams** you need one of the following:
+- [ObjectAid UML Explorer for Eclipse (recommended)](http://www.objectaid.com/home)
 - [GenMyModel](http://genmymodel.com/)
-- [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home)
 
 **For inspiration** there is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern).
 
