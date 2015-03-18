@@ -13,6 +13,7 @@ Creational design patterns abstract the instantiation process. They help make a 
 
 * [Abstract Factory](#abstract-factory)
 * [Builder](#builder)
+* [Wizard](#wizard)
 * [Factory Method](#factory-method)
 * [Prototype](#prototype)
 * [Singleton](#singleton)
@@ -410,6 +411,20 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 **Applicability:** Use the Event Aggregator pattern when
 * Event Aggregator is a good choice when you have lots of objects that are potential event sources. Rather than have the observer deal with registering with them all, you can centralize the registration logic to the Event Aggregator. As well as simplifying registration, a Event Aggregator also simplifies the memory management issues in using observers.
+
+## <a name="wizard">Wizard</a> [&#8593;](#list-of-design-patterns)
+**Intent:** If you need more control over process of construction complex objects than <a name="builder">Builder</a> can offer you or just up to creating some fluent DSL for your API you may consider Wizard pattern as good candidate for the job.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/wizard/etc/wizard.png "Wizard")
+
+**Applicability:** Use the Wizard pattern when
+* user needs to perform a task or a goal that dictates more than one step
+* the steps needed to reach a final goal may vary due to decisions made in previous stages
+* user must complete steps in a specific sequence
+* user lacks necessary domain knowledge
+
+**Real world examples:**
+* [org.jmock.Mock](http://www.jmock.org/javadoc/jmock-1.2.0/org/jmock/Mock.html)
 
 
 # Frequently asked questions
