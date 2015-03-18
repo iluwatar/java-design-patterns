@@ -413,7 +413,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * Event Aggregator is a good choice when you have lots of objects that are potential event sources. Rather than have the observer deal with registering with them all, you can centralize the registration logic to the Event Aggregator. As well as simplifying registration, a Event Aggregator also simplifies the memory management issues in using observers.
 
 ## <a name="wizard">Wizard</a> [&#8593;](#list-of-design-patterns)
-**Intent:** If you need more control over process of construction complex objects than <a name="builder>Builder</a> can offer you or just up to creating some fluent DSL for your API you may consider Wizard pattern as good candidate for the job.
+**Intent:** If you need more control over process of construction complex objects than <a name="builder">Builder</a> can offer you or just up to creating some fluent DSL for your API you may consider Wizard pattern as good candidate for the job.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/abstract-factory/etc/wizard.png "Wizard")
 
