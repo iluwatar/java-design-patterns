@@ -38,8 +38,9 @@
 		<module>double-checked-locking</module>
 		<module>servant</module>
 		<module>service-locator</module>
-	    <module>null-object</module>
-	    <module>event-aggregator</module>
+		<module>null-object</module>
+		<module>event-aggregator</module>
+		<module>wizard</module>
   </modules>
 
 	<dependencyManagement>
