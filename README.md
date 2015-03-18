@@ -415,7 +415,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 ## <a name="wizard">Wizard</a> [&#8593;](#list-of-design-patterns)
 **Intent:** If you need more control over process of construction complex objects than <a name="builder">Builder</a> can offer you or just up to creating some fluent DSL for your API you may consider Wizard pattern as good candidate for the job.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/abstract-factory/etc/wizard.png "Wizard")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/wizard/etc/wizard.png "Wizard")
 
 **Applicability:** Use the Wizard pattern when
 * user needs to perform a task or a goal that dictates more than one step
