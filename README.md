@@ -415,15 +415,15 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 # Frequently asked questions
 
-**Q: What is the difference between State and Strategy patterns?**
+**<a id="Q1">Q: What is the difference between State and Strategy patterns?</a>**
 
 While the implementation is similar they solve different problems. The State pattern deals with what state an object is in - it encapsulates state-dependent behavior. The Strategy pattern deals with how an object performs a certain task - it encapsulates an algorithm.
 
-**Q: What is the difference between Strategy and Template Method patterns?**
+**<a id="Q2">Q: What is the difference between Strategy and Template Method patterns?</a>**
 
 In Template Method the algorithm is chosen at compile time via inheritance. With Strategy pattern the algorithm is chosen at runtime via composition.
 
-**Q: What is the difference between Proxy and Decorator patterns?**
+**<a id="Q3">Q: What is the difference between Proxy and Decorator patterns?</a>**
 
 The difference is the intent of the patterns. While Proxy controls access to the object Decorator is used to add responsibilities to the object.
 
