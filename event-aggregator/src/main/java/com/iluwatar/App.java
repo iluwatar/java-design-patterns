@@ -20,7 +20,7 @@ public class App {
 		KingJoffrey kingJoffrey = new KingJoffrey();
 		KingsHand kingsHand = new KingsHand(kingJoffrey);
 
-		List<EventEmitter> emitters = new ArrayList<>();
+		ArrayList<EventEmitter> emitters = new ArrayList<>();
 		emitters.add(kingsHand);
 		emitters.add(new LordBaelish(kingsHand));
 		emitters.add(new LordVarys(kingsHand));
