@@ -42,6 +42,7 @@ public class Hero {
 	public String toString() {
 
 		StringBuilder sb = new StringBuilder();
+		sb.append("This is a ");
 		sb.append(profession);
 		sb.append(" named ");
 		sb.append(name);
@@ -62,7 +63,7 @@ public class Hero {
 			sb.append(armor);
 		}
 		if (weapon != null) {
-			sb.append(" and wielding ");
+			sb.append(" and wielding a ");
 			sb.append(weapon);
 		}
 		sb.append(".");
