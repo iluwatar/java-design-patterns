@@ -94,7 +94,7 @@ public class Hero {
 
 		public HeroBuilder(Profession profession, String name) {
 			if (profession == null || name == null) {
-				throw new NullPointerException(
+				throw new IllegalArgumentException(
 						"profession and name can not be null");
 			}
 			this.profession = profession;
