@@ -1,7 +1,7 @@
 package com.iluwatar;
 
 /**
- * Callback pattern is more native for dynamic languages where function are first-class citizen.
+ * Callback pattern is more native for functional languages where function is treated as first-class citizen.
  * Prior to Java8 can be simulated using simple (alike command) interfaces.
  */
 public class App {
