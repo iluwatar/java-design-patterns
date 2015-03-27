@@ -421,6 +421,8 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 **Applicability:** Use the Callback pattern when
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
+**Real world examples:**
+* [CyclicBarrier] (http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
 
 # Frequently asked questions
 
