@@ -50,6 +50,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * [Visitor](#visitor)
 * [Double Checked Locking](#double-checked-locking)
 * [Null Object](#null-object)
+* [Callback](#callback)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -411,6 +412,14 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 **Applicability:** Use the Event Aggregator pattern when
 * Event Aggregator is a good choice when you have lots of objects that are potential event sources. Rather than have the observer deal with registering with them all, you can centralize the registration logic to the Event Aggregator. As well as simplifying registration, a Event Aggregator also simplifies the memory management issues in using observers.
+
+## <a name="callback">Callback</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Callback is a piece of executable code that is passed as an argument to other code, which is expected to call back (execute) the argument at some convenient time.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/callback/etc/callback.jpg "Callback")
+
+**Applicability:** Use the Callback pattern when
+* When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
 
 # Frequently asked questions
