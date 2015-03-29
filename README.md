@@ -422,6 +422,9 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 **Applicability:** Use the Callback pattern when
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
+**Real world examples:**
+* [CyclicBarrier] (http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
+
 ## <a name="execute-around">Execute Around</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Execute Around idiom frees the user from certain actions that should always be executed before and after the business method. A good example of this is resource allocation and deallocation leaving the user to specify only what to do with the resource.
 
@@ -429,7 +432,6 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 **Applicability:** Use the Execute Around idiom when
 * You use an API that requires methods to be called in pairs such as open/close or allocate/deallocate.
-
 
 # Frequently asked questions
 
