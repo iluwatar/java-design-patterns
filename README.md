@@ -425,7 +425,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 ## <a name="execute-around">Execute Around</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Execute Around idiom frees the user from certain actions that should always be executed before and after the business method. A good example of this is resource allocation and deallocation leaving the user to specify only what to do with the resource.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/execute-around/etc/execute-around.png "Execute Around")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/execute-around/execute-around.png "Execute Around")
 
 **Applicability:** Use the Execute Around idiom when
 * You use an API that requires methods to be called in pairs such as open/close or allocate/deallocate.
