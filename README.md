@@ -15,8 +15,9 @@ Creational design patterns abstract the instantiation process. They help make a 
 * [Builder](#builder)
 * [Factory Method](#factory-method)
 * [Prototype](#prototype)
+* [Property](#property)
 * [Singleton](#singleton)
-	
+
 ### Structural Patterns
 
 Structural patterns are concerned with how classes and objects are composed to form larger structures.
@@ -432,6 +433,17 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 **Applicability:** Use the Execute Around idiom when
 * You use an API that requires methods to be called in pairs such as open/close or allocate/deallocate.
+
+## <a name="property">Property</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Create hierarchy of objects and new objects using already existing objects as parents.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/property/etc/property.jpg "Property")
+
+**Applicability:** Use the Property pattern when
+* when you like to have objects with dynamic set of fields and prototype inheritance
+
+**Real world examples:**
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) prototype inheritance
 
 # Frequently asked questions
 
