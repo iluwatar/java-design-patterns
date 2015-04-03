@@ -1,4 +1,3 @@
-
 # Design pattern samples in Java.
 
 ## Build status:
@@ -431,7 +430,7 @@ Presentation Tier patterns are the top-most level of the application, this is co
 ## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
  
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/abstract-factory/etc/abstract-factory_1.png "Intercepting Filter")
+![alt text](https://github.com/joshzambales/java-design-patterns/blob/master/intercepting-filter/etc/intercepting-filter.png "Intercepting Filter")
  
 **Applicability:** Use the Intercepting Filter pattern when
 * a system uses pre-processing or post-processing requests
@@ -461,7 +460,7 @@ The difference is the intent of the patterns. While Proxy controls access to the
 1. Fork the repository.
 2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation.
 3. Create a simple class diagram from your example code.
-4. Add description of the pattern in README.md and link to the class diagram.
+4. Add description of the pattern in README.md and link to the class diagram.	
 5. Create a pull request.
 
 **For creating/editing UML diagrams** you need one of the following:
@@ -482,8 +481,8 @@ The difference is the intent of the patterns. While Proxy controls access to the
 * [Let’s Modify the Objects-First Approach into Design-Patterns-First](http://edu.pecinovsky.cz/papers/2006_ITiCSE_Design_Patterns_First.pdf)
 * [Pattern Languages of Program Design](http://www.amazon.com/Pattern-Languages-Program-Design-Coplien/dp/0201607344/ref=sr_1_1)
 * [Martin Fowler - Event Aggregator](http://martinfowler.com/eaaDev/EventAggregator.html)
-
-
+* [TutorialsPoint - Intercepting Filter](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
+* [Presentation Tier Pattern](http://www.javagyan.com/tutorials/corej2eepatterns/presentation-tier-patterns)
 
 # License
 
