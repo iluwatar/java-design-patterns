@@ -58,6 +58,19 @@ Presentation Tier patterns are the top-most level of the application, this is co
 
 * [Intercepting Filter](#intercepting-filter)
 
+## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Provide an interfa
+ 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/abstract-factory/etc/abstract-factory_1.png "Abstract Factory")
+ 
+**Applicability:** Use the Intercepting Filter pattern when
+*  Used when system uses pre-processing or post-processing requests
+* a family of related product objects is designed to be used together, and you need to enforce this constraint
+* you want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
+ 
+**Real world examples:**
+* [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
+
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
 
