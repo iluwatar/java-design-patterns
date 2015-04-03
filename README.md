@@ -58,6 +58,7 @@ Presentation Tier patterns are the top-most level of the application, this is co
 
 * [Intercepting Filter](#intercepting-filter)
 
+
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
 
