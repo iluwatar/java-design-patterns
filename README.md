@@ -56,19 +56,6 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 Presentation Tier patterns are the top-most level of the application, this is concerned with translating tasks and results to something the user can understand.
 
-* [Intercepting Filter](#intercepting-filter)
-
-## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
-**Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
- 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/abstract-factory/etc/abstract-factory_1.png "Intercepting Filter")
- 
-**Applicability:** Use the Intercepting Filter pattern when
-* a system uses pre-processing or post-processing requests
-* a system should do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers 
-* you want a modular approach to configuring pre-processing and post-processing schemes
-**Real world examples:**
-* [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -438,6 +425,19 @@ Presentation Tier patterns are the top-most level of the application, this is co
 
 **Applicability:** Use the Callback pattern when
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
+
+* [Intercepting Filter](#intercepting-filter)
+
+## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
+ 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/abstract-factory/etc/abstract-factory_1.png "Intercepting Filter")
+ 
+**Applicability:** Use the Intercepting Filter pattern when
+* a system uses pre-processing or post-processing requests
+* a system should do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers 
+* you want a modular approach to configuring pre-processing and post-processing schemes
+
 
 
 # Frequently asked questions
