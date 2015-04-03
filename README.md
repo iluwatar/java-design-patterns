@@ -67,7 +67,6 @@ Presentation Tier patterns are the top-most level of the application, this is co
 * a system uses pre-processing or post-processing requests
 * a system should do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers 
 * you want a modular approach to configuring pre-processing and post-processing schemes
- 
 **Real world examples:**
 * [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
 
