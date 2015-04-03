@@ -437,7 +437,6 @@ Presentation Tier patterns are the top-most level of the application, this is co
 * you want a modular approach to configuring pre-processing and post-processing schemes
 
 
-
 # Frequently asked questions
 
 **<a id="Q1">Q: What is the difference between State and Strategy patterns?</a>**
