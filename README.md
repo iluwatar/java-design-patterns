@@ -56,6 +56,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 Presentation Tier patterns are the top-most level of the application, this is concerned with translating tasks and results to something the user can understand.
 
+* [Intercepting Filter](#intercepting-filter)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
