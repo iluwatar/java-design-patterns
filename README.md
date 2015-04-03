@@ -4,6 +4,14 @@
 
 ![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)
 
+## Introduction
+
+Design patterns are formalized best practices that the programmer can use to solve common problems when designing an application or system.
+
+Design patterns can speed up the development process by providing tested, proven development paradigms.
+
+Reusing design patterns helps to prevent subtle issues that can cause major problems, and it also improves code readability for coders and architects who are familiar with the patterns.
+
 ## <a name="list-of-design-patterns">List of Design Patterns</a>
 
 ### Creational Patterns
@@ -14,8 +22,9 @@ Creational design patterns abstract the instantiation process. They help make a 
 * [Builder](#builder)
 * [Factory Method](#factory-method)
 * [Prototype](#prototype)
+* [Property](#property)
 * [Singleton](#singleton)
-	
+
 ### Structural Patterns
 
 Structural patterns are concerned with how classes and objects are composed to form larger structures.
@@ -50,6 +59,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * [Double Checked Locking](#double-checked-locking)
 * [Null Object](#null-object)
 * [Callback](#callback)
+* [Execute Around](#execute-around)
 
 ### Presentation Tier Patterns
 
@@ -427,6 +437,7 @@ Presentation Tier patterns are the top-most level of the application, this is co
 **Applicability:** Use the Callback pattern when
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
+<<<<<<< HEAD
 ## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
  
@@ -436,6 +447,29 @@ Presentation Tier patterns are the top-most level of the application, this is co
 * a system uses pre-processing or post-processing requests
 * a system should do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers 
 * you want a modular approach to configuring pre-processing and post-processing schemes
+=======
+**Real world examples:**
+* [CyclicBarrier] (http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
+
+## <a name="execute-around">Execute Around</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Execute Around idiom frees the user from certain actions that should always be executed before and after the business method. A good example of this is resource allocation and deallocation leaving the user to specify only what to do with the resource.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/execute-around/execute-around.png "Execute Around")
+
+**Applicability:** Use the Execute Around idiom when
+* You use an API that requires methods to be called in pairs such as open/close or allocate/deallocate.
+
+## <a name="property">Property</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Create hierarchy of objects and new objects using already existing objects as parents.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/property/etc/property.jpg "Property")
+
+**Applicability:** Use the Property pattern when
+* when you like to have objects with dynamic set of fields and prototype inheritance
+
+**Real world examples:**
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) prototype inheritance
+>>>>>>> origin/master
 
 # Frequently asked questions
 
@@ -481,8 +515,14 @@ The difference is the intent of the patterns. While Proxy controls access to the
 * [Let’s Modify the Objects-First Approach into Design-Patterns-First](http://edu.pecinovsky.cz/papers/2006_ITiCSE_Design_Patterns_First.pdf)
 * [Pattern Languages of Program Design](http://www.amazon.com/Pattern-Languages-Program-Design-Coplien/dp/0201607344/ref=sr_1_1)
 * [Martin Fowler - Event Aggregator](http://martinfowler.com/eaaDev/EventAggregator.html)
+<<<<<<< HEAD
 * [TutorialsPoint - Intercepting Filter](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
 * [Presentation Tier Pattern](http://www.javagyan.com/tutorials/corej2eepatterns/presentation-tier-patterns)
+=======
+* [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](http://www.amazon.com/Functional-Programming-Java-Harnessing-Expressions/dp/1937785467/ref=sr_1_1)
+
+
+>>>>>>> origin/master
 
 # License
 

@@ -41,8 +41,14 @@
 		<module>null-object</module>
 		<module>event-aggregator</module>
 		<module>callback</module>
+<<<<<<< HEAD
 		<module>intercepting-filter</module>
   </modules>
+=======
+		<module>execute-around</module>
+		<module>property</module>
+	</modules>
+>>>>>>> origin/master
 
 	<dependencyManagement>
 		<dependencies>
