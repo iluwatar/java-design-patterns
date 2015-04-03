@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.iluwatar</groupId>
+	<artifactId>java-design-patterns</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<modules>
+		<module>abstract-factory</module>
+		<module>builder</module>
+		<module>factory-method</module>
+		<module>prototype</module>
+		<module>singleton</module>
+		<module>adapter</module>
+		<module>bridge</module>
+		<module>composite</module>
+		<module>decorator</module>
+		<module>facade</module>
+		<module>flyweight</module>
+		<module>proxy</module>
+		<module>chain</module>
+		<module>command</module>
+		<module>interpreter</module>
+		<module>iterator</module>
+		<module>mediator</module>
+		<module>memento</module>
+		<module>model-view-presenter</module>
+		<module>observer</module>
+		<module>state</module>
+		<module>strategy</module>
+		<module>template-method</module>
+		<module>visitor</module>
+		<module>double-checked-locking</module>
+		<module>servant</module>
+		<module>service-locator</module>
+		<module>null-object</module>
+		<module>event-aggregator</module>
+		<module>callback</module>
+		<module>execute-around</module>
+		<module>property</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<!-- Tell maven to compile using Java 1.7 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
