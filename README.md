@@ -426,8 +426,6 @@ Presentation Tier patterns are the top-most level of the application, this is co
 **Applicability:** Use the Callback pattern when
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
-* [Intercepting Filter](#intercepting-filter)
-
 ## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
  
