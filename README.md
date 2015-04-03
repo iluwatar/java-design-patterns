@@ -52,7 +52,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * [Null Object](#null-object)
 * [Callback](#callback)
 
-### Presentation Tier Pattern
+### Presentation Tier Patterns
 
 Presentation Tier patterns are the top-most level of the application, this is concerned with translating tasks and results to something the user can understand.
 
@@ -435,7 +435,6 @@ Presentation Tier patterns are the top-most level of the application, this is co
 * a system uses pre-processing or post-processing requests
 * a system should do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers 
 * you want a modular approach to configuring pre-processing and post-processing schemes
-
 
 # Frequently asked questions
 
