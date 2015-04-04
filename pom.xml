@@ -41,8 +41,9 @@
 		<module>null-object</module>
 		<module>event-aggregator</module>
 		<module>callback</module>
-		<module>intercepting-filter</module>
 <<<<<<< HEAD
+		
+		<module>intercepting-filter</module>
   </modules>
 =======
 		<module>execute-around</module>
