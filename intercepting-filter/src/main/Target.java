@@ -10,10 +10,10 @@ import java.awt.event.*;
  *
  */
 public class Target extends JFrame{
-	JTable jt;
-	JScrollPane jsp;
-	DefaultTableModel dtm;
-	JButton del;
+	private JTable jt;
+	private JScrollPane jsp;
+	private DefaultTableModel dtm;
+	private JButton del;
 	public Target(){
 		super("Order System");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

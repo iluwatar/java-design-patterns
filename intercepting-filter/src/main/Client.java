@@ -12,11 +12,11 @@ import java.awt.event.*;
  *
  */
 public class Client extends JFrame{
-	FilterManager filterManager;
-	JLabel jl;
-	JTextField[] jtFields;
-	JTextArea[] jtAreas;
-	JButton clearButton, processButton;
+	private FilterManager filterManager;
+	private JLabel jl;
+	private JTextField[] jtFields;
+	private JTextArea[] jtAreas;
+	private JButton clearButton, processButton;
 	public Client(){
 		super("Client System");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -69,7 +69,9 @@ public class Client extends JFrame{
 		processButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				jl.setText(sendRequest(jtFields[0].getText()+"&"+jtFields[1].getText()+"&"+jtAreas[0].getText()+"&"+jtFields[2].getText()+"&"+jtAreas[1].getText()));
+				String request = String.format("%s&%s&%s&%s&%s",jtFields[0].getText(),jtFields[1].getText(),jtAreas[0].getText(),jtFields[2].getText(),jtAreas[1].getText());
+				
+				jl.setText(sendRequest(request));
 			}
 		});
 

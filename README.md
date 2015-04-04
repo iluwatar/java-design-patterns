@@ -437,7 +437,7 @@ Presentation Tier patterns are the top-most level of the application, this is co
 **Applicability:** Use the Callback pattern when
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
-<<<<<<< HEAD
+
 ## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
  
@@ -469,7 +469,7 @@ Presentation Tier patterns are the top-most level of the application, this is co
 
 **Real world examples:**
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) prototype inheritance
->>>>>>> origin/master
+
 
 # Frequently asked questions
 
@@ -515,14 +515,14 @@ The difference is the intent of the patterns. While Proxy controls access to the
 * [Let’s Modify the Objects-First Approach into Design-Patterns-First](http://edu.pecinovsky.cz/papers/2006_ITiCSE_Design_Patterns_First.pdf)
 * [Pattern Languages of Program Design](http://www.amazon.com/Pattern-Languages-Program-Design-Coplien/dp/0201607344/ref=sr_1_1)
 * [Martin Fowler - Event Aggregator](http://martinfowler.com/eaaDev/EventAggregator.html)
-<<<<<<< HEAD
+
 * [TutorialsPoint - Intercepting Filter](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
 * [Presentation Tier Pattern](http://www.javagyan.com/tutorials/corej2eepatterns/presentation-tier-patterns)
 =======
 * [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](http://www.amazon.com/Functional-Programming-Java-Harnessing-Expressions/dp/1937785467/ref=sr_1_1)
 
 
->>>>>>> origin/master
+
 
 # License
 

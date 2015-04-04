@@ -6,7 +6,7 @@
  */
 public class FilterChain{
 	private ArrayList<Filter> filters = new ArrayList<Filter>();
-	private Target target;
+	private final Target target;
 
 	public FilterChain(Target target){
 		this.target = target;

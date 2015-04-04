@@ -1,6 +1,7 @@
 /**
  * Concrete implementation of filter
- * 
+*
+ * This checks for the deposit code, returns null when deposit field is empty 
  * @author joshzambales
  *
  */

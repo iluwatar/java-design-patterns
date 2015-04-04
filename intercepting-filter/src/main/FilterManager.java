@@ -9,7 +9,7 @@ import java.awt.event.*;
  *
  */
 public class FilterManager{
-	FilterChain filterChain;
+	private FilterChain filterChain;
 	
 	public FilterManager(Target target){		
 		filterChain = new FilterChain(target);
