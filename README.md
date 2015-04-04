@@ -437,6 +437,8 @@ Presentation Tier patterns are the top-most level of the application, this is co
 **Applicability:** Use the Callback pattern when
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
+**Real world examples:**
+* [CyclicBarrier] (http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
 
 ## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
@@ -447,9 +449,6 @@ Presentation Tier patterns are the top-most level of the application, this is co
 * a system uses pre-processing or post-processing requests
 * a system should do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers 
 * you want a modular approach to configuring pre-processing and post-processing schemes
-
-**Real world examples:**
-* [CyclicBarrier] (http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
 
 ## <a name="execute-around">Execute Around</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Execute Around idiom frees the user from certain actions that should always be executed before and after the business method. A good example of this is resource allocation and deallocation leaving the user to specify only what to do with the resource.
