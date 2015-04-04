@@ -1,4 +1,3 @@
-
 # Design pattern samples in Java.
 
 ## Build status:
@@ -61,6 +60,13 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * [Null Object](#null-object)
 * [Callback](#callback)
 * [Execute Around](#execute-around)
+
+### Presentation Tier Patterns
+
+Presentation Tier patterns are the top-most level of the application, this is concerned with translating tasks and results to something the user can understand.
+
+* [Intercepting Filter](#intercepting-filter)
+
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -431,6 +437,17 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 **Applicability:** Use the Callback pattern when
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
+
+## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
+ 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/intercepting-filter/etc/Intercepting-filter.png "Intercepting Filter")
+ 
+**Applicability:** Use the Intercepting Filter pattern when
+* a system uses pre-processing or post-processing requests
+* a system should do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers 
+* you want a modular approach to configuring pre-processing and post-processing schemes
+
 **Real world examples:**
 * [CyclicBarrier] (http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
 
@@ -452,6 +469,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 **Real world examples:**
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) prototype inheritance
+
 
 # Frequently asked questions
 
@@ -476,7 +494,7 @@ The difference is the intent of the patterns. While Proxy controls access to the
 1. Fork the repository.
 2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation.
 3. Create a simple class diagram from your example code.
-4. Add description of the pattern in README.md and link to the class diagram.
+4. Add description of the pattern in README.md and link to the class diagram.	
 5. Create a pull request.
 
 **For creating/editing UML diagrams** you need one of the following:
@@ -497,7 +515,10 @@ The difference is the intent of the patterns. While Proxy controls access to the
 * [Let’s Modify the Objects-First Approach into Design-Patterns-First](http://edu.pecinovsky.cz/papers/2006_ITiCSE_Design_Patterns_First.pdf)
 * [Pattern Languages of Program Design](http://www.amazon.com/Pattern-Languages-Program-Design-Coplien/dp/0201607344/ref=sr_1_1)
 * [Martin Fowler - Event Aggregator](http://martinfowler.com/eaaDev/EventAggregator.html)
+* [TutorialsPoint - Intercepting Filter](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
+* [Presentation Tier Pattern](http://www.javagyan.com/tutorials/corej2eepatterns/presentation-tier-patterns)
 * [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](http://www.amazon.com/Functional-Programming-Java-Harnessing-Expressions/dp/1937785467/ref=sr_1_1)
+
 
 
 

@@ -43,6 +43,7 @@
 		<module>callback</module>
 		<module>execute-around</module>
 		<module>property</module>
+		<module>intercepting-filter</module>
 	</modules>
 
 	<dependencyManagement>
