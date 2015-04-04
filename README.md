@@ -37,7 +37,6 @@ Structural patterns are concerned with how classes and objects are composed to f
 * [Flyweight](#flyweight)
 * [Proxy](#proxy)
 * [Service Locator](#service-locator)
-* [Model-View-Presenter](#model-view-presenter)
 * [Servant](#servant)
 * [Event Aggregator](#event-aggregator)
  
@@ -66,6 +65,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 Presentation Tier patterns are the top-most level of the application, this is concerned with translating tasks and results to something the user can understand.
 
 * [Intercepting Filter](#intercepting-filter)
+* [Model-View-Presenter](#model-view-presenter)
 
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
