@@ -441,7 +441,7 @@ Presentation Tier patterns are the top-most level of the application, this is co
 ## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
  
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/intercepting-filter/etc/Intercepting-filter.png "Intercepting Filter")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/intercepting-filter/etc/intercepting-filter.jpg "Intercepting Filter")
  
 **Applicability:** Use the Intercepting Filter pattern when
 * a system uses pre-processing or post-processing requests
