@@ -1,3 +1,4 @@
+ package com.iluwatar;
  import java.util.*;
 /**
  * Filter Chain carries multiple filters and help to execute them in defined order on target.

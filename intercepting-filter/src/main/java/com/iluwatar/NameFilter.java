@@ -1,4 +1,4 @@
-
+package com.iluwatar;
 /**
  * Concrete implementation of filter
  * This filter checks if the input in the Name field is valid. (alphanumeric) 
