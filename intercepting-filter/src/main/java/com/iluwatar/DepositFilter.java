@@ -1,4 +1,5 @@
 package com.iluwatar;
+
 /**
  * Concrete implementation of filter
 *
@@ -6,10 +7,11 @@ package com.iluwatar;
  * @author joshzambales
  *
  */
-public class DepositFilter implements Filter{
-	public String execute(String[] request){
-		if(request[3].equals("")){
+public class DepositFilter implements Filter {
+	public String execute(String[] request) {
+		if (request[3].equals("")) {
 			return null;
-		}else return request[3];
+		} else
+			return request[3];
 	}
 }

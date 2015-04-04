@@ -1,9 +1,5 @@
 package com.iluwatar;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.table.*;
-import java.awt.*;
-import java.awt.event.*;
+
 /**
  *
  * This is an app that checks whether the order request is valid through pre-processing done via Filters
@@ -12,7 +8,7 @@ import java.awt.event.*;
  *
  */
 public class App{
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		FilterManager filterManager = new FilterManager(new Target());
 		filterManager.setFilter(new NameFilter());
 		filterManager.setFilter(new ContactFilter());
@@ -24,12 +20,3 @@ public class App{
 		client.setFilterManager(filterManager);
 	}
 }
-
-
-
-
-
-
-
-
-

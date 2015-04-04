@@ -1,4 +1,5 @@
 package com.iluwatar;
+
 /**
 * Filter interface 
  * Filters perform certain tasks prior or after execution of request by request handler.
@@ -6,6 +7,6 @@ package com.iluwatar;
  * @author joshzambales
  *
  */
-public interface Filter{
+public interface Filter {
 	public String execute(String[] request);
 }
