@@ -496,6 +496,12 @@ The difference is the intent of the patterns. While Proxy controls access to the
 4. Add description of the pattern in README.md and link to the class diagram.	
 5. Create a pull request.
 
+**To work on one of the raised issues** you need to do the following steps:
+
+1. Fork the repository.
+2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation.
+3. Create a pull request.
+
 **For creating/editing UML diagrams** you need [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home).
 
 **For inspiration** there is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern).
