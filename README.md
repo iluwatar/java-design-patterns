@@ -71,7 +71,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 * [Execute Around](#execute-around)
 * [Double Checked Locking](#double-checked-locking)
-
+* [Poison Pill](#poison-pill)
 
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
@@ -475,6 +475,13 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Real world examples:**
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) prototype inheritance
 
+## <a name="poison-pill">Poison Pill</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Poison Pill is known predefined data item that allows to provide graceful shutdown for separate distributed consumption process.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/poison-pill/etc/poison-pill.png "Poison Pill")
+
+**Applicability:** Use the Poison Pill idiom when
+* need to send signal from one thread/process to another to terminate
 
 # Frequently asked questions
 

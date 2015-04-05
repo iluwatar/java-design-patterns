@@ -44,6 +44,7 @@
 		<module>execute-around</module>
 		<module>property</module>
 		<module>intercepting-filter</module>
+		<module>poison-pill</module>
 	</modules>
 
 	<dependencyManagement>
