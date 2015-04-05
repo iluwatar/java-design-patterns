@@ -55,10 +55,8 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * [Strategy](#strategy)
 * [Template method](#template-method)
 * [Visitor](#visitor)
-* [Double Checked Locking](#double-checked-locking)
 * [Null Object](#null-object)
 * [Callback](#callback)
-* [Execute Around](#execute-around)
 
 ### Presentation Tier Patterns
 
@@ -66,6 +64,14 @@ Presentation Tier patterns are the top-most level of the application, this is co
 
 * [Intercepting Filter](#intercepting-filter)
 * [Model-View-Presenter](#model-view-presenter)
+
+### Idioms
+
+A programming idiom is a means of expressing a recurring construct in one or more programming languages. Generally speaking, a programming idiom is an expression of a simple task, algorithm, or data structure that is not a built-in feature in the programming language being used, or, conversely, the use of an unusual or notable feature that is built into a programming language. What distinguishes idioms from patterns is generally the size, the idioms tend to be something small while the patterns are larger.
+
+* [Execute Around](#execute-around)
+* [Double Checked Locking](#double-checked-locking)
+
 
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
