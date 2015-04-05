@@ -516,7 +516,12 @@ The difference is the intent of the patterns. While Proxy controls access to the
 
 **For creating/editing UML diagrams** you need [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home).
 
-**For inspiration** there is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern).
+**For inspiration** check out the following sources:
+
+* there is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern)
+* Martin Fowler's [Catalog of Patterns of Enterprise Application Architecture](http://martinfowler.com/eaaCatalog/)
+* [pattern language for microservices](http://microservices.io/patterns/index.html)
+* Microsoft's [Cloud Design Patterns](http://download.microsoft.com/download/B/B/6/BB69622C-AB5D-4D5F-9A12-B81B952C1169/CloudDesignPatternsBook-PDF.pdf)
 
 **Links to patterns applied in real world applications** are welcome. The links should be added to the corresponding section of the `README.md`.
 
