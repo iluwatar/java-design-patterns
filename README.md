@@ -56,7 +56,6 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * [Template method](#template-method)
 * [Visitor](#visitor)
 * [Null Object](#null-object)
-* [Callback](#callback)
 
 ### Presentation Tier Patterns
 
@@ -71,6 +70,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 * [Execute Around](#execute-around)
 * [Double Checked Locking](#double-checked-locking)
+* [Callback](#callback)
 
 
 
