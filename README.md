@@ -56,7 +56,6 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * [Template method](#template-method)
 * [Visitor](#visitor)
 * [Null Object](#null-object)
-* [Callback](#callback)
 
 ### Presentation Tier Patterns
 
@@ -72,7 +71,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * [Execute Around](#execute-around)
 * [Double Checked Locking](#double-checked-locking)
 * [Poison Pill](#poison-pill)
-
+* [Callback](#callback)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
