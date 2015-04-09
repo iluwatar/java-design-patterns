@@ -7,17 +7,18 @@ package com.iluwatar;
  *
  */
 public class FilterManager {
+	
 	private FilterChain filterChain;
 
 	public FilterManager(Target target) {
 		filterChain = new FilterChain(target);
 	}
 
-	public void setFilter(Filter filter) {
+	public void addFilter(Filter filter) {
 		filterChain.addFilter(filter);
 	}
 
-	public String filterRequest(String request) {
-		return filterChain.execute(request);
+	public String filterRequest(Order order) {
+		return filterChain.execute(order);
 	}
 }

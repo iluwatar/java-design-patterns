@@ -7,11 +7,15 @@ package com.iluwatar;
  * @author joshzambales
  *
  */
-public class NameFilter implements Filter {
-	public String execute(String[] request) {
-		if (request[0].equals("") || request[0].matches(".*[^\\w|\\s]+.*")) {
-			return null;
-		} else
-			return request[0];
+public class NameFilter extends AbstractFilter {
+	
+	@Override
+	public String execute(Order order) {
+		String result = super.execute(order);
+		if (order.getName() == null || order.getName().isEmpty() || order.getName().matches(".*[^\\w|\\s]+.*")) {
+			return result + "Invalid order! ";
+		} else {
+			return result;
+		}
 	}
 }

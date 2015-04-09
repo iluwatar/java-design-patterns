@@ -8,13 +8,14 @@ package com.iluwatar;
  *
  */
 public class App{
+	
 	public static void main(String[] args) {
 		FilterManager filterManager = new FilterManager(new Target());
-		filterManager.setFilter(new NameFilter());
-		filterManager.setFilter(new ContactFilter());
-		filterManager.setFilter(new AddressFilter());
-		filterManager.setFilter(new DepositFilter());
-		filterManager.setFilter(new OrderFilter());
+		filterManager.addFilter(new NameFilter());
+		filterManager.addFilter(new ContactFilter());
+		filterManager.addFilter(new AddressFilter());
+		filterManager.addFilter(new DepositFilter());
+		filterManager.addFilter(new OrderFilter());
 
 		Client client = new Client();
 		client.setFilterManager(filterManager);

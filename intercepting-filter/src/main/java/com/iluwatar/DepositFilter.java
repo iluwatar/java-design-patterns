@@ -2,16 +2,19 @@ package com.iluwatar;
 
 /**
  * Concrete implementation of filter
-*
- * This checks for the deposit code, returns null when deposit field is empty 
+ * This checks for the deposit code 
  * @author joshzambales
  *
  */
-public class DepositFilter implements Filter {
-	public String execute(String[] request) {
-		if (request[3].equals("")) {
-			return null;
-		} else
-			return request[3];
+public class DepositFilter extends AbstractFilter {
+	
+	@Override
+	public String execute(Order order) {
+		String result = super.execute(order);
+		if (order.getDepositNumber() == null || order.getDepositNumber().isEmpty()) {
+			return result + "Invalid deposit number! ";
+		} else {
+			return result;
+		}
 	}
 }

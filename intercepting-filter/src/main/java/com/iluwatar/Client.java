@@ -85,12 +85,10 @@ public class Client extends JFrame {
 		processButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String request = String.format("%s&%s&%s&%s&%s",
-						jtFields[0].getText(), jtFields[1].getText(),
-						jtAreas[0].getText(), jtFields[2].getText(),
-						jtAreas[1].getText());
-
-				jl.setText(sendRequest(request));
+				Order order = new Order(jtFields[0].getText(), jtFields[1]
+						.getText(), jtAreas[0].getText(),
+						jtFields[2].getText(), jtAreas[1].getText());
+				jl.setText(sendRequest(order));
 			}
 		});
 
@@ -103,7 +101,7 @@ public class Client extends JFrame {
 		this.filterManager = filterManager;
 	}
 
-	public String sendRequest(String request) {
-		return filterManager.filterRequest(request);
+	public String sendRequest(Order order) {
+		return filterManager.filterRequest(order);
 	}
 }

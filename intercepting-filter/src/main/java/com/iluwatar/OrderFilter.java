@@ -1,17 +1,20 @@
 package com.iluwatar;
 
 /**
- * Concrete implementation of filter This checks for the order field, returns
- * null when order field is empty
+ * Concrete implementation of filter This checks for the order field
  * 
  * @author joshzambales
  *
  */
-public class OrderFilter implements Filter {
-	public String execute(String[] request) {
-		if (request[4].equals("")) {
-			return null;
-		} else
-			return request[4];
+public class OrderFilter extends AbstractFilter {
+	
+	@Override
+	public String execute(Order order) {
+		String result = super.execute(order);
+		if (order.getOrder() == null || order.getOrder().isEmpty()) {
+			return result + "Invalid order! ";
+		} else {
+			return result;
+		}
 	}
 }

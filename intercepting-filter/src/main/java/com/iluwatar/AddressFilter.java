@@ -2,15 +2,18 @@ package com.iluwatar;
 
 /**
  * Concrete implementation of filter
- * This filter is responsible for checking/filtering the input in the address field, returns null if field is empty
+ * This filter is responsible for checking/filtering the input in the address field.
  * @author joshzambales
  *
  */
-public class AddressFilter implements Filter {
-	public String execute(String[] request) {
-		if (request[2].equals("")) {
-			return null;
+public class AddressFilter extends AbstractFilter {
+	
+	@Override
+	public String execute(Order order) {
+		String result = super.execute(order);
+		if (order.getAddress() == null || order.getAddress().isEmpty()) {
+			return result + "Invalid address! ";
 		} else
-			return request[2];
+			return result;
 	}
 }
