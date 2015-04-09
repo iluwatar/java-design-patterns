@@ -1,7 +1,10 @@
 package com.iluwatar;
 
+import java.io.File;
 import java.io.IOException;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -15,5 +18,12 @@ public class AppTest {
 	public void test() throws IOException {
 		String[] args = {};
 		App.main(args);
+	}
+	
+	@Before
+	@After
+	public void cleanup() {
+		File file = new File("testfile.txt");
+		file.delete();
 	}
 }
