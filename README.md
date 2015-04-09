@@ -496,6 +496,9 @@ In Template Method the algorithm is chosen at compile time via inheritance. With
 
 The difference is the intent of the patterns. While Proxy controls access to the object Decorator is used to add responsibilities to the object.
 
+**<a id="Q4">Q: What is the difference between Chain of Responsibility and Intercepting Filter patterns?</a>**
+
+While the implementations look similar there are differences. The Chain of Responsibility forms a chain of request processors and the processors are then executed one by one until the correct processor is found. In Intercepting Filter the chain is constructed from filters and the whole chain is always executed.
 
 
 # How to contribute
