@@ -56,12 +56,12 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * [Template method](#template-method)
 * [Visitor](#visitor)
 * [Null Object](#null-object)
+* [Intercepting Filter](#intercepting-filter)
 
 ### Presentation Tier Patterns
 
 Presentation Tier patterns are the top-most level of the application, this is concerned with translating tasks and results to something the user can understand.
 
-* [Intercepting Filter](#intercepting-filter)
 * [Model-View-Presenter](#model-view-presenter)
 
 ### Idioms
