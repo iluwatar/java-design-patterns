@@ -60,14 +60,14 @@
 
 	<build>
 		<plugins>
-			<!-- Tell maven to compile using Java 1.7 -->
+			<!-- Tell maven to compile using Java 8 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.0</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
