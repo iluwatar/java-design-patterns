@@ -1,5 +1,8 @@
 language: java
 
+jdk:
+  - oraclejdk8
+
 # whitelist
 branches:
   only:
