@@ -45,7 +45,8 @@
 		<module>property</module>
 		<module>intercepting-filter</module>
 		<module>poison-pill</module>
-	</modules>
+    <module>lazy-loading</module>
+  </modules>
 
 	<dependencyManagement>
 		<dependencies>

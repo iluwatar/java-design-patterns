@@ -72,6 +72,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * [Double Checked Locking](#double-checked-locking)
 * [Poison Pill](#poison-pill)
 * [Callback](#callback)
+* [Lazy Loading](#lazy-loading)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -481,6 +482,19 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Applicability:** Use the Poison Pill idiom when
 * need to send signal from one thread/process to another to terminate
+
+## <a name="lazy-loading">Lazy Loading</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Lazy loading is a design pattern commonly used to defer initialization of an object until the point at which it is needed. It can contribute to efficiency in the program's operation if properly and appropriately used.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/lazy-loading/etc/lazy-loading.png "Lazy Loading")
+
+**Applicability:** Use the Lazy Loading idiom when
+* eager loading is expensive or the object to be loaded might not be need at all
+
+**Real world examples:**
+* JPA annotations @OneToOne, @OneToMany, @ManyToOne, @ManyToMany and fetch = FetchType.LAZY
+
+
 
 # Frequently asked questions
 
