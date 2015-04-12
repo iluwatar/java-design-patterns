@@ -9,6 +9,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<hibernate.version>5.0.0.Beta1</hibernate.version>
+		<h2.version>1.4.187</h2.version>
+		<junit.version>4.12</junit.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -46,14 +49,25 @@
 		<module>intercepting-filter</module>
 		<module>poison-pill</module>
     <module>lazy-loading</module>
+    <module>dao</module>
   </modules>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+			    <groupId>org.hibernate</groupId>
+			    <artifactId>hibernate-core</artifactId>
+			    <version>${hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.version}</version>
+			</dependency>  
+			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.11</version>
+				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
 		</dependencies>
