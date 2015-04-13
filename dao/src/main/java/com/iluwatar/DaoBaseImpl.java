@@ -16,24 +16,8 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 	protected Class<E> persistentClass = (Class<E>) ((ParameterizedType) getClass()
             .getGenericSuperclass()).getActualTypeArguments()[0];
 
-	protected final SessionFactory sessionFactory = createSessionFactory();
-	
-	private SessionFactory createSessionFactory() {
-    	SessionFactory sessionFactory = new Configuration()
-  	  		.addAnnotatedClass(Wizard.class)
-  	  		.addAnnotatedClass(Spellbook.class)
-  	  		.addAnnotatedClass(Spell.class)
-  	  		.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect")
-  	  		.setProperty("hibernate.connection.url", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1")
-  	  		.setProperty("hibernate.current_session_context_class", "thread")
-  	  		.setProperty("hibernate.show_sql", "true")
-  	  		.setProperty("hibernate.hbm2ddl.auto", "create-drop")
-  	  		.buildSessionFactory();
-    	return sessionFactory;
-	}
-	
 	private Session getSession() {
-		return sessionFactory.openSession();
+		return HibernateUtil.getSessionFactory().openSession();
 	}
 	
 	@Override
@@ -43,7 +27,7 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 		E result = null;
 		try {
 			tx = session.beginTransaction();
-			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(persistentClass);
+			Criteria criteria = session.createCriteria(persistentClass);
 			criteria.add(Restrictions.idEq(id));
 			result = (E) criteria.uniqueResult();
 			tx.commit();
