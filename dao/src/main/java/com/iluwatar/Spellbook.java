@@ -17,6 +17,11 @@ public class Spellbook extends BaseEntity {
 	public Spellbook() {
 		spells = new HashSet<Spell>();
 	}
+	
+	public Spellbook(String name) {
+		this();
+		this.name = name;
+	}
 
 	private String name;
 
@@ -50,4 +55,9 @@ public class Spellbook extends BaseEntity {
 	public void setSpells(Set<Spell> spells) {
 		this.spells = spells;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}	
 }

@@ -16,17 +16,22 @@ public class Wizard extends BaseEntity {
 		spellbooks = new HashSet<Spellbook>();
 	}
 	
-	private String firstName;
+	public Wizard(String name) {
+		this();
+		this.name = name;
+	}
+	
+	private String name;
 
 	@OneToMany(mappedBy = "wizard", orphanRemoval = true, cascade = CascadeType.ALL)
 	private Set<Spellbook> spellbooks;
 	
 	public String getFirstName() {
-		return firstName;
+		return name;
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.name = firstName;
 	}
 
 	public Set<Spellbook> getSpellbooks() {
@@ -35,5 +40,10 @@ public class Wizard extends BaseEntity {
 
 	public void setSpellbooks(Set<Spellbook> spellbooks) {
 		this.spellbooks = spellbooks;
+	}
+
+	@Override
+	public String toString() {
+		return name;
 	}	
 }

@@ -10,6 +10,14 @@ import javax.persistence.Table;
 public class Spell extends BaseEntity {
 	
 	private String name;
+	
+	public Spell() {
+	}
+	
+	public Spell(String name) {
+		this();
+		this.name = name;
+	}
 
 	@ManyToOne
 	@JoinColumn(name="SPELLBOOK_ID_FK", referencedColumnName="ID")
@@ -22,4 +30,9 @@ public class Spell extends BaseEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}	
 }
