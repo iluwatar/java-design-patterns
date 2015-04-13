@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -42,7 +40,7 @@ public class Wizard extends BaseEntity {
 	
 	private String name;
 
-	@OneToMany(mappedBy = "wizard", orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "wizard", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Spellbook> spellbooks;
 	
 	public String getFirstName() {

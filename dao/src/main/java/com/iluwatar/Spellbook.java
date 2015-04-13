@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -48,7 +46,7 @@ public class Spellbook extends BaseEntity {
 	@JoinColumn(name="WIZARD_ID_FK", referencedColumnName="WIZARD_ID")
 	private Wizard wizard;
 
-	@OneToMany(mappedBy = "spellbook", orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "spellbook", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Spell> spells;
 	
 	public String getName() {

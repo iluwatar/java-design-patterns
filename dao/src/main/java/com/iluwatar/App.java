@@ -1,16 +1,15 @@
 package com.iluwatar;
 
-import java.util.List;
 
 
 public class App {
     public static void main( String[] args ) {   
-    	WizardDao dao = new WizardDao();
+    	WizardDaoImpl dao = new WizardDaoImpl();
     	persistData(dao);
-    	queryData(dao);
+    	queryData();
     }
     
-    public static void persistData(WizardDao dao) {
+    public static void persistData(WizardDaoImpl dao) {
     	Spell spell = new Spell("Fireball");
     	Spellbook spellbook = new Spellbook("Book of fire");
     	spell.setSpellbook(spellbook);
@@ -21,16 +20,10 @@ public class App {
     	dao.persist(wizard);
     }
     
-    public static void queryData(WizardDao dao) {
-    	List<Wizard> wizards = dao.findAll();
-    	for (Wizard w: wizards) {
+    public static void queryData() {
+    	MagicService magicService = new MagicServiceImpl();
+    	for (Wizard w: magicService.findAllWizards()) {
     		System.out.println(w);
-    		for (Spellbook spellbook: w.getSpellbooks()) {
-    			System.out.println(spellbook);
-    			for (Spell spell: spellbook.getSpells()) {
-    				System.out.println(spell);
-    			}
-    		}
     	}
     }
 }

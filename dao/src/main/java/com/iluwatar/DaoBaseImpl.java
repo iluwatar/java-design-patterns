@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
-public abstract class DaoBase<E extends BaseEntity> {
+public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 	
 	@SuppressWarnings("unchecked")
 	protected Class<E> persistentClass = (Class<E>) ((ParameterizedType) getClass()
@@ -36,7 +36,8 @@ public abstract class DaoBase<E extends BaseEntity> {
 		return sessionFactory.openSession();
 	}
 	
-	E find(Long id) {
+	@Override
+	public E find(Long id) {
 		Session session = getSession();
 		Transaction tx = null;
 		E result = null;
@@ -57,7 +58,8 @@ public abstract class DaoBase<E extends BaseEntity> {
 		return result;
 	}
 	
-	void persist(E entity) {
+	@Override
+	public void persist(E entity) {
 		Session session = getSession();
 		Transaction tx = null;
 		try {
@@ -74,7 +76,8 @@ public abstract class DaoBase<E extends BaseEntity> {
 		}		
 	}
 	
-	E merge(E entity) {
+	@Override
+	public E merge(E entity) {
 		Session session = getSession();
 		Transaction tx = null;
 		E result = null;
@@ -93,7 +96,8 @@ public abstract class DaoBase<E extends BaseEntity> {
 		return result;
 	}
 	
-	void delete(E entity) {
+	@Override
+	public void delete(E entity) {
 		Session session = getSession();
 		Transaction tx = null;
 		try {
@@ -110,7 +114,8 @@ public abstract class DaoBase<E extends BaseEntity> {
 		}		
 	}
 	
-	List<E> findAll() {
+	@Override
+	public List<E> findAll() {
 		Session session = getSession();
 		Transaction tx = null;
 		List<E> result = null;
