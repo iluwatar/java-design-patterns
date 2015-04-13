@@ -1,6 +1,11 @@
 package com.iluwatar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,8 +24,21 @@ public class Spell extends BaseEntity {
 		this.name = name;
 	}
 
+	@Id
+	@GeneratedValue
+	@Column(name = "SPELL_ID")
+	private Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	@ManyToOne
-	@JoinColumn(name="SPELLBOOK_ID_FK", referencedColumnName="ID")
+	@JoinColumn(name="SPELLBOOK_ID_FK", referencedColumnName="SPELLBOOK_ID")
 	private Spellbook spellbook;
 	
 	public String getName() {
@@ -31,6 +49,14 @@ public class Spell extends BaseEntity {
 		this.name = name;
 	}
 	
+	public Spellbook getSpellbook() {
+		return spellbook;
+	}
+
+	public void setSpellbook(Spellbook spellbook) {
+		this.spellbook = spellbook;
+	}
+
 	@Override
 	public String toString() {
 		return name;

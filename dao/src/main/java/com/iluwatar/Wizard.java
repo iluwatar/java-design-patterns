@@ -4,7 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,10 +26,23 @@ public class Wizard extends BaseEntity {
 		this();
 		this.name = name;
 	}
+
+	@Id
+	@GeneratedValue
+	@Column(name = "WIZARD_ID")
+	private Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	private String name;
 
-	@OneToMany(mappedBy = "wizard", orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "wizard", orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Spellbook> spellbooks;
 	
 	public String getFirstName() {
