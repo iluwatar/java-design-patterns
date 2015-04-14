@@ -1,5 +1,5 @@
 package com.iluwatar;
 
-public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> {
+public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements SpellbookDao {
 
 }

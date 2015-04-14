@@ -1,5 +1,5 @@
 package com.iluwatar;
 
-public class WizardDaoImpl extends DaoBaseImpl<Wizard> {
+public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 
 }

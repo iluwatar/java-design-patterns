@@ -6,10 +6,9 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -40,7 +39,7 @@ public class Wizard extends BaseEntity {
 	
 	private String name;
 
-	@OneToMany(mappedBy = "wizard", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Spellbook> spellbooks;
 	
 	public String getFirstName() {
@@ -59,6 +58,11 @@ public class Wizard extends BaseEntity {
 		this.spellbooks = spellbooks;
 	}
 
+	public void addSpellbook(Spellbook spellbook) {
+		spellbook.getWizards().add(this);
+		spellbooks.add(spellbook);
+	}
+	
 	@Override
 	public String toString() {
 		return name;

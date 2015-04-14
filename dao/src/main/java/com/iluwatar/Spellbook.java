@@ -6,11 +6,9 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +18,7 @@ public class Spellbook extends BaseEntity {
 	
 	public Spellbook() {
 		spells = new HashSet<Spell>();
+		wizards = new HashSet<Wizard>();
 	}
 	
 	public Spellbook(String name) {
@@ -42,11 +41,10 @@ public class Spellbook extends BaseEntity {
 	
 	private String name;
 
-	@ManyToOne
-	@JoinColumn(name="WIZARD_ID_FK", referencedColumnName="WIZARD_ID")
-	private Wizard wizard;
+	@ManyToMany(mappedBy = "spellbooks")
+	private Set<Wizard> wizards;
 
-	@OneToMany(mappedBy = "spellbook", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "spellbook", orphanRemoval = true, cascade = CascadeType.ALL)
 	private Set<Spell> spells;
 	
 	public String getName() {
@@ -57,12 +55,12 @@ public class Spellbook extends BaseEntity {
 		this.name = name;
 	}
 
-	public Wizard getWizard() {
-		return wizard;
+	public Set<Wizard> getWizards() {
+		return wizards;
 	}
 
-	public void setWizard(Wizard wizard) {
-		this.wizard = wizard;
+	public void setWizards(Set<Wizard> wizards) {
+		this.wizards = wizards;
 	}
 
 	public Set<Spell> getSpells() {
@@ -71,6 +69,11 @@ public class Spellbook extends BaseEntity {
 
 	public void setSpells(Set<Spell> spells) {
 		this.spells = spells;
+	}
+
+	public void addSpell(Spell spell) {
+		spell.setSpellbook(this);
+		spells.add(spell);
 	}
 	
 	@Override
