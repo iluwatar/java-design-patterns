@@ -19,6 +19,7 @@
 		<module>adapter</module>
 		<module>bridge</module>
 		<module>composite</module>
+		<module>dao</module>
 		<module>decorator</module>
 		<module>facade</module>
 		<module>flyweight</module>
