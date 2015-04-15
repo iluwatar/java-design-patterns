@@ -65,6 +65,12 @@ Presentation Tier patterns are the top-most level of the application, this is co
 
 * [Model-View-Presenter](#model-view-presenter)
 
+### Architectual Patterns
+
+An architectural pattern is a general, reusable solution to a commonly occurring problem in software architecture within a given context.
+
+* [Data Access Object](#dao)
+
 ### Idioms
 
 A programming idiom is a means of expressing a recurring construct in one or more programming languages. Generally speaking, a programming idiom is an expression of a simple task, algorithm, or data structure that is not a built-in feature in the programming language being used, or, conversely, the use of an unusual or notable feature that is built into a programming language. What distinguishes idioms from patterns is generally the size, the idioms tend to be something small while the patterns are larger.
@@ -402,6 +408,15 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Applicability:** Use the Model-View-Presenter in any of the following situations
 * when you want to improve the "Separation of Concerns" principle in presentation logic
 * when a user interface development and testing is necessary.
+
+## <a name="dao">Data Access Object</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Object provides an abstract interface to some type of database or other persistence mechanism.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/dao/etc/dao.png "Data Access Object")
+
+**Applicability:** Use the Data Access Object in any of the following situations
+* when you want to consolidate how the data layer is accessed
+* when you want to avoid writing multiple data retrieval/persistence layers
 
 ## <a name="double-checked-locking">Double Checked Locking</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Reduce the overhead of acquiring a lock by first testing the locking criterion (the "lock hint") without actually acquiring the lock. Only if the locking criterion check indicates that locking is required does the actual locking logic proceed.
