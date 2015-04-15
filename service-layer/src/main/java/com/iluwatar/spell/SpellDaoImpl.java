@@ -7,6 +7,11 @@ import org.hibernate.criterion.Expression;
 
 import com.iluwatar.common.DaoBaseImpl;
 
+/**
+ * 
+ * SpellDao implementation.
+ *
+ */
 public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
 
 	@Override
@@ -19,6 +24,7 @@ public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
 			Criteria criteria = session.createCriteria(persistentClass);
 			criteria.add(Expression.eq("name", name));
 			result = (Spell) criteria.uniqueResult();
+			result.getSpellbook().getWizards().size();
 			tx.commit();
 		}
 		catch (Exception e) {

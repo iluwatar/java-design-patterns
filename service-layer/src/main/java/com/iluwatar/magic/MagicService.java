@@ -7,6 +7,11 @@ import com.iluwatar.spellbook.Spellbook;
 import com.iluwatar.wizard.Wizard;
 
 
+/**
+ * 
+ * Service interface.
+ *
+ */
 public interface MagicService {
 
 	List<Wizard> findAllWizards();
@@ -14,5 +19,8 @@ public interface MagicService {
 	List<Spellbook> findAllSpellbooks();
 	
 	List<Spell> findAllSpells();
-	
+
+	List<Wizard> findWizardsWithSpellbook(String name);
+
+	List<Wizard> findWizardsWithSpell(String name);
 }

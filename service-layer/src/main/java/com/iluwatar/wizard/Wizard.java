@@ -14,6 +14,11 @@ import javax.persistence.Table;
 import com.iluwatar.common.BaseEntity;
 import com.iluwatar.spellbook.Spellbook;
 
+/**
+ * 
+ * Wizard entity.
+ *
+ */
 @Entity
 @Table(name="WIZARD")
 public class Wizard extends BaseEntity {

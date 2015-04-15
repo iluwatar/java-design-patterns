@@ -10,6 +10,13 @@ import org.hibernate.criterion.Restrictions;
 
 import com.iluwatar.hibernate.HibernateUtil;
 
+/**
+ * 
+ * Base class for Dao implementations.
+ *
+ * @param <E>
+ * 
+ */
 public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 	
 	@SuppressWarnings("unchecked")

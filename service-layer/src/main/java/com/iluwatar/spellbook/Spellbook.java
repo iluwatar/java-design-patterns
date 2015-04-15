@@ -16,6 +16,11 @@ import com.iluwatar.common.BaseEntity;
 import com.iluwatar.spell.Spell;
 import com.iluwatar.wizard.Wizard;
 
+/**
+ * 
+ * Spellbook entity.
+ *
+ */
 @Entity
 @Table(name="SPELLBOOK")
 public class Spellbook extends BaseEntity {

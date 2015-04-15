@@ -7,6 +7,11 @@ import org.hibernate.criterion.Expression;
 
 import com.iluwatar.common.DaoBaseImpl;
 
+/**
+ * 
+ * SpellbookDao implementation.
+ *
+ */
 public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements SpellbookDao {
 
 	@Override

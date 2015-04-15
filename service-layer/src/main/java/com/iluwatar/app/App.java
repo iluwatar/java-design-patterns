@@ -1,5 +1,7 @@
 package com.iluwatar.app;
 
+import java.util.List;
+
 import com.iluwatar.magic.MagicService;
 import com.iluwatar.magic.MagicServiceImpl;
 import com.iluwatar.spell.Spell;
@@ -14,18 +16,34 @@ import com.iluwatar.wizard.WizardDaoImpl;
 
 
 /**
+ * Service layer defines an application's boundary with a layer of services that establishes 
+ * a set of available operations and coordinates the application's response in each operation.
  * 
+ * Enterprise applications typically require different kinds of interfaces to the data 
+ * they store and the logic they implement: data loaders, user interfaces, integration gateways, 
+ * and others. Despite their different purposes, these interfaces often need common interactions 
+ * with the application to access and manipulate its data and invoke its business logic. The 
+ * interactions may be complex, involving transactions across multiple resources and the 
+ * coordination of several responses to an action. Encoding the logic of the interactions 
+ * separately in each interface causes a lot of duplication.
  * 
+ * The example application demonstrates interactions between a client (App) and a service 
+ * (MagicService). The service is implemented with 3-layer architecture (entity, dao, service).
+ * For persistence the example uses in-memory H2 database which is populated on each application
+ * startup.
  *
  */
 public class App {
 	
     public static void main( String[] args ) {   
+    	// populate the in-memory database
     	initData();
+    	// query the data using the service
     	queryData();
     }
     
     public static void initData() {
+    	// spells
     	Spell spell1 = new Spell("Ice dart");
     	Spell spell2 = new Spell("Invisibility");
     	Spell spell3 = new Spell("Stun bolt");
@@ -62,6 +80,7 @@ public class App {
     	spellDao.persist(spell16);
     	spellDao.persist(spell17);
     	
+    	// spellbooks
     	SpellbookDao spellbookDao = new SpellbookDaoImpl();
     	Spellbook spellbook1 = new Spellbook("Book of Orgymon");
     	spellbookDao.persist(spellbook1);
@@ -102,6 +121,7 @@ public class App {
     	spellbook7.addSpell(spell17);
     	spellbookDao.merge(spellbook7);
     	
+    	// wizards
     	WizardDao wizardDao = new WizardDaoImpl();
     	Wizard wizard1 = new Wizard("Aderlard Boud");
     	wizardDao.persist(wizard1);
@@ -137,6 +157,16 @@ public class App {
     	System.out.println("Enumerating all spells");
     	for (Spell s: service.findAllSpells()) {
     		System.out.println(s.getName());
+    	}
+    	System.out.println("Find wizards with spellbook 'Book of Idores'");
+    	List<Wizard> wizardsWithSpellbook = service.findWizardsWithSpellbook("Book of Idores");
+    	for (Wizard w: wizardsWithSpellbook) {
+    		System.out.println(String.format("%s has 'Book of Idores'", w.getName()));
+    	}
+    	System.out.println("Find wizards with spell 'Fireball'");
+    	List<Wizard> wizardsWithSpell = service.findWizardsWithSpell("Fireball");
+    	for (Wizard w: wizardsWithSpell) {
+    		System.out.println(String.format("%s has 'Fireball'", w.getName()));
     	}
     }
 }

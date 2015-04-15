@@ -7,6 +7,11 @@ import com.iluwatar.spell.Spell;
 import com.iluwatar.spellbook.Spellbook;
 import com.iluwatar.wizard.Wizard;
 
+/**
+ * 
+ * Produces the Hibernate SessionFactory.
+ *
+ */
 public class HibernateUtil {
 
 	private static final SessionFactory sessionFactory;

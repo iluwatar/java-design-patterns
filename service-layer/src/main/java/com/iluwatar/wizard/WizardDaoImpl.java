@@ -6,7 +6,13 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Expression;
 
 import com.iluwatar.common.DaoBaseImpl;
+import com.iluwatar.spellbook.Spellbook;
 
+/**
+ * 
+ * WizardDao implementation.
+ *
+ */
 public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 
 	@Override
@@ -19,7 +25,9 @@ public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 			Criteria criteria = session.createCriteria(persistentClass);
 			criteria.add(Expression.eq("name", name));
 			result = (Wizard) criteria.uniqueResult();
-			result.getSpellbooks().size();
+			for (Spellbook s: result.getSpellbooks()) {
+				s.getSpells().size();
+			}
 			tx.commit();
 		}
 		catch (Exception e) {
