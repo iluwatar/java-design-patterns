@@ -39,6 +39,7 @@ Structural patterns are concerned with how classes and objects are composed to f
 * [Service Locator](#service-locator)
 * [Servant](#servant)
 * [Event Aggregator](#event-aggregator)
+* [Service Layer](#service-layer)
  
 ### Behavioral Patterns
 
@@ -493,6 +494,16 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * JPA annotations @OneToOne, @OneToMany, @ManyToOne, @ManyToMany and fetch = FetchType.LAZY
+
+## <a name="service-layer">Service Layer</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Service Layer is an abstraction over domain logic. Typically applications require multiple kinds of interfaces to the data
+they store and logic they implement: data loaders, user interfaces, integration gateways, and others. Despite their different purposes, these interfaces often need common interactions with the application to access and manipulate its data and invoke its business logic. The Service Layer fulfills this role.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/service-layer/etc/service-layer.png "Service Layer")
+
+**Applicability:** Use the Service Layer pattern when
+* you want to encapsulate domain logic under API
+* you need to implement multiple interfaces with common logic and data
 
 
 
