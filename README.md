@@ -65,7 +65,7 @@ Presentation Tier patterns are the top-most level of the application, this is co
 
 * [Model-View-Presenter](#model-view-presenter)
 
-### Architectual Patterns
+### Architectural Patterns
 
 An architectural pattern is a general, reusable solution to a commonly occurring problem in software architecture within a given context.
 
