@@ -5,9 +5,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
 public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
@@ -16,7 +14,7 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 	protected Class<E> persistentClass = (Class<E>) ((ParameterizedType) getClass()
             .getGenericSuperclass()).getActualTypeArguments()[0];
 
-	private Session getSession() {
+	protected Session getSession() {
 		return HibernateUtil.getSessionFactory().openSession();
 	}
 	

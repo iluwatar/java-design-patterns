@@ -1,6 +1,5 @@
 package com.iluwatar;
 
-import java.util.List;
 
 /**
  * 
@@ -94,22 +93,22 @@ public class App {
     	WizardDao wizardDao = new WizardDaoImpl();
     	Wizard wizard1 = new Wizard("Aderlard Boud");
     	wizardDao.persist(wizard1);
-//    	wizard1.addSpellbook(spellbook1);
-//    	wizard1.addSpellbook(spellbook2);
+    	wizard1.addSpellbook(spellbookDao.findByName("Book of Orgymon"));
+    	wizard1.addSpellbook(spellbookDao.findByName("Book of Aras"));
     	wizardDao.merge(wizard1);
     	Wizard wizard2 = new Wizard("Anaxis Bajraktari");
     	wizardDao.persist(wizard2);
-//    	wizard2.addSpellbook(spellbook3);
-//    	wizard2.addSpellbook(spellbook4);
+    	wizard2.addSpellbook(spellbookDao.findByName("Book of Kritior"));
+    	wizard2.addSpellbook(spellbookDao.findByName("Book of Tamaex"));
     	wizardDao.merge(wizard2);
     	Wizard wizard3 = new Wizard("Xuban Munoa");
     	wizardDao.persist(wizard3);
-//    	wizard3.addSpellbook(spellbook5);
-//    	wizard3.addSpellbook(spellbook6);
+    	wizard3.addSpellbook(spellbookDao.findByName("Book of Idores"));
+    	wizard3.addSpellbook(spellbookDao.findByName("Book of Opaen"));
     	wizardDao.merge(wizard3);
     	Wizard wizard4 = new Wizard("Blasius Dehooge");
     	wizardDao.persist(wizard4);
-//    	wizard4.addSpellbook(spellbook7);
+    	wizard4.addSpellbook(spellbookDao.findByName("Book of Kihione"));
     	wizardDao.merge(wizard4);
     }
     
