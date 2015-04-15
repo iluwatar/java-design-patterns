@@ -15,7 +15,7 @@ package com.iluwatar;
 public class App {
 
 	public static void main(String[] args) {
-		GnomeEngineeringManager manager = new GnomeEngineeringManager();
+		Engineer manager = new GnomeEngineeringManager();
 		manager.operateDevice();
 	}
 }
