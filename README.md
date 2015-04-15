@@ -39,7 +39,6 @@ Structural patterns are concerned with how classes and objects are composed to f
 * [Service Locator](#service-locator)
 * [Servant](#servant)
 * [Event Aggregator](#event-aggregator)
-* [Service Layer](#service-layer)
  
 ### Behavioral Patterns
 
@@ -70,6 +69,7 @@ Presentation Tier patterns are the top-most level of the application, this is co
 An architectural pattern is a general, reusable solution to a commonly occurring problem in software architecture within a given context.
 
 * [Data Access Object](#dao)
+* [Service Layer](#service-layer)
 
 ### Idioms
 
