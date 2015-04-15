@@ -42,12 +42,12 @@ public class Wizard extends BaseEntity {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Spellbook> spellbooks;
 	
-	public String getFirstName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.name = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Set<Spellbook> getSpellbooks() {

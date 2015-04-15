@@ -113,5 +113,18 @@ public class App {
     }
     
     public static void queryData() {
+    	MagicService service = new MagicServiceImpl(new WizardDaoImpl(), new SpellbookDaoImpl(), new SpellDaoImpl());
+    	System.out.println("Enumerating all wizards");
+    	for (Wizard w: service.findAllWizards()) {
+    		System.out.println(w.getName());
+    	}
+    	System.out.println("Enumerating all spellbooks");
+    	for (Spellbook s: service.findAllSpellbooks()) {
+    		System.out.println(s.getName());
+    	}
+    	System.out.println("Enumerating all spells");
+    	for (Spell s: service.findAllSpells()) {
+    		System.out.println(s.getName());
+    	}
     }
 }
