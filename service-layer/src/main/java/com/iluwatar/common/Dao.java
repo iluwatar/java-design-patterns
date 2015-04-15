@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.common;
 
 import java.util.List;
 

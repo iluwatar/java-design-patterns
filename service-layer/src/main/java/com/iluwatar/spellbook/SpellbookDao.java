@@ -1,4 +1,6 @@
-package com.iluwatar;
+package com.iluwatar.spellbook;
+
+import com.iluwatar.common.Dao;
 
 public interface SpellbookDao extends Dao<Spellbook> {
 	

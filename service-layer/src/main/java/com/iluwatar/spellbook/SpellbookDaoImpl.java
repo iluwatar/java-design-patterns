@@ -1,23 +1,26 @@
-package com.iluwatar;
+package com.iluwatar.spellbook;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Expression;
 
-public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
+import com.iluwatar.common.DaoBaseImpl;
+
+public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements SpellbookDao {
 
 	@Override
-	public Wizard findByName(String name) {
+	public Spellbook findByName(String name) {
 		Session session = getSession();
 		Transaction tx = null;
-		Wizard result = null;
+		Spellbook result = null;
 		try {
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(persistentClass);
 			criteria.add(Expression.eq("name", name));
-			result = (Wizard) criteria.uniqueResult();
-			result.getSpellbooks().size();
+			result = (Spellbook) criteria.uniqueResult();
+			result.getSpells().size();
+			result.getWizards().size();
 			tx.commit();
 		}
 		catch (Exception e) {
@@ -29,4 +32,5 @@ public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 		}		
 		return result;
 	}
+
 }

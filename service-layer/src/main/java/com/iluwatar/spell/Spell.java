@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.spell;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.iluwatar.common.BaseEntity;
+import com.iluwatar.spellbook.Spellbook;
 
 @Entity
 @Table(name="SPELL")

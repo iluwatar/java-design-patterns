@@ -1,4 +1,16 @@
-package com.iluwatar;
+package com.iluwatar.app;
+
+import com.iluwatar.magic.MagicService;
+import com.iluwatar.magic.MagicServiceImpl;
+import com.iluwatar.spell.Spell;
+import com.iluwatar.spell.SpellDao;
+import com.iluwatar.spell.SpellDaoImpl;
+import com.iluwatar.spellbook.Spellbook;
+import com.iluwatar.spellbook.SpellbookDao;
+import com.iluwatar.spellbook.SpellbookDaoImpl;
+import com.iluwatar.wizard.Wizard;
+import com.iluwatar.wizard.WizardDao;
+import com.iluwatar.wizard.WizardDaoImpl;
 
 
 /**

@@ -1,7 +1,11 @@
-package com.iluwatar;
+package com.iluwatar.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import com.iluwatar.spell.Spell;
+import com.iluwatar.spellbook.Spellbook;
+import com.iluwatar.wizard.Wizard;
 
 public class HibernateUtil {
 

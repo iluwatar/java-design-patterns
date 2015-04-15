@@ -1,6 +1,13 @@
-package com.iluwatar;
+package com.iluwatar.magic;
 
 import java.util.List;
+
+import com.iluwatar.spell.Spell;
+import com.iluwatar.spell.SpellDao;
+import com.iluwatar.spellbook.Spellbook;
+import com.iluwatar.spellbook.SpellbookDao;
+import com.iluwatar.wizard.Wizard;
+import com.iluwatar.wizard.WizardDao;
 
 public class MagicServiceImpl implements MagicService {
 	

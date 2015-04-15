@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.spellbook;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.iluwatar.common.BaseEntity;
+import com.iluwatar.spell.Spell;
+import com.iluwatar.wizard.Wizard;
 
 @Entity
 @Table(name="SPELLBOOK")

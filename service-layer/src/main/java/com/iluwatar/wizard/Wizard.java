@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.wizard;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.iluwatar.common.BaseEntity;
+import com.iluwatar.spellbook.Spellbook;
 
 @Entity
 @Table(name="WIZARD")

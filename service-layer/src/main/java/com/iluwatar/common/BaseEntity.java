@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.common;
 
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;

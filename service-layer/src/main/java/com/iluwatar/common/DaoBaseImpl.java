@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.common;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -7,6 +7,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+
+import com.iluwatar.hibernate.HibernateUtil;
 
 public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 	
