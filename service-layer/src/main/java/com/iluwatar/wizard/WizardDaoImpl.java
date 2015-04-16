@@ -3,7 +3,7 @@ package com.iluwatar.wizard;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 
 import com.iluwatar.common.DaoBaseImpl;
 import com.iluwatar.spellbook.Spellbook;
@@ -23,7 +23,7 @@ public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 		try {
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(persistentClass);
-			criteria.add(Expression.eq("name", name));
+			criteria.add(Restrictions.eq("name", name));
 			result = (Wizard) criteria.uniqueResult();
 			for (Spellbook s: result.getSpellbooks()) {
 				s.getSpells().size();

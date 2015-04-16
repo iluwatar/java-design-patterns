@@ -3,7 +3,7 @@ package com.iluwatar.spellbook;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 
 import com.iluwatar.common.DaoBaseImpl;
 
@@ -22,7 +22,7 @@ public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements Spellboo
 		try {
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(persistentClass);
-			criteria.add(Expression.eq("name", name));
+			criteria.add(Restrictions.eq("name", name));
 			result = (Spellbook) criteria.uniqueResult();
 			result.getSpells().size();
 			result.getWizards().size();

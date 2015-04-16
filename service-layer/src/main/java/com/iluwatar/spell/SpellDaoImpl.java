@@ -3,7 +3,7 @@ package com.iluwatar.spell;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 
 import com.iluwatar.common.DaoBaseImpl;
 
@@ -22,7 +22,7 @@ public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
 		try {
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(persistentClass);
-			criteria.add(Expression.eq("name", name));
+			criteria.add(Restrictions.eq("name", name));
 			result = (Spell) criteria.uniqueResult();
 			result.getSpellbook().getWizards().size();
 			tx.commit();
