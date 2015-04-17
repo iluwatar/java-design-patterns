@@ -31,7 +31,8 @@ public abstract class Target {
 	public abstract String toString();
 
 	public void printStatus() {
-		System.out.println(String.format("%s, size=%s visibility=%s", this,
+		System.out.println(String.format("%s, [size=%s] [visibility=%s]", this,
 				getSize(), getVisibility()));
+		System.out.println();
 	}
 }

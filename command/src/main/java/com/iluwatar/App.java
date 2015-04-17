@@ -20,7 +20,17 @@ public class App {
 
 		wizard.castSpell(new InvisibilitySpell(), goblin);
 		goblin.printStatus();
+
 		wizard.undoLastSpell();
+		goblin.printStatus();
+
+		wizard.undoLastSpell();
+		goblin.printStatus();
+
+		wizard.redoLastSpell();
+		goblin.printStatus();
+
+		wizard.redoLastSpell();
 		goblin.printStatus();
 	}
 }

@@ -18,6 +18,13 @@ public class InvisibilitySpell extends Command {
 	}
 
 	@Override
+	public void redo() {
+		if (target != null) {
+			target.setVisibility(Visibility.INVISIBLE);
+		}
+	}
+
+	@Override
 	public String toString() {
 		return "Invisibility spell";
 	}
