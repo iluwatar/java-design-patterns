@@ -383,12 +383,12 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * a behavior that's distributed between several classes should be customizable without a lot of subclassing
 
 **Real world examples:**
-* [java.util.Timer#scheduleXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/Timer.html)
-* [java.util.concurrent.Executor#execute()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html)
-* [java.util.concurrent.ExecutorService#invokeXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html)
-* [java.util.concurrent.ExecutorService#submit()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html)
-* [java.util.concurrent.ScheduledExecutorService#scheduleXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html)
-* [java.lang.reflect.Method#invoke()](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Method.html)
+* [java.util.Timer#scheduleXXX()](https://docs.oracle.com/javase/7/docs/api/java/util/Timer.html#schedule(java.util.TimerTask,%20java.util.Date))
+* [java.util.concurrent.Executor#execute()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html#execute-java.lang.Runnable-)
+* [java.util.concurrent.ExecutorService#invokeXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html#invokeAll-java.util.Collection-)
+* [java.util.concurrent.ExecutorService#submit()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html#submit-java.util.concurrent.Callable-)
+* [java.util.concurrent.ScheduledExecutorService#scheduleXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html#schedule-java.util.concurrent.Callable-long-java.util.concurrent.TimeUnit-)
+* [java.lang.reflect.Method#invoke()](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Method.html#invoke-java.lang.Object-java.lang.Object...-)
 
 
 ## <a name="memento">Memento</a> [&#8593;](#list-of-design-patterns)
