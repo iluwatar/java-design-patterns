@@ -51,6 +51,7 @@
 		<module>poison-pill</module>
     <module>lazy-loading</module>
     <module>service-layer</module>
+    <module>specification</module>
   </modules>
 
 	<dependencyManagement>
