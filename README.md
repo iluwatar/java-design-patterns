@@ -108,9 +108,15 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * the construction process must allow different representations for the object that's constructed
 
 **Real world examples:**
-* [java.lang.StringBuilder#append()](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html) (unsynchronized) 
-* [java.lang.StringBuffer#append()](http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html) (synchronized)
-* [java.nio.ByteBuffer#put()] (http://docs.oracle.com/javase/7/docs/api/java/nio/ByteBuffer.html)(also on CharBuffer, ShortBuffer, IntBuffer, LongBuffer, FloatBuffer and DoubleBuffer)
+* [java.lang.StringBuilder#append()](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
+* [java.lang.StringBuffer#append()](http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html)
+* [java.nio.ByteBuffer#put()] (http://docs.oracle.com/javase/7/docs/api/java/nio/ByteBuffer.html)
+* [java.nio.CharBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/CharBuffer.html)
+* [java.nio.ShortBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/ShortBuffer.html)
+* [java.nio.IntBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/IntBuffer.html)
+* [java.nio.LongBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/LongBuffer.html)
+* [java.nio.FloatBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/FloatBuffer.html)
+* [java.nio.DoubleBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/DoubleBuffer.html)
 * [javax.swing.GroupLayout.Group#addComponent()](https://docs.oracle.com/javase/6/docs/api/javax/swing/GroupLayout.Group.html)
 * [All implementations of java.lang.Appendable](http://docs.oracle.com/javase/7/docs/api/java/lang/Appendable.html)
 * [Apache Camel builders](https://github.com/apache/camel/tree/0e195428ee04531be27a0b659005e3aa8d159d23/camel-core/src/main/java/org/apache/camel/builder)
