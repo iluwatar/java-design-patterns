@@ -436,7 +436,9 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * operations have large, multipart conditional statements that depend on the object's state. This state is usually represented by one or more enumerated constants. Often, several operations will contain this same conditional structure. The State pattern puts each branch of the conditional in a separate class. This lets you treat the object's state as an object in its own right that can vary independently from other objects.
 
 **Real world examples:**
-* [javax.faces.lifecycle.LifeCycle#execute()] (http://docs.oracle.com/cd/E17802_01/j2ee/j2ee/javaserverfaces/1.2/docs/api/javax/faces/lifecycle/Lifecycle.html)
+* [javax.faces.lifecycle.LifeCycle#execute()](http://docs.oracle.com/cd/E17802_01/j2ee/j2ee/javaserverfaces/1.2/docs/api/javax/faces/lifecycle/Lifecycle.html)
+
+
 ##<a name="strategy">Strategy</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 
