@@ -682,6 +682,7 @@ While the implementations look similar there are differences. The Chain of Respo
 * [Presentation Tier Patterns](http://www.javagyan.com/tutorials/corej2eepatterns/presentation-tier-patterns)
 * [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](http://www.amazon.com/Functional-Programming-Java-Harnessing-Expressions/dp/1937785467/ref=sr_1_1)
 * [Martin Fowler - Service Layer](http://martinfowler.com/eaaCatalog/serviceLayer.html)
+* [Examples of GoF Design Patterns in Java's core libraries](http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries)
 
 
 
