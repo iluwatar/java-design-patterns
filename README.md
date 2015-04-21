@@ -93,8 +93,8 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * you want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
 
 **Real world examples:**
-* [javax.xml.parsers.DocumentBuilderFactory#newInstance()] (http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html#newInstance--)
-* [javax.xml.transform.TransformerFactory#newInstance()] (http://docs.oracle.com/javase/7/docs/api/javax/xml/transform/TransformerFactory.html#newInstance--)
+* [javax.xml.parsers.DocumentBuilderFactory#newInstance()](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html#newInstance--)
+* [javax.xml.transform.TransformerFactory#newInstance()](http://docs.oracle.com/javase/7/docs/api/javax/xml/transform/TransformerFactory.html#newInstance--)
 * [javax.xml.xpath.XPathFactory#newInstance()](https://docs.oracle.com/javase/8/docs/api/javax/xml/xpath/XPathFactory.html#newInstance--)
 
 
@@ -110,7 +110,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Real world examples:**
 * [java.lang.StringBuilder#append()](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
 * [java.lang.StringBuffer#append()](http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html)
-* [java.nio.ByteBuffer#put()] (http://docs.oracle.com/javase/7/docs/api/java/nio/ByteBuffer.html)
+* [java.nio.ByteBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/ByteBuffer.html)
 * [java.nio.CharBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/CharBuffer.html)
 * [java.nio.ShortBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/ShortBuffer.html)
 * [java.nio.IntBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/IntBuffer.html)
@@ -137,7 +137,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * [java.util.ResourceBundle#getBundle()](https://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
 * [java.text.NumberFormat#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html#getInstance--)
 * [java.nio.charset.Charset#forName()](https://docs.oracle.com/javase/7/docs/api/java/nio/charset/Charset.html#forName(java.lang.String))
-* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)] (http://docs.oracle.com/javase/7/docs/api/java/net/URLStreamHandlerFactory.html#createURLStreamHandler(java.lang.String))
+* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)](http://docs.oracle.com/javase/7/docs/api/java/net/URLStreamHandlerFactory.html#createURLStreamHandler(java.lang.String))
 
 
 ## <a name="prototype">Prototype</a> [&#8593;](#list-of-design-patterns)
@@ -182,9 +182,9 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * you need to use several existing subclasses, but it's impractical to adapt their interface by subclassing every one. An object adapter can adapt the interface of its parent class.
 
 **Real world examples:**
-* [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList%28T...%29)
-* [java.io.InputStreamReader(InputStream)] (https://docs.oracle.com/javase/8/docs/api/java/io/InputStreamReader.html)
-* [java.io.OutputStreamWriter(OutputStream)](https://docs.oracle.com/javase/8/docs/.../java/io/OutputStreamWriter.html)
+* [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList-T...-)
+* [java.io.InputStreamReader(InputStream)](https://docs.oracle.com/javase/8/docs/api/java/io/InputStreamReader.html)
+* [java.io.OutputStreamWriter(OutputStream)](https://docs.oracle.com/javase/8/docs/api/java/io/OutputStreamWriter.html)
 * [javax.xml.bind.annotation.adapters.XmlAdapter#marshal()](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html)
 
 ## <a name="bridge">Bridge</a> [&#8593;](#list-of-design-patterns)
@@ -215,7 +215,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Real world examples:**
 * [java.awt.Container](http://docs.oracle.com/javase/8/docs/api/java/awt/Container.html) and [java.awt.Component](http://docs.oracle.com/javase/8/docs/api/java/awt/Component.html)
 * [Apache Wicket](https://github.com/apache/wicket) component tree, see [Component](https://github.com/apache/wicket/blob/91e154702ab1ff3481ef6cbb04c6044814b7e130/wicket-core/src/main/java/org/apache/wicket/Component.java) and [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
-* [javax.faces.component.UIComponent#getChildren()](http://docs.oracle.com/javaee/6/api/javax/faces/component/UIComponent.html#getChildren())(practically all over JSF UI thus)
+* [javax.faces.component.UIComponent#getChildren()](http://docs.oracle.com/javaee/6/api/javax/faces/component/UIComponent.html#getChildren())(practically all over JSF UI)
 
 ## <a name="decorator">Decorator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
@@ -228,10 +228,13 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * when extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of sublasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
 
 **Real world examples:**
-* [All subclasses of java.io.InputStream, OutputStream, Reader and Writer] (https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html)
-* [java.util.Collections#checkedXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html)
-* [java.util.Collections#synchronizedXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html)
-* [java.util.Collections#unmodifiableXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html)
+* [All subclasses of java.io.InputStream](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html)
+* [All subclasses of OutputStream](https://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html)
+* [All subclasses of Reader](https://docs.oracle.com/javase/8/docs/api/java/io/Reader.html)
+* [All subclasses of Writer](https://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)
+* [java.util.Collections#checkedXXX()](http://docs.oracle.com/javase/7/docs/api/java/util/Collections.html#checkedList(java.util.List,%20java.lang.Class))
+* [java.util.Collections#synchronizedXXX()](http://docs.oracle.com/javase/7/docs/api/java/util/Collections.html#synchronizedList(java.util.List))
+* [java.util.Collections#unmodifiableXXX()](http://docs.oracle.com/javase/7/docs/api/java/util/Collections.html#unmodifiableCollection(java.util.Collection))
 * [javax.servlet.http.HttpServletRequestWrapper](https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequestWrapper.html)
 
 
@@ -382,7 +385,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Real world examples:**
 * [java.util.Timer#scheduleXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/Timer.html)
 * [java.util.concurrent.Executor#execute()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html)
-* [java.util.concurrent.ExecutorService#invokeXXX()] (https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html)
+* [java.util.concurrent.ExecutorService#invokeXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html)
 * [java.util.concurrent.ExecutorService#submit()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html)
 * [java.util.concurrent.ScheduledExecutorService#scheduleXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html)
 * [java.lang.reflect.Method#invoke()](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Method.html)
@@ -467,8 +470,13 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * to control subclasses extensions. You can define a template method that calls "hook" operations at specific points, thereby permitting extensions only at those points
 
 **Real world examples:**
-* [All non-abstract methods of java.io.InputStream, java.io.OutputStream, java.io.Reader and java.io.Writer.](http://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html)
-* [All non-abstract methods of java.util.AbstractList, java.util.AbstractSet and java.util.AbstractMap.](https://docs.oracle.com/javase/7/docs/api/java/util/AbstractList.html)
+* [All non-abstract methods of java.io.InputStream](http://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html)
+* [All non-abstract methods of java.io.OutputStream](http://docs.oracle.com/javase/7/docs/api/java/io/OutputStream.html)
+* [All non-abstract methods of java.io.Reader](http://docs.oracle.com/javase/7/docs/api/java/io/Reader.html)
+* [All non-abstract methods of java.io.Writer](http://docs.oracle.com/javase/7/docs/api/java/io//Writer.html)
+* [All non-abstract methods of java.util.AbstractList](https://docs.oracle.com/javase/7/docs/api/java/util/AbstractList.html)
+* [All non-abstract methods of java.util.AbstractSet](https://docs.oracle.com/javase/7/docs/api/java/util/AbstractSet.html) 
+* [All non-abstract methods of java.util.AbstractMap.](https://docs.oracle.com/javase/7/docs/api/java/util/AbstractMap.html) 
 * [javax.servlet.http.HttpServlet#doXXX()](https://tomcat.apache.org/tomcat-5.5-doc/servletapi/javax/servlet/http/HttpServlet.html)
 
 
@@ -484,9 +492,12 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [Apache Wicket](https://github.com/apache/wicket) component tree, see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
-* [javax.lang.model.element.AnnotationValue and AnnotationValueVisitor](http://docs.oracle.com/javase/6/docs/api/javax/lang/model/element/AnnotationValue.html)
-* [javax.lang.model.element.Element and ElementVisitor](http://docs.oracle.com/javase/7/docs/api/javax/lang/model/element/Element.html)
-* [javax.lang.model.type.TypeMirror and TypeVisitor](https://docs.oracle.com/javase/6/docs/api/javax/lang/model/type/TypeMirror.html)
+* [javax.lang.model.element.AnnotationValue](http://docs.oracle.com/javase/6/docs/api/javax/lang/model/element/AnnotationValue.html)
+* [javax.lang.model.element.AnnotationValueVisitor](http://docs.oracle.com/javase/7/docs/api/javax/lang/model/element/AnnotationValueVisitor.html)
+* [javax.lang.model.element.Element](http://docs.oracle.com/javase/7/docs/api/javax/lang/model/element/Element.html) 
+* [javax.lang.model.element.ElementVisitor](http://docs.oracle.com/javase/7/docs/api/javax/lang/model/element/ElementVisitor.html)
+* [javax.lang.model.type.TypeMirror](https://docs.oracle.com/javase/6/docs/api/javax/lang/model/type/TypeMirror.html)
+* [javax.lang.model.type.TypeVisitor](https://docs.oracle.com/javase/6/docs/api/javax/lang/model/type/TypeVisitor.html)
 
 
 ## <a name="model-view-presenter">Model-View-Presenter</a> [&#8593;](#list-of-design-patterns)
@@ -549,7 +560,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
 **Real world examples:**
-* [CyclicBarrier] (http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
+* [CyclicBarrier](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
 
 ## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
@@ -597,7 +608,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * eager loading is expensive or the object to be loaded might not be need at all
 
 **Real world examples:**
-* [JPA annotations @OneToOne, @OneToMany, @ManyToOne, @ManyToMany and fetch = FetchType.LAZY](http://www.objectdb.com/api/java/jpa/annotations)
+* JPA annotations @OneToOne, @OneToMany, @ManyToOne, @ManyToMany and fetch = FetchType.LAZY
 
 ## <a name="service-layer">Service Layer</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Service Layer is an abstraction over domain logic. Typically applications require multiple kinds of interfaces to the data
