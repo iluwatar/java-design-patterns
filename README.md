@@ -437,7 +437,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [javax.faces.lifecycle.LifeCycle#execute()] (http://docs.oracle.com/cd/E17802_01/j2ee/j2ee/javaserverfaces/1.2/docs/api/javax/faces/lifecycle/Lifecycle.html)
-## <a name="strategy">Strategy</a> [&#8593;](#list-of-design-patterns)
+##<a name="strategy">Strategy</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/strategy/etc/strategy_1.png "Strategy")
