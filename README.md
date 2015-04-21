@@ -137,7 +137,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * [java.util.ResourceBundle#getBundle()](https://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
 * [java.text.NumberFormat#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html#getInstance--)
 * [java.nio.charset.Charset#forName()](https://docs.oracle.com/javase/7/docs/api/java/nio/charset/Charset.html#forName(java.lang.String))
-* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)] (http://docs.oracle.com/javase/7/docs/api/java/net/URLStreamHandlerFactory.html#createURLStreamHandler(java.lang.String))(Returns singleton object per protocol)
+* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)] (http://docs.oracle.com/javase/7/docs/api/java/net/URLStreamHandlerFactory.html#createURLStreamHandler(java.lang.String))
 
 
 ## <a name="prototype">Prototype</a> [&#8593;](#list-of-design-patterns)
@@ -183,8 +183,8 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList%28T...%29)
-* [java.io.InputStreamReader(InputStream)] (https://docs.oracle.com/javase/8/docs/api/java/io/InputStreamReader.html)(returns a Reader)
-* [java.io.OutputStreamWriter(OutputStream)](https://docs.oracle.com/javase/8/docs/.../java/io/OutputStreamWriter.html)(returns a Writer)
+* [java.io.InputStreamReader(InputStream)] (https://docs.oracle.com/javase/8/docs/api/java/io/InputStreamReader.html)
+* [java.io.OutputStreamWriter(OutputStream)](https://docs.oracle.com/javase/8/docs/.../java/io/OutputStreamWriter.html)
 * [javax.xml.bind.annotation.adapters.XmlAdapter#marshal()](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html)
 
 ## <a name="bridge">Bridge</a> [&#8593;](#list-of-design-patterns)
@@ -228,8 +228,10 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * when extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of sublasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
 
 **Real world examples:**
-* [All subclasses of java.io.InputStream, OutputStream, Reader and Writer] (https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html) have a constructor taking an instance of same type.
-* [java.util.Collections, checkedXXX(), synchronizedXXX(), unmodifiableXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html)
+* [All subclasses of java.io.InputStream, OutputStream, Reader and Writer] (https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html)
+* [java.util.Collections#checkedXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html)
+* [java.util.Collections#synchronizedXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html)
+* [java.util.Collections#unmodifiableXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html)
 * [javax.servlet.http.HttpServletRequestWrapper](https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequestWrapper.html)
 
 
