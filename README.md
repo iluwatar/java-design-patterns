@@ -246,8 +246,8 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * you want to layer your subsystems. Use a facade to define an entry point to each subsystem level. If subsystems are dependent, the you can simplify the dependencies between them by making them communicate with each other solely through their facades
 
 **Real world examples:**
-* [javax.faces.context.FacesContext](http://docs.oracle.com/javaee/6/api/javax/faces/context/FacesContext.html), it internally uses among others the abstract/interface types LifeCycle, ViewHandler, NavigationHandler and many more without that the enduser has to worry about it (which are however overrideable by injection.
-* [javax.faces.context.ExternalContext](http://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html), which internally uses ServletContext, HttpSession, HttpServletRequest, HttpServletResponse, etc.]
+* [javax.faces.context.FacesContext](http://docs.oracle.com/javaee/6/api/javax/faces/context/FacesContext.html), it internally uses among others the abstract/interface types LifeCycle, ViewHandler, NavigationHandler and many more without that the enduser has to worry about it which are however overrideable by injection.
+* [javax.faces.context.ExternalContext](http://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html), which internally uses ServletContext, HttpSession, HttpServletRequest, HttpServletResponse, etc.
 
 
 ## <a name="flyweight">Flyweight</a> [&#8593;](#list-of-design-patterns)
