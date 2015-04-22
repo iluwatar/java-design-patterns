@@ -93,7 +93,10 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * you want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
 
 **Real world examples:**
-* [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
+* [javax.xml.parsers.DocumentBuilderFactory#newInstance()](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html#newInstance--)
+* [javax.xml.transform.TransformerFactory#newInstance()](http://docs.oracle.com/javase/7/docs/api/javax/xml/transform/TransformerFactory.html#newInstance--)
+* [javax.xml.xpath.XPathFactory#newInstance()](https://docs.oracle.com/javase/8/docs/api/javax/xml/xpath/XPathFactory.html#newInstance--)
+
 
 ## <a name="builder">Builder</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Separate the construction of a complex object from its representation so that the same construction process can create different representations.
@@ -105,8 +108,19 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * the construction process must allow different representations for the object that's constructed
 
 **Real world examples:**
-* [java.lang.StringBuilder](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
+* [java.lang.StringBuilder#append()](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
+* [java.lang.StringBuffer#append()](http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html)
+* [java.nio.ByteBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/ByteBuffer.html)
+* [java.nio.CharBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/CharBuffer.html)
+* [java.nio.ShortBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/ShortBuffer.html)
+* [java.nio.IntBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/IntBuffer.html)
+* [java.nio.LongBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/LongBuffer.html)
+* [java.nio.FloatBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/FloatBuffer.html)
+* [java.nio.DoubleBuffer#put()](http://docs.oracle.com/javase/7/docs/api/java/nio/DoubleBuffer.html)
+* [javax.swing.GroupLayout.Group#addComponent()](https://docs.oracle.com/javase/6/docs/api/javax/swing/GroupLayout.Group.html)
+* [All implementations of java.lang.Appendable](http://docs.oracle.com/javase/7/docs/api/java/lang/Appendable.html)
 * [Apache Camel builders](https://github.com/apache/camel/tree/0e195428ee04531be27a0b659005e3aa8d159d23/camel-core/src/main/java/org/apache/camel/builder)
+
 
 ## <a name="factory-method">Factory Method</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
@@ -120,6 +134,11 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.util.Calendar#getInstance()](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance%28%29)
+* [java.util.ResourceBundle#getBundle()](https://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
+* [java.text.NumberFormat#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html#getInstance--)
+* [java.nio.charset.Charset#forName()](https://docs.oracle.com/javase/7/docs/api/java/nio/charset/Charset.html#forName(java.lang.String))
+* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)](http://docs.oracle.com/javase/7/docs/api/java/net/URLStreamHandlerFactory.html#createURLStreamHandler(java.lang.String))
+
 
 ## <a name="prototype">Prototype</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
@@ -150,6 +169,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29)
+* [java.awt.Desktop#getDesktop()](https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--)
 
 ## <a name="adapter">Adapter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
@@ -162,7 +182,10 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * you need to use several existing subclasses, but it's impractical to adapt their interface by subclassing every one. An object adapter can adapt the interface of its parent class.
 
 **Real world examples:**
-* [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList%28T...%29)
+* [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList-T...-)
+* [java.io.InputStreamReader(InputStream)](https://docs.oracle.com/javase/8/docs/api/java/io/InputStreamReader.html)
+* [java.io.OutputStreamWriter(OutputStream)](https://docs.oracle.com/javase/8/docs/api/java/io/OutputStreamWriter.html)
+* [javax.xml.bind.annotation.adapters.XmlAdapter#marshal()](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html)
 
 ## <a name="bridge">Bridge</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Decouple an abstraction from its implementation so that the two can vary independently.
@@ -177,6 +200,9 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * you have a proliferation of classes. Such a class hierarchy indicates the need for splitting an object into two parts. Rumbaugh uses the term "nested generalizations" to refer to such class hierarchies
 * you want to share an implementation among multiple objects (perhaps using reference counting), and this fact should be hidden from the client. A simple example is Coplien's String class, in which multiple objects can share the same string representation.
 
+**Real world examples:**
+* [java.util.Collections#newSetFromMap()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#newSetFromMap-java.util.Map-)
+
 ## <a name="composite">Composite</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 
@@ -189,6 +215,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Real world examples:**
 * [java.awt.Container](http://docs.oracle.com/javase/8/docs/api/java/awt/Container.html) and [java.awt.Component](http://docs.oracle.com/javase/8/docs/api/java/awt/Component.html)
 * [Apache Wicket](https://github.com/apache/wicket) component tree, see [Component](https://github.com/apache/wicket/blob/91e154702ab1ff3481ef6cbb04c6044814b7e130/wicket-core/src/main/java/org/apache/wicket/Component.java) and [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
+* [javax.faces.component.UIComponent#getChildren()](http://docs.oracle.com/javaee/6/api/javax/faces/component/UIComponent.html#getChildren())(practically all over JSF UI)
 
 ## <a name="decorator">Decorator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
@@ -200,6 +227,17 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * for responsibilities that can be withdrawn
 * when extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of sublasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
 
+**Real world examples:**
+* [All subclasses of java.io.InputStream](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html)
+* [All subclasses of OutputStream](https://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html)
+* [All subclasses of Reader](https://docs.oracle.com/javase/8/docs/api/java/io/Reader.html)
+* [All subclasses of Writer](https://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)
+* [java.util.Collections#checkedXXX()](http://docs.oracle.com/javase/7/docs/api/java/util/Collections.html#checkedList(java.util.List,%20java.lang.Class))
+* [java.util.Collections#synchronizedXXX()](http://docs.oracle.com/javase/7/docs/api/java/util/Collections.html#synchronizedList(java.util.List))
+* [java.util.Collections#unmodifiableXXX()](http://docs.oracle.com/javase/7/docs/api/java/util/Collections.html#unmodifiableCollection(java.util.Collection))
+* [javax.servlet.http.HttpServletRequestWrapper](https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequestWrapper.html)
+
+
 ## <a name="facade">Facade</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
 
@@ -209,6 +247,11 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * you want to provide a simple interface to a complex subsystem. Subsystems often get more complex  as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the subsystem more reusable and easier to customize, but it also becomes harder to use for clients that don't need to customize it. A facade can provide a simple default view of the subsystem that is good enough for most clients. Only clients needing more customizability will need to look beyond the facade.
 * there are many dependencies between clients and the implementation classes of an abstraction. Introduce a facade to decouple the subsystem from clients and other subsystems, thereby promoting subsystem independence and portability.
 * you want to layer your subsystems. Use a facade to define an entry point to each subsystem level. If subsystems are dependent, the you can simplify the dependencies between them by making them communicate with each other solely through their facades
+
+**Real world examples:**
+* [javax.faces.context.FacesContext](http://docs.oracle.com/javaee/6/api/javax/faces/context/FacesContext.html), it internally uses among others the abstract/interface types LifeCycle, ViewHandler, NavigationHandler and many more without that the enduser has to worry about it which are however overrideable by injection.
+* [javax.faces.context.ExternalContext](http://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html), which internally uses ServletContext, HttpSession, HttpServletRequest, HttpServletResponse, etc.
+
 
 ## <a name="flyweight">Flyweight</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Use sharing to support large numbers of fine-grained objects efficiently.
@@ -246,6 +289,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.lang.reflect.Proxy](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)
+* [java.rmi.*](http://docs.oracle.com/javase/8/docs/api/java/rmi/package-summary.html)
 
 ## <a name="service-locator">Service Locator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate the processes involved in obtaining a service with a strong abstraction layer.
@@ -272,6 +316,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.util.logging.Logger#log()](http://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29)
+* [javax.servlet.Filter#doFilter()](https://docs.oracle.com/javaee/6/api/javax/servlet/Filter.html)
 
 ## <a name="command">Command</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
@@ -294,6 +339,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.lang.Runnable](http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html)
+* [All implementations of javax.swing.Action](https://docs.oracle.com/javase/8/docs/api/javax/swing/Action.html)
 
 ## <a name="interpreter">Interpreter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
@@ -303,6 +349,14 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Applicability:** Use the Interpreter pattern when there is a language to interpret, and you can represent statements in the language as abstract syntax trees. The Interpreter pattern works best when
 * the grammar is simple. For complex grammars, the class hierarchy for the grammar becomes large and unmanageable. Tools such as parser generators are a better alternative in such cases. They can interpret expressions without building abstract syntax trees, which can save space and possibly time
 * efficiency is not a critical concern. The most efficient interpreters are usually not implemented by interpreting parse trees directly but by first translating them into another form. For example, regular expressions are often transformed into state machines. But even then, the translator can be implemented by the Interpreter pattern, so the pattern is still applicable
+
+**Real world examples:**
+* [java.util.Pattern](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
+* [java.text.Normalizer](http://docs.oracle.com/javase/8/docs/api/java/text/Normalizer.html)
+* [All subclasses of java.text.Format](https://docs.oracle.com/javase/8/docs/api/java/text/Format.html)
+* [All subclasses of javax.el.ELResolver](http://docs.oracle.com/javaee/6/api/javax/el/ELResolver.html)
+
+
 
 ## <a name="iterator">Iterator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
@@ -316,6 +370,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.util.Iterator](http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)
+* [All implementations of java.util.Enumeration](https://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html)
 
 ## <a name="mediator">Mediator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.
@@ -327,6 +382,15 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * reusing an object is difficult because it refers to and communicates with many other objects
 * a behavior that's distributed between several classes should be customizable without a lot of subclassing
 
+**Real world examples:**
+* [java.util.Timer#scheduleXXX()](https://docs.oracle.com/javase/7/docs/api/java/util/Timer.html#schedule(java.util.TimerTask,%20java.util.Date))
+* [java.util.concurrent.Executor#execute()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html#execute-java.lang.Runnable-)
+* [java.util.concurrent.ExecutorService#invokeXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html#invokeAll-java.util.Collection-)
+* [java.util.concurrent.ExecutorService#submit()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html#submit-java.util.concurrent.Callable-)
+* [java.util.concurrent.ScheduledExecutorService#scheduleXXX()](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html#schedule-java.util.concurrent.Callable-long-java.util.concurrent.TimeUnit-)
+* [java.lang.reflect.Method#invoke()](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Method.html#invoke-java.lang.Object-java.lang.Object...-)
+
+
 ## <a name="memento">Memento</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 
@@ -337,7 +401,10 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * a direct interface to obtaining the state would expose implementation details and break the object's encapsulation
 
 **Real world examples:**
-* [java.util.Date](http://docs.oracle.com/javase/8/docs/api/java/util/Date.html)
+* [java.util.Date](http://docs.oracle.com/javase/8/docs/api/java/util/Date.html) (the setter methods do that, Date is internally represented by a long value)
+* [All implementations of java.io.Serializable](https://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html)
+* [All implementations of javax.faces.component.StateHolder](http://docs.oracle.com/javaee/6/api/javax/faces/component/StateHolder.html)
+
 
 ## <a name="observer">Observer</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
@@ -356,6 +423,11 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.util.Observer](http://docs.oracle.com/javase/8/docs/api/java/util/Observer.html)
+* [All implementations of java.util.EventListener](https://docs.oracle.com/javase/6/docs/api/java/util/EventListener.html)
+* [javax.servlet.http.HttpSessionBindingListener](http://docs.oracle.com/javaee/5/api/javax/servlet/http/HttpSessionBindingListener.html)
+* [javax.servlet.http.HttpSessionAttributeListener](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpSessionAttributeListener.html)
+* [javax.faces.event.PhaseListener](https://docs.oracle.com/javaee/6/api/javax/faces/event/PhaseListener.html)
+
 
 ## <a name="state">State</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
@@ -366,7 +438,11 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * an object's behavior depends on its state, and it must change its behavior at run-time depending on that state
 * operations have large, multipart conditional statements that depend on the object's state. This state is usually represented by one or more enumerated constants. Often, several operations will contain this same conditional structure. The State pattern puts each branch of the conditional in a separate class. This lets you treat the object's state as an object in its own right that can vary independently from other objects.
 
-## <a name="strategy">Strategy</a> [&#8593;](#list-of-design-patterns)
+**Real world examples:**
+* [javax.faces.lifecycle.LifeCycle#execute()](http://docs.oracle.com/cd/E17802_01/j2ee/j2ee/javaserverfaces/1.2/docs/api/javax/faces/lifecycle/Lifecycle.html)
+
+
+##<a name="strategy">Strategy</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/strategy/etc/strategy_1.png "Strategy")
@@ -377,6 +453,12 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * an algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex, algorithm-specific data structures
 * a class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move related conditional branches into their own Strategy class
 
+**Real world examples:**
+* [java.util.Comparator#compare()](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) executed by among others Collections#sort()
+* [javax.servlet.http.HttpServlet#doXXX()](https://tomcat.apache.org/tomcat-5.5-doc/servletapi/javax/servlet/http/HttpServlet.html)
+* [javax.servlet.Filter#doFilter()](https://docs.oracle.com/javaee/6/api/javax/servlet/Filter.html)
+
+
 ## <a name="template-method">Template method</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 
@@ -386,6 +468,17 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * to implement the invariant parts of an algorithm once and leave it up to subclasses to implement the behavior that can vary
 * when common behavior among subclasses should be factored and localized in a common class to avoid code duplication. This is good example of "refactoring to generalize" as described by Opdyke and Johnson. You first identify the differences in the existing code and then separate the differences into new operations. Finally, you replace the differing code with a template method that calls one of these new operations
 * to control subclasses extensions. You can define a template method that calls "hook" operations at specific points, thereby permitting extensions only at those points
+
+**Real world examples:**
+* [All non-abstract methods of java.io.InputStream](http://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html)
+* [All non-abstract methods of java.io.OutputStream](http://docs.oracle.com/javase/7/docs/api/java/io/OutputStream.html)
+* [All non-abstract methods of java.io.Reader](http://docs.oracle.com/javase/7/docs/api/java/io/Reader.html)
+* [All non-abstract methods of java.io.Writer](http://docs.oracle.com/javase/7/docs/api/java/io//Writer.html)
+* [All non-abstract methods of java.util.AbstractList](https://docs.oracle.com/javase/7/docs/api/java/util/AbstractList.html)
+* [All non-abstract methods of java.util.AbstractSet](https://docs.oracle.com/javase/7/docs/api/java/util/AbstractSet.html) 
+* [All non-abstract methods of java.util.AbstractMap.](https://docs.oracle.com/javase/7/docs/api/java/util/AbstractMap.html) 
+* [javax.servlet.http.HttpServlet#doXXX()](https://tomcat.apache.org/tomcat-5.5-doc/servletapi/javax/servlet/http/HttpServlet.html)
+
 
 ## <a name="visitor">Visitor</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
@@ -399,6 +492,13 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [Apache Wicket](https://github.com/apache/wicket) component tree, see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
+* [javax.lang.model.element.AnnotationValue](http://docs.oracle.com/javase/6/docs/api/javax/lang/model/element/AnnotationValue.html)
+* [javax.lang.model.element.AnnotationValueVisitor](http://docs.oracle.com/javase/7/docs/api/javax/lang/model/element/AnnotationValueVisitor.html)
+* [javax.lang.model.element.Element](http://docs.oracle.com/javase/7/docs/api/javax/lang/model/element/Element.html) 
+* [javax.lang.model.element.ElementVisitor](http://docs.oracle.com/javase/7/docs/api/javax/lang/model/element/ElementVisitor.html)
+* [javax.lang.model.type.TypeMirror](https://docs.oracle.com/javase/6/docs/api/javax/lang/model/type/TypeMirror.html)
+* [javax.lang.model.type.TypeVisitor](https://docs.oracle.com/javase/6/docs/api/javax/lang/model/type/TypeVisitor.html)
+
 
 ## <a name="model-view-presenter">Model-View-Presenter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Apply a "Separation of Concerns" principle in a way that allows developers to build and test user interfaces.
@@ -460,7 +560,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
 **Real world examples:**
-* [CyclicBarrier] (http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
+* [CyclicBarrier](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
 
 ## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
@@ -582,6 +682,7 @@ While the implementations look similar there are differences. The Chain of Respo
 * [Presentation Tier Patterns](http://www.javagyan.com/tutorials/corej2eepatterns/presentation-tier-patterns)
 * [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](http://www.amazon.com/Functional-Programming-Java-Harnessing-Expressions/dp/1937785467/ref=sr_1_1)
 * [Martin Fowler - Service Layer](http://martinfowler.com/eaaCatalog/serviceLayer.html)
+* [Examples of GoF Design Patterns in Java's core libraries](http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries)
 
 
 
