@@ -492,7 +492,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) prototype inheritance
 
 ## <a name="poison-pill">Poison Pill</a> [&#8593;](#list-of-design-patterns)
-**Intent:** Poison Pill is known as predefined data item that allows to provide graceful shutdown for separate distributed consumption process.
+**Intent:** Poison Pill is known predefined data item that allows to provide graceful shutdown for separate distributed consumption process.
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/poison-pill/etc/poison-pill.png "Poison Pill")
 
