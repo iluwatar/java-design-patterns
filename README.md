@@ -206,7 +206,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/facade/etc/facade_1.png "Facade")
 
 **Applicability:** Use the Facade pattern when
-* you want to provide a simple interface to a complex subsystem. Subsystems often get more complex  as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the subsystem more reusable and easier to customize, but is also becomes harder to use for clients that don't need to customize it. A facade can provide a simple default view of the subsystem that is good enough for most clients. Only clients needing more customizability will need to look beyond the facade.
+* you want to provide a simple interface to a complex subsystem. Subsystems often get more complex  as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the subsystem more reusable and easier to customize, but it also becomes harder to use for clients that don't need to customize it. A facade can provide a simple default view of the subsystem that is good enough for most clients. Only clients needing more customizability will need to look beyond the facade.
 * there are many dependencies between clients and the implementation classes of an abstraction. Introduce a facade to decouple the subsystem from clients and other subsystems, thereby promoting subsystem independence and portability.
 * you want to layer your subsystems. Use a facade to define an entry point to each subsystem level. If subsystems are dependent, the you can simplify the dependencies between them by making them communicate with each other solely through their facades
 
@@ -230,7 +230,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/proxy/etc/proxy_1.png "Proxy")
 
-**Applicability:** Proxy is applicable whenever there is a need for a more versatile or sophisticated reference to an object than a simple pointer. here are several common situations in which the Proxy pattern is applicable
+**Applicability:** Proxy is applicable whenever there is a need for a more versatile or sophisticated reference to an object than a simple pointer. Here are several common situations in which the Proxy pattern is applicable
 
 * a remote proxy provides a local representative for an object in a different address space.
 * a virtual proxy creates expensive objects on demand.
@@ -372,8 +372,8 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/strategy/etc/strategy_1.png "Strategy")
 
 **Applicability:** Use the Strategy pattern when
-* many related classes differ only in their behavior. Stratefies provide a way to configure a class eith one of many behaviors
-* you need different variants of an algorithm. for example, you migh define algorithms reflecting different space/time trade-offs. Strategies can be used when these variants are implemented as a class hierarchy of algorithms
+* many related classes differ only in their behavior. Strategies provide a way to configure a class either one of many behaviors
+* you need different variants of an algorithm. for example, you might define algorithms reflecting different space/time trade-offs. Strategies can be used when these variants are implemented as a class hierarchy of algorithms
 * an algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex, algorithm-specific data structures
 * a class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move related conditional branches into their own Strategy class
 
@@ -505,7 +505,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/lazy-loading/etc/lazy-loading.png "Lazy Loading")
 
 **Applicability:** Use the Lazy Loading idiom when
-* eager loading is expensive or the object to be loaded might not be need at all
+* eager loading is expensive or the object to be loaded might not be needed at all
 
 **Real world examples:**
 * JPA annotations @OneToOne, @OneToMany, @ManyToOne, @ManyToMany and fetch = FetchType.LAZY
