@@ -12,7 +12,7 @@
   </class>  
   <enumeration id="2" language="java" name="com.iluwatar.property.Size" project="specification" 
     file="/specification/src/main/java/com/iluwatar/property/Size.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="144" x="351" y="361"/>    
+    <position height="-1" width="-1" x="423" y="450"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.iluwatar.selector.SizeSelector" project="specification" 
     file="/specification/src/main/java/com/iluwatar/selector/SizeSelector.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="154" x="389" y="126"/>    
+    <position height="-1" width="-1" x="423" y="179"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.iluwatar.selector.MovementSelector" project="specification" 
     file="/specification/src/main/java/com/iluwatar/selector/MovementSelector.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="200" x="149" y="126"/>    
+    <position height="-1" width="-1" x="230" y="179"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </interface>  
   <enumeration id="12" language="java" name="com.iluwatar.property.Movement" project="specification" 
     file="/specification/src/main/java/com/iluwatar/property/Movement.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="162" x="149" y="361"/>    
+    <position height="-1" width="-1" x="230" y="450"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
