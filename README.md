@@ -57,6 +57,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * [Visitor](#visitor)
 * [Null Object](#null-object)
 * [Intercepting Filter](#intercepting-filter)
+* [Specification](#specification)
 
 ### Presentation Tier Patterns
 
@@ -520,6 +521,17 @@ they store and logic they implement: data loaders, user interfaces, integration 
 * you want to encapsulate domain logic under API
 * you need to implement multiple interfaces with common logic and data
 
+## <a name="specification">Specification</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Specification pattern separates the statement of how to match a candidate, from the
+candidate object that it is matched against. As well as its usefulness in selection, it is also valuable for
+validation and for building to order
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/specification/etc/specification.png "Specification")
+
+**Applicability:** Use the Specification pattern when
+* You need to select a subset of objects based on some criteria, and to refresh the selection at various times
+* You need to check that only suitable objects are used for a certain role (validation)
+
 
 
 # Frequently asked questions
@@ -582,6 +594,7 @@ While the implementations look similar there are differences. The Chain of Respo
 * [Presentation Tier Patterns](http://www.javagyan.com/tutorials/corej2eepatterns/presentation-tier-patterns)
 * [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](http://www.amazon.com/Functional-Programming-Java-Harnessing-Expressions/dp/1937785467/ref=sr_1_1)
 * [Martin Fowler - Service Layer](http://martinfowler.com/eaaCatalog/serviceLayer.html)
+* [Martin Fowler - Specifications](http://martinfowler.com/apsupp/spec.pdf)
 
 
 
