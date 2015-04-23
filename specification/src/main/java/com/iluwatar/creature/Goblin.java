@@ -4,6 +4,11 @@ import com.iluwatar.property.Color;
 import com.iluwatar.property.Movement;
 import com.iluwatar.property.Size;
 
+/**
+ * 
+ * Goblin creature.
+ *
+ */
 public class Goblin extends AbstractCreature {
 
 	public Goblin() {

@@ -2,7 +2,7 @@ package com.iluwatar.property;
 
 /**
  *
- * Enumeration for creature size.
+ * Size property.
  *
  */
 public enum Size {

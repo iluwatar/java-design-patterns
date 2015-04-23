@@ -1,5 +1,10 @@
 package com.iluwatar.property;
 
+/**
+ * 
+ * Movement property.
+ *
+ */
 public enum Movement {
 
     WALKING("walking"), SWIMMING("swimming"), FLYING("flying");

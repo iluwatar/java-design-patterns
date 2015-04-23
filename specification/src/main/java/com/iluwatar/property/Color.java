@@ -1,5 +1,10 @@
 package com.iluwatar.property;
 
+/**
+ * 
+ * Color property.
+ *
+ */
 public enum Color {
 
     DARK("dark"), LIGHT("light"), GREEN("green"), RED("red");

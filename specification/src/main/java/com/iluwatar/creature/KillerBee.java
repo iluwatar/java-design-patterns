@@ -4,6 +4,11 @@ import com.iluwatar.property.Color;
 import com.iluwatar.property.Movement;
 import com.iluwatar.property.Size;
 
+/**
+ * 
+ * KillerBee creature.
+ *
+ */
 public class KillerBee extends AbstractCreature {
 
 	public KillerBee() {

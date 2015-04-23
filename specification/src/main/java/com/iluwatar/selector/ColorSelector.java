@@ -5,6 +5,11 @@ import java.util.function.Predicate;
 import com.iluwatar.creature.Creature;
 import com.iluwatar.property.Color;
 
+/**
+ * 
+ * Color selector.
+ *
+ */
 public class ColorSelector implements Predicate<Creature> {
 
 	private final Color c;

@@ -5,6 +5,11 @@ import java.util.function.Predicate;
 import com.iluwatar.creature.Creature;
 import com.iluwatar.property.Movement;
 
+/**
+ * 
+ * Movement selector.
+ *
+ */
 public class MovementSelector implements Predicate<Creature> {
 	
 	private final Movement m;

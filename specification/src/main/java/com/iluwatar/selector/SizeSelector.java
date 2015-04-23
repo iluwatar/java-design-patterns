@@ -5,6 +5,11 @@ import java.util.function.Predicate;
 import com.iluwatar.creature.Creature;
 import com.iluwatar.property.Size;
 
+/**
+ * 
+ * Size selector.
+ *
+ */
 public class SizeSelector implements Predicate<Creature> {
 
 	private final Size s;
