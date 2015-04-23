@@ -1,4 +1,8 @@
-package com.iluwatar;
+package com.iluwatar.creature;
+
+import com.iluwatar.property.Color;
+import com.iluwatar.property.Movement;
+import com.iluwatar.property.Size;
 
 public class KillerBee extends AbstractCreature {
 

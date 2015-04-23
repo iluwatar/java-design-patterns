@@ -1,8 +1,20 @@
-package com.iluwatar;
+package com.iluwatar.app;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.iluwatar.creature.Creature;
+import com.iluwatar.creature.Dragon;
+import com.iluwatar.creature.Goblin;
+import com.iluwatar.creature.KillerBee;
+import com.iluwatar.creature.Octopus;
+import com.iluwatar.creature.Shark;
+import com.iluwatar.creature.Troll;
+import com.iluwatar.property.Color;
+import com.iluwatar.property.Movement;
+import com.iluwatar.selector.ColorSelector;
+import com.iluwatar.selector.MovementSelector;
 
 public class App {
     public static void main( String[] args ) {

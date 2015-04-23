@@ -1,6 +1,9 @@
-package com.iluwatar;
+package com.iluwatar.selector;
 
 import java.util.function.Predicate;
+
+import com.iluwatar.creature.Creature;
+import com.iluwatar.property.Size;
 
 public class SizeSelector implements Predicate<Creature> {
 

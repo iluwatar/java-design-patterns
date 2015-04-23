@@ -1,6 +1,9 @@
-package com.iluwatar;
+package com.iluwatar.selector;
 
 import java.util.function.Predicate;
+
+import com.iluwatar.creature.Creature;
+import com.iluwatar.property.Movement;
 
 public class MovementSelector implements Predicate<Creature> {
 	
