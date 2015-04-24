@@ -18,14 +18,14 @@ public class App
     	Node root = new NodeImpl("1",
     			new NodeImpl("11",
     					new NodeImpl("111",
-    							new NullNode(),
-    							new NullNode()),
-    					new NullNode()), 
+    							NullNode.getInstance(),
+    							NullNode.getInstance()),
+    					NullNode.getInstance()), 
     			new NodeImpl("12",
-    					new NullNode(),
+    					NullNode.getInstance(),
     					new NodeImpl("122",
-    							new NullNode(),
-    							new NullNode())));
+    							NullNode.getInstance(),
+    							NullNode.getInstance())));
 
     	root.walk();
     }

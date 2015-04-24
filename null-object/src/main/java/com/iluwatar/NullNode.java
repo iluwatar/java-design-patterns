@@ -3,10 +3,21 @@ package com.iluwatar;
 /**
  * 
  * Null Object implementation for binary tree node.
+ * 
+ * Implemented as Singleton, since all the NullNodes are the same.
  *
  */
 public class NullNode implements Node {
 
+	private static NullNode instance = new NullNode();
+	
+	private NullNode() {
+	}
+	
+	public static NullNode getInstance() {
+		return instance;
+	}
+	
 	@Override
 	public int getTreeSize() {
 		return 0;
