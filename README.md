@@ -59,6 +59,12 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 * [Intercepting Filter](#intercepting-filter)
 * [Specification](#specification)
 
+### Concurrency Patterns
+
+Concurrency patterns are those types of design patterns that deal with the multi-threaded programming paradigm.
+
+* [Double Checked Locking](#double-checked-locking)
+
 ### Presentation Tier Patterns
 
 Presentation Tier patterns are the top-most level of the application, this is concerned with translating tasks and results to something the user can understand.
@@ -77,7 +83,6 @@ An architectural pattern is a general, reusable solution to a commonly occurring
 A programming idiom is a means of expressing a recurring construct in one or more programming languages. Generally speaking, a programming idiom is an expression of a simple task, algorithm, or data structure that is not a built-in feature in the programming language being used, or, conversely, the use of an unusual or notable feature that is built into a programming language. What distinguishes idioms from patterns is generally the size, the idioms tend to be something small while the patterns are larger.
 
 * [Execute Around](#execute-around)
-* [Double Checked Locking](#double-checked-locking)
 * [Poison Pill](#poison-pill)
 * [Callback](#callback)
 * [Lazy Loading](#lazy-loading)
