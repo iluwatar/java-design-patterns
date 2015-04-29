@@ -614,6 +614,7 @@ While the implementations look similar there are differences. The Chain of Respo
 * [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](http://www.amazon.com/Functional-Programming-Java-Harnessing-Expressions/dp/1937785467/ref=sr_1_1)
 * [Martin Fowler - Service Layer](http://martinfowler.com/eaaCatalog/serviceLayer.html)
 * [Martin Fowler - Specifications](http://martinfowler.com/apsupp/spec.pdf)
+* [Martin Fowler - Tolerant Reader](http://martinfowler.com/bliki/TolerantReader.html)
 
 
 
