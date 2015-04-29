@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class RainbowFishSerializer {
 
-	public static void write(RainbowFish rainbowFish, String filename) throws IOException {
+	public static void writeV1(RainbowFish rainbowFish, String filename) throws IOException {
 		Map<String, String> map = new HashMap<>();
 		map.put("name", rainbowFish.getName());
 		map.put("age", String.format("%d", rainbowFish.getAge()));
@@ -23,8 +23,24 @@ public class RainbowFishSerializer {
 		objOut.close();
 		fileOut.close();
 	}
+
+	public static void writeV2(RainbowFishV2 rainbowFish, String filename) throws IOException {
+		Map<String, String> map = new HashMap<>();
+		map.put("name", rainbowFish.getName());
+		map.put("age", String.format("%d", rainbowFish.getAge()));
+		map.put("lengthMeters", String.format("%d", rainbowFish.getLengthMeters()));
+		map.put("weightTons", String.format("%d", rainbowFish.getWeightTons()));
+		map.put("angry", Boolean.toString(rainbowFish.getAngry()));
+		map.put("hungry", Boolean.toString(rainbowFish.getHungry()));
+		map.put("sleeping", Boolean.toString(rainbowFish.getSleeping()));
+		FileOutputStream fileOut = new FileOutputStream(filename);
+		ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+		objOut.writeObject(map);
+		objOut.close();
+		fileOut.close();
+	}
 	
-	public static RainbowFish read(String filename) throws IOException, ClassNotFoundException {
+	public static RainbowFish readV1(String filename) throws IOException, ClassNotFoundException {
 		Map<String, String> map = null;
 		FileInputStream fileIn = new FileInputStream(filename);
 		ObjectInputStream objIn = new ObjectInputStream(fileIn);
