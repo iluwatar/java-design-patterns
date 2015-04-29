@@ -9,8 +9,21 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 
+ * RainbowFishSerializer provides methods for reading and writing RainbowFish objects to file.
+ * Tolerant Reader pattern is implemented here by serializing maps instead of RainbowFish objects.
+ * This way the reader does not break even though new properties are added to the schema.
+ *
+ */
 public class RainbowFishSerializer {
 
+	/**
+	 * Write V1 RainbowFish to file
+	 * @param rainbowFish
+	 * @param filename
+	 * @throws IOException
+	 */
 	public static void writeV1(RainbowFish rainbowFish, String filename) throws IOException {
 		Map<String, String> map = new HashMap<>();
 		map.put("name", rainbowFish.getName());
@@ -24,6 +37,12 @@ public class RainbowFishSerializer {
 		fileOut.close();
 	}
 
+	/**
+	 * Write V2 RainbowFish to file
+	 * @param rainbowFish
+	 * @param filename
+	 * @throws IOException
+	 */
 	public static void writeV2(RainbowFishV2 rainbowFish, String filename) throws IOException {
 		Map<String, String> map = new HashMap<>();
 		map.put("name", rainbowFish.getName());
@@ -40,6 +59,13 @@ public class RainbowFishSerializer {
 		fileOut.close();
 	}
 	
+	/**
+	 * Read V1 RainbowFish from file
+	 * @param filename
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public static RainbowFish readV1(String filename) throws IOException, ClassNotFoundException {
 		Map<String, String> map = null;
 		FileInputStream fileIn = new FileInputStream(filename);

@@ -2,6 +2,11 @@ package com.iluwatar;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * RainbowFish is the initial schema
+ *
+ */
 public class RainbowFish implements Serializable {
 
 	private static final long serialVersionUID = 1L;

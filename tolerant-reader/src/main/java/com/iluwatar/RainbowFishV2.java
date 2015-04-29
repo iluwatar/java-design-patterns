@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * RainbowFishV2 is the evolved schema
+ *
+ */
 public class RainbowFishV2 extends RainbowFish {
 
 	private static final long serialVersionUID = 1L;
