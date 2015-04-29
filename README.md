@@ -78,6 +78,12 @@ An architectural pattern is a general, reusable solution to a commonly occurring
 * [Data Access Object](#dao)
 * [Service Layer](#service-layer)
 
+### Integration Patterns
+
+Integration patterns are concerned with how software applications communicate and exchange data.
+
+* [Tolerant Reader](#tolerant-reader)
+
 ### Idioms
 
 A programming idiom is a means of expressing a recurring construct in one or more programming languages. Generally speaking, a programming idiom is an expression of a simple task, algorithm, or data structure that is not a built-in feature in the programming language being used, or, conversely, the use of an unusual or notable feature that is built into a programming language. What distinguishes idioms from patterns is generally the size, the idioms tend to be something small while the patterns are larger.
@@ -536,6 +542,14 @@ validation and for building to order
 **Applicability:** Use the Specification pattern when
 * You need to select a subset of objects based on some criteria, and to refresh the selection at various times
 * You need to check that only suitable objects are used for a certain role (validation)
+
+## <a name="tolerant-reader">Tolerant Reader</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Tolerant Reader is an integration pattern that helps creating robust communication systems. The idea is to be as tolerant as possible when reading data from another service. This way, when the communication schema changes, the readers must not break.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/tolerant-reader/etc/tolerant-reader.png "Tolerant Reader")
+
+**Applicability:** Use the Tolerant Reader pattern when
+* The communication schema can evolve and change and yet the receiving side should not break
 
 
 
