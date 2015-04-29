@@ -11,28 +11,27 @@ public class RainbowFish implements Serializable {
 	private int lengthMeters;
 	private int weightTons;
 	
+	public RainbowFish(String name, int age, int lengthMeters, int weightTons) {
+		this.name = name;
+		this.age = age;
+		this.lengthMeters = lengthMeters;
+		this.weightTons = weightTons;
+	}
+	
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public int getAge() {
 		return age;
 	}
-	public void setAge(int age) {
-		this.age = age;
-	}
+
 	public int getLengthMeters() {
 		return lengthMeters;
 	}
-	public void setLengthMeters(int lengthMeters) {
-		this.lengthMeters = lengthMeters;
-	}
+
 	public int getWeightTons() {
 		return weightTons;
 	}
-	public void setWeightTons(int weightTons) {
-		this.weightTons = weightTons;
-	}
+
 }

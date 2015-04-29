@@ -1,30 +1,39 @@
 package com.iluwatar;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RainbowFishSerializer {
 
-	public void write(RainbowFish rainbowFish, String filename) {
+	public static void write(RainbowFish rainbowFish, String filename) throws IOException {
 		Map<String, String> map = new HashMap<>();
 		map.put("name", rainbowFish.getName());
 		map.put("age", String.format("%d", rainbowFish.getAge()));
 		map.put("lengthMeters", String.format("%d", rainbowFish.getLengthMeters()));
 		map.put("weightTons", String.format("%d", rainbowFish.getWeightTons()));
-		try {
-			FileOutputStream fileOut = new FileOutputStream("fish.ser");
-			ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
-			objOut.writeObject(map);
-			objOut.close();
-			fileOut.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		FileOutputStream fileOut = new FileOutputStream(filename);
+		ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+		objOut.writeObject(map);
+		objOut.close();
+		fileOut.close();
 	}
 	
-//	public RainbowFish read(String filename) {
-//	}
+	public static RainbowFish read(String filename) throws IOException, ClassNotFoundException {
+		Map<String, String> map = null;
+		FileInputStream fileIn = new FileInputStream(filename);
+		ObjectInputStream objIn = new ObjectInputStream(fileIn);
+		map = (Map<String, String>) objIn.readObject();
+		objIn.close();
+		fileIn.close();
+		return new RainbowFish(map.get("name"), 
+				Integer.parseInt(map.get("age")), 
+				Integer.parseInt(map.get("lengthMeters")),
+				Integer.parseInt(map.get("weightTons")));
+	}
 }
