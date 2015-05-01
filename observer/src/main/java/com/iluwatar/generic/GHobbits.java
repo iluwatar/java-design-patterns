@@ -4,7 +4,7 @@ import com.iluwatar.WeatherType;
 
 public class GHobbits implements Race {
     @Override
-    public void update(GWeather o, WeatherType weatherType) {
+    public void update(GWeather weather, WeatherType weatherType) {
         switch (weatherType) {
             case COLD:
                 System.out.println("The hobbits are shivering in the cold weather.");
