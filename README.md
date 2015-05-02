@@ -69,6 +69,7 @@ Concurrency patterns are those types of design patterns that deal with the multi
 
 Presentation Tier patterns are the top-most level of the application, this is concerned with translating tasks and results to something the user can understand.
 
+* [Model-View-Controller](#model-view-controller)
 * [Model-View-Presenter](#model-view-presenter)
 
 ### Architectural Patterns
@@ -550,6 +551,14 @@ validation and for building to order
 
 **Applicability:** Use the Tolerant Reader pattern when
 * The communication schema can evolve and change and yet the receiving side should not break
+
+## <a name="model-view-controller">Model-View-Controller</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Separate the user interface into three interconnected components: the model, the view and the controller. Let the model manage the data, the view display the data and the controller mediate updating the data and redrawing the display.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/model-view-controller/etc/model-view-controller.png "Model-View-Controller")
+
+**Applicability:** Use the Model-View-Controller pattern when
+* you want to clearly separate the domain data from its user interface representation
 
 
 
