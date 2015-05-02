@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Fatigue enumeration
+ *
+ */
 public enum Fatigue {
 
 	ALERT("alert"), TIRED("tired"), SLEEPING("sleeping");

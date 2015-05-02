@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Health enumeration
+ *
+ */
 public enum Health {
 	
 	HEALTHY("healthy"), WOUNDED("wounded"), DEAD("dead");

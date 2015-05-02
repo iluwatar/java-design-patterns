@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * GiantController can update the giant data and redraw it using the view.
+ *
+ */
 public class GiantController {
 
 	private GiantModel giant;

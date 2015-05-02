@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * GiantModel contains the giant data
+ *
+ */
 public class GiantModel {
 	
 	private Health health;

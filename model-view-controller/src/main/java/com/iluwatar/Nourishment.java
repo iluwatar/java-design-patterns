@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Nourishment enumeration
+ *
+ */
 public enum Nourishment {
 
 	SATURATED("saturated"), HUNGRY("hungry"), STARVING("starving");
