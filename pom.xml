@@ -53,6 +53,7 @@
     <module>service-layer</module>
     <module>specification</module>
     <module>tolerant-reader</module>
+    <module>model-view-controller</module>
   </modules>
 
 	<dependencyManagement>
