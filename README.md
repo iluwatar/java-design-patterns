@@ -634,6 +634,7 @@ While the implementations look similar there are differences. The Chain of Respo
 * [Martin Fowler - Specifications](http://martinfowler.com/apsupp/spec.pdf)
 * [Martin Fowler - Tolerant Reader](http://martinfowler.com/bliki/TolerantReader.html)
 * [Trygve Reenskaug - Model-view-controller](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+* [Flux - Application architecture for building user interfaces](http://facebook.github.io/flux/)
 
 
 
