@@ -5,6 +5,11 @@ import com.iluwatar.action.ActionType;
 import com.iluwatar.action.Content;
 import com.iluwatar.action.ContentAction;
 
+/**
+ * 
+ * ContentStore is a concrete store.
+ *
+ */
 public class ContentStore extends Store {
 
 	private Content content = Content.PRODUCTS;

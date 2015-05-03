@@ -5,6 +5,11 @@ import com.iluwatar.action.ActionType;
 import com.iluwatar.action.MenuAction;
 import com.iluwatar.action.MenuItem;
 
+/**
+ * 
+ * MenuStore is a concrete store.
+ *
+ */
 public class MenuStore extends Store {
 
 	private MenuItem selected = MenuItem.HOME;

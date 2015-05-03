@@ -10,6 +10,11 @@ import com.iluwatar.action.MenuAction;
 import com.iluwatar.action.MenuItem;
 import com.iluwatar.store.Store;
 
+/**
+ * 
+ * Dispatcher sends Actions to registered Stores.
+ *
+ */
 public class Dispatcher {
 	
 	private static Dispatcher instance = new Dispatcher();

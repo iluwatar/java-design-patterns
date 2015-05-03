@@ -1,6 +1,10 @@
 package com.iluwatar.action;
 
-
+/**
+ * 
+ * ContentAction is a concrete action.
+ *
+ */
 public class ContentAction extends Action {
 
 	private Content content;

@@ -1,5 +1,10 @@
 package com.iluwatar.action;
 
+/**
+ * 
+ * Menu items.
+ *
+ */
 public enum MenuItem {
 	
 	HOME("Home"), PRODUCTS("Products"), COMPANY("Company");

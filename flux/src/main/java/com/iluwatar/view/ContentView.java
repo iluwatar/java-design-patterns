@@ -4,6 +4,11 @@ import com.iluwatar.action.Content;
 import com.iluwatar.store.ContentStore;
 import com.iluwatar.store.Store;
 
+/**
+ * 
+ * ContentView is a concrete view.
+ *
+ */
 public class ContentView implements View {
 
 	private Content content = Content.PRODUCTS;

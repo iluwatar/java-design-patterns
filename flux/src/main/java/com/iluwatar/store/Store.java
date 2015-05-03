@@ -6,6 +6,11 @@ import java.util.List;
 import com.iluwatar.action.Action;
 import com.iluwatar.view.View;
 
+/**
+ * 
+ * Store is a data model.
+ *
+ */
 public abstract class Store {
 	
 	private List<View> views = new LinkedList<>();

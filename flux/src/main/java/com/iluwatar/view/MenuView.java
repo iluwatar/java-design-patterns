@@ -5,6 +5,11 @@ import com.iluwatar.dispatcher.Dispatcher;
 import com.iluwatar.store.MenuStore;
 import com.iluwatar.store.Store;
 
+/**
+ * 
+ * MenuView is a concrete view.
+ *
+ */
 public class MenuView implements View {
 
 	private MenuItem selected = MenuItem.HOME;

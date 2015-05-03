@@ -1,6 +1,11 @@
 package com.iluwatar.action;
 
 
+/**
+ * 
+ * MenuAction is a concrete action.
+ *
+ */
 public class MenuAction extends Action {
 
 	private MenuItem menuItem;
