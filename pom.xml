@@ -54,6 +54,7 @@
     <module>specification</module>
     <module>tolerant-reader</module>
     <module>model-view-controller</module>
+    <module>flux</module>
   </modules>
 
 	<dependencyManagement>
