@@ -1,7 +1,10 @@
-package com.iluwatar;
+package com.iluwatar.store;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import com.iluwatar.action.Action;
+import com.iluwatar.view.View;
 
 public abstract class Store {
 	

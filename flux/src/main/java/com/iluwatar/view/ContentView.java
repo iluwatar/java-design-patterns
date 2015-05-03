@@ -1,4 +1,8 @@
-package com.iluwatar;
+package com.iluwatar.view;
+
+import com.iluwatar.action.Content;
+import com.iluwatar.store.ContentStore;
+import com.iluwatar.store.Store;
 
 public class ContentView implements View {
 

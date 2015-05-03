@@ -1,4 +1,9 @@
-package com.iluwatar;
+package com.iluwatar.view;
+
+import com.iluwatar.action.MenuItem;
+import com.iluwatar.dispatcher.Dispatcher;
+import com.iluwatar.store.MenuStore;
+import com.iluwatar.store.Store;
 
 public class MenuView implements View {
 

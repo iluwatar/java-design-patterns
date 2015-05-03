@@ -1,4 +1,9 @@
-package com.iluwatar;
+package com.iluwatar.store;
+
+import com.iluwatar.action.Action;
+import com.iluwatar.action.ActionType;
+import com.iluwatar.action.Content;
+import com.iluwatar.action.ContentAction;
 
 public class ContentStore extends Store {
 

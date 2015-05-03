@@ -2,6 +2,8 @@ package com.iluwatar;
 
 import org.junit.Test;
 
+import com.iluwatar.app.App;
+
 public class AppTest {
 	
 	@Test

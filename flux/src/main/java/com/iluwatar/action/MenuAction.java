@@ -1,4 +1,5 @@
-package com.iluwatar;
+package com.iluwatar.action;
+
 
 public class MenuAction extends Action {
 

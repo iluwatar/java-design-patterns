@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.action;
 
 public enum ActionType {
 

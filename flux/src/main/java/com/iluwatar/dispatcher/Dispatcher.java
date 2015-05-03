@@ -1,7 +1,14 @@
-package com.iluwatar;
+package com.iluwatar.dispatcher;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import com.iluwatar.action.Action;
+import com.iluwatar.action.Content;
+import com.iluwatar.action.ContentAction;
+import com.iluwatar.action.MenuAction;
+import com.iluwatar.action.MenuItem;
+import com.iluwatar.store.Store;
 
 public class Dispatcher {
 	

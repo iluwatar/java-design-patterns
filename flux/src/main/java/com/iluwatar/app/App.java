@@ -1,4 +1,11 @@
-package com.iluwatar;
+package com.iluwatar.app;
+
+import com.iluwatar.action.MenuItem;
+import com.iluwatar.dispatcher.Dispatcher;
+import com.iluwatar.store.ContentStore;
+import com.iluwatar.store.MenuStore;
+import com.iluwatar.view.ContentView;
+import com.iluwatar.view.MenuView;
 
 public class App {
 	
