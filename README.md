@@ -71,6 +71,7 @@ Presentation Tier patterns are the top-most level of the application, this is co
 
 * [Model-View-Controller](#model-view-controller)
 * [Model-View-Presenter](#model-view-presenter)
+* [Flux](#flux)
 
 ### Architectural Patterns
 
@@ -559,6 +560,14 @@ validation and for building to order
 
 **Applicability:** Use the Model-View-Controller pattern when
 * you want to clearly separate the domain data from its user interface representation
+
+## <a name="flux">Flux</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Flux eschews MVC in favor of a unidirectional data flow. When a user interacts with a view, the view propagates an action through a central dispatcher, to the various stores that hold the application's data and business logic, which updates all of the views that are affected.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/flux/etc/flux.png "Flux")
+
+**Applicability:** Use the Flux pattern when
+* You want to focus on creating explicit and understandable update paths for your application's data, which makes tracing changes during development simpler and makes bugs easier to track down and fix.
 
 
 
