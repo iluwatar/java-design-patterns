@@ -1,11 +1,19 @@
 package com.iluwatar;
 
-public class MenuStore implements Store {
+public class MenuStore extends Store {
 
+	private MenuItem selected = MenuItem.HOME;
+	
 	@Override
 	public void onAction(Action action) {
-		// TODO Auto-generated method stub
-
+		if (action.getType().equals(ActionType.MENU_ITEM_SELECTED)) {
+			MenuAction menuAction = (MenuAction) action;
+			selected = menuAction.getMenuItem();
+			notifyChange();
+		}
 	}
-
+	
+	public MenuItem getSelected() {
+		return selected;
+	}
 }
