@@ -30,4 +30,9 @@ public class Rectangle {
 	boolean intersectsWith(Rectangle r) {
 		return !(r.getLeft() > getRight() || r.getRight() < getLeft() || r.getTop() > getBottom() || r.getBottom() < getTop());
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("[%d,%d,%d,%d]", getLeft(), getTop(), getRight(), getBottom());
+	}
 }

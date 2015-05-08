@@ -2,12 +2,32 @@ package com.iluwatar;
 
 public abstract class GameObject extends Rectangle {
 	
+	private boolean damaged;
+	private boolean onFire;
+	
 	public GameObject(int left, int top, int right, int bottom) {
 		super(left, top, right, bottom);
 	}
 	
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName();
+		return String.format("%s at %s damaged=%b onFire=%b", this.getClass().getSimpleName(), 
+				super.toString(), isDamaged(), isOnFire());
+	}
+	
+	public boolean isOnFire() {
+		return onFire;
+	}
+	
+	public void setOnFire(boolean onFire) {
+		this.onFire = onFire;
+	}
+	
+	public boolean isDamaged() {
+		return damaged;
+	}
+	
+	public void setDamaged(boolean damaged) {
+		this.damaged = damaged;
 	}
 }
