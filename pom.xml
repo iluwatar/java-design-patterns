@@ -55,6 +55,7 @@
     <module>tolerant-reader</module>
     <module>model-view-controller</module>
     <module>flux</module>
+    <module>double-dispatch</module>
   </modules>
 
 	<dependencyManagement>
