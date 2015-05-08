@@ -6,4 +6,9 @@ public class FlamingAsteroid extends Meteoroid {
 		super(left, top, right, bottom);
 		setOnFire(true);
 	}
+
+	@Override
+	public void collision(GameObject gameObject) {
+		gameObject.collisionResolve(this);
+	}
 }
