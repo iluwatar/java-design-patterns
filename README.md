@@ -94,6 +94,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * [Poison Pill](#poison-pill)
 * [Callback](#callback)
 * [Lazy Loading](#lazy-loading)
+* [Double Dispatch](#double-dispatch)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -568,6 +569,17 @@ validation and for building to order
 
 **Applicability:** Use the Flux pattern when
 * You want to focus on creating explicit and understandable update paths for your application's data, which makes tracing changes during development simpler and makes bugs easier to track down and fix.
+
+## <a name="double-dispatch">Double Dispatch</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Double Dispatch pattern is a way to create maintainable dynamic behavior based on receiver and parameter types.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/double-dispatch/etc/double-dispatch.png "Double Dispatch")
+
+**Applicability:** Use the Double Dispatch pattern when
+* The dynamic behavior is not defined only based on receiving object's type but also on the receiving method's parameter type.
+
+**Real world examples:** 
+* [ObjectOutputStream](https://docs.oracle.com/javase/8/docs/api/java/io/ObjectOutputStream.html)
 
 
 
