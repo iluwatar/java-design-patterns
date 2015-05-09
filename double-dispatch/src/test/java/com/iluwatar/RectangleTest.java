@@ -3,6 +3,11 @@ package com.iluwatar;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * 
+ * Unit test for Rectangle
+ *
+ */
 public class RectangleTest {
 
 	@Test

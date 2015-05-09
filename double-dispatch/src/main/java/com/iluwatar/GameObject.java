@@ -1,5 +1,11 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Game objects have coordinates and some
+ * other status information.
+ *
+ */
 public abstract class GameObject extends Rectangle {
 	
 	private boolean damaged;

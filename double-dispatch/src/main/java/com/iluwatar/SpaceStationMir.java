@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Space station Mir game object
+ *
+ */
 public class SpaceStationMir extends GameObject {
 
 	public SpaceStationMir(int left, int top, int right, int bottom) {
