@@ -615,7 +615,7 @@ While the implementations look similar there are differences. The Chain of Respo
 **To work on one of the raised issues** you need to do the following steps:
 
 1. Fork the repository.
-2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation.
+2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation. Reference the issue id e.g. #52 in your commit messages.
 3. Create a pull request.
 
 **For creating/editing UML diagrams** you need [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home).
