@@ -261,6 +261,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.lang.reflect.Proxy](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)
+* [Apache Commons Proxy](https://commons.apache.org/proper/commons-proxy/)
 
 ## <a name="service-locator">Service Locator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate the processes involved in obtaining a service with a strong abstraction layer.
@@ -287,6 +288,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.util.logging.Logger#log()](http://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29)
+* [Apache Commons Chain](https://commons.apache.org/proper/commons-chain/index.html)
 
 ## <a name="command">Command</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
