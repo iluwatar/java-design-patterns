@@ -56,6 +56,7 @@
     <module>model-view-controller</module>
     <module>flux</module>
     <module>double-dispatch</module>
+    <module>multiton</module>
   </modules>
 
 	<dependencyManagement>
