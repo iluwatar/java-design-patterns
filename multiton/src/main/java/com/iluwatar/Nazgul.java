@@ -3,6 +3,12 @@ package com.iluwatar;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * 
+ * Nazgul is a Multiton class. Nazgul instances can be queried
+ * using getInstance() method.
+ *
+ */
 public class Nazgul {
 
 	private static Map<NazgulName, Nazgul> nazguls;

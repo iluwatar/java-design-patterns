@@ -1,5 +1,17 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Whereas Singleton design pattern introduces single globally
+ * accessible object the Multiton pattern defines many globally
+ * accessible objects. The client asks for the correct instance 
+ * from the Multiton by passing an enumeration as parameter.
+ * 
+ * In this example Nazgul is the Multiton and we can ask single
+ * Nazgul from it using NazgulName. The Nazguls are statically
+ * initialized and stored in concurrent hash map.
+ *
+ */
 public class App {
 	
     public static void main( String[] args ) {
