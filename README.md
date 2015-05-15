@@ -24,6 +24,7 @@ Creational design patterns abstract the instantiation process. They help make a 
 * [Prototype](#prototype)
 * [Property](#property)
 * [Singleton](#singleton)
+* [Multiton](#multiton)
 
 ### Structural Patterns
 
@@ -582,6 +583,14 @@ validation and for building to order
 
 **Real world examples:** 
 * [ObjectOutputStream](https://docs.oracle.com/javase/8/docs/api/java/io/ObjectOutputStream.html)
+
+## <a name="multiton">Multiton</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Ensure a class only has limited number of instances, and provide a global point of access to them.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/multiton/etc/multiton.png "Multiton")
+
+**Applicability:** Use the Multiton pattern when
+* there must be specific number of instances of a class, and they must be accessible to clients from a well-known access point
 
 
 
