@@ -3,6 +3,11 @@ package com.iluwatar;
 import java.io.Closeable;
 import java.io.IOException;
 
+/**
+ * 
+ * TreasureChest resource
+ *
+ */
 public class TreasureChest implements Closeable {
 
 	public TreasureChest() {

@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * SlidingDoor resource
+ *
+ */
 public class SlidingDoor implements AutoCloseable {
 
 	public SlidingDoor() {
