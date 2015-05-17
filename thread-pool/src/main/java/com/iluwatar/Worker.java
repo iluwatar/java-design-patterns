@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Worker implements Runnable and thus can be executed by ExecutorService
+ *
+ */
 public class Worker implements Runnable {
 	
 	private Task task;

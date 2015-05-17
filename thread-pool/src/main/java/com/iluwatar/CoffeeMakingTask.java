@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * CoffeeMakingTask is a concrete task
+ * 
+ */
 public class CoffeeMakingTask extends Task {
 
 	private static int TIME_PER_CUP = 300;

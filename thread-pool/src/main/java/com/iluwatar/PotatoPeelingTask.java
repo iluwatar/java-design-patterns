@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * PotatoPeelingTask is a concrete task
+ *
+ */
 public class PotatoPeelingTask extends Task {
 
 	private static int TIME_PER_POTATO = 500;

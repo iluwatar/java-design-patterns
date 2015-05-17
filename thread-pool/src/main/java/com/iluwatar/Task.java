@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Abstract base class for tasks
+ *
+ */
 public abstract class Task {
 
 	private static int nextId = 1;
