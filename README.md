@@ -96,6 +96,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * [Callback](#callback)
 * [Lazy Loading](#lazy-loading)
 * [Double Dispatch](#double-dispatch)
+* [Resource Acquisition Is Initialization](#resource-acquisition-is-initialization)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
@@ -591,6 +592,14 @@ validation and for building to order
 
 **Applicability:** Use the Multiton pattern when
 * there must be specific number of instances of a class, and they must be accessible to clients from a well-known access point
+
+## <a name="resource-acquisition-is-initialization">Resource Acquisition Is Initialization</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Resource Acquisition Is Initialization pattern can be used to implement exception safe resource management.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/resource-acquisition-is-initialization/etc/resource-acquisition-is-initialization.png "Resource Acquisition Is Initialization")
+
+**Applicability:** Use the Resource Acquisition Is Initialization pattern when
+* You have resources that must be closed in every condition
 
 
 

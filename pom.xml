@@ -57,6 +57,7 @@
     <module>flux</module>
     <module>double-dispatch</module>
     <module>multiton</module>
+    <module>resource-acquisition-is-initialization</module>
   </modules>
 
 	<dependencyManagement>
