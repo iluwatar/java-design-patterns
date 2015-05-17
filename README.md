@@ -65,6 +65,7 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 Concurrency patterns are those types of design patterns that deal with the multi-threaded programming paradigm.
 
 * [Double Checked Locking](#double-checked-locking)
+* [Thread Pool](#thread-pool)
 
 ### Presentation Tier Patterns
 
@@ -600,6 +601,14 @@ validation and for building to order
 
 **Applicability:** Use the Resource Acquisition Is Initialization pattern when
 * You have resources that must be closed in every condition
+
+## <a name="thread-pool">Thread Pool</a> [&#8593;](#list-of-design-patterns)
+**Intent:** It is often the case that tasks to be executed are short-lived and the number of tasks is large. Creating a new thread for each task would make the system spend more time creating and destroying the threads than executing the actual tasks. Thread Pool solves this problem by reusing existing threads and eliminating the latency of creating new threads.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/thread-pool/etc/thread-pool.png "Thread Pool")
+
+**Applicability:** Use the Thread Pool pattern when
+* You have a large number of short-lived tasks to be executed in parallel
 
 
 

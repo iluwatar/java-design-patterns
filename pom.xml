@@ -58,6 +58,7 @@
     <module>double-dispatch</module>
     <module>multiton</module>
     <module>resource-acquisition-is-initialization</module>
+    <module>thread-pool</module>
   </modules>
 
 	<dependencyManagement>
