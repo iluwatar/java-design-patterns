@@ -9,10 +9,10 @@ public abstract class Task {
 
 	private static int nextId = 1;
 	
-	private int id;
-	private int timeMs;
+	private final int id;
+	private final int timeMs;
 	
-	public Task(int timeMs) {
+	public Task(final int timeMs) {
 		this.id = nextId++;
 		this.timeMs = timeMs;
 	}

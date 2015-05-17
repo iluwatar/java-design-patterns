@@ -7,9 +7,9 @@ package com.iluwatar;
  */
 public class Worker implements Runnable {
 	
-	private Task task;
+	private final Task task;
 
-	public Worker(Task task) {
+	public Worker(final Task task) {
 		this.task = task;
 	}
 	
