@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 
  * With the DAO pattern, we can use various method calls to retrieve/add/delete/update data without directly
- * interacting with the data directly. The below example demonstrates basic operations: select, add, update, and delete.
+ * interacting with the data. The below example demonstrates basic operations(CRUD): select, add, update, and delete.
  */
 public class App {
 
