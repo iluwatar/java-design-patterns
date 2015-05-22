@@ -1,7 +1,8 @@
 package com.iluwatar;
 
-public interface Tobacco {
+public abstract class Tobacco {
 	
-	public void smoke();
-
+	public void smoke(Wizard wizard) {
+		System.out.println(String.format("%s smoking %s", wizard.getClass().getSimpleName(), this.getClass().getSimpleName()));
+	}
 }

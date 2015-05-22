@@ -1,10 +1,7 @@
 package com.iluwatar;
 
-public class Wizard {
+public interface Wizard {
 	
-	private OldTobyTobacco tobacco = new OldTobyTobacco();
-	
-	public void smoke() {
-		tobacco.smoke();
-	}
+	void smoke();
+
 }
