@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Stew ingredients
+ *
+ */
 public class StewData {
 
 	private int numPotatoes;

@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Immutable stew class, protected with Private Class Data pattern
+ *
+ */
 public class ImmutableStew {
 
 	private StewData data;

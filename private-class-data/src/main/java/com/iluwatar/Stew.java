@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Mutable stew class
+ *
+ */
 public class Stew {
 	
 	private int numPotatoes;
