@@ -7,5 +7,8 @@ public class App {
     	stew.mix();
     	stew.taste();
     	stew.mix();
+    	
+    	ImmutableStew immutableStew = new ImmutableStew(2, 4, 3, 6);
+    	immutableStew.mix();
     }
 }

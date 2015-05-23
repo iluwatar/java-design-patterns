@@ -8,10 +8,10 @@ public class Stew {
 	private int numPeppers;
 	
 	public Stew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
-				this.numPotatoes = numPotatoes;
-				this.numCarrots = numCarrots;
-				this.numMeat = numMeat;
-				this.numPeppers = numPeppers;
+		this.numPotatoes = numPotatoes;
+		this.numCarrots = numCarrots;
+		this.numMeat = numMeat;
+		this.numPeppers = numPeppers;
 	}
 	
 	public void mix() {
