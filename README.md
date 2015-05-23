@@ -40,6 +40,7 @@ Structural patterns are concerned with how classes and objects are composed to f
 * [Service Locator](#service-locator)
 * [Servant](#servant)
 * [Event Aggregator](#event-aggregator)
+* [Private Class Data](#private-class-data)
  
 ### Behavioral Patterns
 
@@ -609,6 +610,14 @@ validation and for building to order
 
 **Applicability:** Use the Thread Pool pattern when
 * You have a large number of short-lived tasks to be executed in parallel
+
+## <a name="private-class-data">Private Class Data</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Private Class Data design pattern seeks to reduce exposure of attributes by limiting their visibility. It reduces the number of class attributes by encapsulating them in single Data object.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/private-class-data/etc/private-class-data.png "Private Class Data")
+
+**Applicability:** Use the Private Class Data pattern when
+* You want to prevent write access to class data members
 
 
 
