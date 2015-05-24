@@ -60,6 +60,7 @@
     <module>resource-acquisition-is-initialization</module>
     <module>thread-pool</module>
     <module>private-class-data</module>
+    <module>object-pool</module>
   </modules>
 
 	<dependencyManagement>
