@@ -2,10 +2,16 @@ package com.iluwatar;
 
 import java.util.HashSet;
 
+/**
+ * 
+ * Generic object pool
+ *
+ * @param <T>
+ */
 public abstract class ObjectPool<T> {
 
-	HashSet<T> available = new HashSet<>();
-	HashSet<T> inUse = new HashSet<>();
+	private HashSet<T> available = new HashSet<>();
+	private HashSet<T> inUse = new HashSet<>();
 	
 	protected abstract T create();
 	

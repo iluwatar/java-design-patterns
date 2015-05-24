@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Oliphaunts are expensive to create
+ *
+ */
 public class Oliphaunt {
 	
 	private static int counter = 1;
@@ -8,6 +13,11 @@ public class Oliphaunt {
 	
 	public Oliphaunt() {
 		id = counter++;
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public int getId() {

@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Oliphaunt object pool
+ *
+ */
 public class OliphauntPool extends ObjectPool<Oliphaunt> {
 
 	@Override
