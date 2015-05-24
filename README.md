@@ -40,7 +40,6 @@ Structural patterns are concerned with how classes and objects are composed to f
 * [Service Locator](#service-locator)
 * [Servant](#servant)
 * [Event Aggregator](#event-aggregator)
-* [Private Class Data](#private-class-data)
  
 ### Behavioral Patterns
 
@@ -99,6 +98,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * [Lazy Loading](#lazy-loading)
 * [Double Dispatch](#double-dispatch)
 * [Resource Acquisition Is Initialization](#resource-acquisition-is-initialization)
+* [Private Class Data](#private-class-data)
 
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
