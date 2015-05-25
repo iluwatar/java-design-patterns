@@ -2,6 +2,11 @@ package com.iluwatar;
 
 import com.google.inject.AbstractModule;
 
+/**
+ * 
+ * Guice module for binding certain concrete Tobacco implementation.
+ *
+ */
 public class TobaccoModule extends AbstractModule {
 
 	@Override

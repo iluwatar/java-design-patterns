@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Tobacco abstraction
+ *
+ */
 public abstract class Tobacco {
 	
 	public void smoke(Wizard wizard) {
