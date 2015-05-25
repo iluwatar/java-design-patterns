@@ -25,6 +25,7 @@ Creational design patterns abstract the instantiation process. They help make a 
 * [Property](#property)
 * [Singleton](#singleton)
 * [Multiton](#multiton)
+* [Object Pool](#object-pool)
 
 ### Structural Patterns
 
@@ -618,6 +619,15 @@ validation and for building to order
 
 **Applicability:** Use the Private Class Data pattern when
 * You want to prevent write access to class data members
+
+## <a name="object-pool">Object Pool</a> [&#8593;](#list-of-design-patterns)
+**Intent:** When objects are expensive to create and they are needed only for short periods of time it is advantageous to utilize the Object Pool pattern. The Object Pool provides a cache for instantiated objects tracking which ones are in use and which are available.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/object-pool/etc/object-pool.png "Object Pool")
+
+**Applicability:** Use the Object Pool pattern when
+* The objects are expensive to create (allocation cost)
+* You need a large number of short-lived objects (memory fragmentation)
 
 
 

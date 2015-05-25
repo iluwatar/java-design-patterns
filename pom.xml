@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.iluwatar</groupId>
@@ -49,31 +50,32 @@
 		<module>property</module>
 		<module>intercepting-filter</module>
 		<module>poison-pill</module>
-    <module>lazy-loading</module>
-    <module>service-layer</module>
-    <module>specification</module>
-    <module>tolerant-reader</module>
-    <module>model-view-controller</module>
-    <module>flux</module>
-    <module>double-dispatch</module>
-    <module>multiton</module>
-    <module>resource-acquisition-is-initialization</module>
-    <module>thread-pool</module>
-    <module>private-class-data</module>
-  </modules>
+		<module>lazy-loading</module>
+		<module>service-layer</module>
+		<module>specification</module>
+		<module>tolerant-reader</module>
+		<module>model-view-controller</module>
+		<module>flux</module>
+		<module>double-dispatch</module>
+		<module>multiton</module>
+		<module>resource-acquisition-is-initialization</module>
+		<module>thread-pool</module>
+		<module>private-class-data</module>
+		<module>object-pool</module>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-			    <groupId>org.hibernate</groupId>
-			    <artifactId>hibernate-core</artifactId>
-			    <version>${hibernate.version}</version>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>
 				<version>${h2.version}</version>
-			</dependency>  
+			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
