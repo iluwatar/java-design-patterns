@@ -62,6 +62,7 @@
 		<module>thread-pool</module>
 		<module>private-class-data</module>
 		<module>object-pool</module>
+	    <module>dependency-injection</module>
 	</modules>
 
 	<dependencyManagement>
