@@ -659,6 +659,11 @@ The difference is the intent of the patterns. While Proxy controls access to the
 
 While the implementations look similar there are differences. The Chain of Responsibility forms a chain of request processors and the processors are then executed one by one until the correct processor is found. In Intercepting Filter the chain is constructed from filters and the whole chain is always executed.
 
+**<a id="Q5">Q: What is the difference between Visitor and Double Dispatch patterns?</a>**
+
+The Visitor pattern is a means of adding a new operation to existing classes. Double dispatch is a means of dispatching function calls with respect to two polymorphic types, rather than a single polymorphic type, which is what languages like C++ and Java support directly.
+
+
 
 # How to contribute
 
