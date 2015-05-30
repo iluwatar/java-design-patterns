@@ -353,7 +353,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="memento">Memento</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/memento/etc/memento_1.png "Memento")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/memento/etc/memento.png "Memento")
 
 **Applicability:** Use the Memento pattern when
 * a snapshot of an object's state must be saved so that it can be restored to that state later, and
