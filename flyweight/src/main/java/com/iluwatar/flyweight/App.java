@@ -10,6 +10,9 @@ package com.iluwatar.flyweight;
  * the Flyweight in this example). Internally PotionFactory holds a map
  * of the potions and lazily creates new ones when requested.
  * 
+ * To enable safe sharing, between clients and threads, Flyweight objects must 
+ * be immutable. Flyweight objects are by definition value objects.
+ * 
  */
 public class App {
 
