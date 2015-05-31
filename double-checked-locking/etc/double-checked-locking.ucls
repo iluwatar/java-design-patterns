@@ -1,37 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <interface id="1" language="java" name="com.iluwatar.callback.Callback" project="callback" 
-    file="/callback/src/main/java/com/iluwatar/callback/Callback.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="204" y="292"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="2" language="java" name="com.iluwatar.callback.SimpleTask" project="callback" 
-    file="/callback/src/main/java/com/iluwatar/callback/SimpleTask.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="380" y="464"/>    
+  <class id="1" language="java" name="com.iluwatar.doublecheckedlocking.Item" project="double-checked-locking" 
+    file="/double-checked-locking/src/main/java/com/iluwatar/doublecheckedlocking/Item.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="124" width="205" x="146" y="504"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="com.iluwatar.callback.Task" project="callback" 
-    file="/callback/src/main/java/com/iluwatar/callback/Task.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="380" y="309"/>    
+  <class id="2" language="java" name="com.iluwatar.doublecheckedlocking.Inventory" project="double-checked-locking" 
+    file="/double-checked-locking/src/main/java/com/iluwatar/doublecheckedlocking/Inventory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="142" width="205" x="146" y="322"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="4">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
+  <association id="3">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="4" name="items"/>      
+      <multiplicity id="5" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

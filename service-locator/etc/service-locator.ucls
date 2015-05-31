@@ -1,66 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <enumeration id="1" language="java" name="com.iluwatar.property.Character.Type" project="property" 
-    file="/property/src/main/java/com/iluwatar/property/Character.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="144" x="285" y="594"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <enumeration id="2" language="java" name="com.iluwatar.property.Stats" project="property" 
-    file="/property/src/main/java/com/iluwatar/property/Stats.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="170" x="205" y="268"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <class id="3" language="java" name="com.iluwatar.property.Character" project="property" 
-    file="/property/src/main/java/com/iluwatar/property/Character.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="286" width="206" x="415" y="268"/>    
+  <class id="1" language="java" name="com.iluwatar.servicelocator.InitContext" project="service-locator" 
+    file="/service-locator/src/main/java/com/iluwatar/servicelocator/InitContext.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="106" width="158" x="188" y="284"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="4" language="java" name="com.iluwatar.property.Prototype" project="property" 
-    file="/property/src/main/java/com/iluwatar/property/Prototype.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="152" x="469" y="594"/>    
+  <class id="2" language="java" name="com.iluwatar.servicelocator.ServiceImpl" project="service-locator" 
+    file="/service-locator/src/main/java/com/iluwatar/servicelocator/ServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="178" width="158" x="188" y="430"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.iluwatar.servicelocator.ServiceLocator" project="service-locator" 
+    file="/service-locator/src/main/java/com/iluwatar/servicelocator/ServiceLocator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="106" width="174" x="386" y="284"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.iluwatar.servicelocator.ServiceCache" project="service-locator" 
+    file="/service-locator/src/main/java/com/iluwatar/servicelocator/ServiceCache.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="124" width="174" x="386" y="430"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="5" language="java" name="com.iluwatar.servicelocator.Service" project="service-locator" 
+    file="/service-locator/src/main/java/com/iluwatar/servicelocator/Service.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="158" x="287" y="648"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <association id="5">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="6" name="type"/>      
-      <multiplicity id="7" minimum="0" maximum="1"/>    
+  <association id="6">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="7" name="serviceCache"/>      
+      <multiplicity id="8" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="8">    
+  <realization id="9">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <association id="10">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="9" name="prototype"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
+      <attribute id="11" name="serviceCache"/>      
+      <multiplicity id="12" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="11">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </nesting>  
-  <realization id="12">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

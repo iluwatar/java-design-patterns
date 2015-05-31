@@ -1,66 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <enumeration id="1" language="java" name="com.iluwatar.property.Character.Type" project="property" 
-    file="/property/src/main/java/com/iluwatar/property/Character.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="144" x="285" y="594"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <enumeration id="2" language="java" name="com.iluwatar.property.Stats" project="property" 
-    file="/property/src/main/java/com/iluwatar/property/Stats.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="170" x="205" y="268"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <class id="3" language="java" name="com.iluwatar.property.Character" project="property" 
-    file="/property/src/main/java/com/iluwatar/property/Character.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="286" width="206" x="415" y="268"/>    
+  <class id="1" language="java" name="com.iluwatar.templatemethod.SubtleMethod" project="template-method" 
+    file="/template-method/src/main/java/com/iluwatar/templatemethod/SubtleMethod.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="142" width="174" x="-90" y="683"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="4" language="java" name="com.iluwatar.property.Prototype" project="property" 
-    file="/property/src/main/java/com/iluwatar/property/Prototype.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="152" x="469" y="594"/>    
+  <class id="2" language="java" name="com.iluwatar.templatemethod.StealingMethod" project="template-method" 
+    file="/template-method/src/main/java/com/iluwatar/templatemethod/StealingMethod.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="159" width="177" x="17" y="484"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </interface>  
+  </class>  
+  <class id="3" language="java" name="com.iluwatar.templatemethod.HalflingThief" project="template-method" 
+    file="/template-method/src/main/java/com/iluwatar/templatemethod/HalflingThief.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="124" width="235" x="17" y="320"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.iluwatar.templatemethod.HitAndRunMethod" project="template-method" 
+    file="/template-method/src/main/java/com/iluwatar/templatemethod/HitAndRunMethod.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="142" width="174" x="124" y="683"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <association id="5">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="6" name="type"/>      
+      <attribute id="6" name="method"/>      
       <multiplicity id="7" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="8">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="9" name="prototype"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="11">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </nesting>  
-  <realization id="12">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
+  <generalization id="8">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="9">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
