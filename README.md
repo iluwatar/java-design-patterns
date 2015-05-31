@@ -461,7 +461,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="null-object">Null Object</a> [&#8593;](#list-of-design-patterns)
 **Intent:** In most object-oriented languages, such as Java or C#, references may be null. These references need to be checked to ensure they are not null before invoking any methods, because methods typically cannot be invoked on null references. Instead of using a null reference to convey absence of an object (for instance, a non-existent customer), one uses an object which implements the expected interface, but whose method body is empty. The advantage of this approach over a working default implementation is that a Null Object is very predictable and has no side effects: it does nothing.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/null-object/etc/test.png "Null Object")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/null-object/etc/null-object.png "Null Object")
 
 **Applicability:** Use the Null Object pattern when
 * You want to avoid explicit null checks and keep the algorithm elegant and easy to read.
@@ -477,7 +477,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="callback">Callback</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Callback is a piece of executable code that is passed as an argument to other code, which is expected to call back (execute) the argument at some convenient time.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/callback/etc/callback.jpg "Callback")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/callback/etc/callback.png "Callback")
 
 **Applicability:** Use the Callback pattern when
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
@@ -488,7 +488,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
  
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/intercepting-filter/etc/intercepting-filter.jpg "Intercepting Filter")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/intercepting-filter/etc/intercepting-filter.png "Intercepting Filter")
  
 **Applicability:** Use the Intercepting Filter pattern when
 * a system uses pre-processing or post-processing requests
@@ -498,7 +498,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="execute-around">Execute Around</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Execute Around idiom frees the user from certain actions that should always be executed before and after the business method. A good example of this is resource allocation and deallocation leaving the user to specify only what to do with the resource.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/execute-around/execute-around.png "Execute Around")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/execute-around/etc/execute-around.png "Execute Around")
 
 **Applicability:** Use the Execute Around idiom when
 * You use an API that requires methods to be called in pairs such as open/close or allocate/deallocate.
@@ -506,7 +506,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="property">Property</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Create hierarchy of objects and new objects using already existing objects as parents.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/property/etc/property.jpg "Property")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/property/etc/property.png "Property")
 
 **Applicability:** Use the Property pattern when
 * when you like to have objects with dynamic set of fields and prototype inheritance
