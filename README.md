@@ -522,6 +522,9 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Applicability:** Use the Poison Pill idiom when
 * need to send signal from one thread/process to another to terminate
 
+**Real world examples:**
+* [Akka.actor.PoisonPill](http://doc.akka.io/docs/akka/2.1.4/java/untyped-actors.html)
+
 ## <a name="lazy-loading">Lazy Loading</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Lazy loading is a design pattern commonly used to defer initialization of an object until the point at which it is needed. It can contribute to efficiency in the program's operation if properly and appropriately used.
 
