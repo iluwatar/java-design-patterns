@@ -666,6 +666,18 @@ While the implementations look similar there are differences. The Chain of Respo
 
 The Visitor pattern is a means of adding a new operation to existing classes. Double dispatch is a means of dispatching function calls with respect to two polymorphic types, rather than a single polymorphic type, which is what languages like C++ and Java support directly.
 
+**<a id="Q6">Q: What are the differences between Flyweight and Object Pool patterns?</a>**
+
+They differ in the way they are used.
+
+Pooled objects can simultaneously be used by a single "client" only. For that, a pooled object must be checked out from the pool, then it can be used by a client, and then the client must return the object back to the pool. Multiple instances of identical objects may exist, up to the maximal capacity of the pool.
+
+In contrast, a Flyweight object is singleton, and it can be used simultaneously by multiple clients.
+
+As for concurrent access, pooled objects can be mutable and they usually don't need to be thread safe, as typically, only one thread is going to use a specific instance at the same time. Flyweight must either be immutable (the best option), or implement thread safety.
+
+As for performance and scalability, pools can become bottlenecks, if all the pooled objects are in use and more clients need them, threads will become blocked waiting for available object from the pool. This is not the case with Flyweight.
+
 
 
 # How to contribute
