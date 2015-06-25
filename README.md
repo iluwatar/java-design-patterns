@@ -709,6 +709,12 @@ As for performance and scalability, pools can become bottlenecks, if all the poo
 
 
 
+# Versioning
+
+Java-design-patterns project uses [semantic versioning](http://semver.org/) scheme.
+
+
+
 # Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
