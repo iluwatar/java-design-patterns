@@ -13,6 +13,9 @@
 		<hibernate.version>5.0.0.Beta1</hibernate.version>
 		<h2.version>1.4.187</h2.version>
 		<junit.version>4.12</junit.version>
+		<compiler.version>3.0</compiler.version>
+		<coveralls.version>3.1.0</coveralls.version>
+		<cobertura.version>2.6</cobertura.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -92,12 +95,30 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>${compiler.version}</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+			    <groupId>org.eluder.coveralls</groupId>
+			    <artifactId>coveralls-maven-plugin</artifactId>
+			    <version>${coveralls.version}</version>
+			    <configuration>
+			        <repoToken>jb6wYzxkVvjolD6qOWpzWdcWBzYk2fAmF</repoToken>
+			    </configuration>
+			</plugin>			
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>cobertura-maven-plugin</artifactId>
+			    <version>${cobertura.version}</version>
+			    <configuration>
+			        <format>xml</format>
+			        <maxmem>256m</maxmem>
+			        <aggregate>true</aggregate>
+			    </configuration>
+			</plugin>			
 		</plugins>
 	</build>
 
