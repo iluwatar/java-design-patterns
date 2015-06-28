@@ -15,7 +15,7 @@
 		<junit.version>4.12</junit.version>
 		<compiler.version>3.0</compiler.version>
 		<coveralls.version>3.1.0</coveralls.version>
-		<cobertura.version>2.6</cobertura.version>
+		<jacoco.version>0.7.2.201409121644</jacoco.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -88,8 +88,47 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- 
+	                This plugin's configuration is used to store Eclipse m2e settings only. 
+	                It has no influence on the Maven build itself.
+	                TODO: Remove when the m2e plugin can correctly bind to Maven lifecycle
+	            -->
+	            <plugin>
+	                <groupId>org.eclipse.m2e</groupId>
+	                <artifactId>lifecycle-mapping</artifactId>
+	                <version>1.0.0</version>
+	                <configuration>
+	                    <lifecycleMappingMetadata>
+	                        <pluginExecutions>
+	                            <pluginExecution>
+	                                <pluginExecutionFilter>
+	                                    <groupId>org.jacoco</groupId>
+	                                    <artifactId>
+	                                        jacoco-maven-plugin
+	                                    </artifactId>
+	                                    <versionRange>
+	                                        [0.6.2,)
+	                                    </versionRange>
+	                                    <goals>
+	                                        <goal>prepare-agent</goal>
+	                                    </goals>
+	                                </pluginExecutionFilter>
+	                                <action>
+	                                    <ignore />
+	                                </action>
+	                            </pluginExecution>
+	                        </pluginExecutions>
+	                    </lifecycleMappingMetadata>
+	                </configuration>
+	            </plugin>		
+			</plugins>
+		</pluginManagement>
+
 		<plugins>
 			<!-- Tell maven to compile using Java 8 -->
 			<plugin>
@@ -110,14 +149,17 @@
 			    </configuration>
 			</plugin>			
 			<plugin>
-			    <groupId>org.codehaus.mojo</groupId>
-			    <artifactId>cobertura-maven-plugin</artifactId>
-			    <version>${cobertura.version}</version>
-			    <configuration>
-			        <format>xml</format>
-			        <maxmem>256m</maxmem>
-			        <aggregate>true</aggregate>
-			    </configuration>
+			    <groupId>org.jacoco</groupId>
+			    <artifactId>jacoco-maven-plugin</artifactId>
+			    <version>${jacoco.version}</version>
+			    <executions>
+			        <execution>
+			            <id>prepare-agent</id>
+			            <goals>
+			                <goal>prepare-agent</goal>
+			            </goals>
+			        </execution>
+			    </executions>
 			</plugin>			
 		</plugins>
 	</build>
