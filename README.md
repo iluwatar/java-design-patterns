@@ -1,8 +1,8 @@
 # Design pattern samples in Java.
 
-## Build status:
+## Build status and coverage:
 
-![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)
+![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master)
 
 ## Introduction
 
