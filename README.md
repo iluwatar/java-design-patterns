@@ -1,8 +1,11 @@
 # Design pattern samples in Java.
 
-## Build status and coverage:
+## Build status, coverage and static analysis:
 
-![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master)
+![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master) <a href="https://scan.coverity.com/projects/5634">
+  <img alt="Coverity Scan Build Status"
+       src="https://scan.coverity.com/projects/5634/badge.svg"/>
+</a>
 
 ## Introduction
 
