@@ -1,8 +1,8 @@
 # Design pattern samples in Java.
 
-## Build status:
+## Build status and coverage:
 
-![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)
+![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master)
 
 ## Introduction
 
@@ -138,9 +138,6 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 * a class can't anticipate the class of objects it must create
 * a class wants its subclasses to specify the objects it creates
 * classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
-
-**Real world examples:**
-* [java.util.Calendar#getInstance()](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance%28%29)
 
 ## <a name="prototype">Prototype</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
