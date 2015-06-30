@@ -1,5 +1,10 @@
 package com.iluwatar.command;
 
+/**
+ * 
+ * ShrinkSpell is a concrete command
+ *
+ */
 public class ShrinkSpell extends Command {
 
 	private Size oldSize;

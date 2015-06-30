@@ -1,8 +1,11 @@
 # Design pattern samples in Java.
 
-## Build status and coverage:
+## Build status, coverage and static analysis:
 
-![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master)
+![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master) <a href="https://scan.coverity.com/projects/5634">
+  <img alt="Coverity Scan Build Status"
+       src="https://scan.coverity.com/projects/5634/badge.svg"/>
+</a>
 
 ## Introduction
 
@@ -296,7 +299,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="command">Command</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/command/etc/command_1.png "Command")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/command/etc/command.png "Command")
 
 **Applicability:** Use the Command pattern when you want to
 

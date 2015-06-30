@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
   </parent>
   <artifactId>proxy</artifactId>
   <dependencies>

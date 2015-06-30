@@ -3,14 +3,17 @@ package com.iluwatar.command;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class Wizard extends Target {
+/**
+ * 
+ * Wizard is the invoker of the commands
+ *
+ */
+public class Wizard {
 
 	private Deque<Command> undoStack = new LinkedList<>();
 	private Deque<Command> redoStack = new LinkedList<>();
 
 	public Wizard() {
-		setSize(Size.NORMAL);
-		setVisibility(Visibility.VISIBLE);
 	}
 
 	public void castSpell(Command command, Target target) {
@@ -41,5 +44,4 @@ public class Wizard extends Target {
 	public String toString() {
 		return "Wizard";
 	}
-
 }
