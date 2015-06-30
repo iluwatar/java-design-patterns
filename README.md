@@ -299,7 +299,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="command">Command</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/command/etc/command_1.png "Command")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/command/etc/command.png "Command")
 
 **Applicability:** Use the Command pattern when you want to
 
