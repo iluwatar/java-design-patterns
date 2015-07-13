@@ -1,0 +1,51 @@
+#
+#
+# text files are normalized (convert crlf => lf)
+# binary files are not normalized (binary is a macro for -text -diff)
+#
+#
+
+
+# Unless otherwise stated, assume text
+
+* text=auto
+
+
+*.java text diff=java
+*.html text diff=html
+*.xhtml text diff=html
+*.xml text
+*.txt text
+
+
+*.jar binary
+*.so binary
+*.dll binary
+
+# images
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.pdn binary
+*.pdn binary
+
+
+*.cs     text diff=csharp
+
+*.sln    merge=union
+*.csproj merge=union
+*.vbproj merge=union
+*.fsproj merge=union
+*.dbproj merge=union
+
+*.doc	 diff=astextplain
+*.DOC	 diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF	 diff=astextplain
+*.rtf	 diff=astextplain
+*.RTF	 diff=astextplain
+
