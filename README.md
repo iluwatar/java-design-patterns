@@ -760,6 +760,7 @@ Java-design-patterns project uses [semantic versioning](http://semver.org/) sche
 * [Trygve Reenskaug - Model-view-controller](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 * [Flux - Application architecture for building user interfaces](http://facebook.github.io/flux/)
 * [Richard Pawson - Naked Objects](http://downloads.nakedobjects.net/resources/Pawson%20thesis.pdf)
+* [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420)
 
 
 
