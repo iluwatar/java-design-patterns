@@ -79,6 +79,7 @@ Presentation Tier patterns are the top-most level of the application, this is co
 * [Model-View-Controller](#model-view-controller)
 * [Model-View-Presenter](#model-view-presenter)
 * [Flux](#flux)
+* [Front Controller](#front-controller)
 
 ### Architectural Patterns
 
@@ -656,6 +657,19 @@ validation and for building to order
 **Real world examples:** 
 * [Apache Isis](https://isis.apache.org/)
 
+## <a name="front-controller">Front Controller</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Introduce a common handler for all requests for a web site. This way we can encapsulate common functionality such as security, internationalization, routing and logging in a single place.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/front-controller/etc/front-controller.png "Front Controller")
+
+**Applicability:** Use the Front Controller pattern when
+* you want to encapsulate common request handling functionality in single place
+* you want to implements dynamic request handling i.e. change routing without modifying code
+* make web server configution portable, you only need to register the handler web server specific way
+
+**Real world examples:** 
+* [Apache Struts](https://struts.apache.org/)
+
 
 
 # Frequently asked questions
@@ -746,6 +760,7 @@ Java-design-patterns project uses [semantic versioning](http://semver.org/) sche
 * [Trygve Reenskaug - Model-view-controller](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 * [Flux - Application architecture for building user interfaces](http://facebook.github.io/flux/)
 * [Richard Pawson - Naked Objects](http://downloads.nakedobjects.net/resources/Pawson%20thesis.pdf)
+* [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420)
 
 
 

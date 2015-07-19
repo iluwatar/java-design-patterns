@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.iluwatar</groupId>
 	<artifactId>java-design-patterns</artifactId>
-	<version>1.2.0</version>
+	<version>1.3.0</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -64,9 +65,10 @@
 		<module>thread-pool</module>
 		<module>private-class-data</module>
 		<module>object-pool</module>
-	    <module>dependency-injection</module>
-    <module>naked-objects</module>
-  </modules>
+		<module>dependency-injection</module>
+		<module>naked-objects</module>
+		<module>front-controller</module>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>
@@ -88,44 +90,42 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 
 	<build>
 		<pluginManagement>
 			<plugins>
-				<!-- 
-	                This plugin's configuration is used to store Eclipse m2e settings only. 
-	                It has no influence on the Maven build itself.
-	                TODO: Remove when the m2e plugin can correctly bind to Maven lifecycle
-	            -->
-	            <plugin>
-	                <groupId>org.eclipse.m2e</groupId>
-	                <artifactId>lifecycle-mapping</artifactId>
-	                <version>1.0.0</version>
-	                <configuration>
-	                    <lifecycleMappingMetadata>
-	                        <pluginExecutions>
-	                            <pluginExecution>
-	                                <pluginExecutionFilter>
-	                                    <groupId>org.jacoco</groupId>
-	                                    <artifactId>
-	                                        jacoco-maven-plugin
-	                                    </artifactId>
-	                                    <versionRange>
-	                                        [0.6.2,)
-	                                    </versionRange>
-	                                    <goals>
-	                                        <goal>prepare-agent</goal>
-	                                    </goals>
-	                                </pluginExecutionFilter>
-	                                <action>
-	                                    <ignore/>
-	                                </action>
-	                            </pluginExecution>
-	                        </pluginExecutions>
-	                    </lifecycleMappingMetadata>
-	                </configuration>
-	            </plugin>		
+				<!-- This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. TODO: Remove when the 
+					m2e plugin can correctly bind to Maven lifecycle -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.jacoco</groupId>
+										<artifactId>
+											jacoco-maven-plugin
+										</artifactId>
+										<versionRange>
+											[0.6.2,)
+										</versionRange>
+										<goals>
+											<goal>prepare-agent</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
@@ -141,26 +141,26 @@
 				</configuration>
 			</plugin>
 			<plugin>
-			    <groupId>org.eluder.coveralls</groupId>
-			    <artifactId>coveralls-maven-plugin</artifactId>
-			    <version>${coveralls.version}</version>
-			    <configuration>
-			        <repoToken>jb6wYzxkVvjolD6qOWpzWdcWBzYk2fAmF</repoToken>
-			    </configuration>
-			</plugin>			
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>${coveralls.version}</version>
+				<configuration>
+					<repoToken>jb6wYzxkVvjolD6qOWpzWdcWBzYk2fAmF</repoToken>
+				</configuration>
+			</plugin>
 			<plugin>
-			    <groupId>org.jacoco</groupId>
-			    <artifactId>jacoco-maven-plugin</artifactId>
-			    <version>${jacoco.version}</version>
-			    <executions>
-			        <execution>
-			            <id>prepare-agent</id>
-			            <goals>
-			                <goal>prepare-agent</goal>
-			            </goals>
-			        </execution>
-			    </executions>
-			</plugin>			
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
