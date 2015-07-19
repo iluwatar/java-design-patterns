@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * View for archers.
+ *
+ */
 public class ArcherView implements View {
 
 	@Override

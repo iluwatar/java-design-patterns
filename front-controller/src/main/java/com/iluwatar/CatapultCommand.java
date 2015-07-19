@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Command for catapults.
+ *
+ */
 public class CatapultCommand implements Command {
 
 	@Override

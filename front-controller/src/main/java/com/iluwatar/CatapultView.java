@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * View for catapults.
+ *
+ */
 public class CatapultView implements View {
 
 	@Override
