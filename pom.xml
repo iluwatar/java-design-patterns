@@ -152,6 +152,13 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>${jacoco.version}</version>
+				<!-- The following exclude configuration was added because error occurred when executing "mvn clean test jacoco:report coveralls:report" -->
+				<!-- [ERROR] Failed to execute goal org.eluder.coveralls:coveralls-maven-plugin:3.1.0:report (default-cli) on project java-design-patterns: I/O operation failed: No source found for domainapp/dom/modules/simple/QSimpleObject.java -> [Help 1] -->
+				<configuration>
+					<excludes>
+						<exclude>domainapp/dom/modules/simple/QSimpleObject.class</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<id>prepare-agent</id>
