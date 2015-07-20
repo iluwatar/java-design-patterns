@@ -5,8 +5,12 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Implementation of async executor that creates a new thread for every task.
+ */
 public class ThreadAsyncExecutor implements AsyncExecutor {
 
+	/** Index for thread naming */
 	private final AtomicInteger idx = new AtomicInteger(0);
 
 	@Override
@@ -37,6 +41,14 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 		}
 	}
 
+	/**
+	 * Simple implementation of async result that allows completing it successfully with a value
+	 * or exceptionally with an exception. A really simplified version from its real life cousins
+	 * FutureTask and CompletableFuture.
+	 *
+	 * @see java.util.concurrent.FutureTask
+	 * @see java.util.concurrent.CompletableFuture
+	 */
 	private static class CompletableResult<T> implements AsyncResult<T> {
 
 		static final int RUNNING = 1;
@@ -55,6 +67,12 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 			this.callback = Optional.ofNullable(callback);
 		}
 
+		/**
+		 * Sets the value from successful execution and executes callback if available. Notifies
+		 * any thread waiting for completion.
+		 *
+		 * @param value value of the evaluated task
+		 */
 		void setValue(T value) {
 			this.value = value;
 			this.state = COMPLETED;
@@ -64,6 +82,12 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 			}
 		}
 
+		/**
+		 * Sets the exception from failed execution and executes callback if available. Notifies
+		 * any thread waiting for completion.
+		 *
+		 * @param exception exception of the failed task
+		 */
 		void setException(Exception exception) {
 			this.exception = exception;
 			this.state = FAILED;
