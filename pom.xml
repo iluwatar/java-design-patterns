@@ -68,6 +68,7 @@
 		<module>dependency-injection</module>
 		<module>naked-objects</module>
 		<module>front-controller</module>
+		<module>async-method-invocation</module>
 	</modules>
 
 	<dependencyManagement>
