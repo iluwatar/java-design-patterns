@@ -4,11 +4,6 @@ import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-/**
- * Standalone application with Spring Data JPA, Hibernate and Maven
- * 
- * @author DevCrumb.com
- */
 public class App {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
