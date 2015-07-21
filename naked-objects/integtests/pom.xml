@@ -16,7 +16,7 @@
 	<parent>
 		<groupId>com.iluwatar</groupId>
 		<artifactId>naked-objects</artifactId>
-		<version>1.3.0</version>
+		<version>1.4.0</version>
 	</parent>
 
 	<artifactId>naked-objects-integtests</artifactId>
