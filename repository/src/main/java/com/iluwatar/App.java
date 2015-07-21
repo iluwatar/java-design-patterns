@@ -4,6 +4,21 @@ import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * 
+ * Repository pattern mediates between the domain and data mapping layers using a collection-like
+ * interface for accessing domain objects. A system with complex domain model often benefits from
+ * a layer that isolates domain objects from the details of the database access code and in such
+ * systems it can be worthwhile to build another layer of abstraction over the mapping layer where
+ * query construction code is concentrated. This becomes more important when there are a large 
+ * number of domain classes or heavy querying. In these cases particularly, adding this layer helps
+ * minimize duplicate query logic.
+ * 
+ * In this example we utilize Spring Data to automatically generate a repository for us from the Person
+ * domain object. Using the PersonDao we perform CRUD operations on the entity. Underneath we have
+ * configured in-memory H2 database for which schema is created and dropped on each run.
+ *
+ */
 public class App {
 	
 	public static void main(String[] args) {
