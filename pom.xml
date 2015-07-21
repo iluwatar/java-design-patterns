@@ -10,6 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.version>5.0.0.CR2</hibernate.version>
+		<spring-data.version>1.8.1.RELEASE</spring-data.version>
 		<h2.version>1.4.187</h2.version>
 		<junit.version>4.12</junit.version>
 		<compiler.version>3.0</compiler.version>
@@ -72,11 +73,21 @@
 
 	<dependencyManagement>
 		<dependencies>
-<!--  			<dependency>
+  			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-core</artifactId>
 				<version>${hibernate.version}</version>
-			</dependency> -->
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${spring-data.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>

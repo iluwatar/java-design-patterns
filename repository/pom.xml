@@ -18,12 +18,10 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>1.7.1.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version><!-- 4.2.0.Final -->5.0.0.CR2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
