@@ -88,6 +88,7 @@ An architectural pattern is a general, reusable solution to a commonly occurring
 * [Data Access Object](#dao)
 * [Service Layer](#service-layer)
 * [Naked Objects](#naked-objects)
+* [Repository](#repository)
 
 ### Integration Patterns
 
@@ -669,6 +670,20 @@ validation and for building to order
 
 **Real world examples:** 
 * [Apache Struts](https://struts.apache.org/)
+
+## <a name="repository">Repository</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Repository layer is added between the domain and data mapping layers to isolate domain objects from details of the database access code and to minimize scattering and duplication of query code. The Repository pattern is especially useful in systems where number of domain classes is large or heavy querying is utilized.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/repository/etc/repository.png "Repository")
+
+**Applicability:** Use the Repository pattern when
+* the number of domain objects is large
+* you want to avoid duplication of query code
+* you want to keep the database querying code in single place
+* you have multiple data sources
+
+**Real world examples:** 
+* [Spring Data](http://projects.spring.io/spring-data/)
 
 
 
