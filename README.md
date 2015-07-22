@@ -81,6 +81,10 @@ Presentation Tier patterns are the top-most level of the application, this is co
 * [Flux](#flux)
 * [Front Controller](#front-controller)
 
+### Business Tier Patterns
+
+* [Business Delegate](#business-delegate)
+
 ### Architectural Patterns
 
 An architectural pattern is a general, reusable solution to a commonly occurring problem in software architecture within a given context.
@@ -684,6 +688,16 @@ validation and for building to order
 
 **Real world examples:** 
 * [Spring Data](http://projects.spring.io/spring-data/)
+
+## <a name="business-delegate">Business Delegate</a> [&#8593;](#list-of-design-patterns)
+**Intent:** The Business Delegate pattern adds an abstraction layer between presentation and business tiers. By using the pattern we gain loose coupling between the tiers and encapsulate knowledge about how to locate, connect to, and interact with the business objects that make up the application.
+
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/business-delegate/etc/business-delegate.png "Business Delegate")
+
+**Applicability:** Use the Business Delegate pattern when
+* you want loose couping between presentation and business tiers
+* you want to orchestrate calls to multiple business services
+* you want to encapsulate service lookups and service calls
 
 
 
