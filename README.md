@@ -71,6 +71,7 @@ Concurrency patterns are those types of design patterns that deal with the multi
 
 * [Double Checked Locking](#double-checked-locking)
 * [Thread Pool](#thread-pool)
+* [Async Method Invocation](#async-method-invocation)
 
 ### Presentation Tier Patterns
 
@@ -618,6 +619,18 @@ validation and for building to order
 
 **Applicability:** Use the Thread Pool pattern when
 * You have a large number of short-lived tasks to be executed in parallel
+
+## <a name="async-method-invocation">Async Method Invocation</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Asynchronous method invocation is pattern where the calling thread is not blocked while waiting results of tasks. The pattern provides parallel processing of multiple independent tasks and retrieving the results via callbacks or waiting until everything is done. 
+
+**Applicability:** Use async method invocation pattern when
+* You have multiple independent tasks that can run in parallel
+* You need to improve performance of running a group of sequential tasks
+* You have limited number of processing capacity or long running tasks and the caller cannot wait the tasks to be ready
+
+**Real world examples:**
+* [FutureTask](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/FutureTask.html), [CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html) and [ExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html) (Java)
+* [Task-based Asynchronous Pattern](https://msdn.microsoft.com/en-us/library/hh873175.aspx) (.NET)
 
 ## <a name="private-class-data">Private Class Data</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Private Class Data design pattern seeks to reduce exposure of attributes by limiting their visibility. It reduces the number of class attributes by encapsulating them in single Data object.
