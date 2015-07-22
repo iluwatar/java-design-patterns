@@ -627,6 +627,8 @@ validation and for building to order
 ## <a name="async-method-invocation">Async Method Invocation</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Asynchronous method invocation is pattern where the calling thread is not blocked while waiting results of tasks. The pattern provides parallel processing of multiple independent tasks and retrieving the results via callbacks or waiting until everything is done. 
 
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/async-method-invocation/etc/async-method-invocation.png "Async Method Invocation")
+
 **Applicability:** Use async method invocation pattern when
 * You have multiple independent tasks that can run in parallel
 * You need to improve performance of running a group of sequential tasks
