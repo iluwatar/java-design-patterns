@@ -70,6 +70,7 @@
 		<module>naked-objects</module>
 		<module>front-controller</module>
 		<module>repository</module>
+		<module>async-method-invocation</module>
     <module>business-delegate</module>
   </modules>
 
