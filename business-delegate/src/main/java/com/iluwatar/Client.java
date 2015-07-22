@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Client utilizes BusinessDelegate to call the business tier
+ *
+ */
 public class Client {
 
 	private BusinessDelegate businessDelegate;

@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Service EJB implementation
+ *
+ */
 public class EjbService implements BusinessService {
 
 	@Override

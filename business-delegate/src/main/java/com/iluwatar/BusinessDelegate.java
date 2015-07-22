@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * BusinessDelegate separates presentation and business tiers
+ *
+ */
 public class BusinessDelegate {
 	
 	private BusinessLookup lookupService = new BusinessLookup();

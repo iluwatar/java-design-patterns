@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Service JMS implementation
+ *
+ */
 public class JmsService implements BusinessService {
 
 	@Override

@@ -1,5 +1,10 @@
 package com.iluwatar;
 
+/**
+ * 
+ * Class for performing service lookups
+ *
+ */
 public class BusinessLookup {
 
 	public BusinessService getBusinessService(ServiceType serviceType) {
