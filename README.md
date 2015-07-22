@@ -791,6 +791,7 @@ Java-design-patterns project uses [semantic versioning](http://semver.org/) sche
 * [Richard Pawson - Naked Objects](http://downloads.nakedobjects.net/resources/Pawson%20thesis.pdf)
 * [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420)
 * [Spring Data](http://www.amazon.com/Spring-Data-Mark-Pollack/dp/1449323952/ref=sr_1_1)
+* [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)
 
 
 
