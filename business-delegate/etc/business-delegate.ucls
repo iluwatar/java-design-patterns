@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="com.iluwatar.BusinessDelegate" project="business-delegate" 
-    file="/business-delegate/src/main/java/com/iluwatar/BusinessDelegate.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="com.iluwatar.business.delegate.BusinessDelegate" project="business-delegate" 
+    file="/business-delegate/src/main/java/com/iluwatar/business/delegate/BusinessDelegate.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="272" y="219"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,8 +11,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="com.iluwatar.Client" project="business-delegate" 
-    file="/business-delegate/src/main/java/com/iluwatar/Client.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="com.iluwatar.business.delegate.Client" project="business-delegate" 
+    file="/business-delegate/src/main/java/com/iluwatar/business/delegate/Client.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="272" y="64"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +21,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="3" language="java" name="com.iluwatar.ServiceType" project="business-delegate" 
-    file="/business-delegate/src/main/java/com/iluwatar/ServiceType.java" binary="false" corner="BOTTOM_RIGHT">    
+  <enumeration id="3" language="java" name="com.iluwatar.business.delegate.ServiceType" project="business-delegate" 
+    file="/business-delegate/src/main/java/com/iluwatar/business/delegate/ServiceType.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="89" y="383"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +31,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <interface id="4" language="java" name="com.iluwatar.BusinessService" project="business-delegate" 
-    file="/business-delegate/src/main/java/com/iluwatar/BusinessService.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="4" language="java" name="com.iluwatar.business.delegate.BusinessService" project="business-delegate" 
+    file="/business-delegate/src/main/java/com/iluwatar/business/delegate/BusinessService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="630" y="365"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +41,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="5" language="java" name="com.iluwatar.JmsService" project="business-delegate" 
-    file="/business-delegate/src/main/java/com/iluwatar/JmsService.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="com.iluwatar.business.delegate.JmsService" project="business-delegate" 
+    file="/business-delegate/src/main/java/com/iluwatar/business/delegate/JmsService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="489" y="210"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +51,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="com.iluwatar.BusinessLookup" project="business-delegate" 
-    file="/business-delegate/src/main/java/com/iluwatar/BusinessLookup.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="com.iluwatar.business.delegate.BusinessLookup" project="business-delegate" 
+    file="/business-delegate/src/main/java/com/iluwatar/business/delegate/BusinessLookup.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="360" y="399"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +61,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="com.iluwatar.EjbService" project="business-delegate" 
-    file="/business-delegate/src/main/java/com/iluwatar/EjbService.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="com.iluwatar.business.delegate.EjbService" project="business-delegate" 
+    file="/business-delegate/src/main/java/com/iluwatar/business/delegate/EjbService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="668" y="210"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -68,40 +75,56 @@
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <realization id="9">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="10">    
+  <association id="9">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="11" name="lookupService"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+      <attribute id="10" name="lookupService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="11" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="13">    
+  <association id="12">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="14" name="businessService"/>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
+      <attribute id="13" name="serviceType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="15">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <association id="16">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="17" name="businessDelegate"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
+      <attribute id="17" name="businessDelegate">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="18" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="19">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="20" name="serviceType"/>      
-      <multiplicity id="21" minimum="0" maximum="1"/>    
+      <attribute id="20" name="businessService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
