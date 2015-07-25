@@ -72,6 +72,7 @@ Concurrency patterns are those types of design patterns that deal with the multi
 * [Double Checked Locking](#double-checked-locking)
 * [Thread Pool](#thread-pool)
 * [Async Method Invocation](#async-method-invocation)
+* [Half-Sync/Half-Async](#half-sync-half-async)
 
 ### Presentation Tier Patterns
 
@@ -714,7 +715,22 @@ validation and for building to order
 * you want to orchestrate calls to multiple business services
 * you want to encapsulate service lookups and service calls
 
+## <a name="half-sync-half-async">Half-Sync/Half-Async</a> [&#8593;](#list-of-design-patterns)
+**Intent:** The Half-Sync/Half-Async pattern decouples synchronous I/O from asynchronous I/O in a system to simplify concurrent programming effort without degrading execution efficiency.
 
+![Half-Sync/Half-Async class diagram](./half-sync-half-async/etc/half-sync-half-async.png)
+
+**Applicability:** Use Half-Sync/Half-Async pattern when
+* A system possesses following characteristics:
+  * System must perform tasks in response to external events that occur asynchronously, like hardware interrupts in OS
+  * It is inefficient to dedicate separate thread of control to perform synchronous I/O for each external source of event
+  * The higher level tasks in the system can be simplified significantly if I/O is performed synchronously.
+* One or more tasks in a system must run in a single thread of control, while other tasks may benefit from multi-threading.
+
+**Real world examples:**
+* [BSD Unix networking subsystem](http://www.cs.wustl.edu/~schmidt/PDF/PLoP-95.pdf)
+* [Real Time CORBA](http://www.omg.org/news/meetings/workshops/presentations/realtime2001/4-3_Pyarali_thread-pool.pdf)
+* [Android AsyncTask framework](http://developer.android.com/reference/android/os/AsyncTask.html)
 
 # Frequently asked questions
 
