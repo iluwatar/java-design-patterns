@@ -783,7 +783,7 @@ As for performance and scalability, pools can become bottlenecks, if all the poo
 
 # Versioning
 
-Java-design-patterns project uses [semantic versioning](http://semver.org/) scheme.
+Java-design-patterns project uses [semantic versioning](http://semver.org/) scheme. However, version numbers in this project do not signify binary releases (since we don't make any) but rather milestones achieved on the roadmap. In other words, version numbers are used only for project planning sake.
 
 
 
