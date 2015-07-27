@@ -754,19 +754,22 @@ As for performance and scalability, pools can become bottlenecks, if all the poo
 
 # How to contribute
 
-**To add a new pattern** you need to do the following steps:
+**To work on a new pattern** you need to do the following steps:
 
-1. Fork the repository.
-2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation.
-3. Create a simple class diagram from your example code.
-4. Add description of the pattern in README.md and link to the class diagram.	
+1. If there is no issue for the new pattern yet, raise new issue. Comment on the issue that you are working on it so that others don't start work on the same thing.
+2. Fork the repository.
+3. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation. Reference the issue id e.g. #52 in your commit messages.
+4. Create a simple class diagram from your example code.
+5. Add description of the pattern in README.md and link to the class diagram.	
+6. Create a pull request.
+
+**To work on one of the non-pattern issues** you need to do the following steps:
+
+1. Check that the issue has "help wanted" badge
+2. Comment on the issue that you are working on it
+3. Fork the repository.
+4. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation. Reference the issue id e.g. #52 in your commit messages.
 5. Create a pull request.
-
-**To work on one of the raised issues** you need to do the following steps:
-
-1. Fork the repository.
-2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation. Reference the issue id e.g. #52 in your commit messages.
-3. Create a pull request.
 
 **For creating/editing UML diagrams** you need [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home).
 
