@@ -1,10 +1,11 @@
 package com.iluwatar.halfsynchalfasync;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class AsynchronousServiceTest {
 
@@ -14,32 +15,48 @@ public class AsynchronousServiceTest {
 		 * Addition service is asynchronous layer which does not block on single request,
 		 * and is always available for listening new requests.
 		 */
-		ArithmeticSumService service = new ArithmeticSumService();
-		Future<Long> output1 = service.execute(100L);
-		Future<Long> output2 = service.execute(50L);
-		Future<Long> output3 = service.execute(200L);
-		Future<Long> output4 = service.execute(5L);
+		QueuingLayer queuingLayer = new QueuingLayer();
+		new SynchronousLayer(queuingLayer);
+		AsynchronousService service = new AsynchronousService(queuingLayer);
 		
-		assertEquals(ap(100), output1.get().longValue());
-		assertEquals(ap(50), output2.get().longValue());
-		assertEquals(ap(200), output3.get().longValue());
-		assertEquals(ap(5), output4.get().longValue());
+		service.execute(new ArithmeticSumTask(100));
+		service.execute(new ArithmeticSumTask(50));
+		service.execute(new ArithmeticSumTask(200));
+		service.execute(new ArithmeticSumTask(5));
 	}
 	
-	/*
-	 * This is an asynchronous service which computes arithmetic sum
-	 */
-	class ArithmeticSumService extends AsynchronousService<Long, Long> {
+	class ArithmeticSumTask implements AsyncTask<Long> {
+		private long n;
+
+		public ArithmeticSumTask(long n) {
+			this.n = n;
+		}
+		
+		@Override
+		public Long call() throws Exception {
+			return ap(n);
+		}
 
 		@Override
-		protected Long doInBackground(Long n) {
-			return (n) * (n + 1) / 2;
+		public void preExecute() {
+			if (n < 0) {
+				throw new IllegalArgumentException("n is less than 0");
+			}
+		}
+
+		@Override
+		public void onResult(Long result) {
+			assertEquals(ap(n), result.longValue());
+		}
+
+		@Override
+		public void onError(Throwable throwable) {
+			fail("Should not occur");
 		}
 	}
-
-	private long ap(int i) {
+	
+	private long ap(long i) {
 		long out = (i) * (i + 1) / 2;
-		System.out.println(out);
 		return out;
 	}
 }
