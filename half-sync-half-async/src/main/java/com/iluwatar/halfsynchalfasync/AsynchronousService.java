@@ -38,18 +38,16 @@ public class AsynchronousService {
 	 * A non-blocking method which performs the task provided in background and returns immediately.
 	 * <p>
 	 * On successful completion of task the result is posted back using callback method
-	 * {@link AsyncTask#onResult(Object)}, if task execution is unable to complete normally
+	 * {@link AsyncTask#onPostCall(Object)}, if task execution is unable to complete normally
 	 * due to some exception then the reason for error is posted back using callback method
 	 * {@link AsyncTask#onError(Throwable)}.
 	 * <p>
 	 * NOTE: The results are posted back in the context of background thread in this implementation.
-	 * There is other variant possible where the result is posted back in the queue of caller thread
-	 * and then the result is processed in context of caller thread.
 	 */
 	public <T> void execute(final AsyncTask<T> task) {
 		try {
 			// some small tasks such as validation can be performed here.
-			task.preExecute();
+			task.onPreCall();
 		} catch (Exception e) {
 			task.onError(e);
 		}
@@ -65,7 +63,7 @@ public class AsynchronousService {
 					 * where the UI elements can only be updated using UI thread. So result must be
 					 * posted back in UI thread.
 					 */
-					task.onResult(get());
+					task.onPostCall(get());
 				} catch (InterruptedException e) {
 					// should not occur
 				} catch (ExecutionException e) {

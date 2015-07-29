@@ -13,20 +13,23 @@ import java.util.concurrent.Callable;
 public interface AsyncTask<O> extends Callable<O> {
 	/**
 	 * Is called in context of caller thread before call to {@link #call()}. Large
-	 * tasks should not be performed in this method. Validations can be performed here
-	 * so that the performance penalty of context switching is not incurred in case of
-	 * invalid requests.
+	 * tasks should not be performed in this method as it will block the caller thread.
+	 * Small tasks such as validations can be performed here so that the performance penalty
+	 * of context switching is not incurred in case of invalid requests.
 	 */
-	void preExecute();
+	void onPreCall();
 	
 	/**
-	 * A callback called after the result is successfully computed by {@link #call()}.
+	 * A callback called after the result is successfully computed by {@link #call()}. In our
+	 * implementation this method is called in context of background thread but in some variants,
+	 * such as Android where only UI thread can change the state of UI widgets, this method is called
+	 * in context of UI thread.
 	 */
-	void onResult(O result);
+	void onPostCall(O result);
 	
 	/**
 	 * A callback called if computing the task resulted in some exception. This method
-	 * is called when either of {@link #call()} or {@link #preExecute()} throw any exception.
+	 * is called when either of {@link #call()} or {@link #onPreCall()} throw any exception.
 	 * 
 	 * @param throwable error cause
 	 */
