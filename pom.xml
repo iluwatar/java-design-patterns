@@ -71,7 +71,8 @@
 		<module>front-controller</module>
 		<module>repository</module>
 		<module>async-method-invocation</module>
-    <module>business-delegate</module>
+    	<module>business-delegate</module>
+    	<module>half-sync-half-async</module>
   </modules>
 
 	<dependencyManagement>
