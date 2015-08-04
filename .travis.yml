@@ -14,3 +14,6 @@ before_install:
   
 after_success:
   - mvn clean test jacoco:report coveralls:report
+  
+# Parameter to run on container based infrastructure
+sudo: false
