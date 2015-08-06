@@ -47,7 +47,7 @@ Structural patterns are concerned with how classes and objects are composed to f
  
 ### Behavioral Patterns
 
-Behavioral patterns are concerned with algorithms and the assignment of responsibilites between objects.
+Behavioral patterns are concerned with algorithms and the assignment of responsibilities between objects.
 
 * [Chain of responsibility](#chain-of-responsibility)
 * [Command](#command)
@@ -228,7 +228,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Applicability:** Use Decorator
 * to add responsibilities to individual objects dynamically and transparently, that is, without affecting other objects
 * for responsibilities that can be withdrawn
-* when extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of sublasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
+* when extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of subclasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
 
 ## <a name="facade">Facade</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
@@ -283,7 +283,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 ![alt text](./service-locator/etc/service-locator.png "Proxy")
 
-**Applicability:** The service locator pattern is applicable whenever we want to locate/fetch various services using JNDI which, typically, is a redundant and expensive lookup. The service Locator pattern addresses this expensive lookup by making use of caching techniques ie. for the very first time a particular service is requested, the service Locator looks up in JNDI, fetched the relavant service and then finally caches this service object. Now, further lookups of the same service via Service Locator is done in its cache which improves the performance of application to great extent.
+**Applicability:** The service locator pattern is applicable whenever we want to locate/fetch various services using JNDI which, typically, is a redundant and expensive lookup. The service Locator pattern addresses this expensive lookup by making use of caching techniques ie. for the very first time a particular service is requested, the service Locator looks up in JNDI, fetched the relevant service and then finally caches this service object. Now, further lookups of the same service via Service Locator is done in its cache which improves the performance of application to great extent.
 
 **Typical Use Case:**
 
@@ -686,7 +686,7 @@ validation and for building to order
 **Applicability:** Use the Front Controller pattern when
 * you want to encapsulate common request handling functionality in single place
 * you want to implements dynamic request handling i.e. change routing without modifying code
-* make web server configution portable, you only need to register the handler web server specific way
+* make web server configuration portable, you only need to register the handler web server specific way
 
 **Real world examples:** 
 * [Apache Struts](https://struts.apache.org/)
@@ -711,7 +711,7 @@ validation and for building to order
 ![alt text](./business-delegate/etc/business-delegate.png "Business Delegate")
 
 **Applicability:** Use the Business Delegate pattern when
-* you want loose couping between presentation and business tiers
+* you want loose coupling between presentation and business tiers
 * you want to orchestrate calls to multiple business services
 * you want to encapsulate service lookups and service calls
 
