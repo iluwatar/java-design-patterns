@@ -47,7 +47,7 @@ Structural patterns are concerned with how classes and objects are composed to f
  
 ### Behavioral Patterns
 
-Behavioral patterns are concerned with algorithms and the assignment of responsibilites between objects.
+Behavioral patterns are concerned with algorithms and the assignment of responsibilities between objects.
 
 * [Chain of responsibility](#chain-of-responsibility)
 * [Command](#command)
@@ -71,6 +71,8 @@ Concurrency patterns are those types of design patterns that deal with the multi
 
 * [Double Checked Locking](#double-checked-locking)
 * [Thread Pool](#thread-pool)
+* [Async Method Invocation](#async-method-invocation)
+* [Half-Sync/Half-Async](#half-sync-half-async)
 
 ### Presentation Tier Patterns
 
@@ -81,6 +83,10 @@ Presentation Tier patterns are the top-most level of the application, this is co
 * [Flux](#flux)
 * [Front Controller](#front-controller)
 
+### Business Tier Patterns
+
+* [Business Delegate](#business-delegate)
+
 ### Architectural Patterns
 
 An architectural pattern is a general, reusable solution to a commonly occurring problem in software architecture within a given context.
@@ -88,6 +94,7 @@ An architectural pattern is a general, reusable solution to a commonly occurring
 * [Data Access Object](#dao)
 * [Service Layer](#service-layer)
 * [Naked Objects](#naked-objects)
+* [Repository](#repository)
 
 ### Integration Patterns
 
@@ -110,7 +117,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="abstract-factory">Abstract Factory</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/abstract-factory/etc/abstract-factory_1.png "Abstract Factory")
+![alt text](./abstract-factory/etc/abstract-factory_1.png "Abstract Factory")
 
 **Applicability:** Use the Abstract Factory pattern when
 * a system should be independent of how its products are created, composed and represented
@@ -124,7 +131,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="builder">Builder</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Separate the construction of a complex object from its representation so that the same construction process can create different representations.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/builder/etc/builder_1.png "Builder")
+![alt text](./builder/etc/builder_1.png "Builder")
 
 **Applicability:** Use the Builder pattern when
 * the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
@@ -137,7 +144,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="factory-method">Factory Method</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/factory-method/etc/factory-method_1.png "Factory Method")
+![alt text](./factory-method/etc/factory-method_1.png "Factory Method")
 
 **Applicability:** Use the Factory Method pattern when
 * a class can't anticipate the class of objects it must create
@@ -147,7 +154,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="prototype">Prototype</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/prototype/etc/prototype_1.png "Prototype")
+![alt text](./prototype/etc/prototype_1.png "Prototype")
 
 **Applicability:** Use the Prototype pattern when a system should be independent of how its products are created, composed and represented; and
 * when the classes to instantiate are specified at run-time, for example, by dynamic loading; or
@@ -160,7 +167,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="singleton">Singleton</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Ensure a class only has one instance, and provide a global point of access to it.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/singleton/etc/singleton_1.png "Singleton")
+![alt text](./singleton/etc/singleton_1.png "Singleton")
 
 **Applicability:** Use the Singleton pattern when
 * there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
@@ -177,7 +184,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="adapter">Adapter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/adapter/etc/adapter_1.png "Adapter")
+![alt text](./adapter/etc/adapter_1.png "Adapter")
 
 **Applicability:** Use the Adapter pattern when
 * you want to use an existing class, and its interface does not match the one you need
@@ -191,7 +198,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Intent:** Decouple an abstraction from its implementation so that the two can vary independently.
 
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/bridge/etc/bridge_1.png "Bridge")
+![alt text](./bridge/etc/bridge_1.png "Bridge")
 
 **Applicability:** Use the Bridge pattern when
 * you want to avoid a permanent binding between an abstraction and its implementation. This might be the case, for example, when the implementation must be selected or switched at run-time.
@@ -203,7 +210,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="composite">Composite</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/composite/etc/composite_1.png "Composite")
+![alt text](./composite/etc/composite_1.png "Composite")
 
 **Applicability:** Use the Composite pattern when
 * you want to represent part-whole hierarchies of objects
@@ -216,17 +223,17 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="decorator">Decorator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/decorator/etc/decorator_1.png "Decorator")
+![alt text](./decorator/etc/decorator_1.png "Decorator")
 
 **Applicability:** Use Decorator
 * to add responsibilities to individual objects dynamically and transparently, that is, without affecting other objects
 * for responsibilities that can be withdrawn
-* when extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of sublasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
+* when extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of subclasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
 
 ## <a name="facade">Facade</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/facade/etc/facade_1.png "Facade")
+![alt text](./facade/etc/facade_1.png "Facade")
 
 **Applicability:** Use the Facade pattern when
 * you want to provide a simple interface to a complex subsystem. Subsystems often get more complex  as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the subsystem more reusable and easier to customize, but it also becomes harder to use for clients that don't need to customize it. A facade can provide a simple default view of the subsystem that is good enough for most clients. Only clients needing more customizability will need to look beyond the facade.
@@ -236,7 +243,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="flyweight">Flyweight</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Use sharing to support large numbers of fine-grained objects efficiently.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/flyweight/etc/flyweight_1.png "Flyweight")
+![alt text](./flyweight/etc/flyweight_1.png "Flyweight")
 
 **Applicability:** The Flyweight pattern's effectiveness depends heavily on how and where it's used. Apply the Flyweight pattern when all of the following are true
 * an application uses a large number of objects
@@ -251,7 +258,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="proxy">Proxy</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a surrogate or placeholder for another object to control access to it.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/proxy/etc/proxy_1.png "Proxy")
+![alt text](./proxy/etc/proxy_1.png "Proxy")
 
 **Applicability:** Proxy is applicable whenever there is a need for a more versatile or sophisticated reference to an object than a simple pointer. Here are several common situations in which the Proxy pattern is applicable
 
@@ -274,9 +281,9 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="service-locator">Service Locator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate the processes involved in obtaining a service with a strong abstraction layer.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/service-locator/etc/service-locator.png "Proxy")
+![alt text](./service-locator/etc/service-locator.png "Proxy")
 
-**Applicability:** The service locator pattern is applicable whenever we want to locate/fetch various services using JNDI which, typically, is a redundant and expensive lookup. The service Locator pattern addresses this expensive lookup by making use of caching techniques ie. for the very first time a particular service is requested, the service Locator looks up in JNDI, fetched the relavant service and then finally caches this service object. Now, further lookups of the same service via Service Locator is done in its cache which improves the performance of application to great extent.
+**Applicability:** The service locator pattern is applicable whenever we want to locate/fetch various services using JNDI which, typically, is a redundant and expensive lookup. The service Locator pattern addresses this expensive lookup by making use of caching techniques ie. for the very first time a particular service is requested, the service Locator looks up in JNDI, fetched the relevant service and then finally caches this service object. Now, further lookups of the same service via Service Locator is done in its cache which improves the performance of application to great extent.
 
 **Typical Use Case:**
 
@@ -287,7 +294,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="chain-of-responsibility">Chain of responsibility</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/chain/etc/chain_1.png "Chain of Responsibility")
+![alt text](./chain/etc/chain_1.png "Chain of Responsibility")
 
 **Applicability:** Use Chain of Responsibility when
 * more than one object may handle a request, and the handler isn't known a priori. The handler should be ascertained automatically
@@ -301,7 +308,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="command">Command</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/command/etc/command.png "Command")
+![alt text](./command/etc/command.png "Command")
 
 **Applicability:** Use the Command pattern when you want to
 
@@ -323,7 +330,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="interpreter">Interpreter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Given a language, define a representation for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/interpreter/etc/interpreter_1.png "Interpreter")
+![alt text](./interpreter/etc/interpreter_1.png "Interpreter")
 
 **Applicability:** Use the Interpreter pattern when there is a language to interpret, and you can represent statements in the language as abstract syntax trees. The Interpreter pattern works best when
 * the grammar is simple. For complex grammars, the class hierarchy for the grammar becomes large and unmanageable. Tools such as parser generators are a better alternative in such cases. They can interpret expressions without building abstract syntax trees, which can save space and possibly time
@@ -332,7 +339,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="iterator">Iterator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/iterator/etc/iterator_1.png "Iterator")
+![alt text](./iterator/etc/iterator_1.png "Iterator")
 
 **Applicability:** Use the Iterator pattern
 * to access an aggregate object's contents without exposing its internal representation
@@ -345,7 +352,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="mediator">Mediator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/mediator/etc/mediator_1.png "Mediator")
+![alt text](./mediator/etc/mediator_1.png "Mediator")
 
 **Applicability:** Use the Mediator pattern when
 * a set of objects communicate in well-defined but complex ways. The resulting interdependencies are unstructured and difficult to understand
@@ -355,7 +362,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="memento">Memento</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/memento/etc/memento.png "Memento")
+![alt text](./memento/etc/memento.png "Memento")
 
 **Applicability:** Use the Memento pattern when
 * a snapshot of an object's state must be saved so that it can be restored to that state later, and
@@ -367,7 +374,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="observer">Observer</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/observer/etc/observer_1.png "Observer")
+![alt text](./observer/etc/observer_1.png "Observer")
 
 **Applicability:** Use the Observer pattern in any of the following situations
 
@@ -385,7 +392,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="state">State</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/state/etc/state_1.png "State")
+![alt text](./state/etc/state_1.png "State")
 
 **Applicability:** Use the State pattern in either of the following cases
 * an object's behavior depends on its state, and it must change its behavior at run-time depending on that state
@@ -394,7 +401,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="strategy">Strategy</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/strategy/etc/strategy_1.png "Strategy")
+![alt text](./strategy/etc/strategy_1.png "Strategy")
 
 **Applicability:** Use the Strategy pattern when
 * many related classes differ only in their behavior. Strategies provide a way to configure a class either one of many behaviors
@@ -405,7 +412,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="template-method">Template method</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/template-method/etc/template-method_1.png "Template Method")
+![alt text](./template-method/etc/template-method_1.png "Template Method")
 
 **Applicability:** The Template Method pattern should be used
 * to implement the invariant parts of an algorithm once and leave it up to subclasses to implement the behavior that can vary
@@ -415,7 +422,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="visitor">Visitor</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/visitor/etc/visitor_1.png "Visitor")
+![alt text](./visitor/etc/visitor_1.png "Visitor")
 
 **Applicability:** Use the Visitor pattern when
 * an object structure contains many classes of objects with differing interfaces, and you want to perform operations on these objects that depend on their concrete classes
@@ -428,7 +435,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="model-view-presenter">Model-View-Presenter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Apply a "Separation of Concerns" principle in a way that allows developers to build and test user interfaces.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/model-view-presenter/etc/model-view-presenter_1.png "Model-View-Presenter")
+![alt text](./model-view-presenter/etc/model-view-presenter_1.png "Model-View-Presenter")
 
 **Applicability:** Use the Model-View-Presenter in any of the following situations
 * when you want to improve the "Separation of Concerns" principle in presentation logic
@@ -437,7 +444,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="dao">Data Access Object</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Object provides an abstract interface to some type of database or other persistence mechanism.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/dao/etc/dao.png "Data Access Object")
+![alt text](./dao/etc/dao.png "Data Access Object")
 
 **Applicability:** Use the Data Access Object in any of the following situations
 * when you want to consolidate how the data layer is accessed
@@ -446,7 +453,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="double-checked-locking">Double Checked Locking</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Reduce the overhead of acquiring a lock by first testing the locking criterion (the "lock hint") without actually acquiring the lock. Only if the locking criterion check indicates that locking is required does the actual locking logic proceed.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/double-checked-locking/etc/double_checked_locking_1.png "Double Checked Locking")
+![alt text](./double-checked-locking/etc/double_checked_locking_1.png "Double Checked Locking")
 
 **Applicability:** Use the Double Checked Locking pattern when
 * there is a concurrent access in object creation, e.g. singleton, where you want to create single instance of the same class and checking if it's null or not maybe not be enough when there are two or more threads that checks if instance is null or not.
@@ -455,7 +462,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="servant">Servant</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Servant is used for providing some behavior to a group of classes. Instead of defining that behavior in each class - or when we cannot factor out this behavior in the common parent class - it is defined once in the Servant.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/servant/etc/servant-pattern.png "Servant")
+![alt text](./servant/etc/servant-pattern.png "Servant")
 
 **Applicability:** Use the Servant pattern when
 * When we want some objects to perform a common action and don't want to define this action as a method in every class.
@@ -463,7 +470,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="null-object">Null Object</a> [&#8593;](#list-of-design-patterns)
 **Intent:** In most object-oriented languages, such as Java or C#, references may be null. These references need to be checked to ensure they are not null before invoking any methods, because methods typically cannot be invoked on null references. Instead of using a null reference to convey absence of an object (for instance, a non-existent customer), one uses an object which implements the expected interface, but whose method body is empty. The advantage of this approach over a working default implementation is that a Null Object is very predictable and has no side effects: it does nothing.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/null-object/etc/null-object.png "Null Object")
+![alt text](./null-object/etc/null-object.png "Null Object")
 
 **Applicability:** Use the Null Object pattern when
 * You want to avoid explicit null checks and keep the algorithm elegant and easy to read.
@@ -471,7 +478,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="event-aggregator">Event Aggregator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** A system with lots of objects can lead to complexities when a client wants to subscribe to events. The client has to find and register for each object individually, if each object has multiple events then each event requires a separate subscription. An Event Aggregator acts as a single source of events for many objects. It registers for all the events of the many objects allowing clients to register with just the aggregator.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/event-aggregator/etc/classes.png "Event Aggregator")
+![alt text](./event-aggregator/etc/classes.png "Event Aggregator")
 
 **Applicability:** Use the Event Aggregator pattern when
 * Event Aggregator is a good choice when you have lots of objects that are potential event sources. Rather than have the observer deal with registering with them all, you can centralize the registration logic to the Event Aggregator. As well as simplifying registration, a Event Aggregator also simplifies the memory management issues in using observers.
@@ -479,7 +486,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="callback">Callback</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Callback is a piece of executable code that is passed as an argument to other code, which is expected to call back (execute) the argument at some convenient time.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/callback/etc/callback.png "Callback")
+![alt text](./callback/etc/callback.png "Callback")
 
 **Applicability:** Use the Callback pattern when
 * When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
@@ -490,7 +497,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="intercepting-filter">Intercepting Filter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and post-processing to requests from a client to a target
  
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/intercepting-filter/etc/intercepting-filter.png "Intercepting Filter")
+![alt text](./intercepting-filter/etc/intercepting-filter.png "Intercepting Filter")
  
 **Applicability:** Use the Intercepting Filter pattern when
 * a system uses pre-processing or post-processing requests
@@ -500,7 +507,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="execute-around">Execute Around</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Execute Around idiom frees the user from certain actions that should always be executed before and after the business method. A good example of this is resource allocation and deallocation leaving the user to specify only what to do with the resource.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/execute-around/etc/execute-around.png "Execute Around")
+![alt text](./execute-around/etc/execute-around.png "Execute Around")
 
 **Applicability:** Use the Execute Around idiom when
 * You use an API that requires methods to be called in pairs such as open/close or allocate/deallocate.
@@ -508,7 +515,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="property">Property</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Create hierarchy of objects and new objects using already existing objects as parents.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/property/etc/property.png "Property")
+![alt text](./property/etc/property.png "Property")
 
 **Applicability:** Use the Property pattern when
 * when you like to have objects with dynamic set of fields and prototype inheritance
@@ -519,7 +526,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="poison-pill">Poison Pill</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Poison Pill is known predefined data item that allows to provide graceful shutdown for separate distributed consumption process.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/poison-pill/etc/poison-pill.png "Poison Pill")
+![alt text](./poison-pill/etc/poison-pill.png "Poison Pill")
 
 **Applicability:** Use the Poison Pill idiom when
 * need to send signal from one thread/process to another to terminate
@@ -530,7 +537,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 ## <a name="lazy-loading">Lazy Loading</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Lazy loading is a design pattern commonly used to defer initialization of an object until the point at which it is needed. It can contribute to efficiency in the program's operation if properly and appropriately used.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/lazy-loading/etc/lazy-loading.png "Lazy Loading")
+![alt text](./lazy-loading/etc/lazy-loading.png "Lazy Loading")
 
 **Applicability:** Use the Lazy Loading idiom when
 * eager loading is expensive or the object to be loaded might not be needed at all
@@ -542,7 +549,7 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 **Intent:** Service Layer is an abstraction over domain logic. Typically applications require multiple kinds of interfaces to the data
 they store and logic they implement: data loaders, user interfaces, integration gateways, and others. Despite their different purposes, these interfaces often need common interactions with the application to access and manipulate its data and invoke its business logic. The Service Layer fulfills this role.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/service-layer/etc/service-layer.png "Service Layer")
+![alt text](./service-layer/etc/service-layer.png "Service Layer")
 
 **Applicability:** Use the Service Layer pattern when
 * you want to encapsulate domain logic under API
@@ -553,7 +560,7 @@ they store and logic they implement: data loaders, user interfaces, integration 
 candidate object that it is matched against. As well as its usefulness in selection, it is also valuable for
 validation and for building to order
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/specification/etc/specification.png "Specification")
+![alt text](./specification/etc/specification.png "Specification")
 
 **Applicability:** Use the Specification pattern when
 * You need to select a subset of objects based on some criteria, and to refresh the selection at various times
@@ -562,7 +569,7 @@ validation and for building to order
 ## <a name="tolerant-reader">Tolerant Reader</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Tolerant Reader is an integration pattern that helps creating robust communication systems. The idea is to be as tolerant as possible when reading data from another service. This way, when the communication schema changes, the readers must not break.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/tolerant-reader/etc/tolerant-reader.png "Tolerant Reader")
+![alt text](./tolerant-reader/etc/tolerant-reader.png "Tolerant Reader")
 
 **Applicability:** Use the Tolerant Reader pattern when
 * The communication schema can evolve and change and yet the receiving side should not break
@@ -570,7 +577,7 @@ validation and for building to order
 ## <a name="model-view-controller">Model-View-Controller</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Separate the user interface into three interconnected components: the model, the view and the controller. Let the model manage the data, the view display the data and the controller mediate updating the data and redrawing the display.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/model-view-controller/etc/model-view-controller.png "Model-View-Controller")
+![alt text](./model-view-controller/etc/model-view-controller.png "Model-View-Controller")
 
 **Applicability:** Use the Model-View-Controller pattern when
 * you want to clearly separate the domain data from its user interface representation
@@ -578,7 +585,7 @@ validation and for building to order
 ## <a name="flux">Flux</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Flux eschews MVC in favor of a unidirectional data flow. When a user interacts with a view, the view propagates an action through a central dispatcher, to the various stores that hold the application's data and business logic, which updates all of the views that are affected.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/flux/etc/flux.png "Flux")
+![alt text](./flux/etc/flux.png "Flux")
 
 **Applicability:** Use the Flux pattern when
 * You want to focus on creating explicit and understandable update paths for your application's data, which makes tracing changes during development simpler and makes bugs easier to track down and fix.
@@ -586,7 +593,7 @@ validation and for building to order
 ## <a name="double-dispatch">Double Dispatch</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Double Dispatch pattern is a way to create maintainable dynamic behavior based on receiver and parameter types.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/double-dispatch/etc/double-dispatch.png "Double Dispatch")
+![alt text](./double-dispatch/etc/double-dispatch.png "Double Dispatch")
 
 **Applicability:** Use the Double Dispatch pattern when
 * The dynamic behavior is not defined only based on receiving object's type but also on the receiving method's parameter type.
@@ -597,7 +604,7 @@ validation and for building to order
 ## <a name="multiton">Multiton</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Ensure a class only has limited number of instances, and provide a global point of access to them.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/multiton/etc/multiton.png "Multiton")
+![alt text](./multiton/etc/multiton.png "Multiton")
 
 **Applicability:** Use the Multiton pattern when
 * there must be specific number of instances of a class, and they must be accessible to clients from a well-known access point
@@ -605,7 +612,7 @@ validation and for building to order
 ## <a name="resource-acquisition-is-initialization">Resource Acquisition Is Initialization</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Resource Acquisition Is Initialization pattern can be used to implement exception safe resource management.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/resource-acquisition-is-initialization/etc/resource-acquisition-is-initialization.png "Resource Acquisition Is Initialization")
+![alt text](./resource-acquisition-is-initialization/etc/resource-acquisition-is-initialization.png "Resource Acquisition Is Initialization")
 
 **Applicability:** Use the Resource Acquisition Is Initialization pattern when
 * You have resources that must be closed in every condition
@@ -613,15 +620,29 @@ validation and for building to order
 ## <a name="thread-pool">Thread Pool</a> [&#8593;](#list-of-design-patterns)
 **Intent:** It is often the case that tasks to be executed are short-lived and the number of tasks is large. Creating a new thread for each task would make the system spend more time creating and destroying the threads than executing the actual tasks. Thread Pool solves this problem by reusing existing threads and eliminating the latency of creating new threads.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/thread-pool/etc/thread-pool.png "Thread Pool")
+![alt text](./thread-pool/etc/thread-pool.png "Thread Pool")
 
 **Applicability:** Use the Thread Pool pattern when
 * You have a large number of short-lived tasks to be executed in parallel
 
+## <a name="async-method-invocation">Async Method Invocation</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Asynchronous method invocation is pattern where the calling thread is not blocked while waiting results of tasks. The pattern provides parallel processing of multiple independent tasks and retrieving the results via callbacks or waiting until everything is done. 
+
+![alt text](./async-method-invocation/etc/async-method-invocation.png "Async Method Invocation")
+
+**Applicability:** Use async method invocation pattern when
+* You have multiple independent tasks that can run in parallel
+* You need to improve performance of running a group of sequential tasks
+* You have limited number of processing capacity or long running tasks and the caller cannot wait the tasks to be ready
+
+**Real world examples:**
+* [FutureTask](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/FutureTask.html), [CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html) and [ExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html) (Java)
+* [Task-based Asynchronous Pattern](https://msdn.microsoft.com/en-us/library/hh873175.aspx) (.NET)
+
 ## <a name="private-class-data">Private Class Data</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Private Class Data design pattern seeks to reduce exposure of attributes by limiting their visibility. It reduces the number of class attributes by encapsulating them in single Data object.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/private-class-data/etc/private-class-data.png "Private Class Data")
+![alt text](./private-class-data/etc/private-class-data.png "Private Class Data")
 
 **Applicability:** Use the Private Class Data pattern when
 * You want to prevent write access to class data members
@@ -629,7 +650,7 @@ validation and for building to order
 ## <a name="object-pool">Object Pool</a> [&#8593;](#list-of-design-patterns)
 **Intent:** When objects are expensive to create and they are needed only for short periods of time it is advantageous to utilize the Object Pool pattern. The Object Pool provides a cache for instantiated objects tracking which ones are in use and which are available.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/object-pool/etc/object-pool.png "Object Pool")
+![alt text](./object-pool/etc/object-pool.png "Object Pool")
 
 **Applicability:** Use the Object Pool pattern when
 * The objects are expensive to create (allocation cost)
@@ -638,7 +659,7 @@ validation and for building to order
 ## <a name="dependency-injection">Dependency Injection</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Dependency Injection is a software design pattern in which one or more dependencies (or services) are injected, or passed by reference, into a dependent object (or client) and are made part of the client's state. The pattern separates the creation of a client's dependencies from its own behavior, which allows program designs to be loosely coupled and to follow the inversion of control and single responsibility principles.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/dependency-injection/etc/dependency-injection.png "Dependency Injection")
+![alt text](./dependency-injection/etc/dependency-injection.png "Dependency Injection")
 
 **Applicability:** Use the Dependency Injection pattern when
 * When you need to remove knowledge of concrete implementation from object
@@ -647,7 +668,7 @@ validation and for building to order
 ## <a name="naked-objects">Naked Objects</a> [&#8593;](#list-of-design-patterns)
 **Intent:** The Naked Objects architectural pattern is well suited for rapid prototyping. Using the pattern, you only need to write the domain objects, everything else is autogenerated by the framework.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/naked-objects/etc/naked-objects.png "Naked Objects")
+![alt text](./naked-objects/etc/naked-objects.png "Naked Objects")
 
 **Applicability:** Use the Naked Objects pattern when
 * You are prototyping and need fast development cycle
@@ -660,17 +681,56 @@ validation and for building to order
 ## <a name="front-controller">Front Controller</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Introduce a common handler for all requests for a web site. This way we can encapsulate common functionality such as security, internationalization, routing and logging in a single place.
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/front-controller/etc/front-controller.png "Front Controller")
+![alt text](./front-controller/etc/front-controller.png "Front Controller")
 
 **Applicability:** Use the Front Controller pattern when
 * you want to encapsulate common request handling functionality in single place
 * you want to implements dynamic request handling i.e. change routing without modifying code
-* make web server configution portable, you only need to register the handler web server specific way
+* make web server configuration portable, you only need to register the handler web server specific way
 
 **Real world examples:** 
 * [Apache Struts](https://struts.apache.org/)
 
+## <a name="repository">Repository</a> [&#8593;](#list-of-design-patterns)
+**Intent:** Repository layer is added between the domain and data mapping layers to isolate domain objects from details of the database access code and to minimize scattering and duplication of query code. The Repository pattern is especially useful in systems where number of domain classes is large or heavy querying is utilized.
 
+![alt text](./repository/etc/repository.png "Repository")
+
+**Applicability:** Use the Repository pattern when
+* the number of domain objects is large
+* you want to avoid duplication of query code
+* you want to keep the database querying code in single place
+* you have multiple data sources
+
+**Real world examples:** 
+* [Spring Data](http://projects.spring.io/spring-data/)
+
+## <a name="business-delegate">Business Delegate</a> [&#8593;](#list-of-design-patterns)
+**Intent:** The Business Delegate pattern adds an abstraction layer between presentation and business tiers. By using the pattern we gain loose coupling between the tiers and encapsulate knowledge about how to locate, connect to, and interact with the business objects that make up the application.
+
+![alt text](./business-delegate/etc/business-delegate.png "Business Delegate")
+
+**Applicability:** Use the Business Delegate pattern when
+* you want loose coupling between presentation and business tiers
+* you want to orchestrate calls to multiple business services
+* you want to encapsulate service lookups and service calls
+
+## <a name="half-sync-half-async">Half-Sync/Half-Async</a> [&#8593;](#list-of-design-patterns)
+**Intent:** The Half-Sync/Half-Async pattern decouples synchronous I/O from asynchronous I/O in a system to simplify concurrent programming effort without degrading execution efficiency.
+
+![Half-Sync/Half-Async class diagram](./half-sync-half-async/etc/half-sync-half-async.png)
+
+**Applicability:** Use Half-Sync/Half-Async pattern when
+* A system possesses following characteristics:
+  * System must perform tasks in response to external events that occur asynchronously, like hardware interrupts in OS
+  * It is inefficient to dedicate separate thread of control to perform synchronous I/O for each external source of event
+  * The higher level tasks in the system can be simplified significantly if I/O is performed synchronously.
+* One or more tasks in a system must run in a single thread of control, while other tasks may benefit from multi-threading.
+
+**Real world examples:**
+* [BSD Unix networking subsystem](http://www.cs.wustl.edu/~schmidt/PDF/PLoP-95.pdf)
+* [Real Time CORBA](http://www.omg.org/news/meetings/workshops/presentations/realtime2001/4-3_Pyarali_thread-pool.pdf)
+* [Android AsyncTask framework](http://developer.android.com/reference/android/os/AsyncTask.html)
 
 # Frequently asked questions
 
@@ -692,7 +752,7 @@ While the implementations look similar there are differences. The Chain of Respo
 
 **<a id="Q5">Q: What is the difference between Visitor and Double Dispatch patterns?</a>**
 
-The Visitor pattern is a means of adding a new operation to existing classes. Double dispatch is a means of dispatching function calls with respect to two polymorphic types, rather than a single polymorphic type, which is what languages like C++ and Java support directly.
+The Visitor pattern is a means of adding a new operation to existing classes. Double dispatch is a means of dispatching function calls with respect to two polymorphic types, rather than a single polymorphic type, which is what languages like C++ and Java _do not_ support directly.
 
 **<a id="Q6">Q: What are the differences between Flyweight and Object Pool patterns?</a>**
 
@@ -710,19 +770,22 @@ As for performance and scalability, pools can become bottlenecks, if all the poo
 
 # How to contribute
 
-**To add a new pattern** you need to do the following steps:
+**To work on a new pattern** you need to do the following steps:
 
-1. Fork the repository.
-2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation.
-3. Create a simple class diagram from your example code.
-4. Add description of the pattern in README.md and link to the class diagram.	
+1. If there is no issue for the new pattern yet, raise new issue. Comment on the issue that you are working on it so that others don't start work on the same thing.
+2. Fork the repository.
+3. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation. Reference the issue id e.g. #52 in your commit messages.
+4. Create a simple class diagram from your example code.
+5. Add description of the pattern in README.md and link to the class diagram.	
+6. Create a pull request.
+
+**To work on one of the non-pattern issues** you need to do the following steps:
+
+1. Check that the issue has "help wanted" badge
+2. Comment on the issue that you are working on it
+3. Fork the repository.
+4. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation. Reference the issue id e.g. #52 in your commit messages.
 5. Create a pull request.
-
-**To work on one of the raised issues** you need to do the following steps:
-
-1. Fork the repository.
-2. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation. Reference the issue id e.g. #52 in your commit messages.
-3. Create a pull request.
 
 **For creating/editing UML diagrams** you need [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home).
 
@@ -739,7 +802,7 @@ As for performance and scalability, pools can become bottlenecks, if all the poo
 
 # Versioning
 
-Java-design-patterns project uses [semantic versioning](http://semver.org/) scheme.
+Java-design-patterns project uses [semantic versioning](http://semver.org/) scheme. However, version numbers in this project do not signify binary releases (since we don't make any) but rather milestones achieved on the roadmap. In other words, version numbers are used only for project planning sake.
 
 
 
@@ -761,6 +824,8 @@ Java-design-patterns project uses [semantic versioning](http://semver.org/) sche
 * [Flux - Application architecture for building user interfaces](http://facebook.github.io/flux/)
 * [Richard Pawson - Naked Objects](http://downloads.nakedobjects.net/resources/Pawson%20thesis.pdf)
 * [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420)
+* [Spring Data](http://www.amazon.com/Spring-Data-Mark-Pollack/dp/1449323952/ref=sr_1_1)
+* [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)
 
 
 

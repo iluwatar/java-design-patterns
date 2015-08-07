@@ -16,7 +16,7 @@
 	<parent>
 		<groupId>com.iluwatar</groupId>
 		<artifactId>naked-objects</artifactId>
-		<version>1.3.0</version>
+		<version>1.5.0</version>
 	</parent>
 
 	<artifactId>naked-objects-dom</artifactId>
@@ -72,7 +72,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<datanucleus-maven-plugin.version>4.0.0-release</datanucleus-maven-plugin.version>
+                <datanucleus-maven-plugin.version>4.0.1</datanucleus-maven-plugin.version>
 			</properties>
 			<build>
 				<pluginManagement>

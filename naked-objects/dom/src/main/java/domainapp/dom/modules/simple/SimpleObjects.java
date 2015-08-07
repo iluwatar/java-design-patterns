@@ -70,7 +70,7 @@ public class SimpleObjects {
             final String name
     ) {
         return container.allMatches(
-                new QueryDefault<SimpleObject>(
+                new QueryDefault<>(
                         SimpleObject.class,
                         "findByName",
                         "name", name));

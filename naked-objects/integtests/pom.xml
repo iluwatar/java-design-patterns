@@ -16,7 +16,7 @@
 	<parent>
 		<groupId>com.iluwatar</groupId>
 		<artifactId>naked-objects</artifactId>
-		<version>1.3.0</version>
+		<version>1.5.0</version>
 	</parent>
 
 	<artifactId>naked-objects-integtests</artifactId>
@@ -84,17 +84,38 @@
 			<artifactId>hsqldb</artifactId>
 		</dependency>
 
-		<!-- uncomment to enable enhanced cucumber-jvm reporting http://www.masterthought.net/section/cucumber-reporting 
-			<dependency> <groupId>com.googlecode.totallylazy</groupId> <artifactId>totallylazy</artifactId> 
-			<version>991</version> </dependency> <dependency> <groupId>net.masterthought</groupId> 
-			<artifactId>cucumber-reporting</artifactId> <version>0.0.21</version> </dependency> 
-			<dependency> <groupId>net.masterthought</groupId> <artifactId>maven-cucumber-reporting</artifactId> 
-			<version>0.0.4</version> </dependency> -->
-	</dependencies>
+        <!-- 
+        uncomment to enable enhanced cucumber-jvm reporting
+        http://www.masterthought.net/section/cucumber-reporting
+        <dependency>  
+            <groupId>com.googlecode.totallylazy</groupId>  
+            <artifactId>totallylazy</artifactId>  
+            <version>991</version>  
+        </dependency>
 
-	<!-- uncomment for enhanced cucumber-jvm reporting http://www.masterthought.net/section/cucumber-reporting 
-		<repositories> <repository> <id>repo.bodar.com</id> <url>http://repo.bodar.com</url> 
-		</repository> </repositories> -->
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>0.0.21</version>
+        </dependency>
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>maven-cucumber-reporting</artifactId>
+            <version>0.0.4</version>
+        </dependency>  
+        -->
+    </dependencies>
+
+    <!-- 
+    uncomment for enhanced cucumber-jvm reporting
+    http://www.masterthought.net/section/cucumber-reporting
+    <repositories>  
+        <repository>  
+            <id>repo.bodar.com</id>  
+            <url>http://repo.bodar.com</url>  
+        </repository>  
+    </repositories>  
+     -->
 
 
 </project>

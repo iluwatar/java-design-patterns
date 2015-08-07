@@ -16,7 +16,7 @@
 	<parent>
 		<groupId>com.iluwatar</groupId>
 		<artifactId>naked-objects</artifactId>
-		<version>1.3.0</version>
+		<version>1.5.0</version>
 	</parent>
 
 	<artifactId>naked-objects-webapp</artifactId>
@@ -236,8 +236,7 @@
 							<tasks>
 								<exec executable="java" failonerror="true">
 									<arg value="-jar" />
-									<arg
-										value="${project.build.directory}/${project.build.finalName}-jetty-console.jar" />
+                                    <arg value="${project.build.directory}/${project.build.finalName}-jetty-console.jar" />
 								</exec>
 							</tasks>
 						</configuration>
@@ -303,10 +302,8 @@
 									<arg value="-Dtarget.dir=${target.dir}" />
 
 									<arg value="-Drebel.plugins=${isis_jrebel_plugin.jar}" />
-									<arg
-										value="-Disis-jrebel-plugin.packagePrefix=${isis-jrebel-plugin.packagePrefix}" />
-									<arg
-										value="-Disis-jrebel-plugin.loggingLevel=${isis-jrebel-plugin.loggingLevel}" />
+                                    <arg value="-Disis-jrebel-plugin.packagePrefix=${isis-jrebel-plugin.packagePrefix}" />
+                                    <arg value="-Disis-jrebel-plugin.loggingLevel=${isis-jrebel-plugin.loggingLevel}" />
 									<arg value="-XX:MaxPermSize=128m" />
 									<arg value="-classpath" />
 									<arg value="${runtime_classpath}" />

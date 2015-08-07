@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.iluwatar</groupId>
 	<artifactId>java-design-patterns</artifactId>
-	<version>1.3.0</version>
+	<version>1.5.0</version>
 	<packaging>pom</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<hibernate.version>5.0.0.Beta1</hibernate.version>
+		<hibernate.version>5.0.0.CR2</hibernate.version>
+		<spring-data.version>1.8.1.RELEASE</spring-data.version>
 		<h2.version>1.4.187</h2.version>
 		<junit.version>4.12</junit.version>
 		<compiler.version>3.0</compiler.version>
 		<coveralls.version>3.1.0</coveralls.version>
 		<jacoco.version>0.7.2.201409121644</jacoco.version>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -68,7 +69,11 @@
 		<module>dependency-injection</module>
 		<module>naked-objects</module>
 		<module>front-controller</module>
-	</modules>
+		<module>repository</module>
+		<module>async-method-invocation</module>
+    	<module>business-delegate</module>
+    	<module>half-sync-half-async</module>
+  </modules>
 
 	<dependencyManagement>
 		<dependencies>
@@ -78,9 +83,24 @@
 				<version>${hibernate.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${spring-data.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>
 				<version>${h2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>${commons-dbcp.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
@@ -119,7 +139,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore />
+										<ignore/>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -152,6 +172,16 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>${jacoco.version}</version>
+				<!-- The following exclude configuration was added because error occurred 
+					when executing "mvn clean test jacoco:report coveralls:report" -->
+				<!-- [ERROR] Failed to execute goal org.eluder.coveralls:coveralls-maven-plugin:3.1.0:report 
+					(default-cli) on project java-design-patterns: I/O operation failed: No source 
+					found for domainapp/dom/modules/simple/QSimpleObject.java -> [Help 1] -->
+				<configuration>
+					<excludes>
+						<exclude>domainapp/dom/modules/simple/QSimpleObject.class</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<id>prepare-agent</id>

@@ -15,7 +15,7 @@
 	<parent>
 		<artifactId>java-design-patterns</artifactId>
 		<groupId>com.iluwatar</groupId>
-		<version>1.3.0</version>
+		<version>1.5.0</version>
 	</parent>
 
 	<artifactId>naked-objects</artifactId>
@@ -240,61 +240,52 @@
 							<exclude>**/translations*.po</exclude>
 						</excludes>
 						<licenses>
-							<license
-								implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-								<licenseFamilyCategory>AL2</licenseFamilyCategory>
-								<licenseFamilyName>Apache License 2.0</licenseFamilyName>
-								<notes />
-								<patterns>
-									<pattern>Licensed to the Apache Software Foundation (ASF) under
-										one</pattern>
-								</patterns>
-							</license>
-							<license
-								implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-								<licenseFamilyCategory>JQRY</licenseFamilyCategory>
-								<licenseFamilyName>MIT</licenseFamilyName>
-								<notes />
-								<patterns>
-									<pattern>Dual licensed under the MIT or GPL Version 2 licenses.</pattern>
-								</patterns>
-							</license>
-							<license
-								implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-								<licenseFamilyCategory>JMOCK</licenseFamilyCategory>
-								<licenseFamilyName>JMock</licenseFamilyName>
-								<notes />
-								<patterns>
-									<pattern>Copyright (c) 2000-2007, jMock.org</pattern>
-								</patterns>
-							</license>
-							<license
-								implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-								<licenseFamilyCategory>DOCBK</licenseFamilyCategory>
-								<licenseFamilyName>DocBook 4.5</licenseFamilyName>
-								<notes />
-								<patterns>
-									<pattern>Permission to copy in any form is granted for use</pattern>
-									<pattern>Permission to use, copy, modify and distribute the
-										DocBook DTD</pattern>
-									<pattern>is hereby granted in perpetuity, provided that the
-										above copyright</pattern>
-									<pattern>This is the catalog data file for DocBook XML V4.5. It
-										is provided as</pattern>
-									<pattern>XML Catalog data for DocBook XML V4.5</pattern>
-									<pattern>DocBook additional general entities V4.5</pattern>
-									<pattern>XML EXCHANGE TABLE MODEL DECLARATION MODULE</pattern>
-								</patterns>
-							</license>
-							<license
-								implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-								<licenseFamilyCategory>W3C</licenseFamilyCategory>
-								<licenseFamilyName>XHTML</licenseFamilyName>
-								<notes />
-								<patterns>
-									<pattern>Copyright (c) 1998-2002 W3C (MIT, INRIA, Keio),</pattern>
-								</patterns>
-							</license>
+                            <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                                <licenseFamilyCategory>AL2</licenseFamilyCategory>
+                                <licenseFamilyName>Apache License 2.0</licenseFamilyName>
+                                <notes/>
+                                <patterns>
+                                    <pattern>Licensed to the Apache Software Foundation (ASF) under one</pattern>
+                                </patterns>
+                            </license>
+                            <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                                <licenseFamilyCategory>JQRY</licenseFamilyCategory>
+                                <licenseFamilyName>MIT</licenseFamilyName>
+                                <notes/>
+                                <patterns>
+                                    <pattern>Dual licensed under the MIT or GPL Version 2 licenses.</pattern>
+                                </patterns>
+                            </license>
+                            <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                                <licenseFamilyCategory>JMOCK</licenseFamilyCategory>
+                                <licenseFamilyName>JMock</licenseFamilyName>
+                                <notes/>
+                                <patterns>
+                                    <pattern>Copyright (c) 2000-2007, jMock.org</pattern>
+                                </patterns>
+                            </license>
+                            <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                                <licenseFamilyCategory>DOCBK</licenseFamilyCategory>
+                                <licenseFamilyName>DocBook 4.5</licenseFamilyName>
+                                <notes/>
+                                <patterns>
+                                    <pattern>Permission to copy in any form is granted for use</pattern>
+                                    <pattern>Permission to use, copy, modify and distribute the DocBook DTD</pattern>
+                                    <pattern>is hereby granted in perpetuity, provided that the above copyright</pattern>
+                                    <pattern>This is the catalog data file for DocBook XML V4.5. It is provided as</pattern>
+                                    <pattern>XML Catalog data for DocBook XML V4.5</pattern>
+                                    <pattern>DocBook additional general entities V4.5</pattern>
+                                    <pattern>XML EXCHANGE TABLE MODEL DECLARATION MODULE</pattern>
+                                </patterns>
+                            </license>
+                            <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                                <licenseFamilyCategory>W3C</licenseFamilyCategory>
+                                <licenseFamilyName>XHTML</licenseFamilyName>
+                                <notes/>
+                                <patterns>
+                                    <pattern>Copyright (c) 1998-2002 W3C (MIT, INRIA, Keio),</pattern>
+                                </patterns>
+                            </license>
 						</licenses>
 						<licenseFamilies>
 							<licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
@@ -359,17 +350,17 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-dom</artifactId>
-				<version>1.3.0</version>
+				<version>1.5.0</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-fixture</artifactId>
-				<version>1.3.0</version>
+				<version>1.5.0</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-webapp</artifactId>
-				<version>1.3.0</version>
+				<version>1.5.0</version>
 			</dependency>
 
 		</dependencies>
