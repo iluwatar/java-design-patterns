@@ -14,5 +14,6 @@ before_install:
   
 after_success:
   - mvn clean test jacoco:report coveralls:report
-  
+
+# Migration to container-based infrastructure  
 sudo: false
