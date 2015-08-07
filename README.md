@@ -27,6 +27,7 @@ Creational design patterns abstract the instantiation process. They help make a 
 * [Prototype](#prototype)
 * [Property](#property)
 * [Singleton](#singleton)
+* [Step Builder](#step-builder)
 * [Multiton](#multiton)
 * [Object Pool](#object-pool)
 
@@ -180,6 +181,14 @@ A programming idiom is a means of expressing a recurring construct in one or mor
 
 **Real world examples:**
 * [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29)
+
+## <a name="step-builder">Step Builder</a> [&#8593;](#list-of-design-patterns)
+**Intent:** An extension of the Builder pattern that fully guides the user through the creation of the object with no chances of confusion.
+The user experience will be much more improved by the fact that he will only see the next step methods available, NO build method until is the right time to build the object.
+
+![alt text](./step-builder/etc/step-builder.png "Step Builder")
+
+**Applicability:** Use the Step Builder pattern when the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled the construction process must allow different representations for the object that's constructed when in the process of constructing the order is important.
 
 ## <a name="adapter">Adapter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
