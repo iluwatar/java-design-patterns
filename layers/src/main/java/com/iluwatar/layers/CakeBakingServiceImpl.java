@@ -3,18 +3,14 @@ package com.iluwatar.layers;
 public class CakeBakingServiceImpl implements CakeBakingService {
 
 	@Override
-	public void bakeNewCake(String topping, String layer1, String layer2, String layer3) {
+	public void bakeNewCake(CakeInfo cakeInfo) {
 	}
 
 	@Override
-	public void addNewTopping(CakeTopping topping) {
-		// TODO Auto-generated method stub
-		
+	public void saveNewTopping(CakeToppingInfo toppingInfo) {
 	}
 
 	@Override
-	public void addNewLayer(CakeLayer layer) {
-		// TODO Auto-generated method stub
-		
+	public void saveNewLayer(CakeLayerInfo layerInfo) {
 	}
 }

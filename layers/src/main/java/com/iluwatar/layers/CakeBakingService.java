@@ -2,9 +2,9 @@ package com.iluwatar.layers;
 
 public interface CakeBakingService {
 	
-	void bakeNewCake(String topping, String layer1, String layer2, String layer3);
+	void bakeNewCake(CakeInfo cakeInfo);
 
-	void addNewTopping(CakeTopping topping);
+	void saveNewTopping(CakeToppingInfo toppingInfo);
 	
-	void addNewLayer(CakeLayer layer);
+	void saveNewLayer(CakeLayerInfo layerInfo);
 }
