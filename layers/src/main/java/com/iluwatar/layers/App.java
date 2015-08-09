@@ -1,17 +1,16 @@
 package com.iluwatar.layers;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 public class App {
 	
 	public static void main(String[] args) {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-				"applicationContext.xml");
-		
-		CakeLayerDao cakeLayerDao = context.getBean(CakeLayerDao.class);
-		cakeLayerDao.save(new CakeLayer("strawberry", 1200));
-		System.out.println("Count CakeLayer records: " + cakeLayerDao.count());
 
-		context.close();
+		CakeBakingService service = new CakeBakingServiceImpl();
+		service.saveNewLayer(new CakeLayerInfo("foo", 1));
+		service.saveNewLayer(new CakeLayerInfo("bar", 2));
+		service.getAllLayers().stream().forEach((layer) -> System.out.println(layer));
+		
+		service.saveNewTopping(new CakeToppingInfo("hoi", 11));
+		service.getAllToppings().stream().forEach((topping) -> System.out.println(topping));
+
 	}
 }

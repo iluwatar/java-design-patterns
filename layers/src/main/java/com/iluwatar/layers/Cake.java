@@ -15,14 +15,38 @@ public class Cake {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@OneToMany
-	private List<CakeLayer> layers;
 
 	@OneToOne
 	private CakeTopping topping;
 	
+	@OneToMany
+	private List<CakeLayer> layers;
+	
 	public Cake() {		
-		layers = new ArrayList<>();
+		setLayers(new ArrayList<>());
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public CakeTopping getTopping() {
+		return topping;
+	}
+
+	public void setTopping(CakeTopping topping) {
+		this.topping = topping;
+	}
+
+	public List<CakeLayer> getLayers() {
+		return layers;
+	}
+
+	public void setLayers(List<CakeLayer> layers) {
+		this.layers = layers;
 	}
 }

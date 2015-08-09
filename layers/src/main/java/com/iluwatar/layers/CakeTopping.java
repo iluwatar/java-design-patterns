@@ -19,7 +19,36 @@ public class CakeTopping {
 	}
 	
 	public CakeTopping(String name, int calories) {
+		this.setName(name);
+		this.setCalories(calories);
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getCalories() {
+		return calories;
+	}
+
+	public void setCalories(int calories) {
 		this.calories = calories;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("name: %s calories: %d", name, calories);
 	}
 }
