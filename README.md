@@ -32,6 +32,7 @@ system independent of how its objects are created, composed, and represented.
 * [Prototype](#prototype)
 * [Property](#property)
 * [Singleton](#singleton)
+* [Step Builder](#step-builder)
 * [Multiton](#multiton)
 * [Object Pool](#object-pool)
 
@@ -206,6 +207,14 @@ access to it.
 **Real world examples:**
 * [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29)
 
+## <a name="step-builder">Step Builder</a> [&#8593;](#list-of-design-patterns)
+**Intent:** An extension of the Builder pattern that fully guides the user through the creation of the object with no chances of confusion.
+The user experience will be much more improved by the fact that he will only see the next step methods available, NO build method until is the right time to build the object.
+
+![alt text](./step-builder/etc/step-builder.png "Step Builder")
+
+**Applicability:** Use the Step Builder pattern when the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled the construction process must allow different representations for the object that's constructed when in the process of constructing the order is important.
+
 ## <a name="adapter">Adapter</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Convert the interface of a class into another interface the clients
 expect. Adapter lets classes work together that couldn't otherwise because of
@@ -307,8 +316,8 @@ are several common situations in which the Proxy pattern is applicable
 
 **Typical Use Case:**
 
-* Control access to another object
-* Lazy initialization
+* control access to another object
+* lazy initialization
 * implement logging
 * facilitate network connection
 * to count references to an object
@@ -334,7 +343,7 @@ improves the performance of application to great extent.
 
 **Typical Use Case:**
 
-* When network hits are expensive and time consuming
+* when network hits are expensive and time consuming
 * lookups of services are done quite frequently
 * large number of services are being used
 
@@ -541,7 +550,7 @@ this behavior in the common parent class - it is defined once in the Servant.
 ![alt text](./servant/etc/servant-pattern.png "Servant")
 
 **Applicability:** Use the Servant pattern when
-* When we want some objects to perform a common action and don't want to define this action as a method in every class.
+* when we want some objects to perform a common action and don't want to define this action as a method in every class.
 
 ## <a name="null-object">Null Object</a> [&#8593;](#list-of-design-patterns)
 **Intent:** In most object-oriented languages, such as Java or C#, references
@@ -556,7 +565,7 @@ Object is very predictable and has no side effects: it does nothing.
 ![alt text](./null-object/etc/null-object.png "Null Object")
 
 **Applicability:** Use the Null Object pattern when
-* You want to avoid explicit null checks and keep the algorithm elegant and easy to read.
+* you want to avoid explicit null checks and keep the algorithm elegant and easy to read.
 
 ## <a name="event-aggregator">Event Aggregator</a> [&#8593;](#list-of-design-patterns)
 **Intent:** A system with lots of objects can lead to complexities when a
@@ -569,7 +578,11 @@ allowing clients to register with just the aggregator.
 ![alt text](./event-aggregator/etc/classes.png "Event Aggregator")
 
 **Applicability:** Use the Event Aggregator pattern when
-* Event Aggregator is a good choice when you have lots of objects that are potential event sources. Rather than have the observer deal with registering with them all, you can centralize the registration logic to the Event Aggregator. As well as simplifying registration, a Event Aggregator also simplifies the memory management issues in using observers.
+* Event Aggregator is a good choice when you have lots of objects that are
+  potential event sources. Rather than have the observer deal with registering
+  with them all, you can centralize the registration logic to the Event
+  Aggregator. As well as simplifying registration, a Event Aggregator also
+  simplifies the memory management issues in using observers.
 
 ## <a name="callback">Callback</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Callback is a piece of executable code that is passed as an
@@ -579,7 +592,7 @@ at some convenient time.
 ![alt text](./callback/etc/callback.png "Callback")
 
 **Applicability:** Use the Callback pattern when
-* When some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
+* when some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
 **Real world examples:**
 * [CyclicBarrier] (http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept callback that will be triggered every time when barrier is tripped.
@@ -604,7 +617,7 @@ only what to do with the resource.
 ![alt text](./execute-around/etc/execute-around.png "Execute Around")
 
 **Applicability:** Use the Execute Around idiom when
-* You use an API that requires methods to be called in pairs such as open/close or allocate/deallocate.
+* you use an API that requires methods to be called in pairs such as open/close or allocate/deallocate.
 
 ## <a name="property">Property</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Create hierarchy of objects and new objects using already existing
@@ -667,8 +680,8 @@ order
 ![alt text](./specification/etc/specification.png "Specification")
 
 **Applicability:** Use the Specification pattern when
-* You need to select a subset of objects based on some criteria, and to refresh the selection at various times
-* You need to check that only suitable objects are used for a certain role (validation)
+* you need to select a subset of objects based on some criteria, and to refresh the selection at various times
+* you need to check that only suitable objects are used for a certain role (validation)
 
 ## <a name="tolerant-reader">Tolerant Reader</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Tolerant Reader is an integration pattern that helps creating
@@ -679,7 +692,7 @@ changes, the readers must not break.
 ![alt text](./tolerant-reader/etc/tolerant-reader.png "Tolerant Reader")
 
 **Applicability:** Use the Tolerant Reader pattern when
-* The communication schema can evolve and change and yet the receiving side should not break
+* the communication schema can evolve and change and yet the receiving side should not break
 
 ## <a name="model-view-controller">Model-View-Controller</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Separate the user interface into three interconnected components:
@@ -701,7 +714,7 @@ logic, which updates all of the views that are affected.
 ![alt text](./flux/etc/flux.png "Flux")
 
 **Applicability:** Use the Flux pattern when
-* You want to focus on creating explicit and understandable update paths for your application's data, which makes tracing changes during development simpler and makes bugs easier to track down and fix.
+* you want to focus on creating explicit and understandable update paths for your application's data, which makes tracing changes during development simpler and makes bugs easier to track down and fix.
 
 ## <a name="double-dispatch">Double Dispatch</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Double Dispatch pattern is a way to create maintainable dynamic
@@ -710,7 +723,7 @@ behavior based on receiver and parameter types.
 ![alt text](./double-dispatch/etc/double-dispatch.png "Double Dispatch")
 
 **Applicability:** Use the Double Dispatch pattern when
-* The dynamic behavior is not defined only based on receiving object's type but also on the receiving method's parameter type.
+* the dynamic behavior is not defined only based on receiving object's type but also on the receiving method's parameter type.
 
 **Real world examples:** 
 * [ObjectOutputStream](https://docs.oracle.com/javase/8/docs/api/java/io/ObjectOutputStream.html)
@@ -742,7 +755,7 @@ and eliminating the latency of creating new threads.
 ![alt text](./thread-pool/etc/thread-pool.png "Thread Pool")
 
 **Applicability:** Use the Thread Pool pattern when
-* You have a large number of short-lived tasks to be executed in parallel
+* you have a large number of short-lived tasks to be executed in parallel
 
 ## <a name="async-method-invocation">Async Method Invocation</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Asynchronous method invocation is pattern where the calling thread
@@ -753,9 +766,10 @@ callbacks or waiting until everything is done.
 ![alt text](./async-method-invocation/etc/async-method-invocation.png "Async Method Invocation")
 
 **Applicability:** Use async method invocation pattern when
-* You have multiple independent tasks that can run in parallel
-* You need to improve performance of running a group of sequential tasks
-* You have limited number of processing capacity or long running tasks and the caller cannot wait the tasks to be ready
+* you have multiple independent tasks that can run in parallel
+* you need to improve the performance of a group of sequential tasks
+* you have limited amount of processing capacity or long running tasks and the
+  caller should not wait the tasks to be ready
 
 **Real world examples:**
 * [FutureTask](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/FutureTask.html), [CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html) and [ExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html) (Java)
@@ -769,7 +783,7 @@ attributes by encapsulating them in single Data object.
 ![alt text](./private-class-data/etc/private-class-data.png "Private Class Data")
 
 **Applicability:** Use the Private Class Data pattern when
-* You want to prevent write access to class data members
+* you want to prevent write access to class data members
 
 ## <a name="object-pool">Object Pool</a> [&#8593;](#list-of-design-patterns)
 **Intent:** When objects are expensive to create and they are needed only for
@@ -780,8 +794,8 @@ are in use and which are available.
 ![alt text](./object-pool/etc/object-pool.png "Object Pool")
 
 **Applicability:** Use the Object Pool pattern when
-* The objects are expensive to create (allocation cost)
-* You need a large number of short-lived objects (memory fragmentation)
+* the objects are expensive to create (allocation cost)
+* you need a large number of short-lived objects (memory fragmentation)
 
 ## <a name="dependency-injection">Dependency Injection</a> [&#8593;](#list-of-design-patterns)
 **Intent:** Dependency Injection is a software design pattern in which one or
@@ -794,8 +808,8 @@ inversion of control and single responsibility principles.
 ![alt text](./dependency-injection/etc/dependency-injection.png "Dependency Injection")
 
 **Applicability:** Use the Dependency Injection pattern when
-* When you need to remove knowledge of concrete implementation from object
-* To enable unit testing of classes in isolation using mock objects or stubs
+* when you need to remove knowledge of concrete implementation from object
+* to enable unit testing of classes in isolation using mock objects or stubs
 
 ## <a name="naked-objects">Naked Objects</a> [&#8593;](#list-of-design-patterns)
 **Intent:** The Naked Objects architectural pattern is well suited for rapid
@@ -805,9 +819,9 @@ everything else is autogenerated by the framework.
 ![alt text](./naked-objects/etc/naked-objects.png "Naked Objects")
 
 **Applicability:** Use the Naked Objects pattern when
-* You are prototyping and need fast development cycle
-* An autogenerated user interface is good enough
-* You want to automatically publish the domain as REST services
+* you are prototyping and need fast development cycle
+* an autogenerated user interface is good enough
+* you want to automatically publish the domain as REST services
 
 **Real world examples:** 
 * [Apache Isis](https://isis.apache.org/)
@@ -866,11 +880,11 @@ degrading execution efficiency.
 ![Half-Sync/Half-Async class diagram](./half-sync-half-async/etc/half-sync-half-async.png)
 
 **Applicability:** Use Half-Sync/Half-Async pattern when
-* A system possesses following characteristics:
-  * System must perform tasks in response to external events that occur asynchronously, like hardware interrupts in OS
-  * It is inefficient to dedicate separate thread of control to perform synchronous I/O for each external source of event
-  * The higher level tasks in the system can be simplified significantly if I/O is performed synchronously.
-* One or more tasks in a system must run in a single thread of control, while other tasks may benefit from multi-threading.
+* a system possesses following characteristics:
+  * the system must perform tasks in response to external events that occur asynchronously, like hardware interrupts in OS
+  * it is inefficient to dedicate separate thread of control to perform synchronous I/O for each external source of event
+  * the higher level tasks in the system can be simplified significantly if I/O is performed synchronously.
+* one or more tasks in a system must run in a single thread of control, while other tasks may benefit from multi-threading.
 
 **Real world examples:**
 * [BSD Unix networking subsystem](http://www.cs.wustl.edu/~schmidt/PDF/PLoP-95.pdf)
@@ -941,9 +955,13 @@ Flyweight.
 
 **To work on a new pattern** you need to do the following steps:
 
-1. If there is no issue for the new pattern yet, raise new issue. Comment on the issue that you are working on it so that others don't start work on the same thing.
+1. If there is no issue for the new pattern yet, raise new issue. Comment on
+   the issue that you are working on it so that others don't start work on the
+   same thing.
 2. Fork the repository.
-3. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation. Reference the issue id e.g. #52 in your commit messages.
+3. Implement the code changes in your fork. Remember to add sufficient comments
+   documenting the implementation. Reference the issue id e.g. #52 in your
+   commit messages.
 4. Create a simple class diagram from your example code.
 5. Add description of the pattern in README.md and link to the class diagram.	
 6. Create a pull request.
@@ -953,7 +971,9 @@ Flyweight.
 1. Check that the issue has "help wanted" badge
 2. Comment on the issue that you are working on it
 3. Fork the repository.
-4. Implement the code changes in your fork. Remember to add sufficient comments documenting the implementation. Reference the issue id e.g. #52 in your commit messages.
+4. Implement the code changes in your fork. Remember to add sufficient comments
+   documenting the implementation. Reference the issue id e.g. #52 in your
+   commit messages.
 5. Create a pull request.
 
 **For creating/editing UML diagrams** you need [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home).
@@ -997,6 +1017,7 @@ other words, version numbers are used only for project planning sake.
 * [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420)
 * [Spring Data](http://www.amazon.com/Spring-Data-Mark-Pollack/dp/1449323952/ref=sr_1_1)
 * [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)
+* [Marco Castigliego - Step Builder](http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html)
 
 
 # License
