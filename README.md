@@ -1,13 +1,31 @@
 # Design pattern samples in Java.
 
-## Build status, coverage and static analysis:
-
 ![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master) <a href="https://scan.coverity.com/projects/5634">
   <img alt="Coverity Scan Build Status"
        src="https://scan.coverity.com/projects/5634/badge.svg"/>
 </a>
 
-## Introduction
+ - <a href="#introduction">Introduction</a>
+ - <a href="#list-of-design-patterns">List of Design Patterns</a>
+   - <a href="#creational-patterns">Creational Patterns</a>
+   - <a href="#structural-patterns">Structural Patterns</a>
+   - <a href="#behavioral-patterns">Behavioral Patterns</a>
+   - <a href="#concurrency-patterns">Concurreny Patterns</a>
+   - <a href="#presentation-tier-patterns">Presentation Tier Patterns</a>
+   - <a href="#business-tier-patterns">Business Tier Patterns</a>
+   - <a href="#architectural-patterns">Architectural Patterns</a>
+   - <a href="#integration-patterns">Integration Patterns</a>
+ - <a href="#idioms">Idioms</a>
+ - <a href="#faq">Frequently Asked Questions</a>
+ - <a href="#how-to-contribute">How to contribute</a>
+   - Contributing a new pattern
+   - Working on non-pattern issue
+ - <a href="#versioning">Versioning</a>
+ - <a href="#credits">Credits</a>
+ - <a href="#license">License</a>
+ 
+
+## <a name="introduction">Introduction</a>
 
 Design patterns are formalized best practices that the programmer can use to
 solve common problems when designing an application or system.
@@ -21,7 +39,7 @@ are familiar with the patterns.
 
 ## <a name="list-of-design-patterns">List of Design Patterns</a>
 
-### Creational Patterns
+### <a name="creational-patterns">Creational Patterns</a>
 
 Creational design patterns abstract the instantiation process. They help make a
 system independent of how its objects are created, composed, and represented.
@@ -36,7 +54,7 @@ system independent of how its objects are created, composed, and represented.
 * [Multiton](#multiton)
 * [Object Pool](#object-pool)
 
-### Structural Patterns
+### <a name="structural-patterns">Structural Patterns</a>
 
 Structural patterns are concerned with how classes and objects are composed to
 form larger structures.
@@ -52,7 +70,7 @@ form larger structures.
 * [Servant](#servant)
 * [Event Aggregator](#event-aggregator)
  
-### Behavioral Patterns
+### <a name="behavioral-patterns">Behavioral Patterns</a>
 
 Behavioral patterns are concerned with algorithms and the assignment of
 responsibilities between objects.
@@ -73,7 +91,7 @@ responsibilities between objects.
 * [Specification](#specification)
 * [Dependency Injection](#dependency-injection)
 
-### Concurrency Patterns
+### <a name="concurrency-patterns">Concurrency Patterns</a>
 
 Concurrency patterns are those types of design patterns that deal with the
 multi-threaded programming paradigm.
@@ -83,7 +101,7 @@ multi-threaded programming paradigm.
 * [Async Method Invocation](#async-method-invocation)
 * [Half-Sync/Half-Async](#half-sync-half-async)
 
-### Presentation Tier Patterns
+### <a name="presentation-tier-patterns">Presentation Tier Patterns</a>
 
 Presentation Tier patterns are the top-most level of the application, this is
 concerned with translating tasks and results to something the user can
@@ -94,11 +112,11 @@ understand.
 * [Flux](#flux)
 * [Front Controller](#front-controller)
 
-### Business Tier Patterns
+### <a name="business-tier-patterns">Business Tier Patterns</a>
 
 * [Business Delegate](#business-delegate)
 
-### Architectural Patterns
+### <a name="architectural-patterns">Architectural Patterns</a>
 
 An architectural pattern is a general, reusable solution to a commonly occurring
 problem in software architecture within a given context.
@@ -108,14 +126,14 @@ problem in software architecture within a given context.
 * [Naked Objects](#naked-objects)
 * [Repository](#repository)
 
-### Integration Patterns
+### <a name="integration-patterns">Integration Patterns</a>
 
 Integration patterns are concerned with how software applications communicate
 and exchange data.
 
 * [Tolerant Reader](#tolerant-reader)
 
-### Idioms
+### <a name="idioms">Idioms</a>
 
 A programming idiom is a means of expressing a recurring construct in one or
 more programming languages. Generally speaking, a programming idiom is an
@@ -891,7 +909,7 @@ degrading execution efficiency.
 * [Real Time CORBA](http://www.omg.org/news/meetings/workshops/presentations/realtime2001/4-3_Pyarali_thread-pool.pdf)
 * [Android AsyncTask framework](http://developer.android.com/reference/android/os/AsyncTask.html)
 
-# Frequently asked questions
+# <a name="faq">Frequently asked questions</a>
 
 **<a id="Q1">Q: What is the difference between State and Strategy patterns?</a>**
 
@@ -951,7 +969,7 @@ Flyweight.
 
 
 
-# How to contribute
+# <a name="how-to-contribute">How to contribute</a>
 
 **To work on a new pattern** you need to do the following steps:
 
@@ -989,7 +1007,7 @@ Flyweight.
 should be added to the corresponding section of the `README.md`.
 
 
-# Versioning
+# <a name="versioning">Versioning</a>
 
 Java-design-patterns project uses [semantic versioning](http://semver.org/)
 scheme. However, version numbers in this project do not signify binary releases
@@ -997,7 +1015,7 @@ scheme. However, version numbers in this project do not signify binary releases
 other words, version numbers are used only for project planning sake.
 
 
-# Credits
+# <a name="credits">Credits</a>
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
 * [Effective Java (2nd Edition)](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683)
@@ -1020,6 +1038,6 @@ other words, version numbers are used only for project planning sake.
 * [Marco Castigliego - Step Builder](http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html)
 
 
-# License
+# <a name="license">License</a>
 
 This project is licensed under the terms of the MIT license.
