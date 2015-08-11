@@ -19,8 +19,6 @@
  - <a href="#idioms">Idioms</a>
  - <a href="#faq">Frequently Asked Questions</a>
  - <a href="#how-to-contribute">How to contribute</a>
-   - Contributing a new pattern
-   - Working on non-pattern issue
  - <a href="#versioning">Versioning</a>
  - <a href="#credits">Credits</a>
  - <a href="#license">License</a>
