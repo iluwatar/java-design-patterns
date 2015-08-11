@@ -5,12 +5,13 @@
        src="https://scan.coverity.com/projects/5634/badge.svg"/>
 </a>
 
+ <a name="top"/>
  - <a href="#introduction">Introduction</a>
  - <a href="#list-of-design-patterns">List of Design Patterns</a>
    - <a href="#creational-patterns">Creational Patterns</a>
    - <a href="#structural-patterns">Structural Patterns</a>
    - <a href="#behavioral-patterns">Behavioral Patterns</a>
-   - <a href="#concurrency-patterns">Concurreny Patterns</a>
+   - <a href="#concurrency-patterns">Concurrency Patterns</a>
    - <a href="#presentation-tier-patterns">Presentation Tier Patterns</a>
    - <a href="#business-tier-patterns">Business Tier Patterns</a>
    - <a href="#architectural-patterns">Architectural Patterns</a>
@@ -37,9 +38,9 @@ Reusing design patterns helps to prevent subtle issues that can cause major
 problems, and it also improves code readability for coders and architects who
 are familiar with the patterns.
 
-## <a name="list-of-design-patterns">List of Design Patterns</a>
+## <a name="list-of-design-patterns">List of Design Patterns</a> [&#8593;](#top)
 
-### <a name="creational-patterns">Creational Patterns</a>
+### <a name="creational-patterns">Creational Patterns</a> [&#8593;](#top)
 
 Creational design patterns abstract the instantiation process. They help make a
 system independent of how its objects are created, composed, and represented.
@@ -54,7 +55,7 @@ system independent of how its objects are created, composed, and represented.
 * [Multiton](#multiton)
 * [Object Pool](#object-pool)
 
-### <a name="structural-patterns">Structural Patterns</a>
+### <a name="structural-patterns">Structural Patterns</a> [&#8593;](#top)
 
 Structural patterns are concerned with how classes and objects are composed to
 form larger structures.
@@ -70,7 +71,7 @@ form larger structures.
 * [Servant](#servant)
 * [Event Aggregator](#event-aggregator)
  
-### <a name="behavioral-patterns">Behavioral Patterns</a>
+### <a name="behavioral-patterns">Behavioral Patterns</a> [&#8593;](#top)
 
 Behavioral patterns are concerned with algorithms and the assignment of
 responsibilities between objects.
@@ -91,7 +92,7 @@ responsibilities between objects.
 * [Specification](#specification)
 * [Dependency Injection](#dependency-injection)
 
-### <a name="concurrency-patterns">Concurrency Patterns</a>
+### <a name="concurrency-patterns">Concurrency Patterns</a> [&#8593;](#top)
 
 Concurrency patterns are those types of design patterns that deal with the
 multi-threaded programming paradigm.
@@ -101,7 +102,7 @@ multi-threaded programming paradigm.
 * [Async Method Invocation](#async-method-invocation)
 * [Half-Sync/Half-Async](#half-sync-half-async)
 
-### <a name="presentation-tier-patterns">Presentation Tier Patterns</a>
+### <a name="presentation-tier-patterns">Presentation Tier Patterns</a> [&#8593;](#top)
 
 Presentation Tier patterns are the top-most level of the application, this is
 concerned with translating tasks and results to something the user can
@@ -112,11 +113,11 @@ understand.
 * [Flux](#flux)
 * [Front Controller](#front-controller)
 
-### <a name="business-tier-patterns">Business Tier Patterns</a>
+### <a name="business-tier-patterns">Business Tier Patterns</a> [&#8593;](#top)
 
 * [Business Delegate](#business-delegate)
 
-### <a name="architectural-patterns">Architectural Patterns</a>
+### <a name="architectural-patterns">Architectural Patterns</a> [&#8593;](#top)
 
 An architectural pattern is a general, reusable solution to a commonly occurring
 problem in software architecture within a given context.
@@ -126,14 +127,14 @@ problem in software architecture within a given context.
 * [Naked Objects](#naked-objects)
 * [Repository](#repository)
 
-### <a name="integration-patterns">Integration Patterns</a>
+### <a name="integration-patterns">Integration Patterns</a> [&#8593;](#top)
 
 Integration patterns are concerned with how software applications communicate
 and exchange data.
 
 * [Tolerant Reader](#tolerant-reader)
 
-### <a name="idioms">Idioms</a>
+### <a name="idioms">Idioms</a> [&#8593;](#top)
 
 A programming idiom is a means of expressing a recurring construct in one or
 more programming languages. Generally speaking, a programming idiom is an
@@ -909,7 +910,7 @@ degrading execution efficiency.
 * [Real Time CORBA](http://www.omg.org/news/meetings/workshops/presentations/realtime2001/4-3_Pyarali_thread-pool.pdf)
 * [Android AsyncTask framework](http://developer.android.com/reference/android/os/AsyncTask.html)
 
-# <a name="faq">Frequently asked questions</a>
+# <a name="faq">Frequently asked questions</a> [&#8593;](#top)
 
 **<a id="Q1">Q: What is the difference between State and Strategy patterns?</a>**
 
@@ -969,7 +970,7 @@ Flyweight.
 
 
 
-# <a name="how-to-contribute">How to contribute</a>
+# <a name="how-to-contribute">How to contribute</a> [&#8593;](#top)
 
 **To work on a new pattern** you need to do the following steps:
 
@@ -1007,7 +1008,7 @@ Flyweight.
 should be added to the corresponding section of the `README.md`.
 
 
-# <a name="versioning">Versioning</a>
+# <a name="versioning">Versioning</a> [&#8593;](#top)
 
 Java-design-patterns project uses [semantic versioning](http://semver.org/)
 scheme. However, version numbers in this project do not signify binary releases
@@ -1015,7 +1016,7 @@ scheme. However, version numbers in this project do not signify binary releases
 other words, version numbers are used only for project planning sake.
 
 
-# <a name="credits">Credits</a>
+# <a name="credits">Credits</a> [&#8593;](#top)
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
 * [Effective Java (2nd Edition)](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683)
@@ -1038,6 +1039,6 @@ other words, version numbers are used only for project planning sake.
 * [Marco Castigliego - Step Builder](http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html)
 
 
-# <a name="license">License</a>
+# <a name="license">License</a> [&#8593;](#top)
 
 This project is licensed under the terms of the MIT license.
