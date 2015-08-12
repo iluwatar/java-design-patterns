@@ -8,7 +8,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@Transactional
 public class CakeBakingServiceImpl implements CakeBakingService {
 
 	private AbstractApplicationContext context;
@@ -22,23 +26,31 @@ public class CakeBakingServiceImpl implements CakeBakingService {
 		List<CakeToppingInfo> allToppings = getAllToppings();
 		List<CakeToppingInfo> matchingToppings = allToppings.stream()
 				.filter((t) -> t.name.equals(cakeInfo.cakeToppingInfo.name)).collect(Collectors.toList());
-		if (!matchingToppings.isEmpty()) {
-//			CakeToppingDao toppingBean = context.getBean(CakeToppingDao.class);
-//			toppingBean.delete(matchingToppings.iterator().next().id.get());
-		} else {
+		if (matchingToppings.isEmpty()) {
 			throw new CakeBakingException(String.format("Topping %s is not available", cakeInfo.cakeToppingInfo.name));
 		}
-		List<CakeLayerInfo> allLayers = getAllLayers();
+		List<CakeLayer> allLayers = getAllLayerEntities();
+		List<CakeLayer> foundLayers = new ArrayList<>();
 		for (CakeLayerInfo info: cakeInfo.cakeLayerInfos) {
-			Optional<CakeLayerInfo> found = allLayers.stream().filter((layer) -> layer.name.equals(info.name)).findFirst();
-			if (found.isPresent()) {
-//				CakeLayerDao layerBean = context.getBean(CakeLayerDao.class);
-//				layerBean.delete(found.get().id.get());
-			} else {
+			Optional<CakeLayer> found = allLayers.stream().filter((layer) -> layer.getName().equals(info.name)).findFirst();
+			if (!found.isPresent()) {
 				throw new CakeBakingException(String.format("Layer %s is not available", info.name));
+			} else {
+				foundLayers.add(found.get());
 			}
 		}
+		CakeToppingDao toppingBean = context.getBean(CakeToppingDao.class);
+		CakeTopping topping = toppingBean.findOne(matchingToppings.iterator().next().id.get());
 		CakeDao cakeBean = context.getBean(CakeDao.class);
+		Cake cake = new Cake();
+		cake = cakeBean.save(cake);
+		cake.setTopping(topping);
+		topping.setCake(cake);
+		cake.setLayers(foundLayers);
+		for (CakeLayer layer: foundLayers) {
+			layer.setCake(cake);
+		}
+		cakeBean.save(cake);
 	}
 
 	@Override
@@ -53,6 +65,16 @@ public class CakeBakingServiceImpl implements CakeBakingService {
 		bean.save(new CakeLayer(layerInfo.name, layerInfo.calories));
 	}
 
+	private List<CakeTopping> getAllToppingEntities() {
+		CakeToppingDao bean = context.getBean(CakeToppingDao.class);
+		List<CakeTopping> result = new ArrayList<>();
+		Iterator<CakeTopping> iterator = bean.findAll().iterator();
+		while (iterator.hasNext()) {
+			result.add(iterator.next());
+		}
+		return result;
+	}
+	
 	@Override
 	public List<CakeToppingInfo> getAllToppings() {
 		CakeToppingDao bean = context.getBean(CakeToppingDao.class);
@@ -65,6 +87,16 @@ public class CakeBakingServiceImpl implements CakeBakingService {
 		return result;
 	}
 
+	private List<CakeLayer> getAllLayerEntities() {
+		CakeLayerDao bean = context.getBean(CakeLayerDao.class);
+		List<CakeLayer> result = new ArrayList<>();
+		Iterator<CakeLayer> iterator = bean.findAll().iterator();
+		while (iterator.hasNext()) {
+			result.add(iterator.next());
+		}
+		return result;
+	}
+	
 	@Override
 	public List<CakeLayerInfo> getAllLayers() {
 		CakeLayerDao bean = context.getBean(CakeLayerDao.class);

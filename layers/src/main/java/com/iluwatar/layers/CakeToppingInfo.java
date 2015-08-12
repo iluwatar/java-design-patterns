@@ -22,6 +22,6 @@ public class CakeToppingInfo {
 	
 	@Override
 	public String toString() {
-		return String.format("name: %s calories: %d", name, calories);
+		return String.format("CakeToppingInfo name: %s calories: %d", name, calories);
 	}
 }

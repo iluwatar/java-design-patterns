@@ -1,8 +1,10 @@
 package com.iluwatar.layers;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class CakeTopping {
@@ -14,6 +16,9 @@ public class CakeTopping {
 	private String name;
 	
 	private int calories;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Cake cake;
 	
 	public CakeTopping() {
 	}
@@ -50,5 +55,13 @@ public class CakeTopping {
 	@Override
 	public String toString() {
 		return String.format("name: %s calories: %d", name, calories);
+	}
+
+	public Cake getCake() {
+		return cake;
+	}
+
+	public void setCake(Cake cake) {
+		this.cake = cake;
 	}
 }
