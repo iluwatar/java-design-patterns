@@ -1037,6 +1037,8 @@ other words, version numbers are used only for project planning sake.
 * [Spring Data](http://www.amazon.com/Spring-Data-Mark-Pollack/dp/1449323952/ref=sr_1_1)
 * [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)
 * [Marco Castigliego - Step Builder](http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html)
+* [Douglas C. Schmidt and Charles D. Cranor - Half Sync/Half Async](http://www.cs.wustl.edu/~schmidt/PDF/PLoP-95.pdf)
+* [Pattern Oriented Software Architecture Vol I-V](http://www.amazon.com/Pattern-Oriented-Software-Architecture-Volume-Patterns/dp/0471958697)
 
 
 # <a name="license">License</a> [&#8593;](#top)
