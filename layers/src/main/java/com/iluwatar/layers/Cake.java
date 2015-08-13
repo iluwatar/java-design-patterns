@@ -1,10 +1,11 @@
 package com.iluwatar.layers;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -17,14 +18,14 @@ public class Cake {
 	@GeneratedValue
 	private Long id;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.REMOVE)
 	private CakeTopping topping;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<CakeLayer> layers;
+	@OneToMany(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	private Set<CakeLayer> layers;
 	
 	public Cake() {		
-		setLayers(new ArrayList<>());
+		setLayers(new HashSet<>());
 	}
 
 	public Long getId() {
@@ -43,15 +44,20 @@ public class Cake {
 		this.topping = topping;
 	}
 
-	public List<CakeLayer> getLayers() {
+	public Set<CakeLayer> getLayers() {
 		return layers;
 	}
 
-	public void setLayers(List<CakeLayer> layers) {
+	public void setLayers(Set<CakeLayer> layers) {
 		this.layers = layers;
 	}
 	
 	public void addLayer(CakeLayer layer) {
 		this.layers.add(layer);
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("id=%s topping=%s layers=%s", id, topping, layers.toString());
+	}	
 }

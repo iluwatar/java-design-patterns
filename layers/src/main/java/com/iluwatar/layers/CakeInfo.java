@@ -20,4 +20,9 @@ public class CakeInfo {
 		this.cakeToppingInfo = cakeToppingInfo;
 		this.cakeLayerInfos = cakeLayerInfos;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("CakeInfo id=%d topping=%s layers=%s", id.get(), cakeToppingInfo, cakeLayerInfos);
+	}
 }

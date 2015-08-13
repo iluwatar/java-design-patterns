@@ -16,12 +16,13 @@ public class App {
 		service.getAllToppings().stream().forEach((topping) -> System.out.println(topping));
 
 		CakeInfo cakeInfo = new CakeInfo(new CakeToppingInfo("candies", 0),
-				Arrays.asList(new CakeLayerInfo("chocolate", 0), new CakeLayerInfo("chocolate", 0),
-						new CakeLayerInfo("chocolate", 0)));
+				Arrays.asList(new CakeLayerInfo("chocolate", 0), new CakeLayerInfo("banana", 0),
+						new CakeLayerInfo("strawberry", 0)));
 		try {
 			service.bakeNewCake(cakeInfo);
 		} catch (CakeBakingException e) {
 			e.printStackTrace();
 		}
+		service.getAllCakes().stream().forEach((cake) -> System.out.println(cake));
 	}
 }

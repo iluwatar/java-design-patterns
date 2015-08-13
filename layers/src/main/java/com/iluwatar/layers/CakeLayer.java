@@ -54,7 +54,7 @@ public class CakeLayer {
 	
 	@Override
 	public String toString() {
-		return String.format("name: %s calories: %d", name, calories);
+		return String.format("id=%s name=%s calories=%d", id, name, calories);
 	}
 
 	public Cake getCake() {
