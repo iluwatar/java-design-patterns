@@ -1,0 +1,36 @@
+.input-group .btn{
+	border-left: none;
+}
+.input-group .btn:hover{
+	background-color: white;
+	border-color: #ccc;
+}
+.input-group input{
+	border-right: none;
+}
+.form-control:focus {
+  border-color: #ccc;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.glyphicon-search{
+	color: #ccc;
+}
+
+.dropdown img{
+	width: 18px;
+}
+
+.number{
+	margin-top: 6px;
+	background-color: #eff6fa;
+	border-radius: 5px;
+}
+
+#question ul{
+	font-size: 12px;
+}
+#question ul li{
+	margin-left: 6px;
+}

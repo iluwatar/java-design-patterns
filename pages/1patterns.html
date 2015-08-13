@@ -1,0 +1,119 @@
+---
+layout: default
+title: Patterns
+permalink: /patterns/
+icon: glyphicon-th-large
+comments: false
+---
+<div id="index" class="row">
+  <div class="col-sm-9">
+    <div class="post-area">
+      <!-- small button -->
+     <!--  <p class="pull-right visible-xs">
+       <button>toggle</button>
+     </p> -->
+      <div class="post-list-header">
+        Patterns
+      </div>
+      <div class="post-list-body">
+
+        {% assign allPages = site.pages | where:"layout","pattern" %}
+        <div class="all-posts" post-category="All" post-tag="All">
+          {% for page in allPages %}
+            <a class="post-list-item" href="{{ page.url | prepend: site.baseurl }}">
+              <h2>
+              {{ page.title }}
+              </h2>
+              <!--<span class="">{{ post.date | date: "%b %-d, %Y" }}</span>-->
+            </a>
+          {% endfor %}
+        </div>
+
+        <!-- <div class="posts-in-categories"> -->
+        {% for category in site.category-list %}
+          <div post-category="{{ category }}">
+            {% for page in allPages %}
+              {% if page.categories contains category %}
+                {% if page.url %}
+                  <a href="{{ page.url }}" class="post-list-item">
+                    <h2>
+                    {{ page.title }}
+                    </h2>
+                    <span class="">{{ page.date | date: "%b %-d, %Y" }}</span>
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+        <!-- </div> -->
+
+        <!-- <div class="posts-in-tags"> -->
+        {% for tag in site.tag-list %}
+          <div post-tag="{{ tag }}">
+            {% for page in allPages %}
+              {% if page.tags contains tag %}
+                {% if page.url %}
+                  <a href="{{ page.url }}" class="post-list-item">
+                    <h2>
+                    {{ page.title }}
+                    </h2>
+                    <span class="">{{ page.date | date: "%b %-d, %Y" }}</span>
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="shadow-corner-curl hidden-xs">
+      <div class="sidebar-list-header">
+        Categories
+      </div>
+
+      <a href="javascript:;" class="sidebar-list-item category" category="All">
+        All<span class="my-badge"> {{ allPages | size }}</span>
+      </a>
+      {% for category in site.category-list %}
+      <a href="javascript:;" class="sidebar-list-item category" category="{{ category }}">
+        {{ category }} <span class="my-badge">
+          {% assign counter=0 %}
+          {% for page in allPages %}
+            {% if page.categories contains category %}
+              {% assign counter=counter | plus:1 %}
+            {% endif %}
+          {% endfor %}
+          {{ counter }}
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="shadow-corner-curl hidden-xs top20">
+      <div class="sidebar-list-header">
+        Tags
+      </div>
+
+      <a href="javascript:;" class="sidebar-list-item tag" tag="All">
+        All<span class="my-badge"> {{ allPages | size }}</span>
+      </a>
+      {% for tag in site.tag-list %}
+      <a href="javascript:;" class="sidebar-list-item tag" tag="{{ tag }}">
+        {{ tag }} <span class="my-badge">
+          {% assign counter=0 %}
+          {% for page in allPages %}
+            {% if page.tags contains tag %}
+              {% assign counter=counter | plus:1 %}
+            {% endif %}
+          {% endfor %}
+          {{ counter }}
+        </span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>

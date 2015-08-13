@@ -1,0 +1,13 @@
+---
+layout: page
+comments: false
+---
+<div class="readme">
+  {% capture content %}
+
+  {% include_relative patterns/README.md %}
+
+  {% endcapture %}
+
+  {{ content | markdownify }}
+</div>
