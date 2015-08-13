@@ -1,0 +1,4 @@
+[submodule "patterns"]
+	path = patterns
+	url = https://github.com/iluwatar/java-design-patterns.git
+	branch = master
