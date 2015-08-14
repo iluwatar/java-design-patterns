@@ -133,6 +133,7 @@ Integration patterns are concerned with how software applications communicate
 and exchange data.
 
 * [Tolerant Reader](#tolerant-reader)
+* [Active Record](#active-record)
 
 ### <a name="idioms">Idioms</a> [&#8593;](#top)
 
