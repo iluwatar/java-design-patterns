@@ -2,13 +2,13 @@ import com.iluwatar.active.record.SpellCastException;
 import com.iluwatar.active.record.WandCoreType;
 import com.iluwatar.active.record.WandWoodType;
 import com.iluwatar.active.record.MagicWand;
+import org.junit.Assert;
 import org.junit.Test;
-import sun.jvm.hotspot.utilities.Assert;
 
 /**
  * Created by Stephen Lazarionok.
  */
-public class WizardStickSpecification {
+public class MagicWandSpecification {
 
     @Test
     public void shouldCastFireball_IfMaigPower10AndMore() throws SpellCastException {
@@ -18,7 +18,7 @@ public class WizardStickSpecification {
         stick.setCore(WandCoreType.DRAGON_HEARTSTRING);
         stick.setLengthInches(10.0d);
 
-        Assert.that(stick.calculateMagicPower() == 10.0d, "Magic power is calculated incorrectly");
+        Assert.assertTrue(stick.calculateMagicPower() == 10.0d);
         stick.castFireball();
     }
 
@@ -30,7 +30,7 @@ public class WizardStickSpecification {
         stick.setCore(WandCoreType.DRAGON_HEARTSTRING);
         stick.setLengthInches(9.0d);
 
-        Assert.that(stick.calculateMagicPower() == 9.0d, "Magic power is calculated incorrectly");
+        Assert.assertTrue(stick.calculateMagicPower() == 9.0d);
         stick.castFireball();
     }
 
@@ -42,7 +42,7 @@ public class WizardStickSpecification {
         stick.setCore(WandCoreType.DRAGON_HEARTSTRING);
         stick.setLengthInches(20.5d);
 
-        Assert.that(stick.calculateMagicPower() == 20.5d, "Magic power is calculated incorrectly");
+        Assert.assertTrue(stick.calculateMagicPower() == 20.5d);
         stick.castLighting();
     }
 
@@ -54,7 +54,7 @@ public class WizardStickSpecification {
         stick.setCore(WandCoreType.DRAGON_HEARTSTRING);
         stick.setLengthInches(18.0d);
 
-        Assert.that(stick.calculateMagicPower() == 18.0d, "Magic power is calculated incorrectly");
+        Assert.assertTrue(stick.calculateMagicPower() == 18.0d);
         stick.castLighting();
     }
 }
