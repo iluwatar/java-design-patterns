@@ -12,13 +12,13 @@ public class Application {
 
     public static void main(final String[] args) throws SpellCastException {
 
-        final MagicWand harryPotterStick = new MagicWand();
+        final MagicWand harryPotterWand = new MagicWand();
 
-        harryPotterStick.setWood(WandWoodType.WINE);
-        harryPotterStick.setCore(WandCoreType.PHOENIX_FEATHER);
-        harryPotterStick.setLengthInches(11.0d);
+        harryPotterWand.setWood(WandWoodType.WINE);
+        harryPotterWand.setCore(WandCoreType.PHOENIX_FEATHER);
+        harryPotterWand.setLengthInches(11.0d);
 
-        final long wandId =  harryPotterStick.save();
+        final long wandId =  harryPotterWand.save();
 
         final MagicWand wand = MagicWand.find(wandId);
 
