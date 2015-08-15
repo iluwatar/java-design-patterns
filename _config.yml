@@ -6,9 +6,8 @@ description: Java Design Patterns
 #   line in _config.yml. It will appear in your document head meta (for
 #   Google search results) and in your feed.xml site description.
 
-# baseurl: "" # the subpath of your site, e.g. /blog/
-# url: "http://yourdomain.com" # the base hostname & protocol for your site
-# twitter_username: jekyllrb
+baseurl: "/java-design-patterns" # the subpath of your site, e.g. /blog/
+url: "http://iluwatar.github.io" # the base hostname & protocol for your site
 designer_github_username: Gaohaoyang
 permalink: /:year/:month/:day/:title/
 

@@ -1,9 +1,13 @@
+---
+---
+/* the 2 lines above are for jekyll to process this file with liquid */
+
 /**
  * Reset some basic elements
  */
 /* commom */
 body {
-	/* background-image: url(http://7q5cdt.com1.z0.glb.clouddn.com/bg-canvas_bg.jpg); */
+	  background-image: url("{{ "/static/img/canvas_bg.jpg" | prepend: site.baseurl }} ");
     font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
 }
 article p{

@@ -35,7 +35,7 @@ comments: false
             {% for page in allPages %}
               {% if page.categories contains category %}
                 {% if page.url %}
-                  <a href="{{ page.url }}" class="post-list-item">
+                  <a class="post-list-item" href="{{ page.url | prepend: site.baseurl }}">
                     <h2>
                     {{ page.title }}
                     </h2>
@@ -54,7 +54,7 @@ comments: false
             {% for page in allPages %}
               {% if page.tags contains tag %}
                 {% if page.url %}
-                  <a href="{{ page.url }}" class="post-list-item">
+                  <a class="post-list-item" href="{{ page.url | prepend: site.baseurl }}">
                     <h2>
                     {{ page.title }}
                     </h2>
