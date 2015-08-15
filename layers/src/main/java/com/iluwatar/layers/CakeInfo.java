@@ -21,8 +21,15 @@ public class CakeInfo {
 		this.cakeLayerInfos = cakeLayerInfos;
 	}
 	
+	public int calculateTotalCalories() {
+		int total = cakeToppingInfo != null ? cakeToppingInfo.calories : 0;
+		total += cakeLayerInfos.stream().mapToInt(c -> c.calories).sum();
+		return total;
+	}
+	
 	@Override
 	public String toString() {
-		return String.format("CakeInfo id=%d topping=%s layers=%s", id.get(), cakeToppingInfo, cakeLayerInfos);
+		return String.format("CakeInfo id=%d topping=%s layers=%s totalCalories=%d", id.get(), cakeToppingInfo,
+				cakeLayerInfos, calculateTotalCalories());
 	}
 }

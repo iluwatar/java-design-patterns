@@ -10,9 +10,9 @@ public interface CakeBakingService {
 
 	void saveNewTopping(CakeToppingInfo toppingInfo);
 
-	List<CakeToppingInfo> getAllToppings();
+	List<CakeToppingInfo> getAvailableToppings();
 	
 	void saveNewLayer(CakeLayerInfo layerInfo);
 	
-	List<CakeLayerInfo> getAllLayers();
+	List<CakeLayerInfo> getAvailableLayers();
 }

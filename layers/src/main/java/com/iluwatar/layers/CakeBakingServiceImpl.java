@@ -25,13 +25,13 @@ public class CakeBakingServiceImpl implements CakeBakingService {
 	
 	@Override
 	public void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException {
-		List<CakeToppingInfo> allToppings = getAllToppings();
+		List<CakeToppingInfo> allToppings = getAvailableToppings();
 		List<CakeToppingInfo> matchingToppings = allToppings.stream()
 				.filter((t) -> t.name.equals(cakeInfo.cakeToppingInfo.name)).collect(Collectors.toList());
 		if (matchingToppings.isEmpty()) {
 			throw new CakeBakingException(String.format("Topping %s is not available", cakeInfo.cakeToppingInfo.name));
 		}
-		List<CakeLayer> allLayers = getAllLayerEntities();
+		List<CakeLayer> allLayers = getAvailableLayerEntities();
 		Set<CakeLayer> foundLayers = new HashSet<>();
 		for (CakeLayerInfo info: cakeInfo.cakeLayerInfos) {
 			Optional<CakeLayer> found = allLayers.stream().filter((layer) -> layer.getName().equals(info.name)).findFirst();
@@ -69,46 +69,56 @@ public class CakeBakingServiceImpl implements CakeBakingService {
 		bean.save(new CakeLayer(layerInfo.name, layerInfo.calories));
 	}
 
-	private List<CakeTopping> getAllToppingEntities() {
+	private List<CakeTopping> getAvailableToppingEntities() {
 		CakeToppingDao bean = context.getBean(CakeToppingDao.class);
 		List<CakeTopping> result = new ArrayList<>();
 		Iterator<CakeTopping> iterator = bean.findAll().iterator();
 		while (iterator.hasNext()) {
-			result.add(iterator.next());
+			CakeTopping topping = iterator.next();
+			if (topping.getCake() == null) {
+				result.add(topping);
+			}
 		}
 		return result;
 	}
 	
 	@Override
-	public List<CakeToppingInfo> getAllToppings() {
+	public List<CakeToppingInfo> getAvailableToppings() {
 		CakeToppingDao bean = context.getBean(CakeToppingDao.class);
 		List<CakeToppingInfo> result = new ArrayList<>();
 		Iterator<CakeTopping> iterator = bean.findAll().iterator();
 		while (iterator.hasNext()) {
 			CakeTopping next = iterator.next();
-			result.add(new CakeToppingInfo(next.getId(), next.getName(), next.getCalories()));
+			if (next.getCake() == null) {
+				result.add(new CakeToppingInfo(next.getId(), next.getName(), next.getCalories()));
+			}
 		}
 		return result;
 	}
 
-	private List<CakeLayer> getAllLayerEntities() {
+	private List<CakeLayer> getAvailableLayerEntities() {
 		CakeLayerDao bean = context.getBean(CakeLayerDao.class);
 		List<CakeLayer> result = new ArrayList<>();
 		Iterator<CakeLayer> iterator = bean.findAll().iterator();
 		while (iterator.hasNext()) {
-			result.add(iterator.next());
+			CakeLayer next = iterator.next();
+			if (next.getCake() == null) {
+				result.add(next);
+			}
 		}
 		return result;
 	}
 	
 	@Override
-	public List<CakeLayerInfo> getAllLayers() {
+	public List<CakeLayerInfo> getAvailableLayers() {
 		CakeLayerDao bean = context.getBean(CakeLayerDao.class);
 		List<CakeLayerInfo> result = new ArrayList<>();
 		Iterator<CakeLayer> iterator = bean.findAll().iterator();
 		while (iterator.hasNext()) {
 			CakeLayer next = iterator.next();
-			result.add(new CakeLayerInfo(next.getId(), next.getName(), next.getCalories()));
+			if (next.getCake() == null) {
+				result.add(new CakeLayerInfo(next.getId(), next.getName(), next.getCalories()));
+			}
 		}
 		return result;
 	}
