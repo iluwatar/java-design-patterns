@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * 
  * <p>
- * Multilayered architecture is an architectural style where software responsibilities are
+ * Layers is an architectural style where software responsibilities are
  * divided among the different layers of the application.
  * </p>
  * 
