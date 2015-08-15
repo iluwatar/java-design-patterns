@@ -1,10 +1,10 @@
 package com.iluwatar.layers;
 
-public class CakeView {
+public class CakeViewImpl implements View {
 
 	private CakeBakingService cakeBakingService;
 
-	public CakeView(CakeBakingService cakeBakingService) {
+	public CakeViewImpl(CakeBakingService cakeBakingService) {
 		this.cakeBakingService = cakeBakingService;
 	}
 	

@@ -3,11 +3,16 @@ package com.iluwatar.layers;
 import java.util.Arrays;
 
 public class App {
+
+	private static CakeBakingService cakeBakingService = new CakeBakingServiceImpl();
 	
 	public static void main(String[] args) {
-		CakeBakingService cakeBakingService = new CakeBakingServiceImpl();
+		
+		// initialize example data
 		initializeData(cakeBakingService);
-		CakeView cakeView = new CakeView(cakeBakingService);
+		
+		// create view and render it
+		CakeViewImpl cakeView = new CakeViewImpl(cakeBakingService);
 		cakeView.render();
 	}
 	
