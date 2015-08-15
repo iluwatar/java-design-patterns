@@ -220,12 +220,54 @@ Flyweight.
    the issue that you are working on it so that others don't start work on the
    same thing.
 2. Fork the repository.
+3. Create a new folder for the pattern. The rough structure of the new folder would be as follows:
+    * etc (every resource related to the pattern, like diagrams)
+    * src (the source code of the pattern)
+    * index.md (the description of the pattern)
+    * pom.xml (the maven pom.xml)
 3. Implement the code changes in your fork. Remember to add sufficient comments
    documenting the implementation. Reference the issue id e.g. #52 in your
    commit messages.
-4. Create a simple class diagram from your example code.
-5. Add description of the pattern in README.md and link to the class diagram.	
+4. Create a simple class diagram from your example code and put it inside of the etc folder.
+5. Add description of the pattern in index.md and link to the class diagram.
+   (Attention, all internal links must be relative to the pattern subdirectory, else the links dont link properly on the website)
 6. Create a pull request.
+
+**Structure of the index.md file**
+
+```markdown
+--- # this is so called 'Yaml Front Matter', read up on it here: http://jekyllrb.com/docs/frontmatter/
+layout: pattern # layout must allways be pattern
+title: Best Pattern Ever # the properly formatted title
+folder: best-pattern-ever # the folder name in which this pattern lies
+permalink: /patterns/best-pattern-ever/ # the permalink to the pattern, to keep this uniform please stick to /patterns/FOLDER/
+
+# both categories and tags are Yaml Lists
+# you can either just pick one or write a list with '-'s
+# usable categories and tags are listed here: https://github.com/iluwatar/java-design-patterns/blob/gh-pages/_config.yml
+categories: creational # categories of the pattern
+tags: # tags of the pattern
+ - best
+ - ever
+ - awesome
+---
+
+**Intent:** Makes your code awesome
+
+![alt text](./etc/best_pattern.png "Best Pattern Ever")
+
+**Applicability:** Use the Best Pattern Ever pattern when
+
+* you want to be the best
+* you need to ...
+
+**Real world examples:**
+
+* [Nowhere](http://no.where.com)
+```
+
+**To add a new category or tag** you need to edit the _config.yml file of the gh-pages branch.
+In there you should find 2 yaml lists with the respective names 'category-list' and 'tag-list'
 
 **To work on one of the non-pattern issues** you need to do the following steps:
 
@@ -247,7 +289,7 @@ Flyweight.
 * Microsoft's [Cloud Design Patterns](http://download.microsoft.com/download/B/B/6/BB69622C-AB5D-4D5F-9A12-B81B952C1169/CloudDesignPatternsBook-PDF.pdf)
 
 **Links to patterns applied in real world applications** are welcome. The links
-should be added to the corresponding section of the `README.md`.
+should be added to the corresponding section of the `index.md`.
 
 
 # <a name="versioning">Versioning</a> [&#8593;](#top)
