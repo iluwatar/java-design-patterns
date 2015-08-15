@@ -6,6 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+/**
+ * 
+ * CakeLayer entity
+ *
+ */
 @Entity
 public class CakeLayer {
 

@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+/**
+ * 
+ * Cake entity
+ *
+ */
 @Entity
 public class Cake {
 

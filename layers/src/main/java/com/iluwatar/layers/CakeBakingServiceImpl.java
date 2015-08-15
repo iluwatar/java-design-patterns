@@ -13,6 +13,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * 
+ * Implementation of CakeBakingService
+ *
+ */
 @Service
 @Transactional
 public class CakeBakingServiceImpl implements CakeBakingService {

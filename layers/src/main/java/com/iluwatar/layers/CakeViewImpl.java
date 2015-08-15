@@ -1,5 +1,10 @@
 package com.iluwatar.layers;
 
+/**
+ * 
+ * View implementation for displaying cakes
+ *
+ */
 public class CakeViewImpl implements View {
 
 	private CakeBakingService cakeBakingService;

@@ -6,6 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+/**
+ * 
+ * CakeTopping entity
+ *
+ */
 @Entity
 public class CakeTopping {
 

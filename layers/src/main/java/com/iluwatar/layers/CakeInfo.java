@@ -3,6 +3,11 @@ package com.iluwatar.layers;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 
+ * DTO for cakes
+ *
+ */
 public class CakeInfo {
 
 	public final Optional<Long> id;

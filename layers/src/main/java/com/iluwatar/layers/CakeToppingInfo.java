@@ -2,6 +2,11 @@ package com.iluwatar.layers;
 
 import java.util.Optional;
 
+/**
+ * 
+ * DTO for cake toppings
+ *
+ */
 public class CakeToppingInfo {
 
 	public final Optional<Long> id;
