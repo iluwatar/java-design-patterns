@@ -2,6 +2,7 @@
 layout: pattern
 title: Thread Pool
 folder: thread-pool
+permalink: /patterns/thread-pool/
 categories: pattern_cat
 tags: pattern_tag
 ---

@@ -2,6 +2,7 @@
 layout: pattern
 title: Proxy
 folder: proxy
+permalink: /patterns/proxy/
 categories: pattern_cat
 tags: pattern_tag
 ---

@@ -2,6 +2,7 @@
 layout: pattern
 title: Mediator
 folder: mediator
+permalink: /patterns/mediator/
 categories: pattern_cat
 tags: pattern_tag
 ---

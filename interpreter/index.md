@@ -2,6 +2,7 @@
 layout: pattern
 title: Interpreter
 folder: interpreter
+permalink: /patterns/interpreter/
 categories: pattern_cat
 tags: pattern_tag
 ---

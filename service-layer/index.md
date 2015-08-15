@@ -2,6 +2,7 @@
 layout: pattern
 title: Service Layer
 folder: service-layer
+permalink: /patterns/service-layer/
 categories: pattern_cat
 tags: pattern_tag
 ---

@@ -2,6 +2,7 @@
 layout: pattern
 title: Visitor
 folder: visitor
+permalink: /patterns/visitor/
 categories: pattern_cat
 tags: pattern_tag
 ---

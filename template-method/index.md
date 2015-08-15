@@ -2,6 +2,7 @@
 layout: pattern
 title: Template method
 folder: template-method
+permalink: /patterns/template-method/
 categories: pattern_cat
 tags: pattern_tag
 ---

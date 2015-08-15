@@ -2,6 +2,7 @@
 layout: pattern
 title: Poison Pill
 folder: poison-pill
+permalink: /patterns/poison-pill/
 categories: pattern_cat
 tags: pattern_tag
 ---

@@ -2,6 +2,7 @@
 layout: pattern
 title: Private Class Data
 folder: private-class-data
+permalink: /patterns/private-class-data/
 categories: pattern_cat
 tags: pattern_tag
 ---

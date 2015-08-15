@@ -2,6 +2,7 @@
 layout: pattern
 title: Front Controller
 folder: front-controller
+permalink: /patterns/front-controller/
 categories: pattern_cat
 tags: pattern_tag
 ---

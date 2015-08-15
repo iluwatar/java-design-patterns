@@ -2,6 +2,7 @@
 layout: pattern
 title: Double Checked Locking
 folder: double-checked-locking
+permalink: /patterns/double-checked-locking/
 categories: pattern_cat
 tags: pattern_tag
 ---

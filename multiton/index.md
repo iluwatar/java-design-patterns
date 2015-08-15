@@ -2,6 +2,7 @@
 layout: pattern
 title: Multiton
 folder: multiton
+permalink: /patterns/multiton/
 categories: pattern_cat
 tags: pattern_tag
 ---

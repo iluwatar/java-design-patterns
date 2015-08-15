@@ -2,6 +2,7 @@
 layout: pattern
 title: Specification
 folder: specification
+permalink: /patterns/specification/
 categories: pattern_cat
 tags: pattern_tag
 ---

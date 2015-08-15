@@ -2,6 +2,7 @@
 layout: pattern
 title: Memento
 folder: memento
+permalink: /patterns/memento/
 categories: pattern_cat
 tags: pattern_tag
 ---

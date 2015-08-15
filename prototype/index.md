@@ -2,6 +2,7 @@
 layout: pattern
 title: Prototype
 folder: prototype
+permalink: /patterns/prototype/
 categories: pattern_cat
 tags: pattern_tag
 ---

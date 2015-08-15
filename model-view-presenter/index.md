@@ -2,6 +2,7 @@
 layout: pattern
 title: Model-View-Presenter
 folder: model-view-presenter
+permalink: /patterns/model-view-presenter/
 categories: pattern_cat
 tags: pattern_tag
 ---

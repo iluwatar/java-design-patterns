@@ -2,6 +2,7 @@
 layout: pattern
 title: Singleton
 folder: singleton
+permalink: /patterns/singleton/
 categories: pattern_cat
 tags: pattern_tag
 ---

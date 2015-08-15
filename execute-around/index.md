@@ -2,6 +2,7 @@
 layout: pattern
 title: Execute Around
 folder: execute-around
+permalink: /patterns/execute-around/
 categories: pattern_cat
 tags: pattern_tag
 ---

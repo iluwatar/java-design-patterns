@@ -2,6 +2,7 @@
 layout: pattern
 title: Tolerant Reader
 folder: tolerant-reader
+permalink: /patterns/tolerant-reader/
 categories: pattern_cat
 tags: pattern_tag
 ---

@@ -2,6 +2,7 @@
 layout: pattern
 title: Facade
 folder: facade
+permalink: /patterns/facade/
 categories: pattern_cat
 tags: pattern_tag
 ---

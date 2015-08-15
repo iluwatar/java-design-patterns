@@ -2,6 +2,7 @@
 layout: pattern
 title: Decorator
 folder: decorator
+permalink: /patterns/decorator/
 categories: pattern_cat
 tags: pattern_tag
 ---

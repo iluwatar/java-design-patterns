@@ -2,6 +2,7 @@
 layout: pattern
 title: Dependency Injection
 folder: dependency-injection
+permalink: /patterns/dependency-injection/
 categories: pattern_cat
 tags: pattern_tag
 ---

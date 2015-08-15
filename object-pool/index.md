@@ -2,6 +2,7 @@
 layout: pattern
 title: Object Pool
 folder: object-pool
+permalink: /patterns/object-pool/
 categories: pattern_cat
 tags: pattern_tag
 ---

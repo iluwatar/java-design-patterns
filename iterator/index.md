@@ -2,6 +2,7 @@
 layout: pattern
 title: Iterator
 folder: iterator
+permalink: /patterns/iterator/
 categories: pattern_cat
 tags: pattern_tag
 ---

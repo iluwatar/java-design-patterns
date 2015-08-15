@@ -2,6 +2,7 @@
 layout: pattern
 title: Null Object
 folder: null-object
+permalink: /patterns/null-object/
 categories: pattern_cat
 tags: pattern_tag
 ---

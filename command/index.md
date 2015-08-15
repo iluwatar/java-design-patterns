@@ -2,6 +2,7 @@
 layout: pattern
 title: Command
 folder: command
+permalink: /patterns/command/
 categories: pattern_cat
 tags: pattern_tag
 ---

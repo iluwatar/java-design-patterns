@@ -2,6 +2,8 @@
 layout: pattern
 title: Introduction
 folder: introduction
+permalink: /patterns/introduction/
+permalink: /patterns/introduction/
 categories: pattern_cat
 tags: pattern_tag
 ---

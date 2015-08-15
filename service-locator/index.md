@@ -2,6 +2,7 @@
 layout: pattern
 title: Service Locator
 folder: service-locator
+permalink: /patterns/service-locator/
 categories: pattern_cat
 tags: pattern_tag
 ---

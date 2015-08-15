@@ -2,6 +2,7 @@
 layout: pattern
 title: Strategy
 folder: strategy
+permalink: /patterns/strategy/
 categories: pattern_cat
 tags: pattern_tag
 ---
