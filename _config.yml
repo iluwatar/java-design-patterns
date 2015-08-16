@@ -25,6 +25,13 @@ kramdown:
 category-list:
   - pattern_cat
   - creational
+  - structural
+  - concurrency
+  - behavioral
+  - architectural
+  - integration
+  - presentation tier
+  - business tier
 
 tag-list:
   - pattern_tag
