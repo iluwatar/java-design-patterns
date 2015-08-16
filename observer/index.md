@@ -2,7 +2,8 @@
 layout: pattern
 title: Observer
 folder: observer
-categories: pattern_cat
+permalink: /patterns/observer/
+categories: behavioral
 tags: pattern_tag
 ---
 

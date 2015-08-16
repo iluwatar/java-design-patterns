@@ -2,7 +2,8 @@
 layout: pattern
 title: Adapter
 folder: adapter
-categories: pattern_cat
+permalink: /patterns/adapter/
+categories: structural
 tags: pattern_tag
 ---
 

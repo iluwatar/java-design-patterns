@@ -2,7 +2,8 @@
 layout: pattern
 title: Decorator
 folder: decorator
-categories: pattern_cat
+permalink: /patterns/decorator/
+categories: structural
 tags: pattern_tag
 ---
 

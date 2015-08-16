@@ -2,7 +2,8 @@
 layout: pattern
 title: Visitor
 folder: visitor
-categories: pattern_cat
+permalink: /patterns/visitor/
+categories: behavioral
 tags: pattern_tag
 ---
 

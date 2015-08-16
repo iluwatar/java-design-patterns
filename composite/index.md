@@ -2,6 +2,7 @@
 layout: pattern
 title: Composite
 folder: composite
+permalink: /patterns/composite/
 categories: pattern_cat
 tags: pattern_tag
 ---

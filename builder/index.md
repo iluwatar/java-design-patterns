@@ -2,6 +2,7 @@
 layout: pattern
 title: Builder
 folder: builder
+permalink: /patterns/builder/
 categories: creational
 tags: pattern_tag
 ---

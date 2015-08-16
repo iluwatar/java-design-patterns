@@ -2,7 +2,8 @@
 layout: pattern
 title: Service Layer
 folder: service-layer
-categories: pattern_cat
+permalink: /patterns/service-layer/
+categories: architectural
 tags: pattern_tag
 ---
 

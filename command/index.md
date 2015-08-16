@@ -2,7 +2,8 @@
 layout: pattern
 title: Command
 folder: command
-categories: pattern_cat
+permalink: /patterns/command/
+categories: behavioral
 tags: pattern_tag
 ---
 

@@ -2,6 +2,7 @@
 layout: pattern
 title: Abstract Factory
 folder: abstract-factory
+permalink: /patterns/abstract-factory/
 categories:
  - pattern_cat
  - creational

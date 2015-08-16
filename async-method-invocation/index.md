@@ -2,7 +2,8 @@
 layout: pattern
 title: Async Method Invocation
 folder: async-method-invocation
-categories: pattern_cat
+permalink: /patterns/async-method-invocation/
+categories: concurrency
 tags: pattern_tag
 ---
 

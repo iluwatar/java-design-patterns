@@ -2,7 +2,8 @@
 layout: pattern
 title: Data Access Object
 folder: dao
-categories: pattern_cat
+permalink: /patterns/dao/
+categories: architectural
 tags: pattern_tag
 ---
 

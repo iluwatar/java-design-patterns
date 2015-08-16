@@ -2,7 +2,8 @@
 layout: pattern
 title: Flyweight
 folder: flyweight
-categories: pattern_cat
+permalink: /patterns/flyweight/
+categories: structural
 tags: pattern_tag
 ---
 

@@ -2,7 +2,8 @@
 layout: pattern
 title: Repository
 folder: repository
-categories: pattern_cat
+permalink: /patterns/repository/
+categories: architectural
 tags: pattern_tag
 ---
 

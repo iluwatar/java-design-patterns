@@ -2,7 +2,8 @@
 layout: pattern
 title: Naked Objects
 folder: naked-objects
-categories: pattern_cat
+permalink: /patterns/naked-objects/
+categories: architectural
 tags: pattern_tag
 ---
 

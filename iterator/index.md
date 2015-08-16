@@ -2,7 +2,8 @@
 layout: pattern
 title: Iterator
 folder: iterator
-categories: pattern_cat
+permalink: /patterns/iterator/
+categories: behavioral
 tags: pattern_tag
 ---
 

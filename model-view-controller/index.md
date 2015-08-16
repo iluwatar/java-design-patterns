@@ -2,7 +2,8 @@
 layout: pattern
 title: Model-View-Controller
 folder: model-view-controller
-categories: pattern_cat
+permalink: /patterns/model-view-controller/
+categories: presentation_tier
 tags: pattern_tag
 ---
 

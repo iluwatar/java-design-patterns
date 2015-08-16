@@ -2,7 +2,8 @@
 layout: pattern
 title: Business Delegate
 folder: business-delegate
-categories: pattern_cat
+permalink: /patterns/business-delegate/
+categories: business_tier
 tags: pattern_tag
 ---
 

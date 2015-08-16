@@ -2,6 +2,7 @@
 layout: pattern
 title: Callback
 folder: callback
+permalink: /patterns/callback/
 categories: pattern_cat
 tags: pattern_tag
 ---

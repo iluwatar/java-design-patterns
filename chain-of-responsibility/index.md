@@ -2,7 +2,8 @@
 layout: pattern
 title: Chain of responsibility
 folder: chain-of-responsibility
-categories: pattern_cat
+permalink: /patterns/chain-of-responsibility/
+categories: behavioral
 tags: pattern_tag
 ---
 

@@ -2,7 +2,8 @@
 layout: pattern
 title: Object Pool
 folder: object-pool
-categories: pattern_cat
+permalink: /patterns/object-pool/
+categories: creational
 tags: pattern_tag
 ---
 

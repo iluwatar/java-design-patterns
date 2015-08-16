@@ -2,6 +2,7 @@
 layout: pattern
 title: Resource Acquisition Is Initialization
 folder: resource-acquisition-is-initialization
+permalink: /patterns/resource-acquisition-is-initialization/
 categories: pattern_cat
 tags: pattern_tag
 ---

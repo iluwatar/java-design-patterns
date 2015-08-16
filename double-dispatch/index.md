@@ -2,6 +2,7 @@
 layout: pattern
 title: Double Dispatch
 folder: double-dispatch
+permalink: /patterns/double-dispatch/
 categories: pattern_cat
 tags: pattern_tag
 ---

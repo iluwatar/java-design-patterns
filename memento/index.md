@@ -2,7 +2,8 @@
 layout: pattern
 title: Memento
 folder: memento
-categories: pattern_cat
+permalink: /patterns/memento/
+categories: behavioral
 tags: pattern_tag
 ---
 

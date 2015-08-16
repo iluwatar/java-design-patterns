@@ -2,7 +2,8 @@
 layout: pattern
 title: Servant
 folder: servant
-categories: pattern_cat
+permalink: /patterns/servant/
+categories: structural
 tags: pattern_tag
 ---
 

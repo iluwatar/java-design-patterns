@@ -2,7 +2,8 @@
 layout: pattern
 title: Bridge
 folder: bridge
-categories: pattern_cat
+permalink: /patterns/bridge/
+categories: structural
 tags: pattern_tag
 ---
 

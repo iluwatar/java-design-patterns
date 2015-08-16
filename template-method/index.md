@@ -2,7 +2,8 @@
 layout: pattern
 title: Template method
 folder: template-method
-categories: pattern_cat
+permalink: /patterns/template-method/
+categories: behavioral
 tags: pattern_tag
 ---
 

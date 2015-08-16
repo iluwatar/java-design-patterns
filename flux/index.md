@@ -2,7 +2,8 @@
 layout: pattern
 title: Flux
 folder: flux
-categories: pattern_cat
+permalink: /patterns/flux/
+categories: presentation_tier
 tags: pattern_tag
 ---
 

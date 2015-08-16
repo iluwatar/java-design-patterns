@@ -2,7 +2,8 @@
 layout: pattern
 title: Intercepting Filter
 folder: intercepting-filter
-categories: pattern_cat
+permalink: /patterns/intercepting-filter/
+categories: behavioral
 tags: pattern_tag
 ---
 

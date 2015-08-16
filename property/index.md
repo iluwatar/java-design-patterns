@@ -2,7 +2,8 @@
 layout: pattern
 title: Property
 folder: property
-categories: pattern_cat
+permalink: /patterns/property/
+categories: creational
 tags: pattern_tag
 ---
 

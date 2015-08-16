@@ -2,7 +2,8 @@
 layout: pattern
 title: Tolerant Reader
 folder: tolerant-reader
-categories: pattern_cat
+permalink: /patterns/tolerant-reader/
+categories: integration
 tags: pattern_tag
 ---
 

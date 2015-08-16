@@ -2,7 +2,8 @@
 layout: pattern
 title: Strategy
 folder: strategy
-categories: pattern_cat
+permalink: /patterns/strategy/
+categories: behavioral
 tags: pattern_tag
 ---
 

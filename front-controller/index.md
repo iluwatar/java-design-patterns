@@ -2,7 +2,8 @@
 layout: pattern
 title: Front Controller
 folder: front-controller
-categories: pattern_cat
+permalink: /patterns/front-controller/
+categories: presentation_tier
 tags: pattern_tag
 ---
 

@@ -2,6 +2,7 @@
 layout: pattern
 title: Lazy Loading
 folder: lazy-loading
+permalink: /patterns/lazy-loading/
 categories: pattern_cat
 tags: pattern_tag
 ---

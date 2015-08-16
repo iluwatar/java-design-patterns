@@ -2,7 +2,8 @@
 layout: pattern
 title: State
 folder: state
-categories: pattern_cat
+permalink: /patterns/state/
+categories: behavioral
 tags: pattern_tag
 ---
 

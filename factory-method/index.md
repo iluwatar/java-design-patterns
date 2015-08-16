@@ -2,6 +2,7 @@
 layout: pattern
 title: Factory Method
 folder: factory-method
+permalink: /patterns/factory-method/
 categories: creational
 tags: pattern_tag
 ---

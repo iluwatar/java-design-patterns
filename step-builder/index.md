@@ -2,7 +2,8 @@
 layout: pattern
 title: Step Builder
 folder: step-builder
-categories: pattern_cat
+permalink: /patterns/step-builder/
+categories: creational
 tags: pattern_tag
 ---
 
