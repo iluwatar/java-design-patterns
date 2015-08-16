@@ -3,7 +3,7 @@ layout: pattern
 title: Multiton
 folder: multiton
 permalink: /patterns/multiton/
-categories: pattern_cat
+categories: creational
 tags: pattern_tag
 ---
 

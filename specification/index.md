@@ -3,7 +3,7 @@ layout: pattern
 title: Specification
 folder: specification
 permalink: /patterns/specification/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

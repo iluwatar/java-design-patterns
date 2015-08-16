@@ -3,7 +3,7 @@ layout: pattern
 title: Repository
 folder: repository
 permalink: /patterns/repository/
-categories: pattern_cat
+categories: architectural
 tags: pattern_tag
 ---
 

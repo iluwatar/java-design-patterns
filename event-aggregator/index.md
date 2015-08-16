@@ -3,7 +3,7 @@ layout: pattern
 title: Event Aggregator
 folder: event-aggregator
 permalink: /patterns/event-aggregator/
-categories: pattern_cat
+categories: structural
 tags: pattern_tag
 ---
 

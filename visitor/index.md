@@ -3,7 +3,7 @@ layout: pattern
 title: Visitor
 folder: visitor
 permalink: /patterns/visitor/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

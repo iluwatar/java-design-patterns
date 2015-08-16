@@ -3,7 +3,7 @@ layout: pattern
 title: Memento
 folder: memento
 permalink: /patterns/memento/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

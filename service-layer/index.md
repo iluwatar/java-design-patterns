@@ -3,7 +3,7 @@ layout: pattern
 title: Service Layer
 folder: service-layer
 permalink: /patterns/service-layer/
-categories: pattern_cat
+categories: architectural
 tags: pattern_tag
 ---
 

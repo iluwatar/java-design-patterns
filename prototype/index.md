@@ -3,7 +3,7 @@ layout: pattern
 title: Prototype
 folder: prototype
 permalink: /patterns/prototype/
-categories: pattern_cat
+categories: creational
 tags: pattern_tag
 ---
 

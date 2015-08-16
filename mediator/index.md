@@ -3,7 +3,7 @@ layout: pattern
 title: Mediator
 folder: mediator
 permalink: /patterns/mediator/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

@@ -3,7 +3,7 @@ layout: pattern
 title: Thread Pool
 folder: thread-pool
 permalink: /patterns/thread-pool/
-categories: pattern_cat
+categories: concurrency
 tags: pattern_tag
 ---
 

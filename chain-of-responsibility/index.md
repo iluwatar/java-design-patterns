@@ -3,7 +3,7 @@ layout: pattern
 title: Chain of responsibility
 folder: chain-of-responsibility
 permalink: /patterns/chain-of-responsibility/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

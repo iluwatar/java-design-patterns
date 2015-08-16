@@ -3,7 +3,7 @@ layout: pattern
 title: Half-Sync/Half-Async
 folder: half-sync-half-async
 permalink: /patterns/half-sync-half-async/
-categories: pattern_cat
+categories: concurrency
 tags: pattern_tag
 ---
 

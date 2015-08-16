@@ -3,7 +3,7 @@ layout: pattern
 title: Observer
 folder: observer
 permalink: /patterns/observer/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

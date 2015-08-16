@@ -3,7 +3,7 @@ layout: pattern
 title: State
 folder: state
 permalink: /patterns/state/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

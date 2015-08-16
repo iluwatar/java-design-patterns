@@ -3,7 +3,7 @@ layout: pattern
 title: Naked Objects
 folder: naked-objects
 permalink: /patterns/naked-objects/
-categories: pattern_cat
+categories: architectural
 tags: pattern_tag
 ---
 

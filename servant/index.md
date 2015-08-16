@@ -3,7 +3,7 @@ layout: pattern
 title: Servant
 folder: servant
 permalink: /patterns/servant/
-categories: pattern_cat
+categories: structural
 tags: pattern_tag
 ---
 

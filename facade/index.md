@@ -3,7 +3,7 @@ layout: pattern
 title: Facade
 folder: facade
 permalink: /patterns/facade/
-categories: pattern_cat
+categories: structural
 tags: pattern_tag
 ---
 

@@ -3,7 +3,7 @@ layout: pattern
 title: Business Delegate
 folder: business-delegate
 permalink: /patterns/business-delegate/
-categories: pattern_cat
+categories: business_tier
 tags: pattern_tag
 ---
 

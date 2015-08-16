@@ -3,7 +3,7 @@ layout: pattern
 title: Layers
 folder: layers
 permalink: /patterns/layers/
-categories: pattern_cat
+categories: architectural
 tags: pattern_tag
 ---
 

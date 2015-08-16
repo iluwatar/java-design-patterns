@@ -3,7 +3,7 @@ layout: pattern
 title: Bridge
 folder: bridge
 permalink: /patterns/bridge/
-categories: pattern_cat
+categories: structural
 tags: pattern_tag
 ---
 

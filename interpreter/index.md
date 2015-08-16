@@ -3,7 +3,7 @@ layout: pattern
 title: Interpreter
 folder: interpreter
 permalink: /patterns/interpreter/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

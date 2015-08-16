@@ -3,7 +3,7 @@ layout: pattern
 title: Front Controller
 folder: front-controller
 permalink: /patterns/front-controller/
-categories: pattern_cat
+categories: presentation_tier
 tags: pattern_tag
 ---
 

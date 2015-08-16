@@ -3,7 +3,7 @@ layout: pattern
 title: Singleton
 folder: singleton
 permalink: /patterns/singleton/
-categories: pattern_cat
+categories: creational
 tags: pattern_tag
 ---
 

@@ -3,7 +3,7 @@ layout: pattern
 title: Iterator
 folder: iterator
 permalink: /patterns/iterator/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

@@ -3,7 +3,7 @@ layout: pattern
 title: Strategy
 folder: strategy
 permalink: /patterns/strategy/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

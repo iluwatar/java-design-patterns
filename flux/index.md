@@ -3,7 +3,7 @@ layout: pattern
 title: Flux
 folder: flux
 permalink: /patterns/flux/
-categories: pattern_cat
+categories: presentation_tier
 tags: pattern_tag
 ---
 

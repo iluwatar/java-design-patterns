@@ -3,7 +3,7 @@ layout: pattern
 title: Dependency Injection
 folder: dependency-injection
 permalink: /patterns/dependency-injection/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

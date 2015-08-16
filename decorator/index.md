@@ -3,7 +3,7 @@ layout: pattern
 title: Decorator
 folder: decorator
 permalink: /patterns/decorator/
-categories: pattern_cat
+categories: structural
 tags: pattern_tag
 ---
 

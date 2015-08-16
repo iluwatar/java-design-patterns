@@ -3,7 +3,7 @@ layout: pattern
 title: Command
 folder: command
 permalink: /patterns/command/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

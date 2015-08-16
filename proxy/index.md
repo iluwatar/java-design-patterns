@@ -3,7 +3,7 @@ layout: pattern
 title: Proxy
 folder: proxy
 permalink: /patterns/proxy/
-categories: pattern_cat
+categories: structural
 tags: pattern_tag
 ---
 

@@ -3,7 +3,7 @@ layout: pattern
 title: Flyweight
 folder: flyweight
 permalink: /patterns/flyweight/
-categories: pattern_cat
+categories: structural
 tags: pattern_tag
 ---
 

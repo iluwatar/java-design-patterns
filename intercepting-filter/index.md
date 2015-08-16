@@ -3,7 +3,7 @@ layout: pattern
 title: Intercepting Filter
 folder: intercepting-filter
 permalink: /patterns/intercepting-filter/
-categories: pattern_cat
+categories: behavioral
 tags: pattern_tag
 ---
 

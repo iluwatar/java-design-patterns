@@ -3,7 +3,7 @@ layout: pattern
 title: Data Access Object
 folder: dao
 permalink: /patterns/dao/
-categories: pattern_cat
+categories: architectural
 tags: pattern_tag
 ---
 

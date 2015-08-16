@@ -3,7 +3,7 @@ layout: pattern
 title: Model-View-Controller
 folder: model-view-controller
 permalink: /patterns/model-view-controller/
-categories: pattern_cat
+categories: presentation_tier
 tags: pattern_tag
 ---
 
