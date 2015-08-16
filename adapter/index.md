@@ -3,7 +3,7 @@ layout: pattern
 title: Adapter
 folder: adapter
 permalink: /patterns/adapter/
-categories: pattern_cat
+categories: structural
 tags: pattern_tag
 ---
 
