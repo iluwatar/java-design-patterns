@@ -30,8 +30,8 @@ category-list:
   - behavioral
   - architectural
   - integration
-  - presentation tier
-  - business tier
+  - presentation_tier
+  - business_tier
 
 tag-list:
   - pattern_tag
