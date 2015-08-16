@@ -27,6 +27,11 @@ public class DB {
         }
     }
 
+    /**
+     * Provides a connection to the database configured.
+     * @return
+     * @throws SQLException
+     */
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:h2:~/test");
     }

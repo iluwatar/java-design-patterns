@@ -72,6 +72,10 @@ public class MagicWand {
     private static final String UPDATE_SQL = "update wand set length_inches = ?, wood = ?, core = ? where id = ?";
     private static final String CREATE_SQL = "insert into wand values(?, ?, ?, ?)";
 
+    /**
+     * Saves the instance to the DB.
+     * @return
+     */
     public long save() {
         validateToSave();
         try {
@@ -95,6 +99,9 @@ public class MagicWand {
         }
     }
 
+    /**
+     * Deletes the instance from the DB.
+     */
     public void delete() {
         validateToDelete();
         try {
@@ -112,6 +119,9 @@ public class MagicWand {
         }
     }
 
+    /**
+     * Updates the instance in DB.
+     */
     public void update() {
         validateToUpdate();
         try {
@@ -133,6 +143,11 @@ public class MagicWand {
         }
     }
 
+    /**
+     * Finds the instance in the DB.
+     * @param id
+     * @return
+     */
     public static MagicWand find(long id) {
 
         try {
