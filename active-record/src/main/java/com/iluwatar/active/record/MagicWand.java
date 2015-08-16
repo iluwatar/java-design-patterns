@@ -1,8 +1,9 @@
 package com.iluwatar.active.record;
 
-import org.h2.tools.DeleteDbFiles;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * "Every single wand is unique and will depend for its character on the particular tree and magical creature
@@ -15,7 +16,7 @@ public class MagicWand {
 
     private Long id;
 
-    private Double lengthInches;
+    private double lengthInches;
 
     private WandWoodType wood;
 
@@ -25,7 +26,7 @@ public class MagicWand {
         return id;
     }
 
-    public Double getLengthInches() {
+    public double getLengthInches() {
         return lengthInches;
     }
 
@@ -37,7 +38,7 @@ public class MagicWand {
         return core;
     }
 
-    public void setLengthInches(Double lengthInches) {
+    public void setLengthInches(double lengthInches) {
         this.lengthInches = lengthInches;
     }
 
@@ -178,13 +179,13 @@ public class MagicWand {
     }
 
     private void validateToSave() {
-        validateFieldsToBeNotNull();
+        validateProperties();
         if (getId() != null)
             throw new IllegalStateException("Can not save wand that was previously saved. Use 'update' metod instead.");
     }
 
     private void validateToUpdate() {
-        validateFieldsToBeNotNull();
+        validateProperties();
         if (getId() == null) throw new IllegalStateException("Can not update a record without ID specified");
     }
 
@@ -192,9 +193,9 @@ public class MagicWand {
         if (getId() == null) throw new IllegalStateException("Can not delete a record without ID specified");
     }
 
-    private void validateFieldsToBeNotNull() {
-        if (getLengthInches() == null)
-            throw new IllegalStateException("Can not save a wand without length specified");
+    private void validateProperties() {
+        if (getLengthInches() > 0.0d)
+            throw new IllegalStateException("Can not save a wand with length <= 0");
         if (getWood() == null)
             throw new IllegalStateException("Can not save a wand without wood specified");
         if (getCore() == null)
