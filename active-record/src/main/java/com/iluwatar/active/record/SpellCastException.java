@@ -1,7 +1,7 @@
 package com.iluwatar.active.record;
 
 /**
- * Describes the exception that is raised when a spell can not be case for some reason.
+ * Describes the exception that is raised when a spell can not be cast for some reason.
  *
  * Created by Stephen Lazarionok.
  */
