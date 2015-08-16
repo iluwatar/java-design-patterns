@@ -72,29 +72,10 @@ public class MagicWand {
     private static final String UPDATE_SQL = "update wand set length_inches = ?, wood = ?, core = ? where id = ?";
     private static final String CREATE_SQL = "insert into wand values(?, ?, ?, ?)";
 
-    static {
-        DeleteDbFiles.execute("~", "test", true);
-        try {
-            Class.forName("org.h2.Driver");
-            final Connection connection = getConnection();
-            final Statement statement = connection.createStatement();
-            statement.execute("create table wand(id BIGINT primary key, length_inches REAL, wood varchar(100), core varchar(100))");
-            statement.close();
-            connection.close();
-        }
-        catch (final SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:h2:~/test");
-    }
-
     public long save() {
         validateToSave();
         try {
-            final Connection connection = getConnection();
+            final Connection connection = DB.getConnection();
             final PreparedStatement ps = connection.prepareStatement(CREATE_SQL);
 
             final long id = System.currentTimeMillis();
@@ -117,7 +98,7 @@ public class MagicWand {
     public void delete() {
         validateToDelete();
         try {
-            final Connection connection = getConnection();
+            final Connection connection = DB.getConnection();
             final PreparedStatement ps = connection.prepareStatement(DELETE_SQL);
 
 
@@ -134,7 +115,7 @@ public class MagicWand {
     public void update() {
         validateToUpdate();
         try {
-            final Connection connection = getConnection();
+            final Connection connection = DB.getConnection();
             final PreparedStatement ps = connection.prepareStatement(UPDATE_SQL);
 
 
@@ -155,7 +136,7 @@ public class MagicWand {
     public static MagicWand find(long id) {
 
         try {
-            final Connection connection = getConnection();
+            final Connection connection = DB.getConnection();
             final PreparedStatement ps = connection.prepareStatement(SELECT_SQL);
 
             ResultSet rs;

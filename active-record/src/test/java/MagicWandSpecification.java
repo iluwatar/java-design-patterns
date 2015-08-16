@@ -11,7 +11,7 @@ import org.junit.Test;
 public class MagicWandSpecification {
 
     @Test
-    public void shouldCastFireball_IfMaigPower10AndMore() throws SpellCastException {
+    public void shouldCastFireball_IfMagicPower10AndMore() throws SpellCastException {
 
         final MagicWand wand = new MagicWand();
         wand.setWood(WandWoodType.WINE);
@@ -23,7 +23,7 @@ public class MagicWandSpecification {
     }
 
     @Test(expected = SpellCastException.class)
-    public void shouldNotCastFireball_IfMaigPowerLessThan10() throws SpellCastException {
+    public void shouldNotCastFireball_IfMagicPowerLessThan10() throws SpellCastException {
 
         final MagicWand wand = new MagicWand();
         wand.setWood(WandWoodType.WINE);
@@ -35,7 +35,7 @@ public class MagicWandSpecification {
     }
 
     @Test
-    public void shouldCastLigthing_IfMaigPower20AndMore() throws SpellCastException {
+    public void shouldCastLigthing_IfMagicPower20AndMore() throws SpellCastException {
 
         final MagicWand wand = new MagicWand();
         wand.setWood(WandWoodType.WINE);
@@ -47,7 +47,7 @@ public class MagicWandSpecification {
     }
 
     @Test(expected = SpellCastException.class)
-    public void shouldNotCastLigthing_IfMaigPowerLessThan20() throws SpellCastException {
+    public void shouldNotCastLigthing_IfMagicPowerLessThan20() throws SpellCastException {
 
         final MagicWand wand = new MagicWand();
         wand.setWood(WandWoodType.WINE);
