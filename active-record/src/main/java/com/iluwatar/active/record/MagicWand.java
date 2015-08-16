@@ -52,11 +52,11 @@ public class MagicWand {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MagicWand(");
-        sb.append(this.getWood());
+        sb.append(getWood());
         sb.append(", ");
-        sb.append(this.getCore());
+        sb.append(getCore());
         sb.append(", ");
-        sb.append(this.getLengthInches());
+        sb.append(getLengthInches());
         sb.append(" inch(es))");
         return sb.toString();
     }
@@ -99,9 +99,9 @@ public class MagicWand {
 
             final long id = System.currentTimeMillis();
             ps.setLong(1, id);
-            ps.setDouble(2, this.getLengthInches());
-            ps.setString(3, this.getWood().name());
-            ps.setString(4, this.getCore().name());
+            ps.setDouble(2, getLengthInches());
+            ps.setString(3, getWood().name());
+            ps.setString(4, getCore().name());
 
             ps.execute();
 
@@ -121,7 +121,7 @@ public class MagicWand {
             final PreparedStatement ps = connection.prepareStatement(DELETE_SQL);
 
 
-            ps.setLong(1, this.getId());
+            ps.setLong(1, getId());
             ps.execute();
             ps.close();
             connection.close();
@@ -138,10 +138,10 @@ public class MagicWand {
             final PreparedStatement ps = connection.prepareStatement(UPDATE_SQL);
 
 
-            ps.setDouble(1, this.getLengthInches());
-            ps.setString(2, this.getWood().name());
-            ps.setString(3, this.getCore().name());
-            ps.setLong(4, this.getId());
+            ps.setDouble(1, getLengthInches());
+            ps.setString(2, getWood().name());
+            ps.setString(3, getCore().name());
+            ps.setLong(4, getId());
 
             ps.execute();
             ps.close();
@@ -183,25 +183,25 @@ public class MagicWand {
 
     private void validateToSave() {
         validateFieldsToBeNotNull();
-        if (this.getId() != null)
+        if (getId() != null)
             throw new IllegalStateException("Can not save wand that was previously saved. Use 'update' metod instead.");
     }
 
     private void validateToUpdate() {
         validateFieldsToBeNotNull();
-        if (this.getId() == null) throw new IllegalStateException("Can not update a record without ID specified");
+        if (getId() == null) throw new IllegalStateException("Can not update a record without ID specified");
     }
 
     private void validateToDelete() {
-        if (this.getId() == null) throw new IllegalStateException("Can not delete a record without ID specified");
+        if (getId() == null) throw new IllegalStateException("Can not delete a record without ID specified");
     }
 
     private void validateFieldsToBeNotNull() {
-        if (this.getLengthInches() == null)
+        if (getLengthInches() == null)
             throw new IllegalStateException("Can not save a wand without length specified");
-        if (this.getWood() == null)
+        if (getWood() == null)
             throw new IllegalStateException("Can not save a wand without wood specified");
-        if (this.getCore() == null)
+        if (getCore() == null)
             throw new IllegalStateException("Can not save a wand without core specified");
     }
 
@@ -213,7 +213,7 @@ public class MagicWand {
 
     private double calculateWoodMagicFactor() {
 
-        switch (this.getWood()) {
+        switch (getWood()) {
             case HOLLY:
                 return 1.2d;
             case WINE:
@@ -227,7 +227,7 @@ public class MagicWand {
 
     private double calculateCoreMagicFactor() {
 
-        switch (this.getCore()) {
+        switch (getCore()) {
             case PHOENIX_FEATHER:
                 return 1.2d;
             case DRAGON_HEARTSTRING:
@@ -241,21 +241,21 @@ public class MagicWand {
 
     public double calculateMagicPower() {
 
-        return calculateWoodMagicFactor() * calculateWoodMagicFactor() * this.getLengthInches();
+        return calculateWoodMagicFactor() * calculateWoodMagicFactor() * getLengthInches();
     }
 
     public void castFireball() throws SpellCastException {
 
-        if (this.calculateMagicPower() >= 10.0) {
-            System.out.println(this.toString() + ": a fireball spell is casted");
+        if (calculateMagicPower() >= 10.0) {
+            System.out.println(toString() + ": a fireball spell is casted");
         } else {
-            throw new SpellCastException("Can not cast lighting! Not enough magic power...");
+            throw new SpellCastException("Can not cast fire ball! Not enough magic power...");
         }
     }
 
     public void castLighting() throws SpellCastException {
-        if (this.calculateMagicPower() >= 20.0) {
-            System.out.println(this.toString() + ": a lighting spell is casted");
+        if (calculateMagicPower() >= 20.0) {
+            System.out.println(toString() + ": a lighting spell is casted");
         } else {
             throw new SpellCastException("Can not cast lighting! Not enough magic power...");
         }
