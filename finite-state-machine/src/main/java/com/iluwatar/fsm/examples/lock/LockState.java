@@ -1,4 +1,4 @@
-package com.iluwatar.fsm;
+package com.iluwatar.fsm.examples.lock;
 
 /**
  * Created by Stephen Lazarionok.
@@ -9,5 +9,5 @@ public enum LockState {
     LOCKED_01,
     LOCKED_010,
     LOCKED_0101,
-    UNLOCKED
+    UNLOCKED_01011
 }

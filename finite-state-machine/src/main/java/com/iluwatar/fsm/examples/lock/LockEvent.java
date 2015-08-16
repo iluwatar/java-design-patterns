@@ -1,4 +1,4 @@
-package com.iluwatar.fsm;
+package com.iluwatar.fsm.examples.lock;
 
 /**
  * Created by Stephen Lazarionok.
