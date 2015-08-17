@@ -77,7 +77,8 @@
 		<module>step-builder</module>
 		<module>layers</module>
 		<module>message-channel</module>
-  </modules>
+		<module>fluentinterface</module>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>
