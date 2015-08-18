@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public interface PersonDao extends CrudRepository<Person, Long> {
+public interface PersonRepository extends CrudRepository<Person, Long> {
 	
 	public List<Person> findBySurname(String surname);
 }

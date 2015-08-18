@@ -3,15 +3,15 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="com.iluwatar.repository.Person" project="repository" 
     file="/repository/src/main/java/com/iluwatar/repository/Person.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="109" y="166"/>    
+    <position height="-1" width="-1" x="109" y="67"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="com.iluwatar.repository.PersonDao" project="repository" 
-    file="/repository/src/main/java/com/iluwatar/repository/PersonDao.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="2" language="java" name="com.iluwatar.repository.PersonRepository" project="repository" 
+    file="/repository/src/main/java/com/iluwatar/repository/PersonRepository.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="350" y="67"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
