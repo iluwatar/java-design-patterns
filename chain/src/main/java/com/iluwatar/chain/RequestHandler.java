@@ -1,5 +1,10 @@
 package com.iluwatar.chain;
 
+/**
+ * 
+ * RequestHandler
+ *
+ */
 public abstract class RequestHandler {
 
 	private RequestHandler next;

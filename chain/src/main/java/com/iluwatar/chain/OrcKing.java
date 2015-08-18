@@ -2,7 +2,7 @@ package com.iluwatar.chain;
 
 /**
  * 
- * Makes requests that are handled by the chain.
+ * OrcKing makes requests that are handled by the chain.
  * 
  */
 public class OrcKing {
