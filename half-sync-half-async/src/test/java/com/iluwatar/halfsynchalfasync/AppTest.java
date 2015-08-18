@@ -4,6 +4,11 @@ import java.util.concurrent.ExecutionException;
 
 import org.junit.Test;
 
+/**
+ * 
+ * Application test
+ *
+ */
 public class AppTest {
 
 	@Test
