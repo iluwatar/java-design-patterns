@@ -1,13 +1,18 @@
 package com.iluwatar.bridge;
 
+/**
+ * 
+ * FlyingMagicWeapon
+ *
+ */
 public class FlyingMagicWeapon extends MagicWeapon {
 
-	public FlyingMagicWeapon(FlyingMagicWeaponImp imp) {
+	public FlyingMagicWeapon(FlyingMagicWeaponImpl imp) {
 		super(imp);
 	}
 
-	public FlyingMagicWeaponImp getImp() {
-		return (FlyingMagicWeaponImp) imp;
+	public FlyingMagicWeaponImpl getImp() {
+		return (FlyingMagicWeaponImpl) imp;
 	}
 
 	@Override
