@@ -7,9 +7,14 @@ import java.util.List;
  * 
  * With the DAO pattern, we can use various method calls to retrieve/add/delete/update data without directly
  * interacting with the data. The below example demonstrates basic operations(CRUD): select, add, update, and delete.
+ * 
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 
 		CustomerDaoImpl customerDao = new CustomerDaoImpl(generateSampleCustomers());
@@ -33,6 +38,10 @@ public class App {
 		System.out.println("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
 	}
 
+	/**
+	 * Generate customers
+	 * @return list of customers
+	 */
 	public static List<Customer> generateSampleCustomers() {
 		Customer customer1 = new Customer(1, "Adam", "Adamson");
 		Customer customer2 = new Customer(2, "Bob", "Bobson");
