@@ -1,5 +1,10 @@
 package com.iluwatar.flyweight;
 
+/**
+ * 
+ * PoisonPotion
+ *
+ */
 public class PoisonPotion implements Potion {
 
 	@Override

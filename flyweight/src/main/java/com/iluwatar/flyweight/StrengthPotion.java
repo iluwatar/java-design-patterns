@@ -1,5 +1,10 @@
 package com.iluwatar.flyweight;
 
+/**
+ * 
+ * StrengthPotion
+ *
+ */
 public class StrengthPotion implements Potion {
 
 	@Override
