@@ -3,12 +3,16 @@ package com.iluwatar.composite;
 /**
  * 
  * With Composite we can treat tree hierarchies of objects with uniform
- * interface (LetterComposite). In this example we have sentences composed of
+ * interface ({@link LetterComposite}). In this example we have sentences composed of
  * words composed of letters.
  * 
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 		System.out.println("Message from the orcs: ");
 
