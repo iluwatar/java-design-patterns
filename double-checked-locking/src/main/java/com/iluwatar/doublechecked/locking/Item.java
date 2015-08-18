@@ -1,6 +1,12 @@
 package com.iluwatar.doublechecked.locking;
 
+/**
+ * 
+ * Item
+ *
+ */
 public class Item {
-	String name;
-	int level;
+	
+	private String name;
+	private int level;
 }
