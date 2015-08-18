@@ -2,7 +2,7 @@ package com.iluwatar.event.aggregator;
 
 /**
  * 
- * KingJoffrey observes events from KingsHand.
+ * KingJoffrey observes events from {@link KingsHand}.
  *
  */
 public class KingJoffrey implements EventObserver {
