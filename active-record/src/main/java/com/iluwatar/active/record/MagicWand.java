@@ -94,8 +94,7 @@ public class MagicWand {
             ps.close();
             connection.close();
             return id;
-        }
-        catch (final SQLException e) {
+        } catch (final SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -114,8 +113,7 @@ public class MagicWand {
             ps.execute();
             ps.close();
             connection.close();
-        }
-        catch (final SQLException e) {
+        } catch (final SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -138,8 +136,7 @@ public class MagicWand {
             ps.execute();
             ps.close();
             connection.close();
-        }
-        catch (final SQLException e) {
+        } catch (final SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -171,8 +168,7 @@ public class MagicWand {
             else {
                 return null;
             }
-        }
-        catch (final SQLException e) {
+        } catch (final SQLException e) {
             throw new RuntimeException(e);
         }
 

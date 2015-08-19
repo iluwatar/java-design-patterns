@@ -21,8 +21,7 @@ public class DB {
             statement.execute("create table wand(id BIGINT primary key, length_inches REAL, wood varchar(100), core varchar(100))");
             statement.close();
             connection.close();
-        }
-        catch (final SQLException | ClassNotFoundException e) {
+        } catch (final SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
