@@ -2,12 +2,16 @@ package com.iluwatar.mediator;
 
 /**
  * 
- * Mediator encapsulates how a set of objects (PartyMember) interact. Instead of
- * referring to each other directly they use a mediator (Party) interface.
+ * Mediator encapsulates how a set of objects ({@link PartyMember}) interact. Instead of
+ * referring to each other directly they use a mediator ({@link Party}) interface.
  * 
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 		
 		// create party and members
