@@ -1,6 +1,8 @@
-package com.iluwatar.fsm.examples.trafficlight;
+package com.iluwatar.fsm.sample;
 
 /**
+ * Contains all the states of traffic light.
+ *
  * Created by Stephen Lazarionok.
  */
 public enum TrafficLightState {

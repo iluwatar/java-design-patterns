@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Represents a simple finite state machine implementation with a custom context and where events and states are defined as enumerations.
+ *
  * Created by Stephen Lazarionok.
  */
 public final class FiniteStateMachine<C> {
@@ -22,13 +24,16 @@ public final class FiniteStateMachine<C> {
 
         System.out.println("Event '" + event + "' has been raised...");
 
+        // Tries to find the transition mapping by the start state and the event raised.
         final TransitionMappingValue transitionMappingValue = transitions.get(new TransitionMappingKey(event, state));
         if (transitionMappingValue != null) {
 
+            // Gets the target state
             final Enum<?> targetState = transitionMappingValue.getState();
 
+            // Invokes the transition handler if exists
             if (transitionMappingValue.getTransitionHandler() != null) {
-                transitionMappingValue.getTransitionHandler().perform(state, targetState, context);
+                transitionMappingValue.getTransitionHandler().handle(state, targetState, context);
             }
 
             final Enum<?> oldState = this.state;
@@ -103,6 +108,10 @@ public final class FiniteStateMachine<C> {
     private FiniteStateMachine() {
     }
 
+    /**
+     * A builder for custom finite state machines.
+     *
+     */
     public static final class Builder<C> {
 
 
@@ -115,25 +124,51 @@ public final class FiniteStateMachine<C> {
         private Builder() {
         }
 
+        /**
+         * Creates a new builder.
+         * @return a new builder instance.
+         */
         public static Builder create() {
             return new Builder();
         }
 
+        /**
+         * Defines an initial state.
+         * @param state
+         * @return
+         */
         public Builder withDefaultState(final Enum<?> state) {
             this.state = state;
             return this;
         }
 
+        /**
+         * Add a transition.
+         * @param from - 'from' state
+         * @param event - an event that triggers the transition
+         * @param to - 'to' state
+         * @param transitionHandler - a transition handler.
+         * @return
+         */
         public Builder addTransition(final Enum<?> from, final Enum<?> event, final Enum<?> to, final TransitionHandler<C> transitionHandler) {
             transitions.put(new TransitionMappingKey(event, from), new TransitionMappingValue(transitionHandler, to));
             return this;
         }
 
+        /**
+         * Defines the context of the FSM. Might be used to pass external services to handle transitions within the FSM.
+         * @param context
+         * @return
+         */
         public Builder withContext(final C context) {
             this.context = context;
             return this;
         }
 
+        /**
+         * Builds a FSM based on the rules defined.
+         * @return
+         */
         public FiniteStateMachine<C> build() {
             final FiniteStateMachine<C> result = new FiniteStateMachine<C>();
             result.context = context;
