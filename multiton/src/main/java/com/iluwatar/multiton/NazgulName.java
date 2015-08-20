@@ -2,7 +2,7 @@ package com.iluwatar.multiton;
 
 /**
  * 
- * Each Nazgul has different NazgulName.
+ * Each Nazgul has different {@link NazgulName}.
  *
  */
 public enum NazgulName {
