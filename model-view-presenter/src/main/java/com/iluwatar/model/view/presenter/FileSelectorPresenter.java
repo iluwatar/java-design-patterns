@@ -3,7 +3,7 @@ package com.iluwatar.model.view.presenter;
 /**
  * Every instance of this class represents the Presenter component in the
  * Model-View-Presenter architectural pattern.
- * 
+ * <p>
  * It is responsible for reacting to the user's actions and update the View
  * component.
  */
@@ -21,19 +21,15 @@ public class FileSelectorPresenter {
 
 	/**
 	 * Constructor
-	 * 
-	 * @param view
-	 *            The view component that the presenter will interact with.
+	 * @param view The view component that the presenter will interact with.
 	 */
 	public FileSelectorPresenter(FileSelectorView view) {
 		this.view = view;
 	}
 
 	/**
-	 * Sets the FileLoader object, to the value given as parameter.
-	 * 
-	 * @param loader
-	 *            The new FileLoader object(the Model component).
+	 * Sets the {@link FileLoader} object, to the value given as parameter.
+	 * @param loader The new {@link FileLoader} object(the Model component).
 	 */
 	public void setLoader(FileLoader loader) {
 		this.loader = loader;

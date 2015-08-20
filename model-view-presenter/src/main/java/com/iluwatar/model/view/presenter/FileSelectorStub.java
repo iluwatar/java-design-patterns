@@ -3,10 +3,10 @@ package com.iluwatar.model.view.presenter;
 /**
  * Every instance of this class represents the Stub component in the
  * Model-View-Presenter architectural pattern.
- * 
+ * <p>
  * The stub implements the View interface and it is useful when we want the test
  * the reaction to user events, such as mouse clicks.
- * 
+ * <p>
  * Since we can not test the GUI directly, the MVP pattern provides this
  * functionality through the View's dummy implementation, the Stub.
  */
