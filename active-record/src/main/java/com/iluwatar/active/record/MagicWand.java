@@ -79,9 +79,11 @@ public class MagicWand {
      */
     public long save() {
         validateToSave();
+        Connection connection = null;
+        PreparedStatement ps = null;
         try {
-            final Connection connection = DB.getConnection();
-            final PreparedStatement ps = connection.prepareStatement(CREATE_SQL);
+            connection = DB.getConnection();
+            ps = connection.prepareStatement(CREATE_SQL);
 
             final long id = System.currentTimeMillis();
             ps.setLong(1, id);
@@ -91,11 +93,13 @@ public class MagicWand {
 
             ps.execute();
 
-            ps.close();
-            connection.close();
+
             return id;
         } catch (final SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            DB.closePreparedStatement(ps);
+            DB.closeConnection(connection);
         }
     }
 
@@ -104,9 +108,11 @@ public class MagicWand {
      */
     public void delete() {
         validateToDelete();
+        Connection connection = null;
+        PreparedStatement ps = null;
         try {
-            final Connection connection = DB.getConnection();
-            final PreparedStatement ps = connection.prepareStatement(DELETE_SQL);
+            connection = DB.getConnection();
+            ps = connection.prepareStatement(DELETE_SQL);
 
 
             ps.setLong(1, getId());
@@ -115,6 +121,9 @@ public class MagicWand {
             connection.close();
         } catch (final SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            DB.closePreparedStatement(ps);
+            DB.closeConnection(connection);
         }
     }
 
@@ -123,9 +132,11 @@ public class MagicWand {
      */
     public void update() {
         validateToUpdate();
+        Connection connection = null;
+        PreparedStatement ps = null;
         try {
-            final Connection connection = DB.getConnection();
-            final PreparedStatement ps = connection.prepareStatement(UPDATE_SQL);
+            connection = DB.getConnection();
+            ps = connection.prepareStatement(UPDATE_SQL);
 
 
             ps.setDouble(1, getLengthInches());
@@ -138,6 +149,9 @@ public class MagicWand {
             connection.close();
         } catch (final SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            DB.closePreparedStatement(ps);
+            DB.closeConnection(connection);
         }
     }
 
@@ -147,10 +161,11 @@ public class MagicWand {
      * @return
      */
     public static MagicWand find(long id) {
-
+        Connection connection = null;
+        PreparedStatement ps = null;
         try {
-            final Connection connection = DB.getConnection();
-            final PreparedStatement ps = connection.prepareStatement(SELECT_SQL);
+            connection = DB.getConnection();
+            ps = connection.prepareStatement(SELECT_SQL);
 
             ResultSet rs;
             ps.setLong(1, id);
@@ -170,6 +185,9 @@ public class MagicWand {
             }
         } catch (final SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            DB.closePreparedStatement(ps);
+            DB.closeConnection(connection);
         }
 
     }

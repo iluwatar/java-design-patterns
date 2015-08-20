@@ -2,12 +2,11 @@ package com.iluwatar.active.record;
 
 import org.h2.tools.DeleteDbFiles;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
+ * An utility class that holds and encapsulates all the DB related operations.
+ *
  * Created by Stephen Lazarionok.
  */
 public class DB {
@@ -33,5 +32,25 @@ public class DB {
      */
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:h2:~/test");
+    }
+
+    public static void closeConnection(final Connection connection) {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to close a connection");
+        }
+    }
+
+    public static void closePreparedStatement(final PreparedStatement ps) {
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to close a prepared statement");
+        }
     }
 }
