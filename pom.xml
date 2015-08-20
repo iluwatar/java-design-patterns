@@ -74,8 +74,7 @@
     	<module>business-delegate</module>
     	<module>half-sync-half-async</module>
 		<module>step-builder</module>
-        <module>finite-state-machine</module>
-    </modules>
+  </modules>
 
 	<dependencyManagement>
 		<dependencies>
