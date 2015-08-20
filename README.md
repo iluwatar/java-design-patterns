@@ -228,10 +228,13 @@ Flyweight.
 3. Implement the code changes in your fork. Remember to add sufficient comments
    documenting the implementation. Reference the issue id e.g. #52 in your
    commit messages.
-4. Create a simple class diagram from your example code and put it inside of the etc folder.
-5. Add description of the pattern in index.md and link to the class diagram.
+4. Format the code according to [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
+   * [Eclipse configuration](https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml)
+   * [IntelliJ configuration](https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml)
+5. Create a simple class diagram from your example code and put it inside of the etc folder.
+6. Add description of the pattern in index.md and link to the class diagram.
    (Attention, all internal links must be relative to the pattern subdirectory, else the links dont link properly on the website)
-6. Create a pull request.
+7. Create a pull request.
 
 **Structure of the index.md file**
 
