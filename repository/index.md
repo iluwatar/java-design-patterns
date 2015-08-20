@@ -3,8 +3,8 @@ layout: pattern
 title: Repository
 folder: repository
 permalink: /patterns/repository/
-categories: architectural
-tags: pattern_tag
+categories: Architectural
+tags: Java
 ---
 
 **Intent:** Repository layer is added between the domain and data mapping

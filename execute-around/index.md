@@ -3,8 +3,8 @@ layout: pattern
 title: Execute Around
 folder: execute-around
 permalink: /patterns/execute-around/
-categories: pattern_cat
-tags: pattern_tag
+categories: Other
+tags: Java
 ---
 
 **Intent:** Execute Around idiom frees the user from certain actions that

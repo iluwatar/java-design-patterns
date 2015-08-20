@@ -3,8 +3,8 @@ layout: pattern
 title: Model-View-Presenter
 folder: model-view-presenter
 permalink: /patterns/model-view-presenter/
-categories: presentation_tier
-tags: pattern_tag
+categories: Presentation Tier
+tags: Java
 ---
 
 **Intent:** Apply a "Separation of Concerns" principle in a way that allows

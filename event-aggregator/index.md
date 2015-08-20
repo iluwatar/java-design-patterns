@@ -3,8 +3,8 @@ layout: pattern
 title: Event Aggregator
 folder: event-aggregator
 permalink: /patterns/event-aggregator/
-categories: structural
-tags: pattern_tag
+categories: Structural
+tags: Java
 ---
 
 **Intent:** A system with lots of objects can lead to complexities when a

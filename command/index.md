@@ -3,8 +3,8 @@ layout: pattern
 title: Command
 folder: command
 permalink: /patterns/command/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Encapsulate a request as an object, thereby letting you

@@ -3,8 +3,8 @@ layout: pattern
 title: Dependency Injection
 folder: dependency-injection
 permalink: /patterns/dependency-injection/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Dependency Injection is a software design pattern in which one or

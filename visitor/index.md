@@ -3,8 +3,8 @@ layout: pattern
 title: Visitor
 folder: visitor
 permalink: /patterns/visitor/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Represent an operation to be performed on the elements of an object

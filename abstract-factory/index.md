@@ -3,10 +3,8 @@ layout: pattern
 title: Abstract Factory
 folder: abstract-factory
 permalink: /patterns/abstract-factory/
-categories:
- - pattern_cat
- - creational
-tags: pattern_tag
+categories: Creational
+tags: Java
 ---
 
 **Intent:** Provide an interface for creating families of related or dependent

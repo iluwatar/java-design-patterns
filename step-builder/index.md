@@ -3,8 +3,8 @@ layout: pattern
 title: Step Builder
 folder: step-builder
 permalink: /patterns/step-builder/
-categories: creational
-tags: pattern_tag
+categories: Creational
+tags: Java
 ---
 
 **Intent:** An extension of the Builder pattern that fully guides the user through the creation of the object with no chances of confusion.

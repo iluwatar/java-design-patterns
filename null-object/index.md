@@ -3,8 +3,8 @@ layout: pattern
 title: Null Object
 folder: null-object
 permalink: /patterns/null-object/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** In most object-oriented languages, such as Java or C#, references

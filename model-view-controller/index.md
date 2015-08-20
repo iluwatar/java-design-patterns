@@ -3,8 +3,8 @@ layout: pattern
 title: Model-View-Controller
 folder: model-view-controller
 permalink: /patterns/model-view-controller/
-categories: presentation_tier
-tags: pattern_tag
+categories: Presentation Tier
+tags: Java
 ---
 
 **Intent:** Separate the user interface into three interconnected components:

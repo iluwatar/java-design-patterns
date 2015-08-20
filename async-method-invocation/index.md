@@ -3,8 +3,8 @@ layout: pattern
 title: Async Method Invocation
 folder: async-method-invocation
 permalink: /patterns/async-method-invocation/
-categories: concurrency
-tags: pattern_tag
+categories: Concurrency
+tags: Java
 ---
 
 **Intent:** Asynchronous method invocation is pattern where the calling thread

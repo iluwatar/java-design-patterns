@@ -3,8 +3,8 @@ layout: pattern
 title: Front Controller
 folder: front-controller
 permalink: /patterns/front-controller/
-categories: presentation_tier
-tags: pattern_tag
+categories: Presentation Tier
+tags: Java
 ---
 
 **Intent:** Introduce a common handler for all requests for a web site. This

@@ -3,8 +3,8 @@ layout: pattern
 title: Double Checked Locking
 folder: double-checked-locking
 permalink: /patterns/double-checked-locking/
-categories: concurrency
-tags: pattern_tag
+categories: Concurrency
+tags: Java
 ---
 
 **Intent:** Reduce the overhead of acquiring a lock by first testing the

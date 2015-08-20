@@ -3,8 +3,8 @@ layout: pattern
 title: Property
 folder: property
 permalink: /patterns/property/
-categories: creational
-tags: pattern_tag
+categories: Creational
+tags: Java
 ---
 
 **Intent:** Create hierarchy of objects and new objects using already existing

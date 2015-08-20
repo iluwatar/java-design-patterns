@@ -3,8 +3,8 @@ layout: pattern
 title: Intercepting Filter
 folder: intercepting-filter
 permalink: /patterns/intercepting-filter/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and

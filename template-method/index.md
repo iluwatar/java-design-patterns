@@ -3,8 +3,8 @@ layout: pattern
 title: Template method
 folder: template-method
 permalink: /patterns/template-method/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Define the skeleton of an algorithm in an operation, deferring some

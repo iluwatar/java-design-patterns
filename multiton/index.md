@@ -3,8 +3,8 @@ layout: pattern
 title: Multiton
 folder: multiton
 permalink: /patterns/multiton/
-categories: creational
-tags: pattern_tag
+categories: Creational
+tags: Java
 ---
 
 **Intent:** Ensure a class only has limited number of instances, and provide a

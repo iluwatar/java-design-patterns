@@ -3,8 +3,8 @@ layout: pattern
 title: Facade
 folder: facade
 permalink: /patterns/facade/
-categories: structural
-tags: pattern_tag
+categories: Structural
+tags: Java
 ---
 
 **Intent:** Provide a unified interface to a set of interfaces in a subsystem.

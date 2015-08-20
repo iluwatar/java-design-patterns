@@ -3,8 +3,8 @@ layout: pattern
 title: Prototype
 folder: prototype
 permalink: /patterns/prototype/
-categories: creational
-tags: pattern_tag
+categories: Creational
+tags: Java
 ---
 
 **Intent:** Specify the kinds of objects to create using a prototypical

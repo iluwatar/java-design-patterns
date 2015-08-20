@@ -3,8 +3,8 @@ layout: pattern
 title: Memento
 folder: memento
 permalink: /patterns/memento/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Without violating encapsulation, capture and externalize an

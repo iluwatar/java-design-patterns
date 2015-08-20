@@ -3,8 +3,8 @@ layout: pattern
 title: Object Pool
 folder: object-pool
 permalink: /patterns/object-pool/
-categories: creational
-tags: pattern_tag
+categories: Creational
+tags: Java
 ---
 
 **Intent:** When objects are expensive to create and they are needed only for

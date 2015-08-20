@@ -3,8 +3,8 @@ layout: pattern
 title: Chain of responsibility
 folder: chain-of-responsibility
 permalink: /patterns/chain-of-responsibility/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Avoid coupling the sender of a request to its receiver by giving

@@ -3,8 +3,8 @@ layout: pattern
 title: Poison Pill
 folder: poison-pill
 permalink: /patterns/poison-pill/
-categories: pattern_cat
-tags: pattern_tag
+categories: Other
+tags: Java
 ---
 
 **Intent:** Poison Pill is known predefined data item that allows to provide

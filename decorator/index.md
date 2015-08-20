@@ -3,8 +3,8 @@ layout: pattern
 title: Decorator
 folder: decorator
 permalink: /patterns/decorator/
-categories: structural
-tags: pattern_tag
+categories: Structural
+tags: Java
 ---
 
 **Intent:** Attach additional responsibilities to an object dynamically.
