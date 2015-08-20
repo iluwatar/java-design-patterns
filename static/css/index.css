@@ -44,6 +44,7 @@ table td{
 }
 
 
+
 #index a:link {color: #005}		/* 未访问的链接 */
 #index a:visited {color: #669}	/* 已访问的链接 */
 #index a:hover {color: #336;text-decoration: none;}	/* 鼠标移动到链接上 */
@@ -104,7 +105,16 @@ nav{
 	background-color: rgba(0,0,6,0.05);
 
 }
-
+.github-button {
+	display: none;
+}
+.github-buttons iframe {
+	width: 150px;
+	margin-right: 10px;
+}
+#viewSourceOnGithub {
+	float: right;
+}
 
 /* categories list */
 .sidebar-list-header {

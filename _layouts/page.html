@@ -2,19 +2,13 @@
 layout: default
 ---
 <div class="post-area post">
+    {% if site.github_username %}
     <header>
         <h1>{{ page.title }}</h1>
     </header>
     <hr>
+    {% endif %}
     <article class="page-content">
         {{ content }}
     </article>
 </div>
-
-<!--
-<div class="post-area post comment">
-
-    <div class="ds-thread" data-thread-key="{{ page.id }}" data-title="{{ page.title }}" data-url="gaohaoyang.github.io{{ page.url }}"></div>
-
-</div>
--->

@@ -7,7 +7,8 @@ description: Java Design Patterns
 #   Google search results) and in your feed.xml site description.
 
 baseurl: "/java-design-patterns" # the subpath of your site, e.g. /blog/
-url: "http://iluwatar.github.io" # the base hostname & protocol for your site
+url: "https://iluwatar.github.io" # the base hostname & protocol for your site
+repo_url: "https://github.com/iluwatar/java-design-patterns"
 designer_github_username: Gaohaoyang
 permalink: /:year/:month/:day/:title/
 
@@ -23,15 +24,15 @@ kramdown:
   input: GFM
 
 category-list:
-  - pattern_cat
-  - creational
-  - structural
-  - concurrency
-  - behavioral
-  - architectural
-  - integration
-  - presentation_tier
-  - business_tier
+  - Other
+  - Creational
+  - Structural
+  - Concurrency
+  - Behavioral
+  - Architectural
+  - Integration
+  - Presentation Tier
+  - Business Tier
 
 tag-list:
-  - pattern_tag
+  - Java

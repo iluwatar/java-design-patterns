@@ -91,15 +91,15 @@ function categoryAndTagDisplay() {
     $('.sidebar-list-item.category').click(function() {
         var category = $(this).attr('category'); //get category's name
 
-        $('.post-list-body>div[post-category!=' + category + ']').hide(250);
-        $('.post-list-body>div[post-category=' + category + ']').show(400);
+        $('.post-list-body>div[post-category!=\'' + category + '\']').hide(250);
+        $('.post-list-body>div[post-category=\'' + category + '\']').show(400);
     });
     /*show category when click tags list*/
     $('.sidebar-list-item.tag').click(function() {
         var tag = $(this).attr('tag'); //get tag's name
 
-        $('.post-list-body>div[post-tag!=' + tag + ']').hide(250);
-        $('.post-list-body>div[post-tag=' + tag + ']').show(400);
+        $('.post-list-body>div[post-tag!=\'' + tag + '\']').hide(250);
+        $('.post-list-body>div[post-tag=\'' + tag + '\']').show(400);
     });
 }
 

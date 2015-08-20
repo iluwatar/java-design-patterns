@@ -5,24 +5,21 @@ layout: default
   <div id="myArticle" class="col-sm-9">
     <div class="post-area post">
       <header>
+        <a id="viewSourceOnGithub" class="btn btn-primary" href="{{ site.repo_url }}/tree/master/{{ page.folder }}" target="_blank">
+          <span class="glyphicon glyphicon-new-window"></span>
+          &nbsp;View Source on Github
+        </a>
         <h1>{{ page.title }}</h1>
-        <p>{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
       </header>
       <hr>
       <article>
-        {{content}}
+        {{ content }}
       </article>
       <hr>
     </div>
-    <!--
-    <div class="post-area post comment">
-      <div class="ds-thread" data-thread-key="{{ page.id }}" data-title="{{ page.title }}" data-url="gaohaoyang.github.io{{ page.url }}"></div>
-    </div>
-    -->
   </div>
 
   <div id="content" class="col-sm-3">
-    <!-- <div id="myAffix" class="shadow-bottom-center hidden-xs" data-spy="affix" data-offset-top="0" data-offset-bottom="-20"> -->
     <div id="myAffix" class="shadow-bottom-center hidden-xs" >
       <div class="categories-list-header">
         Content
