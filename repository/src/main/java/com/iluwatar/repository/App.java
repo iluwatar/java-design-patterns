@@ -24,39 +24,39 @@ public class App {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"applicationContext.xml");
-		PersonDao dao = context.getBean(PersonDao.class);
+		PersonRepository repository = context.getBean(PersonRepository.class);
 
 		Person peter = new Person("Peter", "Sagan");
 		Person nasta = new Person("Nasta", "Kuzminova");
 
 		// Add new Person records
-		dao.save(peter);
-		dao.save(nasta);
+		repository.save(peter);
+		repository.save(nasta);
 
 		// Count Person records
-		System.out.println("Count Person records: " + dao.count());
+		System.out.println("Count Person records: " + repository.count());
 
 		// Print all records
-		List<Person> persons = (List<Person>) dao.findAll();
+		List<Person> persons = (List<Person>) repository.findAll();
 		for (Person person : persons) {
 			System.out.println(person);
 		}
 
 		// Find Person by surname
-		System.out.println("Find by surname 'Sagan': "	+ dao.findBySurname("Sagan"));
+		System.out.println("Find by surname 'Sagan': "	+ repository.findBySurname("Sagan"));
 
 		// Update Person
 		nasta.setName("Barbora");
 		nasta.setSurname("Spotakova");
-		dao.save(nasta);
+		repository.save(nasta);
 
-		System.out.println("Find by id 2: " + dao.findOne(2L));
+		System.out.println("Find by id 2: " + repository.findOne(2L));
 
 		// Remove record from Person
-		dao.delete(2L);
+		repository.delete(2L);
 
 		// And finally count records
-		System.out.println("Count Person records: " + dao.count());
+		System.out.println("Count Person records: " + repository.count());
 
 		context.close();
 	}

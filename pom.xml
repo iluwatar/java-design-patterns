@@ -74,6 +74,7 @@
     	<module>business-delegate</module>
     	<module>half-sync-half-async</module>
 		<module>step-builder</module>
+		<module>layers</module>
   </modules>
 
 	<dependencyManagement>
