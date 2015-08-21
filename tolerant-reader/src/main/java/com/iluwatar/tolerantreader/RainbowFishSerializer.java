@@ -10,8 +10,8 @@ import java.util.Map;
 
 /**
  * 
- * RainbowFishSerializer provides methods for reading and writing RainbowFish objects to file.
- * Tolerant Reader pattern is implemented here by serializing maps instead of RainbowFish objects.
+ * RainbowFishSerializer provides methods for reading and writing {@link RainbowFish} objects to file.
+ * Tolerant Reader pattern is implemented here by serializing maps instead of {@link RainbowFish} objects.
  * This way the reader does not break even though new properties are added to the schema.
  *
  */

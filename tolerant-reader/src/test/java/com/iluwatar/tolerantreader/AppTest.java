@@ -9,7 +9,11 @@ import org.junit.Test;
 
 import com.iluwatar.tolerantreader.App;
 
-
+/**
+ * 
+ * Application test
+ *
+ */
 public class AppTest {
 	
 	@Test
