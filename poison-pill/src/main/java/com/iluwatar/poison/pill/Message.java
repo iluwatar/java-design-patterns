@@ -3,7 +3,8 @@ package com.iluwatar.poison.pill;
 import java.util.Map;
 
 /**
- * Interface that implements the Message pattern and represents an inbound or outbound message as part of an {@link Producer}-{@link Consumer} exchange.
+ * Interface that implements the Message pattern and represents an inbound or outbound 
+ * message as part of an {@link Producer}-{@link Consumer} exchange.
  */
 public interface Message {
 
