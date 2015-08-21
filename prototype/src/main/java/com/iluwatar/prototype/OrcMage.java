@@ -1,5 +1,10 @@
 package com.iluwatar.prototype;
 
+/**
+ * 
+ * OrcMage
+ *
+ */
 public class OrcMage extends Mage {
 
 	public OrcMage() {
