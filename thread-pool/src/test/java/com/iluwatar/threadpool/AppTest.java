@@ -4,6 +4,11 @@ import org.junit.Test;
 
 import com.iluwatar.threadpool.App;
 
+/**
+ * Application test
+ * @author ilkka
+ *
+ */
 public class AppTest {
 	
 	@Test
