@@ -3,8 +3,8 @@ layout: pattern
 title: Layers
 folder: layers
 permalink: /patterns/layers/
-categories: architectural
-tags: pattern_tag
+categories: Architectural
+tags: Java
 ---
 
 **Intent:** Layers is an architectural style where software responsibilities are

@@ -3,8 +3,8 @@ layout: pattern
 title: Thread Pool
 folder: thread-pool
 permalink: /patterns/thread-pool/
-categories: concurrency
-tags: pattern_tag
+categories: Concurrency
+tags: Java
 ---
 
 **Intent:** It is often the case that tasks to be executed are short-lived and

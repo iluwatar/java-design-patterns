@@ -3,8 +3,8 @@ layout: pattern
 title: Iterator
 folder: iterator
 permalink: /patterns/iterator/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Provide a way to access the elements of an aggregate object

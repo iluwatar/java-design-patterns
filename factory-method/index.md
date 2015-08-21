@@ -3,8 +3,8 @@ layout: pattern
 title: Factory Method
 folder: factory-method
 permalink: /patterns/factory-method/
-categories: creational
-tags: pattern_tag
+categories: Creational
+tags: Java
 ---
 
 **Intent:** Define an interface for creating an object, but let subclasses

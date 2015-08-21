@@ -3,8 +3,8 @@ layout: pattern
 title: Interpreter
 folder: interpreter
 permalink: /patterns/interpreter/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Given a language, define a representation for its grammar along

@@ -3,8 +3,8 @@ layout: pattern
 title: Business Delegate
 folder: business-delegate
 permalink: /patterns/business-delegate/
-categories: business_tier
-tags: pattern_tag
+categories: Business Tier
+tags: Java
 ---
 
 **Intent:** The Business Delegate pattern adds an abstraction layer between

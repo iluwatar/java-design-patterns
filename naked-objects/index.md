@@ -3,8 +3,8 @@ layout: pattern
 title: Naked Objects
 folder: naked-objects
 permalink: /patterns/naked-objects/
-categories: architectural
-tags: pattern_tag
+categories: Architectural
+tags: Java
 ---
 
 **Intent:** The Naked Objects architectural pattern is well suited for rapid

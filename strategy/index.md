@@ -3,8 +3,8 @@ layout: pattern
 title: Strategy
 folder: strategy
 permalink: /patterns/strategy/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Define a family of algorithms, encapsulate each one, and make them

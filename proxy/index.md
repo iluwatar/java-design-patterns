@@ -3,8 +3,8 @@ layout: pattern
 title: Proxy
 folder: proxy
 permalink: /patterns/proxy/
-categories: structural
-tags: pattern_tag
+categories: Structural
+tags: Java
 ---
 
 **Intent:** Provide a surrogate or placeholder for another object to control

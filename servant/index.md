@@ -3,8 +3,8 @@ layout: pattern
 title: Servant
 folder: servant
 permalink: /patterns/servant/
-categories: structural
-tags: pattern_tag
+categories: Structural
+tags: Java
 ---
 
 **Intent:** Servant is used for providing some behavior to a group of classes.

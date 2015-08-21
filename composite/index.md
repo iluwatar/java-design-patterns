@@ -3,8 +3,8 @@ layout: pattern
 title: Composite
 folder: composite
 permalink: /patterns/composite/
-categories: pattern_cat
-tags: pattern_tag
+categories: Structural
+tags: Java
 ---
 
 **Intent:** Compose objects into tree structures to represent part-whole

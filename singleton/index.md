@@ -3,8 +3,8 @@ layout: pattern
 title: Singleton
 folder: singleton
 permalink: /patterns/singleton/
-categories: creational
-tags: pattern_tag
+categories: Creational
+tags: Java
 ---
 
 **Intent:** Ensure a class only has one instance, and provide a global point of

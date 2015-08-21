@@ -3,8 +3,8 @@ layout: pattern
 title: Private Class Data
 folder: private-class-data
 permalink: /patterns/private-class-data/
-categories: pattern_cat
-tags: pattern_tag
+categories: Other
+tags: Java
 ---
 
 **Intent:** Private Class Data design pattern seeks to reduce exposure of

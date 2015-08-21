@@ -3,8 +3,8 @@ layout: pattern
 title: Specification
 folder: specification
 permalink: /patterns/specification/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Specification pattern separates the statement of how to match a

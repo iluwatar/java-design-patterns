@@ -3,8 +3,8 @@ layout: pattern
 title: Bridge
 folder: bridge
 permalink: /patterns/bridge/
-categories: structural
-tags: pattern_tag
+categories: Structural
+tags: Java
 ---
 
 **Intent:** Decouple an abstraction from its implementation so that the two can

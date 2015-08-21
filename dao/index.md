@@ -3,8 +3,8 @@ layout: pattern
 title: Data Access Object
 folder: dao
 permalink: /patterns/dao/
-categories: architectural
-tags: pattern_tag
+categories: Architectural
+tags: Java
 ---
 
 **Intent:** Object provides an abstract interface to some type of database or

@@ -3,8 +3,8 @@ layout: pattern
 title: State
 folder: state
 permalink: /patterns/state/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Allow an object to alter its behavior when its internal state

@@ -3,8 +3,8 @@ layout: pattern
 title: Builder
 folder: builder
 permalink: /patterns/builder/
-categories: creational
-tags: pattern_tag
+categories: Creational
+tags: Java
 ---
 
 **Intent:** Separate the construction of a complex object from its

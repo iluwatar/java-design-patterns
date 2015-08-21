@@ -3,8 +3,8 @@ layout: pattern
 title: Double Dispatch
 folder: double-dispatch
 permalink: /patterns/double-dispatch/
-categories: pattern_cat
-tags: pattern_tag
+categories: Other
+tags: Java
 ---
 
 **Intent:** Double Dispatch pattern is a way to create maintainable dynamic

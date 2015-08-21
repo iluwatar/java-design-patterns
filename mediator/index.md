@@ -3,8 +3,8 @@ layout: pattern
 title: Mediator
 folder: mediator
 permalink: /patterns/mediator/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Define an object that encapsulates how a set of objects interact.

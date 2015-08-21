@@ -3,8 +3,8 @@ layout: pattern
 title: Callback
 folder: callback
 permalink: /patterns/callback/
-categories: pattern_cat
-tags: pattern_tag
+categories: Other
+tags: Java
 ---
 
 **Intent:** Callback is a piece of executable code that is passed as an

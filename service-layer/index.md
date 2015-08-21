@@ -3,8 +3,8 @@ layout: pattern
 title: Service Layer
 folder: service-layer
 permalink: /patterns/service-layer/
-categories: architectural
-tags: pattern_tag
+categories: Architectural
+tags: Java
 ---
 
 **Intent:** Service Layer is an abstraction over domain logic. Typically

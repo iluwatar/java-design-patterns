@@ -3,8 +3,8 @@ layout: pattern
 title: Flyweight
 folder: flyweight
 permalink: /patterns/flyweight/
-categories: structural
-tags: pattern_tag
+categories: Structural
+tags: Java
 ---
 
 **Intent:** Use sharing to support large numbers of fine-grained objects

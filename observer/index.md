@@ -3,8 +3,8 @@ layout: pattern
 title: Observer
 folder: observer
 permalink: /patterns/observer/
-categories: behavioral
-tags: pattern_tag
+categories: Behavioral
+tags: Java
 ---
 
 **Intent:** Define a one-to-many dependency between objects so that when one

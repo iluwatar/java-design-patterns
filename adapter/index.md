@@ -3,8 +3,8 @@ layout: pattern
 title: Adapter
 folder: adapter
 permalink: /patterns/adapter/
-categories: structural
-tags: pattern_tag
+categories: Structural
+tags: Java
 ---
 
 **Intent:** Convert the interface of a class into another interface the clients
