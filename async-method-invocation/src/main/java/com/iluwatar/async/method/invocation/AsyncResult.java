@@ -2,6 +2,12 @@ package com.iluwatar.async.method.invocation;
 
 import java.util.concurrent.ExecutionException;
 
+/**
+ * 
+ * AsyncResult interface
+ *
+ * @param <T>
+ */
 public interface AsyncResult<T> {
 
 	/**

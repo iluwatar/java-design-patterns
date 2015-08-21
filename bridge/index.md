@@ -11,7 +11,7 @@ tags: Java
 vary independently.
 
 
-![alt text](./etc/bridge_1.png "Bridge")
+![alt text](./etc/bridge.png "Bridge")
 
 **Applicability:** Use the Bridge pattern when
 

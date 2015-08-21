@@ -1,5 +1,10 @@
 package com.iluwatar.servant;
 
+/**
+ * 
+ * Royalty
+ *
+ */
 interface Royalty {
 
     void getFed();

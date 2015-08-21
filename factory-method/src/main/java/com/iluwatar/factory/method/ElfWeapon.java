@@ -1,5 +1,10 @@
 package com.iluwatar.factory.method;
 
+/**
+ * 
+ * ElfWeapon
+ *
+ */
 public class ElfWeapon implements Weapon {
 
 	private WeaponType weaponType;

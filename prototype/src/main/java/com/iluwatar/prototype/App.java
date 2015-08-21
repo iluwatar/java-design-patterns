@@ -2,13 +2,17 @@ package com.iluwatar.prototype;
 
 /**
  * 
- * In Prototype we have a factory class (HeroFactoryImpl) producing objects by
- * cloning existing ones. In this example the factory's prototype objects are
+ * In Prototype we have a factory class ({@link HeroFactoryImpl}) producing objects by
+ * cloning the existing ones. In this example the factory's prototype objects are
  * given as constructor parameters.
  * 
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 		HeroFactory factory;
 		Mage mage;

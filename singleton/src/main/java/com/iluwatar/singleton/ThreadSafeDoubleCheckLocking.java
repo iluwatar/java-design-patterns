@@ -2,10 +2,11 @@ package com.iluwatar.singleton;
 
 /**
  * Double check locking
- * 
+ * <p>
  * http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html
- * 
+ * <p>
  * Broken under Java 1.4.
+ * 
  * @author mortezaadi@gmail.com
  *
  */

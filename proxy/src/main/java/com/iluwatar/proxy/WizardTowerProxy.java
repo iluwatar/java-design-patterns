@@ -2,7 +2,7 @@ package com.iluwatar.proxy;
 
 /**
  * 
- * The proxy controlling access to WizardTower.
+ * The proxy controlling access to the {@link WizardTower}.
  * 
  */
 public class WizardTowerProxy extends WizardTower {

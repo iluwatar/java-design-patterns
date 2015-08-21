@@ -1,5 +1,10 @@
 package com.iluwatar.flyweight;
 
+/**
+ * 
+ * InvisibilityPotion
+ *
+ */
 public class InvisibilityPotion implements Potion {
 
 	@Override

@@ -1,7 +1,9 @@
 package com.iluwatar.callback;
 
 /**
+ * 
  * Implementation of task that need to be executed
+ * 
  */
 public class SimpleTask extends Task {
 

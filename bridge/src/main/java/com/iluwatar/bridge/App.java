@@ -2,13 +2,17 @@ package com.iluwatar.bridge;
 
 /**
  * 
- * In Bridge pattern both abstraction (MagicWeapon) and implementation
- * (MagicWeaponImp) have their own class hierarchies. The interface of the
+ * In Bridge pattern both abstraction ({@link MagicWeapon}) and implementation
+ * ({@link MagicWeaponImpl}) have their own class hierarchies. The interface of the
  * implementations can be changed without affecting the clients.
  * 
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 		BlindingMagicWeapon blindingMagicWeapon = new BlindingMagicWeapon(
 				new Excalibur());

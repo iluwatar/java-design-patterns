@@ -1,5 +1,10 @@
 package com.iluwatar.prototype;
 
+/**
+ * 
+ * OrcBeast
+ *
+ */
 public class OrcBeast extends Beast {
 
 	public OrcBeast() {

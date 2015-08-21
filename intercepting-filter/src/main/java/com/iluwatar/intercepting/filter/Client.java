@@ -15,9 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 /**
- * The Client class is responsible for handling the input and running them through filters inside the filterManager
+ * The Client class is responsible for handling the input and running them through filters inside the {@link FilterManager}.
  *
- * This is where Filters come to play as the client pre-processes the request before being displayed in the Target
+ * This is where {@link Filter}s come to play as the client pre-processes the request before being displayed in the {@link Target}.
  * 
  * @author joshzambales
  *

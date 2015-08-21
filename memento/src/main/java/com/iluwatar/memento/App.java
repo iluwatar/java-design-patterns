@@ -4,8 +4,8 @@ import java.util.Stack;
 
 /**
  * 
- * Memento pattern is for storing and restoring object state. The object (Star)
- * gives out a "memento" (StarMemento) that contains the state of the object.
+ * Memento pattern is for storing and restoring object state. The object ({@link Star})
+ * gives out a "memento" ({@link StarMemento}) that contains the state of the object.
  * Later on the memento can be set back to the object restoring the state.
  * 
  */

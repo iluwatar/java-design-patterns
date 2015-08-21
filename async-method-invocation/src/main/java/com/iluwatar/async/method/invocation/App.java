@@ -3,29 +3,24 @@ package com.iluwatar.async.method.invocation;
 import java.util.concurrent.Callable;
 
 /**
- * <p>
  * This application demonstrates the async method invocation pattern. Key parts of the pattern are
  * <code>AsyncResult</code> which is an intermediate container for an asynchronously evaluated value,
  * <code>AsyncCallback</code> which can be provided to be executed on task completion and
  * <code>AsyncExecutor</code> that manages the execution of the async tasks.
- * </p>
  * <p>
  * The main method shows example flow of async invocations. The main thread starts multiple tasks with
  * variable durations and then continues its own work. When the main thread has done it's job it collects
  * the results of the async tasks. Two of the tasks are handled with callbacks, meaning the callbacks are
  * executed immediately when the tasks complete.
- * </p>
  * <p>
  * Noteworthy difference of thread usage between the async results and callbacks is that the async results
  * are collected in the main thread but the callbacks are executed within the worker threads. This should be
  * noted when working with thread pools.
- * </p>
  * <p>
  * Java provides its own implementations of async method invocation pattern. FutureTask, CompletableFuture
  * and ExecutorService are the real world implementations of this pattern. But due to the nature of parallel
  * programming, the implementations are not trivial. This example does not take all possible scenarios into
  * account but rather provides a simple version that helps to understand the pattern.
- * </p>
  *
  * @see AsyncResult
  * @see AsyncCallback

@@ -9,7 +9,7 @@ import com.iluwatar.servicelayer.wizard.Wizard;
 
 /**
  * 
- * Produces the Hibernate SessionFactory.
+ * Produces the Hibernate {@link SessionFactory}.
  *
  */
 public class HibernateUtil {

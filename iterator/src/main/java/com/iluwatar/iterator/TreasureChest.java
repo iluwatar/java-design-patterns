@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 
- * Collection class.
+ * TreasureChest, the collection class.
  * 
  */
 public class TreasureChest {

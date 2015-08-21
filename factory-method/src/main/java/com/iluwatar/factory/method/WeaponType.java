@@ -1,5 +1,10 @@
 package com.iluwatar.factory.method;
 
+/**
+ * 
+ * WeaponType enumeration
+ *
+ */
 public enum WeaponType {
 
 	SHORT_SWORD("short sword"), SPEAR("spear"), AXE("axe"), UNDEFINED("");

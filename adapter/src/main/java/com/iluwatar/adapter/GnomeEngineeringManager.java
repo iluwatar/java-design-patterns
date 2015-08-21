@@ -2,7 +2,7 @@ package com.iluwatar.adapter;
 
 /**
  * 
- * GnomeEngineering manager uses Engineer to operate devices.
+ * GnomeEngineering manager uses {@link Engineer} to operate devices.
  * 
  */
 public class GnomeEngineeringManager implements Engineer {

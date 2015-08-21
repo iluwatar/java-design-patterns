@@ -3,14 +3,21 @@ package com.iluwatar.property;
 import com.iluwatar.property.Character.Type;
 
 /**
- * Example of Character instantiation using Property pattern (as concept also known like Prototype inheritance).
+ * 
+ * Example of {@link Character} instantiation using the Property pattern (also known as Prototype inheritance).
+ * <p>
  * In prototype inheritance instead of classes, as opposite to Java class inheritance,
- * objects are used to create another objects and object hierarchies.
- * Hierarchies are created using prototype chain through delegation: every object has link to parent object.
- * Any base (parent) object can be amended at runtime (by adding or removal of some property), and all child objects will be affected as result.
+ * objects are used to create another objects and object hierarchies. Hierarchies are created using prototype chain 
+ * through delegation: every object has link to parent object. Any base (parent) object can be amended at runtime 
+ * (by adding or removal of some property), and all child objects will be affected as result.
+ * 
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 		/* set up */
 		Prototype charProto = new Character();

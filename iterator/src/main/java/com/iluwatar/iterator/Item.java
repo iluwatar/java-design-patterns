@@ -1,5 +1,10 @@
 package com.iluwatar.iterator;
 
+/**
+ * 
+ * Item
+ *
+ */
 public class Item {
 
 	private ItemType type;

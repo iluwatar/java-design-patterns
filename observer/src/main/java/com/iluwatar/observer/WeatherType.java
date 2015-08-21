@@ -1,5 +1,10 @@
 package com.iluwatar.observer;
 
+/**
+ * 
+ * WeatherType enumeration
+ * 
+ */
 public enum WeatherType {
 
 	SUNNY, RAINY, WINDY, COLD;

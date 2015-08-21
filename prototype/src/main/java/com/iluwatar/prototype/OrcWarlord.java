@@ -1,5 +1,10 @@
 package com.iluwatar.prototype;
 
+/**
+ * 
+ * OrcWarlord
+ *
+ */
 public class OrcWarlord extends Warlord {
 
 	public OrcWarlord() {
