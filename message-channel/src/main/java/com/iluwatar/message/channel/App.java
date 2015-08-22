@@ -1,7 +1,6 @@
 package com.iluwatar.message.channel;
 
 import org.apache.camel.CamelContext;
-import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
@@ -19,9 +18,7 @@ public class App {
 		});
 		
 		context.start();
-		ProducerTemplate template = context.createProducerTemplate();
-		template.sendBody("direct:greetings", "jou man");
-		Thread.sleep(1000);
+		context.getRoutes().stream().forEach((r) -> System.out.println(r));
 		context.stop();
 	}
 }
