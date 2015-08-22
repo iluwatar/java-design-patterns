@@ -10,7 +10,7 @@ import org.junit.Test;
 public class AppTest {
 	
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		String[] args = {};
 		App.main(args);
 	}

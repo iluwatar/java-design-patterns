@@ -11,6 +11,10 @@
 	<artifactId>message-channel</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>

@@ -17,6 +17,7 @@
 		<coveralls.version>3.1.0</coveralls.version>
 		<jacoco.version>0.7.2.201409121644</jacoco.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<camel.version>2.15.3</camel.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -104,6 +105,11 @@
 				<groupId>commons-dbcp</groupId>
 				<artifactId>commons-dbcp</artifactId>
 				<version>${commons-dbcp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-core</artifactId>
+				<version>${camel.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
