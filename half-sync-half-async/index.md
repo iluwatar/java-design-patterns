@@ -11,7 +11,7 @@ tags: Java
 asynchronous I/O in a system to simplify concurrent programming effort without
 degrading execution efficiency.
 
-![Half-Sync/Half-Async class diagram](./half-sync-half-async/etc/half-sync-half-async.png)
+![Half-Sync/Half-Async class diagram](./etc/half-sync-half-async.png)
 
 **Applicability:** Use Half-Sync/Half-Async pattern when
 
