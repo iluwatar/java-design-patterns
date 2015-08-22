@@ -9,9 +9,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<hibernate.version>5.0.0.CR2</hibernate.version>
-		<spring-data.version>1.8.1.RELEASE</spring-data.version>
-		<h2.version>1.4.187</h2.version>
+		<hibernate.version>5.0.0.Final</hibernate.version>
+		<spring-data.version>1.8.2.RELEASE</spring-data.version>
+		<h2.version>1.4.188</h2.version>
 		<junit.version>4.12</junit.version>
 		<compiler.version>3.0</compiler.version>
 		<coveralls.version>3.1.0</coveralls.version>
