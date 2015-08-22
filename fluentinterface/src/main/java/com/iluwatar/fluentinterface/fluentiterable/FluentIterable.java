@@ -1,6 +1,9 @@
 package com.iluwatar.fluentinterface.fluentiterable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -8,116 +11,49 @@ import java.util.function.Predicate;
 /**
  * The FluentIterable is a more convenient implementation of the common iterable interface based
  * on the fluent interface design pattern.
- * This implementation demonstrates a possible way to implement this functionality, but
+ * This interface defines common operations, but
  * doesn't aim to be complete. It was inspired by Guava's com.google.common.collect.FluentIterable.
  * @param <TYPE> is the class of objects the iterable contains
  */
-public class FluentIterable<TYPE> implements Iterable<TYPE> {
-
-    private final Iterable<TYPE> iterable;
+public interface FluentIterable<TYPE> extends Iterable<TYPE> {
 
     /**
-     * This constructor creates a copy of a given iterable's contents.
-     * @param iterable the iterable this interface copies to work on.
-     */
-    protected FluentIterable(Iterable<TYPE> iterable) {
-        ArrayList<TYPE> copy = new ArrayList<>();
-        Iterator<TYPE> iterator = iterable.iterator();
-        while (iterator.hasNext()) {
-            copy.add(iterator.next());
-        }
-        this.iterable = copy;
-    }
-
-    /**
-     * Iterates over all elements of this iterator and filters them.
+     * Filters the iteration with the given predicate.
      * @param predicate the condition to test with for the filtering. If the test
      *                  is negative, the tested object is removed by the iterator.
-     * @return the same FluentIterable with a filtered collection
+     * @return a filtered FluentIterable
      */
-    public final FluentIterable<TYPE> filter(Predicate<? super TYPE> predicate) {
-        Iterator<TYPE> iterator = iterator();
-        while (iterator.hasNext()) {
-            TYPE nextElement = iterator.next();
-            if(!predicate.test(nextElement)) {
-                iterator.remove();
-            }
-        }
-        return this;
-    }
+    FluentIterable<TYPE> filter(Predicate<? super TYPE> predicate);
 
     /**
      * Uses the Iterable interface's forEach method to apply a given function
-     * for each object of the iterator.
-     * @param action the action for each object
-     * @return the same FluentIterable with an untouched collection
+     * for each object of the iterator. This is a terminating operation.
      */
-    public final FluentIterable<TYPE> forEachDo(Consumer<? super TYPE> action) {
-        iterable.forEach(action);
-        return this;
-    }
+    void forEachDo(Consumer<? super TYPE> action);
 
     /**
-     * Can be used to collect objects from the iteration.
-     * @return an option of the first object of the iteration
+     * Evaluates the iteration and returns the first element. This is a terminating operation.
+     * @return the first element after the iteration is evaluated
      */
-    public final Optional<TYPE> first() {
-        List<TYPE> list = first(1).asList();
-        if(list.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(list.get(0));
-    }
+    Optional<TYPE> first();
 
     /**
-     * Can be used to collect objects from the iteration.
-     * @param count defines the number of objects to return
-     * @return the same FluentIterable with a collection decimated to a maximum of 'count' first objects.
+     * Evaluates the iteration and leaves only the count first elements.
+     * @return the first count elements as an Iterable
      */
-    public final FluentIterable<TYPE> first(int count) {
-        Iterator<TYPE> iterator = iterator();
-        int currentCount = 0;
-        while (iterator.hasNext()) {
-            iterator.next();
-            if(currentCount >= count) {
-                iterator.remove();
-            }
-            currentCount++;
-        }
-        return this;
-    }
+    FluentIterable<TYPE> first(int count);
 
     /**
-     * Can be used to collect objects from the iteration.
-     * @return an option of the last object of the iteration
+     * Evaluates the iteration and returns the last element. This is a terminating operation.
+     * @return the last element after the iteration is evaluated
      */
-    public final Optional<TYPE> last() {
-        List<TYPE> list = last(1).asList();
-        if(list.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(list.get(0));
-    }
+    Optional<TYPE> last();
 
     /**
-     * Can be used to collect objects from the iteration.
-     * @param count defines the number of objects to return
-     * @return the same FluentIterable with a collection decimated to a maximum of 'count' last objects
+     * Evaluates the iteration and leaves only the count last elements.
+     * @return the last counts elements as an Iterable
      */
-    public final FluentIterable<TYPE> last(int count) {
-        int remainingElementsCount = getRemainingElementsCount();
-        Iterator<TYPE> iterator = iterator();
-        int currentIndex = 0;
-        while (iterator.hasNext()) {
-            iterator.next();
-            if(currentIndex < remainingElementsCount - count) {
-                iterator.remove();
-            }
-            currentIndex++;
-        }
-
-        return this;
-    }
+    FluentIterable<TYPE> last(int count);
 
     /**
      * Transforms this FluentIterable into a new one containing objects of the type NEW_TYPE.
@@ -125,65 +61,18 @@ public class FluentIterable<TYPE> implements Iterable<TYPE> {
      * @param <NEW_TYPE> the target type of the transformation
      * @return a new FluentIterable of the new type
      */
-    public final <NEW_TYPE> FluentIterable<NEW_TYPE> map(Function<? super TYPE, NEW_TYPE> function) {
-        List<NEW_TYPE> temporaryList = new ArrayList();
-        Iterator<TYPE> iterator = iterator();
-        while (iterator.hasNext()) {
-            temporaryList.add(function.apply(iterator.next()));
-        }
-        return from(temporaryList);
-    }
+    <NEW_TYPE> FluentIterable<NEW_TYPE> map(Function<? super TYPE, NEW_TYPE> function);
+    List<TYPE> asList();
 
     /**
-     * Collects all remaining objects of this iteration into a list.
-     * @return a list with all remaining objects of this iteration
+     * Utility method that iterates over iterable and adds the contents to a list.
+     * @param iterable the iterable to collect
+     * @param <TYPE> the type of the objects to iterate
+     * @return a list with all objects of the given iterator
      */
-    public List<TYPE> asList() {
-        return toList(iterable.iterator());
-    }
-
-    /**
-     * @return a FluentIterable from a given iterable. Calls the FluentIterable constructor.
-     */
-    public static final <TYPE> FluentIterable<TYPE> from(Iterable<TYPE> iterable) {
-        return new FluentIterable<>(iterable);
-    }
-
-    @Override
-    public Iterator<TYPE> iterator() {
-        return iterable.iterator();
-    }
-
-    @Override
-    public void forEach(Consumer<? super TYPE> action) {
-        iterable.forEach(action);
-    }
-
-
-    @Override
-    public Spliterator<TYPE> spliterator() {
-        return iterable.spliterator();
-    }
-
-    /**
-     * @return the count of remaining objects in the current iteration
-     */
-    public final int getRemainingElementsCount() {
-        int counter = 0;
-        Iterator<TYPE> iterator = iterator();
-        while(iterator.hasNext()) {
-            iterator.next();
-            counter++;
-        }
-        return counter;
-    }
-
-    /**
-     * Collects the remaining objects of the given iterators iteration into an List.
-     * @return a new List with the remaining objects.
-     */
-    public static <TYPE> List<TYPE> toList(Iterator<TYPE> iterator) {
-        List<TYPE> copy = new ArrayList<>();
+    static <TYPE> List<TYPE> copyToList(Iterable<TYPE> iterable) {
+        ArrayList<TYPE> copy = new ArrayList<>();
+        Iterator<TYPE> iterator = iterable.iterator();
         while (iterator.hasNext()) {
             copy.add(iterator.next());
         }

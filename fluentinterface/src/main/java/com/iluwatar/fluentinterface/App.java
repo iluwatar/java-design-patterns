@@ -1,13 +1,13 @@
 package com.iluwatar.fluentinterface;
 
-import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
+import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
+import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
+
+import static java.lang.String.valueOf;
 
 public class App {
 
@@ -34,35 +34,49 @@ public class App {
         }};
         prettyPrint("The initial list contains: ", integerList);
 
-        List<Integer> firstFiveNegatives = FluentIterable.from(integerList)
+        List<Integer> firstFiveNegatives = SimpleFluentIterable.from(integerList)
                 .filter(negatives())
                 .first(3)
                 .asList();
         prettyPrint("The first three negative values are: ", firstFiveNegatives);
 
 
-        List<Integer> lastTwoPositives = FluentIterable.from(integerList)
+        List<Integer> lastTwoPositives = SimpleFluentIterable.from(integerList)
                 .filter(positives())
                 .last(2)
                 .asList();
         prettyPrint("The last two positive values are: ", lastTwoPositives);
 
-        FluentIterable.from(integerList)
+        SimpleFluentIterable.from(integerList)
                 .filter(number -> number%2 == 0)
                 .first()
                 .ifPresent(evenNumber -> System.out.println(String.format("The first even number is: %d", evenNumber)));
 
 
-        List<String> transformedList = FluentIterable.from(integerList)
+        List<String> transformedList = SimpleFluentIterable.from(integerList)
                 .filter(negatives())
                 .map(transformToString())
                 .asList();
         prettyPrint("A string-mapped list of negative numbers contains: ", transformedList);
 
+
+        List<String> lastTwoOfFirstFourStringMapped = LazyFluentIterable.from(integerList)
+                .filter(positives())
+                .first(4)
+                .last(2)
+                .map(number -> "String[" + String.valueOf(number) + "]")
+                .asList();
+        prettyPrint("The lazy list contains the last two of the first four positive numbers mapped to Strings: ", lastTwoOfFirstFourStringMapped);
+
+        LazyFluentIterable.from(integerList)
+                .filter(negatives())
+                .first(2)
+                .last()
+                .ifPresent(lastOfFirstTwo -> System.out.println(String.format("The last of the first two negatives is: %d", lastOfFirstTwo)));
     }
 
     private static Function<Integer, String> transformToString() {
-        return integer -> "String[" + String.valueOf(integer) + "]";
+        return integer -> "String[" + valueOf(integer) + "]";
     }
     private static Predicate<? super Integer> negatives() {
         return integer -> (integer < 0);
