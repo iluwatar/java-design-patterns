@@ -9,14 +9,15 @@ import java.net.Socket;
 public class AppClient {
 
 	public static void main(String[] args) {
-		new LoggingClient("Client 1", 6666).start();
+		new Thread(new LoggingClient("Client 1", 6666)).start();
+		new Thread(new LoggingClient("Client 2", 6667)).start();
 	}
 
 	
 	/*
 	 * A logging client that sends logging requests to logging server
 	 */
-	static class LoggingClient {
+	static class LoggingClient implements Runnable {
 
 		private int serverPort;
 		private String clientName;
@@ -26,7 +27,7 @@ public class AppClient {
 			this.serverPort = serverPort;
 		}
 
-		public void start() {
+		public void run() {
 			Socket socket = null;
 			try {
 				socket = new Socket(InetAddress.getLocalHost(), serverPort);
@@ -51,7 +52,7 @@ public class AppClient {
 			for (int i = 0; i < 10; i++) {
 				writer.println(clientName + " - Log request: " + i);
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

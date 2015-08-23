@@ -1,44 +1,63 @@
 package com.iluwatar.reactor;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
+import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
+/*
+ * Abstractions
+ * ---------------
+ * 
+ * 1 - Dispatcher
+ * 2 - Synchronous Event De-multiplexer
+ * 3 - Event
+ * 4 - Event Handler & concrete event handler (application business logic)
+ * 5 - Selector
+ */
 public class NioReactor {
 
-	private int port;
 	private Selector selector;
-	private ServerSocketChannel serverSocketChannel;
-	private NioChannelEventHandler nioEventhandler;
-
-	public NioReactor(int port, NioChannelEventHandler handler) {
-		this.port = port;
-		this.nioEventhandler = handler;
+	private Acceptor acceptor;
+	private List<NioChannelEventHandler> eventHandlers = new CopyOnWriteArrayList<>();
+	
+	public NioReactor() throws IOException {
+		this.acceptor = new Acceptor();
+		this.selector = Selector.open();
 	}
 	
+	public NioReactor registerChannel(SelectableChannel channel) throws IOException {
+		SelectionKey key = channel.register(selector, SelectionKey.OP_ACCEPT);
+		key.attach(acceptor);
+		return this;
+	}
+	
+	public void registerHandler(NioChannelEventHandler handler) {
+		eventHandlers.add(handler);
+	}
 	
 	public void start() throws IOException {
-		startReactor();
-		requestLoop();
+		new Thread( new Runnable() {
+			@Override
+			public void run() {
+				try {
+					System.out.println("Reactor started, waiting for events...");
+					eventLoop();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 
-	private void startReactor() throws IOException {
-		selector = Selector.open();
-		serverSocketChannel = ServerSocketChannel.open();
-		serverSocketChannel.socket().bind(new InetSocketAddress(port));
-		serverSocketChannel.configureBlocking(false);
-		SelectionKey acceptorKey = serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-		acceptorKey.attach(new Acceptor());
-		System.out.println("Reactor started listening on port: " + port);
-	}
-	
-	private void requestLoop() throws IOException {
+	private void eventLoop() throws IOException {
 		while (true) {
-			selector.select();
+			selector.select(1000);
 			Set<SelectionKey> keys = selector.selectedKeys();
 			for (SelectionKey key : keys) {
 				dispatchEvent(key);
@@ -50,21 +69,21 @@ public class NioReactor {
 	private void dispatchEvent(SelectionKey key) throws IOException {
 		Object handler = key.attachment();
 		if (handler != null) {
-			((EventHandler)handler).handle();
+			((EventHandler)handler).handle(key.channel());
 		}
 	}
 
 	interface EventHandler {
-		void handle() throws IOException;
+		void handle(SelectableChannel channel) throws IOException;
 	}
 
 	private class Acceptor implements EventHandler {
 		
-		public void handle() throws IOException {
+		public void handle(SelectableChannel channel) throws IOException {
 			// non-blocking accept as acceptor will only be called when accept event is available
-			SocketChannel clientChannel = serverSocketChannel.accept();
+			SocketChannel clientChannel = ((ServerSocketChannel)channel).accept();
 			if (clientChannel != null) {
-				new ChannelHandler(clientChannel).handle();
+				new ChannelHandler(clientChannel).handle(clientChannel);
 			}
 			System.out.println("Connection established with a client");
 		}
@@ -88,9 +107,11 @@ public class NioReactor {
 			selector.wakeup();
 		}
 
-		public void handle() throws IOException {
+		public void handle(SelectableChannel channel) throws IOException {
 			// only read events are supported.
-			nioEventhandler.onReadable(clientChannel);
+			for (NioChannelEventHandler eventHandler : eventHandlers) {
+				eventHandler.onReadable(clientChannel);
+			}
 		}
 	}
 }
