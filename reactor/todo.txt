@@ -1,0 +1,4 @@
+* Make UDP channel work (connect is required)
+* Cleanup
+* Document - Javadoc
+* Better design?? Get review of @iluwatar
