@@ -5,13 +5,18 @@ import java.util.concurrent.Executors;
 
 /**
  * 
- * In Inventory we store the items with a given size. However, we do not store
+ * In {@link Inventory} we store the items with a given size. However, we do not store
  * more items than the inventory size. To address concurrent access problems we
  * use double checked locking to add item to inventory. In this method, the
  * thread which gets the lock first adds the item.
+ * 
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 		final Inventory inventory = new Inventory(1000);
 		ExecutorService executorService = Executors.newFixedThreadPool(3);

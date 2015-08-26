@@ -1,5 +1,10 @@
 package com.iluwatar.prototype;
 
+/**
+ * 
+ * Warlord
+ *
+ */
 public abstract class Warlord extends Prototype {
 
 	@Override

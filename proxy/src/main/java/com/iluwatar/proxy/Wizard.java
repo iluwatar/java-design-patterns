@@ -1,5 +1,10 @@
 package com.iluwatar.proxy;
 
+/**
+ * 
+ * Wizard
+ *
+ */
 public class Wizard {
 
 	private String name;

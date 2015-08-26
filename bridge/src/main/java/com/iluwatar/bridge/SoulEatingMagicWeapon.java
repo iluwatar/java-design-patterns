@@ -1,14 +1,19 @@
 package com.iluwatar.bridge;
 
+/**
+ * 
+ * SoulEatingMagicWeapon
+ *
+ */
 public class SoulEatingMagicWeapon extends MagicWeapon {
 
-	public SoulEatingMagicWeapon(SoulEatingMagicWeaponImp imp) {
+	public SoulEatingMagicWeapon(SoulEatingMagicWeaponImpl imp) {
 		super(imp);
 	}
 
 	@Override
-	public SoulEatingMagicWeaponImp getImp() {
-		return (SoulEatingMagicWeaponImp) imp;
+	public SoulEatingMagicWeaponImpl getImp() {
+		return (SoulEatingMagicWeaponImpl) imp;
 	}
 
 	@Override

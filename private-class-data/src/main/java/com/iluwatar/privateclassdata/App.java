@@ -7,19 +7,23 @@ package com.iluwatar.privateclassdata;
  * encapsulating them in single data object. It allows the class designer to 
  * remove write privilege of attributes that are intended to be set only during 
  * construction, even from methods of the target class.
- * 
- * In the example we have normal Stew class with some ingredients given in
+ * <p>
+ * In the example we have normal {@link Stew} class with some ingredients given in
  * constructor. Then we have methods to enumerate the ingredients and to taste
  * the stew. The method for tasting the stew alters the private members of the
- * stew class.
+ * {@link Stew} class.
  * 
  * The problem is solved with the Private Class Data pattern. We introduce
- * ImmutableStew class that contains StewData. The private data members of
- * Stew are now in StewData and cannot be altered by ImmutableStew methods.
+ * {@link ImmutableStew} class that contains {@link StewData}. The private data members of
+ * {@link Stew} are now in {@link StewData} and cannot be altered by {@link ImmutableStew} methods.
  *
  */
 public class App {
 	
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
     public static void main( String[] args ) {
     	// stew is mutable
     	Stew stew = new Stew(1, 2, 3, 4);

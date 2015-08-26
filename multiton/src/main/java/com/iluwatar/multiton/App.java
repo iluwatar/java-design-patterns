@@ -6,14 +6,18 @@ package com.iluwatar.multiton;
  * accessible object the Multiton pattern defines many globally
  * accessible objects. The client asks for the correct instance 
  * from the Multiton by passing an enumeration as parameter.
- * 
- * In this example Nazgul is the Multiton and we can ask single
- * Nazgul from it using NazgulName. The Nazguls are statically
+ * <p>
+ * In this example {@link Nazgul} is the Multiton and we can ask single
+ * {@link Nazgul} from it using {@link NazgulName}. The {@link Nazgul}s are statically
  * initialized and stored in concurrent hash map.
  *
  */
 public class App {
 	
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
     public static void main( String[] args ) {
     	System.out.println("KHAMUL=" + Nazgul.getInstance(NazgulName.KHAMUL));
     	System.out.println("MURAZOR=" + Nazgul.getInstance(NazgulName.MURAZOR));

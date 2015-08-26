@@ -1,5 +1,10 @@
 package com.iluwatar.interpreter;
 
+/**
+ * 
+ * PlusExpression
+ *
+ */
 public class PlusExpression extends Expression {
 
 	private Expression leftExpression;

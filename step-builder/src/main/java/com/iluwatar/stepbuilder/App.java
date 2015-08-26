@@ -32,10 +32,15 @@ package com.iluwatar.stepbuilder;
  * the object and how they're assembled the construction process must
  * allow different representations for the object that's constructed
  * when in the process of constructing the order is important.
- *
+ * <p>
  * http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html
  */
 public class App {
+	
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
         public static void main(String[] args) {
 
                 Character warrior = CharacterStepBuilder.newBuilder()

@@ -4,6 +4,11 @@ import org.junit.Test;
 
 import com.iluwatar.composite.App;
 
+/**
+ * 
+ * Application test
+ *
+ */
 public class AppTest {
 
 	@Test

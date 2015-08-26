@@ -2,6 +2,13 @@ package com.iluwatar.async.method.invocation;
 
 import java.util.Optional;
 
+/**
+ * 
+ * AsyncCallback interface
+ *
+ * @param <T>
+ * 
+ */
 public interface AsyncCallback<T> {
 
 	/**

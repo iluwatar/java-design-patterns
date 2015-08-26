@@ -1,6 +1,11 @@
 package com.iluwatar.bridge;
 
-public class Mjollnir extends FlyingMagicWeaponImp {
+/**
+ * 
+ * Mjollnir
+ *
+ */
+public class Mjollnir extends FlyingMagicWeaponImpl {
 
 	@Override
 	public void wieldImp() {

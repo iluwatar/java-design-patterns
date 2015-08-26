@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 
+ * Messenger
+ *
+ */
 public class Messenger {
 
 	LetterComposite messageFromOrcs() {

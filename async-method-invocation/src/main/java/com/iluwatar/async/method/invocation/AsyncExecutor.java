@@ -3,6 +3,11 @@ package com.iluwatar.async.method.invocation;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * 
+ * AsyncExecutor interface
+ *
+ */
 public interface AsyncExecutor {
 
 	/**

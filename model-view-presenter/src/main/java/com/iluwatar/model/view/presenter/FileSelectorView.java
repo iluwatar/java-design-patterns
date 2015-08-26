@@ -23,9 +23,7 @@ public interface FileSelectorView {
 
 	/**
 	 * Sets the presenter component, to the one given as parameter.
-	 * 
-	 * @param presenter
-	 *            The new presenter component.
+	 * @param presenter The new presenter component.
 	 */
 	public void setPresenter(FileSelectorPresenter presenter);
 
@@ -36,9 +34,7 @@ public interface FileSelectorView {
 
 	/**
 	 * Sets the file's name, to the value given as parameter.
-	 * 
-	 * @param name
-	 *            The new name of the file.
+	 * @param name The new name of the file.
 	 */
 	public void setFileName(String name);
 
@@ -49,17 +45,13 @@ public interface FileSelectorView {
 
 	/**
 	 * Displays a message to the users.
-	 * 
-	 * @param message
-	 *            The message to be displayed.
+	 * @param message The message to be displayed.
 	 */
 	public void showMessage(String message);
 
 	/**
 	 * Displays the data to the view.
-	 * 
-	 * @param data
-	 *            The data to be written.
+	 * @param data The data to be written.
 	 */
 	public void displayData(String data);
 }

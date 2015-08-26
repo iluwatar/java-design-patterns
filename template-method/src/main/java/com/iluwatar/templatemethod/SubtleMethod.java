@@ -2,7 +2,7 @@ package com.iluwatar.templatemethod;
 
 /**
  * 
- * SubtleMethod implementation of StealingMethod.
+ * SubtleMethod implementation of {@link StealingMethod}.
  *
  */
 public class SubtleMethod extends StealingMethod {

@@ -1,6 +1,11 @@
 package com.iluwatar.bridge;
 
-public class Stormbringer extends SoulEatingMagicWeaponImp {
+/**
+ * 
+ * Stormbringer
+ *
+ */
+public class Stormbringer extends SoulEatingMagicWeaponImpl {
 
 	@Override
 	public void wieldImp() {

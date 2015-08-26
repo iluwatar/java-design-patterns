@@ -2,6 +2,11 @@ package com.iluwatar.async.method.invocation;
 
 import org.junit.Test;
 
+/**
+ * 
+ * Application test
+ *
+ */
 public class AppTest {
 
 	@Test

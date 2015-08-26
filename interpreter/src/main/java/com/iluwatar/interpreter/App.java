@@ -4,7 +4,7 @@ import java.util.Stack;
 
 /**
  * 
- * Interpreter pattern breaks sentences into expressions (Expression) that can
+ * Interpreter pattern breaks sentences into expressions ({@link Expression}) that can
  * be evaluated and as a whole form the result.
  * 
  */
@@ -12,8 +12,12 @@ public class App {
 
 	/**
 	 * 
+	 * Program entry point.
+	 * <p>
 	 * Expressions can be evaluated using prefix, infix or postfix notations
 	 * This sample uses postfix, where operator comes after the operands
+	 * 
+	 * @param args command line args
 	 * 
 	 */
 	public static void main(String[] args) {

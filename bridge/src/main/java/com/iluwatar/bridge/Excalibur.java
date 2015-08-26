@@ -1,6 +1,11 @@
 package com.iluwatar.bridge;
 
-public class Excalibur extends BlindingMagicWeaponImp {
+/**
+ * 
+ * Excalibur
+ *
+ */
+public class Excalibur extends BlindingMagicWeaponImpl {
 
 	@Override
 	public void wieldImp() {

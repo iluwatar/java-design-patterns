@@ -2,7 +2,7 @@ package com.iluwatar.abstractfactory;
 
 /**
  * 
- * The factory interface.
+ * KingdomFactory factory interface.
  * 
  */
 public interface KingdomFactory {

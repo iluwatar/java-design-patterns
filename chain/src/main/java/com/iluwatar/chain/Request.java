@@ -1,5 +1,10 @@
 package com.iluwatar.chain;
 
+/**
+ * 
+ * Request
+ *
+ */
 public class Request {
 
 	private String requestDescription;

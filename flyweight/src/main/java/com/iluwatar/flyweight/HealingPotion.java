@@ -1,5 +1,10 @@
 package com.iluwatar.flyweight;
 
+/**
+ * 
+ * HealingPotion
+ *
+ */
 public class HealingPotion implements Potion {
 
 	@Override

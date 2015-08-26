@@ -2,6 +2,11 @@ package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
 
+/**
+ * 
+ * GWeather
+ *
+ */
 public class GWeather extends Observable<GWeather, Race, WeatherType> {
 
     private WeatherType currentWeather;

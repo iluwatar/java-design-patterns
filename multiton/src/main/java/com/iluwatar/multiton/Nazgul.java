@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 
  * Nazgul is a Multiton class. Nazgul instances can be queried
- * using getInstance() method.
+ * using {@link #getInstance} method.
  *
  */
 public class Nazgul {
