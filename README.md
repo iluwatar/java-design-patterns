@@ -12,8 +12,9 @@ is manual, here is how you do it:
 
 1. checkout the latest version of the gh-pages branch
 2. open a Git Bash at root level of the repo (ls should show you the index.html file)
-3. execute the following command to update the submodule `git submodule update --remote`
-4. Check the cmd output line "Submodule path 'pattern': checked out 'COMMIT_HASH'" and validate that the correct COMMIT_HASH is used
-5. Check if something changed with `git diff`. It should show the folder 'patterns' changed.
-6. Execute `git add .`
-7. Commit and push the change
+3. execute the following command to initialize the submodules `git submodule update --init --recursive`
+4. execute the following command to update the submodule `git submodule update --remote`
+5. Check the cmd output line "Submodule path 'pattern': checked out 'COMMIT_HASH'" and validate that the correct COMMIT_HASH is used
+6. Check if something changed with `git diff`. It should show the folder 'patterns' changed.
+7. Execute `git add .`
+8. Commit and push the change
