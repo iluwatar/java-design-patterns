@@ -16,6 +16,7 @@
 
 # <a name="toc">Table of Contents</a>
  - <a href="#introduction">Introduction</a>
+ - <a href="#contribute">How to contribute</a>
  - <a href="#faq">Frequently Asked Questions</a>
  - <a href="#credits">Credits</a>
  - <a href="#license">License</a>
@@ -32,6 +33,11 @@ development paradigms.
 Reusing design patterns helps to prevent subtle issues that can cause major
 problems, and it also improves code readability for coders and architects who
 are familiar with the patterns.
+
+
+# <a name="contribute">How to contribute</a> [&#8593;](#top)
+
+If you are willing to contribute to the project you will find the relevant information in our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki).
 
 
 # <a name="faq">Frequently asked questions</a> [&#8593;](#top)
