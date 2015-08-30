@@ -12,20 +12,17 @@
 </a>
 
 
-#### Browse and view all of the patterns on our Website: [iluwatar.github.io/java-design-patterns/](https://iluwatar.github.io/java-design-patterns/)
-
 <a name="top"/>
 
 # <a name="toc">Table of Contents</a>
  - <a href="#introduction">Introduction</a>
+ - <a href="#contribute">How to contribute</a>
  - <a href="#faq">Frequently Asked Questions</a>
- - <a href="#how-to-contribute">How to contribute</a>
- - <a href="#versioning">Versioning</a>
  - <a href="#credits">Credits</a>
  - <a href="#license">License</a>
 
 
-## <a name="introduction">Introduction</a>
+# <a name="introduction">Introduction</a> [&#8593;](#top)
 
 Design patterns are formalized best practices that the programmer can use to
 solve common problems when designing an application or system.
@@ -36,6 +33,11 @@ development paradigms.
 Reusing design patterns helps to prevent subtle issues that can cause major
 problems, and it also improves code readability for coders and architects who
 are familiar with the patterns.
+
+
+# <a name="contribute">How to contribute</a> [&#8593;](#top)
+
+If you are willing to contribute to the project you will find the relevant information in our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki).
 
 
 # <a name="faq">Frequently asked questions</a> [&#8593;](#top)
@@ -95,98 +97,6 @@ As for performance and scalability, pools can become bottlenecks, if all the
 pooled objects are in use and more clients need them, threads will become
 blocked waiting for available object from the pool. This is not the case with
 Flyweight.
-
-
-
-# <a name="how-to-contribute">How to contribute</a> [&#8593;](#top)
-
-**To work on a new pattern** you need to do the following steps:
-
-1. If there is no issue for the new pattern yet, raise new issue. Comment on
-   the issue that you are working on it so that others don't start work on the
-   same thing.
-2. Fork the repository.
-3. Create a new folder for the pattern. The rough structure of the new folder would be as follows:
-    * etc (every resource related to the pattern, like diagrams)
-    * src (the source code of the pattern)
-    * index.md (the description of the pattern)
-    * pom.xml (the maven pom.xml)
-4. Implement the code changes in your fork. Remember to add sufficient comments
-   documenting the implementation. Reference the issue id e.g. #52 in your
-   commit messages.
-5. Format the code according to [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
-   * [Eclipse configuration](https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml)
-   * [IntelliJ configuration](https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml)
-6. Create a simple class diagram from your example code and put it inside of the etc folder.
-7. Add description of the pattern in index.md and link to the class diagram.
-   (Attention, all internal links must be relative to the pattern subdirectory, else the links dont link properly on the website)
-8. Create a pull request.
-
-**Structure of the index.md file**
-
-```markdown
---- # this is so called 'Yaml Front Matter', read up on it here: http://jekyllrb.com/docs/frontmatter/
-layout: pattern # layout must allways be pattern
-title: Best Pattern Ever # the properly formatted title
-folder: best-pattern-ever # the folder name in which this pattern lies
-permalink: /patterns/best-pattern-ever/ # the permalink to the pattern, to keep this uniform please stick to /patterns/FOLDER/
-
-# both categories and tags are Yaml Lists
-# you can either just pick one or write a list with '-'s
-# usable categories and tags are listed here: https://github.com/iluwatar/java-design-patterns/blob/gh-pages/_config.yml
-categories: creational # categories of the pattern
-tags: # tags of the pattern
- - best
- - ever
- - awesome
----
-
-**Intent:** Makes your code awesome
-
-![alt text](./etc/best_pattern.png "Best Pattern Ever")
-
-**Applicability:** Use the Best Pattern Ever pattern when
-
-* you want to be the best
-* you need to ...
-
-**Real world examples:**
-
-* [Nowhere](http://no.where.com)
-```
-
-**To add a new category or tag** you need to edit the _config.yml file of the gh-pages branch.
-In there you should find 2 yaml lists with the respective names 'category-list' and 'tag-list'
-
-**To work on one of the non-pattern issues** you need to do the following steps:
-
-1. Check that the issue has "help wanted" badge
-2. Comment on the issue that you are working on it
-3. Fork the repository.
-4. Implement the code changes in your fork. Remember to add sufficient comments
-   documenting the implementation. Reference the issue id e.g. #52 in your
-   commit messages.
-5. Create a pull request.
-
-**For creating/editing UML diagrams** you need [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home).
-
-**For inspiration** check out the following sources:
-
-* there is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern)
-* Martin Fowler's [Catalog of Patterns of Enterprise Application Architecture](http://martinfowler.com/eaaCatalog/)
-* [pattern language for microservices](http://microservices.io/patterns/index.html)
-* Microsoft's [Cloud Design Patterns](http://download.microsoft.com/download/B/B/6/BB69622C-AB5D-4D5F-9A12-B81B952C1169/CloudDesignPatternsBook-PDF.pdf)
-
-**Links to patterns applied in real world applications** are welcome. The links
-should be added to the corresponding section of the `index.md`.
-
-
-# <a name="versioning">Versioning</a> [&#8593;](#top)
-
-Java-design-patterns project uses [semantic versioning](http://semver.org/)
-scheme. However, version numbers in this project do not signify binary releases
-(since we don't make any) but rather milestones achieved on the roadmap. In
-other words, version numbers are used only for project planning sake.
 
 
 # <a name="credits">Credits</a> [&#8593;](#top)
