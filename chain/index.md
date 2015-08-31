@@ -11,7 +11,7 @@ tags: Java
 more than one object a chance to handle the request. Chain the receiving
 objects and pass the request along the chain until an object handles it.
 
-![alt text](./chain/etc/chain_1.png "Chain of Responsibility")
+![alt text](./etc/chain_1.png "Chain of Responsibility")
 
 **Applicability:** Use Chain of Responsibility when
 
