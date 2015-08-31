@@ -1,8 +1,8 @@
 ---
 layout: pattern
 title: Chain of responsibility
-folder: chain-of-responsibility
-permalink: /patterns/chain-of-responsibility/
+folder: chain
+permalink: /patterns/chain/
 categories: Behavioral
 tags: Java
 ---
