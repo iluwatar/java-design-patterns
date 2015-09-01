@@ -2,15 +2,14 @@
 layout: pattern
 title: Active Record
 folder: active-record
-categories: pattern_cat
-tags: pattern_tag
+permalink: /patterns/active-record/
+categories: Architectural
+tags: Java
 ---
 
 **Intent:** Active record is an object that wraps a row in a database table or view,
  encapsulates the database access, and adds domain logic on that data. Active Record
  uses the most obvious approach, putting data access logic in the domain object.
-
-![alt text](./etc/active-record.png "Active Record")
 
 **Applicability:** Use active record pattern when
 
