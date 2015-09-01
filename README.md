@@ -1,4 +1,8 @@
-# Design pattern samples in Java.
+<!-- the line below needs to be an empty line C: (its because kramdown isnt
+     that smart and dearly wants an empty line before a heading to be able to
+     display it as such, e.g. website) -->
+
+# Design pattern samples in Java
 
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -7,26 +11,18 @@
        src="https://scan.coverity.com/projects/5634/badge.svg"/>
 </a>
 
- <a name="top"/>
+
+<a name="top"/>
+
+# <a name="toc">Table of Contents</a>
  - <a href="#introduction">Introduction</a>
- - <a href="#list-of-design-patterns">List of Design Patterns</a>
-   - <a href="#creational-patterns">Creational Patterns</a>
-   - <a href="#structural-patterns">Structural Patterns</a>
-   - <a href="#behavioral-patterns">Behavioral Patterns</a>
-   - <a href="#concurrency-patterns">Concurrency Patterns</a>
-   - <a href="#presentation-tier-patterns">Presentation Tier Patterns</a>
-   - <a href="#business-tier-patterns">Business Tier Patterns</a>
-   - <a href="#architectural-patterns">Architectural Patterns</a>
-   - <a href="#integration-patterns">Integration Patterns</a>
- - <a href="#idioms">Idioms</a>
+ - <a href="#contribute">How to contribute</a>
  - <a href="#faq">Frequently Asked Questions</a>
- - <a href="#how-to-contribute">How to contribute</a>
- - <a href="#versioning">Versioning</a>
  - <a href="#credits">Credits</a>
  - <a href="#license">License</a>
- 
 
-## <a name="introduction">Introduction</a>
+
+# <a name="introduction">Introduction</a> [&#8593;](#top)
 
 Design patterns are formalized best practices that the programmer can use to
 solve common problems when designing an application or system.
@@ -38,120 +34,11 @@ Reusing design patterns helps to prevent subtle issues that can cause major
 problems, and it also improves code readability for coders and architects who
 are familiar with the patterns.
 
-## <a name="list-of-design-patterns">List of Design Patterns</a> [&#8593;](#top)
 
-### <a name="creational-patterns">Creational Patterns</a> [&#8593;](#top)
+# <a name="contribute">How to contribute</a> [&#8593;](#top)
 
-Creational design patterns abstract the instantiation process. They help make a
-system independent of how its objects are created, composed, and represented.
+If you are willing to contribute to the project you will find the relevant information in our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki).
 
-* [Abstract Factory](#abstract-factory)
-* [Builder](#builder)
-* [Factory Method](#factory-method)
-* [Prototype](#prototype)
-* [Property](#property)
-* [Singleton](#singleton)
-* [Step Builder](#step-builder)
-* [Multiton](#multiton)
-* [Object Pool](#object-pool)
-
-### <a name="structural-patterns">Structural Patterns</a> [&#8593;](#top)
-
-Structural patterns are concerned with how classes and objects are composed to
-form larger structures.
-
-* [Adapter](#adapter)
-* [Bridge](#bridge)
-* [Composite](#composite)
-* [Decorator](#decorator)
-* [Facade](#facade)
-* [Flyweight](#flyweight)
-* [Proxy](#proxy)
-* [Service Locator](#service-locator)
-* [Servant](#servant)
-* [Event Aggregator](#event-aggregator)
- 
-### <a name="behavioral-patterns">Behavioral Patterns</a> [&#8593;](#top)
-
-Behavioral patterns are concerned with algorithms and the assignment of
-responsibilities between objects.
-
-* [Chain of responsibility](#chain-of-responsibility)
-* [Command](#command)
-* [Interpreter](#interpreter)
-* [Iterator](#iterator)
-* [Mediator](#mediator)
-* [Memento](#memento)
-* [Observer](#observer)
-* [State](#state)
-* [Strategy](#strategy)
-* [Template method](#template-method)
-* [Visitor](#visitor)
-* [Null Object](#null-object)
-* [Intercepting Filter](#intercepting-filter)
-* [Specification](#specification)
-* [Dependency Injection](#dependency-injection)
-
-### <a name="concurrency-patterns">Concurrency Patterns</a> [&#8593;](#top)
-
-Concurrency patterns are those types of design patterns that deal with the
-multi-threaded programming paradigm.
-
-* [Double Checked Locking](#double-checked-locking)
-* [Thread Pool](#thread-pool)
-* [Async Method Invocation](#async-method-invocation)
-* [Half-Sync/Half-Async](#half-sync-half-async)
-
-### <a name="presentation-tier-patterns">Presentation Tier Patterns</a> [&#8593;](#top)
-
-Presentation Tier patterns are the top-most level of the application, this is
-concerned with translating tasks and results to something the user can
-understand.
-
-* [Model-View-Controller](#model-view-controller)
-* [Model-View-Presenter](#model-view-presenter)
-* [Flux](#flux)
-* [Front Controller](#front-controller)
-
-### <a name="business-tier-patterns">Business Tier Patterns</a> [&#8593;](#top)
-
-* [Business Delegate](#business-delegate)
-
-### <a name="architectural-patterns">Architectural Patterns</a> [&#8593;](#top)
-
-An architectural pattern is a general, reusable solution to a commonly occurring
-problem in software architecture within a given context.
-
-* [Data Access Object](#dao)
-* [Service Layer](#service-layer)
-* [Naked Objects](#naked-objects)
-* [Repository](#repository)
-
-### <a name="integration-patterns">Integration Patterns</a> [&#8593;](#top)
-
-Integration patterns are concerned with how software applications communicate
-and exchange data.
-
-* [Tolerant Reader](#tolerant-reader)
-* [Active Record](#active-record)
-
-### <a name="idioms">Idioms</a> [&#8593;](#top)
-
-A programming idiom is a means of expressing a recurring construct in one or
-more programming languages. Generally speaking, a programming idiom is an
-expression of a simple task, algorithm, or data structure that is not a built-in
-feature in the programming language being used, or, conversely, the use of an
-unusual or notable feature that is built into a programming language. What
-distinguishes idioms from patterns is generally the size, the idioms tend to be
-something small while the patterns are larger.
-
-* [Execute Around](#execute-around)
-* [Poison Pill](#poison-pill)
-* [Callback](#callback)
-* [Lazy Loading](#lazy-loading)
-* [Double Dispatch](#double-dispatch)
-* [Resource Acquisition Is Initialization](#resource-acquisition-is-initialization)
-* [Private Class Data](#private-class-data)
 
 # <a name="faq">Frequently asked questions</a> [&#8593;](#top)
 
@@ -210,53 +97,6 @@ As for performance and scalability, pools can become bottlenecks, if all the
 pooled objects are in use and more clients need them, threads will become
 blocked waiting for available object from the pool. This is not the case with
 Flyweight.
-
-
-
-# <a name="how-to-contribute">How to contribute</a> [&#8593;](#top)
-
-**To work on a new pattern** you need to do the following steps:
-
-1. If there is no issue for the new pattern yet, raise new issue. Comment on
-   the issue that you are working on it so that others don't start work on the
-   same thing.
-2. Fork the repository.
-3. Implement the code changes in your fork. Remember to add sufficient comments
-   documenting the implementation. Reference the issue id e.g. #52 in your
-   commit messages.
-4. Create a simple class diagram from your example code.
-5. Add description of the pattern in README.md and link to the class diagram.	
-6. Create a pull request.
-
-**To work on one of the non-pattern issues** you need to do the following steps:
-
-1. Check that the issue has "help wanted" badge
-2. Comment on the issue that you are working on it
-3. Fork the repository.
-4. Implement the code changes in your fork. Remember to add sufficient comments
-   documenting the implementation. Reference the issue id e.g. #52 in your
-   commit messages.
-5. Create a pull request.
-
-**For creating/editing UML diagrams** you need [ObjectAid UML Explorer for Eclipse](http://www.objectaid.com/home).
-
-**For inspiration** check out the following sources:
-
-* there is a good list of design patterns at [Wikipedia](http://en.wikipedia.org/wiki/Software_design_pattern)
-* Martin Fowler's [Catalog of Patterns of Enterprise Application Architecture](http://martinfowler.com/eaaCatalog/)
-* [pattern language for microservices](http://microservices.io/patterns/index.html)
-* Microsoft's [Cloud Design Patterns](http://download.microsoft.com/download/B/B/6/BB69622C-AB5D-4D5F-9A12-B81B952C1169/CloudDesignPatternsBook-PDF.pdf)
-
-**Links to patterns applied in real world applications** are welcome. The links
-should be added to the corresponding section of the `README.md`.
-
-
-# <a name="versioning">Versioning</a> [&#8593;](#top)
-
-Java-design-patterns project uses [semantic versioning](http://semver.org/)
-scheme. However, version numbers in this project do not signify binary releases
-(since we don't make any) but rather milestones achieved on the roadmap. In
-other words, version numbers are used only for project planning sake.
 
 
 # <a name="credits">Credits</a> [&#8593;](#top)
