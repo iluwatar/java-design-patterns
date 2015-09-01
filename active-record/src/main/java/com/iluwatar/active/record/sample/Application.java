@@ -18,7 +18,7 @@ public class Application {
         harryPotterWand.setCore(WandCoreType.PHOENIX_FEATHER);
         harryPotterWand.setLengthInches(11.0d);
 
-        final long wandId =  harryPotterWand.save();
+        final long wandId = harryPotterWand.save();
 
         final MagicWand wand = MagicWand.find(wandId);
 

@@ -6,7 +6,7 @@ import java.sql.*;
 
 /**
  * An utility class that holds and encapsulates all the DB related operations.
- *
+ * <p/>
  * Created by Stephen Lazarionok.
  */
 public class DB {
@@ -17,7 +17,8 @@ public class DB {
             Class.forName("org.h2.Driver");
             final Connection connection = getConnection();
             final Statement statement = connection.createStatement();
-            statement.execute("create table wand(id BIGINT primary key, length_inches REAL, wood varchar(100), core varchar(100))");
+            statement.execute(
+                "create table wand(id BIGINT primary key, length_inches REAL, wood varchar(100), core varchar(100))");
             statement.close();
             connection.close();
         } catch (final SQLException | ClassNotFoundException e) {
@@ -27,6 +28,7 @@ public class DB {
 
     /**
      * Provides a connection to the database configured.
+     *
      * @return
      * @throws SQLException
      */

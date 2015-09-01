@@ -6,10 +6,10 @@ package com.iluwatar.active.record;
  * for wand cores can vary widely, though certain wand-makers may prefer to use certain materials;
  * for example, Garrick Ollivander discovered and pioneered the use of phoenix feathers, dragon heartstrings,
  * and unicorn tail hairs.
- *
+ * <p/>
  * Created by Stephen Lazarionok.
  */
 public enum WandCoreType {
 
-    PHOENIX_FEATHER,  DRAGON_HEARTSTRING, UNICORN_HAIR
+    PHOENIX_FEATHER, DRAGON_HEARTSTRING, UNICORN_HAIR
 }

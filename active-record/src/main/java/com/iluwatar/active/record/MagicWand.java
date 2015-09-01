@@ -50,8 +50,7 @@ public class MagicWand {
         this.core = core;
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         final StringBuilder sb = new StringBuilder("MagicWand(");
         sb.append(getWood());
         sb.append(", ");
@@ -70,11 +69,13 @@ public class MagicWand {
 
     private static final String SELECT_SQL = "select * from wand where id = ?";
     private static final String DELETE_SQL = "delete from wand where id = ?";
-    private static final String UPDATE_SQL = "update wand set length_inches = ?, wood = ?, core = ? where id = ?";
+    private static final String UPDATE_SQL =
+        "update wand set length_inches = ?, wood = ?, core = ? where id = ?";
     private static final String CREATE_SQL = "insert into wand values(?, ?, ?, ?)";
 
     /**
      * Saves the instance to the DB.
+     *
      * @return
      */
     public long save() {
@@ -157,6 +158,7 @@ public class MagicWand {
 
     /**
      * Finds the instance in the DB.
+     *
      * @param id
      * @return
      */
@@ -179,8 +181,7 @@ public class MagicWand {
                 wand.setLengthInches(rs.getDouble("length_inches"));
 
                 return wand;
-            }
-            else {
+            } else {
                 return null;
             }
         } catch (final SQLException e) {
@@ -195,16 +196,19 @@ public class MagicWand {
     private void validateToSave() {
         validateProperties();
         if (getId() != null)
-            throw new IllegalStateException("Can not save wand that was previously saved. Use 'update' metod instead.");
+            throw new IllegalStateException(
+                "Can not save wand that was previously saved. Use 'update' metod instead.");
     }
 
     private void validateToUpdate() {
         validateProperties();
-        if (getId() == null) throw new IllegalStateException("Can not update a record without ID specified");
+        if (getId() == null)
+            throw new IllegalStateException("Can not update a record without ID specified");
     }
 
     private void validateToDelete() {
-        if (getId() == null) throw new IllegalStateException("Can not delete a record without ID specified");
+        if (getId() == null)
+            throw new IllegalStateException("Can not delete a record without ID specified");
     }
 
     private void validateProperties() {

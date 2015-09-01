@@ -1,23 +1,21 @@
+import com.iluwatar.active.record.MagicWand;
 import com.iluwatar.active.record.SpellCastException;
 import com.iluwatar.active.record.WandCoreType;
 import com.iluwatar.active.record.WandWoodType;
-import com.iluwatar.active.record.MagicWand;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static  org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Stephen Lazarionok.
  */
 public class MagicWandSpecification {
 
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
+    @Rule public ExpectedException exception = ExpectedException.none();
 
-    @Test
-    public void shouldCastFireball_IfMagicPower10AndMore() throws SpellCastException {
+    @Test public void shouldCastFireball_IfMagicPower10AndMore() throws SpellCastException {
 
         final MagicWand wand = new MagicWand();
         wand.setWood(WandWoodType.WINE);
@@ -28,8 +26,7 @@ public class MagicWandSpecification {
         wand.castFireball();
     }
 
-    @Test
-    public void shouldNotCastFireball_IfMagicPowerLessThan10() throws SpellCastException {
+    @Test public void shouldNotCastFireball_IfMagicPowerLessThan10() throws SpellCastException {
 
         final MagicWand wand = new MagicWand();
         wand.setWood(WandWoodType.WINE);
@@ -42,8 +39,7 @@ public class MagicWandSpecification {
         wand.castFireball();
     }
 
-    @Test
-    public void shouldCastLigthing_IfMagicPower20AndMore() throws SpellCastException {
+    @Test public void shouldCastLigthing_IfMagicPower20AndMore() throws SpellCastException {
 
         final MagicWand wand = new MagicWand();
         wand.setWood(WandWoodType.WINE);
@@ -54,8 +50,7 @@ public class MagicWandSpecification {
         wand.castLighting();
     }
 
-    @Test
-    public void shouldNotCastLigthing_IfMagicPowerLessThan20() throws SpellCastException {
+    @Test public void shouldNotCastLigthing_IfMagicPowerLessThan20() throws SpellCastException {
 
         final MagicWand wand = new MagicWand();
         wand.setWood(WandWoodType.WINE);
