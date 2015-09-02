@@ -6,7 +6,7 @@
 
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master) <a href="https://scan.coverity.com/projects/5634">
+[![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)](https://travis-ci.org/iluwatar/java-design-patterns) [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master) <a href="https://scan.coverity.com/projects/5634">
   <img alt="Coverity Scan Build Status"
        src="https://scan.coverity.com/projects/5634/badge.svg"/>
 </a>
