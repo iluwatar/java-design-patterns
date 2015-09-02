@@ -21,9 +21,10 @@ import org.apache.camel.impl.DefaultCamelContext;
  * doesn't pull info off some random channel; it selects what channel to get information
  * from based on what type of information it wants.
  * <p>
- * In this example we use Apache Camel to establish a direct synchronous Message Channel 
- * that delivers messages to console output. No actual messages are sent, only the established 
- * routes are printed to standard output.
+ * In this example we use Apache Camel to establish two different Message Channels. The first
+ * one reads from standard input and delivers messages to Direct endpoint. The second Message  
+ * Channel is established from the Direct component to console output. No actual messages are sent, 
+ * only the established routes are printed to standard output.
  * 
  */
 public class App {
@@ -40,6 +41,7 @@ public class App {
 
 			@Override
 			public void configure() throws Exception {
+				from("stream:in").to("direct:greetings");
 				from("direct:greetings").to("stream:out");
 			}
 		});
