@@ -75,6 +75,7 @@
     	<module>half-sync-half-async</module>
 		<module>step-builder</module>
 		<module>layers</module>
+		<module>reactor</module>
   </modules>
 
 	<dependencyManagement>
