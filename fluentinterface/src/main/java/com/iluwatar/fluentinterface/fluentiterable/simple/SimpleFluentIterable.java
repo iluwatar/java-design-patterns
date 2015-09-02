@@ -26,7 +26,7 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
     }
 
     /**
-     * Iterates over all elements of this iterator and filters them.
+     * Filters the contents of Iterable using the given predicate, leaving only the ones which satisfy the predicate.
      * @param predicate the condition to test with for the filtering. If the test
      *                  is negative, the tested object is removed by the iterator.
      * @return the same FluentIterable with a filtered collection
@@ -44,30 +44,17 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
     }
 
     /**
-     * Uses the Iterable interface's forEach method to apply a given function
-     * for each object of the iterator. Is a terminating operation.
-     * @param action the action for each object
-     */
-    @Override
-    public void forEachDo(Consumer<? super TYPE> action) {
-        iterable.forEach(action);
-    }
-
-    /**
-     * Can be used to collect objects from the iteration. Is a terminating operation.
-     * @return an option of the first object of the iteration
+     * Can be used to collect objects from the Iterable. Is a terminating operation.
+     * @return an option of the first object of the Iterable
      */
     @Override
     public final Optional<TYPE> first() {
-        List<TYPE> list = first(1).asList();
-        if(list.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(list.get(0));
+        Iterator<TYPE> resultIterator = first(1).iterator();
+        return resultIterator.hasNext() ? Optional.of(resultIterator.next()) : Optional.empty();
     }
 
     /**
-     * Can be used to collect objects from the iteration. Is a terminating operation.
+     * Can be used to collect objects from the Iterable. Is a terminating operation.
      * @param count defines the number of objects to return
      * @return the same FluentIterable with a collection decimated to a maximum of 'count' first objects.
      */
@@ -86,8 +73,8 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
     }
 
     /**
-     * Can be used to collect objects from the iteration. Is a terminating operation.
-     * @return an option of the last object of the iteration
+     * Can be used to collect objects from the Iterable. Is a terminating operation.
+     * @return an option of the last object of the Iterable
      */
     @Override
     public final Optional<TYPE> last() {
@@ -99,7 +86,7 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
     }
 
     /**
-     * Can be used to collect objects from the iteration. Is a terminating operation.
+     * Can be used to collect objects from the Iterable. Is a terminating operation.
      * @param count defines the number of objects to return
      * @return the same FluentIterable with a collection decimated to a maximum of 'count' last objects
      */
@@ -136,8 +123,8 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
     }
 
     /**
-     * Collects all remaining objects of this iteration into a list.
-     * @return a list with all remaining objects of this iteration
+     * Collects all remaining objects of this Iterable into a list.
+     * @return a list with all remaining objects of this Iterable
      */
     @Override
     public List<TYPE> asList() {
@@ -168,7 +155,7 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
     }
 
     /**
-     * @return the count of remaining objects in the current iteration
+     * @return the count of remaining objects of the current Iterable
      */
     public final int getRemainingElementsCount() {
         int counter = 0;
@@ -181,7 +168,7 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
     }
 
     /**
-     * Collects the remaining objects of the given iterators iteration into an List.
+     * Collects the remaining objects of the given iterator into a List.
      * @return a new List with the remaining objects.
      */
     public static <TYPE> List<TYPE> toList(Iterator<TYPE> iterator) {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -18,7 +17,7 @@ import java.util.function.Predicate;
 public interface FluentIterable<TYPE> extends Iterable<TYPE> {
 
     /**
-     * Filters the iteration with the given predicate.
+     * Filters the contents of Iterable using the given predicate, leaving only the ones which satisfy the predicate.
      * @param predicate the condition to test with for the filtering. If the test
      *                  is negative, the tested object is removed by the iterator.
      * @return a filtered FluentIterable
@@ -26,13 +25,8 @@ public interface FluentIterable<TYPE> extends Iterable<TYPE> {
     FluentIterable<TYPE> filter(Predicate<? super TYPE> predicate);
 
     /**
-     * Uses the Iterable interface's forEach method to apply a given function
-     * for each object of the iterator. This is a terminating operation.
-     */
-    void forEachDo(Consumer<? super TYPE> action);
-
-    /**
-     * Evaluates the iteration and returns the first element. This is a terminating operation.
+     * Returns an Optional containing the first element of this iterable if present,
+     * else returns Optional.empty().
      * @return the first element after the iteration is evaluated
      */
     Optional<TYPE> first();
@@ -62,6 +56,11 @@ public interface FluentIterable<TYPE> extends Iterable<TYPE> {
      * @return a new FluentIterable of the new type
      */
     <NEW_TYPE> FluentIterable<NEW_TYPE> map(Function<? super TYPE, NEW_TYPE> function);
+
+    /**
+     * Returns the contents of this Iterable as a List.
+     * @return a List representation of this Iterable
+     */
     List<TYPE> asList();
 
     /**

@@ -22,7 +22,7 @@ public abstract class DecoratingIterator<TYPE> implements Iterator<TYPE> {
     }
 
     /**
-     * Precomputes and caches the next element of the iteration.
+     * Precomputes and saves the next element of the Iterable. null is considered as end of data.
      * @return true if a next element is available
      */
     @Override
@@ -32,22 +32,24 @@ public abstract class DecoratingIterator<TYPE> implements Iterator<TYPE> {
     }
 
     /**
-     * Returns the next element of the iteration. This implementation caches it.
-     * If no next element is cached, it is computed.
-     * @return the next element obf the iteration
+     * Returns the next element of the Iterable.
+     * @return the next element of the Iterable, or null if not present.
      */
     @Override
     public final TYPE next() {
-        TYPE result = next;
-        next = null;
-        result = (result == null ? fromIterator.next() : result);
-        return result;
+        if (next == null) {
+            return fromIterator.next();
+        } else {
+            final TYPE result = next;
+            next = null;
+            return result;
+        }
     }
 
     /**
-     * Computes the next object of the iteration. Can be implemented to
-     * realize custom behaviour for an iteration process.
-     * @return
+     * Computes the next object of the Iterable. Can be implemented to
+     * realize custom behaviour for an iteration process. null is considered as end of data.
+     * @return the next element of the Iterable.
      */
     public abstract TYPE computeNext();
 }

@@ -37,7 +37,7 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
     }
 
     /**
-     * Adds a filter operation to the operation chain and returns a new iterable.
+     * Filters the contents of Iterable using the given predicate, leaving only the ones which satisfy the predicate.
      * @param predicate the condition to test with for the filtering. If the test
      *                  is negative, the tested object is removed by the iterator.
      * @return a new FluentIterable object that decorates the source iterable
@@ -50,17 +50,15 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
                 return new DecoratingIterator<TYPE>(iterable.iterator()) {
                     @Override
                     public TYPE computeNext() {
-                        while(true) {
-                            if(fromIterator.hasNext()) {
-                                TYPE candidate = fromIterator.next();
-                                if(!predicate.test(candidate)) {
-                                    continue;
-                                }
-                                return candidate;
+                        while(fromIterator.hasNext()) {
+                            TYPE candidate = fromIterator.next();
+                            if(!predicate.test(candidate)) {
+                                continue;
                             }
-
-                            return null;
+                            return candidate;
                         }
+
+                        return null;
                     }
                 };
             }
@@ -68,35 +66,17 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
     }
 
     /**
-     * Uses the Iterable interface's forEach method to apply a given function
-     * for each object of the iterator. Is a terminating operation.
-     * @param action the action for each object
-     */
-    @Override
-    public void forEachDo(Consumer<? super TYPE> action) {
-        Iterator<TYPE> newIterator = iterable.iterator();
-        while(newIterator.hasNext()) {
-            action.accept(newIterator.next());
-        }
-    }
-
-    /**
      * Can be used to collect objects from the iteration. Is a terminating operation.
-     * @return an option of the first object of the iteration
+     * @return an Optional containing the first object of this Iterable
      */
     @Override
     public Optional<TYPE> first() {
-        Optional result = Optional.empty();
-        List<TYPE> list = first(1).asList();
-        if(!list.isEmpty()) {
-            result = Optional.of(list.get(0));
-        }
-
-        return result;
+        Iterator<TYPE> resultIterator = first(1).iterator();
+        return resultIterator.hasNext() ? Optional.of(resultIterator.next()) : Optional.empty();
     }
 
     /**
-     * Can be used to collect objects from the iteration. Is a terminating operation.
+     * Can be used to collect objects from the iteration.
      * @param count defines the number of objects to return
      * @return the same FluentIterable with a collection decimated to a maximum of 'count' first objects.
      */
@@ -126,21 +106,18 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
 
     /**
      * Can be used to collect objects from the iteration. Is a terminating operation.
-     * @return an option of the last object of the iteration
+     * @return an Optional containing the last object of this Iterable
      */
     @Override
     public Optional<TYPE> last() {
-        Optional result = Optional.empty();
-        List<TYPE> list = last(1).asList();
-        if(!list.isEmpty()) {
-            result = Optional.of(list.get(0));
-        }
-
-        return result;
+        Iterator<TYPE> resultIterator = last(1).iterator();
+        return resultIterator.hasNext() ? Optional.of(resultIterator.next()) : Optional.empty();
     }
 
     /**
-     * Can be used to collect objects from the iteration. Is a terminating operation.
+     * Can be used to collect objects from the Iterable. Is a terminating operation.
+     * This operation is memory intensive, because the contents of this Iterable
+     * are collected into a List, when the next object is requested.
      * @param count defines the number of objects to return
      * @return the same FluentIterable with a collection decimated to a maximum of 'count' last objects
      */
@@ -193,13 +170,11 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
                     Iterator<TYPE> oldTypeIterator = iterable.iterator();
                     @Override
                     public NEW_TYPE computeNext() {
-                        while(true) {
-                            if(oldTypeIterator.hasNext()) {
-                                TYPE candidate = oldTypeIterator.next();
-                                return function.apply(candidate);
-                            }
-                            return null;
+                        while(oldTypeIterator.hasNext()) {
+                            TYPE candidate = oldTypeIterator.next();
+                            return function.apply(candidate);
                         }
+                        return null;
                     }
                 };
             }
