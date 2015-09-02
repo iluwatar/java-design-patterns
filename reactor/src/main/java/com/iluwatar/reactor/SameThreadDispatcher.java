@@ -10,4 +10,9 @@ public class SameThreadDispatcher implements Dispatcher {
 			channel.getHandler().handleChannelRead(channel, readObject, key);
 		}
 	}
+
+	@Override
+	public void stop() {
+		// no-op
+	}
 }

@@ -10,15 +10,34 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class AppClient {
-
+	private ExecutorService service = Executors.newFixedThreadPool(3);
+	
 	public static void main(String[] args) {
-		new Thread(new LoggingClient("Client 1", 6666)).start();
-		new Thread(new LoggingClient("Client 2", 6667)).start();
-		new Thread(new UDPLoggingClient(6668)).start();
+		new AppClient().start();
 	}
 
+	public void start() {
+		service.execute(new LoggingClient("Client 1", 6666));
+		service.execute(new LoggingClient("Client 2", 6667));
+		service.execute(new UDPLoggingClient(6668));
+	}
+	
+	public void stop() {
+		service.shutdown();
+		if (!service.isTerminated()) {
+			service.shutdownNow();
+			try {
+				service.awaitTermination(1000, TimeUnit.SECONDS);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	/*
 	 * A logging client that sends logging requests to logging server
@@ -55,7 +74,7 @@ public class AppClient {
 		}
 
 		private void writeLogs(PrintWriter writer, InputStream inputStream) throws IOException {
-			for (int i = 0; i < 1; i++) {
+			for (int i = 0; i < 4; i++) {
 				writer.println(clientName + " - Log request: " + i);
 				try {
 					Thread.sleep(100);
@@ -86,7 +105,7 @@ public class AppClient {
 			DatagramSocket socket = null;
 			try {
 				socket = new DatagramSocket();
-				for (int i = 0; i < 1; i++) {
+				for (int i = 0; i < 4; i++) {
 					String message = "UDP Client" + " - Log request: " + i;
 					try {
 						DatagramPacket packet = new DatagramPacket(message.getBytes(), message.getBytes().length, new InetSocketAddress(InetAddress.getLocalHost(), port));

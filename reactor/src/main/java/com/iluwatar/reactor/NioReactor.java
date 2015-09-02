@@ -9,6 +9,9 @@ import java.util.Iterator;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /*
  * Abstractions
@@ -20,6 +23,7 @@ public class NioReactor {
 	private Selector selector;
 	private Dispatcher dispatcher;
 	private Queue<Command> pendingChanges = new ConcurrentLinkedQueue<>();
+	private ExecutorService reactorService = Executors.newSingleThreadExecutor();
 	
 	public NioReactor(Dispatcher dispatcher) throws IOException {
 		this.dispatcher = dispatcher;
@@ -34,7 +38,7 @@ public class NioReactor {
 	}
 	
 	public void start() throws IOException {
-		new Thread( new Runnable() {
+		reactorService.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
@@ -44,11 +48,27 @@ public class NioReactor {
 					e.printStackTrace();
 				}
 			}
-		}, "Reactor Main").start();
+		});
+	}
+	
+	public void stop() {
+		reactorService.shutdownNow();
+		selector.wakeup();
+		try {
+			reactorService.awaitTermination(4, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		dispatcher.stop();
 	}
 
 	private void eventLoop() throws IOException {
 		while (true) {
+			
+			if (Thread.interrupted()) {
+				break;
+			}
+			
 			// honor any pending requests first
 			processPendingChanges();
 			
