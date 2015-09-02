@@ -18,3 +18,6 @@ specific classes such as HttpSession and HttpRequest.
 * you want to avoid using protocol-specific system information outside of its relevant context
 * you want to share common information between multiple layers of your application
 
+**Real world examples:**
+
+* [CORBA Object Request Brokers (ORBs)](https://en.wikipedia.org/wiki/Object_request_broker)
