@@ -8,7 +8,7 @@ import org.apache.camel.impl.DefaultCamelContext;
  * 
  * When two applications communicate with each other using a messaging system
  * they first need to establish a communication channel that will carry the
- * data. Message Channels are logical addresses in the messaging system.
+ * data. Message Channel decouples Message producers and consumers.
  * <p>
  * The sending application doesn't necessarily know what particular application
  * will end up retrieving it, but it can be assured that the application that
