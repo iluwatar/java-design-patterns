@@ -45,8 +45,9 @@ public class NioServerSocketChannel extends AbstractNioChannel {
 	}
 
 	@Override
-	protected void doWrite(ByteBuffer pendingWrite, SelectionKey key) throws IOException {
+	protected void doWrite(Object pendingWrite, SelectionKey key) throws IOException {
+		ByteBuffer pendingBuffer = (ByteBuffer) pendingWrite;
 		System.out.println("Writing on channel");
-		((SocketChannel)key.channel()).write(pendingWrite);
+		((SocketChannel)key.channel()).write(pendingBuffer);
 	}
 }

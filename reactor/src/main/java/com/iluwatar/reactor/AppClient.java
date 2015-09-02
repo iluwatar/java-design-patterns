@@ -14,8 +14,8 @@ import java.net.SocketException;
 public class AppClient {
 
 	public static void main(String[] args) {
-//		new Thread(new LoggingClient("Client 1", 6666)).start();
-//		new Thread(new LoggingClient("Client 2", 6667)).start();
+		new Thread(new LoggingClient("Client 1", 6666)).start();
+		new Thread(new LoggingClient("Client 2", 6667)).start();
 		new Thread(new UDPLoggingClient(6668)).start();
 	}
 

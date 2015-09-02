@@ -1,7 +1,6 @@
 package com.iluwatar.reactor;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
 import java.util.Map;
@@ -13,7 +12,7 @@ public abstract class AbstractNioChannel {
 	
 	private SelectableChannel channel;
 	private ChannelHandler handler;
-	private Map<SelectableChannel, Queue<ByteBuffer>> channelToPendingWrites = new ConcurrentHashMap<>();
+	private Map<SelectableChannel, Queue<Object>> channelToPendingWrites = new ConcurrentHashMap<>();
 	private NioReactor reactor;
 	
 	public AbstractNioChannel(ChannelHandler handler, SelectableChannel channel) {
@@ -31,7 +30,7 @@ public abstract class AbstractNioChannel {
 
 	public abstract int getInterestedOps();
 
-	public abstract ByteBuffer read(SelectionKey key) throws IOException;
+	public abstract Object read(SelectionKey key) throws IOException;
 
 	public void setHandler(ChannelHandler handler) {
 		this.handler = handler;
@@ -43,9 +42,9 @@ public abstract class AbstractNioChannel {
 
 	// Called from the context of reactor thread
 	public void write(SelectionKey key) throws IOException {
-		Queue<ByteBuffer> pendingWrites = channelToPendingWrites.get(key.channel());
+		Queue<Object> pendingWrites = channelToPendingWrites.get(key.channel());
 		while (true) {
-			ByteBuffer pendingWrite = pendingWrites.poll();
+			Object pendingWrite = pendingWrites.poll();
 			if (pendingWrite == null) {
 				System.out.println("No more pending writes");
 				reactor.changeOps(key, SelectionKey.OP_READ);
@@ -56,10 +55,10 @@ public abstract class AbstractNioChannel {
 		}
 	}
 
-	protected abstract void doWrite(ByteBuffer pendingWrite, SelectionKey key) throws IOException;
+	protected abstract void doWrite(Object pendingWrite, SelectionKey key) throws IOException;
 
-	public void write(ByteBuffer buffer, SelectionKey key) {
-		Queue<ByteBuffer> pendingWrites = this.channelToPendingWrites.get(key.channel());
+	public void write(Object data, SelectionKey key) {
+		Queue<Object> pendingWrites = this.channelToPendingWrites.get(key.channel());
 		if (pendingWrites == null) {
 			synchronized (this.channelToPendingWrites) {
 				pendingWrites = this.channelToPendingWrites.get(key.channel());
@@ -69,7 +68,7 @@ public abstract class AbstractNioChannel {
 				}
 			}
 		}
-		pendingWrites.add(buffer);
+		pendingWrites.add(data);
 		reactor.changeOps(key, SelectionKey.OP_WRITE);
 	}
 }

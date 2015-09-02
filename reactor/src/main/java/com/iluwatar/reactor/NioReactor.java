@@ -1,7 +1,6 @@
 package com.iluwatar.reactor;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
@@ -75,7 +74,6 @@ public class NioReactor {
 		Iterator<Command> iterator = pendingChanges.iterator();
 		while (iterator.hasNext()) {
 			Command command = iterator.next();
-			System.out.println("Processing pending change: " + command);
 			command.execute();
 			iterator.remove();
 		}
@@ -85,10 +83,8 @@ public class NioReactor {
 		if (key.isAcceptable()) {
 			acceptConnection(key);
 		} else if (key.isReadable()) {
-			System.out.println("Key is readable");
 			read(key);
 		} else if (key.isWritable()) {
-			System.out.println("Key is writable");
 			write(key);
 		}
 	}
@@ -99,10 +95,10 @@ public class NioReactor {
 	}
 
 	private void read(SelectionKey key) {
-		ByteBuffer readBytes;
+		Object readObject;
 		try {
-			readBytes = ((AbstractNioChannel)key.attachment()).read(key);
-			dispatchReadEvent(key, readBytes);
+			readObject = ((AbstractNioChannel)key.attachment()).read(key);
+			dispatchReadEvent(key, readObject);
 		} catch (IOException e) {
 			try {
 				key.channel().close();
@@ -112,8 +108,8 @@ public class NioReactor {
 		}
 	}
 
-	private void dispatchReadEvent(SelectionKey key, ByteBuffer readBytes) {
-		dispatcher.onChannelReadEvent((AbstractNioChannel)key.attachment(), readBytes, key);
+	private void dispatchReadEvent(SelectionKey key, Object readObject) {
+		dispatcher.onChannelReadEvent((AbstractNioChannel)key.attachment(), readObject, key);
 	}
 
 	private void acceptConnection(SelectionKey key) throws IOException {
