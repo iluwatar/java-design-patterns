@@ -15,6 +15,7 @@ efficiently.
 **Applicability:** The Flyweight pattern's effectiveness depends heavily on how
 and where it's used. Apply the Flyweight pattern when all of the following are
 true
+
 * an application uses a large number of objects
 * storage costs are high because of the sheer quantity of objects
 * most object state can be made extrinsic
