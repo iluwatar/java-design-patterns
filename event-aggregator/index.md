@@ -23,3 +23,7 @@ allowing clients to register with just the aggregator.
   with them all, you can centralize the registration logic to the Event
   Aggregator. As well as simplifying registration, a Event Aggregator also
   simplifies the memory management issues in using observers.
+
+**Credits:**
+
+* [Martin Fowler - Event Aggregator](http://martinfowler.com/eaaDev/EventAggregator.html)

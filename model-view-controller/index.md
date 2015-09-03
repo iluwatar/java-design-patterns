@@ -17,3 +17,7 @@ display.
 **Applicability:** Use the Model-View-Controller pattern when
 
 * you want to clearly separate the domain data from its user interface representation
+
+**Credits:**
+
+* [Trygve Reenskaug - Model-view-controller](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
