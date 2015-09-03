@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 /**
  * This is a simple implementation of the FluentIterable interface. It evaluates
  * all chained operations eagerly.
+ * This implementation would be costly to be utilized in real applications.
  * @param <TYPE> the type of the objects the iteration is about
  */
 public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {

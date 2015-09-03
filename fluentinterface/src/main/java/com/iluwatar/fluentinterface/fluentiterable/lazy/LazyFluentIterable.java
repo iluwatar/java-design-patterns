@@ -126,19 +126,14 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
         @Override
         public Iterator<TYPE> iterator() {
             return new DecoratingIterator<TYPE>(iterable.iterator()) {
-                int currentIndex = 0;
+                public int stopIndex;
+                public int totalElementsCount;
+                private List<TYPE> list;
+                private int currentIndex = 0;
 
                 @Override
                 public TYPE computeNext() {
-                    List<TYPE> list = new ArrayList<>();
-
-                    Iterator<TYPE> newIterator = iterable.iterator();
-                    while(newIterator.hasNext()) {
-                        list.add(newIterator.next());
-                    }
-
-                    int totalElementsCount = list.size();
-                    int stopIndex = totalElementsCount - count;
+                    initialize();
 
                     TYPE candidate = null;
                     while(currentIndex < stopIndex && fromIterator.hasNext()) {
@@ -149,6 +144,19 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
                         candidate = fromIterator.next();
                     }
                     return candidate;
+                }
+
+                private void initialize() {
+                    if(list == null) {
+                       list = new ArrayList<>();
+                        Iterator<TYPE> newIterator = iterable.iterator();
+                        while(newIterator.hasNext()) {
+                            list.add(newIterator.next());
+                        }
+
+                        totalElementsCount = list.size();
+                        stopIndex = totalElementsCount - count;
+                    }
                 }
             };
         }
