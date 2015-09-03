@@ -18,3 +18,4 @@ is manual, here is how you do it:
 6. Check if something changed with `git diff`. It should show the folder 'patterns' changed.
 7. Execute `git add .`
 8. Commit and push the change
+9. The website is automatically updated using Jekyll (see [GitHub Pages Basics](https://help.github.com/categories/github-pages-basics) and [Using Jekyll with Pages](https://help.github.com/articles/using-jekyll-with-pages/))
