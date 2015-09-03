@@ -17,3 +17,7 @@ logic, which updates all of the views that are affected.
 **Applicability:** Use the Flux pattern when
 
 * you want to focus on creating explicit and understandable update paths for your application's data, which makes tracing changes during development simpler and makes bugs easier to track down and fix.
+
+**Credits:**
+
+* [Flux - Application architecture for building user interfaces](http://facebook.github.io/flux/)

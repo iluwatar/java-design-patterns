@@ -26,3 +26,7 @@ degrading execution efficiency.
 * [BSD Unix networking subsystem](http://www.cs.wustl.edu/~schmidt/PDF/PLoP-95.pdf)
 * [Real Time CORBA](http://www.omg.org/news/meetings/workshops/presentations/realtime2001/4-3_Pyarali_thread-pool.pdf)
 * [Android AsyncTask framework](http://developer.android.com/reference/android/os/AsyncTask.html)
+
+**Credits:**
+
+* [Douglas C. Schmidt and Charles D. Cranor - Half Sync/Half Async](http://www.cs.wustl.edu/~schmidt/PDF/PLoP-95.pdf)
