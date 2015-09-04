@@ -23,6 +23,8 @@ markdown: kramdown
 kramdown:
   input: GFM
   smart_quotes: ["apos", "apos", "quot", "quot"]
+  hard_wrap: false
+  default_lang: java
 
 category-list:
   - Other
