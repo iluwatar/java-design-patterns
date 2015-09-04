@@ -14,5 +14,6 @@ developers to build and test user interfaces.
 
 **Applicability:** Use the Model-View-Presenter in any of the following
 situations
+
 * when you want to improve the "Separation of Concerns" principle in presentation logic
 * when a user interface development and testing is necessary.

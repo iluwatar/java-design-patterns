@@ -20,3 +20,7 @@ its business logic. The Service Layer fulfills this role.
 
 * you want to encapsulate domain logic under API
 * you need to implement multiple interfaces with common logic and data
+
+**Credits:**
+
+* [Martin Fowler - Service Layer](http://martinfowler.com/eaaCatalog/serviceLayer.html)

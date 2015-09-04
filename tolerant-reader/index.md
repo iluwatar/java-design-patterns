@@ -17,3 +17,7 @@ changes, the readers must not break.
 **Applicability:** Use the Tolerant Reader pattern when
 
 * the communication schema can evolve and change and yet the receiving side should not break
+
+**Credits:**
+
+* [Martin Fowler - Tolerant Reader](http://martinfowler.com/bliki/TolerantReader.html)

@@ -17,3 +17,7 @@ post-processing to requests from a client to a target
 * a system uses pre-processing or post-processing requests
 * a system should do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers 
 * you want a modular approach to configuring pre-processing and post-processing schemes
+
+**Credits:**
+
+* [TutorialsPoint - Intercepting Filter](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
