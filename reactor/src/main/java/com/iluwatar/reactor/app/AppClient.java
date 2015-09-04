@@ -1,4 +1,4 @@
-package com.iluwatar.reactor;
+package com.iluwatar.reactor.app;
 
 import java.io.IOException;
 import java.io.InputStream;

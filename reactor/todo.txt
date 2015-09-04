@@ -2,3 +2,12 @@
 * Cleanup
 * Document - Javadoc
 * Better design?? Get review of @iluwatar
+
+
+Design view:
+
+Handles ---> AbstractNioChannel
+Selector ---> Synchronous Event Demultiplexer
+NioReactor ---> Initiation Dispatcher
+
+
