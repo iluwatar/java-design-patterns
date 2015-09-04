@@ -7,9 +7,10 @@ package com.iluwatar.abstractfactory;
  */
 public class ElfKing implements King {
 
+	static final String DESCRIPTION = "This is the Elven king!";
+	
 	@Override
-	public String toString() {
-		return "This is the Elven king!";
+	public String getDescription() {
+		return DESCRIPTION;
 	}
-
 }
