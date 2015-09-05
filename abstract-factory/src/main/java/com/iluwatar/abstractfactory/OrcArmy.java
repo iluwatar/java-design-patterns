@@ -7,9 +7,10 @@ package com.iluwatar.abstractfactory;
  */
 public class OrcArmy implements Army {
 
-	@Override
-	public String toString() {
-		return "This is the Orcish Army!";
-	}
+	static final String DESCRIPTION = "This is the Orc Army!";
 
+	@Override
+	public String getDescription() {
+		return DESCRIPTION;
+	}
 }
