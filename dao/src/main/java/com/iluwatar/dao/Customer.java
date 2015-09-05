@@ -11,7 +11,7 @@ public class Customer {
     private String firstName;
     private String lastName;
 
-    public Customer(int id, String firstName, String lastName) {
+    public Customer(final int id, final String firstName, final String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,7 +21,7 @@ public class Customer {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(final int id) {
         this.id = id;
     }
 
@@ -29,7 +29,7 @@ public class Customer {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
@@ -37,34 +37,39 @@ public class Customer {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "id=" + getId() +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
                 '}';
     }
 
+    /**
+     * Checks if two objects are the same.
+     * 
+     * @return true if the two objects are Customer objects and have the same id value, false otherwise.
+     */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Customer customer = (Customer) o;
-
-        if (id != customer.id) return false;
-
-        return true;
+    public boolean equals(final Object o) {
+    	boolean isEqual = false;
+    	final Customer customer = (Customer) o;
+        if (getId() == customer.getId()) {
+        	isEqual = true;
+        }
+        return isEqual;
     }
-
+    
     @Override
     public int hashCode() {
-        int result = id;
+        int result = getId();
+        id += getFirstName().hashCode();
+        id += getLastName().hashCode();
         return result;
     }
 }

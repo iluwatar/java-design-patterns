@@ -17,7 +17,7 @@ public class CustomerDaoImpl implements CustomerDao {
     // Note: Normally this would be in the form of an actual database and not part of the Dao Impl.
     private List<Customer> customers;
 
-    public CustomerDaoImpl(List<Customer> customers) {
+    public CustomerDaoImpl(final List<Customer> customers) {
         this.customers = customers;
     }
 
@@ -27,31 +27,33 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Customer getCusterById(int id) {
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getId() == id) {
-                return customers.get(i);
+    public Customer getCustomerById(final int id) {
+    	Customer customer = null;
+        for (final Customer cus : getAllCustomers()) {
+            if (cus.getId() == id) {
+                customer = cus;
+                break;
             }
         }
-        // No customer found
-        return null;
+        return customer;
     }
 
     @Override
-    public void addCustomer(Customer customer) {
+    public void addCustomer(final Customer customer) {
         customers.add(customer);
     }
 
 
     @Override
-    public void updateCustomer(Customer customer) {
-        if (customers.contains(customer)) {
-            customers.set(customers.indexOf(customer), customer);
+    public void updateCustomer(final Customer customer) {
+        if (getAllCustomers().contains(customer)) {
+        	final int index = getAllCustomers().indexOf(customer);
+            getAllCustomers().set(index, customer);
         }
     }
 
     @Override
-    public void deleteCustomer(Customer customer) {
-        customers.remove(customer);
+    public void deleteCustomer(final Customer customer) {
+        getAllCustomers().remove(customer);
     }
 }
