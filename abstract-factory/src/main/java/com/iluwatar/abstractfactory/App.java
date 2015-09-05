@@ -1,5 +1,6 @@
 package com.iluwatar.abstractfactory;
 
+
 /**
  * 
  * The essence of the Abstract Factory pattern is a factory interface
@@ -12,26 +13,61 @@ package com.iluwatar.abstractfactory;
  */
 public class App {
 
-	/**
-	 * Program entry point
-	 * @param args command line arguments
-	 */
-	public static void main(String[] args) {
-		createKingdom(new ElfKingdomFactory());
-		createKingdom(new OrcKingdomFactory());
-	}
+	private King king;
+	private Castle castle;
+	private Army army;
 
 	/**
 	 * Creates kingdom
 	 * @param factory
 	 */
-	public static void createKingdom(KingdomFactory factory) {
-		King king = factory.createKing();
-		Castle castle = factory.createCastle();
-		Army army = factory.createArmy();
-		System.out.println("The kingdom was created.");
-		System.out.println(king);
-		System.out.println(castle);
-		System.out.println(army);
+	public void createKingdom(final KingdomFactory factory) {
+		setKing(factory.createKing());
+		setCastle(factory.createCastle());
+		setArmy(factory.createArmy());
+	}
+	
+	ElfKingdomFactory getElfKingdomFactory() {
+		return new ElfKingdomFactory();
+	}
+	
+	OrcKingdomFactory getOrcKingdomFactory() {
+		return new OrcKingdomFactory();
+	}
+	
+	King getKing(final KingdomFactory factory) {
+		return factory.createKing();
+	}
+	
+	Castle getCastle(final KingdomFactory factory) {
+		return factory.createCastle();
+	}
+	
+	Army getArmy(final KingdomFactory factory) {
+		return factory.createArmy();
+	}
+	
+	public King getKing() {
+		return king;
+	}
+	
+	private void setKing(final King king) {
+		this.king = king;
+	}
+	
+	public Castle getCastle() {
+		return castle;
+	}
+	
+	private void setCastle(final Castle castle) {
+		this.castle = castle;
+	}
+	
+	public Army getArmy() {
+		return army;
+	}
+	
+	private void setArmy(final Army army) {
+		this.army = army;
 	}
 }

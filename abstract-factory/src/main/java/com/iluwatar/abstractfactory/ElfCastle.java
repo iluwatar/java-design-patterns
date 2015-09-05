@@ -7,9 +7,10 @@ package com.iluwatar.abstractfactory;
  */
 public class ElfCastle implements Castle {
 
-	@Override
-	public String toString() {
-		return "This is the Elven castle!";
-	}
+	static final String DESCRIPTION = "This is the Elven castle!";
 
+	@Override
+	public String getDescription() {
+		return DESCRIPTION;
+	}
 }
