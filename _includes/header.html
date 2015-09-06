@@ -31,16 +31,17 @@
           {% else %}
           <li>
         {% endif %}
-          <a href="{{ site.baseurl }}/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+          <a href="{{ site.baseurl }}/"><span class="fa fa-lg fa-home"></span> Home</a></li>
 
-        {% for p in site.pages %}
+        {% assign allPages = site.pages | sort: 'page-index' %}
+        {% for p in allPages %}
           {% if p.title and p.layout != "pattern" %}
             {% if p.url == page.url %}
               <li class="active">
               {% else %}
               <li>
             {% endif %}
-            <a href="{{ p.url | prepend: site.baseurl }}"><span class="glyphicon {{ p.icon }}"></span> {{ p.title }}</a></li>
+            <a href="{{ p.url | prepend: site.baseurl }}"><span class="fa fa-lg {{ p.icon }}"></span> {{ p.title }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>

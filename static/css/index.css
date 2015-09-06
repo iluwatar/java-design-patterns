@@ -8,7 +8,7 @@
 /* commom */
 body {
 	  background-image: url("{{ "/static/img/canvas_bg.jpg" | prepend: site.baseurl }} ");
-    font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 article p{
 	/*text-indent: 2em;*/
@@ -19,7 +19,8 @@ pre{
 }
 
 pre code{
-	font-size: 14px;
+	font-family: 'Roboto Mono', monospace;
+	font-size: 16px;
 }
 
 table{
@@ -44,7 +45,6 @@ table td{
 }
 
 
-
 #index a:link {color: #005}		/* 未访问的链接 */
 #index a:visited {color: #669}	/* 已访问的链接 */
 #index a:hover {color: #336;text-decoration: none;}	/* 鼠标移动到链接上 */
@@ -60,7 +60,6 @@ nav{
 	border-radius: 0;
 }
 .navbar-nav li{
-	width: 110px;
 	text-align: center;
 }
 
@@ -87,10 +86,12 @@ nav{
 	padding:8px 30px 10px 30px;
 	border-bottom:1px solid #ddd;
 
+  /*
 	transition:0.4s ease;
 	-webkit-transition:0.4s ease;
 	-moz-transition:0.4s ease;
 	-o-transition:0.4s ease;
+	*/
 }
 .post-list-item:last-of-type{
 	border-bottom: none;
@@ -338,6 +339,10 @@ blockquote:last-child {
 	padding: 6px 10px 6px 10px;
 	border-right: 1px dashed #ddd;
 	text-align: right;
+}
+
+.page-content h1:target, h2:target, h3:target, h4:target, h5:target {
+	background-color: #ffa
 }
 
 /**

@@ -2,8 +2,9 @@
 layout: default
 title: Patterns
 permalink: /patterns/
-icon: glyphicon-th-large
+icon: fa-th-large
 comments: false
+page-index: 1
 ---
 <div id="index" class="row">
   <div class="col-sm-9">
@@ -17,55 +18,17 @@ comments: false
       </div>
       <div class="post-list-body">
 
-        {% assign allPages = site.pages | where:"layout","pattern" %}
-        <div class="all-posts" post-category="All" post-tag="All">
-          {% for page in allPages %}
-            <a class="post-list-item" href="{{ page.url | prepend: site.baseurl }}">
-              <h2>
-              {{ page.title }}
-              </h2>
-              <!--<span class="">{{ post.date | date: "%b %-d, %Y" }}</span>-->
-            </a>
+        {% assign allPatterns = site.pages | where:"layout","pattern" | sort: 'title' %}
+        <div>
+          {% for page in allPatterns %}
+          <a class="post-list-item" href="{{ page.url | prepend: site.baseurl }}"
+          cats='All;{{ page.categories | join: ';' }}'
+          tags='All;{{ page.tags | join: ';' }}'>
+          <h2>{{ page.title }}</h2>
+          </a>
+
           {% endfor %}
         </div>
-
-        <!-- <div class="posts-in-categories"> -->
-        {% for category in site.category-list %}
-          <div post-category="{{ category }}">
-            {% for page in allPages %}
-              {% if page.categories contains category %}
-                {% if page.url %}
-                  <a class="post-list-item" href="{{ page.url | prepend: site.baseurl }}">
-                    <h2>
-                    {{ page.title }}
-                    </h2>
-                    <span class="">{{ page.date | date: "%b %-d, %Y" }}</span>
-                  </a>
-                {% endif %}
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endfor %}
-        <!-- </div> -->
-
-        <!-- <div class="posts-in-tags"> -->
-        {% for tag in site.tag-list %}
-          <div post-tag="{{ tag }}">
-            {% for page in allPages %}
-              {% if page.tags contains tag %}
-                {% if page.url %}
-                  <a class="post-list-item" href="{{ page.url | prepend: site.baseurl }}">
-                    <h2>
-                    {{ page.title }}
-                    </h2>
-                    <span class="">{{ page.date | date: "%b %-d, %Y" }}</span>
-                  </a>
-                {% endif %}
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endfor %}
-        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -76,13 +39,13 @@ comments: false
       </div>
 
       <a href="javascript:;" class="sidebar-list-item category" category="All">
-        All<span class="my-badge"> {{ allPages | size }}</span>
+        All<span class="my-badge"> {{ allPatterns | size }}</span>
       </a>
       {% for category in site.category-list %}
       <a href="javascript:;" class="sidebar-list-item category" category="{{ category }}">
         {{ category }} <span class="my-badge">
           {% assign counter=0 %}
-          {% for page in allPages %}
+          {% for page in allPatterns %}
             {% if page.categories contains category %}
               {% assign counter=counter | plus:1 %}
             {% endif %}
@@ -99,13 +62,13 @@ comments: false
       </div>
 
       <a href="javascript:;" class="sidebar-list-item tag" tag="All">
-        All<span class="my-badge"> {{ allPages | size }}</span>
+        All<span class="my-badge"> {{ allPatterns | size }}</span>
       </a>
       {% for tag in site.tag-list %}
       <a href="javascript:;" class="sidebar-list-item tag" tag="{{ tag }}">
         {{ tag }} <span class="my-badge">
           {% assign counter=0 %}
-          {% for page in allPages %}
+          {% for page in allPatterns %}
             {% if page.tags contains tag %}
               {% assign counter=counter | plus:1 %}
             {% endif %}

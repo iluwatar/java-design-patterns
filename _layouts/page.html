@@ -2,13 +2,13 @@
 layout: default
 ---
 <div class="post-area post">
-    {% if site.github_username %}
+  {% if page.title %}
     <header>
         <h1>{{ page.title }}</h1>
     </header>
     <hr>
-    {% endif %}
-    <article class="page-content">
-        {{ content }}
-    </article>
+  {% endif %}
+  <article class="page-content">
+      {{ content }}
+  </article>
 </div>
