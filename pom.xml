@@ -21,6 +21,7 @@
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
+		<module>active-record</module>
 		<module>builder</module>
 		<module>factory-method</module>
 		<module>prototype</module>
