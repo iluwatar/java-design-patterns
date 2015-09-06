@@ -9,7 +9,7 @@ import com.iluwatar.reactor.framework.NioDatagramChannel.DatagramPacket;
 
 /**
  * Logging server application logic. It logs the incoming requests on standard console and returns
- * a canned acknowledgement back to the remote peer. 
+ * a canned acknowledgement back to the remote peer.
  * 
  * @author npathai
  */
@@ -23,17 +23,15 @@ public class LoggingHandler implements ChannelHandler {
 	@Override
 	public void handleChannelRead(AbstractNioChannel channel, Object readObject, SelectionKey key) {
 		/*
-		 * As this channel is attached to both TCP and UDP channels we need to check whether
+		 * As this handler is attached with both TCP and UDP channels we need to check whether
 		 * the data received is a ByteBuffer (from TCP channel) or a DatagramPacket (from UDP channel).  
 		 */
 		if (readObject instanceof ByteBuffer) {
-			byte[] data = ((ByteBuffer)readObject).array();
-			doLogging(data);
-			sendReply(channel, data, key);
+			doLogging(((ByteBuffer)readObject));
+			sendReply(channel, key);
 		} else if (readObject instanceof DatagramPacket) {
 			DatagramPacket datagram = (DatagramPacket)readObject;
-			byte[] data = datagram.getData().array();
-			doLogging(data);
+			doLogging(datagram.getData());
 			sendReply(channel, datagram, key);
 		} else {
 			throw new IllegalStateException("Unknown data received");
@@ -50,13 +48,13 @@ public class LoggingHandler implements ChannelHandler {
 		channel.write(replyPacket, key);
 	}
 
-	private void sendReply(AbstractNioChannel channel, byte[] data, SelectionKey key) {
+	private void sendReply(AbstractNioChannel channel, SelectionKey key) {
 		ByteBuffer buffer = ByteBuffer.wrap(ACK);
 		channel.write(buffer, key);
 	}
 
-	private void doLogging(byte[] data) {
+	private void doLogging(ByteBuffer data) {
 		// assuming UTF-8 :(
-		System.out.println(new String(data));
+		System.out.println(new String(data.array(), 0, data.limit()));
 	}
 }

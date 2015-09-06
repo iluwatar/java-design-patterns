@@ -5,7 +5,7 @@ import java.nio.channels.SelectionKey;
 /**
  * Represents the event dispatching strategy. When {@link NioReactor} senses any event on the 
  * registered {@link AbstractNioChannel}s then it de-multiplexes the event type, read or write 
- * or connect, and then calls the {@link Dispatcher} to dispatch the event. This decouples the I/O
+ * or connect, and then calls the {@link Dispatcher} to dispatch the read events. This decouples the I/O
  * processing from application specific processing.
  * <br/>
  * Dispatcher should call the {@link ChannelHandler} associated with the channel on which event occurred.
@@ -24,6 +24,9 @@ public interface Dispatcher {
 	 * This hook method is called when read event occurs on particular channel. The data read
 	 * is provided in <code>readObject</code>. The implementation should dispatch this read event
 	 * to the associated {@link ChannelHandler} of <code>channel</code>.
+	 * 
+	 * <p>
+	 * The type of <code>readObject</code> depends on the channel on which data was received.
 	 *  
 	 * @param channel on which read event occurred
 	 * @param readObject object read by channel
@@ -32,7 +35,7 @@ public interface Dispatcher {
 	void onChannelReadEvent(AbstractNioChannel channel, Object readObject, SelectionKey key);
 	
 	/**
-	 * Stops the dispatching events and cleans up any acquired resources such as threads.
+	 * Stops dispatching events and cleans up any acquired resources such as threads.
 	 */
 	void stop();
 }

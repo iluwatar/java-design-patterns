@@ -10,8 +10,8 @@ import com.iluwatar.reactor.framework.NioServerSocketChannel;
 import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
 
 /**
- * This application demonstrates Reactor pattern. It represents a Distributed Logging Service
- * where it can listen on multiple TCP or UDP sockets for incoming log requests.
+ * This application demonstrates Reactor pattern. The example demonstrated is a Distributed Logging Service
+ * where it listens on multiple TCP or UDP sockets for incoming log requests.
  * 
  * <p>
  * <i>INTENT</i>
@@ -49,13 +49,10 @@ public class App {
 
 	/**
 	 * App entry.
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
-		try {
-			new App().start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public static void main(String[] args) throws IOException {
+		new App().start();
 	}
 	
 	/**
@@ -70,12 +67,12 @@ public class App {
 		
 		/*
 		 *  This represents application specific business logic that dispatcher will call
-		 *  on appropriate events. These events are read and write event in our example.
+		 *  on appropriate events. These events are read events in our example.
 		 */
 		LoggingHandler loggingHandler = new LoggingHandler();
 		
 		/*
-		 * Our application binds to multiple I/O channels and uses same logging handler to handle
+		 * Our application binds to multiple channels and uses same logging handler to handle
 		 * incoming log requests.
 		 */
 		reactor

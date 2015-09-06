@@ -8,7 +8,7 @@ import java.nio.channels.SelectionKey;
  * because the I/O thread performs the application specific processing.
  * 
  * <p>
- * For real applications use {@link ThreadPoolDispatcher}.
+ * For better performance use {@link ThreadPoolDispatcher}.
  * 
  * @see ThreadPoolDispatcher
  * 

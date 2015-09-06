@@ -22,11 +22,11 @@ import java.util.concurrent.TimeUnit;
  * <p>
  * Implementation:
  * A NIO reactor runs in its own thread when it is started using {@link #start()} method. 
- * {@link NioReactor} uses {@link Selector} as a mechanism for achieving Synchronous Event De-multiplexing.
+ * {@link NioReactor} uses {@link Selector} for realizing Synchronous Event De-multiplexing.
  * 
  * <p>
- * NOTE: This is one of the way to implement NIO reactor and it does not take care of all possible edge cases
- * which may be required in a real application. This implementation is meant to demonstrate the fundamental
+ * NOTE: This is one of the ways to implement NIO reactor and it does not take care of all possible edge cases
+ * which are required in a real application. This implementation is meant to demonstrate the fundamental
  * concepts that lie behind Reactor pattern.
  * 
  * @author npathai
@@ -64,16 +64,13 @@ public class NioReactor {
 	 * @throws IOException if any I/O error occurs.
 	 */
 	public void start() throws IOException {
-		reactorMain.execute(new Runnable() {
-			@Override
-			public void run() {
+		reactorMain.execute(() -> {
 				try {
 					System.out.println("Reactor started, waiting for events...");
 					eventLoop();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}
 		});
 	}
 	
@@ -92,11 +89,11 @@ public class NioReactor {
 	}
 
 	/**
-	 * Registers a new channel (handle) with this reactor after which the reactor will wait for events
-	 * on this channel. While registering the channel the reactor uses {@link AbstractNioChannel#getInterestedOps()}
+	 * Registers a new channel (handle) with this reactor. Reactor will start waiting for events on this channel
+	 * and notify of any events. While registering the channel the reactor uses {@link AbstractNioChannel#getInterestedOps()}
 	 * to know about the interested operation of this channel.
 	 * 
-	 * @param channel a new handle on which reactor will wait for events. The channel must be bound
+	 * @param channel a new channel on which reactor will wait for events. The channel must be bound
 	 * prior to being registered.
 	 * @return this
 	 * @throws IOException if any I/O error occurs.
@@ -111,7 +108,7 @@ public class NioReactor {
 	private void eventLoop() throws IOException {
 		while (true) {
 			
-			// Honor interrupt request
+			// honor interrupt request
 			if (Thread.interrupted()) {
 				break;
 			}
@@ -189,7 +186,7 @@ public class NioReactor {
 	}
 
 	/*
-	 * Uses the application provided dispatcher to dispatch events to respective handlers.
+	 * Uses the application provided dispatcher to dispatch events to application handler.
 	 */
 	private void dispatchReadEvent(SelectionKey key, Object readObject) {
 		dispatcher.onChannelReadEvent((AbstractNioChannel)key.attachment(), readObject, key);
@@ -207,10 +204,10 @@ public class NioReactor {
 	 * Queues the change of operations request of a channel, which will change the interested
 	 * operations of the channel sometime in future.
 	 * <p>
-	 * This is a non-blocking method and does not guarantee that the operations are changed when
+	 * This is a non-blocking method and does not guarantee that the operations have changed when
 	 * this method returns.
 	 * 
-	 * @param key the key for which operations are to be changed.
+	 * @param key the key for which operations have to be changed.
 	 * @param interestedOps the new interest operations.
 	 */
 	public void changeOps(SelectionKey key, int interestedOps) {

@@ -55,7 +55,7 @@ public abstract class AbstractNioChannel {
 	}
 
 	/**
-	 * The operation in which the channel is interested, this operation is be provided to {@link Selector}.
+	 * The operation in which the channel is interested, this operation is provided to {@link Selector}.
 	 * 
 	 * @return interested operation.
 	 * @see SelectionKey
@@ -63,15 +63,17 @@ public abstract class AbstractNioChannel {
 	public abstract int getInterestedOps();
 	
 	/**
-	 * Requests the channel to bind.
+	 * Binds the channel on provided port.
 	 *  
 	 * @throws IOException if any I/O error occurs.
 	 */
 	public abstract void bind() throws IOException;
 	
 	/**
-	 * Reads the data using the key and returns the read data.
-	 * @param key the key which is readable.
+	 * Reads the data using the key and returns the read data. The underlying channel should be fetched using
+	 * {@link SelectionKey#channel()}.
+	 * 
+	 * @param key the key on which read event occurred.
 	 * @return data read.
 	 * @throws IOException if any I/O error occurs.
 	 */
@@ -106,7 +108,7 @@ public abstract class AbstractNioChannel {
 	/**
 	 * Writes the data to the channel.
 	 * 
-	 * @param pendingWrite data which was queued for writing in batch mode. 
+	 * @param pendingWrite the data to be written on channel.
 	 * @param key the key which is writable.
 	 * @throws IOException if any I/O error occurs.
 	 */

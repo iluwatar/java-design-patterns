@@ -24,8 +24,8 @@ public class NioServerSocketChannel extends AbstractNioChannel {
 	 * Note the constructor does not bind the socket, {@link #bind()} method should be called for binding 
 	 * the socket.
 	 * 
-	 * @param port the port to be bound to listen for incoming requests.
-	 * @param handler the handler to be used for handling incoming requests on this channel.
+	 * @param port the port on which channel will be bound to accept incoming connection requests.
+	 * @param handler the handler that will handle incoming requests on this channel.
 	 * @throws IOException if any I/O error occurs.
 	 */
 	public NioServerSocketChannel(int port, ChannelHandler handler) throws IOException {
@@ -36,7 +36,7 @@ public class NioServerSocketChannel extends AbstractNioChannel {
 	
 	@Override
 	public int getInterestedOps() {
-		// being a server socket channel it is interested in accepting connection from remote clients.
+		// being a server socket channel it is interested in accepting connection from remote peers.
 		return SelectionKey.OP_ACCEPT;
 	}
 
@@ -58,6 +58,7 @@ public class NioServerSocketChannel extends AbstractNioChannel {
 		SocketChannel socketChannel = (SocketChannel) key.channel();
 		ByteBuffer buffer = ByteBuffer.allocate(1024);
 		int read = socketChannel.read(buffer);
+		buffer.flip();
 		if (read == -1) {
 			throw new IOException("Socket closed");
 		}
@@ -83,7 +84,6 @@ public class NioServerSocketChannel extends AbstractNioChannel {
 	@Override
 	protected void doWrite(Object pendingWrite, SelectionKey key) throws IOException {
 		ByteBuffer pendingBuffer = (ByteBuffer) pendingWrite;
-		System.out.println("Writing on channel");
 		((SocketChannel)key.channel()).write(pendingBuffer);
 	}
 }

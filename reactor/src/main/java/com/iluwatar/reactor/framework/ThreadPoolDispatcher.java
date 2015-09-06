@@ -7,8 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * An implementation that uses a pool of worker threads to dispatch the events. This provides
- * for better scalability as the application specific processing is not performed in the context
- * of I/O thread.
+ * better scalability as the application specific processing is not performed in the context
+ * of I/O (reactor) thread.
  * 
  * @author npathai
  *
@@ -46,7 +46,7 @@ public class ThreadPoolDispatcher extends SameThreadDispatcher {
 	public void stop() {
 		executorService.shutdownNow();
 		try {
-			executorService.awaitTermination(1000, TimeUnit.SECONDS);
+			executorService.awaitTermination(4, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
