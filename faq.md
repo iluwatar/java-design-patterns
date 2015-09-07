@@ -61,3 +61,7 @@ As for performance and scalability, pools can become bottlenecks, if all the
 pooled objects are in use and more clients need them, threads will become
 blocked waiting for available object from the pool. This is not the case with
 Flyweight.
+
+### Q7: What are the differences between FluentInterface and Builder patterns? {#Q7}
+
+Fluent interfaces are sometimes confused with the Builder pattern, because they share method chaining and a fluent usage. However, fluent interfaces are not primarily used to create shared (mutable) objects, but to configure complex objects without having to respecify the target object on every property change. 
