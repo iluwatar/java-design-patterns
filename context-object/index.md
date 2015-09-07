@@ -7,11 +7,10 @@ categories: Structural
 tags: Java
 ---
 
-**Intent:** t's purpose is to decouple, as much as possible,
-application data and logic from protocol/presentation-technology
-specific classes such as HttpSession and HttpRequest.
+**Intent:** Decouples, application data and logic from protocol/presentation-technology
+e.g. HttpSession and HttpRequest
 
-![alt text](./etc/COMainClass.png "Context Object")
+![alt text](./etc/context-object.png "Context Object")
 
 **Applicability:** Use the Context-object pattern when
 

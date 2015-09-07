@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true">
+	<output-test url="file://$MODULE_DIR$/../classes/test/abstract-factory"/>
+	<exclude-output/>
+</component>

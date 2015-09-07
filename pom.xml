@@ -77,7 +77,8 @@
 		<module>step-builder</module>
 		<module>layers</module>
 		<module>message-channel</module>
-  </modules>
+		<module>context-object</module>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>
@@ -121,6 +122,11 @@
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-all</artifactId>
+				<version>1.3</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
