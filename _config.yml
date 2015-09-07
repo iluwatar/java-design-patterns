@@ -15,10 +15,8 @@ permalink: /:year/:month/:day/:title/
 # Build settings
 markdown: kramdown
 
-# highlight
-# highlighter: pygments
-# highlighter: rouge
-# highlighter: false
+gems:
+  - jekyll-sitemap
 
 kramdown:
   input: GFM
