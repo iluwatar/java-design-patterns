@@ -18,7 +18,7 @@ import com.iluwatar.servicelayer.wizard.WizardDaoImpl;
 /**
  * Service layer defines an application's boundary with a layer of services that establishes 
  * a set of available operations and coordinates the application's response in each operation.
- * 
+ * <p>
  * Enterprise applications typically require different kinds of interfaces to the data 
  * they store and the logic they implement: data loaders, user interfaces, integration gateways, 
  * and others. Despite their different purposes, these interfaces often need common interactions 
@@ -26,15 +26,19 @@ import com.iluwatar.servicelayer.wizard.WizardDaoImpl;
  * interactions may be complex, involving transactions across multiple resources and the 
  * coordination of several responses to an action. Encoding the logic of the interactions 
  * separately in each interface causes a lot of duplication.
- * 
- * The example application demonstrates interactions between a client (App) and a service 
- * (MagicService). The service is implemented with 3-layer architecture (entity, dao, service).
+ * <p>
+ * The example application demonstrates interactions between a client ({@link App}) and a service 
+ * ({@link MagicService}). The service is implemented with 3-layer architecture (entity, dao, service).
  * For persistence the example uses in-memory H2 database which is populated on each application
  * startup.
  *
  */
 public class App {
 	
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
     public static void main( String[] args ) {   
     	// populate the in-memory database
     	initData();

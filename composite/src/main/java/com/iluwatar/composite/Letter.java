@@ -1,5 +1,10 @@
 package com.iluwatar.composite;
 
+/**
+ * 
+ * Letter
+ *
+ */
 public class Letter extends LetterComposite {
 
 	private char c;

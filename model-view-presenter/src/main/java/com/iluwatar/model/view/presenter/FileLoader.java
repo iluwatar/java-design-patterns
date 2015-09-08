@@ -7,7 +7,7 @@ import java.io.FileReader;
 /**
  * Every instance of this class represents the Model component in the
  * Model-View-Presenter architectural pattern.
- * 
+ * <p>
  * It is responsible for reading and loading the contents of a given file.
  */
 public class FileLoader {
@@ -51,9 +51,7 @@ public class FileLoader {
 
 	/**
 	 * Sets the path of the file to be loaded, to the given value.
-	 * 
-	 * @param fileName
-	 *            The path of the file to be loaded.
+	 * @param fileName The path of the file to be loaded.
 	 */
 	public void setFileName(String fileName) {
 		this.fileName = fileName;

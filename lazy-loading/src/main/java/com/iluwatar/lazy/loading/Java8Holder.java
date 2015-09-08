@@ -4,8 +4,8 @@ import java.util.function.Supplier;
 
 /**
  * 
- * This lazy loader is thread safe and more efficient than HolderThreadSafe.
- * It utilizes Java 8 functional interface Supplier<T> as Heavy factory.
+ * This lazy loader is thread safe and more efficient than {@link HolderThreadSafe}.
+ * It utilizes Java 8 functional interface {@link Supplier<T>} as {@link Heavy} factory.
  *
  */
 public class Java8Holder {

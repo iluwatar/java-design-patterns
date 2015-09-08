@@ -2,7 +2,7 @@ package com.iluwatar.dependency.injection;
 
 /**
  * 
- * OldTobyTobacco concrete Tobacco implementation
+ * OldTobyTobacco concrete {@link Tobacco} implementation
  *
  */
 public class OldTobyTobacco extends Tobacco {

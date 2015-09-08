@@ -1,6 +1,12 @@
 package com.iluwatar.dao;
 
+/**
+ * 
+ * Customer
+ *
+ */
 public class Customer {
+	
     private int id;
     private String firstName;
     private String lastName;

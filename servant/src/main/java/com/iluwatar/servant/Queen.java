@@ -1,6 +1,12 @@
 package com.iluwatar.servant;
 
+/**
+ * 
+ * Queen
+ *
+ */
 public class Queen implements Royalty {
+	
     private boolean isDrunk = true;
     private boolean isHungry;
     private boolean isHappy;

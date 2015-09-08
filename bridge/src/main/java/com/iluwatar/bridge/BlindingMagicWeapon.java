@@ -1,14 +1,19 @@
 package com.iluwatar.bridge;
 
+/**
+ * 
+ * BlindingMagicWeapon
+ *
+ */
 public class BlindingMagicWeapon extends MagicWeapon {
 
-	public BlindingMagicWeapon(BlindingMagicWeaponImp imp) {
+	public BlindingMagicWeapon(BlindingMagicWeaponImpl imp) {
 		super(imp);
 	}
 
 	@Override
-	public BlindingMagicWeaponImp getImp() {
-		return (BlindingMagicWeaponImp) imp;
+	public BlindingMagicWeaponImpl getImp() {
+		return (BlindingMagicWeaponImpl) imp;
 	}
 
 	@Override

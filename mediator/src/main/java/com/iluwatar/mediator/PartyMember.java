@@ -2,7 +2,7 @@ package com.iluwatar.mediator;
 
 /**
  * 
- * Interface for party members interacting with Party.
+ * Interface for party members interacting with {@link Party}.
  * 
  */
 public interface PartyMember {

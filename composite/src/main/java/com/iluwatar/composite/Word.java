@@ -2,6 +2,11 @@ package com.iluwatar.composite;
 
 import java.util.List;
 
+/**
+ * 
+ * Word
+ *
+ */
 public class Word extends LetterComposite {
 
 	public Word(List<Letter> letters) {

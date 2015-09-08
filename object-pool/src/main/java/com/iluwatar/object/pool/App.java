@@ -5,21 +5,25 @@ package com.iluwatar.object.pool;
  * When it is necessary to work with a large number of objects that are particularly expensive to instantiate 
  * and each object is only needed for a short period of time, the performance of an entire application may be 
  * adversely affected. An object pool design pattern may be deemed desirable in cases such as these. 
- * 
+ * <p>
  * The object pool design pattern creates a set of objects that may be reused. When a new object is needed, it 
  * is requested from the pool. If a previously prepared object is available it is returned immediately, avoiding 
  * the instantiation cost. If no objects are present in the pool, a new item is created and returned. When the 
  * object has been used and is no longer needed, it is returned to the pool, allowing it to be used again in the 
  * future without repeating the computationally expensive instantiation process. It is important to note that 
  * once an object has been used and returned, existing references will become invalid.
- * 
- * In this example we have created OliphauntPool inheriting from generic ObjectPool. Oliphaunts can be checked
+ * <p>
+ * In this example we have created {@link OliphauntPool} inheriting from generic {@link ObjectPool}. {@link Oliphaunt}s can be checked
  * out from the pool and later returned to it. The pool tracks created instances and their status (available,
  * inUse).
  *
  */
 public class App {
 	
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
     public static void main( String[] args ) {
     	OliphauntPool pool = new OliphauntPool();
     	System.out.println(pool);

@@ -7,14 +7,18 @@ import java.util.List;
  * 
  * The Event Aggregator pattern channels events from multiple objects 
  * into a single object to simplify registration for clients.
- * 
- * In the example LordBaelish, LordVarys and Scout deliver events to
- * KingsHand. KingsHand, the event aggregator, then delivers the events
- * to KingJoffrey.
+ * <p>
+ * In the example {@link LordBaelish}, {@link LordVarys} and {@link Scout} deliver events to
+ * {@link KingsHand}. {@link KingsHand}, the event aggregator, then delivers the events
+ * to {@link KingJoffrey}.
  *
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 		
 		KingJoffrey kingJoffrey = new KingJoffrey();

@@ -4,19 +4,20 @@
 
 	<groupId>com.iluwatar</groupId>
 	<artifactId>java-design-patterns</artifactId>
-	<version>1.5.0</version>
+	<version>1.6.0</version>
 	<packaging>pom</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<hibernate.version>5.0.0.CR2</hibernate.version>
-		<spring-data.version>1.8.1.RELEASE</spring-data.version>
-		<h2.version>1.4.187</h2.version>
+		<hibernate.version>5.0.0.Final</hibernate.version>
+		<spring-data.version>1.8.2.RELEASE</spring-data.version>
+		<h2.version>1.4.188</h2.version>
 		<junit.version>4.12</junit.version>
 		<compiler.version>3.0</compiler.version>
 		<coveralls.version>3.1.0</coveralls.version>
 		<jacoco.version>0.7.2.201409121644</jacoco.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<camel.version>2.15.3</camel.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -74,6 +75,8 @@
     	<module>business-delegate</module>
     	<module>half-sync-half-async</module>
 		<module>step-builder</module>
+		<module>layers</module>
+		<module>message-channel</module>
   </modules>
 
 	<dependencyManagement>
@@ -102,6 +105,16 @@
 				<groupId>commons-dbcp</groupId>
 				<artifactId>commons-dbcp</artifactId>
 				<version>${commons-dbcp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-core</artifactId>
+				<version>${camel.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-stream</artifactId>
+				<version>${camel.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>

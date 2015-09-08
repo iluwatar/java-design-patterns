@@ -2,7 +2,7 @@ package com.iluwatar.decorator;
 
 /**
  * 
- * Troll implements Hostile interface directly.
+ * Troll implements {@link Hostile} interface directly.
  *
  */
 public class Troll implements Hostile {

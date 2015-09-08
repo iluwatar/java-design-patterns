@@ -3,6 +3,7 @@ package com.iluwatar.halfsynchalfasync;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
+ * 
  * This application demonstrates Half-Sync/Half-Async pattern. Key parts of the pattern are
  * {@link AsyncTask} and {@link AsynchronousService}.
  * 
@@ -44,9 +45,14 @@ import java.util.concurrent.LinkedBlockingQueue;
  * Such as Priority Queue can be used as queuing layer to prioritize the way tasks are executed.
  * Our implementation is just one simple way of implementing this pattern, there are many variants possible
  * as described in its applications.
+ * 
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 		AsynchronousService service = new AsynchronousService(new LinkedBlockingQueue<>());
 		/*
@@ -66,6 +72,11 @@ public class App {
 		service.execute(new ArithmeticSumTask(1));
 	}
 	
+	/**
+	 * 
+	 * ArithmeticSumTask
+	 *
+	 */
 	static class ArithmeticSumTask implements AsyncTask<Long> {
 		private long n;
 

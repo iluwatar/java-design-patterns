@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule;
 
 /**
  * 
- * Guice module for binding certain concrete Tobacco implementation.
+ * Guice module for binding certain concrete {@link Tobacco} implementation.
  *
  */
 public class TobaccoModule extends AbstractModule {

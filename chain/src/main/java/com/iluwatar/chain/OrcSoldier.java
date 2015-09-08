@@ -1,5 +1,10 @@
 package com.iluwatar.chain;
 
+/**
+ * 
+ * OrcSoldier
+ *
+ */
 public class OrcSoldier extends RequestHandler {
 
 	public OrcSoldier(RequestHandler handler) {

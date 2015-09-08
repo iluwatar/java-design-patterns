@@ -1,5 +1,10 @@
 package com.iluwatar.observer;
 
+/**
+ * 
+ * Orcs
+ *
+ */
 public class Orcs implements WeatherObserver {
 
 	@Override

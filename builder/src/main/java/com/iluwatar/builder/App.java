@@ -6,17 +6,21 @@ import com.iluwatar. builder.Hero.HeroBuilder;
  * 
  * This is the Builder pattern variation as described by Joshua Bloch in
  * Effective Java 2nd Edition.
- * 
- * We want to build Hero objects, but its construction is complex because of the
- * many parameters needed. To aid the user we introduce HeroBuilder class.
- * HeroBuilder takes the minimum parameters to build Hero object in its
- * constructor. After that additional configuration for the Hero object can be
- * done using the fluent HeroBuilder interface. When configuration is ready the
- * build method is called to receive the final Hero object.
+ * <p>
+ * We want to build {@link Hero} objects, but its construction is complex because of the
+ * many parameters needed. To aid the user we introduce {@link HeroBuilder} class.
+ * {@link HeroBuilder} takes the minimum parameters to build {@link Hero} object in its
+ * constructor. After that additional configuration for the {@link Hero} object can be
+ * done using the fluent {@link HeroBuilder} interface. When configuration is ready the
+ * build method is called to receive the final {@link Hero} object.
  * 
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 
 		Hero mage = new HeroBuilder(Profession.MAGE, "Riobard")

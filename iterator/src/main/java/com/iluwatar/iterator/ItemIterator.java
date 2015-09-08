@@ -2,7 +2,7 @@ package com.iluwatar.iterator;
 
 /**
  * 
- * Iterator interface.
+ * ItemIterator interface.
  * 
  */
 public interface ItemIterator {

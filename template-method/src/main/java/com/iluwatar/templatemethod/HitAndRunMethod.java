@@ -2,7 +2,7 @@ package com.iluwatar.templatemethod;
 
 /**
  * 
- * HitAndRunMethod implementation of StealingMethod.
+ * HitAndRunMethod implementation of {@link StealingMethod}.
  *
  */
 public class HitAndRunMethod extends StealingMethod {

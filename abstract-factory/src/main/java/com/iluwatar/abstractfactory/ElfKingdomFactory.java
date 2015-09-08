@@ -2,7 +2,7 @@ package com.iluwatar.abstractfactory;
 
 /**
  * 
- * Concrete factory.
+ * ElfKingdomFactory concrete factory.
  * 
  */
 public class ElfKingdomFactory implements KingdomFactory {

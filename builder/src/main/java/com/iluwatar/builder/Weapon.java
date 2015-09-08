@@ -1,5 +1,10 @@
 package com.iluwatar.builder;
 
+/**
+ * 
+ * Weapon enumeration
+ *
+ */
 public enum Weapon {
 
 	DAGGER, SWORD, AXE, WARHAMMER, BOW;

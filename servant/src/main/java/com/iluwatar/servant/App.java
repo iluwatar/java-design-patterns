@@ -10,9 +10,14 @@ import java.util.ArrayList;
  *
  */
 public class App {
+	
     static Servant jenkins = new Servant("Jenkins");
     static Servant travis = new Servant("Travis");
 
+    /**
+     * Program entry point
+     * @param args
+     */
     public static void main(String[] args) {
         scenario(jenkins, 1);
         scenario(travis, 0);

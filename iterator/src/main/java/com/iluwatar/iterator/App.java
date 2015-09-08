@@ -2,13 +2,17 @@ package com.iluwatar.iterator;
 
 /**
  * 
- * Iterator (ItemIterator) adds abstraction layer on top of a collection
- * (TreasureChest). This way the collection can change its internal
+ * Iterator ({@link ItemIterator}) adds abstraction layer on top of a collection
+ * ({@link TreasureChest}). This way the collection can change its internal
  * implementation without affecting its clients.
  * 
  */
 public class App {
 
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
 	public static void main(String[] args) {
 		TreasureChest chest = new TreasureChest();
 

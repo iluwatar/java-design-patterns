@@ -4,6 +4,11 @@ import org.junit.Test;
 
 import com.iluwatar.lazy.loading.App;
 
+/**
+ * 
+ * Application test
+ *
+ */
 public class AppTest {
 
 	@Test

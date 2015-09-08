@@ -6,7 +6,6 @@ import java.util.List;
 /**
  * The Step Builder class.
  */
-
 public class CharacterStepBuilder {
 
 	private CharacterStepBuilder() {

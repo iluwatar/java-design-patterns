@@ -4,6 +4,11 @@ import org.junit.Test;
 
 import com.iluwatar.doublechecked.locking.App;
 
+/**
+ * 
+ * Application test
+ *
+ */
 public class AppTest {
 
 	@Test
