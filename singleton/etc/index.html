@@ -54,9 +54,14 @@ For other patterns use it's own css
         <h1>Singleton</h1>
         <hr>
         <h2>Motivation</h2>
-        <q>We need only one instance of the class</q>
+        <li> there must be exactly one instance of a class, and it must be accessible to clients from a well-known
+            access
+            point
+        </li>
+        <li> when the sole instance should be extensible by subclassing, and clients should be able to use an extended
+            instance without modifying their code
+        </li>
     </div>
-
     <div id="Intend" class="step slide" data-x="-1000" data-y="-1500">
         <h1>Intent</h1>
         <hr>
@@ -64,20 +69,20 @@ For other patterns use it's own css
         <li>Provide a global point of access to the object.</li>
 
         <h2>UML Diagram</h2>
-        <img src="../etc/singleton_1.png" alt="Singleton UML diagram" height="320" width="50%" align="center">
+        <img src="singleton_1.png" alt="Singleton UML diagram" height="320" width="50%" align="center">
 
     </div>
 
     <div id="real-world-examples" class="step slide" data-x="0" data-y="-1500" data-z="-5000">
         <h1>Examples from real world</h1>
         <hr>
-
         <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29">java.lang.Runtime#getRuntime()</a>
         </li>
         <li>java.awt.Desktop#getDesktop()</li>
         <li>java.lang.System#getSecurityManager()</li>
-        <li>Logger</li>
-        <li>Configuration manager</li>
+        <li>The logging class</li>
+        <li>managing a connection to a database</li>
+        <li>file manager</li>
     </div>
 
     <div id="implementations" class="slide step" data-x="1000" data-y="-1500" data-z="-6000">
