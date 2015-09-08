@@ -51,12 +51,15 @@ For other patterns use it's own css
     </div>
 
     <div id="Motivation" class="step slide" data-x="-2000" data-y="-1500">
-        <h1>Motivation</h1>
+        <h1>Singleton</h1>
+        <hr>
+        <h2>Motivation</h2>
         <q>We need only one instance of the class</q>
     </div>
 
     <div id="Intend" class="step slide" data-x="-1000" data-y="-1500">
         <h1>Intent</h1>
+        <hr>
         <li>Ensure that only one instance of a class is created.</li>
         <li>Provide a global point of access to the object.</li>
 
@@ -67,6 +70,7 @@ For other patterns use it's own css
 
     <div id="real-world-examples" class="step slide" data-x="0" data-y="-1500" data-z="-5000">
         <h1>Examples from real world</h1>
+        <hr>
 
         <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29">java.lang.Runtime#getRuntime()</a>
         </li>
@@ -79,6 +83,7 @@ For other patterns use it's own css
     <div id="implementations" class="slide step" data-x="1000" data-y="-1500" data-z="-6000">
 
         <h1><strong>Typical implementations</strong></h1>
+        <hr>
 
         <li>Enum</li>
         <li>Private constructor</li>
@@ -118,24 +123,23 @@ For other patterns use it's own css
 
                     public class InitializingOnDemandHolderIdiom implements Serializable{
 
-                    private static final long serialVersionUID = 1L;
+                        private static final long serialVersionUID = 1L;
 
-                    private static class HelperHolder {
-                    public static final InitializingOnDemandHolderIdiom INSTANCE = new InitializingOnDemandHolderIdiom();
-                    }
+                        private static class HelperHolder {
+                        public static final InitializingOnDemandHolderIdiom INSTANCE = new InitializingOnDemandHolderIdiom();
+                        }
 
-                    public static InitializingOnDemandHolderIdiom getInstance() {
-                    return HelperHolder.INSTANCE;
-                    }
+                        public static InitializingOnDemandHolderIdiom getInstance() {
+                        return HelperHolder.INSTANCE;
+                        }
 
-                    private InitializingOnDemandHolderIdiom() {
-                    }
+                        private InitializingOnDemandHolderIdiom() {
+                        }
 
-                    protected Object readResolve() {
-                    return getInstance();
+                        protected Object readResolve() {
+                        return getInstance();
+                        }
                     }
-                    }
-
            </pre>
         </div>
     </div>
@@ -146,31 +150,31 @@ For other patterns use it's own css
             <pre class="brush: java" style="font-size: small">
                     public class ThreadSafeDoubleCheckLocking {
 
-                    private static volatile ThreadSafeDoubleCheckLocking INSTANCE;
+                        private static volatile ThreadSafeDoubleCheckLocking INSTANCE;
 
-                    /**
-                     * private constructor to prevent client from instantiating.
-                     */
-                    private ThreadSafeDoubleCheckLocking() {
-                        //to prevent instantiating by Reflection call
-                        if(INSTANCE != null)
-                            throw new IllegalStateException("Already initialized.");
-                    }
+                        /**
+                         * private constructor to prevent client from instantiating.
+                         */
+                        private ThreadSafeDoubleCheckLocking() {
+                            //to prevent instantiating by Reflection call
+                            if(INSTANCE != null)
+                                throw new IllegalStateException("Already initialized.");
+                        }
 
-                    public static ThreadSafeDoubleCheckLocking getInstance() {
-                        //local variable increases performance by 25 percent
-                        //Joshua Bloch "Effective Java, Second Edition", p. 283-284
-                        ThreadSafeDoubleCheckLocking result = INSTANCE;
-                        if (result == null) {
-                            synchronized (ThreadSafeDoubleCheckLocking.class) {
-                                result = INSTANCE;
-                                if (result == null) {
-                                    INSTANCE = result = new ThreadSafeDoubleCheckLocking();
+                        public static ThreadSafeDoubleCheckLocking getInstance() {
+                            //local variable increases performance by 25 percent
+                            //Joshua Bloch "Effective Java, Second Edition", p. 283-284
+                            ThreadSafeDoubleCheckLocking result = INSTANCE;
+                            if (result == null) {
+                                synchronized (ThreadSafeDoubleCheckLocking.class) {
+                                    result = INSTANCE;
+                                    if (result == null) {
+                                        INSTANCE = result = new ThreadSafeDoubleCheckLocking();
+                                    }
                                 }
                             }
+                            return result;
                         }
-                        return result;
-                    }
                     }
            </pre>
         </div>
@@ -182,23 +186,23 @@ For other patterns use it's own css
             <pre class="brush: java" style="font-size: small">
                 public class ThreadSafeLazyLoadedIvoryTower {
 
-                private static ThreadSafeLazyLoadedIvoryTower instance = null;
+                    private static ThreadSafeLazyLoadedIvoryTower instance = null;
 
-                private ThreadSafeLazyLoadedIvoryTower() {
-                }
-
-                public synchronized static ThreadSafeLazyLoadedIvoryTower getInstance() {
-                    /*
-                     * The instance gets created only when it is called for first time.
-                     * Lazy-loading
-                     */
-                    if (instance == null) {
-                        instance = new ThreadSafeLazyLoadedIvoryTower();
+                    private ThreadSafeLazyLoadedIvoryTower() {
                     }
 
-                    return instance;
+                    public synchronized static ThreadSafeLazyLoadedIvoryTower getInstance() {
+                        /*
+                         * The instance gets created only when it is called for first time.
+                         * Lazy-loading
+                         */
+                        if (instance == null) {
+                            instance = new ThreadSafeLazyLoadedIvoryTower();
+                        }
+
+                        return instance;
+                    }
                 }
-            }
            </pre>
         </div>
     </div>
