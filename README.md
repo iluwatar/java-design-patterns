@@ -21,6 +21,11 @@ Reusing design patterns helps to prevent subtle issues that can cause major
 problems, and it also improves code readability for coders and architects who
 are familiar with the patterns.
 
+# Getting started
+
+Before you dive into the material, you should be familiar with various 
+[Programming/Software Design Principles](http://webpro.github.io/programming-principles/).
+
 # How to contribute
 
 If you are willing to contribute to the project you will find the relevant information in our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki).
