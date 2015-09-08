@@ -1,57 +1,254 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Singleton - Design patterns</title>
     <meta charset="utf-8">
-    <title>Circular Slides - impress.js</title>
-    <style>
-        body {
-            background-image: url(//wmh.github.io/circular-slides-generator/static/img/noise.png);
-        }
+    <meta name="viewport" content="width=1024"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="description"
+          content="Singleton design pattern in Java - presentation."/>
+    <meta name="author" content="Zafar Khaydarov"/>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic"
+          rel="stylesheet"/>
+    <link href="css/singleton-presentation-styles.css" rel="stylesheet"/>
+    <!--for code blocks -->
+    <!--pick a theme on your choice, but better follow same across all presentations-->
 
-        .step {
-            position: relative;
-            padding: 40px;
-            margin: 0 auto;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -ms-box-sizing: border-box;
-            -o-box-sizing: border-box;
-            box-sizing: border-box;
-            font-family: 'PT Serif', georgia, serif;
-            font-size: 48px;
-            line-height: 1.5;
-        }
+    <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJava.js"
+            type="text/javascript"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeEclipse.css"
+          rel="stylesheet" type="text/css"/>
 
-        .slide {
-            display: block;
-            width: 900px;
-            height: 700px;
-            padding: 120px 60px;
-            background-color: white;
-            border: 1px solid rgba(0, 0, 0, .3);
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
-            color: rgb(102, 102, 102);
-            text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
-            font-family: 'Open Sans', Arial, sans-serif;
-        }
-
-        .credits, .credits h2 {
-            padding-top: 0;
-        }
-    </style>
 </head>
-<body>
-<div id="impress">
-    <div class="step slide" data-x="-450" data-y="-350" data-rotate="0" data-scale="0.7832222222222222"><q>My Slides</q>
-    </div>
-    <div class="step slide" data-x="557" data-y="-349" data-rotate="0" data-scale="1"><q>Slide 1</q></div>
-    <div class="step slide" data-x="-138" data-y="607" data-rotate="72" data-scale="1"><q>Slide 2</q></div>
-    <div class="step slide" data-x="-1264" data-y="241" data-rotate="144" data-scale="1"><q>Slide 3</q></div>
-    <div class="step slide" data-x="-1264" data-y="-941" data-rotate="216" data-scale="1"><q>Slide 4</q></div>
 
-    <div class="step" data-x="0" data-y="0" data-scale="5"></div>
+
+<body class="impress-not-supported">
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified
+        version of this presentation.</p>
+
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
 </div>
+
+<!--Developers note:
+
+Use following documentation to design or customize your slides https://github.com/impress/impress.js/wiki
+
+Current presentation uses syntaxhighlight for highlighting the code blocks. Customization can be done
+in css file.
+
+For other patterns use it's own css
+
+-->
+<div id="impress">
+    <!--START SLIDES-->
+
+    <!-- Slide #1 -->
+    <div id="overview" class="step" data-x="-2000" data-y="-1500" data-scale="2">
+    </div>
+
+    <div id="Motivation" class="step slide" data-x="-2000" data-y="-1500">
+        <h1>Motivation</h1>
+        <q>We need only one instance of the class</q>
+    </div>
+
+    <div id="Intend" class="step slide" data-x="-1000" data-y="-1500">
+        <h1>Intent</h1>
+        <li>Ensure that only one instance of a class is created.</li>
+        <li>Provide a global point of access to the object.</li>
+
+        <h2>UML Diagram</h2>
+        <img src="../etc/singleton_1.png" alt="Singleton UML diagram" height="320" width="50%" align="center">
+
+    </div>
+
+    <div id="real-world-examples" class="step slide" data-x="0" data-y="-1500" data-z="-5000">
+        <h1>Examples from real world</h1>
+
+        <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29">java.lang.Runtime#getRuntime()</a>
+        </li>
+        <li>java.awt.Desktop#getDesktop()</li>
+        <li>java.lang.System#getSecurityManager()</li>
+        <li>Logger</li>
+        <li>Configuration manager</li>
+    </div>
+
+    <div id="implementations" class="slide step" data-x="1000" data-y="-1500" data-z="-6000">
+
+        <h1><strong>Typical implementations</strong></h1>
+
+        <li>Enum</li>
+        <li>Private constructor</li>
+
+        <h1><strong>Concerns</strong></h1>
+
+        <p>
+        <li>Thread safety</li>
+        <li>Serialization</li>
+        <li>Lazy and eager implementation</li>
+        </p>
+    </div>
+
+    <div id="privateConstructor" class="slide step" data-x="2000" data-y="-1500" data-z="-5000">
+        <div>
+            <p>Private constructor based singleton</p>
+        <pre class="brush: java">
+                    public class IvoryTower {
+
+                        private static IvoryTower instance = new IvoryTower();
+
+                        private IvoryTower() {
+                        }
+
+                        public static IvoryTower getInstance() {
+                            return instance;
+                        }
+                    }
+           </pre>
+        </div>
+    </div>
+
+    <div id="InitializingOnDemand" class="slide step" data-x="3000" data-y="-1500" data-z="-5000">
+        <div>
+            <p>How to preserve singleton in Serialized version</p>
+      <pre class="brush: java">
+
+                    public class InitializingOnDemandHolderIdiom implements Serializable{
+
+                    private static final long serialVersionUID = 1L;
+
+                    private static class HelperHolder {
+                    public static final InitializingOnDemandHolderIdiom INSTANCE = new InitializingOnDemandHolderIdiom();
+                    }
+
+                    public static InitializingOnDemandHolderIdiom getInstance() {
+                    return HelperHolder.INSTANCE;
+                    }
+
+                    private InitializingOnDemandHolderIdiom() {
+                    }
+
+                    protected Object readResolve() {
+                    return getInstance();
+                    }
+                    }
+
+           </pre>
+        </div>
+    </div>
+
+    <div id="ThreadSafeDoubleCheckLocking" class="slide step" data-x="4000" data-y="-1500" data-z="-5000">
+        <div>
+            <p>Double check locking</p>
+            <pre class="brush: java" style="font-size: small">
+                    public class ThreadSafeDoubleCheckLocking {
+
+                    private static volatile ThreadSafeDoubleCheckLocking INSTANCE;
+
+                    /**
+                     * private constructor to prevent client from instantiating.
+                     */
+                    private ThreadSafeDoubleCheckLocking() {
+                        //to prevent instantiating by Reflection call
+                        if(INSTANCE != null)
+                            throw new IllegalStateException("Already initialized.");
+                    }
+
+                    public static ThreadSafeDoubleCheckLocking getInstance() {
+                        //local variable increases performance by 25 percent
+                        //Joshua Bloch "Effective Java, Second Edition", p. 283-284
+                        ThreadSafeDoubleCheckLocking result = INSTANCE;
+                        if (result == null) {
+                            synchronized (ThreadSafeDoubleCheckLocking.class) {
+                                result = INSTANCE;
+                                if (result == null) {
+                                    INSTANCE = result = new ThreadSafeDoubleCheckLocking();
+                                }
+                            }
+                        }
+                        return result;
+                    }
+                    }
+           </pre>
+        </div>
+    </div>
+
+    <div id="ThreadSafeLazyLoaded" class="slide step" data-x="5000" data-y="-1500" data-z="-5000">
+        <div>
+            <p>Thread-safe lazy loaded singleton</p>
+            <pre class="brush: java" style="font-size: small">
+                public class ThreadSafeLazyLoadedIvoryTower {
+
+                private static ThreadSafeLazyLoadedIvoryTower instance = null;
+
+                private ThreadSafeLazyLoadedIvoryTower() {
+                }
+
+                public synchronized static ThreadSafeLazyLoadedIvoryTower getInstance() {
+                    /*
+                     * The instance gets created only when it is called for first time.
+                     * Lazy-loading
+                     */
+                    if (instance == null) {
+                        instance = new ThreadSafeLazyLoadedIvoryTower();
+                    }
+
+                    return instance;
+                }
+            }
+           </pre>
+        </div>
+    </div>
+
+    <div id="enumBasedSingleton" class="slide step" data-x="6000" data-y="-1500" data-z="-5000">
+        <div>
+            <p>Enum based singleton (J. Bloch - Effective Java)</p>
+            <pre class="brush: java" style="font-size: small">
+                public enum EnumIvoryTower {
+
+                    INSTANCE;
+
+                    @Override
+                    public String toString() {
+                        return getDeclaringClass().getCanonicalName() + "@" + hashCode();
+                    }
+                }
+           </pre>
+        </div>
+    </div>
+
+    <!--Slide N-->
+    <div id="lastslide" class="slide step" data-x="7000" data-y="-1500" data-z="-7000">
+        <div>
+            <h1>Singleton</h1>
+            <hr>
+            <h2>Thank you</h2>
+
+            <p>This presentationis part of the collection of the patterns.</p>
+
+            <p><a href="../slides-umbrella/index.html">Go to list of all patterns</a></p>
+        </div>
+    </div>
+
+    <!--END OF SLIDES-->
+    <!--closes slides divs-->
+</div>
+
+
+<div class="hint">
+    <p>Use a space or arrow keys to navigate</p>
+</div>
+
+<script>
+    if ("ontouchstart" in document.documentElement) {
+        document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+    }
+</script>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/impress.js/0.5.3/impress.js"></script>
+<script>impress().init();</script>
 </body>
 </html>
