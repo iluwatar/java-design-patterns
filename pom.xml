@@ -224,7 +224,7 @@
 						<configuration>
 							<configLocation>checkstyle.xml</configLocation>
 							<encoding>UTF-8</encoding>
-							<consoleOutput>true</consoleOutput>
+							<consoleOutput>false</consoleOutput>
 							<failsOnError>false</failsOnError>
 						</configuration>
 					</execution>
