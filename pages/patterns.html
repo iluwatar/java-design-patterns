@@ -16,6 +16,9 @@ page-index: 1
       <div class="post-list-header">
         Patterns
       </div>
+      <div class="pattern-cse">
+        <gcse:search></gcse:search>
+      </div>
       <div class="post-list-body">
 
         {% assign allPatterns = site.pages | where:"layout","pattern" | sort: 'title' %}
@@ -79,4 +82,16 @@ page-index: 1
       {% endfor %}
     </div>
   </div>
+  <script>
+  (function() {
+    var cx = '008960609897446712051:upn_v7v8dba';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
 </div>

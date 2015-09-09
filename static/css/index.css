@@ -23,28 +23,6 @@ pre code{
 	font-size: 16px;
 }
 
-table{
-	border-top:2px solid #777;
-	border-bottom: 2px solid #777;
-	margin: 8px 0;
-}
-table thead{
-	border-bottom: 1px dashed #777;
-	background-color: #aaa;
-	color:#fff;
-}
-table th{
-	padding: 2px 10px;
-}
-table tr:nth-child(2n){
-	background-color: #E5EAED;
-}
-table td{
-	padding: 2px 10px;
-	vertical-align: top;
-}
-
-
 #index a:link {color: #005}		/* 未访问的链接 */
 #index a:visited {color: #669}	/* 已访问的链接 */
 #index a:hover {color: #336;text-decoration: none;}	/* 鼠标移动到链接上 */
@@ -75,7 +53,7 @@ nav{
 	-o-box-shadow: 0 1px 2px rgba(0,0,0,0.4),0 0 30px rgba(10,10,0,0.1) inset;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.4),0 0 30px rgba(10,10,0,0.1) inset;
 }
-.post-list-header{
+.post-list-header {
 	padding: 15px 30px;
 	border-bottom: 1px solid #c0c0c0;
 	font-size: 30px;
@@ -490,4 +468,30 @@ blockquote:last-child {
 
 .top20 {
 	margin-top: 20px
+}
+
+-- fixes for bootstrap + google cse
+input.gsc-input,
+.gsc-input-box,
+.gsc-input-box-hover,
+.gsc-input-box-focus,
+.gsc-search-button {
+	line-height: normal;
+}
+.cse .gsc-control-cse, .gsc-control-cse {
+	background-color: rgba(0, 0, 0, 0) !important;
+	border: rgba(0, 0, 0, 0) !important;
+}
+.gsc-search-box {
+	margin-bottom: 0px !important;
+}
+.pattern-cse {
+	border-bottom: 1px solid #c0c0c0;
+	line-height: normal;
+}
+.pattern-cse * {
+	box-sizing: content-box;
+}
+.pattern-cse table {
+	border-collapse: separate;
 }
