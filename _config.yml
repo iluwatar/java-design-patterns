@@ -24,6 +24,14 @@ kramdown:
   hard_wrap: false
   default_lang: java
 
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  profile: false
+  ignore:
+    envs: [local]
+
 category-list:
   - Other
   - Creational
