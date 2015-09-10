@@ -4,18 +4,11 @@ This is the branch for the pages.
 
 Link for Website: http://iluwatar.github.io/java-design-patterns/
 
-## How to update the website reference
+## The website reference
 
-Due to the fact that we use submodules, the website doesn't automatically
-update with the changes in the master branch. And for now this update process
-is manual, here is how you do it:
+Due to the fact that we use git submodules, the website normally
+wouldn't automatically update with the changes in the master branch.
 
-1. checkout the latest version of the gh-pages branch
-2. open a Git Bash at root level of the repo (ls should show you the index.html file)
-3. execute the following command to initialize the submodules `git submodule update --init --recursive`
-4. execute the following command to update the submodule `git submodule update --remote`
-5. Check the cmd output line "Submodule path 'pattern': checked out 'COMMIT_HASH'" and validate that the correct COMMIT_HASH is used
-6. Check if something changed with `git diff`. It should show the folder 'patterns' changed.
-7. Execute `git add .`
-8. Commit and push the change
-9. The website is automatically updated using Jekyll (see [GitHub Pages Basics](https://help.github.com/categories/github-pages-basics) and [Using Jekyll with Pages](https://help.github.com/articles/using-jekyll-with-pages/))
+To enable the automatic update of the submodule reference we use
+the [update-ghpages.sh](https://github.com/iluwatar/java-design-patterns/blob/master/update-ghpages.sh)
+script in the master branch together with Travis-CI.
