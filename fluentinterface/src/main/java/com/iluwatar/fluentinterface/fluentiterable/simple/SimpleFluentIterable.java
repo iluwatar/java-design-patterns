@@ -124,7 +124,7 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
    */
   @Override
   public final <NEW_TYPE> FluentIterable<NEW_TYPE> map(Function<? super TYPE, NEW_TYPE> function) {
-    List<NEW_TYPE> temporaryList = new ArrayList();
+    List<NEW_TYPE> temporaryList = new ArrayList<>();
     Iterator<TYPE> iterator = iterator();
     while (iterator.hasNext()) {
       temporaryList.add(function.apply(iterator.next()));

@@ -1,14 +1,13 @@
 package com.iluwatar.fluentinterface.fluentiterable.lazy;
 
-import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+
+import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 
 /**
  * This is a lazy implementation of the FluentIterable interface. It evaluates all chained

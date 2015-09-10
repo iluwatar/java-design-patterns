@@ -25,27 +25,12 @@ public class App {
 
   public static void main(String[] args) {
 
-    List<Integer> integerList = new ArrayList<Integer>() {
-      {
-        add(1);
-        add(-61);
-        add(14);
-        add(-22);
-        add(18);
-        add(-87);
-        add(6);
-        add(64);
-        add(-82);
-        add(26);
-        add(-98);
-        add(97);
-        add(45);
-        add(23);
-        add(2);
-        add(-68);
-        add(45);
-      }
-    };
+    List<Integer> integerList = new ArrayList<>();
+    integerList.addAll(Arrays.asList(
+    		1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97,
+    		45, 23, 2, -68, 45
+    ));
+    
     prettyPrint("The initial list contains: ", integerList);
 
     List<Integer> firstFiveNegatives =
@@ -103,10 +88,6 @@ public class App {
 
   private static <TYPE> void prettyPrint(String prefix, Iterable<TYPE> iterable) {
     prettyPrint(", ", prefix, ".", iterable);
-  }
-
-  private static <TYPE> void prettyPrint(String prefix, String suffix, Iterable<TYPE> iterable) {
-    prettyPrint(", ", prefix, suffix, iterable);
   }
 
   private static <TYPE> void prettyPrint(String delimiter, String prefix, String suffix,
