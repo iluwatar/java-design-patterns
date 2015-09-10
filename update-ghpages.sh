@@ -18,5 +18,5 @@ then
   # it should be committed
   git add .
   git commit -m ":sparkles: :up: Automagic Update via Travis-CI"
-  git push --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+  git push --quiet "https://${GH_TOKEN}:x-oauth-basic@${GH_REF}" gh-pages > /dev/null 2>&1
 fi
