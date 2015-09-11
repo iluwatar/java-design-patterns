@@ -24,7 +24,13 @@ are familiar with the patterns.
 # Getting started
 
 Before you dive into the material, you should be familiar with various 
-[Programming/Software Design Principles](http://webpro.github.io/programming-principles/).
+[Programming/Software Design Principles](http://webpro.github.io/programming-principles/). 
+
+Once you are familiar with these concepts you can start drilling down into patterns by any of the following approaches
+
+ - Using difficulty tags, `Difficulty-Beginner`, `Difficulty-Intermediate` & `Difficulty-Expert`.
+ - Using pattern categories, `Creational`, `Behavioral` and others.
+ - Search for a specific pattern. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
 
 # How to contribute
 
