@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.iluwatar</groupId>
@@ -203,6 +204,30 @@
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!--checkstyle plug-in. checking against googles styles
+			   see config at checkstyle.xml
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.15</version>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<phase>validate</phase>
+						<configuration>
+							<configLocation>checkstyle.xml</configLocation>
+							<encoding>UTF-8</encoding>
+							<consoleOutput>false</consoleOutput>
+							<failsOnError>false</failsOnError>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
