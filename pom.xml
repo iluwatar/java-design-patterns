@@ -15,7 +15,7 @@
 		<h2.version>1.4.188</h2.version>
 		<junit.version>4.12</junit.version>
 		<compiler.version>3.0</compiler.version>
-		<coveralls.version>3.1.0</coveralls.version>
+		<coveralls.version>4.0.0</coveralls.version>
 		<jacoco.version>0.7.2.201409121644</jacoco.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<camel.version>2.15.3</camel.version>
