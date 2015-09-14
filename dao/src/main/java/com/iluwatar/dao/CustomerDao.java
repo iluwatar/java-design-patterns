@@ -8,10 +8,14 @@ import java.util.List;
  *
  */
 public interface CustomerDao {
-	
-    List<Customer> getAllCustomers();
-    Customer getCustomerById(final int id);
-    void addCustomer(final Customer customer);
-    void updateCustomer(final Customer customer);
-    void deleteCustomer(final Customer customer);
+
+  List<Customer> getAllCustomers();
+
+  Customer getCustomerById(int id);
+
+  void addCustomer(Customer customer);
+
+  void updateCustomer(Customer customer);
+
+  void deleteCustomer(Customer customer);
 }

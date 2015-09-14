@@ -6,70 +6,63 @@ package com.iluwatar.dao;
  *
  */
 public class Customer {
-	
-    private int id;
-    private String firstName;
-    private String lastName;
 
-    public Customer(final int id, final String firstName, final String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+  private int id;
+  private String firstName;
+  private String lastName;
 
-    public int getId() {
-        return id;
-    }
+  public Customer(final int id, final String firstName, final String lastName) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
-    public void setId(final int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public void setId(final int id) {
+    this.id = id;
+  }
 
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public void setFirstName(final String firstName) {
+    this.firstName = firstName;
+  }
 
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + getId() +
-                ", firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
-                '}';
-    }
+  public void setLastName(final String lastName) {
+    this.lastName = lastName;
+  }
 
-    /**
-     * Checks if two objects are the same.
-     * 
-     * @return true if the two objects are Customer objects and have the same id value, false otherwise.
-     */
-    @Override
-    public boolean equals(final Object o) {
-    	boolean isEqual = false;
-    	final Customer customer = (Customer) o;
-        if (getId() == customer.getId()) {
-        	isEqual = true;
-        }
-        return isEqual;
+  @Override
+  public String toString() {
+    return "Customer{" + "id=" + getId() + ", firstName='" + getFirstName() + '\'' + ", lastName='"
+        + getLastName() + '\'' + '}';
+  }
+
+  @Override
+  public boolean equals(final Object o) {
+    boolean isEqual = false;
+    if (this == o) {
+      isEqual = true;
+    } else if (o != null && (getClass() == o.getClass())) {
+      final Customer customer = (Customer) o;
+      if (getId() == customer.getId())
+        isEqual = true;
     }
-    
-    @Override
-    public int hashCode() {
-        int result = getId();
-        id += getFirstName().hashCode();
-        id += getLastName().hashCode();
-        return result;
-    }
+    return isEqual;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = getId();
+    return result;
+  }
 }
