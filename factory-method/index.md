@@ -4,7 +4,9 @@ title: Factory Method
 folder: factory-method
 permalink: /patterns/factory-method/
 categories: Creational
-tags: Java
+tags: 
+ - Java
+ - Difficulty-Beginner
 ---
 
 **Intent:** Define an interface for creating an object, but let subclasses

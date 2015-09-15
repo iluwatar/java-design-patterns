@@ -27,7 +27,7 @@
 	</prerequisites>
 
 	<properties>
-		<isis.version>1.9.0-SNAPSHOT</isis.version>
+		<isis.version>1.9.0</isis.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
