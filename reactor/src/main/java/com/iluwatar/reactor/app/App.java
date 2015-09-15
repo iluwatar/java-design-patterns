@@ -1,9 +1,12 @@
 package com.iluwatar.reactor.app;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.iluwatar.reactor.framework.AbstractNioChannel;
 import com.iluwatar.reactor.framework.ChannelHandler;
+import com.iluwatar.reactor.framework.Dispatcher;
 import com.iluwatar.reactor.framework.NioDatagramChannel;
 import com.iluwatar.reactor.framework.NioReactor;
 import com.iluwatar.reactor.framework.NioServerSocketChannel;
@@ -64,6 +67,7 @@ import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
 public class App {
 
   private NioReactor reactor;
+  private List<AbstractNioChannel> channels = new ArrayList<>();
 
   /**
    * App entry.
@@ -71,19 +75,20 @@ public class App {
    * @throws IOException
    */
   public static void main(String[] args) throws IOException {
-    new App().start();
+    new App().start(new ThreadPoolDispatcher(2));
   }
 
   /**
    * Starts the NIO reactor.
+ * @param threadPoolDispatcher 
    * 
    * @throws IOException if any channel fails to bind.
    */
-  public void start() throws IOException {
+  public void start(Dispatcher dispatcher) throws IOException {
     /*
      * The application can customize its event dispatching mechanism.
      */
-    reactor = new NioReactor(new ThreadPoolDispatcher(2));
+    reactor = new NioReactor(dispatcher);
 
     /*
      * This represents application specific business logic that dispatcher will call on appropriate
@@ -103,20 +108,26 @@ public class App {
    * Stops the NIO reactor. This is a blocking call.
    * 
    * @throws InterruptedException if interrupted while stopping the reactor.
+   * @throws IOException if any I/O error occurs
    */
-  public void stop() throws InterruptedException {
+  public void stop() throws InterruptedException, IOException {
     reactor.stop();
+    for (AbstractNioChannel channel : channels) {
+    	channel.getChannel().close();
+    }
   }
 
-  private static AbstractNioChannel tcpChannel(int port, ChannelHandler handler) throws IOException {
+  private AbstractNioChannel tcpChannel(int port, ChannelHandler handler) throws IOException {
     NioServerSocketChannel channel = new NioServerSocketChannel(port, handler);
     channel.bind();
+    channels.add(channel);
     return channel;
   }
 
-  private static AbstractNioChannel udpChannel(int port, ChannelHandler handler) throws IOException {
+  private AbstractNioChannel udpChannel(int port, ChannelHandler handler) throws IOException {
     NioDatagramChannel channel = new NioDatagramChannel(port, handler);
     channel.bind();
+    channels.add(channel);
     return channel;
   }
 }
