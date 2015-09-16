@@ -22,8 +22,8 @@ public class AppTest {
    */
   @Test
   public void testAppUsingThreadPoolDispatcher() throws IOException, InterruptedException {
-    App app = new App();
-    app.start(new ThreadPoolDispatcher(2));
+    App app = new App(new ThreadPoolDispatcher(2));
+    app.start();
 
     AppClient client = new AppClient();
     client.start();
@@ -48,8 +48,8 @@ public class AppTest {
    */
   @Test
   public void testAppUsingSameThreadDispatcher() throws IOException, InterruptedException {
-    App app = new App();
-    app.start(new SameThreadDispatcher());
+    App app = new App(new SameThreadDispatcher());
+    app.start();
 
     AppClient client = new AppClient();
     client.start();

@@ -74,12 +74,13 @@ public class NioReactor {
    * Stops the reactor and related resources such as dispatcher.
    * 
    * @throws InterruptedException if interrupted while stopping the reactor.
+   * @throws IOException if any I/O error occurs.
    */
-  public void stop() throws InterruptedException {
+  public void stop() throws InterruptedException, IOException {
     reactorMain.shutdownNow();
     selector.wakeup();
     reactorMain.awaitTermination(4, TimeUnit.SECONDS);
-    dispatcher.stop();
+    selector.close();
   }
 
   /**
@@ -94,7 +95,7 @@ public class NioReactor {
    * @throws IOException if any I/O error occurs.
    */
   public NioReactor registerChannel(AbstractNioChannel channel) throws IOException {
-    SelectionKey key = channel.getChannel().register(selector, channel.getInterestedOps());
+    SelectionKey key = channel.getJavaChannel().register(selector, channel.getInterestedOps());
     key.attach(channel);
     channel.setReactor(this);
     return this;

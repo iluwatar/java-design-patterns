@@ -48,7 +48,7 @@ public abstract class AbstractNioChannel {
   /**
    * @return the wrapped NIO channel.
    */
-  public SelectableChannel getChannel() {
+  public SelectableChannel getJavaChannel() {
     return channel;
   }
 

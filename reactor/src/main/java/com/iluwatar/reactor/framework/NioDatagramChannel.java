@@ -64,8 +64,8 @@ public class NioDatagramChannel extends AbstractNioChannel {
    * @return the underlying datagram channel.
    */
   @Override
-  public DatagramChannel getChannel() {
-    return (DatagramChannel) super.getChannel();
+  public DatagramChannel getJavaChannel() {
+    return (DatagramChannel) super.getJavaChannel();
   }
 
   /**
@@ -75,8 +75,8 @@ public class NioDatagramChannel extends AbstractNioChannel {
    */
   @Override
   public void bind() throws IOException {
-    getChannel().socket().bind(new InetSocketAddress(InetAddress.getLocalHost(), port));
-    getChannel().configureBlocking(false);
+    getJavaChannel().socket().bind(new InetSocketAddress(InetAddress.getLocalHost(), port));
+    getJavaChannel().configureBlocking(false);
     System.out.println("Bound UDP socket at port: " + port);
   }
 
@@ -87,7 +87,7 @@ public class NioDatagramChannel extends AbstractNioChannel {
   @Override
   protected void doWrite(Object pendingWrite, SelectionKey key) throws IOException {
     DatagramPacket pendingPacket = (DatagramPacket) pendingWrite;
-    getChannel().send(pendingPacket.getData(), pendingPacket.getReceiver());
+    getJavaChannel().send(pendingPacket.getData(), pendingPacket.getReceiver());
   }
 
   /**

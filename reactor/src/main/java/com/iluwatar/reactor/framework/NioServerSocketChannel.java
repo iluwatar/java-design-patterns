@@ -43,8 +43,8 @@ public class NioServerSocketChannel extends AbstractNioChannel {
    * @return the underlying {@link ServerSocketChannel}.
    */
   @Override
-  public ServerSocketChannel getChannel() {
-    return (ServerSocketChannel) super.getChannel();
+  public ServerSocketChannel getJavaChannel() {
+    return (ServerSocketChannel) super.getJavaChannel();
   }
 
   /**
@@ -71,8 +71,8 @@ public class NioServerSocketChannel extends AbstractNioChannel {
    */
   @Override
   public void bind() throws IOException {
-    ((ServerSocketChannel) getChannel()).socket().bind(new InetSocketAddress(InetAddress.getLocalHost(), port));
-    ((ServerSocketChannel) getChannel()).configureBlocking(false);
+    ((ServerSocketChannel) getJavaChannel()).socket().bind(new InetSocketAddress(InetAddress.getLocalHost(), port));
+    ((ServerSocketChannel) getJavaChannel()).configureBlocking(false);
     System.out.println("Bound TCP socket at port: " + port);
   }
 

@@ -66,6 +66,15 @@ public class App {
 
   private NioReactor reactor;
   private List<AbstractNioChannel> channels = new ArrayList<>();
+  private Dispatcher dispatcher;
+
+  /**
+   * Creates an instance of App which will use provided dispatcher for dispatching events on reactor.
+   * @param dispatcher the dispatcher that will be used to dispatch events.
+   */
+  public App(Dispatcher dispatcher) {
+	this.dispatcher = dispatcher;
+  }
 
   /**
    * App entry.
@@ -73,16 +82,15 @@ public class App {
    * @throws IOException
    */
   public static void main(String[] args) throws IOException {
-    new App().start(new ThreadPoolDispatcher(2));
+    new App(new ThreadPoolDispatcher(2)).start();
   }
 
   /**
    * Starts the NIO reactor.
- * @param threadPoolDispatcher 
-   * 
+   *
    * @throws IOException if any channel fails to bind.
    */
-  public void start(Dispatcher dispatcher) throws IOException {
+  public void start() throws IOException {
     /*
      * The application can customize its event dispatching mechanism.
      */
@@ -110,8 +118,9 @@ public class App {
    */
   public void stop() throws InterruptedException, IOException {
     reactor.stop();
+    dispatcher.stop();
     for (AbstractNioChannel channel : channels) {
-    	channel.getChannel().close();
+    	channel.getJavaChannel().close();
     }
   }
 
