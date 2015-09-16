@@ -11,8 +11,6 @@ import java.nio.channels.SelectionKey;
  * For better performance use {@link ThreadPoolDispatcher}.
  * 
  * @see ThreadPoolDispatcher
- * 
- * @author npathai
  */
 public class SameThreadDispatcher implements Dispatcher {
 

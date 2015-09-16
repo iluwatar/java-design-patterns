@@ -19,9 +19,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * concrete implementation. It provides a block writing mechanism wherein when any
  * {@link ChannelHandler} wants to write data back, it queues the data in pending write queue and
  * clears it in block manner. This provides better throughput.
- * 
- * @author npathai
- *
  */
 public abstract class AbstractNioChannel {
 

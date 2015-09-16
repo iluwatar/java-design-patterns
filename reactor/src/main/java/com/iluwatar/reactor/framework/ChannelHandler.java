@@ -9,8 +9,6 @@ import java.nio.channels.SelectionKey;
  * <p>
  * A {@link ChannelHandler} can be associated with one or many {@link AbstractNioChannel}s, and
  * whenever an event occurs on any of the associated channels, the handler is notified of the event.
- * 
- * @author npathai
  */
 public interface ChannelHandler {
 

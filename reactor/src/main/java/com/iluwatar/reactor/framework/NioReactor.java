@@ -28,9 +28,6 @@ import java.util.concurrent.TimeUnit;
  * NOTE: This is one of the ways to implement NIO reactor and it does not take care of all possible
  * edge cases which are required in a real application. This implementation is meant to demonstrate
  * the fundamental concepts that lie behind Reactor pattern.
- * 
- * @author npathai
- *
  */
 public class NioReactor {
 

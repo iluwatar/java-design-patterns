@@ -16,8 +16,6 @@ import java.nio.channels.SelectionKey;
  * 
  * @see SameThreadDispatcher
  * @see ThreadPoolDispatcher
- * 
- * @author npathai
  */
 public interface Dispatcher {
   /**

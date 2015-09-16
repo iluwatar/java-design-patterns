@@ -10,8 +10,6 @@ import java.nio.channels.SelectionKey;
 
 /**
  * A wrapper over {@link DatagramChannel} which can read and write data on a DatagramChannel.
- * 
- * @author npathai
  */
 public class NioDatagramChannel extends AbstractNioChannel {
 

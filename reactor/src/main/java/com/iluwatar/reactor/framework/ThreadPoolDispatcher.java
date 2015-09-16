@@ -9,9 +9,6 @@ import java.util.concurrent.TimeUnit;
  * An implementation that uses a pool of worker threads to dispatch the events. This provides better
  * scalability as the application specific processing is not performed in the context of I/O
  * (reactor) thread.
- * 
- * @author npathai
- *
  */
 public class ThreadPoolDispatcher implements Dispatcher {
 

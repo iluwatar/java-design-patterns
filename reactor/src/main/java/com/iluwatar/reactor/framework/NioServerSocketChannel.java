@@ -11,8 +11,6 @@ import java.nio.channels.SocketChannel;
 /**
  * A wrapper over {@link NioServerSocketChannel} which can read and write data on a
  * {@link SocketChannel}.
- * 
- * @author npathai
  */
 public class NioServerSocketChannel extends AbstractNioChannel {
 

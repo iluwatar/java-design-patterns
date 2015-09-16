@@ -17,8 +17,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Represents the clients of Reactor pattern. Multiple clients are run concurrently and send logging
  * requests to Reactor.
- * 
- * @author npathai
  */
 public class AppClient {
   private final ExecutorService service = Executors.newFixedThreadPool(4);
