@@ -84,7 +84,7 @@ public class CustomerDaoImplTest {
 
   @Test
   public void getNonExistinCustomerById() {
-    final int nonExistingId = 999;
+    final int nonExistingId = getNonExistingCustomerId();
     assertNull(impl.getCustomerById(nonExistingId));
   }
 
