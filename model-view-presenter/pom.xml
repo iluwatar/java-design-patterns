@@ -1,25 +1,39 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.iluwatar</groupId>
-    <artifactId>java-design-patterns</artifactId>
-    <version>1.6.0</version>
-  </parent>
-  <artifactId>model-view-presenter</artifactId>
-  <name>model-view-presenter</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-	   <groupId>net.java.dev.swing-layout</groupId>
-	   <artifactId>swing-layout</artifactId>
-	   <version>1.0.2</version>
-    </dependency>
-  </dependencies>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.iluwatar</groupId>
+		<artifactId>java-design-patterns</artifactId>
+		<version>1.6.0</version>
+	</parent>
+	<artifactId>model-view-presenter</artifactId>
+	<name>model-view-presenter</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.swing-layout</groupId>
+			<artifactId>swing-layout</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.iluwatar</groupId>
+				<artifactId>urm-maven-plugin</artifactId>
+				<configuration>
+					<packages>
+						<param>com.iluwatar.model.view.presenter</param>
+					</packages>
+				</configuration>
+			</plugin>				
+		</plugins>
+	</build>
 </project>
