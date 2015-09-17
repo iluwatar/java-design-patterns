@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>java-design-patterns</artifactId>
-        <groupId>com.iluwatar</groupId>
-        <version>1.6.0</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>java-design-patterns</artifactId>
+		<groupId>com.iluwatar</groupId>
+		<version>1.6.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fluentinterface</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+	<artifactId>fluentinterface</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.iluwatar</groupId>
+				<artifactId>urm-maven-plugin</artifactId>
+				<configuration>
+					<packages>
+						<param>com.iluwatar.fluentinterface</param>
+						<param>com.iluwatar.fluentinterface.fluentiterable</param>
+						<param>com.iluwatar.fluentinterface.fluentiterable.lazy</param>
+						<param>com.iluwatar.fluentinterface.fluentiterable.simple</param>
+					</packages>
+				</configuration>
+			</plugin>				
+		</plugins>
+	</build>
 </project>

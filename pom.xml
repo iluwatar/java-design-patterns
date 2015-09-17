@@ -159,10 +159,40 @@
 										<ignore/>
 									</action>
 								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.iluwatar</groupId>
+										<artifactId>
+											urm-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0.0,)
+										</versionRange>
+										<goals>
+											<goal>map</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>com.iluwatar</groupId>
+					<artifactId>urm-maven-plugin</artifactId>
+					<version>1.0.0</version>
+					<executions>
+						<execution>
+							<phase>process-classes</phase>
+							<goals>
+								<goal>map</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>				
 			</plugins>
 		</pluginManagement>
 

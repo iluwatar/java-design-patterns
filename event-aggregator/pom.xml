@@ -14,4 +14,17 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.iluwatar</groupId>
+				<artifactId>urm-maven-plugin</artifactId>
+				<configuration>
+					<packages>
+						<param>com.iluwatar.event.aggregator</param>
+					</packages>
+				</configuration>
+			</plugin>				
+		</plugins>
+	</build>
 </project>
