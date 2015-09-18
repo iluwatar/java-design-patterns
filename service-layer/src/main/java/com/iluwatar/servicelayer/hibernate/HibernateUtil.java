@@ -3,7 +3,7 @@ package com.iluwatar.servicelayer.hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.iluwatar.servicelayer.servicelayer.spell.Spell;
+import com.iluwatar.servicelayer.spell.Spell;
 import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.wizard.Wizard;
 

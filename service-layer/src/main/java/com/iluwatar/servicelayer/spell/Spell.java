@@ -1,4 +1,4 @@
-package com.iluwatar.servicelayer.servicelayer.spell;
+package com.iluwatar.servicelayer.spell;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
