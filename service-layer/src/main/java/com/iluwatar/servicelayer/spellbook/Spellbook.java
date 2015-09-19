@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.iluwatar.servicelayer.common.BaseEntity;
-import com.iluwatar.servicelayer.servicelayer.spell.Spell;
+import com.iluwatar.servicelayer.spell.Spell;
 import com.iluwatar.servicelayer.wizard.Wizard;
 
 /**

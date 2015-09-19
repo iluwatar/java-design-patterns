@@ -1,4 +1,4 @@
-package com.iluwatar.servicelayer.servicelayer.spell;
+package com.iluwatar.servicelayer.spell;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
