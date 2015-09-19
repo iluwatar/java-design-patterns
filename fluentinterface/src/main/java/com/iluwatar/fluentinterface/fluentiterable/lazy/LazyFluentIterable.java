@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
+import com.iluwatar.fluentinterface.fluentiterable.core.FluentIterable;
 
 /**
  * This is a lazy implementation of the FluentIterable interface. It evaluates all chained

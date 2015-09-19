@@ -1,6 +1,6 @@
 package com.iluwatar.fluentinterface.app;
 
-import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
+import com.iluwatar.fluentinterface.fluentiterable.core.FluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;
 

@@ -1,11 +1,11 @@
 package com.iluwatar.fluentinterface.fluentiterable.simple;
 
-import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
-
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+
+import com.iluwatar.fluentinterface.fluentiterable.core.FluentIterable;
 
 /**
  * This is a simple implementation of the FluentIterable interface. It evaluates all chained

@@ -23,8 +23,8 @@
 				<artifactId>urm-maven-plugin</artifactId>
 				<configuration>
 					<packages>
-						<param>com.iluwatar.fluentinterface</param>
-						<param>com.iluwatar.fluentinterface.fluentiterable</param>
+						<param>com.iluwatar.fluentinterface.app</param>
+						<param>com.iluwatar.fluentinterface.fluentiterable.core</param>
 						<param>com.iluwatar.fluentinterface.fluentiterable.lazy</param>
 						<param>com.iluwatar.fluentinterface.fluentiterable.simple</param>
 					</packages>

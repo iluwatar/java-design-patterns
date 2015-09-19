@@ -1,4 +1,4 @@
-package com.iluwatar.fluentinterface.fluentiterable;
+package com.iluwatar.fluentinterface.fluentiterable.core;
 
 import java.util.ArrayList;
 import java.util.Iterator;
