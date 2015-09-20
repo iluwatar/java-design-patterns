@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.facade</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.facade.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

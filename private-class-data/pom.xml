@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.privateclassdata</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.privateclassdata.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

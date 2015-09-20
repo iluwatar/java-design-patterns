@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.front.controller</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.front.controller.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

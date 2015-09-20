@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.property</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.property.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

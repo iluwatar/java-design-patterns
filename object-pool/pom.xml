@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.object.pool</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.object.pool.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

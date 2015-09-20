@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.interpreter</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.interpreter.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

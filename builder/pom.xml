@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.builder</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.builder.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

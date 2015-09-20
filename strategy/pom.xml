@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.strategy</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.strategy.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

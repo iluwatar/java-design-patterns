@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.bridge</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.bridge.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

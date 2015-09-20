@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.async.method.invocation</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.async.method.invocation.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

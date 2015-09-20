@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.flyweight</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.flyweight.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

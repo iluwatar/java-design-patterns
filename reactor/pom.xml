@@ -26,6 +26,9 @@
 						<param>com.iluwatar.reactor.app</param>
 						<param>com.iluwatar.reactor.framework</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.reactor.app.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

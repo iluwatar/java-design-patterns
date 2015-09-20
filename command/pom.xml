@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.command</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.command.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

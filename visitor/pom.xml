@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.visitor</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.visitor.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

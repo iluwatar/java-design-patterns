@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.tolerantreader</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.tolerantreader.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

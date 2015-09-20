@@ -28,6 +28,9 @@
 						<param>com.iluwatar.specification.property</param>
 						<param>com.iluwatar.specification.selector</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.specification.app.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

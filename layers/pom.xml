@@ -42,6 +42,9 @@
 					<packages>
 						<param>com.iluwatar.layers</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.layers.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.iterator</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.iterator.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

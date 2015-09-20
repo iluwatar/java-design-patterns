@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.business.delegate</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.business.delegate.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

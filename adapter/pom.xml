@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.adapter</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.adapter.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

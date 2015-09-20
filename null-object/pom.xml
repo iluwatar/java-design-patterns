@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.nullobject</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.nullobject.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

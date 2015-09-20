@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.proxy</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.proxy.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

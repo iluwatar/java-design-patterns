@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.doubledispatch</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.doubledispatch.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

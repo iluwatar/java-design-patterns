@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.decorator</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.decorator.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

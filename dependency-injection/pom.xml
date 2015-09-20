@@ -30,6 +30,9 @@
 					<packages>
 						<param>com.iluwatar.dependency.injection</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.dependency.injection.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

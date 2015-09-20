@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.callback</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.callback.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

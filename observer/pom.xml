@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.observer</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.observer.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

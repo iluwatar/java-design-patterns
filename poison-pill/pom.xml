@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.poison.pill</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.poison.pill.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

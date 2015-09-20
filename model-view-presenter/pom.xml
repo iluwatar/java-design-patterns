@@ -32,6 +32,9 @@
 					<packages>
 						<param>com.iluwatar.model.view.presenter</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.model.view.presenter.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

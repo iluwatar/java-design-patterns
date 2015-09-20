@@ -24,6 +24,9 @@
 					<packages>
 						<param>com.iluwatar.stepbuilder</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.stepbuilder.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

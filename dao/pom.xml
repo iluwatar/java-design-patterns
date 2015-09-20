@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.dao</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.dao.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

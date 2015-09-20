@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.mediator</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.mediator.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

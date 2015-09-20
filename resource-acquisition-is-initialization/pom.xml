@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.resource.acquisition.is.initialization</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.resource.acquisition.is.initialization.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

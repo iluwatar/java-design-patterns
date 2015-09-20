@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.multiton</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.multiton.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

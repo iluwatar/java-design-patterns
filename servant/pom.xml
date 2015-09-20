@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.servant</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.servant.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

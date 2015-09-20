@@ -23,6 +23,9 @@
 					<packages>
 						<param>com.iluwatar.doublechecked.locking</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.doublechecked.locking.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.execute.around</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.execute.around.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

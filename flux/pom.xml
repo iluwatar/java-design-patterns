@@ -29,6 +29,9 @@
 						<param>com.iluwatar.flux.store</param>
 						<param>com.iluwatar.flux.view</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.flux.app.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

@@ -23,6 +23,9 @@
 					<packages>
 						<param>com.iluwatar.event.aggregator</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.event.aggregator.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

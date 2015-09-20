@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.threadpool</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.threadpool.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

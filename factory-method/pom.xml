@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.factory.method</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.factory.method.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

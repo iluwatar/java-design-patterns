@@ -19,6 +19,7 @@
 		<jacoco.version>0.7.2.201409121644</jacoco.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<camel.version>2.15.3</camel.version>
+		<urm.version>1.2.0-SNAPSHOT</urm.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -183,7 +184,7 @@
 				<plugin>
 					<groupId>com.iluwatar</groupId>
 					<artifactId>urm-maven-plugin</artifactId>
-					<version>1.1.0</version>
+					<version>${urm.version}</version>
 					<executions>
 						<execution>
 							<phase>process-classes</phase>

@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.chain</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.chain.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

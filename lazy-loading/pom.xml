@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.lazy.loading</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.lazy.loading.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

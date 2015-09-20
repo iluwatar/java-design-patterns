@@ -28,6 +28,9 @@
 						<param>com.iluwatar.fluentinterface.fluentiterable.lazy</param>
 						<param>com.iluwatar.fluentinterface.fluentiterable.simple</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.fluentinterface.app.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

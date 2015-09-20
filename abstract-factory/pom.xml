@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.abstractfactory</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.abstractfactory.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.state</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.state.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

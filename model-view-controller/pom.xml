@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.model.view.controller</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.model.view.controller.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

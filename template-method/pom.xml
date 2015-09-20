@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.templatemethod</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.templatemethod.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

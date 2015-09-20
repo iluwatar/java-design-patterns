@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.memento</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.memento.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

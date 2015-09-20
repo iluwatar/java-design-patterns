@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.intercepting.filter</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.intercepting.filter.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

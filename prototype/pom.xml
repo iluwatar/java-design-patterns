@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.prototype</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.prototype.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

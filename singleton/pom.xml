@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.singleton</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.singleton.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

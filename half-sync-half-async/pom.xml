@@ -25,6 +25,9 @@
 					<packages>
 						<param>com.iluwatar.halfsynchalfasync</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.halfsynchalfasync.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

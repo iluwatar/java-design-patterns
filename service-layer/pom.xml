@@ -39,6 +39,9 @@
 						<param>com.iluwatar.servicelayer.spellbook</param>
 						<param>com.iluwatar.servicelayer.wizard</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.servicelayer.app.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>

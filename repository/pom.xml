@@ -41,6 +41,9 @@
 					<packages>
 						<param>com.iluwatar.repository</param>
 					</packages>
+					<ignores>
+						<param>com.iluwatar.repository.App</param>
+					</ignores>
 				</configuration>
 			</plugin>				
 		</plugins>
