@@ -4,7 +4,9 @@ title: Chain of responsibility
 folder: chain
 permalink: /patterns/chain/
 categories: Behavioral
-tags: Java
+tags:
+ - Java
+ - Gang Of Four
 ---
 
 **Intent:** Avoid coupling the sender of a request to its receiver by giving
@@ -23,3 +25,7 @@ objects and pass the request along the chain until an object handles it.
 
 * [java.util.logging.Logger#log()](http://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29)
 * [Apache Commons Chain](https://commons.apache.org/proper/commons-chain/index.html)
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

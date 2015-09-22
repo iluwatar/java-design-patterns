@@ -4,7 +4,9 @@ title: Abstract Factory
 folder: abstract-factory
 permalink: /patterns/abstract-factory/
 categories: Creational
-tags: Java
+tags: 
+ - Java
+ - Gang Of Four
 ---
 
 **Intent:** Provide an interface for creating families of related or dependent
@@ -22,3 +24,7 @@ objects without specifying their concrete classes.
 **Real world examples:**
 
 * [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

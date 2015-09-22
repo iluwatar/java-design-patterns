@@ -4,7 +4,9 @@ title: Prototype
 folder: prototype
 permalink: /patterns/prototype/
 categories: Creational
-tags: Java
+tags: 
+ - Java
+ - Gang Of Four
 ---
 
 **Intent:** Specify the kinds of objects to create using a prototypical
@@ -21,3 +23,7 @@ instance, and create new objects by copying this prototype.
 **Real world examples:**
 
 * [java.lang.Object#clone()](http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#clone%28%29)
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
