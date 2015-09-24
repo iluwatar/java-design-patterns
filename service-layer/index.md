@@ -24,3 +24,4 @@ its business logic. The Service Layer fulfills this role.
 **Credits:**
 
 * [Martin Fowler - Service Layer](http://martinfowler.com/eaaCatalog/serviceLayer.html)
+* [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420)

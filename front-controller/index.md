@@ -22,3 +22,9 @@ internationalization, routing and logging in a single place.
 **Real world examples:** 
 
 * [Apache Struts](https://struts.apache.org/)
+
+**Credits:**
+
+* [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)
+* [Presentation Tier Patterns](http://www.javagyan.com/tutorials/corej2eepatterns/presentation-tier-patterns)
+* [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420)

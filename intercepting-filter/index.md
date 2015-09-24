@@ -18,6 +18,11 @@ post-processing to requests from a client to a target
 * a system should do the authentication/ authorization/ logging or tracking of request and then pass the requests to corresponding handlers 
 * you want a modular approach to configuring pre-processing and post-processing schemes
 
+**Real world examples:**
+
+* [Struts 2 - Interceptors](https://struts.apache.org/docs/interceptors.html)
+
 **Credits:**
 
 * [TutorialsPoint - Intercepting Filter](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
+* [Presentation Tier Patterns](http://www.javagyan.com/tutorials/corej2eepatterns/presentation-tier-patterns)
