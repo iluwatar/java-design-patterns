@@ -1,13 +1,14 @@
+/**
+ * Enum Singleton class.
+ * Effective Java 2nd Edition (Joshua Bloch) p. 18
+ */
 package com.iluwatar.singleton;
 
 /**
- *
- * Enum Singleton class.
- * Effective Java 2nd Edition (Joshua Bloch) p. 18
- *
+ * Enum based singleton implementation.
  */
 public enum EnumIvoryTower {
-	
+
     INSTANCE;
 
     @Override
