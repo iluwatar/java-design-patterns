@@ -1,6 +1,3 @@
-/**
- * Singleton pattern.
- */
 package com.iluwatar.singleton;
 
 /**
@@ -10,20 +7,21 @@ package com.iluwatar.singleton;
  */
 public class ThreadSafeLazyLoadedIvoryTower {
 
-    private static ThreadSafeLazyLoadedIvoryTower instance = null;
+  private static ThreadSafeLazyLoadedIvoryTower instance = null;
 
-    private ThreadSafeLazyLoadedIvoryTower() {
+  private ThreadSafeLazyLoadedIvoryTower() {
+  }
+
+  /**
+   * The instance gets created only when it is called for first time.
+   * Lazy-loading
+   */
+  public synchronized static ThreadSafeLazyLoadedIvoryTower getInstance() {
+
+    if (instance == null) {
+      instance = new ThreadSafeLazyLoadedIvoryTower();
     }
 
-    public synchronized static ThreadSafeLazyLoadedIvoryTower getInstance() {
-        /*
-         * The instance gets created only when it is called for first time.
-         * Lazy-loading
-         */
-        if (instance == null) {
-            instance = new ThreadSafeLazyLoadedIvoryTower();
-        }
-
-        return instance;
-    }
+    return instance;
+  }
 }

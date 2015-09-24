@@ -1,6 +1,3 @@
-/**
- * Singleton pattern.
- */
 package com.iluwatar.singleton;
 
 import java.io.Serializable;
@@ -18,21 +15,22 @@ import java.io.Serializable;
  */
 public class InitializingOnDemandHolderIdiom implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    private InitializingOnDemandHolderIdiom() {
-    }
+  private InitializingOnDemandHolderIdiom() {
+  }
 
-    public static InitializingOnDemandHolderIdiom getInstance() {
-        return HelperHolder.INSTANCE;
-    }
+  public static InitializingOnDemandHolderIdiom getInstance() {
+    return HelperHolder.INSTANCE;
+  }
 
-    protected Object readResolve() {
-        return getInstance();
-    }
+  protected Object readResolve() {
+    return getInstance();
+  }
 
-    private static class HelperHolder {
-        public static final InitializingOnDemandHolderIdiom INSTANCE = new InitializingOnDemandHolderIdiom();
-    }
+  private static class HelperHolder {
+    public static final InitializingOnDemandHolderIdiom INSTANCE =
+            new InitializingOnDemandHolderIdiom();
+  }
 
 }
