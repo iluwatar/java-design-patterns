@@ -4,7 +4,9 @@ title: Builder
 folder: builder
 permalink: /patterns/builder/
 categories: Creational
-tags: Java
+tags:
+ - Java
+ - Gang Of Four
 ---
 
 **Intent:** Separate the construction of a complex object from its
@@ -22,3 +24,7 @@ representations.
 
 * [java.lang.StringBuilder](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
 * [Apache Camel builders](https://github.com/apache/camel/tree/0e195428ee04531be27a0b659005e3aa8d159d23/camel-core/src/main/java/org/apache/camel/builder)
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

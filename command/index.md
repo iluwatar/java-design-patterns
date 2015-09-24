@@ -4,7 +4,9 @@ title: Command
 folder: command
 permalink: /patterns/command/
 categories: Behavioral
-tags: Java
+tags: 
+ - Java
+ - Gang Of Four
 ---
 
 **Intent:** Encapsulate a request as an object, thereby letting you
@@ -30,3 +32,7 @@ support undoable operations.
 **Real world examples:**
 
 * [java.lang.Runnable](http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html)
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

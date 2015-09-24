@@ -4,7 +4,10 @@ title: Singleton
 folder: singleton
 permalink: /patterns/singleton/
 categories: Creational
-tags: Java
+tags:
+ - Java
+ - Gang Of Four
+ - Difficulty-Beginner
 ---
 
 **Intent:** Ensure a class only has one instance, and provide a global point of
@@ -26,3 +29,7 @@ access to it.
 **Real world examples:**
 
 * [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29)
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

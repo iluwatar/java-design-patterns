@@ -4,7 +4,10 @@ title: Observer
 folder: observer
 permalink: /patterns/observer/
 categories: Behavioral
-tags: Java
+tags: 
+ - Java
+ - Difficulty-Beginner
+ - Gang Of Four
 ---
 
 **Intent:** Define a one-to-many dependency between objects so that when one
@@ -26,3 +29,7 @@ automatically.
 **Real world examples:**
 
 * [java.util.Observer](http://docs.oracle.com/javase/8/docs/api/java/util/Observer.html)
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

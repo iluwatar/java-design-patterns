@@ -17,3 +17,7 @@ situations
 
 * when you want to improve the "Separation of Concerns" principle in presentation logic
 * when a user interface development and testing is necessary.
+
+**Real world examples:**
+
+* [MVP4J](https://github.com/amineoualialami/mvp4j)
