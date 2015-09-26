@@ -16,15 +16,3 @@ after_success:
 - bash update-ghpages.sh
 
 sudo: false
-
-deploy:
-  provider: s3
-  access_key_id: AKIAJVPJZO7743HVSDHA
-  secret_access_key:
-    secure: iHjLIy+dHku1o8PrjGhz1mMfM971nqmpjo2mzVNYqYrxlB8zoAqwlz9LoFJcUAKbxhHLJT/LgtYYj+uBspUMOITejaiyCDcM8edGwSXKJu+g+Fp0PVGZQXGziGInmUVT9b2lpAV8Nn2sRpAHgHrM9fKaAU3epG5LfVkQxSkGZp0=
-  bucket: java-design-patterns.com
-  local-dir: _site
-  acl: public_read
-  skip_cleanup: true
-  on:
-    all_branches: true
