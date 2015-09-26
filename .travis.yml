@@ -1,20 +1,29 @@
 language: java
-
 jdk:
-  - oraclejdk8
+- oraclejdk8
 
 env:
   global:
   - GH_REF: github.com/iluwatar/java-design-patterns.git
-  - secure: "LxTDuNS/rBWIvKkaEqr79ImZAe48mCdoYCF41coxNXgNoippo4GIBArknqtv+XvdkiuRZ1yGyj6pn8GU33c/yn+krddTUkVCwTbVatbalW5jhQjDbHYym/JcxaK9ZS/3JTeGcWrBgiPqHEEDhCf26vPZsXoMSeVCEORVKTp1BSg="
-
-before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  - secure: LxTDuNS/rBWIvKkaEqr79ImZAe48mCdoYCF41coxNXgNoippo4GIBArknqtv+XvdkiuRZ1yGyj6pn8GU33c/yn+krddTUkVCwTbVatbalW5jhQjDbHYym/JcxaK9ZS/3JTeGcWrBgiPqHEEDhCf26vPZsXoMSeVCEORVKTp1BSg=
   
-after_success:
-  - mvn clean test jacoco:report coveralls:report
-  - bash update-ghpages.sh
+before_install:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 
-# Migration to container-based infrastructure  
+after_success:
+- mvn clean test jacoco:report coveralls:report
+- bash update-ghpages.sh
+
 sudo: false
+
+deploy:
+  provider: s3
+  access_key_id: AKIAJVPJZO7743HVSDHA
+  secret_access_key:
+    secure: iHjLIy+dHku1o8PrjGhz1mMfM971nqmpjo2mzVNYqYrxlB8zoAqwlz9LoFJcUAKbxhHLJT/LgtYYj+uBspUMOITejaiyCDcM8edGwSXKJu+g+Fp0PVGZQXGziGInmUVT9b2lpAV8Nn2sRpAHgHrM9fKaAU3epG5LfVkQxSkGZp0=
+  bucket: java-design-patterns.com
+  local-dir: _site
+  acl: public_read
+  on:
+    branch: gh-pages
