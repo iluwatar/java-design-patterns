@@ -25,5 +25,6 @@ deploy:
   bucket: java-design-patterns.com
   local-dir: _site
   acl: public_read
+  skip_cleanup: true
   on:
-    branch: gh-pages
+    branch: **
