@@ -27,4 +27,4 @@ deploy:
   acl: public_read
   skip_cleanup: true
   on:
-    branch: **
+    all_branches: true
