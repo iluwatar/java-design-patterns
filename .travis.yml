@@ -21,10 +21,9 @@ deploy:
   provider: s3
   access_key_id: AKIAJVPJZO7743HVSDHA
   secret_access_key:
-    secure: aYaEhSd6/8SV/gvsn/22iOoyWrQtjKX7VHUoNTX16Mw6flYy29BE+/ZOL1CTL5EXEZsC1zyqCi7RoM6QUXk9DYVg4Lc5yTIwaM0evd3obzPeGQVCR9JRAqM9KGKwyW19oEkNxwEE/pKNDLCfkctMZ4bcwDhkIdsMSAVzKDzq+Yw=
-  bucket: java-design-patterns
+    secure: iHjLIy+dHku1o8PrjGhz1mMfM971nqmpjo2mzVNYqYrxlB8zoAqwlz9LoFJcUAKbxhHLJT/LgtYYj+uBspUMOITejaiyCDcM8edGwSXKJu+g+Fp0PVGZQXGziGInmUVT9b2lpAV8Nn2sRpAHgHrM9fKaAU3epG5LfVkQxSkGZp0=
+  bucket: java-design-patterns.com
   local-dir: _site
-  acl: public_read_write
+  acl: public_read
   on:
-    repo: iluwatar/java-design-patterns
     branch: gh-pages
