@@ -7,6 +7,7 @@
 [![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)](https://travis-ci.org/iluwatar/java-design-patterns)
 [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5634/badge.svg)](https://scan.coverity.com/projects/5634)
+[![Searchable with Codota](https://img.shields.io/badge/Codota-available-brightgreen.svg)](http://www.codota.com/xref/#/github_iluwatar_java_design-patterns_560da9d521714903003c1ccb/findUsages)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Introduction
@@ -31,6 +32,9 @@ Once you are familiar with these concepts you can start drilling down into patte
  - Using difficulty tags, `Difficulty-Beginner`, `Difficulty-Intermediate` & `Difficulty-Expert`.
  - Using pattern categories, `Creational`, `Behavioral` and others.
  - Search for a specific pattern. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
+
+The entire codebase is [searchable using Codota](https://www.codota.com/xref/#/github_iluwatar_java_design-patterns_560da9d521714903003c1ccb/findUsages)
+
 
 # How to contribute
 
