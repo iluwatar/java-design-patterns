@@ -2,9 +2,13 @@ package com.iluwatar.iterator;
 
 /**
  * 
- * Iterator ({@link ItemIterator}) adds abstraction layer on top of a collection
- * ({@link TreasureChest}). This way the collection can change its internal
- * implementation without affecting its clients.
+ * The Iterator pattern is a design pattern in which an iterator is used to 
+ * traverse a container and access the container's elements. The Iterator pattern 
+ * decouples algorithms from containers.
+ * <p>
+ * In this example the Iterator ({@link ItemIterator}) adds abstraction layer on 
+ * top of a collection ({@link TreasureChest}). This way the collection can change 
+ * its internal implementation without affecting its clients.
  * 
  */
 public class App {
