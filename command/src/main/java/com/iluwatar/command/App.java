@@ -2,7 +2,9 @@ package com.iluwatar.command;
 
 /**
  * 
- * In Command pattern actions are objects that can be executed and undone. 
+ * The Command pattern is a behavioral design pattern in which an object is used to encapsulate all information 
+ * needed to perform an action or trigger an event at a later time. This information includes the method name, 
+ * the object that owns the method and values for the method parameters.
  * <p>
  * Four terms always associated with the command pattern are command, receiver, invoker and client. A command 
  * object (spell) knows about the receiver (target) and invokes a method of the receiver. Values for parameters of 
