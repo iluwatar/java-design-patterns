@@ -33,7 +33,7 @@ Once you are familiar with these concepts you can start drilling down into patte
  - Using pattern categories, `Creational`, `Behavioral` and others.
  - Search for a specific pattern. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
 
-The entire codebase is [searchable using Codota](https://www.codota.com/xref/#/github_iluwatar_java_design-patterns_560da9d521714903003c1ccb/findUsages)
+You may [search and navigate this codebase using Codota](https://www.codota.com/xref/#/github_iluwatar_java_design-patterns_560da9d521714903003c1ccb/findUsages).
 
 
 # How to contribute
