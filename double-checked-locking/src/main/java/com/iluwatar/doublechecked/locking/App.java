@@ -5,6 +5,11 @@ import java.util.concurrent.Executors;
 
 /**
  * 
+ * Double Checked Locking is a concurrency design pattern used to reduce the overhead 
+ * of acquiring a lock by first testing the locking criterion (the "lock hint") without 
+ * actually acquiring the lock. Only if the locking criterion check indicates that 
+ * locking is required does the actual locking logic proceed.
+ * <p>
  * In {@link Inventory} we store the items with a given size. However, we do not store
  * more items than the inventory size. To address concurrent access problems we
  * use double checked locking to add item to inventory. In this method, the
