@@ -11,15 +11,14 @@ import java.util.function.Predicate;
 import static java.lang.String.valueOf;
 
 /**
- * Fluent interface pattern is useful when you want to provide an easy readable, flowing API. Those
- * interfaces tend to mimic domain specific languages, so they can nearly be read as human
- * languages.
+ * The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API. Those
+ * interfaces tend to mimic domain specific languages, so they can nearly be read as human languages.
  * <p>
  * In this example two implementations of a {@link FluentIterable} interface are given. The
- * SimpleFluentIterable evaluates eagerly and would be too costly for real world applications. The
- * LazyFluentIterable is evaluated on termination. Their usage is demonstrated with a simple number
- * list that is filtered, transformed and collected. The result is printed afterwards.
- * <p>
+ * {@link SimpleFluentIterable} evaluates eagerly and would be too costly for real world applications. 
+ * The {@link LazyFluentIterable} is evaluated on termination. Their usage is demonstrated with a 
+ * simple number list that is filtered, transformed and collected. The result is printed afterwards.
+ * 
  */
 public class App {
 

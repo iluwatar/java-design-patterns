@@ -6,7 +6,7 @@
   <parent>
     <artifactId>java-design-patterns</artifactId>
     <groupId>com.iluwatar</groupId>
-    <version>1.6.0</version>
+    <version>1.7.0</version>
   </parent>
   <artifactId>step-builder</artifactId>
   <dependencies>

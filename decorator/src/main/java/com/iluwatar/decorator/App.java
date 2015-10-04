@@ -2,12 +2,15 @@ package com.iluwatar.decorator;
 
 /**
  * 
- * Decorator pattern is a more flexible alternative to subclassing. The decorator
+ * The Decorator pattern is a more flexible alternative to subclassing. The Decorator
  * class implements the same interface as the target and uses composition to
- * "decorate" calls to the target.
+ * "decorate" calls to the target. Using the Decorator pattern it is possible to 
+ * change the behavior of the class during runtime.
  * <p>
- * Using decorator pattern it is possible to change class behavior during
- * runtime, as the example shows.
+ * In this example we show how the simple {@link Troll} first attacks and then
+ * flees the battle. Then we decorate the {@link Troll} with a {@link SmartTroll}
+ * and perform the attack again. You can see how the behavior changes after the
+ * decoration.
  * 
  */
 public class App {
