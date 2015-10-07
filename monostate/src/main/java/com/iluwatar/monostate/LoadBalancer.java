@@ -3,6 +3,14 @@ package com.iluwatar.monostate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The LoadBalancer class. This implements the MonoState pattern. It holds a series of servers. Upon
+ * receiving a new Request, it delegates the call to the servers in a Round Robin Fashion. Since all
+ * instances of the class share the same state, all instances will delegate to the same server on
+ * receiving a new Request.
+ * 
+ */
+
 public class LoadBalancer {
   private static List<Server> servers = new ArrayList<>();
   private static int id = 0;
@@ -27,6 +35,10 @@ public class LoadBalancer {
     return servers.size();
   }
 
+  public static int getLastServedId() {
+    return lastServedId;
+  }
+
   public void serverequest(Request request) {
     if (lastServedId >= servers.size()) {
       lastServedId = 0;
@@ -34,6 +46,7 @@ public class LoadBalancer {
     Server server = servers.get(lastServedId++);
     server.serve(request);
   }
+  
 
 
 }
