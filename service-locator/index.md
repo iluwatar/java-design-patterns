@@ -10,7 +10,7 @@ tags: Java
 **Intent:** Encapsulate the processes involved in obtaining a service with a
 strong abstraction layer.
 
-![alt text](./etc/service-locator.png "Proxy")
+![alt text](./etc/service-locator.png "Service Locator")
 
 **Applicability:** The service locator pattern is applicable whenever we want
 to locate/fetch various services using JNDI which, typically, is a redundant
@@ -26,3 +26,7 @@ improves the performance of application to great extent.
 * when network hits are expensive and time consuming
 * lookups of services are done quite frequently
 * large number of services are being used
+
+**Credits:**
+
+* [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)

@@ -4,7 +4,10 @@ title: Visitor
 folder: visitor
 permalink: /patterns/visitor/
 categories: Behavioral
-tags: Java
+tags:
+ - Java
+ - Difficulty-Expert
+ - Gang Of Four
 ---
 
 **Intent:** Represent an operation to be performed on the elements of an object
@@ -22,3 +25,7 @@ of the elements on which it operates.
 **Real world examples:**
 
 * [Apache Wicket](https://github.com/apache/wicket) component tree, see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

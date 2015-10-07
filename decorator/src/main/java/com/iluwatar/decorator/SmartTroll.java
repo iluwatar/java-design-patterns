@@ -22,6 +22,12 @@ public class SmartTroll implements Hostile {
 	}
 
 	@Override
+	public int getAttackPower() {
+		// decorated troll power + 20 because it is smart
+		return decorated.getAttackPower() + 20;
+	}
+
+	@Override
 	public void fleeBattle() {
 		System.out.println("The troll calls for help!");
 		decorated.fleeBattle();

@@ -4,7 +4,10 @@ title: Factory Method
 folder: factory-method
 permalink: /patterns/factory-method/
 categories: Creational
-tags: Java
+tags: 
+ - Java
+ - Difficulty-Beginner
+ - Gang Of Four
 ---
 
 **Intent:** Define an interface for creating an object, but let subclasses
@@ -18,3 +21,7 @@ instantiation to subclasses.
 * a class can't anticipate the class of objects it must create
 * a class wants its subclasses to specify the objects it creates
 * classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

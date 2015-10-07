@@ -4,7 +4,9 @@ title: Bridge
 folder: bridge
 permalink: /patterns/bridge/
 categories: Structural
-tags: Java
+tags:
+ - Java
+ - Gang Of Four
 ---
 
 **Intent:** Decouple an abstraction from its implementation so that the two can
@@ -20,3 +22,7 @@ vary independently.
 * changes in the implementation of an abstraction should have no impact on clients; that is, their code should not have to be recompiled.
 * you have a proliferation of classes. Such a class hierarchy indicates the need for splitting an object into two parts. Rumbaugh uses the term "nested generalizations" to refer to such class hierarchies
 * you want to share an implementation among multiple objects (perhaps using reference counting), and this fact should be hidden from the client. A simple example is Coplien's String class, in which multiple objects can share the same string representation.
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

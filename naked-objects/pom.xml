@@ -15,7 +15,7 @@
 	<parent>
 		<artifactId>java-design-patterns</artifactId>
 		<groupId>com.iluwatar</groupId>
-		<version>1.6.0</version>
+		<version>1.7.0</version>
 	</parent>
 
 	<artifactId>naked-objects</artifactId>
@@ -27,7 +27,7 @@
 	</prerequisites>
 
 	<properties>
-		<isis.version>1.9.0-SNAPSHOT</isis.version>
+		<isis.version>1.9.0</isis.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -350,17 +350,17 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-dom</artifactId>
-				<version>1.6.0</version>
+				<version>1.7.0</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-fixture</artifactId>
-				<version>1.6.0</version>
+				<version>1.7.0</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-webapp</artifactId>
-				<version>1.6.0</version>
+				<version>1.7.0</version>
 			</dependency>
 
 		</dependencies>

@@ -4,7 +4,10 @@ title: Strategy
 folder: strategy
 permalink: /patterns/strategy/
 categories: Behavioral
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
+ - Gang Of Four
 ---
 
 **Intent:** Define a family of algorithms, encapsulate each one, and make them
@@ -19,3 +22,7 @@ that use it.
 * you need different variants of an algorithm. for example, you might define algorithms reflecting different space/time trade-offs. Strategies can be used when these variants are implemented as a class hierarchy of algorithms
 * an algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex, algorithm-specific data structures
 * a class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move related conditional branches into their own Strategy class
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

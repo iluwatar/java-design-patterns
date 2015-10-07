@@ -4,7 +4,10 @@ title: Proxy
 folder: proxy
 permalink: /patterns/proxy/
 categories: Structural
-tags: Java
+tags:
+ - Java
+ - Gang Of Four
+ - Difficulty-Intermediate
 ---
 
 **Intent:** Provide a surrogate or placeholder for another object to control
@@ -32,3 +35,7 @@ are several common situations in which the Proxy pattern is applicable
 
 * [java.lang.reflect.Proxy](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)
 * [Apache Commons Proxy](https://commons.apache.org/proper/commons-proxy/)
+
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

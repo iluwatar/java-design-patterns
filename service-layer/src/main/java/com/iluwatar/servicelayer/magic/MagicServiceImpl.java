@@ -3,8 +3,8 @@ package com.iluwatar.servicelayer.magic;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.iluwatar.servicelayer.servicelayer.spell.Spell;
-import com.iluwatar.servicelayer.servicelayer.spell.SpellDao;
+import com.iluwatar.servicelayer.spell.Spell;
+import com.iluwatar.servicelayer.spell.SpellDao;
 import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.spellbook.SpellbookDao;
 import com.iluwatar.servicelayer.wizard.Wizard;
