@@ -26,6 +26,6 @@ public class Server {
   }
 
   public final void serve(Request request) {
-    System.out.println("Server ID " + id + "  processed request with value  " + request.value);
+    System.out.println("Server ID " + id + " associated to host : " + getHost() + " and Port " + getPort() +" Processed request with value  " + request.value);
   }
 }
