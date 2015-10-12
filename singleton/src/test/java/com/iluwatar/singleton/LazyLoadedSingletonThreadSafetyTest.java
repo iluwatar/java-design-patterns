@@ -2,15 +2,11 @@ package com.iluwatar.singleton;
 
 import org.junit.Test;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 /**
  * This class provides several test case that test singleton construction.
@@ -68,32 +64,6 @@ public class LazyLoadedSingletonThreadSafetyTest {
             assertEquals(threadObjects.get(1), threadObjects.get(2));
             assertEquals(threadObjects.get(2), threadObjects.get(3));
             assertEquals(threadObjects.get(3), threadObjects.get(4));
-        }
-    }
-
-    @Test
-    @SuppressWarnings("unchecked")
-    public void test_HoleInSingletonCreationIfUsingReflection() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException {
-        Field f = ThreadSafeLazyLoadedIvoryTower.class.getDeclaredField("instance");
-        f.setAccessible(true);
-
-        {//reflectively create an object - the singleton field is null
-            Class lazyIvoryTowerClazz = Class.forName("com.iluwatar.singleton.ThreadSafeLazyLoadedIvoryTower");
-            Constructor<ThreadSafeLazyLoadedIvoryTower> constructor = lazyIvoryTowerClazz.getDeclaredConstructor();
-            constructor.setAccessible(true);
-            ThreadSafeLazyLoadedIvoryTower instance = constructor.newInstance();
-            assertNull(f.get(instance));
-        }
-
-        //instantiate the singleton but when we do the below code we are creating a new object where it is set to null still
-        IvoryTower.getInstance();
-
-        {//reflectively create an object - the singleton field is null as a new object is created
-            Class lazyIvoryTowerClazz = Class.forName("com.iluwatar.singleton.ThreadSafeLazyLoadedIvoryTower");
-            Constructor<ThreadSafeLazyLoadedIvoryTower> constructor = lazyIvoryTowerClazz.getDeclaredConstructor();
-            constructor.setAccessible(true);
-            ThreadSafeLazyLoadedIvoryTower instance = constructor.newInstance();
-            assertNull(f.get(instance));
         }
     }
 
