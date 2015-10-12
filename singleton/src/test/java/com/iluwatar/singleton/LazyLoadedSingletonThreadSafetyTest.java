@@ -75,6 +75,9 @@ public class LazyLoadedSingletonThreadSafetyTest {
     @SuppressWarnings("unchecked")
     public void test_HoleInSingletonCreationIfUsingReflection() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Field[] f = ThreadSafeLazyLoadedIvoryTower.class.getDeclaredFields();
+        for (Field ff : f) {
+            System.out.println(ff.getDeclaringClass());
+        }
         assertEquals("One field only in ThreadSafeLazyLoadedIvoryTower", 1, f.length);
         f[0].setAccessible(true);
 
