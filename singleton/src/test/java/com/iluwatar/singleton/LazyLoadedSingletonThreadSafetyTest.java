@@ -13,7 +13,6 @@ import static org.junit.Assert.assertEquals;
  *
  * The first proves that multiple calls to the singleton getInstance object are the same when called in the SAME thread.
  * The second proves that multiple calls to the singleton getInstance object are the same when called in the DIFFERENT thread.
- * The third proves that there is a hole if the singleton is created reflectively
  *
  */
 public class LazyLoadedSingletonThreadSafetyTest {
