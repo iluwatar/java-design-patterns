@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.lang.reflect.Field;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -20,22 +19,24 @@ public class HolderThreadSafeTest {
         HolderThreadSafe hts = new HolderThreadSafe();
 
         {//first call is null
-            Field[] f = HolderThreadSafe.class.getDeclaredFields();
-            assertEquals("One field only in HolderThreadSafe", 1, f.length);
-            f[0].setAccessible(true);
+            Field[] ff = HolderThreadSafe.class.getDeclaredFields();
+            for (Field f: ff) {
+                f.setAccessible(true);
+            }
 
-            assertNull(f[0].get(hts));
+            assertNull(ff[0].get(hts));
         }
 
         // now it is lazily loaded
         hts.getHeavy();
 
         {//now it is not null - call via reflection so that the test is the same before and after
-            Field[] f = HolderThreadSafe.class.getDeclaredFields();
-            assertEquals("One field only in HolderThreadSafe", 1, f.length);
-            f[0].setAccessible(true);
+            Field[] ff = HolderThreadSafe.class.getDeclaredFields();
+            for (Field f: ff) {
+                f.setAccessible(true);
+            }
 
-            assertNotNull(f[0].get(hts));
+            assertNotNull(ff[0].get(hts));
         }
     }
 }
