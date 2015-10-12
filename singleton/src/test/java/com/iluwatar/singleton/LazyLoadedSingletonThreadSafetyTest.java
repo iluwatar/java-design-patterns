@@ -73,20 +73,16 @@ public class LazyLoadedSingletonThreadSafetyTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void test_HoleInSingletonCreationIfUsingReflection() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        Field[] f = ThreadSafeLazyLoadedIvoryTower.class.getDeclaredFields();
-        for (Field ff : f) {
-            System.out.println(ff.getDeclaringClass());
-        }
-        assertEquals("One field only in ThreadSafeLazyLoadedIvoryTower", 1, f.length);
-        f[0].setAccessible(true);
+    public void test_HoleInSingletonCreationIfUsingReflection() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException {
+        Field f = ThreadSafeLazyLoadedIvoryTower.class.getDeclaredField("instance");
+        f.setAccessible(true);
 
         {//reflectively create an object - the singleton field is null
             Class lazyIvoryTowerClazz = Class.forName("com.iluwatar.singleton.ThreadSafeLazyLoadedIvoryTower");
             Constructor<ThreadSafeLazyLoadedIvoryTower> constructor = lazyIvoryTowerClazz.getDeclaredConstructor();
             constructor.setAccessible(true);
             ThreadSafeLazyLoadedIvoryTower instance = constructor.newInstance();
-            assertNull(f[0].get(instance));
+            assertNull(f.get(instance));
         }
 
         //instantiate the singleton but when we do the below code we are creating a new object where it is set to null still
@@ -97,7 +93,7 @@ public class LazyLoadedSingletonThreadSafetyTest {
             Constructor<ThreadSafeLazyLoadedIvoryTower> constructor = lazyIvoryTowerClazz.getDeclaredConstructor();
             constructor.setAccessible(true);
             ThreadSafeLazyLoadedIvoryTower instance = constructor.newInstance();
-            assertNull(f[0].get(instance));
+            assertNull(f.get(instance));
         }
     }
 
