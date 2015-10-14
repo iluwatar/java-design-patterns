@@ -3,6 +3,7 @@ package com.iluwatar.singleton;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -18,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 public class LazyLoadedSingletonThreadSafetyTest {
 
     private static final int NUM_THREADS = 5;
-    private List<ThreadSafeLazyLoadedIvoryTower> threadObjects = new ArrayList<>();
+    private List<ThreadSafeLazyLoadedIvoryTower> threadObjects = Collections.synchronizedList(new ArrayList<>());
 
     //NullObject class so Callable has to return something
     private class NullObject{private NullObject(){}}
