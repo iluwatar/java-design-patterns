@@ -12,13 +12,14 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Inventory {
 
-	private int inventorySize;
-	private List<Item> items;
-	private Lock lock = new ReentrantLock();
+	private final int inventorySize;
+	private final List<Item> items;
+	private final Lock lock;
 
 	public Inventory(int inventorySize) {
 		this.inventorySize = inventorySize;
-		this.items = new ArrayList<Item>(inventorySize);
+		this.items = new ArrayList<>(inventorySize);
+		this.lock = new ReentrantLock();
 	}
 
 	public boolean addItem(Item item) {
@@ -27,7 +28,9 @@ public class Inventory {
 			try {
 				if (items.size() < inventorySize) {
 					items.add(item);
-					System.out.println(Thread.currentThread());
+					System.out.println(Thread.currentThread()
+							+ ": items.size()=" + items.size()
+							+ ", inventorySize=" + inventorySize);
 					return true;
 				}
 			} finally {
