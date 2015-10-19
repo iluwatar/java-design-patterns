@@ -10,10 +10,6 @@
 	</parent>
 	<artifactId>dao</artifactId>
 	
-	<properties>
-		
-	</properties>
-	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
