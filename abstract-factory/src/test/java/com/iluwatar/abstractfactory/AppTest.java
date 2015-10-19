@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class AppTest {
 
-	private App app = new App();;
+	private App app = new App();
 	private KingdomFactory elfFactory;
 	private KingdomFactory orcFactory;
 	
