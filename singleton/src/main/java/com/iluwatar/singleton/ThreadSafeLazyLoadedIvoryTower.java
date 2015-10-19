@@ -4,6 +4,8 @@ package com.iluwatar.singleton;
  * Thread-safe Singleton class.
  * The instance is lazily initialized and thus needs synchronization
  * mechanism.
+ *
+ * Note: if created by reflection then a singleton will not be created but multiple options in the same classloader
  */
 public class ThreadSafeLazyLoadedIvoryTower {
 
