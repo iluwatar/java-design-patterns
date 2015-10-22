@@ -2,8 +2,8 @@ package com.iluwatar.adapter;
 
 /**
  * 
- * Adapter class. Adapts the interface of the device (GoblinGlider) into
- * Engineer interface expected by the client (GnomeEngineeringManager).
+ * Adapter class. Adapts the interface of the device ({@link GoblinGlider}) into
+ * {@link Engineer} interface expected by the client ({@link GnomeEngineeringManager}).
  * 
  */
 public class GnomeEngineer implements Engineer {

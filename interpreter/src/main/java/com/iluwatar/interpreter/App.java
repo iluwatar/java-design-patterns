@@ -4,16 +4,26 @@ import java.util.Stack;
 
 /**
  * 
- * Interpreter pattern breaks sentences into expressions (Expression) that can
- * be evaluated and as a whole form the result.
+ * The Interpreter pattern is a design pattern that specifies how to evaluate sentences 
+ * in a language. The basic idea is to have a class for each symbol (terminal or nonterminal) 
+ * in a specialized computer language. The syntax tree of a sentence in the language is an 
+ * instance of the composite pattern and is used to evaluate (interpret) the sentence for a 
+ * client.
+ * <p>
+ * In this example we use the Interpreter pattern to break sentences into expressions 
+ * ({@link Expression}) that can be evaluated and as a whole form the result.
  * 
  */
 public class App {
 
 	/**
 	 * 
+	 * Program entry point.
+	 * <p>
 	 * Expressions can be evaluated using prefix, infix or postfix notations
 	 * This sample uses postfix, where operator comes after the operands
+	 * 
+	 * @param args command line args
 	 * 
 	 */
 	public static void main(String[] args) {

@@ -2,7 +2,13 @@ package com.iluwatar.servant;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * Servant
+ *
+ */
 public class Servant {
+	
 	public String name;
 	
 	public Servant(String name){

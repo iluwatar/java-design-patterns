@@ -2,6 +2,11 @@ package com.iluwatar.iterator;
 
 import java.util.List;
 
+/**
+ * 
+ * TreasureChestItemIterator
+ *
+ */
 public class TreasureChestItemIterator implements ItemIterator {
 
 	private TreasureChest chest;

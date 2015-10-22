@@ -1,5 +1,10 @@
 package com.iluwatar.interpreter;
 
+/**
+ * 
+ * MinusExpression
+ *
+ */
 public class MinusExpression extends Expression {
 
 	private Expression leftExpression;

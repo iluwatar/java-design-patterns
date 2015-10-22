@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 
- * Weather can be observed by implementing WeatherObserver interface and
+ * Weather can be observed by implementing {@link WeatherObserver} interface and
  * registering as listener.
  * 
  */

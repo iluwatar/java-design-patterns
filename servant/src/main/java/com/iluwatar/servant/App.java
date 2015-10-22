@@ -7,12 +7,19 @@ import java.util.ArrayList;
  * Servant offers some functionality to a group of classes without defining that functionality in each of them.
  * A Servant is a class whose instance provides methods that take care of a desired service,
  * while objects for which the servant does something, are taken as parameters.
+ * <p>
+ * In this example {@link Servant} is serving {@link King} and {@link Queen}.
  *
  */
 public class App {
+	
     static Servant jenkins = new Servant("Jenkins");
     static Servant travis = new Servant("Travis");
 
+    /**
+     * Program entry point
+     * @param args
+     */
     public static void main(String[] args) {
         scenario(jenkins, 1);
         scenario(travis, 0);

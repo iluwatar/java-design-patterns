@@ -13,14 +13,19 @@ import java.util.concurrent.Executors;
  *  more tasks than threads. As soon as a thread completes its task, it will request the next 
  *  task from the queue until all tasks have been completed. The thread can then terminate, or 
  *  sleep until there are new tasks available.
- *  
+ *  <p>
  *  In this example we create a list of tasks presenting work to be done. Each task is then 
- *  wrapped into a Worker object that implements Runnable. We create an ExecutorService with
- *  fixed number of threads (Thread Pool) and use them to execute the Workers.
+ *  wrapped into a {@link Worker} object that implements {@link Runnable}. We create an 
+ *  {@link ExecutorService} with fixed number of threads (Thread Pool) and use them to execute 
+ *  the {@link Worker}s.
  *
  */
 public class App {
 	
+	/**
+	 * Program entry point
+	 * @param args command line args
+	 */
     public static void main( String[] args ) {
     	
     	System.out.println("Program started");

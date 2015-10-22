@@ -2,6 +2,11 @@ package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
 
+/**
+ * 
+ * GHobbits
+ *
+ */
 public class GHobbits implements Race {
     @Override
     public void update(GWeather weather, WeatherType weatherType) {

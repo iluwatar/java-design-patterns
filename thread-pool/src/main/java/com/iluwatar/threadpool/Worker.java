@@ -2,7 +2,7 @@ package com.iluwatar.threadpool;
 
 /**
  * 
- * Worker implements Runnable and thus can be executed by ExecutorService
+ * Worker implements {@link Runnable} and thus can be executed by {@link ExecutorService}
  *
  */
 public class Worker implements Runnable {
