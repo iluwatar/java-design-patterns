@@ -80,6 +80,7 @@
 		<module>message-channel</module>
 		<module>fluentinterface</module>
 		<module>reactor</module>
+		<module>publish-subscribe</module>
 	</modules>
 
 	<dependencyManagement>
