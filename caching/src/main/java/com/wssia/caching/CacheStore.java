@@ -42,7 +42,7 @@ public class CacheStore {
     if (cache.contains(userAccount.getUserID())) {
       DBManager.updateDB(userAccount);
       cache.invalidate(userAccount.getUserID()); // Cache data has been updated -- remove older
-      // version from cache.
+                                                 // version from cache.
     } else {
       DBManager.writeToDB(userAccount);
     }

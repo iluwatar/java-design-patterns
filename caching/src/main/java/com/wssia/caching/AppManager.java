@@ -15,11 +15,21 @@ public class AppManager {
 
   private static CachingPolicy cachingPolicy;
 
-  public static void init() {
-    try {
-      DBManager.connect();
-    } catch (ParseException e) {
-      e.printStackTrace();
+  /**
+   *
+   * Developer/Tester is able to choose whether the application should use MongoDB as its underlying
+   * data storage or a simple Java data structure to (temporarily) store the data/objects during
+   * runtime.
+   */
+  public static void initDB(boolean useMongoDB) {
+    if (useMongoDB) {
+      try {
+        DBManager.connect();
+      } catch (ParseException e) {
+        e.printStackTrace();
+      }
+    } else {
+      DBManager.createVirtualDB();
     }
   }
 

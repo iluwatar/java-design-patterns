@@ -138,7 +138,7 @@ public class LRUCache {
   public void setCapacity(int newCapacity) {
     if (capacity > newCapacity) {
       clear(); // Behavior can be modified to accommodate for decrease in cache size. For now, we'll
-      // just clear the cache.
+               // just clear the cache.
     } else {
       this.capacity = newCapacity;
     }

@@ -33,8 +33,8 @@
   <!--
     Due to the use of MongoDB in the test of this pattern, TRAVIS and/or MAVEN might fail if the DB connection is
     not open for the JUnit test. To avoid disrupting the compilation process, the surefire plug-in was used
-    to SKIP the running of the JUnit tests for this pattern. To RE-ACTIVATE the running of the tests, change the
-    skipTests (below) flag to 'false'.
+    to SKIP the running of the JUnit tests for this pattern. To ACTIVATE the running of the tests, change the
+    skipTests (below) flag to 'false' and vice-versa.
   -->
   <build>
     <plugins>
@@ -43,7 +43,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.19</version>
         <configuration>
-          <skipTests>true</skipTests>
+          <skipTests>false</skipTests>
         </configuration>
       </plugin>
     </plugins>

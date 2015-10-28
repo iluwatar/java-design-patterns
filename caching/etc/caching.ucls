@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="main.java.com.wssia.caching.UserAccount" project="CachingPatterns" 
     file="/CachingPatterns/src/main/java/com/wssia/caching/UserAccount.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1137" y="382"/>    
+    <position height="-1" width="-1" x="1140" y="405"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

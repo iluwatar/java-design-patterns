@@ -19,7 +19,10 @@ public class AppTest {
    */
   @Before
   public void setUp() {
-    AppManager.init();
+    AppManager.initDB(false); // VirtualDB (instead of MongoDB) was used in running the JUnit tests
+                              // to avoid Maven compilation errors. Set flag to true to run the
+                              // tests with MongoDB (provided that MongoDB is installed and socket
+                              // connection is open).
     AppManager.initCacheCapacity(3);
     app = new App();
   }
