@@ -11,26 +11,24 @@ package com.iluwatar.nullobject;
  * the traversal easy.
  *
  */
-public class App 
-{
+public class App {
+
 	/**
 	 * Program entry point
 	 * @param args command line args
 	 */
-    public static void main( String[] args ) {
-    	
-    	Node root = new NodeImpl("1",
-    			new NodeImpl("11",
-    					new NodeImpl("111",
-    							NullNode.getInstance(),
-    							NullNode.getInstance()),
-    					NullNode.getInstance()), 
-    			new NodeImpl("12",
-    					NullNode.getInstance(),
-    					new NodeImpl("122",
-    							NullNode.getInstance(),
-    							NullNode.getInstance())));
-
-    	root.walk();
-    }
+	public static void main(String[] args) {
+		Node root = new NodeImpl("1",
+				new NodeImpl("11",
+					new NodeImpl("111",
+						NullNode.getInstance(),
+						NullNode.getInstance()),
+					NullNode.getInstance()), 
+				new NodeImpl("12",
+					NullNode.getInstance(),
+					new NodeImpl("122",
+						NullNode.getInstance(),
+						NullNode.getInstance())));
+		root.walk();
+	}
 }
