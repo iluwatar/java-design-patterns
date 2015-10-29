@@ -29,6 +29,13 @@
 						<param>com.iluwatar.poison.pill.App</param>
 					</ignores>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.iluwatar</groupId>
+						<artifactId>poison-pill</artifactId>
+						<version>1.6.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>				
 		</plugins>
 	</build>

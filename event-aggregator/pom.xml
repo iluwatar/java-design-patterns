@@ -27,6 +27,13 @@
 						<param>com.iluwatar.event.aggregator.App</param>
 					</ignores>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.iluwatar</groupId>
+						<artifactId>event-aggregator</artifactId>
+						<version>1.6.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>				
 		</plugins>
 	</build>

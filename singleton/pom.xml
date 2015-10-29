@@ -29,6 +29,13 @@
 						<param>com.iluwatar.singleton.App</param>
 					</ignores>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.iluwatar</groupId>
+						<artifactId>singleton</artifactId>
+						<version>1.6.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>				
 		</plugins>
 	</build>

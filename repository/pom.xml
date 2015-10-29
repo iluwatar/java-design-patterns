@@ -45,6 +45,13 @@
 						<param>com.iluwatar.repository.App</param>
 					</ignores>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.iluwatar</groupId>
+						<artifactId>repository</artifactId>
+						<version>1.6.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>				
 		</plugins>
 	</build>

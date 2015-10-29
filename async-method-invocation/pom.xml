@@ -29,6 +29,13 @@
 						<param>com.iluwatar.async.method.invocation.App</param>
 					</ignores>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.iluwatar</groupId>
+						<artifactId>async-method-invocation</artifactId>
+						<version>1.6.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>				
 		</plugins>
 	</build>

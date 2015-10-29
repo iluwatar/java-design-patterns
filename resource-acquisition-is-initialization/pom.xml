@@ -29,6 +29,13 @@
 						<param>com.iluwatar.resource.acquisition.is.initialization.App</param>
 					</ignores>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.iluwatar</groupId>
+						<artifactId>resource-acquisition-is-initialization</artifactId>
+						<version>1.6.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>				
 		</plugins>
 	</build>

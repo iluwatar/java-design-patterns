@@ -46,6 +46,13 @@
 						<param>com.iluwatar.layers.App</param>
 					</ignores>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.iluwatar.layers</groupId>
+						<artifactId>layers</artifactId>
+						<version>1.6.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>				
 		</plugins>
 	</build>
