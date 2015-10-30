@@ -2,8 +2,12 @@ package com.iluwatar.leaderfollower;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
 
+/**
+ * The {@link HandleSet} class. All work arrive here, workers receive work from here.
+ * @author amit
+ *
+ */
 public class HandleSet {
   
   private BlockingQueue<Work> queue = new ArrayBlockingQueue<>(100);
@@ -13,7 +17,6 @@ public class HandleSet {
   }
   
   public Work getPayLoad() throws InterruptedException {
-    //return queue.poll(3, TimeUnit.SECONDS);
     return queue.take();
   }
   

@@ -7,15 +7,15 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 
- * Leader Follower is a concurrency pattern
+ * Leader Follower is a concurrency pattern where multiple threads can efficiently demultiplex
+ * events and dispatch to event handlers.
  * <p>
- * In this example we use Java serialization to write representations of {@link RainbowFish} objects
- * to file. {@link RainbowFish} is the initial version which we can easily read and write using
- * {@link RainbowFishSerializer} methods. {@link RainbowFish} then evolves to {@link RainbowFishV2}
- * and we again write it to file with a method designed to do just that. However, the reader client
- * does not know about the new format and still reads with the method designed for V1 schema.
- * Fortunately the reading method has been designed with the Tolerant Reader pattern and does not
- * break even though {@link RainbowFishV2} has new fields that are serialized.
+ * In this example we use ThreadPool which basically acts as the ThreadPool. One of the Workers
+ * becomes Leader and listens on the {@link HandleSet} for work. HandleSet basically acts as the
+ * source of input events for the Workers, who are spawned and controlled by the {@link WorkStation}
+ * . When Work arrives which implements the {@link Handle} interface then the leader takes the work
+ * and calls the {@link ConcreteEventHandler}. However it also selects one of the waiting Workers as
+ * leader, who can then process the next work and so on.
  *
  */
 public class App {
