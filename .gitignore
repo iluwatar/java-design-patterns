@@ -8,3 +8,7 @@ target
 *.jar
 *.war
 *.ear
+.idea
+*.iml
+*.swp
+datanucleus.log

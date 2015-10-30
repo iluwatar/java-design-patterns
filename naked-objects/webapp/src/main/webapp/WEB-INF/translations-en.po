@@ -1,0 +1,213 @@
+##############################################################################
+#
+# .pot file
+#
+# Translate this file to each required language and place in WEB-INF, eg:
+#
+#     /WEB-INF/translations-en_US.po
+#     /WEB-INF/translations-en.po
+#     /WEB-INF/translations-fr_FR.po
+#     /WEB-INF/translations-fr.po
+#     /WEB-INF/translations.po
+#
+# If the app uses TranslatableString (eg for internationalized validation
+# messages), or if the app calls the TranslationService directly, then ensure
+# that all text to be translated has been captured by running a full
+# integration test suite that exercises all relevant behaviour
+#
+##############################################################################
+
+#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#downloadTranslations(java.lang.String)
+msgid ".pot file name"
+msgstr ".pot file name"
+
+
+#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#resetTranslationCache()
+msgid "Clear translation cache"
+msgstr "Clear translation cache"
+
+
+#: domainapp.dom.modules.simple.SimpleObjects#create()
+msgid "Create"
+msgstr "Create"
+
+
+#: org.apache.isis.applib.fixturescripts.FixtureScript#discoverable
+msgid "Discoverable"
+msgstr "Discoverable"
+
+
+#: org.apache.isis.applib.fixtures.FixtureType#DOMAIN_OBJECTS
+msgid "Domain Objects"
+msgstr "Domain Objects"
+
+
+#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#downloadTranslations()
+msgid "Download Translations"
+msgstr "Download Translations"
+
+
+#: domainapp.dom.modules.simple.SimpleObject#updateName()
+msgid "Exclamation mark is not allowed"
+msgstr "Exclamation mark is not allowed"
+
+
+#: domainapp.dom.modules.simple.SimpleObjects#findByName()
+msgid "Find By Name"
+msgstr "Find By Name"
+
+
+#: org.apache.isis.applib.fixturescripts.FixtureResult#fixtureScriptClassName
+msgid "Fixture script"
+msgstr "Fixture script"
+
+
+#: org.apache.isis.applib.fixturescripts.FixtureScript#friendlyName
+msgid "Friendly Name"
+msgstr "Friendly Name"
+
+
+#: domainapp.dom.modules.simple.SimpleObject
+msgid "General"
+msgstr "General"
+
+
+#: domainapp.dom.app.homepage.HomePageService#homePage()
+msgid "Home Page"
+msgstr "Home Page"
+
+
+#: domainapp.dom.modules.simple.SimpleObjects#listAll()
+msgid "List All"
+msgstr "List All"
+
+
+#: org.apache.isis.applib.fixturescripts.FixtureScript#localName
+msgid "Local Name"
+msgstr "Local Name"
+
+
+#: org.apache.isis.applib.fixturescripts.FixtureScript#lookup()
+#: org.apache.isis.applib.services.bookmark.BookmarkHolderActionContributions#lookup()
+msgid "Lookup"
+msgstr "Lookup"
+
+
+#: domainapp.dom.modules.simple.SimpleObject#name
+#: domainapp.dom.modules.simple.SimpleObjects#create(java.lang.String)
+#: domainapp.dom.modules.simple.SimpleObjects#findByName(java.lang.String)
+msgid "Name"
+msgstr "Name"
+
+
+#: domainapp.dom.modules.simple.SimpleObject#updateName(java.lang.String)
+msgid "New name"
+msgstr "New name"
+
+
+#: org.apache.isis.applib.services.bookmark.BookmarkHolderAssociationContributions#object()
+msgid "Object"
+msgstr "Object"
+
+
+#: domainapp.dom.modules.simple.SimpleObject#title()
+msgid "Object: {name}"
+msgstr "Object: {name}"
+
+
+#: domainapp.dom.app.homepage.HomePageViewModel#objects
+msgid "Objects"
+msgstr "Objects"
+
+
+#: org.apache.isis.applib.fixtures.FixtureType#OTHER
+msgid "Other"
+msgstr "Other"
+
+
+#: domainapp.fixture.DomainAppFixturesService#runFixtureScript(org.apache.isis.applib.fixturescripts.FixtureScript,java.lang.String)
+#: org.apache.isis.applib.fixturescripts.FixtureScripts#runFixtureScript(org.apache.isis.applib.fixturescripts.FixtureScript,java.lang.String)
+msgid "Parameters"
+msgstr "Parameters"
+
+
+#: domainapp.fixture.DomainAppFixturesService
+#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu
+msgid "Prototyping"
+msgstr "Prototyping"
+
+
+#: domainapp.fixture.DomainAppFixturesService#recreateObjectsAndReturnFirst()
+msgid "Recreate Objects And Return First"
+msgstr "Recreate Objects And Return First"
+
+
+#: org.apache.isis.applib.fixturescripts.FixtureResult#object
+msgid "Result"
+msgstr "Result"
+
+
+#: org.apache.isis.applib.fixturescripts.FixtureResult#className
+msgid "Result class"
+msgstr "Result class"
+
+
+#: org.apache.isis.applib.fixturescripts.FixtureResult#key
+msgid "Result key"
+msgstr "Result key"
+
+
+#: domainapp.fixture.DomainAppFixturesService#runFixtureScript()
+#: org.apache.isis.applib.fixturescripts.FixtureScripts#runFixtureScript()
+msgid "Run Fixture Script"
+msgstr "Run Fixture Script"
+
+
+#: org.apache.isis.applib.fixturescripts.FixtureScript
+msgid "Script"
+msgstr "Script"
+
+
+#: domainapp.fixture.DomainAppFixturesService#runFixtureScript(org.apache.isis.applib.fixturescripts.FixtureScript,java.lang.String)
+#: org.apache.isis.applib.fixturescripts.FixtureScripts#runFixtureScript(org.apache.isis.applib.fixturescripts.FixtureScript,java.lang.String)
+msgid "Script-specific parameters (if any).  The format depends on the script implementation (eg key=value, CSV, JSON, XML etc)"
+msgstr "Script-specific parameters (if any).  The format depends on the script implementation (eg key=value, CSV, JSON, XML etc)"
+
+
+#: domainapp.dom.modules.simple.SimpleObjects#title()
+msgid "Simple Objects"
+msgstr "Simple Objects"
+
+
+#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#switchToReadingTranslations()
+msgid "Switch To Reading Translations"
+msgstr "Switch To Reading Translations"
+
+
+#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#switchToWritingTranslations()
+msgid "Switch To Writing Translations"
+msgstr "Switch To Writing Translations"
+
+
+#: org.apache.isis.applib.fixturescripts.FixtureScript#type
+msgid "Type"
+msgstr "Type"
+
+
+#: domainapp.dom.modules.simple.SimpleObject#updateName()
+msgid "Update Name"
+msgstr "Update Name"
+
+
+#: domainapp.dom.modules.simple.SimpleObject
+msgid "name"
+msgstr ""
+
+
+
+
+
+##############################################################################
+# end of .pot file
+##############################################################################
+
