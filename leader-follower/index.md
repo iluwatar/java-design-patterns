@@ -1,23 +1,16 @@
 ---
 layout: pattern
-title: Tolerant Reader
-folder: tolerant-reader
-permalink: /patterns/tolerant-reader/
-categories: Integration
+title: Leader Follower
+folder: leader-follower
+permalink: /patterns/leader-follower/
+categories: Concurrency
 tags: Java
 ---
 
-**Intent:** Tolerant Reader is an integration pattern that helps creating
-robust communication systems. The idea is to be as tolerant as possible when
-reading data from another service. This way, when the communication schema
-changes, the readers must not break.
+**Intent:** Leader Follower is a concurrency pattern where multiple threads can efficiently demultiplex
+ events and dispatch to event handlers.
+![alt text](./etc/LeaderFollower.png "Leader Follower")
 
-![alt text](./etc/tolerant-reader.png "Tolerant Reader")
+**Applicability:** Use the Leader Follower pattern when
 
-**Applicability:** Use the Tolerant Reader pattern when
-
-* the communication schema can evolve and change and yet the receiving side should not break
-
-**Credits:**
-
-* [Martin Fowler - Tolerant Reader](http://martinfowler.com/bliki/TolerantReader.html)
+* multiple threads can receive events , process reponses and demutiplex connection using a shared HandleSet. 
