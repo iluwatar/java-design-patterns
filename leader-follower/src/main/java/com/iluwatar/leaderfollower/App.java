@@ -7,9 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 
- * Tolerant Reader is an integration pattern that helps creating robust communication systems. The
- * idea is to be as tolerant as possible when reading data from another service. This way, when the
- * communication schema changes, the readers must not break.
+ * Leader Follower is a concurrency pattern
  * <p>
  * In this example we use Java serialization to write representations of {@link RainbowFish} objects
  * to file. {@link RainbowFish} is the initial version which we can easily read and write using
@@ -27,6 +25,6 @@ public class App {
     ExecutorService exec = Executors.newFixedThreadPool(4);
     WorkStation station = new WorkStation(exec);
     station.startWork();
-    exec.awaitTermination(10, TimeUnit.SECONDS);
+    exec.awaitTermination(5, TimeUnit.SECONDS);
   }
 }
