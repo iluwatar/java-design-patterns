@@ -19,11 +19,12 @@ public class WorkStation {
 
   public void startWork() throws InterruptedException {
 
-    BlockingQueue<Work> queue = new ArrayBlockingQueue<>(100);
-    Worker worker = new Worker(queue, workers, 1, this);
-    Worker worker2 = new Worker(queue, workers, 2, this);
-    Worker worker3 = new Worker(queue, workers, 3, this);
-    Worker worker4 = new Worker(queue, workers, 4, this);
+    HandleSet handleSet = new HandleSet();
+    ConcreteEventHandler concreteEventHandler = new ConcreteEventHandler();
+    Worker worker = new Worker(handleSet, workers, 1, this, concreteEventHandler);
+    Worker worker2 = new Worker(handleSet, workers, 2, this ,concreteEventHandler);
+    Worker worker3 = new Worker(handleSet, workers, 3, this,concreteEventHandler);
+    Worker worker4 = new Worker(handleSet, workers, 4, this,concreteEventHandler);
     workers.add(worker);
     workers.add(worker2);
     workers.add(worker3);
@@ -34,11 +35,11 @@ public class WorkStation {
     executorService.submit(worker3);
     executorService.submit(worker4);
     Random rand = new Random(1000);
-    queue.put(new Work(rand.nextInt()));
-    queue.put(new Work(rand.nextInt()));
-    queue.put(new Work(rand.nextInt()));
-    queue.put(new Work(rand.nextInt()));
-    queue.put(new Work(rand.nextInt()));
+    handleSet.fireEvent(new Work(Math.abs(rand.nextInt())));
+    handleSet.fireEvent(new Work(Math.abs(rand.nextInt())));
+    handleSet.fireEvent(new Work(Math.abs(rand.nextInt())));
+    handleSet.fireEvent(new Work(Math.abs(rand.nextInt())));
+    handleSet.fireEvent(new Work(Math.abs(rand.nextInt())));
     // queue.
     Thread.sleep(1000);
   }
