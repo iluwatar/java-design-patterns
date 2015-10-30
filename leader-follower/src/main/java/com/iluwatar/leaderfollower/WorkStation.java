@@ -35,6 +35,10 @@ public class WorkStation {
     int j =0;
     while (j < 4) {
       queue.put(new Work(rand.nextInt()));
+      queue.put(new Work(rand.nextInt()));
+      queue.put(new Work(rand.nextInt()));
+      queue.put(new Work(rand.nextInt()));
+      queue.put(new Work(rand.nextInt()));
     }
    
     // queue.

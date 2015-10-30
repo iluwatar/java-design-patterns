@@ -1,25 +1,24 @@
 package com.iluwatar.leaderfollower;
 
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 public  class Worker implements Runnable {
 
   private Object leader = new Object();
-  private BlockingQueue<Work> queue;
-  private int totalDistanceCovered = 0;
+  private HandleSet handleSet;
   private List<Worker> workers;
   private long id;
   private WorkStation workstation;
+  private ConcreteEventHandler concreteEventHandler;
 
-  public Worker(BlockingQueue<Work> queue, List<Worker> workers, long id,
-      WorkStation workstation) {
+  public Worker(HandleSet queue, List<Worker> workers, long id,
+      WorkStation workstation, ConcreteEventHandler concreteEventHandler) {
     super();
-    this.queue = queue;
+    this.handleSet = queue;
     this.workers = workers;
     this.id = id;
     this.workstation = workstation;
+    this.concreteEventHandler = concreteEventHandler;
   }
 
   public void becomeLeader() {
@@ -44,18 +43,16 @@ public  class Worker implements Runnable {
       //  
         workers.remove(this);
         System.out.println("Leader: " +id);
-        Work work = queue.poll(3, TimeUnit.SECONDS);
-         // System.out.println("Size " + workers.size());
-          if (workers.size() > 0) {
-            workstation.getWorkers().get(0).becomeLeader();
-            workstation.setLeader(workstation.getWorkers().get(0));
-          }
-          else {
-            workstation.setLeader(null);
-          }
-        
+        Work work = handleSet.getPayLoad();
+        if (workers.size() > 0) {
+          workstation.getWorkers().get(0).becomeLeader();
+          workstation.setLeader(workstation.getWorkers().get(0));
+        }
+        else {
+          workstation.setLeader(null);
+        }
+        concreteEventHandler.handleEvent(work);
         Thread.sleep(100);
-        totalDistanceCovered += work.distance;
         System.out.println("The Worker with the ID " + id + " completed the task");
         workstation.addWorker(this);
       } catch (InterruptedException e) {
