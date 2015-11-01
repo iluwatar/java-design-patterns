@@ -83,6 +83,7 @@
 		<module>message-channel</module>
 		<module>fluentinterface</module>
 		<module>reactor</module>
+                <module>leader-follower</module>
 	</modules>
 
 	<dependencyManagement>
