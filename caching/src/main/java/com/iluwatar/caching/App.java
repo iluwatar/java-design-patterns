@@ -28,7 +28,7 @@ package com.iluwatar.caching;
  * (depending on the preferred caching policy/strategy).
  *
  * <i>App --> AppManager --> CacheStore/LRUCache/CachingPolicy --> DBManager</i>
- * <p>
+ * </p>
  *
  * @see CacheStore
  * @See LRUCache
