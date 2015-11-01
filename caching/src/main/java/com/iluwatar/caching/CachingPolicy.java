@@ -1,4 +1,4 @@
-package main.java.com.wssia.caching;
+package com.iluwatar.caching;
 
 /**
  *

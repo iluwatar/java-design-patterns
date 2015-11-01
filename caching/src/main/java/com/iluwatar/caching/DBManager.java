@@ -1,4 +1,4 @@
-package main.java.com.wssia.caching;
+package com.iluwatar.caching;
 
 import java.text.ParseException;
 import java.util.HashMap;
@@ -12,13 +12,16 @@ import com.mongodb.client.model.UpdateOptions;
 
 /**
  *
+ * <p>
  * DBManager handles the communication with the underlying data store i.e. Database. It contains the
  * implemented methods for querying, inserting, and updating data. MongoDB was used as the database
  * for the application.
- *
+ * </p>
+ * <p>
  * Developer/Tester is able to choose whether the application should use MongoDB as its underlying
  * data storage (connect()) or a simple Java data structure to (temporarily) store the data/objects
  * during runtime (createVirtualDB()).
+ * </p>
  */
 public class DBManager {
 

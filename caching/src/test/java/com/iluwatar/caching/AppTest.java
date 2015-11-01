@@ -1,7 +1,4 @@
-package test.java.com.wssia.caching;
-
-import main.java.com.wssia.caching.App;
-import main.java.com.wssia.caching.AppManager;
+package com.iluwatar.caching;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package main.java.com.wssia.caching;
+package com.iluwatar.caching;
 
 /**
  *
@@ -36,6 +36,23 @@ package main.java.com.wssia.caching;
  *
  */
 public class App {
+
+  /**
+   * Program entry point
+   *
+   * @param args command line args
+   */
+  public static void main(String[] args) {
+    AppManager.initDB(false); // VirtualDB (instead of MongoDB) was used in running the JUnit tests
+                              // and the App class to avoid Maven compilation errors. Set flag to
+                              // true to run the tests with MongoDB (provided that MongoDB is
+                              // installed and socket connection is open).
+    AppManager.initCacheCapacity(3);
+    App app = new App();
+    app.useReadAndWriteThroughStrategy();
+    app.useReadThroughAndWriteAroundStrategy();
+    app.useReadThroughAndWriteBehindStrategy();
+  }
 
   /**
    * Read-through and write-through
