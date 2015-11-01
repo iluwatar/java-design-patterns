@@ -56,6 +56,7 @@
 		<module>execute-around</module>
 		<module>property</module>
 		<module>intercepting-filter</module>
+		<module>producer-consumer</module>
 		<module>poison-pill</module>
 		<module>lazy-loading</module>
 		<module>service-layer</module>

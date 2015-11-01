@@ -1,8 +1,8 @@
-package com.iluwatar.observer;
+package com.iluwatar.poison.pill;
 
 import org.junit.Test;
 
-import com.iluwatar.observer.App;
+import com.iluwatar.producer.consumer.App;
 
 /**
  * 
@@ -12,8 +12,9 @@ import com.iluwatar.observer.App;
 public class AppTest {
 
   @Test
-  public void test() {
+  public void test() throws Exception {
     String[] args = {};
     App.main(args);
+
   }
 }
