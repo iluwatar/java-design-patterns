@@ -11,8 +11,8 @@ import org.junit.Test;
  */
 public class AppTest {
 
-	@Test
-	public void test() throws InterruptedException, ExecutionException {
-		App.main(null);
-	}
+  @Test
+  public void test() throws InterruptedException, ExecutionException {
+    App.main(null);
+  }
 }

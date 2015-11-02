@@ -6,13 +6,12 @@ package com.iluwatar.layers;
  *
  */
 public class CakeBakingException extends Exception {
-	
-	private static final long serialVersionUID = 1L;
 
-	public CakeBakingException() {
-	}
+  private static final long serialVersionUID = 1L;
 
-	public CakeBakingException(String message) {
-		super(message);
-	}
+  public CakeBakingException() {}
+
+  public CakeBakingException(String message) {
+    super(message);
+  }
 }

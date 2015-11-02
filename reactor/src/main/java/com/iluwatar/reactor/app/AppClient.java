@@ -140,7 +140,8 @@ public class AppClient {
         for (int i = 0; i < 4; i++) {
 
           String message = clientName + " - Log request: " + i;
-          DatagramPacket request = new DatagramPacket(message.getBytes(), message.getBytes().length, remoteAddress);
+          DatagramPacket request =
+              new DatagramPacket(message.getBytes(), message.getBytes().length, remoteAddress);
 
           socket.send(request);
 

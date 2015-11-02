@@ -7,39 +7,39 @@ package com.iluwatar.model.view.controller;
  */
 public class GiantController {
 
-	private GiantModel giant;
-	private GiantView view;
+  private GiantModel giant;
+  private GiantView view;
 
-	public GiantController(GiantModel giant, GiantView view) {
-		this.giant = giant;
-		this.view = view;
-	}
-	
-	public Health getHealth() {
-		return giant.getHealth();
-	}
+  public GiantController(GiantModel giant, GiantView view) {
+    this.giant = giant;
+    this.view = view;
+  }
 
-	public void setHealth(Health health) {
-		this.giant.setHealth(health);
-	}
+  public Health getHealth() {
+    return giant.getHealth();
+  }
 
-	public Fatigue getFatigue() {
-		return giant.getFatigue();
-	}
+  public void setHealth(Health health) {
+    this.giant.setHealth(health);
+  }
 
-	public void setFatigue(Fatigue fatigue) {
-		this.giant.setFatigue(fatigue);
-	}
+  public Fatigue getFatigue() {
+    return giant.getFatigue();
+  }
 
-	public Nourishment getNourishment() {
-		return giant.getNourishment();
-	}
+  public void setFatigue(Fatigue fatigue) {
+    this.giant.setFatigue(fatigue);
+  }
 
-	public void setNourishment(Nourishment nourishment) {
-		this.giant.setNourishment(nourishment);
-	}
-	
-	public void updateView() {
-		this.view.displayGiant(giant);
-	}
+  public Nourishment getNourishment() {
+    return giant.getNourishment();
+  }
+
+  public void setNourishment(Nourishment nourishment) {
+    this.giant.setNourishment(nourishment);
+  }
+
+  public void updateView() {
+    this.view.displayGiant(giant);
+  }
 }

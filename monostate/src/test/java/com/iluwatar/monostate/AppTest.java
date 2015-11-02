@@ -15,7 +15,7 @@ public class AppTest {
     // Both Should have the same LastServedId
     Assert.assertTrue(balancer.getLastServedId() == balancer2.getLastServedId());
   }
-  
+
   @Test
   public void testMain() {
     String[] args = {};
