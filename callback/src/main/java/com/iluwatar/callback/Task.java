@@ -7,12 +7,12 @@ package com.iluwatar.callback;
  */
 public abstract class Task {
 
-	public final void executeWith(Callback callback) {
-		execute();
-		if (callback != null) {
-			callback.call();
-		}
-	}
+  public final void executeWith(Callback callback) {
+    execute();
+    if (callback != null) {
+      callback.call();
+    }
+  }
 
-	public abstract void execute();
+  public abstract void execute();
 }

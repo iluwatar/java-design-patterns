@@ -7,6 +7,6 @@ package com.iluwatar.bridge;
  */
 public abstract class BlindingMagicWeaponImpl extends MagicWeaponImpl {
 
-	public abstract void blindImp();
+  public abstract void blindImp();
 
 }

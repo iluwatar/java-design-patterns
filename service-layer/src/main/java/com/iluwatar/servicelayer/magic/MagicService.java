@@ -14,13 +14,13 @@ import com.iluwatar.servicelayer.wizard.Wizard;
  */
 public interface MagicService {
 
-	List<Wizard> findAllWizards();
+  List<Wizard> findAllWizards();
 
-	List<Spellbook> findAllSpellbooks();
-	
-	List<Spell> findAllSpells();
+  List<Spellbook> findAllSpellbooks();
 
-	List<Wizard> findWizardsWithSpellbook(String name);
+  List<Spell> findAllSpells();
 
-	List<Wizard> findWizardsWithSpell(String name);
+  List<Wizard> findWizardsWithSpellbook(String name);
+
+  List<Wizard> findWizardsWithSpell(String name);
 }

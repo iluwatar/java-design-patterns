@@ -20,59 +20,59 @@ import com.iluwatar.servicelayer.spellbook.Spellbook;
  *
  */
 @Entity
-@Table(name="WIZARD")
+@Table(name = "WIZARD")
 public class Wizard extends BaseEntity {
-	
-	public Wizard() {
-		spellbooks = new HashSet<Spellbook>();
-	}
-	
-	public Wizard(String name) {
-		this();
-		this.name = name;
-	}
 
-	@Id
-	@GeneratedValue
-	@Column(name = "WIZARD_ID")
-	private Long id;
+  public Wizard() {
+    spellbooks = new HashSet<Spellbook>();
+  }
 
-	public Long getId() {
-		return id;
-	}
+  public Wizard(String name) {
+    this();
+    this.name = name;
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	private String name;
+  @Id
+  @GeneratedValue
+  @Column(name = "WIZARD_ID")
+  private Long id;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Spellbook> spellbooks;
-	
-	public String getName() {
-		return name;
-	}
+  public Long getId() {
+    return id;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public Set<Spellbook> getSpellbooks() {
-		return spellbooks;
-	}
+  private String name;
 
-	public void setSpellbooks(Set<Spellbook> spellbooks) {
-		this.spellbooks = spellbooks;
-	}
+  @ManyToMany(cascade = CascadeType.ALL)
+  private Set<Spellbook> spellbooks;
 
-	public void addSpellbook(Spellbook spellbook) {
-		spellbook.getWizards().add(this);
-		spellbooks.add(spellbook);
-	}
-	
-	@Override
-	public String toString() {
-		return name;
-	}	
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Set<Spellbook> getSpellbooks() {
+    return spellbooks;
+  }
+
+  public void setSpellbooks(Set<Spellbook> spellbooks) {
+    this.spellbooks = spellbooks;
+  }
+
+  public void addSpellbook(Spellbook spellbook) {
+    spellbook.getWizards().add(this);
+    spellbooks.add(spellbook);
+  }
+
+  @Override
+  public String toString() {
+    return name;
+  }
 }

@@ -7,5 +7,5 @@ package com.iluwatar.business.delegate;
  */
 public interface BusinessService {
 
-	void doProcessing();
+  void doProcessing();
 }

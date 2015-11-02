@@ -2,7 +2,7 @@ package com.iluwatar.monostate;
 
 /**
  * 
- * The Request class. A {@link Server} can handle an instance of a Request. 
+ * The Request class. A {@link Server} can handle an instance of a Request.
  * 
  */
 

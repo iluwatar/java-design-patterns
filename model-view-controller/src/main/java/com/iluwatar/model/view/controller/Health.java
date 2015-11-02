@@ -6,17 +6,17 @@ package com.iluwatar.model.view.controller;
  *
  */
 public enum Health {
-	
-	HEALTHY("healthy"), WOUNDED("wounded"), DEAD("dead");
-	
-	private String title;
-	
-	Health(String title) {
-		this.title = title;
-	}
 
-	@Override
-	public String toString() {
-		return title;
-	}
+  HEALTHY("healthy"), WOUNDED("wounded"), DEAD("dead");
+
+  private String title;
+
+  Health(String title) {
+    this.title = title;
+  }
+
+  @Override
+  public String toString() {
+    return title;
+  }
 }

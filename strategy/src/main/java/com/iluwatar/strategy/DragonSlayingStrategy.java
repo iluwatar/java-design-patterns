@@ -7,6 +7,6 @@ package com.iluwatar.strategy;
  */
 public interface DragonSlayingStrategy {
 
-	void execute();
+  void execute();
 
 }

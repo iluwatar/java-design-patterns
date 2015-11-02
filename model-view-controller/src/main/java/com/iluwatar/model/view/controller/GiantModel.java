@@ -6,43 +6,43 @@ package com.iluwatar.model.view.controller;
  *
  */
 public class GiantModel {
-	
-	private Health health;
-	private Fatigue fatigue;
-	private Nourishment nourishment;
 
-	GiantModel(Health health, Fatigue fatigue, Nourishment nourishment) {
-		this.health = health;
-		this.fatigue = fatigue;
-		this.nourishment = nourishment;	
-	}
+  private Health health;
+  private Fatigue fatigue;
+  private Nourishment nourishment;
 
-	public Health getHealth() {
-		return health;
-	}
+  GiantModel(Health health, Fatigue fatigue, Nourishment nourishment) {
+    this.health = health;
+    this.fatigue = fatigue;
+    this.nourishment = nourishment;
+  }
 
-	public void setHealth(Health health) {
-		this.health = health;
-	}
+  public Health getHealth() {
+    return health;
+  }
 
-	public Fatigue getFatigue() {
-		return fatigue;
-	}
+  public void setHealth(Health health) {
+    this.health = health;
+  }
 
-	public void setFatigue(Fatigue fatigue) {
-		this.fatigue = fatigue;
-	}
+  public Fatigue getFatigue() {
+    return fatigue;
+  }
 
-	public Nourishment getNourishment() {
-		return nourishment;
-	}
+  public void setFatigue(Fatigue fatigue) {
+    this.fatigue = fatigue;
+  }
 
-	public void setNourishment(Nourishment nourishment) {
-		this.nourishment = nourishment;
-	}
-	
-	@Override
-	public String toString() {
-		return String.format("The giant looks %s, %s and %s.", health, fatigue, nourishment);
-	}
+  public Nourishment getNourishment() {
+    return nourishment;
+  }
+
+  public void setNourishment(Nourishment nourishment) {
+    this.nourishment = nourishment;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("The giant looks %s, %s and %s.", health, fatigue, nourishment);
+  }
 }
