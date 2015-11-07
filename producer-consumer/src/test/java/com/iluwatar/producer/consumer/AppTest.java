@@ -1,4 +1,4 @@
-package com.iluwatar.poison.pill;
+package com.iluwatar.producer.consumer;
 
 import org.junit.Test;
 
