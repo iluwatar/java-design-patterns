@@ -1,6 +1,7 @@
 package com.iluwatar.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class App {
 	 */
 	public static void main(String[] args) {
 
-		CustomerDaoImpl customerDao = new CustomerDaoImpl(generateSampleCustomers());
+		CustomerDao customerDao = new CustomerDaoImpl(generateSampleCustomers());
 
 		System.out.println("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
 		System.out.println("customerDao.getCusterById(2): " + customerDao.getCusterById(2));
@@ -49,14 +50,9 @@ public class App {
 	 * @return list of customers
 	 */
 	public static List<Customer> generateSampleCustomers() {
-		Customer customer1 = new Customer(1, "Adam", "Adamson");
-		Customer customer2 = new Customer(2, "Bob", "Bobson");
-		Customer customer3 = new Customer(3, "Carl", "Carlson");
-
-		List<Customer> customers = new ArrayList<Customer>();
-		customers.add(customer1);
-		customers.add(customer2);
-		customers.add(customer3);
-		return customers;
+		return new ArrayList(Arrays.<Customer>asList(
+                new Customer(1, "Adam", "Adamson"),
+                new Customer(2, "Bob", "Bobson"),
+                new Customer(3, "Carl", "Carlson")));
 	}
 }
