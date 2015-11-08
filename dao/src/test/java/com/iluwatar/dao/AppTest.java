@@ -41,7 +41,7 @@ public class AppTest {
         assertEquals("Georgina", customer1.getFirstName());
         assertEquals("Jones", customer1.getLastName());
 
-        assertEquals(42, customerDao.getCusterById(42).getId());
+        assertEquals(42, customerDao.getCustomerById(42).getId());
 
         Customer customer2 = new Customer(44, "Alexis", "Berry");
         customerDao.addCustomer(customer2);
@@ -50,7 +50,7 @@ public class AppTest {
         customer2.setFirstName("Daniel");
         customer2.setLastName("Danielson");
         customerDao.updateCustomer(customer2);
-        Customer custerById = customerDao.getCusterById(44);
+        Customer custerById = customerDao.getCustomerById(44);
         assertEquals(44, custerById.getId());
         assertEquals("Daniel", custerById.getFirstName());
         assertEquals("Danielson", custerById.getLastName());
