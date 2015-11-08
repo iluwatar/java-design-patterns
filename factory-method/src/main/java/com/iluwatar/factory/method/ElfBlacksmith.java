@@ -7,8 +7,8 @@ package com.iluwatar.factory.method;
  */
 public class ElfBlacksmith implements Blacksmith {
 
-  public Weapon manufactureWeapon(WeaponType weaponType) {
-    return new ElfWeapon(weaponType);
-  }
+	public Weapon manufactureWeapon(WeaponType weaponType) {
+		return new ElfWeapon(weaponType);
+	}
 
 }

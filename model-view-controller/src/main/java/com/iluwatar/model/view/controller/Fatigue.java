@@ -7,16 +7,16 @@ package com.iluwatar.model.view.controller;
  */
 public enum Fatigue {
 
-  ALERT("alert"), TIRED("tired"), SLEEPING("sleeping");
+	ALERT("alert"), TIRED("tired"), SLEEPING("sleeping");
+	
+	private String title;
+	
+	Fatigue(String title) {
+		this.title = title;
+	}
 
-  private String title;
-
-  Fatigue(String title) {
-    this.title = title;
-  }
-
-  @Override
-  public String toString() {
-    return title;
-  }
+	@Override
+	public String toString() {
+		return title;
+	}	
 }

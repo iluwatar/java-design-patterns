@@ -24,8 +24,7 @@ public abstract class AbstractNioChannel {
 
   private final SelectableChannel channel;
   private final ChannelHandler handler;
-  private final Map<SelectableChannel, Queue<Object>> channelToPendingWrites =
-      new ConcurrentHashMap<>();
+  private final Map<SelectableChannel, Queue<Object>> channelToPendingWrites = new ConcurrentHashMap<>();
   private NioReactor reactor;
 
   /**

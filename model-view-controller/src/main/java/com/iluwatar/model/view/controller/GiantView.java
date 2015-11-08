@@ -7,7 +7,7 @@ package com.iluwatar.model.view.controller;
  */
 public class GiantView {
 
-  public void displayGiant(GiantModel giant) {
-    System.out.println(giant);
-  }
+	public void displayGiant(GiantModel giant) {
+		System.out.println(giant);
+	}
 }

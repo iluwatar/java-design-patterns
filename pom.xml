@@ -5,7 +5,7 @@
 
 	<groupId>com.iluwatar</groupId>
 	<artifactId>java-design-patterns</artifactId>
-	<version>1.8.0-SNAPSHOT</version>
+	<version>1.7.0</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -19,7 +19,6 @@
 		<jacoco.version>0.7.2.201409121644</jacoco.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<camel.version>2.15.3</camel.version>
-		<log4j.version>1.2.17</log4j.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -56,7 +55,6 @@
 		<module>execute-around</module>
 		<module>property</module>
 		<module>intercepting-filter</module>
-		<module>producer-consumer</module>
 		<module>poison-pill</module>
 		<module>lazy-loading</module>
 		<module>service-layer</module>
@@ -75,15 +73,13 @@
 		<module>front-controller</module>
 		<module>repository</module>
 		<module>async-method-invocation</module>
-                <module>monostate</module>
+	    	<module>business-delegate</module>
+    		<module>half-sync-half-async</module>
 		<module>step-builder</module>
-    	       <module>business-delegate</module>
-    	       <module>half-sync-half-async</module>
 		<module>layers</module>
 		<module>message-channel</module>
 		<module>fluentinterface</module>
 		<module>reactor</module>
-		<module>caching</module>
 	</modules>
 
 	<dependencyManagement>
@@ -128,11 +124,6 @@
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>${log4j.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

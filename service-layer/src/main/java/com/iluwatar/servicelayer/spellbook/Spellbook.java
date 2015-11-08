@@ -22,71 +22,71 @@ import com.iluwatar.servicelayer.wizard.Wizard;
  *
  */
 @Entity
-@Table(name = "SPELLBOOK")
+@Table(name="SPELLBOOK")
 public class Spellbook extends BaseEntity {
+	
+	public Spellbook() {
+		spells = new HashSet<Spell>();
+		wizards = new HashSet<Wizard>();
+	}
+	
+	public Spellbook(String name) {
+		this();
+		this.name = name;
+	}
 
-  public Spellbook() {
-    spells = new HashSet<Spell>();
-    wizards = new HashSet<Wizard>();
-  }
+	@Id
+	@GeneratedValue
+	@Column(name = "SPELLBOOK_ID")
+	private Long id;
 
-  public Spellbook(String name) {
-    this();
-    this.name = name;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  @Id
-  @GeneratedValue
-  @Column(name = "SPELLBOOK_ID")
-  private Long id;
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	private String name;
 
-  public Long getId() {
-    return id;
-  }
+	@ManyToMany(mappedBy = "spellbooks")
+	private Set<Wizard> wizards;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	@OneToMany(mappedBy = "spellbook", orphanRemoval = true, cascade = CascadeType.ALL)
+	private Set<Spell> spells;
+	
+	public String getName() {
+		return name;
+	}
 
-  private String name;
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @ManyToMany(mappedBy = "spellbooks")
-  private Set<Wizard> wizards;
+	public Set<Wizard> getWizards() {
+		return wizards;
+	}
 
-  @OneToMany(mappedBy = "spellbook", orphanRemoval = true, cascade = CascadeType.ALL)
-  private Set<Spell> spells;
+	public void setWizards(Set<Wizard> wizards) {
+		this.wizards = wizards;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public Set<Spell> getSpells() {
+		return spells;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setSpells(Set<Spell> spells) {
+		this.spells = spells;
+	}
 
-  public Set<Wizard> getWizards() {
-    return wizards;
-  }
-
-  public void setWizards(Set<Wizard> wizards) {
-    this.wizards = wizards;
-  }
-
-  public Set<Spell> getSpells() {
-    return spells;
-  }
-
-  public void setSpells(Set<Spell> spells) {
-    this.spells = spells;
-  }
-
-  public void addSpell(Spell spell) {
-    spell.setSpellbook(this);
-    spells.add(spell);
-  }
-
-  @Override
-  public String toString() {
-    return name;
-  }
+	public void addSpell(Spell spell) {
+		spell.setSpellbook(this);
+		spells.add(spell);
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}	
 }

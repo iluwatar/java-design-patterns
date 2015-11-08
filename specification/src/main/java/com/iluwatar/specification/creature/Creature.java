@@ -11,11 +11,11 @@ import com.iluwatar.specification.property.Size;
  */
 public interface Creature {
 
-  String getName();
-
-  Size getSize();
-
-  Movement getMovement();
-
-  Color getColor();
+	String getName();
+	
+	Size getSize();
+	
+	Movement getMovement();
+	
+	Color getColor();
 }

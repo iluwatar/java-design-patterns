@@ -7,14 +7,14 @@ package com.iluwatar.intercepting.filter;
  *
  */
 public class OrderFilter extends AbstractFilter {
-
-  @Override
-  public String execute(Order order) {
-    String result = super.execute(order);
-    if (order.getOrder() == null || order.getOrder().isEmpty()) {
-      return result + "Invalid order! ";
-    } else {
-      return result;
-    }
-  }
+	
+	@Override
+	public String execute(Order order) {
+		String result = super.execute(order);
+		if (order.getOrder() == null || order.getOrder().isEmpty()) {
+			return result + "Invalid order! ";
+		} else {
+			return result;
+		}
+	}
 }

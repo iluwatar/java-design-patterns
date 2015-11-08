@@ -10,8 +10,6 @@ tags:
  - Difficulty-Intermediate
 ---
 
-**Also known as:** Surrogate
-
 **Intent:** Provide a surrogate or placeholder for another object to control
 access to it.
 

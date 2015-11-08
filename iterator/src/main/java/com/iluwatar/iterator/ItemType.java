@@ -7,6 +7,6 @@ package com.iluwatar.iterator;
  */
 public enum ItemType {
 
-  ANY, WEAPON, RING, POTION
+	ANY, WEAPON, RING, POTION
 
 }

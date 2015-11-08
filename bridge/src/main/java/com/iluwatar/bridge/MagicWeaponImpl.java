@@ -7,10 +7,10 @@ package com.iluwatar.bridge;
  */
 public abstract class MagicWeaponImpl {
 
-  public abstract void wieldImp();
+	public abstract void wieldImp();
 
-  public abstract void swingImp();
+	public abstract void swingImp();
 
-  public abstract void unwieldImp();
+	public abstract void unwieldImp();
 
 }

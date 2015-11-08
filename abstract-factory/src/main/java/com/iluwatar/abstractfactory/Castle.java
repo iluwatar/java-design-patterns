@@ -7,5 +7,5 @@ package com.iluwatar.abstractfactory;
  */
 public interface Castle {
 
-  String getDescription();
+	String getDescription();
 }

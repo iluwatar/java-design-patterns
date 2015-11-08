@@ -11,15 +11,13 @@ import java.util.function.Predicate;
 import static java.lang.String.valueOf;
 
 /**
- * The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API.
- * Those interfaces tend to mimic domain specific languages, so they can nearly be read as human
- * languages.
+ * The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API. Those
+ * interfaces tend to mimic domain specific languages, so they can nearly be read as human languages.
  * <p>
  * In this example two implementations of a {@link FluentIterable} interface are given. The
- * {@link SimpleFluentIterable} evaluates eagerly and would be too costly for real world
- * applications. The {@link LazyFluentIterable} is evaluated on termination. Their usage is
- * demonstrated with a simple number list that is filtered, transformed and collected. The result is
- * printed afterwards.
+ * {@link SimpleFluentIterable} evaluates eagerly and would be too costly for real world applications. 
+ * The {@link LazyFluentIterable} is evaluated on termination. Their usage is demonstrated with a 
+ * simple number list that is filtered, transformed and collected. The result is printed afterwards.
  * 
  */
 public class App {
@@ -27,9 +25,11 @@ public class App {
   public static void main(String[] args) {
 
     List<Integer> integerList = new ArrayList<>();
-    integerList.addAll(Arrays.asList(1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2,
-        -68, 45));
-
+    integerList.addAll(Arrays.asList(
+    		1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97,
+    		45, 23, 2, -68, 45
+    ));
+    
     prettyPrint("The initial list contains: ", integerList);
 
     List<Integer> firstFiveNegatives =

@@ -19,50 +19,50 @@ import javax.persistence.OneToOne;
 @Entity
 public class Cake {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-  @OneToOne(cascade = CascadeType.REMOVE)
-  private CakeTopping topping;
+	@OneToOne(cascade=CascadeType.REMOVE)
+	private CakeTopping topping;
+	
+	@OneToMany(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	private Set<CakeLayer> layers;
+	
+	public Cake() {		
+		setLayers(new HashSet<>());
+	}
 
-  @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-  private Set<CakeLayer> layers;
+	public Long getId() {
+		return id;
+	}
 
-  public Cake() {
-    setLayers(new HashSet<>());
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public CakeTopping getTopping() {
+		return topping;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setTopping(CakeTopping topping) {
+		this.topping = topping;
+	}
 
-  public CakeTopping getTopping() {
-    return topping;
-  }
+	public Set<CakeLayer> getLayers() {
+		return layers;
+	}
 
-  public void setTopping(CakeTopping topping) {
-    this.topping = topping;
-  }
-
-  public Set<CakeLayer> getLayers() {
-    return layers;
-  }
-
-  public void setLayers(Set<CakeLayer> layers) {
-    this.layers = layers;
-  }
-
-  public void addLayer(CakeLayer layer) {
-    this.layers.add(layer);
-  }
-
-  @Override
-  public String toString() {
-    return String.format("id=%s topping=%s layers=%s", id, topping, layers.toString());
-  }
+	public void setLayers(Set<CakeLayer> layers) {
+		this.layers = layers;
+	}
+	
+	public void addLayer(CakeLayer layer) {
+		this.layers.add(layer);
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("id=%s topping=%s layers=%s", id, topping, layers.toString());
+	}	
 }

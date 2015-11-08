@@ -23,16 +23,10 @@ are familiar with the patterns.
 
 # Getting started
 
-Before you dive into the material, you should be familiar with various
-[Programming/Software Design Principles](http://webpro.github.io/programming-principles/).
+Before you dive into the material, you should be familiar with various 
+[Programming/Software Design Principles](http://webpro.github.io/programming-principles/). 
 
-All designs should be as simple as possible. You should start with KISS, YAGNI,
-and Do The Simplest Thing That Could Possibly Work principles. Complexity and
-patterns should only be introduced when they are needed for practical
-extensibility.
-
-Once you are familiar with these concepts you can start drilling down into
-patterns by any of the following approaches
+Once you are familiar with these concepts you can start drilling down into patterns by any of the following approaches
 
  - Using difficulty tags, `Difficulty-Beginner`, `Difficulty-Intermediate` & `Difficulty-Expert`.
  - Using pattern categories, `Creational`, `Behavioral` and others.

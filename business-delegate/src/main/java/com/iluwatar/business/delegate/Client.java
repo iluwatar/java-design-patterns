@@ -7,13 +7,13 @@ package com.iluwatar.business.delegate;
  */
 public class Client {
 
-  private BusinessDelegate businessDelegate;
+	private BusinessDelegate businessDelegate;
 
-  public Client(BusinessDelegate businessDelegate) {
-    this.businessDelegate = businessDelegate;
-  }
+	public Client(BusinessDelegate businessDelegate) {
+		this.businessDelegate = businessDelegate;
+	}
 
-  public void doTask() {
-    businessDelegate.doTask();
-  }
+	public void doTask() {
+		businessDelegate.doTask();
+	}
 }

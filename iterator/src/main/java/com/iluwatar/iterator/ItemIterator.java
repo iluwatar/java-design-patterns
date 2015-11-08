@@ -7,7 +7,7 @@ package com.iluwatar.iterator;
  */
 public interface ItemIterator {
 
-  boolean hasNext();
+	boolean hasNext();
 
-  Item next();
+	Item next();
 }

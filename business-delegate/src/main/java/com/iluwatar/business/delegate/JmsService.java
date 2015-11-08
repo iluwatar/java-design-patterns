@@ -7,8 +7,8 @@ package com.iluwatar.business.delegate;
  */
 public class JmsService implements BusinessService {
 
-  @Override
-  public void doProcessing() {
-    System.out.println("JmsService is now processing");
-  }
+	@Override
+	public void doProcessing() {
+		System.out.println("JmsService is now processing");
+	}
 }

@@ -7,10 +7,10 @@ package com.iluwatar.prototype;
  */
 public interface HeroFactory {
 
-  Mage createMage();
+	Mage createMage();
 
-  Warlord createWarlord();
+	Warlord createWarlord();
 
-  Beast createBeast();
+	Beast createBeast();
 
 }

@@ -7,16 +7,16 @@ package com.iluwatar.builder;
  */
 public enum Armor {
 
-  CLOTHES("clothes"), LEATHER("leather"), CHAIN_MAIL("chain mail"), PLATE_MAIL("plate mail");
+	CLOTHES("clothes"), LEATHER("leather"), CHAIN_MAIL("chain mail"), PLATE_MAIL("plate mail");
 
-  private String title;
+    private String title;
 
-  Armor(String title) {
-    this.title = title;
-  }
+    Armor(String title) {
+        this.title = title;
+    }
 
-  @Override
-  public String toString() {
-    return title;
-  }
+    @Override
+	public String toString() {
+		return title;
+	}
 }

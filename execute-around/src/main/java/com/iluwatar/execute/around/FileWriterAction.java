@@ -10,6 +10,6 @@ import java.io.IOException;
  */
 public interface FileWriterAction {
 
-  void writeFile(FileWriter writer) throws IOException;
-
+	void writeFile(FileWriter writer) throws IOException;
+	
 }

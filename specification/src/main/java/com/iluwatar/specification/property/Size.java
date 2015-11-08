@@ -7,16 +7,16 @@ package com.iluwatar.specification.property;
  */
 public enum Size {
 
-  SMALL("small"), NORMAL("normal"), LARGE("large");
+    SMALL("small"), NORMAL("normal"), LARGE("large");
+    
+    private String title;
 
-  private String title;
+    Size(String title) {
+        this.title = title;
+    }
 
-  Size(String title) {
-    this.title = title;
-  }
-
-  @Override
-  public String toString() {
-    return title;
-  }
+    @Override
+	public String toString() {
+        return title;
+	}
 }

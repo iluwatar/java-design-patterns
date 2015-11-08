@@ -11,7 +11,7 @@ import com.iluwatar.specification.property.Size;
  */
 public class KillerBee extends AbstractCreature {
 
-  public KillerBee() {
-    super("KillerBee", Size.SMALL, Movement.FLYING, Color.LIGHT);
-  }
+	public KillerBee() {
+		super("KillerBee", Size.SMALL, Movement.FLYING, Color.LIGHT);
+	}
 }

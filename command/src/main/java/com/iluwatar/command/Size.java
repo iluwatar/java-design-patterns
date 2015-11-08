@@ -7,16 +7,16 @@ package com.iluwatar.command;
  */
 public enum Size {
 
-  SMALL("small"), NORMAL("normal"), LARGE("large"), UNDEFINED("");
+    SMALL("small"), NORMAL("normal"), LARGE("large"), UNDEFINED("");
+    
+    private String title;
 
-  private String title;
+    Size(String title) {
+        this.title = title;
+    }
 
-  Size(String title) {
-    this.title = title;
-  }
-
-  @Override
-  public String toString() {
-    return title;
-  }
+    @Override
+	public String toString() {
+        return title;
+	}
 }

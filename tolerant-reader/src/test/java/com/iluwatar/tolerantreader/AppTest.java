@@ -15,19 +15,19 @@ import com.iluwatar.tolerantreader.App;
  *
  */
 public class AppTest {
-
-  @Test
-  public void test() throws ClassNotFoundException, IOException {
-    String[] args = {};
-    App.main(args);
-  }
-
-  @Before
-  @After
-  public void cleanup() {
-    File file1 = new File("fish1.out");
-    file1.delete();
-    File file2 = new File("fish2.out");
-    file2.delete();
-  }
+	
+	@Test
+	public void test() throws ClassNotFoundException, IOException {
+		String[] args = {};
+		App.main(args);
+	}
+	
+	@Before
+	@After
+	public void cleanup() {
+		File file1 = new File("fish1.out");
+		file1.delete();
+		File file2 = new File("fish2.out");
+		file2.delete();
+	}	
 }

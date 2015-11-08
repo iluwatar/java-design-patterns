@@ -6,7 +6,7 @@ package com.iluwatar.dependency.injection;
  *
  */
 public interface Wizard {
-
-  void smoke();
+	
+	void smoke();
 
 }

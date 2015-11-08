@@ -9,34 +9,36 @@ package com.iluwatar.nullobject;
  */
 public class NullNode implements Node {
 
-  private static NullNode instance = new NullNode();
+	private static NullNode instance = new NullNode();
+	
+	private NullNode() {
+	}
+	
+	public static NullNode getInstance() {
+		return instance;
+	}
+	
+	@Override
+	public int getTreeSize() {
+		return 0;
+	}
 
-  private NullNode() {}
+	@Override
+	public Node getLeft() {
+		return null;
+	}
 
-  public static NullNode getInstance() {
-    return instance;
-  }
+	@Override
+	public Node getRight() {
+		return null;
+	}
 
-  @Override
-  public int getTreeSize() {
-    return 0;
-  }
+	@Override
+	public String getName() {
+		return null;
+	}
 
-  @Override
-  public Node getLeft() {
-    return null;
-  }
-
-  @Override
-  public Node getRight() {
-    return null;
-  }
-
-  @Override
-  public String getName() {
-    return null;
-  }
-
-  @Override
-  public void walk() {}
+	@Override
+	public void walk() {
+	}
 }
