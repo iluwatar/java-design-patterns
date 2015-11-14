@@ -48,6 +48,6 @@ public class App {
   }
 
   private static void waiting() throws Exception {
-    Thread.sleep(3000);
+    Thread.sleep(2500);
   }
 }
