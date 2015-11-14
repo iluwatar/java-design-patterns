@@ -19,7 +19,7 @@ public class BallItem extends GameItem {
   @Override
   public void doDraw() {
 
-    System.out.println("draw");
+    System.out.println("doDraw");
   }
 
   public void move() {
