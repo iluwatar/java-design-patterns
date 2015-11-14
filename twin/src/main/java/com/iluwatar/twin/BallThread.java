@@ -13,13 +13,15 @@ public class BallThread extends Thread {
 
   private volatile boolean isSuspended;
 
+  private volatile boolean isRunning = true;
+
   public void setTwin(BallItem twin) {
     this.twin = twin;
   }
 
   public void run() {
 
-    while (true) {
+    while (isRunning) {
       while (!isSuspended) {
         twin.draw();
         twin.move();
@@ -41,6 +43,11 @@ public class BallThread extends Thread {
   public void resumeMe() {
     isSuspended = false;
     System.out.println("Begin to resume BallThread");
+  }
+
+  public void stopMe() {
+    this.isRunning = false;
+    this.isSuspended = true;
   }
 }
 

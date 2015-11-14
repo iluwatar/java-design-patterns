@@ -45,7 +45,7 @@ public class App {
 
     waiting();
 
-    System.exit(0);
+    ballThread.stopMe();
   }
 
   private static void waiting() throws Exception {
