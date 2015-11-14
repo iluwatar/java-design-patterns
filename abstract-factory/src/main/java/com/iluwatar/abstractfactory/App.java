@@ -23,6 +23,7 @@ public class App {
   private Castle castle;
   private Army army;
 
+
   /**
    * Creates kingdom
    * 
@@ -77,4 +78,33 @@ public class App {
   private void setArmy(final Army army) {
     this.army = army;
   }
+  
+
+  /**
+   * Program entry point
+   * 
+   * @param args command line args
+   */
+  public static void main(String[] args) {
+	  
+	  App app = new App();
+	  
+	  System.out.println("Elf Kingdom");
+	  KingdomFactory elfKingdomFactory;
+	  elfKingdomFactory = app.getElfKingdomFactory();
+	  app.createKingdom(elfKingdomFactory);
+	  System.out.println(app.getArmy().getDescription());
+	  System.out.println(app.getCastle().getDescription());
+	  System.out.println(app.getKing().getDescription());
+	
+	  System.out.println("\nOrc Kingdom");
+	  KingdomFactory orcKingdomFactory;
+	  orcKingdomFactory = app.getOrcKingdomFactory();
+	  app.createKingdom(orcKingdomFactory);
+	  System.out.println(app.getArmy().getDescription());
+	  System.out.println(app.getCastle().getDescription());
+	  System.out.println(app.getKing().getDescription());
+	  
+  }
+  
 }
