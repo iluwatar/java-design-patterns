@@ -6,9 +6,8 @@ package com.iluwatar.twin;
  * 
  * <p>
  * In this example, there is a ball game, a ball needs to subclass {@link GameItem} which provide
- * some common method like draw, click and collideWith(to check if it collide with other game item).
- * Moreover, it needs to subclass {@link Thread} as ball is a moving item (we use {@link Thread}
- * instead of implements {@link Runnable} for example only)
+ * some common method like draw and click. Moreover, it needs to subclass {@link Thread} as ball is
+ * a moving item (we use {@link Thread} instead of implements {@link Runnable} for example only)
  * <p>
  * Threre is scenario, when user click the ball, the ball will stop, when user click it gain, it
  * will resume to move. We create two class, ons is {@link BallItem} which subclass {@link GameItem}

@@ -17,23 +17,13 @@ public class BallItem extends GameItem {
   }
 
   @Override
-  public void draw() {
+  public void doDraw() {
 
     System.out.println("draw");
   }
 
   public void move() {
     System.out.println("move");
-  }
-
-  @Override
-  public boolean intersects(GameItem other) {
-    return false;
-  }
-
-  @Override
-  public boolean collideWith(GameItem other) {
-    return false;
   }
 
   @Override

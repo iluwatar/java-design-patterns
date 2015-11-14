@@ -7,26 +7,19 @@ package com.iluwatar.twin;
  */
 public abstract class GameItem {
 
-  public abstract void draw();
-
-  public abstract boolean intersects(GameItem other);
-
-  public abstract boolean collideWith(GameItem other);
-
   /**
-   * Template method, check whether this game item is collide with other game item
+   * Template method, do some common logic before draw
    * 
    * @param other
    * @return
    */
-  public boolean check(GameItem other) {
-
-    if (intersects(other)) {
-      return collideWith(other);
-    }
-
-    return false;
+  public void draw() {
+    System.out.println("draw");
+    doDraw();
   }
+
+  public abstract void doDraw();
+
 
   public abstract void click();
 }
