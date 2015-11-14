@@ -46,6 +46,7 @@
 		<module>state</module>
 		<module>strategy</module>
 		<module>template-method</module>
+		<module>twin</module>
 		<module>visitor</module>
 		<module>double-checked-locking</module>
 		<module>servant</module>
