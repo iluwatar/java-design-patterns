@@ -18,3 +18,7 @@ inheritance in java
 
 * to simulate multiple inheritance in a language that does not support this feature.
 * to avoid certain problems of multiple inheritance such as name clashes.
+
+**Credits:**
+
+* [Twin – A Design Pattern for Modeling Multiple Inheritance](http://www.ssw.uni-linz.ac.at/Research/Papers/Moe99/Paper.pdf)
