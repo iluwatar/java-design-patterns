@@ -10,10 +10,10 @@ import com.iluwatar.model.view.controller.App;
  *
  */
 public class AppTest {
-	
-	@Test
-	public void test() {
-		String[] args = {};
-		App.main(args);
-	}
+
+  @Test
+  public void test() {
+    String[] args = {};
+    App.main(args);
+  }
 }

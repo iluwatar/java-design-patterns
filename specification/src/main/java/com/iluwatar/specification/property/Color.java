@@ -7,16 +7,16 @@ package com.iluwatar.specification.property;
  */
 public enum Color {
 
-    DARK("dark"), LIGHT("light"), GREEN("green"), RED("red");
-    
-    private String title;
+  DARK("dark"), LIGHT("light"), GREEN("green"), RED("red");
 
-    Color(String title) {
-        this.title = title;
-    }
+  private String title;
 
-    @Override
-	public String toString() {
-        return title;
-	}		
+  Color(String title) {
+    this.title = title;
+  }
+
+  @Override
+  public String toString() {
+    return title;
+  }
 }

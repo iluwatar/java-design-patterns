@@ -14,7 +14,7 @@ public class CustomerDaoImplTest {
 
   private CustomerDaoImpl impl;
   private List<Customer> customers;
-  private static final Customer CUSTOMER = new Customer(1, "Freddy", "Kruger");
+  private static final Customer CUSTOMER = new Customer(1, "Freddy", "Krueger");
 
   @Before
   public void setUp() {

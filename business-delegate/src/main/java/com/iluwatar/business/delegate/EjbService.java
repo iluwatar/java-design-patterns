@@ -7,8 +7,8 @@ package com.iluwatar.business.delegate;
  */
 public class EjbService implements BusinessService {
 
-	@Override
-	public void doProcessing() {
-		System.out.println("EjbService is now processing");
-	}
+  @Override
+  public void doProcessing() {
+    System.out.println("EjbService is now processing");
+  }
 }

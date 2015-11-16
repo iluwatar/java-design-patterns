@@ -10,26 +10,26 @@ import java.util.List;
  */
 public abstract class EventEmitter {
 
-	private List<EventObserver> observers;
+  private List<EventObserver> observers;
 
-	public EventEmitter() {
-		observers = new LinkedList<>();
-	}
+  public EventEmitter() {
+    observers = new LinkedList<>();
+  }
 
-	public EventEmitter(EventObserver obs) {
-		this();
-		registerObserver(obs);
-	}
-	
-	public void registerObserver(EventObserver obs) {
-		observers.add(obs);
-	}
-	
-	protected void notifyObservers(Event e) {
-		for (EventObserver obs: observers) {
-			obs.onEvent(e);
-		}
-	}
-	
-	public abstract void timePasses(Weekday day);
+  public EventEmitter(EventObserver obs) {
+    this();
+    registerObserver(obs);
+  }
+
+  public void registerObserver(EventObserver obs) {
+    observers.add(obs);
+  }
+
+  protected void notifyObservers(Event e) {
+    for (EventObserver obs : observers) {
+      obs.onEvent(e);
+    }
+  }
+
+  public abstract void timePasses(Weekday day);
 }

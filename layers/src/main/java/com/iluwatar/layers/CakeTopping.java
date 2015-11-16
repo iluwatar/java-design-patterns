@@ -14,59 +14,58 @@ import javax.persistence.OneToOne;
 @Entity
 public class CakeTopping {
 
-	@Id
-	@GeneratedValue
-	private Long id;
-	
-	private String name;
-	
-	private int calories;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Cake cake;
-	
-	public CakeTopping() {
-	}
-	
-	public CakeTopping(String name, int calories) {
-		this.setName(name);
-		this.setCalories(calories);
-	}
+  @Id
+  @GeneratedValue
+  private Long id;
 
-	public Long getId() {
-		return id;
-	}
+  private String name;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  private int calories;
 
-	public String getName() {
-		return name;
-	}
+  @OneToOne(cascade = CascadeType.ALL)
+  private Cake cake;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public CakeTopping() {}
 
-	public int getCalories() {
-		return calories;
-	}
+  public CakeTopping(String name, int calories) {
+    this.setName(name);
+    this.setCalories(calories);
+  }
 
-	public void setCalories(int calories) {
-		this.calories = calories;
-	}
-	
-	@Override
-	public String toString() {
-		return String.format("id=%s name=%s calories=%d", name, calories);
-	}
+  public Long getId() {
+    return id;
+  }
 
-	public Cake getCake() {
-		return cake;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public void setCake(Cake cake) {
-		this.cake = cake;
-	}
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getCalories() {
+    return calories;
+  }
+
+  public void setCalories(int calories) {
+    this.calories = calories;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("id=%s name=%s calories=%d", name, calories);
+  }
+
+  public Cake getCake() {
+    return cake;
+  }
+
+  public void setCake(Cake cake) {
+    this.cake = cake;
+  }
 }

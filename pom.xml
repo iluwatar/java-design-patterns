@@ -5,7 +5,7 @@
 
 	<groupId>com.iluwatar</groupId>
 	<artifactId>java-design-patterns</artifactId>
-	<version>1.7.0</version>
+	<version>1.8.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -56,6 +56,7 @@
 		<module>execute-around</module>
 		<module>property</module>
 		<module>intercepting-filter</module>
+		<module>producer-consumer</module>
 		<module>poison-pill</module>
 		<module>lazy-loading</module>
 		<module>service-layer</module>
@@ -82,6 +83,7 @@
 		<module>message-channel</module>
 		<module>fluentinterface</module>
 		<module>reactor</module>
+		<module>caching</module>
 	</modules>
 
 	<dependencyManagement>
