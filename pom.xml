@@ -68,6 +68,7 @@
 		<module>multiton</module>
 		<module>resource-acquisition-is-initialization</module>
 		<module>thread-pool</module>
+		<module>twin</module>
 		<module>private-class-data</module>
 		<module>object-pool</module>
 		<module>dependency-injection</module>
