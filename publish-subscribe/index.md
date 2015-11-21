@@ -8,7 +8,7 @@ tags: Java
 ---
 
 **Intent:** When applications communicate using a messaging system they do it by using logical addresses
-of the system, so called Publish Subscribe Channel. The publisher broadcasts a message to all registered Subscriber.
+of the system, so called Publish Subscribe Channel. The publisher broadcasts a message to all registered subscribers.
 
 ![alt text](./etc/publish-subscribe.png "Publish Subscribe Channel")
 
