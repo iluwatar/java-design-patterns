@@ -85,6 +85,7 @@
 		<module>fluentinterface</module>
 		<module>reactor</module>
 		<module>caching</module>
+		<module>publish-subscribe</module>
 	</modules>
 
 	<dependencyManagement>
