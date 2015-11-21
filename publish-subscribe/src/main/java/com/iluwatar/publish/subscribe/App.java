@@ -1,29 +1,27 @@
 package com.iluwatar.publish.subscribe;
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
 /**
  * 
- * When applications communicate with each other using a messaging system they first need to
- * establish a communication channel that will carry the data. Message Channel decouples Message
- * producers (publisher) and consumers (subscriber).
+ * There are well-established patterns for implementing broadcasting. The Observer pattern describes
+ * the need to decouple observers from their subject (that is, the originator of the event) so that
+ * the subject can easily provide event notification to all interested observers no matter how many
+ * observers there are (even none). The Publish-Subscribe pattern expands upon Observer by adding
+ * the notion of an event channel for communicating event notifications.
  * <p>
- * The sending application doesn't necessarily know what particular applications will end up
- * retrieving it, but it can be assured that the application that retrieves the information is
- * interested in that information. This is because the messaging system has different Message
- * Channels for different types of information the applications want to communicate. When an
- * application sends information, it doesn't randomly add the information to any channel available;
- * it adds it to a channel whose specific purpose is to communicate that sort of information.
- * Likewise, an application that wants to receive particular information doesn't pull info off some
- * random channel; it selects what channel to get information from based on what type of information
- * it wants.
+ * A Publish-Subscribe Channel works like this: It has one input channel that splits into multiple
+ * output channels, one for each subscriber. When an event is published into the channel, the
+ * Publish-Subscribe Channel delivers a copy of the message to each of the output channels. Each
+ * output end of the channel has only one subscriber, which is allowed to consume a message only
+ * once. In this way, each subscriber gets the message only once, and consumed copies disappear from
+ * their channels.
  * <p>
- * In this example we use Apache Camel to establish different Message Channels. The first one reads
- * from standard input and delivers messages to Direct endpoints (Publish; Broadcast). The other
- * Message Channels are established from the Direct component to different Endpoints (Subscriber).
- * No actual messages are sent, only the established routes are printed to standard output.
+ * In this example we use Apache Camel to establish a Publish-Subscribe Channel from "direct-origin"
+ * to "mock:foo", "mock:bar" and "stream:out".
  * 
  */
 public class App {
@@ -37,18 +35,16 @@ public class App {
    */
   public static void main(String[] args) throws Exception {
     CamelContext context = new DefaultCamelContext();
-
     context.addRoutes(new RouteBuilder() {
-
       @Override
       public void configure() throws Exception {
-        from("stream:in").multicast().to("direct:greetings1", "direct:greetings2",
-            "direct:greetings3");
+        from("direct:origin").multicast().to("mock:foo", "mock:bar", "stream:out");
       }
     });
-
+    ProducerTemplate template = context.createProducerTemplate();
     context.start();
     context.getRoutes().stream().forEach((r) -> System.out.println(r));
+    template.sendBody("direct:origin", "Hello from origin");
     context.stop();
   }
 }
