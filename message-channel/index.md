@@ -4,7 +4,9 @@ title: Message Channel
 folder: message-channel
 permalink: /patterns/message-channel/
 categories: Integration
-tags: Java
+tags: 
+ - Java
+ - EIP
 ---
 
 **Intent:** When two applications communicate using a messaging system they do it by using logical addresses

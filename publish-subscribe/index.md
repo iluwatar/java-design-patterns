@@ -4,7 +4,9 @@ title: Publish Subscribe
 folder: publish-subscribe
 permalink: /patterns/publish-subscribe/
 categories: Integration
-tags: Java
+tags: 
+ - Java
+ - EIP
 ---
 
 **Intent:** Broadcast messages from sender to all the interested receivers.
