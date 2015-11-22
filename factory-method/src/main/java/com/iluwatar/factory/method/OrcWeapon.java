@@ -1,9 +1,7 @@
 package com.iluwatar.factory.method;
 
 /**
- * 
- * OrcWeapon
- *
+ * OrcWeapon.
  */
 public class OrcWeapon implements Weapon {
 
@@ -16,5 +14,10 @@ public class OrcWeapon implements Weapon {
   @Override
   public String toString() {
     return "Orcish " + weaponType;
+  }
+
+  @Override
+  public WeaponType getWeaponType() {
+    return weaponType;
   }
 }
