@@ -1,6 +1,5 @@
 package com.iluwatar.eda.advanced.handler;
 
-import com.iluwatar.eda.advanced.events.Event;
 import com.iluwatar.eda.advanced.events.UserUpdatedEvent;
 import com.iluwatar.eda.advanced.framework.Channel;
 
