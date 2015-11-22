@@ -1,4 +1,4 @@
-package com.iluwatar.eda.advanced;
+package com.iluwatar.eda.advanced.framework;
 
 
 public interface Message {
