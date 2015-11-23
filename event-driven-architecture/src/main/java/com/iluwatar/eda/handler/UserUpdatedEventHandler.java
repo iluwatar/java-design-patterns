@@ -1,8 +1,11 @@
-package com.iluwatar.eda.advanced.handler;
+package com.iluwatar.eda.handler;
 
-import com.iluwatar.eda.advanced.events.UserUpdatedEvent;
-import com.iluwatar.eda.advanced.framework.Channel;
+import com.iluwatar.eda.event.UserUpdatedEvent;
+import com.iluwatar.eda.framework.Channel;
 
+/**
+ * Handles the {@link UserUpdatedEvent} message
+ */
 public class UserUpdatedEventHandler implements Channel<UserUpdatedEvent> {
 
     public void dispatch(UserUpdatedEvent message) {

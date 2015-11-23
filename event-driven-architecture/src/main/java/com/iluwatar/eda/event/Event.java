@@ -1,6 +1,6 @@
-package com.iluwatar.eda.advanced.events;
+package com.iluwatar.eda.event;
 
-import com.iluwatar.eda.advanced.framework.Message;
+import com.iluwatar.eda.framework.Message;
 
 public class Event implements Message {
     public Class<? extends Message> getType() {

@@ -16,7 +16,7 @@ permalink: /patterns/event-driven-architecture
 
 **Real world examples:**
 
-* A Loan Application has been accepted/rejected (commercial business).
+* A Loan Application has been accepted/rejected (Commercial Business).
 * A new Rostering Schedule is ready for distribution to all crew (Airline Management System).
 * An Illegal Trade Pattern has been detected (Trading Fraud Detection System).
 * A simulated car has hits another simulated car (Commercial Racing Game).
@@ -29,3 +29,5 @@ permalink: /patterns/event-driven-architecture
 * [Event-driven architecture - Wikipedia](http://www.computerweekly.com/feature/Write-through-write-around-write-back-Cache-explained)
 * [Fundamental Components of an Event-Driven Architecture](http://giocc.com/fundamental-components-of-an-event-driven-architecture.html)
 * [Real World Applications/Event Driven Applications](https://wiki.haskell.org/Real_World_Applications/Event_Driven_Applications)
+* [Event-driven architecture definition](http://searchsoa.techtarget.com/definition/event-driven-architecture)
+*

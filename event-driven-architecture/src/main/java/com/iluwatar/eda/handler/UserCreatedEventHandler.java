@@ -1,10 +1,10 @@
-package com.iluwatar.eda.advanced.handler;
+package com.iluwatar.eda.handler;
 
-import com.iluwatar.eda.advanced.events.UserCreatedEvent;
-import com.iluwatar.eda.advanced.framework.Channel;
+import com.iluwatar.eda.event.UserCreatedEvent;
+import com.iluwatar.eda.framework.Channel;
 
 /**
- * @author cfarrugia
+ * Handles the {@link UserCreatedEvent} message
  */
 public class UserCreatedEventHandler implements Channel<UserCreatedEvent> {
 
