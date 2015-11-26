@@ -1,17 +1,31 @@
 package com.iluwatar.business.delegate;
 
 /**
- * 
- * Class for performing service lookups
- *
+ * Class for performing service lookups.
  */
 public class BusinessLookup {
 
+  private EjbService ejbService;
+
+  private JmsService jmsService;
+
+  /**
+   * @param serviceType Type of service instance to be returned.
+   * @return Service instance.
+   */
   public BusinessService getBusinessService(ServiceType serviceType) {
     if (serviceType.equals(ServiceType.EJB)) {
-      return new EjbService();
+      return ejbService;
     } else {
-      return new JmsService();
+      return jmsService;
     }
+  }
+
+  public void setJmsService(JmsService jmsService) {
+    this.jmsService = jmsService;
+  }
+
+  public void setEjbService(EjbService ejbService) {
+    this.ejbService = ejbService;
   }
 }

@@ -1,9 +1,7 @@
 package com.iluwatar.factory.method;
 
 /**
- * 
- * ElfWeapon
- *
+ * ElfWeapon.
  */
 public class ElfWeapon implements Weapon {
 
@@ -16,5 +14,10 @@ public class ElfWeapon implements Weapon {
   @Override
   public String toString() {
     return "Elven " + weaponType;
+  }
+
+  @Override
+  public WeaponType getWeaponType() {
+    return weaponType;
   }
 }
