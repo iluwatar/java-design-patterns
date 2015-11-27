@@ -25,3 +25,9 @@ querying is utilized.
 **Real world examples:** 
 
 * [Spring Data](http://projects.spring.io/spring-data/)
+
+**Credits:**
+
+* [Don’t use DAO, use Repository](http://thinkinginobjects.com/2012/08/26/dont-use-dao-use-repository/)
+* [Advanced Spring Data JPA - Specifications and Querydsl](https://spring.io/blog/2011/04/26/advanced-spring-data-jpa-specifications-and-querydsl/)
+
