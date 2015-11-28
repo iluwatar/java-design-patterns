@@ -7,5 +7,5 @@ import com.iluwatar.eda.event.Event;
  * of message
  */
 public interface Channel<E extends Message> {
-  void dispatch(E message);
+  void dispatch(Event message);
 }

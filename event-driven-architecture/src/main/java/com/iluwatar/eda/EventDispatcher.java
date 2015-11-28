@@ -8,21 +8,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The {@link Event Dispatcher} handles routing of {@link Event} messages
- * to associated channels.
+ * Handles the routing of {@link Event} messages to associated channels.
  * A {@link HashMap} is used to store the association between events and their respective handlers.
  *
  */
 public class EventDispatcher implements DynamicRouter<Event> {
 
-  private Map<Class<? extends Event>, Channel> handlers;
+  private Map<Class<? extends Event>, Channel<?>> handlers;
 
   public EventDispatcher() {
     handlers = new HashMap<>();
   }
 
   /**
-   * Links an {@link Event} to a specific {@link Channel}
+   * Links an {@link Event} to a specific {@link Channel}.
    *
    * @param contentType The {@link Event} to be registered
    * @param channel     The {@link Channel} that will be handling the {@link Event}
