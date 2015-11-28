@@ -42,7 +42,7 @@ public class EventDispatcher implements DynamicRouter<Event> {
 
   /**
    * Returns a map of registered event handlers.
-   * @return {@Map} of registered event handlers.
+   * @return {@link Map} of registered event handlers.
    */
   public Map<Class<? extends Event>, Channel<?>> getHandlers() {
     return handlers;
