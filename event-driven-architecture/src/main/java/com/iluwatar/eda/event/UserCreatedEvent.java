@@ -15,7 +15,6 @@ public class UserCreatedEvent extends Event {
     this.user = user;
   }
 
-
   public User getUser() {
     return user;
   }

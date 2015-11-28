@@ -39,4 +39,12 @@ public class EventDispatcher implements DynamicRouter<Event> {
   public void dispatch(Event content) {
     handlers.get(content.getClass()).dispatch(content);
   }
+
+  /**
+   * Returns a map of registered event handlers.
+   * @return {@Map} of registered event handlers.
+   */
+  public Map<Class<? extends Event>, Channel<?>> getHandlers() {
+    return handlers;
+  }
 }
