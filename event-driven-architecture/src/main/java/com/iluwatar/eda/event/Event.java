@@ -17,7 +17,7 @@ public class Event implements Message {
   /**
    * Returns the event type as a {@link Class} object
    * In this example, this method is used by the {@link EventDispatcher} to
-   * onEvent events depending on their type.
+   * dispatch events depending on their type.
    *
    * @return the Event type as a {@link Class}.
    */
