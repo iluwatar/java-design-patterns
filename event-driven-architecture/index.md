@@ -30,4 +30,3 @@ permalink: /patterns/event-driven-architecture
 * [Fundamental Components of an Event-Driven Architecture](http://giocc.com/fundamental-components-of-an-event-driven-architecture.html)
 * [Real World Applications/Event Driven Applications](https://wiki.haskell.org/Real_World_Applications/Event_Driven_Applications)
 * [Event-driven architecture definition](http://searchsoa.techtarget.com/definition/event-driven-architecture)
-*

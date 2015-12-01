@@ -3,6 +3,7 @@ package com.iluwatar.eda;
 import com.iluwatar.eda.event.Event;
 import com.iluwatar.eda.event.UserCreatedEvent;
 import com.iluwatar.eda.event.UserUpdatedEvent;
+import com.iluwatar.eda.framework.EventDispatcher;
 import com.iluwatar.eda.handler.UserCreatedEventHandler;
 import com.iluwatar.eda.handler.UserUpdatedEventHandler;
 import com.iluwatar.eda.model.User;
@@ -19,7 +20,7 @@ import com.iluwatar.eda.model.User;
 public class App {
 
   /**
-   * Once the {@link EventDispatcher} is initialised, channels related to specific events have to be
+   * Once the {@link EventDispatcher} is initialised, handlers related to specific events have to be
    * made known to the dispatcher by registering them. In this case the {@link UserCreatedEvent} is
    * bound to the UserCreatedEventHandler, whilst the {@link UserUpdatedEvent} is bound to the
    * {@link UserUpdatedEventHandler}. The dispatcher can now be called to dispatch specific events.
@@ -34,8 +35,8 @@ public class App {
     dispatcher.registerChannel(UserUpdatedEvent.class, new UserUpdatedEventHandler());
 
     User user = new User("iluwatar");
-    dispatcher.dispatch(new UserCreatedEvent(user));
-    dispatcher.dispatch(new UserUpdatedEvent(user));
+    dispatcher.onEvent(new UserCreatedEvent(user));
+    dispatcher.onEvent(new UserUpdatedEvent(user));
   }
 
 }
