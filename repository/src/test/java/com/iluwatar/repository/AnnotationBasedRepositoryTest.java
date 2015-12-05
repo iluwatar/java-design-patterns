@@ -22,9 +22,10 @@ import com.google.common.collect.Lists;
 /**
  * Test case to test the functions of {@link PersonRepository}, beside the CRUD functions, the query
  * by {@link org.springframework.data.jpa.domain.Specification} are also test.
+ * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { AppConfig.class}, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = { AppConfig.class }, loader = AnnotationConfigContextLoader.class)
 public class AnnotationBasedRepositoryTest {
 
   @Resource
@@ -107,4 +108,3 @@ public class AnnotationBasedRepositoryTest {
   }
 
 }
-

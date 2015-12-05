@@ -23,7 +23,7 @@ import com.google.common.collect.Lists;
  * by {@link org.springframework.data.jpa.domain.Specification} are also test.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+@ContextConfiguration(locations = { "classpath:applicationContext.xml" })
 public class RepositoryTest {
 
   @Resource
@@ -106,4 +106,3 @@ public class RepositoryTest {
   }
 
 }
-

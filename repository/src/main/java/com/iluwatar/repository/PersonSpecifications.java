@@ -31,6 +31,7 @@ public class PersonSpecifications {
     }
 
   }
+
   public static class NameEqualSpec implements Specification<Person> {
 
     public String name;
@@ -47,4 +48,3 @@ public class PersonSpecifications {
   }
 
 }
-

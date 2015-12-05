@@ -24,12 +24,13 @@ public class App {
   /**
    * Program entry point
    * 
-   * @param args command line args
+   * @param args
+   *          command line args
    */
   public static void main(String[] args) {
 
-    ClassPathXmlApplicationContext context =
-        new ClassPathXmlApplicationContext("applicationContext.xml");
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+        "applicationContext.xml");
     PersonRepository repository = context.getBean(PersonRepository.class);
 
     Person peter = new Person("Peter", "Sagan", 17);

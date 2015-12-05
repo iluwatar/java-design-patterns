@@ -20,7 +20,8 @@ public class Person {
 
   private int age;
 
-  public Person() {}
+  public Person() {
+  }
 
   public Person(String name, String surname, int age) {
     this.name = name;
@@ -51,7 +52,6 @@ public class Person {
   public void setSurname(String surname) {
     this.surname = surname;
   }
-
 
   public int getAge() {
     return age;
