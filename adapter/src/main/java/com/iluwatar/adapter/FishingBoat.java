@@ -1,9 +1,9 @@
 package com.iluwatar.adapter;
 
 /**
- * 
+ *
  * Device class (adaptee in the pattern). We want to reuse this class
- * 
+ *
  */
 public class FishingBoat {
 
