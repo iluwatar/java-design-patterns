@@ -29,6 +29,7 @@ access to it.
 **Real world examples:**
 
 * [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29)
+ * [source code](http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b27/java/lang/Runtime.java#Runtime)
 
 **Credits**
 
