@@ -215,7 +215,7 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
     return new DecoratingIterator<TYPE>(iterable.iterator()) {
       @Override
       public TYPE computeNext() {
-        return fromIterator.next();
+        return fromIterator.hasNext() ? fromIterator.next() : null;
       }
     };
   }
