@@ -1,6 +1,7 @@
 package com.iluwatar.doublechecked.locking;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -38,4 +39,14 @@ public class Inventory {
     }
     return false;
   }
+
+  /**
+   * Get all the items in the inventory
+   *
+   * @return All the items of the inventory, as an unmodifiable list
+   */
+  public final List<Item> getItems() {
+    return Collections.unmodifiableList(items);
+  }
+
 }
