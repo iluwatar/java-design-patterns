@@ -50,6 +50,7 @@ public class AsynchronousService {
       task.onPreCall();
     } catch (Exception e) {
       task.onError(e);
+      return;
     }
 
     service.submit(new FutureTask<T>(task) {
