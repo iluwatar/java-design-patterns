@@ -27,6 +27,6 @@ public class CakeLayerInfo {
 
   @Override
   public String toString() {
-    return String.format("CakeLayerInfo id=%d name=%s calories=%d", id.get(), name, calories);
+    return String.format("CakeLayerInfo id=%d name=%s calories=%d", id.orElse(-1L), name, calories);
   }
 }
