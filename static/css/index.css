@@ -23,6 +23,15 @@ pre code{
 	font-size: 16px;
 }
 
+/* BLOG */
+.blog-index-date {
+    float: right;
+	color: #9d9d9d;
+}
+.post-list-item div.well p {
+	margin: 0px;
+}
+
 #index a:link {color: #005}		/* 未访问的链接 */
 #index a:visited {color: #669}	/* 已访问的链接 */
 #index a:hover {color: #336;text-decoration: none;}	/* 鼠标移动到链接上 */
@@ -470,7 +479,7 @@ blockquote:last-child {
 	margin-top: 20px
 }
 
--- fixes for bootstrap + google cse
+/* fixes for bootstrap + google cse */
 input.gsc-input,
 .gsc-input-box,
 .gsc-input-box-hover,

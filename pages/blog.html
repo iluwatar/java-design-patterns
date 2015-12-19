@@ -1,0 +1,29 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+icon: fa-align-justify
+comments: false
+page-index: 2
+---
+<div id="index" class="row">
+    <div class="col-md-12">
+        <div class="post-area">
+
+            <div class="post-list-header">
+                Blog Posts
+            </div>
+            <div class="post-list-body">
+
+                {% for post in site.posts %}
+                <a class="post-list-item" href="{{ post.url | prepend: site.baseurl }}">
+                    <h5 class="blog-index-date">{{ post.date | date_to_string }}</h5>
+                    <h2>{{ post.title }}</h2>
+                    <div class="well"> {{ post.excerpt }}</div>
+                </a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
