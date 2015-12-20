@@ -26,3 +26,4 @@ improves the performance of application to great extent.
 * when network hits are expensive and time consuming
 * lookups of services are done quite frequently
 * large number of services are being used
+what's up man?
