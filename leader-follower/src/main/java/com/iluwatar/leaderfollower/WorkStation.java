@@ -8,8 +8,9 @@ import java.util.concurrent.Executors;
 
 /**
  * Represents the Workstation for the leader Follower pattern. Contains a leader and a list of idle
- * workers. Contains a leader who is responsible for receiving work when it arrives. This class also provides a mechanism
- * to set the leader. A worker once he completes his task will add himself back to the station.
+ * workers. Contains a leader who is responsible for receiving work when it arrives. This class also
+ * provides a mechanism to set the leader. A worker once he completes his task will add himself back
+ * to the station.
  * 
  * @author amit
  *
