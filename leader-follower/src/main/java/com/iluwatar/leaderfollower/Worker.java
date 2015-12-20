@@ -2,7 +2,7 @@ package com.iluwatar.leaderfollower;
 
 import java.util.List;
 
-public  class Worker implements Runnable {
+public class Worker implements Runnable {
 
   private Object leader = new Object();
   private HandleSet handleSet;
@@ -11,8 +11,8 @@ public  class Worker implements Runnable {
   private WorkStation workstation;
   private ConcreteEventHandler concreteEventHandler;
 
-  public Worker(HandleSet queue, List<Worker> workers, long id,
-      WorkStation workstation, ConcreteEventHandler concreteEventHandler) {
+  public Worker(HandleSet queue, List<Worker> workers, long id, WorkStation workstation,
+      ConcreteEventHandler concreteEventHandler) {
     super();
     this.handleSet = queue;
     this.workers = workers;
@@ -40,15 +40,14 @@ public  class Worker implements Runnable {
           }
 
         }
-      //  
+        //
         workers.remove(this);
-        System.out.println("Leader: " +id);
+        System.out.println("Leader: " + id);
         Work work = handleSet.getPayLoad();
         if (workers.size() > 0) {
           workstation.getWorkers().get(0).becomeLeader();
           workstation.setLeader(workstation.getWorkers().get(0));
-        }
-        else {
+        } else {
           workstation.setLeader(null);
         }
         concreteEventHandler.handleEvent(work);

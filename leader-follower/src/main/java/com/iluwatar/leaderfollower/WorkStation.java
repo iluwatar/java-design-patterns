@@ -25,7 +25,6 @@ public class WorkStation {
     while (i <= 4) {
       Worker worker = new Worker(queue, workers, i, this);
       workers.add(worker);
-      i++;
     }
     this.leader = workers.get(0);
     executorService.submit( workers.get(0));
@@ -40,7 +39,6 @@ public class WorkStation {
       queue.put(new Work(rand.nextInt()));
       queue.put(new Work(rand.nextInt()));
       queue.put(new Work(rand.nextInt()));
-      j++;
     }
    
     // queue.

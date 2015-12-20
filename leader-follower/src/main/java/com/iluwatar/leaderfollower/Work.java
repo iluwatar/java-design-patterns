@@ -1,7 +1,8 @@
 package com.iluwatar.leaderfollower;
 
 /**
- * A unit of work to be processed by the Workers. Implements Handle. 
+ * A unit of work to be processed by the Workers. Implements Handle.
+ * 
  * @author amit
  *
  */
@@ -16,6 +17,6 @@ public class Work implements Handle {
   public int getPayLoad() {
     return distance;
   }
-  
-  
+
+
 }
