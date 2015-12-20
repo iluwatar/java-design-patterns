@@ -2,11 +2,18 @@ package com.iluwatar.leaderfollower;
 
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+/**
+ * Represents the Workstation for the leader Follower pattern. Contains a leader and a list of idle
+ * workers. Contains a leader who is responsible for receiving work when it arrives. This class also provides a mechanism
+ * to set the leader. A worker once he completes his task will add himself back to the station.
+ * 
+ * @author amit
+ *
+ */
 
 public class WorkStation {
   private Worker leader;
@@ -22,9 +29,9 @@ public class WorkStation {
     HandleSet handleSet = new HandleSet();
     ConcreteEventHandler concreteEventHandler = new ConcreteEventHandler();
     Worker worker = new Worker(handleSet, workers, 1, this, concreteEventHandler);
-    Worker worker2 = new Worker(handleSet, workers, 2, this ,concreteEventHandler);
-    Worker worker3 = new Worker(handleSet, workers, 3, this,concreteEventHandler);
-    Worker worker4 = new Worker(handleSet, workers, 4, this,concreteEventHandler);
+    Worker worker2 = new Worker(handleSet, workers, 2, this, concreteEventHandler);
+    Worker worker3 = new Worker(handleSet, workers, 3, this, concreteEventHandler);
+    Worker worker4 = new Worker(handleSet, workers, 4, this, concreteEventHandler);
     workers.add(worker);
     workers.add(worker2);
     workers.add(worker3);

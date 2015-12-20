@@ -56,7 +56,8 @@ public  class Worker implements Runnable {
         System.out.println("The Worker with the ID " + id + " completed the task");
         workstation.addWorker(this);
       } catch (InterruptedException e) {
-        System.out.println("Thread intreuppted");
+        System.out.println("Worker intreuppted");
+        return;
       }
     }
   }
