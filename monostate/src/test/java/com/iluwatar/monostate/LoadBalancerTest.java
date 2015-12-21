@@ -3,11 +3,14 @@ package com.iluwatar.monostate;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
 
 /**
  * Date: 12/21/15 - 12:26 PM
@@ -30,6 +33,9 @@ public class LoadBalancerTest {
   @Test
   public void testServe() {
     final Server server = mock(Server.class);
+    when(server.getHost()).thenReturn("testhost");
+    when(server.getPort()).thenReturn(1234);
+    doNothing().when(server).serve(any(Request.class));
 
     final LoadBalancer loadBalancer = new LoadBalancer();
     loadBalancer.addServer(server);

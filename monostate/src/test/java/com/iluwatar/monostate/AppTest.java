@@ -9,7 +9,6 @@ public class AppTest {
   public void testMain() {
     String[] args = {};
     App.main(args);
-    Assert.assertTrue(LoadBalancer.getLastServedId() == 2);
   }
 
 }
