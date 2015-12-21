@@ -39,7 +39,7 @@ public class LoadBalancer {
     return lastServedId;
   }
 
-  public void serverequest(Request request) {
+  public void serverRequest(Request request) {
     if (lastServedId >= servers.size()) {
       lastServedId = 0;
     }
