@@ -23,7 +23,7 @@ public class Consumer {
       Message msg;
       try {
         msg = queue.take();
-        if (msg == Message.POISON_PILL) {
+        if (Message.POISON_PILL.equals(msg)) {
           System.out.println(String.format("Consumer %s receive request to terminate.", name));
           break;
         }

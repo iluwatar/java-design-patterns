@@ -55,9 +55,9 @@ public class SimpleObjectCreate extends FixtureScript {
   @Override
   protected void execute(final ExecutionContext ec) {
 
-    String name = checkParam("name", ec, String.class);
+    String paramName = checkParam("name", ec, String.class);
 
-    this.simpleObject = wrap(simpleObjects).create(name);
+    this.simpleObject = wrap(simpleObjects).create(paramName);
 
     // also make available to UI
     ec.addResult(this, simpleObject);
