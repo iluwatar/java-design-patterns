@@ -70,10 +70,9 @@ public class RainbowFishSerializer {
    * @throws ClassNotFoundException
    */
   public static RainbowFish readV1(String filename) throws IOException, ClassNotFoundException {
-    Map<String, String> map = null;
     FileInputStream fileIn = new FileInputStream(filename);
     ObjectInputStream objIn = new ObjectInputStream(fileIn);
-    map = (Map<String, String>) objIn.readObject();
+    Map<String, String> map = (Map<String, String>) objIn.readObject();
     objIn.close();
     fileIn.close();
     return new RainbowFish(map.get("name"), Integer.parseInt(map.get("age")), Integer.parseInt(map
