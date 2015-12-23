@@ -255,8 +255,8 @@
 						<configuration>
 							<configLocation>checkstyle.xml</configLocation>
 							<encoding>UTF-8</encoding>
-							<consoleOutput>false</consoleOutput>
-							<failsOnError>false</failsOnError>
+							<consoleOutput>true</consoleOutput>
+							<failsOnError>true</failsOnError>
 						</configuration>
 					</execution>
 				</executions>
