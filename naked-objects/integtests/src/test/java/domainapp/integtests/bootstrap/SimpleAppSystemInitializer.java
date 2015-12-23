@@ -21,6 +21,9 @@ import org.apache.isis.objectstore.jdo.datanucleus.IsisConfigurationForJdoIntegT
 
 public class SimpleAppSystemInitializer {
 
+  private SimpleAppSystemInitializer() {
+  }
+
   /**
    * Init test system
    */

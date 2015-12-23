@@ -29,6 +29,9 @@ public class DbManager {
 
   private static HashMap<String, UserAccount> virtualDB;
 
+  private DbManager() {
+  }
+
   /**
    * Create DB
    */
