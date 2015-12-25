@@ -7,8 +7,8 @@ package com.iluwatar.front.controller;
  */
 public class CatapultView implements View {
 
-	@Override
-	public void display() {
-		System.out.println("Displaying catapults");
-	}
+  @Override
+  public void display() {
+    System.out.println("Displaying catapults");
+  }
 }

@@ -65,11 +65,11 @@ public class SimpleFileWriterTest {
    * Verify if an {@link IOException} during the write ripples through
    */
   @Test(expected = IOException.class)
-  public void testIOException() throws Exception {
+  public void testIoException() throws Exception {
     final File temporaryFile = this.testFolder.newFile();
     new SimpleFileWriter(temporaryFile.getPath(), writer -> {
-      throw new IOException("");
-    });
+        throw new IOException("");
+      });
   }
 
 }

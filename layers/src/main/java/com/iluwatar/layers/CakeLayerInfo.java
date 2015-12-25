@@ -13,12 +13,18 @@ public class CakeLayerInfo {
   public final String name;
   public final int calories;
 
+  /**
+   * Constructor
+   */
   public CakeLayerInfo(Long id, String name, int calories) {
     this.id = Optional.of(id);
     this.name = name;
     this.calories = calories;
   }
 
+  /**
+   * Constructor
+   */
   public CakeLayerInfo(String name, int calories) {
     this.id = Optional.empty();
     this.name = name;

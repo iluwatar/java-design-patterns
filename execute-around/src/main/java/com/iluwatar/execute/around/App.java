@@ -17,9 +17,6 @@ public class App {
 
   /**
    * Program entry point
-   * 
-   * @param args command line args
-   * @throws IOException
    */
   public static void main(String[] args) throws IOException {
 

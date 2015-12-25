@@ -18,6 +18,9 @@ package com.iluwatar.proxy;
  */
 public class App {
 
+  /**
+   * Program entry point
+   */
   public static void main(String[] args) {
 
     WizardTowerProxy tower = new WizardTowerProxy();

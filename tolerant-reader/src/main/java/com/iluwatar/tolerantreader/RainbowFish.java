@@ -16,6 +16,9 @@ public class RainbowFish implements Serializable {
   private int lengthMeters;
   private int weightTons;
 
+  /**
+   * Constructor
+   */
   public RainbowFish(String name, int age, int lengthMeters, int weightTons) {
     this.name = name;
     this.age = age;

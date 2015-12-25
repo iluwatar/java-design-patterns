@@ -16,6 +16,9 @@ public class DwarvenGoldmineFacade {
 
   private final List<DwarvenMineWorker> workers;
 
+  /**
+   * Constructor
+   */
   public DwarvenGoldmineFacade() {
     workers = new ArrayList<>();
     workers.add(new DwarvenGoldDigger());

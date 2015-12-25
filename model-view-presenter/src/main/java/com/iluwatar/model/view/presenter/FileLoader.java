@@ -39,9 +39,7 @@ public class FileLoader {
       br.close();
 
       return sb.toString();
-    }
-
-    catch (Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
 

@@ -14,11 +14,11 @@ import com.iluwatar.servicelayer.wizard.Wizard;
  */
 public class HibernateUtil {
 
-  private static final SessionFactory sessionFactory;
+  private static final SessionFactory SESSION_FACTORY;
 
   static {
     try {
-      sessionFactory =
+      SESSION_FACTORY =
           new Configuration().addAnnotatedClass(Wizard.class).addAnnotatedClass(Spellbook.class)
               .addAnnotatedClass(Spell.class)
               .setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect")
@@ -33,6 +33,6 @@ public class HibernateUtil {
   }
 
   public static SessionFactory getSessionFactory() {
-    return sessionFactory;
+    return SESSION_FACTORY;
   }
 }

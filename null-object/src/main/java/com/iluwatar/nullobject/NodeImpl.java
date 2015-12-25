@@ -11,6 +11,9 @@ public class NodeImpl implements Node {
   private final Node left;
   private final Node right;
 
+  /**
+   * Constructor
+   */
   public NodeImpl(String name, Node left, Node right) {
     this.name = name;
     this.left = left;

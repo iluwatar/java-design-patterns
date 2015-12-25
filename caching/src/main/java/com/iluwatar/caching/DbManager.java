@@ -21,7 +21,7 @@ import com.mongodb.client.model.UpdateOptions;
  * during runtime (createVirtualDB()).</p>
  * 
  */
-public class DBManager {
+public class DbManager {
 
   private static MongoClient mongoClient;
   private static MongoDatabase db;
@@ -29,21 +29,31 @@ public class DBManager {
 
   private static HashMap<String, UserAccount> virtualDB;
 
-  public static void createVirtualDB() {
+  /**
+   * Create DB
+   */
+  public static void createVirtualDb() {
     useMongoDB = false;
     virtualDB = new HashMap<String, UserAccount>();
   }
 
+  /**
+   * Connect to DB
+   */
   public static void connect() throws ParseException {
     useMongoDB = true;
     mongoClient = new MongoClient();
     db = mongoClient.getDatabase("test");
   }
 
-  public static UserAccount readFromDB(String userID) {
+  /**
+   * Read user account from DB
+   */
+  public static UserAccount readFromDb(String userId) {
     if (!useMongoDB) {
-      if (virtualDB.containsKey(userID))
-        return virtualDB.get(userID);
+      if (virtualDB.containsKey(userId)) {
+        return virtualDB.get(userId);
+      }
       return null;
     }
     if (null == db) {
@@ -54,18 +64,22 @@ public class DBManager {
       }
     }
     FindIterable<Document> iterable =
-        db.getCollection("user_accounts").find(new Document("userID", userID));
-    if (iterable == null)
+        db.getCollection("user_accounts").find(new Document("userID", userId));
+    if (iterable == null) {
       return null;
+    }
     Document doc = iterable.first();
     UserAccount userAccount =
-        new UserAccount(userID, doc.getString("userName"), doc.getString("additionalInfo"));
+        new UserAccount(userId, doc.getString("userName"), doc.getString("additionalInfo"));
     return userAccount;
   }
 
-  public static void writeToDB(UserAccount userAccount) {
+  /**
+   * Write user account to DB
+   */
+  public static void writeToDb(UserAccount userAccount) {
     if (!useMongoDB) {
-      virtualDB.put(userAccount.getUserID(), userAccount);
+      virtualDB.put(userAccount.getUserId(), userAccount);
       return;
     }
     if (null == db) {
@@ -76,13 +90,16 @@ public class DBManager {
       }
     }
     db.getCollection("user_accounts").insertOne(
-        new Document("userID", userAccount.getUserID()).append("userName",
+        new Document("userID", userAccount.getUserId()).append("userName",
             userAccount.getUserName()).append("additionalInfo", userAccount.getAdditionalInfo()));
   }
 
-  public static void updateDB(UserAccount userAccount) {
+  /**
+   * Update DB
+   */
+  public static void updateDb(UserAccount userAccount) {
     if (!useMongoDB) {
-      virtualDB.put(userAccount.getUserID(), userAccount);
+      virtualDB.put(userAccount.getUserId(), userAccount);
       return;
     }
     if (null == db) {
@@ -93,7 +110,7 @@ public class DBManager {
       }
     }
     db.getCollection("user_accounts").updateOne(
-        new Document("userID", userAccount.getUserID()),
+        new Document("userID", userAccount.getUserId()),
         new Document("$set", new Document("userName", userAccount.getUserName()).append(
             "additionalInfo", userAccount.getAdditionalInfo())));
   }
@@ -102,9 +119,9 @@ public class DBManager {
    *
    * Insert data into DB if it does not exist. Else, update it.
    */
-  public static void upsertDB(UserAccount userAccount) {
+  public static void upsertDb(UserAccount userAccount) {
     if (!useMongoDB) {
-      virtualDB.put(userAccount.getUserID(), userAccount);
+      virtualDB.put(userAccount.getUserId(), userAccount);
       return;
     }
     if (null == db) {
@@ -115,8 +132,8 @@ public class DBManager {
       }
     }
     db.getCollection("user_accounts").updateOne(
-        new Document("userID", userAccount.getUserID()),
-        new Document("$set", new Document("userID", userAccount.getUserID()).append("userName",
+        new Document("userID", userAccount.getUserId()),
+        new Document("$set", new Document("userID", userAccount.getUserId()).append("userName",
             userAccount.getUserName()).append("additionalInfo", userAccount.getAdditionalInfo())),
         new UpdateOptions().upsert(true));
   }

@@ -1,13 +1,17 @@
 package com.iluwatar.singleton;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 /**
  * This class provides several test case that test singleton construction.
@@ -29,7 +33,7 @@ public class LazyLoadedSingletonThreadSafetyTest {
   }
 
   @Test
-  public void test_MultipleCallsReturnTheSameObjectInSameThread() {
+  public void testMultipleCallsReturnTheSameObjectInSameThread() {
     // Create several instances in the same calling thread
     ThreadSafeLazyLoadedIvoryTower instance1 = ThreadSafeLazyLoadedIvoryTower.getInstance();
     ThreadSafeLazyLoadedIvoryTower instance2 = ThreadSafeLazyLoadedIvoryTower.getInstance();
@@ -42,9 +46,10 @@ public class LazyLoadedSingletonThreadSafetyTest {
   }
 
   @Test
-  public void test_MultipleCallsReturnTheSameObjectInDifferentThreads()
+  public void testMultipleCallsReturnTheSameObjectInDifferentThreads()
       throws InterruptedException, ExecutionException {
-    {// create several threads and inside each callable instantiate the singleton class
+    {
+      // create several threads and inside each callable instantiate the singleton class
       ExecutorService executorService = Executors.newSingleThreadExecutor();
 
       List<Callable<NullObject>> threadList = new ArrayList<>();
@@ -63,7 +68,8 @@ public class LazyLoadedSingletonThreadSafetyTest {
       // tidy up the executor
       executorService.shutdown();
     }
-    {// now check the contents that were added to threadObjects by each thread
+    {
+      // now check the contents that were added to threadObjects by each thread
       assertEquals(NUM_THREADS, threadObjects.size());
       assertEquals(threadObjects.get(0), threadObjects.get(1));
       assertEquals(threadObjects.get(1), threadObjects.get(2));

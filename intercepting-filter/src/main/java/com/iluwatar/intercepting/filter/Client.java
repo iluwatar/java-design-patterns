@@ -32,8 +32,12 @@ public class Client extends JFrame {
   private JLabel jl;
   private JTextField[] jtFields;
   private JTextArea[] jtAreas;
-  private JButton clearButton, processButton;
+  private JButton clearButton;
+  private JButton processButton;
 
+  /**
+   * Constructor
+   */
   public Client() {
     super("Client System");
     setDefaultCloseOperation(EXIT_ON_CLOSE);

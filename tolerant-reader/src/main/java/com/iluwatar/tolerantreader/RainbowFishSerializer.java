@@ -20,10 +20,6 @@ public class RainbowFishSerializer {
 
   /**
    * Write V1 RainbowFish to file
-   * 
-   * @param rainbowFish
-   * @param filename
-   * @throws IOException
    */
   public static void writeV1(RainbowFish rainbowFish, String filename) throws IOException {
     Map<String, String> map = new HashMap<>();
@@ -40,10 +36,6 @@ public class RainbowFishSerializer {
 
   /**
    * Write V2 RainbowFish to file
-   * 
-   * @param rainbowFish
-   * @param filename
-   * @throws IOException
    */
   public static void writeV2(RainbowFishV2 rainbowFish, String filename) throws IOException {
     Map<String, String> map = new HashMap<>();
@@ -63,11 +55,6 @@ public class RainbowFishSerializer {
 
   /**
    * Read V1 RainbowFish from file
-   * 
-   * @param filename
-   * @return
-   * @throws IOException
-   * @throws ClassNotFoundException
    */
   public static RainbowFish readV1(String filename) throws IOException, ClassNotFoundException {
     Map<String, String> map = null;

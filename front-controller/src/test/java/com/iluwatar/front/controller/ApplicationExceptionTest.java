@@ -1,8 +1,8 @@
 package com.iluwatar.front.controller;
 
-import org.junit.Test;
+import static org.junit.Assert.assertSame;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * Date: 12/13/15 - 1:35 PM

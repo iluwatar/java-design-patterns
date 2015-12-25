@@ -29,7 +29,7 @@ import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
 
 public class RecreateSimpleObjects extends FixtureScript {
 
-  public final List<String> NAMES = Collections.unmodifiableList(Arrays.asList("Foo", "Bar", "Baz",
+  public final List<String> names = Collections.unmodifiableList(Arrays.asList("Foo", "Bar", "Baz",
       "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
 
   public RecreateSimpleObjects() {
@@ -72,9 +72,9 @@ public class RecreateSimpleObjects extends FixtureScript {
     final int number = defaultParam("number", ec, 3);
 
     // validate
-    if (number < 0 || number > NAMES.size()) {
+    if (number < 0 || number > names.size()) {
       throw new IllegalArgumentException(String.format("number must be in range [0,%d)",
-          NAMES.size()));
+          names.size()));
     }
 
     //
@@ -83,7 +83,7 @@ public class RecreateSimpleObjects extends FixtureScript {
     ec.executeChild(this, new SimpleObjectsTearDown());
 
     for (int i = 0; i < number; i++) {
-      final SimpleObjectCreate fs = new SimpleObjectCreate().setName(NAMES.get(i));
+      final SimpleObjectCreate fs = new SimpleObjectCreate().setName(names.get(i));
       ec.executeChild(this, fs.getName(), fs);
       simpleObjects.add(fs.getSimpleObject());
     }

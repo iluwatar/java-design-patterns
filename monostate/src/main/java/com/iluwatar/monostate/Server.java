@@ -11,6 +11,9 @@ public class Server {
   public final int port;
   public final int id;
 
+  /**
+   * Constructor
+   */
   public Server(String host, int port, int id) {
     this.host = host;
     this.port = port;

@@ -1,6 +1,7 @@
 package com.iluwatar.repository;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,8 +37,6 @@ public class AppConfigTest {
 
   /**
    * Test for correct query execution
-   * 
-   * @throws SQLException
    */
   @Test
   @Transactional

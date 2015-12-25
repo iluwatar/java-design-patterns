@@ -13,6 +13,9 @@ public abstract class RequestHandler {
     this.next = next;
   }
 
+  /**
+   * Request handler
+   */
   public void handleRequest(Request req) {
     if (next != null) {
       next.handleRequest(req);

@@ -46,6 +46,9 @@ public abstract class DwarvenMineWorker {
     }
   }
 
+  /**
+   * Perform actions
+   */
   public void action(Action... actions) {
     for (Action action : actions) {
       action(action);

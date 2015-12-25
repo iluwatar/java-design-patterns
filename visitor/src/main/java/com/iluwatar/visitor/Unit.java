@@ -13,6 +13,9 @@ public abstract class Unit {
     this.children = children;
   }
 
+  /**
+   * Accept visitor
+   */
   public void accept(UnitVisitor visitor) {
     for (Unit child : children) {
       child.accept(visitor);

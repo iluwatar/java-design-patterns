@@ -13,12 +13,18 @@ public class CakeToppingInfo {
   public final String name;
   public final int calories;
 
+  /**
+   * Constructor
+   */
   public CakeToppingInfo(Long id, String name, int calories) {
     this.id = Optional.of(id);
     this.name = name;
     this.calories = calories;
   }
 
+  /**
+   * Constructor
+   */
   public CakeToppingInfo(String name, int calories) {
     this.id = Optional.empty();
     this.name = name;

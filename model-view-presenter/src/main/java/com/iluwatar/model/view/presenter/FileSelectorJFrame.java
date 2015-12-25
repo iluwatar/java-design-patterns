@@ -26,7 +26,7 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
   /**
    * The "OK" button for loading the file.
    */
-  private JButton OK;
+  private JButton ok;
 
   /**
    * The cancel button.
@@ -121,10 +121,10 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
     /*
      * Add the OK button.
      */
-    this.OK = new JButton("OK");
-    this.panel.add(OK);
-    this.OK.setBounds(250, 50, 100, 25);
-    this.OK.addActionListener(this);
+    this.ok = new JButton("OK");
+    this.panel.add(ok);
+    this.ok.setBounds(250, 50, 100, 25);
+    this.ok.addActionListener(this);
 
     /*
      * Add the cancel button.
@@ -140,13 +140,11 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (e.getSource() == this.OK) {
+    if (e.getSource() == this.ok) {
       this.fileName = this.input.getText();
       presenter.fileNameChanged();
       presenter.confirmed();
-    }
-
-    else if (e.getSource() == this.cancel) {
+    } else if (e.getSource() == this.cancel) {
       presenter.cancelled();
     }
   }

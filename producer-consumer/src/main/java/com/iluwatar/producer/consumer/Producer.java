@@ -19,6 +19,9 @@ public class Producer {
     this.queue = queue;
   }
 
+  /**
+   * Put item in the queue
+   */
   public void produce() throws InterruptedException {
 
     Item item = new Item(name, itemId++);

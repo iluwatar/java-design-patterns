@@ -19,6 +19,9 @@ public class BallThread extends Thread {
     this.twin = twin;
   }
 
+  /**
+   * Run the thread
+   */
   public void run() {
 
     while (isRunning) {

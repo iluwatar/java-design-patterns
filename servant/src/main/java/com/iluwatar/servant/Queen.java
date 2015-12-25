@@ -29,8 +29,9 @@ public class Queen implements Royalty {
 
   @Override
   public void changeMood() {
-    if (complimentReceived && isFlirty && isDrunk)
+    if (complimentReceived && isFlirty && isDrunk) {
       isHappy = true;
+    }
   }
 
   @Override

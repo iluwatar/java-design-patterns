@@ -45,8 +45,6 @@ public class SimpleObjectCreate extends FixtureScript {
 
   /**
    * The created simple object (output).
-   * 
-   * @return
    */
   public SimpleObject getSimpleObject() {
     return simpleObject;

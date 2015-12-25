@@ -7,14 +7,17 @@ import com.iluwatar.poison.pill.Message.Headers;
  */
 public class Consumer {
 
-  private final MQSubscribePoint queue;
+  private final MqSubscribePoint queue;
   private final String name;
 
-  public Consumer(String name, MQSubscribePoint queue) {
+  public Consumer(String name, MqSubscribePoint queue) {
     this.name = name;
     this.queue = queue;
   }
 
+  /**
+   * Consume message
+   */
   public void consume() {
     while (true) {
       Message msg;

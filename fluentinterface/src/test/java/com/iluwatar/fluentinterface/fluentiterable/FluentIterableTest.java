@@ -26,7 +26,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 public abstract class FluentIterableTest {
 
   /**
-   * Create a new {@link FluentIterable<Integer>} from the given integers
+   * Create a new {@link FluentIterable} from the given integers
    *
    * @param integers The integers
    * @return The new iterable, use for testing

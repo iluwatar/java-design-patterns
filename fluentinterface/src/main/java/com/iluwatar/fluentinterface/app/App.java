@@ -1,14 +1,18 @@
 package com.iluwatar.fluentinterface.app;
 
-import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
-import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
-import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;
+import static java.lang.String.valueOf;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.StringJoiner;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static java.lang.String.valueOf;
+import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
+import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
+import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;
 
 /**
  * The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API.
@@ -24,6 +28,9 @@ import static java.lang.String.valueOf;
  */
 public class App {
 
+  /**
+   * Program entry point
+   */
   public static void main(String[] args) {
 
     List<Integer> integerList = new ArrayList<>();

@@ -24,7 +24,7 @@ public class KingsHandTest extends EventEmitterTest<KingsHand> {
   }
 
   /**
-   * The {@link KingsHand} is both an {@EventEmitter} as an {@link EventObserver} so verify if every
+   * The {@link KingsHand} is both an {@link EventEmitter} as an {@link EventObserver} so verify if every
    * event received is passed up to it's superior, in most cases {@link KingJoffrey} but now just a
    * mocked observer.
    */

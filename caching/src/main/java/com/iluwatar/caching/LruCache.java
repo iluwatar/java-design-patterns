@@ -12,16 +12,16 @@ import java.util.HashMap;
  * LRU data is always at the end of the list.
  *
  */
-public class LRUCache {
+public class LruCache {
 
   class Node {
-    String userID;
+    String userId;
     UserAccount userAccount;
     Node previous;
     Node next;
 
-    public Node(String userID, UserAccount userAccount) {
-      this.userID = userID;
+    public Node(String userId, UserAccount userAccount) {
+      this.userId = userId;
       this.userAccount = userAccount;
     }
   }
@@ -31,13 +31,16 @@ public class LRUCache {
   Node head = null;
   Node end = null;
 
-  public LRUCache(int capacity) {
+  public LruCache(int capacity) {
     this.capacity = capacity;
   }
 
-  public UserAccount get(String userID) {
-    if (cache.containsKey(userID)) {
-      Node node = cache.get(userID);
+  /**
+   * Get user account
+   */
+  public UserAccount get(String userId) {
+    if (cache.containsKey(userId)) {
+      Node node = cache.get(userId);
       remove(node);
       setHead(node);
       return node.userAccount;
@@ -69,52 +72,63 @@ public class LRUCache {
   public void setHead(Node node) {
     node.next = head;
     node.previous = null;
-    if (head != null)
+    if (head != null) {
       head.previous = node;
+    }
     head = node;
-    if (end == null)
+    if (end == null) {
       end = head;
+    }
   }
 
-  public void set(String userID, UserAccount userAccount) {
-    if (cache.containsKey(userID)) {
-      Node old = cache.get(userID);
+  /**
+   * Set user account
+   */
+  public void set(String userId, UserAccount userAccount) {
+    if (cache.containsKey(userId)) {
+      Node old = cache.get(userId);
       old.userAccount = userAccount;
       remove(old);
       setHead(old);
     } else {
-      Node newNode = new Node(userID, userAccount);
+      Node newNode = new Node(userId, userAccount);
       if (cache.size() >= capacity) {
-        System.out.println("# Cache is FULL! Removing " + end.userID + " from cache...");
-        cache.remove(end.userID); // remove LRU data from cache.
+        System.out.println("# Cache is FULL! Removing " + end.userId + " from cache...");
+        cache.remove(end.userId); // remove LRU data from cache.
         remove(end);
         setHead(newNode);
       } else {
         setHead(newNode);
       }
-      cache.put(userID, newNode);
+      cache.put(userId, newNode);
     }
   }
 
-  public boolean contains(String userID) {
-    return cache.containsKey(userID);
+  public boolean contains(String userId) {
+    return cache.containsKey(userId);
   }
 
-  public void invalidate(String userID) {
-    System.out.println("# " + userID + " has been updated! Removing older version from cache...");
-    Node toBeRemoved = cache.get(userID);
+  /**
+   * Invalidate cache for user
+   */
+  public void invalidate(String userId) {
+    System.out.println("# " + userId + " has been updated! Removing older version from cache...");
+    Node toBeRemoved = cache.get(userId);
     remove(toBeRemoved);
-    cache.remove(userID);
+    cache.remove(userId);
   }
 
   public boolean isFull() {
     return cache.size() >= capacity;
   }
 
-  public UserAccount getLRUData() {
+  public UserAccount getLruData() {
     return end.userAccount;
   }
 
+  /**
+   * Clear cache
+   */
   public void clear() {
     head = null;
     end = null;
@@ -135,6 +149,9 @@ public class LRUCache {
     return listOfCacheData;
   }
 
+  /**
+   * Set cache capacity
+   */
   public void setCapacity(int newCapacity) {
     if (capacity > newCapacity) {
       clear(); // Behavior can be modified to accommodate for decrease in cache size. For now, we'll

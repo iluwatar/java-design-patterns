@@ -74,7 +74,7 @@ public class SimpleApplication extends IsisWicketApplication {
    * <p>
    * for demos only, obvious.
    */
-  private final static boolean DEMO_MODE_USING_CREDENTIALS_AS_QUERYARGS = false;
+  private static final boolean DEMO_MODE_USING_CREDENTIALS_AS_QUERYARGS = false;
 
 
   @Override
@@ -116,6 +116,7 @@ public class SimpleApplication extends IsisWicketApplication {
         servletRequest.getSession().invalidate();
       }
     } catch (Exception e) {
+      System.out.println(e);
     }
     WebRequest request = super.newWebRequest(servletRequest, filterPath);
     return request;

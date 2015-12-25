@@ -24,6 +24,9 @@ public class LoadBalancer {
     servers.add(new Server("localhost", 8084, ++id));
   }
 
+  /**
+   * Add new server
+   */
   public final void addServer(Server server) {
     synchronized (servers) {
       servers.add(server);
@@ -39,6 +42,9 @@ public class LoadBalancer {
     return lastServedId;
   }
 
+  /**
+   * Handle request
+   */
   public void serverequest(Request request) {
     if (lastServedId >= servers.size()) {
       lastServedId = 0;

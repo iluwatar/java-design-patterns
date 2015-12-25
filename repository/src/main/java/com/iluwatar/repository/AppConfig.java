@@ -39,8 +39,6 @@ public class AppConfig {
 
   /**
    * Factory to create a especific instance of Entity Manager
-   * 
-   * @return
    */
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -55,8 +53,6 @@ public class AppConfig {
 
   /**
    * Properties for Jpa
-   * 
-   * @return
    */
   private Properties jpaProperties() {
     Properties properties = new Properties();
@@ -65,6 +61,9 @@ public class AppConfig {
     return properties;
   }
 
+  /**
+   * Get transaction manager
+   */
   @Bean
   public JpaTransactionManager transactionManager() throws SQLException {
     JpaTransactionManager transactionManager = new JpaTransactionManager();
