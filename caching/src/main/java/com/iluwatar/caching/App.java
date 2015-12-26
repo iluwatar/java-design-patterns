@@ -65,8 +65,8 @@ public class App {
 
     AppManager.save(userAccount1);
     System.out.println(AppManager.printCacheContent());
-    userAccount1 = AppManager.find("001");
-    userAccount1 = AppManager.find("001");
+    AppManager.find("001");
+    AppManager.find("001");
   }
 
   /**
@@ -80,15 +80,15 @@ public class App {
 
     AppManager.save(userAccount2);
     System.out.println(AppManager.printCacheContent());
-    userAccount2 = AppManager.find("002");
+    AppManager.find("002");
     System.out.println(AppManager.printCacheContent());
     userAccount2 = AppManager.find("002");
     userAccount2.setUserName("Jane G.");
     AppManager.save(userAccount2);
     System.out.println(AppManager.printCacheContent());
-    userAccount2 = AppManager.find("002");
+    AppManager.find("002");
     System.out.println(AppManager.printCacheContent());
-    userAccount2 = AppManager.find("002");
+    AppManager.find("002");
   }
 
   /**
@@ -106,12 +106,12 @@ public class App {
     AppManager.save(userAccount4);
     AppManager.save(userAccount5);
     System.out.println(AppManager.printCacheContent());
-    userAccount3 = AppManager.find("003");
+    AppManager.find("003");
     System.out.println(AppManager.printCacheContent());
     UserAccount userAccount6 = new UserAccount("006", "Yasha", "She is an only child.");
     AppManager.save(userAccount6);
     System.out.println(AppManager.printCacheContent());
-    userAccount4 = AppManager.find("004");
+    AppManager.find("004");
     System.out.println(AppManager.printCacheContent());
   }
 }
