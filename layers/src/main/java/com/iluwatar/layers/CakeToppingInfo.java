@@ -33,6 +33,6 @@ public class CakeToppingInfo {
 
   @Override
   public String toString() {
-    return String.format("CakeToppingInfo id=%d name=%s calories=%d", id.get(), name, calories);
+    return String.format("CakeToppingInfo id=%d name=%s calories=%d", id.orElse(-1L), name, calories);
   }
 }

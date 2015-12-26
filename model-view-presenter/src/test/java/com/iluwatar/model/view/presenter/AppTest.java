@@ -1,12 +1,16 @@
-package com.iluwatar.monostate;
+package com.iluwatar.model.view.presenter;
 
-import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * 
+ * Application test
+ *
+ */
 public class AppTest {
 
   @Test
-  public void testMain() {
+  public void test() {
     String[] args = {};
     App.main(args);
   }

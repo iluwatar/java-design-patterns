@@ -30,9 +30,9 @@ public class CakeBakingServiceImpl implements CakeBakingService {
 
   @Override
   public void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException {
-    List<CakeToppingInfo> allToppings = getAvailableToppings();
-    List<CakeToppingInfo> matchingToppings =
-        allToppings.stream().filter((t) -> t.name.equals(cakeInfo.cakeToppingInfo.name))
+    List<CakeTopping> allToppings = getAvailableToppingEntities();
+    List<CakeTopping> matchingToppings =
+        allToppings.stream().filter((t) -> t.getName().equals(cakeInfo.cakeToppingInfo.name))
             .collect(Collectors.toList());
     if (matchingToppings.isEmpty()) {
       throw new CakeBakingException(String.format("Topping %s is not available",
@@ -50,7 +50,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
       }
     }
     CakeToppingDao toppingBean = context.getBean(CakeToppingDao.class);
-    CakeTopping topping = toppingBean.findOne(matchingToppings.iterator().next().id.get());
+    CakeTopping topping = toppingBean.findOne(matchingToppings.iterator().next().getId());
     CakeDao cakeBean = context.getBean(CakeDao.class);
     Cake cake = new Cake();
     cake.setTopping(topping);
