@@ -10,7 +10,7 @@ public class AppTest {
     public static final String MESSAGE_TO_PRINT = "hello world";
 
     @Test
-    public static void main() {
+    public void main() {
         Printer hpPrinter = new HPPrinter();
         Printer canonPrinter = new CanonPrinter();
         Printer epsonPrinter = new EpsonPrinter();
