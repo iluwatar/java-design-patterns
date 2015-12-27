@@ -296,7 +296,37 @@
 					<argLine>-Xmx1024M ${argLine}</argLine>
 				</configuration>
 			</plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-pmd-plugin</artifactId>
+              <version>3.6</version>
+              <configuration>
+                <failOnViolation>true</failOnViolation>
+                <failurePriority>5</failurePriority>
+                <printFailingErrors>true</printFailingErrors>
+              </configuration>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>check</goal>
+                  </goals>
+                  <configuration>
+					  <excludeFromFailureFile>exclude-pmd.properties</excludeFromFailureFile>
+				  </configuration>
+                </execution>
+              </executions>              
+            </plugin>            
 		</plugins>
 	</build>
 
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.6</version>
+      </plugin>
+    </plugins>
+  </reporting>
+  
 </project>
