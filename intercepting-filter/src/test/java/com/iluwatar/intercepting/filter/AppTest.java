@@ -2,8 +2,6 @@ package com.iluwatar.intercepting.filter;
 
 import org.junit.Test;
 
-import com.iluwatar.intercepting.filter.App;
-
 /**
  * 
  * Application test.

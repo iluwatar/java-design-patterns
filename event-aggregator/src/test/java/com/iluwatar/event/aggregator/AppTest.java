@@ -2,8 +2,6 @@ package com.iluwatar.event.aggregator;
 
 import org.junit.Test;
 
-import com.iluwatar.event.aggregator.App;
-
 /**
  * 
  * Application test

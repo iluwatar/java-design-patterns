@@ -55,7 +55,7 @@ public class Customer {
     boolean isEqual = false;
     if (this == o) {
       isEqual = true;
-    } else if (o != null && (getClass() == o.getClass())) {
+    } else if (o != null && getClass() == o.getClass()) {
       final Customer customer = (Customer) o;
       if (getId() == customer.getId()) {
         isEqual = true;

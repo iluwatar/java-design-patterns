@@ -10,13 +10,10 @@ public class FilterChain {
 
   private Filter chain;
 
-  private final Target target;
-
   /**
    * Constructor
    */
-  public FilterChain(Target target) {
-    this.target = target;
+  public FilterChain() {
   }
 
   /**

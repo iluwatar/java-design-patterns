@@ -65,7 +65,7 @@ public class App {
 
     List<String> lastTwoOfFirstFourStringMapped =
         LazyFluentIterable.from(integerList).filter(positives()).first(4).last(2)
-            .map(number -> "String[" + String.valueOf(number) + "]").asList();
+            .map(number -> "String[" + valueOf(number) + "]").asList();
     prettyPrint(
         "The lazy list contains the last two of the first four positive numbers mapped to Strings: ",
         lastTwoOfFirstFourStringMapped);
@@ -85,19 +85,19 @@ public class App {
   }
 
   private static Predicate<? super Integer> negatives() {
-    return integer -> (integer < 0);
+    return integer -> integer < 0;
   }
 
   private static Predicate<? super Integer> positives() {
-    return integer -> (integer > 0);
+    return integer -> integer > 0;
   }
 
   private static <TYPE> void prettyPrint(String prefix, Iterable<TYPE> iterable) {
-    prettyPrint(", ", prefix, ".", iterable);
+    prettyPrint(", ", prefix, iterable);
   }
 
-  private static <TYPE> void prettyPrint(String delimiter, String prefix, String suffix,
-      Iterable<TYPE> iterable) {
+  private static <TYPE> void prettyPrint(String delimiter, String prefix,
+                                         Iterable<TYPE> iterable) {
     StringJoiner joiner = new StringJoiner(delimiter, prefix, ".");
     Iterator<TYPE> iterator = iterable.iterator();
     while (iterator.hasNext()) {

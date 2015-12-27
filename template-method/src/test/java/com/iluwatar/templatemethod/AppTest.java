@@ -2,8 +2,6 @@ package com.iluwatar.templatemethod;
 
 import org.junit.Test;
 
-import com.iluwatar.templatemethod.App;
-
 /**
  * 
  * Application test

@@ -9,53 +9,53 @@ public interface FileSelectorView {
   /**
    * Opens the view.
    */
-  public void open();
+  void open();
 
   /**
    * Closes the view.
    */
-  public void close();
+  void close();
 
   /**
    * @return True, if the view is opened, false otherwise.
    */
-  public boolean isOpened();
+  boolean isOpened();
 
   /**
    * Sets the presenter component, to the one given as parameter.
    * 
    * @param presenter The new presenter component.
    */
-  public void setPresenter(FileSelectorPresenter presenter);
+  void setPresenter(FileSelectorPresenter presenter);
 
   /**
    * @return The presenter Component.
    */
-  public FileSelectorPresenter getPresenter();
+  FileSelectorPresenter getPresenter();
 
   /**
    * Sets the file's name, to the value given as parameter.
    * 
    * @param name The new name of the file.
    */
-  public void setFileName(String name);
+  void setFileName(String name);
 
   /**
    * @return The name of the file.
    */
-  public String getFileName();
+  String getFileName();
 
   /**
    * Displays a message to the users.
    * 
    * @param message The message to be displayed.
    */
-  public void showMessage(String message);
+  void showMessage(String message);
 
   /**
    * Displays the data to the view.
    * 
    * @param data The data to be written.
    */
-  public void displayData(String data);
+  void displayData(String data);
 }

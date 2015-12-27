@@ -2,8 +2,6 @@ package com.iluwatar.model.view.controller;
 
 import org.junit.Test;
 
-import com.iluwatar.model.view.controller.App;
-
 /**
  * 
  * Application test

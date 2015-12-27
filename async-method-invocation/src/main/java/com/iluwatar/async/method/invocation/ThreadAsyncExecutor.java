@@ -102,7 +102,7 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 
     @Override
     public boolean isCompleted() {
-      return (state > RUNNING);
+      return state > RUNNING;
     }
 
     @Override

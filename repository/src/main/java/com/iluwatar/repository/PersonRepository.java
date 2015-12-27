@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface PersonRepository
     extends CrudRepository<Person, Long>, JpaSpecificationExecutor<Person> {
 
-  public Person findByName(String name);
+  Person findByName(String name);
 }

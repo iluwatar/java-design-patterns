@@ -2,8 +2,6 @@ package com.iluwatar.nullobject;
 
 import org.junit.Test;
 
-import com.iluwatar.nullobject.App;
-
 /**
  * 
  * Application test

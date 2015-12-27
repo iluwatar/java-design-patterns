@@ -2,8 +2,6 @@ package com.iluwatar.flux.app;
 
 import org.junit.Test;
 
-import com.iluwatar.flux.app.App;
-
 /**
  * 
  * Application test

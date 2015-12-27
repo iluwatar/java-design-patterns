@@ -9,11 +9,9 @@ public class OrcWarlord extends Warlord {
 
   public OrcWarlord() {}
 
-  public OrcWarlord(OrcWarlord warlord) {}
-
   @Override
   public Warlord clone() throws CloneNotSupportedException {
-    return new OrcWarlord(this);
+    return new OrcWarlord();
   }
 
   @Override

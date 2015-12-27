@@ -5,5 +5,5 @@ package com.iluwatar.poison.pill;
  */
 public interface MqSubscribePoint {
 
-  public Message take() throws InterruptedException;
+  Message take() throws InterruptedException;
 }

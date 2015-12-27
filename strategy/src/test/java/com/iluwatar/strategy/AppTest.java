@@ -2,8 +2,6 @@ package com.iluwatar.strategy;
 
 import org.junit.Test;
 
-import com.iluwatar.strategy.App;
-
 /**
  * 
  * Application test

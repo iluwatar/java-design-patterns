@@ -2,8 +2,6 @@ package com.iluwatar.memento;
 
 import org.junit.Test;
 
-import com.iluwatar.memento.App;
-
 /**
  * 
  * Application test

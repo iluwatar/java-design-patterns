@@ -2,8 +2,6 @@ package com.iluwatar.doubledispatch;
 
 import org.junit.Test;
 
-import com.iluwatar.doubledispatch.App;
-
 /**
  * 
  * Application test

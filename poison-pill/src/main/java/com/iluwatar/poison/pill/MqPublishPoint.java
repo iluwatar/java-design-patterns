@@ -5,5 +5,5 @@ package com.iluwatar.poison.pill;
  */
 public interface MqPublishPoint {
 
-  public void put(Message msg) throws InterruptedException;
+  void put(Message msg) throws InterruptedException;
 }

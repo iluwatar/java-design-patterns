@@ -2,8 +2,6 @@ package com.iluwatar.threadpool;
 
 import org.junit.Test;
 
-import com.iluwatar.threadpool.App;
-
 /**
  * Application test
  * 

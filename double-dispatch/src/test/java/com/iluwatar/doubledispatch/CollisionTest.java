@@ -7,10 +7,7 @@ import java.io.PrintStream;
 import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/10/15 - 8:37 PM

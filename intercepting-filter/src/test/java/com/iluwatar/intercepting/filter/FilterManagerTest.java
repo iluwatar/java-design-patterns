@@ -4,11 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/13/15 - 3:01 PM
@@ -20,7 +16,7 @@ public class FilterManagerTest {
   @Test
   public void testFilterRequest() throws Exception {
     final Target target = mock(Target.class);
-    final FilterManager filterManager = new FilterManager(target);
+    final FilterManager filterManager = new FilterManager();
     assertEquals("RUNNING...", filterManager.filterRequest(mock(Order.class)));
     verifyZeroInteractions(target);
   }
@@ -28,7 +24,7 @@ public class FilterManagerTest {
   @Test
   public void testAddFilter() throws Exception {
     final Target target = mock(Target.class);
-    final FilterManager filterManager = new FilterManager(target);
+    final FilterManager filterManager = new FilterManager();
 
     verifyZeroInteractions(target);
 
