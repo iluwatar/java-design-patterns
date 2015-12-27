@@ -1,10 +1,10 @@
 package com.iluwatar.delegation.simple;
 
-public abstract class Controller<T extends Printer> {
+public abstract class AbstractPrinterController<T extends Printer> implements Printer{
 
     private Printer printer;
 
-    public Controller(Printer printer) {
+    public AbstractPrinterController(Printer printer) {
         this.printer = printer;
     }
 

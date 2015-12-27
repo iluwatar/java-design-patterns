@@ -1,6 +1,6 @@
 package com.iluwatar.delegation.simple;
 
-public class PrinterController extends Controller implements Printer {
+public class PrinterController extends AbstractPrinterController {
 
     public PrinterController(Printer printer) {
         super(printer);
