@@ -1,6 +1,5 @@
 package com.iluwatar.delegation.simple;
 
-import com.iluwatar.delegation.simple.printers.App;
 import org.junit.Test;
 
 public class AppTest {
