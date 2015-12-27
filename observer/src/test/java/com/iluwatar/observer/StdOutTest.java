@@ -47,7 +47,7 @@ public abstract class StdOutTest {
    *
    * @return The stdOut print stream mock, renewed before each test
    */
-  final PrintStream getStdOutMock() {
+  protected final PrintStream getStdOutMock() {
     return this.stdOutMock;
   }
 
