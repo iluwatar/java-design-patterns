@@ -2,13 +2,13 @@ package com.iluwatar.delegation.simple;
 
 public abstract class AbstractPrinterController<T extends Printer> implements Printer{
 
-    private Printer printer;
+    private T printer;
 
-    public AbstractPrinterController(Printer printer) {
+    public AbstractPrinterController(T printer) {
         this.printer = printer;
     }
 
-    protected Printer getPrinter() {
+    protected T getPrinter() {
         return printer;
     }
 }
