@@ -1,7 +1,8 @@
-package com.iluwatar.delegation.simple.printers;
+package com.iluwatar.delegation.simple;
 
-import com.iluwatar.delegation.simple.AbstractPrinterController;
-import com.iluwatar.delegation.simple.PrinterController;
+import com.iluwatar.delegation.simple.printers.CanonPrinter;
+import com.iluwatar.delegation.simple.printers.EpsonPrinter;
+import com.iluwatar.delegation.simple.printers.HPPrinter;
 
 public class App {
 
