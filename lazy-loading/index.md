@@ -8,7 +8,7 @@ tags:
  - Java
  - Difficulty-Beginner
  - Idiom
- - Caching
+ - Performance
 ---
 
 **Intent:** Lazy loading is a design pattern commonly used to defer

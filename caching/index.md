@@ -7,7 +7,7 @@ categories: Other
 tags:
  - Java
  - Difficulty-Intermediate
- - Caching
+ - Performance
 ---
 
 **Intent:** To avoid expensive re-acquisition of resources by not releasing

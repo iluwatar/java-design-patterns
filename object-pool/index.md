@@ -7,7 +7,7 @@ categories: Creational
 tags:
  - Java
  - Difficulty-Beginner
- - Caching
+ - Performance
 ---
 
 **Intent:** When objects are expensive to create and they are needed only for

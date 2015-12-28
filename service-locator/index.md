@@ -7,6 +7,7 @@ categories: Structural
 tags:
  - Java
  - Difficulty-Beginner
+ - Performance
 ---
 
 **Intent:** Encapsulate the processes involved in obtaining a service with a

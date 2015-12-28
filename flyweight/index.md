@@ -8,7 +8,7 @@ tags:
  - Java
  - Gang Of Four
  - Difficulty-Intermediate
- - Caching
+ - Performance
 ---
 
 **Intent:** Use sharing to support large numbers of fine-grained objects
