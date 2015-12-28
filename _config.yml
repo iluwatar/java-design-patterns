@@ -33,7 +33,6 @@ compress_html:
     envs: [local]
 
 category-list:
-  - Other
   - Creational
   - Structural
   - Concurrency
@@ -42,6 +41,8 @@ category-list:
   - Integration
   - Presentation Tier
   - Business Tier
+  - Persistence Tier
+  - Other
 
 tag-list:
   - Java
@@ -49,4 +50,10 @@ tag-list:
   - Difficulty-Intermediate
   - Difficulty-Expert
   - Gang Of Four
+  - Spring
+  - Camel
+  - Functional
+  - I/O
   - EIP
+  - Idiom
+  - Caching
