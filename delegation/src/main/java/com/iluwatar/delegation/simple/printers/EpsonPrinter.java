@@ -8,14 +8,14 @@ import com.iluwatar.delegation.simple.Printer;
  *
  * @see Printer
  */
-public class EpsonPrinter implements Printer{
+public class EpsonPrinter implements Printer {
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void print(String message) {
-        System.out.println("Epson Printer : " + message);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void print(String message) {
+    System.out.println("Epson Printer : " + message);
+  }
 
 }

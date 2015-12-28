@@ -10,12 +10,12 @@ import com.iluwatar.delegation.simple.Printer;
  */
 public class CanonPrinter implements Printer {
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void print(String message) {
-        System.out.println("Canon Printer : " + message);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void print(String message) {
+    System.out.println("Canon Printer : " + message);
+  }
 
 }

@@ -2,7 +2,7 @@ package com.iluwatar.delegation.simple;
 
 import com.iluwatar.delegation.simple.printers.CanonPrinter;
 import com.iluwatar.delegation.simple.printers.EpsonPrinter;
-import com.iluwatar.delegation.simple.printers.HPPrinter;
+import com.iluwatar.delegation.simple.printers.HpPrinter;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
@@ -26,7 +26,7 @@ public class DelegateTest {
 
     @Test
     public void testHPPrinter() throws Exception {
-        AbstractPrinterController abstractController = new PrinterController(new HPPrinter());
+        AbstractPrinterController abstractController = new PrinterController(new HpPrinter());
         abstractController.print(MESSAGE);
 
         assertEquals("HP Printer : Test Message Printed\n", systemOutRule.getLog());

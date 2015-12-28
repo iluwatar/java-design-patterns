@@ -8,14 +8,14 @@ import com.iluwatar.delegation.simple.Printer;
  *
  * @see Printer
  */
-public class HPPrinter implements Printer {
+public class HpPrinter implements Printer {
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void print(String message) {
-        System.out.println("HP Printer : " + message);
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void print(String message) {
+    System.out.println("HP Printer : " + message);
+  }
 
 }
