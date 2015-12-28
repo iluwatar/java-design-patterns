@@ -4,10 +4,22 @@ import com.iluwatar.delegation.simple.printers.CanonPrinter;
 import com.iluwatar.delegation.simple.printers.EpsonPrinter;
 import com.iluwatar.delegation.simple.printers.HPPrinter;
 
+/**
+ * In this example the delegates are {@link EpsonPrinter}, {@link HPPrinter} and {@link CanonPrinter} they all implement
+ * {@link Printer}. The {@link AbstractPrinterController} and through inheritance {@link PrinterController} also implement
+ * {@link Printer}. However neither provide the functionality of {@link Printer} by printing to the screen, they actually
+ * call upon the instance of {@link Printer} that they were instantiated with. Therefore delegating the behaviour to
+ * another class.
+ */
 public class App {
 
     public static final String MESSAGE_TO_PRINT = "hello world";
 
+    /**
+     * Program entry point
+     *
+     * @param args command line args
+     */
     public static void main(String[] args) {
         AbstractPrinterController hpPrinterController = new PrinterController(new HPPrinter());
         AbstractPrinterController canonPrinterController = new PrinterController(new CanonPrinter());
