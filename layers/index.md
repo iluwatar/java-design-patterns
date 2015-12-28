@@ -4,7 +4,10 @@ title: Layers
 folder: layers
 permalink: /patterns/layers/
 categories: Architectural
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
+ - Spring
 ---
 
 **Intent:** Layers is an architectural style where software responsibilities are

@@ -4,13 +4,13 @@ title: Twin
 folder: twin
 permalink: /patterns/twin/
 categories: Creational
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
 ---
 
 **Intent:**  Twin pattern is a design pattern which provides a standard solution to simulate multiple
 inheritance in java
-
-
 
 ![alt text](./etc/twin.png "Twin")
 

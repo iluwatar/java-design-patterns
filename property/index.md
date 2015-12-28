@@ -4,7 +4,9 @@ title: Property
 folder: property
 permalink: /patterns/property/
 categories: Creational
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
 **Intent:** Create hierarchy of objects and new objects using already existing

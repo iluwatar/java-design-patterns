@@ -7,6 +7,7 @@ categories: Behavioral
 tags: 
  - Java
  - Gang Of Four
+ - Difficulty-Intermediate
 ---
 
 **Intent:** Given a language, define a representation for its grammar along

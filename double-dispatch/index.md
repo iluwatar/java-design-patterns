@@ -4,7 +4,10 @@ title: Double Dispatch
 folder: double-dispatch
 permalink: /patterns/double-dispatch/
 categories: Other
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
+ - Idiom
 ---
 
 **Intent:** Double Dispatch pattern is a way to create maintainable dynamic

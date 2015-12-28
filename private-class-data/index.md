@@ -4,7 +4,10 @@ title: Private Class Data
 folder: private-class-data
 permalink: /patterns/private-class-data/
 categories: Other
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
+ - Idiom
 ---
 
 **Intent:** Private Class Data design pattern seeks to reduce exposure of

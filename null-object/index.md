@@ -4,7 +4,9 @@ title: Null Object
 folder: null-object
 permalink: /patterns/null-object/
 categories: Behavioral
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
 **Intent:** In most object-oriented languages, such as Java or C#, references

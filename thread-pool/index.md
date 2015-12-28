@@ -4,7 +4,9 @@ title: Thread Pool
 folder: thread-pool
 permalink: /patterns/thread-pool/
 categories: Concurrency
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
 ---
 
 **Intent:** It is often the case that tasks to be executed are short-lived and

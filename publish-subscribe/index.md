@@ -7,6 +7,7 @@ categories: Integration
 tags: 
  - Java
  - EIP
+ - Camel
 ---
 
 **Intent:** Broadcast messages from sender to all the interested receivers.

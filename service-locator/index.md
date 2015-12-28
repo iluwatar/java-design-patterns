@@ -4,7 +4,9 @@ title: Service Locator
 folder: service-locator
 permalink: /patterns/service-locator/
 categories: Structural
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
 **Intent:** Encapsulate the processes involved in obtaining a service with a

@@ -4,7 +4,10 @@ title: Object Pool
 folder: object-pool
 permalink: /patterns/object-pool/
 categories: Creational
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
+ - Caching
 ---
 
 **Intent:** When objects are expensive to create and they are needed only for

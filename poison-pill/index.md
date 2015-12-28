@@ -4,7 +4,9 @@ title: Poison Pill
 folder: poison-pill
 permalink: /patterns/poison-pill/
 categories: Other
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
 ---
 
 **Intent:** Poison Pill is known predefined data item that allows to provide

@@ -4,7 +4,9 @@ title: Step Builder
 folder: step-builder
 permalink: /patterns/step-builder/
 categories: Creational
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
 ---
 
 **Intent:** An extension of the Builder pattern that fully guides the user through the creation of the object with no chances of confusion.

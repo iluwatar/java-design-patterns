@@ -4,7 +4,11 @@ title: Lazy Loading
 folder: lazy-loading
 permalink: /patterns/lazy-loading/
 categories: Other
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
+ - Idiom
+ - Caching
 ---
 
 **Intent:** Lazy loading is a design pattern commonly used to defer

@@ -7,6 +7,7 @@ categories: Structural
 tags:
  - Java
  - Gang Of Four
+ - Difficulty-Beginner
 ---
 
 **Also known as:** Wrapper
