@@ -1,28 +1,26 @@
---- # this is so called 'Yaml Front Matter', read up on it here: http://jekyllrb.com/docs/frontmatter/
-layout: pattern # layout must allways be pattern
-title: Best Pattern Ever # the properly formatted title
-folder: best-pattern-ever # the folder name in which this pattern lies
-permalink: /patterns/best-pattern-ever/ # the permalink to the pattern, to keep this uniform please stick to /patterns/FOLDER/
-
-# both categories and tags are Yaml Lists
-# you can either just pick one or write a list with '-'s
-# usable categories and tags are listed here: https://github.com/iluwatar/java-design-patterns/blob/gh-pages/_config.yml
-categories: creational # categories of the pattern
-tags: # tags of the pattern
- - best
- - ever
- - awesome
+---
+layout: pattern
+title: Delegation
+folder: delegation
+permalink: /patterns/delegation/
+categories: Behavioral
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
-**Intent:** Makes your code awesome
+**Also known as:** Proxy Chains
 
-![alt text](./etc/best_pattern.png "Best Pattern Ever")
+**Intent:** It is a technique where an object expresses certain behavior to the outside but in 
+reality delegates responsibility for implementing that behaviour to an associated object. 
 
-**Applicability:** Use the Best Pattern Ever pattern when
+![alt text](./etc/delegation.png "Delegate")
 
-* you want to be the best
-* you need to ...
+**Applicability:** Use the Delegate pattern in order to achieve the following
 
-**Real world examples:**
+* Reduce the coupling of methods to their class
+* Components that behave identically, but realize that this situation can change in the future.
 
-* [Nowhere](http://no.where.com)
+**Credits**
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
