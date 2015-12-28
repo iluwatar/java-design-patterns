@@ -1,4 +1,4 @@
 This is great you have something to contribute! 
 
 Before going any further please read the [wiki](https://github.com/iluwatar/java-design-patterns/wiki)
-with convemtions and rules we used for this project.
+with cenventions and rules we used for this project.
