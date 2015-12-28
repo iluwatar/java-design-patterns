@@ -88,6 +88,7 @@
 		<module>reactor</module>
 		<module>caching</module>
 		<module>publish-subscribe</module>
+		<module>delegation</module>
 	</modules>
 
 	<dependencyManagement>
