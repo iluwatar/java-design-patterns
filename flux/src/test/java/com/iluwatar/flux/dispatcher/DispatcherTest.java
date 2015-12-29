@@ -1,6 +1,11 @@
 package com.iluwatar.flux.dispatcher;
 
-import com.iluwatar.flux.action.*;
+import com.iluwatar.flux.action.Action;
+import com.iluwatar.flux.action.ActionType;
+import com.iluwatar.flux.action.Content;
+import com.iluwatar.flux.action.ContentAction;
+import com.iluwatar.flux.action.MenuAction;
+import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.store.Store;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,8 +16,13 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * Date: 12/12/15 - 8:22 PM

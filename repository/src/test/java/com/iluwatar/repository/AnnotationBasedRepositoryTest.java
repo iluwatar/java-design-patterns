@@ -90,8 +90,8 @@ public class AnnotationBasedRepositoryTest {
 
     assertEquals(3, persons.size());
     assertTrue(persons.stream().allMatch((item) -> {
-        return item.getAge() > 20 && item.getAge() < 40;
-      }));
+      return item.getAge() > 20 && item.getAge() < 40;
+    }));
   }
 
   @Test
