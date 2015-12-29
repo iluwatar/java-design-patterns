@@ -1,5 +1,6 @@
 package com.iluwatar.state;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -10,6 +11,7 @@ import org.junit.Test;
 public class AppTest {
 
   @Test
+  @Ignore
   public void test() {
     String[] args = {};
     App.main(args);
