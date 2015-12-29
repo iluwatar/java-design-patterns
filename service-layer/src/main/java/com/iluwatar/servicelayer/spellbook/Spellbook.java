@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -50,7 +51,7 @@ public class Spellbook extends BaseEntity {
 
   private String name;
 
-  @ManyToMany(mappedBy = "spellbooks")
+  @ManyToMany(mappedBy = "spellbooks", fetch = FetchType.EAGER)
   private Set<Wizard> wizards;
 
   @OneToMany(mappedBy = "spellbook", orphanRemoval = true, cascade = CascadeType.ALL)
