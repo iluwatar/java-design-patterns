@@ -15,10 +15,10 @@ public class WizardTowerTest extends StdOutTest {
   @Test
   public void testEnter() throws Exception {
     final Wizard[] wizards = new Wizard[]{
-            new Wizard("Gandalf"),
-            new Wizard("Dumbledore"),
-            new Wizard("Oz"),
-            new Wizard("Merlin")
+        new Wizard("Gandalf"),
+        new Wizard("Dumbledore"),
+        new Wizard("Oz"),
+        new Wizard("Merlin")
     };
 
     final WizardTower tower = new WizardTower();

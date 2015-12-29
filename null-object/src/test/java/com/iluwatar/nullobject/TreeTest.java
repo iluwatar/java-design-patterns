@@ -32,13 +32,13 @@ public class TreeTest extends StdOutTest {
   private static final Node TREE_ROOT;
 
   static {
-    final NodeImpl level1_b = new NodeImpl("level1_b", NullNode.getInstance(), NullNode.getInstance());
-    final NodeImpl level2_b = new NodeImpl("level2_b", NullNode.getInstance(), NullNode.getInstance());
-    final NodeImpl level3_a = new NodeImpl("level3_a", NullNode.getInstance(), NullNode.getInstance());
-    final NodeImpl level3_b = new NodeImpl("level3_b", NullNode.getInstance(), NullNode.getInstance());
-    final NodeImpl level2_a = new NodeImpl("level2_a", level3_a, level3_b);
-    final NodeImpl level1_a = new NodeImpl("level1_a", level2_a, level2_b);
-    TREE_ROOT = new NodeImpl("root", level1_a, level1_b);
+    final NodeImpl level1B = new NodeImpl("level1_b", NullNode.getInstance(), NullNode.getInstance());
+    final NodeImpl level2B = new NodeImpl("level2_b", NullNode.getInstance(), NullNode.getInstance());
+    final NodeImpl level3A = new NodeImpl("level3_a", NullNode.getInstance(), NullNode.getInstance());
+    final NodeImpl level3B = new NodeImpl("level3_b", NullNode.getInstance(), NullNode.getInstance());
+    final NodeImpl level2A = new NodeImpl("level2_a", level3A, level3B);
+    final NodeImpl level1A = new NodeImpl("level1_a", level2A, level2B);
+    TREE_ROOT = new NodeImpl("root", level1A, level1B);
   }
 
   /**

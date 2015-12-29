@@ -30,7 +30,7 @@ public class ConsumerTest extends StdOutTest {
     for (int id = 0; id < ITEM_COUNT; id++) {
       consumer.consume();
       inOrder.verify(getStdOutMock())
-              .println("Consumer [consumer] consume item [" + id + "] produced by [producer]");
+          .println("Consumer [consumer] consume item [" + id + "] produced by [producer]");
     }
 
     inOrder.verifyNoMoreInteractions();

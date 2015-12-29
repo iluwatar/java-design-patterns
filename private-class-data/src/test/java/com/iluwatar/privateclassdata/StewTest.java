@@ -18,8 +18,8 @@ public class StewTest extends StdOutTest {
   @Test
   public void testMix() {
     final ImmutableStew stew = new ImmutableStew(1, 2, 3, 4);
-    final String expectedMessage = "Mixing the immutable stew we find: 1 potatoes, " +
-            "2 carrots, 3 meat and 4 peppers";
+    final String expectedMessage = "Mixing the immutable stew we find: 1 potatoes, "
+        + "2 carrots, 3 meat and 4 peppers";
 
     final InOrder inOrder = inOrder(getStdOutMock());
     for (int i = 0; i < 20; i++) {

@@ -2,7 +2,11 @@ package com.iluwatar.servicelocator;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Date: 12/29/15 - 19:07 PM
@@ -26,7 +30,7 @@ public class ServiceLocatorTest {
   @Test
   public void testServiceCache() {
     final String[] serviceNames = new String[]{
-            "jndi/serviceA", "jndi/serviceB"
+        "jndi/serviceA", "jndi/serviceB"
     };
 
     for (final String serviceName : serviceNames) {

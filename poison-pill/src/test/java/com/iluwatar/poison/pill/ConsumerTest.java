@@ -17,10 +17,10 @@ public class ConsumerTest extends StdOutTest {
   @Test
   public void testConsume() throws Exception {
     final Message[] messages = new Message[]{
-            createMessage("you", "Hello!"),
-            createMessage("me", "Hi!"),
-            Message.POISON_PILL,
-            createMessage("late_for_the_party", "Hello? Anyone here?"),
+        createMessage("you", "Hello!"),
+        createMessage("me", "Hi!"),
+        Message.POISON_PILL,
+        createMessage("late_for_the_party", "Hello? Anyone here?"),
     };
 
     final MessageQueue queue = new SimpleMessageQueue(messages.length);
