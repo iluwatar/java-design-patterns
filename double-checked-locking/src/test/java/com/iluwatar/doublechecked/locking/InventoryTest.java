@@ -14,7 +14,10 @@ import java.util.concurrent.TimeUnit;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * Date: 12/10/15 - 9:34 PM
@@ -74,8 +77,8 @@ public class InventoryTest {
     final ExecutorService executorService = Executors.newFixedThreadPool(THREAD_COUNT);
     for (int i = 0; i < THREAD_COUNT; i++) {
       executorService.execute(() -> {
-          while (inventory.addItem(new Item())) {};
-        });
+        while (inventory.addItem(new Item())) {};
+      });
     }
 
     // Wait until all threads have finished

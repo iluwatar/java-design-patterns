@@ -6,7 +6,7 @@ permalink: /patterns/visitor/
 categories: Behavioral
 tags:
  - Java
- - Difficulty-Expert
+ - Difficulty-Intermediate
  - Gang Of Four
 ---
 

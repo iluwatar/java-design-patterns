@@ -7,6 +7,8 @@ categories: Structural
 tags: 
  - Java
  - Gang Of Four
+ - Difficulty-Intermediate
+ - Performance
 ---
 
 **Intent:** Use sharing to support large numbers of fine-grained objects

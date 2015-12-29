@@ -4,7 +4,11 @@ title: Callback
 folder: callback
 permalink: /patterns/callback/
 categories: Other
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
+ - Functional
+ - Idiom
 ---
 
 **Intent:** Callback is a piece of executable code that is passed as an

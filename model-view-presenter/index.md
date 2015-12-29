@@ -4,7 +4,9 @@ title: Model-View-Presenter
 folder: model-view-presenter
 permalink: /patterns/model-view-presenter/
 categories: Presentation Tier
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
 ---
 
 **Intent:** Apply a "Separation of Concerns" principle in a way that allows

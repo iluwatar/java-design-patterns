@@ -4,7 +4,9 @@ title: Half-Sync/Half-Async
 folder: half-sync-half-async
 permalink: /patterns/half-sync-half-async/
 categories: Concurrency
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
 ---
 
 **Intent:** The Half-Sync/Half-Async pattern decouples synchronous I/O from

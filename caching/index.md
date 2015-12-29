@@ -6,6 +6,8 @@ permalink: /patterns/caching/
 categories: Other
 tags:
  - Java
+ - Difficulty-Intermediate
+ - Performance
 ---
 
 **Intent:** To avoid expensive re-acquisition of resources by not releasing

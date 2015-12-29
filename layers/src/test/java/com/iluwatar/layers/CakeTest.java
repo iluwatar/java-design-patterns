@@ -88,8 +88,8 @@ public class CakeTest {
     cake.setTopping(topping);
     cake.addLayer(layer);
 
-    final String expected = "id=1234 topping=id=2345 name=topping calories=20 " +
-            "layers=[id=3456 name=layer calories=100]";
+    final String expected = "id=1234 topping=id=2345 name=topping calories=20 " 
+            + "layers=[id=3456 name=layer calories=100]";
     assertEquals(expected, cake.toString());
 
   }

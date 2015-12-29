@@ -7,7 +7,7 @@ categories: Structural
 tags:
  - Java
  - Gang Of Four
- - Difficulty-Intermediate
+ - Difficulty-Beginner
 ---
 
 **Also known as:** Surrogate

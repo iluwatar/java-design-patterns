@@ -4,7 +4,9 @@ title: Naked Objects
 folder: naked-objects
 permalink: /patterns/naked-objects/
 categories: Architectural
-tags: Java
+tags:
+ - Java
+ - Difficulty-Expert
 ---
 
 **Intent:** The Naked Objects architectural pattern is well suited for rapid

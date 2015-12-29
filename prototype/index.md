@@ -7,6 +7,7 @@ categories: Creational
 tags: 
  - Java
  - Gang Of Four
+ - Difficulty-Beginner
 ---
 
 **Intent:** Specify the kinds of objects to create using a prototypical

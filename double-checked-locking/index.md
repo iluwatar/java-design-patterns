@@ -4,7 +4,10 @@ title: Double Checked Locking
 folder: double-checked-locking
 permalink: /patterns/double-checked-locking/
 categories: Concurrency
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
+ - Idiom
 ---
 
 **Intent:** Reduce the overhead of acquiring a lock by first testing the

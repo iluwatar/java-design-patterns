@@ -89,9 +89,9 @@ public class ThreadAsyncExecutorTest {
     final Object result = new Object();
     final Callable<Object> task = mock(Callable.class);
     when(task.call()).thenAnswer(i -> {
-        Thread.sleep(1500);
-        return result;
-      });
+      Thread.sleep(1500);
+      return result;
+    });
 
     final AsyncResult<Object> asyncResult = executor.startProcess(task);
     assertNotNull(asyncResult);
@@ -128,9 +128,9 @@ public class ThreadAsyncExecutorTest {
     final Object result = new Object();
     final Callable<Object> task = mock(Callable.class);
     when(task.call()).thenAnswer(i -> {
-        Thread.sleep(1500);
-        return result;
-      });
+      Thread.sleep(1500);
+      return result;
+    });
 
     final AsyncCallback<Object> callback = mock(AsyncCallback.class);
     final AsyncResult<Object> asyncResult = executor.startProcess(task, callback);
@@ -177,9 +177,9 @@ public class ThreadAsyncExecutorTest {
     final Object result = new Object();
     final Callable<Object> task = mock(Callable.class);
     when(task.call()).thenAnswer(i -> {
-        Thread.sleep(1500);
-        return result;
-      });
+      Thread.sleep(1500);
+      return result;
+    });
 
     final AsyncResult<Object> asyncResult = executor.startProcess(task);
     assertNotNull(asyncResult);

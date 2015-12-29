@@ -158,7 +158,7 @@
             <property name="allowMissingThrowsTags" value="true"/>
             <property name="allowMissingReturnTag" value="true"/>
             <property name="minLineCount" value="2"/>
-            <property name="allowedAnnotations" value="Override, Test, Before, After, Parameters, Given, When, BeforeClass, AfterClass"/>
+            <property name="allowedAnnotations" value="Override, Test, Before, After, Parameters, Given, When, BeforeClass, AfterClass, Parameterized"/>
             <property name="allowThrowsTagsForSubclasses" value="true"/>
         </module>
         <module name="MethodName">
@@ -168,4 +168,9 @@
         </module>
         <module name="SingleLineJavadoc"/>
     </module>
+	
+    <module name="SuppressionFilter">
+        <property name="file" value="${config_loc}/checkstyle-suppressions.xml" default="checkstyle-suppressions.xml"/>
+    </module>
+	
 </module>

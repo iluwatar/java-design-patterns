@@ -67,8 +67,8 @@ public class SimpleFileWriterTest {
   public void testIoException() throws Exception {
     final File temporaryFile = this.testFolder.newFile();
     new SimpleFileWriter(temporaryFile.getPath(), writer -> {
-        throw new IOException("");
-      });
+      throw new IOException("");
+    });
   }
 
 }

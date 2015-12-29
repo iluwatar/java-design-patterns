@@ -4,7 +4,9 @@ title: Flux
 folder: flux
 permalink: /patterns/flux/
 categories: Presentation Tier
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
 ---
 
 **Intent:** Flux eschews MVC in favor of a unidirectional data flow. When a

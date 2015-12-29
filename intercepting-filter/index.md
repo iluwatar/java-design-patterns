@@ -4,7 +4,9 @@ title: Intercepting Filter
 folder: intercepting-filter
 permalink: /patterns/intercepting-filter/
 categories: Behavioral
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
 ---
 
 **Intent:** Provide pluggable filters to conduct necessary pre-processing and

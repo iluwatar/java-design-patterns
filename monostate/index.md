@@ -4,7 +4,9 @@ title: MonoState
 folder: monostate
 permalink: /patterns/monostate/
 categories: Creational
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
 **Intent:** Enforces a behaviour like sharing the same state amongst all instances.

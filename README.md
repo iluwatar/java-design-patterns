@@ -2,7 +2,7 @@
      that smart and dearly wants an empty line before a heading to be able to
      display it as such, e.g. website) -->
 
-# Design pattern samples in Java
+# Design patterns implemented in Java
 
 [![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)](https://travis-ci.org/iluwatar/java-design-patterns)
 [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master)
