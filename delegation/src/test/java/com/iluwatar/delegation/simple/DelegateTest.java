@@ -11,33 +11,33 @@ import static org.junit.Assert.assertEquals;
 
 public class DelegateTest {
 
-    private static final String MESSAGE = "Test Message Printed";
+  private static final String MESSAGE = "Test Message Printed";
 
-    @Rule
-    public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+  @Rule
+  public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
 
-    @Test
-    public void testCanonPrinter() throws Exception {
-        AbstractPrinterController abstractController = new PrinterController(new CanonPrinter());
-        abstractController.print(MESSAGE);
+  @Test
+  public void testCanonPrinter() throws Exception {
+    AbstractPrinterController abstractController = new PrinterController(new CanonPrinter());
+    abstractController.print(MESSAGE);
 
-        assertEquals("Canon Printer : Test Message Printed\n", systemOutRule.getLog());
-    }
+    assertEquals("Canon Printer : Test Message Printed\n", systemOutRule.getLog());
+  }
 
-    @Test
-    public void testHPPrinter() throws Exception {
-        AbstractPrinterController abstractController = new PrinterController(new HpPrinter());
-        abstractController.print(MESSAGE);
+  @Test
+  public void testHpPrinter() throws Exception {
+    AbstractPrinterController abstractController = new PrinterController(new HpPrinter());
+    abstractController.print(MESSAGE);
 
-        assertEquals("HP Printer : Test Message Printed\n", systemOutRule.getLog());
-    }
+    assertEquals("HP Printer : Test Message Printed\n", systemOutRule.getLog());
+  }
 
-    @Test
-    public void testEpsonPrinter() throws Exception {
-        AbstractPrinterController abstractController = new PrinterController(new EpsonPrinter());
-        abstractController.print(MESSAGE);
+  @Test
+  public void testEpsonPrinter() throws Exception {
+    AbstractPrinterController abstractController = new PrinterController(new EpsonPrinter());
+    abstractController.print(MESSAGE);
 
-        assertEquals("Epson Printer : Test Message Printed\n", systemOutRule.getLog());
-    }
+    assertEquals("Epson Printer : Test Message Printed\n", systemOutRule.getLog());
+  }
 
 }
