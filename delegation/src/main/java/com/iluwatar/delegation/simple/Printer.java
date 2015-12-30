@@ -1,12 +1,14 @@
 package com.iluwatar.delegation.simple;
 
+import com.iluwatar.delegation.simple.printers.CanonPrinter;
+import com.iluwatar.delegation.simple.printers.EpsonPrinter;
 import com.iluwatar.delegation.simple.printers.HpPrinter;
 
 /**
  * Interface that both the Controller and the Delegate will implement.
  *
- * @see com.iluwatar.delegation.simple.printers.CanonPrinter
- * @see com.iluwatar.delegation.simple.printers.EpsonPrinter
+ * @see CanonPrinter
+ * @see EpsonPrinter
  * @see HpPrinter
  */
 public interface Printer {
