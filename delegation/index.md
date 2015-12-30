@@ -9,7 +9,7 @@ tags:
  - Difficulty-Beginner
 ---
 
-**Also known as:** Proxy Chains
+**Also known as:** Proxy Pattern
 
 **Intent:** It is a technique where an object expresses certain behavior to the outside but in 
 reality delegates responsibility for implementing that behaviour to an associated object. 
@@ -23,4 +23,5 @@ reality delegates responsibility for implementing that behaviour to an associate
 
 **Credits**
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
+* [Delegate Pattern: Wikipedia ](https://en.wikipedia.org/wiki/Delegation_pattern)
+* [Proxy Pattern: Wikipedia ](https://en.wikipedia.org/wiki/Proxy_pattern)
