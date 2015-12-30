@@ -21,9 +21,9 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    AbstractPrinterController hpPrinterController = new PrinterController(new HpPrinter());
-    AbstractPrinterController canonPrinterController = new PrinterController(new CanonPrinter());
-    AbstractPrinterController epsonPrinterController = new PrinterController(new EpsonPrinter());
+    PrinterController hpPrinterController = new PrinterController(new HpPrinter());
+    PrinterController canonPrinterController = new PrinterController(new CanonPrinter());
+    PrinterController epsonPrinterController = new PrinterController(new EpsonPrinter());
 
     hpPrinterController.print(MESSAGE_TO_PRINT);
     canonPrinterController.print(MESSAGE_TO_PRINT);

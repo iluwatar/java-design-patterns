@@ -1,9 +1,11 @@
 package com.iluwatar.delegation.simple;
 
-public class PrinterController extends AbstractPrinterController {
+public class PrinterController implements Printer {
+
+  private final Printer printer;
 
   public PrinterController(Printer printer) {
-    super(printer);
+    this.printer = printer;
   }
 
   /**
@@ -16,6 +18,6 @@ public class PrinterController extends AbstractPrinterController {
    */
   @Override
   public void print(String message) {
-    getPrinter().print(message);
+    printer.print(message);
   }
 }

@@ -8,7 +8,6 @@ import com.iluwatar.delegation.simple.printers.HpPrinter;
  * @see com.iluwatar.delegation.simple.printers.CanonPrinter
  * @see com.iluwatar.delegation.simple.printers.EpsonPrinter
  * @see HpPrinter
- * @see AbstractPrinterController
  */
 public interface Printer {
 

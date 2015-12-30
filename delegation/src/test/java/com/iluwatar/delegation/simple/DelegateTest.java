@@ -18,26 +18,26 @@ public class DelegateTest {
 
   @Test
   public void testCanonPrinter() throws Exception {
-    AbstractPrinterController abstractController = new PrinterController(new CanonPrinter());
-    abstractController.print(MESSAGE);
+    PrinterController printerController = new PrinterController(new CanonPrinter());
+    printerController.print(MESSAGE);
 
-    assertEquals("Canon Printer : Test Message Printed\n", systemOutRule.getLog());
+    assertEquals("Canon Printer : Test Message Printed", systemOutRule.getLog());
   }
 
   @Test
   public void testHpPrinter() throws Exception {
-    AbstractPrinterController abstractController = new PrinterController(new HpPrinter());
-    abstractController.print(MESSAGE);
+    PrinterController printerController = new PrinterController(new HpPrinter());
+    printerController.print(MESSAGE);
 
-    assertEquals("HP Printer : Test Message Printed\n", systemOutRule.getLog());
+    assertEquals("HP Printer : Test Message Printed", systemOutRule.getLog());
   }
 
   @Test
   public void testEpsonPrinter() throws Exception {
-    AbstractPrinterController abstractController = new PrinterController(new EpsonPrinter());
-    abstractController.print(MESSAGE);
+    PrinterController printerController = new PrinterController(new EpsonPrinter());
+    printerController.print(MESSAGE);
 
-    assertEquals("Epson Printer : Test Message Printed\n", systemOutRule.getLog());
+    assertEquals("Epson Printer : Test Message Printed", systemOutRule.getLog());
   }
 
 }
