@@ -7,7 +7,7 @@ package com.iluwatar.threadpool;
  */
 public class CoffeeMakingTask extends Task {
 
-  private static final int TIME_PER_CUP = 300;
+  private static final int TIME_PER_CUP = 100;
 
   public CoffeeMakingTask(int numCups) {
     super(numCups * TIME_PER_CUP);
