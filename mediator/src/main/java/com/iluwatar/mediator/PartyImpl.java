@@ -19,7 +19,7 @@ public class PartyImpl implements Party {
   @Override
   public void act(PartyMember actor, Action action) {
     for (PartyMember member : members) {
-      if (member != actor) {
+      if (!member.equals(actor)) {
         member.partyAction(action);
       }
     }

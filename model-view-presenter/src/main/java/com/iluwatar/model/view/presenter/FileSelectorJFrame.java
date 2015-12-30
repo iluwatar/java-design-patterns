@@ -140,11 +140,11 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (e.getSource() == this.ok) {
+    if (this.ok.equals(e.getSource())) {
       this.fileName = this.input.getText();
       presenter.fileNameChanged();
       presenter.confirmed();
-    } else if (e.getSource() == this.cancel) {
+    } else if (this.cancel.equals(e.getSource())) {
       presenter.cancelled();
     }
   }

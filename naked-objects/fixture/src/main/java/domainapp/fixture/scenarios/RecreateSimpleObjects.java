@@ -69,10 +69,10 @@ public class RecreateSimpleObjects extends FixtureScript {
   protected void execute(final ExecutionContext ec) {
 
     // defaults
-    final int number = defaultParam("number", ec, 3);
+    final int paramNumber = defaultParam("number", ec, 3);
 
     // validate
-    if (number < 0 || number > names.size()) {
+    if (paramNumber < 0 || paramNumber > names.size()) {
       throw new IllegalArgumentException(String.format("number must be in range [0,%d)",
           names.size()));
     }
@@ -82,7 +82,7 @@ public class RecreateSimpleObjects extends FixtureScript {
     //
     ec.executeChild(this, new SimpleObjectsTearDown());
 
-    for (int i = 0; i < number; i++) {
+    for (int i = 0; i < paramNumber; i++) {
       final SimpleObjectCreate fs = new SimpleObjectCreate().setName(names.get(i));
       ec.executeChild(this, fs.getName(), fs);
       simpleObjects.add(fs.getSimpleObject());
