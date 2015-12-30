@@ -11,6 +11,9 @@ public class CacheStore {
 
   static LruCache cache = null;
 
+  private CacheStore() {
+  }
+
   /**
    * Init cache capacity
    */

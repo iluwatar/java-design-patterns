@@ -15,6 +15,9 @@ public class AppManager {
 
   private static CachingPolicy cachingPolicy;
 
+  private AppManager() {
+  }
+
   /**
    *
    * Developer/Tester is able to choose whether the application should use MongoDB as its underlying

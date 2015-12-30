@@ -18,6 +18,9 @@ import java.util.Map;
  */
 public class RainbowFishSerializer {
 
+  private RainbowFishSerializer() {
+  }
+
   /**
    * Write V1 RainbowFish to file
    */

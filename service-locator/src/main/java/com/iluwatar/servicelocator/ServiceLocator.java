@@ -10,6 +10,9 @@ public class ServiceLocator {
 
   private static ServiceCache serviceCache = new ServiceCache();
 
+  private ServiceLocator() {
+  }
+
   /**
    * Fetch the service with the name param from the cache first, if no service is found, lookup the
    * service from the {@link InitContext} and then add the newly created service into the cache map
