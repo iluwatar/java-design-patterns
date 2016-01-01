@@ -22,6 +22,7 @@
 		<camel.version>2.15.3</camel.version>
 		<log4j.version>1.2.17</log4j.version>
  		<guava.version>18.0</guava.version>
+		<systemrules.version>1.14.0</systemrules.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -88,6 +89,7 @@
 		<module>reactor</module>
 		<module>caching</module>
 		<module>publish-subscribe</module>
+		<module>delegation</module>
 	</modules>
 
 	<dependencyManagement>
@@ -154,6 +156,12 @@
 				<artifactId>guava</artifactId>
 				<version>${guava.version}</version>
             		</dependency>
+			<dependency>
+				<groupId>com.github.stefanbirkner</groupId>
+				<artifactId>system-rules</artifactId>
+				<version>${systemrules.version}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
