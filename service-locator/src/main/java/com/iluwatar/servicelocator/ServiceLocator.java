@@ -32,7 +32,9 @@ public class ServiceLocator {
        */
       InitContext ctx = new InitContext();
       serviceObj = (Service) ctx.lookup(serviceJndiName);
-      serviceCache.addService(serviceObj);
+      if (serviceObj != null) { // Only cache a service if it actually exists
+        serviceCache.addService(serviceObj);
+      }
       return serviceObj;
     }
   }

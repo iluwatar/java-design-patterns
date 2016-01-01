@@ -7,7 +7,7 @@ package com.iluwatar.threadpool;
  */
 public class PotatoPeelingTask extends Task {
 
-  private static final int TIME_PER_POTATO = 500;
+  private static final int TIME_PER_POTATO = 200;
 
   public PotatoPeelingTask(int numPotatoes) {
     super(numPotatoes * TIME_PER_POTATO);

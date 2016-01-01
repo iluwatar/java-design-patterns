@@ -1,19 +1,21 @@
 package com.iluwatar.threadpool;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
- * 
+ *
  * Abstract base class for tasks
  *
  */
 public abstract class Task {
 
-  private static int nextId = 1;
+  private static final AtomicInteger ID_GENERATOR = new AtomicInteger();
 
   private final int id;
   private final int timeMs;
 
   public Task(final int timeMs) {
-    this.id = nextId++;
+    this.id = ID_GENERATOR.incrementAndGet();
     this.timeMs = timeMs;
   }
 

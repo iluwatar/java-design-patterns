@@ -3,7 +3,7 @@ package com.iluwatar.state;
 import org.junit.Test;
 
 /**
- * 
+ *
  * Application test
  *
  */
