@@ -7,5 +7,5 @@ package com.iluwatar.front.controller;
  */
 public interface View {
 
-	void display();
+  void display();
 }

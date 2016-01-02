@@ -5,11 +5,11 @@ package com.iluwatar.property;
  */
 public interface Prototype {
 
-  public Integer get(Stats stat);
+  Integer get(Stats stat);
 
-  public boolean has(Stats stat);
+  boolean has(Stats stat);
 
-  public void set(Stats stat, Integer val);
+  void set(Stats stat, Integer val);
 
-  public void remove(Stats stat);
+  void remove(Stats stat);
 }

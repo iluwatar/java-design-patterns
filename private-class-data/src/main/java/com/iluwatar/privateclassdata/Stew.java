@@ -12,6 +12,9 @@ public class Stew {
   private int numMeat;
   private int numPeppers;
 
+  /**
+   * Constructor
+   */
   public Stew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     this.numPotatoes = numPotatoes;
     this.numCarrots = numCarrots;
@@ -19,12 +22,18 @@ public class Stew {
     this.numPeppers = numPeppers;
   }
 
+  /**
+   * Mix the stew
+   */
   public void mix() {
     System.out.println(String.format(
         "Mixing the stew we find: %d potatoes, %d carrots, %d meat and %d peppers", numPotatoes,
         numCarrots, numMeat, numPeppers));
   }
 
+  /**
+   * Taste the stew
+   */
   public void taste() {
     System.out.println("Tasting the stew");
     if (numPotatoes > 0) {

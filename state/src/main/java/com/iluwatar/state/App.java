@@ -13,6 +13,9 @@ package com.iluwatar.state;
  */
 public class App {
 
+  /**
+   * Program entry point
+   */
   public static void main(String[] args) {
 
     Mammoth mammoth = new Mammoth();

@@ -7,6 +7,7 @@ categories: Structural
 tags:
  - Java
  - Gang Of Four
+ - Difficulty-Intermediate
 ---
 
 **Intent:** Compose objects into tree structures to represent part-whole

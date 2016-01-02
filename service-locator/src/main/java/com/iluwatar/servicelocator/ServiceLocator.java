@@ -10,6 +10,9 @@ public class ServiceLocator {
 
   private static ServiceCache serviceCache = new ServiceCache();
 
+  private ServiceLocator() {
+  }
+
   /**
    * Fetch the service with the name param from the cache first, if no service is found, lookup the
    * service from the {@link InitContext} and then add the newly created service into the cache map
@@ -29,7 +32,9 @@ public class ServiceLocator {
        */
       InitContext ctx = new InitContext();
       serviceObj = (Service) ctx.lookup(serviceJndiName);
-      serviceCache.addService(serviceObj);
+      if (serviceObj != null) { // Only cache a service if it actually exists
+        serviceCache.addService(serviceObj);
+      }
       return serviceObj;
     }
   }

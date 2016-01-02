@@ -13,6 +13,9 @@ public class TreasureChestItemIterator implements ItemIterator {
   private int idx;
   private ItemType type;
 
+  /**
+   * Constructor
+   */
   public TreasureChestItemIterator(TreasureChest chest, ItemType type) {
     this.chest = chest;
     this.type = type;

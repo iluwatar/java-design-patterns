@@ -9,9 +9,6 @@ public abstract class GameItem {
 
   /**
    * Template method, do some common logic before draw
-   * 
-   * @param other
-   * @return
    */
   public void draw() {
     System.out.println("draw");

@@ -131,6 +131,7 @@ public abstract class AbstractNioChannel {
    *   channel.write(buffer, key);
    * }
    * </code>
+   * </pre>
    * 
    * @param data the data to be written on underlying channel.
    * @param key the key which is writable.

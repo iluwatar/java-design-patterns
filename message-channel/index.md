@@ -7,6 +7,7 @@ categories: Integration
 tags: 
  - Java
  - EIP
+ - Camel
 ---
 
 **Intent:** When two applications communicate using a messaging system they do it by using logical addresses

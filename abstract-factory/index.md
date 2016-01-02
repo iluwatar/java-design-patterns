@@ -7,6 +7,7 @@ categories: Creational
 tags: 
  - Java
  - Gang Of Four
+ - Difficulty-Intermediate
 ---
 
 **Also known as:** Kit

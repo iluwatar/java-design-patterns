@@ -19,18 +19,20 @@ public class BallThread extends Thread {
     this.twin = twin;
   }
 
+  /**
+   * Run the thread
+   */
   public void run() {
 
     while (isRunning) {
-      while (!isSuspended) {
+      if (!isSuspended) {
         twin.draw();
         twin.move();
-        try {
-          Thread.sleep(1000);
-        } catch (InterruptedException e) {
-          throw new RuntimeException(e);
-        }
-
+      }
+      try {
+        Thread.sleep(250);
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
       }
     }
   }

@@ -18,15 +18,13 @@ public class App {
 
   /**
    * Program entry point
-   * 
-   * @param args
    */
   public static void main(String[] args) {
     scenario(jenkins, 1);
     scenario(travis, 0);
   }
 
-  /*
+  /**
    * Can add a List with enum Actions for variable scenarios
    */
   public static void scenario(Servant servant, int compliment) {
@@ -44,16 +42,18 @@ public class App {
     servant.giveWine(k);
     servant.giveWine(q);
     // compliment
-    servant.GiveCompliments(guests.get(compliment));
+    servant.giveCompliments(guests.get(compliment));
 
     // outcome of the night
-    for (Royalty r : guests)
+    for (Royalty r : guests) {
       r.changeMood();
+    }
 
     // check your luck
-    if (servant.checkIfYouWillBeHanged(guests))
+    if (servant.checkIfYouWillBeHanged(guests)) {
       System.out.println(servant.name + " will live another day");
-    else
+    } else {
       System.out.println("Poor " + servant.name + ". His days are numbered");
+    }
   }
 }

@@ -47,6 +47,9 @@ public class App {
     queryData();
   }
 
+  /**
+   * Initialize data
+   */
   public static void initData() {
     // spells
     Spell spell1 = new Spell("Ice dart");
@@ -149,6 +152,9 @@ public class App {
     wizardDao.merge(wizard4);
   }
 
+  /**
+   * Query the data
+   */
   public static void queryData() {
     MagicService service =
         new MagicServiceImpl(new WizardDaoImpl(), new SpellbookDaoImpl(), new SpellDaoImpl());

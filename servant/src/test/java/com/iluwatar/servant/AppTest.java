@@ -2,8 +2,6 @@ package com.iluwatar.servant;
 
 import org.junit.Test;
 
-import com.iluwatar.servant.App;
-
 /**
  * 
  * Application test

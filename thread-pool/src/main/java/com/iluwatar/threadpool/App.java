@@ -65,6 +65,7 @@ public class App {
     // All tasks were executed, now shutdown
     executor.shutdown();
     while (!executor.isTerminated()) {
+      Thread.yield();
     }
     System.out.println("Program finished");
   }

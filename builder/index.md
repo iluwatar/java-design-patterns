@@ -7,6 +7,7 @@ categories: Creational
 tags:
  - Java
  - Gang Of Four
+ - Difficulty-Intermediate
 ---
 
 **Intent:** Separate the construction of a complex object from its

@@ -51,6 +51,9 @@ public class FileSelectorPresenter {
     loader.setFileName(view.getFileName());
   }
 
+  /**
+   * Ok button handler
+   */
   public void confirmed() {
     if (loader.getFileName() == null || loader.getFileName().equals("")) {
       view.showMessage("Please give the name of the file first!");
@@ -60,9 +63,7 @@ public class FileSelectorPresenter {
     if (loader.fileExists()) {
       String data = loader.loadData();
       view.displayData(data);
-    }
-
-    else {
+    } else {
       view.showMessage("The file specified does not exist.");
     }
   }

@@ -12,6 +12,9 @@ public class Rectangle {
   private int right;
   private int bottom;
 
+  /**
+   * Constructor
+   */
   public Rectangle(int left, int top, int right, int bottom) {
     this.left = left;
     this.top = top;

@@ -5,12 +5,13 @@
 
 	<groupId>com.iluwatar</groupId>
 	<artifactId>java-design-patterns</artifactId>
-	<version>1.8.0-SNAPSHOT</version>
+	<version>1.10.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.version>5.0.1.Final</hibernate.version>
+		<spring.version>4.1.7.RELEASE</spring.version>
 		<spring-data.version>1.9.0.RELEASE</spring-data.version>
 		<h2.version>1.4.188</h2.version>
 		<junit.version>4.12</junit.version>
@@ -20,6 +21,8 @@
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<camel.version>2.15.3</camel.version>
 		<log4j.version>1.2.17</log4j.version>
+ 		<guava.version>18.0</guava.version>
+		<systemrules.version>1.14.0</systemrules.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -86,6 +89,7 @@
 		<module>reactor</module>
 		<module>caching</module>
 		<module>publish-subscribe</module>
+		<module>delegation</module>
 		<module>event-driven-architecture</module>
 	</modules>
 
@@ -102,6 +106,11 @@
 				<version>${hibernate.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+            		<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-jpa</artifactId>
 				<version>${spring-data.version}</version>
@@ -142,6 +151,17 @@
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
 				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+            		</dependency>
+			<dependency>
+				<groupId>com.github.stefanbirkner</groupId>
+				<artifactId>system-rules</artifactId>
+				<version>${systemrules.version}</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -233,7 +253,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.15</version>
+				<version>2.17</version>
 				<executions>
 					<execution>
 						<id>validate</id>
@@ -243,9 +263,11 @@
 						<phase>validate</phase>
 						<configuration>
 							<configLocation>checkstyle.xml</configLocation>
+							<suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
 							<encoding>UTF-8</encoding>
 							<consoleOutput>true</consoleOutput>
 							<failsOnError>true</failsOnError>
+							<includeTestSourceDirectory>true</includeTestSourceDirectory>
 						</configuration>
 					</execution>
 				</executions>
@@ -285,7 +307,37 @@
 					<argLine>-Xmx1024M ${argLine}</argLine>
 				</configuration>
 			</plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-pmd-plugin</artifactId>
+              <version>3.6</version>
+              <configuration>
+                <failOnViolation>true</failOnViolation>
+                <failurePriority>5</failurePriority>
+                <printFailingErrors>true</printFailingErrors>
+              </configuration>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>check</goal>
+                  </goals>
+                  <configuration>
+					  <excludeFromFailureFile>exclude-pmd.properties</excludeFromFailureFile>
+				  </configuration>
+                </execution>
+              </executions>              
+            </plugin>            
 		</plugins>
 	</build>
 
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.6</version>
+      </plugin>
+    </plugins>
+  </reporting>
+  
 </project>

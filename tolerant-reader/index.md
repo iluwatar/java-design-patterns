@@ -4,7 +4,9 @@ title: Tolerant Reader
 folder: tolerant-reader
 permalink: /patterns/tolerant-reader/
 categories: Integration
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
 **Intent:** Tolerant Reader is an integration pattern that helps creating

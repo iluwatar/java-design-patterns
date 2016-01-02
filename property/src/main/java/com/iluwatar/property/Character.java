@@ -18,6 +18,9 @@ public class Character implements Prototype {
   private String name;
   private Type type;
 
+  /**
+   * Constructor
+   */
   public Character() {
     this.prototype = new Prototype() { // Null-value object
           @Override
@@ -43,6 +46,9 @@ public class Character implements Prototype {
     this.prototype = prototype;
   }
 
+  /**
+   * Constructor
+   */
   public Character(String name, Character prototype) {
     this.name = name;
     this.type = prototype.type;

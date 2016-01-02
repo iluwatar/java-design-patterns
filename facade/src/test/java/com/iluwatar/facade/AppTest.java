@@ -2,8 +2,6 @@ package com.iluwatar.facade;
 
 import org.junit.Test;
 
-import com.iluwatar.facade.App;
-
 /**
  * 
  * Application test

@@ -21,6 +21,9 @@ public class MagicServiceImpl implements MagicService {
   private SpellbookDao spellbookDao;
   private SpellDao spellDao;
 
+  /**
+   * Constructor
+   */
   public MagicServiceImpl(WizardDao wizardDao, SpellbookDao spellbookDao, SpellDao spellDao) {
     this.wizardDao = wizardDao;
     this.spellbookDao = spellbookDao;

@@ -14,7 +14,7 @@ public class NameFilter extends AbstractFilter {
     String result = super.execute(order);
     if (order.getName() == null || order.getName().isEmpty()
         || order.getName().matches(".*[^\\w|\\s]+.*")) {
-      return result + "Invalid order! ";
+      return result + "Invalid name! ";
     } else {
       return result;
     }

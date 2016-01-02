@@ -7,6 +7,7 @@ categories: Behavioral
 tags:
  - Java
  - Gang Of Four
+ - Difficulty-Intermediate
 ---
 
 **Also known as:** Token

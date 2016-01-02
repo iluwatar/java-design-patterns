@@ -2,8 +2,6 @@ package com.iluwatar.dependency.injection;
 
 import org.junit.Test;
 
-import com.iluwatar.dependency.injection.App;
-
 /**
  * 
  * Application test

@@ -15,12 +15,18 @@ public class Wizard {
 
   public Wizard() {}
 
+  /**
+   * Cast spell
+   */
   public void castSpell(Command command, Target target) {
     System.out.println(this + " casts " + command + " at " + target);
     command.execute(target);
     undoStack.offerLast(command);
   }
 
+  /**
+   * Undo last spell
+   */
   public void undoLastSpell() {
     if (!undoStack.isEmpty()) {
       Command previousSpell = undoStack.pollLast();
@@ -30,6 +36,9 @@ public class Wizard {
     }
   }
 
+  /**
+   * Redo last spell
+   */
   public void redoLastSpell() {
     if (!redoStack.isEmpty()) {
       Command previousSpell = redoStack.pollLast();

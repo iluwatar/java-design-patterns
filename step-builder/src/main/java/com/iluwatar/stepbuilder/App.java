@@ -11,7 +11,7 @@ package com.iluwatar.stepbuilder;
  * methods available, NO build method until is the right time to build the object.
  *
  * <p>
- * <b>Implementation</b> </br>
+ * <b>Implementation</b>
  * <ul>
  * The concept is simple:
  *

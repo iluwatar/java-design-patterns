@@ -2,8 +2,6 @@ package com.iluwatar.property;
 
 import org.junit.Test;
 
-import com.iluwatar.property.App;
-
 /**
  * 
  * Application test

@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
  */
 public class App {
 
-  private static Logger LOGGER = Logger.getLogger(App.class);
+  private static Logger log = Logger.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -30,17 +30,17 @@ public class App {
    */
   public static void main(final String[] args) {
     final CustomerDaoImpl customerDao = new CustomerDaoImpl(generateSampleCustomers());
-    LOGGER.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
-    LOGGER.info("customerDao.getCusterById(2): " + customerDao.getCustomerById(2));
+    log.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
+    log.info("customerDao.getCusterById(2): " + customerDao.getCustomerById(2));
     final Customer customer = new Customer(4, "Dan", "Danson");
     customerDao.addCustomer(customer);
-    LOGGER.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
+    log.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
     customer.setFirstName("Daniel");
     customer.setLastName("Danielson");
     customerDao.updateCustomer(customer);
-    LOGGER.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
+    log.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
     customerDao.deleteCustomer(customer);
-    LOGGER.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
+    log.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
   }
 
   /**

@@ -7,8 +7,8 @@ package com.iluwatar.front.controller;
  */
 public class ErrorView implements View {
 
-	@Override
-	public void display() {
-		System.out.println("Error 500");
-	}
+  @Override
+  public void display() {
+    System.out.println("Error 500");
+  }
 }

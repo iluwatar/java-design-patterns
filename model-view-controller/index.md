@@ -4,7 +4,9 @@ title: Model-View-Controller
 folder: model-view-controller
 permalink: /patterns/model-view-controller/
 categories: Presentation Tier
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
 ---
 
 **Intent:** Separate the user interface into three interconnected components:

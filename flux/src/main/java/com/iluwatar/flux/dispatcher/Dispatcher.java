@@ -31,6 +31,9 @@ public class Dispatcher {
     stores.add(store);
   }
 
+  /**
+   * Menu item selected handler
+   */
   public void menuItemSelected(MenuItem menuItem) {
     dispatchAction(new MenuAction(menuItem));
     switch (menuItem) {

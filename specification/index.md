@@ -4,7 +4,9 @@ title: Specification
 folder: specification
 permalink: /patterns/specification/
 categories: Behavioral
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
 **Intent:** Specification pattern separates the statement of how to match a

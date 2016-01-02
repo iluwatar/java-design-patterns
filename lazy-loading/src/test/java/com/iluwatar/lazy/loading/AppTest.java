@@ -2,8 +2,6 @@ package com.iluwatar.lazy.loading;
 
 import org.junit.Test;
 
-import com.iluwatar.lazy.loading.App;
-
 /**
  * 
  * Application test

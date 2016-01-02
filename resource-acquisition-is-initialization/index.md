@@ -4,7 +4,10 @@ title: Resource Acquisition Is Initialization
 folder: resource-acquisition-is-initialization
 permalink: /patterns/resource-acquisition-is-initialization/
 categories: Other
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
+ - Idiom
 ---
 
 **Intent:** Resource Acquisition Is Initialization pattern can be used to implement exception safe resource management.

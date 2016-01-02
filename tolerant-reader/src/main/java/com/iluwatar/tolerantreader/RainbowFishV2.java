@@ -17,6 +17,9 @@ public class RainbowFishV2 extends RainbowFish {
     super(name, age, lengthMeters, weightTons);
   }
 
+  /**
+   * Constructor
+   */
   public RainbowFishV2(String name, int age, int lengthMeters, int weightTons, boolean sleeping,
       boolean hungry, boolean angry) {
     this(name, age, lengthMeters, weightTons);

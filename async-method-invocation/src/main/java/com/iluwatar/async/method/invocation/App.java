@@ -4,24 +4,23 @@ import java.util.concurrent.Callable;
 
 /**
  * This application demonstrates the async method invocation pattern. Key parts of the pattern are
- * <code>AsyncResult</code> which is an intermediate container for an asynchronously evaluated
- * value, <code>AsyncCallback</code> which can be provided to be executed on task completion and
- * <code>AsyncExecutor</code> that manages the execution of the async tasks.
+ * <code>AsyncResult</code> which is an intermediate container for an asynchronously evaluated value,
+ * <code>AsyncCallback</code> which can be provided to be executed on task completion and <code>AsyncExecutor</code>
+ * that manages the execution of the async tasks.
  * <p>
- * The main method shows example flow of async invocations. The main thread starts multiple tasks
- * with variable durations and then continues its own work. When the main thread has done it's job
- * it collects the results of the async tasks. Two of the tasks are handled with callbacks, meaning
- * the callbacks are executed immediately when the tasks complete.
+ * The main method shows example flow of async invocations. The main thread starts multiple tasks with variable
+ * durations and then continues its own work. When the main thread has done it's job it collects the results of the
+ * async tasks. Two of the tasks are handled with callbacks, meaning the callbacks are executed immediately when the
+ * tasks complete.
  * <p>
- * Noteworthy difference of thread usage between the async results and callbacks is that the async
- * results are collected in the main thread but the callbacks are executed within the worker
- * threads. This should be noted when working with thread pools.
+ * Noteworthy difference of thread usage between the async results and callbacks is that the async results are collected
+ * in the main thread but the callbacks are executed within the worker threads. This should be noted when working with
+ * thread pools.
  * <p>
- * Java provides its own implementations of async method invocation pattern. FutureTask,
- * CompletableFuture and ExecutorService are the real world implementations of this pattern. But due
- * to the nature of parallel programming, the implementations are not trivial. This example does not
- * take all possible scenarios into account but rather provides a simple version that helps to
- * understand the pattern.
+ * Java provides its own implementations of async method invocation pattern. FutureTask, CompletableFuture and
+ * ExecutorService are the real world implementations of this pattern. But due to the nature of parallel programming,
+ * the implementations are not trivial. This example does not take all possible scenarios into account but rather
+ * provides a simple version that helps to understand the pattern.
  *
  * @see AsyncResult
  * @see AsyncCallback
@@ -33,6 +32,9 @@ import java.util.concurrent.Callable;
  */
 public class App {
 
+  /**
+   * Program entry point
+   */
   public static void main(String[] args) throws Exception {
     // construct a new executor that will run async tasks
     AsyncExecutor executor = new ThreadAsyncExecutor();
@@ -41,10 +43,8 @@ public class App {
     AsyncResult<Integer> asyncResult1 = executor.startProcess(lazyval(10, 500));
     AsyncResult<String> asyncResult2 = executor.startProcess(lazyval("test", 300));
     AsyncResult<Long> asyncResult3 = executor.startProcess(lazyval(50L, 700));
-    AsyncResult<Integer> asyncResult4 =
-        executor.startProcess(lazyval(20, 400), callback("Callback result 4"));
-    AsyncResult<String> asyncResult5 =
-        executor.startProcess(lazyval("callback", 600), callback("Callback result 5"));
+    AsyncResult<Integer> asyncResult4 = executor.startProcess(lazyval(20, 400), callback("Callback result 4"));
+    AsyncResult<String> asyncResult5 = executor.startProcess(lazyval("callback", 600), callback("Callback result 5"));
 
     // emulate processing in the current thread while async tasks are running in their own threads
     Thread.sleep(350); // Oh boy I'm working hard here
@@ -66,8 +66,10 @@ public class App {
   /**
    * Creates a callable that lazily evaluates to given value with artificial delay.
    *
-   * @param value value to evaluate
-   * @param delayMillis artificial delay in milliseconds
+   * @param value
+   *          value to evaluate
+   * @param delayMillis
+   *          artificial delay in milliseconds
    * @return new callable for lazy evaluation
    */
   private static <T> Callable<T> lazyval(T value, long delayMillis) {
@@ -81,7 +83,8 @@ public class App {
   /**
    * Creates a simple callback that logs the complete status of the async result.
    *
-   * @param name callback name
+   * @param name
+   *          callback name
    * @return new async callback
    */
   private static <T> AsyncCallback<T> callback(String name) {

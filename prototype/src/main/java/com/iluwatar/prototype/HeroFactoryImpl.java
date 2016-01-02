@@ -11,12 +11,18 @@ public class HeroFactoryImpl implements HeroFactory {
   private Warlord warlord;
   private Beast beast;
 
+  /**
+   * Constructor
+   */
   public HeroFactoryImpl(Mage mage, Warlord warlord, Beast beast) {
     this.mage = mage;
     this.warlord = warlord;
     this.beast = beast;
   }
 
+  /**
+   * Create mage
+   */
   public Mage createMage() {
     try {
       return mage.clone();
@@ -25,6 +31,9 @@ public class HeroFactoryImpl implements HeroFactory {
     }
   }
 
+  /**
+   * Create warlord
+   */
   public Warlord createWarlord() {
     try {
       return warlord.clone();
@@ -33,6 +42,9 @@ public class HeroFactoryImpl implements HeroFactory {
     }
   }
 
+  /**
+   * Create beast
+   */
   public Beast createBeast() {
     try {
       return beast.clone();

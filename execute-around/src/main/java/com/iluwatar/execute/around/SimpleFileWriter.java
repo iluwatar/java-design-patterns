@@ -11,6 +11,9 @@ import java.io.IOException;
  */
 public class SimpleFileWriter {
 
+  /**
+   * Constructor
+   */
   public SimpleFileWriter(String filename, FileWriterAction action) throws IOException {
     FileWriter writer = new FileWriter(filename);
     try {

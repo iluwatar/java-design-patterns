@@ -4,7 +4,9 @@ title: Multiton
 folder: multiton
 permalink: /patterns/multiton/
 categories: Creational
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
 **Intent:** Ensure a class only has limited number of instances, and provide a

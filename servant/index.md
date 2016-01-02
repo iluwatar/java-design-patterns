@@ -4,7 +4,9 @@ title: Servant
 folder: servant
 permalink: /patterns/servant/
 categories: Structural
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
 **Intent:** Servant is used for providing some behavior to a group of classes.

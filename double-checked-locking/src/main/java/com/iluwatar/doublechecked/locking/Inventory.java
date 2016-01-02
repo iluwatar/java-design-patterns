@@ -1,6 +1,7 @@
 package com.iluwatar.doublechecked.locking;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -16,12 +17,18 @@ public class Inventory {
   private final List<Item> items;
   private final Lock lock;
 
+  /**
+   * Constructor
+   */
   public Inventory(int inventorySize) {
     this.inventorySize = inventorySize;
     this.items = new ArrayList<>(inventorySize);
     this.lock = new ReentrantLock();
   }
 
+  /**
+   * Add item
+   */
   public boolean addItem(Item item) {
     if (items.size() < inventorySize) {
       lock.lock();
@@ -38,4 +45,14 @@ public class Inventory {
     }
     return false;
   }
+
+  /**
+   * Get all the items in the inventory
+   *
+   * @return All the items of the inventory, as an unmodifiable list
+   */
+  public final List<Item> getItems() {
+    return Collections.unmodifiableList(items);
+  }
+
 }

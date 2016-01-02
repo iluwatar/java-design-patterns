@@ -12,6 +12,9 @@ public class ServiceImpl implements Service {
   private final String serviceName;
   private final int id;
 
+  /**
+   * Constructor
+   */
   public ServiceImpl(String serviceName) {
     // set the service name
     this.serviceName = serviceName;

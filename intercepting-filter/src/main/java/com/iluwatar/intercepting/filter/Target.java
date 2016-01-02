@@ -29,6 +29,9 @@ public class Target extends JFrame {
   private DefaultTableModel dtm;
   private JButton del;
 
+  /**
+   * Constructor
+   */
   public Target() {
     super("Order System");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -67,8 +70,9 @@ public class Target extends JFrame {
     @Override
     public void actionPerformed(ActionEvent e) {
       int temp = jt.getSelectedRow();
-      if (temp == -1)
+      if (temp == -1) {
         return;
+      }
       int temp2 = jt.getSelectedRowCount();
       for (int i = 0; i < temp2; i++) {
         dtm.removeRow(temp);

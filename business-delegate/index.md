@@ -4,7 +4,9 @@ title: Business Delegate
 folder: business-delegate
 permalink: /patterns/business-delegate/
 categories: Business Tier
-tags: Java
+tags:
+ - Java
+ - Difficulty-Intermediate
 ---
 
 **Intent:** The Business Delegate pattern adds an abstraction layer between

@@ -28,8 +28,9 @@ public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements Spellboo
       result.getWizards().size();
       tx.commit();
     } catch (Exception e) {
-      if (tx != null)
+      if (tx != null) {
         tx.rollback();
+      }
       throw e;
     } finally {
       session.close();

@@ -4,7 +4,10 @@ title: Execute Around
 folder: execute-around
 permalink: /patterns/execute-around/
 categories: Other
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
+ - Idiom
 ---
 
 **Intent:** Execute Around idiom frees the user from certain actions that

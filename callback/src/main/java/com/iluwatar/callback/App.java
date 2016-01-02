@@ -9,6 +9,9 @@ package com.iluwatar.callback;
  */
 public class App {
 
+  /**
+   * Program entry point
+   */
   public static void main(String[] args) {
     Task task = new SimpleTask();
     Callback callback = new Callback() {

@@ -11,6 +11,9 @@ public class Servant {
 
   public String name;
 
+  /**
+   * Constructor
+   */
   public Servant(String name) {
     this.name = name;
   }
@@ -23,15 +26,20 @@ public class Servant {
     r.getDrink();
   }
 
-  public void GiveCompliments(Royalty r) {
+  public void giveCompliments(Royalty r) {
     r.receiveCompliments();
   }
 
+  /**
+   * Check if we will be hanged
+   */
   public boolean checkIfYouWillBeHanged(ArrayList<Royalty> tableGuests) {
     boolean anotherDay = true;
-    for (Royalty r : tableGuests)
-      if (!r.getMood())
+    for (Royalty r : tableGuests) {
+      if (!r.getMood()) {
         anotherDay = false;
+      }
+    }
 
     return anotherDay;
   }

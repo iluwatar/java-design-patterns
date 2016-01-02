@@ -2,8 +2,6 @@ package com.iluwatar.multiton;
 
 import org.junit.Test;
 
-import com.iluwatar.multiton.App;
-
 /**
  * 
  * Application test

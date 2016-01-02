@@ -4,7 +4,9 @@ title: Event Aggregator
 folder: event-aggregator
 permalink: /patterns/event-aggregator/
 categories: Structural
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
 **Intent:** A system with lots of objects can lead to complexities when a

@@ -93,6 +93,9 @@ public class Hero {
     private Armor armor;
     private Weapon weapon;
 
+    /**
+     * Constructor
+     */
     public HeroBuilder(Profession profession, String name) {
       if (profession == null || name == null) {
         throw new IllegalArgumentException("profession and name can not be null");

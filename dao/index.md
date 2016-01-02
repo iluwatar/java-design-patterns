@@ -3,7 +3,7 @@ layout: pattern
 title: Data Access Object
 folder: dao
 permalink: /patterns/dao/
-categories: Architectural
+categories: Persistence Tier
 tags:
  - Java
  - Difficulty-Beginner

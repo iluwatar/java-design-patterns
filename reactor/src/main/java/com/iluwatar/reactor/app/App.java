@@ -80,8 +80,6 @@ public class App {
 
   /**
    * App entry.
-   * 
-   * @throws IOException
    */
   public static void main(String[] args) throws IOException {
     new App(new ThreadPoolDispatcher(2)).start();

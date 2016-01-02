@@ -6,22 +6,25 @@ package com.iluwatar.caching;
  *
  */
 public class UserAccount {
-  private String userID;
+  private String userId;
   private String userName;
   private String additionalInfo;
 
-  public UserAccount(String userID, String userName, String additionalInfo) {
-    this.userID = userID;
+  /**
+   * Constructor
+   */
+  public UserAccount(String userId, String userName, String additionalInfo) {
+    this.userId = userId;
     this.userName = userName;
     this.additionalInfo = additionalInfo;
   }
 
-  public String getUserID() {
-    return userID;
+  public String getUserId() {
+    return userId;
   }
 
-  public void setUserID(String userID) {
-    this.userID = userID;
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 
   public String getUserName() {
@@ -42,6 +45,6 @@ public class UserAccount {
 
   @Override
   public String toString() {
-    return userID + ", " + userName + ", " + additionalInfo;
+    return userId + ", " + userName + ", " + additionalInfo;
   }
 }

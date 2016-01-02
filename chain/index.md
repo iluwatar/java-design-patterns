@@ -7,6 +7,7 @@ categories: Behavioral
 tags:
  - Java
  - Gang Of Four
+ - Difficulty-Intermediate
 ---
 
 **Intent:** Avoid coupling the sender of a request to its receiver by giving

@@ -2,8 +2,6 @@ package com.iluwatar.iterator;
 
 import org.junit.Test;
 
-import com.iluwatar.iterator.App;
-
 /**
  * 
  * Application test

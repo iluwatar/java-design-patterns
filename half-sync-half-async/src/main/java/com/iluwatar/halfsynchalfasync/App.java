@@ -21,17 +21,15 @@ import java.util.concurrent.LinkedBlockingQueue;
  * 
  * <p>
  * <i>APPLICABILITY</i> <br/>
- * <ul>
- * <li>UNIX network subsystems - In operating systems network operations are carried out
- * asynchronously with help of hardware level interrupts.</li>
- * <li>CORBA - At the asynchronous layer one thread is associated with each socket that is connected
+ * UNIX network subsystems - In operating systems network operations are carried out
+ * asynchronously with help of hardware level interrupts.<br/>
+ * CORBA - At the asynchronous layer one thread is associated with each socket that is connected
  * to the client. Thread blocks waiting for CORBA requests from the client. On receiving request it
  * is inserted in the queuing layer which is then picked up by synchronous layer which processes the
- * request and sends response back to the client.</li>
- * <li>Android AsyncTask framework - Framework provides a way to execute long running blocking
+ * request and sends response back to the client.<br/>
+ * Android AsyncTask framework - Framework provides a way to execute long running blocking
  * calls, such as downloading a file, in background threads so that the UI thread remains free to
- * respond to user inputs.</i>
- * </ul>
+ * respond to user inputs.<br/>
  * 
  * <p>
  * <i>IMPLEMENTATION</i> <br/>
@@ -121,6 +119,7 @@ public class App {
     try {
       Thread.sleep(i);
     } catch (InterruptedException e) {
+      System.out.println(e);
     }
     return (i) * (i + 1) / 2;
   }

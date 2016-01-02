@@ -30,8 +30,9 @@ public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
       }
       tx.commit();
     } catch (Exception e) {
-      if (tx != null)
+      if (tx != null) {
         tx.rollback();
+      }
       throw e;
     } finally {
       session.close();

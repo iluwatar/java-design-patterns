@@ -7,6 +7,7 @@ categories: Structural
 tags:
  - Java
  - Gang Of Four
+ - Difficulty-Beginner
 ---
 
 **Also known as:** Wrapper
@@ -15,7 +16,7 @@ tags:
 expect. Adapter lets classes work together that couldn't otherwise because of
 incompatible interfaces.
 
-![alt text](./etc/adapter_1.png "Adapter")
+![alt text](./etc/adapter.png "Adapter")
 
 **Applicability:** Use the Adapter pattern when
 
