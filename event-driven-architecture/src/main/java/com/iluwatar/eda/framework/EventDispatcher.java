@@ -1,7 +1,6 @@
 package com.iluwatar.eda.framework;
 
 import com.iluwatar.eda.event.Event;
-import com.iluwatar.eda.framework.Handler;
 
 import java.util.HashMap;
 import java.util.Map;
