@@ -8,12 +8,12 @@ page-index: 3
 ---
 <div id="index" class="row">
   <div class="col-sm-9">
-    <div class="post-area">
+    <div class="content-area">
       <!-- small button -->
      <!--  <p class="pull-right visible-xs">
        <button>toggle</button>
      </p> -->
-      <div class="post-list-header">
+      <div class="list-header">
         Patterns
       </div>
       <div class="pattern-cse">
@@ -24,7 +24,7 @@ page-index: 3
         {% assign allPatterns = site.pages | where:"layout","pattern" | sort: 'title' %}
         <div>
           {% for page in allPatterns %}
-          <a class="post-list-item" href="{{ page.url | prepend: site.baseurl }}"
+          <a class="list-item" href="{{ page.url | prepend: site.baseurl }}"
           cats='All;{{ page.categories | join: ';' }}'
           tags='All;{{ page.tags | join: ';' }}'>
           <h2>{{ page.title }}</h2>

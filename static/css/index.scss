@@ -1,0 +1,402 @@
+---
+---
+/* the 2 lines above are for jekyll to process this file with liquid */
+
+@import 'mixins';
+
+@import 'google_cse_fixes';
+
+
+.tags a {
+    background: rgb(224, 143, 16);
+    padding: 3px 6px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-size: 13.3333px;
+    font-weight: 500;
+}
+
+.cats a {
+    background: rgb(0, 143, 16);
+    padding: 3px 6px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-size: 13.3333px;
+    font-weight: 500;
+}
+
+/**
+* Reset some basic elements
+*/
+/* commom */
+
+body {
+    background-image: url("{{ "/static/img/canvas_bg.jpg" | prepend: site.baseurl }} ");
+    font-family: 'Roboto', sans-serif;
+}
+
+pre {
+    padding: 0;
+    background: none;
+    code {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
+    }
+}
+
+/* BLOG */
+
+.blog-index-date {
+    float: right;
+    color: #9d9d9d;
+}
+
+#index a {
+    &:link {
+        color: #005;
+    }
+    &:visited {
+        color: #669;
+    }
+    &:hover {
+        color: #336;
+        text-decoration: none;
+    }
+    &:active {
+        color: #99b;
+    }
+}
+
+/* navbar */
+nav {
+    @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    border-radius: 0;
+}
+
+.navbar-nav li {
+    text-align: center;
+}
+
+/* index main */
+
+.main {
+    min-height: 800px;
+}
+
+.content-area {
+    background-color: #f8f8fd;
+    @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.4), 0 0 30px rgba(10, 10, 0, 0.1) inset);
+}
+
+.list-header {
+    padding: 15px 30px;
+    border-bottom: 1px solid #c0c0c0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.list-item {
+    display: block;
+    padding: 8px 30px 10px 30px;
+    border-bottom: 1px solid #ddd;
+    &:last-of-type {
+        border-bottom: none;
+    }
+    h2 {
+        font-size: 20px;
+        margin: 8px 0 8px 0;
+        padding: 0;
+    }
+    &:hover {
+        background-color: rgba(0, 0, 6, 0.05);
+    }
+    div.well p {
+        margin: 0px;
+    }
+}
+
+/* categories list */
+.sidebar-list-header {
+    display: block;
+    padding: 12px 15px;
+    border-bottom: 1px solid #c0c0c0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sidebar-list-item {
+    display: block;
+    padding: 8px 15px;
+    border-bottom: 1px solid #ddd;
+    &:last-of-type {
+        border-bottom: none;
+    }
+    &:hover {
+        background-color: rgba(0, 0, 10, 0.075);
+        color: #983;
+    }
+    .my-badge {
+        font-size: 12px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #999;
+        padding: 0 7px 1px 7px;
+        border-radius: 9px;
+        float: right;
+    }
+    &:hover .my-badge {
+        @include transition(0.4s ease);
+        @include transform(rotate(360deg) scale(1.2));
+    }
+}
+
+/* shadow */
+.shadow-corner-curl {
+    position: relative;
+    margin-bottom: 20px;
+    background-color: #f8f8fd;
+    @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.1) inset);
+    &:before {
+        content: "";
+        position: absolute;
+        z-index: -5;
+        width: 70%;
+        height: 70%;
+        left: 9%;
+        bottom: 2%;
+        background: transparent;
+        @include box-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
+        @include transform(skew(-11deg) rotate(-4deg));
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: -5;
+        width: 70%;
+        height: 70%;
+        right: 9%;
+        bottom: 2%;
+        background: transparent;
+        @include box-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
+        @include transform(skew(11deg) rotate(4deg));
+    }
+}
+
+.shadow-bottom-center {
+    background-color: #f8f8fd;
+    @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.1) inset);
+}
+
+/* footer */
+footer {
+    min-height: 50px;
+    line-height: 50px;
+    margin-top: 80px;
+    background: #3f4850;
+    color: #aaa;
+    text-align: center;
+    @include box-shadow(0 -2px 4px rgba(0, 0, 0, 0.5));
+    a {
+        &:link {
+            color: #aaa;
+        }
+        &:visited {
+            color: #888;
+        }
+        &:hover {
+            color: #bbb;
+            text-decoration: none;
+        }
+        &:active {
+            color: #bbb;
+        }
+    }
+    .point {
+        margin: 0 8px;
+    }
+}
+
+/**
+* Icons
+*/
+.icon svg {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+/* post
+* post articles area
+*/
+.post {
+    padding: 10px 30px;
+    font-size: 16px;
+    line-height: 1.5;
+    /* -webkit-text-size-adjust: 100%; */
+    h4 {
+        font-weight: bold;
+    }
+    img {
+        max-width: 100%;
+        vertical-align: middle;
+        @include box-shadow(0 0 5px 2px rgba(0, 0, 0, 0.1));
+    }
+}
+
+/**
+* Blockquotes
+*/
+
+blockquote {
+    color: #444;
+    border-left: 5px solid #D6DBDF;
+    padding-left: 15px;
+    font-size: 16px;
+    background: rgba(112, 138, 153, 0.1);
+    /*font-style: italic;*/
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/**
+* back to top
+*/
+#top {
+    position: fixed;
+    right: 25px;
+    bottom: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: #bbb;
+    border-radius: 7px;
+    opacity: 0.8;
+    display: none;
+    z-index: 888;
+    .arrow {
+        margin: 0 auto;
+        padding-top: 11px;
+        width: 0;
+        height: 0;
+        border-right: 15px solid transparent;
+        border-left: 15px solid transparent;
+        border-bottom: 15px solid #7f7f7f;
+    }
+    .stick {
+        margin: 0 auto;
+        padding-bottom: 21px;
+        width: 13px;
+        border-bottom: 13px solid #bbb;
+        background-color: #7f7f7f;
+    }
+}
+
+/**
+* page-content
+*/
+.page-content {
+    table {
+        border-top: 1px dashed #ddd;
+        border-bottom: 1px dashed #ddd;
+        margin: 20px 0;
+        tr td {
+            padding: 6px 10px;
+            vertical-align: top;
+            &:first-of-type {
+                padding: 6px 10px 6px 10px;
+                border-right: 1px dashed #ddd;
+                text-align: right;
+            }
+        }
+    }
+}
+
+/**
+* media-targets
+*/
+@media screen and (max-width: 1200px) {
+    #fall ul {
+        width: 210px;
+    }
+    .post {
+        padding: 10px 10px;
+        font-size: 14px;
+        line-height: 1.3;
+    }
+    blockquote {
+        border-left: 3px solid #D6DBDF;
+        padding-left: 5px;
+        font-size: 14px;
+    }
+    pre code {
+        font-size: 12px;
+    }
+    .post article ul {
+        padding-left: 25px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    #fall ul {
+        width: auto;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #markdown-toc {
+        display: none;
+    }
+}
+
+/**
+* toc
+*/
+#toc {
+    max-width: 292px;
+    a {
+        &:link, &:visited {
+            color: #666;
+        }
+        &:hover {
+            color: #336;
+            text-decoration: none;
+        }
+        &:active {
+            color: #99b;
+        }
+    }
+    .toc-text {
+        padding: 10px 0;
+    }
+    ul {
+        padding-left: 30px;
+        li {
+            /*list-style: none;*/
+            font-size: 15px;
+            line-height: 25px;
+        }
+    }
+}
+
+/* targets */
+h1:target h2:target, h3:target, h4:target, h5:target {
+    background-color: #ffa;
+}
+
+/* Github buttons in the navbar */
+.github-button-container {
+    iframe {
+        width: 150px;
+        margin-right: 10px;
+    }
+    .github-button {
+        display: none;
+    }
+}
+
+#viewSourceOnGithub {
+    float: right;
+}

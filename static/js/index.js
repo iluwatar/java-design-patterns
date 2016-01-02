@@ -44,15 +44,15 @@ function categoryAndTagDisplay() {
     /*show category when click categories list*/
     $('.sidebar-list-item.category').click(function() {
         var category = $(this).attr('category'); //get category's name
-        $('.post-list-item').not('[cats*=\'' + category + '\']').slideUp(200)
-        $('.post-list-item[cats*=\'' + category + '\']').slideDown()
+        $('.list-item').not('[cats*=\'' + category + '\']').slideUp(200)
+        $('.list-item[cats*=\'' + category + '\']').slideDown()
     });
     /*show category when click tags list*/
     $('.sidebar-list-item.tag').click(function() {
         var tag = $(this).attr('tag'); //get tag's name
 
-        $('.post-list-item').not('[tags*=\'' + tag + '\']').slideUp(200)
-        $('.post-list-item[tags*=\'' + tag + '\']').slideDown()
+        $('.list-item').not('[tags*=\'' + tag + '\']').slideUp(200)
+        $('.list-item[tags*=\'' + tag + '\']').slideDown()
     });
 }
 
