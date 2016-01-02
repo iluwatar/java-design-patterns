@@ -44,12 +44,12 @@ page-index: 3
       <a href="javascript:;" class="sidebar-list-item category" category="All">
         All<span class="my-badge"> {{ allPatterns | size }}</span>
       </a>
-      {% for category in site.category-list %}
-      <a href="javascript:;" class="sidebar-list-item category" category="{{ category }}">
-        {{ category }} <span class="my-badge">
+      {% for category in site.data.categories %}
+      <a href="javascript:;" class="sidebar-list-item category" category="{{ category.name }}">
+        {{ category.name }} <span class="my-badge">
           {% assign counter=0 %}
           {% for page in allPatterns %}
-            {% if page.categories contains category %}
+            {% if page.categories contains category.name %}
               {% assign counter=counter | plus:1 %}
             {% endif %}
           {% endfor %}
@@ -67,12 +67,12 @@ page-index: 3
       <a href="javascript:;" class="sidebar-list-item tag" tag="All">
         All<span class="my-badge"> {{ allPatterns | size }}</span>
       </a>
-      {% for tag in site.tag-list %}
-      <a href="javascript:;" class="sidebar-list-item tag" tag="{{ tag }}">
-        {{ tag }} <span class="my-badge">
+      {% for tag in site.data.tags %}
+      <a href="javascript:;" class="sidebar-list-item tag" tag="{{ tag.name }}">
+        {{ tag.name }} <span class="my-badge">
           {% assign counter=0 %}
           {% for page in allPatterns %}
-            {% if page.tags contains tag %}
+            {% if page.tags contains tag.name %}
               {% assign counter=counter | plus:1 %}
             {% endif %}
           {% endfor %}

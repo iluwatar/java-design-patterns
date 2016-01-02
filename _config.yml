@@ -31,29 +31,3 @@ compress_html:
   profile: false
   ignore:
     envs: [local]
-
-category-list:
-  - Creational
-  - Structural
-  - Concurrency
-  - Behavioral
-  - Architectural
-  - Integration
-  - Presentation Tier
-  - Business Tier
-  - Persistence Tier
-  - Other
-
-tag-list:
-  - Java
-  - Difficulty-Beginner
-  - Difficulty-Intermediate
-  - Difficulty-Expert
-  - Gang Of Four
-  - Spring
-  - Camel
-  - Functional
-  - I/O
-  - EIP
-  - Idiom
-  - Performance

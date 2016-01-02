@@ -1,0 +1,10 @@
+- name: Creational
+- name: Structural
+- name: Concurrency
+- name: Behavioral
+- name: Architectural
+- name: Integration
+- name: Presentation Tier
+- name: Business Tier
+- name: Persistence Tier
+- name: Other
