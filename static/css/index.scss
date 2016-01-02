@@ -351,10 +351,30 @@ blockquote {
     }
 }
 
+@media print {
+    /* Hide a lot of uneeded stuff */
+    #viewSourceOnGithub { display: none; }
+    #top { display:none; }
+    footer { display: none; }
+
+    img {
+        display: block;
+        max-height: 14cm !important; /* roughly half the page */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .post {
+        font-size: 12px;
+        line-height: 1.2;
+        padding: 0px;
+    }
+}
+
 /**
 * toc
 */
 #toc {
+    display: none;
     max-width: 292px;
     a {
         &:link, &:visited {
