@@ -79,10 +79,10 @@
 		<module>front-controller</module>
 		<module>repository</module>
 		<module>async-method-invocation</module>
-                <module>monostate</module>
+		<module>monostate</module>
 		<module>step-builder</module>
-    	       <module>business-delegate</module>
-    	       <module>half-sync-half-async</module>
+		<module>business-delegate</module>
+		<module>half-sync-half-async</module>
 		<module>layers</module>
 		<module>message-channel</module>
 		<module>fluentinterface</module>
@@ -90,6 +90,7 @@
 		<module>caching</module>
 		<module>publish-subscribe</module>
 		<module>delegation</module>
+		<module>event-driven-architecture</module>
 	</modules>
 
 	<dependencyManagement>
