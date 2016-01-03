@@ -6,7 +6,7 @@ permalink: /patterns/event-driven-architecture
 
 **Intent:** Send and notify state changes of your objects to other applications using an Event-driven Architecture.
 
-![alt text](./etc/class_diagram.png "Event Driven Architecture")
+![alt text](./etc/eda.png "Event Driven Architecture")
 
 **Applicability:** Use an Event-driven architecture when
 
