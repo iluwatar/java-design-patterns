@@ -10,14 +10,17 @@ tags:
  - Difficulty-Beginner
 ---
 
-**Also known as:** Surrogate
+## Also known as
+Surrogate
 
-**Intent:** Provide a surrogate or placeholder for another object to control
+## Intent
+Provide a surrogate or placeholder for another object to control
 access to it.
 
 ![alt text](./etc/proxy_1.png "Proxy")
 
-**Applicability:** Proxy is applicable whenever there is a need for a more
+## Applicability
+Proxy is applicable whenever there is a need for a more
 versatile or sophisticated reference to an object than a simple pointer. Here
 are several common situations in which the Proxy pattern is applicable
 
@@ -25,7 +28,7 @@ are several common situations in which the Proxy pattern is applicable
 * a virtual proxy creates expensive objects on demand.
 * a protection proxy controls access to the original object. Protection proxies are useful when objects should have different access rights.
 
-**Typical Use Case:**
+## Typical Use Case
 
 * control access to another object
 * lazy initialization
@@ -33,11 +36,11 @@ are several common situations in which the Proxy pattern is applicable
 * facilitate network connection
 * to count references to an object
 
-**Real world examples:**
+## Real world examples
 
 * [java.lang.reflect.Proxy](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)
 * [Apache Commons Proxy](https://commons.apache.org/proper/commons-proxy/)
 
-**Credits**
+## Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
