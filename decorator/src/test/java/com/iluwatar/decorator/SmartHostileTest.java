@@ -11,7 +11,7 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
  *
  * @author Jeroen Meulemeester
  */
-public class SmartTrollTest {
+public class SmartHostileTest {
 
   @Test
   public void testSmartTroll() throws Exception {
@@ -19,7 +19,7 @@ public class SmartTrollTest {
     final Hostile simpleTroll = spy(new Troll());
 
     // Now we want to decorate the troll to make it smarter ...
-    final Hostile smartTroll = new SmartTroll(simpleTroll);
+    final Hostile smartTroll = new SmartHostile(simpleTroll);
     assertEquals(30, smartTroll.getAttackPower());
     verify(simpleTroll, times(1)).getAttackPower();
 
