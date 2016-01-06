@@ -1,34 +1,34 @@
 package com.iluwatar.decorator;
 
 /**
- * SmartTroll is a decorator for {@link Hostile} objects. The calls to the {@link Hostile} interface
+ * SmartHostile is a decorator for {@link Hostile} objects. The calls to the {@link Hostile} interface
  * are intercepted and decorated. Finally the calls are delegated to the decorated {@link Hostile}
  * object.
  *
  */
-public class SmartTroll implements Hostile {
+public class SmartHostile implements Hostile {
 
   private Hostile decorated;
 
-  public SmartTroll(Hostile decorated) {
+  public SmartHostile(Hostile decorated) {
     this.decorated = decorated;
   }
 
   @Override
   public void attack() {
-    System.out.println("The troll throws a rock at you!");
+    System.out.println("It throws a rock at you!");
     decorated.attack();
   }
 
   @Override
   public int getAttackPower() {
-    // decorated troll power + 20 because it is smart
+    // decorated hostile's power + 20 because it is smart
     return decorated.getAttackPower() + 20;
   }
 
   @Override
   public void fleeBattle() {
-    System.out.println("The troll calls for help!");
+    System.out.println("It calls for help!");
     decorated.fleeBattle();
   }
 }
