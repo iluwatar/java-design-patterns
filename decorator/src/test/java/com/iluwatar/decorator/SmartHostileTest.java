@@ -14,7 +14,7 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 public class SmartHostileTest {
 
   @Test
-  public void testSmartTroll() throws Exception {
+  public void testSmartHostile() throws Exception {
     // Create a normal troll first, but make sure we can spy on it later on.
     final Hostile simpleTroll = spy(new Troll());
 
