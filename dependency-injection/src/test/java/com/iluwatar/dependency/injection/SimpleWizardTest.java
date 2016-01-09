@@ -1,15 +1,8 @@
 package com.iluwatar.dependency.injection;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-import java.io.PrintStream;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/10/15 - 8:26 PM

@@ -2,8 +2,6 @@ package com.iluwatar.doublechecked.locking;
 
 import org.junit.Test;
 
-import com.iluwatar.doublechecked.locking.App;
-
 /**
  * 
  * Application test

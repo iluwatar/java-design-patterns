@@ -2,8 +2,6 @@ package com.iluwatar.flyweight;
 
 import org.junit.Test;
 
-import com.iluwatar.flyweight.App;
-
 /**
  * 
  * Application test

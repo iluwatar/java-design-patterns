@@ -69,9 +69,12 @@ public class SimpleObjects {
     }
   }
 
+  /**
+   * Create simple object
+   */
   @Action(domainEvent = CreateDomainEvent.class)
   @MemberOrder(sequence = "3")
-  public SimpleObject create(final @ParameterLayout(named = "Name") String name) {
+  public SimpleObject create(@ParameterLayout(named = "Name") final String name) {
     final SimpleObject obj = container.newTransientInstance(SimpleObject.class);
     obj.setName(name);
     container.persistIfNotAlready(obj);

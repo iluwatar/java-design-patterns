@@ -31,6 +31,9 @@ import com.iluwatar.specification.selector.MovementSelector;
  */
 public class App {
 
+  /**
+   * Program entry point
+   */
   public static void main(String[] args) {
     // initialize creatures list
     List<Creature> creatures =

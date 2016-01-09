@@ -37,10 +37,10 @@ public class AppClient {
    * @throws IOException if any I/O error occurs.
    */
   public void start() throws IOException {
-    service.execute(new TCPLoggingClient("Client 1", 6666));
-    service.execute(new TCPLoggingClient("Client 2", 6667));
-    service.execute(new UDPLoggingClient("Client 3", 6668));
-    service.execute(new UDPLoggingClient("Client 4", 6668));
+    service.execute(new TcpLoggingClient("Client 1", 6666));
+    service.execute(new TcpLoggingClient("Client 2", 6667));
+    service.execute(new UdpLoggingClient("Client 3", 6668));
+    service.execute(new UdpLoggingClient("Client 4", 6668));
   }
 
   /**
@@ -69,7 +69,7 @@ public class AppClient {
   /**
    * A logging client that sends requests to Reactor on TCP socket.
    */
-  static class TCPLoggingClient implements Runnable {
+  static class TcpLoggingClient implements Runnable {
 
     private final int serverPort;
     private final String clientName;
@@ -80,7 +80,7 @@ public class AppClient {
      * @param clientName the name of the client to be sent in logging requests.
      * @param port the port on which client will send logging requests.
      */
-    public TCPLoggingClient(String clientName, int serverPort) {
+    public TcpLoggingClient(String clientName, int serverPort) {
       this.clientName = clientName;
       this.serverPort = serverPort;
     }
@@ -118,7 +118,7 @@ public class AppClient {
   /**
    * A logging client that sends requests to Reactor on UDP socket.
    */
-  static class UDPLoggingClient implements Runnable {
+  static class UdpLoggingClient implements Runnable {
     private final String clientName;
     private final InetSocketAddress remoteAddress;
 
@@ -129,7 +129,7 @@ public class AppClient {
      * @param port the port on which client will send logging requests.
      * @throws UnknownHostException if localhost is unknown
      */
-    public UDPLoggingClient(String clientName, int port) throws UnknownHostException {
+    public UdpLoggingClient(String clientName, int port) throws UnknownHostException {
       this.clientName = clientName;
       this.remoteAddress = new InetSocketAddress(InetAddress.getLocalHost(), port);
     }

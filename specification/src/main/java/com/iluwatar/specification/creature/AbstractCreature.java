@@ -16,6 +16,9 @@ public abstract class AbstractCreature implements Creature {
   private Movement movement;
   private Color color;
 
+  /**
+   * Constructor
+   */
   public AbstractCreature(String name, Size size, Movement movement, Color color) {
     this.name = name;
     this.size = size;

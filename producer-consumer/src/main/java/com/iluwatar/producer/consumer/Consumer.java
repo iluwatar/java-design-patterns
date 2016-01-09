@@ -14,6 +14,9 @@ public class Consumer {
     this.queue = queue;
   }
 
+  /**
+   * Consume item from the queue
+   */
   public void consume() throws InterruptedException {
 
     Item item = queue.take();

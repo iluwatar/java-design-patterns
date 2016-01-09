@@ -19,6 +19,9 @@ import java.io.IOException;
  */
 public class App {
 
+  /**
+   * Program entry point
+   */
   public static void main(String[] args) throws IOException, ClassNotFoundException {
     // Write V1
     RainbowFish fishV1 = new RainbowFish("Zed", 10, 11, 12);

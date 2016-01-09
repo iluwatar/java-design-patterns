@@ -13,6 +13,9 @@ public class ImmutableStew {
     data = new StewData(numPotatoes, numCarrots, numMeat, numPeppers);
   }
 
+  /**
+   * Mix the stew
+   */
   public void mix() {
     System.out.println(String.format(
         "Mixing the immutable stew we find: %d potatoes, %d carrots, %d meat and %d peppers",

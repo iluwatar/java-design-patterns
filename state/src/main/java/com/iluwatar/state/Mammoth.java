@@ -13,6 +13,9 @@ public class Mammoth {
     state = new PeacefulState(this);
   }
 
+  /**
+   * Makes time pass for the mammoth
+   */
   public void timePasses() {
     if (state.getClass().equals(PeacefulState.class)) {
       changeStateTo(new AngryState(this));

@@ -11,6 +11,9 @@ public class Oliphaunt {
 
   private final int id;
 
+  /**
+   * Constructor
+   */
   public Oliphaunt() {
     id = counter++;
     try {

@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -65,7 +64,7 @@ public class SimpleFileWriterTest {
    * Verify if an {@link IOException} during the write ripples through
    */
   @Test(expected = IOException.class)
-  public void testIOException() throws Exception {
+  public void testIoException() throws Exception {
     final File temporaryFile = this.testFolder.newFile();
     new SimpleFileWriter(temporaryFile.getPath(), writer -> {
       throw new IOException("");

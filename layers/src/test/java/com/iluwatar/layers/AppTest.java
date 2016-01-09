@@ -2,8 +2,6 @@ package com.iluwatar.layers;
 
 import org.junit.Test;
 
-import com.iluwatar.layers.App;
-
 /**
  * 
  * Application test

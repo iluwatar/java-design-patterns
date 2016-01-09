@@ -12,6 +12,9 @@ public class StewData {
   private int numMeat;
   private int numPeppers;
 
+  /**
+   * Constructor
+   */
   public StewData(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     this.numPotatoes = numPotatoes;
     this.numCarrots = numCarrots;

@@ -36,4 +36,22 @@ public class AppTest {
     assertEquals("Callback called twice", new Integer(2), callingCount);
 
   }
+
+  @Test
+  public void testWithLambdasExample() {
+    Callback callback = () -> callingCount++;
+
+    Task task = new SimpleTask();
+
+    assertEquals("Initial calling count of 0", new Integer(0), callingCount);
+
+    task.executeWith(callback);
+
+    assertEquals("Callback called once", new Integer(1), callingCount);
+
+    task.executeWith(callback);
+
+    assertEquals("Callback called twice", new Integer(2), callingCount);
+
+  }
 }

@@ -11,12 +11,18 @@ public class Star {
   private int ageYears;
   private int massTons;
 
+  /**
+   * Constructor
+   */
   public Star(StarType startType, int startAge, int startMass) {
     this.type = startType;
     this.ageYears = startAge;
     this.massTons = startMass;
   }
 
+  /**
+   * Makes time pass for the star
+   */
   public void timePasses() {
     ageYears *= 2;
     massTons *= 8;

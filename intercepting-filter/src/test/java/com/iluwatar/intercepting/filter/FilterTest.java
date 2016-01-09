@@ -73,6 +73,9 @@ public class FilterTest {
   private final Order order;
   private final String result;
 
+  /**
+   * Constructor
+   */
   public FilterTest(Filter filter, Order order, String result) {
     this.filter = filter;
     this.order = order;

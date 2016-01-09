@@ -55,6 +55,9 @@ public class App {
     return s.equals("+") || s.equals("-") || s.equals("*");
   }
 
+  /**
+   * Get expression for string
+   */
   public static Expression getOperatorInstance(String s, Expression left, Expression right) {
     switch (s) {
       case "+":
@@ -63,7 +66,8 @@ public class App {
         return new MinusExpression(left, right);
       case "*":
         return new MultiplyExpression(left, right);
+      default:
+        return new MultiplyExpression(left, right);
     }
-    return null;
   }
 }

@@ -27,9 +27,9 @@ public abstract class ExpressionTest<E extends Expression> {
     for (int i = -10; i < 10; i++) {
       for (int j = -10; j < 10; j++) {
         testData.add(new Object[]{
-                new NumberExpression(i),
-                new NumberExpression(j),
-                resultCalc.apply(i, j)
+            new NumberExpression(i),
+            new NumberExpression(j),
+            resultCalc.apply(i, j)
         });
       }
     }

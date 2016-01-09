@@ -28,10 +28,12 @@ public class King implements Royalty {
 
   @Override
   public void changeMood() {
-    if (!isHungry && isDrunk)
+    if (!isHungry && isDrunk) {
       isHappy = true;
-    if (complimentReceived)
+    }
+    if (complimentReceived) {
       isHappy = false;
+    }
   }
 
   @Override

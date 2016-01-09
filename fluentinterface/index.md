@@ -7,11 +7,13 @@ categories: Other
 tags: 
  - Java
  - Difficulty-Intermediate
+ - Functional
 ---
 
-**Intent:** A fluent interface provides an easy-readable, flowing interface, that often mimics a domain specific language. Using this pattern results in code that can be read nearly as human language.
+## Intent
+A fluent interface provides an easy-readable, flowing interface, that often mimics a domain specific language. Using this pattern results in code that can be read nearly as human language.
 
-**Implementation:**
+## Implementation
 
 A fluent interface can be implemented using any of
  
@@ -21,13 +23,13 @@ A fluent interface can be implemented using any of
 
 ![Fluent Interface](./etc/fluentinterface.png "Fluent Interface")
 
-
-**Applicability:** Use the Fluent Interface pattern when
+## Applicability
+Use the Fluent Interface pattern when
 
 * you provide an API that would benefit from a DSL-like usage
 * you have objects that are difficult to configure or use
 
-**Real world examples:**
+## Real world examples
 
 * [Java 8 Stream API](http://www.oracle.com/technetwork/articles/java/ma14-java-se-8-streams-2177646.html)
 * [Google Guava FluentInterable](https://github.com/google/guava/wiki/FunctionalExplained)
@@ -35,7 +37,7 @@ A fluent interface can be implemented using any of
 * [Mockito](http://mockito.org/)
 * [Java Hamcrest](http://code.google.com/p/hamcrest/wiki/Tutorial)
 
-**Credits**
+## Credits
 
 * [Fluent Interface - Martin Fowler](http://www.martinfowler.com/bliki/FluentInterface.html)
 * [Evolutionary architecture and emergent design: Fluent interfaces - Neal Ford](http://www.ibm.com/developerworks/library/j-eaed14/)

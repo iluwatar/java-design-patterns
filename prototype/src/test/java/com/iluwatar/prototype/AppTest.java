@@ -2,8 +2,6 @@ package com.iluwatar.prototype;
 
 import org.junit.Test;
 
-import com.iluwatar.prototype.App;
-
 /**
  * 
  * Application test

@@ -6,6 +6,6 @@ package com.iluwatar.front.controller;
  *
  */
 public interface Command {
-	
-	void process();
+
+  void process();
 }

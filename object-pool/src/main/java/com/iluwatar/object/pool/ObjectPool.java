@@ -5,8 +5,6 @@ import java.util.HashSet;
 /**
  * 
  * Generic object pool
- *
- * @param <T>
  */
 public abstract class ObjectPool<T> {
 
@@ -15,6 +13,9 @@ public abstract class ObjectPool<T> {
 
   protected abstract T create();
 
+  /**
+   * Checkout object from pool
+   */
   public synchronized T checkOut() {
     if (available.size() <= 0) {
       available.add(create());

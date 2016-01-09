@@ -17,12 +17,18 @@ public class Inventory {
   private final List<Item> items;
   private final Lock lock;
 
+  /**
+   * Constructor
+   */
   public Inventory(int inventorySize) {
     this.inventorySize = inventorySize;
     this.items = new ArrayList<>(inventorySize);
     this.lock = new ReentrantLock();
   }
 
+  /**
+   * Add item
+   */
   public boolean addItem(Item item) {
     if (items.size() < inventorySize) {
       lock.lock();

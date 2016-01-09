@@ -15,6 +15,9 @@ public class GWeather extends Observable<GWeather, Race, WeatherType> {
     currentWeather = WeatherType.SUNNY;
   }
 
+  /**
+   * Makes time pass for weather
+   */
   public void timePasses() {
     WeatherType[] enumValues = WeatherType.values();
     currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];

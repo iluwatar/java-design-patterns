@@ -53,10 +53,9 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
           public TYPE computeNext() {
             while (fromIterator.hasNext()) {
               TYPE candidate = fromIterator.next();
-              if (!predicate.test(candidate)) {
-                continue;
+              if (predicate.test(candidate)) {
+                return candidate;
               }
-              return candidate;
             }
 
             return null;
@@ -94,12 +93,10 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
 
           @Override
           public TYPE computeNext() {
-            if (currentIndex < count) {
-              if (fromIterator.hasNext()) {
-                TYPE candidate = fromIterator.next();
-                currentIndex++;
-                return candidate;
-              }
+            if (currentIndex < count && fromIterator.hasNext()) {
+              TYPE candidate = fromIterator.next();
+              currentIndex++;
+              return candidate;
             }
             return null;
           }
@@ -188,11 +185,12 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
 
           @Override
           public NEW_TYPE computeNext() {
-            while (oldTypeIterator.hasNext()) {
+            if (oldTypeIterator.hasNext()) {
               TYPE candidate = oldTypeIterator.next();
               return function.apply(candidate);
+            } else {
+              return null;
             }
-            return null;
           }
         };
       }

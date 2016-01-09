@@ -34,7 +34,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    FilterManager filterManager = new FilterManager(new Target());
+    FilterManager filterManager = new FilterManager();
     filterManager.addFilter(new NameFilter());
     filterManager.addFilter(new ContactFilter());
     filterManager.addFilter(new AddressFilter());

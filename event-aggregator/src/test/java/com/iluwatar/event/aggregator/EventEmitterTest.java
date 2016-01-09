@@ -10,8 +10,8 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * Date: 12/12/15 - 10:58 PM
@@ -64,6 +64,37 @@ public abstract class EventEmitterTest<E extends EventEmitter> {
   }
 
   /**
+   * Pass each week of the day, day by day to the event emitter and verify of the given observers
+   * received the correct event on the special day.
+   *
+   * @param specialDay The special day on which an event is emitted
+   * @param event      The expected event emitted by the test object
+   * @param emitter    The event emitter
+   * @param observers  The registered observer mocks
+   */
+  private void testAllDays(final Weekday specialDay, final Event event, final E emitter,
+                           final EventObserver... observers) {
+
+    for (final Weekday weekday : Weekday.values()) {
+      // Pass each week of the day, day by day to the event emitter
+      emitter.timePasses(weekday);
+
+      if (weekday == specialDay) {
+        // On a special day, every observer should have received the event
+        for (final EventObserver observer : observers) {
+          verify(observer, times(1)).onEvent(eq(event));
+        }
+      } else {
+        // On any other normal day, the observers should have received nothing at all
+        verifyZeroInteractions(observers);
+      }
+    }
+
+    // The observers should not have received any additional events after the week
+    verifyNoMoreInteractions(observers);
+  }
+  
+  /**
    * Go over every day of the month, and check if the event is emitted on the given day. Use an
    * event emitter without a default observer
    *
@@ -97,37 +128,6 @@ public abstract class EventEmitterTest<E extends EventEmitter> {
     emitter.registerObserver(observer2);
 
     testAllDays(specialDay, event, emitter, defaultObserver, observer1, observer2);
-  }
-
-  /**
-   * Pass each week of the day, day by day to the event emitter and verify of the given observers
-   * received the correct event on the special day.
-   *
-   * @param specialDay The special day on which an event is emitted
-   * @param event      The expected event emitted by the test object
-   * @param emitter    The event emitter
-   * @param observers  The registered observer mocks
-   */
-  private void testAllDays(final Weekday specialDay, final Event event, final E emitter,
-                           final EventObserver... observers) {
-
-    for (final Weekday weekday : Weekday.values()) {
-      // Pass each week of the day, day by day to the event emitter
-      emitter.timePasses(weekday);
-
-      if (weekday == specialDay) {
-        // On a special day, every observer should have received the event
-        for (final EventObserver observer : observers) {
-          verify(observer, times(1)).onEvent(eq(event));
-        }
-      } else {
-        // On any other normal day, the observers should have received nothing at all
-        verifyZeroInteractions(observers);
-      }
-    }
-
-    // The observers should not have received any additional events after the week
-    verifyNoMoreInteractions(observers);
   }
 
 }

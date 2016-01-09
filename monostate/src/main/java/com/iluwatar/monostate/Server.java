@@ -11,6 +11,9 @@ public class Server {
   public final int port;
   public final int id;
 
+  /**
+   * Constructor
+   */
   public Server(String host, int port, int id) {
     this.host = host;
     this.port = port;
@@ -25,7 +28,7 @@ public class Server {
     return port;
   }
 
-  public final void serve(Request request) {
+  public void serve(Request request) {
     System.out.println("Server ID " + id + " associated to host : " + getHost() + " and Port "
         + getPort() + " Processed request with value  " + request.value);
   }

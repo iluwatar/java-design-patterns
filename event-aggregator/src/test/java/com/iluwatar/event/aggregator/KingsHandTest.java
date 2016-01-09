@@ -6,8 +6,8 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * Date: 12/12/15 - 10:57 AM
@@ -24,7 +24,7 @@ public class KingsHandTest extends EventEmitterTest<KingsHand> {
   }
 
   /**
-   * The {@link KingsHand} is both an {@EventEmitter} as an {@link EventObserver} so verify if every
+   * The {@link KingsHand} is both an {@link EventEmitter} as an {@link EventObserver} so verify if every
    * event received is passed up to it's superior, in most cases {@link KingJoffrey} but now just a
    * mocked observer.
    */

@@ -1,13 +1,12 @@
 package com.iluwatar.model.view.presenter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.iluwatar.model.view.presenter.FileLoader;
-import com.iluwatar.model.view.presenter.FileSelectorPresenter;
-import com.iluwatar.model.view.presenter.FileSelectorStub;
 
 /**
  * This test case is responsible for testing our application by taking advantage of the
@@ -57,13 +56,13 @@ public class FileSelectorPresenterTest {
    */
   @Test
   public void updateFileNameToLoader() {
-    String EXPECTED_FILE = "Stamatis";
-    stub.setFileName(EXPECTED_FILE);
+    String expectedFile = "Stamatis";
+    stub.setFileName(expectedFile);
 
     presenter.start();
     presenter.fileNameChanged();
 
-    assertEquals(EXPECTED_FILE, loader.getFileName());
+    assertEquals(expectedFile, loader.getFileName());
   }
 
   /**

@@ -32,6 +32,10 @@ public class PersonSpecifications {
 
   }
 
+  /**
+   * Name specification
+   *
+   */
   public static class NameEqualSpec implements Specification<Person> {
 
     public String name;
@@ -40,6 +44,9 @@ public class PersonSpecifications {
       this.name = name;
     }
 
+    /**
+     * Get predicate
+     */
     public Predicate toPredicate(Root<Person> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
       return cb.equal(root.get("name"), this.name);

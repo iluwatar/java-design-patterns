@@ -20,7 +20,7 @@ public class FilterManagerTest {
   @Test
   public void testFilterRequest() throws Exception {
     final Target target = mock(Target.class);
-    final FilterManager filterManager = new FilterManager(target);
+    final FilterManager filterManager = new FilterManager();
     assertEquals("RUNNING...", filterManager.filterRequest(mock(Order.class)));
     verifyZeroInteractions(target);
   }
@@ -28,7 +28,7 @@ public class FilterManagerTest {
   @Test
   public void testAddFilter() throws Exception {
     final Target target = mock(Target.class);
-    final FilterManager filterManager = new FilterManager(target);
+    final FilterManager filterManager = new FilterManager();
 
     verifyZeroInteractions(target);
 

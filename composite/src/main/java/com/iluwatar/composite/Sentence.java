@@ -9,6 +9,9 @@ import java.util.List;
  */
 public class Sentence extends LetterComposite {
 
+  /**
+   * Constructor
+   */
   public Sentence(List<Word> words) {
     for (Word w : words) {
       this.add(w);

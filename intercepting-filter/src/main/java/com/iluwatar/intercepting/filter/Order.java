@@ -14,6 +14,9 @@ public class Order {
 
   public Order() {}
 
+  /**
+   * Constructor
+   */
   public Order(String name, String contactNumber, String address, String depositNumber, String order) {
     this.name = name;
     this.contactNumber = contactNumber;

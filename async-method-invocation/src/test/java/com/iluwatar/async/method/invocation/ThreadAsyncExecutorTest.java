@@ -8,19 +8,9 @@ import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.timeout;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
@@ -55,8 +45,7 @@ public class ThreadAsyncExecutorTest {
   }
 
   /**
-   * Test used to verify the happy path of
-   * {@link ThreadAsyncExecutor#startProcess(Callable, AsyncCallback)}
+   * Test used to verify the happy path of {@link ThreadAsyncExecutor#startProcess(Callable, AsyncCallback)}
    */
   @Test(timeout = 3000)
   public void testSuccessfulTaskWithCallback() throws Exception {
@@ -77,8 +66,7 @@ public class ThreadAsyncExecutorTest {
     verify(task, times(1)).call();
 
     // ... same for the callback, we expect our object
-    final ArgumentCaptor<Optional<Exception>> optionalCaptor = ArgumentCaptor
-        .forClass((Class) Optional.class);
+    final ArgumentCaptor<Optional<Exception>> optionalCaptor = ArgumentCaptor.forClass((Class) Optional.class);
     verify(callback, times(1)).onComplete(eq(result), optionalCaptor.capture());
 
     final Optional<Exception> optionalException = optionalCaptor.getValue();
@@ -90,8 +78,8 @@ public class ThreadAsyncExecutorTest {
   }
 
   /**
-   * Test used to verify the happy path of {@link ThreadAsyncExecutor#startProcess(Callable)} when a
-   * task takes a while to execute
+   * Test used to verify the happy path of {@link ThreadAsyncExecutor#startProcess(Callable)} when a task takes a while
+   * to execute
    */
   @Test(timeout = 5000)
   public void testLongRunningTaskWithoutCallback() throws Exception {
@@ -111,8 +99,7 @@ public class ThreadAsyncExecutorTest {
 
     try {
       asyncResult.getValue();
-      fail(
-          "Expected IllegalStateException when calling AsyncResult#getValue on a non-completed task");
+      fail("Expected IllegalStateException when calling AsyncResult#getValue on a non-completed task");
     } catch (IllegalStateException e) {
       assertNotNull(e.getMessage());
     }
@@ -130,9 +117,8 @@ public class ThreadAsyncExecutorTest {
   }
 
   /**
-   * Test used to verify the happy path of
-   * {@link ThreadAsyncExecutor#startProcess(Callable, AsyncCallback)} when a task takes a while to
-   * execute
+   * Test used to verify the happy path of {@link ThreadAsyncExecutor#startProcess(Callable, AsyncCallback)} when a task
+   * takes a while to execute
    */
   @Test(timeout = 5000)
   public void testLongRunningTaskWithCallback() throws Exception {
@@ -155,8 +141,7 @@ public class ThreadAsyncExecutorTest {
 
     try {
       asyncResult.getValue();
-      fail(
-          "Expected IllegalStateException when calling AsyncResult#getValue on a non-completed task");
+      fail("Expected IllegalStateException when calling AsyncResult#getValue on a non-completed task");
     } catch (IllegalStateException e) {
       assertNotNull(e.getMessage());
     }
@@ -164,8 +149,7 @@ public class ThreadAsyncExecutorTest {
     // Our task should only execute once, but it can take a while ...
     verify(task, timeout(3000).times(1)).call();
 
-    final ArgumentCaptor<Optional<Exception>> optionalCaptor = ArgumentCaptor
-        .forClass((Class) Optional.class);
+    final ArgumentCaptor<Optional<Exception>> optionalCaptor = ArgumentCaptor.forClass((Class) Optional.class);
     verify(callback, timeout(3000).times(1)).onComplete(eq(result), optionalCaptor.capture());
 
     final Optional<Exception> optionalException = optionalCaptor.getValue();
@@ -182,9 +166,8 @@ public class ThreadAsyncExecutorTest {
   }
 
   /**
-   * Test used to verify the happy path of {@link ThreadAsyncExecutor#startProcess(Callable)} when a
-   * task takes a while to execute, while waiting on the result using
-   * {@link ThreadAsyncExecutor#endProcess(AsyncResult)}
+   * Test used to verify the happy path of {@link ThreadAsyncExecutor#startProcess(Callable)} when a task takes a while
+   * to execute, while waiting on the result using {@link ThreadAsyncExecutor#endProcess(AsyncResult)}
    */
   @Test(timeout = 5000)
   public void testEndProcess() throws Exception {
@@ -204,8 +187,7 @@ public class ThreadAsyncExecutorTest {
 
     try {
       asyncResult.getValue();
-      fail(
-          "Expected IllegalStateException when calling AsyncResult#getValue on a non-completed task");
+      fail("Expected IllegalStateException when calling AsyncResult#getValue on a non-completed task");
     } catch (IllegalStateException e) {
       assertNotNull(e.getMessage());
     }
@@ -220,8 +202,7 @@ public class ThreadAsyncExecutorTest {
   }
 
   /**
-   * Test used to verify the behaviour of {@link ThreadAsyncExecutor#startProcess(Callable)} when
-   * the callable is 'null'
+   * Test used to verify the behaviour of {@link ThreadAsyncExecutor#startProcess(Callable)} when the callable is 'null'
    */
   @Test(timeout = 3000)
   public void testNullTask() throws Exception {
@@ -229,8 +210,7 @@ public class ThreadAsyncExecutorTest {
     final ThreadAsyncExecutor executor = new ThreadAsyncExecutor();
     final AsyncResult<Object> asyncResult = executor.startProcess(null);
 
-    assertNotNull("The AsyncResult should not be 'null', even though the task was 'null'.",
-        asyncResult);
+    assertNotNull("The AsyncResult should not be 'null', even though the task was 'null'.", asyncResult);
     asyncResult.await(); // Prevent timing issues, and wait until the result is available
     assertTrue(asyncResult.isCompleted());
 
@@ -246,9 +226,8 @@ public class ThreadAsyncExecutorTest {
   }
 
   /**
-   * Test used to verify the behaviour of
-   * {@link ThreadAsyncExecutor#startProcess(Callable, AsyncCallback)} when the callable is 'null',
-   * but the asynchronous callback is provided
+   * Test used to verify the behaviour of {@link ThreadAsyncExecutor#startProcess(Callable, AsyncCallback)} when the
+   * callable is 'null', but the asynchronous callback is provided
    */
   @Test(timeout = 3000)
   public void testNullTaskWithCallback() throws Exception {
@@ -257,13 +236,11 @@ public class ThreadAsyncExecutorTest {
     final AsyncCallback<Object> callback = mock(AsyncCallback.class);
     final AsyncResult<Object> asyncResult = executor.startProcess(null, callback);
 
-    assertNotNull("The AsyncResult should not be 'null', even though the task was 'null'.",
-        asyncResult);
+    assertNotNull("The AsyncResult should not be 'null', even though the task was 'null'.", asyncResult);
     asyncResult.await(); // Prevent timing issues, and wait until the result is available
     assertTrue(asyncResult.isCompleted());
 
-    final ArgumentCaptor<Optional<Exception>> optionalCaptor = ArgumentCaptor
-        .forClass((Class) Optional.class);
+    final ArgumentCaptor<Optional<Exception>> optionalCaptor = ArgumentCaptor.forClass((Class) Optional.class);
     verify(callback, times(1)).onComplete(Matchers.isNull(), optionalCaptor.capture());
 
     final Optional<Exception> optionalException = optionalCaptor.getValue();
@@ -286,9 +263,8 @@ public class ThreadAsyncExecutorTest {
   }
 
   /**
-   * Test used to verify the behaviour of
-   * {@link ThreadAsyncExecutor#startProcess(Callable, AsyncCallback)} when both the callable and
-   * the asynchronous callback are 'null'
+   * Test used to verify the behaviour of {@link ThreadAsyncExecutor#startProcess(Callable, AsyncCallback)} when both
+   * the callable and the asynchronous callback are 'null'
    */
   @Test(timeout = 3000)
   public void testNullTaskWithNullCallback() throws Exception {
@@ -296,9 +272,7 @@ public class ThreadAsyncExecutorTest {
     final ThreadAsyncExecutor executor = new ThreadAsyncExecutor();
     final AsyncResult<Object> asyncResult = executor.startProcess(null, null);
 
-    assertNotNull(
-        "The AsyncResult should not be 'null', even though the task and callback were 'null'.",
-        asyncResult);
+    assertNotNull("The AsyncResult should not be 'null', even though the task and callback were 'null'.", asyncResult);
     asyncResult.await(); // Prevent timing issues, and wait until the result is available
     assertTrue(asyncResult.isCompleted());
 

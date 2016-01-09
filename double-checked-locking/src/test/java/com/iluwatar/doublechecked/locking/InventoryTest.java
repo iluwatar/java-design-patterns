@@ -77,7 +77,7 @@ public class InventoryTest {
     final ExecutorService executorService = Executors.newFixedThreadPool(THREAD_COUNT);
     for (int i = 0; i < THREAD_COUNT; i++) {
       executorService.execute(() -> {
-        while (inventory.addItem(new Item())) ;
+        while (inventory.addItem(new Item())) {};
       });
     }
 

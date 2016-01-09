@@ -2,8 +2,6 @@ package com.iluwatar.privateclassdata;
 
 import org.junit.Test;
 
-import com.iluwatar.privateclassdata.App;
-
 /**
  * 
  * Application test

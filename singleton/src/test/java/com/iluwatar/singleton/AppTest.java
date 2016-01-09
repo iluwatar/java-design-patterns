@@ -2,8 +2,6 @@ package com.iluwatar.singleton;
 
 import org.junit.Test;
 
-import com.iluwatar.singleton.App;
-
 /**
  * 
  * Application test

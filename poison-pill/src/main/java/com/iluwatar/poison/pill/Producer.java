@@ -10,16 +10,22 @@ import com.iluwatar.poison.pill.Message.Headers;
  */
 public class Producer {
 
-  private final MQPublishPoint queue;
+  private final MqPublishPoint queue;
   private final String name;
   private boolean isStopped;
 
-  public Producer(String name, MQPublishPoint queue) {
+  /**
+   * Constructor
+   */
+  public Producer(String name, MqPublishPoint queue) {
     this.name = name;
     this.queue = queue;
     this.isStopped = false;
   }
 
+  /**
+   * Send message to queue
+   */
   public void send(String body) {
     if (isStopped) {
       throw new IllegalStateException(String.format(
@@ -38,6 +44,9 @@ public class Producer {
     }
   }
 
+  /**
+   * Stop system by sending poison pill
+   */
   public void stop() {
     isStopped = true;
     try {

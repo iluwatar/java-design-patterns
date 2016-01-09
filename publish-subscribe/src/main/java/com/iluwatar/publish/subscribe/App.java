@@ -28,10 +28,6 @@ public class App {
 
   /**
    * Program entry point
-   * 
-   * @param args
-   *          command line args
-   * @throws Exception
    */
   public static void main(String[] args) throws Exception {
     CamelContext context = new DefaultCamelContext();

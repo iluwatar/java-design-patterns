@@ -24,6 +24,9 @@ public abstract class LetterComposite {
 
   protected abstract void printThisAfter();
 
+  /**
+   * Print
+   */
   public void print() {
     printThisBefore();
     for (LetterComposite letter : children) {

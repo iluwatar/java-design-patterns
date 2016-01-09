@@ -21,7 +21,7 @@ package com.iluwatar.caching;
  * application data. The cache itself is implemented as an internal (Java) data structure. It adopts
  * a Least-Recently-Used (LRU) strategy for evicting data from itself when its full. The three
  * strategies are individually tested. The testing of the cache is restricted towards saving and
- * querying of user accounts from the underlying data store ( {@link DBManager}). The main class (
+ * querying of user accounts from the underlying data store ( {@link DbManager}). The main class (
  * {@link App} is not aware of the underlying mechanics of the application (i.e. save and query) and
  * whether the data is coming from the cache or the DB (i.e. separation of concern). The AppManager
  * ({@link AppManager}) handles the transaction of data to-and-from the underlying data store
@@ -43,7 +43,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    AppManager.initDB(false); // VirtualDB (instead of MongoDB) was used in running the JUnit tests
+    AppManager.initDb(false); // VirtualDB (instead of MongoDB) was used in running the JUnit tests
                               // and the App class to avoid Maven compilation errors. Set flag to
                               // true to run the tests with MongoDB (provided that MongoDB is
                               // installed and socket connection is open).
@@ -65,8 +65,8 @@ public class App {
 
     AppManager.save(userAccount1);
     System.out.println(AppManager.printCacheContent());
-    userAccount1 = AppManager.find("001");
-    userAccount1 = AppManager.find("001");
+    AppManager.find("001");
+    AppManager.find("001");
   }
 
   /**
@@ -80,15 +80,15 @@ public class App {
 
     AppManager.save(userAccount2);
     System.out.println(AppManager.printCacheContent());
-    userAccount2 = AppManager.find("002");
+    AppManager.find("002");
     System.out.println(AppManager.printCacheContent());
     userAccount2 = AppManager.find("002");
     userAccount2.setUserName("Jane G.");
     AppManager.save(userAccount2);
     System.out.println(AppManager.printCacheContent());
-    userAccount2 = AppManager.find("002");
+    AppManager.find("002");
     System.out.println(AppManager.printCacheContent());
-    userAccount2 = AppManager.find("002");
+    AppManager.find("002");
   }
 
   /**
@@ -106,12 +106,12 @@ public class App {
     AppManager.save(userAccount4);
     AppManager.save(userAccount5);
     System.out.println(AppManager.printCacheContent());
-    userAccount3 = AppManager.find("003");
+    AppManager.find("003");
     System.out.println(AppManager.printCacheContent());
     UserAccount userAccount6 = new UserAccount("006", "Yasha", "She is an only child.");
     AppManager.save(userAccount6);
     System.out.println(AppManager.printCacheContent());
-    userAccount4 = AppManager.find("004");
+    AppManager.find("004");
     System.out.println(AppManager.printCacheContent());
   }
 }

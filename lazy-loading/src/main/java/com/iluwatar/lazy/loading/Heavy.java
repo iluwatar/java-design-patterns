@@ -7,6 +7,9 @@ package com.iluwatar.lazy.loading;
  */
 public class Heavy {
 
+  /**
+   * Constructor
+   */
   public Heavy() {
     System.out.println("Creating Heavy ...");
     try {

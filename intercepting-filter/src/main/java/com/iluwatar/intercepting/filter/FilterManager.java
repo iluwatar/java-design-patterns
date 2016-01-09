@@ -10,8 +10,8 @@ public class FilterManager {
 
   private FilterChain filterChain;
 
-  public FilterManager(Target target) {
-    filterChain = new FilterChain(target);
+  public FilterManager() {
+    filterChain = new FilterChain();
   }
 
   public void addFilter(Filter filter) {

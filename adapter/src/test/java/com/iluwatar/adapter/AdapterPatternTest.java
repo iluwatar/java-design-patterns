@@ -1,18 +1,13 @@
 package com.iluwatar.adapter;
 
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.iluwatar.adapter.BattleFishingBoat;
-import com.iluwatar.adapter.BattleShip;
-import com.iluwatar.adapter.Captain;
-import com.iluwatar.adapter.FishingBoat;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 /**
  * Test class

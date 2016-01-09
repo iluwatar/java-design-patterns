@@ -15,24 +15,30 @@ public class AppManager {
 
   private static CachingPolicy cachingPolicy;
 
+  private AppManager() {
+  }
+
   /**
    *
    * Developer/Tester is able to choose whether the application should use MongoDB as its underlying
    * data storage or a simple Java data structure to (temporarily) store the data/objects during
    * runtime.
    */
-  public static void initDB(boolean useMongoDB) {
-    if (useMongoDB) {
+  public static void initDb(boolean useMongoDb) {
+    if (useMongoDb) {
       try {
-        DBManager.connect();
+        DbManager.connect();
       } catch (ParseException e) {
         e.printStackTrace();
       }
     } else {
-      DBManager.createVirtualDB();
+      DbManager.createVirtualDb();
     }
   }
 
+  /**
+   * Initialize caching policy
+   */
   public static void initCachingPolicy(CachingPolicy policy) {
     cachingPolicy = policy;
     if (cachingPolicy == CachingPolicy.BEHIND) {
@@ -50,15 +56,21 @@ public class AppManager {
     CacheStore.initCapacity(capacity);
   }
 
-  public static UserAccount find(String userID) {
+  /**
+   * Find user account
+   */
+  public static UserAccount find(String userId) {
     if (cachingPolicy == CachingPolicy.THROUGH || cachingPolicy == CachingPolicy.AROUND) {
-      return CacheStore.readThrough(userID);
+      return CacheStore.readThrough(userId);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
-      return CacheStore.readThroughWithWriteBackPolicy(userID);
+      return CacheStore.readThroughWithWriteBackPolicy(userId);
     }
     return null;
   }
 
+  /**
+   * Save user account
+   */
   public static void save(UserAccount userAccount) {
     if (cachingPolicy == CachingPolicy.THROUGH) {
       CacheStore.writeThrough(userAccount);

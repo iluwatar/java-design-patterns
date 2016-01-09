@@ -60,7 +60,7 @@ public class TreasureChestTest {
   @Test
   public void testIterator() {
     final TreasureChest chest = new TreasureChest();
-    final ItemIterator iterator = chest.Iterator(expectedItem.getType());
+    final ItemIterator iterator = chest.iterator(expectedItem.getType());
     assertNotNull(iterator);
 
     while (iterator.hasNext()) {

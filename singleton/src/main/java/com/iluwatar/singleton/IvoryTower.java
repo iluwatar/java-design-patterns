@@ -8,7 +8,7 @@ public final class IvoryTower {
   /**
    * Static to class instance of the class.
    */
-  private static final IvoryTower instance = new IvoryTower();
+  private static final IvoryTower INSTANCE = new IvoryTower();
 
   /**
    * Private constructor so nobody can instantiate the class.
@@ -21,6 +21,6 @@ public final class IvoryTower {
    * @return instance of the singleton.
    */
   public static IvoryTower getInstance() {
-    return instance;
+    return INSTANCE;
   }
 }

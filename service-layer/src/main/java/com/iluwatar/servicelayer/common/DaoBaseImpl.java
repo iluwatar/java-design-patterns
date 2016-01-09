@@ -39,8 +39,9 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
       result = (E) criteria.uniqueResult();
       tx.commit();
     } catch (Exception e) {
-      if (tx != null)
+      if (tx != null) {
         tx.rollback();
+      }
       throw e;
     } finally {
       session.close();
@@ -57,8 +58,9 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
       session.persist(entity);
       tx.commit();
     } catch (Exception e) {
-      if (tx != null)
+      if (tx != null) {
         tx.rollback();
+      }
       throw e;
     } finally {
       session.close();
@@ -75,8 +77,9 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
       result = (E) session.merge(entity);
       tx.commit();
     } catch (Exception e) {
-      if (tx != null)
+      if (tx != null) {
         tx.rollback();
+      }
       throw e;
     } finally {
       session.close();
@@ -93,8 +96,9 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
       session.delete(entity);
       tx.commit();
     } catch (Exception e) {
-      if (tx != null)
+      if (tx != null) {
         tx.rollback();
+      }
       throw e;
     } finally {
       session.close();
@@ -111,8 +115,9 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
       Criteria criteria = session.createCriteria(persistentClass);
       result = criteria.list();
     } catch (Exception e) {
-      if (tx != null)
+      if (tx != null) {
         tx.rollback();
+      }
       throw e;
     } finally {
       session.close();

@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public interface Message {
 
-  public static final Message POISON_PILL = new Message() {
+  Message POISON_PILL = new Message() {
 
     @Override
     public void addHeader(Headers header, String value) {
@@ -45,13 +45,13 @@ public interface Message {
     DATE, SENDER
   }
 
-  public void addHeader(Headers header, String value);
+  void addHeader(Headers header, String value);
 
-  public String getHeader(Headers header);
+  String getHeader(Headers header);
 
-  public Map<Headers, String> getHeaders();
+  Map<Headers, String> getHeaders();
 
-  public void setBody(String body);
+  void setBody(String body);
 
-  public String getBody();
+  String getBody();
 }

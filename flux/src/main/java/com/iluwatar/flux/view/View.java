@@ -9,7 +9,7 @@ import com.iluwatar.flux.store.Store;
  */
 public interface View {
 
-  public void storeChanged(Store store);
+  void storeChanged(Store store);
 
-  public void render();
+  void render();
 }

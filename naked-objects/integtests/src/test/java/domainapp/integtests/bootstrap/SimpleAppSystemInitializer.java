@@ -21,6 +21,12 @@ import org.apache.isis.objectstore.jdo.datanucleus.IsisConfigurationForJdoIntegT
 
 public class SimpleAppSystemInitializer {
 
+  private SimpleAppSystemInitializer() {
+  }
+
+  /**
+   * Init test system
+   */
   public static void initIsft() {
     IsisSystemForTest isft = IsisSystemForTest.getElseNull();
     if (isft == null) {

@@ -14,6 +14,9 @@ public class AlchemistShop {
   private List<Potion> topShelf;
   private List<Potion> bottomShelf;
 
+  /**
+   * Constructor
+   */
   public AlchemistShop() {
     topShelf = new ArrayList<>();
     bottomShelf = new ArrayList<>();
@@ -58,6 +61,9 @@ public class AlchemistShop {
     return Collections.unmodifiableList(this.bottomShelf);
   }
 
+  /**
+   * Enumerate potions
+   */
   public void enumerate() {
 
     System.out.println("Enumerating top shelf potions\n");

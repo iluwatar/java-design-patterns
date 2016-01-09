@@ -13,6 +13,9 @@ public abstract class StealingMethod {
 
   protected abstract void stealTheItem(String target);
 
+  /**
+   * Steal
+   */
   public void steal() {
     String target = pickTarget();
     System.out.println("The target has been chosen as " + target + ".");

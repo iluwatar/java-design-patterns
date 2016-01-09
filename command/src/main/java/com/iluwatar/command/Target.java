@@ -30,6 +30,9 @@ public abstract class Target {
   @Override
   public abstract String toString();
 
+  /**
+   * Print status
+   */
   public void printStatus() {
     System.out.println(String.format("%s, [size=%s] [visibility=%s]", this, getSize(),
         getVisibility()));

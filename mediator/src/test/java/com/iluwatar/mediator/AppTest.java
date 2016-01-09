@@ -2,8 +2,6 @@ package com.iluwatar.mediator;
 
 import org.junit.Test;
 
-import com.iluwatar.mediator.App;
-
 /**
  * 
  * Application test

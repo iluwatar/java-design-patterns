@@ -107,9 +107,9 @@ public abstract class CollisionTest<O extends GameObject> {
     final String targetName = target.getClass().getSimpleName();
     final String otherName = other.getClass().getSimpleName();
 
-    final String errorMessage = expectTargetOnFire ?
-        "Expected [" + targetName + "] to be on fire after colliding with [" + otherName + "] but it was not!" :
-        "Expected [" + targetName + "] not to be on fire after colliding with [" + otherName + "] but it was!";
+    final String errorMessage = expectTargetOnFire 
+        ? "Expected [" + targetName + "] to be on fire after colliding with [" + otherName + "] but it was not!" 
+        : "Expected [" + targetName + "] not to be on fire after colliding with [" + otherName + "] but it was!";
 
     assertEquals(errorMessage, expectTargetOnFire, target.isOnFire());
   }
@@ -126,9 +126,9 @@ public abstract class CollisionTest<O extends GameObject> {
     final String targetName = target.getClass().getSimpleName();
     final String otherName = other.getClass().getSimpleName();
 
-    final String errorMessage = expectedDamage ?
-        "Expected [" + targetName + "] to be damaged after colliding with [" + otherName + "] but it was not!" :
-        "Expected [" + targetName + "] not to be damaged after colliding with [" + otherName + "] but it was!";
+    final String errorMessage = expectedDamage
+        ? "Expected [" + targetName + "] to be damaged after colliding with [" + otherName + "] but it was not!" 
+        : "Expected [" + targetName + "] not to be damaged after colliding with [" + otherName + "] but it was!";
 
     assertEquals(errorMessage, expectedDamage, target.isDamaged());
   }

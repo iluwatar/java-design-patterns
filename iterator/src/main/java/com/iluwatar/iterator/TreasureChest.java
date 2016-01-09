@@ -12,6 +12,9 @@ public class TreasureChest {
 
   private List<Item> items;
 
+  /**
+   * Constructor
+   */
   public TreasureChest() {
     items = new ArrayList<>();
     items.add(new Item(ItemType.POTION, "Potion of courage"));
@@ -26,10 +29,13 @@ public class TreasureChest {
     items.add(new Item(ItemType.WEAPON, "Dagger of poison"));
   }
 
-  ItemIterator Iterator(ItemType type) {
-    return new TreasureChestItemIterator(this, type);
+  ItemIterator iterator(ItemType itemType) {
+    return new TreasureChestItemIterator(this, itemType);
   }
 
+  /**
+   * Get all items
+   */
   public List<Item> getItems() {
     ArrayList<Item> list = new ArrayList<>();
     list.addAll(items);
