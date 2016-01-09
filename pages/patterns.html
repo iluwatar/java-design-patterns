@@ -7,6 +7,7 @@ comments: false
 page-index: 3
 ---
 <div id="index" class="row">
+  <!-- MAIN -->
   <div class="col-sm-9">
     <div class="content-area">
       <!-- small button -->
@@ -24,28 +25,39 @@ page-index: 3
         {% assign allPatterns = site.pages | where:"layout","pattern" | sort: 'title' %}
         <div>
           {% for page in allPatterns %}
-          <a class="list-item" href="{{ page.url | prepend: site.baseurl }}"
+          <div class="list-item" href="{{ page.url | prepend: site.baseurl }}"
           cats='All;{{ page.categories | join: ';' }}'
           tags='All;{{ page.tags | join: ';' }}'>
-          <h2>{{ page.title }}</h2>
-          </a>
+            <a href="{{ page.url | prepend: site.baseurl }}"><h2>{{ page.title }}</h2></a>
+            <span class="cats">
+                {% for cat in page.categories %}
+                <a href="javascript:;" class="cat-button" category="{{ cat }}">{{ cat }}</a>
+                {% endfor %}
+            </span>
+            <span class="tags">
+                {% for tag in page.tags %}
+                <a href="javascript:;" class="tag-button" tag="{{ tag }}">{{ tag }}</a>
+                {% endfor %}
+            </span>
+          </div>
 
           {% endfor %}
         </div>
       </div>
     </div>
   </div>
+  <!-- SIDEBAR -->
   <div class="col-sm-3">
     <div class="shadow-corner-curl hidden-xs">
       <div class="sidebar-list-header">
         Categories
       </div>
 
-      <a href="javascript:;" class="sidebar-list-item category" category="All">
+      <a href="javascript:;" class="sidebar-list-item cat-button" category="All">
         All<span class="my-badge"> {{ allPatterns | size }}</span>
       </a>
       {% for category in site.data.categories %}
-      <a href="javascript:;" class="sidebar-list-item category" category="{{ category.name }}">
+      <a href="javascript:;" class="sidebar-list-item cat-button" category="{{ category.name }}">
         {{ category.name }} <span class="my-badge">
           {% assign counter=0 %}
           {% for page in allPatterns %}
@@ -64,11 +76,11 @@ page-index: 3
         Tags
       </div>
 
-      <a href="javascript:;" class="sidebar-list-item tag" tag="All">
+      <a href="javascript:;" class="sidebar-list-item tag-button" tag="All">
         All<span class="my-badge"> {{ allPatterns | size }}</span>
       </a>
       {% for tag in site.data.tags %}
-      <a href="javascript:;" class="sidebar-list-item tag" tag="{{ tag.name }}">
+      <a href="javascript:;" class="sidebar-list-item tag-button" tag="{{ tag.name }}">
         {{ tag.name }} <span class="my-badge">
           {% assign counter=0 %}
           {% for page in allPatterns %}

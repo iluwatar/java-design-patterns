@@ -42,15 +42,14 @@ function categoryAndTagDisplay() {
     $('.post-list-body>div[post-tag!=All]').hide();
     */
     /*show category when click categories list*/
-    $('.sidebar-list-item.category').click(function() {
+    $('a.cat-button').click(function() {
         var category = $(this).attr('category'); //get category's name
         $('.list-item').not('[cats*=\'' + category + '\']').slideUp(200)
         $('.list-item[cats*=\'' + category + '\']').slideDown()
     });
     /*show category when click tags list*/
-    $('.sidebar-list-item.tag').click(function() {
+    $('a.tag-button').click(function() {
         var tag = $(this).attr('tag'); //get tag's name
-
         $('.list-item').not('[tags*=\'' + tag + '\']').slideUp(200)
         $('.list-item[tags*=\'' + tag + '\']').slideDown()
     });
