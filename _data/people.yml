@@ -1,0 +1,21 @@
+# Available Params:
+# name: Displayed Name
+# github: github username
+# facebook: facebook username (optional)
+# twitter: twitter username (optional)
+# linkedin: linkedin username (optional)
+
+nxg:
+  name: Markus
+  description: Website-Dev Hobo
+  github: noobxgockel
+
+ilu:
+  name: Ilkka Seppälä
+  description: Master of Patterns
+  github: iluwatar
+  twitter: iluwatar
+
+npa:
+  name: Narendra Pathai
+  github: npathai

@@ -5,26 +5,25 @@
 /* the imported files can be found in /_sass/ */
 @import 'mixins';
 @import 'google_cse_fixes';
+@import 'colors';
 
-
-.tags a {
-    background: rgb(224, 143, 16);
+.label {
     padding: 3px 6px;
-    border-radius: 5px;
-    color: rgb(255, 255, 255);
+    border-radius: 3px;
+    color: rgb(255, 255, 255) !important;
     text-transform: uppercase;
-    font-size: 13.3333px;
+    font-size: 11px;
     font-weight: 500;
 }
 
+.tags a {
+    @extend .label;
+    background: $base16-orange;
+}
+
 .cats a {
-    background: rgb(0, 143, 16);
-    padding: 3px 6px;
-    border-radius: 5px;
-    color: rgb(255, 255, 255);
-    text-transform: uppercase;
-    font-size: 13.3333px;
-    font-weight: 500;
+    @extend .label;
+    background: $base16-green;
 }
 
 /**
@@ -47,9 +46,7 @@ pre {
 }
 
 /* BLOG */
-
 .blog-index-date {
-    float: right;
     color: #9d9d9d;
 }
 
@@ -418,5 +415,25 @@ h1:target h2:target, h3:target, h4:target, h5:target {
 }
 
 #viewSourceOnGithub {
+    float: right;
+}
+
+hr.dashed  {
+    border-top: 2px dashed #EEEEEE;
+}
+
+.author-info {
+    > span {
+        font-style: italic;
+        font-size: 16px;
+    }
+    p {
+        font-style: italic;
+        font-size: 14px;
+        color: $base04;
+    }
+}
+
+.float-right {
     float: right;
 }

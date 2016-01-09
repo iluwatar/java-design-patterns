@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Java Design Patterns Vision
+author: ilu
 ---
 
 ![Mosque](/java-design-patterns/assets/mosque-small.jpg)
@@ -18,7 +19,3 @@ With the advent of Java 8 functional programming most of the classic design patt
 Enter the Java Design Patterns open source community project. We strive to offer the most comprehensive catalog of top quality design patterns on Internet. All the patterns have been documented, categorized and tagged by their properties so they are easy to find and study. Our focus is to provide sample code of highest standard. Every commit runs automatic build tests, code style tests and static analysis. Unlike the patterns published in books and white papers our code is not static but lives and evolves with every new Java version.
 
 In addition to high quality sample code we strive to provide you a pleasant open source experience. Should you want to contribute, we will answer your questions and be nice to you. No matter if you are just starting your career as a programmer or already are a seasoned developer we have suitable tasks for your skill level. Java Design Patterns is one of the best projects in Github to learn modern Java, software design and architecture.
-
-***
-
-Written by [iluwatar](https://twitter.com/iluwatar)

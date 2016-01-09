@@ -17,7 +17,7 @@ page-index: 2
 
                 {% for post in site.posts %}
                 <a class="list-item" href="{{ post.url | prepend: site.baseurl }}">
-                    <h5 class="blog-index-date">{{ post.date | date_to_string }}</h5>
+                    <h5 class="blog-index-date float-right">{{ post.date | date_to_string }}</h5>
                     <h2>{{ post.title }}</h2>
                     <div class="well"> {{ post.excerpt }}</div>
                 </a>
