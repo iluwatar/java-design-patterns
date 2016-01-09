@@ -1,52 +1,54 @@
 <header>
 
-<!-- navbar -->
-  <nav class="navbar navbar-inverse">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
-      <!-- <p class="navbar-text">Front-end Dev Engineer</p> -->
-    </div>
+    <!-- navbar -->
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
+                <!-- <p class="navbar-text">Front-end Dev Engineer</p> -->
+            </div>
 
-    <!-- Github Fork + Star button -->
-    <div class="collapse navbar-collapse navbar-form navbar-left github-button-container">
-      <a class="github-button" href="https://github.com/iluwatar/java-design-patterns/fork" data-icon="octicon-git-branch" data-style="mega" data-count-href="/iluwatar/java-design-patterns/network" data-count-api="/repos/iluwatar/java-design-patterns#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork iluwatar/java-design-patterns on GitHub">Fork</a>
-      <a class="github-button" href="https://github.com/iluwatar/java-design-patterns" data-icon="octicon-star" data-style="mega" data-count-href="/iluwatar/java-design-patterns/stargazers" data-count-api="/repos/iluwatar/java-design-patterns#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star iluwatar/java-design-patterns on GitHub">Star</a>
-      <!-- Place this tag right after the last github button or just before your close body tag. -->
-      <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
-    </div>
+            <!-- Github Fork + Star button -->
+            <div class="collapse navbar-collapse navbar-form navbar-left github-button-container">
+                <a class="github-button" href="https://github.com/iluwatar/java-design-patterns/fork" data-icon="octicon-git-branch" data-style="mega" data-count-href="/iluwatar/java-design-patterns/network" data-count-api="/repos/iluwatar/java-design-patterns#forks_count"
+                data-count-aria-label="# forks on GitHub" aria-label="Fork iluwatar/java-design-patterns on GitHub">Fork</a>
+                <a class="github-button" href="https://github.com/iluwatar/java-design-patterns" data-icon="octicon-star" data-style="mega" data-count-href="/iluwatar/java-design-patterns/stargazers" data-count-api="/repos/iluwatar/java-design-patterns#stargazers_count"
+                data-count-aria-label="# stargazers on GitHub" aria-label="Star iluwatar/java-design-patterns on GitHub">Star</a>
+                <!-- Place this tag right after the last github button or just before your close body tag. -->
+                <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+            </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        {% if page.url == "/index.html" %}
-          <li class="active">
-          {% else %}
-          <li>
-        {% endif %}
-          <a href="{{ site.baseurl }}/"><span class="fa fa-lg fa-home"></span> Home</a></li>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                        <li class="{% if page.url == "/index.html" %}active{% endif %}">
+                        <a href="{{ site.baseurl }}/">
+                            <span class="fa fa-lg fa-home"></span> Home
+                        </a>
+                        </li>
 
-        {% assign allPages = site.pages | sort: 'page-index' %}
-        {% for p in allPages %}
-          {% if p.title and p.layout != "pattern" %}
-            {% if p.url == page.url %}
-              <li class="active">
-              {% else %}
-              <li>
-            {% endif %}
-            <a href="{{ p.url | prepend: site.baseurl }}"><span class="fa fa-lg {{ p.icon }}"></span> {{ p.title }}</a></li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+                    {% assign allPages = site.pages | sort: 'page-index' %}
+                    {% for p in allPages %}
+                        {% if p.title and p.layout != "pattern" %}
+                                <li class="{% if p.url == page.url %}active{% endif %}">
+                                <a href="{{ p.url | prepend: site.baseurl }}">
+                                    <span class="fa fa-lg {{ p.icon }}"></span> {{ p.title }}
+                                </a>
+                                </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- /.navbar -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
 </header>
