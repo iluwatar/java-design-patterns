@@ -1,5 +1,6 @@
 # Available Params:
 # name: Displayed Name
+# description: Description for the person
 # github: github username
 # facebook: facebook username (optional)
 # twitter: twitter username (optional)
@@ -12,10 +13,10 @@ nxg:
 
 ilu:
   name: Ilkka Seppälä
-  description: Master of Patterns
   github: iluwatar
   twitter: iluwatar
 
 npa:
   name: Narendra Pathai
   github: npathai
+  twitter: NarendraPathai
