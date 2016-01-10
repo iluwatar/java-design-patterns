@@ -1,7 +1,7 @@
 ---
 layout: pattern
-title: Producer Consumer
-folder: reader writer lock
+title: Reader Writer Lock
+folder: reader-writer-lock
 permalink: /patterns/reader-writer-lock/
 categories: Concurrent
 tags: 

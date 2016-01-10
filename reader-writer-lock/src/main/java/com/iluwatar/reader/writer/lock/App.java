@@ -1,23 +1,30 @@
 package com.iluwatar.reader.writer.lock;
 
-import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 /**
- * Reader writer lock is a synchronization primitive that solves one of the readers–writers
- * problems. An RW lock allows concurrent access for read-only operations, while write operations
- * require exclusive access.
+ * 
+ * In a multiple thread applications, the threads may try to synchronize the shared resources
+ * regardless of read or write operation. It leads to a low performance especially in a "read more
+ * write less" system as indeed the read operations are thread-safe to another read operation.
  * <p>
- * Below example use two mutexes to demonstrate the concurrent access of mutilple readers and
+ * Reader writer lock is a synchronization primitive that try to resolve this problem. This pattern
+ * allows concurrent access for read-only operations, while write operations require exclusive
+ * access. This means that multiple threads can read the data in parallel but an exclusive lock is
+ * needed for writing or modifying data. When a writer is writing the data, all other writers or
+ * readers will be blocked until the writer is finished writing.
+ * 
+ * <p>
+ * This example use two mutex to demonstrate the concurrent access of multiple readers and
  * writers.
  * 
+ * 
+ * @author hongshuwei@gmail.com
  */
 public class App {
-
-  private static Random ran = new Random();
 
   /**
    * Program entry point
@@ -26,57 +33,25 @@ public class App {
    */
   public static void main(String[] args) {
 
-    ExecutorService es = Executors.newFixedThreadPool(1000);
+    ExecutorService executeService = Executors.newFixedThreadPool(1000);
     ReaderWriterLock lock = new ReaderWriterLock();
 
-    AtomicInteger index = new AtomicInteger(0);
-    IntStream.range(0, 100).forEach(i -> {
-      Runnable task = null;
-      if (ran.nextFloat() <= 0.6) {
-        task = new Runnable() {
-          @Override
-          public void run() {
-            Lock writeLock = lock.writeLock();
-            writeLock.lock();
-            try {
-              int cur = index.getAndIncrement();
-              System.out.println("Writer " + cur + " begin");
-              simulateReadOrWrite();
-              System.out.println("Writer " + cur + " finish");
-            } finally {
-              writeLock.unlock();
-            }
-          }
-        };
-      } else {
-        task = new Runnable() {
+    // Start 10 readers
+    IntStream.range(0, 10)
+        .forEach(i -> executeService.submit(new Reader("Reader " + i, lock.readLock())));
 
-          @Override
-          public void run() {
-            Lock readLock = lock.readLock();
-            readLock.lock();
-            try {
-              int cur = index.getAndIncrement();
-              System.out.println("Reader " + cur + " begin");
-              simulateReadOrWrite();
-              System.out.println("Reader " + cur + " finish");
-
-            } finally {
-              readLock.unlock();
-            }
-          }
-        };
-      }
-      es.submit(task);
-    });
-
-  }
-
-  private static void simulateReadOrWrite() {
+    // Start 10 writers
+    IntStream.range(0, 10)
+        .forEach(i -> executeService.submit(new Writer("Writer " + i, lock.writeLock())));
+    // In the system console, it can see that the read operations are executed concurrently while
+    // write operations are exclusive.
+    executeService.shutdown();
     try {
-      Thread.sleep((long) (ran.nextFloat() * 10));
+      executeService.awaitTermination(5, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      System.out.println("Error waiting for ExecutorService shutdown");
     }
+
   }
+
 }

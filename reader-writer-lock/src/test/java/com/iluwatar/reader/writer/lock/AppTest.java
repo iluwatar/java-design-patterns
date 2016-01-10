@@ -2,12 +2,8 @@ package com.iluwatar.reader.writer.lock;
 
 import org.junit.Test;
 
-import com.iluwatar.reader.writer.lock.App;
-
 /**
- * 
  * Application test
- *
  */
 public class AppTest {
 
