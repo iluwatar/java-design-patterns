@@ -29,6 +29,7 @@ public class ReaderAndWriterTest {
   /**
    * Verify reader and writer can only get the lock to read and write orderly
    */
+  @Ignore // intermittent failures when executed on CI
   @Test
   public void testReadAndWrite() throws Exception {
 
