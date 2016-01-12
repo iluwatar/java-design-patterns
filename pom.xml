@@ -62,6 +62,7 @@
 		<module>intercepting-filter</module>
 		<module>producer-consumer</module>
 		<module>poison-pill</module>
+		<module>reader-writer-lock</module>
 		<module>lazy-loading</module>
 		<module>service-layer</module>
 		<module>specification</module>
