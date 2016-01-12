@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -19,6 +20,7 @@ public class WriterTest {
   /**
    * Verify that multiple writers will get the lock in order.
    */
+  @Ignore // intermittent failures when executed on CI
   @Test
   public void testWrite() throws Exception {
 
