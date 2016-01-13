@@ -18,8 +18,7 @@ import java.util.stream.IntStream;
  * readers will be blocked until the writer is finished writing.
  * 
  * <p>
- * This example use two mutex to demonstrate the concurrent access of multiple readers and
- * writers.
+ * This example use two mutex to demonstrate the concurrent access of multiple readers and writers.
  * 
  * 
  * @author hongshuwei@gmail.com
@@ -33,15 +32,15 @@ public class App {
    */
   public static void main(String[] args) {
 
-    ExecutorService executeService = Executors.newFixedThreadPool(1000);
+    ExecutorService executeService = Executors.newFixedThreadPool(10);
     ReaderWriterLock lock = new ReaderWriterLock();
 
-    // Start 10 readers
-    IntStream.range(0, 10)
+    // Start 5 readers
+    IntStream.range(0, 5)
         .forEach(i -> executeService.submit(new Reader("Reader " + i, lock.readLock())));
 
-    // Start 10 writers
-    IntStream.range(0, 10)
+    // Start 5 writers
+    IntStream.range(0, 5)
         .forEach(i -> executeService.submit(new Writer("Writer " + i, lock.writeLock())));
     // In the system console, it can see that the read operations are executed concurrently while
     // write operations are exclusive.

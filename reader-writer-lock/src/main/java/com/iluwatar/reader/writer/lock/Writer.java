@@ -34,7 +34,7 @@ public class Writer implements Runnable {
    */
   public void write() throws InterruptedException {
     System.out.println(name + " begin");
-    Thread.sleep(100);
+    Thread.sleep(250);
     System.out.println(name + " finish");
   }
 }

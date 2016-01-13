@@ -1,26 +1,23 @@
 package com.iluwatar.reader.writer.lock;
 
-import static org.mockito.Mockito.after;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.timeout;
-import static org.mockito.Mockito.verify;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.InOrder;
 
 /**
  * @author hongshuwei@gmail.com
  */
-public class WriterTest {
+public class WriterTest extends StdOutTest {
 
   /**
    * Verify that multiple writers will get the lock in order.
    */
-  @Ignore // intermittent failures when executed on CI
   @Test
   public void testWrite() throws Exception {
 
@@ -32,17 +29,8 @@ public class WriterTest {
 
     executeService.submit(writer1);
     // Let write1 execute first
-    Thread.sleep(50);
+    Thread.sleep(150);
     executeService.submit(writer2);
-
-    // Write operation will hold the write lock 100 milliseconds, so here we verify that when two
-    // write excute concurrently
-    // 1. The first write will get the lock and and write in 60ms
-    // 2. The second writer will cannot get the lock when first writer get the lock
-    // 3. The second writer will get the lock as last
-    verify(writer1, timeout(10).atLeastOnce()).write();
-    verify(writer2, after(10).never()).write();
-    verify(writer2, timeout(100).atLeastOnce()).write();
 
     executeService.shutdown();
     try {
@@ -50,5 +38,13 @@ public class WriterTest {
     } catch (InterruptedException e) {
       System.out.println("Error waiting for ExecutorService shutdown");
     }
+    // Write operation will hold the write lock 250 milliseconds, so here we verify that when two
+    // writer execute concurrently, the second writer can only writes only when the first one is
+    // finished.
+    final InOrder inOrder = inOrder(getStdOutMock());
+    inOrder.verify(getStdOutMock()).println("Writer 1 begin");
+    inOrder.verify(getStdOutMock()).println("Writer 1 finish");
+    inOrder.verify(getStdOutMock()).println("Writer 2 begin");
+    inOrder.verify(getStdOutMock()).println("Writer 2 finish");
   }
 }
