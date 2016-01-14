@@ -18,7 +18,7 @@ Attach additional responsibilities to an object dynamically.
 Decorators provide a flexible alternative to subclassing for extending
 functionality.
 
-![alt text](./etc/decorator_1.png "Decorator")
+![alt text](./etc/decorator.png "Decorator")
 
 ## Applicability
 Use Decorator
