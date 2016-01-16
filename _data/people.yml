@@ -1,10 +1,12 @@
-# Available Params:
-# name: Displayed Name
-# description: Description for the person
-# github: github username
-# facebook: facebook username (optional)
-# twitter: twitter username (optional)
-# linkedin: linkedin username (optional)
+# ## Example Structure: ##
+# shortName: # The shortname should be an abbreviation of your name
+#            # to associate you as to a given article in the author tag
+#   name: Displayed Name
+#   description: Description for the person
+#   github: github-username
+#   facebook: facebook-username (optional)
+#   twitter: twitter-username (optional)
+#   linkedin: linkedin-username (optional)
 
 nxg:
   name: Markus

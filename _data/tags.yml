@@ -1,3 +1,7 @@
+# ## Example Structure: ##
+# - name: Display Name
+#   description: This is a good description (and it's used in the tooltip!)
+
 - name: Java
 - name: Difficulty-Beginner
 - name: Difficulty-Intermediate
