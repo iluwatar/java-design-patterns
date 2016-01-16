@@ -2,6 +2,7 @@ $(document).ready(function() {
     categoryAndTagDisplay();
     generateContent();
     backToTop();
+    initBootstrapTooltips();
 });
 
 function fixFooterInit() {
@@ -68,7 +69,6 @@ function backToTop() {
     });
 }
 
-
 function generateContent() {
 
     // console.log($('#markdown-toc').html());
@@ -85,4 +85,9 @@ function generateContent() {
         });*/
     }
     console.log("myAffix!!!");
+}
+
+function initBootstrapTooltips() {
+    // Select all elements with data-toggle="tooltips" in the document
+    $('[data-toggle="tooltip"]').tooltip();
 }

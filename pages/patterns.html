@@ -57,7 +57,11 @@ page-index: 3
         All<span class="my-badge"> {{ allPatterns | size }}</span>
       </a>
       {% for category in site.data.categories %}
-      <a href="javascript:;" class="sidebar-list-item cat-button" category="{{ category.name }}">
+      <a href="javascript:;" class="sidebar-list-item cat-button" category="{{ category.name }}"
+        <!-- add tooltip only if we have something to display -->
+        {% if category.description %}
+          data-toggle="tooltip" data-placement="left" title="{{ category.description }}"
+        {% endif %}<!-- /tooltip, close the a tag now --> >
         {{ category.name }} <span class="my-badge">
           {% assign counter=0 %}
           {% for page in allPatterns %}
@@ -80,7 +84,11 @@ page-index: 3
         All<span class="my-badge"> {{ allPatterns | size }}</span>
       </a>
       {% for tag in site.data.tags %}
-      <a href="javascript:;" class="sidebar-list-item tag-button" tag="{{ tag.name }}">
+      <a href="javascript:;" class="sidebar-list-item tag-button" tag="{{ tag.name }}"
+        <!-- add tooltip only if we have something to display -->
+        {% if tag.description %}
+          data-toggle="tooltip" data-placement="left" title="{{ tag.description }}"
+        {% endif %}<!-- /tooltip, close the a tag now --> >
         {{ tag.name }} <span class="my-badge">
           {% assign counter=0 %}
           {% for page in allPatterns %}
