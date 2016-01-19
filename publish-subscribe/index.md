@@ -7,7 +7,7 @@ categories: Integration
 tags: 
  - Java
  - EIP
- - Camel
+ - Apache Camel™
 ---
 
 ## Intent
