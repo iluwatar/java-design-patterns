@@ -2,28 +2,31 @@
 layout: default
 ---
 <div class="row">
-  <div id="myArticle" class="col-sm-9">
-    <div class="content-area post">
-      <header>
-        <a id="viewSourceOnGithub" class="btn btn-primary" href="{{ site.repo_url }}/tree/master/{{ page.folder }}" target="_blank">
-          <span class="glyphicon glyphicon-new-window"></span>
-          &nbsp;View Source on Github
-        </a>
-        <h1>{{ page.title }}</h1>
-      </header>
-      <hr>
-      <article>
-        {{ content }}
-      </article>
-    </div>
-  </div>
+    <div id="myArticle" class="col-sm-9">
+        <div class="content-area post">
+            <header>
+                <a id="viewSourceOnGithub" class="btn btn-primary" href="{{ site.repo_url }}/tree/master/{{ page.folder }}" target="_blank">
+                    <span class="glyphicon glyphicon-new-window"></span>
+                    &nbsp;View Source on Github
+                </a>
+                <h1>{{ page.title }}</h1>
+            </header>
+            <hr>
+            <article>
+                {{ content }}
+            </article>
 
-  <div id="toc" class="col-sm-3">
-    <div class="shadow-bottom-center hidden-xs" >
-      <div class="categories-list-header">
-        TOC
-      </div>
-      <div class="toc-text"></div>
+            {% include disqus.html %}
+
+        </div>
     </div>
-  </div>
+
+    <div id="toc" class="col-sm-3">
+        <div class="shadow-bottom-center hidden-xs">
+            <div class="categories-list-header">
+                TOC
+            </div>
+            <div class="toc-text"></div>
+        </div>
+    </div>
 </div>
