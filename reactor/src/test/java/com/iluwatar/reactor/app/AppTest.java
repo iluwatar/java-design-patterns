@@ -39,7 +39,7 @@ public class AppTest {
 
     app.stop();
   }
-  
+
   /**
    * Test the application using same thread dispatcher.
    * 

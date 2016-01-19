@@ -7,6 +7,6 @@ package com.iluwatar.bridge;
  */
 public abstract class FlyingMagicWeaponImpl extends MagicWeaponImpl {
 
-	public abstract void flyImp();
+  public abstract void flyImp();
 
 }

@@ -1,8 +1,9 @@
 package com.iluwatar.servicelayer.app;
 
-import org.junit.Test;
+import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 
-import com.iluwatar.servicelayer.app.App;
+import org.junit.After;
+import org.junit.Test;
 
 /**
  * 
@@ -10,10 +11,16 @@ import com.iluwatar.servicelayer.app.App;
  *
  */
 public class AppTest {
-	
-	@Test
-	public void test() {
-		String[] args = {};
-		App.main(args);
-	}
+
+  @Test
+  public void test() {
+    String[] args = {};
+    App.main(args);
+  }
+
+  @After
+  public void tearDown() throws Exception {
+    HibernateUtil.dropSession();
+  }
+
 }

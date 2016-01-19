@@ -7,8 +7,8 @@ package com.iluwatar.front.controller;
  */
 public class ArcherCommand implements Command {
 
-	@Override
-	public void process() {
-		new ArcherView().display();
-	}
+  @Override
+  public void process() {
+    new ArcherView().display();
+  }
 }

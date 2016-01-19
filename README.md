@@ -2,11 +2,10 @@
      that smart and dearly wants an empty line before a heading to be able to
      display it as such, e.g. website) -->
 
-# Design pattern samples in Java
+# Design patterns implemented in Java
 
 [![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)](https://travis-ci.org/iluwatar/java-design-patterns)
 [![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master)
-[![Coverity Scan Build Status](https://scan.coverity.com/projects/5634/badge.svg)](https://scan.coverity.com/projects/5634)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Introduction
@@ -23,10 +22,16 @@ are familiar with the patterns.
 
 # Getting started
 
-Before you dive into the material, you should be familiar with various 
-[Programming/Software Design Principles](http://webpro.github.io/programming-principles/). 
+Before you dive into the material, you should be familiar with various
+[Programming/Software Design Principles](http://webpro.github.io/programming-principles/).
 
-Once you are familiar with these concepts you can start drilling down into patterns by any of the following approaches
+All designs should be as simple as possible. You should start with KISS, YAGNI,
+and Do The Simplest Thing That Could Possibly Work principles. Complexity and
+patterns should only be introduced when they are needed for practical
+extensibility.
+
+Once you are familiar with these concepts you can start drilling down into
+patterns by any of the following approaches
 
  - Using difficulty tags, `Difficulty-Beginner`, `Difficulty-Intermediate` & `Difficulty-Expert`.
  - Using pattern categories, `Creational`, `Behavioral` and others.
@@ -34,7 +39,7 @@ Once you are familiar with these concepts you can start drilling down into patte
 
 # How to contribute
 
-If you are willing to contribute to the project you will find the relevant information in our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki).
+If you are willing to contribute to the project you will find the relevant information in our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
 # Credits
 

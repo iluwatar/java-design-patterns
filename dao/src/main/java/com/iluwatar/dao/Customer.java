@@ -11,6 +11,9 @@ public class Customer {
   private String firstName;
   private String lastName;
 
+  /**
+   * Constructor
+   */
   public Customer(final int id, final String firstName, final String lastName) {
     this.id = id;
     this.firstName = firstName;
@@ -52,10 +55,11 @@ public class Customer {
     boolean isEqual = false;
     if (this == o) {
       isEqual = true;
-    } else if (o != null && (getClass() == o.getClass())) {
+    } else if (o != null && getClass() == o.getClass()) {
       final Customer customer = (Customer) o;
-      if (getId() == customer.getId())
+      if (getId() == customer.getId()) {
         isEqual = true;
+      }
     }
     return isEqual;
   }

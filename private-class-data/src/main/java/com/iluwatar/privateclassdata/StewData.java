@@ -7,31 +7,34 @@ package com.iluwatar.privateclassdata;
  */
 public class StewData {
 
-	private int numPotatoes;
-	private int numCarrots;
-	private int numMeat;
-	private int numPeppers;
-	
-	public StewData(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
-		this.numPotatoes = numPotatoes;
-		this.numCarrots = numCarrots;
-		this.numMeat = numMeat;
-		this.numPeppers = numPeppers;
-	}
+  private int numPotatoes;
+  private int numCarrots;
+  private int numMeat;
+  private int numPeppers;
 
-	public int getNumPotatoes() {
-		return numPotatoes;
-	}
+  /**
+   * Constructor
+   */
+  public StewData(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
+    this.numPotatoes = numPotatoes;
+    this.numCarrots = numCarrots;
+    this.numMeat = numMeat;
+    this.numPeppers = numPeppers;
+  }
 
-	public int getNumCarrots() {
-		return numCarrots;
-	}
+  public int getNumPotatoes() {
+    return numPotatoes;
+  }
 
-	public int getNumMeat() {
-		return numMeat;
-	}
+  public int getNumCarrots() {
+    return numCarrots;
+  }
 
-	public int getNumPeppers() {
-		return numPeppers;
-	}
+  public int getNumMeat() {
+    return numMeat;
+  }
+
+  public int getNumPeppers() {
+    return numPeppers;
+  }
 }

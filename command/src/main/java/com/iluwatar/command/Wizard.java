@@ -10,38 +10,46 @@ import java.util.LinkedList;
  */
 public class Wizard {
 
-	private Deque<Command> undoStack = new LinkedList<>();
-	private Deque<Command> redoStack = new LinkedList<>();
+  private Deque<Command> undoStack = new LinkedList<>();
+  private Deque<Command> redoStack = new LinkedList<>();
 
-	public Wizard() {
-	}
+  public Wizard() {}
 
-	public void castSpell(Command command, Target target) {
-		System.out.println(this + " casts " + command + " at " + target);
-		command.execute(target);
-		undoStack.offerLast(command);
-	}
+  /**
+   * Cast spell
+   */
+  public void castSpell(Command command, Target target) {
+    System.out.println(this + " casts " + command + " at " + target);
+    command.execute(target);
+    undoStack.offerLast(command);
+  }
 
-	public void undoLastSpell() {
-		if (!undoStack.isEmpty()) {
-			Command previousSpell = undoStack.pollLast();
-			redoStack.offerLast(previousSpell);
-			System.out.println(this + " undoes " + previousSpell);
-			previousSpell.undo();
-		}
-	}
+  /**
+   * Undo last spell
+   */
+  public void undoLastSpell() {
+    if (!undoStack.isEmpty()) {
+      Command previousSpell = undoStack.pollLast();
+      redoStack.offerLast(previousSpell);
+      System.out.println(this + " undoes " + previousSpell);
+      previousSpell.undo();
+    }
+  }
 
-	public void redoLastSpell() {
-		if (!redoStack.isEmpty()) {
-			Command previousSpell = redoStack.pollLast();
-			undoStack.offerLast(previousSpell);
-			System.out.println(this + " redoes " + previousSpell);
-			previousSpell.redo();
-		}
-	}
+  /**
+   * Redo last spell
+   */
+  public void redoLastSpell() {
+    if (!redoStack.isEmpty()) {
+      Command previousSpell = redoStack.pollLast();
+      undoStack.offerLast(previousSpell);
+      System.out.println(this + " redoes " + previousSpell);
+      previousSpell.redo();
+    }
+  }
 
-	@Override
-	public String toString() {
-		return "Wizard";
-	}
+  @Override
+  public String toString() {
+    return "Wizard";
+  }
 }

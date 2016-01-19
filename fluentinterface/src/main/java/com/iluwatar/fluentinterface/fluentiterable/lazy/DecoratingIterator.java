@@ -5,8 +5,6 @@ import java.util.Iterator;
 /**
  * This class is used to realize LazyFluentIterables. It decorates a given iterator. Does not
  * support consecutive hasNext() calls.
- * 
- * @param <TYPE>
  */
 public abstract class DecoratingIterator<TYPE> implements Iterator<TYPE> {
 
@@ -16,8 +14,6 @@ public abstract class DecoratingIterator<TYPE> implements Iterator<TYPE> {
 
   /**
    * Creates an iterator that decorates the given iterator.
-   * 
-   * @param fromIterator
    */
   public DecoratingIterator(Iterator<TYPE> fromIterator) {
     this.fromIterator = fromIterator;

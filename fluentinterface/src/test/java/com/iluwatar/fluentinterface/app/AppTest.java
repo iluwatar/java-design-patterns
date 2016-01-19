@@ -2,8 +2,6 @@ package com.iluwatar.fluentinterface.app;
 
 import org.junit.Test;
 
-import com.iluwatar.fluentinterface.app.App;
-
 public class AppTest {
 
   @Test

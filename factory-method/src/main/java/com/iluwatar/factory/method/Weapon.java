@@ -1,10 +1,10 @@
 package com.iluwatar.factory.method;
 
 /**
- * 
- * Weapon interface
- *
+ * Weapon interface.
  */
 public interface Weapon {
+
+  WeaponType getWeaponType();
 
 }

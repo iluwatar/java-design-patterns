@@ -4,10 +4,13 @@ title: Null Object
 folder: null-object
 permalink: /patterns/null-object/
 categories: Behavioral
-tags: Java
+tags:
+ - Java
+ - Difficulty-Beginner
 ---
 
-**Intent:** In most object-oriented languages, such as Java or C#, references
+## Intent
+In most object-oriented languages, such as Java or C#, references
 may be null. These references need to be checked to ensure they are not null
 before invoking any methods, because methods typically cannot be invoked on
 null references. Instead of using a null reference to convey absence of an
@@ -18,6 +21,7 @@ Object is very predictable and has no side effects: it does nothing.
 
 ![alt text](./etc/null-object.png "Null Object")
 
-**Applicability:** Use the Null Object pattern when
+## Applicability
+Use the Null Object pattern when
 
 * you want to avoid explicit null checks and keep the algorithm elegant and easy to read.

@@ -17,54 +17,53 @@ import com.iluwatar.servicelayer.spellbook.Spellbook;
  *
  */
 @Entity
-@Table(name="SPELL")
+@Table(name = "SPELL")
 public class Spell extends BaseEntity {
-	
-	private String name;
-	
-	public Spell() {
-	}
-	
-	public Spell(String name) {
-		this();
-		this.name = name;
-	}
 
-	@Id
-	@GeneratedValue
-	@Column(name = "SPELL_ID")
-	private Long id;
+  private String name;
 
-	public Long getId() {
-		return id;
-	}
+  public Spell() {}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	@ManyToOne
-	@JoinColumn(name="SPELLBOOK_ID_FK", referencedColumnName="SPELLBOOK_ID")
-	private Spellbook spellbook;
-	
-	public String getName() {
-		return name;
-	}
+  public Spell(String name) {
+    this();
+    this.name = name;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public Spellbook getSpellbook() {
-		return spellbook;
-	}
+  @Id
+  @GeneratedValue
+  @Column(name = "SPELL_ID")
+  private Long id;
 
-	public void setSpellbook(Spellbook spellbook) {
-		this.spellbook = spellbook;
-	}
+  public Long getId() {
+    return id;
+  }
 
-	@Override
-	public String toString() {
-		return name;
-	}	
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  @ManyToOne
+  @JoinColumn(name = "SPELLBOOK_ID_FK", referencedColumnName = "SPELLBOOK_ID")
+  private Spellbook spellbook;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Spellbook getSpellbook() {
+    return spellbook;
+  }
+
+  public void setSpellbook(Spellbook spellbook) {
+    this.spellbook = spellbook;
+  }
+
+  @Override
+  public String toString() {
+    return name;
+  }
 }

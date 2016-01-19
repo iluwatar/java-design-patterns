@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -22,71 +23,71 @@ import com.iluwatar.servicelayer.wizard.Wizard;
  *
  */
 @Entity
-@Table(name="SPELLBOOK")
+@Table(name = "SPELLBOOK")
 public class Spellbook extends BaseEntity {
-	
-	public Spellbook() {
-		spells = new HashSet<Spell>();
-		wizards = new HashSet<Wizard>();
-	}
-	
-	public Spellbook(String name) {
-		this();
-		this.name = name;
-	}
 
-	@Id
-	@GeneratedValue
-	@Column(name = "SPELLBOOK_ID")
-	private Long id;
+  public Spellbook() {
+    spells = new HashSet<Spell>();
+    wizards = new HashSet<Wizard>();
+  }
 
-	public Long getId() {
-		return id;
-	}
+  public Spellbook(String name) {
+    this();
+    this.name = name;
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	private String name;
+  @Id
+  @GeneratedValue
+  @Column(name = "SPELLBOOK_ID")
+  private Long id;
 
-	@ManyToMany(mappedBy = "spellbooks")
-	private Set<Wizard> wizards;
+  public Long getId() {
+    return id;
+  }
 
-	@OneToMany(mappedBy = "spellbook", orphanRemoval = true, cascade = CascadeType.ALL)
-	private Set<Spell> spells;
-	
-	public String getName() {
-		return name;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  private String name;
 
-	public Set<Wizard> getWizards() {
-		return wizards;
-	}
+  @ManyToMany(mappedBy = "spellbooks", fetch = FetchType.EAGER)
+  private Set<Wizard> wizards;
 
-	public void setWizards(Set<Wizard> wizards) {
-		this.wizards = wizards;
-	}
+  @OneToMany(mappedBy = "spellbook", orphanRemoval = true, cascade = CascadeType.ALL)
+  private Set<Spell> spells;
 
-	public Set<Spell> getSpells() {
-		return spells;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setSpells(Set<Spell> spells) {
-		this.spells = spells;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void addSpell(Spell spell) {
-		spell.setSpellbook(this);
-		spells.add(spell);
-	}
-	
-	@Override
-	public String toString() {
-		return name;
-	}	
+  public Set<Wizard> getWizards() {
+    return wizards;
+  }
+
+  public void setWizards(Set<Wizard> wizards) {
+    this.wizards = wizards;
+  }
+
+  public Set<Spell> getSpells() {
+    return spells;
+  }
+
+  public void setSpells(Set<Spell> spells) {
+    this.spells = spells;
+  }
+
+  public void addSpell(Spell spell) {
+    spell.setSpellbook(this);
+    spells.add(spell);
+  }
+
+  @Override
+  public String toString() {
+    return name;
+  }
 }

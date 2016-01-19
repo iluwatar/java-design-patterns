@@ -7,6 +7,6 @@ package com.iluwatar.bridge;
  */
 public abstract class SoulEatingMagicWeaponImpl extends MagicWeaponImpl {
 
-	public abstract void eatSoulImp();
+  public abstract void eatSoulImp();
 
 }

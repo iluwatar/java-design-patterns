@@ -69,17 +69,17 @@ public class App {
   private Dispatcher dispatcher;
 
   /**
-   * Creates an instance of App which will use provided dispatcher for dispatching events on reactor.
+   * Creates an instance of App which will use provided dispatcher for dispatching events on
+   * reactor.
+   * 
    * @param dispatcher the dispatcher that will be used to dispatch events.
    */
   public App(Dispatcher dispatcher) {
-	this.dispatcher = dispatcher;
+    this.dispatcher = dispatcher;
   }
 
   /**
    * App entry.
-   * 
-   * @throws IOException
    */
   public static void main(String[] args) throws IOException {
     new App(new ThreadPoolDispatcher(2)).start();
@@ -106,7 +106,8 @@ public class App {
      * Our application binds to multiple channels and uses same logging handler to handle incoming
      * log requests.
      */
-    reactor.registerChannel(tcpChannel(6666, loggingHandler)).registerChannel(tcpChannel(6667, loggingHandler))
+    reactor.registerChannel(tcpChannel(6666, loggingHandler))
+        .registerChannel(tcpChannel(6667, loggingHandler))
         .registerChannel(udpChannel(6668, loggingHandler)).start();
   }
 
@@ -120,7 +121,7 @@ public class App {
     reactor.stop();
     dispatcher.stop();
     for (AbstractNioChannel channel : channels) {
-    	channel.getJavaChannel().close();
+      channel.getJavaChannel().close();
     }
   }
 

@@ -7,18 +7,18 @@ package com.iluwatar.intercepting.filter;
  *
  */
 public class FilterManager {
-	
-	private FilterChain filterChain;
 
-	public FilterManager(Target target) {
-		filterChain = new FilterChain(target);
-	}
+  private FilterChain filterChain;
 
-	public void addFilter(Filter filter) {
-		filterChain.addFilter(filter);
-	}
+  public FilterManager() {
+    filterChain = new FilterChain();
+  }
 
-	public String filterRequest(Order order) {
-		return filterChain.execute(order);
-	}
+  public void addFilter(Filter filter) {
+    filterChain.addFilter(filter);
+  }
+
+  public String filterRequest(Order order) {
+    return filterChain.execute(order);
+  }
 }

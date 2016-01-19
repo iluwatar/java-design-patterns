@@ -7,16 +7,16 @@ package com.iluwatar.specification.property;
  */
 public enum Movement {
 
-    WALKING("walking"), SWIMMING("swimming"), FLYING("flying");
-    
-    private String title;
+  WALKING("walking"), SWIMMING("swimming"), FLYING("flying");
 
-    Movement(String title) {
-        this.title = title;
-    }
+  private String title;
 
-    @Override
-	public String toString() {
-        return title;
-	}	
+  Movement(String title) {
+    this.title = title;
+  }
+
+  @Override
+  public String toString() {
+    return title;
+  }
 }
