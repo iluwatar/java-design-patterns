@@ -8,9 +8,10 @@
 - name: Difficulty-Expert
 - name: Gang Of Four
 - name: Spring
-- name: Camel
+- name: Apache Camel™
 - name: Functional
 - name: I/O
 - name: EIP
+  description: Enterprise Integration Patterns
 - name: Idiom
 - name: Performance
