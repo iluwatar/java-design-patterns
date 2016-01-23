@@ -93,6 +93,7 @@
 		<module>publish-subscribe</module>
 		<module>delegation</module>
 		<module>event-driven-architecture</module>
+		<module>value-object</module>
 	</modules>
 
 	<dependencyManagement>
@@ -172,8 +173,8 @@
 	<build>
 		<pluginManagement>
 			<plugins>
-				<!-- This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. TODO: Remove when the 
+				<!-- This plugin's configuration is used to store Eclipse m2e settings
+					only. It has no influence on the Maven build itself. TODO: Remove when the
 					m2e plugin can correctly bind to Maven lifecycle -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -229,10 +230,10 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>${jacoco.version}</version>
-				<!-- The following exclude configuration was added because error occurred 
+				<!-- The following exclude configuration was added because error occurred
 					when executing "mvn clean test jacoco:report coveralls:report" -->
-				<!-- [ERROR] Failed to execute goal org.eluder.coveralls:coveralls-maven-plugin:3.1.0:report 
-					(default-cli) on project java-design-patterns: I/O operation failed: No source 
+				<!-- [ERROR] Failed to execute goal org.eluder.coveralls:coveralls-maven-plugin:3.1.0:report
+					(default-cli) on project java-design-patterns: I/O operation failed: No source
 					found for domainapp/dom/modules/simple/QSimpleObject.java -> [Help 1] -->
 				<configuration>
 					<excludes>
@@ -327,8 +328,8 @@
 					  <excludeFromFailureFile>exclude-pmd.properties</excludeFromFailureFile>
 				  </configuration>
                 </execution>
-              </executions>              
-            </plugin>            
+              </executions>
+            </plugin>
 		</plugins>
 	</build>
 
@@ -341,5 +342,5 @@
       </plugin>
     </plugins>
   </reporting>
-  
+
 </project>
