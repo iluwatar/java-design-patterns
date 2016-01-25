@@ -8,7 +8,7 @@ package com.iluwatar.decorator;
  * runtime.
  * <p>
  * In this example we show how the simple {@link Troll} first attacks and then flees the battle.
- * Then we decorate the {@link Troll} with a {@link SmartTroll} and perform the attack again. You
+ * Then we decorate the {@link Troll} with a {@link SmartHostile} and perform the attack again. You
  * can see how the behavior changes after the decoration.
  * 
  */
@@ -30,7 +30,7 @@ public class App {
 
     // change the behavior of the simple troll by adding a decorator
     System.out.println("\nA smart looking troll surprises you.");
-    Hostile smart = new SmartTroll(troll);
+    Hostile smart = new SmartHostile(troll);
     smart.attack();
     smart.fleeBattle();
     System.out.printf("Smart troll power %d.\n", smart.getAttackPower());
