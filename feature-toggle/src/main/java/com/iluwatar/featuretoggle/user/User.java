@@ -1,7 +1,14 @@
 package com.iluwatar.featuretoggle.user;
 
-/**
- * Created by joseph on 26/01/16.
- */
 public class User {
+
+    private String name;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

@@ -3,9 +3,6 @@ package com.iluwatar.featuretoggle.user;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by joseph on 26/01/16.
- */
 public class UserGroup {
 
     private static List<User> freeGroup = new ArrayList<>();
