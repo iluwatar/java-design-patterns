@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TieredFeatureToggleVersionTest {
 
@@ -32,5 +33,10 @@ public class TieredFeatureToggleVersionTest {
     final String welcomeMessage = service.getWelcomeMessage(freeUser);
     final String expected = "I suppose you can use this software.";
     assertEquals(expected, welcomeMessage);
+  }
+
+  @Test
+  public void testIsEnhancedAlwaysTrueAsTiered() throws Exception {
+    assertTrue(service.isEnhanced());
   }
 }

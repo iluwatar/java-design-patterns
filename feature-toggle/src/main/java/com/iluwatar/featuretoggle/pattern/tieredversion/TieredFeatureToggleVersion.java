@@ -15,4 +15,9 @@ public class TieredFeatureToggleVersion implements Service {
     return "I suppose you can use this software.";
   }
 
+  @Override
+  public boolean isEnhanced() {
+    return true;
+  }
+
 }

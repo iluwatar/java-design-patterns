@@ -7,21 +7,36 @@ import java.util.Properties;
 
 public class PropertiesFeatureToggleVersion implements Service {
 
-  private Properties properties;
+  private boolean isEnhanced;
 
+  /**
+   *
+   * @param properties {@link Properties} used to configure the service and toggle features.
+   */
   public PropertiesFeatureToggleVersion(final Properties properties) {
-    this.properties = properties;
+    if (properties == null) {
+      throw new IllegalArgumentException("No Properties Provided.");
+    } else {
+      try {
+        isEnhanced = (boolean) properties.get("enhancedWelcome");
+      } catch (Exception e) {
+        throw new IllegalArgumentException("Invalid Enhancement Settings Provided.");
+      }
+    }
   }
 
   @Override
   public String getWelcomeMessage(final User user) {
 
-    final boolean enhancedWelcome = (boolean) properties.get("enhancedWelcome");
-
-    if (enhancedWelcome) {
+    if (isEnhanced()) {
       return "Welcome " + user + ". You're using the enhanced welcome message.";
     }
 
     return "Welcome to the application.";
+  }
+
+  @Override
+  public boolean isEnhanced() {
+    return isEnhanced;
   }
 }

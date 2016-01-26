@@ -7,4 +7,6 @@ public interface Service {
 
   String getWelcomeMessage(User user);
 
+  boolean isEnhanced();
+
 }
