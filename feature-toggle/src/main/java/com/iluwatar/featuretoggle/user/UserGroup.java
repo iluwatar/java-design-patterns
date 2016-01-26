@@ -11,6 +11,7 @@ public class UserGroup {
   private static List<User> freeGroup = new ArrayList<>();
   private static List<User> paidGroup = new ArrayList<>();
 
+
   /**
    *
    * @param user {@link User} to be added to the free group

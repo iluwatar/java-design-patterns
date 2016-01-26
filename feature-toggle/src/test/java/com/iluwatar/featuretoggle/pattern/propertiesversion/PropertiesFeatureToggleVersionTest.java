@@ -13,6 +13,18 @@ import static org.junit.Assert.assertTrue;
 
 public class PropertiesFeatureToggleVersionTest {
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testNullPropertiesPassed() throws Exception {
+    new PropertiesFeatureToggleVersion(null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testNonBooleanProperty() throws Exception {
+    final Properties properties = new Properties();
+    properties.setProperty("enhancedWelcome","Something");
+    new PropertiesFeatureToggleVersion(properties);
+  }
+
   @Test
   public void testFeatureTurnedOn() throws Exception {
     final Properties properties = new Properties();
