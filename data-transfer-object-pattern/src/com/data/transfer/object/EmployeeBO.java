@@ -1,3 +1,5 @@
+package com.data.transfer.object;
+
 /**
  * Created by ARINDAM on 1/25/2016.
  *
@@ -67,3 +69,4 @@ public class EmployeeBO {
 
 
 }
+

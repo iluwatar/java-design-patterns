@@ -1,11 +1,12 @@
+package com.data.transfer.object;
+
 /**
  * Created by ARINDAM on 1/25/2016.
  *
- * This is the Transfer Object , which is imnplemented by the business layer ,
+ * This is the Transfer Object , which is implemented by the business layer ,
  * and finally passed to the client .
  *
  */
-
 
 
 

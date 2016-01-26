@@ -1,13 +1,16 @@
+
+package com.data.transfer.object;
+
 /**
  * Created by ARINDAM on 1/25/2016.
- *
+ * 
  * Here in this client , there is no need to call getMethods multiple times .
- * The Businees Object creates a Transfer Object and pass it on to the client .
+ * The Business Object creates a Transfer Object and pass it on to the client .
  *
  * THIS IS THE TRANSFER OBJECT PATTERN
  *
- *
  */
+
 public class Client {
 
 
