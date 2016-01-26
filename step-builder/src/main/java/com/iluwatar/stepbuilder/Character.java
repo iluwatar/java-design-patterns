@@ -69,14 +69,14 @@ public class Character {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("This is a ");
-    sb.append(fighterClass != null ? fighterClass : wizardClass);
-    sb.append(" named ");
-    sb.append(name);
-    sb.append(" armed with a ");
-    sb.append(weapon != null ? weapon : spell != null ? spell : "with nothing");
-    sb.append(abilities != null ? (" and wielding " + abilities + " abilities") : "");
-    sb.append(".");
+    sb.append("This is a ")
+            .append(fighterClass != null ? fighterClass : wizardClass)
+            .append(" named ")
+            .append(name)
+            .append(" armed with a ")
+            .append(weapon != null ? weapon : spell != null ? spell : "with nothing")
+            .append(abilities != null ? (" and wielding " + abilities + " abilities") : "")
+            .append(".");
     return sb.toString();
   }
 }
