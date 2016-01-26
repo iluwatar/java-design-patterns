@@ -30,7 +30,9 @@ Client
 
 This represents the client of the enterprise bean. The client can be an end-user application, as in the case of a rich client application that has been designed to directly access the enterprise beans. 
 
-The BusinessObject represents a role in this pattern that can be fulfilled by a session bean, an entity bean, or a Data Access Object (DAO). The BusinessObject is responsible for creating the Transfer Object and returning it to the client upon request. 
+The BusinessObject
+
+It represents a role in this pattern that can be fulfilled by a session bean, an entity bean, or a Data Access Object (DAO). The BusinessObject is responsible for creating the Transfer Object and returning it to the client upon request. 
 
 TransferObject
 
