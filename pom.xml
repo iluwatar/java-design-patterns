@@ -8,21 +8,24 @@
 	<version>1.10.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<inceptionYear>2014</inceptionYear>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.version>5.0.1.Final</hibernate.version>
-		<spring.version>4.1.7.RELEASE</spring.version>
-		<spring-data.version>1.9.0.RELEASE</spring-data.version>
-		<h2.version>1.4.188</h2.version>
+		<spring.version>4.2.4.RELEASE</spring.version>
+		<spring-data.version>1.9.2.RELEASE</spring-data.version>
+		<h2.version>1.4.190</h2.version>
 		<junit.version>4.12</junit.version>
 		<compiler.version>3.0</compiler.version>
 		<coveralls.version>4.0.0</coveralls.version>
 		<jacoco.version>0.7.2.201409121644</jacoco.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
-		<camel.version>2.15.3</camel.version>
+		<camel.version>2.16.1</camel.version>
 		<log4j.version>1.2.17</log4j.version>
- 		<guava.version>18.0</guava.version>
-		<systemrules.version>1.14.0</systemrules.version>
+ 		<guava.version>19.0</guava.version>
+		<systemrules.version>1.15.1</systemrules.version>
+		<mockito.version>1.10.19</mockito.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -61,6 +64,7 @@
 		<module>intercepting-filter</module>
 		<module>producer-consumer</module>
 		<module>poison-pill</module>
+		<module>reader-writer-lock</module>
 		<module>lazy-loading</module>
 		<module>service-layer</module>
 		<module>specification</module>
@@ -144,7 +148,7 @@
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-core</artifactId>
-				<version>1.10.19</version>
+				<version>${mockito.version}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -326,7 +330,29 @@
 				  </configuration>
                 </execution>
               </executions>              
-            </plugin>            
+            </plugin>
+
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>2.11</version>
+				<configuration>
+					<header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
+					<properties>
+						<owner>Ilkka Seppälä</owner>
+					</properties>
+					<skipExistingHeaders>true</skipExistingHeaders>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install-format</id>
+						<phase>install</phase>
+						<goals>
+							<goal>format</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
