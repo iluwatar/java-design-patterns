@@ -20,3 +20,6 @@ this behavior in the common parent class - it is defined once in the Servant.
 Use the Servant pattern when
 
 * when we want some objects to perform a common action and don't want to define this action as a method in every class.
+
+## Credits
+* [Let's Modify the Objects-First Approach into Design-Patterns-First](http://edu.pecinovsky.cz/papers/2006_ITiCSE_Design_Patterns_First.pdf)
