@@ -66,7 +66,6 @@ public class Customer {
 
   @Override
   public int hashCode() {
-    int result = getId();
-    return result;
+    return getId();
   }
 }
