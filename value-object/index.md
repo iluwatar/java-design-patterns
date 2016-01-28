@@ -23,9 +23,9 @@ Use the Value Object when
 
 ## Real world examples
 
-* [java.util.Date](https://docs.oracle.com/javase/8/docs/api/java/util/Date.html)
+* [java.util.Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
+* [java.time.LocalDate](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html)
 * [joda-time, money, beans](http://www.joda.org/)
-* [JSR-310 / ThreeTen project LocalDate](http://www.threeten.org/articles/local-date.html)
 
 ## Credits
 

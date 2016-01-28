@@ -1,13 +1,20 @@
 package com.iluwatar.value.object;
 
 /**
- * The Discount Coupon only discounts by percentage.
- *
+ * HeroStat is a Value Object. following rules are from Stephen Colebourne's term VALJO(not the
+ * entire rule set) from : http://blog.joda.org/2014/03/valjos-value-java-objects.html<br>
+ * Value Objects must override equals(), hashCode() to check the equality with values. <br>
+ * Value Objects should be immutable so declare members final. Obtain instances by static factory
+ * methods. <br>
+ * The elements of the state must be other values, including primitive types.<br>
+ * Provide methods, typically simple getters, to get the elements of the state.<br>
+ * 
+ * {@link http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html}
  */
 public class HeroStat {
 
 
-  // stats for a hero
+  // Stats for a hero
 
   private final int strength;
   private final int intelligence;
@@ -22,6 +29,7 @@ public class HeroStat {
     this.luck = luck;
   }
 
+  // Static factory method to create new instances.
   public static HeroStat valueOf(int strength, int intelligence, int luck) {
     return new HeroStat(strength, intelligence, luck);
   }
@@ -39,7 +47,7 @@ public class HeroStat {
   }
 
   /*
-   * recommended to provide a static factory method capable of creating an instance from the formal
+   * Recommended to provide a static factory method capable of creating an instance from the formal
    * string representation declared like this. public static Juice parse(String string) {}
    */
 
@@ -86,6 +94,6 @@ public class HeroStat {
   }
 
 
-  // the clone() method should not be public
+  // The clone() method should not be public
 
 }
