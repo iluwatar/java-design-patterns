@@ -1,13 +1,12 @@
 package com.iluwatar.value.object;
 
 /**
- * Hello world!
+ * Hello world!.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+public class App {
+  public static void main(String[] args) {
+    HeroStat stat = HeroStat.valueOf(10, 5, 0);
+    System.out.println(stat.toString());
+  }
 }
