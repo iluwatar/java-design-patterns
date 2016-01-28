@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Contains the lists of users of different groups paid and free
+ * Contains the lists of users of different groups paid and free. Used to demonstrate the tiered example of feature
+ * toggle. Allowing certain features to be available to only certain groups of users.
+ *
+ * @see User
  */
 public class UserGroup {
 
@@ -13,10 +16,13 @@ public class UserGroup {
 
 
   /**
+   * Add the passed {@link User} to the free user group list.
    *
    * @param user {@link User} to be added to the free group
+   * @throws IllegalArgumentException
+   * @see User
    */
-  public static void addUserToFreeGroup(final User user) {
+  public static void addUserToFreeGroup(final User user) throws IllegalArgumentException {
     if (paidGroup.contains(user)) {
       throw new IllegalArgumentException("User all ready member of paid group.");
     } else {
@@ -27,10 +33,13 @@ public class UserGroup {
   }
 
   /**
+   * Add the passed {@link User} to the paid user group list.
    *
    * @param user {@link User} to be added to the paid group
+   * @throws IllegalArgumentException
+   * @see User
    */
-  public static void addUserToPaidGroup(final User user) {
+  public static void addUserToPaidGroup(final User user) throws IllegalArgumentException {
     if (freeGroup.contains(user)) {
       throw new IllegalArgumentException("User all ready member of free group.");
     } else {
