@@ -42,27 +42,31 @@ public class Hero {
   public String toString() {
 
     StringBuilder sb = new StringBuilder();
-    sb.append("This is a ")
-            .append(profession)
-            .append(" named ")
-            .append(name);
+    sb.append("This is a ");
+    sb.append(profession);
+    sb.append(" named ");
+    sb.append(name);
     if (hairColor != null || hairType != null) {
       sb.append(" with ");
       if (hairColor != null) {
-        sb.append(hairColor).append(" ");
+        sb.append(hairColor);
+        sb.append(' ');
       }
       if (hairType != null) {
-        sb.append(hairType).append(" ");
+        sb.append(hairType);
+        sb.append(' ');
       }
       sb.append(hairType != HairType.BALD ? "hair" : "head");
     }
     if (armor != null) {
-      sb.append(" wearing ").append(armor);
+      sb.append(" wearing ");
+      sb.append(armor);
     }
     if (weapon != null) {
-      sb.append(" and wielding a ").append(weapon);
+      sb.append(" and wielding a ");
+      sb.append(weapon);
     }
-    sb.append(".");
+    sb.append('.');
     return sb.toString();
   }
 

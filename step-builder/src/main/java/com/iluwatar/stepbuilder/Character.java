@@ -76,7 +76,7 @@ public class Character {
             .append(" armed with a ")
             .append(weapon != null ? weapon : spell != null ? spell : "with nothing")
             .append(abilities != null ? (" and wielding " + abilities + " abilities") : "")
-            .append(".");
+            .append('.');
     return sb.toString();
   }
 }
