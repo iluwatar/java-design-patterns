@@ -141,7 +141,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
       CakeToppingInfo cakeToppingInfo =
           new CakeToppingInfo(cake.getTopping().getId(), cake.getTopping().getName(), cake
               .getTopping().getCalories());
-      ArrayList<CakeLayerInfo> cakeLayerInfos = new ArrayList<CakeLayerInfo>();
+      ArrayList<CakeLayerInfo> cakeLayerInfos = new ArrayList<>();
       for (CakeLayer layer : cake.getLayers()) {
         cakeLayerInfos.add(new CakeLayerInfo(layer.getId(), layer.getName(), layer.getCalories()));
       }

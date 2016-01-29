@@ -11,7 +11,7 @@ public class SimpleMessageQueue implements MessageQueue {
   private final BlockingQueue<Message> queue;
 
   public SimpleMessageQueue(int bound) {
-    queue = new ArrayBlockingQueue<Message>(bound);
+    queue = new ArrayBlockingQueue<>(bound);
   }
 
   @Override

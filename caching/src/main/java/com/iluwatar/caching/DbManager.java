@@ -37,7 +37,7 @@ public class DbManager {
    */
   public static void createVirtualDb() {
     useMongoDB = false;
-    virtualDB = new HashMap<String, UserAccount>();
+    virtualDB = new HashMap<>();
   }
 
   /**

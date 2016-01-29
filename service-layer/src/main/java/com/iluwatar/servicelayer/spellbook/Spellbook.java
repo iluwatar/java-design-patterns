@@ -27,8 +27,8 @@ import com.iluwatar.servicelayer.wizard.Wizard;
 public class Spellbook extends BaseEntity {
 
   public Spellbook() {
-    spells = new HashSet<Spell>();
-    wizards = new HashSet<Wizard>();
+    spells = new HashSet<>();
+    wizards = new HashSet<>();
   }
 
   public Spellbook(String name) {

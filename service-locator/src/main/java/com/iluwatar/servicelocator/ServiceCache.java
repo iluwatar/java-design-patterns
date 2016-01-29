@@ -16,7 +16,7 @@ public class ServiceCache {
   private final Map<String, Service> serviceCache;
 
   public ServiceCache() {
-    serviceCache = new HashMap<String, Service>();
+    serviceCache = new HashMap<>();
   }
 
   /**

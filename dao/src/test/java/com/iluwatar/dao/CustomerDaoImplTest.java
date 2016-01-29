@@ -18,7 +18,7 @@ public class CustomerDaoImplTest {
 
   @Before
   public void setUp() {
-    customers = new ArrayList<Customer>();
+    customers = new ArrayList<>();
     customers.add(CUSTOMER);
     impl = new CustomerDaoImpl(customers);
   }

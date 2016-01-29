@@ -10,7 +10,7 @@ import java.util.List;
  */
 public abstract class LetterComposite {
 
-  private List<LetterComposite> children = new ArrayList<LetterComposite>();
+  private List<LetterComposite> children = new ArrayList<>();
 
   public void add(LetterComposite letter) {
     children.add(letter);
