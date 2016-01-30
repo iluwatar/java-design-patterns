@@ -63,12 +63,12 @@ public class CustomerTest {
   @Test
   public void testToString() {
     final StringBuffer buffer = new StringBuffer();
-    buffer.append("Customer{id=");
-    buffer.append("" + customer.getId());
-    buffer.append(", firstName='");
-    buffer.append(customer.getFirstName());
-    buffer.append("\', lastName='");
-    buffer.append(customer.getLastName() + "\'}");
+    buffer.append("Customer{id=")
+            .append("" + customer.getId())
+            .append(", firstName='")
+            .append(customer.getFirstName())
+            .append("\', lastName='")
+            .append(customer.getLastName() + "\'}");
     assertEquals(buffer.toString(), customer.toString());
   }
 }
