@@ -204,8 +204,7 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
    */
   @Override
   public List<TYPE> asList() {
-    List<TYPE> copy = FluentIterable.copyToList(iterable);
-    return copy;
+    return FluentIterable.copyToList(iterable);
   }
 
   @Override

@@ -72,9 +72,7 @@ public class DbManager {
       return null;
     }
     Document doc = iterable.first();
-    UserAccount userAccount =
-        new UserAccount(userId, doc.getString("userName"), doc.getString("additionalInfo"));
-    return userAccount;
+    return new UserAccount(userId, doc.getString("userName"), doc.getString("additionalInfo"));
   }
 
   /**
