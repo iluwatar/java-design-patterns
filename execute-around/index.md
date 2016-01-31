@@ -22,3 +22,6 @@ only what to do with the resource.
 Use the Execute Around idiom when
 
 * you use an API that requires methods to be called in pairs such as open/close or allocate/deallocate.
+
+##Credits
+* [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](http://www.amazon.com/Functional-Programming-Java-Harnessing-Expressions/dp/1937785467/ref=sr_1_1)
