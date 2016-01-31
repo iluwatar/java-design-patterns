@@ -34,7 +34,7 @@ import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
  * This class tests the Distributed Logging service by starting a Reactor and then sending it
  * concurrent logging requests using multiple clients.
  */
-public class AppTest {
+public class ReactorTest {
 
   /**
    * Test the application using pooled thread dispatcher.

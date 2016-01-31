@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.caching;
+package com.iluwatar.command;
 
 import org.junit.Test;
 
 import java.io.IOException;
 
 /**
- * Tests that Caching example runs without errors.
+ * Tests that Command example runs without errors.
  */
 public class AppTest {
   @Test
