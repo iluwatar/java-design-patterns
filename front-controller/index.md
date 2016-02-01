@@ -3,14 +3,14 @@ layout: pattern
 title: Front Controller
 folder: front-controller
 permalink: /patterns/front-controller/
-categories: Creational
+categories: Presentation Tier
 tags:
  - Java
  - Difficulty-Intermediate
 ---
 
 ## Intent
-Introduce how to create objects which follow value semantics rather than reference semantics.
+Introduce a common handler for all requests for a web site. This
 way we can encapsulate common functionality such as security,
 internationalization, routing and logging in a single place.
 
