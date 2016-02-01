@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,27 +43,27 @@ public class PropertiesFeatureToggleVersionTest {
   @Test(expected = IllegalArgumentException.class)
   public void testNonBooleanProperty() throws Exception {
     final Properties properties = new Properties();
-    properties.setProperty("enhancedWelcome","Something");
+    properties.setProperty("enhancedWelcome", "Something");
     new PropertiesFeatureToggleVersion(properties);
   }
 
   @Test
   public void testFeatureTurnedOn() throws Exception {
     final Properties properties = new Properties();
-    properties.put("enhancedWelcome",true);
+    properties.put("enhancedWelcome", true);
     Service service = new PropertiesFeatureToggleVersion(properties);
     assertTrue(service.isEnhanced());
     final String welcomeMessage = service.getWelcomeMessage(new User("Jamie No Code"));
-    assertEquals("Welcome Jamie No Code. You're using the enhanced welcome message.",welcomeMessage);
+    assertEquals("Welcome Jamie No Code. You're using the enhanced welcome message.", welcomeMessage);
   }
 
   @Test
   public void testFeatureTurnedOff() throws Exception {
     final Properties properties = new Properties();
-    properties.put("enhancedWelcome",false);
+    properties.put("enhancedWelcome", false);
     Service service = new PropertiesFeatureToggleVersion(properties);
     assertFalse(service.isEnhanced());
     final String welcomeMessage = service.getWelcomeMessage(new User("Jamie No Code"));
-    assertEquals("Welcome to the application.",welcomeMessage);
+    assertEquals("Welcome to the application.", welcomeMessage);
   }
 }
