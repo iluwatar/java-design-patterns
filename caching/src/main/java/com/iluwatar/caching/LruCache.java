@@ -49,7 +49,7 @@ public class LruCache {
   }
 
   int capacity;
-  HashMap<String, Node> cache = new HashMap<String, Node>();
+  HashMap<String, Node> cache = new HashMap<>();
   Node head = null;
   Node end = null;
 
@@ -162,7 +162,7 @@ public class LruCache {
    * Returns cache data in list form.
    */
   public ArrayList<UserAccount> getCacheDataInListForm() {
-    ArrayList<UserAccount> listOfCacheData = new ArrayList<UserAccount>();
+    ArrayList<UserAccount> listOfCacheData = new ArrayList<>();
     Node temp = head;
     while (temp != null) {
       listOfCacheData.add(temp.userAccount);

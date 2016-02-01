@@ -33,7 +33,7 @@ public class ItemQueue {
 
   public ItemQueue() {
 
-    queue = new LinkedBlockingQueue<Item>(5);
+    queue = new LinkedBlockingQueue<>(5);
   }
 
   public void put(Item item) throws InterruptedException {

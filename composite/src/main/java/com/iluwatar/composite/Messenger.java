@@ -35,7 +35,7 @@ public class Messenger {
 
   LetterComposite messageFromOrcs() {
 
-    List<Word> words = new ArrayList<Word>();
+    List<Word> words = new ArrayList<>();
 
     words.add(new Word(Arrays.asList(new Letter('W'), new Letter('h'), new Letter('e'), new Letter(
         'r'), new Letter('e'))));
@@ -57,7 +57,7 @@ public class Messenger {
 
   LetterComposite messageFromElves() {
 
-    List<Word> words = new ArrayList<Word>();
+    List<Word> words = new ArrayList<>();
 
     words.add(new Word(Arrays.asList(new Letter('M'), new Letter('u'), new Letter('c'), new Letter(
         'h'))));

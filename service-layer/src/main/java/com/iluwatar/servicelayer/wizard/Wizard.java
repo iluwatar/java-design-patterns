@@ -46,7 +46,7 @@ import com.iluwatar.servicelayer.spellbook.Spellbook;
 public class Wizard extends BaseEntity {
 
   public Wizard() {
-    spellbooks = new HashSet<Spellbook>();
+    spellbooks = new HashSet<>();
   }
 
   public Wizard(String name) {

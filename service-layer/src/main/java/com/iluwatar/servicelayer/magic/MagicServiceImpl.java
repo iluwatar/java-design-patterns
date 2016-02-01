@@ -70,13 +70,13 @@ public class MagicServiceImpl implements MagicService {
   @Override
   public List<Wizard> findWizardsWithSpellbook(String name) {
     Spellbook spellbook = spellbookDao.findByName(name);
-    return new ArrayList<Wizard>(spellbook.getWizards());
+    return new ArrayList<>(spellbook.getWizards());
   }
 
   @Override
   public List<Wizard> findWizardsWithSpell(String name) {
     Spell spell = spellDao.findByName(name);
     Spellbook spellbook = spell.getSpellbook();
-    return new ArrayList<Wizard>(spellbook.getWizards());
+    return new ArrayList<>(spellbook.getWizards());
   }
 }
