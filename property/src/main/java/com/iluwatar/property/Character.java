@@ -114,11 +114,11 @@ public class Character implements Prototype {
   public String toString() {
     StringBuilder builder = new StringBuilder();
     if (name != null) {
-      builder.append("Player: ").append(name).append("\n");
+      builder.append("Player: ").append(name).append('\n');
     }
 
     if (type != null) {
-      builder.append("Character type: ").append(type.name()).append("\n");
+      builder.append("Character type: ").append(type.name()).append('\n');
     }
 
     builder.append("Stats:\n");
@@ -127,7 +127,7 @@ public class Character implements Prototype {
       if (value == null) {
         continue;
       }
-      builder.append(" - ").append(stat.name()).append(":").append(value).append("\n");
+      builder.append(" - ").append(stat.name()).append(':').append(value).append('\n');
     }
     return builder.toString();
   }
