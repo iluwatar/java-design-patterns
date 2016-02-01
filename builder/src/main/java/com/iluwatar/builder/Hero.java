@@ -71,10 +71,10 @@ public class Hero {
     if (hairColor != null || hairType != null) {
       sb.append(" with ");
       if (hairColor != null) {
-        sb.append(hairColor).append(" ");
+        sb.append(hairColor).append(' ');
       }
       if (hairType != null) {
-        sb.append(hairType).append(" ");
+        sb.append(hairType).append(' ');
       }
       sb.append(hairType != HairType.BALD ? "hair" : "head");
     }
@@ -84,7 +84,7 @@ public class Hero {
     if (weapon != null) {
       sb.append(" and wielding a ").append(weapon);
     }
-    sb.append(".");
+    sb.append('.');
     return sb.toString();
   }
 
