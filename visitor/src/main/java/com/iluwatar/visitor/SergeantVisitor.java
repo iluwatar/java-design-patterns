@@ -30,7 +30,9 @@ package com.iluwatar.visitor;
 public class SergeantVisitor implements UnitVisitor {
 
   @Override
-  public void visitSoldier(Soldier soldier) {}
+  public void visitSoldier(Soldier soldier) {
+    throw new UnsupportedOperationException("The requested operation is not supported.");
+  }
 
   @Override
   public void visitSergeant(Sergeant sergeant) {
@@ -38,5 +40,7 @@ public class SergeantVisitor implements UnitVisitor {
   }
 
   @Override
-  public void visitCommander(Commander commander) {}
+  public void visitCommander(Commander commander) {
+    throw new UnsupportedOperationException("The requested operation is not supported.");
+  }
 }

@@ -35,8 +35,12 @@ public class SoldierVisitor implements UnitVisitor {
   }
 
   @Override
-  public void visitSergeant(Sergeant sergeant) {}
+  public void visitSergeant(Sergeant sergeant) {
+    throw new UnsupportedOperationException("The requested operation is not supported.");
+  }
 
   @Override
-  public void visitCommander(Commander commander) {}
+  public void visitCommander(Commander commander) {
+    throw new UnsupportedOperationException("The requested operation is not supported.");
+  }
 }
