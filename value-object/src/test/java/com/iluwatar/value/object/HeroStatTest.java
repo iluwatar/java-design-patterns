@@ -15,7 +15,7 @@ import org.junit.Test;
 public class HeroStatTest {
 
   /**
-   * Tester for equals() and hashCode() methods of a class. Using guava's EqualsTester
+   * Tester for equals() and hashCode() methods of a class. Using guava's EqualsTester.
    * 
    * @see http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/
    *      EqualsTester.html
@@ -33,15 +33,12 @@ public class HeroStatTest {
    */
   @Test
   public void testToString() {
-
     HeroStat heroStatA = HeroStat.valueOf(3, 9, 2);
     HeroStat heroStatB = HeroStat.valueOf(3, 9, 2);
     HeroStat heroStatC = HeroStat.valueOf(3, 9, 8);
 
     assertThat(heroStatA.toString(), is(heroStatB.toString()));
     assertThat(heroStatA.toString(), is(not(heroStatC.toString())));
-
-
   }
 
 }

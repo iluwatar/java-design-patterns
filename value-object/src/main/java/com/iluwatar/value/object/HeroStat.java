@@ -7,13 +7,11 @@ package com.iluwatar.value.object;
  */
 public class HeroStat {
 
-
   // Stats for a hero
 
   private final int strength;
   private final int intelligence;
   private final int luck;
-
 
   // All constructors must be private.
   private HeroStat(int strength, int intelligence, int luck) {
@@ -86,7 +84,6 @@ public class HeroStat {
     }
     return true;
   }
-
 
   // The clone() method should not be public. Just don't override it.
 

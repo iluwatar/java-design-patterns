@@ -14,11 +14,9 @@ package com.iluwatar.value.object;
  * 
  * For more specific and strict rules to implement value objects check the rules from Stephen
  * Colebourne's term VALJO : http://blog.joda.org/2014/03/valjos-value-java-objects.html 
- *  
  */
 public class App {
   /**
-   * 
    * This practice creates three HeroStats(Value object) and checks equality between those.
    */
   public static void main(String[] args) {
