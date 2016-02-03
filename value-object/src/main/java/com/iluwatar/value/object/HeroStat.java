@@ -1,13 +1,7 @@
 package com.iluwatar.value.object;
 
 /**
- * HeroStat is a Value Object. following rules are from Stephen Colebourne's term VALJO(not the
- * entire rule set) from : http://blog.joda.org/2014/03/valjos-value-java-objects.html<br>
- * Value Objects must override equals(), hashCode() to check the equality with values. <br>
- * Value Objects should be immutable so declare members final. Obtain instances by static factory
- * methods. <br>
- * The elements of the state must be other values, including primitive types.<br>
- * Provide methods, typically simple getters, to get the elements of the state.<br>
+ * HeroStat is a value object
  * 
  * {@link http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html}
  */
