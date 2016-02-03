@@ -35,8 +35,12 @@ public class SoldierVisitor implements UnitVisitor {
   }
 
   @Override
-  public void visitSergeant(Sergeant sergeant) {}
+  public void visitSergeant(Sergeant sergeant) {
+    // Do nothing
+  }
 
   @Override
-  public void visitCommander(Commander commander) {}
+  public void visitCommander(Commander commander) {
+    // Do nothing
+  }
 }

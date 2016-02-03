@@ -60,5 +60,7 @@ public class NullNode implements Node {
   }
 
   @Override
-  public void walk() {}
+  public void walk() {
+    // Do nothing
+  }
 }
