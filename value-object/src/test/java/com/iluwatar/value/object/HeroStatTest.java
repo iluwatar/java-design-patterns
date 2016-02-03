@@ -15,9 +15,10 @@ import org.junit.Test;
 public class HeroStatTest {
 
   /**
-   * Tester for equals() and hashCode() methods of a class.
+   * Tester for equals() and hashCode() methods of a class. Using guava's EqualsTester
    * 
-   * @see http://www.javadoc.io/doc/com.google.guava/guava-testlib/19.0
+   * @see http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/
+   *      EqualsTester.html
    */
   @Test
   public void testEquals() {

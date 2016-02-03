@@ -48,15 +48,15 @@ public class HeroStat {
 
   /*
    * Recommended to provide a static factory method capable of creating an instance from the formal
-   * string representation declared like this. public static Juice parse(String string) {}
+   * string representation declared like this. public static HeroStat parse(String string) {}
    */
 
   // toString, hashCode, equals
 
   @Override
   public String toString() {
-    return "HeroStat [strength=" + strength + ", intelligence=" + intelligence + ", luck=" + luck
-        + "]";
+    return "HeroStat [strength=" + strength + ", intelligence=" + intelligence
+        + ", luck=" + luck + "]";
   }
 
   @Override
@@ -94,6 +94,6 @@ public class HeroStat {
   }
 
 
-  // The clone() method should not be public
+  // The clone() method should not be public. Just don't override it.
 
 }
