@@ -24,14 +24,6 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 @DomainService(nature = NatureOfService.VIEW_CONTRIBUTIONS_ONLY)
 public class HomePageService {
 
-  // region > homePage (action)
-
-  @Action(semantics = SemanticsOf.SAFE)
-  @HomePage
-  public HomePageViewModel homePage() {
-    return container.injectServicesInto(new HomePageViewModel());
-  }
-
   // endregion
 
   // region > injected services
@@ -40,4 +32,13 @@ public class HomePageService {
   DomainObjectContainer container;
 
   // endregion
+
+  // region > homePage (action)
+
+  @Action(semantics = SemanticsOf.SAFE)
+  @HomePage
+  public HomePageViewModel homePage() {
+    return container.injectServicesInto(new HomePageViewModel());
+  }
+
 }

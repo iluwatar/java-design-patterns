@@ -36,6 +36,15 @@ public class Hero {
   private final Armor armor;
   private final Weapon weapon;
 
+  private Hero(HeroBuilder builder) {
+    this.profession = builder.profession;
+    this.name = builder.name;
+    this.hairColor = builder.hairColor;
+    this.hairType = builder.hairType;
+    this.weapon = builder.weapon;
+    this.armor = builder.armor;
+  }
+
   public Profession getProfession() {
     return profession;
   }
@@ -86,15 +95,6 @@ public class Hero {
     }
     sb.append('.');
     return sb.toString();
-  }
-
-  private Hero(HeroBuilder builder) {
-    this.profession = builder.profession;
-    this.name = builder.name;
-    this.hairColor = builder.hairColor;
-    this.hairType = builder.hairType;
-    this.weapon = builder.weapon;
-    this.armor = builder.armor;
   }
 
   /**

@@ -44,18 +44,22 @@ public class Spell extends BaseEntity {
 
   private String name;
 
+  @Id
+  @GeneratedValue
+  @Column(name = "SPELL_ID")
+  private Long id;
+
+  @ManyToOne
+  @JoinColumn(name = "SPELLBOOK_ID_FK", referencedColumnName = "SPELLBOOK_ID")
+  private Spellbook spellbook;
+
   public Spell() {}
 
   public Spell(String name) {
     this();
     this.name = name;
   }
-
-  @Id
-  @GeneratedValue
-  @Column(name = "SPELL_ID")
-  private Long id;
-
+  
   public Long getId() {
     return id;
   }
@@ -63,11 +67,7 @@ public class Spell extends BaseEntity {
   public void setId(Long id) {
     this.id = id;
   }
-
-  @ManyToOne
-  @JoinColumn(name = "SPELLBOOK_ID_FK", referencedColumnName = "SPELLBOOK_ID")
-  private Spellbook spellbook;
-
+  
   public String getName() {
     return name;
   }

@@ -48,17 +48,16 @@ import org.apache.isis.applib.util.ObjectContracts;
 @DomainObjectLayout(bookmarking = BookmarkPolicy.AS_ROOT, cssClassFa = "fa-flag")
 public class SimpleObject implements Comparable<SimpleObject> {
 
-
-  // region > identificatiom
-  public TranslatableString title() {
-    return TranslatableString.tr("Object: {name}", "name", getName());
-  }
-
   // endregion
 
   // region > name (property)
 
   private String name;
+  
+  // region > identificatiom
+  public TranslatableString title() {
+    return TranslatableString.tr("Object: {name}", "name", getName());
+  }
 
   @javax.jdo.annotations.Column(allowsNull = "false", length = 40)
   @Title(sequence = "1")
