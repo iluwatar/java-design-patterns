@@ -93,6 +93,7 @@
 		<module>publish-subscribe</module>
 		<module>delegation</module>
 		<module>event-driven-architecture</module>
+		<module>api-gateway</module>
 	</modules>
 
 	<dependencyManagement>
