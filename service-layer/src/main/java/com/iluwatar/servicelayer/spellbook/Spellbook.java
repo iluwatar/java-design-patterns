@@ -48,28 +48,10 @@ import com.iluwatar.servicelayer.wizard.Wizard;
 @Table(name = "SPELLBOOK")
 public class Spellbook extends BaseEntity {
 
-  public Spellbook() {
-    spells = new HashSet<>();
-    wizards = new HashSet<>();
-  }
-
-  public Spellbook(String name) {
-    this();
-    this.name = name;
-  }
-
   @Id
   @GeneratedValue
   @Column(name = "SPELLBOOK_ID")
   private Long id;
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
 
   private String name;
 
@@ -79,6 +61,24 @@ public class Spellbook extends BaseEntity {
   @OneToMany(mappedBy = "spellbook", orphanRemoval = true, cascade = CascadeType.ALL)
   private Set<Spell> spells;
 
+  public Spellbook() {
+    spells = new HashSet<>();
+    wizards = new HashSet<>();
+  }
+
+  public Spellbook(String name) {
+    this();
+    this.name = name;
+  }
+  
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+  
   public String getName() {
     return name;
   }

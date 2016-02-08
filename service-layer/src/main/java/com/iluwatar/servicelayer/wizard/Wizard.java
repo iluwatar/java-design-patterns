@@ -45,6 +45,16 @@ import com.iluwatar.servicelayer.spellbook.Spellbook;
 @Table(name = "WIZARD")
 public class Wizard extends BaseEntity {
 
+  @Id
+  @GeneratedValue
+  @Column(name = "WIZARD_ID")
+  private Long id;
+
+  private String name;
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  private Set<Spellbook> spellbooks;
+
   public Wizard() {
     spellbooks = new HashSet<>();
   }
@@ -53,12 +63,7 @@ public class Wizard extends BaseEntity {
     this();
     this.name = name;
   }
-
-  @Id
-  @GeneratedValue
-  @Column(name = "WIZARD_ID")
-  private Long id;
-
+  
   public Long getId() {
     return id;
   }
@@ -66,12 +71,7 @@ public class Wizard extends BaseEntity {
   public void setId(Long id) {
     this.id = id;
   }
-
-  private String name;
-
-  @ManyToMany(cascade = CascadeType.ALL)
-  private Set<Spellbook> spellbooks;
-
+  
   public String getName() {
     return name;
   }
