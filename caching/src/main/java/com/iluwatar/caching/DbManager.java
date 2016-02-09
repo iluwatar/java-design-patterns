@@ -43,7 +43,7 @@ import com.mongodb.client.model.UpdateOptions;
  * during runtime (createVirtualDB()).</p>
  * 
  */
-public class DbManager {
+public final class DbManager {
 
   private static MongoClient mongoClient;
   private static MongoDatabase db;
