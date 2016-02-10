@@ -52,14 +52,6 @@ public class App {
     setArmy(factory.createArmy());
   }
 
-  ElfKingdomFactory getElfKingdomFactory() {
-    return new ElfKingdomFactory();
-  }
-
-  OrcKingdomFactory getOrcKingdomFactory() {
-    return new OrcKingdomFactory();
-  }
-
   King getKing(final KingdomFactory factory) {
     return factory.createKing();
   }
@@ -107,17 +99,13 @@ public class App {
     App app = new App();
 
     System.out.println("Elf Kingdom");
-    KingdomFactory elfKingdomFactory;
-    elfKingdomFactory = app.getElfKingdomFactory();
-    app.createKingdom(elfKingdomFactory);
+    app.createKingdom(new ElfKingdomFactory());
     System.out.println(app.getArmy().getDescription());
     System.out.println(app.getCastle().getDescription());
     System.out.println(app.getKing().getDescription());
 
     System.out.println("\nOrc Kingdom");
-    KingdomFactory orcKingdomFactory;
-    orcKingdomFactory = app.getOrcKingdomFactory();
-    app.createKingdom(orcKingdomFactory);
+    app.createKingdom(new OrcKingdomFactory());
     System.out.println(app.getArmy().getDescription());
     System.out.println(app.getCastle().getDescription());
     System.out.println(app.getKing().getDescription());

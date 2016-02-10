@@ -36,8 +36,8 @@ public class AbstractFactoryTest {
 
   @Before
   public void setUp() {
-    elfFactory = app.getElfKingdomFactory();
-    orcFactory = app.getOrcKingdomFactory();
+    elfFactory = new ElfKingdomFactory();
+    orcFactory = new OrcKingdomFactory();
   }
 
   @Test
