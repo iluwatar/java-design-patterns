@@ -46,7 +46,7 @@ public class App {
    * <code>App</code> is unaware which concrete implementation of {@link Blacksmith} it is using.
    * The decision of which blacksmith implementation to use may depend on configuration, or
    * the type of rival in war.
-   * @param blacksmith
+   * @param blacksmith a non-null implementation of blacksmith
    */
   public App(Blacksmith blacksmith) {
     this.blacksmith = blacksmith;
