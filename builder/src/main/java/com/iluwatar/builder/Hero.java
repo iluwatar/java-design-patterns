@@ -27,7 +27,7 @@ package com.iluwatar.builder;
  * Hero, the class with many parameters.
  * 
  */
-public class Hero {
+public final class Hero {
 
   private final Profession profession;
   private final String name;

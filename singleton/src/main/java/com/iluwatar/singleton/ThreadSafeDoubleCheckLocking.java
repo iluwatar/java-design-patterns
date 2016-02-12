@@ -31,7 +31,7 @@ package com.iluwatar.singleton;
  *
  * @author mortezaadi@gmail.com
  */
-public class ThreadSafeDoubleCheckLocking {
+public final class ThreadSafeDoubleCheckLocking {
 
   private static volatile ThreadSafeDoubleCheckLocking instance;
 

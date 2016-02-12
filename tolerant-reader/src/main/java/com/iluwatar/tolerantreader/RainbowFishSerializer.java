@@ -38,7 +38,7 @@ import java.util.Map;
  * added to the schema.
  *
  */
-public class RainbowFishSerializer {
+public final class RainbowFishSerializer {
 
   private RainbowFishSerializer() {
   }

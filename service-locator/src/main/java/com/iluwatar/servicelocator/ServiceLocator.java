@@ -28,7 +28,7 @@ package com.iluwatar.servicelocator;
  *
  * @author saifasif
  */
-public class ServiceLocator {
+public final class ServiceLocator {
 
   private static ServiceCache serviceCache = new ServiceCache();
 

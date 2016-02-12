@@ -29,7 +29,7 @@ package com.iluwatar.nullobject;
  * Implemented as Singleton, since all the NullNodes are the same.
  *
  */
-public class NullNode implements Node {
+public final class NullNode implements Node {
 
   private static NullNode instance = new NullNode();
 
