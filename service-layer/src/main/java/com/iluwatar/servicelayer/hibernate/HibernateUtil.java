@@ -32,7 +32,7 @@ import org.hibernate.cfg.Configuration;
 /**
  * Produces the Hibernate {@link SessionFactory}.
  */
-public class HibernateUtil {
+public final class HibernateUtil {
 
   /**
    * The cached session factory

@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * The Step Builder class.
  */
-public class CharacterStepBuilder {
+public final class CharacterStepBuilder {
 
   private CharacterStepBuilder() {}
 

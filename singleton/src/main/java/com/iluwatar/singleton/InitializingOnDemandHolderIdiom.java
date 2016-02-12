@@ -34,7 +34,7 @@ import java.io.Serializable;
  *
  * @author mortezaadi@gmail.com
  */
-public class InitializingOnDemandHolderIdiom implements Serializable {
+public final class InitializingOnDemandHolderIdiom implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

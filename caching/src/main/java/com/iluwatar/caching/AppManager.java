@@ -33,7 +33,7 @@ import java.text.ParseException;
  * CacheStore class.
  *
  */
-public class AppManager {
+public final class AppManager {
 
   private static CachingPolicy cachingPolicy;
 
