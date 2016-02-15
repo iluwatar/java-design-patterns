@@ -19,7 +19,7 @@ import org.apache.isis.core.integtestsupport.IsisSystemForTest;
 import org.apache.isis.objectstore.jdo.datanucleus.DataNucleusPersistenceMechanismInstaller;
 import org.apache.isis.objectstore.jdo.datanucleus.IsisConfigurationForJdoIntegTests;
 
-public class SimpleAppSystemInitializer {
+public final class SimpleAppSystemInitializer {
 
   private SimpleAppSystemInitializer() {
   }

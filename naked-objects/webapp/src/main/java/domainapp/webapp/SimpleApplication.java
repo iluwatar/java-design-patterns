@@ -118,8 +118,7 @@ public class SimpleApplication extends IsisWicketApplication {
     } catch (Exception e) {
       System.out.println(e);
     }
-    WebRequest request = super.newWebRequest(servletRequest, filterPath);
-    return request;
+    return super.newWebRequest(servletRequest, filterPath);
   }
 
   @Override
@@ -150,8 +149,7 @@ public class SimpleApplication extends IsisWicketApplication {
       List<String> readLines =
           Resources.readLines(Resources.getResource(contextClass, resourceName),
               Charset.defaultCharset());
-      final String aboutText = Joiner.on("\n").join(readLines);
-      return aboutText;
+      return Joiner.on("\n").join(readLines);
     } catch (IOException e) {
       return "This is a simple app";
     }

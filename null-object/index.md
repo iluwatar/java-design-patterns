@@ -25,3 +25,6 @@ Object is very predictable and has no side effects: it does nothing.
 Use the Null Object pattern when
 
 * you want to avoid explicit null checks and keep the algorithm elegant and easy to read.
+
+## Credits
+* [Pattern Languages of Program Design](http://www.amazon.com/Pattern-Languages-Program-Design-Coplien/dp/0201607344/ref=sr_1_1)

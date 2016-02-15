@@ -33,6 +33,14 @@ import org.apache.isis.applib.services.i18n.TranslatableString;
 @DomainService(repositoryFor = SimpleObject.class)
 @DomainServiceLayout(menuOrder = "10")
 public class SimpleObjects {
+  // endregion
+
+  // region > injected services
+
+  @javax.inject.Inject
+  DomainObjectContainer container;
+
+  // endregion
 
   // region > title
   public TranslatableString title() {
@@ -81,12 +89,4 @@ public class SimpleObjects {
     return obj;
   }
 
-  // endregion
-
-  // region > injected services
-
-  @javax.inject.Inject
-  DomainObjectContainer container;
-
-  // endregion
 }
