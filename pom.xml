@@ -119,12 +119,9 @@
 		<module>publish-subscribe</module>
 		<module>delegation</module>
 		<module>event-driven-architecture</module>
-<<<<<<< HEAD
 		<module>factory-kit</module>
-=======
 		<module>feature-toggle</module>
 		<module>value-object</module>
->>>>>>> f1122f78e32c4db99b42bc224344651dba9b0757
 	</modules>
 
 	<dependencyManagement>
