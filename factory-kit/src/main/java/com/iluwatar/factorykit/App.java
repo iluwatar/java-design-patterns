@@ -1,7 +1,11 @@
 package com.iluwatar.factorykit;
 
 public class App {
-
+  /**
+   * Program entry point.
+   *
+   * @param args @param args command line args
+   */
   public static void main(String[] args) {
     WeaponFactory factory = WeaponFactory.factory(builder -> {
       builder.add(WeaponType.SWORD, Sword::new);
