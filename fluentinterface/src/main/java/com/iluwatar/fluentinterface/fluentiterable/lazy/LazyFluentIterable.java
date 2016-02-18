@@ -111,7 +111,7 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
       @Override
       public Iterator<TYPE> iterator() {
         return new DecoratingIterator<TYPE>(iterable.iterator()) {
-          int currentIndex = 0;
+          int currentIndex;
 
           @Override
           public TYPE computeNext() {
@@ -156,7 +156,7 @@ public class LazyFluentIterable<TYPE> implements FluentIterable<TYPE> {
           private int stopIndex;
           private int totalElementsCount;
           private List<TYPE> list;
-          private int currentIndex = 0;
+          private int currentIndex;
 
           @Override
           public TYPE computeNext() {

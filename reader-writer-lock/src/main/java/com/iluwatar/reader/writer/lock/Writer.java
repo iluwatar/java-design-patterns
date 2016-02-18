@@ -29,7 +29,7 @@ import java.util.concurrent.locks.Lock;
  */
 public class Writer implements Runnable {
 
-  private Lock writeLock = null;
+  private Lock writeLock;
 
   private String name;
 

@@ -31,7 +31,7 @@ package com.iluwatar.singleton;
  */
 public class ThreadSafeLazyLoadedIvoryTower {
 
-  private static ThreadSafeLazyLoadedIvoryTower instance = null;
+  private static ThreadSafeLazyLoadedIvoryTower instance;
 
   private ThreadSafeLazyLoadedIvoryTower() {}
 

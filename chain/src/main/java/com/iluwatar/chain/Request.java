@@ -44,7 +44,7 @@ public class Request {
    * Indicates if the request is handled or not. A request can only switch state from unhandled to
    * handled, there's no way to 'unhandle' a request
    */
-  private boolean handled = false;
+  private boolean handled;
 
   /**
    * Create a new request of the given type and accompanied description.
