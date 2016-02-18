@@ -30,7 +30,7 @@ package com.iluwatar.twin;
  */
 public class BallItem extends GameItem {
 
-  private boolean isSuspended = false;
+  private boolean isSuspended;
 
   private BallThread twin;
 

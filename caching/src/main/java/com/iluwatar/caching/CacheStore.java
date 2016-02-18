@@ -31,7 +31,7 @@ import java.util.ArrayList;
  */
 public class CacheStore {
 
-  static LruCache cache = null;
+  static LruCache cache;
 
   private CacheStore() {
   }

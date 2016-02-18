@@ -32,7 +32,7 @@ public abstract class DecoratingIterator<TYPE> implements Iterator<TYPE> {
 
   protected final Iterator<TYPE> fromIterator;
 
-  private TYPE next = null;
+  private TYPE next;
 
   /**
    * Creates an iterator that decorates the given iterator.
