@@ -37,7 +37,7 @@ public class FileLoader {
   /**
    * Indicates if the file is loaded or not.
    */
-  private boolean loaded = false;
+  private boolean loaded;
 
   /**
    * The name of the file that we want to load.

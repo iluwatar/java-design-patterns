@@ -34,7 +34,7 @@ public class Producer {
 
   private final String name;
 
-  private int itemId = 0;
+  private int itemId;
 
   public Producer(String name, ItemQueue queue) {
     this.name = name;

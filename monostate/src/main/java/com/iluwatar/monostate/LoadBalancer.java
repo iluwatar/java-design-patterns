@@ -35,8 +35,8 @@ import java.util.List;
 
 public class LoadBalancer {
   private static List<Server> servers = new ArrayList<>();
-  private static int id = 0;
-  private static int lastServedId = 0;
+  private static int id;
+  private static int lastServedId;
 
   static {
     servers.add(new Server("localhost", 8081, ++id));

@@ -50,8 +50,8 @@ public class LruCache {
 
   int capacity;
   HashMap<String, Node> cache = new HashMap<>();
-  Node head = null;
-  Node end = null;
+  Node head;
+  Node end;
 
   public LruCache(int capacity) {
     this.capacity = capacity;
