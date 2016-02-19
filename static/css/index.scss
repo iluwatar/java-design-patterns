@@ -31,9 +31,17 @@
 */
 /* commom */
 
-body {
-    background-image: url("{{ "/static/img/canvas_bg.jpg" | prepend: site.baseurl }} ");
-    font-family: 'Roboto', sans-serif;
+html {
+    height: 100%;
+    body {
+        background-image: url("{{ "/static/img/canvas_bg.jpg" | prepend: site.baseurl }} ");
+        font-family: 'Roboto', sans-serif;
+        height: 100%;
+    }
+    #super-container {
+        min-height: 100%;
+        position: relative;
+    }
 }
 
 pre {
@@ -80,6 +88,7 @@ nav {
 
 .main {
     min-height: 800px;
+    padding-bottom: 70px;
 }
 
 .content-area {
@@ -187,32 +196,36 @@ nav {
 }
 
 /* footer */
-footer {
-    min-height: 50px;
-    line-height: 50px;
-    margin-top: 80px;
-    background: #3f4850;
-    color: #aaa;
-    text-align: center;
-    @include box-shadow(0 -2px 4px rgba(0, 0, 0, 0.5));
-    a {
-        &:link {
-            color: #aaa;
+.footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        min-height: 50px;
+
+        line-height: 50px;
+        background: #3f4850;
+        color: #aaa;
+        text-align: center;
+        @include box-shadow(0 -2px 4px rgba(0, 0, 0, 0.5));
+        a {
+            &:link {
+                color: #aaa;
+            }
+            &:visited {
+                color: #888;
+            }
+            &:hover {
+                color: #bbb;
+                text-decoration: none;
+            }
+            &:active {
+                color: #bbb;
+            }
         }
-        &:visited {
-            color: #888;
+        .point {
+            margin: 0 8px;
         }
-        &:hover {
-            color: #bbb;
-            text-decoration: none;
-        }
-        &:active {
-            color: #bbb;
-        }
-    }
-    .point {
-        margin: 0 8px;
-    }
 }
 
 /**

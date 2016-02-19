@@ -5,38 +5,6 @@ $(document).ready(function() {
     initBootstrapTooltips();
 });
 
-function fixFooterInit() {
-    var footerHeight = $('footer').outerHeight();
-    var footerMarginTop = getFooterMarginTop() - 0;
-
-    fixFooter(footerHeight, footerMarginTop); //fix footer at the beginning
-
-    $(window).resize(function() { //when resize window, footer can auto get the postion
-        fixFooter(footerHeight, footerMarginTop);
-    });
-}
-
-function fixFooter(footerHeight, footerMarginTop) {
-    var windowHeight = $(window).height();
-    var contentHeight = $('body>.container').outerHeight() + $('body>.container').offset().top + footerHeight + footerMarginTop;
-    console.log(contentHeight);
-    if (contentHeight < windowHeight) {
-        $('footer').addClass('navbar-fixed-bottom');
-    } else {
-        $('footer').removeClass('navbar-fixed-bottom');
-    }
-
-    $('footer').show(400);
-}
-
-function getFooterMarginTop() {
-    var margintop = $('footer').css('marginTop');
-    var patt = new RegExp("[0-9]*");
-    var re = patt.exec(margintop);
-    // console.log(re[0]);
-    return re[0];
-}
-
 function categoryAndTagDisplay() {
     /*
     $('.post-list-body>div[post-category!=All]').hide();
@@ -84,7 +52,6 @@ function generateContent() {
             'data-offset': '50'
         });*/
     }
-    console.log("myAffix!!!");
 }
 
 function initBootstrapTooltips() {
