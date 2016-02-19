@@ -11,13 +11,22 @@ import java.util.function.Predicate;
  * given object together step by step. In Validator each step results in either success or
  * failure indicator, giving a way of receiving each of them easily and finally getting
  * validated object or list of exceptions.
+ *
  * @param <T> Placeholder for an object.
  */
 public class Validator<T> {
+  /**
+   * Object that is validated
+   */
   private final T t;
+
+  /**
+   * List of exception thrown during validation.
+   */
   private final List<Throwable> exceptions = new ArrayList<>();
 
   /**
+   * Creates a monadic value of given object.
    * @param t object to be validated
    */
   private Validator(T t) {
@@ -52,6 +61,7 @@ public class Validator<T> {
   /**
    * Extension for the {@link Validator#validate(Function, Predicate, String)} method,
    * dedicated for objects, that need to be projected before requested validation.
+   *
    * @param projection function that gets an objects, and returns projection representing
    *                   element to be validated.
    * @param validation see {@link Validator#validate(Function, Predicate, String)}
@@ -65,7 +75,7 @@ public class Validator<T> {
   }
 
   /**
-   * To receive validated object.
+   * Receives validated object or throws exception when invalid.
    *
    * @return object that was validated
    * @throws IllegalStateException when any validation step results with failure

@@ -8,11 +8,10 @@ public class User {
   private String email;
 
   /**
-   *
-   * @param name - name
-   * @param age - age
-   * @param sex - sex
-   * @param email - email
+   * @param name  - name
+   * @param age   - age
+   * @param sex   - sex
+   * @param email - email address
    */
   public User(String name, int age, Sex sex, String email) {
     this.name = name;
