@@ -66,7 +66,7 @@ public class CakeLayer {
     return name;
   }
 
-  public void setName(String name) {
+  public final void setName(String name) {
     this.name = name;
   }
 
@@ -74,7 +74,7 @@ public class CakeLayer {
     return calories;
   }
 
-  public void setCalories(int calories) {
+  public final void setCalories(int calories) {
     this.calories = calories;
   }
 

@@ -46,7 +46,7 @@ public class Item {
     return type;
   }
 
-  public void setType(ItemType type) {
+  public final void setType(ItemType type) {
     this.type = type;
   }
 }

@@ -43,7 +43,7 @@ public abstract class EventEmitter {
     registerObserver(obs);
   }
 
-  public void registerObserver(EventObserver obs) {
+  public final void registerObserver(EventObserver obs) {
     observers.add(obs);
   }
 
