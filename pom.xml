@@ -121,6 +121,7 @@
 		<module>event-driven-architecture</module>
 		<module>feature-toggle</module>
 		<module>value-object</module>
+		<module>monad</module>
 	</modules>
 
 	<dependencyManagement>
