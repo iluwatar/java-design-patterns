@@ -28,16 +28,16 @@ import java.util.Iterator;
  * This class is used to realize LazyFluentIterables. It decorates a given iterator. Does not
  * support consecutive hasNext() calls.
  */
-public abstract class DecoratingIterator<TYPE> implements Iterator<TYPE> {
+public abstract class DecoratingIterator<E> implements Iterator<E> {
 
-  protected final Iterator<TYPE> fromIterator;
+  protected final Iterator<E> fromIterator;
 
-  private TYPE next;
+  private E next;
 
   /**
    * Creates an iterator that decorates the given iterator.
    */
-  public DecoratingIterator(Iterator<TYPE> fromIterator) {
+  public DecoratingIterator(Iterator<E> fromIterator) {
     this.fromIterator = fromIterator;
   }
 
@@ -58,11 +58,11 @@ public abstract class DecoratingIterator<TYPE> implements Iterator<TYPE> {
    * @return the next element of the Iterable, or null if not present.
    */
   @Override
-  public final TYPE next() {
+  public final E next() {
     if (next == null) {
       return fromIterator.next();
     } else {
-      final TYPE result = next;
+      final E result = next;
       next = null;
       return result;
     }
@@ -74,5 +74,5 @@ public abstract class DecoratingIterator<TYPE> implements Iterator<TYPE> {
    * 
    * @return the next element of the Iterable.
    */
-  public abstract TYPE computeNext();
+  public abstract E computeNext();
 }
