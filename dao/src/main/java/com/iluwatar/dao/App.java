@@ -51,7 +51,7 @@ public class App {
    * @param args command line args.
    */
   public static void main(final String[] args) {
-    final CustomerDaoImpl customerDao = new CustomerDaoImpl(generateSampleCustomers());
+    final CustomerDao customerDao = new CustomerDaoImpl(generateSampleCustomers());
     log.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
     log.info("customerDao.getCusterById(2): " + customerDao.getCustomerById(2));
     final Customer customer = new Customer(4, "Dan", "Danson");
