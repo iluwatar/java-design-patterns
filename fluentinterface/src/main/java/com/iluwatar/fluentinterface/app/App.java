@@ -114,14 +114,14 @@ public class App {
     return integer -> integer > 0;
   }
 
-  private static <TYPE> void prettyPrint(String prefix, Iterable<TYPE> iterable) {
+  private static <E> void prettyPrint(String prefix, Iterable<E> iterable) {
     prettyPrint(", ", prefix, iterable);
   }
 
-  private static <TYPE> void prettyPrint(String delimiter, String prefix,
-                                         Iterable<TYPE> iterable) {
+  private static <E> void prettyPrint(String delimiter, String prefix,
+                                         Iterable<E> iterable) {
     StringJoiner joiner = new StringJoiner(delimiter, prefix, ".");
-    Iterator<TYPE> iterator = iterable.iterator();
+    Iterator<E> iterator = iterable.iterator();
     while (iterator.hasNext()) {
       joiner.add(iterator.next().toString());
     }
