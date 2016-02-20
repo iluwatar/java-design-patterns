@@ -75,7 +75,7 @@ public class Cake {
     return layers;
   }
 
-  public void setLayers(Set<CakeLayer> layers) {
+  public final void setLayers(Set<CakeLayer> layers) {
     this.layers = layers;
   }
 
