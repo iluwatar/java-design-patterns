@@ -32,4 +32,4 @@ Use the Monad in any of the following situations
 
 * [Design Pattern Reloaded by Remi Forax](https://youtu.be/-k2X7guaArU)
 * [Brian Beckman: Don't fear the Monad](https://channel9.msdn.com/Shows/Going+Deep/Brian-Beckman-Dont-fear-the-Monads)
-* [Monad (functional programming) on Wikipedia] (https://en.wikipedia.org/wiki/Monad_(functional_programming)
+* [Monad on Wikipedia](https://en.wikipedia.org/wiki/Monad_(functional_programming)

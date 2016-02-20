@@ -23,7 +23,7 @@ public class MonadTest {
   @Test
   public void testForInvalidAge() {
     thrown.expect(IllegalStateException.class);
-    User tom = new User("John", 17, Sex.MALE, "john@qwe.bar");
+    User john = new User("John", 17, Sex.MALE, "john@qwe.bar");
     Validator.of(tom).validate(User::getName, Objects::nonNull, "name cannot be null")
         .validate(User::getAge, age -> age > 21, "user is underaged")
         .get();
@@ -31,7 +31,7 @@ public class MonadTest {
 
   @Test
   public void testForValid() {
-    User tom = new User("Sarah", 42, Sex.FEMALE, "sarah@det.org");
+    User sarah = new User("Sarah", 42, Sex.FEMALE, "sarah@det.org");
     User validated = Validator.of(tom).validate(User::getName, Objects::nonNull, "name cannot be null")
         .validate(User::getAge, age -> age > 21, "user is underaged")
         .validate(User::getSex, sex -> sex == Sex.FEMALE, "user is not female")
