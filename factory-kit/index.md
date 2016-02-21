@@ -11,7 +11,7 @@ tags:
 ---
 
 ## Intent
-Define factory of immutable content with separated builder and factory interfaces.
+Define a factory of immutable content with separated builder and factory interfaces.
 
 ![alt text](./etc/factory-kit.png "Factory Kit")
 
