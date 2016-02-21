@@ -119,6 +119,7 @@
 		<module>publish-subscribe</module>
 		<module>delegation</module>
 		<module>event-driven-architecture</module>
+		<module>factory-kit</module>
 		<module>feature-toggle</module>
 		<module>value-object</module>
 	</modules>
