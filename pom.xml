@@ -122,6 +122,7 @@
 		<module>factory-kit</module>
 		<module>feature-toggle</module>
 		<module>value-object</module>
+		<module>monad</module>
 	</modules>
 
 	<dependencyManagement>
