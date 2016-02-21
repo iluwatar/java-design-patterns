@@ -17,7 +17,7 @@ together step by step. Binding functions can be described as passing one's outpu
 basing on the 'same type' contract. Formally, monad consists of a type constructor M and two
 operations:
 bind - that takes monadic object and a function from plain object to monadic value and returns monadic value
-return - that takse plain type object and returns this object wrapped in a monadic value.
+return - that takes plain type object and returns this object wrapped in a monadic value.
 
 ![alt text](./etc/monad.png "Monad")
 
