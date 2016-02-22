@@ -22,7 +22,7 @@
  */
 package com.iluwatar.caching;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -134,7 +134,7 @@ public class CacheStore {
     if (null == cache) {
       return;
     }
-    ArrayList<UserAccount> listOfUserAccounts = cache.getCacheDataInListForm();
+    List<UserAccount> listOfUserAccounts = cache.getCacheDataInListForm();
     for (UserAccount userAccount : listOfUserAccounts) {
       DbManager.upsertDb(userAccount);
     }
@@ -144,7 +144,7 @@ public class CacheStore {
    * Print user accounts
    */
   public static String print() {
-    ArrayList<UserAccount> listOfUserAccounts = cache.getCacheDataInListForm();
+    List<UserAccount> listOfUserAccounts = cache.getCacheDataInListForm();
     StringBuilder sb = new StringBuilder();
     sb.append("\n--CACHE CONTENT--\n");
     for (UserAccount userAccount : listOfUserAccounts) {

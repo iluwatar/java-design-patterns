@@ -59,7 +59,7 @@ public class TreasureChest {
    * Get all items
    */
   public List<Item> getItems() {
-    ArrayList<Item> list = new ArrayList<>();
+    List<Item> list = new ArrayList<>();
     list.addAll(items);
     return list;
   }

@@ -24,6 +24,7 @@ package com.iluwatar.caching;
 
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.bson.Document;
 
@@ -49,7 +50,7 @@ public final class DbManager {
   private static MongoDatabase db;
   private static boolean useMongoDB;
 
-  private static HashMap<String, UserAccount> virtualDB;
+  private static Map<String, UserAccount> virtualDB;
 
   private DbManager() {
   }
