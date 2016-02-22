@@ -89,7 +89,7 @@ public class ReaderWriterLock implements ReadWriteLock {
     return globalMutex.isEmpty();
   }
 
-  private void waitUninterruptibly(Object o) {
+  private static void waitUninterruptibly(Object o) {
     try {
       o.wait();
     } catch (InterruptedException e) {

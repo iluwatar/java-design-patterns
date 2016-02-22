@@ -58,7 +58,7 @@ public class LoggingHandler implements ChannelHandler {
     }
   }
 
-  private void sendReply(AbstractNioChannel channel, DatagramPacket incomingPacket, SelectionKey key) {
+  private static void sendReply(AbstractNioChannel channel, DatagramPacket incomingPacket, SelectionKey key) {
     /*
      * Create a reply acknowledgement datagram packet setting the receiver to the sender of incoming
      * message.
@@ -69,12 +69,12 @@ public class LoggingHandler implements ChannelHandler {
     channel.write(replyPacket, key);
   }
 
-  private void sendReply(AbstractNioChannel channel, SelectionKey key) {
+  private static void sendReply(AbstractNioChannel channel, SelectionKey key) {
     ByteBuffer buffer = ByteBuffer.wrap(ACK);
     channel.write(buffer, key);
   }
 
-  private void doLogging(ByteBuffer data) {
+  private static void doLogging(ByteBuffer data) {
     // assuming UTF-8 :(
     System.out.println(new String(data.array(), 0, data.limit()));
   }

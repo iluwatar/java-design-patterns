@@ -186,7 +186,7 @@ public class NioReactor {
     }
   }
 
-  private void onChannelWritable(SelectionKey key) throws IOException {
+  private static void onChannelWritable(SelectionKey key) throws IOException {
     AbstractNioChannel channel = (AbstractNioChannel) key.attachment();
     channel.flush(key);
   }
