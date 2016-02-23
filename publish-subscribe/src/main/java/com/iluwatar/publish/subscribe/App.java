@@ -61,7 +61,7 @@ public class App {
     });
     ProducerTemplate template = context.createProducerTemplate();
     context.start();
-    context.getRoutes().stream().forEach((r) -> System.out.println(r));
+    context.getRoutes().stream().forEach(r -> System.out.println(r));
     template.sendBody("direct:origin", "Hello from origin");
     context.stop();
   }

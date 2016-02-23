@@ -47,7 +47,7 @@ public class LoggingHandler implements ChannelHandler {
      * received is a ByteBuffer (from TCP channel) or a DatagramPacket (from UDP channel).
      */
     if (readObject instanceof ByteBuffer) {
-      doLogging(((ByteBuffer) readObject));
+      doLogging((ByteBuffer) readObject);
       sendReply(channel, key);
     } else if (readObject instanceof DatagramPacket) {
       DatagramPacket datagram = (DatagramPacket) readObject;

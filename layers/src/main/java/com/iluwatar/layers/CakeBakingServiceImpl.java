@@ -54,7 +54,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   public void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException {
     List<CakeTopping> allToppings = getAvailableToppingEntities();
     List<CakeTopping> matchingToppings =
-        allToppings.stream().filter((t) -> t.getName().equals(cakeInfo.cakeToppingInfo.name))
+        allToppings.stream().filter(t -> t.getName().equals(cakeInfo.cakeToppingInfo.name))
             .collect(Collectors.toList());
     if (matchingToppings.isEmpty()) {
       throw new CakeBakingException(String.format("Topping %s is not available",
@@ -64,7 +64,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
     Set<CakeLayer> foundLayers = new HashSet<>();
     for (CakeLayerInfo info : cakeInfo.cakeLayerInfos) {
       Optional<CakeLayer> found =
-          allLayers.stream().filter((layer) -> layer.getName().equals(info.name)).findFirst();
+          allLayers.stream().filter(layer -> layer.getName().equals(info.name)).findFirst();
       if (!found.isPresent()) {
         throw new CakeBakingException(String.format("Layer %s is not available", info.name));
       } else {

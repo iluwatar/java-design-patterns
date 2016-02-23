@@ -44,6 +44,6 @@ public abstract class Store {
   }
 
   protected void notifyChange() {
-    views.stream().forEach((view) -> view.storeChanged(this));
+    views.stream().forEach(view -> view.storeChanged(this));
   }
 }
