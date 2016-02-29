@@ -66,7 +66,7 @@ public class App {
     });
 
     context.start();
-    context.getRoutes().stream().forEach((r) -> System.out.println(r));
+    context.getRoutes().stream().forEach(r -> System.out.println(r));
     context.stop();
   }
 }

@@ -36,6 +36,6 @@ public class CakeViewImpl implements View {
   }
 
   public void render() {
-    cakeBakingService.getAllCakes().stream().forEach((cake) -> System.out.println(cake));
+    cakeBakingService.getAllCakes().stream().forEach(cake -> System.out.println(cake));
   }
 }

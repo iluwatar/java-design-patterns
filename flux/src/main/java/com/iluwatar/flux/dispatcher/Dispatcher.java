@@ -71,6 +71,6 @@ public final class Dispatcher {
   }
 
   private void dispatchAction(Action action) {
-    stores.stream().forEach((store) -> store.onAction(action));
+    stores.stream().forEach(store -> store.onAction(action));
   }
 }
