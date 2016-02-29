@@ -101,7 +101,7 @@ public interface FluentIterable<E> extends Iterable<E> {
    * @return a list with all objects of the given iterator
    */
   static <E> List<E> copyToList(Iterable<E> iterable) {
-    ArrayList<E> copy = new ArrayList<>();
+    List<E> copy = new ArrayList<>();
     Iterator<E> iterator = iterable.iterator();
     while (iterator.hasNext()) {
       copy.add(iterator.next());

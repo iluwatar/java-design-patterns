@@ -22,6 +22,7 @@
  */
 package com.iluwatar.producer.consumer;
 
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -29,7 +30,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class ItemQueue {
 
-  private LinkedBlockingQueue<Item> queue;
+  private BlockingQueue<Item> queue;
 
   public ItemQueue() {
 

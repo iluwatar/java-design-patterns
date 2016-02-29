@@ -29,6 +29,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Date: 12/27/15 - 12:07 PM
@@ -40,7 +41,7 @@ public class OrcsTest extends ObserverTest<GOrcs> {
 
   @Parameterized.Parameters
   public static Collection<Object[]> data() {
-    final ArrayList<Object[]> testData = new ArrayList<>();
+    final List<Object[]> testData = new ArrayList<>();
     testData.add(new Object[]{WeatherType.SUNNY, "The sun hurts the orcs' eyes."});
     testData.add(new Object[]{WeatherType.RAINY, "The orcs are dripping wet."});
     testData.add(new Object[]{WeatherType.WINDY, "The orc smell almost vanishes in the wind."});

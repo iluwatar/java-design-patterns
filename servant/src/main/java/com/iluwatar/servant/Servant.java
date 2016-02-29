@@ -22,7 +22,7 @@
  */
 package com.iluwatar.servant;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -55,7 +55,7 @@ public class Servant {
   /**
    * Check if we will be hanged
    */
-  public boolean checkIfYouWillBeHanged(ArrayList<Royalty> tableGuests) {
+  public boolean checkIfYouWillBeHanged(List<Royalty> tableGuests) {
     boolean anotherDay = true;
     for (Royalty r : tableGuests) {
       if (!r.getMood()) {

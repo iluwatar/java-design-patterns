@@ -24,6 +24,8 @@ package com.iluwatar.caching;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -49,7 +51,7 @@ public class LruCache {
   }
 
   int capacity;
-  HashMap<String, Node> cache = new HashMap<>();
+  Map<String, Node> cache = new HashMap<>();
   Node head;
   Node end;
 
@@ -161,7 +163,7 @@ public class LruCache {
    *
    * Returns cache data in list form.
    */
-  public ArrayList<UserAccount> getCacheDataInListForm() {
+  public List<UserAccount> getCacheDataInListForm() {
     ArrayList<UserAccount> listOfCacheData = new ArrayList<>();
     Node temp = head;
     while (temp != null) {
