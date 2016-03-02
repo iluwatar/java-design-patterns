@@ -20,19 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.amitinside.plugin_pattern.service.impl;
+package com.iluwatar.plugin.config.modules;
 
-import com.amitinside.plugin_pattern.service.IChatService;
+import com.google.inject.AbstractModule;
+import com.google.inject.Singleton;
+import com.google.inject.name.Names;
+import com.iluwatar.plugin.annotations.Facebook;
+import com.iluwatar.plugin.annotations.Google;
+import com.iluwatar.plugin.service.IChatService;
+import com.iluwatar.plugin.service.impl.TestChatService;
 
 /**
- * Google Chat Service implementation
+ * Configuration Module to be used in Testing Environment
  */
-public final class GoogleChatService implements IChatService {
+public final class TestModule extends AbstractModule {
 
   /** {@inheritDoc}} */
   @Override
-  public String chat() {
-    return "Using Google Chat";
-  }
+  protected void configure() {
 
+    this.bind(IChatService.class).annotatedWith(Facebook.class).to(TestChatService.class)
+        .in(Singleton.class);
+    this.bind(IChatService.class).annotatedWith(Google.class).to(TestChatService.class)
+        .in(Singleton.class);
+
+    this.bindConstant().annotatedWith(Names.named("user")).to("Test User");
+
+  }
 }

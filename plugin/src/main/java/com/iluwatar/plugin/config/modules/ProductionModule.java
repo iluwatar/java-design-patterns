@@ -20,42 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.amitinside.plugin_pattern;
+package com.iluwatar.plugin.config.modules;
 
-import org.junit.Test;
-
-import com.amitinside.plugin_pattern.modules.TestModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
-import junit.framework.TestCase;
+import com.google.inject.AbstractModule;
+import com.google.inject.Singleton;
+import com.google.inject.name.Names;
+import com.iluwatar.plugin.annotations.Facebook;
+import com.iluwatar.plugin.annotations.Google;
+import com.iluwatar.plugin.service.IChatService;
+import com.iluwatar.plugin.service.impl.FacebookChatService;
+import com.iluwatar.plugin.service.impl.GoogleChatService;
 
 /**
- * Unit test for {@link ChatApplication}
+ * Configuration Module to be used in Production Environment
  */
-public final class ChatServiceTest extends TestCase {
+public final class ProductionModule extends AbstractModule {
 
-  /**
-   * System Under test
-   */
-  private final ChatApplication application;
+  /** {@inheritDoc}} */
+  @Override
+  protected void configure() {
 
-  /**
-   * Constructor
-   */
-  public ChatServiceTest() {
-    final Injector injector = Guice.createInjector(new TestModule());
-    this.application = injector.getInstance(ChatApplication.class);
+    this.bind(IChatService.class).annotatedWith(Facebook.class).to(FacebookChatService.class)
+        .in(Singleton.class);
+    this.bind(IChatService.class).annotatedWith(Google.class).to(GoogleChatService.class)
+        .in(Singleton.class);
+
+    this.bindConstant().annotatedWith(Names.named("user")).to("AMIT KUMAR MONDAL");
+
   }
-
-  @Test
-  public void testStartChat() {
-    assertEquals("Test User", this.application.whoIsChatting());
-  }
-
-  @Test
-  public void testWhoIsChating() {
-    assertEquals("Mocking Chat Service", this.application.startChat());
-  }
-
 }

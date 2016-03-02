@@ -20,21 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.amitinside.plugin_pattern.annotations;
+package com.iluwatar.plugin.service.impl;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import com.google.inject.BindingAnnotation;
+import com.iluwatar.plugin.service.IChatService;
 
 /**
- * Used to annotate IChatService reference for dynamic binding to facebook chat implementation
+ * Facebook Chat Service implementation
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(value = ElementType.FIELD)
-@BindingAnnotation
-public @interface Facebook {
+public final class FacebookChatService implements IChatService {
+
+  /** {@inheritDoc}} */
+  @Override
+  public String chat() {
+    return "Using Facebook Chat";
+  }
 
 }

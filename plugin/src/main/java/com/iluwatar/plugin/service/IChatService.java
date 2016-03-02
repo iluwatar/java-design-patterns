@@ -20,32 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.amitinside.plugin_pattern.modules;
-
-import com.amitinside.plugin_pattern.annotations.Facebook;
-import com.amitinside.plugin_pattern.annotations.Google;
-import com.amitinside.plugin_pattern.service.IChatService;
-import com.amitinside.plugin_pattern.service.impl.FacebookChatService;
-import com.amitinside.plugin_pattern.service.impl.GoogleChatService;
-import com.google.inject.AbstractModule;
-import com.google.inject.Singleton;
-import com.google.inject.name.Names;
+package com.iluwatar.plugin.service;
 
 /**
- * Configuration Module to be used in Production Environment
+ * Messaging Chat Service
  */
-public final class ProductionModule extends AbstractModule {
+@FunctionalInterface
+public interface IChatService {
 
-  /** {@inheritDoc}} */
-  @Override
-  protected void configure() {
+  /**
+   * Initiates chat
+   *
+   * @return the string representation of the chat recently sent
+   */
+  String chat();
 
-    this.bind(IChatService.class).annotatedWith(Facebook.class).to(FacebookChatService.class)
-        .in(Singleton.class);
-    this.bind(IChatService.class).annotatedWith(Google.class).to(GoogleChatService.class)
-        .in(Singleton.class);
-
-    this.bindConstant().annotatedWith(Names.named("user")).to("AMIT KUMAR MONDAL");
-
-  }
 }

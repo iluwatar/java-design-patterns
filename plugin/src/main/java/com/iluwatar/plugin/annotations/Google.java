@@ -20,19 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.amitinside.plugin_pattern.service.impl;
+package com.iluwatar.plugin.annotations;
 
-import com.amitinside.plugin_pattern.service.IChatService;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import com.google.inject.BindingAnnotation;
 
 /**
- * Chat Service implementation to be used in Testing Environment
+ * Used to annotate IChatService reference for dynamic binding to google chat implementation
  */
-public final class TestChatService implements IChatService {
-
-  /** {@inheritDoc}} */
-  @Override
-  public String chat() {
-    return "Mocking Chat Service";
-  }
+@Retention(RetentionPolicy.RUNTIME)
+@Target(value = ElementType.FIELD)
+@BindingAnnotation
+public @interface Google {
 
 }

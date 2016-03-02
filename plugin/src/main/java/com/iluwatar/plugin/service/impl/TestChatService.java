@@ -20,48 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.amitinside.plugin_pattern;
+package com.iluwatar.plugin.service.impl;
 
-import com.amitinside.plugin_pattern.annotations.Google;
-import com.amitinside.plugin_pattern.service.IChatService;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
+import com.iluwatar.plugin.service.IChatService;
 
 /**
- * Chat Application consuming services from different chat service providers
+ * Chat Service implementation to be used in Testing Environment
  */
-public final class ChatApplication {
+public final class TestChatService implements IChatService {
 
-  /**
-   * Actual Chat Service
-   */
-  @Inject
-  @Google
-  private IChatService chatService;
-
-  /**
-   * The user id of the chat initiator
-   */
-  @Inject
-  @Named("user")
-  private String userId;
-
-  /**
-   * Starts the chat messaging
-   *
-   * @return the string representation of the actual service call
-   */
-  public String startChat() {
-    return this.chatService.chat();
-  }
-
-  /**
-   * Returns the user id of the messaging initiator
-   *
-   * @return the user id
-   */
-  public String whoIsChatting() {
-    return this.userId;
+  /** {@inheritDoc}} */
+  @Override
+  public String chat() {
+    return "Mocking Chat Service";
   }
 
 }

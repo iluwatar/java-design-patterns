@@ -20,21 +20,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.amitinside.plugin_pattern.annotations;
+package com.iluwatar.plugin;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.junit.Test;
 
-import com.google.inject.BindingAnnotation;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.iluwatar.plugin.ChatApplication;
+import com.iluwatar.plugin.config.modules.TestModule;
+
+import junit.framework.TestCase;
 
 /**
- * Used to annotate IChatService reference for dynamic binding to google chat implementation
+ * Unit test for {@link ChatApplication}
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(value = ElementType.FIELD)
-@BindingAnnotation
-public @interface Google {
+public final class ChatServiceTest extends TestCase {
+
+  /**
+   * System Under test
+   */
+  private final ChatApplication application;
+
+  /**
+   * Constructor
+   */
+  public ChatServiceTest() {
+    final Injector injector = Guice.createInjector(new TestModule());
+    this.application = injector.getInstance(ChatApplication.class);
+  }
+
+  @Test
+  public void testStartChat() {
+    assertEquals("Test User", this.application.whoIsChatting());
+  }
+
+  @Test
+  public void testWhoIsChating() {
+    assertEquals("Mocking Chat Service", this.application.startChat());
+  }
 
 }
