@@ -3,12 +3,12 @@ layout: pattern
 title: Plugin
 folder: plugin
 permalink: /patterns/plugin/
-categories: Creational
+categories: Enterprise
 tags:
  - Java
  - Difficulty-Intermediate
  - Extension Points
- - Enterprise Pattern
+ - Enterprise Architecture Pattern
 ---
 
 ## Intent
