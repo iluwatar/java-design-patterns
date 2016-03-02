@@ -6,9 +6,9 @@ permalink: /patterns/plugin/
 categories: Creational
 tags:
  - Java
- - Difficulty-Beginner
+ - Difficulty-Intermediate
  - Extension Points
- - Extensibility
+ - Enterprise Pattern
 ---
 
 ## Intent

@@ -32,12 +32,10 @@
 		<version>1.11.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>plugin-pattern</artifactId>
-
-	<name>plugin-pattern</name>
+	<artifactId>plugin</artifactId>
+	<name>plugin</name>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -49,7 +47,6 @@
 			<artifactId>guice</artifactId>
 			<version>4.0</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
