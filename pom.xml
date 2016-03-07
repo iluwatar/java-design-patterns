@@ -123,6 +123,8 @@
 		<module>feature-toggle</module>
 		<module>value-object</module>
 		<module>monad</module>
+		<module>mutex</module>
+		<module>semaphore</module>
 	</modules>
 
 	<dependencyManagement>
