@@ -22,9 +22,9 @@
  */
 package com.iluwatar.eda;
 
-import com.iluwatar.eda.event.Event;
 import com.iluwatar.eda.event.UserCreatedEvent;
 import com.iluwatar.eda.event.UserUpdatedEvent;
+import com.iluwatar.eda.framework.Event;
 import com.iluwatar.eda.framework.EventDispatcher;
 import com.iluwatar.eda.handler.UserCreatedEventHandler;
 import com.iluwatar.eda.handler.UserUpdatedEventHandler;
@@ -53,12 +53,12 @@ public class App {
   public static void main(String[] args) {
 
     EventDispatcher dispatcher = new EventDispatcher();
-    dispatcher.registerChannel(UserCreatedEvent.class, new UserCreatedEventHandler());
-    dispatcher.registerChannel(UserUpdatedEvent.class, new UserUpdatedEventHandler());
+    dispatcher.registerHandler(UserCreatedEvent.class, new UserCreatedEventHandler());
+    dispatcher.registerHandler(UserUpdatedEvent.class, new UserUpdatedEventHandler());
 
     User user = new User("iluwatar");
-    dispatcher.onEvent(new UserCreatedEvent(user));
-    dispatcher.onEvent(new UserUpdatedEvent(user));
+    dispatcher.dispatch(new UserCreatedEvent(user));
+    dispatcher.dispatch(new UserUpdatedEvent(user));
   }
 
 }

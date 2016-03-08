@@ -22,7 +22,6 @@
  */
 package com.iluwatar.eda.handler;
 
-import com.iluwatar.eda.event.Event;
 import com.iluwatar.eda.event.UserCreatedEvent;
 import com.iluwatar.eda.framework.Handler;
 
@@ -32,9 +31,10 @@ import com.iluwatar.eda.framework.Handler;
 public class UserCreatedEventHandler implements Handler<UserCreatedEvent> {
 
   @Override
-  public void onEvent(Event message) {
+  public void onEvent(UserCreatedEvent event) {
 
-    UserCreatedEvent userCreatedEvent = (UserCreatedEvent) message;
-    System.out.printf("User with %s has been Created!", userCreatedEvent.getUser().getUsername());
+    System.out.println(String.format(
+            "User '%s' has been Created!", event.getUser().getUsername()));
   }
+
 }
