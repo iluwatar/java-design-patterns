@@ -59,11 +59,15 @@ public class App {
    */
   public static void main(String[] args) {
     // Lets go to war with Orc weapons
-    App app = new App((weaponType) -> {return new OrcWeapon(weaponType);});
+    App app = new App((weaponType) -> {
+      return new OrcWeapon(weaponType);
+    });
     app.manufactureWeapons();
     
     // Lets go to war with Elf weapons
-    app = new App((weaponType) -> {return new ElfWeapon(weaponType);});
+    app = new App((weaponType) -> {
+      return new ElfWeapon(weaponType);
+    });
     app.manufactureWeapons();
   }
   
