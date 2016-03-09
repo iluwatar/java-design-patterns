@@ -22,7 +22,6 @@
  */
 package com.iluwatar.eda.framework;
 
-import com.iluwatar.eda.framework.EventDispatcher;
 import com.iluwatar.eda.event.UserCreatedEvent;
 import com.iluwatar.eda.event.UserUpdatedEvent;
 import com.iluwatar.eda.handler.UserCreatedEventHandler;
@@ -49,8 +48,8 @@ public class EventDispatcherTest {
     EventDispatcher dispatcher = spy(new EventDispatcher());
     UserCreatedEventHandler userCreatedEventHandler = spy(new UserCreatedEventHandler());
     UserUpdatedEventHandler userUpdatedEventHandler = spy(new UserUpdatedEventHandler());
-    dispatcher.registerChannel(UserCreatedEvent.class, userCreatedEventHandler);
-    dispatcher.registerChannel(UserUpdatedEvent.class, userUpdatedEventHandler);
+    dispatcher.registerHandler(UserCreatedEvent.class, userCreatedEventHandler);
+    dispatcher.registerHandler(UserUpdatedEvent.class, userUpdatedEventHandler);
 
     User user = new User("iluwatar");
 
@@ -58,15 +57,14 @@ public class EventDispatcherTest {
     UserUpdatedEvent userUpdatedEvent = new UserUpdatedEvent(user);
 
     //fire a userCreatedEvent and verify that userCreatedEventHandler has been invoked.
-    dispatcher.onEvent(userCreatedEvent);
+    dispatcher.dispatch(userCreatedEvent);
     verify(userCreatedEventHandler).onEvent(userCreatedEvent);
-    verify(dispatcher).onEvent(userCreatedEvent);
+    verify(dispatcher).dispatch(userCreatedEvent);
 
     //fire a userCreatedEvent and verify that userUpdatedEventHandler has been invoked.
-    dispatcher.onEvent(userUpdatedEvent);
+    dispatcher.dispatch(userUpdatedEvent);
     verify(userUpdatedEventHandler).onEvent(userUpdatedEvent);
-    verify(dispatcher).onEvent(userUpdatedEvent);
+    verify(dispatcher).dispatch(userUpdatedEvent);
   }
-
 
 }
