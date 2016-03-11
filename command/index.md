@@ -38,6 +38,7 @@ Use the Command pattern when you want to
 ## Real world examples
 
 * [java.lang.Runnable](http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html)
+* [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki)
 
 ## Credits
 
