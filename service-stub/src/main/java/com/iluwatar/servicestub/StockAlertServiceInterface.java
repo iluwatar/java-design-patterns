@@ -23,30 +23,20 @@
 
 package com.iluwatar.servicestub;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import java.util.Map;
 
 /**
+ * Parent interface which enables access to the stock alert service.
  * 
  * @author jdoetricksy
  *
  */
-
-public class ProdServiceLauncherTest {
+public interface StockAlertServiceInterface {
 	
-	/**
-     * Verify that the productive service name is changed by using service-stub.
-     */
-	@Test
-    public void testchangeActiveProdServiceData()
-    {
-		final ProductiveServiceLauncher serviceLaunch = new ProductiveServiceLauncher(new ProductiveServiceStub("Service1"));
-		assertTrue( serviceLaunch.changeActiveProdServiceData("Service2") );
-    }
-	
+	/*
+	 *Execution sequence of a service. 
+	 *
+	 */
+	boolean execute(String symbol);
 
 }

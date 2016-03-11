@@ -28,8 +28,7 @@ package com.iluwatar.servicestub;
  * such as credit scoring, tax rate lookups and pricing engines, 
  * which are often not available locally for testing.
  * 
- * In this example we use Service stub pattern for protecting the data, such as service name,
- * of the productive system from being changed by the test.
+ * In this example we use Service stub pattern calling stock alert service for a given stock name.
  * 
  * @author jdoetricksy
  *
@@ -38,12 +37,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        ServiceInterface service1 = new ProductiveServiceStub("service1");
-        int count = service1.getProductiveServicesCount();
-        service1.changeServiceName(count, "service1new");
-        
-        ServiceInterface service2 = new ProductiveServiceStub("service2");
-        int count2 = service2.getProductiveServicesCount();
-        service2.changeServiceName(count2, "service2new");
+
     }
 }

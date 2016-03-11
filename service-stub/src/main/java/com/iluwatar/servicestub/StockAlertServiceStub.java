@@ -24,34 +24,40 @@
 package com.iluwatar.servicestub;
 
 /**
- * Productive service launcher launches the active productive system by calling the registered system. 
+ * This is service-stub implementation of the stock alert service. 
+ * Test should use this implementation for testing.
  * 
  * @author jdoetricksy
  *
  */
 
-public class ProductiveServiceLauncher {
+public class StockAlertServiceStub implements StockAlertServiceInterface{
 	
-	private ServiceInterface prodService = null;
-
+	private Rule rule;
+	private Action dispatcher;
+	
 	/**
-	 * @param serviceInter
+	 * Constructor
+	 * @param name
 	 */
-	public ProductiveServiceLauncher(ServiceInterface serviceInter) {
-		this.prodService = serviceInter;
+	public StockAlertServiceStub(Rule rule, Action dispatcher) {
+		this.rule = rule;
+		this.dispatcher = dispatcher;
 	}
-	
-	public boolean changeActiveProdServiceData(String newName){
-		if(prodService.getProductiveServicesCount() == 0){
-			return false;
-		}else{
-			for(int serviceId = 0; serviceId < prodService.getProductiveServicesCount();serviceId++)
-			{
-				prodService.changeServiceName(serviceId, newName);
-			}
-			return true;
 
-		}
-	}
-	
+
+	public boolean execute(String symbol)
+    {
+        boolean eval = false;
+        
+        eval = rule.checkPrice(symbol);
+        if (eval){
+            dispatcher.sell();
+        }else{
+        	dispatcher.error();
+        }
+        
+        return eval;
+    }
+
 }
