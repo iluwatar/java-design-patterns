@@ -21,11 +21,25 @@ package com.iluwatar.plugin;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.iluwatar.plugin.config.modules.ProductionModule;
+import com.iluwatar.plugin.config.modules.TestModule;
+import com.iluwatar.plugin.service.impl.FacebookChatService;
+import com.iluwatar.plugin.service.impl.GoogleChatService;
+import com.iluwatar.plugin.service.impl.TestChatService;
 
 /**
- * Client Application
+ * Plugin Pattern is an Enterprise Integration Pattern for providing different implementations of a
+ * particular behavior. Depending on the actual environment of the application, the correct
+ * implementation will be used for the behavior. In this example, many chat services are used (
+ * {@link FacebookChatService}, {@link GoogleChatService} and {@link TestChatService}. Apart from
+ * {@link TestChatService}, the other two services can be used in production environment whereas
+ * {@link TestChatService} will be used in testing environment. Due to the difficulties in managing
+ * dependencies in different environments, two configurations are provided -
+ * {@link ProductionModule} and {@link TestModule} which specify the actual implementations to be
+ * used in specific environment. For example, in production environment, the user can use
+ * {@link FacebookChatService} or {@link GoogleChatService} and in testing environment,
+ * {@link TestChatService} will be used in lieu of the actual services.
  */
-public final class Client {
+public final class App {
 
   /**
    * Starting Point for the Application

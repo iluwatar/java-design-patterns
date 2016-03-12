@@ -45,7 +45,6 @@
 		<dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
-			<version>4.0</version>
 		</dependency>
 	</dependencies>
 </project>

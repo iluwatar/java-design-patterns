@@ -7,12 +7,11 @@ categories: Enterprise
 tags:
  - Java
  - Difficulty-Intermediate
- - Extension Points
- - Enterprise Architecture Pattern
+ - EIP
 ---
 
 ## Intent
-Ensure configuration update in a dynamic way and provide different configurations for different environments
+Ensure the use of correct implementation of a particular behavior depending on different configurations for different environments
 
 ![alt text](./etc/plugin.png "Plugin Pattern")
 

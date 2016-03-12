@@ -34,7 +34,7 @@ import junit.framework.TestCase;
 /**
  * Unit test for {@link ChatApplication}
  */
-public final class ChatServiceTest extends TestCase {
+public final class AppTest extends TestCase {
 
   /**
    * System Under test
@@ -44,7 +44,7 @@ public final class ChatServiceTest extends TestCase {
   /**
    * Constructor
    */
-  public ChatServiceTest() {
+  public AppTest() {
     final Injector injector = Guice.createInjector(new TestModule());
     this.application = injector.getInstance(ChatApplication.class);
   }
