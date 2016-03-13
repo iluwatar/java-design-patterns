@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 
- * Leader Follower is a concurrency pattern where multiple threads can efficiently demultiplex
+ * Leader Follower is a concurrency pattern where multiple threads can efficiently de-multiplex
  * events and dispatch to event handlers. One may think of it as a taxi station at night, where all
  * the drivers are sleeping except for one, the leader. The ThreadPool is a station managing many
  * threads - cabs.
@@ -26,21 +26,35 @@ import java.util.concurrent.TimeUnit;
  * 
  * <p>
  * In this example we use ThreadPool which basically acts as the ThreadPool. One of the Workers
- * becomes Leader and listens on the {@link HandleSet} for work. HandleSet basically acts as the
- * source of input events for the Workers, who are spawned and controlled by the {@link WorkStation}
- * . When Work arrives which implements the {@link Handle} interface then the leader takes the work
- * and calls the {@link ConcreteEventHandler}. However it also selects one of the waiting Workers as
- * leader, who can then process the next work and so on.
+ * becomes Leader and listens on the {@link HandleSet} for work. {@link HandleSet} basically acts as
+ * the source of input events for the {@link Worker}, who are spawned and controlled by the
+ * {@link WorkStation} . When {@link Work} arrives which implements the {@link Handle} interface
+ * then the leader takes the work and calls the {@link ConcreteEventHandler}. However it also
+ * selects one of the waiting Workers as leader, who can then process the next work and so on.
  * 
  * The pros for this pattern are:
  * 
- * no communication between the threads are necessary, no synchronization, nor shared memory (no
- * locks, mutexes) are needed. more ConcreteEventHandlers can be added without affecting any other
- * EventHandler minimizes the latency because of the multiple threads
+ * It enhances CPU cache affinity and eliminates unbound allocation and data buffer sharing between
+ * threads by reading the request into buffer space allocated on the stack of the leader or by using
+ * the Thread-Specific Storage pattern [22] to allocate memory.
  * 
- * The cons are:
+ * It minimizes locking overhead by not exchanging data between threads, thereby reducing thread
+ * synchronization. In bound handle/thread associations, the leader thread dispatches the event
+ * based on the I/O handle.
  * 
- * complex network IO can be a bottleneck
+ * It can minimize priority inversion because no extra queuing is introduced in the server
+ * 
+ * It does not require a context switch to handle each event, reducing the event dispatching
+ * latency. Note that promoting a follower thread to fulfill the leader role requires a context
+ * switch.
+ * 
+ * Programming simplicity: The Leader/Follower pattern simplifies the programming of concurrency
+ * models where multiple threads can receive requests, process responses, and demultiplex
+ * connections using a shared handle set.
+ * 
+ * 
+ * 
+ * The cons are: complex, network IO can be a bottleneck, Lack of flexibility
  * </p>
  *
  * 
