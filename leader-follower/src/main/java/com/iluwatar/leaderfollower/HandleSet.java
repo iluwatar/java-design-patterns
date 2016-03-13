@@ -21,5 +21,7 @@ public class HandleSet {
     return queue.take();
   }
 
-
+  public BlockingQueue<Work> getQueue() {
+    return queue;
+  }
 }

@@ -5,11 +5,11 @@ import java.util.List;
 public class Worker implements Runnable {
 
   private Object leader = new Object();
-  private HandleSet handleSet;
+  private final HandleSet handleSet;
   private List<Worker> workers;
-  private long id;
-  private WorkStation workstation;
-  private ConcreteEventHandler concreteEventHandler;
+  private final  long id;
+  private final WorkStation workstation;
+  private final ConcreteEventHandler concreteEventHandler;
 
   public Worker(HandleSet queue, List<Worker> workers, long id, WorkStation workstation,
       ConcreteEventHandler concreteEventHandler) {
