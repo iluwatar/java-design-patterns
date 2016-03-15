@@ -22,6 +22,9 @@
  */
 package com.iluwatar.mute;
 
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+
 import java.io.ByteArrayOutputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -46,8 +49,9 @@ public class App {
   }
 
   private static void useOfLoggedMute() {
-    Connection connection = openConnection();
+    Connection connection = null;
     try {
+      connection = openConnection();
       readStuff(connection);
     } catch (SQLException ex) {
       ex.printStackTrace();
@@ -71,7 +75,9 @@ public class App {
     }
   }
 
-  private static Connection openConnection() {
-    return null;
+  private static Connection openConnection() throws SQLException {
+    Connection mockedConnection = mock(Connection.class);
+    doThrow(SQLException.class).when(mockedConnection).close();
+    return mockedConnection;
   }
 }

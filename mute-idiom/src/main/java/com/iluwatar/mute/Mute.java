@@ -50,8 +50,8 @@ public final class Mute {
   /**
    * Executes the <code>runnable</code> and logs the exception occurred on {@link System#err}.
    * This method should be utilized to mute the operations about which most you can do is log.
-   * For instance while closing a connection to database, all you can do is log the exception
-   * occurred.
+   * For instance while closing a connection to database, or cleaning up a resource, 
+   * all you can do is log the exception occurred.
    * 
    * @param runnable a runnable that may throw an exception on execution.
    */
