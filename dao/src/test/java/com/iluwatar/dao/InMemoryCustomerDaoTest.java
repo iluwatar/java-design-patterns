@@ -22,19 +22,18 @@
  */
 package com.iluwatar.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CustomerDaoImplTest {
+public class InMemoryCustomerDaoTest {
 
-  private CustomerDaoImpl impl;
+  private InMemoryCustomerDao dao;
   private List<Customer> customers;
   private static final Customer CUSTOMER = new Customer(1, "Freddy", "Krueger");
 
@@ -42,21 +41,26 @@ public class CustomerDaoImplTest {
   public void setUp() {
     customers = new ArrayList<>();
     customers.add(CUSTOMER);
-    impl = new CustomerDaoImpl(customers);
+    dao = new InMemoryCustomerDao(customers);
   }
 
   @Test
   public void deleteExistingCustomer() {
-    assertEquals(1, impl.getAllCustomers().size());
-    impl.deleteCustomer(CUSTOMER);
-    assertTrue(impl.getAllCustomers().isEmpty());
+    Assume.assumeTrue(dao.getAll().count() == 1);
+
+    boolean result = dao.delete(CUSTOMER);
+    
+    assertTrue(result);
+    assertTrue(dao.getAll().count() == 0);
   }
 
   @Test
   public void deleteNonExistingCustomer() {
     final Customer nonExistingCustomer = new Customer(2, "Robert", "Englund");
-    impl.deleteCustomer(nonExistingCustomer);
-    assertEquals(1, impl.getAllCustomers().size());
+    boolean result = dao.delete(nonExistingCustomer);
+    
+    assertFalse(result);
+    assertEquals(1, dao.getAll().count());
   }
 
   @Test
@@ -64,8 +68,10 @@ public class CustomerDaoImplTest {
     final String newFirstname = "Bernard";
     final String newLastname = "Montgomery";
     final Customer customer = new Customer(CUSTOMER.getId(), newFirstname, newLastname);
-    impl.updateCustomer(customer);
-    final Customer cust = impl.getCustomerById(CUSTOMER.getId());
+    boolean result = dao.update(customer);
+    
+    assertTrue(result);
+    final Customer cust = dao.getById(CUSTOMER.getId());
     assertEquals(newFirstname, cust.getFirstName());
     assertEquals(newLastname, cust.getLastName());
   }
@@ -76,9 +82,11 @@ public class CustomerDaoImplTest {
     final String newFirstname = "Douglas";
     final String newLastname = "MacArthur";
     final Customer customer = new Customer(nonExistingId, newFirstname, newLastname);
-    impl.updateCustomer(customer);
-    assertNull(impl.getCustomerById(nonExistingId));
-    final Customer existingCustomer = impl.getCustomerById(CUSTOMER.getId());
+    boolean result = dao.update(customer);
+    
+    assertFalse(result);
+    assertNull(dao.getById(nonExistingId));
+    final Customer existingCustomer = dao.getById(CUSTOMER.getId());
     assertEquals(CUSTOMER.getFirstName(), existingCustomer.getFirstName());
     assertEquals(CUSTOMER.getLastName(), existingCustomer.getLastName());
   }
@@ -86,28 +94,32 @@ public class CustomerDaoImplTest {
   @Test
   public void addCustomer() {
     final Customer newCustomer = new Customer(3, "George", "Patton");
-    impl.addCustomer(newCustomer);
-    assertEquals(2, impl.getAllCustomers().size());
+    boolean result = dao.add(newCustomer);
+    
+    assertTrue(result);
+    assertEquals(2, dao.getAll().count());
   }
 
   @Test
   public void addAlreadyAddedCustomer() {
     final Customer newCustomer = new Customer(3, "George", "Patton");
-    impl.addCustomer(newCustomer);
-    assertEquals(2, impl.getAllCustomers().size());
-    impl.addCustomer(newCustomer);
-    assertEquals(2, impl.getAllCustomers().size());
+    dao.add(newCustomer);
+    
+    boolean result = dao.add(newCustomer);
+    assertFalse(result);
+    assertEquals(2, dao.getAll().count());
   }
 
   @Test
   public void getExistinCustomerById() {
-    assertEquals(CUSTOMER, impl.getCustomerById(CUSTOMER.getId()));
+    assertEquals(CUSTOMER, dao.getById(CUSTOMER.getId()));
   }
 
   @Test
-  public void getNonExistinCustomerById() {
+  public void getNonExistingCustomerById() {
     final int nonExistingId = getNonExistingCustomerId();
-    assertNull(impl.getCustomerById(nonExistingId));
+    
+    assertNull(dao.getById(nonExistingId));
   }
 
   /**

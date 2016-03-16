@@ -22,7 +22,10 @@
  */
 package com.iluwatar.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * 
@@ -34,51 +37,44 @@ import java.util.List;
  * the DAO), from how these needs can be satisfied with a specific DBMS, database schema, etc.
  * 
  */
-public class CustomerDaoImpl implements CustomerDao {
+// TODO update the javadoc
+public class InMemoryCustomerDao implements CustomerDao {
 
-  // Represents the DB structure for our example so we don't have to managed it ourselves
-  // Note: Normally this would be in the form of an actual database and not part of the Dao Impl.
-  private List<Customer> customers;
+  private Map<Integer, Customer> idToCustomer = new HashMap<>();
 
-  public CustomerDaoImpl(final List<Customer> customers) {
-    this.customers = customers;
+  public InMemoryCustomerDao(final List<Customer> customers) {
+    customers.stream()
+    .forEach((customer) -> idToCustomer.put(customer.getId(), customer));
   }
 
   @Override
-  public List<Customer> getAllCustomers() {
-    return customers;
+  public Stream<Customer> getAll() {
+    return idToCustomer.values().stream();
   }
 
   @Override
-  public Customer getCustomerById(final int id) {
-    Customer customer = null;
-    for (final Customer cus : getAllCustomers()) {
-      if (cus.getId() == id) {
-        customer = cus;
-        break;
-      }
+  public Customer getById(final int id) {
+    return idToCustomer.get(id);
+  }
+
+  @Override
+  public boolean add(final Customer customer) {
+    if (getById(customer.getId()) != null) {
+      return false;
     }
-    return customer;
-  }
-
-  @Override
-  public void addCustomer(final Customer customer) {
-    if (getCustomerById(customer.getId()) == null) {
-      customers.add(customer);
-    }
+    
+    idToCustomer.put(customer.getId(), customer);
+    return true;
   }
 
 
   @Override
-  public void updateCustomer(final Customer customer) {
-    if (getAllCustomers().contains(customer)) {
-      final int index = getAllCustomers().indexOf(customer);
-      getAllCustomers().set(index, customer);
-    }
+  public boolean update(final Customer customer) {
+    return idToCustomer.replace(customer.getId(), customer) != null;
   }
 
   @Override
-  public void deleteCustomer(final Customer customer) {
-    getAllCustomers().remove(customer);
+  public boolean delete(final Customer customer) {
+    return idToCustomer.remove(customer.getId()) != null;
   }
 }

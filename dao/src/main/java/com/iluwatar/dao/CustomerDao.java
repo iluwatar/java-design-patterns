@@ -22,7 +22,7 @@
  */
 package com.iluwatar.dao;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * 
@@ -31,13 +31,13 @@ import java.util.List;
  */
 public interface CustomerDao {
 
-  List<Customer> getAllCustomers();
+  Stream<Customer> getAll();
 
-  Customer getCustomerById(int id);
+  Customer getById(int id);
 
-  void addCustomer(Customer customer);
+  boolean add(Customer customer);
 
-  void updateCustomer(Customer customer);
+  boolean update(Customer customer);
 
-  void deleteCustomer(Customer customer);
+  boolean delete(Customer customer);
 }

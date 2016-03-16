@@ -51,18 +51,18 @@ public class App {
    * @param args command line args.
    */
   public static void main(final String[] args) {
-    final CustomerDao customerDao = new CustomerDaoImpl(generateSampleCustomers());
-    log.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
-    log.info("customerDao.getCusterById(2): " + customerDao.getCustomerById(2));
+    final CustomerDao customerDao = new InMemoryCustomerDao(generateSampleCustomers());
+    log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
+    log.info("customerDao.getCusterById(2): " + customerDao.getById(2));
     final Customer customer = new Customer(4, "Dan", "Danson");
-    customerDao.addCustomer(customer);
-    log.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
+    customerDao.add(customer);
+    log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
     customer.setFirstName("Daniel");
     customer.setLastName("Danielson");
-    customerDao.updateCustomer(customer);
-    log.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
-    customerDao.deleteCustomer(customer);
-    log.info("customerDao.getAllCustomers(): " + customerDao.getAllCustomers());
+    customerDao.update(customer);
+    log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
+    customerDao.delete(customer);
+    log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
   }
 
   /**
