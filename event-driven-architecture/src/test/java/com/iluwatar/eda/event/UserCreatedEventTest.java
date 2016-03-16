@@ -29,13 +29,13 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * {@link UserCreatedEventTest} tests and verifies {@link Event} behaviour.
+ * {@link UserCreatedEventTest} tests and verifies {@link AbstractEvent} behaviour.
  */
 public class UserCreatedEventTest {
 
   /**
-   * This unit test should correctly return the {@link Event} class type when calling the
-   * {@link Event#getType() getType} method.
+   * This unit test should correctly return the {@link AbstractEvent} class type when calling the
+   * {@link AbstractEvent#getType() getType} method.
    */
   @Test
   public void testGetEventType() {

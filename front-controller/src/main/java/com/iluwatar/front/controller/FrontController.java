@@ -44,7 +44,7 @@ public class FrontController {
     }
   }
 
-  private Class getCommandClass(String request) {
+  private static Class getCommandClass(String request) {
     Class result;
     try {
       result = Class.forName("com.iluwatar.front.controller." + request + "Command");

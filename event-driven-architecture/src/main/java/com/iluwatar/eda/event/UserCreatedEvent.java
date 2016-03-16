@@ -29,7 +29,7 @@ import com.iluwatar.eda.model.User;
  * This class can be extended to contain details about the user has been created. In this example,
  * the entire {@link User} object is passed on as data with the event.
  */
-public class UserCreatedEvent extends Event {
+public class UserCreatedEvent extends AbstractEvent {
 
   private User user;
 

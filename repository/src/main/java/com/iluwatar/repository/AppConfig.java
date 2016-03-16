@@ -76,7 +76,7 @@ public class AppConfig {
   /**
    * Properties for Jpa
    */
-  private Properties jpaProperties() {
+  private static Properties jpaProperties() {
     Properties properties = new Properties();
     properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
     properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
