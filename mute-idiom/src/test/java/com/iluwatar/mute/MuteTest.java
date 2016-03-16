@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.mute;
 
 import static org.junit.Assert.assertTrue;
@@ -39,6 +40,11 @@ public class MuteTest {
   @Rule public ExpectedException exception = ExpectedException.none();
   
   @Test
+  public void muteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
+    Mute.mute(() -> methodNotThrowingAnyException());
+  }
+  
+  @Test
   public void muteShouldRethrowUnexpectedExceptionAsAssertionError() throws Exception {
     exception.expect(AssertionError.class);
     exception.expectMessage(MESSAGE);
@@ -46,8 +52,9 @@ public class MuteTest {
     Mute.mute(() -> methodThrowingException());
   }
   
-  private void methodThrowingException() throws Exception {
-    throw new Exception(MESSAGE);
+  @Test
+  public void loggedMuteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
+    Mute.loggedMute(() -> methodNotThrowingAnyException());
   }
   
   @Test
@@ -58,5 +65,14 @@ public class MuteTest {
     Mute.loggedMute(() -> methodThrowingException());
     
     assertTrue(new String(stream.toByteArray()).contains(MESSAGE));
+  }
+  
+  
+  private void methodNotThrowingAnyException() {
+    System.out.println("Executed successfully");
+  }
+  
+  private void methodThrowingException() throws Exception {
+    throw new Exception(MESSAGE);
   }
 }

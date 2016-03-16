@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.mute;
 
 /**
@@ -32,5 +33,5 @@ public interface CheckedRunnable {
    * Same as {@link Runnable#run()} with a possibility of exception in execution.
    * @throws Exception if any exception occurs.
    */
-  public void run() throws Exception;
+  void run() throws Exception;
 }

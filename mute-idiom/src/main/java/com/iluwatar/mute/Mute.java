@@ -29,6 +29,9 @@ import java.io.IOException;
  * A utility class that allows you to utilize mute idiom.
  */
 public final class Mute {
+  
+  // The constructor is never meant to be called.
+  private Mute() {}
 
   /**
    * Executes the <code>runnable</code> and throws the exception occurred within a {@link AssertionError}.

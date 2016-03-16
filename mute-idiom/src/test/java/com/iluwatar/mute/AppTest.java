@@ -9,7 +9,7 @@ import org.junit.Test;
 public class AppTest {
 
   @Test
-  public void test() {
+  public void test() throws Exception {
     App.main(null);
   }
 }
