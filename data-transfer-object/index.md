@@ -17,7 +17,11 @@ Virtual Constructor
 Remote calls are expensive. Hence instead of giving multiple calls,
 you can get all the information you want as a data transfer object.
 
+## Class UML
 ![alt text](./etc/dto.png "data transfer object")
+
+## Data structure
+![alt text](./etc/data_diagram.png "data transfer object")
 
 ## Applicability
 Use this pattern when
