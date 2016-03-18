@@ -21,7 +21,7 @@ you can get all the information you want as a data transfer object.
 ![alt text](./etc/dto.png "data transfer object")
 
 ## Data structure
-![alt text](./etc/data_diagram.png "data transfer object")
+![alt text](./etc/data-diagram.png "data transfer object")
 
 ## Applicability
 Use this pattern when
