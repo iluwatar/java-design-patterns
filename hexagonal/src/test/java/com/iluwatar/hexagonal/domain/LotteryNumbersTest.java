@@ -20,18 +20,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal;
+package com.iluwatar.hexagonal.domain;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 import org.junit.Test;
 
 /**
- * Unit test for simple App.
+ * 
+ * Unit tests for {@link LotteryNumbers}
+ *
  */
-public class AppTest {
+public class LotteryNumbersTest {
 
+  private static final int NUM_RANDOM_NUMBER_ROUNDS = 1000;
+  
   @Test
-  public void testApp() {
-    String[] args = {};
-    App.main(args);
+  public void testGivenNumbers() {
+    LotteryNumbers numbers = LotteryNumbers.create(
+            new HashSet<>(Arrays.asList(1, 2, 3, 4)));
+    assertEquals(numbers.getNumbers().size(), 4);
+    assertTrue(numbers.getNumbers().contains(1));
+    assertTrue(numbers.getNumbers().contains(2));
+    assertTrue(numbers.getNumbers().contains(3));
+    assertTrue(numbers.getNumbers().contains(4));
+  }
+  
+  @Test(expected = UnsupportedOperationException.class)
+  public void testNumbersCantBeModified() {
+    LotteryNumbers numbers = LotteryNumbers.create(
+            new HashSet<>(Arrays.asList(1, 2, 3, 4)));
+    numbers.getNumbers().add(5);
+  }
+  
+  @Test
+  public void testRandomNumbers() {
+    for (int i = 0; i < NUM_RANDOM_NUMBER_ROUNDS; i++) {
+      LotteryNumbers numbers = LotteryNumbers.createRandom();
+    }
   }
 }
