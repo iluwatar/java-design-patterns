@@ -23,6 +23,7 @@
 package com.iluwatar.hexagonal.domain;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -36,8 +37,6 @@ import org.junit.Test;
  *
  */
 public class LotteryNumbersTest {
-
-  private static final int NUM_RANDOM_NUMBER_ROUNDS = 1000;
   
   @Test
   public void testGivenNumbers() {
@@ -59,8 +58,19 @@ public class LotteryNumbersTest {
   
   @Test
   public void testRandomNumbers() {
-    for (int i = 0; i < NUM_RANDOM_NUMBER_ROUNDS; i++) {
-      LotteryNumbers numbers = LotteryNumbers.createRandom();
-    }
+    LotteryNumbers numbers = LotteryNumbers.createRandom();
+    assertEquals(numbers.getNumbers().size(), LotteryNumbers.NUM_NUMBERS);
+  }
+  
+  @Test
+  public void testEquals() {
+    LotteryNumbers numbers1 = LotteryNumbers.create(
+            new HashSet<>(Arrays.asList(1, 2, 3, 4)));
+    LotteryNumbers numbers2 = LotteryNumbers.create(
+            new HashSet<>(Arrays.asList(1, 2, 3, 4)));
+    assertTrue(numbers1.equals(numbers2));
+    LotteryNumbers numbers3 = LotteryNumbers.create(
+            new HashSet<>(Arrays.asList(11, 12, 13, 14)));
+    assertFalse(numbers1.equals(numbers3));
   }
 }
