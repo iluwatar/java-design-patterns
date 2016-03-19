@@ -24,59 +24,49 @@ package com.iluwatar.hexagonal.domain;
 
 /**
  * 
- * Immutable value object containing lottery player details.
+ * Immutable value object representing lottery ticket.
  *
  */
-public class PlayerDetails {
+public class LotteryTicket {
 
-  private final String emailAddress;
-  private final String bankAccountNumber;
-  private final String phoneNumber;
-
+  private final PlayerDetails playerDetails;
+  private final LotteryNumbers lotteryNumbers;
+  
   /**
    * Constructor.
    */
-  private PlayerDetails(String email, String bankAccount, String phone) {
-    emailAddress = email;
-    bankAccountNumber = bankAccount;
-    phoneNumber = phone;
+  private LotteryTicket(PlayerDetails details, LotteryNumbers numbers) {
+    playerDetails = details;
+    lotteryNumbers = numbers;
+  }
+
+  /**
+   * Factory for creating lottery tickets;
+   */
+  public static LotteryTicket create(PlayerDetails details, LotteryNumbers numbers) {
+    return new LotteryTicket(details, numbers);
   }
   
   /**
-   * Factory for creating new objects.
+   * @return player details
    */
-  public static PlayerDetails create(String email, String bankAccount, String phone) {
-    return new PlayerDetails(email, bankAccount, phone);
+  public PlayerDetails getPlayerDetails() {
+    return playerDetails;
   }
   
   /**
-   * @return email
+   * @return lottery numbers
    */
-  public String getEmail() {
-    return emailAddress;
-  }
-  
-  /**
-   * @return bank account number
-   */
-  public String getBankAccount() {
-    return bankAccountNumber;
-  }
-  
-  /**
-   * @return phone number
-   */
-  public String getPhoneNumber() {
-    return phoneNumber;
+  public LotteryNumbers getNumbers() {
+    return lotteryNumbers;
   }
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((bankAccountNumber == null) ? 0 : bankAccountNumber.hashCode());
-    result = prime * result + ((emailAddress == null) ? 0 : emailAddress.hashCode());
-    result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+    result = prime * result + ((lotteryNumbers == null) ? 0 : lotteryNumbers.hashCode());
+    result = prime * result + ((playerDetails == null) ? 0 : playerDetails.hashCode());
     return result;
   }
 
@@ -91,26 +81,19 @@ public class PlayerDetails {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    PlayerDetails other = (PlayerDetails) obj;
-    if (bankAccountNumber == null) {
-      if (other.bankAccountNumber != null) {
+    LotteryTicket other = (LotteryTicket) obj;
+    if (lotteryNumbers == null) {
+      if (other.lotteryNumbers != null) {
         return false;
       }
-    } else if (!bankAccountNumber.equals(other.bankAccountNumber)) {
+    } else if (!lotteryNumbers.equals(other.lotteryNumbers)) {
       return false;
     }
-    if (emailAddress == null) {
-      if (other.emailAddress != null) {
+    if (playerDetails == null) {
+      if (other.playerDetails != null) {
         return false;
       }
-    } else if (!emailAddress.equals(other.emailAddress)) {
-      return false;
-    }
-    if (phoneNumber == null) {
-      if (other.phoneNumber != null) {
-        return false;
-      }
-    } else if (!phoneNumber.equals(other.phoneNumber)) {
+    } else if (!playerDetails.equals(other.playerDetails)) {
       return false;
     }
     return true;
