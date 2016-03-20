@@ -20,21 +20,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
+package com.iluwatar.hexagonal.database;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketRepository;
+
 /**
  * 
- * Interface for accessing lottery tickets in database.
+ * Mock database for lottery tickets.
  *
  */
-public interface LotteryTicketRepository {
-
-  Optional<LotteryTicket> findByUuid(UUID uuid);
-  Optional<UUID> save(LotteryTicket ticket);
-  Map<UUID, LotteryTicket> findAll();
+public class LotteryTicketRepositoryMock implements LotteryTicketRepository {
   
+  private Map<UUID, LotteryTicket> tickets = new HashMap<>();
+
+  @Override
+  public Optional<LotteryTicket> findByUuid(UUID uuid) {
+    LotteryTicket ticket = tickets.get(uuid);
+    if (ticket == null) {
+      return Optional.empty();
+    } else {
+      return Optional.of(ticket);
+    }
+  }
+
+  @Override
+  public Optional<UUID> save(LotteryTicket ticket) {
+    UUID uuid = UUID.randomUUID();
+    tickets.put(uuid, ticket);
+    return Optional.of(uuid);
+  }
+
+  @Override
+  public Map<UUID, LotteryTicket> findAll() {
+    return tickets;
+  }
 }
