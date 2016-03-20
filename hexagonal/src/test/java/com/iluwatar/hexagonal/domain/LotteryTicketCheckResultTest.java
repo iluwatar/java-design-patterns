@@ -22,14 +22,26 @@
  */
 package com.iluwatar.hexagonal.domain;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
+import org.junit.Test;
+
+import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
+
 /**
  * 
- * Interface for submitting and checking lottery tickets.
+ * Unit tests for {@link LotteryTicketCheckResult}
  *
  */
-public interface LotteryService {
+public class LotteryTicketCheckResultTest {
 
-  LotteryTicketSubmitResult submitTicket(LotteryTicket ticket);
-
-  LotteryTicketCheckResult checkTicketForPrize(LotteryTicket ticket);
+  @Test
+  public void testEquals() {
+    LotteryTicketCheckResult result1 = new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
+    LotteryTicketCheckResult result2 = new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
+    assertEquals(result1, result2);
+    LotteryTicketCheckResult result3 = new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 300000);
+    assertFalse(result1.equals(result3));
+  } 
 }
