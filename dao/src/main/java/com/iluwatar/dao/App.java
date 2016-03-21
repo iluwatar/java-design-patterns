@@ -49,9 +49,11 @@ public class App {
    * Program entry point.
    * 
    * @param args command line args.
+   * @throws Exception if any error occurs. 
    */
-  public static void main(final String[] args) {
-    final CustomerDao customerDao = new InMemoryCustomerDao(generateSampleCustomers());
+  public static void main(final String[] args) throws Exception {
+    final CustomerDao customerDao = new InMemoryCustomerDao();
+    addCustomers(customerDao);
     log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
     log.info("customerDao.getCusterById(2): " + customerDao.getById(2));
     final Customer customer = new Customer(4, "Dan", "Danson");
@@ -63,6 +65,12 @@ public class App {
     log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
     customerDao.delete(customer);
     log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
+  }
+
+  private static void addCustomers(CustomerDao customerDao) throws Exception {
+    for (Customer customer : generateSampleCustomers()) {
+      customerDao.add(customer);
+    }
   }
 
   /**

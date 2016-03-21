@@ -23,30 +23,22 @@
 package com.iluwatar.dao;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
 /**
- * 
- * The data access object (DAO) is an object that provides an abstract interface to some type of
- * database or other persistence mechanism. By mapping application calls to the persistence layer,
- * DAO provide some specific data operations without exposing details of the database. This
- * isolation supports the Single responsibility principle. It separates what data accesses the
- * application needs, in terms of domain-specific objects and data types (the public interface of
- * the DAO), from how these needs can be satisfied with a specific DBMS, database schema, etc.
- * 
+ * An in memory implementation of {@link CustomerDao}, which stores the customers in JVM memory
+ * and data is lost when the application exits.
+ * <br/>
+ * This implementation is useful as temporary database or for testing.
  */
-// TODO update the javadoc
 public class InMemoryCustomerDao implements CustomerDao {
 
   private Map<Integer, Customer> idToCustomer = new HashMap<>();
 
-  public InMemoryCustomerDao(final List<Customer> customers) {
-    customers.stream()
-    .forEach((customer) -> idToCustomer.put(customer.getId(), customer));
-  }
-
+  /**
+   * An eagerly evaluated stream of customers stored in memory.
+   */
   @Override
   public Stream<Customer> getAll() {
     return idToCustomer.values().stream();
@@ -66,7 +58,6 @@ public class InMemoryCustomerDao implements CustomerDao {
     idToCustomer.put(customer.getId(), customer);
     return true;
   }
-
 
   @Override
   public boolean update(final Customer customer) {

@@ -5,6 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeTrue;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,16 +15,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.stream.Stream;
 
+import javax.sql.DataSource;
+
+import org.h2.jdbcx.JdbcDataSource;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
 @RunWith(HierarchicalContextRunner.class)
 public class DBCustomerDaoTest {
-  
+
   private static final String DB_URL = "jdbc:h2:~/dao:customerdb";
   private DBCustomerDao dao;
   private Customer existingCustomer = new Customer(1, "Freddy", "Krueger");
@@ -33,94 +42,148 @@ public class DBCustomerDaoTest {
       statement.execute("CREATE TABLE CUSTOMERS (ID NUMBER, FNAME VARCHAR(100), LNAME VARCHAR(100))");
     }
   }
-  
-  @Before
-  public void setUp() {
-    dao = new DBCustomerDao(DB_URL);
-    boolean result = dao.add(existingCustomer);
-    assumeTrue(result);
-  }
-  
-  public class NonExistantCustomer {
-    
-    @Test
-    public void addingShouldResultInSuccess() {
-      try (Stream<Customer> allCustomers = dao.getAll()) {
-        assumeTrue(allCustomers.count() == 1);
-      }
-      
-      final Customer nonExistingCustomer = new Customer(2, "Robert", "Englund");
-      boolean result = dao.add(nonExistingCustomer);
-      assertTrue(result);
-      
-      assertCustomerCountIs(2);
-      assertEquals(nonExistingCustomer, dao.getById(nonExistingCustomer.getId()));
-    }
-    
-    @Test
-    public void deletionShouldBeFailureAndNotAffectExistingCustomers() {
-      final Customer nonExistingCustomer = new Customer(2, "Robert", "Englund");
-      boolean result = dao.delete(nonExistingCustomer);
-      
-      assertFalse(result);
-      assertCustomerCountIs(1);
-    }
-    
-    @Test
-    public void updationShouldBeFailureAndNotAffectExistingCustomers() {
-      final int nonExistingId = getNonExistingCustomerId();
-      final String newFirstname = "Douglas";
-      final String newLastname = "MacArthur";
-      final Customer customer = new Customer(nonExistingId, newFirstname, newLastname);
-      boolean result = dao.update(customer);
-      
-      assertFalse(result);
-      assertNull(dao.getById(nonExistingId));
-    }
-    
-    @Test
-    public void retrieveShouldReturnNull() {
-      assertNull(dao.getById(getNonExistingCustomerId()));
-    }
-    
-  }
-  
-  public class ExistingCustomer {
-    
-    @Test
-    public void addingShouldResultInFailureAndNotAffectExistingCustomers() {
-      Customer existingCustomer = new Customer(1, "Freddy", "Krueger");
-      
+
+  public class ConnectionSuccess {
+
+    @Before
+    public void setUp() throws Exception {
+      JdbcDataSource dataSource = new JdbcDataSource();
+      dataSource.setURL(DB_URL);
+      dao = new DBCustomerDao(dataSource);
       boolean result = dao.add(existingCustomer);
-      
-      assertFalse(result);
-      assertCustomerCountIs(1);
-      assertEquals(existingCustomer, dao.getById(existingCustomer.getId()));
-    }
-    
-    @Test
-    public void deletionShouldBeSuccessAndCustomerShouldBeNonAccessible() {
-      boolean result = dao.delete(existingCustomer);
-      
       assertTrue(result);
-      assertCustomerCountIs(0);
-      assertNull(dao.getById(existingCustomer.getId()));
+    }
+
+    public class NonExistantCustomer {
+
+      @Test
+      public void addingShouldResultInSuccess() throws Exception {
+        try (Stream<Customer> allCustomers = dao.getAll()) {
+          assumeTrue(allCustomers.count() == 1);
+        }
+
+        final Customer nonExistingCustomer = new Customer(2, "Robert", "Englund");
+        boolean result = dao.add(nonExistingCustomer);
+        assertTrue(result);
+
+        assertCustomerCountIs(2);
+        assertEquals(nonExistingCustomer, dao.getById(nonExistingCustomer.getId()));
+      }
+
+      @Test
+      public void deletionShouldBeFailureAndNotAffectExistingCustomers() throws Exception {
+        final Customer nonExistingCustomer = new Customer(2, "Robert", "Englund");
+        boolean result = dao.delete(nonExistingCustomer);
+
+        assertFalse(result);
+        assertCustomerCountIs(1);
+      }
+
+      @Test
+      public void updationShouldBeFailureAndNotAffectExistingCustomers() throws Exception {
+        final int nonExistingId = getNonExistingCustomerId();
+        final String newFirstname = "Douglas";
+        final String newLastname = "MacArthur";
+        final Customer customer = new Customer(nonExistingId, newFirstname, newLastname);
+        boolean result = dao.update(customer);
+
+        assertFalse(result);
+        assertNull(dao.getById(nonExistingId));
+      }
+
+      @Test
+      public void retrieveShouldReturnNull() throws Exception {
+        assertNull(dao.getById(getNonExistingCustomerId()));
+      }
+    }
+
+    public class ExistingCustomer {
+
+      @Test
+      public void addingShouldResultInFailureAndNotAffectExistingCustomers() throws Exception {
+        Customer existingCustomer = new Customer(1, "Freddy", "Krueger");
+
+        boolean result = dao.add(existingCustomer);
+
+        assertFalse(result);
+        assertCustomerCountIs(1);
+        assertEquals(existingCustomer, dao.getById(existingCustomer.getId()));
+      }
+
+      @Test
+      public void deletionShouldBeSuccessAndCustomerShouldBeNonAccessible() throws Exception {
+        boolean result = dao.delete(existingCustomer);
+
+        assertTrue(result);
+        assertCustomerCountIs(0);
+        assertNull(dao.getById(existingCustomer.getId()));
+      }
+
+      @Test
+      public void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation() throws Exception {
+        final String newFirstname = "Bernard";
+        final String newLastname = "Montgomery";
+        final Customer customer = new Customer(existingCustomer.getId(), newFirstname, newLastname);
+        boolean result = dao.update(customer);
+
+        assertTrue(result);
+
+        final Customer cust = dao.getById(existingCustomer.getId());
+        assertEquals(newFirstname, cust.getFirstName());
+        assertEquals(newLastname, cust.getLastName());
+      }
+    }
+  }
+
+  public class DBConnectivityIssue {
+    
+    private static final String EXCEPTION_CAUSE = "Connection not available";
+    @Rule public ExpectedException exception = ExpectedException.none();
+    
+    @Before
+    public void setUp() throws SQLException {
+      dao = new DBCustomerDao(mockedDatasource());
+      exception.expect(Exception.class);
+      exception.expectMessage(EXCEPTION_CAUSE);
+    }
+    
+    private DataSource mockedDatasource() throws SQLException {
+      DataSource mockedDataSource = mock(DataSource.class);
+      Connection mockedConnection = mock(Connection.class);
+      SQLException exception = new SQLException(EXCEPTION_CAUSE);
+      doThrow(exception).when(mockedConnection).prepareStatement(Mockito.anyString());
+      doReturn(mockedConnection).when(mockedDataSource).getConnection();
+      return mockedDataSource;
+    }
+
+    @Test
+    public void addingACustomerFailsWithExceptionAsFeedbackToClient() throws Exception {
+      dao.add(new Customer(2, "Bernard", "Montgomery"));
     }
     
     @Test
-    public void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation() {
+    public void deletingACustomerFailsWithExceptionAsFeedbackToTheClient() throws Exception {
+      dao.delete(existingCustomer);
+    }
+    
+    @Test
+    public void updatingACustomerFailsWithFeedbackToTheClient() throws Exception {
       final String newFirstname = "Bernard";
       final String newLastname = "Montgomery";
-      final Customer customer = new Customer(existingCustomer.getId(), newFirstname, newLastname);
-      boolean result = dao.update(customer);
       
-      assertTrue(result);
-      
-      final Customer cust = dao.getById(existingCustomer.getId());
-      assertEquals(newFirstname, cust.getFirstName());
-      assertEquals(newLastname, cust.getLastName());
+      dao.update(new Customer(existingCustomer.getId(), newFirstname, newLastname));
     }
     
+    @Test
+    public void retrievingACustomerByIdReturnsNull() throws Exception {
+      dao.getById(existingCustomer.getId());
+    }
+    
+    @Test
+    public void retrievingAllCustomersReturnsAnEmptyStream() throws Exception {
+      dao.getAll();
+    }
+
   }
 
   @After
@@ -130,13 +193,13 @@ public class DBCustomerDaoTest {
       statement.execute("DROP TABLE CUSTOMERS");
     }
   }
-  
-  private void assertCustomerCountIs(int count) {
+
+  private void assertCustomerCountIs(int count) throws Exception {
     try (Stream<Customer> allCustomers = dao.getAll()) {
       assertTrue(allCustomers.count() == count);
     }
   }
-  
+
 
   /**
    * An arbitrary number which does not correspond to an active Customer id.
