@@ -25,9 +25,9 @@ package com.iluwatar.hexagonal.database;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.LotteryTicketRepository;
 
 /**
@@ -37,11 +37,11 @@ import com.iluwatar.hexagonal.domain.LotteryTicketRepository;
  */
 public class LotteryTicketRepositoryMock implements LotteryTicketRepository {
   
-  private Map<UUID, LotteryTicket> tickets = new HashMap<>();
+  private Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
 
   @Override
-  public Optional<LotteryTicket> findByUuid(UUID uuid) {
-    LotteryTicket ticket = tickets.get(uuid);
+  public Optional<LotteryTicket> findById(LotteryTicketId id) {
+    LotteryTicket ticket = tickets.get(id);
     if (ticket == null) {
       return Optional.empty();
     } else {
@@ -50,14 +50,14 @@ public class LotteryTicketRepositoryMock implements LotteryTicketRepository {
   }
 
   @Override
-  public Optional<UUID> save(LotteryTicket ticket) {
-    UUID uuid = UUID.randomUUID();
-    tickets.put(uuid, ticket);
-    return Optional.of(uuid);
+  public Optional<LotteryTicketId> save(LotteryTicket ticket) {
+    LotteryTicketId id = new LotteryTicketId();
+    tickets.put(id, ticket);
+    return Optional.of(id);
   }
 
   @Override
-  public Map<UUID, LotteryTicket> findAll() {
+  public Map<LotteryTicketId, LotteryTicket> findAll() {
     return tickets;
   }
 }

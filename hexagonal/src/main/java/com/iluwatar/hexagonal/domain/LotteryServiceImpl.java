@@ -22,40 +22,41 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.UUID;
-
-import org.junit.Test;
 
 import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
+import com.iluwatar.hexagonal.domain.LotteryTicketSubmitResult.Result;
 
-/**
- * 
- * Tests for {@link LotteryTicketRepository}
- *
- */
-public class LotteryTicketRepositoryTest {
+public class LotteryServiceImpl implements LotteryService {
 
-  @Test
-  public void testCrudOperations() {
-    LotteryTicketRepository repository = new LotteryTicketRepositoryMock();
-    assertEquals(repository.findAll().size(), 0);
-    LotteryTicket ticket = createLotteryTicket();
-    Optional<LotteryTicketId> id = repository.save(ticket);
-    assertTrue(id.isPresent());
-    assertEquals(repository.findAll().size(), 1);
-    Optional<LotteryTicket> optionalTicket = repository.findById(id.get());
-    assertTrue(optionalTicket.isPresent());
+  private final LotteryTicketRepository repository;
+  
+  public LotteryServiceImpl() {
+    repository = new LotteryTicketRepositoryMock();
   }
   
-  private LotteryTicket createLotteryTicket() {
-    PlayerDetails details = PlayerDetails.create("foo@bar.com", "12231-213132", "+99324554");
-    LotteryNumbers numbers = LotteryNumbers.create(new HashSet<>(Arrays.asList(1, 2, 3, 4)));
-    return LotteryTicket.create(details, numbers);
+  @Override
+  public LotteryTicketSubmitResult submitTicket(LotteryTicket ticket) {
+    Optional<LotteryTicketId> optional = repository.save(ticket);
+    Result result = Result.OK;
+    if (!optional.isPresent()) {
+      result = Result.ERROR;
+    }
+    return new LotteryTicketSubmitResult(result);
+  }
+
+  @Override
+  public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
+    Optional<LotteryTicket> optional = repository.findById(id);
+    if (optional.isPresent()) {
+      if (optional.get().getNumbers().equals(winningNumbers)) {
+        return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE);
+      } else {
+        return new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
+      }
+    } else {
+      return new LotteryTicketCheckResult(CheckResult.TICKET_NOT_SUBMITTED);
+    }
   }
 }

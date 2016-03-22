@@ -24,7 +24,6 @@ package com.iluwatar.hexagonal.domain;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * 
@@ -33,8 +32,8 @@ import java.util.UUID;
  */
 public interface LotteryTicketRepository {
 
-  Optional<LotteryTicket> findByUuid(UUID uuid);
-  Optional<UUID> save(LotteryTicket ticket);
-  Map<UUID, LotteryTicket> findAll();
+  Optional<LotteryTicket> findById(LotteryTicketId id);
+  Optional<LotteryTicketId> save(LotteryTicket ticket);
+  Map<LotteryTicketId, LotteryTicket> findAll();
   
 }

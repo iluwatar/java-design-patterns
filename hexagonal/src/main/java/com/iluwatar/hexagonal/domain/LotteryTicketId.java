@@ -22,14 +22,17 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-/**
- * 
- * Interface for submitting and checking lottery tickets.
- *
- */
-public interface LotteryService {
+import java.util.UUID;
 
-  LotteryTicketSubmitResult submitTicket(LotteryTicket ticket);
-
-  LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers);
+public class LotteryTicketId {
+  
+  private final UUID id;
+  
+  public LotteryTicketId() {
+    id = UUID.randomUUID();
+  }
+  
+  public UUID getId() {
+    return id;
+  }
 }

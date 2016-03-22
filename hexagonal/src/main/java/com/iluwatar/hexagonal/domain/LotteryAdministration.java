@@ -32,6 +32,6 @@ import java.util.List;
 public interface LotteryAdministration {
 
   List<LotteryTicket> getAllSubmittedTickets();
-  List<LotteryTicket> performLottery();
+  LotteryNumbers performLottery();
   
 }
