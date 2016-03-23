@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dao;
 
 import static org.junit.Assert.assertEquals;
@@ -36,6 +37,9 @@ import org.junit.runner.RunWith;
 
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
+/**
+ * Tests {@link InMemoryCustomerDao}.
+ */
 @RunWith(HierarchicalContextRunner.class)
 public class InMemoryCustomerDaoTest {
 
@@ -47,8 +51,12 @@ public class InMemoryCustomerDaoTest {
     dao = new InMemoryCustomerDao();
     dao.add(CUSTOMER);
   }
-  
-  public class NonExistantCustomer {
+
+  /**
+   * Represents the scenario when the DAO operations are being performed on a non existent 
+   * customer.  
+   */
+  public class NonExistingCustomer {
 
     @Test
     public void addingShouldResultInSuccess() throws Exception {
@@ -91,6 +99,10 @@ public class InMemoryCustomerDaoTest {
     }
   }
 
+  /**
+   * Represents the scenario when the DAO operations are being performed on an already existing
+   * customer.
+   */
   public class ExistingCustomer {
 
     @Test

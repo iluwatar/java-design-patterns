@@ -20,12 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dao;
 
 import java.util.stream.Stream;
 
 /**
- * 
  * In an application the Data Access Object (DAO) is a part of Data access layer. It is an object
  * that provides an interface to some type of persistence mechanism. By mapping application calls
  * to the persistence layer, DAO provides some specific data operations without exposing details 
@@ -33,25 +33,25 @@ import java.util.stream.Stream;
  * data accesses the application needs, in terms of domain-specific objects and data types 
  * (the public interface of the DAO), from how these needs can be satisfied with a specific DBMS,
  * database schema, etc.
- * <br/><br/>
- * Any change in the way data is stored and retrieved will not change the client code as the client
- * will be using interface and need not worry about exact source.
+ * 
+ * <p>Any change in the way data is stored and retrieved will not change the client code as the 
+ * client will be using interface and need not worry about exact source.
  * 
  * @see InMemoryCustomerDao
- * @see DBCustomerDao
+ * @see DbCustomerDao
  */
 public interface CustomerDao {
 
   /**
-   * @return all the customers as a stream. The stream may be lazily or eagerly evaluated based on the
-   * implementation. The stream must be closed after use.
+   * @return all the customers as a stream. The stream may be lazily or eagerly evaluated based 
+   *     on the implementation. The stream must be closed after use.
    * @throws Exception if any error occurs.
    */
   Stream<Customer> getAll() throws Exception;
   
   /**
    * @param id unique identifier of the customer.
-   * @return customer with unique identifier <code>id</code> is found, null otherwise.
+   * @return customer with unique identifier <code>id</code> if found, null otherwise.
    * @throws Exception if any error occurs.
    */
   Customer getById(int id) throws Exception;

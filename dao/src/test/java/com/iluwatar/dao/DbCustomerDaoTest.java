@@ -28,33 +28,51 @@ import org.mockito.Mockito;
 
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
+/**
+ * Tests {@link DbCustomerDao}.
+ */
 @RunWith(HierarchicalContextRunner.class)
-public class DBCustomerDaoTest {
+public class DbCustomerDaoTest {
 
   private static final String DB_URL = "jdbc:h2:~/dao:customerdb";
-  private DBCustomerDao dao;
+  private DbCustomerDao dao;
   private Customer existingCustomer = new Customer(1, "Freddy", "Krueger");
 
+  /**
+   * Creates customers schema.
+   * @throws SQLException if there is any error while creating schema.
+   */
   @Before
   public void createSchema() throws SQLException {
     try (Connection connection = DriverManager.getConnection(DB_URL);
         Statement statement = connection.createStatement()) {
-      statement.execute("CREATE TABLE CUSTOMERS (ID NUMBER, FNAME VARCHAR(100), LNAME VARCHAR(100))");
+      statement.execute("CREATE TABLE CUSTOMERS (ID NUMBER, FNAME VARCHAR(100),"
+          + " LNAME VARCHAR(100))");
     }
   }
 
+  /**
+   * Represents the scenario where DB connectivity is present.
+   */
   public class ConnectionSuccess {
 
+    /**
+     * Setup for connection success scenario.
+     * @throws Exception if any error occurs.
+     */
     @Before
     public void setUp() throws Exception {
       JdbcDataSource dataSource = new JdbcDataSource();
       dataSource.setURL(DB_URL);
-      dao = new DBCustomerDao(dataSource);
+      dao = new DbCustomerDao(dataSource);
       boolean result = dao.add(existingCustomer);
       assertTrue(result);
     }
 
-    public class NonExistantCustomer {
+    /**
+     * Represents the scenario when DAO operations are being performed on a non existing customer.
+     */
+    public class NonExistingCustomer {
 
       @Test
       public void addingShouldResultInSuccess() throws Exception {
@@ -97,6 +115,11 @@ public class DBCustomerDaoTest {
       }
     }
 
+    /**
+     * Represents a scenario where DAO operations are being performed on an already existing
+     * customer.
+     *
+     */
     public class ExistingCustomer {
 
       @Test
@@ -135,14 +158,23 @@ public class DBCustomerDaoTest {
     }
   }
 
-  public class DBConnectivityIssue {
+  /**
+   * Represents a scenario where DB connectivity is not present due to network issue, or
+   * DB service unavailable.
+   * 
+   */
+  public class ConnectivityIssue {
     
     private static final String EXCEPTION_CAUSE = "Connection not available";
     @Rule public ExpectedException exception = ExpectedException.none();
     
+    /**
+     * setup a connection failure scenario.
+     * @throws SQLException if any error occurs.
+     */
     @Before
     public void setUp() throws SQLException {
-      dao = new DBCustomerDao(mockedDatasource());
+      dao = new DbCustomerDao(mockedDatasource());
       exception.expect(Exception.class);
       exception.expectMessage(EXCEPTION_CAUSE);
     }
@@ -186,6 +218,10 @@ public class DBCustomerDaoTest {
 
   }
 
+  /**
+   * Delete customer schema for fresh setup per test.
+   * @throws SQLException if any error occurs.
+   */
   @After
   public void deleteSchema() throws SQLException {
     try (Connection connection = DriverManager.getConnection(DB_URL);

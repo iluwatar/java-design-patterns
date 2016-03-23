@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dao;
 
 import java.sql.Connection;
@@ -35,27 +36,39 @@ import java.util.stream.StreamSupport;
 import javax.sql.DataSource;
 
 /**
- * 
+ * An implementation of {@link CustomerDao} that persists customers in RDBMS. 
  *
  */
-public class DBCustomerDao implements CustomerDao {
+public class DbCustomerDao implements CustomerDao {
 
   private final DataSource dataSource;
 
-  public DBCustomerDao(DataSource dataSource) {
+  /**
+   * Creates an instance of {@link DbCustomerDao} which uses provided <code>dataSource</code>
+   * to store and retrieve customer information.
+   * 
+   * @param dataSource a non-null dataSource.
+   */
+  public DbCustomerDao(DataSource dataSource) {
     this.dataSource = dataSource;
   }
 
+  /**
+   * @return a lazily populated stream of customers. Note the stream returned must be closed to 
+   *     free all the acquired resources. The stream keeps an open connection to the database till
+   *     it is complete or is closed manually.
+   */
   @Override
   public Stream<Customer> getAll() throws Exception {
-    
+
     Connection connection;
     try {
       connection = getConnection();
       PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMERS");
       ResultSet resultSet = statement.executeQuery();
-      return StreamSupport.stream(new Spliterators.AbstractSpliterator<Customer>(Long.MAX_VALUE, Spliterator.ORDERED) {
-        
+      return StreamSupport.stream(new Spliterators.AbstractSpliterator<Customer>(Long.MAX_VALUE, 
+          Spliterator.ORDERED) {
+
         @Override
         public boolean tryAdvance(Consumer<? super Customer> action) {
           try {
@@ -65,15 +78,15 @@ public class DBCustomerDao implements CustomerDao {
             action.accept(createCustomer(resultSet));
             return true;
           } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException(e);
           }
-        }}, false).onClose(() -> mutedClose(connection));
+        }
+      }, false).onClose(() -> mutedClose(connection));
     } catch (SQLException e) {
       throw new Exception(e.getMessage(), e);
     }
   }
-  
+
   private Connection getConnection() throws SQLException {
     return dataSource.getConnection();
   }
@@ -91,31 +104,40 @@ public class DBCustomerDao implements CustomerDao {
         resultSet.getString("FNAME"), 
         resultSet.getString("LNAME"));
   }
-  
+
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Customer getById(int id) throws Exception {
     try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMERS WHERE ID = ?")) {
-        statement.setInt(1, id);
-        ResultSet resultSet = statement.executeQuery();
-        if (resultSet.next()) {
-          return createCustomer(resultSet);
-        } else {
-          return null;
-        }
+        PreparedStatement statement = 
+            connection.prepareStatement("SELECT * FROM CUSTOMERS WHERE ID = ?")) {
+
+      statement.setInt(1, id);
+      ResultSet resultSet = statement.executeQuery();
+      if (resultSet.next()) {
+        return createCustomer(resultSet);
+      } else {
+        return null;
+      }
     } catch (SQLException ex) {
       throw new Exception(ex.getMessage(), ex);
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean add(Customer customer) throws Exception {
     if (getById(customer.getId()) != null) {
       return false;
     }
-    
+
     try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO CUSTOMERS VALUES (?,?,?)")) {
+        PreparedStatement statement = 
+            connection.prepareStatement("INSERT INTO CUSTOMERS VALUES (?,?,?)")) {
       statement.setInt(1, customer.getId());
       statement.setString(2, customer.getFirstName());
       statement.setString(3, customer.getLastName());
@@ -126,10 +148,14 @@ public class DBCustomerDao implements CustomerDao {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean update(Customer customer) throws Exception {
     try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement("UPDATE CUSTOMERS SET FNAME = ?, LNAME = ? WHERE ID = ?")) {
+        PreparedStatement statement = 
+            connection.prepareStatement("UPDATE CUSTOMERS SET FNAME = ?, LNAME = ? WHERE ID = ?")) {
       statement.setString(1, customer.getFirstName());
       statement.setString(2, customer.getLastName());
       statement.setInt(3, customer.getId());
@@ -139,10 +165,14 @@ public class DBCustomerDao implements CustomerDao {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean delete(Customer customer) throws Exception {
     try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement("DELETE FROM CUSTOMERS WHERE ID = ?")) {
+        PreparedStatement statement = 
+            connection.prepareStatement("DELETE FROM CUSTOMERS WHERE ID = ?")) {
       statement.setInt(1, customer.getId());
       return statement.executeUpdate() > 0;
     } catch (SQLException ex) {
