@@ -23,11 +23,20 @@
 package com.iluwatar.mutex;
 
 /**
- * Mutex.
+ * Mutex is an implementation of a mutual exclusion lock.
  */
 public class Mutex implements Lock {
-  private Object owner = null;
 
+  /**
+   * The current owner of the lock.
+   */
+  private Object owner;
+
+  /**
+   * Method called by a thread to acquire the lock. If the lock has already
+   * been acquired this will wait until the lock has been released to 
+   * re-attempt the acquire.
+   */
   @Override
   public synchronized void acquire() throws InterruptedException {
     while (owner != null) {
@@ -37,6 +46,9 @@ public class Mutex implements Lock {
     owner = Thread.currentThread();
   }
 
+  /**
+   * Method called by a thread to release the lock.
+   */
   @Override
   public synchronized void release() {
     owner = null;

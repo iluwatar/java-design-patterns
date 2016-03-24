@@ -23,19 +23,30 @@
 package com.iluwatar.mutex;
 
 /**
- * Thief.
+ * Thief is a class which continually tries to acquire a jar and take a bean
+ * from it. When the jar is empty the thief stops.
  */
 public class Thief extends Thread {
 
-  private String name;
-
-  private Jar jar;
+  /**
+   * The name of the thief. 
+   */
+  private final String name;
+  
+  /**
+   * The jar
+   */
+  private final Jar jar;
 
   public Thief(String name, Jar jar) {
     this.name = name;
     this.jar = jar;
   }
 
+  /**
+   * In the run method the thief repeatedly tries to take a bean until none
+   * are left.
+   */
   @Override
   public void run() {
     int beans = 0;

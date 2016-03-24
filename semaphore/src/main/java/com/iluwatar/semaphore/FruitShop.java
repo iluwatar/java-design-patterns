@@ -23,22 +23,31 @@
 package com.iluwatar.semaphore;
 
 /**
- * FruitShop.
+ * A FruitShop contains three FruitBowl instances and controls access to them.
  */
 public class FruitShop {
-    
+   
+  /**
+   * The FruitBowl instances stored in the class.
+   */
   private FruitBowl[] bowls = {
     new FruitBowl(),
     new FruitBowl(),
     new FruitBowl()
   };
-    
+
+  /**
+   * Access flags for each of the FruitBowl instances.
+   */
   private boolean[] available = {
     true,
     true,
     true
   };
-    
+
+  /**
+   * The Semaphore that controls access to the class resources.
+   */
   private Semaphore semaphore;
   
   /**
@@ -53,13 +62,19 @@ public class FruitShop {
         
     semaphore = new Semaphore(3);
   }
-    
+
+  /**
+   * 
+   * @return The amount of Fruit left in the shop.
+   */
   public synchronized int countFruit() {
     return bowls[0].countFruit() + bowls[1].countFruit() + bowls[2].countFruit();
   }
   
   /**
-   * takeBowl method
+   * Method called by Customer to get a FruitBowl from the shop. This method
+   * will try to acquire the Semaphore before returning the first available 
+   * FruitBowl.
    */   
   public synchronized FruitBowl takeBowl() {
         
@@ -88,7 +103,9 @@ public class FruitShop {
   }
   
   /**
-   * returnBowl method
+   * Method called by a Customer instance to return a FruitBowl to the shop. 
+   * This method releases the Semaphore, making the FruitBowl available to 
+   * another Customer.
    */   
   public synchronized void returnBowl(FruitBowl bowl) {
     if (bowl == bowls[0]) {

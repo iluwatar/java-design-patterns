@@ -23,13 +23,25 @@
 package com.iluwatar.semaphore;
 
 /**
- * Customer.
+ * A Customer attempts to repeatedly take Fruit from the FruitShop by
+ * taking Fruit from FruitBowl instances.
  */
 public class Customer extends Thread {
-    
-  private String name;
-  private FruitShop fruitShop;
-  private FruitBowl fruitBowl;
+
+  /**
+   * Name of the Customer.
+   */
+  private final String name;
+  
+  /**
+   * The FruitShop he is using.
+   */
+  private final FruitShop fruitShop;
+  
+  /**
+   * Their bowl of Fruit.
+   */
+  private final FruitBowl fruitBowl;
   
   /**
    * Customer constructor
@@ -41,7 +53,8 @@ public class Customer extends Thread {
   }
   
   /**
-   * run method
+   * The Customer repeatedly takes Fruit from the FruitShop until no Fruit
+   * remains.
    */   
   public void run() {
         

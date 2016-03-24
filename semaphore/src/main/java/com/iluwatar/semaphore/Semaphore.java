@@ -23,10 +23,13 @@
 package com.iluwatar.semaphore;
 
 /**
- * Semaphore.
+ * Semaphore is an implementation of a semaphore lock.
  */
 public class Semaphore implements Lock {
 
+  /**
+   * The number of concurrent resource accesses which are allowed.
+   */
   private int counter;
     
   public Semaphore(int counter) {
@@ -34,7 +37,9 @@ public class Semaphore implements Lock {
   }
   
   /**
-   * acquire method
+   * Method called by a thread to acquire the lock. If there are no resources
+   * available this will wait until the lock has been released to re-attempt
+   * the acquire.
    */
   public synchronized void acquire() throws InterruptedException {
     while (counter == 0) {
@@ -43,6 +48,9 @@ public class Semaphore implements Lock {
     counter = counter - 1;
   }
   
+  /**
+   * Method called by a thread to release the lock.
+   */
   public synchronized void release() {
     counter = counter + 1;
     notify();

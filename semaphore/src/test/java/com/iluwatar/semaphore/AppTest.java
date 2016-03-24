@@ -22,39 +22,13 @@
  */
 package com.iluwatar.semaphore;
 
-/**
- * Fruit is a resource stored in a FruitBowl. 
- */
-public class Fruit {
+import org.junit.Test;
+import java.io.IOException;
 
-  public static enum FruitType {
-    ORANGE, APPLE, LEMON
+public class AppTest{
+  @Test
+  public void test() throws IOException {
+    String[] args = {};
+    App.main(args);
   }
-    
-  private FruitType type;
-    
-  public Fruit(FruitType type) {
-    this.type = type;
-  }
-    
-  public FruitType getType() {
-    return type;
-  }
-  
-  /**
-   * toString method
-   */ 
-  public String toString() {
-    switch (type) {
-      case ORANGE:
-        return "Orange";
-      case APPLE: 
-        return "Apple";
-      case LEMON: 
-        return "Lemon";
-      default: 
-        return "";
-    }
-  }
-
 }

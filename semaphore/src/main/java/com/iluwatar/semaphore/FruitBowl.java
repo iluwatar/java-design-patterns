@@ -25,23 +25,33 @@ package com.iluwatar.semaphore;
 import java.util.ArrayList;
 
 /**
- * FruitBowl.
+ * A FruitBowl contains Fruit. 
  */
 public class FruitBowl {
     
   private ArrayList<Fruit> fruit = new ArrayList<>();
 
+  /**
+   * 
+   * @return The amount of Fruit left in the bowl. 
+   */
   public int countFruit() {
     return fruit.size();
   }
 
+  /**
+   * Put an item of Fruit into the bowl.
+   * 
+   * @param f fruit
+   */
   public void put(Fruit f) {
     fruit.add(f);
   }
   
   /**
-   * take method
-   */   
+   * Take an item of Fruit out of the bowl.
+   * @return The Fruit taken out of the bowl, or null if empty.
+   */
   public Fruit take() {
     if (fruit.isEmpty()) {
       return null;
