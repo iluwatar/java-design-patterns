@@ -30,7 +30,7 @@ import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.adapter.LotteryTicketRepositoryMock;
 
 /**
  * 

@@ -24,6 +24,7 @@ package com.iluwatar.hexagonal.domain;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 
@@ -36,8 +37,16 @@ public class LotteryTestUtils {
    * @return lottery ticket
    */
   public static LotteryTicket createLotteryTicket() {
-    PlayerDetails details = PlayerDetails.create("foo@bar.com", "12231-213132", "+99324554");
-    LotteryNumbers numbers = LotteryNumbers.create(new HashSet<>(Arrays.asList(1, 2, 3, 4)));
+    return createLotteryTicket("foo@bar.com", "12231-213132", "+99324554", new HashSet<>(Arrays.asList(1, 2, 3, 4)));
+  }
+  
+  /**
+   * @return lottery ticket
+   */
+  public static LotteryTicket createLotteryTicket(String email, String account, String phone,
+      Set<Integer> givenNumbers) {
+    PlayerDetails details = PlayerDetails.create(email, account, phone);
+    LotteryNumbers numbers = LotteryNumbers.create(givenNumbers);
     return LotteryTicket.create(details, numbers);
   }
 }

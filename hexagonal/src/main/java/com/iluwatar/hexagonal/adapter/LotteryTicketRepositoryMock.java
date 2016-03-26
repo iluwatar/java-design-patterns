@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.database;
+package com.iluwatar.hexagonal.adapter;
 
 import java.util.HashMap;
 import java.util.Map;

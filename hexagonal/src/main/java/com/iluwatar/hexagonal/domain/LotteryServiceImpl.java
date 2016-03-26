@@ -24,7 +24,7 @@ package com.iluwatar.hexagonal.domain;
 
 import java.util.Optional;
 
-import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.adapter.LotteryTicketRepositoryMock;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
 
 /**
