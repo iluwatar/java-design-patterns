@@ -29,6 +29,7 @@ package com.iluwatar.decorator;
  */
 public class Troll implements Hostile {
 
+  @Override
   public void attack() {
     System.out.println("The troll swings at you with a club!");
   }
@@ -38,6 +39,7 @@ public class Troll implements Hostile {
     return 10;
   }
 
+  @Override
   public void fleeBattle() {
     System.out.println("The troll shrieks in horror and runs away!");
   }
