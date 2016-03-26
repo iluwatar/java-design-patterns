@@ -20,42 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
+package com.iluwatar.hexagonal.administration;
 
-import java.util.Optional;
+import java.util.Map;
 
-import com.iluwatar.hexagonal.adapter.LotteryTicketRepositoryMock;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.domain.LotteryNumbers;
+import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 
 /**
  * 
- * Implementation for lottery service
+ * Lottery administration implementation
  *
  */
-public class LotteryServiceImpl implements LotteryService {
+public class LotteryAdministrationImpl implements LotteryAdministration {
 
   private final LotteryTicketRepository repository;
-  
-  public LotteryServiceImpl() {
+
+  public LotteryAdministrationImpl() {
     repository = new LotteryTicketRepositoryMock();
   }
   
   @Override
-  public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
-    return repository.save(ticket);
+  public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
+    return repository.findAll();
   }
 
   @Override
-  public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
-    Optional<LotteryTicket> optional = repository.findById(id);
-    if (optional.isPresent()) {
-      if (optional.get().getNumbers().equals(winningNumbers)) {
-        return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 1000);
-      } else {
-        return new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
-      }
-    } else {
-      return new LotteryTicketCheckResult(CheckResult.TICKET_NOT_SUBMITTED);
-    }
+  public LotteryNumbers performLottery() {
+    return LotteryNumbers.createRandom();
+  }
+
+  @Override
+  public void resetLottery() {
+    repository.deleteAll();
   }
 }

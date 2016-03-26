@@ -20,37 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
-
-import java.util.Map;
-
-import com.iluwatar.hexagonal.adapter.LotteryTicketRepositoryMock;
+package com.iluwatar.hexagonal.banking;
 
 /**
  * 
- * Lottery administration implementation
+ * Interface to the lottery service provider's bank account.
  *
  */
-public class LotteryAdministrationImpl implements LotteryAdministration {
+public interface WireTransfers {
 
-  private final LotteryTicketRepository repository;
-
-  public LotteryAdministrationImpl() {
-    repository = new LotteryTicketRepositoryMock();
-  }
+  int getCurrentFundsAmount();
+  boolean transferFunds(int amount, String receiverBankAccountNumber);
   
-  @Override
-  public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
-    return repository.findAll();
-  }
-
-  @Override
-  public LotteryNumbers performLottery() {
-    return LotteryNumbers.createRandom();
-  }
-
-  @Override
-  public void resetLottery() {
-    repository.deleteAll();
-  }
 }

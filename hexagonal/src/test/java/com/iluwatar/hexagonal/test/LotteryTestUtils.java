@@ -20,41 +20,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
+package com.iluwatar.hexagonal.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
-import java.util.Optional;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import com.iluwatar.hexagonal.adapter.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.domain.LotteryNumbers;
+import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.PlayerDetails;
 
 /**
  * 
- * Tests for {@link LotteryTicketRepository}
+ * Utilities for lottery tests
  *
  */
-public class LotteryTicketRepositoryTest {
+public class LotteryTestUtils {
 
-  private final LotteryTicketRepository repository = new LotteryTicketRepositoryMock();
-  
-  @Before
-  public void clear() {
-    repository.deleteAll();
+  /**
+   * @return lottery ticket
+   */
+  public static LotteryTicket createLotteryTicket() {
+    return createLotteryTicket("foo@bar.com", "12231-213132", "+99324554", new HashSet<>(Arrays.asList(1, 2, 3, 4)));
   }
   
-  @Test
-  public void testCrudOperations() {
-    LotteryTicketRepository repository = new LotteryTicketRepositoryMock();
-    assertEquals(repository.findAll().size(), 0);
-    LotteryTicket ticket = LotteryTestUtils.createLotteryTicket();
-    Optional<LotteryTicketId> id = repository.save(ticket);
-    assertTrue(id.isPresent());
-    assertEquals(repository.findAll().size(), 1);
-    Optional<LotteryTicket> optionalTicket = repository.findById(id.get());
-    assertTrue(optionalTicket.isPresent());
+  /**
+   * @return lottery ticket
+   */
+  public static LotteryTicket createLotteryTicket(String email, String account, String phone,
+      Set<Integer> givenNumbers) {
+    PlayerDetails details = PlayerDetails.create(email, account, phone);
+    LotteryNumbers numbers = LotteryNumbers.create(givenNumbers);
+    return LotteryTicket.create(details, numbers);
   }
 }

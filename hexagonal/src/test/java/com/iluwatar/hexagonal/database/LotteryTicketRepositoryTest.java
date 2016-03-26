@@ -20,49 +20,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.adapter;
+package com.iluwatar.hexagonal.database;
 
-import java.util.HashMap;
-import java.util.Map;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Optional;
 
+import org.junit.Before;
+import org.junit.Test;
+
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
-import com.iluwatar.hexagonal.domain.LotteryTicketRepository;
+import com.iluwatar.hexagonal.test.LotteryTestUtils;
 
 /**
  * 
- * Mock database for lottery tickets.
+ * Tests for {@link LotteryTicketRepository}
  *
  */
-public class LotteryTicketRepositoryMock implements LotteryTicketRepository {
+public class LotteryTicketRepositoryTest {
+
+  private final LotteryTicketRepository repository = new LotteryTicketRepositoryMock();
   
-  private static Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
-
-  @Override
-  public Optional<LotteryTicket> findById(LotteryTicketId id) {
-    LotteryTicket ticket = tickets.get(id);
-    if (ticket == null) {
-      return Optional.empty();
-    } else {
-      return Optional.of(ticket);
-    }
+  @Before
+  public void clear() {
+    repository.deleteAll();
   }
-
-  @Override
-  public Optional<LotteryTicketId> save(LotteryTicket ticket) {
-    LotteryTicketId id = new LotteryTicketId();
-    tickets.put(id, ticket);
-    return Optional.of(id);
-  }
-
-  @Override
-  public Map<LotteryTicketId, LotteryTicket> findAll() {
-    return tickets;
-  }
-
-  @Override
-  public void deleteAll() {
-    tickets.clear();
+  
+  @Test
+  public void testCrudOperations() {
+    LotteryTicketRepository repository = new LotteryTicketRepositoryMock();
+    assertEquals(repository.findAll().size(), 0);
+    LotteryTicket ticket = LotteryTestUtils.createLotteryTicket();
+    Optional<LotteryTicketId> id = repository.save(ticket);
+    assertTrue(id.isPresent());
+    assertEquals(repository.findAll().size(), 1);
+    Optional<LotteryTicket> optionalTicket = repository.findById(id.get());
+    assertTrue(optionalTicket.isPresent());
   }
 }

@@ -20,17 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
+package com.iluwatar.hexagonal.administration;
+
+import java.util.Map;
+
+import com.iluwatar.hexagonal.domain.LotteryNumbers;
+import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 
 /**
  * 
- * Provides notifications for lottery events.
+ * Administrator interface for lottery service.
  *
  */
-public interface LotteryNotifications {
-  
-  void notifyTicketSubmitted(PlayerDetails details);
-  void notifyNoWin(PlayerDetails details);
-  void notifyPrize(PlayerDetails details);
+public interface LotteryAdministration {
 
+  Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets();
+  LotteryNumbers performLottery();
+  void resetLottery();
+  
 }

@@ -20,18 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
+package com.iluwatar.hexagonal.notifications;
 
-import java.util.Optional;
+import com.iluwatar.hexagonal.domain.PlayerDetails;
 
 /**
  * 
- * Interface for submitting and checking lottery tickets.
+ * Provides notifications for lottery events.
  *
  */
-public interface LotteryService {
+public interface LotteryNotifications {
+  
+  void notifyTicketSubmitted(PlayerDetails details);
+  void notifyNoWin(PlayerDetails details);
+  void notifyPrize(PlayerDetails details);
 
-  Optional<LotteryTicketId> submitTicket(LotteryTicket ticket);
-
-  LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers);
 }

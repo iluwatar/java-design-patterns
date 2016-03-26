@@ -20,19 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
+package com.iluwatar.hexagonal.database;
 
 import java.util.Map;
+import java.util.Optional;
+
+import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 
 /**
  * 
- * Administrator interface for lottery service.
+ * Interface for accessing lottery tickets in database.
  *
  */
-public interface LotteryAdministration {
+public interface LotteryTicketRepository {
 
-  Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets();
-  LotteryNumbers performLottery();
-  void resetLottery();
+  Optional<LotteryTicket> findById(LotteryTicketId id);
+  Optional<LotteryTicketId> save(LotteryTicket ticket);
+  Map<LotteryTicketId, LotteryTicket> findAll();
+  void deleteAll();
   
 }

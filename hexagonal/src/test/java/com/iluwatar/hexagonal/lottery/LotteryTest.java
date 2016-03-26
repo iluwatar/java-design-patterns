@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
+package com.iluwatar.hexagonal.lottery;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -33,8 +33,18 @@ import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.iluwatar.hexagonal.adapter.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.administration.LotteryAdministration;
+import com.iluwatar.hexagonal.administration.LotteryAdministrationImpl;
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.domain.LotteryNumbers;
+import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
+import com.iluwatar.hexagonal.service.LotteryService;
+import com.iluwatar.hexagonal.service.LotteryServiceImpl;
+import com.iluwatar.hexagonal.test.LotteryTestUtils;
 
 /**
  * 

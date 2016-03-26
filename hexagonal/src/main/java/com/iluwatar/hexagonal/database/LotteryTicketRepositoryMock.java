@@ -20,42 +20,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
+package com.iluwatar.hexagonal.database;
 
-import static org.junit.Assert.assertEquals;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.iluwatar.hexagonal.adapter.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 
 /**
  * 
- * Tests for lottery administration
+ * Mock database for lottery tickets.
  *
  */
-public class LotteryAdministrationTest {
+public class LotteryTicketRepositoryMock implements LotteryTicketRepository {
+  
+  private static Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
 
-  private LotteryTicketRepository repository = new LotteryTicketRepositoryMock();
-  private LotteryAdministration admin = new LotteryAdministrationImpl();
-  
-  @Before
-  public void submitTickets() {
-    repository.deleteAll();
-    repository.save(LotteryTestUtils.createLotteryTicket());
-    repository.save(LotteryTestUtils.createLotteryTicket());
-    repository.save(LotteryTestUtils.createLotteryTicket());
-    repository.save(LotteryTestUtils.createLotteryTicket());
-    repository.save(LotteryTestUtils.createLotteryTicket());
+  @Override
+  public Optional<LotteryTicket> findById(LotteryTicketId id) {
+    LotteryTicket ticket = tickets.get(id);
+    if (ticket == null) {
+      return Optional.empty();
+    } else {
+      return Optional.of(ticket);
+    }
   }
-  
-  @Test
-  public void testGetAllTickets() {
-    assertEquals(admin.getAllSubmittedTickets().size(), 5);
+
+  @Override
+  public Optional<LotteryTicketId> save(LotteryTicket ticket) {
+    LotteryTicketId id = new LotteryTicketId();
+    tickets.put(id, ticket);
+    return Optional.of(id);
   }
-  
-  @Test
-  public void testPerformLottery() {
-    assertEquals(admin.performLottery().getNumbers().size(), 4);
+
+  @Override
+  public Map<LotteryTicketId, LotteryTicket> findAll() {
+    return tickets;
+  }
+
+  @Override
+  public void deleteAll() {
+    tickets.clear();
   }
 }
