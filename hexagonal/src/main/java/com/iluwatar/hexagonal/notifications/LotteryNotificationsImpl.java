@@ -24,15 +24,24 @@ package com.iluwatar.hexagonal.notifications;
 
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 
-/**
- * 
- * Provides notifications for lottery events.
- *
- */
-public interface LotteryNotifications {
-  
-  void notifyTicketSubmitted(PlayerDetails details);
-  void notifyNoWin(PlayerDetails details);
-  void notifyPrize(PlayerDetails details, int prizeAmount);
+public class LotteryNotificationsImpl implements LotteryNotifications {
 
+  @Override
+  public void notifyTicketSubmitted(PlayerDetails details) {
+    System.out.println(String.format("Lottery ticket for %s was submitted. Bank account %s was charged for 3 credits.",
+        details.getEmail(), details.getBankAccount()));
+  }
+
+  @Override
+  public void notifyNoWin(PlayerDetails details) {
+    System.out.println(String.format("Lottery ticket for %s was checked and unfortunately did not win this time.",
+        details.getEmail()));
+  }
+
+  @Override
+  public void notifyPrize(PlayerDetails details, int prizeAmount) {
+    System.out
+        .println(String.format("Lottery ticket for %s has won! Your bank account %s was deposited with %d credits.",
+            details.getEmail(), details.getBankAccount(), prizeAmount));
+  }
 }
