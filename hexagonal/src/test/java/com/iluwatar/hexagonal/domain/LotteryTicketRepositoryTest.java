@@ -25,10 +25,7 @@ package com.iluwatar.hexagonal.domain;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.junit.Test;
 
@@ -45,17 +42,11 @@ public class LotteryTicketRepositoryTest {
   public void testCrudOperations() {
     LotteryTicketRepository repository = new LotteryTicketRepositoryMock();
     assertEquals(repository.findAll().size(), 0);
-    LotteryTicket ticket = createLotteryTicket();
+    LotteryTicket ticket = LotteryTestUtils.createLotteryTicket();
     Optional<LotteryTicketId> id = repository.save(ticket);
     assertTrue(id.isPresent());
     assertEquals(repository.findAll().size(), 1);
     Optional<LotteryTicket> optionalTicket = repository.findById(id.get());
     assertTrue(optionalTicket.isPresent());
-  }
-  
-  private LotteryTicket createLotteryTicket() {
-    PlayerDetails details = PlayerDetails.create("foo@bar.com", "12231-213132", "+99324554");
-    LotteryNumbers numbers = LotteryNumbers.create(new HashSet<>(Arrays.asList(1, 2, 3, 4)));
-    return LotteryTicket.create(details, numbers);
   }
 }
