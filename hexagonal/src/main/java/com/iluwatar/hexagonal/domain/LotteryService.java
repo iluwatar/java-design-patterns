@@ -22,6 +22,8 @@
  */
 package com.iluwatar.hexagonal.domain;
 
+import java.util.Optional;
+
 /**
  * 
  * Interface for submitting and checking lottery tickets.
@@ -29,7 +31,7 @@ package com.iluwatar.hexagonal.domain;
  */
 public interface LotteryService {
 
-  LotteryTicketSubmitResult submitTicket(LotteryTicket ticket);
+  Optional<LotteryTicketId> submitTicket(LotteryTicket ticket);
 
   LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers);
 }

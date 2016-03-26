@@ -26,7 +26,6 @@ import java.util.Optional;
 
 import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
-import com.iluwatar.hexagonal.domain.LotteryTicketSubmitResult.Result;
 
 public class LotteryServiceImpl implements LotteryService {
 
@@ -37,13 +36,8 @@ public class LotteryServiceImpl implements LotteryService {
   }
   
   @Override
-  public LotteryTicketSubmitResult submitTicket(LotteryTicket ticket) {
-    Optional<LotteryTicketId> optional = repository.save(ticket);
-    Result result = Result.OK;
-    if (!optional.isPresent()) {
-      result = Result.ERROR;
-    }
-    return new LotteryTicketSubmitResult(result);
+  public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
+    return repository.save(ticket);
   }
 
   @Override
