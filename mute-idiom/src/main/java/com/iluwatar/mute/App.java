@@ -23,13 +23,9 @@
 
 package com.iluwatar.mute;
 
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-
 import java.io.ByteArrayOutputStream;
-import java.sql.Connection;
+import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Mute pattern is utilized when we need to suppress an exception due to an API flaw or in 
@@ -75,31 +71,33 @@ public class App {
   }
 
   private static void useOfLoggedMute() throws SQLException {
-    Connection connection = null;
+    Resource resource = null;
     try {
-      connection = openConnection();
-      readStuff(connection);
+      resource = acquireResource();
+      utilizeResource(resource);
     } finally {
-      closeConnection(connection);
+      closeResource(resource);
     }
   }
 
   /*
-   * All we can do while failed close of connection is to log it.
+   * All we can do while failed close of a resource is to log it.
    */
-  private static void closeConnection(Connection connection) {
-    Mute.loggedMute(() -> connection.close());
+  private static void closeResource(Resource resource) {
+    Mute.loggedMute(() -> resource.close());
   }
 
-  private static void readStuff(Connection connection) throws SQLException {
-    try (Statement statement = connection.createStatement()) {
-      System.out.println("Read data from statement");
-    }
+  private static void utilizeResource(Resource resource) throws SQLException {
+    System.out.println("Utilizing acquired resource: " + resource);
   }
 
-  private static Connection openConnection() throws SQLException {
-    Connection mockedConnection = mock(Connection.class);
-    doThrow(SQLException.class).when(mockedConnection).close();
-    return mockedConnection;
+  private static Resource acquireResource() throws SQLException {
+    return new Resource() {
+      
+      @Override
+      public void close() throws IOException {
+        throw new IOException("Error in closing resource: " + this);
+      }
+    };
   }
 }
