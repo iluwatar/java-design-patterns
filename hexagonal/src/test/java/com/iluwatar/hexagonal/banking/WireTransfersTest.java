@@ -22,15 +22,29 @@
  */
 package com.iluwatar.hexagonal.banking;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
 /**
  * 
- * Interface to bank accounts.
+ * Tests for banking
  *
  */
-public interface WireTransfers {
+public class WireTransfersTest {
 
-  void setFunds(String bankAccount, int amount);
-  int getFunds(String bankAccount);
-  boolean transferFunds(int amount, String sourceBackAccount, String destinationBankAccount);
+  private final WireTransfers bank = new WireTransfersImpl();
   
+  @Test
+  public void testInit() {
+    assertEquals(bank.getFunds("foo"), 0);
+    bank.setFunds("foo", 100);
+    assertEquals(bank.getFunds("foo"), 100);
+    bank.setFunds("bar", 150);
+    assertEquals(bank.getFunds("bar"), 150);
+    assertTrue(bank.transferFunds(50, "bar", "foo"));
+    assertEquals(bank.getFunds("foo"), 150);
+    assertEquals(bank.getFunds("bar"), 100);
+  }
 }
