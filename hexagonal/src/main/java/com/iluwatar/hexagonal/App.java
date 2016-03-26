@@ -28,7 +28,14 @@ package com.iluwatar.hexagonal;
  *
  */
 public class App {
+  /**
+   * Program entry point
+   */
   public static void main(String[] args) {
-    System.out.println("Running hexagonal example");
+    // submit some lottery tickets
+    
+    // perform lottery
+    
+    // check all the tickets
   }
 }

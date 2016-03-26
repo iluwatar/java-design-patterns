@@ -22,7 +22,7 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -31,7 +31,7 @@ import java.util.List;
  */
 public interface LotteryAdministration {
 
-  List<LotteryTicket> getAllSubmittedTickets();
+  Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets();
   LotteryNumbers performLottery();
   
 }

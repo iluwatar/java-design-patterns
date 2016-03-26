@@ -27,6 +27,11 @@ import java.util.Optional;
 import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
 
+/**
+ * 
+ * Implementation for lottery service
+ *
+ */
 public class LotteryServiceImpl implements LotteryService {
 
   private final LotteryTicketRepository repository;
@@ -45,7 +50,7 @@ public class LotteryServiceImpl implements LotteryService {
     Optional<LotteryTicket> optional = repository.findById(id);
     if (optional.isPresent()) {
       if (optional.get().getNumbers().equals(winningNumbers)) {
-        return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE);
+        return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 1000);
       } else {
         return new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
       }
