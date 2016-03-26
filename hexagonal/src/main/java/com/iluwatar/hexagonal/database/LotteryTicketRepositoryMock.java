@@ -37,7 +37,7 @@ import com.iluwatar.hexagonal.domain.LotteryTicketRepository;
  */
 public class LotteryTicketRepositoryMock implements LotteryTicketRepository {
   
-  private Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
+  private static Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
 
   @Override
   public Optional<LotteryTicket> findById(LotteryTicketId id) {
@@ -59,5 +59,10 @@ public class LotteryTicketRepositoryMock implements LotteryTicketRepository {
   @Override
   public Map<LotteryTicketId, LotteryTicket> findAll() {
     return tickets;
+  }
+
+  @Override
+  public void deleteAll() {
+    tickets.clear();
   }
 }

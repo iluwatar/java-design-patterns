@@ -27,6 +27,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
@@ -38,6 +39,13 @@ import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
  */
 public class LotteryTicketRepositoryTest {
 
+  private final LotteryTicketRepository repository = new LotteryTicketRepositoryMock();
+  
+  @Before
+  public void clear() {
+    repository.deleteAll();
+  }
+  
   @Test
   public void testCrudOperations() {
     LotteryTicketRepository repository = new LotteryTicketRepositoryMock();

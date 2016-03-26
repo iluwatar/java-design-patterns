@@ -33,5 +33,6 @@ public interface LotteryAdministration {
 
   Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets();
   LotteryNumbers performLottery();
+  void resetLottery();
   
 }
