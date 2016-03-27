@@ -24,11 +24,19 @@ package com.iluwatar.hexagonal.administration;
 
 import java.util.Map;
 
+import com.iluwatar.hexagonal.banking.WireTransfers;
+import com.iluwatar.hexagonal.banking.WireTransfersImpl;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
+import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
+import com.iluwatar.hexagonal.notifications.LotteryNotifications;
+import com.iluwatar.hexagonal.notifications.LotteryNotificationsImpl;
+import com.iluwatar.hexagonal.service.LotteryService;
+import com.iluwatar.hexagonal.service.LotteryServiceImpl;
 
 /**
  * 
@@ -39,6 +47,12 @@ public class LotteryAdministrationImpl implements LotteryAdministration {
 
   private final LotteryTicketRepository repository;
 
+  private final LotteryService service = new LotteryServiceImpl();
+  
+  private final LotteryNotifications notifications = new LotteryNotificationsImpl();
+
+  private final WireTransfers bank = new WireTransfersImpl();
+  
   public LotteryAdministrationImpl() {
     repository = new LotteryTicketRepositoryMock();
   }
@@ -50,7 +64,18 @@ public class LotteryAdministrationImpl implements LotteryAdministration {
 
   @Override
   public LotteryNumbers performLottery() {
-    return LotteryNumbers.createRandom();
+    LotteryNumbers numbers = LotteryNumbers.createRandom();
+    Map<LotteryTicketId, LotteryTicket> tickets = getAllSubmittedTickets();
+    for (LotteryTicketId id: tickets.keySet()) {
+      LotteryTicketCheckResult result = service.checkTicketForPrize(id, numbers);
+      if (result.equals(CheckResult.WIN_PRIZE)) {
+        bank.transferFunds(1000, "123-123", tickets.get(id).getPlayerDetails().getBankAccount());
+        notifications.notifyPrize(tickets.get(id).getPlayerDetails(), 1000);
+      } else if (result.equals(CheckResult.NO_PRIZE)) {
+        notifications.notifyNoWin(tickets.get(id).getPlayerDetails());
+      }
+    }
+    return numbers;
   }
 
   @Override

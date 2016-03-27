@@ -34,6 +34,10 @@ public class WireTransfersImpl implements WireTransfers {
 
   private static Map<String, Integer> accounts = new HashMap<>();
   
+  static {
+    accounts.put("123-123", 50000);
+  }
+  
   @Override
   public void setFunds(String bankAccount, int amount) {
     accounts.put(bankAccount, amount);
