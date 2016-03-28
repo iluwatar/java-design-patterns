@@ -20,27 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.decorator;
+
+package com.iluwatar.mute;
 
 /**
- * 
- * Troll implements {@link Hostile} interface directly.
+ * A runnable which may throw exception on execution.
  *
  */
-public class Troll implements Hostile {
-
-  @Override
-  public void attack() {
-    System.out.println("The troll swings at you with a club!");
-  }
-
-  @Override
-  public int getAttackPower() {
-    return 10;
-  }
-
-  @Override
-  public void fleeBattle() {
-    System.out.println("The troll shrieks in horror and runs away!");
-  }
+@FunctionalInterface
+public interface CheckedRunnable {
+  /**
+   * Same as {@link Runnable#run()} with a possibility of exception in execution.
+   * @throws Exception if any exception occurs.
+   */
+  void run() throws Exception;
 }

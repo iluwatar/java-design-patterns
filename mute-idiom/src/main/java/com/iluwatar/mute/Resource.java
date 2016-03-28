@@ -20,27 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.decorator;
+
+package com.iluwatar.mute;
+
+import java.io.Closeable;
 
 /**
- * 
- * Troll implements {@link Hostile} interface directly.
- *
+ * Represents any resource that the application might acquire and that must be closed
+ * after it is utilized. Example of such resources can be a database connection, open
+ * files, sockets. 
  */
-public class Troll implements Hostile {
+public interface Resource extends Closeable {
 
-  @Override
-  public void attack() {
-    System.out.println("The troll swings at you with a club!");
-  }
-
-  @Override
-  public int getAttackPower() {
-    return 10;
-  }
-
-  @Override
-  public void fleeBattle() {
-    System.out.println("The troll shrieks in horror and runs away!");
-  }
 }

@@ -124,6 +124,7 @@
 		<module>feature-toggle</module>
 		<module>value-object</module>
 		<module>monad</module>
+		<module>mute-idiom</module>
 	</modules>
 
 	<dependencyManagement>

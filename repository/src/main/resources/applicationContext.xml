@@ -54,7 +54,8 @@
     <property name="jpaProperties">
       <map>
         <entry key="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-        <entry key="hibernate.hbm2ddl.auto" value="create-drop" />
+        <entry key="hibernate.hbm2ddl.auto" value="create" />
+        <entry key="hibernate.show_sql" value="false" />
       </map>
     </property>
   </bean>

@@ -20,27 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.decorator;
+
+package com.iluwatar.mute;
+
+import org.junit.Test;
 
 /**
- * 
- * Troll implements {@link Hostile} interface directly.
+ * Tests that Mute idiom example runs without errors.
  *
  */
-public class Troll implements Hostile {
+public class AppTest {
 
-  @Override
-  public void attack() {
-    System.out.println("The troll swings at you with a club!");
-  }
-
-  @Override
-  public int getAttackPower() {
-    return 10;
-  }
-
-  @Override
-  public void fleeBattle() {
-    System.out.println("The troll shrieks in horror and runs away!");
+  @Test
+  public void test() throws Exception {
+    App.main(null);
   }
 }

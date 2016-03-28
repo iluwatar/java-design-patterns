@@ -100,6 +100,8 @@ public class App {
       System.out.println(person);
     }
 
+    repository.deleteAll();
+    
     context.close();
 
   }
