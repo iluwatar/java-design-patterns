@@ -20,18 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dao;
 
 import org.junit.Test;
-
-import java.io.IOException;
 
 /**
  * Tests that DAO example runs without errors.
  */
 public class AppTest {
   @Test
-  public void test() throws IOException {
+  public void test() throws Exception {
     String[] args = {};
     App.main(args);
   }
