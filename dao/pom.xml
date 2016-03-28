@@ -47,7 +47,6 @@
     <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
-        <scope>compile</scope>
       </dependency>
     <dependency>
       <groupId>de.bechte.junit</groupId>
