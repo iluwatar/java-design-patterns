@@ -23,6 +23,7 @@
 
 package com.iluwatar.dao;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -51,10 +52,11 @@ public interface CustomerDao {
   
   /**
    * @param id unique identifier of the customer.
-   * @return customer with unique identifier <code>id</code> if found, null otherwise.
+   * @return an optional with customer if a customer with unique identifier <code>id</code>
+   *     exists, empty optional otherwise.
    * @throws Exception if any error occurs.
    */
-  Customer getById(int id) throws Exception;
+  Optional<Customer> getById(int id) throws Exception;
 
   /**
    * @param customer the customer to be added.

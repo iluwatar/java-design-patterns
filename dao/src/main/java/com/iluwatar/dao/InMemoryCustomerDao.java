@@ -25,6 +25,7 @@ package com.iluwatar.dao;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -46,13 +47,13 @@ public class InMemoryCustomerDao implements CustomerDao {
   }
 
   @Override
-  public Customer getById(final int id) {
-    return idToCustomer.get(id);
+  public Optional<Customer> getById(final int id) {
+    return Optional.ofNullable(idToCustomer.get(id));
   }
 
   @Override
   public boolean add(final Customer customer) {
-    if (getById(customer.getId()) != null) {
+    if (getById(customer.getId()).isPresent()) {
       return false;
     }
     

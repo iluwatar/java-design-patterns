@@ -27,6 +27,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.function.Consumer;
@@ -109,7 +110,7 @@ public class DbCustomerDao implements CustomerDao {
    * {@inheritDoc}
    */
   @Override
-  public Customer getById(int id) throws Exception {
+  public Optional<Customer> getById(int id) throws Exception {
     try (Connection connection = getConnection();
         PreparedStatement statement = 
             connection.prepareStatement("SELECT * FROM CUSTOMERS WHERE ID = ?")) {
@@ -117,9 +118,9 @@ public class DbCustomerDao implements CustomerDao {
       statement.setInt(1, id);
       ResultSet resultSet = statement.executeQuery();
       if (resultSet.next()) {
-        return createCustomer(resultSet);
+        return Optional.of(createCustomer(resultSet));
       } else {
-        return null;
+        return Optional.empty();
       }
     } catch (SQLException ex) {
       throw new Exception(ex.getMessage(), ex);
@@ -131,7 +132,7 @@ public class DbCustomerDao implements CustomerDao {
    */
   @Override
   public boolean add(Customer customer) throws Exception {
-    if (getById(customer.getId()) != null) {
+    if (getById(customer.getId()).isPresent()) {
       return false;
     }
 

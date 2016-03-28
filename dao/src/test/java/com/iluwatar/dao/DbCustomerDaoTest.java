@@ -46,8 +46,7 @@ public class DbCustomerDaoTest {
   public void createSchema() throws SQLException {
     try (Connection connection = DriverManager.getConnection(DB_URL);
         Statement statement = connection.createStatement()) {
-      statement.execute("CREATE TABLE CUSTOMERS (ID NUMBER, FNAME VARCHAR(100),"
-          + " LNAME VARCHAR(100))");
+      statement.execute(CustomerSchemaSql.CREATE_SCHEMA_SQL);
     }
   }
 
@@ -85,7 +84,7 @@ public class DbCustomerDaoTest {
         assertTrue(result);
 
         assertCustomerCountIs(2);
-        assertEquals(nonExistingCustomer, dao.getById(nonExistingCustomer.getId()));
+        assertEquals(nonExistingCustomer, dao.getById(nonExistingCustomer.getId()).get());
       }
 
       @Test
@@ -106,12 +105,12 @@ public class DbCustomerDaoTest {
         boolean result = dao.update(customer);
 
         assertFalse(result);
-        assertNull(dao.getById(nonExistingId));
+        assertFalse(dao.getById(nonExistingId).isPresent());
       }
 
       @Test
-      public void retrieveShouldReturnNull() throws Exception {
-        assertNull(dao.getById(getNonExistingCustomerId()));
+      public void retrieveShouldReturnNoCustomer() throws Exception {
+        assertFalse(dao.getById(getNonExistingCustomerId()).isPresent());
       }
     }
 
@@ -130,7 +129,7 @@ public class DbCustomerDaoTest {
 
         assertFalse(result);
         assertCustomerCountIs(1);
-        assertEquals(existingCustomer, dao.getById(existingCustomer.getId()));
+        assertEquals(existingCustomer, dao.getById(existingCustomer.getId()).get());
       }
 
       @Test
@@ -139,7 +138,7 @@ public class DbCustomerDaoTest {
 
         assertTrue(result);
         assertCustomerCountIs(0);
-        assertNull(dao.getById(existingCustomer.getId()));
+        assertFalse(dao.getById(existingCustomer.getId()).isPresent());
       }
 
       @Test
@@ -151,7 +150,7 @@ public class DbCustomerDaoTest {
 
         assertTrue(result);
 
-        final Customer cust = dao.getById(existingCustomer.getId());
+        final Customer cust = dao.getById(existingCustomer.getId()).get();
         assertEquals(newFirstname, cust.getFirstName());
         assertEquals(newLastname, cust.getLastName());
       }
@@ -207,12 +206,12 @@ public class DbCustomerDaoTest {
     }
     
     @Test
-    public void retrievingACustomerByIdReturnsNull() throws Exception {
+    public void retrievingACustomerByIdFailsWithExceptionAsFeedbackToClient() throws Exception {
       dao.getById(existingCustomer.getId());
     }
     
     @Test
-    public void retrievingAllCustomersReturnsAnEmptyStream() throws Exception {
+    public void retrievingAllCustomersFailsWithExceptionAsFeedbackToClient() throws Exception {
       dao.getAll();
     }
 
@@ -226,7 +225,7 @@ public class DbCustomerDaoTest {
   public void deleteSchema() throws SQLException {
     try (Connection connection = DriverManager.getConnection(DB_URL);
         Statement statement = connection.createStatement()) {
-      statement.execute("DROP TABLE CUSTOMERS");
+      statement.execute(CustomerSchemaSql.DELETE_SCHEMA_SQL);
     }
   }
 

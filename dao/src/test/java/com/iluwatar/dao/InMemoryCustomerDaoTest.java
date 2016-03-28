@@ -29,6 +29,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeTrue;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.junit.Before;
@@ -49,7 +50,7 @@ public class InMemoryCustomerDaoTest {
   @Before
   public void setUp() {
     dao = new InMemoryCustomerDao();
-    dao.add(CUSTOMER);
+    assertTrue(dao.add(CUSTOMER));
   }
 
   /**
@@ -69,7 +70,7 @@ public class InMemoryCustomerDaoTest {
       assertTrue(result);
 
       assertCustomerCountIs(2);
-      assertEquals(nonExistingCustomer, dao.getById(nonExistingCustomer.getId()));
+      assertEquals(nonExistingCustomer, dao.getById(nonExistingCustomer.getId()).get());
     }
 
     @Test
@@ -90,12 +91,12 @@ public class InMemoryCustomerDaoTest {
       boolean result = dao.update(customer);
 
       assertFalse(result);
-      assertNull(dao.getById(nonExistingId));
+      assertFalse(dao.getById(nonExistingId).isPresent());
     }
 
     @Test
-    public void retrieveShouldReturnNull() throws Exception {
-      assertNull(dao.getById(getNonExistingCustomerId()));
+    public void retrieveShouldReturnNoCustomer() throws Exception {
+      assertFalse(dao.getById(getNonExistingCustomerId()).isPresent());
     }
   }
 
@@ -111,7 +112,7 @@ public class InMemoryCustomerDaoTest {
 
       assertFalse(result);
       assertCustomerCountIs(1);
-      assertEquals(CUSTOMER, dao.getById(CUSTOMER.getId()));
+      assertEquals(CUSTOMER, dao.getById(CUSTOMER.getId()).get());
     }
 
     @Test
@@ -120,7 +121,7 @@ public class InMemoryCustomerDaoTest {
 
       assertTrue(result);
       assertCustomerCountIs(0);
-      assertNull(dao.getById(CUSTOMER.getId()));
+      assertFalse(dao.getById(CUSTOMER.getId()).isPresent());
     }
 
     @Test
@@ -132,9 +133,17 @@ public class InMemoryCustomerDaoTest {
 
       assertTrue(result);
 
-      final Customer cust = dao.getById(CUSTOMER.getId());
+      final Customer cust = dao.getById(CUSTOMER.getId()).get();
       assertEquals(newFirstname, cust.getFirstName());
       assertEquals(newLastname, cust.getLastName());
+    }
+    
+    @Test
+    public void retriveShouldReturnTheCustomer() {
+      Optional<Customer> optionalCustomer = dao.getById(CUSTOMER.getId());
+      
+      assertTrue(optionalCustomer.isPresent());
+      assertEquals(CUSTOMER, optionalCustomer.get());
     }
   }
 

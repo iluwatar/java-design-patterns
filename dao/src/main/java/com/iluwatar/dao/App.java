@@ -73,15 +73,14 @@ public class App {
   private static void deleteSchema(DataSource dataSource) throws SQLException {
     try (Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement()) {
-      statement.execute("DROP TABLE CUSTOMERS");
+      statement.execute(CustomerSchemaSql.DELETE_SCHEMA_SQL);
     }
   }
 
   private static void createSchema(DataSource dataSource) throws SQLException {
     try (Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement()) {
-      statement.execute("CREATE TABLE CUSTOMERS (ID NUMBER, FNAME VARCHAR(100), "
-          + "LNAME VARCHAR(100))");
+      statement.execute(CustomerSchemaSql.CREATE_SCHEMA_SQL);
     }
   }
 
