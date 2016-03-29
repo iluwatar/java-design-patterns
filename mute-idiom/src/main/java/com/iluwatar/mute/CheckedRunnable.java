@@ -21,17 +21,17 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.dao;
-
-import org.junit.Test;
+package com.iluwatar.mute;
 
 /**
- * Tests that DAO example runs without errors.
+ * A runnable which may throw exception on execution.
+ *
  */
-public class AppTest {
-  @Test
-  public void test() throws Exception {
-    String[] args = {};
-    App.main(args);
-  }
+@FunctionalInterface
+public interface CheckedRunnable {
+  /**
+   * Same as {@link Runnable#run()} with a possibility of exception in execution.
+   * @throws Exception if any exception occurs.
+   */
+  void run() throws Exception;
 }

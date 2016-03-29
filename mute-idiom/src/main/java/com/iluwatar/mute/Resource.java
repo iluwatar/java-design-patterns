@@ -21,17 +21,15 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.dao;
+package com.iluwatar.mute;
 
-import org.junit.Test;
+import java.io.Closeable;
 
 /**
- * Tests that DAO example runs without errors.
+ * Represents any resource that the application might acquire and that must be closed
+ * after it is utilized. Example of such resources can be a database connection, open
+ * files, sockets. 
  */
-public class AppTest {
-  @Test
-  public void test() throws Exception {
-    String[] args = {};
-    App.main(args);
-  }
+public interface Resource extends Closeable {
+
 }

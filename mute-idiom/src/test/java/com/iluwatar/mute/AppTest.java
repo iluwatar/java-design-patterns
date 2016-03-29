@@ -21,17 +21,18 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.dao;
+package com.iluwatar.mute;
 
 import org.junit.Test;
 
 /**
- * Tests that DAO example runs without errors.
+ * Tests that Mute idiom example runs without errors.
+ *
  */
 public class AppTest {
+
   @Test
   public void test() throws Exception {
-    String[] args = {};
-    App.main(args);
+    App.main(null);
   }
 }
