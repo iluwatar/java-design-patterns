@@ -1,8 +1,8 @@
 package com.iluwatar.leaderfollower;
 
 /**
- * The EventHandler interface. All concrete EventHanlder implementations can process a unit of work
- * represented by Handle
+ * The EventHandler interface. All concrete EventHanlder implementations can process a unit of work represented by
+ * Handle
  * 
  * @author amit
  *

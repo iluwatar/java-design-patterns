@@ -7,7 +7,7 @@ public class Worker implements Runnable {
   private Object leader = new Object();
   private final HandleSet handleSet;
   private List<Worker> workers;
-  private final  long id;
+  private final long id;
   private final WorkStation workstation;
   private final ConcreteEventHandler concreteEventHandler;
 
