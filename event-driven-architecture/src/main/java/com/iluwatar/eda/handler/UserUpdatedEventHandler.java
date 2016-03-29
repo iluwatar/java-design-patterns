@@ -22,7 +22,6 @@
  */
 package com.iluwatar.eda.handler;
 
-import com.iluwatar.eda.event.Event;
 import com.iluwatar.eda.event.UserUpdatedEvent;
 import com.iluwatar.eda.framework.Handler;
 
@@ -32,9 +31,9 @@ import com.iluwatar.eda.framework.Handler;
 public class UserUpdatedEventHandler implements Handler<UserUpdatedEvent> {
 
   @Override
-  public void onEvent(Event message) {
+  public void onEvent(UserUpdatedEvent event) {
 
-    UserUpdatedEvent userUpdatedEvent = (UserUpdatedEvent) message;
-    System.out.printf("User with %s has been Updated!", userUpdatedEvent.getUser().getUsername());
+    System.out.println(String.format(
+            "User '%s' has been Updated!", event.getUser().getUsername()));
   }
 }
