@@ -30,7 +30,7 @@ package com.iluwatar.data.transfer.object;
 /**
  * Client requests for the Data
  */
-public class Client {
+public class App {
     
   /**
    * Program entry point
