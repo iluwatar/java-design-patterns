@@ -16,34 +16,17 @@
  */
 package com.iluwatar.leaderfollower;
 
-/**
- * A unit of work to be processed by the Workers. Implements Handle.
- * 
- * @author amit
- *
- */
-public class Work implements Handle {
-  public final int distance;
-  
-  private boolean handled;
+import org.junit.Assert;
+import org.junit.Test;
 
-  public Work(int distance) {
-    this.distance = distance;
-  }
+public class ConcreteEventHandlerTest {
 
-  @Override
-  public int getPayLoad() {
-    return distance;
-  }
-
-  @Override
-  public void setHandled() {
-    this.handled = true;
-  }
-
-  @Override
-  public boolean isHandled() {
-    return this.handled;
+  @Test
+  public void testEventHandling() throws InterruptedException {
+    ConcreteEventHandler concreteEventHandler = new ConcreteEventHandler();
+    Work handle = new Work(10);
+    concreteEventHandler.handleEvent(handle);
+    Assert.assertTrue(handle.isHandled());
   }
 
 }
