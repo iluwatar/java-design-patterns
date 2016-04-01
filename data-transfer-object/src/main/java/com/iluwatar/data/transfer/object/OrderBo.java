@@ -20,11 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.iluwatar.data.transfer.object;
 
 import java.io.FileReader;
@@ -49,16 +44,12 @@ public class OrderBo {
   }
 
   /**
-  * returns order details of given order index(order no.)
-  * as OrderDto object.
-  *
-  * <p>order id is the index of that order in the json array.
-  * <p>customer id is the index of that customer in the json array.
-  * <p>product id is the index of that product in the json array.
-  * 
-  * @param orderIndex : Index or id of the order.
-  * @return order details as orderDto object.
-  */
+   * returns order details of given order index(order no.)
+   * as OrderDto object.
+   * 
+   * @param orderIndex : Index or id of the order.
+   * @return order details as orderDto object.
+   */
   public OrderDto getOrderDetails(int orderIndex) {
     OrderDto retval = new OrderDto();
     
@@ -76,6 +67,9 @@ public class OrderBo {
     return retval;
   }
 
+  /**
+   * Reads data from json files into class variables
+   */
   private void readData() {
     JSONParser parser = new JSONParser();
     try {

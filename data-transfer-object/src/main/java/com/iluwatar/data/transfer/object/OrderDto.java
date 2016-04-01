@@ -20,16 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.iluwatar.data.transfer.object;
 
 /**
- *
- * @author raviteja1992y
+ * This example is of online phone orders. We have products, customers and their orders.
+ * Products, customers and orders data are saved in their respective json files. 
+ * <p>
+ * products.json is an array of product object. Product object contains product name, price, etc..
+ * <p>
+ * customers.json is an array of customer object. Customer object contains customer name, address, etc..
+ * <p>
+ * Orders.json is an array of order object. Order contains the unique identifier of the customer who 
+ * placed the order and unique identifier of the product he/she ordered.
+ * <p>
+ * I considered the index of product in products json array as its unique identifier for simplicity in coding. 
+ * Same is for the customer in customers json array and order in orders json array.
+ * <p>
+ * OrderDto is the Data transfer object for order details i.e orderIndex, productName, customerName etc..
+ * CLient requests for the OrderDto object of a specific orderId through OrderBo object.
  */
 
 public class OrderDto {

@@ -25,6 +25,7 @@ Data transfer object is an object that carries data between processes. The motiv
 Use this pattern when
 
 * you need to make multiple calls to remote.
+* you have a significant mismatch between the model in your presentation layer and the underlying domain model.
 
 
 ## Credits
