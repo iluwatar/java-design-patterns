@@ -32,3 +32,5 @@ compress_html:
   profile: false
   ignore:
     envs: [local]
+
+exclude: [Gemfile, bin, s3_website.yml, vendor]
