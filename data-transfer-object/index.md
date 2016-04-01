@@ -16,7 +16,7 @@ Virtual Constructor
 Data transfer object is an object that carries data between processes. The motivation for its use has to do with the fact that communication between processes is usually done resorting to remote interfaces (e.g. web services), where each call is an expensive operation. One way of reducing the number of calls is to use an object (the DTO) that aggregates the data that would have been transferred by the several calls, but that is served by one call only.
 
 ## Class UML
-![alt text](./etc/dto.png "data transfer object")
+![alt text](./etc/dto_uml.png "data transfer object")
 
 ## Data structure
 ![alt text](./etc/data-diagram.png "data transfer object")
