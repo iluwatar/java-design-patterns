@@ -40,6 +40,11 @@
       <artifactId>spring-boot-starter-web</artifactId>
       <version>${spring-boot.version}</version>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -58,12 +63,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <!--<dependencies>-->
-    <!--<dependency>-->
-      <!--<groupId>junit</groupId>-->
-      <!--<artifactId>junit</artifactId>-->
-      <!--<scope>test</scope>-->
-    <!--</dependency>-->
-  <!--</dependencies>-->
 </project>
