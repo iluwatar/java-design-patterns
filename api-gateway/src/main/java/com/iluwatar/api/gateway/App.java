@@ -1,5 +1,8 @@
 package com.iluwatar.api.gateway;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  * With the Microservices pattern, a client may need data from multiple different microservices.
  * If the client called each microservice directly, that could contribute to longer load times,
@@ -18,13 +21,15 @@ package com.iluwatar.api.gateway;
  *
  * <p>
  * This implementation shows what the API Gateway pattern could look like for an e-commerce site.
- * In this case, the (@link ImageService) and (@link PriceService) represent our microservices.
- * Customers viewing the site on a desktop device can see both price information and an image of
- * a product, so the (@link ApiGateway) calls both of the microservices and aggregates the data in
- * the (@link DesktopProduct) model. However, mobile users only see price information; they do not
- * see a product image. For mobile users, the (@link ApiGateway) only retrieves price information,
- * which it uses to populate the (@link MobileProduct).
+ * The {@link ApiGateway} makes calls to the Image and Price microservices using the
+ * {@link ImageClientImpl} and {@link PriceClientImpl} respectively. Customers viewing the site on a
+ * desktop device can see both price information and an image of a product, so the {@link ApiGateway}
+ * calls both of the microservices and aggregates the data in the {@link DesktopProduct} model.
+ * However, mobile users only see price information; they do not see a product image. For mobile
+ * users, the {@link ApiGateway} only retrieves price information, which it uses to populate the
+ * {@link MobileProduct}.
  */
+@SpringBootApplication
 public class App {
 
   /**
@@ -34,13 +39,6 @@ public class App {
    *          command line args
    */
   public static void main(String[] args) {
-    ApiGateway apiGateway = new ApiGateway();
-
-    DesktopProduct desktopProduct = apiGateway.getProductDesktop();
-    System.out.println(String.format("Desktop Product \nPrice: %s\nImage path: %s",
-        desktopProduct.getPrice(), desktopProduct.getImagePath()));
-
-    MobileProduct mobileProduct = apiGateway.getProductMobile();
-    System.out.println(String.format("Mobile Product \nPrice: %s", mobileProduct.getPrice()));
+    SpringApplication.run(App.class, args);
   }
 }

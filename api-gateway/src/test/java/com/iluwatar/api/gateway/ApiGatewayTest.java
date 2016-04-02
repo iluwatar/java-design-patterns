@@ -1,21 +1,44 @@
 package com.iluwatar.api.gateway;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class ApiGatewayTest {
+
+  @InjectMocks
+  private ApiGateway apiGateway;
+
+  @Mock
+  private ImageClient imageClient;
+
+  @Mock
+  private PriceClient priceClient;
+
+  @Before
+  public void setup() {
+    MockitoAnnotations.initMocks(this);
+  }
 
   /**
    * Tests getting the data for a desktop client
    */
   @Test
   public void testGetProductDesktop() {
-    ApiGateway apiGateway = new ApiGateway();
+    String imagePath = "/product-image.png";
+    String price = "20";
+    when(imageClient.getImagePath()).thenReturn(imagePath);
+    when(priceClient.getPrice()).thenReturn(price);
+
     DesktopProduct desktopProduct = apiGateway.getProductDesktop();
 
-    assertEquals("20", desktopProduct.getPrice());
-    assertEquals("/product-image.png", desktopProduct.getImagePath());
+    assertEquals(price, desktopProduct.getPrice());
+    assertEquals(imagePath, desktopProduct.getImagePath());
   }
 
   /**
@@ -23,9 +46,11 @@ public class ApiGatewayTest {
    */
   @Test
   public void testGetProductMobile() {
-    ApiGateway apiGateway = new ApiGateway();
+    String price = "20";
+    when(priceClient.getPrice()).thenReturn(price);
+
     MobileProduct mobileProduct = apiGateway.getProductMobile();
 
-    assertEquals("20", mobileProduct.getPrice());
+    assertEquals(price, mobileProduct.getPrice());
   }
 }
