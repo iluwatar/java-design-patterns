@@ -1,5 +1,5 @@
-s3_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
-s3_secret: <%= ENV['S3_SECRET_KEY'] %>
+s3_id: <%= ENV['S3_ID'] %>
+s3_secret: <%= ENV['S3_SECRET'] %>
 s3_bucket: java-design-patterns.com
 
 max_age:
