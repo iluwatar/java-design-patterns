@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e # halt script on error
+
+# need to init(download) our git submodule dependency first of all
+git submodule update --init --recursive
+
+# modified destination because of a htmlproofer bug while using baseurl feature of jekyll
+# See here: https://github.com/jekyll/jekyll/issues/4122
+bundle exec jekyll build --destination ./_site/java-design-patterns
+bundle exec htmlproofer ./_site
+

@@ -1,18 +1,22 @@
-# env:
-#   global:
-#     - secure:
-#     - secure:
+env:
+  global:
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+#     - secure: 
+
 language: ruby
 rvm:
   - 2.1.2
 
-script: bundle exec jekyll build
 install: bundle install --jobs=3 --retry=3
+script: ./cibuild
 after_success: travis_retry bundle exec s3_website push --headless
 
 cache: bundler
-sudo: false
 
+# branch whitelist, only for GitHub Pages
 branches:
   only:
-    - gh-pages
+  - gh-pages     # test the gh-pages branch
+  - /pages-(.*)/ # test every branch which starts with "pages-"
+
+sudo: false # route the build to the container-based infrastructure for a faster build
