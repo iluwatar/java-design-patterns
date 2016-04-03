@@ -1,0 +1,34 @@
+s3_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
+s3_secret: <%= ENV['S3_SECRET_KEY'] %>
+s3_bucket: java-design-patterns.com
+
+max_age:
+  "assets/*": 6000
+  "*": 300
+
+# gzip:
+#   - .html
+#   - .css
+#   - .md
+
+# s3_endpoint: us-east-1
+s3_reduced_redundancy: true
+
+# cloudfront_distribution_id: your-dist-id
+# cloudfront_distribution_config:
+#   default_cache_behavior:
+#     min_TTL: <%= 60 * 60 * 24 %>
+#   aliases:
+#     quantity: 1
+#     items:
+#       CNAME: java-design-patterns.com
+
+concurrency_level: 100
+
+# routing_rules:
+#   - condition:
+#       key_prefix_equals: blog/some_path
+#     redirect:
+#       host_name: blog.example.com
+#       replace_key_prefix_with: some_new_path/
+#       http_redirect_code: 301
