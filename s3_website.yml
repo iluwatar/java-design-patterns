@@ -14,7 +14,7 @@ max_age:
 # s3_endpoint: us-east-1
 s3_reduced_redundancy: true
 
-# cloudfront_distribution_id: your-dist-id
+cloudfront_distribution_id: E1GTH8J7AJ8I1Z
 # cloudfront_distribution_config:
 #   default_cache_behavior:
 #     min_TTL: <%= 60 * 60 * 24 %>
