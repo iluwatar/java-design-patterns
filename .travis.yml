@@ -1,7 +1,8 @@
 env:
   global:
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
-#     - secure: 
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+    - secure: "Iu8YTpzVbRWjPfYJdV95FyHREmdIDjvhhEOh0Pr47UMNYqQfM9+Ag+jibe/cmOHV99zqYbxiGX+pfEUCaVMaza4urXdh4XedOO8NPefa5MP8LLqk9px3UmplaAZ02o015UTu+8OliRAQ8uy9qQhufIx09oHqznTGN4868SAAdI4="
+    - secure: "nxGfq7fI7V4FA8CzuPilfaO59xdeyqmxDnjAzwpMtiidxg/zucKf03EahdnCAzr8f4llixBDacttL4dX5Oz0JgfSH5ekFAivUctmpGmy+o1KKPzeTzx9WlwNGx3ycA8Sa1vOzUAOOP0WanFoWC/aEEbzk+M1F+dOrtlwJgLdCcA="
 
 language: ruby
 rvm:
@@ -9,7 +10,7 @@ rvm:
 
 install: bundle install --jobs=3 --retry=3
 script: ./cibuild
-after_success: travis_retry bundle exec s3_website push --headless
+after_success: travis_retry bundle exec s3_website push
 
 cache: bundler
 
