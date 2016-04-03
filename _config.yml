@@ -6,6 +6,8 @@ description: Java Design Patterns
 #   line in _config.yml. It will appear in your document head meta (for
 #   Google search results) and in your feed.xml site description.
 
+# ! Attention: the lines starting with "baseurl" and "url" are edited on travis build with a search and replace regex
+# Any Change in those two lines should be checked with the "cibuild" script
 baseurl: "/java-design-patterns" # the subpath of your site, e.g. /blog/
 url: "https://iluwatar.github.io" # the base hostname & protocol for your site
 repo_url: "https://github.com/iluwatar/java-design-patterns"

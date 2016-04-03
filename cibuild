@@ -4,8 +4,9 @@ set -e # halt script on error
 # need to init(download) our git submodule dependency first of all
 git submodule update --init --recursive
 
-# modified destination because of a htmlproofer bug while using baseurl feature of jekyll
-# See here: https://github.com/jekyll/jekyll/issues/4122
-bundle exec jekyll build --destination ./_site/java-design-patterns
-bundle exec htmlproofer ./_site
+# search and replace the baseurl and url parameters of _config.yml to work on s3
+sed -i -e 's/baseurl: /# baseurl: /g' _config.yml
+sed -i -e 's/url: "https:\/\/iluwatar.github.io"/url: "http:\/\/java-design-patterns.com"/g' _config.yml
 
+bundle exec jekyll build
+bundle exec htmlproofer ./_site

@@ -2,10 +2,6 @@ s3_id: <%= ENV['S3_ACCESS_KEY_ID'] %>
 s3_secret: <%= ENV['S3_SECRET_KEY'] %>
 s3_bucket: java-design-patterns.com
 
-# the real website is in this subdirectory because of the validation method used
-# see the 'cibuild' file for more information
-site: ./_site/java-design-patterns
-
 max_age:
   "assets/*": 6000
   "*": 300
