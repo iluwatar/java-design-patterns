@@ -8,6 +8,10 @@ git submodule update --init --recursive
 sed -i -e 's/baseurl: /# baseurl: /g' _config.yml
 sed -i -e 's/url: "https:\/\/iluwatar.github.io"/url: "http:\/\/java-design-patterns.com"/g' _config.yml
 
+# add the currently used commit hash to the _config.yml so it can be displayed on the website
+printf "\ngithub:\n  build_revision: " >> _config.yml
+git log --pretty=format:'%H' -n 1 >> _config.yml
+
 bundle exec jekyll build
 
 # - ignore everything below every webapp directory, so we dont mess with the source code
