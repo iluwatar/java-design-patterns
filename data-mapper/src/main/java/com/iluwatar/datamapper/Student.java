@@ -18,42 +18,35 @@
  */
 package com.iluwatar.datamapper;
 
+
 import java.io.Serializable;
-import java.util.UUID;
 
 public final class Student implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private UUID guid;
-  private int studentID;
+  private int studentId;
   private String name;
   private char grade;
 
   public Student() {
-    this.guid = UUID.randomUUID();
+
   }
 
-  public Student(final UUID guid, final int studentID, final String name, final char grade) {
+  public Student(final int studentId, final String name, final char grade) {
     super();
 
-    this.guid = guid;
-    this.studentID = studentID;
+    this.studentId = studentId;
     this.name = name;
     this.grade = grade;
   }
 
-
-  public Student(final UUID guid) {
-    this.guid = guid;
-  }
-
   public final int getStudentId() {
-    return studentID;
+    return studentId;
   }
 
-  public final void setStudentId(final int studentID) {
-    this.studentID = studentID;
+  public final void setStudentId(final int studentId) {
+    this.studentId = studentId;
   }
 
   public final String getName() {
@@ -72,12 +65,39 @@ public final class Student implements Serializable {
     this.grade = grade;
   }
 
-  public final UUID getGuId() {
-    return guid;
+  @Override
+  public boolean equals(final Object inputObject) {
+
+    boolean isEqual = false;
+
+    /* Check if both objects are same */
+    if (this == inputObject) {
+
+      isEqual = true;
+    }
+    /* Check if objects belong to same class */
+    else if (inputObject != null && getClass() == inputObject.getClass()) {
+
+      final Student student = (Student) inputObject;
+
+      /* If student id matched */
+      if (this.getStudentId() == student.getStudentId()) {
+
+        isEqual = true;
+      }
+    }
+    return isEqual;
+  }
+
+  @Override
+  public int hashCode() {
+
+    /* Student id is assumed to be unique */
+    return this.getStudentId();
   }
 
   @Override
   public final String toString() {
-    return "Student [guid=" + guid + ", studentID=" + studentID + ", name=" + name + ", grade=" + grade + "]";
+    return "Student [studentId=" + studentId + ", name=" + name + ", grade=" + grade + "]";
   }
 }

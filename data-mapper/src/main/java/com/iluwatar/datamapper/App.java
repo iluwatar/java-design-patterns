@@ -19,7 +19,6 @@
 package com.iluwatar.datamapper;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
@@ -32,7 +31,7 @@ import org.apache.log4j.Logger;
  * database schema is always ignorant of the objects that use it.) Since it's a form of Mapper ,
  * Data Mapper itself is even unknown to the domain layer.
  * <p>
- * The below example demonstrates basic CRUD operations: select, add, update, and delete.
+ * The below example demonstrates basic CRUD operations: Create, Read, Update, and Delete.
  * 
  */
 public final class App {
@@ -75,24 +74,24 @@ public final class App {
     } else {
 
       /* Don't couple any Data Mapper to java.sql.SQLException */
-      throw new DataMapperException("Following data source(" + args[0] + ") is not supported");
+      throw new DataMapperException("Following data mapping type(" + args[0] + ") is not supported");
     }
 
     /* Create new student */
-    Student student = new Student(UUID.randomUUID(), 1, "Adam", 'A');
+    Student student = new Student(1, "Adam", 'A');
 
     /* Add student in respectibe db */
     mapper.insert(student);
 
     /* Find this student */
-    final Optional<Student> studentToBeFound = mapper.find(student.getGuId());
+    final Optional<Student> studentToBeFound = mapper.find(student.getStudentId());
 
     if (log.isDebugEnabled()) {
       log.debug("App.main(), db find returned : " + studentToBeFound);
     }
 
     /* Update existing student object */
-    student = new Student(student.getGuId(), 1, "AdamUpdated", 'A');
+    student = new Student(student.getStudentId(), "AdamUpdated", 'A');
 
     /* Update student in respectibe db */
     mapper.update(student);

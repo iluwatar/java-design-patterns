@@ -19,11 +19,10 @@
 package com.iluwatar.datamapper;
 
 import java.util.Optional;
-import java.util.UUID;
 
 public interface StudentDataMapper {
 
-  public Optional<Student> find(final UUID uniqueID) throws DataMapperException;
+  public Optional<Student> find(final int studentId);
 
   public void insert(final Student student) throws DataMapperException;
 

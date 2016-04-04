@@ -18,52 +18,25 @@
  */
 package com.iluwatar.datamapper;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public final class StudentOracleDataMapper implements StudentDataMapper {
 
+  /* Note: Normally this would be in the form of an actual database */
+  private List<Student> students;
+
   @Override
-  public final Optional<Student> find(final UUID uniqueID) throws DataMapperException {
+  public final Optional<Student> find(final int studentId) {
 
-    try {
-      /* OracleDriver class cant be initilized directly */
-      Class.forName("oracle.jdbc.driver.OracleDriver");
+    /* Compare with existing students */
+    for (final Student student : this.students) {
 
-      /* Create new connection */
-      final Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:Oracle", "username", "password");
-
-      /* Create new Oracle compliant sql statement */
-      final String statement = "SELECT `guid`, `grade`, `studentID`, `name` FROM `students` where `guid`=?";
-      final PreparedStatement dbStatement = connection.prepareStatement(statement);
-
-      /* Set unique id in sql statement */
-      dbStatement.setString(1, uniqueID.toString());
-
-      /* Execute the sql query */
-      final ResultSet rs = dbStatement.executeQuery();
-
-      while (rs.next()) {
-
-        /* Create new student */
-        final Student student = new Student(UUID.fromString(rs.getString("guid")));
-
-        /* Set all values from database in java object */
-        student.setName(rs.getString("name"));
-        student.setGrade(rs.getString("grade").charAt(0));
-        student.setStudentId(rs.getInt("studentID"));
+      /* Check if student is found */
+      if (student.getStudentId() == studentId) {
 
         return Optional.of(student);
       }
-    } catch (final SQLException | ClassNotFoundException e) {
-
-      /* Don't couple any Data Mapper to java.sql.SQLException */
-      throw new DataMapperException("Error occured reading Students from Oracle data source.", e);
     }
 
     /* Return empty value */
@@ -71,90 +44,54 @@ public final class StudentOracleDataMapper implements StudentDataMapper {
   }
 
   @Override
-  public final void update(final Student student) throws DataMapperException {
-    try {
+  public final void update(final Student studentToBeUpdated) throws DataMapperException {
 
-      /* OracleDriver class cant be initilized directly */
-      Class.forName("oracle.jdbc.driver.OracleDriver");
 
-      /* Create new connection */
-      final Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:Oracle", "username", "password");
+    /* Check with existing students */
+    if (this.students.contains(studentToBeUpdated)) {
 
-      /* Create new Oracle compliant sql statement */
-      final String statement = "UPDATE `students` SET `grade`=?, `studentID`=?, `name`=? where `guid`=?";
+      /* Get the index of student in list */
+      final int index = this.students.indexOf(studentToBeUpdated);
 
-      final PreparedStatement dbStatement = connection.prepareStatement(statement);
+      /* Update the student in list */
+      this.students.set(index, studentToBeUpdated);
 
-      /* Set java object values in sql statement */
-      dbStatement.setString(1, Character.toString(student.getGrade()));
-      dbStatement.setInt(2, student.getStudentId());
-      dbStatement.setString(3, student.getName());
-      dbStatement.setString(4, student.getGuId().toString());
+    } else {
 
-      /* Execute the sql query */
-      dbStatement.executeUpdate();
-
-    } catch (final SQLException | ClassNotFoundException e) {
-
-      /* Don't couple any Data Mapper to java.sql.SQLException */
-      throw new DataMapperException("Error occured reading Students from Oracle data source.", e);
+      /* Throw user error */
+      throw new DataMapperException("Student [" + studentToBeUpdated.getName() + "] is not found");
     }
   }
 
   @Override
-  public final void insert(final Student student) throws DataMapperException {
-    try {
+  public final void insert(final Student studentToBeInserted) throws DataMapperException {
 
-      /* OracleDriver class cant be initilized directly */
-      Class.forName("oracle.jdbc.driver.OracleDriver");
+    /* Check with existing students */
+    if (!this.students.contains(studentToBeInserted)) {
 
-      /* Create new connection */
-      final Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:Oracle", "username", "password");
+      /* Add student in list */
+      this.students.add(studentToBeInserted);
 
-      /* Create new Oracle compliant sql statement */
-      final String statement = "INSERT INTO `students` (`grade`, `studentID`, `name`, `guid`) VALUES (?, ?, ?, ?)";
-      final PreparedStatement dbStatement = connection.prepareStatement(statement);
+    } else {
 
-      /* Set java object values in sql statement */
-      dbStatement.setString(1, Character.toString(student.getGrade()));
-      dbStatement.setInt(2, student.getStudentId());
-      dbStatement.setString(3, student.getName());
-      dbStatement.setString(4, student.getGuId().toString());
-
-      /* Execute the sql query */
-      dbStatement.executeUpdate();
-
-    } catch (final SQLException | ClassNotFoundException e) {
-
-      /* Don't couple any Data Mapper to java.sql.SQLException */
-      throw new DataMapperException("Error occured reading Students from Oracle data source.", e);
+      /* Throw user error */
+      throw new DataMapperException("Student already [" + studentToBeInserted.getName() + "] exists");
     }
   }
 
   @Override
-  public final void delete(final Student student) throws DataMapperException {
-    try {
+  public final void delete(final Student studentToBeDeleted) throws DataMapperException {
 
-      /* OracleDriver class cant be initilized directly */
-      Class.forName("oracle.jdbc.driver.OracleDriver");
+    /* Check with existing students */
+    if (this.students.contains(studentToBeDeleted)) {
 
-      /* Create new connection */
-      final Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:Oracle", "username", "password");
+      /* Delete the student from list */
+      this.students.remove(studentToBeDeleted);
 
-      /* Create new Oracle compliant sql statement */
-      final String statement = "DELETE FROM `students` where `guid`=?";
-      final PreparedStatement dbStatement = connection.prepareStatement(statement);
+    } else {
 
-      /* Set java object values in sql statement */
-      dbStatement.setString(1, student.getGuId().toString());
-
-      /* Execute the sql query */
-      dbStatement.executeUpdate();
-
-    } catch (final SQLException | ClassNotFoundException e) {
-
-      /* Don't couple any Data Mapper to java.sql.SQLException */
-      throw new DataMapperException("Error occured reading Students from Oracle data source.", e);
+      /* Throw user error */
+      throw new DataMapperException("Student [" + studentToBeDeleted.getName() + "] is not found");
     }
   }
 }
