@@ -1,5 +1,6 @@
 /**
- * The MIT License Copyright (c) 2014 Ilkka Seppälä
+ * The MIT License Copyright (c) 2016 Amit Dixit
+ * 
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -18,82 +19,17 @@
  */
 package com.iluwatar.datamapper;
 
-import java.util.Optional;
-import java.util.UUID;
-
-import org.apache.log4j.Logger;
+import com.iluwatar.datamapper.App;
+import org.junit.Test;
 
 /**
- * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
- * database. Its responsibility is to transfer data between the two and also to isolate them from
- * each other. With Data Mapper the in-memory objects needn't know even that there's a database
- * present; they need no SQL interface code, and certainly no knowledge of the database schema. (The
- * database schema is always ignorant of the objects that use it.) Since it's a form of Mapper ,
- * Data Mapper itself is even unknown to the domain layer.
- * <p>
- * The below example demonstrates basic CRUD operations: select, add, update, and delete.
- * 
+ * Tests that Data-Mapper example runs without errors.
  */
-public final class App {
+public final class AppTest {
 
-  private static Logger log = Logger.getLogger(App.class);
-
-
-  private static final String DB_TYPE_ORACLE = "Oracle";
-  private static final String DB_TYPE_MYSQL = "MySQL";
-
-
-  /**
-   * Program entry point.
-   * 
-   * @param args command line args.
-   */
-  public static final void main(final String... args) {
-
-    if (log.isInfoEnabled() & args.length > 0) {
-      log.debug("App.main(), db type: " + args[0]);
-    }
-
-    StudentDataMapper mapper = null;
-
-    /* Check the desired db type from runtime arguments */
-    if (DB_TYPE_ORACLE.equalsIgnoreCase(args[0])) {
-
-      /* Create new data mapper for mysql */
-      mapper = new StudentMySQLDataMapper();
-
-    } else if (DB_TYPE_MYSQL.equalsIgnoreCase(args[0])) {
-
-      /* Create new data mapper for oracle */
-      mapper = new StudentMySQLDataMapper();
-    } else {
-
-      /* Don't couple any Data Mapper to java.sql.SQLException */
-      throw new DataMapperException("Following data source(" + args[0] + ") is not supported");
-    }
-
-    /* Create new student */
-    Student student = new Student(UUID.randomUUID(), 1, "Adam", 'A');
-
-    /* Add student in respectibe db */
-    mapper.insert(student);
-
-    /* Find this student */
-    final Optional<Student> studentToBeFound = mapper.find(student.getGuId());
-
-    if (log.isDebugEnabled()) {
-      log.debug("App.main(), db find returned : " + studentToBeFound);
-    }
-
-    /* Update existing student object */
-    student = new Student(student.getGuId(), 1, "AdamUpdated", 'A');
-
-    /* Update student in respectibe db */
-    mapper.update(student);
-
-    /* Delete student in db */
-    mapper.delete(student);
+  @Test
+  public void test() {
+    final String[] args = {};
+    App.main(args);
   }
-
-  private App() {}
 }

@@ -23,7 +23,6 @@ import java.util.Optional;
 import org.apache.log4j.Logger;
 
 /**
- * 
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
  * database. Its responsibility is to transfer data between the two and also to isolate them from
  * each other. With Data Mapper the in-memory objects needn't know even that there's a database
@@ -39,43 +38,18 @@ public final class App {
   private static Logger log = Logger.getLogger(App.class);
 
 
-  private static final String DB_TYPE_ORACLE = "Oracle";
-  private static final String DB_TYPE_MYSQL = "MySQL";
-
 
   /**
    * Program entry point.
    * 
    * @param args command line args.
    */
-  public static final void main(final String... args) {
+  public static void main(final String... args) {
 
-    if (log.isInfoEnabled() & args.length > 0) {
-      log.debug("App.main(), db type: " + args[0]);
-    }
 
-    StudentDataMapper mapper = null;
-
-    /* Check the desired db type from runtime arguments */
-    if (args.length == 0) {
-
-      /* Create default data mapper for mysql */
-      mapper = new StudentMySQLDataMapper();
-
-    } else if (args.length > 0 && DB_TYPE_ORACLE.equalsIgnoreCase(args[0])) {
-
-      /* Create new data mapper for mysql */
-      mapper = new StudentMySQLDataMapper();
-
-    } else if (args.length > 0 && DB_TYPE_MYSQL.equalsIgnoreCase(args[0])) {
-
-      /* Create new data mapper for oracle */
-      mapper = new StudentMySQLDataMapper();
-    } else {
-
-      /* Don't couple any Data Mapper to java.sql.SQLException */
-      throw new DataMapperException("Following data mapping type(" + args[0] + ") is not supported");
-    }
+    /* Create any type of mapper at implementation which is desired */
+    /* final StudentDataMapper mapper = new StudentFirstDataMapper(); */
+    final StudentDataMapper mapper = new StudentSecondDataMapper();
 
     /* Create new student */
     Student student = new Student(1, "Adam", 'A');

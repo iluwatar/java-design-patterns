@@ -22,11 +22,11 @@ import java.util.Optional;
 
 public interface StudentDataMapper {
 
-  public Optional<Student> find(final int studentId);
+  Optional<Student> find(int studentId);
 
-  public void insert(final Student student) throws DataMapperException;
+  void insert(Student student) throws DataMapperException;
 
-  public void update(final Student student) throws DataMapperException;
+  void update(Student student) throws DataMapperException;
 
-  public void delete(final Student student) throws DataMapperException;
+  void delete(Student student) throws DataMapperException;
 }

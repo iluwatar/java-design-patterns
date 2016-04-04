@@ -29,10 +29,14 @@ public final class Student implements Serializable {
   private String name;
   private char grade;
 
-  public Student() {
 
-  }
-
+  /**
+   * Use this constructor to create a Student with all details
+   * 
+   * @param studentId as unique student id
+   * @param name as student name
+   * @param grade as respective grade of student
+   */
   public Student(final int studentId, final String name, final char grade) {
     super();
 
@@ -41,30 +45,57 @@ public final class Student implements Serializable {
     this.grade = grade;
   }
 
-  public final int getStudentId() {
+  /**
+   * 
+   * @return the student id
+   */
+  public int getStudentId() {
     return studentId;
   }
 
-  public final void setStudentId(final int studentId) {
+  /**
+   * 
+   * @param studentId as unique student id
+   */
+  public void setStudentId(final int studentId) {
     this.studentId = studentId;
   }
 
-  public final String getName() {
+  /**
+   * 
+   * @return name of student
+   */
+  public String getName() {
     return name;
   }
 
-  public final void setName(final String name) {
+  /**
+   * 
+   * @param name as 'name' of student
+   */
+  public void setName(final String name) {
     this.name = name;
   }
 
-  public final char getGrade() {
+  /**
+   * 
+   * @return grade of student
+   */
+  public char getGrade() {
     return grade;
   }
 
-  public final void setGrade(final char grade) {
+  /**
+   * 
+   * @param grade as 'grade of student'
+   */
+  public void setGrade(final char grade) {
     this.grade = grade;
   }
 
+  /**
+ * 
+ */
   @Override
   public boolean equals(final Object inputObject) {
 
@@ -74,21 +105,23 @@ public final class Student implements Serializable {
     if (this == inputObject) {
 
       isEqual = true;
-    }
-    /* Check if objects belong to same class */
-    else if (inputObject != null && getClass() == inputObject.getClass()) {
+    } else if (inputObject != null && getClass() == inputObject.getClass()) {
 
-      final Student student = (Student) inputObject;
+      final Student inputStudent = (Student) inputObject;
 
       /* If student id matched */
-      if (this.getStudentId() == student.getStudentId()) {
+      if (this.getStudentId() == inputStudent.getStudentId()) {
 
         isEqual = true;
       }
     }
+
     return isEqual;
   }
 
+  /**
+ * 
+ */
   @Override
   public int hashCode() {
 
@@ -96,8 +129,11 @@ public final class Student implements Serializable {
     return this.getStudentId();
   }
 
+  /**
+ * 
+ */
   @Override
-  public final String toString() {
+  public String toString() {
     return "Student [studentId=" + studentId + ", name=" + name + ", grade=" + grade + "]";
   }
 }

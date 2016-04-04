@@ -13,7 +13,7 @@ tags:
 Object provides an abstract interface to some type of database or
 other persistence mechanism.
 
-![alt text](./etc/dm.png "Data Mapper")
+![alt text](./etc/data-mapper.png "Data Mapper")
 
 ## Applicability
 Use the Data Mapper in any of the following situations
