@@ -9,7 +9,7 @@ rvm:
   - 2.1.2
 
 install: bundle install --jobs=3 --retry=3
-script: ./cibuild
+script: bash cibuild.sh
 after_success: if [ "$TRAVIS_BRANCH" == "gh-pages" ]; then travis_retry bundle exec s3_website push; fi
 
 cache: bundler
