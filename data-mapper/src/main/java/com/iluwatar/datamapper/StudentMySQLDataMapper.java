@@ -18,19 +18,20 @@
  */
 package com.iluwatar.datamapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public final class StudentMySQLDataMapper implements StudentDataMapper {
 
   /* Note: Normally this would be in the form of an actual database */
-  private List<Student> students;
+  private List<Student> students = new ArrayList<>();
 
   @Override
   public final Optional<Student> find(final int studentId) {
 
     /* Compare with existing students */
-    for (final Student student : this.students) {
+    for (final Student student : this.getStudents()) {
 
       /* Check if student is found */
       if (student.getStudentId() == studentId) {
@@ -48,13 +49,13 @@ public final class StudentMySQLDataMapper implements StudentDataMapper {
 
 
     /* Check with existing students */
-    if (this.students.contains(studentToBeUpdated)) {
+    if (this.getStudents().contains(studentToBeUpdated)) {
 
       /* Get the index of student in list */
-      final int index = this.students.indexOf(studentToBeUpdated);
+      final int index = this.getStudents().indexOf(studentToBeUpdated);
 
       /* Update the student in list */
-      this.students.set(index, studentToBeUpdated);
+      this.getStudents().set(index, studentToBeUpdated);
 
     } else {
 
@@ -67,10 +68,10 @@ public final class StudentMySQLDataMapper implements StudentDataMapper {
   public final void insert(final Student studentToBeInserted) throws DataMapperException {
 
     /* Check with existing students */
-    if (!this.students.contains(studentToBeInserted)) {
+    if (!this.getStudents().contains(studentToBeInserted)) {
 
       /* Add student in list */
-      this.students.add(studentToBeInserted);
+      this.getStudents().add(studentToBeInserted);
 
     } else {
 
@@ -83,15 +84,19 @@ public final class StudentMySQLDataMapper implements StudentDataMapper {
   public final void delete(final Student studentToBeDeleted) throws DataMapperException {
 
     /* Check with existing students */
-    if (this.students.contains(studentToBeDeleted)) {
+    if (this.getStudents().contains(studentToBeDeleted)) {
 
       /* Delete the student from list */
-      this.students.remove(studentToBeDeleted);
+      this.getStudents().remove(studentToBeDeleted);
 
     } else {
 
       /* Throw user error */
       throw new DataMapperException("Student [" + studentToBeDeleted.getName() + "] is not found");
     }
+  }
+
+  public List<Student> getStudents() {
+    return this.students;
   }
 }

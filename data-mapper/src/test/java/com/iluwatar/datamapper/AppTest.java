@@ -19,11 +19,11 @@
 package com.iluwatar.datamapper;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
 /**
- * 
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
  * database. Its responsibility is to transfer data between the two and also to isolate them from
  * each other. With Data Mapper the in-memory objects needn't know even that there's a database
@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
  * database schema is always ignorant of the objects that use it.) Since it's a form of Mapper ,
  * Data Mapper itself is even unknown to the domain layer.
  * <p>
- * The below example demonstrates basic CRUD operations: Create, Read, Update, and Delete.
+ * The below example demonstrates basic CRUD operations: select, add, update, and delete.
  * 
  */
 public final class App {
@@ -57,58 +57,41 @@ public final class App {
     StudentDataMapper mapper = null;
 
     /* Check the desired db type from runtime arguments */
-    if (args.length == 0) {
-
-      /* Create default data mapper for mysql */
-      mapper = new StudentMySQLDataMapper();
-
-    } else if (args.length > 0 && DB_TYPE_ORACLE.equalsIgnoreCase(args[0])) {
+    if (DB_TYPE_ORACLE.equalsIgnoreCase(args[0])) {
 
       /* Create new data mapper for mysql */
       mapper = new StudentMySQLDataMapper();
 
-    } else if (args.length > 0 && DB_TYPE_MYSQL.equalsIgnoreCase(args[0])) {
+    } else if (DB_TYPE_MYSQL.equalsIgnoreCase(args[0])) {
 
       /* Create new data mapper for oracle */
       mapper = new StudentMySQLDataMapper();
     } else {
 
       /* Don't couple any Data Mapper to java.sql.SQLException */
-      throw new DataMapperException("Following data mapping type(" + args[0] + ") is not supported");
+      throw new DataMapperException("Following data source(" + args[0] + ") is not supported");
     }
 
     /* Create new student */
-    Student student = new Student(1, "Adam", 'A');
+    Student student = new Student(UUID.randomUUID(), 1, "Adam", 'A');
 
     /* Add student in respectibe db */
     mapper.insert(student);
 
-    if (log.isDebugEnabled()) {
-      log.debug("App.main(), student : " + student + ", is inserted");
-    }
-
     /* Find this student */
-    final Optional<Student> studentToBeFound = mapper.find(student.getStudentId());
+    final Optional<Student> studentToBeFound = mapper.find(student.getGuId());
 
     if (log.isDebugEnabled()) {
-      log.debug("App.main(), student : " + studentToBeFound + ", is searched");
+      log.debug("App.main(), db find returned : " + studentToBeFound);
     }
 
     /* Update existing student object */
-    student = new Student(student.getStudentId(), "AdamUpdated", 'A');
+    student = new Student(student.getGuId(), 1, "AdamUpdated", 'A');
 
     /* Update student in respectibe db */
     mapper.update(student);
 
-    if (log.isDebugEnabled()) {
-      log.debug("App.main(), student : " + student + ", is updated");
-    }
-
     /* Delete student in db */
-
-    if (log.isDebugEnabled()) {
-      log.debug("App.main(), student : " + student + ", is deleted");
-    }
     mapper.delete(student);
   }
 
