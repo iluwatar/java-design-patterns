@@ -18,14 +18,14 @@
  */
 package com.iluwatar.datamapper;
 
-import java.util.ArrayList;
+import java.util.Vector;
 import java.util.List;
 import java.util.Optional;
 
 public final class StudentSecondDataMapper implements StudentDataMapper {
 
   /* Note: Normally this would be in the form of an actual database */
-  private List<Student> students = new ArrayList<>();
+  private List<Student> students = new Vector<>();
 
   @Override
   public Optional<Student> find(int studentId) {

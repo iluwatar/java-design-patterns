@@ -37,7 +37,8 @@ public final class App {
 
   private static Logger log = Logger.getLogger(App.class);
 
-
+  private static final String DB_TYPE_FIRST = "first";
+  private static final String DB_TYPE_SECOND = "second";
 
   /**
    * Program entry point.
@@ -46,10 +47,32 @@ public final class App {
    */
   public static void main(final String... args) {
 
+    if (log.isInfoEnabled() & args.length > 0) {
+      log.debug("App.main(), type: " + args[0]);
+    }
 
-    /* Create any type of mapper at implementation which is desired */
-    /* final StudentDataMapper mapper = new StudentFirstDataMapper(); */
-    final StudentDataMapper mapper = new StudentSecondDataMapper();
+    StudentDataMapper mapper = null;
+
+    /* Check the desired db type from runtime arguments */
+    if (args.length == 0) {
+
+      /* Create default data mapper for mysql */
+      mapper = new StudentFirstDataMapper();
+
+    } else if (args.length > 0 && DB_TYPE_FIRST.equalsIgnoreCase(args[0])) {
+
+      /* Create new data mapper for type 'first' */
+      mapper = new StudentFirstDataMapper();
+
+    } else if (args.length > 0 && DB_TYPE_SECOND.equalsIgnoreCase(args[0])) {
+
+      /* Create new data mapper for type 'second' */
+      mapper = new StudentSecondDataMapper();
+    } else {
+
+      /* Don't couple any Data Mapper to java.sql.SQLException */
+      throw new DataMapperException("Following data mapping type(" + args[0] + ") is not supported");
+    }
 
     /* Create new student */
     Student student = new Student(1, "Adam", 'A');
