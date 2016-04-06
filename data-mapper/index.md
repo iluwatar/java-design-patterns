@@ -17,8 +17,8 @@ A layer of mappers that moves data between objects and a database while keeping 
 ## Applicability
 Use the Data Mapper in any of the following situations
 
-* when you want to consolidate how the data layer is accessed
-* when you want to avoid writing multiple data retrieval/persistence layers
+* when you want to decouple data objects from DB access layer 
+* when you want to write multiple data retrieval/persistence implementations
 
 ## Credits
 
