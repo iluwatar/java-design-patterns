@@ -10,8 +10,7 @@ tags:
 ---
 
 ## Intent
-Object provides an abstract interface to some type of database or
-other persistence mechanism.
+A layer of mappers that moves data between objects and a database while keeping them independent of each other and the mapper itself
 
 ![alt text](./etc/data-mapper.png "Data Mapper")
 
