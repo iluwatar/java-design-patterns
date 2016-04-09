@@ -45,6 +45,10 @@ import com.iluwatar.hexagonal.service.LotteryServiceImpl;
  */
 public class LotteryAdministrationImpl implements LotteryAdministration {
 
+  private static final int WIN_AMOUNT = 100000;
+
+  private static final String PRIZE_PAYER_BANK_ACCOUNT = "123-123";
+  
   private final LotteryTicketRepository repository;
 
   private final LotteryService service = new LotteryServiceImpl();
@@ -69,8 +73,8 @@ public class LotteryAdministrationImpl implements LotteryAdministration {
     for (LotteryTicketId id: tickets.keySet()) {
       LotteryTicketCheckResult result = service.checkTicketForPrize(id, numbers);
       if (result.equals(CheckResult.WIN_PRIZE)) {
-        bank.transferFunds(1000, "123-123", tickets.get(id).getPlayerDetails().getBankAccount());
-        notifications.notifyPrize(tickets.get(id).getPlayerDetails(), 1000);
+        bank.transferFunds(WIN_AMOUNT, PRIZE_PAYER_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());
+        notifications.notifyPrize(tickets.get(id).getPlayerDetails(), WIN_AMOUNT);
       } else if (result.equals(CheckResult.NO_PRIZE)) {
         notifications.notifyNoWin(tickets.get(id).getPlayerDetails());
       }
