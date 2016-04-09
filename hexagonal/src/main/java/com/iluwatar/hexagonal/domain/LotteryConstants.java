@@ -20,44 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.banking;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import com.iluwatar.hexagonal.domain.LotteryConstants;
+package com.iluwatar.hexagonal.domain;
 
 /**
  * 
- * Banking implementation
+ * Lottery domain constants
  *
  */
-public class WireTransfersImpl implements WireTransfers {
+public class LotteryConstants {
 
-  private static Map<String, Integer> accounts = new HashMap<>();
+  public static final int PRIZE_AMOUNT = 100000;
+  public static final String SERVICE_BANK_ACCOUNT = "123-123";
+  public static final int TICKET_PRIZE = 3;
+  public static final int SERVICE_BANK_ACCOUNT_SALDO = 150000;
+  public static final int PLAYER_MAX_SALDO = 100;
   
-  static {
-    accounts.put(LotteryConstants.SERVICE_BANK_ACCOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT_SALDO);
-  }
-  
-  @Override
-  public void setFunds(String bankAccount, int amount) {
-    accounts.put(bankAccount, amount);
-  }
-
-  @Override
-  public int getFunds(String bankAccount) {
-    return accounts.getOrDefault(bankAccount, 0);
-  }
-
-  @Override
-  public boolean transferFunds(int amount, String sourceBackAccount, String destinationBankAccount) {
-    if (accounts.getOrDefault(sourceBackAccount, 0) >= amount) {
-      accounts.put(sourceBackAccount, accounts.get(sourceBackAccount) - amount);
-      accounts.put(destinationBankAccount, accounts.get(destinationBankAccount) + amount);
-      return true;
-    } else {
-      return false;
-    }
-  }
 }

@@ -32,7 +32,9 @@ import com.iluwatar.hexagonal.domain.PlayerDetails;
 public interface LotteryNotifications {
   
   void notifyTicketSubmitted(PlayerDetails details);
+  void notifyTicketSubmitError(PlayerDetails details);
   void notifyNoWin(PlayerDetails details);
   void notifyPrize(PlayerDetails details, int prizeAmount);
+  void notifyPrizeError(PlayerDetails details, int prizeAmount);
 
 }

@@ -28,6 +28,7 @@ import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.banking.WireTransfersImpl;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.domain.LotteryConstants;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
@@ -45,10 +46,6 @@ import com.iluwatar.hexagonal.service.LotteryServiceImpl;
  */
 public class LotteryAdministrationImpl implements LotteryAdministration {
 
-  private static final int WIN_AMOUNT = 100000;
-
-  private static final String PRIZE_PAYER_BANK_ACCOUNT = "123-123";
-  
   private final LotteryTicketRepository repository;
 
   private final LotteryService service = new LotteryServiceImpl();
@@ -73,8 +70,13 @@ public class LotteryAdministrationImpl implements LotteryAdministration {
     for (LotteryTicketId id: tickets.keySet()) {
       LotteryTicketCheckResult result = service.checkTicketForPrize(id, numbers);
       if (result.getResult().equals(CheckResult.WIN_PRIZE)) {
-        bank.transferFunds(WIN_AMOUNT, PRIZE_PAYER_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());
-        notifications.notifyPrize(tickets.get(id).getPlayerDetails(), WIN_AMOUNT);
+        boolean transferred = bank.transferFunds(LotteryConstants.PRIZE_AMOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT, 
+            tickets.get(id).getPlayerDetails().getBankAccount());
+        if (transferred) {
+          notifications.notifyPrize(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+        } else {
+          notifications.notifyPrizeError(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+        }
       } else if (result.getResult().equals(CheckResult.NO_PRIZE)) {
         notifications.notifyNoWin(tickets.get(id).getPlayerDetails());
       }

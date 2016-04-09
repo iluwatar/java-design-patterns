@@ -35,13 +35,15 @@ import org.junit.Test;
 
 import com.iluwatar.hexagonal.administration.LotteryAdministration;
 import com.iluwatar.hexagonal.administration.LotteryAdministrationImpl;
+import com.iluwatar.hexagonal.banking.WireTransfers;
+import com.iluwatar.hexagonal.banking.WireTransfersImpl;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
-import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.service.LotteryService;
 import com.iluwatar.hexagonal.service.LotteryServiceImpl;
 import com.iluwatar.hexagonal.test.LotteryTestUtils;
@@ -56,6 +58,7 @@ public class LotteryTest {
   private final LotteryAdministration admin = new LotteryAdministrationImpl();
   private final LotteryService service = new LotteryServiceImpl();
   private final LotteryTicketRepository repository = new LotteryTicketRepositoryMock();
+  private final WireTransfers wireTransfers = new WireTransfersImpl();
   
   @Before
   public void clear() {
@@ -64,6 +67,9 @@ public class LotteryTest {
   
   @Test
   public void testLottery() {
+    
+    // setup bank account with funds
+    wireTransfers.setFunds("123-12312", 100);
     
     // admin resets the lottery
     admin.resetLottery();
@@ -74,10 +80,10 @@ public class LotteryTest {
         "123-12312", "+32425255", new HashSet<>(Arrays.asList(1, 2, 3, 4))));
     assertTrue(ticket1.isPresent());
     Optional<LotteryTicketId> ticket2 = service.submitTicket(LotteryTestUtils.createLotteryTicket("ant@bac.com",
-        "123-12345", "+32423455", new HashSet<>(Arrays.asList(11, 12, 13, 14))));
+        "123-12312", "+32423455", new HashSet<>(Arrays.asList(11, 12, 13, 14))));
     assertTrue(ticket2.isPresent());
     Optional<LotteryTicketId> ticket3 = service.submitTicket(LotteryTestUtils.createLotteryTicket("arg@boo.com",
-        "123-12367", "+32421255", new HashSet<>(Arrays.asList(6, 8, 13, 19))));
+        "123-12312", "+32421255", new HashSet<>(Arrays.asList(6, 8, 13, 19))));
     assertTrue(ticket3.isPresent());
     assertEquals(admin.getAllSubmittedTickets().size(), 3);
     
@@ -86,7 +92,7 @@ public class LotteryTest {
 
     // cheat a bit for testing sake, use winning numbers to submit another ticket
     Optional<LotteryTicketId> ticket4 = service.submitTicket(LotteryTestUtils.createLotteryTicket("lucky@orb.com",
-        "123-12399", "+12421255", winningNumbers.getNumbers()));
+        "123-12312", "+12421255", winningNumbers.getNumbers()));
     assertTrue(ticket4.isPresent());
     assertEquals(admin.getAllSubmittedTickets().size(), 4);
     

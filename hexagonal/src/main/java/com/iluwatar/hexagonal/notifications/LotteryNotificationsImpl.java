@@ -44,4 +44,18 @@ public class LotteryNotificationsImpl implements LotteryNotifications {
         .println(String.format("Lottery ticket for %s has won! The bank account %s was deposited with %d credits.",
             details.getEmail(), details.getBankAccount(), prizeAmount));
   }
+
+  @Override
+  public void notifyPrizeError(PlayerDetails details, int prizeAmount) {
+    System.out
+        .println(String.format("Lottery ticket for %s has won! Unfortunately the bank credit transfer of %d failed.",
+            details.getEmail(), prizeAmount));
+  }
+
+  @Override
+  public void notifyTicketSubmitError(PlayerDetails details) {
+    System.out.println(
+        String.format("Lottery ticket for %s could not be submitted because the credit transfer of 3 credits failed.",
+            details.getEmail()));
+  }
 }

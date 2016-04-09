@@ -28,6 +28,7 @@ import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.banking.WireTransfersImpl;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.domain.LotteryConstants;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
@@ -43,10 +44,6 @@ import com.iluwatar.hexagonal.notifications.LotteryNotificationsImpl;
  */
 public class LotteryServiceImpl implements LotteryService {
 
-  private static final String LOTTERY_SERVICE_BANK_ACCOUNT = "123-123";
-  
-  private static final int TICKET_PRIZE = 3;
-  
   private final LotteryTicketRepository repository;
 
   private final WireTransfers bank = new WireTransfersImpl();
@@ -59,7 +56,12 @@ public class LotteryServiceImpl implements LotteryService {
   
   @Override
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
-    bank.transferFunds(TICKET_PRIZE, ticket.getPlayerDetails().getBankAccount(), LOTTERY_SERVICE_BANK_ACCOUNT);
+    boolean result = bank.transferFunds(LotteryConstants.TICKET_PRIZE, ticket.getPlayerDetails().getBankAccount(),
+        LotteryConstants.SERVICE_BANK_ACCOUNT);
+    if (result == false) {
+      notifications.notifyTicketSubmitError(ticket.getPlayerDetails());
+      return Optional.empty();
+    }
     Optional<LotteryTicketId> optional = repository.save(ticket);
     if (optional.isPresent()) {
       notifications.notifyTicketSubmitted(ticket.getPlayerDetails());
