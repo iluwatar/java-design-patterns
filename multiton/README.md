@@ -9,6 +9,9 @@ tags:
  - Difficulty-Beginner
 ---
 
+## Also known as
+Registry
+
 ## Intent
 Ensure a class only has limited number of instances, and provide a
 global point of access to them.

@@ -52,7 +52,7 @@ public class DragonSlayingStrategyTest {
     return Arrays.asList(
         new Object[]{
             new MeleeStrategy(),
-            "With your Excalibur you severe the dragon's head!"
+            "With your Excalibur you sever the dragon's head!"
         },
         new Object[]{
             new ProjectileStrategy(),

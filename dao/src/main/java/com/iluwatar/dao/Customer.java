@@ -20,11 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dao;
 
 /**
- * 
- * Customer
+ * A customer POJO that represents the data that will be read from the data source.
  *
  */
 public class Customer {
@@ -34,7 +34,7 @@ public class Customer {
   private String lastName;
 
   /**
-   * Constructor
+   * Creates an instance of customer.
    */
   public Customer(final int id, final String firstName, final String lastName) {
     this.id = id;
@@ -73,12 +73,12 @@ public class Customer {
   }
 
   @Override
-  public boolean equals(final Object o) {
+  public boolean equals(final Object that) {
     boolean isEqual = false;
-    if (this == o) {
+    if (this == that) {
       isEqual = true;
-    } else if (o != null && getClass() == o.getClass()) {
-      final Customer customer = (Customer) o;
+    } else if (that != null && getClass() == that.getClass()) {
+      final Customer customer = (Customer) that;
       if (getId() == customer.getId()) {
         isEqual = true;
       }

@@ -27,7 +27,7 @@
 
 	<groupId>com.iluwatar</groupId>
 	<artifactId>java-design-patterns</artifactId>
-	<version>1.11.0-SNAPSHOT</version>
+	<version>1.12.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<inceptionYear>2014</inceptionYear>
@@ -48,6 +48,7 @@
  		<guava.version>19.0</guava.version>
 		<systemrules.version>1.15.1</systemrules.version>
 		<mockito.version>1.10.19</mockito.version>
+		<hierarchical-junit-runner-version>4.12.1</hierarchical-junit-runner-version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -121,7 +122,7 @@
 		<module>feature-toggle</module>
 		<module>value-object</module>
 		<module>monad</module>
-    <module>hexagonal</module>
+		<module>mute-idiom</module>
   </modules>
 
 	<dependencyManagement>
@@ -193,6 +194,12 @@
 				<artifactId>system-rules</artifactId>
 				<version>${systemrules.version}</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>de.bechte.junit</groupId>
+  				<artifactId>junit-hierarchicalcontextrunner</artifactId>
+  				<version>${hierarchical-junit-runner-version}</version>
+  				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
