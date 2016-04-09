@@ -123,6 +123,7 @@
 		<module>value-object</module>
 		<module>monad</module>
 		<module>mute-idiom</module>
+		<module>hexagonal</module>
   </modules>
 
 	<dependencyManagement>
