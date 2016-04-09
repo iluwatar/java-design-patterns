@@ -43,6 +43,10 @@ import com.iluwatar.hexagonal.notifications.LotteryNotificationsImpl;
  */
 public class LotteryServiceImpl implements LotteryService {
 
+  private static final String LOTTERY_SERVICE_BANK_ACCOUNT = "123-123";
+  
+  private static final int TICKET_PRIZE = 3;
+  
   private final LotteryTicketRepository repository;
 
   private final WireTransfers bank = new WireTransfersImpl();
@@ -55,7 +59,7 @@ public class LotteryServiceImpl implements LotteryService {
   
   @Override
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
-    bank.transferFunds(3, ticket.getPlayerDetails().getBankAccount(), "123-123");
+    bank.transferFunds(TICKET_PRIZE, ticket.getPlayerDetails().getBankAccount(), LOTTERY_SERVICE_BANK_ACCOUNT);
     Optional<LotteryTicketId> optional = repository.save(ticket);
     if (optional.isPresent()) {
       notifications.notifyTicketSubmitted(ticket.getPlayerDetails());

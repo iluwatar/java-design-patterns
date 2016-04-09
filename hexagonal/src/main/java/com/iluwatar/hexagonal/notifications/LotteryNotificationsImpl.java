@@ -41,7 +41,7 @@ public class LotteryNotificationsImpl implements LotteryNotifications {
   @Override
   public void notifyPrize(PlayerDetails details, int prizeAmount) {
     System.out
-        .println(String.format("Lottery ticket for %s has won! Your bank account %s was deposited with %d credits.",
+        .println(String.format("Lottery ticket for %s has won! The bank account %s was deposited with %d credits.",
             details.getEmail(), details.getBankAccount(), prizeAmount));
   }
 }
