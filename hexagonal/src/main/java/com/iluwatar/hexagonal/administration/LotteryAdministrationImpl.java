@@ -27,7 +27,7 @@ import java.util.Map;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.banking.WireTransfersImpl;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
 import com.iluwatar.hexagonal.domain.LotteryConstants;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
@@ -55,7 +55,7 @@ public class LotteryAdministrationImpl implements LotteryAdministration {
   private final WireTransfers bank = new WireTransfersImpl();
   
   public LotteryAdministrationImpl() {
-    repository = new LotteryTicketRepositoryMock();
+    repository = new LotteryTicketInMemoryRepository();
   }
   
   @Override

@@ -34,7 +34,7 @@ import com.iluwatar.hexagonal.domain.LotteryTicketId;
  * Mock database for lottery tickets.
  *
  */
-public class LotteryTicketRepositoryMock implements LotteryTicketRepository {
+public class LotteryTicketInMemoryRepository implements LotteryTicketRepository {
   
   private static Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
 

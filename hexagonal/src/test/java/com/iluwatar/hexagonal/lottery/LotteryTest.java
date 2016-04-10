@@ -38,7 +38,7 @@ import com.iluwatar.hexagonal.administration.LotteryAdministrationImpl;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.banking.WireTransfersImpl;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.database.LotteryTicketRepositoryMock;
+import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
@@ -57,7 +57,7 @@ public class LotteryTest {
 
   private final LotteryAdministration admin = new LotteryAdministrationImpl();
   private final LotteryService service = new LotteryServiceImpl();
-  private final LotteryTicketRepository repository = new LotteryTicketRepositoryMock();
+  private final LotteryTicketRepository repository = new LotteryTicketInMemoryRepository();
   private final WireTransfers wireTransfers = new WireTransfersImpl();
   
   @Before
