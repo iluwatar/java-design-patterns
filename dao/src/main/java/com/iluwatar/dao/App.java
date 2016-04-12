@@ -50,7 +50,7 @@ import org.h2.jdbcx.JdbcDataSource;
  * 
  */
 public class App {
-  private static final String DB_URL = "jdbc:h2:~/dao:customerdb";
+  private static final String DB_URL = "jdbc:h2:~/dao";
   private static Logger log = Logger.getLogger(App.class);
   
   /**
