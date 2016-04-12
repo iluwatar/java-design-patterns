@@ -31,6 +31,7 @@ Use the Singleton pattern when
 ## Real world examples
 
 * [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29)
+* [https://dzone.com/articles/singleton-implementation-1](https://dzone.com/articles/singleton-implementation-1) 
 
 ## Credits
 
