@@ -120,6 +120,8 @@
 		<module>value-object</module>
 		<module>monad</module>
 		<module>mute-idiom</module>
+		<module>mutex</module>
+		<module>semaphore</module>
 	</modules>
 
 	<dependencyManagement>
