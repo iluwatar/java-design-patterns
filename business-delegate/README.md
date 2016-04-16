@@ -24,6 +24,6 @@ Use the Business Delegate pattern when
 * you want to orchestrate calls to multiple business services
 * you want to encapsulate service lookups and service calls
 
-##Credits
+## Credits
 
 * [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)
