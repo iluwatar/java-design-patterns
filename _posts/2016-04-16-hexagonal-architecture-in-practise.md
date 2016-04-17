@@ -11,7 +11,16 @@ The layered architecture implements so called separation of concerns principle w
 
 ![Layers]({{ site.url }}{{ site.baseurl }}/assets/layers.png)
 
-This way of building applications can be considered simple and effective. Moreover, we can see that the heart of the application is the centermost business logic layer. When implemented thoughtfully, the business logic layer can function without the real presentation layer or database.
+This way of building applications can be considered simple and effective. Moreover, we can see that the heart of the application is the centermost business logic layer. When implemented thoughtfully, the business logic layer can function without a real presentation layer or database.
+
+Hexagonal architecture builds upon this concept. The heart of the application is the business logic. It answers the question what does this application do? But the business logic alone may not be very useful. Something has to drive this application, call the business logic methods. These drivers we call the primary ports. Also, the business logic has its dependencies. For example, there may be a data storage module that business logic calls upon to retrieve and update data. These dependencies are called the secondary ports of the application.
+
+The ports may have one or more implementations. For example there may be a mock database for testing and a real database for running the application. The port implementations are called adapters. Thus the alias name Ports and Adapters for Hexagonal Architecture. Other names describing the same concept are Clean Architecture and Onion Architecture.
+
+The name for the pattern comes from the following hexagonal drawing.
+
+![Hexagon]({{ site.url }}{{ site.baseurl }}/assets/hexagon.png)
+
 
 hexagonal architecture
 - originated from layered architecture
