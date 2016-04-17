@@ -37,16 +37,17 @@ public class Jar {
   /**
    * The resource within the jar.
    */
-  private int beans = 1000;
+  private int beans;
 
-  public Jar(Lock lock) {
+  public Jar(int beans, Lock lock) {
+    this.beans = beans;
     this.lock = lock;
   }
 
   /**
    * Method for a thief to take a bean.
    */
-  public boolean takeBean(Thief thief) {
+  public boolean takeBean() {
     boolean success = false;
     try {
       lock.acquire();

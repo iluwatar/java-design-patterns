@@ -22,56 +22,35 @@
  */
 package com.iluwatar.semaphore;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 /**
- * Semaphore is an implementation of a semaphore lock.
+ * Test case for acquiring and releasing a Semaphore
  */
-public class Semaphore implements Lock {
+public class SemaphoreTest {
 
-  private final int licenses;
-  /**
-   * The number of concurrent resource accesses which are allowed.
-   */
-  private int counter;
-    
-  public Semaphore(int licenses) {
-    this.licenses = licenses;
-    this.counter = licenses;    
-  }
-  
-  /**
-   * Returns the number of licenses managed by the Semaphore
-   */
-  public int getNumLicenses() {
-    return licenses;
-  }
-  
-  /**
-   * Returns the number of available licenses
-   */
-  public int getAvailableLicenses() {
-    return counter; 
-  }
-  
-  /**
-   * Method called by a thread to acquire the lock. If there are no resources
-   * available this will wait until the lock has been released to re-attempt
-   * the acquire.
-   */
-  public synchronized void acquire() throws InterruptedException {
-    while (counter == 0) {
-      wait();
-    }
-    counter = counter - 1;
-  }
-  
-  /**
-   * Method called by a thread to release the lock.
-   */
-  public synchronized void release() {
-    if (counter < licenses) {
-      counter = counter + 1;
-      notify();
-    }
-  }
+  @Test
+  public void acquireReleaseTest() {
+    Semaphore sphore = new Semaphore(3);
 
+    assertEquals(sphore.getAvailableLicenses(), 3);
+
+    for (int i = 2; i >= 0; i--) {
+      try {
+        sphore.acquire();
+        assertEquals(sphore.getAvailableLicenses(), i);
+      } catch (InterruptedException e) {
+        fail(e.toString());
+      }
+    }
+  
+    for (int i = 1; i <= 3; i++) {
+      sphore.release();
+      assertEquals(sphore.getAvailableLicenses(), i);
+    }
+
+    sphore.release();
+    assertEquals(sphore.getAvailableLicenses(), 3);
+  }
 }

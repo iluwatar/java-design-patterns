@@ -33,6 +33,13 @@ public class Mutex implements Lock {
   private Object owner;
 
   /**
+   * Returns the current owner of the Mutex, or null if available
+   */
+  public Object getOwner() {
+    return owner;
+  }
+  
+  /**
    * Method called by a thread to acquire the lock. If the lock has already
    * been acquired this will wait until the lock has been released to 
    * re-attempt the acquire.
@@ -51,8 +58,10 @@ public class Mutex implements Lock {
    */
   @Override
   public synchronized void release() {
-    owner = null;
-    notify();
+    if (Thread.currentThread() == owner) {
+      owner = null;
+      notify();
+    }
   }
 
 }

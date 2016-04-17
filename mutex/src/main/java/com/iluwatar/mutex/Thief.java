@@ -51,7 +51,7 @@ public class Thief extends Thread {
   public void run() {
     int beans = 0;
 
-    while (jar.takeBean(this)) {
+    while (jar.takeBean()) {
       beans = beans + 1;
       System.out.println(name + " took a bean.");
     }

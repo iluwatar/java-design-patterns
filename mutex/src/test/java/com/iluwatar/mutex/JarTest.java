@@ -20,58 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.semaphore;
+package com.iluwatar.mutex;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
- * Semaphore is an implementation of a semaphore lock.
+ * Test case for taking beans from a Jar
  */
-public class Semaphore implements Lock {
+public class JarTest {
 
-  private final int licenses;
-  /**
-   * The number of concurrent resource accesses which are allowed.
-   */
-  private int counter;
-    
-  public Semaphore(int licenses) {
-    this.licenses = licenses;
-    this.counter = licenses;    
-  }
-  
-  /**
-   * Returns the number of licenses managed by the Semaphore
-   */
-  public int getNumLicenses() {
-    return licenses;
-  }
-  
-  /**
-   * Returns the number of available licenses
-   */
-  public int getAvailableLicenses() {
-    return counter; 
-  }
-  
-  /**
-   * Method called by a thread to acquire the lock. If there are no resources
-   * available this will wait until the lock has been released to re-attempt
-   * the acquire.
-   */
-  public synchronized void acquire() throws InterruptedException {
-    while (counter == 0) {
-      wait();
+  @Test
+  public void testTakeBeans() {
+    Mutex mutex = new Mutex();
+    Jar jar = new Jar(10, mutex);
+    for (int i = 0; i < 10; i++) {
+      assertTrue(jar.takeBean());
     }
-    counter = counter - 1;
-  }
-  
-  /**
-   * Method called by a thread to release the lock.
-   */
-  public synchronized void release() {
-    if (counter < licenses) {
-      counter = counter + 1;
-      notify();
-    }
+    assertFalse(jar.takeBean());
   }
 
 }
