@@ -1,5 +1,5 @@
 /**
- * The MIT License Copyright (c) 2014 Ilkka Seppälä
+ * The MIT License Copyright (c) 2016 Amit Dixit
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -37,9 +37,6 @@ public final class App {
 
   private static Logger log = Logger.getLogger(App.class);
 
-  private static final String DB_TYPE_FIRST = "first";
-  private static final String DB_TYPE_SECOND = "second";
-
   /**
    * Program entry point.
    * 
@@ -47,49 +44,21 @@ public final class App {
    */
   public static void main(final String... args) {
 
-    if (log.isInfoEnabled() & args.length > 0) {
-      log.debug("App.main(), type: " + args[0]);
-    }
-
-    StudentDataMapper mapper = null;
-
-    /* Check the desired db type from runtime arguments */
-    if (args.length == 0) {
-
-      /* Create default data mapper for mysql */
-      mapper = new StudentFirstDataMapper();
-
-    } else if (args.length > 0 && DB_TYPE_FIRST.equalsIgnoreCase(args[0])) {
-
-      /* Create new data mapper for type 'first' */
-      mapper = new StudentFirstDataMapper();
-
-    } else if (args.length > 0 && DB_TYPE_SECOND.equalsIgnoreCase(args[0])) {
-
-      /* Create new data mapper for type 'second' */
-      mapper = new StudentSecondDataMapper();
-    } else {
-
-      /* Don't couple any Data Mapper to java.sql.SQLException */
-      throw new DataMapperException("Following data mapping type(" + args[0] + ") is not supported");
-    }
+    /* Create new data mapper for type 'first' */
+    final StudentDataMapper mapper = new StudentDataMapperImpl();
 
     /* Create new student */
     Student student = new Student(1, "Adam", 'A');
 
-    /* Add student in respectibe db */
+    /* Add student in respectibe store */
     mapper.insert(student);
 
-    if (log.isDebugEnabled()) {
-      log.debug("App.main(), student : " + student + ", is inserted");
-    }
+    log.debug("App.main(), student : " + student + ", is inserted");
 
     /* Find this student */
     final Optional<Student> studentToBeFound = mapper.find(student.getStudentId());
 
-    if (log.isDebugEnabled()) {
-      log.debug("App.main(), student : " + studentToBeFound + ", is searched");
-    }
+    log.debug("App.main(), student : " + studentToBeFound + ", is searched");
 
     /* Update existing student object */
     student = new Student(student.getStudentId(), "AdamUpdated", 'A');
@@ -97,15 +66,10 @@ public final class App {
     /* Update student in respectibe db */
     mapper.update(student);
 
-    if (log.isDebugEnabled()) {
-      log.debug("App.main(), student : " + student + ", is updated");
-    }
+    log.debug("App.main(), student : " + student + ", is updated");
+    log.debug("App.main(), student : " + student + ", is going to be deleted");
 
     /* Delete student in db */
-
-    if (log.isDebugEnabled()) {
-      log.debug("App.main(), student : " + student + ", is deleted");
-    }
     mapper.delete(student);
   }
 

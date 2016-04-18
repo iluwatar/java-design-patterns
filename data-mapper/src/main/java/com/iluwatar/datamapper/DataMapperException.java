@@ -19,6 +19,8 @@
 package com.iluwatar.datamapper;
 
 /**
+ * Using Runtime Exception for avoiding dependancy on implementation exceptions. This helps in
+ * decoupling.
  * 
  * @author amit.dixit
  *

@@ -18,14 +18,14 @@
  */
 package com.iluwatar.datamapper;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public final class StudentSecondDataMapper implements StudentDataMapper {
+public final class StudentDataMapperImpl implements StudentDataMapper {
 
   /* Note: Normally this would be in the form of an actual database */
-  private List<Student> students = new Vector<>();
+  private List<Student> students = new ArrayList<>();
 
   @Override
   public Optional<Student> find(int studentId) {
@@ -47,6 +47,7 @@ public final class StudentSecondDataMapper implements StudentDataMapper {
   @Override
   public void update(Student studentToBeUpdated) throws DataMapperException {
 
+
     /* Check with existing students */
     if (this.getStudents().contains(studentToBeUpdated)) {
 
@@ -58,7 +59,7 @@ public final class StudentSecondDataMapper implements StudentDataMapper {
 
     } else {
 
-      /* Throw user error */
+      /* Throw user error after wrapping in a runtime exception */
       throw new DataMapperException("Student [" + studentToBeUpdated.getName() + "] is not found");
     }
   }
@@ -74,7 +75,7 @@ public final class StudentSecondDataMapper implements StudentDataMapper {
 
     } else {
 
-      /* Throw user error */
+      /* Throw user error after wrapping in a runtime exception */
       throw new DataMapperException("Student already [" + studentToBeInserted.getName() + "] exists");
     }
   }
@@ -90,7 +91,7 @@ public final class StudentSecondDataMapper implements StudentDataMapper {
 
     } else {
 
-      /* Throw user error */
+      /* Throw user error after wrapping in a runtime exception */
       throw new DataMapperException("Student [" + studentToBeDeleted.getName() + "] is not found");
     }
   }
