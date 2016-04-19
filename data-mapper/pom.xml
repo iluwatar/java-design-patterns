@@ -2,7 +2,7 @@
 <!--
 
     The MIT License
-    Copyright (c) 2014 Ilkka Seppälä
+    Copyright (c) 2016 Amit Dixit
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -42,42 +42,4 @@
 			<artifactId>log4j</artifactId>
 		</dependency>
 	</dependencies>
-
-	<build>
-
-		<!-- log4j.xml file will be copied both in ${project.build.outputDirectory} and ${project.build.directory}. Thanks to Sean Patrick Floyd (http://stackoverflow.com/questions/5637532/maven-how-to-place-resource-file-together-with-jar) -->
-		<resources>
-			<resource> <!-- regular processing for every resource file -->
-				<directory>src/main/resources</directory>
-			</resource>
-			<resource> <!-- processing with a different output directory for log4j.xml -->
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>log4j.xml</include>
-				</includes>
-				<targetPath>..</targetPath> <!-- relative to target/classes i.e. ${project.build.directory} -->
-			</resource>
-		</resources>
-
-		<plugins>
-
-			<!-- This will exclude log4j.xml file from generated JAR -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<excludes>
-						<exclude>log4j.xml</exclude>
-					</excludes>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
-
-		</plugins>
-	</build>
 </project>
