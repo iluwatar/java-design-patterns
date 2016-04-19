@@ -61,6 +61,7 @@
 		<module>bridge</module>
 		<module>composite</module>
 		<module>dao</module>
+		<module>data-mapper</module>
 		<module>decorator</module>
 		<module>facade</module>
 		<module>flyweight</module>
