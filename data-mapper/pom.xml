@@ -29,6 +29,7 @@
 		<groupId>com.iluwatar</groupId>
 		<artifactId>java-design-patterns</artifactId>
 		<version>1.11.0-SNAPSHOT</version>
+		<relativePath></relativePath>
 	</parent>
 	<artifactId>data-mapper</artifactId>
 	<dependencies>
