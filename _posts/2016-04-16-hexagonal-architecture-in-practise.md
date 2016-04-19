@@ -13,7 +13,9 @@ The layered architecture implements so called separation of concerns principle w
 
 This way of building applications can be considered simple and effective. Moreover, we can see that the heart of the application is the centermost business logic layer. When implemented thoughtfully, the business logic layer can function without a real presentation layer or database.
 
-Hexagonal architecture builds upon this concept. The heart of the application is the business logic. It answers the question what does this application do? But the business logic alone may not be very useful. Something has to drive this application, call the business logic methods. These drivers we call the primary ports. Also, the business logic has its dependencies. For example, there may be a data storage module that business logic calls upon to retrieve and update data. These dependencies are called the secondary ports of the application.
+Hexagonal architecture builds upon this concept. The main objective of the architecture is to create fully testable systems that can be driven equally by users, programs and batch scripts in isolation of database. 
+
+At the heart of the application is the business logic. It answers the question what does this application do? But the business logic alone may not be very useful. Something has to drive this application, call the business logic methods. These drivers we call the primary ports. Also, the business logic has its dependencies. For example, there may be a data storage module that business logic calls upon to retrieve and update data. These dependencies are called the secondary ports of the application.
 
 The ports may have one or more implementations. For example there may be a mock database for testing and a real database for running the application. The port implementations are called adapters. Thus the alias name Ports and Adapters for Hexagonal Architecture. Other names describing the same concept are Clean Architecture and Onion Architecture.
 
@@ -21,17 +23,7 @@ The name for the pattern comes from the following hexagonal drawing.
 
 ![Hexagon]({{ site.url }}{{ site.baseurl }}/assets/hexagon.png)
 
-
-hexagonal architecture
-- originated from layered architecture
-- 2-dimensional picture
-- domain in the middle, see domain driven design
-- primary ports drive the application
-- secondary ports are used by the domain
-- adapters are implementations of the ports
-- clean architecture, onion architecture
-- fully testable systems that can be driven by users, programs, batch scripts equally in isolation of database
-- naked objects
+The diagram shows how the domain is in the middle surrounded by ports on each side of hexagon. The actual amount of ports does not have to be exactly six, it can be less or it can be more depending on the application needs. One of the implementations of Hexagonal architecture can be considered Naked objects pattern that is applied in Apache Isis framework.
 
 lottery system implementation
 - description what the system does
