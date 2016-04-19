@@ -28,7 +28,8 @@ public final class StudentTest {
   /**
    * This API tests the equality behaviour of Student object
    * Object Equality should work as per logic defined in equals method
-   * @throws Exception
+   * 
+   * @throws Exception if any execution error during test
    */
   public void testEquality() throws Exception {
 
