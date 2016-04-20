@@ -28,5 +28,6 @@ Use the Lazy Loading idiom when
 
 * JPA annotations @OneToOne, @OneToMany, @ManyToOne, @ManyToMany and fetch = FetchType.LAZY
 
-##Credits
+## Credits
+
 * [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)
