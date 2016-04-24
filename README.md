@@ -1,6 +1,7 @@
 # Design pattern samples in Java.
 
 [![Build Status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=gh-pages)](https://travis-ci.org/iluwatar/java-design-patterns)
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
 
 This is the branch for the pages.
 
