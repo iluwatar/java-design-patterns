@@ -7,6 +7,7 @@ categories: Other
 tags:
 - Java
 - Difficulty-Beginner
+---
 
 ## Intent
 
