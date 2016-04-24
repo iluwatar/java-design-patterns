@@ -4,7 +4,7 @@ title: Java Design Patterns Vision
 author: ilu
 ---
 
-![Mosque]({{ site.url }}{{ site.baseurl }}/assets/mosque-small.jpg)
+![Mosque]({{ site.baseurl }}/assets/mosque-small.jpg)
 
 The software industry is still relatively young. However most of the design problems occurring today have already been solved hundreds of times before in various software systems. Some of the solutions may have been great and worked well in production while some of them may have been substandard and produced various kinds of bugs pestering the end users.
 
