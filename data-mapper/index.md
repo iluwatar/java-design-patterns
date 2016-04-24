@@ -2,7 +2,7 @@
 layout: pattern
 title: Data Mapper
 folder: data-mapper
-permalink: /patterns/dm/
+permalink: /patterns/data-mapper/
 categories: Persistence Tier
 tags:
  - Java
