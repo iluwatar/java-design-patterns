@@ -4,7 +4,7 @@
   <class id="1" language="java" name="com.iluwatar.eda.model.User" project="event-driven-architecture" 
     file="/event-driven-architecture/src/main/java/com/iluwatar/eda/model/User.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="937" y="618"/>    
+    <position height="-1" width="-1" x="437" y="535"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -15,7 +15,7 @@
     project="event-driven-architecture" 
     file="/event-driven-architecture/src/main/java/com/iluwatar/eda/handler/UserUpdatedEventHandler.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="936" y="90"/>    
+    <position height="-1" width="-1" x="763" y="379"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -26,17 +26,17 @@
     project="event-driven-architecture" 
     file="/event-driven-architecture/src/main/java/com/iluwatar/eda/handler/UserCreatedEventHandler.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="101" width="200" x="41" y="37"/>    
+    <position height="-1" width="-1" x="596" y="272"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="4" language="java" name="com.iluwatar.eda.framework.Message" project="event-driven-architecture" 
-    file="/event-driven-architecture/src/main/java/com/iluwatar/eda/framework/Message.java" binary="false" 
+  <interface id="4" language="java" name="com.iluwatar.eda.framework.Event" project="event-driven-architecture" 
+    file="/event-driven-architecture/src/main/java/com/iluwatar/eda/framework/Event.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="298" y="189"/>    
+    <position height="-1" width="-1" x="188" y="121"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -46,7 +46,7 @@
   <interface id="5" language="java" name="com.iluwatar.eda.framework.Handler" project="event-driven-architecture" 
     file="/event-driven-architecture/src/main/java/com/iluwatar/eda/framework/Handler.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="532" y="89"/>    
+    <position height="-1" width="-1" x="755" y="58"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -56,7 +56,7 @@
   <class id="6" language="java" name="com.iluwatar.eda.framework.EventDispatcher" project="event-driven-architecture" 
     file="/event-driven-architecture/src/main/java/com/iluwatar/eda/framework/EventDispatcher.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="613" y="292"/>    
+    <position height="-1" width="-1" x="499" y="122"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   <class id="7" language="java" name="com.iluwatar.eda.event.UserCreatedEvent" project="event-driven-architecture" 
     file="/event-driven-architecture/src/main/java/com/iluwatar/eda/event/UserCreatedEvent.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="145" y="618"/>    
+    <position height="-1" width="-1" x="102" y="380"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -76,17 +76,17 @@
   <class id="8" language="java" name="com.iluwatar.eda.event.UserUpdatedEvent" project="event-driven-architecture" 
     file="/event-driven-architecture/src/main/java/com/iluwatar/eda/event/UserUpdatedEvent.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="769" y="455"/>    
+    <position height="-1" width="-1" x="320" y="382"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="com.iluwatar.eda.event.Event" project="event-driven-architecture" 
-    file="/event-driven-architecture/src/main/java/com/iluwatar/eda/event/Event.java" binary="false" 
+  <class id="9" language="java" name="com.iluwatar.eda.event.AbstractEvent" project="event-driven-architecture" 
+    file="/event-driven-architecture/src/main/java/com/iluwatar/eda/event/AbstractEvent.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="299" y="460"/>    
+    <position height="-1" width="-1" x="188" y="240"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -94,99 +94,87 @@
     </display>  
   </class>  
   <dependency id="10">    
-    <bendpoint x="869" y="253"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="12">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="11">    
-    <bendpoint x="140" y="196"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="12">    
-    <bendpoint x="17" y="90"/>    
-    <bendpoint x="17" y="708"/>    
-    <bendpoint x="939" y="703"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="13">    
-    <bendpoint x="935" y="318"/>    
-    <bendpoint x="936" y="417"/>    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="14">    
-    <bendpoint x="757" y="378"/>    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <generalization id="15">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <association id="16">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="17" name="user"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="19">    
+  <realization id="13">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <dependency id="20">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="21">    
-    <bendpoint x="301" y="114"/>    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <realization id="22">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <dependency id="23">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="8"/>    
+  <generalization id="14">    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <dependency id="25">    
-    <bendpoint x="141" y="250"/>    
+  <realization id="15">    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <association id="26">    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <association id="16">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="27" name="handlers">        
-        <position height="19" width="56" x="449" y="175"/>      
+      <attribute id="17" name="handlers">        
+        <position height="19" width="56" x="672" y="144"/>      
       </attribute>      
-      <multiplicity id="28" minimum="0" maximum="2147483647">        
-        <position height="17" width="23" x="574" y="173"/>      
+      <multiplicity id="18" minimum="0" maximum="2147483647">        
+        <position height="17" width="23" x="797" y="142"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="29">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="30" name="user"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
+  <realization id="19">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="21">    
+    <bendpoint x="187" y="57"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="22">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="23" name="user">        
+        <position height="0" width="0" x="-500" y="-83"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-500" y="-83"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="32">    
+  <generalization id="25">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="26">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="27" name="user">        
+        <position height="0" width="0" x="-500" y="-83"/>      
+      </attribute>      
+      <multiplicity id="28" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-500" y="-83"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="29">    
+    <bendpoint x="308" y="303"/>    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

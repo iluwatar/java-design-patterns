@@ -24,6 +24,15 @@ import domainapp.dom.modules.simple.SimpleObjects;
 @ViewModel
 public class HomePageViewModel {
 
+  // endregion
+
+  // region > injected services
+
+  @javax.inject.Inject
+  SimpleObjects simpleObjects;
+
+  // endregion
+
   // region > title
   public String title() {
     return getObjects().size() + " objects";
@@ -37,12 +46,4 @@ public class HomePageViewModel {
     return simpleObjects.listAll();
   }
 
-  // endregion
-
-  // region > injected services
-
-  @javax.inject.Inject
-  SimpleObjects simpleObjects;
-
-  // endregion
 }

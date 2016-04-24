@@ -1,3 +1,25 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.fluentinterface.fluentiterable.simple;
 
 import java.util.ArrayList;
@@ -15,18 +37,18 @@ import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
  * This is a simple implementation of the FluentIterable interface. It evaluates all chained
  * operations eagerly. This implementation would be costly to be utilized in real applications.
  * 
- * @param <TYPE> the type of the objects the iteration is about
+ * @param <E> the type of the objects the iteration is about
  */
-public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
+public class SimpleFluentIterable<E> implements FluentIterable<E> {
 
-  private final Iterable<TYPE> iterable;
+  private final Iterable<E> iterable;
 
   /**
    * This constructor creates a copy of a given iterable's contents.
    * 
    * @param iterable the iterable this interface copies to work on.
    */
-  protected SimpleFluentIterable(Iterable<TYPE> iterable) {
+  protected SimpleFluentIterable(Iterable<E> iterable) {
     this.iterable = iterable;
   }
 
@@ -39,10 +61,10 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
    * @return the same FluentIterable with a filtered collection
    */
   @Override
-  public final FluentIterable<TYPE> filter(Predicate<? super TYPE> predicate) {
-    Iterator<TYPE> iterator = iterator();
+  public final FluentIterable<E> filter(Predicate<? super E> predicate) {
+    Iterator<E> iterator = iterator();
     while (iterator.hasNext()) {
-      TYPE nextElement = iterator.next();
+      E nextElement = iterator.next();
       if (!predicate.test(nextElement)) {
         iterator.remove();
       }
@@ -56,8 +78,8 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
    * @return an option of the first object of the Iterable
    */
   @Override
-  public final Optional<TYPE> first() {
-    Iterator<TYPE> resultIterator = first(1).iterator();
+  public final Optional<E> first() {
+    Iterator<E> resultIterator = first(1).iterator();
     return resultIterator.hasNext() ? Optional.of(resultIterator.next()) : Optional.empty();
   }
 
@@ -69,8 +91,8 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
    *         objects.
    */
   @Override
-  public final FluentIterable<TYPE> first(int count) {
-    Iterator<TYPE> iterator = iterator();
+  public final FluentIterable<E> first(int count) {
+    Iterator<E> iterator = iterator();
     int currentCount = 0;
     while (iterator.hasNext()) {
       iterator.next();
@@ -88,8 +110,8 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
    * @return an option of the last object of the Iterable
    */
   @Override
-  public final Optional<TYPE> last() {
-    List<TYPE> list = last(1).asList();
+  public final Optional<E> last() {
+    List<E> list = last(1).asList();
     if (list.isEmpty()) {
       return Optional.empty();
     }
@@ -104,9 +126,9 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
    *         objects
    */
   @Override
-  public final FluentIterable<TYPE> last(int count) {
+  public final FluentIterable<E> last(int count) {
     int remainingElementsCount = getRemainingElementsCount();
-    Iterator<TYPE> iterator = iterator();
+    Iterator<E> iterator = iterator();
     int currentIndex = 0;
     while (iterator.hasNext()) {
       iterator.next();
@@ -120,16 +142,16 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
   }
 
   /**
-   * Transforms this FluentIterable into a new one containing objects of the type NEW_TYPE.
+   * Transforms this FluentIterable into a new one containing objects of the type T.
    * 
-   * @param function a function that transforms an instance of TYPE into an instance of NEW_TYPE
-   * @param <NEW_TYPE> the target type of the transformation
+   * @param function a function that transforms an instance of E into an instance of T
+   * @param <T> the target type of the transformation
    * @return a new FluentIterable of the new type
    */
   @Override
-  public final <NEW_TYPE> FluentIterable<NEW_TYPE> map(Function<? super TYPE, NEW_TYPE> function) {
-    List<NEW_TYPE> temporaryList = new ArrayList<>();
-    Iterator<TYPE> iterator = iterator();
+  public final <T> FluentIterable<T> map(Function<? super E, T> function) {
+    List<T> temporaryList = new ArrayList<>();
+    Iterator<E> iterator = iterator();
     while (iterator.hasNext()) {
       temporaryList.add(function.apply(iterator.next()));
     }
@@ -142,35 +164,35 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
    * @return a list with all remaining objects of this Iterable
    */
   @Override
-  public List<TYPE> asList() {
+  public List<E> asList() {
     return toList(iterable.iterator());
   }
 
   /**
    * @return a FluentIterable from a given iterable. Calls the SimpleFluentIterable constructor.
    */
-  public static final <TYPE> FluentIterable<TYPE> from(Iterable<TYPE> iterable) {
+  public static final <E> FluentIterable<E> from(Iterable<E> iterable) {
     return new SimpleFluentIterable<>(iterable);
   }
 
-  public static final <TYPE> FluentIterable<TYPE> fromCopyOf(Iterable<TYPE> iterable) {
-    List<TYPE> copy = FluentIterable.copyToList(iterable);
+  public static final <E> FluentIterable<E> fromCopyOf(Iterable<E> iterable) {
+    List<E> copy = FluentIterable.copyToList(iterable);
     return new SimpleFluentIterable<>(copy);
   }
 
   @Override
-  public Iterator<TYPE> iterator() {
+  public Iterator<E> iterator() {
     return iterable.iterator();
   }
 
   @Override
-  public void forEach(Consumer<? super TYPE> action) {
+  public void forEach(Consumer<? super E> action) {
     iterable.forEach(action);
   }
 
 
   @Override
-  public Spliterator<TYPE> spliterator() {
+  public Spliterator<E> spliterator() {
     return iterable.spliterator();
   }
 
@@ -179,7 +201,7 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
    */
   public final int getRemainingElementsCount() {
     int counter = 0;
-    Iterator<TYPE> iterator = iterator();
+    Iterator<E> iterator = iterator();
     while (iterator.hasNext()) {
       iterator.next();
       counter++;
@@ -192,8 +214,8 @@ public class SimpleFluentIterable<TYPE> implements FluentIterable<TYPE> {
    * 
    * @return a new List with the remaining objects.
    */
-  public static <TYPE> List<TYPE> toList(Iterator<TYPE> iterator) {
-    List<TYPE> copy = new ArrayList<>();
+  public static <E> List<E> toList(Iterator<E> iterator) {
+    List<E> copy = new ArrayList<>();
     while (iterator.hasNext()) {
       copy.add(iterator.next());
     }

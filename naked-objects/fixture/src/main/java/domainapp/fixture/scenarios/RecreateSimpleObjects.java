@@ -32,13 +32,18 @@ public class RecreateSimpleObjects extends FixtureScript {
   public final List<String> names = Collections.unmodifiableList(Arrays.asList("Foo", "Bar", "Baz",
       "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
 
-  public RecreateSimpleObjects() {
-    withDiscoverability(Discoverability.DISCOVERABLE);
-  }
-
   // region > number (optional input)
   private Integer number;
 
+  // endregion
+
+  // region > simpleObjects (output)
+  private final List<SimpleObject> simpleObjects = Lists.newArrayList();
+
+  public RecreateSimpleObjects() {
+    withDiscoverability(Discoverability.DISCOVERABLE);
+  }
+  
   /**
    * The number of objects to create, up to 10; optional, defaults to 3.
    */
@@ -50,12 +55,7 @@ public class RecreateSimpleObjects extends FixtureScript {
     this.number = number;
     return this;
   }
-
-  // endregion
-
-  // region > simpleObjects (output)
-  private final List<SimpleObject> simpleObjects = Lists.newArrayList();
-
+  
   /**
    * The simpleobjects created by this fixture (output).
    */

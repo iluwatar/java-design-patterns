@@ -1,8 +1,30 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package com.iluwatar.dao;
 
 /**
- * 
- * Customer
+ * A customer POJO that represents the data that will be read from the data source.
  *
  */
 public class Customer {
@@ -12,7 +34,7 @@ public class Customer {
   private String lastName;
 
   /**
-   * Constructor
+   * Creates an instance of customer.
    */
   public Customer(final int id, final String firstName, final String lastName) {
     this.id = id;
@@ -51,12 +73,12 @@ public class Customer {
   }
 
   @Override
-  public boolean equals(final Object o) {
+  public boolean equals(final Object that) {
     boolean isEqual = false;
-    if (this == o) {
+    if (this == that) {
       isEqual = true;
-    } else if (o != null && getClass() == o.getClass()) {
-      final Customer customer = (Customer) o;
+    } else if (that != null && getClass() == that.getClass()) {
+      final Customer customer = (Customer) that;
       if (getId() == customer.getId()) {
         isEqual = true;
       }
@@ -66,7 +88,6 @@ public class Customer {
 
   @Override
   public int hashCode() {
-    int result = getId();
-    return result;
+    return getId();
   }
 }
