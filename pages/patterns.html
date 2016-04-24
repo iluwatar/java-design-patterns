@@ -7,111 +7,48 @@ comments: false
 page-index: 3
 ---
 <div id="index" class="row">
-  <!-- MAIN -->
-  <div class="col-sm-9">
-    <div class="content-area">
-      <!-- small button -->
-     <!--  <p class="pull-right visible-xs">
-       <button>toggle</button>
-     </p> -->
-      <div class="list-header">
-        Patterns
-      </div>
-      <div class="pattern-cse">
-        <gcse:search></gcse:search>
-      </div>
-      <div class="post-list-body">
+    <!-- MAIN -->
+    <div class="col-sm-9">
+        <div class="content-area">
+            <div class="list-header">
+                Patterns
+            </div>
+            <div class="list-item-search">
+                <div class="input-group">
+                    <i class="fa fa-search input-group-addon" aria-hidden="true"
+                        data-toggle="tooltip" data-placement="left" title="Powered by elasticlunr.com"></i>
+                    <input type="text" class="form-control" id="searchBox" placeholder="logging...">
+                </div>
+            </div>
+            <div class="post-list-body">
 
-        {% assign allPatterns = site.pages | where:"layout","pattern" | sort: 'title' %}
-        <div>
-          {% for page in allPatterns %}
-          <div class="list-item" href="{{ page.url | prepend: site.baseurl }}"
-          cats='All;{{ page.categories | join: ';' }}'
-          tags='All;{{ page.tags | join: ';' }}'>
-            <a href="{{ page.url | prepend: site.baseurl }}"><h2>{{ page.title }}</h2></a>
-            <span class="cats">
-                {% for cat in page.categories %}
-                <a href="javascript:;" class="cat-button" category="{{ cat }}">{{ cat }}</a>
-                {% endfor %}
-            </span>
-            <span class="tags">
-                {% for tag in page.tags %}
-                <a href="javascript:;" class="tag-button" tag="{{ tag }}">{{ tag }}</a>
-                {% endfor %}
-            </span>
-          </div>
+                {% assign allPatterns = site.pages | where:"layout","pattern" | sort: 'title' %}
+                <div>
+                    {% for page in allPatterns %}
+                    <div class="list-item" href="{{ page.url | prepend: site.baseurl }}"
+                            cats='All;{{ page.categories | join: ' ; ' }}'
+                            tags='All;{{ page.tags | join: ' ; ' }}'>
+                        <a href="{{ page.url | prepend: site.baseurl }}"><h2>{{ page.title }}</h2></a>
+                        <span class="cats">
+                            {% for cat in page.categories %}
+                            <a href="javascript:;" class="cat-button" category="{{ cat }}">{{ cat }}</a>
+                            {% endfor %}
+                        </span>
+                        <span class="tags">
+                            {% for tag in page.tags %}
+                            <a href="javascript:;" class="tag-button" tag="{{ tag }}">{{ tag }}</a>
+                            {% endfor %}
+                        </span>
+                    </div>
 
-          {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!-- SIDEBAR -->
-  <div class="col-sm-3">
-    <div class="shadow-corner-curl hidden-xs">
-      <div class="sidebar-list-header">
-        Categories
-      </div>
-
-      <a href="javascript:;" class="sidebar-list-item cat-button" category="All">
-        All<span class="my-badge"> {{ allPatterns | size }}</span>
-      </a>
-      {% for category in site.data.categories %}
-      <a href="javascript:;" class="sidebar-list-item cat-button" category="{{ category.name }}"
-        <!-- add tooltip only if we have something to display -->
-        {% if category.description %}
-          data-toggle="tooltip" data-placement="left" title="{{ category.description }}"
-        {% endif %}<!-- /tooltip, close the a tag now --> >
-        {{ category.name }} <span class="my-badge">
-          {% assign counter=0 %}
-          {% for page in allPatterns %}
-            {% if page.categories contains category.name %}
-              {% assign counter=counter | plus:1 %}
-            {% endif %}
-          {% endfor %}
-          {{ counter }}
-        </span>
-      </a>
-      {% endfor %}
+    <!-- SIDEBAR -->
+    <div class="col-sm-3">
+        {% include sidebar.html allItems=allPatterns categories=site.data.categories tags=site.data.tags %}
     </div>
-
-    <div class="shadow-corner-curl hidden-xs top20">
-      <div class="sidebar-list-header">
-        Tags
-      </div>
-
-      <a href="javascript:;" class="sidebar-list-item tag-button" tag="All">
-        All<span class="my-badge"> {{ allPatterns | size }}</span>
-      </a>
-      {% for tag in site.data.tags %}
-      <a href="javascript:;" class="sidebar-list-item tag-button" tag="{{ tag.name }}"
-        <!-- add tooltip only if we have something to display -->
-        {% if tag.description %}
-          data-toggle="tooltip" data-placement="left" title="{{ tag.description }}"
-        {% endif %}<!-- /tooltip, close the a tag now --> >
-        {{ tag.name }} <span class="my-badge">
-          {% assign counter=0 %}
-          {% for page in allPatterns %}
-            {% if page.tags contains tag.name %}
-              {% assign counter=counter | plus:1 %}
-            {% endif %}
-          {% endfor %}
-          {{ counter }}
-        </span>
-      </a>
-      {% endfor %}
-    </div>
-  </div>
-  <script>
-  (function() {
-    var cx = '008960609897446712051:upn_v7v8dba';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
+    <script type="text/javascript" src="{{ '/static/js/search.js' | prepend: site.baseurl }}"></script>
 </div>

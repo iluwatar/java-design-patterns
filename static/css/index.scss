@@ -4,7 +4,6 @@
 
 /* the imported files can be found in /_sass/ */
 @import 'mixins';
-@import 'google_cse_fixes';
 @import 'colors';
 
 .label {
@@ -105,7 +104,7 @@ nav {
 
 .list-item {
     display: block;
-    padding: 8px 30px 10px 30px;
+    padding: 8px 30px;
     border-bottom: 1px solid #ddd;
     &:last-of-type {
         border-bottom: none;
@@ -122,6 +121,7 @@ nav {
         margin: 0px;
     }
 }
+.list-item-search { @extend .list-item; }
 
 /* categories list */
 .sidebar-list-header {
@@ -136,6 +136,13 @@ nav {
     display: block;
     padding: 8px 15px;
     border-bottom: 1px solid #ddd;
+    &.checkbox {
+        margin: 0px;
+        padding: 8px 15px 8px 35px;
+        label {
+            width: 100%
+        }
+    }
     &:last-of-type {
         border-bottom: none;
     }
@@ -453,4 +460,8 @@ hr.dashed  {
 
 .tooltip {
     font-weight: 500;
+}
+
+.centerContents {
+    text-align: center;
 }
