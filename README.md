@@ -1,5 +1,7 @@
 # Design pattern samples in Java.
 
+[![Build Status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=gh-pages)](https://travis-ci.org/iluwatar/java-design-patterns)
+
 This is the branch for the pages.
 
 Link for Website: http://iluwatar.github.io/java-design-patterns/
