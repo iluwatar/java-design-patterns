@@ -6,7 +6,7 @@ env:
 
 language: ruby
 rvm:
-  - 2.1.2
+  - 2.2.0
 
 install: bundle install --jobs=3 --retry=3
 script: bash cibuild.sh
