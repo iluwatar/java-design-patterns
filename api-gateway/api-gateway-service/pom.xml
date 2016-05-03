@@ -31,9 +31,8 @@
     <groupId>com.iluwatar</groupId>
     <version>1.12.0-SNAPSHOT</version>
   </parent>
-
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>image-microservice</artifactId>
+  <artifactId>api-gateway-service</artifactId>
   <packaging>jar</packaging>
 
   <properties>
@@ -67,6 +66,16 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.2</version>
     </dependency>
   </dependencies>
 

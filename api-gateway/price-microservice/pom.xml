@@ -27,8 +27,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <relativePath>../../pom.xml</relativePath>
-    <artifactId>java-design-patterns</artifactId>
+    <artifactId>api-gateway</artifactId>
     <groupId>com.iluwatar</groupId>
     <version>1.12.0-SNAPSHOT</version>
   </parent>
