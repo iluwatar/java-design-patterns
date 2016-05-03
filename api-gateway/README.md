@@ -3,10 +3,11 @@ layout: pattern
 title: API Gateway
 folder: api-gateway
 permalink: /patterns/api-gateway/
-categories: Other
+categories: Architectural
 tags:
 - Java
-- Difficulty-Beginner
+- Difficulty-Intermediate
+- Spring
 ---
 
 ## Intent
