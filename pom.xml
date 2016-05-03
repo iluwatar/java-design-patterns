@@ -33,6 +33,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.version>5.0.1.Final</hibernate.version>
 		<spring.version>4.2.4.RELEASE</spring.version>
+    <spring-boot.version>1.3.3.RELEASE</spring-boot.version>
 		<spring-data.version>1.9.2.RELEASE</spring-data.version>
 		<h2.version>1.4.190</h2.version>
 		<junit.version>4.12</junit.version>
@@ -46,6 +47,7 @@
 		<systemrules.version>1.15.1</systemrules.version>
 		<mockito.version>1.10.19</mockito.version>
 		<hierarchical-junit-runner-version>4.12.1</hierarchical-junit-runner-version>
+    <apache-httpcomponents.version>4.5.2</apache-httpcomponents.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -143,11 +145,33 @@
 				<artifactId>spring-test</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
             		<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-jpa</artifactId>
 				<version>${spring-data.version}</version>
 			</dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${apache-httpcomponents.version}</version>
+      </dependency>
 			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>
