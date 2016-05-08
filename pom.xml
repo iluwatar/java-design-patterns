@@ -126,6 +126,7 @@
 		<module>mute-idiom</module>
 		<module>mutex</module>
 		<module>semaphore</module>
+                <module>leader-follower</module>
 	</modules>
 
 	<dependencyManagement>
