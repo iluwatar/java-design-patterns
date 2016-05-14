@@ -53,17 +53,24 @@ public class OrderBo {
   public OrderDto getOrderDetails(int orderIndex) {
     OrderDto retval = new OrderDto();
     
+    //getting order object
     JSONObject order = (JSONObject) orders.get(orderIndex);
+    
+    //getting corresponding customer object
     int customerIndex = ((Long) order.get("customerIndex")).intValue();
     JSONObject customer = (JSONObject) customers.get(customerIndex);
+    
+    //getting corresponding product object
     int productIndex = ((Long) order.get("productIndex")).intValue();
     JSONObject product = (JSONObject) products.get(productIndex);
 
+    //filling the DTO
     retval.setOrderIndex(orderIndex);
     retval.setCustomerName((String) customer.get("name"));
     retval.setAddress((String) customer.get("address"));
     retval.setProductName((String) product.get("name"));
     retval.setPrice((double) product.get("price"));
+    
     return retval;
   }
 
