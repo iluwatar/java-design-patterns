@@ -24,6 +24,9 @@ package com.iluwatar.hexagonal.domain;
 
 import java.util.UUID;
 
+/**
+ * Lottery ticked id
+ */
 public class LotteryTicketId {
   
   private final UUID id;

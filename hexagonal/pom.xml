@@ -32,11 +32,7 @@
     <artifactId>java-design-patterns</artifactId>
     <version>1.12.0-SNAPSHOT</version>
   </parent>
-  <groupId>com.iluwatar.hexagonal</groupId>
   <artifactId>hexagonal</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>hexagonal</name>
-  <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

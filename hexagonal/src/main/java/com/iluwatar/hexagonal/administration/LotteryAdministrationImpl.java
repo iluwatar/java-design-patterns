@@ -47,13 +47,9 @@ import com.iluwatar.hexagonal.service.LotteryServiceImpl;
 public class LotteryAdministrationImpl implements LotteryAdministration {
 
   private final LotteryTicketRepository repository;
-
   private final LotteryService service = new LotteryServiceImpl();
-  
   private final LotteryNotifications notifications = new LotteryNotificationsImpl();
-
   private final WireTransfers bank = new WireTransfersImpl();
-  
   public LotteryAdministrationImpl() {
     repository = new LotteryTicketInMemoryRepository();
   }

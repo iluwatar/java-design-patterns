@@ -30,11 +30,30 @@ import com.iluwatar.hexagonal.domain.PlayerDetails;
  *
  */
 public interface LotteryNotifications {
-  
+
+  /**
+   * Notify lottery ticket was submitted
+   */
   void notifyTicketSubmitted(PlayerDetails details);
+
+  /**
+   * Notify there was an error submitting lottery ticket
+   */
   void notifyTicketSubmitError(PlayerDetails details);
+
+  /**
+   * Notify lottery ticket did not win
+   */
   void notifyNoWin(PlayerDetails details);
+
+  /**
+   * Notify that prize has been paid
+   */
   void notifyPrize(PlayerDetails details, int prizeAmount);
+
+  /**
+   * Notify that there was an error paying the prize
+   */
   void notifyPrizeError(PlayerDetails details, int prizeAmount);
 
 }

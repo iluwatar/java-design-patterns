@@ -36,7 +36,13 @@ import com.iluwatar.hexagonal.domain.LotteryTicketId;
  */
 public interface LotteryService {
 
+  /**
+   * Submit lottery ticket to participate in the lottery
+   */
   Optional<LotteryTicketId> submitTicket(LotteryTicket ticket);
 
+  /**
+   * Check if lottery ticket has won
+   */
   LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers);
 }

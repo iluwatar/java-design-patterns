@@ -49,7 +49,10 @@ public class LotteryServiceImpl implements LotteryService {
   private final WireTransfers bank = new WireTransfersImpl();
 
   private final LotteryNotifications notifications = new LotteryNotificationsImpl();
-  
+
+  /**
+   * Constructor
+   */
   public LotteryServiceImpl() {
     repository = new LotteryTicketInMemoryRepository();
   }

@@ -32,7 +32,6 @@ public class LotteryTicketCheckResult {
   public enum CheckResult { WIN_PRIZE, NO_PRIZE, TICKET_NOT_SUBMITTED };
 
   private final CheckResult checkResult;
-  
   private final int prizeAmount;
 
   /**

@@ -35,8 +35,19 @@ import com.iluwatar.hexagonal.domain.LotteryTicketId;
  */
 public interface LotteryAdministration {
 
+  /**
+   * Get all the lottery tickets submitted for lottery
+   */
   Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets();
+
+  /**
+   * Draw lottery numbers
+   */
   LotteryNumbers performLottery();
+
+  /**
+   * Begin new lottery round
+   */
   void resetLottery();
   
 }
