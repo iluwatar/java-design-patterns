@@ -10,9 +10,9 @@ tags:
 ---
 
 ## Also known as
-Ports and Adapters
-Clean Architecture
-Onion Architecture
+* Ports and Adapters
+* Clean Architecture
+* Onion Architecture
 
 ## Intent
 Allow an application to equally be driven by users, programs, automated test or batch scripts, and to be developed and tested in isolation from its eventual run-time devices and databases.
