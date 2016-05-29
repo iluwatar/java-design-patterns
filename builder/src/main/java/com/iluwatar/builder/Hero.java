@@ -36,7 +36,7 @@ public final class Hero {
   private final Armor armor;
   private final Weapon weapon;
 
-  private Hero(HeroBuilder builder) {
+  private Hero(Builder builder) {
     this.profession = builder.profession;
     this.name = builder.name;
     this.hairColor = builder.hairColor;
@@ -102,7 +102,7 @@ public final class Hero {
    * The builder class.
    * 
    */
-  public static class HeroBuilder {
+  public static class Builder {
 
     private final Profession profession;
     private final String name;
@@ -114,7 +114,7 @@ public final class Hero {
     /**
      * Constructor
      */
-    public HeroBuilder(Profession profession, String name) {
+    public Builder(Profession profession, String name) {
       if (profession == null || name == null) {
         throw new IllegalArgumentException("profession and name can not be null");
       }
@@ -122,22 +122,22 @@ public final class Hero {
       this.name = name;
     }
 
-    public HeroBuilder withHairType(HairType hairType) {
+    public Builder withHairType(HairType hairType) {
       this.hairType = hairType;
       return this;
     }
 
-    public HeroBuilder withHairColor(HairColor hairColor) {
+    public Builder withHairColor(HairColor hairColor) {
       this.hairColor = hairColor;
       return this;
     }
 
-    public HeroBuilder withArmor(Armor armor) {
+    public Builder withArmor(Armor armor) {
       this.armor = armor;
       return this;
     }
 
-    public HeroBuilder withWeapon(Weapon weapon) {
+    public Builder withWeapon(Weapon weapon) {
       this.weapon = weapon;
       return this;
     }

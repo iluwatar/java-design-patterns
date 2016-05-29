@@ -39,7 +39,7 @@ public class HeroTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testMissingProfession() throws Exception {
-    new Hero.HeroBuilder(null, "Sir without a job");
+    new Hero.Builder(null, "Sir without a job");
   }
 
   /**
@@ -47,7 +47,7 @@ public class HeroTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testMissingName() throws Exception {
-    new Hero.HeroBuilder(Profession.THIEF, null);
+    new Hero.Builder(Profession.THIEF, null);
   }
 
   /**
@@ -57,7 +57,7 @@ public class HeroTest {
   public void testBuildHero() throws Exception {
     final String heroName = "Sir Lancelot";
 
-    final Hero hero = new Hero.HeroBuilder(Profession.WARRIOR, heroName)
+    final Hero hero = new Hero.Builder(Profession.WARRIOR, heroName)
         .withArmor(Armor.CHAIN_MAIL)
         .withWeapon(Weapon.SWORD)
         .withHairType(HairType.LONG_CURLY)
