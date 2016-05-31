@@ -125,7 +125,8 @@
 		<module>mutex</module>
 		<module>semaphore</module>
                 <module>hexagonal</module>
-  </modules>
+		<module>abstract-document</module>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>
