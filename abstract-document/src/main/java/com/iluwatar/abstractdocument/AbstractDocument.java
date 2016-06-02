@@ -3,6 +3,7 @@ package com.iluwatar.abstractdocument;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -28,11 +29,11 @@ public abstract class AbstractDocument implements Document {
 
     @Override
     public <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor) {
-        return Stream.of(get(key))
+        Optional<List<Map<String, Object>>> any = Stream.of(get(key))
                 .filter(el -> el != null)
                 .map(el -> (List<Map<String, Object>>) el)
-                .findAny().get().stream()
-                .map(constructor);
+                .findAny();
+        return any.isPresent() ? any.get().stream().map(constructor) : Stream.empty();
     }
 
     @Override

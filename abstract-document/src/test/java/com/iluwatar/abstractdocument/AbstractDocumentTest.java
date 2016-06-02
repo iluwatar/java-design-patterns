@@ -29,7 +29,6 @@ public class AbstractDocumentTest {
     public void shouldPutAndGetValue() {
         document.put(KEY, VALUE);
         assertEquals(VALUE, document.get(KEY));
-        System.out.println(document);
     }
 
     @Test
@@ -43,6 +42,13 @@ public class AbstractDocumentTest {
         Stream<DocumentImplementation> childrenStream = document.children(KEY, DocumentImplementation::new);
         assertNotNull(children);
         assertEquals(2, childrenStream.count());
+    }
+
+    @Test
+    public void shouldRetrieveEmptyStreamForNonExistinChildren() {
+        Stream<DocumentImplementation> children = document.children(KEY, DocumentImplementation::new);
+        assertNotNull(children);
+        assertEquals(0, children.count());
     }
 
 }
