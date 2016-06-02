@@ -38,7 +38,7 @@ public abstract class AbstractDocument implements Document {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         builder.append(getClass().getName()).append("[");
         properties.entrySet().forEach(e ->
                 builder.append("[").append(e.getKey()).append(" : ").append(e.getValue()).append("]")

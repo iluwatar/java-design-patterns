@@ -8,7 +8,7 @@ import com.iluwatar.abstractdocument.AbstractDocument;
 public class Part extends AbstractDocument implements HasModel, HasPrice {
 
 	protected Part() {
-		super(new HashMap<String, Object>());
+		super(new HashMap<>());
 	}
 	
 	protected Part(Map<String, Object> properties) {

@@ -8,7 +8,7 @@ import com.iluwatar.abstractdocument.AbstractDocument;
 public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts {
 
 	protected Car() {
-		super(new HashMap<String, Object>());
+		super(new HashMap<>());
 	}
 	
 	protected Car(Map<String,Object> properties) {
