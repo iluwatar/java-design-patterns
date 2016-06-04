@@ -124,7 +124,7 @@
 		<module>mute-idiom</module>
 		<module>mutex</module>
 		<module>semaphore</module>
-                <module>hexagonal</module>
+		<module>hexagonal</module>
 		<module>abstract-document</module>
 	</modules>
 

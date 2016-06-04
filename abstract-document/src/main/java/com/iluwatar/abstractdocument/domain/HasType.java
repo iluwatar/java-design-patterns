@@ -22,19 +22,19 @@
  */
 package com.iluwatar.abstractdocument.domain;
 
-import java.util.Optional;
-
 import com.iluwatar.abstractdocument.Document;
 
+import java.util.Optional;
+
 /**
- * HasPrice trait for static access to 'price' property
+ * HasType trait for static access to 'type' property
  */
-public interface HasPrice extends Document {
+public interface HasType extends Document {
 
-  String PROPERTY = "price";
+  String PROPERTY = "type";
 
-  default Optional<Number> getPrice() {
-    return Optional.ofNullable((Number) get(PROPERTY));
+  default Optional<String> getType() {
+    return Optional.ofNullable((String) get(PROPERTY));
   }
 
 }
