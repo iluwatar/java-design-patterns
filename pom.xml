@@ -31,7 +31,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.version>5.0.1.Final</hibernate.version>
 		<spring.version>4.2.4.RELEASE</spring.version>
-    	<spring-boot.version>1.3.3.RELEASE</spring-boot.version>
+    <spring-boot.version>1.3.3.RELEASE</spring-boot.version>
 		<spring-data.version>1.9.2.RELEASE</spring-data.version>
 		<h2.version>1.4.190</h2.version>
 		<junit.version>4.12</junit.version>
@@ -126,6 +126,7 @@
 		<module>semaphore</module>
 		<module>hexagonal</module>
 		<module>abstract-document</module>
+		<module>aggregator-microservices</module>
 		<module>page-object</module>
 	</modules>
 
