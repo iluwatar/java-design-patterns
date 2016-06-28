@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.iluwatar.pages.LoginPage" project="test-automation" 
+  <class id="1" language="java" name="java.com.iluwatar.pageobject.pages.LoginPage" project="test-automation"
     file="/test-automation/src/main/java/com/iluwatar/pages/LoginPage.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="163" y="396"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="com.iluwatar.pages.AlbumPage" project="test-automation" 
+  <class id="2" language="java" name="java.com.iluwatar.pageobject.pages.AlbumPage" project="test-automation"
     file="/test-automation/src/main/java/com/iluwatar/pages/AlbumPage.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="487" y="416"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="com.iluwatar.pages.AlbumListPage" project="test-automation" 
+  <class id="3" language="java" name="java.com.iluwatar.pageobject.pages.AlbumListPage" project="test-automation"
     file="/test-automation/src/main/java/com/iluwatar/pages/AlbumListPage.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="269" width="260" x="698" y="260"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -28,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="com.iluwatar.Page" project="test-automation" 
+  <class id="4" language="java" name="java.com.iluwatar.pageobject.pages.Page" project="test-automation"
     file="/test-automation/src/main/java/com/iluwatar/Page.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="481" y="57"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

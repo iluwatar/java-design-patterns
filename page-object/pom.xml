@@ -32,9 +32,16 @@
         <version>1.12.0-SNAPSHOT</version>
     </parent>
     <artifactId>page-object</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>sample-application</module>
-        <module>test-automation</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+            <version>2.22</version>
+        </dependency>
+    </dependencies>
 </project>

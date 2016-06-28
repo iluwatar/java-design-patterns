@@ -20,38 +20,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar;
+package com.iluwatar.pageobject;
 
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.iluwatar.pageobject.pages.AlbumListPage;
+import com.iluwatar.pageobject.pages.AlbumPage;
+import org.junit.Test;
 
-/**
- * Encapsulation for a generic 'Page'
- */
-public abstract class Page {
+import static org.junit.Assert.assertTrue;
 
-  /**
-   * Application Under Test path
-   * This directory location is where html web pages are located
-   */
-  public static final String AUT_PATH = "../sample-application/src/main/resources/sample-ui/";
+public class AlbumPageTest {
 
-  protected WebClient webClient;
+  private AlbumPage albumPage = new AlbumPage(new WebClient());
 
-  /**
-   * Constructor
-   *
-   * @param webClient {@link WebClient}
-   */
-  public Page(WebClient webClient) {
-    this.webClient = webClient;
+  @Test
+  public void testSaveAlbum() {
+
+    AlbumPage albumPageAfterChanges = albumPage.changeAlbumTitle("25")
+        .changeArtist("Adele Laurie Blue Adkins")
+        .changeAlbumYear(2015)
+        .changeAlbumRating("B")
+        .changeNumberOfSongs(20)
+        .saveChanges();
+
+    assertTrue(albumPageAfterChanges.isAt());
+
   }
 
-  /**
-   * Checks that the current page is actually the page this page object represents
-   *
-   * @return true if so, otherwise false
-   */
-  public abstract boolean isAt();
-
+  @Test
+  public void testCancelChanges() {
+    AlbumListPage albumListPage = albumPage.cancelChanges();
+    assertTrue(albumListPage.isAt());
+  }
 
 }

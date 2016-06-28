@@ -71,7 +71,7 @@ public final class App {
 
     String currentWorkingDir = System.getProperty("user.dir");
     File applicationFile = new File(currentWorkingDir
-        + "/page-object/sample-application/src/main/resources/sample-ui/login.html");
+        + "/page-object/src/main/resources/sample-ui/login.html");
 
     // should work for unix like OS (mac, unix etc...)
     if (Desktop.isDesktopSupported()) {

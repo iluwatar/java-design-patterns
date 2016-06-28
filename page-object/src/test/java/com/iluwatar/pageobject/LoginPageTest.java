@@ -23,33 +23,22 @@
 package com.iluwatar.pageobject;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.iluwatar.pages.AlbumListPage;
-import com.iluwatar.pages.AlbumPage;
+import com.iluwatar.pageobject.pages.AlbumListPage;
+import com.iluwatar.pageobject.pages.LoginPage;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class AlbumPageTest {
-
-  private AlbumPage albumPage = new AlbumPage(new WebClient());
+public class LoginPageTest {
 
   @Test
-  public void testSaveAlbum() {
+  public void testLogin() {
+    LoginPage loginPage = new LoginPage(new WebClient());
 
-    AlbumPage albumPageAfterChanges = albumPage.changeAlbumTitle("25")
-        .changeArtist("Adele Laurie Blue Adkins")
-        .changeAlbumYear(2015)
-        .changeAlbumRating("B")
-        .changeNumberOfSongs(20)
-        .saveChanges();
+    AlbumListPage albumListPage = loginPage.enterUsername("admin")
+        .enterPassword("password")
+        .login();
 
-    assertTrue(albumPageAfterChanges.isAt());
-
-  }
-
-  @Test
-  public void testCancelChanges() {
-    AlbumListPage albumListPage = albumPage.cancelChanges();
     assertTrue(albumListPage.isAt());
   }
 

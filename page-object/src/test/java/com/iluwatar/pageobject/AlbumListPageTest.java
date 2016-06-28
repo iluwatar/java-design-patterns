@@ -24,8 +24,8 @@ package com.iluwatar.pageobject;
 
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.iluwatar.pages.AlbumListPage;
-import com.iluwatar.pages.AlbumPage;
+import com.iluwatar.pageobject.pages.AlbumListPage;
+import com.iluwatar.pageobject.pages.AlbumPage;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

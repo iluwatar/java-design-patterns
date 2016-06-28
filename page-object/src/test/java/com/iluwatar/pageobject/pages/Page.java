@@ -20,26 +20,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.pageobject;
+package com.iluwatar.pageobject.pages;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.iluwatar.pages.AlbumListPage;
-import com.iluwatar.pages.LoginPage;
-import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+/**
+ * Encapsulation for a generic 'Page'
+ */
+public abstract class Page {
 
-public class LoginPageTest {
+  /**
+   * Application Under Test path
+   * This directory location is where html web pages are located
+   */
+  public static final String AUT_PATH = "src/main/resources/sample-ui/";
 
-  @Test
-  public void testLogin() {
-    LoginPage loginPage = new LoginPage(new WebClient());
+  protected WebClient webClient;
 
-    AlbumListPage albumListPage = loginPage.enterUsername("admin")
-        .enterPassword("password")
-        .login();
-
-    assertTrue(albumListPage.isAt());
+  /**
+   * Constructor
+   *
+   * @param webClient {@link WebClient}
+   */
+  public Page(WebClient webClient) {
+    this.webClient = webClient;
   }
+
+  /**
+   * Checks that the current page is actually the page this page object represents
+   *
+   * @return true if so, otherwise false
+   */
+  public abstract boolean isAt();
+
 
 }
