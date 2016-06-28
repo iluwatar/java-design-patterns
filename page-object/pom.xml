@@ -41,7 +41,6 @@
         <dependency>
             <groupId>net.sourceforge.htmlunit</groupId>
             <artifactId>htmlunit</artifactId>
-            <version>2.22</version>
         </dependency>
     </dependencies>
 </project>
