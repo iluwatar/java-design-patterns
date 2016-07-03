@@ -25,20 +25,27 @@ package com.iluwatar.pageobject;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.iluwatar.pageobject.pages.AlbumListPage;
 import com.iluwatar.pageobject.pages.LoginPage;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
 public class LoginPageTest {
 
+  private LoginPage loginPage = new LoginPage(new WebClient());
+
+  @Before
+  public void setUp() {
+    loginPage.navigateToPage();
+  }
+
   @Test
   public void testLogin() {
-    LoginPage loginPage = new LoginPage(new WebClient());
-
-    AlbumListPage albumListPage = loginPage.enterUsername("admin")
+    AlbumListPage albumListPage = loginPage
+        .enterUsername("admin")
         .enterPassword("password")
         .login();
-
+    albumListPage.navigateToPage();
     assertTrue(albumListPage.isAt());
   }
 

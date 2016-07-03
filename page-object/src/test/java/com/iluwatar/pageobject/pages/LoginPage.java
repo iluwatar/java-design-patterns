@@ -28,7 +28,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 /**
  * Page Object encapsulating the Login Page (login.html)
@@ -40,11 +39,6 @@ public class LoginPage extends Page {
 
   private HtmlPage page;
 
-  private HtmlTextInput usernameInputTextField;
-  private HtmlPasswordInput passwordInputPasswordField;
-  private HtmlSubmitInput loginButton;
-
-
   /**
    * Constructor
    *
@@ -52,20 +46,21 @@ public class LoginPage extends Page {
    */
   public LoginPage(WebClient webClient) {
     super(webClient);
+  }
+
+  /**
+   * Navigates to the Login page
+   *
+   * @return {@link LoginPage}
+   */
+  public LoginPage navigateToPage() {
     try {
       page = this.webClient.getPage(PAGE_URL);
-
-      usernameInputTextField = (HtmlTextInput) page.getElementById("username");
-      passwordInputPasswordField = (HtmlPasswordInput) page.getElementById("password");
-      loginButton = (HtmlSubmitInput) page.getElementById("loginButton");
-
-    } catch (MalformedURLException e) {
-      e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();
     }
+    return this;
   }
-
 
   /**
    * {@inheritDoc}
@@ -83,6 +78,7 @@ public class LoginPage extends Page {
    * @return {@link LoginPage}
    */
   public LoginPage enterUsername(String username) {
+    HtmlTextInput usernameInputTextField = (HtmlTextInput) page.getElementById("username");
     usernameInputTextField.setText(username);
     return this;
   }
@@ -95,6 +91,7 @@ public class LoginPage extends Page {
    * @return {@link LoginPage}
    */
   public LoginPage enterPassword(String password) {
+    HtmlPasswordInput passwordInputPasswordField = (HtmlPasswordInput) page.getElementById("password");
     passwordInputPasswordField.setText(password);
     return this;
   }
@@ -107,6 +104,7 @@ public class LoginPage extends Page {
    *        - this is the page that user gets navigated to once successfully logged in
    */
   public AlbumListPage login() {
+    HtmlSubmitInput loginButton = (HtmlSubmitInput) page.getElementById("loginButton");
     try {
       loginButton.click();
     } catch (IOException e) {
@@ -114,6 +112,5 @@ public class LoginPage extends Page {
     }
     return new AlbumListPage(webClient);
   }
-
 
 }

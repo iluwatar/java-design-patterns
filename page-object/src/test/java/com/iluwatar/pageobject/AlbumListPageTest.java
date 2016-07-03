@@ -26,6 +26,7 @@ package com.iluwatar.pageobject;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.iluwatar.pageobject.pages.AlbumListPage;
 import com.iluwatar.pageobject.pages.AlbumPage;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -33,12 +34,17 @@ import static org.junit.Assert.assertTrue;
 
 public class AlbumListPageTest {
 
+  private AlbumListPage albumListPage = new AlbumListPage(new WebClient());
+
+  @Before
+  public void setUp() {
+    albumListPage.navigateToPage();
+  }
+
   @Test
   public void testSelectAlbum() {
-    AlbumListPage albumListPage = new AlbumListPage(new WebClient());
-
     AlbumPage albumPage = albumListPage.selectAlbum("21");
-
+    albumPage.navigateToPage();
     assertTrue(albumPage.isAt());
   }
 

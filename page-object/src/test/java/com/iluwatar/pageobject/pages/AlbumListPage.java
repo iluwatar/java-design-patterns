@@ -27,7 +27,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.List;
 
 /**
@@ -40,26 +39,27 @@ public class AlbumListPage extends Page {
 
   private HtmlPage page;
 
-  private List<HtmlAnchor> albumLinks;
-
 
   /**
    * Constructor
    */
   public AlbumListPage(WebClient webClient) {
     super(webClient);
+  }
+
+
+  /**
+   * Navigates to the Album List Page
+   *
+   * @return {@link AlbumListPage}
+   */
+  public AlbumListPage navigateToPage() {
     try {
       page = this.webClient.getPage(PAGE_URL);
-
-      // uses XPath to find list of html anchor tags with the class album in it
-      albumLinks = (List<HtmlAnchor>) page.getByXPath("//tr[@class='album']//a");
-
-    } catch (MalformedURLException e) {
-      e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();
     }
-
+    return this;
   }
 
   /**
@@ -77,6 +77,8 @@ public class AlbumListPage extends Page {
    * @return the album page
    */
   public AlbumPage selectAlbum(String albumTitle) {
+    // uses XPath to find list of html anchor tags with the class album in it
+    List<HtmlAnchor> albumLinks = (List<HtmlAnchor>) page.getByXPath("//tr[@class='album']//a");
     for (HtmlAnchor anchor : albumLinks) {
       if (anchor.getTextContent().equals(albumTitle)) {
         try {

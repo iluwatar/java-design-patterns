@@ -35,7 +35,7 @@ public abstract class Page {
    */
   public static final String AUT_PATH = "src/main/resources/sample-ui/";
 
-  protected WebClient webClient;
+  protected final WebClient webClient;
 
   /**
    * Constructor

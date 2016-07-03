@@ -25,6 +25,7 @@ package com.iluwatar.pageobject;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.iluwatar.pageobject.pages.AlbumListPage;
 import com.iluwatar.pageobject.pages.AlbumPage;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -33,10 +34,16 @@ public class AlbumPageTest {
 
   private AlbumPage albumPage = new AlbumPage(new WebClient());
 
+  @Before
+  public void setUp() {
+    albumPage.navigateToPage();
+  }
+
   @Test
   public void testSaveAlbum() {
 
-    AlbumPage albumPageAfterChanges = albumPage.changeAlbumTitle("25")
+    AlbumPage albumPageAfterChanges = albumPage
+        .changeAlbumTitle("25")
         .changeArtist("Adele Laurie Blue Adkins")
         .changeAlbumYear(2015)
         .changeAlbumRating("B")
@@ -50,6 +57,7 @@ public class AlbumPageTest {
   @Test
   public void testCancelChanges() {
     AlbumListPage albumListPage = albumPage.cancelChanges();
+    albumListPage.navigateToPage();
     assertTrue(albumListPage.isAt());
   }
 

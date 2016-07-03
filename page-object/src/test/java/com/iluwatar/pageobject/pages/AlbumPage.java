@@ -31,7 +31,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 /**
  * Page Object encapsulating the Album Page (album-page.html)
@@ -43,43 +42,27 @@ public class AlbumPage extends Page {
 
   private HtmlPage page;
 
-  private HtmlTextInput albumTitleInputTextField;
-  private HtmlTextInput artistInputTextField;
-  private HtmlSelect albumYearSelectOption;
-  private HtmlTextInput albumRatingInputTextField;
-  private HtmlNumberInput numberOfSongsNumberField;
-
-  private HtmlSubmitInput cancelButton;
-  private HtmlSubmitInput saveButton;
 
   /**
    * Constructor
    */
   public AlbumPage(WebClient webClient) {
     super(webClient);
-    try {
-      page = this.webClient.getPage(PAGE_URL);
-      initializeHtmlElements();
-    } catch (MalformedURLException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
   }
 
 
-  private void initializeHtmlElements() {
-    albumTitleInputTextField = (HtmlTextInput) page.getElementById("albumTitle");
-    artistInputTextField = (HtmlTextInput) page.getElementById("albumArtist");
-    albumYearSelectOption = (HtmlSelect) page.getElementById("albumYear");
-    albumRatingInputTextField = (HtmlTextInput) page.getElementById("albumRating");
-    numberOfSongsNumberField = (HtmlNumberInput) page.getElementById("numberOfSongs");
-
-    cancelButton = (HtmlSubmitInput) page.getElementById("cancelButton");
-    saveButton = (HtmlSubmitInput) page.getElementById("saveButton");
+  /**
+   * Navigates to the album page
+   *
+   * @return {@link AlbumPage}
+   */
+  public AlbumPage navigateToPage() {
+    try {
+      page = this.webClient.getPage(PAGE_URL);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return this;
   }
 
 
@@ -99,6 +82,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage changeAlbumTitle(String albumTitle) {
+    HtmlTextInput albumTitleInputTextField = (HtmlTextInput) page.getElementById("albumTitle");
     albumTitleInputTextField.setText(albumTitle);
     return this;
   }
@@ -111,6 +95,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage changeArtist(String artist) {
+    HtmlTextInput artistInputTextField = (HtmlTextInput) page.getElementById("albumArtist");
     artistInputTextField.setText(artist);
     return this;
   }
@@ -123,6 +108,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage changeAlbumYear(int year) {
+    HtmlSelect albumYearSelectOption = (HtmlSelect) page.getElementById("albumYear");
     HtmlOption yearOption = albumYearSelectOption.getOptionByValue(Integer.toString(year));
     albumYearSelectOption.setSelectedAttribute(yearOption, true);
     return this;
@@ -136,6 +122,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage changeAlbumRating(String albumRating) {
+    HtmlTextInput albumRatingInputTextField = (HtmlTextInput) page.getElementById("albumRating");
     albumRatingInputTextField.setText(albumRating);
     return this;
   }
@@ -147,6 +134,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage changeNumberOfSongs(int numberOfSongs) {
+    HtmlNumberInput numberOfSongsNumberField = (HtmlNumberInput) page.getElementById("numberOfSongs");
     numberOfSongsNumberField.setText(Integer.toString(numberOfSongs));
     return this;
   }
@@ -158,6 +146,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumListPage}
    */
   public AlbumListPage cancelChanges() {
+    HtmlSubmitInput cancelButton = (HtmlSubmitInput) page.getElementById("cancelButton");
     try {
       cancelButton.click();
     } catch (IOException e) {
@@ -173,6 +162,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage saveChanges() {
+    HtmlSubmitInput saveButton = (HtmlSubmitInput) page.getElementById("saveButton");
     try {
       saveButton.click();
     } catch (IOException e) {
