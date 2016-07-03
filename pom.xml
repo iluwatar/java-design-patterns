@@ -229,6 +229,12 @@
   				<version>${hierarchical-junit-runner-version}</version>
   				<scope>test</scope>
 			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.htmlunit</groupId>
+				<artifactId>htmlunit</artifactId>
+				<version>${htmlunit.version}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
