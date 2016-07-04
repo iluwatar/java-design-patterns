@@ -29,9 +29,9 @@ Use the Factory Method pattern when
 
 ## Known uses
 
-java.util.Calendar
-java.util.ResourceBundle
-java.text.NumberFormat#getInstance()
+* java.util.Calendar
+* java.util.ResourceBundle
+* java.text.NumberFormat#getInstance()
 
 ## Credits
 
