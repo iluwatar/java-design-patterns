@@ -27,6 +27,12 @@ Use the Factory Method pattern when
 * a class wants its subclasses to specify the objects it creates
 * classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
 
+## Known uses
+
+java.util.Calendar
+java.util.ResourceBundle
+java.text.NumberFormat#getInstance()
+
 ## Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
