@@ -9,6 +9,9 @@ tags:
  - Difficulty-Beginner
 ---
 
+## Also known as
+Filter, Criteria
+
 ## Intent
 Specification pattern separates the statement of how to match a
 candidate, from the candidate object that it is matched against. As well as its
