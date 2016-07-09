@@ -307,6 +307,7 @@
 				<configuration>
 					<excludes>
 						<exclude>domainapp/dom/modules/simple/QSimpleObject.class</exclude>
+						<exclude>**com.steadystate*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
