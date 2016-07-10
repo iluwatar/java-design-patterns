@@ -69,25 +69,21 @@ public final class App {
    */
   public static void main(String[] args) {
 
-    String currentWorkingDir = System.getProperty("user.dir");
-    File applicationFile = new File(currentWorkingDir
-        + "/page-object/src/main/resources/sample-ui/login.html");
+    try {
+      File applicationFile = new File(App.class.getClassLoader().getResource("sample-ui/login.html").getPath());
 
-    // should work for unix like OS (mac, unix etc...)
-    if (Desktop.isDesktopSupported()) {
-      try {
+      // should work for unix like OS (mac, unix etc...)
+      if (Desktop.isDesktopSupported()) {
         Desktop.getDesktop().open(applicationFile);
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    } else {
-      // java Desktop not supported - above unlikely to work for Windows so try following instead...
-      try {
+
+      } else {
+        // java Desktop not supported - above unlikely to work for Windows so try following instead...
         Runtime.getRuntime().exec("cmd.exe start " + applicationFile);
-      } catch (IOException e) {
-        e.printStackTrace();
       }
 
+    } catch (IOException ex) {
+      ex.printStackTrace();
     }
+
   }
 }
