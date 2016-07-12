@@ -11,4 +11,5 @@
 - name: Presentation Tier
 - name: Business Tier
 - name: Persistence Tier
+- name: Testing
 - name: Other
