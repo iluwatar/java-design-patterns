@@ -5,6 +5,8 @@ folder: page-object
 permalink: /patterns/page-object/
 categories: Testing
 tags:
+- Java
+- Difficulty-Intermediate
 - Testing
 - Web Development
 - Encapsulation
