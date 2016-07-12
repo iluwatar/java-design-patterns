@@ -46,6 +46,7 @@
 		<mockito.version>1.10.19</mockito.version>
 		<hierarchical-junit-runner-version>4.12.1</hierarchical-junit-runner-version>
     <apache-httpcomponents.version>4.5.2</apache-httpcomponents.version>
+        <htmlunit.version>2.22</htmlunit.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -127,6 +128,7 @@
 		<module>hexagonal</module>
 		<module>abstract-document</module>
 		<module>aggregator-microservices</module>
+        <module>page-object</module>
 	</modules>
 
 	<dependencyManagement>
@@ -227,6 +229,12 @@
   				<version>${hierarchical-junit-runner-version}</version>
   				<scope>test</scope>
 			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.htmlunit</groupId>
+				<artifactId>htmlunit</artifactId>
+				<version>${htmlunit.version}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -299,6 +307,7 @@
 				<configuration>
 					<excludes>
 						<exclude>domainapp/dom/modules/simple/QSimpleObject.class</exclude>
+						<exclude>**com.steadystate*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
