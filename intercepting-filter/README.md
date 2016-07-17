@@ -24,6 +24,7 @@ Use the Intercepting Filter pattern when
 
 ## Real world examples
 
+* [javax.servlet.FilterChain](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/FilterChain.html) and [javax.servlet.Filter](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/Filter.html)
 * [Struts 2 - Interceptors](https://struts.apache.org/docs/interceptors.html)
 
 ## Credits

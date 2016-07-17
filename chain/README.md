@@ -26,7 +26,6 @@ Use Chain of Responsibility when
 
 ## Real world examples
 
-* [javax.servlet.FilterChain](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/FilterChain.html) and [javax.servlet.Filter](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/Filter.html)
 * [java.util.logging.Logger#log()](http://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29)
 * [Apache Commons Chain](https://commons.apache.org/proper/commons-chain/index.html)
 
