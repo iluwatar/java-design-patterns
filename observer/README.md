@@ -8,6 +8,7 @@ tags:
  - Java
  - Difficulty-Beginner
  - Gang Of Four
+ - Reactive
 ---
 
 ## Also known as

@@ -1,7 +1,14 @@
+---
 layout: pattern
 title: Event Driven Architecture
 folder: event-driven-architecture
 permalink: /patterns/event-driven-architecture
+categories: Architectural
+tags:
+ - Java
+ - Difficulty-Intermediate
+ - Reactive
+---
 
 ## Intent
 Send and notify state changes of your objects to other applications using an Event-driven Architecture.

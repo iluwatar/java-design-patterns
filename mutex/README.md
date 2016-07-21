@@ -3,10 +3,10 @@ layout: pattern
 title: Mutex
 folder: mutex
 permalink: /patterns/mutex/
-categories: Lock
+categories: Concurrency
 tags: 
  - Java
- - Difficulty-Beginner
+ - Difficulty-Intermediate
 ---
 
 ## Also known as
