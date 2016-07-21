@@ -1,24 +1,38 @@
 package com.iluwatar.promise;
 
+import com.iluwatar.async.method.invocation.ThreadAsyncExecutor;
+
+/**
+ * 
+ * Application that uses promise pattern.
+ */
 public class App {
 
   /**
    * Program entry point
    * @param args arguments
+   * @throws InterruptedException if main thread is interruped.
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
     ThreadAsyncExecutor executor = new ThreadAsyncExecutor();
-    executor.execute(() -> {
+    
+    Promise<Integer> consumedPromise = new Promise<>();
+    consumedPromise.fulfillInAsync(() -> {
       Thread.sleep(1000);
       return 10;
-    }).then(value -> {System.out.println("Consumed the value: " + value);})
-    .then(nullVal -> {System.out.println("Post consuming value");});
+    }, executor).then(value -> {
+      System.out.println("Consumed int value: " + value);
+    });
     
-    
-    executor.execute(() -> {
+    Promise<String> transformedPromise = new Promise<>();
+    transformedPromise.fulfillInAsync(() -> {
       Thread.sleep(1000);
       return "10";
-     }).then(value -> {return 10 + Integer.parseInt(value);})
-    .then(intValue -> {System.out.println("Consumed int value: " + intValue);});
+    }, executor).then(value -> { return Integer.parseInt(value); }).then(value -> {
+      System.out.println(value);
+    });
+    
+    consumedPromise.await();
+    transformedPromise.await();
   }
 }
