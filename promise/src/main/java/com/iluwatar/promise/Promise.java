@@ -2,17 +2,18 @@ package com.iluwatar.promise;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
 import java.util.function.Function;
-
-import com.iluwatar.async.method.invocation.AsyncExecutor;
-import com.iluwatar.async.method.invocation.internal.CompletableResult;
 
 /**
  * Implements the promise pattern.
  * @param <T> type of result.
  */
-public class Promise<T> extends CompletableResult<T> {
+public class Promise<T> extends PromiseSupport<T> {
 
   private Runnable fulfillmentAction;
 
@@ -20,31 +21,30 @@ public class Promise<T> extends CompletableResult<T> {
    * Creates a promise that will be fulfilled in future.
    */
   public Promise() {
-    super(null);
   }
 
   /**
    * Fulfills the promise with the provided value.
-   * @param value the fulfilled value that can be accessed using {@link #getValue()}.
+   * @param value the fulfilled value that can be accessed using {@link #get()}.
    */
   @Override
-  public void setValue(T value) {
-    super.setValue(value);
-    postComplete();
+  public void fulfill(T value) {
+    super.fulfill(value);
+    postFulfillment();
   }
 
   /**
    * Fulfills the promise with exception due to error in execution.
    * @param exception the exception will be wrapped in {@link ExecutionException}
-   *        when accessing the value using {@link #getValue()}.
+   *        when accessing the value using {@link #get()}.
    */
   @Override
-  public void setException(Exception exception) {
-    super.setException(exception);
-    postComplete();
+  public void fulfillExceptionally(Exception exception) {
+    super.fulfillExceptionally(exception);
+    postFulfillment();
   }
 
-  void postComplete() {
+  void postFulfillment() {
     if (fulfillmentAction == null) {
       return;
     }
@@ -59,13 +59,12 @@ public class Promise<T> extends CompletableResult<T> {
    * @param executor the executor in which the task should be run.
    * @return a promise that represents the result of running the task provided.
    */
-  public Promise<T> fulfillInAsync(final Callable<T> task, AsyncExecutor executor) {
-    executor.startProcess(new Callable<Void>() {
-
-      @Override
-      public Void call() throws Exception {
-        setValue(task.call());
-        return null;
+  public Promise<T> fulfillInAsync(final Callable<T> task, Executor executor) {
+    executor.execute(() -> {
+      try {
+        fulfill(task.call());
+      } catch (Exception e) {
+        fulfillExceptionally(e);
       }
     });
     return this;
@@ -91,18 +90,22 @@ public class Promise<T> extends CompletableResult<T> {
    */
   public <V> Promise<V> then(Function<? super T, V> func) {
     Promise<V> dest = new Promise<>();
-    fulfillmentAction = new FunctionAction<V>(this, dest, func);
+    fulfillmentAction = new TransformAction<V>(this, dest, func);
     return dest;
   }
 
+  /**
+   * A consume action provides the action, the value from source promise and fulfills the
+   * destination promise.
+   */
   private class ConsumeAction implements Runnable {
 
-    private Promise<T> current;
+    private Promise<T> src;
     private Promise<Void> dest;
     private Consumer<? super T> action;
 
-    public ConsumeAction(Promise<T> current, Promise<Void> dest, Consumer<? super T> action) {
-      this.current = current;
+    ConsumeAction(Promise<T> src, Promise<Void> dest, Consumer<? super T> action) {
+      this.src = src;
       this.dest = dest;
       this.action = action;
     }
@@ -110,22 +113,26 @@ public class Promise<T> extends CompletableResult<T> {
     @Override
     public void run() {
       try {
-        action.accept(current.getValue());
-        dest.setValue(null);
+        action.accept(src.get());
+        dest.fulfill(null);
       } catch (Throwable e) {
-        dest.setException((Exception) e.getCause());
+        dest.fulfillExceptionally((Exception) e.getCause());
       }
     }
   }
 
-  private class FunctionAction<V> implements Runnable {
+  /**
+   * A function action provides transformation function, value from source promise and fulfills the
+   * destination promise with the transformed value.
+   */
+  private class TransformAction<V> implements Runnable {
 
-    private Promise<T> current;
+    private Promise<T> src;
     private Promise<V> dest;
     private Function<? super T, V> func;
 
-    public FunctionAction(Promise<T> current, Promise<V> dest, Function<? super T, V> func) {
-      this.current = current;
+    TransformAction(Promise<T> src, Promise<V> dest, Function<? super T, V> func) {
+      this.src = src;
       this.dest = dest;
       this.func = func;
     }
@@ -133,10 +140,102 @@ public class Promise<T> extends CompletableResult<T> {
     @Override
     public void run() {
       try {
-        V result = func.apply(current.getValue());
-        dest.setValue(result);
+        V result = func.apply(src.get());
+        dest.fulfill(result);
       } catch (Throwable e) {
-        dest.setException((Exception) e.getCause());
+        dest.fulfillExceptionally((Exception) e.getCause());
+      }
+    }
+  }
+}
+
+
+/**
+ * A really simplified implementation of future that allows completing it successfully with a value 
+ * or exceptionally with an exception.
+ */
+class PromiseSupport<T> implements Future<T> {
+
+  static final int RUNNING = 1;
+  static final int FAILED = 2;
+  static final int COMPLETED = 3;
+
+  final Object lock;
+
+  volatile int state = RUNNING;
+  T value;
+  Exception exception;
+
+  PromiseSupport() {
+    this.lock = new Object();
+  }
+
+  void fulfill(T value) {
+    this.value = value;
+    this.state = COMPLETED;
+    synchronized (lock) {
+      lock.notifyAll();
+    }
+  }
+
+  void fulfillExceptionally(Exception exception) {
+    this.exception = exception;
+    this.state = FAILED;
+    synchronized (lock) {
+      lock.notifyAll();
+    }
+  }
+
+  @Override
+  public boolean cancel(boolean mayInterruptIfRunning) {
+    return false;
+  }
+
+  @Override
+  public boolean isCancelled() {
+    return false;
+  }
+
+  @Override
+  public boolean isDone() {
+    return state > RUNNING;
+  }
+
+  @Override
+  public T get() throws InterruptedException, ExecutionException {
+    if (state == COMPLETED) {
+      return value;
+    } else if (state == FAILED) {
+      throw new ExecutionException(exception);
+    } else {
+      synchronized (lock) {
+        lock.wait();
+        if (state == COMPLETED) {
+          return value;
+        } else {
+          throw new ExecutionException(exception);
+        }
+      }
+    }
+  }
+
+  @Override
+  public T get(long timeout, TimeUnit unit)
+      throws InterruptedException, ExecutionException, TimeoutException {
+    if (state == COMPLETED) {
+      return value;
+    } else if (state == FAILED) {
+      throw new ExecutionException(exception);
+    } else {
+      synchronized (lock) {
+        lock.wait(unit.toMillis(timeout));
+        if (state == COMPLETED) {
+          return value;
+        } else if (state == FAILED) {
+          throw new ExecutionException(exception);
+        } else {
+          throw new TimeoutException();
+        }
       }
     }
   }
