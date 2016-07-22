@@ -15,7 +15,7 @@ public class App {
    * Program entry point
    * @param args arguments
    * @throws InterruptedException if main thread is interruped.
-   * @throws ExecutionException 
+   * @throws ExecutionException if an execution error occurs.
    */
   public static void main(String[] args) throws InterruptedException, ExecutionException {
     ExecutorService executor = Executors.newSingleThreadExecutor();

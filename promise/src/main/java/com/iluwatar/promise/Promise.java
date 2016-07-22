@@ -3,9 +3,6 @@ package com.iluwatar.promise;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -144,98 +141,6 @@ public class Promise<T> extends PromiseSupport<T> {
         dest.fulfill(result);
       } catch (Throwable e) {
         dest.fulfillExceptionally((Exception) e.getCause());
-      }
-    }
-  }
-}
-
-
-/**
- * A really simplified implementation of future that allows completing it successfully with a value 
- * or exceptionally with an exception.
- */
-class PromiseSupport<T> implements Future<T> {
-
-  static final int RUNNING = 1;
-  static final int FAILED = 2;
-  static final int COMPLETED = 3;
-
-  final Object lock;
-
-  volatile int state = RUNNING;
-  T value;
-  Exception exception;
-
-  PromiseSupport() {
-    this.lock = new Object();
-  }
-
-  void fulfill(T value) {
-    this.value = value;
-    this.state = COMPLETED;
-    synchronized (lock) {
-      lock.notifyAll();
-    }
-  }
-
-  void fulfillExceptionally(Exception exception) {
-    this.exception = exception;
-    this.state = FAILED;
-    synchronized (lock) {
-      lock.notifyAll();
-    }
-  }
-
-  @Override
-  public boolean cancel(boolean mayInterruptIfRunning) {
-    return false;
-  }
-
-  @Override
-  public boolean isCancelled() {
-    return false;
-  }
-
-  @Override
-  public boolean isDone() {
-    return state > RUNNING;
-  }
-
-  @Override
-  public T get() throws InterruptedException, ExecutionException {
-    if (state == COMPLETED) {
-      return value;
-    } else if (state == FAILED) {
-      throw new ExecutionException(exception);
-    } else {
-      synchronized (lock) {
-        lock.wait();
-        if (state == COMPLETED) {
-          return value;
-        } else {
-          throw new ExecutionException(exception);
-        }
-      }
-    }
-  }
-
-  @Override
-  public T get(long timeout, TimeUnit unit)
-      throws InterruptedException, ExecutionException, TimeoutException {
-    if (state == COMPLETED) {
-      return value;
-    } else if (state == FAILED) {
-      throw new ExecutionException(exception);
-    } else {
-      synchronized (lock) {
-        lock.wait(unit.toMillis(timeout));
-        if (state == COMPLETED) {
-          return value;
-        } else if (state == FAILED) {
-          throw new ExecutionException(exception);
-        } else {
-          throw new TimeoutException();
-        }
       }
     }
   }

@@ -58,7 +58,8 @@ public class PromiseTest {
       @Override
       public Integer call() throws Exception {
         throw new RuntimeException("Barf!");
-      }}, executor);
+      }
+    }, executor);
     
     try {
       promise.get();
@@ -85,7 +86,8 @@ public class PromiseTest {
       @Override
       public Integer call() throws Exception {
         throw new RuntimeException("Barf!");
-      }}, executor);
+      }
+    }, executor);
     
     try {
       promise.get(1000, TimeUnit.SECONDS);
