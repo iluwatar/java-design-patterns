@@ -3,10 +3,10 @@ layout: pattern
 title: Semaphore
 folder: semaphore
 permalink: /patterns/semaphore/
-categories: Lock
+categories: Concurrency
 tags: 
  - Java
- - Difficulty-Beginner
+ - Difficulty-Intermediate
 ---
 
 ## Also known as

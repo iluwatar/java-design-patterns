@@ -7,6 +7,7 @@ categories: Structural
 tags:
  - Java
  - Difficulty-Beginner
+ - Reactive
 ---
 
 ## Intent

@@ -6,7 +6,7 @@ permalink: /patterns/monad/
 categories: Other
 tags:
  - Java
- - Difficulty-Advanced
+ - Difficulty-Expert
  - Functional
 ---
 

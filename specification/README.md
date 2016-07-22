@@ -26,6 +26,10 @@ Use the Specification pattern when
 * you need to select a subset of objects based on some criteria, and to refresh the selection at various times
 * you need to check that only suitable objects are used for a certain role (validation)
 
+## Related patterns
+
+* Repository
+
 ## Credits
 
 * [Martin Fowler - Specifications](http://martinfowler.com/apsupp/spec.pdf)

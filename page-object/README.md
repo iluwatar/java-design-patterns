@@ -7,9 +7,6 @@ categories: Testing
 tags:
 - Java
 - Difficulty-Intermediate
-- Testing
-- Web Development
-- Encapsulation
 ---
 
 ## Intent
