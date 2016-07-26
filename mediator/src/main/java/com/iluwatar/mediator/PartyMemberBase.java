@@ -38,11 +38,6 @@ public abstract class PartyMemberBase implements PartyMember {
   }
 
   @Override
-  public void partyAction(Action action) {
-    System.out.println(this + " " + action.getDescription());
-  }
-
-  @Override
   public void act(Action action) {
     if (party != null) {
       System.out.println(this + " " + action.toString());
