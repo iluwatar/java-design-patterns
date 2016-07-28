@@ -28,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="4" language="java" name="com.iluwatar.builder.Hero.HeroBuilder" project="builder" 
+  <class id="4" language="java" name="com.iluwatar.builder.Hero.Builder" project="builder"
     file="/builder/src/main/java/com/iluwatar/builder/Hero.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="196" width="234" x="20" y="183"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
