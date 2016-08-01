@@ -15,4 +15,4 @@ after_success:
 - mvn clean test jacoco:report coveralls:report
 - bash update-ghpages.sh
 
-sudo: false
+sudo: false # route the build to the container-based infrastructure for a faster build

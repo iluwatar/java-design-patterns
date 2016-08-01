@@ -1,3 +1,25 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.monostate;
 
 import java.util.ArrayList;
@@ -13,8 +35,8 @@ import java.util.List;
 
 public class LoadBalancer {
   private static List<Server> servers = new ArrayList<>();
-  private static int id = 0;
-  private static int lastServedId = 0;
+  private static int id;
+  private static int lastServedId;
 
   static {
     servers.add(new Server("localhost", 8081, ++id));
@@ -24,6 +46,9 @@ public class LoadBalancer {
     servers.add(new Server("localhost", 8084, ++id));
   }
 
+  /**
+   * Add new server
+   */
   public final void addServer(Server server) {
     synchronized (servers) {
       servers.add(server);
@@ -39,14 +64,17 @@ public class LoadBalancer {
     return lastServedId;
   }
 
-  public void serverequest(Request request) {
+  /**
+   * Handle request
+   */
+  public void serverRequest(Request request) {
     if (lastServedId >= servers.size()) {
       lastServedId = 0;
     }
     Server server = servers.get(lastServedId++);
     server.serve(request);
   }
-  
+
 
 
 }

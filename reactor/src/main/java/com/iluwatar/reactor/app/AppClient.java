@@ -1,3 +1,25 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.reactor.app;
 
 import java.io.IOException;
@@ -37,10 +59,10 @@ public class AppClient {
    * @throws IOException if any I/O error occurs.
    */
   public void start() throws IOException {
-    service.execute(new TCPLoggingClient("Client 1", 6666));
-    service.execute(new TCPLoggingClient("Client 2", 6667));
-    service.execute(new UDPLoggingClient("Client 3", 6668));
-    service.execute(new UDPLoggingClient("Client 4", 6668));
+    service.execute(new TcpLoggingClient("Client 1", 6666));
+    service.execute(new TcpLoggingClient("Client 2", 6667));
+    service.execute(new UdpLoggingClient("Client 3", 6668));
+    service.execute(new UdpLoggingClient("Client 4", 6668));
   }
 
   /**
@@ -69,7 +91,7 @@ public class AppClient {
   /**
    * A logging client that sends requests to Reactor on TCP socket.
    */
-  static class TCPLoggingClient implements Runnable {
+  static class TcpLoggingClient implements Runnable {
 
     private final int serverPort;
     private final String clientName;
@@ -80,7 +102,7 @@ public class AppClient {
      * @param clientName the name of the client to be sent in logging requests.
      * @param port the port on which client will send logging requests.
      */
-    public TCPLoggingClient(String clientName, int serverPort) {
+    public TcpLoggingClient(String clientName, int serverPort) {
       this.clientName = clientName;
       this.serverPort = serverPort;
     }
@@ -118,7 +140,7 @@ public class AppClient {
   /**
    * A logging client that sends requests to Reactor on UDP socket.
    */
-  static class UDPLoggingClient implements Runnable {
+  static class UdpLoggingClient implements Runnable {
     private final String clientName;
     private final InetSocketAddress remoteAddress;
 
@@ -129,7 +151,7 @@ public class AppClient {
      * @param port the port on which client will send logging requests.
      * @throws UnknownHostException if localhost is unknown
      */
-    public UDPLoggingClient(String clientName, int port) throws UnknownHostException {
+    public UdpLoggingClient(String clientName, int port) throws UnknownHostException {
       this.clientName = clientName;
       this.remoteAddress = new InetSocketAddress(InetAddress.getLocalHost(), port);
     }
@@ -140,7 +162,8 @@ public class AppClient {
         for (int i = 0; i < 4; i++) {
 
           String message = clientName + " - Log request: " + i;
-          DatagramPacket request = new DatagramPacket(message.getBytes(), message.getBytes().length, remoteAddress);
+          DatagramPacket request =
+              new DatagramPacket(message.getBytes(), message.getBytes().length, remoteAddress);
 
           socket.send(request);
 

@@ -1,42 +1,48 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.lazy.loading;
-
-import org.junit.Test;
 
 import java.lang.reflect.Field;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
 /**
- * Using reflection this test shows that the heavy field is not instantiated until the method getHeavy is called
+ * Date: 12/19/15 - 12:19 PM
  *
- * Created by jones on 11/10/2015.
+ * @author Jeroen Meulemeester
  */
-public class HolderThreadSafeTest {
+public class HolderThreadSafeTest extends AbstractHolderTest {
 
-    @Test
-    public void test() throws IllegalAccessException {
-        HolderThreadSafe hts = new HolderThreadSafe();
+  private final HolderThreadSafe holder = new HolderThreadSafe();
 
-        {//first call is null
-            Field[] ff = HolderThreadSafe.class.getDeclaredFields();
-            for (Field f: ff) {
-                f.setAccessible(true);
-            }
+  @Override
+  Heavy getInternalHeavyValue() throws Exception {
+    final Field holderField = HolderThreadSafe.class.getDeclaredField("heavy");
+    holderField.setAccessible(true);
+    return (Heavy) holderField.get(this.holder);
+  }
 
-            assertNull(ff[0].get(hts));
-        }
+  @Override
+  Heavy getHeavy() throws Exception {
+    return this.holder.getHeavy();
+  }
 
-        // now it is lazily loaded
-        hts.getHeavy();
-
-        {//now it is not null - call via reflection so that the test is the same before and after
-            Field[] ff = HolderThreadSafe.class.getDeclaredFields();
-            for (Field f: ff) {
-                f.setAccessible(true);
-            }
-
-            assertNotNull(ff[0].get(hts));
-        }
-    }
 }

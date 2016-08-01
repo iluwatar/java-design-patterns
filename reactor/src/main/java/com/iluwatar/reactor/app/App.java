@@ -1,3 +1,25 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.reactor.app;
 
 import java.io.IOException;
@@ -69,17 +91,17 @@ public class App {
   private Dispatcher dispatcher;
 
   /**
-   * Creates an instance of App which will use provided dispatcher for dispatching events on reactor.
+   * Creates an instance of App which will use provided dispatcher for dispatching events on
+   * reactor.
+   * 
    * @param dispatcher the dispatcher that will be used to dispatch events.
    */
   public App(Dispatcher dispatcher) {
-	this.dispatcher = dispatcher;
+    this.dispatcher = dispatcher;
   }
 
   /**
    * App entry.
-   * 
-   * @throws IOException
    */
   public static void main(String[] args) throws IOException {
     new App(new ThreadPoolDispatcher(2)).start();
@@ -106,7 +128,8 @@ public class App {
      * Our application binds to multiple channels and uses same logging handler to handle incoming
      * log requests.
      */
-    reactor.registerChannel(tcpChannel(6666, loggingHandler)).registerChannel(tcpChannel(6667, loggingHandler))
+    reactor.registerChannel(tcpChannel(6666, loggingHandler))
+        .registerChannel(tcpChannel(6667, loggingHandler))
         .registerChannel(udpChannel(6668, loggingHandler)).start();
   }
 
@@ -120,7 +143,7 @@ public class App {
     reactor.stop();
     dispatcher.stop();
     for (AbstractNioChannel channel : channels) {
-    	channel.getJavaChannel().close();
+      channel.getJavaChannel().close();
     }
   }
 

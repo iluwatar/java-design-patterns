@@ -1,3 +1,25 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.caching;
 
 import java.text.ParseException;
@@ -11,9 +33,12 @@ import java.text.ParseException;
  * CacheStore class.
  *
  */
-public class AppManager {
+public final class AppManager {
 
   private static CachingPolicy cachingPolicy;
+
+  private AppManager() {
+  }
 
   /**
    *
@@ -21,18 +46,21 @@ public class AppManager {
    * data storage or a simple Java data structure to (temporarily) store the data/objects during
    * runtime.
    */
-  public static void initDB(boolean useMongoDB) {
-    if (useMongoDB) {
+  public static void initDb(boolean useMongoDb) {
+    if (useMongoDb) {
       try {
-        DBManager.connect();
+        DbManager.connect();
       } catch (ParseException e) {
         e.printStackTrace();
       }
     } else {
-      DBManager.createVirtualDB();
+      DbManager.createVirtualDb();
     }
   }
 
+  /**
+   * Initialize caching policy
+   */
   public static void initCachingPolicy(CachingPolicy policy) {
     cachingPolicy = policy;
     if (cachingPolicy == CachingPolicy.BEHIND) {
@@ -50,15 +78,21 @@ public class AppManager {
     CacheStore.initCapacity(capacity);
   }
 
-  public static UserAccount find(String userID) {
+  /**
+   * Find user account
+   */
+  public static UserAccount find(String userId) {
     if (cachingPolicy == CachingPolicy.THROUGH || cachingPolicy == CachingPolicy.AROUND) {
-      return CacheStore.readThrough(userID);
+      return CacheStore.readThrough(userId);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
-      return CacheStore.readThroughWithWriteBackPolicy(userID);
+      return CacheStore.readThroughWithWriteBackPolicy(userId);
     }
     return null;
   }
 
+  /**
+   * Save user account
+   */
   public static void save(UserAccount userAccount) {
     if (cachingPolicy == CachingPolicy.THROUGH) {
       CacheStore.writeThrough(userAccount);
