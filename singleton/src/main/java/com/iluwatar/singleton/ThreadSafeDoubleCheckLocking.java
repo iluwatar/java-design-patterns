@@ -56,7 +56,6 @@ public final class ThreadSafeDoubleCheckLocking {
     ThreadSafeDoubleCheckLocking result = instance;
     if (result == null) {
       synchronized (ThreadSafeDoubleCheckLocking.class) {
-        result = instance;
         if (result == null) {
           instance = result = new ThreadSafeDoubleCheckLocking();
         }
