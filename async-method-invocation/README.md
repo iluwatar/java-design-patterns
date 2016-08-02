@@ -8,6 +8,7 @@ tags:
  - Java
  - Difficulty-Intermediate
  - Functional
+ - Reactive
 ---
 
 ## Intent

@@ -9,6 +9,9 @@ tags:
  - Difficulty-Beginner
 ---
 
+## Also known as
+Borg
+
 ## Intent
 Enforces a behaviour like sharing the same state amongst all instances.
 

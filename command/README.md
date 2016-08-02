@@ -8,6 +8,7 @@ tags:
  - Java
  - Gang Of Four
  - Difficulty-Intermediate
+ - Functional
 ---
 
 ## Also known as
