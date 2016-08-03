@@ -2,7 +2,7 @@
 set -e # halt script on error
 
 # need to init(download) our git submodule dependency first of all
-git submodule update --init --recursive
+git submodule update --init
 
 # search and replace the baseurl and url parameters of _config.yml to work on s3
 sed -i -e 's/baseurl: /# baseurl: /g' _config.yml
