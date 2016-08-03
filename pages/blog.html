@@ -4,22 +4,19 @@ title: Blog
 permalink: /blog/
 icon: fa-align-justify
 comments: false
-page-index: 2
+page-index: 3
 ---
 <div id="index" class="row">
     <div class="col-md-12">
-        <div class="content-area">
-
-            <div class="list-header">
-                Blog Posts
-            </div>
+        <div class="content-area page">
+            <h1>Blog Posts</h1>
             <div class="post-list-body">
 
                 {% for post in site.posts %}
                 <a class="list-item" href="{{ post.url | prepend: site.baseurl }}">
                     <h5 class="blog-index-date float-right">{{ post.date | date_to_string }}</h5>
                     <h2>{{ post.title }}</h2>
-                    <div class="well"> {{ post.excerpt }}</div>
+                    <div> {{ post.excerpt }}</div>
                 </a>
                 {% endfor %}
 

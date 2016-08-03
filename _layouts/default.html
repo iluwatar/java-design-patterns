@@ -23,16 +23,7 @@ layout: compress
 
         {% include footer.html %}
     </div>
-    <script type="text/javascript">
-        function addBlankTargetForLinks() {
-            $('a[href^="http"]').each(function() {
-                $(this).attr('target', '_blank');
-            });
-        }
-        $(document).bind('DOMNodeInserted', function(event) {
-            addBlankTargetForLinks();
-        });
-    </script>
+    {% include footerScripts.html %}
 </body>
 
 </html>

@@ -3,20 +3,17 @@
     - include.categories: list of categories
     - include.tags: list of tags
 -->
-<div class="shadow-corner-curl hidden-xs">
-    <div class="sidebar-list-header">
-        Categories
+{% include sortedlabels.html %}
+<div class="row">
+<div class="col-md-12 col-sm-6">
+    <div class="sidebar-list-header checkbox">
+        <input type="checkbox" id="checkbox_allcats" checked>
+        <label for="checkbox_allcats">
+            Categories
+        </label>
     </div>
 
-    <!-- All / None Buttons -->
-    <div class="sidebar-list-item">
-        <div class="btn-group-sm centerContents" role="group">
-            <button id="allCatsButton" type="button" class="btn btn-primary" style="width: 40%;">All</button>
-            <button id="noCatsButton" type="button" class="btn btn-default" style="width: 40%;">None</button>
-        </div>
-    </div>
-
-    {% for category in include.categories %}
+    {% for category in sortedCats %}
     <div class="sidebar-list-item checkbox" category="{{ category.name }}"
         <!-- add tooltip only if we have something to display -->
         {% if category.description %}
@@ -25,8 +22,9 @@
 
         <input type="checkbox" id="checkbox_{{ category.name }}" checked>
         <label for="checkbox_{{ category.name }}">
+            <i class="{{ category.icon }}" aria-hidden="true"></i>
             {{ category.name }}
-            <span class="my-badge">
+            <span class="amount-badge">
                 {% assign counter=0 %}
                 {% for page in include.allItems %}
                     {% if page.categories contains category.name %}
@@ -42,20 +40,23 @@
     {% endfor %}
 </div>
 
-<div class="shadow-corner-curl hidden-xs top20">
-    <div class="sidebar-list-header">
-        Tags
+<div class="col-md-12 col-sm-6 top20">
+    <div class="sidebar-list-header checkbox">
+        <input type="checkbox" id="checkbox_alltags" checked>
+        <label for="checkbox_alltags">
+            Tags
+        </label>
     </div>
 
     <!-- All / None Buttons -->
-    <div class="sidebar-list-item">
+    <!--<div class="sidebar-list-item">
         <div class="btn-group-sm centerContents" role="group">
             <button id="allTagsButton" type="button" class="btn btn-primary" style="width: 40%;">All</button>
             <button id="noTagsButton" type="button" class="btn btn-default" style="width: 40%;">None</button>
         </div>
-    </div>
+    </div>-->
 
-    {% for tag in include.tags %}
+    {% for tag in sortedTags %}
     <div class="sidebar-list-item checkbox" tag="{{ tag.name }}" <!-- add tooltip only if we have something to display -->
         {% if tag.description %}
             data-toggle="tooltip" data-placement="left" title="{{ tag.description }}"
@@ -64,7 +65,7 @@
         <input type="checkbox" id="checkbox_{{ tag.name }}" checked>
         <label for="checkbox_{{ tag.name }}">
             {{ tag.name }}
-            <span class="my-badge">
+            <span class="amount-badge">
                 {% assign counter=0 %}
                 {% for page in include.allItems %}
                     {% if page.tags contains tag.name %}
@@ -76,4 +77,5 @@
         </label>
     </div>
     {% endfor %}
+</div>
 </div>

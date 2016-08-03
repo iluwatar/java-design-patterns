@@ -4,15 +4,19 @@ title: Patterns
 permalink: /patterns/
 icon: fa-th-large
 comments: false
-page-index: 3
+page-index: 4
+modules: lunr
 ---
+
+{% assign allPatterns = site.pages | where:"layout","pattern" | sort: 'title' %}
 <div id="index" class="row">
+<!-- SIDEBAR -->
+<div class="col-md-3 col-md-push-9">
+    {% include sidebar.html allItems=allPatterns %}
+</div>
     <!-- MAIN -->
-    <div class="col-sm-9">
+    <div class="col-md-9 col-md-pull-3">
         <div class="content-area">
-            <div class="list-header">
-                Patterns
-            </div>
             <div class="list-item-search">
                 <div class="input-group">
                     <i class="fa fa-search input-group-addon" aria-hidden="true"
@@ -22,23 +26,17 @@ page-index: 3
             </div>
             <div class="post-list-body">
 
-                {% assign allPatterns = site.pages | where:"layout","pattern" | sort: 'title' %}
                 <div>
                     {% for page in allPatterns %}
                     <div class="list-item" href="{{ page.url | prepend: site.baseurl }}"
-                            cats='All;{{ page.categories | join: ' ; ' }}'
-                            tags='All;{{ page.tags | join: ' ; ' }}'>
-                        <a href="{{ page.url | prepend: site.baseurl }}"><h2>{{ page.title }}</h2></a>
-                        <span class="cats">
-                            {% for cat in page.categories %}
-                            <a href="javascript:;" class="cat-button" category="{{ cat }}">{{ cat }}</a>
-                            {% endfor %}
-                        </span>
-                        <span class="tags">
-                            {% for tag in page.tags %}
-                            <a href="javascript:;" class="tag-button" tag="{{ tag }}">{{ tag }}</a>
-                            {% endfor %}
-                        </span>
+                            cats='All;{{ page.categories | join: ';' }}'
+                            tags='All;{{ page.tags | join: ';' }}'>
+                        <a class="" href="{{ page.url | prepend: site.baseurl }}">
+                            <span class="list-item-title">{{ page.title }}</span>
+                        </a>
+                        <div class="float-right">
+                            {% include labels.html categories=page.categories tags=page.tags useLinks="true" %}
+                        </div>
                     </div>
 
                     {% endfor %}
@@ -46,9 +44,4 @@ page-index: 3
             </div>
         </div>
     </div>
-    <!-- SIDEBAR -->
-    <div class="col-sm-3">
-        {% include sidebar.html allItems=allPatterns categories=site.data.categories tags=site.data.tags %}
-    </div>
-    <script type="text/javascript" src="{{ '/static/js/search.js' | prepend: site.baseurl }}"></script>
 </div>

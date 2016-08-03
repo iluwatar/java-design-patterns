@@ -3,13 +3,24 @@
 #   description: This is a good description (and it's used in the tooltip!)
 
 - name: Creational
+  icon: "fa fa-plus"
 - name: Structural
+  icon: "fa fa-university"
 - name: Concurrency
+  icon: "fa fa-comments"
 - name: Behavioral
+  icon: "fa fa-cogs"
 - name: Architectural
+  icon: "fa fa-building-o"
 - name: Integration
+  icon: "fa fa-sign-in"
 - name: Presentation Tier
+  icon: "fa fa-file-powerpoint-o"
 - name: Business Tier
+  icon: "fa fa-briefcase"
 - name: Persistence Tier
+  icon: "fa fa-database"
 - name: Testing
+  icon: "fa fa-list-ul"
 - name: Other
+  icon: "fa fa-question"

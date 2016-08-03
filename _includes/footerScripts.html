@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    function addBlankTargetForLinks() {
+        $('a[href^="http"]').each(function() {
+            $(this).attr('target', '_blank');
+        });
+    }
+    $(document).bind('DOMNodeInserted', function(event) {
+        addBlankTargetForLinks();
+    });
+</script>
+{% if page.modules == "lunr" or page.modules contains "lunr" %}
+    <!-- Lunr -->
+    <script type="text/javascript" src="{{ '/static/js/elasticlunr.min.js' | prepend: site.baseurl }}"></script>
+    <script type="text/javascript" src="{{ '/static/js/search.js' | prepend: site.baseurl }}"></script>
+{% endif %}
+{% if page.modules == "viewer" or page.modules contains "viewer" %}
+    <!-- Viewer (image viewer) -->
+    <script type="text/javascript" src="{{ '/static/js/viewer.min.js' | prepend: site.baseurl }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ '/static/css/viewer.min.css' | prepend: site.baseurl }}">
+    <script type="text/javascript">
+        function initViewer() {
+            $.fn.viewer.setDefaults({ navbar: false });
+            $('.row.post img, .row.pattern img').viewer();
+        }
+        $(document).bind('DOMNodeInserted', function(event) {
+            initViewer();
+        });
+    </script>
+{% endif %}

@@ -1,0 +1,35 @@
+<!-- Template for labels
+ Parameters:
+    - include.useLinks: if the labels should be made up of <a> elements (currently only used by the+
+                        sidebar in the patterns.html overview)
+    - include.categories: list of categories
+    - include.tags: list of tags
+-->
+{% include sortedlabels.html %}
+
+<span class="tags">
+    {% for tag in sortedTags %}
+        {% if include.tags contains tag.name %}
+            {% if include.useLinks %}
+                <a href="javascript:;" class="tag-label" tag="{{ tag.name }}">{{ tag.name }}</a>
+            {% else %}
+                <span class="tag-label">{{ tag.name }}</span>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</span>
+<span class="cats">
+    {% for cat in sortedCats %}
+        {% if include.categories contains cat.name %}
+            {% if include.useLinks %}
+                <a href="javascript:;" class="cat-label" category="{{ cat.name }}">
+                    <i class="{{ cat.icon }}" aria-hidden="true"></i>
+                    {{ cat.name }}</a>
+            {% else %}
+                <span class="cat-label">
+                    <i class="{{ cat.icon }}" aria-hidden="true"></i>
+                    {{ cat.name }}</span>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</span>

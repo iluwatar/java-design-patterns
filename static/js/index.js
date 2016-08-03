@@ -1,30 +1,33 @@
 $(document).ready(function() {
-    categoryAndTagDisplay();
-    generateContent();
-    backToTop();
-    initBootstrapTooltips();
+    initLabels();
+    initBackToTop();
+    init();
 });
 
-function categoryAndTagDisplay() {
+function initLabels() {
     /*
     $('.post-list-body>div[post-category!=All]').hide();
     $('.post-list-body>div[post-tag!=All]').hide();
     */
     /*show category when click categories list*/
-    $('a.cat-button').click(function() {
+    $('a.cat-label').click(function() {
         var category = $(this).attr('category'); //get category's name
-        $('.list-item').not('[cats*=\'' + category + '\']').slideUp(200)
-        $('.list-item[cats*=\'' + category + '\']').slideDown()
+        $('.sidebar-list-item[category]').not('[category*=\"' + category + '\"]').find('input')
+            .prop('checked', false).trigger("change");
+        $('.sidebar-list-item[category*=\"' + category + '\"] > input')
+            .prop('checked', true).trigger("change");
     });
     /*show category when click tags list*/
-    $('a.tag-button').click(function() {
+    $('a.tag-label').click(function() {
         var tag = $(this).attr('tag'); //get tag's name
-        $('.list-item').not('[tags*=\'' + tag + '\']').slideUp(200)
-        $('.list-item[tags*=\'' + tag + '\']').slideDown()
+        $('.sidebar-list-item[tag]').not('[tag*=\"' + tag + '\"]').find('input')
+            .prop('checked', false).trigger("change");
+        $('.sidebar-list-item[tag*=\"' + tag + '\"] > input')
+            .prop('checked', true).trigger("change");
     });
 }
 
-function backToTop() {
+function initBackToTop() {
     $(window).scroll(function() {
         if ($(window).scrollTop() > 100) {
             $("#top").fadeIn(500);
@@ -37,24 +40,18 @@ function backToTop() {
     });
 }
 
-function generateContent() {
-
-    // console.log($('#markdown-toc').html());
-    if (typeof $('#markdown-toc').html() === 'undefined') {
-        // $('#content .content-text').html('<ul><li>文本较短，暂无目录</li></ul>');
-        $('#content').hide();
-        $('#myArticle').removeClass('col-sm-9').addClass('col-sm-12');
-    } else {
-        $('#content .content-text').html('<ul>' + $('#markdown-toc').html() + '</ul>');
-        /*   //数据加载完成后，加固定边栏
-        $('#myAffix').attr({
-            'data-spy': 'affix',
-            'data-offset': '50'
-        });*/
-    }
-}
-
-function initBootstrapTooltips() {
+function init() {
     // Select all elements with data-toggle="tooltips" in the document
     $('[data-toggle="tooltip"]').tooltip();
+
+    // init heading anchor links
+    $("h2, h3, h4, h5, h6").each(function(i, el) {
+        var $el, icon, id;
+        $el = $(el);
+        id = $el.attr('id');
+        icon = '<i class="fa fa-link"></i>';
+        if (id) {
+            return $el.prepend($("<a />").addClass("header-link").attr("href", "#" + id).html(icon));
+        }
+    });
 }

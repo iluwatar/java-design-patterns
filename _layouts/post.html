@@ -1,9 +1,10 @@
 ---
 layout: default
+modules: viewer
 ---
-<div class="row">
-    <div id="myArticle" class="col-sm-9">
-        <div class="content-area post">
+<div class="row post">
+    <div class="col-sm-12">
+        <div class="content-area page">
             <header>
                 <div class="float-right">
                     {% include addToAny.html %}
@@ -17,49 +18,9 @@ layout: default
             </article>
 
             <hr class="dashed">
-            <!-- author information -->
-            <div class="author-info">
-                {% assign author = site.data.people[page.author] %}
-                <span>Written by {{ author.name }}</span>
-                {% if author.description %}
-                    <p>{{ author.description }}</p>
-                {% endif %}
-                <div class="author-social-buttons">
-                    {% if author.github %}
-                        <a class="btn btn-social-icon btn-github" href="https://github.com/{{ author.github }}">
-                            <span class="fa fa-github"></span>
-                        </a>
-                    {% endif %}
-                    {% if author.facebook %}
-                        <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/{{ author.facebook }}">
-                            <span class="fa fa-facebook"></span>
-                        </a>
-                    {% endif %}
-                    {% if author.twitter %}
-                        <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/{{ author.twitter }}">
-                            <span class="fa fa-twitter"></span>
-                        </a>
-                    {% endif %}
-                    {% if author.linkedin %}
-                        <a class="btn btn-social-icon btn-linkedin" href="https://twitter.com/{{ author.linkedin }}">
-                            <span class="fa fa-linkedin"></span>
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
-            <!-- /author information -->
-
+            {% include author.html author=page.author %}
             {% include disqus.html %}
 
-        </div>
-    </div>
-
-    <div id="content" class="col-sm-3">
-        <div id="myAffix" class="shadow-bottom-center hidden-xs">
-            <div class="categories-list-header">
-                Content
-            </div>
-            <div class="content-text"></div>
         </div>
     </div>
 </div>

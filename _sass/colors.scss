@@ -1,20 +1,72 @@
 /*
  * Base 16 Default Theme
  * https://github.com/chriskempson/base16
+ * https://atelierbram.github.io/c-tiles16/colorscheming/
  */
-$base00: #181818;
-$base01: #282828;
-$base02: #383838;
-$base03: #585858;
-$base04: #b8b8b8;
-$base05: #d8d8d8;
-$base06: #e8e8e8;
-$base07: #f8f8f8;
-$base16-red: #ab4642;
-$base16-orange: #dc9656;
-$base16-yellow: #f7ca88;
-$base16-green: #a1b56c;
-$base16-blue: #7cafc2;
-$base16-cyan: #86c1b9;
-$base16-violet: #ba8baf;
-$base16-magenta: #a16946;
+
+/* OCEAN *
+$base00: #2b303b;
+$base01: #343d46;
+$base02: #4f5b66;
+$base03: #65737e;
+$base04: #a7adba;
+$base05: #c0c5ce;
+$base06: #dfe1e8;
+$base07: #eff1f5;
+$base08: #bf616a;
+$base09: #d08770;
+$base0a: #ebcb8b;
+$base0b: #a3be8c;
+$base0c: #96b5b4;
+$base0d: #8fa1b3;
+$base0e: #b48ead;
+$base0f: #ab7967;
+// */
+
+/* MOCHA *
+$base00: #3B3228;
+$base01: #534636;
+$base02: #645240;
+$base03: #7e705a;
+$base04: #b8afad;
+$base05: #d0c8c6;
+$base06: #e9e1dd;
+$base07: #f5eeeb;
+$base08: #cb6077;
+$base09: #d28b71;
+$base0a: #f4bc87;
+$base0b: #beb55b;
+$base0c: #7bbda4;
+$base0d: #8ab3b5;
+$base0e: #a89bb9;
+$base0f: #bb9584;
+// */
+
+/* TOMORROW */
+$base00: #1d1f21;
+$base01: #282a2e;
+$base02: #373b41;
+$base03: #969896;
+$base04: #b4b7b4;
+$base05: #c5c8c6;
+$base06: #e0e0e0;
+$base07: #ffffff;
+$base08: #cc6666;
+$base09: #de935f;
+$base0a: #f0c674;
+$base0b: #b5bd68;
+$base0c: #8abeb7;
+$base0d: #81a2be;
+$base0e: #b294bb;
+$base0f: #a3685a;
+// */
+
+
+$base16-red:     $base08;
+$base16-orange:  $base09;
+$base16-yellow:  $base0a;
+$base16-green:   $base0b;
+$base16-cyan:    $base0c;
+$base16-blue:    $base0d;
+$base16-violet:  $base0e;
+$base16-magenta: $base0f;

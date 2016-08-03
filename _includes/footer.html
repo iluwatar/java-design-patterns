@@ -2,9 +2,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                Jekyll Theme created by <a href="https://github.com/{{ site.designer_github_username }}">{{ site.designer_github_username }}</a>
-                | Modified by <a href="https://github.com/markusmo3">markusmo3</a>
-                | Commit <a href="https://github.com/iluwatar/java-design-patterns/commit/{{ site.github.build_revision }}">{{ site.github.build_revision | truncate: 7, '' }}</a>
+                <a href="{{ site.repo_url }}">
+                    <i class="fa fa-lg fa-github" aria-hidden="true"></i> Github Repository</a>
+                &sdot;
+                Designed by <a href="https://github.com/{{ site.designer_github_username }}">
+                    <i class="fa fa-lg fa-github-alt" aria-hidden="true"></i> {{ site.designer_github_username }}</a>
+                &sdot;
+                Modified by <a href="https://github.com/markusmo3">
+                    <i class="fa fa-lg fa-github-alt" aria-hidden="true"></i> markusmo3</a>
+                &sdot;
+                Commit <a href="https://github.com/iluwatar/java-design-patterns/commit/{{ site.github.build_revision }}">
+                    <i class="fa fa-lg fa-code" aria-hidden="true"></i> {{ site.github.build_revision | truncate: 7, '' }}</a>
             </div>
         </div>
     </div>

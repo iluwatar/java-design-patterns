@@ -1,41 +1,35 @@
 <!-- Template for disqus comments anywhere -->
 {% if site.disqus_shortname %}
 <hr class="dashed">
-<div class="disqus-container">
+<div class="disqus-container" >
+    <!-- An element a visitor can click if they <3 comments! -->
+    <button class="show-comments btn btn-primary"><i class="fa fa-comments" aria-hidden="true"></i> Load Disqus comments</button>
+
+    <!-- The empty element required for Disqus to loads comments into -->
     <div id="disqus_thread"></div>
+
     <!-- Add Disqus comments (not comment count) -->
     <script type="text/javascript">
-        var disqus_shortname = '{{ site.disqus_shortname }}';
-        var disqus_identifier = '{{ page.url }}';
-        var disqus_title = '{{ page.title }}';
-        var disqus_url = '{{ site.url }}{{ site.baseurl }}{{ page.url }}';
-        /* var disqus_developer = 1; /* Comment out when the site is live */
-        (function() {
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
+        $(document).ready(function() {
+            $('.show-comments').on('click', function() {
+                var disqus_shortname = '{{ site.disqus_shortname }}';
+                var disqus_identifier = '{{ page.url }}';
+                var disqus_title = '{{ page.title }}';
+                var disqus_url = '{{ site.url }}{{ site.baseurl }}{{ page.url }}';
+                $.ajax({
+                    type: "GET",
+                    url: "http://" + disqus_shortname + ".disqus.com/embed.js",
+                    dataType: "script",
+                    cache: true
+                });
+                $(this).fadeOut();
+            });
+        });
     </script>
-
-    <!-- Add Disqus comment count (not the comments) -->
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = '{{ site.disqus_shortname }}';
-        /* var disqus_developer = 1; /* Comment out when the site is live */
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var s = document.createElement('script');
-            s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
-
     <noscript>
         Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
     </noscript>
+
+
 </div>
 {% endif %}

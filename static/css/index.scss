@@ -6,21 +6,36 @@
 @import 'mixins';
 @import 'colors';
 
+$handwriting: 'Indie Flower', cursive;
+$serif: 'Lato', 'Dosis', sans-serif;
+$serif-heading: 'Dosis', sans-serif;
+$monospace: 'Inconsolata', monospace;
+$serif-small: 'Open Sans', sans-serif;
+
+h1, h2, h3, h4, h5 {
+    font-family: $serif-heading;
+}
+
 .label {
     padding: 3px 6px;
     border-radius: 3px;
     color: rgb(255, 255, 255) !important;
-    text-transform: uppercase;
+    text-transform: lowercase;
     font-size: 11px;
-    font-weight: 500;
+    font-weight: bold;
+    font-family: $serif-small;
+    white-space: nowrap;
+}
+span.label {
+    font-size: 13px;
 }
 
-.tags a {
+.tag-label {
     @extend .label;
-    background: $base16-orange;
+    background: $base16-yellow;
 }
 
-.cats a {
+.cat-label {
     @extend .label;
     background: $base16-green;
 }
@@ -32,9 +47,11 @@
 
 html {
     height: 100%;
+    overflow-y: scroll;
     body {
-        background-image: url("{{ "/static/img/canvas_bg.jpg" | prepend: site.baseurl }} ");
-        font-family: 'Roboto', sans-serif;
+        background-color: $base07;
+        color: $base00;
+        font-family: $serif;
         height: 100%;
     }
     #super-container {
@@ -52,31 +69,41 @@ pre {
     }
 }
 
+a {
+    color: $base16-blue;
+    &:hover, &:focus {
+        color: darken($base16-blue, 15);
+    }
+}
+
 /* BLOG */
 .blog-index-date {
-    color: #9d9d9d;
+    color: $base04;
 }
 
 #index a {
     &:link {
-        color: #005;
+        color: $base01;
     }
     &:visited {
-        color: #669;
+        color: $base01;
     }
     &:hover {
-        color: #336;
-        text-decoration: none;
+        color: $base03;
     }
     &:active {
-        color: #99b;
+        color: $base01;
     }
 }
-
 /* navbar */
-nav {
-    @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-    border-radius: 0;
+.navbar {
+    background-color: $base06;
+}
+
+.nav li.active a {
+    background-color: $base05 !important;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .navbar-nav li {
@@ -90,14 +117,9 @@ nav {
     padding-bottom: 70px;
 }
 
-.content-area {
-    background-color: #f8f8fd;
-    @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.4), 0 0 30px rgba(10, 10, 0, 0.1) inset);
-}
-
 .list-header {
     padding: 15px 30px;
-    border-bottom: 1px solid #c0c0c0;
+    border-bottom: 1px solid $base06;
     font-size: 30px;
     font-weight: bold;
 }
@@ -105,7 +127,7 @@ nav {
 .list-item {
     display: block;
     padding: 8px 30px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $base06;
     &:last-of-type {
         border-bottom: none;
     }
@@ -115,30 +137,42 @@ nav {
         padding: 0;
     }
     &:hover {
-        background-color: rgba(0, 0, 6, 0.05);
+        background-color: $base06;
     }
     div.well p {
         margin: 0px;
     }
 }
 .list-item-search { @extend .list-item; }
+.list-item-title {
+    font-weight: bold;
+    font-size: 16px;
+}
 
 /* categories list */
 .sidebar-list-header {
     display: block;
-    padding: 12px 15px;
+    padding: 12px 15px 12px 35px;
     border-bottom: 1px solid #c0c0c0;
-    font-size: 16px;
+    color: $base16-blue;
     font-weight: bold;
+    text-transform: uppercase;
+    label {
+        font-weight: bold;
+    }
+    &.indeterminate > label::after {
+        content: "\f0c8" !important;
+        font-size: 12px;
+    }
 }
 
 .sidebar-list-item {
     display: block;
-    padding: 8px 15px;
-    border-bottom: 1px solid #ddd;
+    padding: 4px 15px 4px 15px;
+    //border-bottom: 1px solid #ddd;
     &.checkbox {
         margin: 0px;
-        padding: 8px 15px 8px 35px;
+        padding-left: 35px;
         label {
             width: 100%
         }
@@ -147,30 +181,42 @@ nav {
         border-bottom: none;
     }
     &:hover {
-        background-color: rgba(0, 0, 10, 0.075);
-        color: #983;
+        background-color: $base06;
+        color: $base03;
     }
-    .my-badge {
+    .amount-badge {
         font-size: 12px;
         font-weight: bold;
-        color: #fff;
-        background-color: #999;
-        padding: 0 7px 1px 7px;
-        border-radius: 9px;
+        color: $base16-blue;
+        border: 1px solid $base16-blue;
+        //background-color: $base05;
+        //padding: 0 0 1px 0;
+        border-radius: 5px;
         float: right;
+        width: 32px;
+        text-align: center;
     }
-    &:hover .my-badge {
+    /*&:hover .amount-badge {
         @include transition(0.4s ease);
         @include transform(rotate(360deg) scale(1.2));
-    }
+    }*/
+}
+
+.checkbox label::before {
+    border-color: $base16-blue;
+    background-color: transparent;
+}
+.checkbox label::after {
+    border-color: $base16-blue;
+    color: $base16-blue;
 }
 
 /* shadow */
 .shadow-corner-curl {
     position: relative;
     margin-bottom: 20px;
-    background-color: #f8f8fd;
-    @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.1) inset);
+    //background-color: #f8f8fd;
+    //@include box-shadow(0 1px 5px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.1) inset);
     &:before {
         content: "";
         position: absolute;
@@ -180,7 +226,7 @@ nav {
         left: 9%;
         bottom: 2%;
         background: transparent;
-        @include box-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
+        //@include box-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
         @include transform(skew(-11deg) rotate(-4deg));
     }
     &:after {
@@ -192,14 +238,14 @@ nav {
         right: 9%;
         bottom: 2%;
         background: transparent;
-        @include box-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
+        //@include box-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
         @include transform(skew(11deg) rotate(4deg));
     }
 }
 
 .shadow-bottom-center {
     background-color: #f8f8fd;
-    @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.1) inset);
+    //@include box-shadow(0 1px 5px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.1) inset);
 }
 
 /* footer */
@@ -208,13 +254,11 @@ nav {
         left: 0;
         bottom: 0;
         width: 100%;
-        min-height: 50px;
-
-        line-height: 50px;
-        background: #3f4850;
-        color: #aaa;
+        background-color: $base06;
+        color: $base01;
         text-align: center;
-        @include box-shadow(0 -2px 4px rgba(0, 0, 0, 0.5));
+        padding-top: 10px;
+        padding-bottom: 10px;
         a {
             &:link {
                 color: #aaa;
@@ -230,9 +274,6 @@ nav {
                 color: #bbb;
             }
         }
-        .point {
-            margin: 0 8px;
-        }
 }
 
 /**
@@ -245,21 +286,27 @@ nav {
     vertical-align: middle;
 }
 
-/* post
-* post articles area
+/* page
+* page articles area
 */
-.post {
+.page {
     padding: 10px 30px;
     font-size: 16px;
     line-height: 1.5;
+    position: relative;
     /* -webkit-text-size-adjust: 100%; */
     h4 {
         font-weight: bold;
     }
     img {
         max-width: 100%;
+        max-height: 400px;
         vertical-align: middle;
-        @include box-shadow(0 0 5px 2px rgba(0, 0, 0, 0.1));
+        background-color: $base06;
+        padding: 2px 2px;
+    }
+    article {
+        position: relative;
     }
 }
 
@@ -338,7 +385,7 @@ blockquote {
     #fall ul {
         width: 210px;
     }
-    .post {
+    .page {
         padding: 10px 10px;
         font-size: 14px;
         line-height: 1.3;
@@ -351,7 +398,7 @@ blockquote {
     pre code {
         font-size: 12px;
     }
-    .post article ul {
+    .page article ul {
         padding-left: 25px;
     }
 }
@@ -362,8 +409,17 @@ blockquote {
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
     #markdown-toc {
+        display: none;
+    }
+    .label {
+        padding: 3px;
+        font-size: 10px;
+    }
+}
+@media screen and (max-width: 512px) {
+    .label {
         display: none;
     }
 }
@@ -380,7 +436,7 @@ blockquote {
         margin-left: auto;
         margin-right: auto;
     }
-    .post {
+    .page {
         font-size: 12px;
         line-height: 1.2;
         padding: 0px;
@@ -420,7 +476,8 @@ blockquote {
 
 /* targets */
 h1:target h2:target, h3:target, h4:target, h5:target {
-    background-color: #ffa;
+    color: $base16-yellow;
+    text-decoration: underline;
 }
 
 /* Github buttons in the navbar */
@@ -438,8 +495,11 @@ h1:target h2:target, h3:target, h4:target, h5:target {
     float: right;
 }
 
+hr  {
+    border-top-color: $base06;
+}
 hr.dashed  {
-    border-top: 2px dashed #EEEEEE;
+    border-top: 2px dashed $base06;
 }
 
 .author-info {
@@ -464,4 +524,58 @@ hr.dashed  {
 
 .centerContents {
     text-align: center;
+}
+
+.btn-primary {
+    background-color: transparent;
+    border-color: $base16-blue;
+    color: $base16-blue;
+    font-weight: bold;
+    &:hover, &:focus, &:active {
+        background-color: $base16-blue;
+        border-color: $base16-blue;
+        color: $base07;
+    }
+}
+
+.show-comments {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* header link stuff */
+.header-link {
+    position: absolute;
+    left: -1em;
+    opacity: 0;
+
+    \-webkit-transition: opacity 0.2s ease-in-out 0.1s;
+    \-moz-transition: opacity 0.2s ease-in-out 0.1s;
+    \-ms-transition: opacity 0.2s ease-in-out 0.1s;
+}
+
+h2:hover .header-link,
+h3:hover .header-link,
+h4:hover .header-link,
+h5:hover .header-link,
+h6:hover .header-link {
+  opacity: 1;
+}
+
+/* image viewer stuff
+ * must do !important everywhere because the viewer
+ * gets initialized after the index.css
+ */
+.viewer-button {
+    width: 200px !important;
+    height: 200px !important;
+    border-radius: 0px !important;
+    border-bottom-left-radius: 100% !important;
+}
+.viewer-button:before {
+    left: initial !important;
+    bottom: intial !important;
+    top: 45px !important;
+    right: 45px !important;
 }
