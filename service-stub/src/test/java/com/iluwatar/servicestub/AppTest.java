@@ -28,11 +28,9 @@ public class AppTest
         return new TestSuite( AppTest.class );
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    public void test() throws Exception {
+      String[] args = {};
+      App.main(args);
     }
+    
 }
