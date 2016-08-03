@@ -23,6 +23,10 @@
 
 package com.iluwatar.servicestub;
 
+import java.math.BigDecimal;
+
+import yahoofinance.Stock;
+
 /**
  * Service stub pattern is a design pattern used for replacing third-party services, 
  * such as credit scoring, tax rate lookups and pricing engines, 
@@ -37,6 +41,8 @@ public class App
 {
     public static void main( String[] args )
     {
+    	BigDecimal price = null;
+    	TickerService service = new YahooTickerService(new Stock("GOOG"), price);
 
     }
 }

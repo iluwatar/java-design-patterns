@@ -28,6 +28,11 @@ public class AppTest
         return new TestSuite( AppTest.class );
     }
 
+    public void test() throws Exception {
+      String[] args = {};
+      App.main(args);
+    }
+    
     /**
      * Rigourous Test :-)
      */
