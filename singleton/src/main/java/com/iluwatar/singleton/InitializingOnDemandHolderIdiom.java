@@ -1,36 +1,59 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.singleton;
 
-import java.io.Serializable;
-
 /**
- * The Initialize-on-demand-holder idiom is a secure way of 
- * creating lazy initialize singleton Object in Java.
- * refer to "The CERT Oracle Secure Coding Standard for Java"
- * By Dhruv Mohindra, Robert C. Seacord p.378
- * 
- * Singleton objects usually are heavy to create and sometimes need to serialize them.
- * This class also shows how to preserve singleton in Serialized version of singleton.
- * 
- * @author mortezaadi@gmail.com
+ * The Initialize-on-demand-holder idiom is a secure way of creating a lazy initialized singleton
+ * object in Java.
+ * <p>
+ * The technique is is as lazy as possible and works in all known versions of Java. It takes advantage
+ * of language guarantees about class initialization, and will therefore work correctly in all
+ * Java-compliant compilers and virtual machines.
+ * <p>
+ * The inner class is referenced no earlier (and therefore loaded no earlier by the class loader) than
+ * the moment that getInstance() is called. Thus, this solution is thread-safe without requiring special
+ * language constructs (i.e. volatile or synchronized).
  *
  */
-public class InitializingOnDemandHolderIdiom implements Serializable{
+public final class InitializingOnDemandHolderIdiom {
 
-	private static final long serialVersionUID = 1L;
+  /**
+   * Private constructor.
+   */
+  private InitializingOnDemandHolderIdiom() {}
 
-	private static class HelperHolder {
-		public static final InitializingOnDemandHolderIdiom INSTANCE = new InitializingOnDemandHolderIdiom();
-	}
+  /**
+   * @return Singleton instance
+   */
+  public static InitializingOnDemandHolderIdiom getInstance() {
+    return HelperHolder.INSTANCE;
+  }
 
-	public static InitializingOnDemandHolderIdiom getInstance() {
-		return HelperHolder.INSTANCE;
-	}
-
-	private InitializingOnDemandHolderIdiom() {
-	}
-
-	protected Object readResolve() {
-		return getInstance();
-	}
-
+  /**
+   * Provides the lazy-loaded Singleton instance.
+   */
+  private static class HelperHolder {
+    public static final InitializingOnDemandHolderIdiom INSTANCE =
+        new InitializingOnDemandHolderIdiom();
+  }
 }

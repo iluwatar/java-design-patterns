@@ -1,12 +1,18 @@
 language: java
-
 jdk:
-  - oraclejdk8
+- oraclejdk8
 
-# whitelist
-branches:
-  only:
-    - master
+env:
+  global:
+  - GH_REF: github.com/iluwatar/java-design-patterns.git
+  - secure: LxTDuNS/rBWIvKkaEqr79ImZAe48mCdoYCF41coxNXgNoippo4GIBArknqtv+XvdkiuRZ1yGyj6pn8GU33c/yn+krddTUkVCwTbVatbalW5jhQjDbHYym/JcxaK9ZS/3JTeGcWrBgiPqHEEDhCf26vPZsXoMSeVCEORVKTp1BSg=
+  
+before_install:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 
 after_success:
-  - mvn clean test jacoco:report coveralls:report
+- mvn clean test jacoco:report coveralls:report
+- bash update-ghpages.sh
+
+sudo: false # route the build to the container-based infrastructure for a faster build

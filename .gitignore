@@ -11,4 +11,9 @@ target
 .idea
 *.iml
 *.swp
+datanucleus.log
+/bin/
+/bin/
+/bin/
 
+data-mapper/src/main/resources/log4j.xml
