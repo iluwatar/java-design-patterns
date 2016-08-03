@@ -91,6 +91,7 @@
 		<module>reader-writer-lock</module>
 		<module>lazy-loading</module>
 		<module>service-layer</module>
+		<module>service-stub</module>
 		<module>specification</module>
 		<module>tolerant-reader</module>
 		<module>model-view-controller</module>
