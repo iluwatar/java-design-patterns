@@ -2,3 +2,7 @@
 	path = patterns
 	url = https://github.com/iluwatar/java-design-patterns.git
 	branch = master
+[submodule "programming-principles"]
+	path = programming-principles
+	url = https://github.com/webpro/programming-principles.git
+	branch = gh-pages

@@ -35,4 +35,4 @@ compress_html:
   ignore:
     envs: [local]
 
-exclude: [Gemfile, bin, s3_website.yml, vendor]
+exclude: [Gemfile, bin, s3_website.yml, vendor, programming-principles/index.md]

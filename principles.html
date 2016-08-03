@@ -1,0 +1,33 @@
+---
+layout: default
+title: Principles
+permalink: /principles/
+icon: fa-wrench
+page-index: 5
+---
+<!-- This file has to lie in the root because it references "programming-principles/README.md" relatively
+    Jekyll doesnt support absolute including without adding plugins -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="readme content-area page">
+            {% capture maincontent %}
+
+            {% include_relative programming-principles/README.md %}
+
+            {% endcapture %}
+
+            <article>
+                {{ maincontent | remove: "# Programming Principles" | markdownify }}
+            </article>
+
+            <a class="btn btn-primary" href="https://github.com/webpro/programming-principles/blob/gh-pages/README.md" target="_blank">
+                <span class="glyphicon glyphicon-new-window"></span>
+                &nbsp;View Source on Github
+            </a>
+
+            <hr class="dashed">
+            {% include author.html author="pro" %}
+            {% include disqus.html %}
+        </div>
+    </div>
+</div>
