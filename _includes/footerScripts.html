@@ -1,5 +1,4 @@
 <div id="footerScripts">
-<span id="page.modules" style="display: none">{{ page.modules }}</span>
 <script type="text/javascript">
     function addBlankTargetForLinks() {
         $('a[href^="http"]').each(function() {
@@ -10,12 +9,24 @@
         addBlankTargetForLinks();
     });
 </script>
-{% if page.modules == "lunr" or page.modules contains "lunr" %}
-    <!-- Lunr -->
+
+{% assign url_parts = page.url | replace_first:'/' | split: '/' %}
+
+<!-- Only load Lunr if we are on the one pattern search page -->
+{% if url_parts[0] == "patterns" and url_parts.size == 1 %}
     <script type="text/javascript" src="{{ '/static/js/elasticlunr.min.js' | prepend: site.baseurl }}"></script>
     <script type="text/javascript" src="{{ '/static/js/search.js' | prepend: site.baseurl }}"></script>
 {% endif %}
-{% if page.modules == "viewer" or page.modules contains "viewer" %}
+
+<!-- Only load the ImageViewer if we are on a subpage of patterns or blog pages.
+     This is implemented this way because Liquid has a poor implementation of boolean algebra -->
+{% if url_parts[0] == "patterns" and url_parts.size > 1 %}
+    {% assign loadViewer = true %}
+{% elsif url_parts[0] == "blog" and url_parts.size > 1 %}
+    {% assign loadViewer = true %}
+{% endif %}
+
+{% if loadViewer %}
     <!-- Viewer (image viewer) -->
     <script type="text/javascript" src="{{ '/static/js/viewer.min.js' | prepend: site.baseurl }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ '/static/css/viewer.min.css' | prepend: site.baseurl }}">
