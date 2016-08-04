@@ -16,4 +16,5 @@ bundle exec jekyll build
 
 # - ignore everything below every webapp directory, so we dont mess with the source code
 # - ignore the fork link of our project, because it somehow is not valid (https://validator.w3.org/)
-bundle exec htmlproofer ./_site/ --file-ignore "/.+\/webapp\/.*/" --url-ignore "https://github.com/iluwatar/java-design-patterns/fork"
+# - ignore the folder principles of the external dependency (git submodule) webpro/programming-principles
+bundle exec htmlproofer ./_site/ --file-ignore "/.+\/(webapp|principles)\/.*/" --url-ignore "https://github.com/iluwatar/java-design-patterns/fork"
