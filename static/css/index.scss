@@ -5,6 +5,7 @@
 /* the imported files can be found in /_sass/ */
 @import 'mixins';
 @import 'colors';
+//@import 'colorSwitcher';
 
 $handwriting: 'Indie Flower', cursive;
 $serif: 'Lato', 'Dosis', sans-serif;
@@ -19,38 +20,37 @@ h1, h2, h3, h4, h5 {
 .label {
     padding: 3px 6px;
     border-radius: 3px;
-    color: rgb(255, 255, 255) !important;
+    color: $base07 !important;
     text-transform: lowercase;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     font-family: $serif-small;
     white-space: nowrap;
 }
 span.label {
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .tag-label {
     @extend .label;
-    background: $base16-yellow;
+    background: $base16-dark-yellow;
 }
 
 .cat-label {
     @extend .label;
-    background: $base16-green;
+    background: $base16-dark-green;
 }
 
 /**
 * Reset some basic elements
 */
 /* commom */
-
 html {
     height: 100%;
     overflow-y: scroll;
     body {
         background-color: $base07;
-        color: $base00;
+        color: $base02;
         font-family: $serif;
         height: 100%;
     }
@@ -98,16 +98,26 @@ a {
 /* navbar */
 .navbar {
     background-color: $base06;
+    border: none;
+    border-radius: none;
+    border-bottom: solid 1px $base04;
 }
 
-.nav li.active a {
-    background-color: $base05 !important;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.navbar-nav li {
-    text-align: center;
+.nav {
+    &>li.active a {
+        background-color: $base05 !important;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    &>li {
+        text-align: center;
+    }
+    &>li>a {
+        color: $base02 !important;
+        &:hover, &:active {
+            color: $base00 !important;
+        }
+    }
 }
 
 /* index main */
@@ -153,7 +163,7 @@ a {
 .sidebar-list-header {
     display: block;
     padding: 12px 15px 12px 35px;
-    border-bottom: 1px solid #c0c0c0;
+    border-bottom: 1px solid $base06;
     color: $base16-blue;
     font-weight: bold;
     text-transform: uppercase;
@@ -209,43 +219,6 @@ a {
 .checkbox label::after {
     border-color: $base16-blue;
     color: $base16-blue;
-}
-
-/* shadow */
-.shadow-corner-curl {
-    position: relative;
-    margin-bottom: 20px;
-    //background-color: #f8f8fd;
-    //@include box-shadow(0 1px 5px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.1) inset);
-    &:before {
-        content: "";
-        position: absolute;
-        z-index: -5;
-        width: 70%;
-        height: 70%;
-        left: 9%;
-        bottom: 2%;
-        background: transparent;
-        //@include box-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
-        @include transform(skew(-11deg) rotate(-4deg));
-    }
-    &:after {
-        content: "";
-        position: absolute;
-        z-index: -5;
-        width: 70%;
-        height: 70%;
-        right: 9%;
-        bottom: 2%;
-        background: transparent;
-        //@include box-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
-        @include transform(skew(11deg) rotate(4deg));
-    }
-}
-
-.shadow-bottom-center {
-    background-color: #f8f8fd;
-    //@include box-shadow(0 1px 5px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.1) inset);
 }
 
 /* footer */
@@ -542,6 +515,11 @@ hr.dashed  {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.input-group-addon {
+    background-color: $base06;
+    border-color: $base05;
 }
 
 /* header link stuff */

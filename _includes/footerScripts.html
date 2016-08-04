@@ -1,3 +1,5 @@
+<div id="footerScripts">
+<span id="page.modules" style="display: none">{{ page.modules }}</span>
 <script type="text/javascript">
     function addBlankTargetForLinks() {
         $('a[href^="http"]').each(function() {
@@ -18,12 +20,9 @@
     <script type="text/javascript" src="{{ '/static/js/viewer.min.js' | prepend: site.baseurl }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ '/static/css/viewer.min.css' | prepend: site.baseurl }}">
     <script type="text/javascript">
-        function initViewer() {
-            $.fn.viewer.setDefaults({ navbar: false });
-            $('.row.post img, .row.pattern img').viewer();
-        }
-        $(document).bind('DOMNodeInserted', function(event) {
-            initViewer();
-        });
+        $.fn.viewer.setDefaults({ navbar: false });
+        $('.row.post img, .row.pattern img').viewer();
     </script>
 {% endif %}
+
+</div>

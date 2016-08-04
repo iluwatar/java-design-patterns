@@ -70,3 +70,15 @@ $base16-cyan:    $base0c;
 $base16-blue:    $base0d;
 $base16-violet:  $base0e;
 $base16-magenta: $base0f;
+
+$__darken-amount: 10%;
+$__desaturate-amount: 10%;
+
+$base16-dark-red:     desaturate(darken($base08, $__darken-amount), $__desaturate-amount);
+$base16-dark-orange:  desaturate(darken($base09, $__darken-amount), $__desaturate-amount);
+$base16-dark-yellow:  desaturate(darken($base0a, $__darken-amount), $__desaturate-amount);
+$base16-dark-green:   desaturate(darken($base0b, $__darken-amount), $__desaturate-amount);
+$base16-dark-cyan:    desaturate(darken($base0c, $__darken-amount), $__desaturate-amount);
+$base16-dark-blue:    desaturate(darken($base0d, $__darken-amount), $__desaturate-amount);
+$base16-dark-violet:  desaturate(darken($base0e, $__darken-amount), $__desaturate-amount);
+$base16-dark-magenta: desaturate(darken($base0f, $__darken-amount), $__desaturate-amount);
