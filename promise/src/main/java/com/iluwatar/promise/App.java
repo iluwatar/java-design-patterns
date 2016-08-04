@@ -22,6 +22,15 @@
  */
 package com.iluwatar.promise;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
@@ -43,6 +52,8 @@ import java.util.concurrent.Executors;
  * <li> Functional composition and error handling
  * <li> Prevents callback hell and provides callback aggregation
  * </ul>
+ * 
+ * <p>
  * 
  * @see CompletableFuture
  */
@@ -68,23 +79,57 @@ public class App {
 
   private static void promiseUsage(Executor executor)
       throws InterruptedException, ExecutionException {
-    Promise<Integer> consumedPromise = new Promise<>();
-    consumedPromise.fulfillInAsync(() -> {
-      Thread.sleep(1000);
-      return 10;
-    }, executor).then(value -> {
-      System.out.println("Consumed int value: " + value);
+    String urlString = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/Promise/promise/README.md";
+    Promise<Integer> lineCountPromise = new Promise<String>().fulfillInAsync(() -> {
+      return downloadFile(urlString);
+    }, executor).then(fileLocation -> {
+      return countLines(fileLocation);
     });
     
-    Promise<String> transformedPromise = new Promise<>();
-    transformedPromise.fulfillInAsync(() -> {
-      Thread.sleep(1000);
-      return "10";
-    }, executor).then(value -> { return Integer.parseInt(value); }).then(value -> {
-      System.out.println("Consumed transformed int value: " + value);
+    Promise<Map<Character, Integer>> charFrequencyPromise = new Promise<String>().fulfillInAsync(() -> {
+      return String.valueOf(downloadFile(urlString));
+    }, executor).then(fileLocation -> {
+      return characterFrequency(fileLocation);
     });
     
-    consumedPromise.get();
-    transformedPromise.get();
+    lineCountPromise.get();
+    System.out.println("Line count is: " + lineCountPromise.get());
+    charFrequencyPromise.get();
+    System.out.println("Char frequency is: " + charFrequencyPromise.get());
+  }
+
+  private static Map<Character, Integer> characterFrequency(String fileLocation) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  private static Integer countLines(String fileLocation) {
+    int lineCount = 0;
+    try (Reader reader = new FileReader(fileLocation); 
+        BufferedReader bufferedReader = new BufferedReader(reader);) {
+      for (String line; (line = bufferedReader.readLine()) != null; ) {
+        lineCount++;
+      }
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+    return lineCount;
+  }
+
+  private static String downloadFile(String urlString) throws InterruptedException, IOException {
+    URL url = new URL(urlString);
+    File file = File.createTempFile("promise_pattern", null);
+    try (Reader reader = new InputStreamReader(url.openStream()); 
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        FileWriter writer = new FileWriter(file)) {
+      for (String line; (line = bufferedReader.readLine()) != null; ) {
+        writer.write(line);
+        writer.write("\n");
+      }
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+    System.out.println("File downloaded at: " + file.getAbsolutePath());
+    return file.getAbsolutePath();
   }
 }

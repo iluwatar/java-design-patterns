@@ -33,15 +33,15 @@ import java.util.concurrent.TimeoutException;
  */
 class PromiseSupport<T> implements Future<T> {
 
-  static final int RUNNING = 1;
-  static final int FAILED = 2;
-  static final int COMPLETED = 3;
+  private static final int RUNNING = 1;
+  private static final int FAILED = 2;
+  private static final int COMPLETED = 3;
 
-  final Object lock;
+  private final Object lock;
 
-  volatile int state = RUNNING;
-  T value;
-  Exception exception;
+  private volatile int state = RUNNING;
+  private T value;
+  private Exception exception;
 
   PromiseSupport() {
     this.lock = new Object();

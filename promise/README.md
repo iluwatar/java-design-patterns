@@ -3,10 +3,11 @@ layout: pattern
 title: Promise
 folder: promise
 permalink: /patterns/promise/
-categories: Structural
+categories: Concurrency
 tags:
  - Java
- - Concurrency
+ - Functional
+ - Reactive
  - Difficulty-Intermediate
 ---
 

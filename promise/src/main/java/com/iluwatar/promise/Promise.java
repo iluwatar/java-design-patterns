@@ -120,11 +120,11 @@ public class Promise<T> extends PromiseSupport<T> {
    */
   private class ConsumeAction implements Runnable {
 
-    private Promise<T> src;
-    private Promise<Void> dest;
-    private Consumer<? super T> action;
+    private final Promise<T> src;
+    private final Promise<Void> dest;
+    private final Consumer<? super T> action;
 
-    ConsumeAction(Promise<T> src, Promise<Void> dest, Consumer<? super T> action) {
+    private ConsumeAction(Promise<T> src, Promise<Void> dest, Consumer<? super T> action) {
       this.src = src;
       this.dest = dest;
       this.action = action;
@@ -147,11 +147,11 @@ public class Promise<T> extends PromiseSupport<T> {
    */
   private class TransformAction<V> implements Runnable {
 
-    private Promise<T> src;
-    private Promise<V> dest;
-    private Function<? super T, V> func;
+    private final Promise<T> src;
+    private final Promise<V> dest;
+    private final Function<? super T, V> func;
 
-    TransformAction(Promise<T> src, Promise<V> dest, Function<? super T, V> func) {
+    private TransformAction(Promise<T> src, Promise<V> dest, Function<? super T, V> func) {
       this.src = src;
       this.dest = dest;
       this.func = func;
