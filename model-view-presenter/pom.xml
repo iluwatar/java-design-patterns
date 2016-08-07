@@ -23,27 +23,4 @@
 			<version>1.0.2</version>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.iluwatar</groupId>
-				<artifactId>urm-maven-plugin</artifactId>
-				<configuration>
-					<packages>
-						<param>com.iluwatar.model.view.presenter</param>
-					</packages>
-					<ignores>
-						<param>com.iluwatar.model.view.presenter.App</param>
-					</ignores>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.iluwatar</groupId>
-						<artifactId>model-view-presenter</artifactId>
-						<version>1.6.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>				
-		</plugins>
-	</build>
 </project>

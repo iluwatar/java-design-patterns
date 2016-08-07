@@ -181,19 +181,6 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
-				<plugin>
-					<groupId>com.iluwatar</groupId>
-					<artifactId>urm-maven-plugin</artifactId>
-					<version>${urm.version}</version>
-					<executions>
-						<execution>
-							<phase>process-classes</phase>
-							<goals>
-								<goal>map</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>				
 			</plugins>
 		</pluginManagement>
 
@@ -263,6 +250,24 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>com.iluwatar</groupId>
+				<artifactId>urm-maven-plugin</artifactId>
+				<version>${urm.version}</version>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>map</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<packages>
+						<param>com.iluwatar</param>
+					</packages>
+				</configuration>
+			</plugin>				
 		</plugins>
 	</build>
 

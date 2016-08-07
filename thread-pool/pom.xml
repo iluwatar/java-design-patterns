@@ -16,27 +16,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.iluwatar</groupId>
-				<artifactId>urm-maven-plugin</artifactId>
-				<configuration>
-					<packages>
-						<param>com.iluwatar.threadpool</param>
-					</packages>
-					<ignores>
-						<param>com.iluwatar.threadpool.App</param>
-					</ignores>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.iluwatar</groupId>
-						<artifactId>thread-pool</artifactId>
-						<version>1.6.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>				
-		</plugins>
-	</build>
 </project>

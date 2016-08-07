@@ -16,31 +16,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.iluwatar</groupId>
-				<artifactId>urm-maven-plugin</artifactId>
-				<configuration>
-					<packages>
-						<param>com.iluwatar.flux.action</param>
-						<param>com.iluwatar.flux.app</param>
-						<param>com.iluwatar.flux.dispatcher</param>
-						<param>com.iluwatar.flux.store</param>
-						<param>com.iluwatar.flux.view</param>
-					</packages>
-					<ignores>
-						<param>com.iluwatar.flux.app.App</param>
-					</ignores>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.iluwatar</groupId>
-						<artifactId>flux</artifactId>
-						<version>1.6.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>				
-		</plugins>
-	</build>
 </project>

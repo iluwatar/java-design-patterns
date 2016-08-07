@@ -24,33 +24,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.iluwatar</groupId>
-				<artifactId>urm-maven-plugin</artifactId>
-				<configuration>
-					<packages>
-						<param>com.iluwatar.servicelayer.app</param>
-						<param>com.iluwatar.servicelayer.common</param>
-						<param>com.iluwatar.servicelayer.hibernate</param>
-						<param>com.iluwatar.servicelayer.magic</param>
-						<param>com.iluwatar.servicelayer.servicelayer.spell</param>
-						<param>com.iluwatar.servicelayer.spellbook</param>
-						<param>com.iluwatar.servicelayer.wizard</param>
-					</packages>
-					<ignores>
-						<param>com.iluwatar.servicelayer.app.App</param>
-					</ignores>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.iluwatar</groupId>
-						<artifactId>service-layer</artifactId>
-						<version>1.6.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>				
-		</plugins>
-	</build>
 </project>

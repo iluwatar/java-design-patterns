@@ -15,27 +15,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.iluwatar</groupId>
-				<artifactId>urm-maven-plugin</artifactId>
-				<configuration>
-					<packages>
-						<param>com.iluwatar.stepbuilder</param>
-					</packages>
-					<ignores>
-						<param>com.iluwatar.stepbuilder.App</param>
-					</ignores>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.iluwatar</groupId>
-						<artifactId>step-builder</artifactId>
-						<version>1.6.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>				
-		</plugins>
-	</build>
 </project>

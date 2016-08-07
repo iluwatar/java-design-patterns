@@ -16,30 +16,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.iluwatar</groupId>
-				<artifactId>urm-maven-plugin</artifactId>
-				<configuration>
-					<packages>
-						<param>com.iluwatar.specification.app</param>
-						<param>com.iluwatar.specification.creature</param>
-						<param>com.iluwatar.specification.property</param>
-						<param>com.iluwatar.specification.selector</param>
-					</packages>
-					<ignores>
-						<param>com.iluwatar.specification.app.App</param>
-					</ignores>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.iluwatar</groupId>
-						<artifactId>specification</artifactId>
-						<version>1.6.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>				
-		</plugins>
-	</build>
 </project>

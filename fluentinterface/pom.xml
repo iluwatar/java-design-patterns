@@ -16,30 +16,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.iluwatar</groupId>
-				<artifactId>urm-maven-plugin</artifactId>
-				<configuration>
-					<packages>
-						<param>com.iluwatar.fluentinterface.app</param>
-						<param>com.iluwatar.fluentinterface.fluentiterable.core</param>
-						<param>com.iluwatar.fluentinterface.fluentiterable.lazy</param>
-						<param>com.iluwatar.fluentinterface.fluentiterable.simple</param>
-					</packages>
-					<ignores>
-						<param>com.iluwatar.fluentinterface.app.App</param>
-					</ignores>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.iluwatar</groupId>
-						<artifactId>fluentinterface</artifactId>
-						<version>1.6.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>				
-		</plugins>
-	</build>
 </project>
