@@ -50,6 +50,11 @@ public class App {
 
   boolean interactiveMode = false;
 
+  /**
+   * Program entry point.
+   *
+   * @param args command line args
+   */
   public static void main(String[] args) {
     App app = new App();
 
@@ -71,6 +76,7 @@ public class App {
       try {
         prop.load(inputStream);
       } catch (IOException e) {
+        System.out.println(propFileName + " was not found. Defaulting to non-interactive mode.");
       }
       String property = prop.getProperty("INTERACTIVE_MODE");
       if (property.equalsIgnoreCase("YES")) {
@@ -79,6 +85,9 @@ public class App {
     }
   }
 
+  /**
+   * Run program in either interactive mode or not.
+   */
   public void run() {
     if (interactiveMode) {
       runInteractiveMode();
@@ -87,29 +96,32 @@ public class App {
     }
   }
 
+  /**
+   * Run program in non-interactive mode.
+   */
   public void quickRun() {
     EventManager eventManager = new EventManager();
 
     try {
       // Create an Asynchronous event.
-      int aEventID = eventManager.createAsyncEvent(60);
-      System.out.println("Event [" + aEventID + "] has been created.");
-      eventManager.startEvent(aEventID);
-      System.out.println("Event [" + aEventID + "] has been started.");
+      int aEventId = eventManager.createAsyncEvent(60);
+      System.out.println("Event [" + aEventId + "] has been created.");
+      eventManager.startEvent(aEventId);
+      System.out.println("Event [" + aEventId + "] has been started.");
 
       // Create a Synchronous event.
-      int sEventID = eventManager.createSyncEvent(60);
-      System.out.println("Event [" + sEventID + "] has been created.");
-      eventManager.startEvent(sEventID);
-      System.out.println("Event [" + sEventID + "] has been started.");
+      int sEventId = eventManager.createSyncEvent(60);
+      System.out.println("Event [" + sEventId + "] has been created.");
+      eventManager.startEvent(sEventId);
+      System.out.println("Event [" + sEventId + "] has been started.");
 
-      eventManager.getStatus(aEventID);
-      eventManager.getStatus(sEventID);
+      eventManager.getStatus(aEventId);
+      eventManager.getStatus(sEventId);
 
-      eventManager.stopEvent(aEventID);
-      System.out.println("Event [" + aEventID + "] has been stopped.");
-      eventManager.stopEvent(sEventID);
-      System.out.println("Event [" + sEventID + "] has been stopped.");
+      eventManager.stopEvent(aEventId);
+      System.out.println("Event [" + aEventId + "] has been stopped.");
+      eventManager.stopEvent(sEventId);
+      System.out.println("Event [" + sEventId + "] has been stopped.");
 
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
         | InvalidOperationException e) {
@@ -117,6 +129,9 @@ public class App {
     }
   }
 
+  /**
+   * Run program in interactive mode.
+   */
   public void runInteractiveMode() {
     EventManager eventManager = new EventManager();
 
@@ -137,19 +152,19 @@ public class App {
         int eventTime = s.nextInt();
         if (eventType.equalsIgnoreCase("A")) {
           try {
-            int eventID = eventManager.createAsyncEvent(eventTime);
-            System.out.println("Event [" + eventID + "] has been created.");
-            eventManager.startEvent(eventID);
-            System.out.println("Event [" + eventID + "] has been started.");
+            int eventId = eventManager.createAsyncEvent(eventTime);
+            System.out.println("Event [" + eventId + "] has been created.");
+            eventManager.startEvent(eventId);
+            System.out.println("Event [" + eventId + "] has been started.");
           } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
             System.out.println(e.getMessage());
           }
         } else if (eventType.equalsIgnoreCase("S")) {
           try {
-            int eventID = eventManager.createSyncEvent(eventTime);
-            System.out.println("Event [" + eventID + "] has been created.");
-            eventManager.startEvent(eventID);
-            System.out.println("Event [" + eventID + "] has been started.");
+            int eventId = eventManager.createSyncEvent(eventTime);
+            System.out.println("Event [" + eventId + "] has been created.");
+            eventManager.startEvent(eventId);
+            System.out.println("Event [" + eventId + "] has been started.");
           } catch (MaxNumOfEventsAllowedException | InvalidOperationException | LongRunningEventException
               | EventDoesNotExistException e) {
             System.out.println(e.getMessage());
@@ -159,18 +174,18 @@ public class App {
         }
       } else if (option == 2) {
         System.out.print("Event ID: ");
-        int eventID = s.nextInt();
+        int eventId = s.nextInt();
         try {
-          eventManager.stopEvent(eventID);
-          System.out.println("Event [" + eventID + "] has been stopped.");
+          eventManager.stopEvent(eventId);
+          System.out.println("Event [" + eventId + "] has been stopped.");
         } catch (EventDoesNotExistException e) {
           System.out.println(e.getMessage());
         }
       } else if (option == 3) {
         System.out.print("Event ID: ");
-        int eventID = s.nextInt();
+        int eventId = s.nextInt();
         try {
-          eventManager.getStatus(eventID);
+          eventManager.getStatus(eventId);
         } catch (EventDoesNotExistException e) {
           System.out.println(e.getMessage());
         }

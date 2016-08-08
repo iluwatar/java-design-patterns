@@ -23,15 +23,15 @@ package com.iluwatar.event.asynchronous;
  */
 public class Event implements IEvent, Runnable {
 
-  private int eventID;
+  private int eventId;
   private int eventTime;
   private Thread thread;
   private long counter = 0;
   private boolean isComplete = false;
   private ThreadCompleteListener eventListener;
 
-  public Event(int eventID, int eventTime) {
-    this.eventID = eventID;
+  public Event(int eventId, int eventTime) {
+    this.eventId = eventId;
     this.eventTime = eventTime;
   }
 
@@ -49,9 +49,9 @@ public class Event implements IEvent, Runnable {
   @Override
   public void status() {
     if (!isComplete) {
-      System.out.println("[" + eventID + "] I am at not done. [" + counter + "%]");
+      System.out.println("[" + eventId + "] I am at not done. [" + counter + "%]");
     } else {
-      System.out.println("[" + eventID + "] I am done.");
+      System.out.println("[" + eventId + "] I am done.");
     }
   }
 
@@ -81,7 +81,7 @@ public class Event implements IEvent, Runnable {
 
   private final void notifyListener() {
     if (eventListener != null) {
-      eventListener.notifyOfThreadComplete(eventID);
+      eventListener.notifyOfThreadComplete(eventId);
     }
   }
 
