@@ -18,10 +18,10 @@ package com.iluwatar.event.asynchronous;
 
 public interface IEvent {
 
-  public void start();
+  void start();
 
-  public void stop();
+  void stop();
 
-  public void status();
+  void status();
 
 }
