@@ -32,24 +32,31 @@ Secondary ports consist of lottery ticket database, banking and notifications. T
 
 We start the implementation from the system core. First we need to identify the core concepts of the lottery system. Probably the most important one is the lottery ticket. In lottery ticket you are supposed to mark the numbers you want to pick and write your contact details. This leads us to write the following classes.
 
-<gist>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryTicket.java"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryNumbers.java"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/PlayerDetails.java"></script>
 
 Now that we can create lottery tickets we need a way for the players to submit them for the next draw. Another needed functionality is checking a lottery ticket against winning numbers. We will combine these things into single LotteryService that becomes one of our primary ports.
 
-<gist>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryService.java"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryServiceImpl.java"></script>
 
 We also need a lottery administrator facing interface where the submitted lottery tickets can be examined to determine the winner and a method for performing the lottery draw. The implementation for this primary port is presented next.
 
-<gist>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministration.java"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministrationImpl.java"></script>
 
 Next we implement the secondary ports and adapters. The first one is the banking support that enables us to manipulate bank account funds. To explain the concept, the player can write his bank account number on the lottery ticket and in case it wins the prize the lottery system automatically does the wire transfer of the funds.
 
-<gist>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfers.java"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfersImpl.java"></script>
 
 Another secondary port is the notification service. If the player has written his email address in the lottery ticket the lottery system automatically sends a notification of the results when the lottery draw is performed.
 
-<gist>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotifications.java"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotificationsImpl.java"></script>
 
 The last secondary port is the database. It contains methods for storing and retrieving lottery tickets.
 
-<gist>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/database/LotteryTicketRepository.java"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/database/LotteryTicketInMemoryRepository.java"></script>
