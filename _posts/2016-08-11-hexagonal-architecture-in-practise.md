@@ -88,7 +88,45 @@ With all the pieces in place we create a command line application to drive the l
 Running the test application produces the following output:
 
 ```
-Foo
+Lottery ticket for monica@google.com was submitted. Bank account 265-748 was charged for 3 credits.
+Lottery ticket for lisa@google.com was submitted. Bank account 024-653 was charged for 3 credits.
+Lottery ticket for harriet@google.com was submitted. Bank account 842-404 was charged for 3 credits.
+Lottery ticket for ian@google.com was submitted. Bank account 663-765 was charged for 3 credits.
+Lottery ticket for warren@google.com was submitted. Bank account 225-946 was charged for 3 credits.
+Lottery ticket for bruno@google.com was submitted. Bank account 023-638 was charged for 3 credits.
+Lottery ticket for johnie@google.com was submitted. Bank account 983-322 was charged for 3 credits.
+Lottery ticket for andy@google.com was submitted. Bank account 934-734 was charged for 3 credits.
+Lottery ticket for ted@google.com was submitted. Bank account 735-964 was charged for 3 credits.
+Lottery ticket for lolita@google.com was submitted. Bank account 425-907 was charged for 3 credits.
+Lottery ticket for warren@google.com was submitted. Bank account 225-946 was charged for 3 credits.
+Lottery ticket for monica@google.com was submitted. Bank account 265-748 was charged for 3 credits.
+Lottery ticket for bobbie@google.com was submitted. Bank account 946-384 was charged for 3 credits.
+Lottery ticket for lolita@google.com was submitted. Bank account 425-907 was charged for 3 credits.
+Lottery ticket for kevin@google.com could not be submitted because the credit transfer of 3 credits failed.
+Lottery ticket for steve@google.com was submitted. Bank account 833-836 was charged for 3 credits.
+Lottery ticket for bruce@google.com was submitted. Bank account 284-936 was charged for 3 credits.
+Lottery ticket for peter@google.com was submitted. Bank account 335-886 was charged for 3 credits.
+Lottery ticket for tyron@google.com was submitted. Bank account 310-992 was charged for 3 credits.
+Lottery ticket for mary@google.com was submitted. Bank account 234-987 was charged for 3 credits.
+Lottery ticket for lolita@google.com was checked and unfortunately did not win this time.
+Lottery ticket for mary@google.com was checked and unfortunately did not win this time.
+Lottery ticket for bruce@google.com was checked and unfortunately did not win this time.
+Lottery ticket for warren@google.com was checked and unfortunately did not win this time.
+Lottery ticket for lolita@google.com was checked and unfortunately did not win this time.
+Lottery ticket for peter@google.com was checked and unfortunately did not win this time.
+Lottery ticket for harriet@google.com was checked and unfortunately did not win this time.
+Lottery ticket for bobbie@google.com was checked and unfortunately did not win this time.
+Lottery ticket for andy@google.com was checked and unfortunately did not win this time.
+Lottery ticket for tyron@google.com was checked and unfortunately did not win this time.
+Lottery ticket for lisa@google.com was checked and unfortunately did not win this time.
+Lottery ticket for ian@google.com was checked and unfortunately did not win this time.
+Lottery ticket for monica@google.com was checked and unfortunately did not win this time.
+Lottery ticket for ted@google.com was checked and unfortunately did not win this time.
+Lottery ticket for warren@google.com was checked and unfortunately did not win this time.
+Lottery ticket for monica@google.com was checked and unfortunately did not win this time.
+Lottery ticket for steve@google.com was checked and unfortunately did not win this time.
+Lottery ticket for bruno@google.com was checked and unfortunately did not win this time.
+Lottery ticket for johnie@google.com was checked and unfortunately did not win this time.
 ```
 
 ## Final words
