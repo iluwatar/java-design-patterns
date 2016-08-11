@@ -29,3 +29,27 @@ Next we will demonstrate Hexagonal Architecture by building a lottery system. Th
 Secondary ports consist of lottery ticket database, banking and notifications. The resulting hexagon of the system can be seen in the following diagram.
 
 ![Lottery system]({{ site.url }}{{ site.baseurl }}/assets/lottery.png)
+
+We start the implementation from the system core. First we need to identify the core concepts of the lottery system. Probably the most important one is the lottery ticket. In lottery ticket you are supposed to mark the numbers you want to pick and write your contact details. This leads us to write the following classes.
+
+<gist>
+
+Now that we can create lottery tickets we need a way for the players to submit them for the next draw. Another needed functionality is checking a lottery ticket against winning numbers. We will combine these things into single LotteryService that becomes one of our primary ports.
+
+<gist>
+
+We also need a lottery administrator facing interface where the submitted lottery tickets can be examined to determine the winner and a method for performing the lottery draw. The implementation for this primary port is presented next.
+
+<gist>
+
+Next we implement the secondary ports and adapters. The first one is the banking support that enables us to manipulate bank account funds. To explain the concept, the player can write his bank account number on the lottery ticket and in case it wins the prize the lottery system automatically does the wire transfer of the funds.
+
+<gist>
+
+Another secondary port is the notification service. If the player has written his email address in the lottery ticket the lottery system automatically sends a notification of the results when the lottery draw is performed.
+
+<gist>
+
+The last secondary port is the database. It contains methods for storing and retrieving lottery tickets.
+
+<gist>
