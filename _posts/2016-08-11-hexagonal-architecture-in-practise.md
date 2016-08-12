@@ -8,7 +8,7 @@ author: ilu
 
 ## The fallacies of layered architecture
 
-This blog post is about Hexagonal Architecture but to have something familiar to start with let's first talk about Layered Architecture. It is a well known architectural pattern that organizes application into layers each having their specific purpose. The database layer takes care of data transactions, the business layer is responsible for business logic and the presentation layer deals with the user input. The Layered Architecture implements so called separation of concerns principle which leads to more maintainable applications. Changes to one area in the software are not propagated to other areas.
+This blog post is about implementing Alistair Cockburn's [Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture) but to have something familiar to start with let's first talk about Layered Architecture. It is a well known architectural pattern that organizes application into layers each having their specific purpose. The database layer takes care of data transactions, the business layer is responsible for business logic and the presentation layer deals with the user input. The Layered Architecture implements so called separation of concerns principle which leads to more maintainable applications. Changes to one area in the software are not propagated to other areas.
 
 ![Layers]({{ site.url }}{{ site.baseurl }}/assets/layers.png)
 
@@ -20,7 +20,7 @@ Hexagonal Architecture tackles this issue by building the application around the
 
 However, the core alone may not be very useful. Something has to drive this application, call the business logic methods. It may be a HTTP request, automatic test or integration API. These interfaces we call the primary ports. Also, the core has its dependencies. For example, there may be a data storage module that the core calls upon to retrieve and update data. The interfaces of these modules that are driven by the core are called the secondary ports of the application.
 
-Each of the ports may have one or more implementation. For example there may be a mock database for testing and a real database for running the application. The port implementations are called adapters. Thus the alias name Ports and Adapters for Hexagonal Architecture. Other names describing the same concept are Clean Architecture and Onion Architecture.
+Each of the ports may have one or more implementation. For example there may be a mock database for testing and a real database for running the application. The port implementations are called adapters. Thus the alias name Ports and Adapters for Hexagonal Architecture. Other architectural patterns describing the same concept are Uncle Bob's [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) and Jeffrey Palermo's [Onion Architecture](http://jeffreypalermo.com/blog/the-onion-architecture-part-1/).
 
 The name of the pattern comes from the following hexagonal drawing.
 
