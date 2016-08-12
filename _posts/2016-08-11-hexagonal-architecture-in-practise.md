@@ -12,7 +12,7 @@ This blog post is about Hexagonal Architecture but to have something familiar to
 
 ![Layers]({{ site.url }}{{ site.baseurl }}/assets/layers.png)
 
-This way of building applications can be considered simple and effective. But it also has several fallacies. When you see an application implemented with Layered Architecture, where is the application core? Is it the database? Maybe it's the business logic with some little things scattered over to the presentation layer. This is a typical problem with layers. There is no application core, there are just the layers and the core logic is scattered here and there.
+This way of building applications can be considered simple and effective. But it also has several drawbacks. When you see an application implemented with Layered Architecture, where is the application core? Is it the database? Maybe it's the business logic with some little things scattered over to the presentation layer. This is the typical problem with layers. There is no application core, there are just the layers and the core logic is scattered here and there. When the business logic starts to leak over to the presentation layer, the application can no longer be tested without the user interface.
 
 ## Core, ports and adapters
 
