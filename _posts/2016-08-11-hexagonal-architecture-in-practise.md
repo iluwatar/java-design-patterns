@@ -34,13 +34,13 @@ Naked Objects design pattern is considered an implementation of Hexagonal Archit
 
 Next we will demonstrate Hexagonal Architecture by building a lottery system. The lottery system will provide two primary ports: One for the users to submit lottery tickets and another for system administrators to perform the draw.
 
-Secondary ports consist of lottery ticket database, banking and notifications. The resulting hexagon of the system can be seen in the following diagram.
+Secondary ports consist of lottery ticket database, banking for wire transfers and notifications for pushing the lottery results to the players. The resulting hexagon of the system can be seen in the following diagram.
 
 ![Lottery system]({{ site.url }}{{ site.baseurl }}/assets/lottery.png)
 
 ## Start from the core
 
-We start the implementation from the system core. First we need to identify the core concepts of the lottery system. Probably the most important one is the lottery ticket. In lottery ticket you are supposed to mark the numbers you want to pick and write your contact details. This leads us to write the following classes.
+We start the implementation from the system core. First we need to identify the core concepts of the lottery system. Probably the most important one is the lottery ticket. In lottery ticket you are supposed to pick the numbers and write your contact details to receive email notifications and possibly the prize money directly to your bank account. This leads us to write the following classes.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryTicket.java?slice=23:"></script>
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryNumbers.java?slice=23:"></script>
@@ -48,28 +48,28 @@ We start the implementation from the system core. First we need to identify the 
 
 ## Primary port for the players
 
-Now that we can create lottery tickets we need a way for the players to submit them for the next draw. Another needed functionality is checking a lottery ticket against winning numbers. We will combine these things into single LotteryService that becomes one of our primary ports.
+Now that we can create lottery tickets we need a way for the players to submit them to participate in the next draw. Another feature that we need is to check a lottery ticket against the winning numbers. We will combine these things into single LotteryService that becomes one of our primary ports.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryService.java?slice=23:"></script>
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryServiceImpl.java?slice=23:"></script>
 
 ## Primary port for the administrators
 
-We also need a lottery administrator facing interface where the submitted lottery tickets can be examined to determine the winner and a method for performing the lottery draw. The implementation for this primary port is presented next.
+We also need a lottery administrator facing interface that enables browsing of the submitted lottery tickets to determine the winners and a method for performing the lottery draw. The implementation for this primary port is presented next.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministration.java?slice=23:"></script>
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministrationImpl.java?slice=23:"></script>
 
 ## Secondary port for banking
 
-Next we implement the secondary ports and adapters. The first one is the banking support that enables us to manipulate bank account funds. To explain the concept, the player can write his bank account number on the lottery ticket and in case it wins the prize the lottery system automatically does the wire transfer of the funds.
+Next we implement the secondary ports and adapters. The first one is the banking support that enables us to manipulate bank account funds. To explain the concept, the player can write his bank account number on the lottery ticket and in case the ticket wins the lottery system automatically wire transfers the funds.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfers.java?slice=23:"></script>
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfersImpl.java?slice=23:"></script>
 
 ## Secondary port for notifications
 
-Another secondary port is the notification service. If the player has written his email address in the lottery ticket the lottery system automatically sends a notification of the results when the lottery draw is performed.
+Another secondary port is the notification service. If the player has written his email address in the lottery ticket the system automatically sends a notification of the lottery results after the lottery draw has been performed.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotifications.java?slice=23:"></script>
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotificationsImpl.java?slice=23:"></script>
