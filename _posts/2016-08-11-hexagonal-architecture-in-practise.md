@@ -18,15 +18,17 @@ This way of building applications can be considered simple and effective. But it
 
 Hexagonal Architecture tackles this issue by building the application around the core. The main objective is to create fully testable systems that can be driven equally by users, programs and batch scripts in isolation of database. 
 
-However, the core alone may not be very useful. Something has to drive this application, call the business logic methods. These drivers we call the primary ports. Also, the core has its dependencies. For example, there may be a data storage module that the core calls upon to retrieve and update data. These dependencies are called the secondary ports of the application.
+However, the core alone may not be very useful. Something has to drive this application, call the business logic methods. It may be a HTTP request, automatic test or integration API. These interfaces we call the primary ports. Also, the core has its dependencies. For example, there may be a data storage module that the core calls upon to retrieve and update data. The interfaces of these modules that are driven by the core are called the secondary ports of the application.
 
-The ports may have one or more implementations. For example there may be a mock database for testing and a real database for running the application. The port implementations are called adapters. Thus the alias name Ports and Adapters for Hexagonal Architecture. Other names describing the same concept are Clean Architecture and Onion Architecture.
+Each of the ports may have one or more implementation. For example there may be a mock database for testing and a real database for running the application. The port implementations are called adapters. Thus the alias name Ports and Adapters for Hexagonal Architecture. Other names describing the same concept are Clean Architecture and Onion Architecture.
 
-The name for the pattern comes from the following hexagonal drawing.
+The name of the pattern comes from the following hexagonal drawing.
 
 ![Hexagon]({{ site.url }}{{ site.baseurl }}/assets/hexagon.png)
 
-The diagram shows how the domain is in the middle surrounded by ports on each side of hexagon. The actual amount of ports does not have to be exactly six, it can be less or it can be more depending on the application needs. One of the implementations of Hexagonal architecture can be considered Naked Objects pattern that is applied in Apache Isis framework.
+The diagram shows how the domain is in the middle surrounded by ports on each side of hexagon. The actual amount of ports does not have to be exactly six, it can be less or it can be more depending on the application needs. 
+
+Naked Objects design pattern is considered an implementation of Hexagonal Architecture. Naked Objects is utilized by [Apache Isis](https://isis.apache.org/) framework. User defines the domain objects and the framework automatically generates user interface and REST API around it.
 
 ## Lottery system
 
