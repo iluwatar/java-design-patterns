@@ -32,6 +32,8 @@ Naked Objects design pattern is considered an implementation of Hexagonal Archit
 
 ## Lottery system
 
+![Lottery ticket]({{ site.url }}{{ site.baseurl }}/assets/lotto.jpg)
+
 Next we will demonstrate Hexagonal Architecture by building a lottery system. The lottery system will provide two primary ports: One for the users to submit lottery tickets and another for system administrators to perform the draw.
 
 Secondary ports consist of lottery ticket database, banking for wire transfers and notifications for pushing the lottery results to the players. The resulting hexagon of the system can be seen in the following diagram.
@@ -133,6 +135,6 @@ Lottery ticket for johnie@google.com was checked and unfortunately did not win t
 
 ## Final words
 
-Applications implemented with Hexagonal Architecture are a joy to work with. Implementation details such as frameworks, user interfaces and databases are pushed out of the core and the application can work without them. We can clearly point in the center of the hexagon and say that this is our application and it uses these technologies to implement the submodule interfaces.
+Applications implemented with Hexagonal Architecture are a joy to work with. Implementation details such as frameworks, user interfaces and databases are pushed out of the core and the application can work without them. We can clearly point in the center of the hexagon and say that this is our application and it uses these technologies to implement the submodule interfaces. Restricting communication to happen only through the ports forces the application to produce testable and maintainable code.
 
 The full demo application of Hexagonal Architecture is available in [Java Design Patterns](https://github.com/iluwatar/java-design-patterns) Github repository.
