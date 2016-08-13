@@ -69,7 +69,7 @@ import com.iluwatar.hexagonal.service.LotteryServiceImpl;
  */
 public class App {
   
-  private static List<PlayerDetails> allPlayerDetails;
+  private static final List<PlayerDetails> allPlayerDetails;
   
   static {
     allPlayerDetails = new ArrayList<>();
