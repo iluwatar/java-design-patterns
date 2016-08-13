@@ -44,9 +44,10 @@ Secondary ports consist of lottery ticket database, banking for wire transfers a
 
 We start the implementation from the system core. First we need to identify the core concepts of the lottery system. Probably the most important one is the lottery ticket. In lottery ticket you are supposed to pick the numbers and write your contact details to receive email notifications and possibly the prize money directly to your bank account. This leads us to write the following classes.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryTicket.java?slice=23:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryNumbers.java?slice=23:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/PlayerDetails.java?slice=23:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryTicket.java?slice=24:71"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryNumbers.java?slice=30:121"></script>
+
+LotteryTicket contains LotteryNumbers and PlayerDetails. LotteryNumbers contains means to hold given numbers or generate random numbers and test the numbers for equality with another LotteryNumbers instance. [PlayerDetails](https://github.com/iluwatar/java-design-patterns/blob/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/PlayerDetails.java) is a simple value object containing player's email address, bank account number and phone number.
 
 ## Primary port for the players
 
