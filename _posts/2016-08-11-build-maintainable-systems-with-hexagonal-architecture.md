@@ -78,10 +78,12 @@ The bank back office is a simple HashMap based implementation. The lottery servi
 
 ## Secondary port for notifications
 
-Another secondary port is the notification service. If the player has written his email address in the lottery ticket the system automatically sends a notification of the lottery results after the lottery draw has been performed.
+Another secondary port is the notification service. If the player has written his email address in the lottery ticket the system automatically sends notifications of the lottery system events, most importantly whether the ticket has won or not.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotifications.java?slice=23:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotificationsImpl.java?slice=23:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotifications.java?slice=26:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotificationsImpl.java?slice=26:"></script>
+
+The methods in LotteryNotificationsImpl adapter are simple System.out printers so the implementation is trivial to understand.
 
 ## Secondary port for database
 
