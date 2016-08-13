@@ -79,6 +79,47 @@ public class LotteryNumbers {
     return Collections.unmodifiableSet(numbers);
   }
   
+  /**
+   * Generates 4 unique random numbers between 1-20 into numbers set.
+   */
+  private void generateRandomNumbers() {
+    numbers.clear();
+    RandomNumberGenerator generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
+    while (numbers.size() < NUM_NUMBERS) {
+      int num = generator.nextInt();
+      if (!numbers.contains(num)) {
+        numbers.add(num);
+      }
+    }
+  }
+  
+  /**
+   * 
+   * Helper class for generating random numbers.
+   *
+   */
+  private static class RandomNumberGenerator {
+
+    private PrimitiveIterator.OfInt randomIterator;
+
+    /**
+     * Initialize a new random number generator that generates random numbers in the range [min, max]
+     * 
+     * @param min the min value (inclusive)
+     * @param max the max value (inclusive)
+     */
+    public RandomNumberGenerator(int min, int max) {
+      randomIterator = new Random().ints(min, max + 1).iterator();
+    }
+
+    /**
+     * @return a random number in the range (min, max)
+     */
+    public int nextInt() {
+      return randomIterator.nextInt();
+    }
+  }
+  
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -107,46 +148,5 @@ public class LotteryNumbers {
       return false;
     }
     return true;
-  }
-
-  /**
-   * Generates 4 unique random numbers between 1-20 into numbers set.
-   */
-  private void generateRandomNumbers() {
-    numbers.clear();
-    RandomNumberGenerator generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
-    while (numbers.size() < NUM_NUMBERS) {
-      int num = generator.nextInt();
-      if (!numbers.contains(num)) {
-        numbers.add(num);
-      }
-    }
-  }
-
-  /**
-   * 
-   * Helper class for generating random numbers.
-   *
-   */
-  private static class RandomNumberGenerator {
-
-    private PrimitiveIterator.OfInt randomIterator;
-
-    /**
-     * Initialize a new random number generator that generates random numbers in the range [min, max]
-     * 
-     * @param min the min value (inclusive)
-     * @param max the max value (inclusive)
-     */
-    public RandomNumberGenerator(int min, int max) {
-      randomIterator = new Random().ints(min, max + 1).iterator();
-    }
-
-    /**
-     * @return a random number in the range (min, max)
-     */
-    public int nextInt() {
-      return randomIterator.nextInt();
-    }
-  }
+  }  
 }
