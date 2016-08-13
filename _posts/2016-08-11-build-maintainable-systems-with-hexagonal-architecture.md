@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hexagonal Architecture in Practise
+title: Build Maintainable Systems With Hexagonal Architecture
 author: ilu
 ---
 
@@ -8,7 +8,7 @@ author: ilu
 
 ## The fallacies of layered architecture
 
-This blog post is about implementing Alistair Cockburn's [Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture) but to have something familiar to start with let's first talk about Layered Architecture. It is a well known architectural pattern that organizes application into layers each having their specific purpose. The database layer takes care of data transactions, the business layer is responsible for business logic and the presentation layer deals with the user input. The Layered Architecture implements so called separation of concerns principle which leads to more maintainable applications. Changes to one area in the software are not propagated to other areas.
+This blog post is about implementing Alistair Cockburn's [Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture). To have something familiar to start with let's first talk about Layered Architecture. It is a well known architectural pattern that organizes application into layers each having their specific purpose. The database layer takes care of data transactions, the business layer is responsible for business logic and the presentation layer deals with the user input. The Layered Architecture implements so called separation of concerns principle which leads to more maintainable applications. Changes to one area in the software are not propagated to other areas.
 
 ![Layers]({{ site.url }}{{ site.baseurl }}/assets/layers.png)
 
