@@ -72,7 +72,9 @@ LotteryAdministration port has `resetLottery()` method for starting new lottery 
 Next we implement the secondary ports and adapters. The first one is the banking support that enables us to manipulate bank account funds. To explain the concept, the player can write his bank account number on the lottery ticket and in case the ticket wins the lottery system automatically wire transfers the funds.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfers.java?slice=23:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfersImpl.java?slice=23:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfersImpl.java?slice=29:"></script>
+
+The bank back office is a simple HashMap based implementation. The lottery service's bank account is statically initialized to contain enough funds to pay the prizes in case some of the lottery tickets win.
 
 ## Secondary port for notifications
 
