@@ -62,8 +62,10 @@ LotteryService is the port and LotteryServiceImpl is the adapter. LotteryService
 
 We also need a lottery administrator facing interface that enables browsing of the submitted lottery tickets to determine the winners and a method for performing the lottery draw. The implementation for this primary port is presented next.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministration.java?slice=23:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministrationImpl.java?slice=23:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministration.java?slice=30:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministrationImpl.java?slice=41:"></script>
+
+LotteryAdministration port has `resetLottery()` method for starting new lottery round. At this stage the player submit their lottery tickets into the database and when the time is due the administration calls `performLottery()` to draw the winning numbers and check each of the tickets for winnings.
 
 ## Secondary port for banking
 
