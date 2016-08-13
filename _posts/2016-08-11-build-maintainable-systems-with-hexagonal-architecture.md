@@ -53,8 +53,10 @@ LotteryTicket contains LotteryNumbers and PlayerDetails. LotteryNumbers contains
 
 Now that we can create lottery tickets we need a way for the players to submit them to participate in the next draw. Another feature that we need is to check a lottery ticket against the winning numbers. We will combine these things into single LotteryService that becomes one of our primary ports.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryService.java?slice=23:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryServiceImpl.java?slice=23:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryService.java?slice=31:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryServiceImpl.java?slice=39:"></script>
+
+LotteryService is the port and LotteryServiceImpl is the adapter. LotteryServiceImpl needs access to the lottery ticket database to add new tickets and to check submitted ticket for winnings.
 
 ## Primary port for the administrators
 
