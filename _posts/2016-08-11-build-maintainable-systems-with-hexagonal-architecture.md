@@ -98,7 +98,7 @@ The LotteryTicketInMemoryRepository is a mock database holding its contents in m
 
 With all the pieces in place we create a command line application to drive the lottery system. The test application initializes the lottery system using the admin interface and starts collecting lottery tickets from the players. Once all the lottery tickets have been submitted the lottery number draw is performed and all the submitted tickets are checked for wins.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/App.java?slice=23:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/App.java?slice=69:"></script>
 
 Running the test application produces the following output:
 
