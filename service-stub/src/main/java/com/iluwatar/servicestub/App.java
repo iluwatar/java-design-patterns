@@ -26,17 +26,6 @@ package com.iluwatar.servicestub;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * Service stub pattern is a design pattern used for replacing third-party services, 
- * such as credit scoring, tax rate lookups and pricing engines, 
- * which are often not available locally for testing.
- * 
- * In this example we use Service stub pattern calling stock alert service for a given stock name.
- * 
- * @author jdoetricksy
- *
- */
-
 public class App {
 
   public static void main(String[] args) throws Exception {
