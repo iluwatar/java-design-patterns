@@ -1,12 +1,7 @@
 ---
 layout: page
+redirect_to: patterns/
 ---
-<div class="readme">
-  {% capture maincontent %}
-
-  {% include_relative patterns/README.md %}
-
-  {% endcapture %}
-
-  {{ maincontent | markdownify }}
+<div class="index">
+    This Page should redirect you to <a href="patterns/">Patterns</a>
 </div>

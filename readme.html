@@ -1,0 +1,24 @@
+---
+layout: default
+title: Readme
+permalink: /readme/
+icon: fa-book
+page-index: 4
+---
+<!-- This file has to lie in the root because it references "patterns/README.md" relatively
+    Jekyll doesnt support absolute including without adding plugins -->
+<div id="index" class="row">
+    <div class="col-md-12">
+        <div class="content-area page">
+<!-- These liquid lines mustn't have correct indent because it would trigger the automatic code formatting
+     of kramdown and convert html comments to code -->
+{% capture maincontent %}
+
+{% include_relative patterns/README.md %}
+
+{% endcapture %}
+
+{{ maincontent | markdownify }}
+        </div>
+    </div>
+</div>
