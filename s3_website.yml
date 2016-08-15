@@ -25,10 +25,5 @@ cloudfront_distribution_id: E1GTH8J7AJ8I1Z
 
 concurrency_level: 100
 
-# routing_rules:
-#   - condition:
-#       key_prefix_equals: blog/some_path
-#     redirect:
-#       host_name: blog.example.com
-#       replace_key_prefix_with: some_new_path/
-#       http_redirect_code: 301
+redirects:
+  index.html: /patterns/
