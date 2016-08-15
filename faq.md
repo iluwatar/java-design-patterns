@@ -3,7 +3,7 @@ layout: page
 title: FAQ
 permalink: /faq/
 icon: fa-question
-page-index: 1
+page-index: 5
 ---
 
 ### Q1: What is the difference between State and Strategy patterns? {#Q1}
