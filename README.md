@@ -24,7 +24,7 @@ are familiar with the patterns.
 # Getting started
 
 Before you dive into the material, you should be familiar with various
-[Programming/Software Design Principles](http://webpro.github.io/programming-principles/).
+Programming/Software Design Principles.
 
 All designs should be as simple as possible. You should start with KISS, YAGNI,
 and Do The Simplest Thing That Could Possibly Work principles. Complexity and
