@@ -32,8 +32,6 @@ Naked Objects design pattern is considered an implementation of Hexagonal Archit
 
 ## Lottery system
 
-![Lottery ticket]({{ site.url }}{{ site.baseurl }}/assets/lotto.jpg)
-
 Next we will demonstrate Hexagonal Architecture by building a lottery system. The lottery system will provide two primary ports: One for the users to submit lottery tickets and another for system administrators to perform the draw.
 
 Secondary ports consist of lottery ticket database, banking for wire transfers and notifications for pushing the lottery results to the players. The resulting hexagon of the system can be seen in the following diagram.
