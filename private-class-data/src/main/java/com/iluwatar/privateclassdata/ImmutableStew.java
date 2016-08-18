@@ -29,18 +29,25 @@ package com.iluwatar.privateclassdata;
  */
 public class ImmutableStew {
 
-  private StewData data;
+    private StewData data;
 
-  public ImmutableStew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
-    data = new StewData(numPotatoes, numCarrots, numMeat, numPeppers);
-  }
+    public ImmutableStew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
+        data = new StewData(numPotatoes, numCarrots, numMeat, numPeppers);
+    }
 
-  /**
-   * Mix the stew
-   */
-  public void mix() {
-    System.out.println(String.format(
+    /**
+     * Mix the stew
+     */
+    public void mix() {
+        System.out.println(String.format(
         "Mixing the immutable stew we find: %d potatoes, %d carrots, %d meat and %d peppers",
         data.getNumPotatoes(), data.getNumCarrots(), data.getNumMeat(), data.getNumPeppers()));
-  }
+    }
+    
+    /**
+     * Taste
+     */
+    public void taste() {
+        data.tasteSoup();
+    }
 }

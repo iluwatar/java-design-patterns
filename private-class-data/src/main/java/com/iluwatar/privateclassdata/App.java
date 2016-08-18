@@ -28,7 +28,7 @@ package com.iluwatar.privateclassdata;
  * visibility. It reduces the number of class attributes by encapsulating them in single data
  * object. It allows the class designer to remove write privilege of attributes that are intended to
  * be set only during construction, even from methods of the target class.
- * <p>
+ * 
  * In the example we have normal {@link Stew} class with some ingredients given in constructor. Then
  * we have methods to enumerate the ingredients and to taste the stew. The method for tasting the
  * stew alters the private members of the {@link Stew} class.
@@ -54,6 +54,8 @@ public class App {
 
     // immutable stew protected with Private Class Data pattern
     ImmutableStew immutableStew = new ImmutableStew(2, 4, 3, 6);
+    immutableStew.mix();
+    immutableStew.taste();
     immutableStew.mix();
   }
 }
