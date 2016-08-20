@@ -4,7 +4,7 @@ title: Observer
 folder: observer
 permalink: /patterns/observer/
 categories: Behavioral
-tags: 
+tags:
  - Java
  - Difficulty-Beginner
  - Gang Of Four
@@ -35,6 +35,8 @@ Use the Observer pattern in any of the following situations
 ## Real world examples
 
 * [java.util.Observer](http://docs.oracle.com/javase/8/docs/api/java/util/Observer.html)
+* [java.util.EventListener](http://docs.oracle.com/javase/8/docs/api/java/util/EventListener.html)
+* [javax.servlet.http.HttpSessionBindingListener](http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionBindingListener.html)
 
 ## Credits
 
