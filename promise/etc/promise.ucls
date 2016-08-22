@@ -25,7 +25,7 @@
     <position height="-1" width="-1" x="524" y="313"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="false" protected="true" private="false" static="true"/>      
       <operations public="true" package="false" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -67,42 +67,38 @@
   </interface>  
   <class id="8" language="java" name="com.iluwatar.promise.App" project="promise" 
     file="/promise/src/main/java/com/iluwatar/promise/App.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="992" y="206"/>    
+    <position height="-1" width="-1" x="822" y="251"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="false" static="true"/>    
     </display>  
   </class>  
-  <generalization id="9">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <realization id="10">    
+  <realization id="9">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <dependency id="11">    
+  <dependency id="10">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="12">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
   <dependency id="13">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <dependency id="14">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
-  <dependency id="15">    
+  <generalization id="14">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="16">    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <dependency id="15">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  

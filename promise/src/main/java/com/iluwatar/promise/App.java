@@ -21,19 +21,10 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.promise;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -59,7 +50,12 @@ import java.util.concurrent.Executors;
  */
 public class App {
 
+  private static final String URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/Promise/promise/README.md";
+  private ExecutorService executor;
+  private CountDownLatch canStop = new CountDownLatch(2);
+  
   private App() {
+    executor = Executors.newFixedThreadPool(2);
   }
   
   /**
@@ -69,67 +65,80 @@ public class App {
    * @throws ExecutionException if an execution error occurs.
    */
   public static void main(String[] args) throws InterruptedException, ExecutionException {
-    ExecutorService executor = Executors.newSingleThreadExecutor();
+    App app = new App();
     try {
-      promiseUsage(executor);
+      app.run();
     } finally {
-      executor.shutdownNow();
+      app.stop();
     }
   }
 
-  private static void promiseUsage(Executor executor)
-      throws InterruptedException, ExecutionException {
-    String urlString = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/Promise/promise/README.md";
-    Promise<Integer> lineCountPromise = new Promise<String>().fulfillInAsync(() -> {
-      return downloadFile(urlString);
-    }, executor).then(fileLocation -> {
-      return countLines(fileLocation);
-    });
+  private void run() throws InterruptedException, ExecutionException {
+    promiseUsage();
+  }
+
+  private void promiseUsage() {
     
-    Promise<Map<Character, Integer>> charFrequencyPromise = new Promise<String>().fulfillInAsync(() -> {
-      return String.valueOf(downloadFile(urlString));
-    }, executor).then(fileLocation -> {
-      return characterFrequency(fileLocation);
-    });
+    countLines()
+      .then(
+          count -> {
+            System.out.println("Line count is: " + count);
+            taskCompleted();
+          }
+      );
     
-    lineCountPromise.get();
-    System.out.println("Line count is: " + lineCountPromise.get());
-    charFrequencyPromise.get();
-    System.out.println("Char frequency is: " + charFrequencyPromise.get());
+    lowestCharFrequency()
+      .then(
+          charFrequency -> {
+            System.out.println("Char with lowest frequency is: " + charFrequency);
+            taskCompleted();
+          }
+      );
   }
 
-  private static Map<Character, Integer> characterFrequency(String fileLocation) {
-    // TODO Auto-generated method stub
-    return null;
+  private Promise<Character> lowestCharFrequency() {
+    return characterFrequency()
+        .then(
+            charFrequency -> { 
+              return Utility.lowestFrequencyChar(charFrequency).orElse(null); 
+            }
+        );
   }
 
-  private static Integer countLines(String fileLocation) {
-    int lineCount = 0;
-    try (Reader reader = new FileReader(fileLocation); 
-        BufferedReader bufferedReader = new BufferedReader(reader);) {
-      for (String line; (line = bufferedReader.readLine()) != null; ) {
-        lineCount++;
-      }
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-    return lineCount;
+  private Promise<Map<Character, Integer>> characterFrequency() {
+    return download(URL)
+      .then(
+          fileLocation -> {
+            return Utility.characterFrequency(fileLocation);
+          }
+      );
   }
 
-  private static String downloadFile(String urlString) throws InterruptedException, IOException {
-    URL url = new URL(urlString);
-    File file = File.createTempFile("promise_pattern", null);
-    try (Reader reader = new InputStreamReader(url.openStream()); 
-        BufferedReader bufferedReader = new BufferedReader(reader);
-        FileWriter writer = new FileWriter(file)) {
-      for (String line; (line = bufferedReader.readLine()) != null; ) {
-        writer.write(line);
-        writer.write("\n");
-      }
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-    System.out.println("File downloaded at: " + file.getAbsolutePath());
-    return file.getAbsolutePath();
+  private Promise<Integer> countLines() {
+    return download(URL)
+        .then(
+            fileLocation -> {
+              return Utility.countLines(fileLocation);
+            }
+        );
+  }
+
+  private Promise<String> download(String urlString) {
+    Promise<String> downloadPromise = new Promise<String>()
+        .fulfillInAsync(
+            () -> {
+              return Utility.downloadFile(urlString);
+            }, executor);
+    
+    return downloadPromise;
+  }
+
+  private void stop() throws InterruptedException {
+    canStop.await();
+    executor.shutdownNow();
+  }
+  
+  private void taskCompleted() {
+    canStop.countDown();
   }
 }
