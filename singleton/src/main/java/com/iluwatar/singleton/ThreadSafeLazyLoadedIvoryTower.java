@@ -38,7 +38,7 @@ public final class ThreadSafeLazyLoadedIvoryTower {
   /**
    * The instance gets created only when it is called for first time. Lazy-loading
    */
-  public  static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
+  public static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
 
     if (instance == null) {
       instance = new ThreadSafeLazyLoadedIvoryTower();
