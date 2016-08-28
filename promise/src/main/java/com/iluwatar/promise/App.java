@@ -29,35 +29,45 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 
- * <p>The Promise object is used for asynchronous computations. A Promise represents an operation that
- * hasn't completed yet, but is expected in the future.
- * 
- * <p>A Promise represents a proxy for a value not necessarily known when the promise is created. It 
- * allows you to associate dependent promises to an asynchronous action's eventual success value or 
- * failure reason. This lets asynchronous methods return values like synchronous methods: instead of the final
- * value, the asynchronous method returns a promise of having a value at some point in the future.
- * 
+ *
+ *  The Promise object is used for asynchronous computations. A Promise represents an operation
+ *  that hasn't completed yet, but is expected in the future.
+ *
+ * <p>A Promise represents a proxy for a value not necessarily known when the promise is created. It
+ * allows you to associate dependent promises to an asynchronous action's eventual success value or
+ * failure reason. This lets asynchronous methods return values like synchronous methods: instead 
+ * of the final value, the asynchronous method returns a promise of having a value at some point 
+ * in the future.
+ *
  * <p>Promises provide a few advantages over callback objects:
  * <ul>
  * <li> Functional composition and error handling
  * <li> Prevents callback hell and provides callback aggregation
  * </ul>
- * 
+ *
  * <p>
+ * In this application the usage of promise is demonstrated with two examples:
+ * <ul>
+ * <li>Count Lines: In this example a file is downloaded and its line count is calculated.
+ * The calculated line count is then consumed and printed on console.
+ * <li>Lowest Character Frequency: In this example a file is downloaded and its lowest frequency
+ * character is found and printed on console. This happens via a chain of promises, we start with
+ * a file download promise, then a promise of character frequency, then a promise of lowest frequency
+ * character which is finally consumed and result is printed on console.
+ * </ul>
  * 
  * @see CompletableFuture
  */
 public class App {
 
-  private static final String URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/Promise/promise/README.md";
+  private static final String DEFAULT_URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/Promise/promise/README.md";
   private ExecutorService executor;
-  private CountDownLatch canStop = new CountDownLatch(2);
-  
+  private CountDownLatch stopLatch = new CountDownLatch(2);
+
   private App() {
     executor = Executors.newFixedThreadPool(2);
   }
-  
+
   /**
    * Program entry point
    * @param args arguments
@@ -67,28 +77,25 @@ public class App {
   public static void main(String[] args) throws InterruptedException, ExecutionException {
     App app = new App();
     try {
-      app.run();
+      app.promiseUsage();
     } finally {
       app.stop();
     }
   }
 
-  private void run() throws InterruptedException, ExecutionException {
-    promiseUsage();
+  private void promiseUsage() {
+    calculateLineCount();
+
+    calculateLowestFrequencyChar();
   }
 
-  private void promiseUsage() {
-    
-    countLines()
-      .then(
-          count -> {
-            System.out.println("Line count is: " + count);
-            taskCompleted();
-          }
-      );
-    
-    lowestCharFrequency()
-      .then(
+  /*
+   * Calculate the lowest frequency character and when that promise is fulfilled,
+   * consume the result in a Consumer<Character>
+   */
+  private void calculateLowestFrequencyChar() {
+    lowestFrequencyChar()
+        .thenAccept(
           charFrequency -> {
             System.out.println("Char with lowest frequency is: " + charFrequency);
             taskCompleted();
@@ -96,49 +103,73 @@ public class App {
       );
   }
 
-  private Promise<Character> lowestCharFrequency() {
-    return characterFrequency()
-        .then(
-            charFrequency -> { 
-              return Utility.lowestFrequencyChar(charFrequency).orElse(null); 
-            }
-        );
-  }
-
-  private Promise<Map<Character, Integer>> characterFrequency() {
-    return download(URL)
-      .then(
-          fileLocation -> {
-            return Utility.characterFrequency(fileLocation);
+  /*
+   * Calculate the line count and when that promise is fulfilled, consume the result
+   * in a Consumer<Integer>
+   */
+  private void calculateLineCount() {
+    countLines()
+        .thenAccept(
+          count -> {
+            System.out.println("Line count is: " + count);
+            taskCompleted();
           }
       );
   }
 
-  private Promise<Integer> countLines() {
-    return download(URL)
-        .then(
-            fileLocation -> {
-              return Utility.countLines(fileLocation);
-            }
-        );
+  /*
+   * Calculate the character frequency of a file and when that promise is fulfilled,
+   * then promise to apply function to calculate lowest character frequency.
+   */
+  private Promise<Character> lowestFrequencyChar() {
+    return characterFrequency()
+        .thenApply(Utility::lowestFrequencyChar);
   }
 
+  /*
+   * Download the file at DEFAULT_URL and when that promise is fulfilled,
+   * then promise to apply function to calculate character frequency.
+   */
+  private Promise<Map<Character, Integer>> characterFrequency() {
+    return download(DEFAULT_URL)
+        .thenApply(Utility::characterFrequency);
+  }
+
+  /*
+   * Download the file at DEFAULT_URL and when that promise is fulfilled,
+   * then promise to apply function to count lines in that file.
+   */
+  private Promise<Integer> countLines() {
+    return download(DEFAULT_URL)
+        .thenApply(Utility::countLines);
+  }
+
+  /*
+   * Return a promise to provide the local absolute path of the file downloaded in background.
+   * This is an async method and does not wait until the file is downloaded.
+   */
   private Promise<String> download(String urlString) {
     Promise<String> downloadPromise = new Promise<String>()
         .fulfillInAsync(
             () -> {
               return Utility.downloadFile(urlString);
-            }, executor);
-    
+            }, executor)
+        .onError(
+            throwable -> {
+              throwable.printStackTrace();
+              taskCompleted();
+            }
+        );
+
     return downloadPromise;
   }
 
   private void stop() throws InterruptedException {
-    canStop.await();
+    stopLatch.await();
     executor.shutdownNow();
   }
-  
+
   private void taskCompleted() {
-    canStop.countDown();
+    stopLatch.countDown();
   }
 }

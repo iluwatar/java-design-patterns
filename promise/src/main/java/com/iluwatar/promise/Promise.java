@@ -36,6 +36,7 @@ import java.util.function.Function;
 public class Promise<T> extends PromiseSupport<T> {
 
   private Runnable fulfillmentAction;
+  private Consumer<? super Throwable> exceptionHandler;
 
   /**
    * Creates a promise that will be fulfilled in future.
@@ -61,7 +62,15 @@ public class Promise<T> extends PromiseSupport<T> {
   @Override
   public void fulfillExceptionally(Exception exception) {
     super.fulfillExceptionally(exception);
+    handleException(exception);
     postFulfillment();
+  }
+
+  private void handleException(Exception exception) {
+    if (exceptionHandler == null) {
+      return;
+    }
+    exceptionHandler.accept(exception);
   }
 
   private void postFulfillment() {
@@ -83,8 +92,8 @@ public class Promise<T> extends PromiseSupport<T> {
     executor.execute(() -> {
       try {
         fulfill(task.call());
-      } catch (Exception e) {
-        fulfillExceptionally(e);
+      } catch (Exception ex) {
+        fulfillExceptionally(ex);
       }
     });
     return this;
@@ -96,10 +105,21 @@ public class Promise<T> extends PromiseSupport<T> {
    * @param action action to be executed.
    * @return a new promise.
    */
-  public Promise<Void> then(Consumer<? super T> action) {
+  public Promise<Void> thenAccept(Consumer<? super T> action) {
     Promise<Void> dest = new Promise<>();
     fulfillmentAction = new ConsumeAction(this, dest, action);
     return dest;
+  }
+  
+  /**
+   * Set the exception handler on this promise.
+   * @param exceptionHandler a consumer that will handle the exception occurred while fulfilling
+   *            the promise.
+   * @return this
+   */
+  public Promise<T> onError(Consumer<? super Throwable> exceptionHandler) {
+    this.exceptionHandler = exceptionHandler;
+    return this;
   }
 
   /**
@@ -108,7 +128,7 @@ public class Promise<T> extends PromiseSupport<T> {
    * @param func function to be executed.
    * @return a new promise.
    */
-  public <V> Promise<V> then(Function<? super T, V> func) {
+  public <V> Promise<V> thenApply(Function<? super T, V> func) {
     Promise<V> dest = new Promise<>();
     fulfillmentAction = new TransformAction<V>(this, dest, func);
     return dest;
@@ -135,8 +155,8 @@ public class Promise<T> extends PromiseSupport<T> {
       try {
         action.accept(src.get());
         dest.fulfill(null);
-      } catch (Throwable e) {
-        dest.fulfillExceptionally((Exception) e.getCause());
+      } catch (Throwable throwable) {
+        dest.fulfillExceptionally((Exception) throwable.getCause());
       }
     }
   }
@@ -162,8 +182,8 @@ public class Promise<T> extends PromiseSupport<T> {
       try {
         V result = func.apply(src.get());
         dest.fulfill(result);
-      } catch (Throwable e) {
-        dest.fulfillExceptionally((Exception) e.getCause());
+      } catch (Throwable throwable) {
+        dest.fulfillExceptionally((Exception) throwable.getCause());
       }
     }
   }
