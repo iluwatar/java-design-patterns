@@ -31,7 +31,7 @@
   </class>  
   <interface id="4" language="java" name="java.util.concurrent.Executor" project="async-method-invocation" 
     file="/usr/lib/java/jdk1.8.0_45/jre/lib/rt.jar" binary="true" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="834" y="573"/>    
+    <position height="-1" width="-1" x="798" y="541"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -40,7 +40,7 @@
   </interface>  
   <interface id="5" language="java" name="java.util.concurrent.Callable" project="async-method-invocation" 
     file="/usr/lib/java/jdk1.8.0_45/jre/lib/rt.jar" binary="true" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="825" y="433"/>    
+    <position height="-1" width="-1" x="847" y="345"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -49,7 +49,7 @@
   </interface>  
   <interface id="6" language="java" name="java.util.function.Consumer" project="async-method-invocation" 
     file="/usr/lib/java/jdk1.8.0_45/jre/lib/rt.jar" binary="true" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="162" y="437"/>    
+    <position height="-1" width="-1" x="158" y="336"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
   </interface>  
   <interface id="7" language="java" name="java.util.function.Function" project="async-method-invocation" 
     file="/usr/lib/java/jdk1.8.0_45/jre/lib/rt.jar" binary="true" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="168" y="591"/>    
+    <position height="-1" width="-1" x="166" y="546"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -67,41 +67,41 @@
   </interface>  
   <class id="8" language="java" name="com.iluwatar.promise.App" project="promise" 
     file="/promise/src/main/java/com/iluwatar/promise/App.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="822" y="251"/>    
+    <position height="-1" width="-1" x="801" y="189"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="false" static="true"/>    
     </display>  
   </class>  
-  <realization id="9">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <dependency id="10">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="11">    
+  <dependency id="9">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="12">    
+  <dependency id="10">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="13">    
+  <dependency id="11">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
+    <end type="TARGET" refId="6"/>  
   </dependency>  
-  <generalization id="14">    
+  <generalization id="12">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <dependency id="15">    
+  <dependency id="13">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <realization id="15">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

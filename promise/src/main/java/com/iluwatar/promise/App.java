@@ -61,11 +61,12 @@ import java.util.concurrent.Executors;
 public class App {
 
   private static final String DEFAULT_URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/Promise/promise/README.md";
-  private ExecutorService executor;
-  private CountDownLatch stopLatch = new CountDownLatch(2);
+  private final ExecutorService executor;
+  private final CountDownLatch stopLatch;
 
   private App() {
     executor = Executors.newFixedThreadPool(2);
+    stopLatch = new CountDownLatch(2);
   }
 
   /**
