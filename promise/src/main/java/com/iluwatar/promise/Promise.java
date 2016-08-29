@@ -139,7 +139,7 @@ public class Promise<T> extends PromiseSupport<T> {
   }
 
   /**
-   * A consume action provides the action, the value from source promise and fulfills the
+   * Accesses the value from source promise and calls the consumer, then fulfills the
    * destination promise.
    */
   private class ConsumeAction implements Runnable {
@@ -166,8 +166,8 @@ public class Promise<T> extends PromiseSupport<T> {
   }
 
   /**
-   * A function action provides transformation function, value from source promise and fulfills the
-   * destination promise with the transformed value.
+   * Accesses the value from source promise, then fulfills the destination promise using the
+   * transformed value. The source value is transformed using the transformation function.
    */
   private class TransformAction<V> implements Runnable {
 
@@ -184,8 +184,7 @@ public class Promise<T> extends PromiseSupport<T> {
     @Override
     public void run() {
       try {
-        V result = func.apply(src.get());
-        dest.fulfill(result);
+        dest.fulfill(func.apply(src.get()));
       } catch (Throwable throwable) {
         dest.fulfillExceptionally((Exception) throwable.getCause());
       }
