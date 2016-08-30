@@ -15,3 +15,6 @@ wouldn't automatically update with the changes in the master branch.
 To enable the automatic update of the submodule reference we use
 the [update-ghpages.sh](https://github.com/iluwatar/java-design-patterns/blob/master/update-ghpages.sh)
 script in the master branch together with Travis-CI.
+
+## Credits
+Thanks to [Gaohaoyang](https://github.com/Gaohaoyang) for providing the previous design and thus also the base layer of the new design
