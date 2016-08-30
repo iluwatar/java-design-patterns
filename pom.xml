@@ -45,8 +45,9 @@
 		<systemrules.version>1.15.1</systemrules.version>
 		<mockito.version>1.10.19</mockito.version>
 		<hierarchical-junit-runner-version>4.12.1</hierarchical-junit-runner-version>
-    <apache-httpcomponents.version>4.5.2</apache-httpcomponents.version>
+        <apache-httpcomponents.version>4.5.2</apache-httpcomponents.version>
         <htmlunit.version>2.22</htmlunit.version>
+        <urm.version>1.4.0</urm.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
@@ -422,6 +423,30 @@
 					</execution>
 				</executions>
 			</plugin>
+
+            <plugin>
+                <groupId>com.github.markusmo3.urm</groupId>
+                <artifactId>urm-maven-plugin</artifactId>
+                <version>${urm.version}</version>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>map</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputDirectory>${project.basedir}/etc</outputDirectory>
+                    <packages>
+                        <param>com.iluwatar</param>
+                    </packages>
+                    <skipForProjects>
+                        <!-- skip for parent project -->
+                        <param>java-design-patterns</param>
+                    </skipForProjects>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
