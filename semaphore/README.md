@@ -3,6 +3,7 @@ layout: pattern
 title: Semaphore
 folder: semaphore
 permalink: /patterns/semaphore/
+pumlid: HSV14SCm20J0Lk82BFxf1ikCfOn06ZZizfDVVhjRjphobFJnQi2ADv7pKwwEbaU6U9q6CPGwbVh8Xy5E7xvvFoNwPVjYGDo2bEC72b5URRgGeFvNqhMirF45
 categories: Concurrency
 tags: 
  - Java

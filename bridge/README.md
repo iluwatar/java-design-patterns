@@ -3,6 +3,7 @@ layout: pattern
 title: Bridge
 folder: bridge
 permalink: /patterns/bridge/
+pumlid: BSR14SCm20J0Lf82BFxf1akCJ4R26ZZYzkE7zxLljJgoIVfu7S2A3v7pLRhYo3r3l9u6CPHwJjAH5uETllpZhKbejsqn86v1a-CExQwj2mdgqv8-oyev_W00
 categories: Structural
 tags:
  - Java

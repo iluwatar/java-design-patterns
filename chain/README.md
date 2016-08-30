@@ -3,6 +3,7 @@ layout: pattern
 title: Chain of responsibility
 folder: chain
 permalink: /patterns/chain/
+pumlid: 9SR13SCm20NGLTe1OkxTXX0KKzd4Wa-pVYlrdTxJN4OTMZ4U7LZv8Wg-ssdejLTgoELGHvDhaesw6HpqvWzlXwQTlYq6D3nfSlv2qjcS5F9VgvXjrHnV
 categories: Behavioral
 tags:
  - Java
