@@ -1,0 +1,11 @@
+<!-- Parameters:
+    - include.id: the PlantUML id, e.g. "SyfFKj2rKt3CoKnELR1Io4ZDoSa70000" for "http://plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000"
+    - include.format [OPTIONAL]: the format to be used (enum: png, svg, txt), default "png"
+-->
+{% assign format = "png" %}
+{% if include.format %}
+    {% assign format = include.format %}
+{% endif %}
+<div class="pumlImg">
+    <img src="http://plantuml.com/plantuml/{{ format }}/{{ include.id }}" alt="PlantUML Diagram">
+</div>
