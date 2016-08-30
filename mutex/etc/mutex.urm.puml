@@ -1,0 +1,27 @@
+@startuml
+package com.iluwatar.mutex {
+  interface Lock {
+    + acquire() {abstract}
+    + release() {abstract}
+  }
+  class Mutex {
+    - owner : Object
+    + Mutex()
+    + acquire()
+    + getOwner() : Object
+    + release()
+  }
+  class Jar {
+    - beans : int
+    - lock : Lock
+    + Jar(beans : int, lock : Lock)
+    + takeBean() : boolean
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+Jar -->  "-lock" Lock
+Mutex ..|> Lock 
+@enduml

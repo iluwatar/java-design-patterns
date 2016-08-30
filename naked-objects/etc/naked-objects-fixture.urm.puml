@@ -1,0 +1,92 @@
+@startuml
+package domainapp.dom.app.homepage {
+  class HomePageViewModel {
+    ~ simpleObjects : SimpleObjects
+    + HomePageViewModel()
+    + getObjects() : List<SimpleObject>
+    + title() : String
+  }
+  class HomePageService {
+    ~ container : DomainObjectContainer
+    + HomePageService()
+    + homePage() : HomePageViewModel
+  }
+}
+package domainapp.dom.modules.simple {
+  class SimpleObject {
+    - container : DomainObjectContainer
+    - dnFieldFlags : byte[] {static}
+    - dnFieldNames : String[] {static}
+    - dnFieldTypes : Class[] {static}
+    # dnFlags : byte
+    - dnInheritedFieldCount : int {static}
+    - dnPersistableSuperclass : Class<T> {static}
+    # dnStateManager : StateManager
+    - name : String
+    + SimpleObject()
+    + ___dn$loadClass(className : String) : Class<T> {static}
+    - __dnFieldFlagsInit() : byte[] {static}
+    - __dnFieldNamesInit() : String[] {static}
+    - __dnFieldTypesInit() : Class[] {static}
+    # __dnGetInheritedFieldCount() : int {static}
+    - __dnPersistableSuperclassInit() : Class<T> {static}
+    + compareTo(other : SimpleObject) : int
+    + default0UpdateName() : String
+    # dnCopyField(obj : SimpleObject, index : int)
+    + dnCopyFields(obj : Object, indices : int[])
+    + dnCopyKeyFieldsFromObjectId(fc : ObjectIdFieldConsumer, oid : Object)
+    # dnCopyKeyFieldsFromObjectId(oid : Object)
+    + dnCopyKeyFieldsToObjectId(fs : ObjectIdFieldSupplier, oid : Object)
+    + dnCopyKeyFieldsToObjectId(oid : Object)
+    + dnGetExecutionContext() : ExecutionContextReference
+    # dnGetManagedFieldCount() : int {static}
+    + dnGetObjectId() : Object
+    + dnGetTransactionalObjectId() : Object
+    + dnGetVersion() : Object
+    + dnGetname() : String
+    + dnIsDeleted() : boolean
+    + dnIsDetached() : boolean
+    + dnIsDirty() : boolean
+    + dnIsNew() : boolean
+    + dnIsPersistent() : boolean
+    + dnIsTransactional() : boolean
+    + dnMakeDirty(fieldName : String)
+    + dnNewInstance(sm : StateManager) : Persistable
+    + dnNewInstance(sm : StateManager, obj : Object) : Persistable
+    + dnNewObjectIdInstance() : Object
+    + dnNewObjectIdInstance(key : Object) : Object
+    # dnPreSerialize()
+    + dnProvideField(index : int)
+    + dnProvideFields(indices : int[])
+    + dnReplaceField(index : int)
+    + dnReplaceFields(indices : int[])
+    + dnReplaceFlags()
+    + dnReplaceStateManager(sm : StateManager)
+    + dnSetname(name : String)
+    - dnSuperClone() : Object
+    + getName() : String
+    + getVersionSequence() : Long
+    + setName(val : String)
+    + title() : TranslatableString
+    + updateName(name : String) : SimpleObject
+    + validateUpdateName(name : String) : TranslatableString
+  }
+  class SimpleObjects {
+    ~ container : DomainObjectContainer
+    + SimpleObjects()
+    + create(name : String) : SimpleObject
+    + findByName(name : String) : List<SimpleObject>
+    + listAll() : List<SimpleObject>
+    + title() : TranslatableString
+  }
+}
+package domainapp.fixture {
+  class DomainAppFixturesProvider {
+    + DomainAppFixturesProvider()
+    + getSpecification() : FixtureScriptsSpecification
+  }
+}
+DomainAppFixturesProvider --+ FixtureScripts
+DomainAppFixturesProvider --+ FixtureScriptsSpecification
+HomePageViewModel -->  "-simpleObjects" SimpleObjects
+@enduml

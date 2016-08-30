@@ -1,0 +1,88 @@
+@startuml
+package com.iluwatar.abstractfactory {
+  interface Castle {
+    + getDescription() : String {abstract}
+  }
+  class OrcKingdomFactory {
+    + OrcKingdomFactory()
+    + createArmy() : Army
+    + createCastle() : Castle
+    + createKing() : King
+  }
+  class ElfKing {
+    ~ DESCRIPTION : String {static}
+    + ElfKing()
+    + getDescription() : String
+  }
+  interface King {
+    + getDescription() : String {abstract}
+  }
+  class App {
+    - army : Army
+    - castle : Castle
+    - king : King
+    + App()
+    + createKingdom(factory : KingdomFactory)
+    + getArmy() : Army
+    ~ getArmy(factory : KingdomFactory) : Army
+    + getCastle() : Castle
+    ~ getCastle(factory : KingdomFactory) : Castle
+    + getKing() : King
+    ~ getKing(factory : KingdomFactory) : King
+    + main(args : String[]) {static}
+    - setArmy(army : Army)
+    - setCastle(castle : Castle)
+    - setKing(king : King)
+  }
+  class OrcKing {
+    ~ DESCRIPTION : String {static}
+    + OrcKing()
+    + getDescription() : String
+  }
+  class ElfKingdomFactory {
+    + ElfKingdomFactory()
+    + createArmy() : Army
+    + createCastle() : Castle
+    + createKing() : King
+  }
+  interface Army {
+    + getDescription() : String {abstract}
+  }
+  class OrcArmy {
+    ~ DESCRIPTION : String {static}
+    + OrcArmy()
+    + getDescription() : String
+  }
+  interface KingdomFactory {
+    + createArmy() : Army {abstract}
+    + createCastle() : Castle {abstract}
+    + createKing() : King {abstract}
+  }
+  class ElfArmy {
+    ~ DESCRIPTION : String {static}
+    + ElfArmy()
+    + getDescription() : String
+  }
+  class ElfCastle {
+    ~ DESCRIPTION : String {static}
+    + ElfCastle()
+    + getDescription() : String
+  }
+  class OrcCastle {
+    ~ DESCRIPTION : String {static}
+    + OrcCastle()
+    + getDescription() : String
+  }
+}
+App -->  "-castle" Castle
+App -->  "-king" King
+App -->  "-army" Army
+OrcKingdomFactory ..|> KingdomFactory 
+ElfKing ..|> King 
+OrcKing ..|> King 
+ElfKingdomFactory ..|> KingdomFactory 
+OrcArmy ..|> Army 
+ElfArmy ..|> Army 
+ElfCastle ..|> Castle 
+OrcCastle ..|> Castle 
+@enduml

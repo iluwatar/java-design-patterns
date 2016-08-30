@@ -1,0 +1,16 @@
+@startuml
+package com.iluwatar.resource.acquisition.is.initialization {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class TreasureChest {
+    + TreasureChest()
+    + close()
+  }
+  class SlidingDoor {
+    + SlidingDoor()
+    + close()
+  }
+}
+@enduml

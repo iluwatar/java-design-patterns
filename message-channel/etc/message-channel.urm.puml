@@ -1,0 +1,8 @@
+@startuml
+package com.iluwatar.message.channel {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+@enduml

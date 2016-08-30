@@ -1,0 +1,73 @@
+@startuml
+package com.iluwatar.observer {
+  class Orcs {
+    + Orcs()
+    + update(currentWeather : WeatherType)
+  }
+  class Hobbits {
+    + Hobbits()
+    + update(currentWeather : WeatherType)
+  }
+  class Weather {
+    - currentWeather : WeatherType
+    - observers : List<WeatherObserver>
+    + Weather()
+    + addObserver(obs : WeatherObserver)
+    - notifyObservers()
+    + removeObserver(obs : WeatherObserver)
+    + timePasses()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface WeatherObserver {
+    + update(WeatherType) {abstract}
+  }
+  enum WeatherType {
+    + COLD {static}
+    + RAINY {static}
+    + SUNNY {static}
+    + WINDY {static}
+    + toString() : String
+    + valueOf(name : String) : WeatherType {static}
+    + values() : WeatherType[] {static}
+  }
+}
+package com.iluwatar.observer.generic {
+  class GOrcs {
+    + GOrcs()
+    + update(weather : GWeather, weatherType : WeatherType)
+  }
+  interface Race {
+  }
+  abstract class Observable<S extends Observable, O extends Observer<S, O, A>, A> {
+    # observers : List<O extends Observer<S, O, A>>
+    + Observable<S extends Observable, O extends Observer<S, O, A>, A>()
+    + addObserver(observer : O extends Observer<S, O, A>)
+    + notifyObservers(argument : A)
+    + removeObserver(observer : O extends Observer<S, O, A>)
+  }
+  class GWeather {
+    - currentWeather : WeatherType
+    + GWeather()
+    + timePasses()
+  }
+  interface Observer<S extends Observable<S, O, A>, O extends Observer, A> {
+    + update(S extends Observable<S, O, A>, A) {abstract}
+  }
+  class GHobbits {
+    + GHobbits()
+    + update(weather : GWeather, weatherType : WeatherType)
+  }
+}
+Weather -->  "-currentWeather" WeatherType
+GWeather -->  "-currentWeather" WeatherType
+Weather -->  "-observers" WeatherObserver
+GOrcs ..|> Race 
+Orcs ..|> WeatherObserver 
+Hobbits ..|> WeatherObserver 
+Race --|> Observer 
+GWeather --|> Observable 
+GHobbits ..|> Race 
+@enduml

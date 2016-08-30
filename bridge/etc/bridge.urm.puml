@@ -1,0 +1,89 @@
+@startuml
+package com.iluwatar.bridge {
+  class FlyingMagicWeapon {
+    + FlyingMagicWeapon(imp : FlyingMagicWeaponImpl)
+    + fly()
+    + getImp() : FlyingMagicWeaponImpl
+    + swing()
+    + unwield()
+    + wield()
+  }
+  abstract class MagicWeapon {
+    # imp : MagicWeaponImpl
+    + MagicWeapon(imp : MagicWeaponImpl)
+    + getImp() : MagicWeaponImpl
+    + swing() {abstract}
+    + unwield() {abstract}
+    + wield() {abstract}
+  }
+  abstract class SoulEatingMagicWeaponImpl {
+    + SoulEatingMagicWeaponImpl()
+    + eatSoulImp() {abstract}
+  }
+  class BlindingMagicWeapon {
+    + BlindingMagicWeapon(imp : BlindingMagicWeaponImpl)
+    + blind()
+    + getImp() : BlindingMagicWeaponImpl
+    + swing()
+    + unwield()
+    + wield()
+  }
+  class Stormbringer {
+    + Stormbringer()
+    + eatSoulImp()
+    + swingImp()
+    + unwieldImp()
+    + wieldImp()
+  }
+  abstract class BlindingMagicWeaponImpl {
+    + BlindingMagicWeaponImpl()
+    + blindImp() {abstract}
+  }
+  class SoulEatingMagicWeapon {
+    + SoulEatingMagicWeapon(imp : SoulEatingMagicWeaponImpl)
+    + eatSoul()
+    + getImp() : SoulEatingMagicWeaponImpl
+    + swing()
+    + unwield()
+    + wield()
+  }
+  abstract class MagicWeaponImpl {
+    + MagicWeaponImpl()
+    + swingImp() {abstract}
+    + unwieldImp() {abstract}
+    + wieldImp() {abstract}
+  }
+  class Excalibur {
+    + Excalibur()
+    + blindImp()
+    + swingImp()
+    + unwieldImp()
+    + wieldImp()
+  }
+  abstract class FlyingMagicWeaponImpl {
+    + FlyingMagicWeaponImpl()
+    + flyImp() {abstract}
+  }
+  class Mjollnir {
+    + Mjollnir()
+    + flyImp()
+    + swingImp()
+    + unwieldImp()
+    + wieldImp()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+MagicWeapon -->  "-imp" MagicWeaponImpl
+FlyingMagicWeapon --|> MagicWeapon 
+SoulEatingMagicWeaponImpl --|> MagicWeaponImpl 
+BlindingMagicWeapon --|> MagicWeapon 
+Stormbringer --|> SoulEatingMagicWeaponImpl 
+BlindingMagicWeaponImpl --|> MagicWeaponImpl 
+SoulEatingMagicWeapon --|> MagicWeapon 
+Excalibur --|> BlindingMagicWeaponImpl 
+FlyingMagicWeaponImpl --|> MagicWeaponImpl 
+Mjollnir --|> FlyingMagicWeaponImpl 
+@enduml

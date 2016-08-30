@@ -1,0 +1,35 @@
+@startuml
+package com.iluwatar.monad {
+  class Validator<T> {
+    - exceptions : List<Throwable>
+    - t : T
+    - Validator<T>(t : T)
+    + get() : T
+    + of(t : T) : Validator<T> {static}
+    + validate(projection : Function<T, U>, validation : Predicate<U>, message : String) : Validator<T>
+    + validate(validation : Predicate<T>, message : String) : Validator<T>
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class User {
+    - age : int
+    - email : String
+    - name : String
+    - sex : Sex
+    + User(name : String, age : int, sex : Sex, email : String)
+    + getAge() : int
+    + getEmail() : String
+    + getName() : String
+    + getSex() : Sex
+  }
+  enum Sex {
+    + FEMALE {static}
+    + MALE {static}
+    + valueOf(name : String) : Sex {static}
+    + values() : Sex[] {static}
+  }
+}
+User -->  "-sex" Sex
+@enduml

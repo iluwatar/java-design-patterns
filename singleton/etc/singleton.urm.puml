@@ -1,0 +1,42 @@
+@startuml
+package com.iluwatar.singleton {
+  class ThreadSafeLazyLoadedIvoryTower {
+    - instance : ThreadSafeLazyLoadedIvoryTower {static}
+    - ThreadSafeLazyLoadedIvoryTower()
+    + getInstance() : ThreadSafeLazyLoadedIvoryTower {static}
+  }
+  -class HelperHolder {
+    + INSTANCE : InitializingOnDemandHolderIdiom {static}
+    - HelperHolder()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class ThreadSafeDoubleCheckLocking {
+    - instance : ThreadSafeDoubleCheckLocking {static}
+    - ThreadSafeDoubleCheckLocking()
+    + getInstance() : ThreadSafeDoubleCheckLocking {static}
+  }
+  class InitializingOnDemandHolderIdiom {
+    - InitializingOnDemandHolderIdiom()
+    + getInstance() : InitializingOnDemandHolderIdiom {static}
+  }
+  class IvoryTower {
+    - INSTANCE : IvoryTower {static}
+    - IvoryTower()
+    + getInstance() : IvoryTower {static}
+  }
+  enum EnumIvoryTower {
+    + INSTANCE {static}
+    + toString() : String
+    + valueOf(name : String) : EnumIvoryTower {static}
+    + values() : EnumIvoryTower[] {static}
+  }
+}
+IvoryTower -->  "-INSTANCE" IvoryTower
+ThreadSafeDoubleCheckLocking -->  "-instance" ThreadSafeDoubleCheckLocking
+ThreadSafeLazyLoadedIvoryTower -->  "-instance" ThreadSafeLazyLoadedIvoryTower
+HelperHolder ..+ InitializingOnDemandHolderIdiom
+HelperHolder -->  "-INSTANCE" InitializingOnDemandHolderIdiom
+@enduml

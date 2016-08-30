@@ -1,0 +1,38 @@
+@startuml
+package com.iluwatar.servicelocator {
+  interface Service {
+    + execute() {abstract}
+    + getId() : int {abstract}
+    + getName() : String {abstract}
+  }
+  class InitContext {
+    + InitContext()
+    + lookup(serviceName : String) : Object
+  }
+  class ServiceLocator {
+    - serviceCache : ServiceCache {static}
+    - ServiceLocator()
+    + getService(serviceJndiName : String) : Service {static}
+  }
+  class ServiceCache {
+    - serviceCache : Map<String, Service>
+    + ServiceCache()
+    + addService(newService : Service)
+    + getService(serviceName : String) : Service
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class ServiceImpl {
+    - id : int
+    - serviceName : String
+    + ServiceImpl(serviceName : String)
+    + execute()
+    + getId() : int
+    + getName() : String
+  }
+}
+ServiceLocator -->  "-serviceCache" ServiceCache
+ServiceImpl ..|> Service 
+@enduml

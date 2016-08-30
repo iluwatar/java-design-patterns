@@ -1,0 +1,29 @@
+@startuml
+package com.iluwatar.decorator {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Troll {
+    + Troll()
+    + attack()
+    + fleeBattle()
+    + getAttackPower() : int
+  }
+  interface Hostile {
+    + attack() {abstract}
+    + fleeBattle() {abstract}
+    + getAttackPower() : int {abstract}
+  }
+  class SmartHostile {
+    - decorated : Hostile
+    + SmartHostile(decorated : Hostile)
+    + attack()
+    + fleeBattle()
+    + getAttackPower() : int
+  }
+}
+SmartHostile -->  "-decorated" Hostile
+Troll ..|> Hostile 
+SmartHostile ..|> Hostile 
+@enduml
