@@ -41,6 +41,7 @@ are several common situations in which the Proxy pattern is applicable
 
 * [java.lang.reflect.Proxy](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)
 * [Apache Commons Proxy](https://commons.apache.org/proper/commons-proxy/)
+* Mocking frameworks Mockito, Powermock, EasyMock
 
 ## Credits
 
