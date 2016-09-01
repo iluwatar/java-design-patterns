@@ -5,7 +5,7 @@ permalink: /blog/
 icon: fa-align-justify
 page-index: 3
 ---
-<div id="index" class="row">
+<div id="blog" class="row">
     <div class="col-md-12">
         <div class="content-area page">
             <h1>Blog Posts</h1>
@@ -13,7 +13,10 @@ page-index: 3
 
                 {% for post in site.posts %}
                 <a class="list-item" href="{{ post.url | prepend: site.baseurl }}">
-                    <h5 class="blog-index-date float-right">{{ post.date | date_to_string }}</h5>
+                    <div class="float-right">
+                        <h5 class="blog-index-author"><span class="fa fa-user"></span> {{ site.data.people[post.author].name }}</h5>
+                        <h5 class="blog-index-date"><span class="fa fa-clock-o"></span> {{ post.date | date_to_string }}</h5>
+                    </div>
                     <h2>{{ post.title }}</h2>
                     <div> {{ post.excerpt }}</div>
                 </a>

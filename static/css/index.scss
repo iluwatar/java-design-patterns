@@ -5,6 +5,7 @@
 /* the imported files can be found in /_sass/ */
 @import 'mixins';
 @import 'colors';
+@import 'socialIcons';
 //@import 'colorSwitcher';
 
 $handwriting: 'Indie Flower', cursive;
@@ -77,11 +78,16 @@ a {
 }
 
 /* BLOG */
-.blog-index-date {
-    color: $base04;
+.blog-index-date, .blog-index-author {
+    display: inline;
+    color: $base03;
+    padding: 2px 5px;
+    a {
+        color: $base03;
+    }
 }
 
-#index a {
+#blog a, #patterns a {
     &:link {
         color: $base01;
     }
@@ -89,12 +95,15 @@ a {
         color: $base01;
     }
     &:hover {
-        color: $base03;
+        color: $base02;
+        text-decoration: none;
     }
     &:active {
         color: $base01;
+        text-decoration: none;
     }
 }
+
 /* navbar */
 .navbar {
     background-color: $base06;
@@ -477,13 +486,21 @@ hr.dashed  {
 
 .author-info {
     > span {
-        font-style: italic;
+        font-weight: bold;
         font-size: 16px;
+    }
+    .author-avatar {
+        margin-bottom: 5px;
+        width: 42px;
+        border-radius: 5px;
     }
     p {
         font-style: italic;
         font-size: 14px;
-        color: $base04;
+        color: $base03;
+    }
+    .btn-social-icon > span {
+        font-size: 1.8em !important;
     }
 }
 

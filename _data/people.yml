@@ -3,7 +3,7 @@
 #            # to associate you as to a given article in the author tag
 #   name: Displayed Name
 #   description: Description for the person
-#   github: github-username
+#   github: github-username (required and used for avatar)
 #   facebook: facebook-username (optional)
 #   twitter: twitter-username (optional)
 #   linkedin: linkedin-username (optional)

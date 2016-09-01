@@ -7,7 +7,7 @@ page-index: 1
 ---
 
 {% assign allPatterns = site.pages | where:"layout","pattern" | sort: 'title' %}
-<div id="index" class="row">
+<div id="patterns" class="row">
 <!-- SIDEBAR -->
 <div class="col-md-3 col-md-push-9">
     {% include sidebar.html allItems=allPatterns %}
@@ -29,7 +29,7 @@ page-index: 1
                     <div class="list-item" href="{{ page.url | prepend: site.baseurl }}"
                             cats='All;{{ page.categories | join: ';' }}'
                             tags='All;{{ page.tags | join: ';' }}'>
-                        <a class="" href="{{ page.url | prepend: site.baseurl }}">
+                        <a class="list-item-url" href="{{ page.url | prepend: site.baseurl }}">
                             <span class="list-item-title">{{ page.title }}</span>
                         </a>
                         <div class="float-right">

@@ -2,30 +2,33 @@
     - include.author: short name of the author (mo3, ilu, npa, ...) as seen in the _data/people.yml file
                       used to get the informations from site.data.people[include.author]
 -->
-<div class="author-info">
+<div id="author-info" class="author-info">
     {% assign author = site.data.people[include.author] %}
-    <span>Written by {{ author.name }}</span>
+    {% if author.github %}
+        <img class="author-avatar" src="https://avatars.githubusercontent.com/{{ author.github }}" alt="Github User Avatar">
+    {% endif %}
+    <span>by {{ author.name }}</span>
     {% if author.description %}
         <p>{{ author.description }}</p>
     {% endif %}
     <div class="author-social-buttons">
         {% if author.github %}
-            <a class="btn btn-social-icon btn-github" href="https://github.com/{{ author.github }}">
+            <a class="icon-link round-corner github fill" href="https://github.com/{{ author.github }}">
                 <span class="fa fa-github"></span>
             </a>
         {% endif %}
         {% if author.facebook %}
-            <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/{{ author.facebook }}">
+            <a class="icon-link round-corner facebook fill" href="https://www.facebook.com/{{ author.facebook }}">
                 <span class="fa fa-facebook"></span>
             </a>
         {% endif %}
         {% if author.twitter %}
-            <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/{{ author.twitter }}">
+            <a class="icon-link round-corner twitter fill" href="https://twitter.com/{{ author.twitter }}">
                 <span class="fa fa-twitter"></span>
             </a>
         {% endif %}
         {% if author.linkedin %}
-            <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/{{ author.linkedin }}">
+            <a class="icon-link round-corner linkedin fill" href="https://www.linkedin.com/in/{{ author.linkedin }}">
                 <span class="fa fa-linkedin"></span>
             </a>
         {% endif %}

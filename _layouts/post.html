@@ -9,7 +9,12 @@ layout: default
                     {% include addToAny.html %}
                 </div>
                 <h1>{{ page.title }}</h1>
-                <h5 class="blog-index-date">{{ page.date | date_to_string }}</h5>
+                <div>
+                    <h5 class="blog-index-author">
+                        <a href="#author-info"><span class="fa fa-user"></span> {{ site.data.people[page.author].name }}</a>
+                    </h5>
+                    <h5 class="blog-index-date"><span class="fa fa-clock-o"></span> {{ page.date | date_to_string }}</h5>
+                </div>
             </header>
             <hr>
             <article>
