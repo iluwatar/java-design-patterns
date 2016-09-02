@@ -129,6 +129,7 @@
 		<module>hexagonal</module>
 		<module>abstract-document</module>
 		<module>aggregator-microservices</module>
+		<module>promise</module>
         <module>page-object</module>
 	</modules>
 
