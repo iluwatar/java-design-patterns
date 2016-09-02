@@ -1,0 +1,35 @@
+<!-- Parameters:
+    - include.file: path to the file that should be shown as seen from the root of the git repository
+    - include.repository [OPTIONAL]: github repository format: USERNAME/REPO
+        DEFAULT "iluwatar/java-design-patterns"
+    - include.tag [OPTIONAL]: the tag (branch, version or commit hash)
+        DEFAULT page variable "page.hash" or if that is not available "master"
+    - include.slice [OPTIONAL]: if used only the selected portion of the file will be shown
+        Description adapted from https://gist-it.appspot.com/:
+          "0:-2"      Show the first line up to and including the second to last line
+          "24:100"    Show lines 24 through 100
+          "0"         Show only the first line of the file
+        DEFAULT not used, whole file displayed
+
+    EXAMPLE USAGE: (have "hash: 1f27dbb" in the front matter)
+    {% include gistit.html file="visitor/pom.xml" %}
+-->
+{% if include.repository %}
+    {% assign repo = include.repository %}
+{% else %}
+    {% assign repo = "iluwatar/java-design-patterns" %}
+{% endif %}
+
+{% if include.tag %}
+    {% assign tag = include.tag %}
+{% elsif page.hash %}
+    {% assign tag = page.hash %}
+{% else %}
+    {% assign tag = "master" %}
+{% endif %}
+
+{% if include.slice %}
+    {% capture slice %}&slice={{ include.slice }}{% endcapture %}
+{% endif %}
+
+<script src="https://gist-it.appspot.com/github/{{ repo }}/blob/{{ tag }}/{{ include.file }}?footer=minimal{{ slice }}"></script>
