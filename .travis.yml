@@ -11,6 +11,10 @@ before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 
+# default install command is just "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
+install:
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -e
+
 after_success:
 - mvn clean test jacoco:report coveralls:report
 - bash update-ghpages.sh
