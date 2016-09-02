@@ -47,7 +47,7 @@
 		<hierarchical-junit-runner-version>4.12.1</hierarchical-junit-runner-version>
         <apache-httpcomponents.version>4.5.2</apache-httpcomponents.version>
         <htmlunit.version>2.22</htmlunit.version>
-        <urm.version>1.4.0</urm.version>
+        <urm.version>1.4.1</urm.version>
 	</properties>
 	<modules>
 		<module>abstract-factory</module>
