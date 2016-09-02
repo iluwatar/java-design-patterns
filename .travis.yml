@@ -19,6 +19,11 @@ after_success:
 - mvn clean test jacoco:report coveralls:report
 - bash update-ghpages.sh
 
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
 notifications:
   email:
     - iluwatar@gmail.com
