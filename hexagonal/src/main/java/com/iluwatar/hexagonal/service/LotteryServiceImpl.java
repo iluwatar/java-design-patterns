@@ -22,20 +22,14 @@
  */
 package com.iluwatar.hexagonal.service;
 
-import java.util.Optional;
-
-import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.banking.WireTransfersImpl;
-import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
-import com.iluwatar.hexagonal.domain.LotteryConstants;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
+import com.iluwatar.hexagonal.domain.LotterySystem;
+import com.iluwatar.hexagonal.domain.LotterySystemImpl;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
-import com.iluwatar.hexagonal.notifications.LotteryNotifications;
-import com.iluwatar.hexagonal.notifications.LotteryNotificationsImpl;
+
+import java.util.Optional;
 
 /**
  * 
@@ -44,45 +38,22 @@ import com.iluwatar.hexagonal.notifications.LotteryNotificationsImpl;
  */
 public class LotteryServiceImpl implements LotteryService {
 
-  private final LotteryTicketRepository repository;
-
-  private final WireTransfers bank = new WireTransfersImpl();
-
-  private final LotteryNotifications notifications = new LotteryNotificationsImpl();
+  private final LotterySystem lotterySystem;
 
   /**
    * Constructor
    */
   public LotteryServiceImpl() {
-    repository = new LotteryTicketInMemoryRepository();
+    lotterySystem = new LotterySystemImpl();
   }
   
   @Override
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
-    boolean result = bank.transferFunds(LotteryConstants.TICKET_PRIZE, ticket.getPlayerDetails().getBankAccount(),
-        LotteryConstants.SERVICE_BANK_ACCOUNT);
-    if (result == false) {
-      notifications.notifyTicketSubmitError(ticket.getPlayerDetails());
-      return Optional.empty();
-    }
-    Optional<LotteryTicketId> optional = repository.save(ticket);
-    if (optional.isPresent()) {
-      notifications.notifyTicketSubmitted(ticket.getPlayerDetails());
-    }
-    return optional;
+    return lotterySystem.submitTicket(ticket);
   }
 
   @Override
   public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
-    Optional<LotteryTicket> optional = repository.findById(id);
-    if (optional.isPresent()) {
-      if (optional.get().getNumbers().equals(winningNumbers)) {
-        return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 1000);
-      } else {
-        return new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
-      }
-    } else {
-      return new LotteryTicketCheckResult(CheckResult.TICKET_NOT_SUBMITTED);
-    }
+    return lotterySystem.checkTicketForPrize(id, winningNumbers);
   }
 }

@@ -20,41 +20,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.administration;
-
-import com.iluwatar.hexagonal.domain.LotteryNumbers;
-import com.iluwatar.hexagonal.domain.LotterySystem;
-import com.iluwatar.hexagonal.domain.LotterySystemImpl;
-import com.iluwatar.hexagonal.domain.LotteryTicket;
-import com.iluwatar.hexagonal.domain.LotteryTicketId;
+package com.iluwatar.hexagonal.domain;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
- * 
- * Lottery administration implementation
- *
+ * Lottery system interface
  */
-public class LotteryAdministrationImpl implements LotteryAdministration {
+public interface LotterySystem {
 
-  private final LotterySystem lotterySystem;
+  /**
+   * Get all the lottery tickets submitted for lottery
+   */
+  Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets();
 
-  public LotteryAdministrationImpl() {
-    lotterySystem = new LotterySystemImpl();
-  }
-  
-  @Override
-  public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
-    return lotterySystem.getAllSubmittedTickets();
-  }
+  /**
+   * Draw lottery numbers
+   */
+  LotteryNumbers performLottery();
 
-  @Override
-  public LotteryNumbers performLottery() {
-    return lotterySystem.performLottery();
-  }
+  /**
+   * Begin new lottery round
+   */
+  void resetLottery();
 
-  @Override
-  public void resetLottery() {
-    lotterySystem.resetLottery();
-  }
+  /**
+   * Submit lottery ticket to participate in the lottery
+   */
+  Optional<LotteryTicketId> submitTicket(LotteryTicket ticket);
+
+  /**
+   * Check if lottery ticket has won
+   */
+  LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers);
+
 }

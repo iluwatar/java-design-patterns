@@ -22,11 +22,11 @@
  */
 package com.iluwatar.hexagonal.administration;
 
-import java.util.Map;
-
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
+
+import java.util.Map;
 
 /**
  * 
