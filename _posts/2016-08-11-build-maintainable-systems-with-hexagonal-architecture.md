@@ -4,7 +4,7 @@ title: Build Maintainable Systems With Hexagonal Architecture
 author: ilu
 ---
 
-![Nut]({{ site.url }}{{ site.baseurl }}/assets/nut-small.jpg)
+![Hexagonal Architecture]({{ site.url }}{{ site.baseurl }}/assets/hexagonal-architecture.png)
 
 ## The fallacies of layered architecture
 
