@@ -29,6 +29,7 @@ Use Chain of Responsibility when
 
 * [java.util.logging.Logger#log()](http://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29)
 * [Apache Commons Chain](https://commons.apache.org/proper/commons-chain/index.html)
+* [javax.servlet.Filter#doFilter()](http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html#doFilter-javax.servlet.ServletRequest-javax.servlet.ServletResponse-javax.servlet.FilterChain-)
 
 ## Credits
 
