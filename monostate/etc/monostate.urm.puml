@@ -1,0 +1,32 @@
+@startuml
+package com.iluwatar.monostate {
+  class LoadBalancer {
+    - id : int {static}
+    - lastServedId : int {static}
+    - servers : List<Server> {static}
+    + LoadBalancer()
+    + addServer(server : Server)
+    + getLastServedId() : int {static}
+    + getNoOfServers() : int
+    + serverRequest(request : Request)
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Request {
+    + value : String
+    + Request(value : String)
+  }
+  class Server {
+    + host : String
+    + id : int
+    + port : int
+    + Server(host : String, port : int, id : int)
+    + getHost() : String
+    + getPort() : int
+    + serve(request : Request)
+  }
+}
+LoadBalancer -->  "-servers" Server
+@enduml

@@ -1,0 +1,59 @@
+@startuml
+package com.iluwatar.abstractdocument.domain {
+  class Part {
+    + Part(properties : Map<String, Object>)
+  }
+  class Car {
+    + Car(properties : Map<String, Object>)
+  }
+  interface HasModel {
+    + PROPERTY : String {static}
+    + getModel() : Optional<String>
+  }
+  interface HasParts {
+    + PROPERTY : String {static}
+    + getParts() : Stream<Part>
+  }
+  interface HasType {
+    + PROPERTY : String {static}
+    + getType() : Optional<String>
+  }
+  interface HasPrice {
+    + PROPERTY : String {static}
+    + getPrice() : Optional<Number>
+  }
+}
+package com.iluwatar.abstractdocument {
+  interface Document {
+    + children(String, Function<Map<String, Object>, T>) : Stream<T> {abstract}
+    + get(String) : Object {abstract}
+    + put(String, Object) {abstract}
+  }
+  abstract class AbstractDocument {
+    - properties : Map<String, Object>
+    # AbstractDocument(properties : Map<String, Object>)
+    + children(key : String, constructor : Function<Map<String, Object>, T>) : Stream<T>
+    + get(key : String) : Object
+    + put(key : String, value : Object)
+    + toString() : String
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+AbstractDocument --+ Map
+Part ..|> HasType 
+Part ..|> HasModel 
+Part ..|> HasPrice 
+Part --|> AbstractDocument 
+Car ..|> HasModel 
+Car ..|> HasPrice 
+Car ..|> HasParts 
+Car --|> AbstractDocument 
+HasModel --|> Document 
+HasParts --|> Document 
+AbstractDocument ..|> Document 
+HasType --|> Document 
+HasPrice --|> Document 
+@enduml

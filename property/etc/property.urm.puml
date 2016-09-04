@@ -1,0 +1,54 @@
+@startuml
+package com.iluwatar.property {
+  class Character {
+    - name : String
+    - properties : Map<Stats, Integer>
+    - prototype : Prototype
+    - type : Type
+    + Character()
+    + Character(name : String, prototype : Character)
+    + Character(type : Type, prototype : Prototype)
+    + get(stat : Stats) : Integer
+    + has(stat : Stats) : boolean
+    + name() : String
+    + remove(stat : Stats)
+    + set(stat : Stats, val : Integer)
+    + toString() : String
+    + type() : Type
+  }
+  interface Prototype {
+    + get(Stats) : Integer {abstract}
+    + has(Stats) : boolean {abstract}
+    + remove(Stats) {abstract}
+    + set(Stats, Integer) {abstract}
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum Stats {
+    + AGILITY {static}
+    + ARMOR {static}
+    + ATTACK_POWER {static}
+    + ENERGY {static}
+    + INTELLECT {static}
+    + RAGE {static}
+    + SPIRIT {static}
+    + STRENGTH {static}
+    + valueOf(name : String) : Stats {static}
+    + values() : Stats[] {static}
+  }
+  enum Type {
+    + MAGE {static}
+    + ROGUE {static}
+    + WARRIOR {static}
+    + valueOf(name : String) : Type {static}
+    + values() : Type[] {static}
+  }
+}
+App --+ Character
+Character -->  "-prototype" Prototype
+Character -->  "-type" Type
+Type ..+ Character
+Character ..|> Prototype 
+@enduml

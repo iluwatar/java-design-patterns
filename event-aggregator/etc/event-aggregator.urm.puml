@@ -1,0 +1,73 @@
+@startuml
+package com.iluwatar.event.aggregator {
+  class KingsHand {
+    + KingsHand()
+    + KingsHand(obs : EventObserver)
+    + onEvent(e : Event)
+    + timePasses(day : Weekday)
+  }
+  class KingJoffrey {
+    + KingJoffrey()
+    + onEvent(e : Event)
+  }
+  class Scout {
+    + Scout()
+    + Scout(obs : EventObserver)
+    + timePasses(day : Weekday)
+  }
+  class LordVarys {
+    + LordVarys()
+    + LordVarys(obs : EventObserver)
+    + timePasses(day : Weekday)
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class LordBaelish {
+    + LordBaelish()
+    + LordBaelish(obs : EventObserver)
+    + timePasses(day : Weekday)
+  }
+  abstract class EventEmitter {
+    - observers : List<EventObserver>
+    + EventEmitter()
+    + EventEmitter(obs : EventObserver)
+    # notifyObservers(e : Event)
+    + registerObserver(obs : EventObserver)
+    + timePasses(Weekday) {abstract}
+  }
+  interface EventObserver {
+    + onEvent(Event) {abstract}
+  }
+  enum Weekday {
+    + FRIDAY {static}
+    + MONDAY {static}
+    + SATURDAY {static}
+    + SUNDAY {static}
+    + THURSDAY {static}
+    + TUESDAY {static}
+    + WEDNESDAY {static}
+    - description : String
+    + toString() : String
+    + valueOf(name : String) : Weekday {static}
+    + values() : Weekday[] {static}
+  }
+  enum Event {
+    + STARK_SIGHTED {static}
+    + TRAITOR_DETECTED {static}
+    + WARSHIPS_APPROACHING {static}
+    - description : String
+    + toString() : String
+    + valueOf(name : String) : Event {static}
+    + values() : Event[] {static}
+  }
+}
+EventEmitter -->  "-observers" EventObserver
+KingsHand ..|> EventObserver 
+KingsHand --|> EventEmitter 
+KingJoffrey ..|> EventObserver 
+Scout --|> EventEmitter 
+LordVarys --|> EventEmitter 
+LordBaelish --|> EventEmitter 
+@enduml

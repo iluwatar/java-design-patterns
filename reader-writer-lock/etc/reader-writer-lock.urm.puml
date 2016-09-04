@@ -1,0 +1,58 @@
+@startuml
+package com.iluwatar.reader.writer.lock {
+  -class ReadLock {
+    - ReadLock(ReaderWriterLock)
+    + lock()
+    + lockInterruptibly()
+    + newCondition() : Condition
+    + tryLock() : boolean
+    + tryLock(time : long, unit : TimeUnit) : boolean
+    + unlock()
+  }
+  class Writer {
+    - name : String
+    - writeLock : Lock
+    + Writer(name : String, writeLock : Lock)
+    + run()
+    + write()
+  }
+  class ReaderWriterLock {
+    - currentReaderCount : int
+    - globalMutex : Set<Object>
+    - readerLock : ReadLock
+    - readerMutex : Object
+    - writerLock : WriteLock
+    + ReaderWriterLock()
+    - doesReaderOwnThisLock() : boolean
+    - doesWriterOwnThisLock() : boolean
+    - isLockFree() : boolean
+    + readLock() : Lock
+    - waitUninterruptibly(o : Object) {static}
+    + writeLock() : Lock
+  }
+  -class WriteLock {
+    - WriteLock(ReaderWriterLock)
+    + lock()
+    + lockInterruptibly()
+    + newCondition() : Condition
+    + tryLock() : boolean
+    + tryLock(time : long, unit : TimeUnit) : boolean
+    + unlock()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Reader {
+    - name : String
+    - readLock : Lock
+    + Reader(name : String, readLock : Lock)
+    + read()
+    + run()
+  }
+}
+ReadLock --+ ReaderWriterLock
+ReaderWriterLock -->  "-readerLock" ReadLock
+ReaderWriterLock -->  "-writerLock" WriteLock
+WriteLock --+ ReaderWriterLock
+@enduml

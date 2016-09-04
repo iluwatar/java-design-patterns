@@ -1,0 +1,50 @@
+@startuml
+package com.iluwatar.front.controller {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class FrontController {
+    + FrontController()
+    - getCommand(request : String) : Command
+    - getCommandClass(request : String) : Class<T> {static}
+    + handleRequest(request : String)
+  }
+  class ArcherView {
+    + ArcherView()
+    + display()
+  }
+  interface View {
+    + display() {abstract}
+  }
+  interface Command {
+    + process() {abstract}
+  }
+  class ErrorView {
+    + ErrorView()
+    + display()
+  }
+  class ArcherCommand {
+    + ArcherCommand()
+    + process()
+  }
+  class CatapultView {
+    + CatapultView()
+    + display()
+  }
+  class CatapultCommand {
+    + CatapultCommand()
+    + process()
+  }
+  class UnknownCommand {
+    + UnknownCommand()
+    + process()
+  }
+}
+ArcherView ..|> View 
+ErrorView ..|> View 
+ArcherCommand ..|> Command 
+CatapultView ..|> View 
+CatapultCommand ..|> Command 
+UnknownCommand ..|> Command 
+@enduml

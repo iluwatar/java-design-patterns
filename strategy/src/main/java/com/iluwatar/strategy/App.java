@@ -1,22 +1,71 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.strategy;
 
 /**
  * 
- * Strategy (DragonSlayingStrategy) encapsulates an algorithm. The containing
- * object (DragonSlayer) can alter its behavior by changing its strategy.
+ * The Strategy pattern (also known as the policy pattern) is a software design pattern that enables
+ * an algorithm's behavior to be selected at runtime.
+ * <p>
+ * Before Java 8 the Strategies needed to be separate classes forcing the developer
+ * to write lots of boilerplate code. With modern Java it is easy to pass behavior
+ * with method references and lambdas making the code shorter and more readable.
+ * <p>
+ * In this example ({@link DragonSlayingStrategy}) encapsulates an algorithm. The containing object
+ * ({@link DragonSlayer}) can alter its behavior by changing its strategy.
  * 
  */
 public class App {
 
-	public static void main(String[] args) {
-		System.out.println("Green dragon spotted ahead!");
-		DragonSlayer dragonSlayer = new DragonSlayer(new MeleeStrategy());
-		dragonSlayer.goToBattle();
-		System.out.println("Red dragon emerges.");
-		dragonSlayer.changeStrategy(new ProjectileStrategy());
-		dragonSlayer.goToBattle();
-		System.out.println("Black dragon lands before you.");
-		dragonSlayer.changeStrategy(new SpellStrategy());
-		dragonSlayer.goToBattle();
-	}
+  /**
+   * Program entry point
+   * 
+   * @param args command line args
+   */
+  public static void main(String[] args) {
+    // GoF Strategy pattern
+    System.out.println("Green dragon spotted ahead!");
+    DragonSlayer dragonSlayer = new DragonSlayer(new MeleeStrategy());
+    dragonSlayer.goToBattle();
+    System.out.println("Red dragon emerges.");
+    dragonSlayer.changeStrategy(new ProjectileStrategy());
+    dragonSlayer.goToBattle();
+    System.out.println("Black dragon lands before you.");
+    dragonSlayer.changeStrategy(new SpellStrategy());
+    dragonSlayer.goToBattle();
+
+    // Java 8 Strategy pattern
+    System.out.println("Green dragon spotted ahead!");
+    dragonSlayer = new DragonSlayer(
+        () -> System.out.println("With your Excalibur you severe the dragon's head!"));
+    dragonSlayer.goToBattle();
+    System.out.println("Red dragon emerges.");
+    dragonSlayer.changeStrategy(() -> System.out.println(
+        "You shoot the dragon with the magical crossbow and it falls dead on the ground!"));
+    dragonSlayer.goToBattle();
+    System.out.println("Black dragon lands before you.");
+    dragonSlayer.changeStrategy(() -> System.out.println(
+        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+    dragonSlayer.goToBattle();
+  }
 }

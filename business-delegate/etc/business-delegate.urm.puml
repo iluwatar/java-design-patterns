@@ -1,0 +1,55 @@
+@startuml
+package com.iluwatar.business.delegate {
+  class BusinessLookup {
+    - ejbService : EjbService
+    - jmsService : JmsService
+    + BusinessLookup()
+    + getBusinessService(serviceType : ServiceType) : BusinessService
+    + setEjbService(ejbService : EjbService)
+    + setJmsService(jmsService : JmsService)
+  }
+  class Client {
+    - businessDelegate : BusinessDelegate
+    + Client(businessDelegate : BusinessDelegate)
+    + doTask()
+  }
+  class EjbService {
+    + EjbService()
+    + doProcessing()
+  }
+  class BusinessDelegate {
+    - businessService : BusinessService
+    - lookupService : BusinessLookup
+    - serviceType : ServiceType
+    + BusinessDelegate()
+    + doTask()
+    + setLookupService(businessLookup : BusinessLookup)
+    + setServiceType(serviceType : ServiceType)
+  }
+  interface BusinessService {
+    + doProcessing() {abstract}
+  }
+  class JmsService {
+    + JmsService()
+    + doProcessing()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum ServiceType {
+    + EJB {static}
+    + JMS {static}
+    + valueOf(name : String) : ServiceType {static}
+    + values() : ServiceType[] {static}
+  }
+}
+BusinessDelegate -->  "-serviceType" ServiceType
+BusinessLookup -->  "-ejbService" EjbService
+Client -->  "-businessDelegate" BusinessDelegate
+BusinessDelegate -->  "-businessService" BusinessService
+BusinessDelegate -->  "-lookupService" BusinessLookup
+BusinessLookup -->  "-jmsService" JmsService
+EjbService ..|> BusinessService 
+JmsService ..|> BusinessService 
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+package com.iluwatar.iterator {
+  interface ItemIterator {
+    + hasNext() : boolean {abstract}
+    + next() : Item {abstract}
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class TreasureChestItemIterator {
+    - chest : TreasureChest
+    - idx : int
+    - type : ItemType
+    + TreasureChestItemIterator(chest : TreasureChest, type : ItemType)
+    - findNextIdx() : int
+    + hasNext() : boolean
+    + next() : Item
+  }
+  class TreasureChest {
+    - items : List<Item>
+    + TreasureChest()
+    + getItems() : List<Item>
+    ~ iterator(itemType : ItemType) : ItemIterator
+  }
+  class Item {
+    - name : String
+    - type : ItemType
+    + Item(type : ItemType, name : String)
+    + getType() : ItemType
+    + setType(type : ItemType)
+    + toString() : String
+  }
+  enum ItemType {
+    + ANY {static}
+    + POTION {static}
+    + RING {static}
+    + WEAPON {static}
+    + valueOf(name : String) : ItemType {static}
+    + values() : ItemType[] {static}
+  }
+}
+Item -->  "-type" ItemType
+TreasureChest -->  "-items" Item
+TreasureChestItemIterator -->  "-type" ItemType
+TreasureChestItemIterator -->  "-chest" TreasureChest
+TreasureChestItemIterator ..|> ItemIterator 
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+package com.iluwatar.dependency.injection {
+  interface Wizard {
+    + smoke() {abstract}
+  }
+  class GuiceWizard {
+    - tobacco : Tobacco
+    + GuiceWizard(tobacco : Tobacco)
+    + smoke()
+  }
+  class OldTobyTobacco {
+    + OldTobyTobacco()
+  }
+  abstract class Tobacco {
+    + Tobacco()
+    + smoke(wizard : Wizard)
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class RivendellTobacco {
+    + RivendellTobacco()
+  }
+  class AdvancedWizard {
+    - tobacco : Tobacco
+    + AdvancedWizard(tobacco : Tobacco)
+    + smoke()
+  }
+  class SecondBreakfastTobacco {
+    + SecondBreakfastTobacco()
+  }
+  class SimpleWizard {
+    - tobacco : OldTobyTobacco
+    + SimpleWizard()
+    + smoke()
+  }
+}
+SimpleWizard -->  "-tobacco" OldTobyTobacco
+AdvancedWizard -->  "-tobacco" Tobacco
+GuiceWizard -->  "-tobacco" Tobacco
+GuiceWizard ..|> Wizard 
+OldTobyTobacco --|> Tobacco 
+RivendellTobacco --|> Tobacco 
+AdvancedWizard ..|> Wizard 
+SecondBreakfastTobacco --|> Tobacco 
+SimpleWizard ..|> Wizard 
+@enduml

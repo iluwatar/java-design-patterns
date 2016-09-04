@@ -1,0 +1,37 @@
+@startuml
+package com.iluwatar.state {
+  class AngryState {
+    - mammoth : Mammoth
+    + AngryState(mammoth : Mammoth)
+    + observe()
+    + onEnterState()
+  }
+  class Mammoth {
+    - state : State
+    + Mammoth()
+    - changeStateTo(newState : State)
+    + observe()
+    + timePasses()
+    + toString() : String
+  }
+  interface State {
+    + observe() {abstract}
+    + onEnterState() {abstract}
+  }
+  class PeacefulState {
+    - mammoth : Mammoth
+    + PeacefulState(mammoth : Mammoth)
+    + observe()
+    + onEnterState()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+PeacefulState -->  "-mammoth" Mammoth
+AngryState -->  "-mammoth" Mammoth
+Mammoth -->  "-state" State
+AngryState ..|> State 
+PeacefulState ..|> State 
+@enduml
