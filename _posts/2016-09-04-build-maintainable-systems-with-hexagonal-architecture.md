@@ -16,7 +16,7 @@ This way of building applications can be considered simple and effective. But it
 
 ## Core, ports and adapters
 
-Hexagonal Architecture tackles this issue by building the application around the core. The main objective is to create fully testable systems that can be driven equally by users, programs and batch scripts in isolation of database. 
+Hexagonal Architecture tackles this issue by building the application around the core. The main objective is to create fully testable systems that can be driven equally by users, programs and batch scripts in isolation of database.
 
 However, the core alone may not be very useful. Something has to drive this application, call the business logic methods. It may be a HTTP request, automatic test or integration API. These interfaces we call the primary ports. Also, the core has its dependencies. For example, there may be a data storage module that the core calls upon to retrieve and update data. The interfaces of these modules that are driven by the core are called the secondary ports of the application.
 
@@ -38,32 +38,46 @@ Secondary ports consist of lottery ticket database, banking for wire transfers a
 
 ![Lottery system]({{ site.url }}{{ site.baseurl }}/assets/lottery.png)
 
-## Start from the core
+## Start from the core concepts
 
 We start the implementation from the system core. First we need to identify the core concepts of the lottery system. Probably the most important one is the lottery ticket. In lottery ticket you are supposed to pick the numbers and write your contact details to receive email notifications and possibly the prize money directly to your bank account. This leads us to write the following classes.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryTicket.java?slice=24:71"></script>
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryNumbers.java?slice=30:121"></script>
 
-LotteryTicket contains LotteryNumbers and PlayerDetails. LotteryNumbers contains means to hold given numbers or generate random numbers and test the numbers for equality with another LotteryNumbers instance. [PlayerDetails](https://github.com/iluwatar/java-design-patterns/blob/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/PlayerDetails.java) is a simple value object containing player's email address, bank account number and phone number.
+`LotteryTicket` contains `LotteryNumbers` and `PlayerDetails`. `LotteryNumbers` contains means to hold given numbers or generate random numbers and test the numbers for equality with another `LotteryNumbers` instance. [PlayerDetails](https://github.com/iluwatar/java-design-patterns/blob/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/PlayerDetails.java) is a simple value object containing player's email address, bank account number and phone number.
+
+## The core business logic
+
+Now that we have the nouns presenting our core concepts we need to implement the core business logic that defines how the system works. In `LotterySystem` interface we write the methods that are needed by the lottery players and system administrators.
+
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotterySystem.java?slice=27:58"></script>
+
+The lottery players use `submitTicket()` to submit tickets for lottery round. After the draw has been performed `checkTicketForPrize()` tells the players whether they have won.
+
+For administrators `LotterySystem` has `resetLottery()` method for starting a new lottery round. At this stage the players submit their lottery tickets into the database and when the time is due the administration calls `performLottery()` to draw the winning numbers and check each of the tickets for winnings.
+
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotterySystemImpl.java?slice=34:107"></script>
+
+`LotterySystemImpl` has dependencies to lottery ticket database, banking and notifications ports. This implementation hardwires the adapters it uses. In a more sophisticated application we would use dependency injection to determine the implementation classes. The core logic is tested in [LotteryTest](https://github.com/iluwatar/java-design-patterns/blob/master/hexagonal/src/test/java/com/iluwatar/hexagonal/domain/LotteryTest.java).
 
 ## Primary port for the players
 
-Now that we can create lottery tickets we need a way for the players to submit them to participate in the next draw. Another feature that we need is to check a lottery ticket against the winning numbers. We will combine these things into single LotteryService that becomes one of our primary ports.
+Now that the core implementation is ready we need to define the primary port for the players. What we offer is basically a slice from `LotterySystem`.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryService.java?slice=31:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryServiceImpl.java?slice=39:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryServiceImpl.java?slice=33:"></script>
 
-LotteryService is the port and LotteryServiceImpl is the adapter. LotteryServiceImpl needs access to the lottery ticket database to add new tickets and to check submitted ticket for winnings.
+`LotteryService` is the port and `LotteryServiceImpl` is the adapter. Notice how the implementation just delegates the request to `LotterySystem`.
 
 ## Primary port for the administrators
 
-We also need a lottery administrator facing interface that enables browsing of the submitted lottery tickets to determine the winners and a method for performing the lottery draw. The implementation for this primary port is presented next.
+We also need to define the lottery administrator facing port. As before, we offer the relevant slice from `LotterySystem`.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministration.java?slice=30:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministrationImpl.java?slice=41:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministrationImpl.java?slice=32:"></script>
 
-LotteryAdministration port has `resetLottery()` method for starting new lottery round. At this stage the player submit their lottery tickets into the database and when the time is due the administration calls `performLottery()` to draw the winning numbers and check each of the tickets for winnings. Notice how the implementation uses banking and notifications ports. These are explained next.
+The implementation here is trivial since we can just delegate the requests to `LotterySystem`.
 
 ## Secondary port for banking
 
@@ -72,7 +86,7 @@ Next we implement the secondary ports and adapters. The first one is the banking
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfers.java?slice=23:"></script>
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfersImpl.java?slice=29:"></script>
 
-The bank back office is a simple HashMap based implementation. The lottery service's bank account is statically initialized to contain enough funds to pay the prizes in case some of the lottery tickets win.
+The bank back office is a simple `HashMap` based implementation. The lottery service's bank account is statically initialized to contain enough funds to pay the prizes in case some of the lottery tickets win.
 
 ## Secondary port for notifications
 
@@ -81,7 +95,7 @@ Another secondary port is the notification service. If the player has written hi
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotifications.java?slice=26:"></script>
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotificationsImpl.java?slice=26:"></script>
 
-The methods in LotteryNotificationsImpl adapter are simple System.out printers so the implementation is trivial to understand.
+The methods in `LotteryNotificationsImpl` adapter are simple `System.out` printers so the implementation is trivial to understand.
 
 ## Secondary port for database
 
@@ -90,7 +104,7 @@ The last secondary port is the database. It contains methods for storing and ret
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/database/LotteryTicketRepository.java?slice=30:"></script>
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/database/LotteryTicketInMemoryRepository.java?slice=31:"></script>
 
-The LotteryTicketInMemoryRepository is a mock database holding its contents in memory only. We use Optionals to indicate whether the operation was successful or not.
+The `LotteryTicketInMemoryRepository` is a mock database holding its contents in memory only. We use `Optional` to indicate whether the operation was successful or not.
 
 ## Lottery application
 
@@ -144,6 +158,6 @@ Lottery ticket for johnie@google.com was checked and unfortunately did not win t
 
 ## Final words
 
-Applications implemented with Hexagonal Architecture are a joy to work with. Implementation details such as frameworks, user interfaces and databases are pushed out of the core and the application can work without them. We can clearly point in the center of the hexagon and say that this is our application and it uses these technologies to implement the submodule interfaces. Restricting communication to happen only through the ports forces the application to produce testable and maintainable code.
+Applications implemented with Hexagonal Architecture are a joy to maintain and work with. Implementation details such as frameworks, user interfaces and databases are pushed out of the core and the application can work without them. We can clearly point in the center of the hexagon and say that this is our application and it uses these technologies to implement the submodule interfaces. Restricting communication to happen only through the ports forces the application to produce testable and maintainable code.
 
 The full demo application of Hexagonal Architecture is available in [Java Design Patterns](https://github.com/iluwatar/java-design-patterns) Github repository.
