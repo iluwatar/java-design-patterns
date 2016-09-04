@@ -19,6 +19,7 @@ after_success:
 - mvn clean test jacoco:report coveralls:report
 - bash update-ghpages.sh
 
+# use latest java version available instead of travis default
 addons:
   apt:
     packages:
