@@ -49,20 +49,16 @@ import com.iluwatar.hexagonal.test.LotteryTestUtils;
 public class LotteryTest {
 
   private final LotterySystem lotterySystem = new LotterySystemImpl();
-  private final LotteryTicketRepository repository = new LotteryTicketInMemoryRepository();
   private final WireTransfers wireTransfers = new WireTransfersImpl();
   
   @Before
   public void clear() {
-    repository.deleteAll();
+    // add funds to the test player's bank account
+    wireTransfers.setFunds("123-12312", 100);
   }
   
   @Test
   public void testLottery() {
-    
-    // setup bank account with funds
-    wireTransfers.setFunds("123-12312", 100);
-    
     // admin resets the lottery
     lotterySystem.resetLottery();
     assertEquals(lotterySystem.getAllSubmittedTickets().size(), 0);
