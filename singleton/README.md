@@ -3,6 +3,7 @@ layout: pattern
 title: Singleton
 folder: singleton
 permalink: /patterns/singleton/
+pumlid: HSV14SCm20J0Lk82BFxf1ikCh0n26ZZizfDVVhjRjwfvIhg-Bc35cyZvAQtZoYD3l4w364gTWxhcms2d3z-ydnAzsRuO4BUWmV43HRUcWcaagF-Lz55M3lq2
 categories: Creational
 tags:
  - Java
@@ -31,6 +32,9 @@ Use the Singleton pattern when
 ## Real world examples
 
 * [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29)
+* [java.awt.Desktop#getDesktop()](http://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--)
+* [java.lang.System#getSecurityManager()](http://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getSecurityManager--)
+
 
 ## Credits
 

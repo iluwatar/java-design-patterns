@@ -3,8 +3,9 @@ layout: pattern
 title: Abstract Factory
 folder: abstract-factory
 permalink: /patterns/abstract-factory/
+pumlid: PSZB3OD034NHLa81Czwd6sCC39gVxEUWT1_ssLmTtQLqgR5fM7sTmFGtaV6TZu8prd0r6HtQaMKqAZLk1XjT_E6qgPUZfyc0MdTgx0-8LuUn8ErFXdr98NypXxKyezKV
 categories: Creational
-tags: 
+tags:
  - Java
  - Gang Of Four
  - Difficulty-Intermediate
@@ -30,6 +31,8 @@ Use the Abstract Factory pattern when
 ## Real world examples
 
 * [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
+* [javax.xml.transform.TransformerFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/transform/TransformerFactory.html#newInstance--)
+* [javax.xml.xpath.XPathFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/xpath/XPathFactory.html#newInstance--)
 
 ## Credits
 

@@ -1,0 +1,84 @@
+@startuml
+package com.iluwatar.command {
+  abstract class Target {
+    - size : Size
+    - visibility : Visibility
+    + Target()
+    + getSize() : Size
+    + getVisibility() : Visibility
+    + printStatus()
+    + setSize(size : Size)
+    + setVisibility(visibility : Visibility)
+    + toString() : String {abstract}
+  }
+  class Goblin {
+    + Goblin()
+    + toString() : String
+  }
+  class ShrinkSpell {
+    - oldSize : Size
+    - target : Target
+    + ShrinkSpell()
+    + execute(target : Target)
+    + redo()
+    + toString() : String
+    + undo()
+  }
+  class InvisibilitySpell {
+    - target : Target
+    + InvisibilitySpell()
+    + execute(target : Target)
+    + redo()
+    + toString() : String
+    + undo()
+  }
+  class Wizard {
+    - redoStack : Deque<Command>
+    - undoStack : Deque<Command>
+    + Wizard()
+    + castSpell(command : Command, target : Target)
+    + redoLastSpell()
+    + toString() : String
+    + undoLastSpell()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  abstract class Command {
+    + Command()
+    + execute(Target) {abstract}
+    + redo() {abstract}
+    + toString() : String {abstract}
+    + undo() {abstract}
+  }
+  enum Size {
+    + LARGE {static}
+    + NORMAL {static}
+    + SMALL {static}
+    + UNDEFINED {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Size {static}
+    + values() : Size[] {static}
+  }
+  enum Visibility {
+    + INVISIBLE {static}
+    + UNDEFINED {static}
+    + VISIBLE {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Visibility {static}
+    + values() : Visibility[] {static}
+  }
+}
+Target -->  "-size" Size
+Wizard -->  "-undoStack" Command
+ShrinkSpell -->  "-oldSize" Size
+InvisibilitySpell -->  "-target" Target
+ShrinkSpell -->  "-target" Target
+Target -->  "-visibility" Visibility
+Goblin --|> Target 
+ShrinkSpell --|> Command 
+InvisibilitySpell --|> Command 
+@enduml

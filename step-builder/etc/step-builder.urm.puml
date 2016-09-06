@@ -1,0 +1,91 @@
+@startuml
+package com.iluwatar.stepbuilder {
+  interface BuildStep {
+    + build() : Character {abstract}
+  }
+  -class CharacterSteps {
+    - abilities : List<String>
+    - fighterClass : String
+    - name : String
+    - spell : String
+    - weapon : String
+    - wizardClass : String
+    - CharacterSteps()
+    + build() : Character
+    + fighterClass(fighterClass : String) : WeaponStep
+    + name(name : String) : ClassStep
+    + noAbilities() : BuildStep
+    + noMoreAbilities() : BuildStep
+    + noSpell() : BuildStep
+    + noWeapon() : BuildStep
+    + withAbility(ability : String) : AbilityStep
+    + withSpell(spell : String) : AbilityStep
+    + withWeapon(weapon : String) : AbilityStep
+    + wizardClass(wizardClass : String) : SpellStep
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface ClassStep {
+    + fighterClass(String) : WeaponStep {abstract}
+    + wizardClass(String) : SpellStep {abstract}
+  }
+  interface WeaponStep {
+    + noWeapon() : BuildStep {abstract}
+    + withWeapon(String) : AbilityStep {abstract}
+  }
+  interface AbilityStep {
+    + noAbilities() : BuildStep {abstract}
+    + noMoreAbilities() : BuildStep {abstract}
+    + withAbility(String) : AbilityStep {abstract}
+  }
+  interface NameStep {
+    + name(String) : ClassStep {abstract}
+  }
+  class CharacterStepBuilder {
+    - CharacterStepBuilder()
+    + newBuilder() : NameStep {static}
+  }
+  class Character {
+    - abilities : List<String>
+    - fighterClass : String
+    - name : String
+    - spell : String
+    - weapon : String
+    - wizardClass : String
+    + Character(name : String)
+    + getAbilities() : List<String>
+    + getFighterClass() : String
+    + getName() : String
+    + getSpell() : String
+    + getWeapon() : String
+    + getWizardClass() : String
+    + setAbilities(abilities : List<String>)
+    + setFighterClass(fighterClass : String)
+    + setName(name : String)
+    + setSpell(spell : String)
+    + setWeapon(weapon : String)
+    + setWizardClass(wizardClass : String)
+    + toString() : String
+  }
+  interface SpellStep {
+    + noSpell() : BuildStep {abstract}
+    + withSpell(String) : AbilityStep {abstract}
+  }
+}
+App --+ CharacterStepBuilder
+WeaponStep ..+ CharacterStepBuilder
+SpellStep ..+ CharacterStepBuilder
+AbilityStep ..+ CharacterStepBuilder
+ClassStep ..+ CharacterStepBuilder
+CharacterSteps ..+ CharacterStepBuilder
+NameStep ..+ CharacterStepBuilder
+BuildStep ..+ CharacterStepBuilder
+CharacterSteps ..|> NameStep 
+CharacterSteps ..|> ClassStep 
+CharacterSteps ..|> WeaponStep 
+CharacterSteps ..|> SpellStep 
+CharacterSteps ..|> AbilityStep 
+CharacterSteps ..|> BuildStep 
+@enduml

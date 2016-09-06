@@ -35,6 +35,26 @@
     <artifactId>aggregator-microservices</artifactId>
     <packaging>pom</packaging>
 
+    <build>
+		<plugins>
+            <plugin>
+                <groupId>com.github.markusmo3.urm</groupId>
+                <artifactId>urm-maven-plugin</artifactId>
+                <version>${urm.version}</version>
+                <configuration combine.self="override">
+                    <outputDirectory>${project.basedir}/../etc</outputDirectory>
+                    <packages>
+                        <param>com.iluwatar</param>
+                    </packages>
+                    <skipForProjects>
+                        <!-- skip for parent project -->
+                        <param>aggregator-microservices</param>
+                    </skipForProjects>
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
+
     <modules>
         <module>information-microservice</module>
         <module>aggregator-service</module>

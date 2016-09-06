@@ -3,6 +3,7 @@ layout: pattern
 title: Adapter
 folder: adapter
 permalink: /patterns/adapter/
+pumlid: DSR14S8m30J0Lg20M7-wEMnDOiPMFDA9j0yyUEtUkzMHJTF7xI1NF4GSLzaxZtncgDVJgCPIpobzv0N2vOKtjgRHTziMI7KBcOXl10thfxB-Nz9dMJd71m00
 categories: Structural
 tags:
  - Java
@@ -30,6 +31,10 @@ Use the Adapter pattern when
 ## Real world examples
 
 * [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList%28T...%29)
+* [java.util.Collections#list()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#list-java.util.Enumeration-)
+* [java.util.Collections#enumeration()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#enumeration-java.util.Collection-)
+* [javax.xml.bind.annotation.adapters.XMLAdapter](http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html#marshal-BoundType-)
+
 
 ## Credits
 

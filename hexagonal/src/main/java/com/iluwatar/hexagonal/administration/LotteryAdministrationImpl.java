@@ -22,22 +22,13 @@
  */
 package com.iluwatar.hexagonal.administration;
 
-import java.util.Map;
-
-import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.banking.WireTransfersImpl;
-import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
-import com.iluwatar.hexagonal.domain.LotteryConstants;
+import com.google.inject.Inject;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
+import com.iluwatar.hexagonal.domain.LotterySystem;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
-import com.iluwatar.hexagonal.notifications.LotteryNotifications;
-import com.iluwatar.hexagonal.notifications.LotteryNotificationsImpl;
-import com.iluwatar.hexagonal.service.LotteryService;
-import com.iluwatar.hexagonal.service.LotteryServiceImpl;
+
+import java.util.Map;
 
 /**
  * 
@@ -46,42 +37,25 @@ import com.iluwatar.hexagonal.service.LotteryServiceImpl;
  */
 public class LotteryAdministrationImpl implements LotteryAdministration {
 
-  private final LotteryTicketRepository repository;
-  private final LotteryService service = new LotteryServiceImpl();
-  private final LotteryNotifications notifications = new LotteryNotificationsImpl();
-  private final WireTransfers bank = new WireTransfersImpl();
-  public LotteryAdministrationImpl() {
-    repository = new LotteryTicketInMemoryRepository();
+  private final LotterySystem lotterySystem;
+
+  @Inject
+  public LotteryAdministrationImpl(LotterySystem lotterySystem) {
+    this.lotterySystem = lotterySystem;
   }
   
   @Override
   public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
-    return repository.findAll();
+    return lotterySystem.getAllSubmittedTickets();
   }
 
   @Override
   public LotteryNumbers performLottery() {
-    LotteryNumbers numbers = LotteryNumbers.createRandom();
-    Map<LotteryTicketId, LotteryTicket> tickets = getAllSubmittedTickets();
-    for (LotteryTicketId id: tickets.keySet()) {
-      LotteryTicketCheckResult result = service.checkTicketForPrize(id, numbers);
-      if (result.getResult().equals(CheckResult.WIN_PRIZE)) {
-        boolean transferred = bank.transferFunds(LotteryConstants.PRIZE_AMOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT, 
-            tickets.get(id).getPlayerDetails().getBankAccount());
-        if (transferred) {
-          notifications.notifyPrize(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
-        } else {
-          notifications.notifyPrizeError(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
-        }
-      } else if (result.getResult().equals(CheckResult.NO_PRIZE)) {
-        notifications.notifyNoWin(tickets.get(id).getPlayerDetails());
-      }
-    }
-    return numbers;
+    return lotterySystem.performLottery();
   }
 
   @Override
   public void resetLottery() {
-    repository.deleteAll();
+    lotterySystem.resetLottery();
   }
 }

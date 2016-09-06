@@ -1,0 +1,37 @@
+@startuml
+package com.iluwatar.producer.consumer {
+  class Producer {
+    - itemId : int
+    - name : String
+    - queue : ItemQueue
+    + Producer(name : String, queue : ItemQueue)
+    + produce()
+  }
+  class ItemQueue {
+    - queue : BlockingQueue<Item>
+    + ItemQueue()
+    + put(item : Item)
+    + take() : Item
+  }
+  class Item {
+    - id : int
+    - producer : String
+    + Item(producer : String, id : int)
+    + getId() : int
+    + getProducer() : String
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Consumer {
+    - name : String
+    - queue : ItemQueue
+    + Consumer(name : String, queue : ItemQueue)
+    + consume()
+  }
+}
+Consumer -->  "-queue" ItemQueue
+Producer -->  "-queue" ItemQueue
+ItemQueue -->  "-queue" Item
+@enduml

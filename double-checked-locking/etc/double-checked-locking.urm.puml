@@ -1,0 +1,20 @@
+@startuml
+package com.iluwatar.doublechecked.locking {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Inventory {
+    - inventorySize : int
+    - items : List<Item>
+    - lock : Lock
+    + Inventory(inventorySize : int)
+    + addItem(item : Item) : boolean
+    + getItems() : List<Item>
+  }
+  class Item {
+    + Item()
+  }
+}
+Inventory -->  "-items" Item
+@enduml

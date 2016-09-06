@@ -1,0 +1,100 @@
+@startuml
+package com.iluwatar.caching {
+  class UserAccount {
+    - additionalInfo : String
+    - userId : String
+    - userName : String
+    + UserAccount(userId : String, userName : String, additionalInfo : String)
+    + getAdditionalInfo() : String
+    + getUserId() : String
+    + getUserName() : String
+    + setAdditionalInfo(additionalInfo : String)
+    + setUserId(userId : String)
+    + setUserName(userName : String)
+    + toString() : String
+  }
+  class CacheStore {
+    ~ cache : LruCache {static}
+    - CacheStore()
+    + clearCache() {static}
+    + flushCache() {static}
+    + initCapacity(capacity : int) {static}
+    + print() : String {static}
+    + readThrough(userId : String) : UserAccount {static}
+    + readThroughWithWriteBackPolicy(userId : String) : UserAccount {static}
+    + writeAround(userAccount : UserAccount) {static}
+    + writeBehind(userAccount : UserAccount) {static}
+    + writeThrough(userAccount : UserAccount) {static}
+  }
+  class AppManager {
+    - cachingPolicy : CachingPolicy {static}
+    - AppManager()
+    + find(userId : String) : UserAccount {static}
+    + initCacheCapacity(capacity : int) {static}
+    + initCachingPolicy(policy : CachingPolicy) {static}
+    + initDb(useMongoDb : boolean) {static}
+    + printCacheContent() : String {static}
+    + save(userAccount : UserAccount) {static}
+  }
+  ~class Node {
+    ~ next : Node
+    ~ previous : Node
+    ~ userAccount : UserAccount
+    ~ userId : String
+    + Node(this$0 : LruCache, userId : String, userAccount : UserAccount)
+  }
+  class LruCache {
+    ~ cache : Map<String, Node>
+    ~ capacity : int
+    ~ end : Node
+    ~ head : Node
+    + LruCache(capacity : int)
+    + clear()
+    + contains(userId : String) : boolean
+    + get(userId : String) : UserAccount
+    + getCacheDataInListForm() : List<UserAccount>
+    + getLruData() : UserAccount
+    + invalidate(userId : String)
+    + isFull() : boolean
+    + remove(node : Node)
+    + set(userId : String, userAccount : UserAccount)
+    + setCapacity(newCapacity : int)
+    + setHead(node : Node)
+  }
+  class DbManager {
+    - db : MongoDatabase {static}
+    - mongoClient : MongoClient {static}
+    - useMongoDB : boolean {static}
+    - virtualDB : Map<String, UserAccount> {static}
+    - DbManager()
+    + connect() {static}
+    + createVirtualDb() {static}
+    + readFromDb(userId : String) : UserAccount {static}
+    + updateDb(userAccount : UserAccount) {static}
+    + upsertDb(userAccount : UserAccount) {static}
+    + writeToDb(userAccount : UserAccount) {static}
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+    + useReadAndWriteThroughStrategy()
+    + useReadThroughAndWriteAroundStrategy()
+    + useReadThroughAndWriteBehindStrategy()
+  }
+  enum CachingPolicy {
+    + AROUND {static}
+    + BEHIND {static}
+    + THROUGH {static}
+    - policy : String
+    + getPolicy() : String
+    + valueOf(name : String) : CachingPolicy {static}
+    + values() : CachingPolicy[] {static}
+  }
+}
+Node --+ LruCache
+LruCache -->  "-head" Node
+Node -->  "-previous" Node
+AppManager -->  "-cachingPolicy" CachingPolicy
+Node -->  "-userAccount" UserAccount
+CacheStore -->  "-cache" LruCache
+@enduml

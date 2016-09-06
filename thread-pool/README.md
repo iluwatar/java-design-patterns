@@ -3,6 +3,7 @@ layout: pattern
 title: Thread Pool
 folder: thread-pool
 permalink: /patterns/thread-pool/
+pumlid: JSV14SCW30J0Lk82GFzq8uF6a1624IUx_UIPt-xHhMXK2TTN0zP-4pa_-UfeSSOMBzCWXbpceAxnCDZfmpUdAhjVbXO3uhPfyFw1q5oufZMdag3yFuUFl6Be5m00
 categories: Concurrency
 tags:
  - Java

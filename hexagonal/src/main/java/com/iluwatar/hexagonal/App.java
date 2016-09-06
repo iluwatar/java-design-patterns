@@ -26,15 +26,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import com.iluwatar.hexagonal.administration.LotteryAdministration;
-import com.iluwatar.hexagonal.administration.LotteryAdministrationImpl;
 import com.iluwatar.hexagonal.banking.WireTransfersImpl;
 import com.iluwatar.hexagonal.domain.LotteryConstants;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 import com.iluwatar.hexagonal.service.LotteryService;
-import com.iluwatar.hexagonal.service.LotteryServiceImpl;
 
 /**
  * 
@@ -124,12 +124,15 @@ public class App {
    * Program entry point
    */
   public static void main(String[] args) {
+
+    Injector injector = Guice.createInjector(new LotteryModule());
+
     // start new lottery round
-    LotteryAdministration administartion = new LotteryAdministrationImpl();
+    LotteryAdministration administartion = injector.getInstance(LotteryAdministration.class);
     administartion.resetLottery();
     
     // submit some lottery tickets
-    LotteryServiceImpl service = new LotteryServiceImpl();
+    LotteryService service = injector.getInstance(LotteryService.class);
     submitTickets(service, 20);
     
     // perform lottery

@@ -3,6 +3,7 @@ layout: pattern
 title: Template method
 folder: template-method
 permalink: /patterns/template-method/
+pumlid: NSZ13SCW30NGLPe1mFTkuu0Lg6n0vZjPlpttzlIEFef6bN1zDM3jDv7paw-E5cTiyJ87P22NQTGr7WOxVVZcL6NtQwJ5WFZOPBn_88WjPKWoGPkL1EN_ShZb5QPV
 categories: Behavioral
 tags:
  - Java

@@ -317,6 +317,23 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 			</plugin>
+            <plugin>
+                <groupId>com.github.markusmo3.urm</groupId>
+                <artifactId>urm-maven-plugin</artifactId>
+                <version>${urm.version}</version>
+                <configuration combine.self="override">
+                    <outputDirectory>${project.basedir}/../etc</outputDirectory>
+                    <packages>
+                        <param>com.iluwatar</param>
+                        <param>domainapp</param>
+                    </packages>
+                    <skipForProjects>
+                        <!-- skip for parent project -->
+                        <param>naked-objects</param>
+                        <param>naked-objects-webapp</param>
+                    </skipForProjects>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 

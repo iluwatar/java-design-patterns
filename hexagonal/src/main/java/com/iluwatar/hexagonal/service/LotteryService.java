@@ -22,12 +22,12 @@
  */
 package com.iluwatar.hexagonal.service;
 
-import java.util.Optional;
-
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
+
+import java.util.Optional;
 
 /**
  * 

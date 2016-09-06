@@ -1,0 +1,151 @@
+@startuml
+package com.iluwatar.reactor.app {
+  ~class TcpLoggingClient {
+    - clientName : String
+    - serverPort : int
+    + TcpLoggingClient(clientName : String, serverPort : int)
+    + run()
+    - sendLogRequests(writer : PrintWriter, inputStream : InputStream)
+  }
+  ~class UdpLoggingClient {
+    - clientName : String
+    - remoteAddress : InetSocketAddress
+    + UdpLoggingClient(clientName : String, port : int)
+    + run()
+  }
+  class LoggingHandler {
+    - ACK : byte[] {static}
+    + LoggingHandler()
+    - doLogging(data : ByteBuffer) {static}
+    + handleChannelRead(channel : AbstractNioChannel, readObject : Object, key : SelectionKey)
+    - sendReply(channel : AbstractNioChannel, incomingPacket : DatagramPacket, key : SelectionKey) {static}
+    - sendReply(channel : AbstractNioChannel, key : SelectionKey) {static}
+  }
+  class AppClient {
+    - service : ExecutorService
+    + AppClient()
+    - artificialDelayOf(millis : long) {static}
+    + main(args : String[]) {static}
+    + start()
+    + stop()
+  }
+  class App {
+    - channels : List<AbstractNioChannel>
+    - dispatcher : Dispatcher
+    - reactor : NioReactor
+    + App(dispatcher : Dispatcher)
+    + main(args : String[]) {static}
+    + start()
+    + stop()
+    - tcpChannel(port : int, handler : ChannelHandler) : AbstractNioChannel
+    - udpChannel(port : int, handler : ChannelHandler) : AbstractNioChannel
+  }
+}
+package com.iluwatar.reactor.framework {
+  interface Dispatcher {
+    + onChannelReadEvent(AbstractNioChannel, Object, SelectionKey) {abstract}
+    + stop() {abstract}
+  }
+  class SameThreadDispatcher {
+    + SameThreadDispatcher()
+    + onChannelReadEvent(channel : AbstractNioChannel, readObject : Object, key : SelectionKey)
+    + stop()
+  }
+  class ThreadPoolDispatcher {
+    - executorService : ExecutorService
+    + ThreadPoolDispatcher(poolSize : int)
+    + onChannelReadEvent(channel : AbstractNioChannel, readObject : Object, key : SelectionKey)
+    + stop()
+  }
+  interface ChannelHandler {
+    + handleChannelRead(AbstractNioChannel, Object, SelectionKey) {abstract}
+  }
+  class NioDatagramChannel {
+    - port : int
+    + NioDatagramChannel(port : int, handler : ChannelHandler)
+    + bind()
+    # doWrite(pendingWrite : Object, key : SelectionKey)
+    + getInterestedOps() : int
+    + getJavaChannel() : DatagramChannel
+    + read(key : SelectionKey) : DatagramPacket
+    + write(data : Object, key : SelectionKey)
+  }
+  class DatagramPacket {
+    - data : ByteBuffer
+    - receiver : SocketAddress
+    - sender : SocketAddress
+    + DatagramPacket(data : ByteBuffer)
+    + getData() : ByteBuffer
+    + getReceiver() : SocketAddress
+    + getSender() : SocketAddress
+    + setReceiver(receiver : SocketAddress)
+    + setSender(sender : SocketAddress)
+  }
+  abstract class AbstractNioChannel {
+    - channel : SelectableChannel
+    - channelToPendingWrites : Map<SelectableChannel, Queue<Object>>
+    - handler : ChannelHandler
+    - reactor : NioReactor
+    + AbstractNioChannel(handler : ChannelHandler, channel : SelectableChannel)
+    + bind() {abstract}
+    # doWrite(Object, SelectionKey) {abstract}
+    ~ flush(key : SelectionKey)
+    + getHandler() : ChannelHandler
+    + getInterestedOps() : int {abstract}
+    + getJavaChannel() : SelectableChannel
+    + read(SelectionKey) : Object {abstract}
+    ~ setReactor(reactor : NioReactor)
+    + write(data : Object, key : SelectionKey)
+  }
+  class NioServerSocketChannel {
+    - port : int
+    + NioServerSocketChannel(port : int, handler : ChannelHandler)
+    + bind()
+    # doWrite(pendingWrite : Object, key : SelectionKey)
+    + getInterestedOps() : int
+    + getJavaChannel() : ServerSocketChannel
+    + read(key : SelectionKey) : ByteBuffer
+  }
+  class NioReactor {
+    - dispatcher : Dispatcher
+    - pendingCommands : Queue<Runnable>
+    - reactorMain : ExecutorService
+    - selector : Selector
+    + NioReactor(dispatcher : Dispatcher)
+    + changeOps(key : SelectionKey, interestedOps : int)
+    - dispatchReadEvent(key : SelectionKey, readObject : Object)
+    - eventLoop()
+    - onChannelAcceptable(key : SelectionKey)
+    - onChannelReadable(key : SelectionKey)
+    - onChannelWritable(key : SelectionKey) {static}
+    - processKey(key : SelectionKey)
+    - processPendingCommands()
+    + registerChannel(channel : AbstractNioChannel) : NioReactor
+    + start()
+    + stop()
+  }
+  ~class ChangeKeyOpsCommand {
+    - interestedOps : int
+    - key : SelectionKey
+    + ChangeKeyOpsCommand(this$0 : NioReactor, key : SelectionKey, interestedOps : int)
+    + run()
+    + toString() : String
+  }
+}
+AbstractNioChannel -->  "-handler" ChannelHandler
+UdpLoggingClient ..+ AppClient
+AbstractNioChannel -->  "-reactor" NioReactor
+TcpLoggingClient ..+ AppClient
+NioReactor -->  "-dispatcher" Dispatcher
+App -->  "-reactor" NioReactor
+App -->  "-channels" AbstractNioChannel
+DatagramPacket ..+ NioDatagramChannel
+ChangeKeyOpsCommand --+ NioReactor
+App -->  "-dispatcher" Dispatcher
+LoggingHandler --+ NioDatagramChannel
+SameThreadDispatcher ..|> Dispatcher 
+LoggingHandler ..|> ChannelHandler 
+ThreadPoolDispatcher ..|> Dispatcher 
+NioDatagramChannel --|> AbstractNioChannel 
+NioServerSocketChannel --|> AbstractNioChannel 
+@enduml
