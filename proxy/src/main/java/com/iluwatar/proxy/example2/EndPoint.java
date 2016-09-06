@@ -3,7 +3,7 @@ package com.iluwatar.proxy.example2;
 public class EndPoint {
 
   private final String name;
-  private final Announcer healthMonitors = new Announcer(HealthMonitor.class);
+  private final Announcer<HealthMonitor> healthMonitors = Announcer.to(HealthMonitor.class);
   
   public EndPoint(String name) {
     this.name = name;

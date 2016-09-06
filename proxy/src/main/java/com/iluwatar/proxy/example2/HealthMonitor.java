@@ -1,6 +1,8 @@
 package com.iluwatar.proxy.example2;
 
-public interface HealthMonitor {
+import java.util.EventListener;
+
+public interface HealthMonitor extends EventListener {
 
   void disconnected(EndPoint endPoint);
 

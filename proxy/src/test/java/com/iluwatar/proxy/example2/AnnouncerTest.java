@@ -16,7 +16,7 @@ public class AnnouncerTest {
   private EndPoint endPoint = mock(EndPoint.class);
   private HealthMonitor monitor1 = mock(HealthMonitor.class);
   private HealthMonitor monitor2 = mock(HealthMonitor.class);
-  private Announcer announcer = new Announcer(HealthMonitor.class);
+  private Announcer<HealthMonitor> announcer = Announcer.to(HealthMonitor.class);
   
   @Before
   public void setUp() {
