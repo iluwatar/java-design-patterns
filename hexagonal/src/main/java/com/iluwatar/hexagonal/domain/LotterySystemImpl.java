@@ -22,12 +22,10 @@
  */
 package com.iluwatar.hexagonal.domain;
 
+import com.google.inject.Inject;
 import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.banking.WireTransfersImpl;
-import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.notifications.LotteryNotifications;
-import com.iluwatar.hexagonal.notifications.LotteryNotificationsImpl;
 
 import java.util.Map;
 import java.util.Optional;
@@ -38,11 +36,18 @@ import java.util.Optional;
 public class LotterySystemImpl implements LotterySystem {
 
   private final LotteryTicketRepository repository;
-  private final LotteryNotifications notifications = new LotteryNotificationsImpl();
-  private final WireTransfers bank = new WireTransfersImpl();
+  private final LotteryNotifications notifications;
+  private final WireTransfers wireTransfers;
 
-  public LotterySystemImpl() {
-    repository = new LotteryTicketInMemoryRepository();
+  /**
+   * Constructor
+   */
+  @Inject
+  public LotterySystemImpl(LotteryTicketRepository repository, LotteryNotifications notifications,
+                           WireTransfers wireTransfers) {
+    this.repository = repository;
+    this.notifications = notifications;
+    this.wireTransfers = wireTransfers;
   }
 
   @Override
@@ -57,8 +62,8 @@ public class LotterySystemImpl implements LotterySystem {
     for (LotteryTicketId id : tickets.keySet()) {
       LotteryTicketCheckResult result = checkTicketForPrize(id, numbers);
       if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
-        boolean transferred = bank.transferFunds(LotteryConstants.PRIZE_AMOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT,
-            tickets.get(id).getPlayerDetails().getBankAccount());
+        boolean transferred = wireTransfers.transferFunds(LotteryConstants.PRIZE_AMOUNT,
+            LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());
         if (transferred) {
           notifications.notifyPrize(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
         } else {
@@ -78,8 +83,8 @@ public class LotterySystemImpl implements LotterySystem {
 
   @Override
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
-    boolean result = bank.transferFunds(LotteryConstants.TICKET_PRIZE, ticket.getPlayerDetails().getBankAccount(),
-        LotteryConstants.SERVICE_BANK_ACCOUNT);
+    boolean result = wireTransfers.transferFunds(LotteryConstants.TICKET_PRIZE,
+        ticket.getPlayerDetails().getBankAccount(), LotteryConstants.SERVICE_BANK_ACCOUNT);
     if (result == false) {
       notifications.notifyTicketSubmitError(ticket.getPlayerDetails());
       return Optional.empty();

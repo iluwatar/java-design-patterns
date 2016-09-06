@@ -30,6 +30,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.iluwatar.hexagonal.LotteryModule;
+import com.iluwatar.hexagonal.LotteryTestingModule;
 import com.iluwatar.hexagonal.domain.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,11 +53,19 @@ import com.iluwatar.hexagonal.test.LotteryTestUtils;
  */
 public class LotteryTest {
 
-  private final LotterySystem lotterySystem = new LotterySystemImpl();
-  private final WireTransfers wireTransfers = new WireTransfersImpl();
-  
+  private Injector injector;
+  @Inject
+  private LotterySystem lotterySystem;
+  @Inject
+  private WireTransfers wireTransfers;
+
+  public LotteryTest() {
+    this.injector = Guice.createInjector(new LotteryTestingModule());
+  }
+
   @Before
-  public void clear() {
+  public void setup() {
+    injector.injectMembers(this);
     // add funds to the test player's bank account
     wireTransfers.setFunds("123-12312", 100);
   }

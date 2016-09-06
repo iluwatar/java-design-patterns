@@ -22,9 +22,9 @@
  */
 package com.iluwatar.hexagonal.administration;
 
+import com.google.inject.Inject;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotterySystem;
-import com.iluwatar.hexagonal.domain.LotterySystemImpl;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 
@@ -39,8 +39,9 @@ public class LotteryAdministrationImpl implements LotteryAdministration {
 
   private final LotterySystem lotterySystem;
 
-  public LotteryAdministrationImpl() {
-    lotterySystem = new LotterySystemImpl();
+  @Inject
+  public LotteryAdministrationImpl(LotterySystem lotterySystem) {
+    this.lotterySystem = lotterySystem;
   }
   
   @Override

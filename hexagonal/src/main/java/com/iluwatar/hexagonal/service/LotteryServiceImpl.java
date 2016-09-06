@@ -22,9 +22,9 @@
  */
 package com.iluwatar.hexagonal.service;
 
+import com.google.inject.Inject;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotterySystem;
-import com.iluwatar.hexagonal.domain.LotterySystemImpl;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
@@ -43,8 +43,9 @@ public class LotteryServiceImpl implements LotteryService {
   /**
    * Constructor
    */
-  public LotteryServiceImpl() {
-    lotterySystem = new LotterySystemImpl();
+  @Inject
+  public LotteryServiceImpl(LotterySystem lotterySystem) {
+    this.lotterySystem = lotterySystem;
   }
   
   @Override
