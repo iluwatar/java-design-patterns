@@ -20,20 +20,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.proxy;
+package com.iluwatar.proxy.example1;
 
 import org.junit.Test;
+import org.mockito.InOrder;
+
+import com.iluwatar.proxy.example1.Wizard;
+import com.iluwatar.proxy.example1.WizardTower;
+
+import static org.mockito.Mockito.inOrder;
 
 /**
- * 
- * Application test
+ * Date: 12/28/15 - 9:18 PM
  *
+ * @author Jeroen Meulemeester
  */
-public class AppTest {
+public class WizardTowerTest extends StdOutTest {
 
   @Test
-  public void test() {
-    String[] args = {};
-    App.main(args);
+  public void testEnter() throws Exception {
+    final Wizard[] wizards = new Wizard[]{
+        new Wizard("Gandalf"),
+        new Wizard("Dumbledore"),
+        new Wizard("Oz"),
+        new Wizard("Merlin")
+    };
+
+    final WizardTower tower = new WizardTower();
+    for (final Wizard wizard : wizards) {
+      tower.enter(wizard);
+    }
+
+    final InOrder inOrder = inOrder(getStdOutMock());
+    inOrder.verify(getStdOutMock()).println("Gandalf enters the tower.");
+    inOrder.verify(getStdOutMock()).println("Dumbledore enters the tower.");
+    inOrder.verify(getStdOutMock()).println("Oz enters the tower.");
+    inOrder.verify(getStdOutMock()).println("Merlin enters the tower.");
+    inOrder.verifyNoMoreInteractions();
+
   }
+
 }
