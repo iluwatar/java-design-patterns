@@ -24,7 +24,7 @@ package com.iluwatar.hexagonal.notifications;
 
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 
-public class LotteryNotificationsImpl implements LotteryNotifications {
+public class StdOutNotifications implements LotteryNotifications {
 
   @Override
   public void notifyTicketSubmitted(PlayerDetails details) {

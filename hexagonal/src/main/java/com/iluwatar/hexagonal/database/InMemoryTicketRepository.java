@@ -20,44 +20,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.banking;
+package com.iluwatar.hexagonal.database;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
-import com.iluwatar.hexagonal.domain.LotteryConstants;
+import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 
 /**
  * 
- * Banking implementation
+ * Mock database for lottery tickets.
  *
  */
-public class WireTransfersImpl implements WireTransfers {
-
-  private static Map<String, Integer> accounts = new HashMap<>();
+public class InMemoryTicketRepository implements LotteryTicketRepository {
   
-  static {
-    accounts.put(LotteryConstants.SERVICE_BANK_ACCOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT_SALDO);
-  }
-  
-  @Override
-  public void setFunds(String bankAccount, int amount) {
-    accounts.put(bankAccount, amount);
-  }
+  private static Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
 
   @Override
-  public int getFunds(String bankAccount) {
-    return accounts.getOrDefault(bankAccount, 0);
-  }
-
-  @Override
-  public boolean transferFunds(int amount, String sourceBackAccount, String destinationBankAccount) {
-    if (accounts.getOrDefault(sourceBackAccount, 0) >= amount) {
-      accounts.put(sourceBackAccount, accounts.get(sourceBackAccount) - amount);
-      accounts.put(destinationBankAccount, accounts.get(destinationBankAccount) + amount);
-      return true;
+  public Optional<LotteryTicket> findById(LotteryTicketId id) {
+    LotteryTicket ticket = tickets.get(id);
+    if (ticket == null) {
+      return Optional.empty();
     } else {
-      return false;
+      return Optional.of(ticket);
     }
+  }
+
+  @Override
+  public Optional<LotteryTicketId> save(LotteryTicket ticket) {
+    LotteryTicketId id = new LotteryTicketId();
+    tickets.put(id, ticket);
+    return Optional.of(id);
+  }
+
+  @Override
+  public Map<LotteryTicketId, LotteryTicket> findAll() {
+    return tickets;
+  }
+
+  @Override
+  public void deleteAll() {
+    tickets.clear();
   }
 }

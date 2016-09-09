@@ -23,18 +23,18 @@
 package com.iluwatar.hexagonal;
 
 import com.google.inject.AbstractModule;
+import com.iluwatar.hexagonal.administration.ConsoleAdministration;
 import com.iluwatar.hexagonal.administration.LotteryAdministration;
-import com.iluwatar.hexagonal.administration.LotteryAdministrationImpl;
+import com.iluwatar.hexagonal.banking.InMemoryBank;
 import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.banking.WireTransfersImpl;
-import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
+import com.iluwatar.hexagonal.database.InMemoryTicketRepository;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.domain.LotterySystem;
 import com.iluwatar.hexagonal.domain.LotterySystemImpl;
 import com.iluwatar.hexagonal.notifications.LotteryNotifications;
-import com.iluwatar.hexagonal.notifications.LotteryNotificationsImpl;
+import com.iluwatar.hexagonal.notifications.StdOutNotifications;
+import com.iluwatar.hexagonal.service.ConsoleService;
 import com.iluwatar.hexagonal.service.LotteryService;
-import com.iluwatar.hexagonal.service.LotteryServiceImpl;
 
 /**
  * Guice module for testing dependencies
@@ -42,11 +42,11 @@ import com.iluwatar.hexagonal.service.LotteryServiceImpl;
 public class LotteryTestingModule extends AbstractModule {
   @Override
   protected void configure() {
-    bind(LotteryTicketRepository.class).to(LotteryTicketInMemoryRepository.class);
+    bind(LotteryTicketRepository.class).to(InMemoryTicketRepository.class);
     bind(LotterySystem.class).to(LotterySystemImpl.class);
-    bind(LotteryNotifications.class).to(LotteryNotificationsImpl.class);
-    bind(WireTransfers.class).to(WireTransfersImpl.class);
-    bind(LotteryAdministration.class).to(LotteryAdministrationImpl.class);
-    bind(LotteryService.class).to(LotteryServiceImpl.class);
+    bind(LotteryNotifications.class).to(StdOutNotifications.class);
+    bind(WireTransfers.class).to(InMemoryBank.class);
+    bind(LotteryAdministration.class).to(ConsoleAdministration.class);
+    bind(LotteryService.class).to(ConsoleService.class);
   }
 }

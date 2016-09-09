@@ -29,7 +29,7 @@ import java.util.Random;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.iluwatar.hexagonal.administration.LotteryAdministration;
-import com.iluwatar.hexagonal.banking.WireTransfersImpl;
+import com.iluwatar.hexagonal.banking.InMemoryBank;
 import com.iluwatar.hexagonal.domain.LotteryConstants;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
@@ -112,7 +112,7 @@ public class App {
     PLAYERS.add(PlayerDetails.create("ron@google.com", "637-738", "+09842354"));
     PLAYERS.add(PlayerDetails.create("xavier@google.com", "143-947", "+375245"));
     PLAYERS.add(PlayerDetails.create("harriet@google.com", "842-404", "+131243252"));
-    WireTransfersImpl wireTransfers = new WireTransfersImpl();
+    InMemoryBank wireTransfers = new InMemoryBank();
     Random random = new Random();
     for (int i = 0; i < PLAYERS.size(); i++) {
       wireTransfers.setFunds(PLAYERS.get(i).getBankAccount(), 

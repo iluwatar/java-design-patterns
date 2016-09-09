@@ -35,12 +35,12 @@ import java.util.Map;
  * Lottery administration implementation
  *
  */
-public class LotteryAdministrationImpl implements LotteryAdministration {
+public class ConsoleAdministration implements LotteryAdministration {
 
   private final LotterySystem lotterySystem;
 
   @Inject
-  public LotteryAdministrationImpl(LotterySystem lotterySystem) {
+  public ConsoleAdministration(LotterySystem lotterySystem) {
     this.lotterySystem = lotterySystem;
   }
   

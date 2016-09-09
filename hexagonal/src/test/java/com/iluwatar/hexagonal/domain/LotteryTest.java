@@ -33,16 +33,11 @@ import java.util.Optional;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import com.iluwatar.hexagonal.LotteryModule;
 import com.iluwatar.hexagonal.LotteryTestingModule;
-import com.iluwatar.hexagonal.domain.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.banking.WireTransfersImpl;
-import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
 import com.iluwatar.hexagonal.test.LotteryTestUtils;
 

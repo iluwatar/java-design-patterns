@@ -36,7 +36,7 @@ import java.util.Optional;
  * Implementation for lottery service
  *
  */
-public class LotteryServiceImpl implements LotteryService {
+public class ConsoleService implements LotteryService {
 
   private final LotterySystem lotterySystem;
 
@@ -44,7 +44,7 @@ public class LotteryServiceImpl implements LotteryService {
    * Constructor
    */
   @Inject
-  public LotteryServiceImpl(LotterySystem lotterySystem) {
+  public ConsoleService(LotterySystem lotterySystem) {
     this.lotterySystem = lotterySystem;
   }
   

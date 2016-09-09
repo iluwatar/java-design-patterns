@@ -34,7 +34,7 @@ import org.junit.Test;
  */
 public class WireTransfersTest {
 
-  private final WireTransfers bank = new WireTransfersImpl();
+  private final WireTransfers bank = new InMemoryBank();
   
   @Test
   public void testInit() {
