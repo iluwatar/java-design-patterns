@@ -62,7 +62,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="7" language="java" name="com.iluwatar.hexagonal.service.LotteryService" project="hexagonal"
+  <class id="7" language="java" name="com.iluwatar.hexagonal.domain.LotteryService" project="hexagonal"
     file="/hexagonal/src/main/java/com/iluwatar/hexagonal/service/ConsoleService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="113" width="421" x="2029" y="122"/>    
@@ -102,7 +102,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="11" language="java" name="com.iluwatar.hexagonal.administration.LotteryAdministration" 
+  <interface id="11" language="java" name="com.iluwatar.hexagonal.domain.LotteryAdministration"
     project="hexagonal" file="/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministration.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="113" width="320" x="2808" y="347"/>    
@@ -122,7 +122,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="com.iluwatar.hexagonal.administration.LotteryAdministration" project="hexagonal"
+  <class id="13" language="java" name="com.iluwatar.hexagonal.domain.LotteryAdministration" project="hexagonal"
     file="/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/ConsoleAdministration.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="131" width="320" x="2490" y="122"/>    
@@ -142,7 +142,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="15" language="java" name="com.iluwatar.hexagonal.service.LotteryService" project="hexagonal" 
+  <interface id="15" language="java" name="com.iluwatar.hexagonal.domain.LotteryService" project="hexagonal"
     file="/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="95" width="421" x="2347" y="347"/>    

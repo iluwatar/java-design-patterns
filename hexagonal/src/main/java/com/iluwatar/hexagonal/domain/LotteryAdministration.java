@@ -28,26 +28,26 @@ import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.notifications.LotteryNotifications;
 
 import java.util.Map;
-import java.util.Optional;
 
 /**
- * Lottery system
+ * 
+ * Lottery administration implementation
+ *
  */
-public class LotterySystem {
+public class LotteryAdministration {
 
   private final LotteryTicketRepository repository;
   private final LotteryNotifications notifications;
   private final WireTransfers wireTransfers;
+  private final LotteryTicketChecker checker;
 
-  /**
-   * Constructor
-   */
   @Inject
-  public LotterySystem(LotteryTicketRepository repository, LotteryNotifications notifications,
-                       WireTransfers wireTransfers) {
+  public LotteryAdministration(LotteryTicketRepository repository, LotteryNotifications notifications,
+                               WireTransfers wireTransfers) {
     this.repository = repository;
     this.notifications = notifications;
     this.wireTransfers = wireTransfers;
+    this.checker = new LotteryTicketChecker(this.repository);
   }
 
   /**
@@ -64,7 +64,7 @@ public class LotterySystem {
     LotteryNumbers numbers = LotteryNumbers.createRandom();
     Map<LotteryTicketId, LotteryTicket> tickets = getAllSubmittedTickets();
     for (LotteryTicketId id : tickets.keySet()) {
-      LotteryTicketCheckResult result = checkTicketForPrize(id, numbers);
+      LotteryTicketCheckResult result = checker.checkTicketForPrize(id, numbers);
       if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
         boolean transferred = wireTransfers.transferFunds(LotteryConstants.PRIZE_AMOUNT,
             LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());
@@ -85,38 +85,5 @@ public class LotterySystem {
    */
   public void resetLottery() {
     repository.deleteAll();
-  }
-
-  /**
-   * Submit lottery ticket to participate in the lottery
-   */
-  public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
-    boolean result = wireTransfers.transferFunds(LotteryConstants.TICKET_PRIZE,
-        ticket.getPlayerDetails().getBankAccount(), LotteryConstants.SERVICE_BANK_ACCOUNT);
-    if (result == false) {
-      notifications.notifyTicketSubmitError(ticket.getPlayerDetails());
-      return Optional.empty();
-    }
-    Optional<LotteryTicketId> optional = repository.save(ticket);
-    if (optional.isPresent()) {
-      notifications.notifyTicketSubmitted(ticket.getPlayerDetails());
-    }
-    return optional;
-  }
-
-  /**
-   * Check if lottery ticket has won
-   */
-  public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
-    Optional<LotteryTicket> optional = repository.findById(id);
-    if (optional.isPresent()) {
-      if (optional.get().getNumbers().equals(winningNumbers)) {
-        return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.WIN_PRIZE, 1000);
-      } else {
-        return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.NO_PRIZE);
-      }
-    } else {
-      return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.TICKET_NOT_SUBMITTED);
-    }
   }
 }

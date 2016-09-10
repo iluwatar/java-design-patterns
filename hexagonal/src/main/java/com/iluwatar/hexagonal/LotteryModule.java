@@ -29,7 +29,6 @@ import com.iluwatar.hexagonal.database.InMemoryTicketRepository;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.notifications.LotteryNotifications;
 import com.iluwatar.hexagonal.notifications.StdOutNotifications;
-import com.iluwatar.hexagonal.service.LotteryService;
 
 /**
  * Guice module for binding production dependencies

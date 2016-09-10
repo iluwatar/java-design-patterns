@@ -20,10 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.service;
+package com.iluwatar.hexagonal.domain;
 
 import com.google.inject.Inject;
-import com.iluwatar.hexagonal.domain.*;
+import com.iluwatar.hexagonal.banking.WireTransfers;
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+import com.iluwatar.hexagonal.notifications.LotteryNotifications;
 
 import java.util.Optional;
 
@@ -34,27 +36,44 @@ import java.util.Optional;
  */
 public class LotteryService {
 
-  private final LotterySystem lotterySystem;
+  private final LotteryTicketRepository repository;
+  private final LotteryNotifications notifications;
+  private final WireTransfers wireTransfers;
+  private final LotteryTicketChecker checker;
 
   /**
    * Constructor
    */
   @Inject
-  public LotteryService(LotterySystem lotterySystem) {
-    this.lotterySystem = lotterySystem;
+  public LotteryService(LotteryTicketRepository repository, LotteryNotifications notifications,
+                        WireTransfers wireTransfers) {
+    this.repository = repository;
+    this.notifications = notifications;
+    this.wireTransfers = wireTransfers;
+    this.checker = new LotteryTicketChecker(this.repository);
   }
 
   /**
    * Submit lottery ticket to participate in the lottery
    */
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
-    return lotterySystem.submitTicket(ticket);
+    boolean result = wireTransfers.transferFunds(LotteryConstants.TICKET_PRIZE,
+        ticket.getPlayerDetails().getBankAccount(), LotteryConstants.SERVICE_BANK_ACCOUNT);
+    if (result == false) {
+      notifications.notifyTicketSubmitError(ticket.getPlayerDetails());
+      return Optional.empty();
+    }
+    Optional<LotteryTicketId> optional = repository.save(ticket);
+    if (optional.isPresent()) {
+      notifications.notifyTicketSubmitted(ticket.getPlayerDetails());
+    }
+    return optional;
   }
 
   /**
    * Check if lottery ticket has won
    */
   public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
-    return lotterySystem.checkTicketForPrize(id, winningNumbers);
+    return checker.checkTicketForPrize(id, winningNumbers);
   }
 }

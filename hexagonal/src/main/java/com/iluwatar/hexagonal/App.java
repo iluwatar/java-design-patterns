@@ -28,13 +28,13 @@ import java.util.Random;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.iluwatar.hexagonal.administration.LotteryAdministration;
+import com.iluwatar.hexagonal.domain.LotteryAdministration;
 import com.iluwatar.hexagonal.banking.InMemoryBank;
 import com.iluwatar.hexagonal.domain.LotteryConstants;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
-import com.iluwatar.hexagonal.service.LotteryService;
+import com.iluwatar.hexagonal.domain.LotteryService;
 
 /**
  * 
