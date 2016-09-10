@@ -23,17 +23,12 @@
 package com.iluwatar.hexagonal;
 
 import com.google.inject.AbstractModule;
-import com.iluwatar.hexagonal.administration.LotteryAdministration;
-import com.iluwatar.hexagonal.administration.ConsoleAdministration;
 import com.iluwatar.hexagonal.banking.InMemoryBank;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.database.InMemoryTicketRepository;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.domain.LotterySystem;
-import com.iluwatar.hexagonal.domain.LotterySystemImpl;
 import com.iluwatar.hexagonal.notifications.LotteryNotifications;
 import com.iluwatar.hexagonal.notifications.StdOutNotifications;
-import com.iluwatar.hexagonal.service.ConsoleService;
 import com.iluwatar.hexagonal.service.LotteryService;
 
 /**
@@ -43,10 +38,7 @@ public class LotteryModule extends AbstractModule {
   @Override
   protected void configure() {
     bind(LotteryTicketRepository.class).to(InMemoryTicketRepository.class);
-    bind(LotterySystem.class).to(LotterySystemImpl.class);
     bind(LotteryNotifications.class).to(StdOutNotifications.class);
     bind(WireTransfers.class).to(InMemoryBank.class);
-    bind(LotteryAdministration.class).to(ConsoleAdministration.class);
-    bind(LotteryService.class).to(ConsoleService.class);
   }
 }

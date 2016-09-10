@@ -22,27 +22,39 @@
  */
 package com.iluwatar.hexagonal.service;
 
-import com.iluwatar.hexagonal.domain.LotteryNumbers;
-import com.iluwatar.hexagonal.domain.LotteryTicket;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
-import com.iluwatar.hexagonal.domain.LotteryTicketId;
+import com.google.inject.Inject;
+import com.iluwatar.hexagonal.domain.*;
 
 import java.util.Optional;
 
 /**
  * 
- * Interface for submitting and checking lottery tickets.
+ * Implementation for lottery service
  *
  */
-public interface LotteryService {
+public class LotteryService {
+
+  private final LotterySystem lotterySystem;
+
+  /**
+   * Constructor
+   */
+  @Inject
+  public LotteryService(LotterySystem lotterySystem) {
+    this.lotterySystem = lotterySystem;
+  }
 
   /**
    * Submit lottery ticket to participate in the lottery
    */
-  Optional<LotteryTicketId> submitTicket(LotteryTicket ticket);
+  public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
+    return lotterySystem.submitTicket(ticket);
+  }
 
   /**
    * Check if lottery ticket has won
    */
-  LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers);
+  public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
+    return lotterySystem.checkTicketForPrize(id, winningNumbers);
+  }
 }

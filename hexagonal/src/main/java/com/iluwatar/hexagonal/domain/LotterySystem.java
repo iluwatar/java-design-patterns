@@ -22,37 +22,101 @@
  */
 package com.iluwatar.hexagonal.domain;
 
+import com.google.inject.Inject;
+import com.iluwatar.hexagonal.banking.WireTransfers;
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+import com.iluwatar.hexagonal.notifications.LotteryNotifications;
+
 import java.util.Map;
 import java.util.Optional;
 
 /**
- * Lottery system interface
+ * Lottery system
  */
-public interface LotterySystem {
+public class LotterySystem {
+
+  private final LotteryTicketRepository repository;
+  private final LotteryNotifications notifications;
+  private final WireTransfers wireTransfers;
+
+  /**
+   * Constructor
+   */
+  @Inject
+  public LotterySystem(LotteryTicketRepository repository, LotteryNotifications notifications,
+                       WireTransfers wireTransfers) {
+    this.repository = repository;
+    this.notifications = notifications;
+    this.wireTransfers = wireTransfers;
+  }
 
   /**
    * Get all the lottery tickets submitted for lottery
    */
-  Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets();
+  public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
+    return repository.findAll();
+  }
 
   /**
    * Draw lottery numbers
    */
-  LotteryNumbers performLottery();
+  public LotteryNumbers performLottery() {
+    LotteryNumbers numbers = LotteryNumbers.createRandom();
+    Map<LotteryTicketId, LotteryTicket> tickets = getAllSubmittedTickets();
+    for (LotteryTicketId id : tickets.keySet()) {
+      LotteryTicketCheckResult result = checkTicketForPrize(id, numbers);
+      if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
+        boolean transferred = wireTransfers.transferFunds(LotteryConstants.PRIZE_AMOUNT,
+            LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());
+        if (transferred) {
+          notifications.notifyPrize(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+        } else {
+          notifications.notifyPrizeError(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+        }
+      } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
+        notifications.notifyNoWin(tickets.get(id).getPlayerDetails());
+      }
+    }
+    return numbers;
+  }
 
   /**
    * Begin new lottery round
    */
-  void resetLottery();
+  public void resetLottery() {
+    repository.deleteAll();
+  }
 
   /**
    * Submit lottery ticket to participate in the lottery
    */
-  Optional<LotteryTicketId> submitTicket(LotteryTicket ticket);
+  public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
+    boolean result = wireTransfers.transferFunds(LotteryConstants.TICKET_PRIZE,
+        ticket.getPlayerDetails().getBankAccount(), LotteryConstants.SERVICE_BANK_ACCOUNT);
+    if (result == false) {
+      notifications.notifyTicketSubmitError(ticket.getPlayerDetails());
+      return Optional.empty();
+    }
+    Optional<LotteryTicketId> optional = repository.save(ticket);
+    if (optional.isPresent()) {
+      notifications.notifyTicketSubmitted(ticket.getPlayerDetails());
+    }
+    return optional;
+  }
 
   /**
    * Check if lottery ticket has won
    */
-  LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers);
-
+  public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
+    Optional<LotteryTicket> optional = repository.findById(id);
+    if (optional.isPresent()) {
+      if (optional.get().getNumbers().equals(winningNumbers)) {
+        return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.WIN_PRIZE, 1000);
+      } else {
+        return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.NO_PRIZE);
+      }
+    } else {
+      return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.TICKET_NOT_SUBMITTED);
+    }
+  }
 }

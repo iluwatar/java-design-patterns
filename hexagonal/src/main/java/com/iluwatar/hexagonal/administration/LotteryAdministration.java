@@ -22,7 +22,9 @@
  */
 package com.iluwatar.hexagonal.administration;
 
+import com.google.inject.Inject;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
+import com.iluwatar.hexagonal.domain.LotterySystem;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 
@@ -30,24 +32,36 @@ import java.util.Map;
 
 /**
  * 
- * Administrator interface for lottery service.
+ * Lottery administration implementation
  *
  */
-public interface LotteryAdministration {
+public class LotteryAdministration {
+
+  private final LotterySystem lotterySystem;
+
+  @Inject
+  public LotteryAdministration(LotterySystem lotterySystem) {
+    this.lotterySystem = lotterySystem;
+  }
 
   /**
    * Get all the lottery tickets submitted for lottery
    */
-  Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets();
+  public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
+    return lotterySystem.getAllSubmittedTickets();
+  }
 
   /**
    * Draw lottery numbers
    */
-  LotteryNumbers performLottery();
+  public LotteryNumbers performLottery() {
+    return lotterySystem.performLottery();
+  }
 
   /**
    * Begin new lottery round
    */
-  void resetLottery();
-  
+  public void resetLottery() {
+    lotterySystem.resetLottery();
+  }
 }
