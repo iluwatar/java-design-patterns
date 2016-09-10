@@ -33,7 +33,7 @@ import java.util.Optional;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import com.iluwatar.hexagonal.LotteryTestingModule;
+import com.iluwatar.hexagonal.module.LotteryTestingModule;
 import org.junit.Before;
 import org.junit.Test;
 

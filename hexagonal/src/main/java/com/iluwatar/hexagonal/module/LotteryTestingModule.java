@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal;
+package com.iluwatar.hexagonal.module;
 
 import com.google.inject.AbstractModule;
 import com.iluwatar.hexagonal.banking.InMemoryBank;
@@ -31,9 +31,9 @@ import com.iluwatar.hexagonal.notifications.LotteryNotifications;
 import com.iluwatar.hexagonal.notifications.StdOutNotifications;
 
 /**
- * Guice module for binding production dependencies
+ * Guice module for testing dependencies
  */
-public class LotteryModule extends AbstractModule {
+public class LotteryTestingModule extends AbstractModule {
   @Override
   protected void configure() {
     bind(LotteryTicketRepository.class).to(InMemoryTicketRepository.class);

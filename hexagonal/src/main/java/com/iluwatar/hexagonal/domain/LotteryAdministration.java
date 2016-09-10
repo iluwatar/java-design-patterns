@@ -41,6 +41,9 @@ public class LotteryAdministration {
   private final WireTransfers wireTransfers;
   private final LotteryTicketChecker checker;
 
+  /**
+   * Constructor
+   */
   @Inject
   public LotteryAdministration(LotteryTicketRepository repository, LotteryNotifications notifications,
                                WireTransfers wireTransfers) {

@@ -34,8 +34,17 @@ public class LotteryTicketId {
   public LotteryTicketId() {
     id = UUID.randomUUID();
   }
+
+  public LotteryTicketId(String str) {
+    id = UUID.fromString(str);
+  }
   
   public UUID getId() {
     return id;
+  }
+
+  @Override
+  public String toString() {
+    return id.toString();
   }
 }

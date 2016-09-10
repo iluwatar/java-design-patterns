@@ -62,6 +62,11 @@ public class LotteryTicket {
   }
 
   @Override
+  public String toString() {
+    return playerDetails.toString() + " " + lotteryNumbers.toString();
+  }
+
+  @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
