@@ -25,8 +25,8 @@ package com.iluwatar.hexagonal.module;
 import com.google.inject.AbstractModule;
 import com.iluwatar.hexagonal.banking.InMemoryBank;
 import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.database.InMemoryTicketRepository;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+import com.iluwatar.hexagonal.database.MongoTicketRepository;
 import com.iluwatar.hexagonal.notifications.LotteryNotifications;
 import com.iluwatar.hexagonal.notifications.StdOutNotifications;
 
@@ -36,7 +36,7 @@ import com.iluwatar.hexagonal.notifications.StdOutNotifications;
 public class LotteryModule extends AbstractModule {
   @Override
   protected void configure() {
-    bind(LotteryTicketRepository.class).to(InMemoryTicketRepository.class);
+    bind(LotteryTicketRepository.class).to(MongoTicketRepository.class);
     bind(LotteryNotifications.class).to(StdOutNotifications.class);
     bind(WireTransfers.class).to(InMemoryBank.class);
   }
