@@ -20,47 +20,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.service;
+package com.iluwatar.hexagonal.domain;
+
+import com.google.inject.Inject;
+import com.iluwatar.hexagonal.banking.WireTransfers;
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+import com.iluwatar.hexagonal.notifications.LotteryNotifications;
 
 import java.util.Optional;
-
-import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.banking.WireTransfersImpl;
-import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
-import com.iluwatar.hexagonal.domain.LotteryConstants;
-import com.iluwatar.hexagonal.domain.LotteryNumbers;
-import com.iluwatar.hexagonal.domain.LotteryTicket;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
-import com.iluwatar.hexagonal.domain.LotteryTicketId;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
-import com.iluwatar.hexagonal.notifications.LotteryNotifications;
-import com.iluwatar.hexagonal.notifications.LotteryNotificationsImpl;
 
 /**
  * 
  * Implementation for lottery service
  *
  */
-public class LotteryServiceImpl implements LotteryService {
+public class LotteryService {
 
   private final LotteryTicketRepository repository;
-
-  private final WireTransfers bank = new WireTransfersImpl();
-
-  private final LotteryNotifications notifications = new LotteryNotificationsImpl();
+  private final LotteryNotifications notifications;
+  private final WireTransfers wireTransfers;
+  private final LotteryTicketChecker checker;
 
   /**
    * Constructor
    */
-  public LotteryServiceImpl() {
-    repository = new LotteryTicketInMemoryRepository();
+  @Inject
+  public LotteryService(LotteryTicketRepository repository, LotteryNotifications notifications,
+                        WireTransfers wireTransfers) {
+    this.repository = repository;
+    this.notifications = notifications;
+    this.wireTransfers = wireTransfers;
+    this.checker = new LotteryTicketChecker(this.repository);
   }
-  
-  @Override
+
+  /**
+   * Submit lottery ticket to participate in the lottery
+   */
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
-    boolean result = bank.transferFunds(LotteryConstants.TICKET_PRIZE, ticket.getPlayerDetails().getBankAccount(),
-        LotteryConstants.SERVICE_BANK_ACCOUNT);
+    boolean result = wireTransfers.transferFunds(LotteryConstants.TICKET_PRIZE,
+        ticket.getPlayerDetails().getBankAccount(), LotteryConstants.SERVICE_BANK_ACCOUNT);
     if (result == false) {
       notifications.notifyTicketSubmitError(ticket.getPlayerDetails());
       return Optional.empty();
@@ -72,17 +70,10 @@ public class LotteryServiceImpl implements LotteryService {
     return optional;
   }
 
-  @Override
+  /**
+   * Check if lottery ticket has won
+   */
   public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
-    Optional<LotteryTicket> optional = repository.findById(id);
-    if (optional.isPresent()) {
-      if (optional.get().getNumbers().equals(winningNumbers)) {
-        return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 1000);
-      } else {
-        return new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
-      }
-    } else {
-      return new LotteryTicketCheckResult(CheckResult.TICKET_NOT_SUBMITTED);
-    }
+    return checker.checkTicketForPrize(id, winningNumbers);
   }
 }

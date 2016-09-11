@@ -32,7 +32,7 @@ import com.iluwatar.hexagonal.domain.LotteryConstants;
  * Banking implementation
  *
  */
-public class WireTransfersImpl implements WireTransfers {
+public class InMemoryBank implements WireTransfers {
 
   private static Map<String, Integer> accounts = new HashMap<>();
   

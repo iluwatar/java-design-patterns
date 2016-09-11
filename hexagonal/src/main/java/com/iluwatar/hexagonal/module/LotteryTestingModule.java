@@ -20,31 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.banking;
+package com.iluwatar.hexagonal.module;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
+import com.google.inject.AbstractModule;
+import com.iluwatar.hexagonal.banking.InMemoryBank;
+import com.iluwatar.hexagonal.banking.WireTransfers;
+import com.iluwatar.hexagonal.database.InMemoryTicketRepository;
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+import com.iluwatar.hexagonal.notifications.LotteryNotifications;
+import com.iluwatar.hexagonal.notifications.StdOutNotifications;
 
 /**
- * 
- * Tests for banking
- *
+ * Guice module for testing dependencies
  */
-public class WireTransfersTest {
-
-  private final WireTransfers bank = new InMemoryBank();
-  
-  @Test
-  public void testInit() {
-    assertEquals(bank.getFunds("foo"), 0);
-    bank.setFunds("foo", 100);
-    assertEquals(bank.getFunds("foo"), 100);
-    bank.setFunds("bar", 150);
-    assertEquals(bank.getFunds("bar"), 150);
-    assertTrue(bank.transferFunds(50, "bar", "foo"));
-    assertEquals(bank.getFunds("foo"), 150);
-    assertEquals(bank.getFunds("bar"), 100);
+public class LotteryTestingModule extends AbstractModule {
+  @Override
+  protected void configure() {
+    bind(LotteryTicketRepository.class).to(InMemoryTicketRepository.class);
+    bind(LotteryNotifications.class).to(StdOutNotifications.class);
+    bind(WireTransfers.class).to(InMemoryBank.class);
   }
 }

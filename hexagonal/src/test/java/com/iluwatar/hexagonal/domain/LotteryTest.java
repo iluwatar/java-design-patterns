@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.lottery;
+package com.iluwatar.hexagonal.domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -30,22 +30,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.iluwatar.hexagonal.module.LotteryTestingModule;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.iluwatar.hexagonal.administration.LotteryAdministration;
-import com.iluwatar.hexagonal.administration.LotteryAdministrationImpl;
 import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.banking.WireTransfersImpl;
-import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
-import com.iluwatar.hexagonal.domain.LotteryNumbers;
-import com.iluwatar.hexagonal.domain.LotteryTicket;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
-import com.iluwatar.hexagonal.domain.LotteryTicketId;
-import com.iluwatar.hexagonal.service.LotteryService;
-import com.iluwatar.hexagonal.service.LotteryServiceImpl;
 import com.iluwatar.hexagonal.test.LotteryTestUtils;
 
 /**
@@ -55,25 +48,30 @@ import com.iluwatar.hexagonal.test.LotteryTestUtils;
  */
 public class LotteryTest {
 
-  private final LotteryAdministration admin = new LotteryAdministrationImpl();
-  private final LotteryService service = new LotteryServiceImpl();
-  private final LotteryTicketRepository repository = new LotteryTicketInMemoryRepository();
-  private final WireTransfers wireTransfers = new WireTransfersImpl();
-  
+  private Injector injector;
+  @Inject
+  private LotteryAdministration administration;
+  @Inject
+  private LotteryService service;
+  @Inject
+  private WireTransfers wireTransfers;
+
+  public LotteryTest() {
+    this.injector = Guice.createInjector(new LotteryTestingModule());
+  }
+
   @Before
-  public void clear() {
-    repository.deleteAll();
+  public void setup() {
+    injector.injectMembers(this);
+    // add funds to the test player's bank account
+    wireTransfers.setFunds("123-12312", 100);
   }
   
   @Test
   public void testLottery() {
-    
-    // setup bank account with funds
-    wireTransfers.setFunds("123-12312", 100);
-    
     // admin resets the lottery
-    admin.resetLottery();
-    assertEquals(admin.getAllSubmittedTickets().size(), 0);
+    administration.resetLottery();
+    assertEquals(administration.getAllSubmittedTickets().size(), 0);
     
     // players submit the lottery tickets
     Optional<LotteryTicketId> ticket1 = service.submitTicket(LotteryTestUtils.createLotteryTicket("cvt@bbb.com",
@@ -85,19 +83,19 @@ public class LotteryTest {
     Optional<LotteryTicketId> ticket3 = service.submitTicket(LotteryTestUtils.createLotteryTicket("arg@boo.com",
         "123-12312", "+32421255", new HashSet<>(Arrays.asList(6, 8, 13, 19))));
     assertTrue(ticket3.isPresent());
-    assertEquals(admin.getAllSubmittedTickets().size(), 3);
+    assertEquals(administration.getAllSubmittedTickets().size(), 3);
     
     // perform lottery
-    LotteryNumbers winningNumbers = admin.performLottery();
+    LotteryNumbers winningNumbers = administration.performLottery();
 
     // cheat a bit for testing sake, use winning numbers to submit another ticket
     Optional<LotteryTicketId> ticket4 = service.submitTicket(LotteryTestUtils.createLotteryTicket("lucky@orb.com",
         "123-12312", "+12421255", winningNumbers.getNumbers()));
     assertTrue(ticket4.isPresent());
-    assertEquals(admin.getAllSubmittedTickets().size(), 4);
+    assertEquals(administration.getAllSubmittedTickets().size(), 4);
     
     // check winners
-    Map<LotteryTicketId, LotteryTicket> tickets = admin.getAllSubmittedTickets();
+    Map<LotteryTicketId, LotteryTicket> tickets = administration.getAllSubmittedTickets();
     for (LotteryTicketId id: tickets.keySet()) {
       LotteryTicketCheckResult checkResult = service.checkTicketForPrize(id, winningNumbers);
       assertTrue(checkResult.getResult() != CheckResult.TICKET_NOT_SUBMITTED);

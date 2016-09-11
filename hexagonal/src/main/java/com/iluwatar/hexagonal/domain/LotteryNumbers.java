@@ -92,7 +92,12 @@ public class LotteryNumbers {
       }
     }
   }
-  
+
+  @Override
+  public String toString() {
+    return "LotteryNumbers{" + "numbers=" + numbers + '}';
+  }
+
   /**
    * 
    * Helper class for generating random numbers.

@@ -20,31 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.banking;
+package com.iluwatar.hexagonal.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 
-import org.junit.Test;
+import java.util.Optional;
 
 /**
- * 
- * Tests for banking
- *
+ * Lottery ticket checker
  */
-public class WireTransfersTest {
+public class LotteryTicketChecker {
 
-  private final WireTransfers bank = new InMemoryBank();
-  
-  @Test
-  public void testInit() {
-    assertEquals(bank.getFunds("foo"), 0);
-    bank.setFunds("foo", 100);
-    assertEquals(bank.getFunds("foo"), 100);
-    bank.setFunds("bar", 150);
-    assertEquals(bank.getFunds("bar"), 150);
-    assertTrue(bank.transferFunds(50, "bar", "foo"));
-    assertEquals(bank.getFunds("foo"), 150);
-    assertEquals(bank.getFunds("bar"), 100);
+  private final LotteryTicketRepository repository;
+
+  public LotteryTicketChecker(LotteryTicketRepository repository) {
+    this.repository = repository;
+  }
+
+  /**
+   * Check if lottery ticket has won
+   */
+  public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
+    Optional<LotteryTicket> optional = repository.findById(id);
+    if (optional.isPresent()) {
+      if (optional.get().getNumbers().equals(winningNumbers)) {
+        return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.WIN_PRIZE, 1000);
+      } else {
+        return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.NO_PRIZE);
+      }
+    } else {
+      return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.TICKET_NOT_SUBMITTED);
+    }
   }
 }

@@ -20,67 +20,72 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.administration;
+package com.iluwatar.hexagonal.domain;
+
+import com.google.inject.Inject;
+import com.iluwatar.hexagonal.banking.WireTransfers;
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+import com.iluwatar.hexagonal.notifications.LotteryNotifications;
 
 import java.util.Map;
-
-import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.banking.WireTransfersImpl;
-import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
-import com.iluwatar.hexagonal.domain.LotteryConstants;
-import com.iluwatar.hexagonal.domain.LotteryNumbers;
-import com.iluwatar.hexagonal.domain.LotteryTicket;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
-import com.iluwatar.hexagonal.domain.LotteryTicketId;
-import com.iluwatar.hexagonal.notifications.LotteryNotifications;
-import com.iluwatar.hexagonal.notifications.LotteryNotificationsImpl;
-import com.iluwatar.hexagonal.service.LotteryService;
-import com.iluwatar.hexagonal.service.LotteryServiceImpl;
 
 /**
  * 
  * Lottery administration implementation
  *
  */
-public class LotteryAdministrationImpl implements LotteryAdministration {
+public class LotteryAdministration {
 
   private final LotteryTicketRepository repository;
-  private final LotteryService service = new LotteryServiceImpl();
-  private final LotteryNotifications notifications = new LotteryNotificationsImpl();
-  private final WireTransfers bank = new WireTransfersImpl();
-  public LotteryAdministrationImpl() {
-    repository = new LotteryTicketInMemoryRepository();
+  private final LotteryNotifications notifications;
+  private final WireTransfers wireTransfers;
+  private final LotteryTicketChecker checker;
+
+  /**
+   * Constructor
+   */
+  @Inject
+  public LotteryAdministration(LotteryTicketRepository repository, LotteryNotifications notifications,
+                               WireTransfers wireTransfers) {
+    this.repository = repository;
+    this.notifications = notifications;
+    this.wireTransfers = wireTransfers;
+    this.checker = new LotteryTicketChecker(this.repository);
   }
-  
-  @Override
+
+  /**
+   * Get all the lottery tickets submitted for lottery
+   */
   public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
     return repository.findAll();
   }
 
-  @Override
+  /**
+   * Draw lottery numbers
+   */
   public LotteryNumbers performLottery() {
     LotteryNumbers numbers = LotteryNumbers.createRandom();
     Map<LotteryTicketId, LotteryTicket> tickets = getAllSubmittedTickets();
-    for (LotteryTicketId id: tickets.keySet()) {
-      LotteryTicketCheckResult result = service.checkTicketForPrize(id, numbers);
-      if (result.getResult().equals(CheckResult.WIN_PRIZE)) {
-        boolean transferred = bank.transferFunds(LotteryConstants.PRIZE_AMOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT, 
-            tickets.get(id).getPlayerDetails().getBankAccount());
+    for (LotteryTicketId id : tickets.keySet()) {
+      LotteryTicketCheckResult result = checker.checkTicketForPrize(id, numbers);
+      if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
+        boolean transferred = wireTransfers.transferFunds(LotteryConstants.PRIZE_AMOUNT,
+            LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());
         if (transferred) {
           notifications.notifyPrize(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
         } else {
           notifications.notifyPrizeError(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
         }
-      } else if (result.getResult().equals(CheckResult.NO_PRIZE)) {
+      } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
         notifications.notifyNoWin(tickets.get(id).getPlayerDetails());
       }
     }
     return numbers;
   }
 
-  @Override
+  /**
+   * Begin new lottery round
+   */
   public void resetLottery() {
     repository.deleteAll();
   }

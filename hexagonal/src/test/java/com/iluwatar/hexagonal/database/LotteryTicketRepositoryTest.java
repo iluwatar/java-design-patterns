@@ -30,8 +30,6 @@ import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.database.LotteryTicketInMemoryRepository;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.test.LotteryTestUtils;
@@ -43,7 +41,7 @@ import com.iluwatar.hexagonal.test.LotteryTestUtils;
  */
 public class LotteryTicketRepositoryTest {
 
-  private final LotteryTicketRepository repository = new LotteryTicketInMemoryRepository();
+  private final LotteryTicketRepository repository = new InMemoryTicketRepository();
   
   @Before
   public void clear() {
@@ -52,7 +50,7 @@ public class LotteryTicketRepositoryTest {
   
   @Test
   public void testCrudOperations() {
-    LotteryTicketRepository repository = new LotteryTicketInMemoryRepository();
+    LotteryTicketRepository repository = new InMemoryTicketRepository();
     assertEquals(repository.findAll().size(), 0);
     LotteryTicket ticket = LotteryTestUtils.createLotteryTicket();
     Optional<LotteryTicketId> id = repository.save(ticket);

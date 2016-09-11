@@ -20,48 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.database;
+package com.iluwatar.hexagonal.module;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-
-import com.iluwatar.hexagonal.domain.LotteryTicket;
-import com.iluwatar.hexagonal.domain.LotteryTicketId;
+import com.google.inject.AbstractModule;
+import com.iluwatar.hexagonal.banking.InMemoryBank;
+import com.iluwatar.hexagonal.banking.WireTransfers;
+import com.iluwatar.hexagonal.database.InMemoryTicketRepository;
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+import com.iluwatar.hexagonal.notifications.LotteryNotifications;
+import com.iluwatar.hexagonal.notifications.StdOutNotifications;
 
 /**
- * 
- * Mock database for lottery tickets.
- *
+ * Guice module for binding production dependencies
  */
-public class LotteryTicketInMemoryRepository implements LotteryTicketRepository {
-  
-  private static Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
-
+public class LotteryModule extends AbstractModule {
   @Override
-  public Optional<LotteryTicket> findById(LotteryTicketId id) {
-    LotteryTicket ticket = tickets.get(id);
-    if (ticket == null) {
-      return Optional.empty();
-    } else {
-      return Optional.of(ticket);
-    }
-  }
-
-  @Override
-  public Optional<LotteryTicketId> save(LotteryTicket ticket) {
-    LotteryTicketId id = new LotteryTicketId();
-    tickets.put(id, ticket);
-    return Optional.of(id);
-  }
-
-  @Override
-  public Map<LotteryTicketId, LotteryTicket> findAll() {
-    return tickets;
-  }
-
-  @Override
-  public void deleteAll() {
-    tickets.clear();
+  protected void configure() {
+    bind(LotteryTicketRepository.class).to(InMemoryTicketRepository.class);
+    bind(LotteryNotifications.class).to(StdOutNotifications.class);
+    bind(WireTransfers.class).to(InMemoryBank.class);
   }
 }

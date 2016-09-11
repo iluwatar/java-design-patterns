@@ -20,34 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.administration;
+package com.iluwatar.hexagonal.domain;
 
-import java.util.Map;
+import org.junit.Test;
 
-import com.iluwatar.hexagonal.domain.LotteryNumbers;
-import com.iluwatar.hexagonal.domain.LotteryTicket;
-import com.iluwatar.hexagonal.domain.LotteryTicketId;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
- * 
- * Administrator interface for lottery service.
- *
+ * Tests for lottery ticket id
  */
-public interface LotteryAdministration {
+public class LotteryTicketIdTest {
 
-  /**
-   * Get all the lottery tickets submitted for lottery
-   */
-  Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets();
-
-  /**
-   * Draw lottery numbers
-   */
-  LotteryNumbers performLottery();
-
-  /**
-   * Begin new lottery round
-   */
-  void resetLottery();
-  
+  @Test
+  public void testEquals() {
+    LotteryTicketId ticketId1 = new LotteryTicketId();
+    LotteryTicketId ticketId2 = new LotteryTicketId();
+    LotteryTicketId ticketId3 = new LotteryTicketId();
+    assertFalse(ticketId1.equals(ticketId2));
+    assertFalse(ticketId2.equals(ticketId3));
+    LotteryTicketId ticketId4 = new LotteryTicketId(ticketId1.getId());
+    assertTrue(ticketId1.equals(ticketId4));
+  }
 }
