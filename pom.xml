@@ -48,6 +48,7 @@
         <htmlunit.version>2.22</htmlunit.version>
         <urm.version>1.4.1</urm.version>
         <guice.version>4.0</guice.version>
+        <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -241,6 +242,11 @@
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
                 <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>${mongo-java-driver.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
