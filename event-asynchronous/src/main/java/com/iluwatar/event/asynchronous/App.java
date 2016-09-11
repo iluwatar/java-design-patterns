@@ -48,6 +48,8 @@ import java.util.Scanner;
  */
 public class App {
 
+  public static final String PROP_FILE_NAME = "config.properties";
+
   boolean interactiveMode = false;
 
   /**
@@ -68,15 +70,14 @@ public class App {
    */
   public void setUp() {
     Properties prop = new Properties();
-    String propFileName = "config.properties";
 
-    InputStream inputStream = App.class.getClassLoader().getResourceAsStream(propFileName);
+    InputStream inputStream = App.class.getClassLoader().getResourceAsStream(PROP_FILE_NAME);
 
     if (inputStream != null) {
       try {
         prop.load(inputStream);
       } catch (IOException e) {
-        System.out.println(propFileName + " was not found. Defaulting to non-interactive mode.");
+        System.out.println(PROP_FILE_NAME + " was not found. Defaulting to non-interactive mode.");
       }
       String property = prop.getProperty("INTERACTIVE_MODE");
       if (property.equalsIgnoreCase("YES")) {
@@ -104,23 +105,23 @@ public class App {
 
     try {
       // Create an Asynchronous event.
-      int aEventId = eventManager.createAsyncEvent(60);
+      int aEventId = eventManager.createAsync(60);
       System.out.println("Event [" + aEventId + "] has been created.");
-      eventManager.startEvent(aEventId);
+      eventManager.start(aEventId);
       System.out.println("Event [" + aEventId + "] has been started.");
 
       // Create a Synchronous event.
-      int sEventId = eventManager.createSyncEvent(60);
+      int sEventId = eventManager.create(60);
       System.out.println("Event [" + sEventId + "] has been created.");
-      eventManager.startEvent(sEventId);
+      eventManager.start(sEventId);
       System.out.println("Event [" + sEventId + "] has been started.");
 
-      eventManager.getStatus(aEventId);
-      eventManager.getStatus(sEventId);
+      eventManager.status(aEventId);
+      eventManager.status(sEventId);
 
-      eventManager.stopEvent(aEventId);
+      eventManager.cancel(aEventId);
       System.out.println("Event [" + aEventId + "] has been stopped.");
-      eventManager.stopEvent(sEventId);
+      eventManager.cancel(sEventId);
       System.out.println("Event [" + sEventId + "] has been stopped.");
 
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
@@ -136,35 +137,33 @@ public class App {
     EventManager eventManager = new EventManager();
 
     Scanner s = new Scanner(System.in);
-    int option = 0;
-    option = -1;
+    int option = -1;
     while (option != 5) {
-      System.out
-          .println("(1) START_EVENT \n(2) STOP_EVENT \n(3) STATUS_OF_EVENT \n(4) STATUS_OF_ALL_EVENTS \n(5) EXIT");
+      System.out.println("Hello. Would you like to boil some eggs?");
+      System.out.println(
+          "(1) BOIL AN EGG \n(2) STOP BOILING THIS EGG \n(3) HOW IS MY EGG? \n(4) HOW ARE MY EGGS? \n(5) EXIT");
       System.out.print("Choose [1,2,3,4,5]: ");
       option = s.nextInt();
 
       if (option == 1) {
         s.nextLine();
-        System.out.print("(A)sync or (S)ync event?: ");
+        System.out.print("Boil multiple eggs at once (A) or boil them one-by-one (S)?: ");
         String eventType = s.nextLine();
-        System.out.print("How long should this event run for (in seconds)?: ");
+        System.out.print("How long should this egg be boiled for (in seconds)?: ");
         int eventTime = s.nextInt();
         if (eventType.equalsIgnoreCase("A")) {
           try {
-            int eventId = eventManager.createAsyncEvent(eventTime);
-            System.out.println("Event [" + eventId + "] has been created.");
-            eventManager.startEvent(eventId);
-            System.out.println("Event [" + eventId + "] has been started.");
+            int eventId = eventManager.createAsync(eventTime);
+            eventManager.start(eventId);
+            System.out.println("Egg [" + eventId + "] is being boiled.");
           } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
             System.out.println(e.getMessage());
           }
         } else if (eventType.equalsIgnoreCase("S")) {
           try {
-            int eventId = eventManager.createSyncEvent(eventTime);
-            System.out.println("Event [" + eventId + "] has been created.");
-            eventManager.startEvent(eventId);
-            System.out.println("Event [" + eventId + "] has been started.");
+            int eventId = eventManager.create(eventTime);
+            eventManager.start(eventId);
+            System.out.println("Egg [" + eventId + "] is being boiled.");
           } catch (MaxNumOfEventsAllowedException | InvalidOperationException | LongRunningEventException
               | EventDoesNotExistException e) {
             System.out.println(e.getMessage());
@@ -173,24 +172,26 @@ public class App {
           System.out.println("Unknown event type.");
         }
       } else if (option == 2) {
-        System.out.print("Event ID: ");
+        System.out.print("Which egg?: ");
         int eventId = s.nextInt();
         try {
-          eventManager.stopEvent(eventId);
-          System.out.println("Event [" + eventId + "] has been stopped.");
+          eventManager.cancel(eventId);
+          System.out.println("Egg [" + eventId + "] is removed from boiler.");
         } catch (EventDoesNotExistException e) {
           System.out.println(e.getMessage());
         }
       } else if (option == 3) {
-        System.out.print("Event ID: ");
+        System.out.print("Which egg?: ");
         int eventId = s.nextInt();
         try {
-          eventManager.getStatus(eventId);
+          eventManager.status(eventId);
         } catch (EventDoesNotExistException e) {
           System.out.println(e.getMessage());
         }
       } else if (option == 4) {
-        eventManager.getStatusOfAllEvents();
+        eventManager.statusOfAllEvents();
+      } else if (option == 5) {
+        eventManager.shutdown();
       }
     }
 

@@ -65,12 +65,15 @@
     </display>  
   </class>  
   <association id="7">    
-    <bendpoint x="433" y="475"/>    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="8" name="eventPool"/>      
-      <multiplicity id="9" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="8" name="app">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="9" minimum="0" maximum="1">        
+        <position height="16" width="23" x="714" y="226"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="10">    
@@ -78,19 +81,24 @@
       <attribute id="11" name="eventListener">        
         <position height="18" width="74" x="250" y="287"/>      
       </attribute>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+      <multiplicity id="12" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="13">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="14" name="app"/>      
-      <multiplicity id="15" minimum="0" maximum="1">        
-        <position height="16" width="23" x="714" y="226"/>      
+    <bendpoint x="433" y="475"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="14" name="eventPool">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="16">    

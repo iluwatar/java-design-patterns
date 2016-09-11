@@ -5,6 +5,8 @@ folder: event-asynchronous
 permalink: /patterns/event-asynchronous/
 categories: Other
 tags:
+ - difficulty-intermediate
+ - performance
  - Java
 ---
 

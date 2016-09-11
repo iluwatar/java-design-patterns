@@ -17,5 +17,5 @@
 package com.iluwatar.event.asynchronous;
 
 public interface ThreadCompleteListener {
-  void notifyOfThreadComplete(final int eventId);
+  void completedEventHandler(final int eventId);
 }

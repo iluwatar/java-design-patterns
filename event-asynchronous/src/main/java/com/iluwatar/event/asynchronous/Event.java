@@ -26,11 +26,10 @@ public class Event implements IEvent, Runnable {
   private int eventId;
   private int eventTime;
   private Thread thread;
-  private long counter = 0;
   private boolean isComplete = false;
   private ThreadCompleteListener eventListener;
 
-  public Event(int eventId, int eventTime) {
+  public Event(final int eventId, final int eventTime) {
     this.eventId = eventId;
     this.eventTime = eventTime;
   }
@@ -49,9 +48,9 @@ public class Event implements IEvent, Runnable {
   @Override
   public void status() {
     if (!isComplete) {
-      System.out.println("[" + eventId + "] I am at not done. [" + counter + "%]");
+      System.out.println("[" + eventId + "] is not done.");
     } else {
-      System.out.println("[" + eventId + "] I am done.");
+      System.out.println("[" + eventId + "] is done.");
     }
   }
 
@@ -61,14 +60,13 @@ public class Event implements IEvent, Runnable {
     long endTime = currentTime + (eventTime * 1000);
     while (System.currentTimeMillis() < endTime) {
       try {
-        counter += 1;
         Thread.sleep(5000); // Sleep for 5 seconds.
       } catch (InterruptedException e) {
         return;
       }
     }
     isComplete = true;
-    notifyListener();
+    completed();
   }
 
   public final void addListener(final ThreadCompleteListener listener) {
@@ -79,9 +77,9 @@ public class Event implements IEvent, Runnable {
     this.eventListener = null;
   }
 
-  private final void notifyListener() {
+  private final void completed() {
     if (eventListener != null) {
-      eventListener.notifyOfThreadComplete(eventId);
+      eventListener.completedEventHandler(eventId);
     }
   }
 

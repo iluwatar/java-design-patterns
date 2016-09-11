@@ -32,10 +32,10 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class EventManager implements ThreadCompleteListener {
 
-  private int minId = 1;
-  private int maxId = Integer.MAX_VALUE - 1; // Be cautious of overflows.
-  private int maxRunningEvents = 1000; // no particular reason. Just don't wanna have too many running events. :)
-  private int maxEventTime = 1800; // in seconds / 30 minutes.
+  public static final int MAX_RUNNING_EVENTS = 1000; // Just don't wanna have too many running events. :)
+  public static final int MIN_ID = 1;
+  public static final int MAX_ID = MAX_RUNNING_EVENTS;
+  public static final int MAX_EVENT_TIME = 1800; // in seconds / 30 minutes.
   private int currentlyRunningSyncEvent = -1;
   private Random rand;
   private Map<Integer, Event> eventPool;
@@ -46,7 +46,7 @@ public class EventManager implements ThreadCompleteListener {
    */
   public EventManager() {
     rand = new Random(1);
-    eventPool = new ConcurrentHashMap<Integer, Event>(maxRunningEvents);
+    eventPool = new ConcurrentHashMap<Integer, Event>(MAX_RUNNING_EVENTS);
 
   }
 
@@ -59,7 +59,7 @@ public class EventManager implements ThreadCompleteListener {
    * @throws InvalidOperationException No new synchronous events can be created when one is already running.
    * @throws LongRunningEventException Long running events are not allowed in the app.
    */
-  public int createSyncEvent(int eventTime)
+  public int create(int eventTime)
       throws MaxNumOfEventsAllowedException, InvalidOperationException, LongRunningEventException {
     int eventId = createEvent(eventTime);
     if (currentlyRunningSyncEvent != -1) {
@@ -79,18 +79,18 @@ public class EventManager implements ThreadCompleteListener {
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
    * @throws LongRunningEventException Long running events are not allowed in the app.
    */
-  public int createAsyncEvent(int eventTime) throws MaxNumOfEventsAllowedException, LongRunningEventException {
+  public int createAsync(int eventTime) throws MaxNumOfEventsAllowedException, LongRunningEventException {
     return createEvent(eventTime);
   }
 
   private int createEvent(int eventTime) throws MaxNumOfEventsAllowedException, LongRunningEventException {
-    if (eventPool.size() == maxRunningEvents) {
+    if (eventPool.size() == MAX_RUNNING_EVENTS) {
       throw new MaxNumOfEventsAllowedException("Too many events are running at the moment. Please try again later.");
     }
 
-    if (eventTime >= maxEventTime) {
+    if (eventTime >= MAX_EVENT_TIME) {
       throw new LongRunningEventException(
-          "Maximum event time allowed is " + maxEventTime + " seconds. Please try again.");
+          "Maximum event time allowed is " + MAX_EVENT_TIME + " seconds. Please try again.");
     }
 
     int newEventId = generateId();
@@ -108,7 +108,7 @@ public class EventManager implements ThreadCompleteListener {
    * @param eventId The event that needs to be started.
    * @throws EventDoesNotExistException If event does not exist in our eventPool.
    */
-  public void startEvent(int eventId) throws EventDoesNotExistException {
+  public void start(int eventId) throws EventDoesNotExistException {
     if (!eventPool.containsKey(eventId)) {
       throw new EventDoesNotExistException(eventId + " does not exist.");
     }
@@ -122,7 +122,7 @@ public class EventManager implements ThreadCompleteListener {
    * @param eventId The event that needs to be stopped.
    * @throws EventDoesNotExistException If event does not exist in our eventPool.
    */
-  public void stopEvent(int eventId) throws EventDoesNotExistException {
+  public void cancel(int eventId) throws EventDoesNotExistException {
     if (!eventPool.containsKey(eventId)) {
       throw new EventDoesNotExistException(eventId + " does not exist.");
     }
@@ -141,7 +141,7 @@ public class EventManager implements ThreadCompleteListener {
    * @param eventId The event to inquire status of.
    * @throws EventDoesNotExistException If event does not exist in our eventPool.
    */
-  public void getStatus(int eventId) throws EventDoesNotExistException {
+  public void status(int eventId) throws EventDoesNotExistException {
     if (!eventPool.containsKey(eventId)) {
       throw new EventDoesNotExistException(eventId + " does not exist.");
     }
@@ -153,11 +153,23 @@ public class EventManager implements ThreadCompleteListener {
    * Gets status of all running events.
    */
   @SuppressWarnings("rawtypes")
-  public void getStatusOfAllEvents() {
+  public void statusOfAllEvents() {
     Iterator it = eventPool.entrySet().iterator();
     while (it.hasNext()) {
       Map.Entry pair = (Map.Entry) it.next();
       ((Event) pair.getValue()).status();
+    }
+  }
+
+  /**
+   * Stop all running events.
+   */
+  @SuppressWarnings("rawtypes")
+  public void shutdown() {
+    Iterator it = eventPool.entrySet().iterator();
+    while (it.hasNext()) {
+      Map.Entry pair = (Map.Entry) it.next();
+      ((Event) pair.getValue()).stop();
     }
   }
 
@@ -168,9 +180,9 @@ public class EventManager implements ThreadCompleteListener {
   private int generateId() {
     // nextInt is normally exclusive of the top value,
     // so add 1 to make it inclusive
-    int randomNum = rand.nextInt((maxId - minId) + 1) + minId;
+    int randomNum = rand.nextInt((MAX_ID - MIN_ID) + 1) + MIN_ID;
     while (eventPool.containsKey(randomNum)) {
-      randomNum = rand.nextInt((maxId - minId) + 1) + minId;
+      randomNum = rand.nextInt((MAX_ID - MIN_ID) + 1) + MIN_ID;
     }
 
     return randomNum;
@@ -180,9 +192,22 @@ public class EventManager implements ThreadCompleteListener {
    * Callback from an {@link Event} (once it is complete). The Event is then removed from the pool.
    */
   @Override
-  public void notifyOfThreadComplete(int eventId) {
+  public void completedEventHandler(int eventId) {
     eventPool.get(eventId).status();
     eventPool.remove(eventId);
   }
 
+  /**
+   * Getter method for event pool.
+   */
+  public Map<Integer, Event> getEventPool() {
+    return eventPool;
+  }
+
+  /**
+   * Get number of currently running Synchronous events.
+   */
+  public int numOfCurrentlyRunningSyncEvent() {
+    return currentlyRunningSyncEvent;
+  }
 }

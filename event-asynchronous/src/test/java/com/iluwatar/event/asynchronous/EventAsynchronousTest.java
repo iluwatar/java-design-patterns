@@ -16,6 +16,8 @@
  */
 package com.iluwatar.event.asynchronous;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,9 +38,13 @@ public class EventAsynchronousTest {
   public void testAsynchronousEvent() {
     EventManager eventManager = new EventManager();
     try {
-      int aEventId = eventManager.createAsyncEvent(60);
-      eventManager.startEvent(aEventId);
-      eventManager.stopEvent(aEventId);
+      int aEventId = eventManager.createAsync(60);
+      eventManager.start(aEventId);
+      assertTrue(eventManager.getEventPool().size() == 1);
+      assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
+      assertTrue(eventManager.numOfCurrentlyRunningSyncEvent() == -1);
+      eventManager.cancel(aEventId);
+      assertTrue(eventManager.getEventPool().size() == 0);
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
       System.out.println(e.getMessage());
     }
@@ -48,25 +54,28 @@ public class EventAsynchronousTest {
   public void testSynchronousEvent() {
     EventManager eventManager = new EventManager();
     try {
-      int sEventId = eventManager.createSyncEvent(60);
-      eventManager.startEvent(sEventId);
-      eventManager.stopEvent(sEventId);
+      int sEventId = eventManager.create(60);
+      eventManager.start(sEventId);
+      assertTrue(eventManager.getEventPool().size() == 1);
+      assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
+      assertTrue(eventManager.numOfCurrentlyRunningSyncEvent() != -1);
+      eventManager.cancel(sEventId);
+      assertTrue(eventManager.getEventPool().size() == 0);
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
         | InvalidOperationException e) {
       System.out.println(e.getMessage());
     }
   }
 
-  @Test
-  public void testUnsuccessfulSynchronousEvent() {
+  @Test(expected = InvalidOperationException.class)
+  public void testUnsuccessfulSynchronousEvent() throws InvalidOperationException {
     EventManager eventManager = new EventManager();
     try {
-      int sEventId = eventManager.createSyncEvent(60);
-      eventManager.startEvent(sEventId);
-      sEventId = eventManager.createSyncEvent(60);
-      eventManager.startEvent(sEventId);
-    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
-        | InvalidOperationException e) {
+      int sEventId = eventManager.create(60);
+      eventManager.start(sEventId);
+      sEventId = eventManager.create(60);
+      eventManager.start(sEventId);
+    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
       System.out.println(e.getMessage());
     }
   }
