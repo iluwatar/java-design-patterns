@@ -22,49 +22,24 @@
  */
 package com.iluwatar.hexagonal.domain;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 /**
- * Lottery ticked id
+ * Tests for lottery ticket id
  */
-public class LotteryTicketId {
+public class LotteryTicketIdTest {
 
-  private static volatile int numAllocated;
-  private final int id;
-  
-  public LotteryTicketId() {
-    this.id = numAllocated + 1;
-    numAllocated++;
-  }
-
-  public LotteryTicketId(int id) {
-    this.id = id;
-  }
-  
-  public int getId() {
-    return id;
-  }
-
-  @Override
-  public String toString() {
-    return String.format("%d", id);
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-
-    LotteryTicketId that = (LotteryTicketId) o;
-
-    return id == that.id;
-
-  }
-
-  @Override
-  public int hashCode() {
-    return id;
+  @Test
+  public void testEquals() {
+    LotteryTicketId ticketId1 = new LotteryTicketId();
+    LotteryTicketId ticketId2 = new LotteryTicketId();
+    LotteryTicketId ticketId3 = new LotteryTicketId();
+    assertFalse(ticketId1.equals(ticketId2));
+    assertFalse(ticketId2.equals(ticketId3));
+    LotteryTicketId ticketId4 = new LotteryTicketId(ticketId1.getId());
+    assertTrue(ticketId1.equals(ticketId4));
   }
 }

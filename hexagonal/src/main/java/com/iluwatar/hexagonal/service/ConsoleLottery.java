@@ -32,7 +32,6 @@ import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 import com.iluwatar.hexagonal.module.LotteryModule;
-import com.iluwatar.hexagonal.sampledata.SampleData;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -52,7 +51,6 @@ public class ConsoleLottery {
     Injector injector = Guice.createInjector(new LotteryModule());
     LotteryService service = injector.getInstance(LotteryService.class);
     WireTransfers bank = injector.getInstance(WireTransfers.class);
-    SampleData.submitTickets(service, 20);
     Scanner scanner = new Scanner(System.in);
     boolean exit = false;
     while (!exit) {
@@ -103,7 +101,7 @@ public class ConsoleLottery {
           winningNumbers.add(Integer.parseInt(parts[i]));
         }
         LotteryTicketCheckResult result = service.checkTicketForPrize(
-            new LotteryTicketId(id), LotteryNumbers.create(winningNumbers));
+            new LotteryTicketId(Integer.parseInt(id)), LotteryNumbers.create(winningNumbers));
         if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
           System.out.println("Congratulations! The lottery ticket has won!");
         } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
