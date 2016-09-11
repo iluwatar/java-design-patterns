@@ -27,6 +27,7 @@ import com.iluwatar.hexagonal.domain.LotteryConstants;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 
 import java.util.ArrayList;
@@ -94,7 +95,8 @@ public class SampleData {
    */
   public static void submitTickets(LotteryService lotteryService, int numTickets) {
     for (int i = 0; i < numTickets; i++) {
-      LotteryTicket ticket = LotteryTicket.create(getRandomPlayerDetails(), LotteryNumbers.createRandom());
+      LotteryTicket ticket = LotteryTicket.create(new LotteryTicketId(),
+          getRandomPlayerDetails(), LotteryNumbers.createRandom());
       lotteryService.submitTicket(ticket);
     }
   }

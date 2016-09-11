@@ -83,7 +83,7 @@ public class ConsoleLottery {
           chosen.add(Integer.parseInt(parts[i]));
         }
         LotteryNumbers lotteryNumbers = LotteryNumbers.create(chosen);
-        LotteryTicket lotteryTicket = LotteryTicket.create(details, lotteryNumbers);
+        LotteryTicket lotteryTicket = LotteryTicket.create(new LotteryTicketId(), details, lotteryNumbers);
         Optional<LotteryTicketId> id = service.submitTicket(lotteryTicket);
         if (id.isPresent()) {
           System.out.println("Submitted lottery ticket with id: " + id.get());

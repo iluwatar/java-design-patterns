@@ -39,7 +39,7 @@ import com.iluwatar.hexagonal.test.LotteryTestUtils;
  * Tests for {@link LotteryTicketRepository}
  *
  */
-public class LotteryTicketRepositoryTest {
+public class InMemoryTicketRepositoryTest {
 
   private final LotteryTicketRepository repository = new InMemoryTicketRepository();
   

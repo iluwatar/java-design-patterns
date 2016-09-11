@@ -54,7 +54,7 @@ public class ConsoleAdministration {
         administartion.getAllSubmittedTickets().forEach((k,v)->System.out.println("Key: " + k + " Value: " + v));
       } else if (cmd.equals("2")) {
         LotteryNumbers numbers = administartion.performLottery();
-        System.out.println("The winning numbers: " + numbers);
+        System.out.println("The winning numbers: " + numbers.getNumbersAsString());
         System.out.println("Time to reset the database for next round, eh?");
       } else if (cmd.equals("3")) {
         administartion.resetLottery();

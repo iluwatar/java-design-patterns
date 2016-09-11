@@ -28,6 +28,7 @@ import java.util.Set;
 
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 
 /**
@@ -51,6 +52,6 @@ public class LotteryTestUtils {
       Set<Integer> givenNumbers) {
     PlayerDetails details = PlayerDetails.create(email, account, phone);
     LotteryNumbers numbers = LotteryNumbers.create(givenNumbers);
-    return LotteryTicket.create(details, numbers);
+    return LotteryTicket.create(new LotteryTicketId(), details, numbers);
   }
 }

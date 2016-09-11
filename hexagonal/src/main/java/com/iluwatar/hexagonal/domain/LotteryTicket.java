@@ -29,13 +29,15 @@ package com.iluwatar.hexagonal.domain;
  */
 public class LotteryTicket {
 
+  private LotteryTicketId id;
   private final PlayerDetails playerDetails;
   private final LotteryNumbers lotteryNumbers;
-  
+
   /**
    * Constructor.
    */
-  private LotteryTicket(PlayerDetails details, LotteryNumbers numbers) {
+  private LotteryTicket(LotteryTicketId id, PlayerDetails details, LotteryNumbers numbers) {
+    this.id = id;
     playerDetails = details;
     lotteryNumbers = numbers;
   }
@@ -43,8 +45,8 @@ public class LotteryTicket {
   /**
    * Factory for creating lottery tickets;
    */
-  public static LotteryTicket create(PlayerDetails details, LotteryNumbers numbers) {
-    return new LotteryTicket(details, numbers);
+  public static LotteryTicket create(LotteryTicketId id, PlayerDetails details, LotteryNumbers numbers) {
+    return new LotteryTicket(id, details, numbers);
   }
   
   /**
@@ -59,6 +61,20 @@ public class LotteryTicket {
    */
   public LotteryNumbers getNumbers() {
     return lotteryNumbers;
+  }
+
+  /**
+   * @return id
+   */
+  public LotteryTicketId getId() {
+    return id;
+  }
+
+  /**
+   * set id
+   */
+  public void setId(LotteryTicketId id) {
+    this.id = id;
   }
 
   @Override
