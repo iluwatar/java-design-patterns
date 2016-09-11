@@ -28,6 +28,7 @@ import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 import com.mongodb.MongoClient;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Optional;
@@ -38,6 +39,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Tests for Mongo based ticket repository
  */
+@Ignore
 public class MongoTicketRepositoryTest {
 
   private static final String TEST_HOST = "localhost";
