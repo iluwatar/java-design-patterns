@@ -44,9 +44,9 @@ public class MongoTicketRepositoryTest {
 
   private static final String TEST_HOST = "localhost";
   private static final int TEST_PORT = 27017;
-  private static final String TEST_DB = "lotteryDB";
-  private static final String TEST_TICKETS_COLLECTION = "lotteryTickets";
-  private static final String TEST_COUNTERS_COLLECTION = "counters";
+  private static final String TEST_DB = "lotteryTestDB";
+  private static final String TEST_TICKETS_COLLECTION = "lotteryTestTickets";
+  private static final String TEST_COUNTERS_COLLECTION = "testCounters";
 
   private MongoTicketRepository repository;
 

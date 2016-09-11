@@ -20,24 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.module;
+package com.iluwatar.hexagonal.banking;
 
-import com.google.inject.AbstractModule;
-import com.iluwatar.hexagonal.banking.MongoBank;
-import com.iluwatar.hexagonal.banking.WireTransfers;
-import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.database.MongoTicketRepository;
-import com.iluwatar.hexagonal.notifications.LotteryNotifications;
-import com.iluwatar.hexagonal.notifications.StdOutNotifications;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /**
- * Guice module for binding production dependencies
+ * 
+ * Tests for banking
+ *
  */
-public class LotteryModule extends AbstractModule {
-  @Override
-  protected void configure() {
-    bind(LotteryTicketRepository.class).to(MongoTicketRepository.class);
-    bind(LotteryNotifications.class).to(StdOutNotifications.class);
-    bind(WireTransfers.class).to(MongoBank.class);
+public class InMemoryBankTest {
+
+  private final WireTransfers bank = new InMemoryBank();
+  
+  @Test
+  public void testInit() {
+    assertEquals(bank.getFunds("foo"), 0);
+    bank.setFunds("foo", 100);
+    assertEquals(bank.getFunds("foo"), 100);
+    bank.setFunds("bar", 150);
+    assertEquals(bank.getFunds("bar"), 150);
+    assertTrue(bank.transferFunds(50, "bar", "foo"));
+    assertEquals(bank.getFunds("foo"), 150);
+    assertEquals(bank.getFunds("bar"), 100);
   }
 }

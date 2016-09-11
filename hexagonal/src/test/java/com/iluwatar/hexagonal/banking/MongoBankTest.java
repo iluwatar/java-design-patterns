@@ -22,29 +22,47 @@
  */
 package com.iluwatar.hexagonal.banking;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
+import com.mongodb.MongoClient;
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
-/**
- * 
- * Tests for banking
- *
- */
-public class WireTransfersTest {
+import static org.junit.Assert.assertEquals;
 
-  private final WireTransfers bank = new InMemoryBank();
-  
+/**
+ * Tests for Mongo banking adapter
+ */
+@Ignore
+public class MongoBankTest {
+
+  private static final String TEST_HOST = "localhost";
+  private static final int TEST_PORT = 27017;
+  private static final String TEST_DB = "lotteryDBTest";
+  private static final String TEST_ACCOUNTS_COLLECTION = "testAccounts";
+
+  private MongoBank mongoBank;
+
+  @Before
+  public void init() {
+    MongoClient mongoClient = new MongoClient(TEST_HOST, TEST_PORT);
+    mongoClient.dropDatabase(TEST_DB);
+    mongoClient.close();
+    mongoBank = new MongoBank(TEST_HOST, TEST_PORT, TEST_DB, TEST_ACCOUNTS_COLLECTION);
+  }
+
   @Test
-  public void testInit() {
-    assertEquals(bank.getFunds("foo"), 0);
-    bank.setFunds("foo", 100);
-    assertEquals(bank.getFunds("foo"), 100);
-    bank.setFunds("bar", 150);
-    assertEquals(bank.getFunds("bar"), 150);
-    assertTrue(bank.transferFunds(50, "bar", "foo"));
-    assertEquals(bank.getFunds("foo"), 150);
-    assertEquals(bank.getFunds("bar"), 100);
+  public void testSetup() {
+    assertEquals(0, mongoBank.getAccountsCollection().count());
+  }
+
+  @Test
+  public void testFundTransfers() {
+    assertEquals(0, mongoBank.getFunds("000-000"));
+    mongoBank.setFunds("000-000", 10);
+    assertEquals(10, mongoBank.getFunds("000-000"));
+    assertEquals(0, mongoBank.getFunds("111-111"));
+    mongoBank.transferFunds(9, "000-000", "111-111");
+    assertEquals(1, mongoBank.getFunds("000-000"));
+    assertEquals(9, mongoBank.getFunds("111-111"));
   }
 }
