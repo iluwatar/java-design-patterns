@@ -58,6 +58,7 @@ public class App {
 
     waiting();
 
+    System.out.println("123");
     // exit
     ballThread.stopMe();
   }
