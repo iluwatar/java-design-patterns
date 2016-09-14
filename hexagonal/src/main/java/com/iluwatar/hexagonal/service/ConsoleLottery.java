@@ -79,17 +79,21 @@ public class ConsoleLottery {
         PlayerDetails details = PlayerDetails.create(email, account, phone);
         System.out.println("Give 4 comma separated lottery numbers?");
         String numbers = readString(scanner);
-        String[] parts = numbers.split(",");
-        Set<Integer> chosen = new HashSet<>();
-        for (int i = 0; i < 4; i++) {
-          chosen.add(Integer.parseInt(parts[i]));
-        }
-        LotteryNumbers lotteryNumbers = LotteryNumbers.create(chosen);
-        LotteryTicket lotteryTicket = LotteryTicket.create(new LotteryTicketId(), details, lotteryNumbers);
-        Optional<LotteryTicketId> id = service.submitTicket(lotteryTicket);
-        if (id.isPresent()) {
-          System.out.println("Submitted lottery ticket with id: " + id.get());
-        } else {
+        try {
+          String[] parts = numbers.split(",");
+          Set<Integer> chosen = new HashSet<>();
+          for (int i = 0; i < 4; i++) {
+            chosen.add(Integer.parseInt(parts[i]));
+          }
+          LotteryNumbers lotteryNumbers = LotteryNumbers.create(chosen);
+          LotteryTicket lotteryTicket = LotteryTicket.create(new LotteryTicketId(), details, lotteryNumbers);
+          Optional<LotteryTicketId> id = service.submitTicket(lotteryTicket);
+          if (id.isPresent()) {
+            System.out.println("Submitted lottery ticket with id: " + id.get());
+          } else {
+            System.out.println("Failed submitting lottery ticket - please try again.");
+          }
+        } catch (Exception e) {
           System.out.println("Failed submitting lottery ticket - please try again.");
         }
       } else if (cmd.equals("4")) {
@@ -97,19 +101,23 @@ public class ConsoleLottery {
         String id = readString(scanner);
         System.out.println("Give the 4 comma separated winning numbers?");
         String numbers = readString(scanner);
-        String[] parts = numbers.split(",");
-        Set<Integer> winningNumbers = new HashSet<>();
-        for (int i = 0; i < 4; i++) {
-          winningNumbers.add(Integer.parseInt(parts[i]));
-        }
-        LotteryTicketCheckResult result = service.checkTicketForPrize(
-            new LotteryTicketId(Integer.parseInt(id)), LotteryNumbers.create(winningNumbers));
-        if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
-          System.out.println("Congratulations! The lottery ticket has won!");
-        } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
-          System.out.println("Unfortunately the lottery ticket did not win.");
-        } else {
-          System.out.println("Such lottery ticket has not been submitted.");
+        try {
+          String[] parts = numbers.split(",");
+          Set<Integer> winningNumbers = new HashSet<>();
+          for (int i = 0; i < 4; i++) {
+            winningNumbers.add(Integer.parseInt(parts[i]));
+          }
+          LotteryTicketCheckResult result = service.checkTicketForPrize(
+              new LotteryTicketId(Integer.parseInt(id)), LotteryNumbers.create(winningNumbers));
+          if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
+            System.out.println("Congratulations! The lottery ticket has won!");
+          } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
+            System.out.println("Unfortunately the lottery ticket did not win.");
+          } else {
+            System.out.println("Such lottery ticket has not been submitted.");
+          }
+        } catch (Exception e) {
+          System.out.println("Failed checking the lottery ticket - please try again.");
         }
       } else if (cmd.equals("5")) {
         exit = true;
