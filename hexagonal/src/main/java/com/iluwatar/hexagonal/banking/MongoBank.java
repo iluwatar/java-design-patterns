@@ -22,7 +22,6 @@
  */
 package com.iluwatar.hexagonal.banking;
 
-import com.iluwatar.hexagonal.mongo.MongoConnectionProperties;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -71,8 +70,8 @@ public class MongoBank implements WireTransfers {
     if (mongoClient != null) {
       mongoClient.close();
     }
-    MongoConnectionProperties properties = new MongoConnectionProperties().load();
-    mongoClient = new MongoClient(properties.getHost(), properties.getPort());
+    mongoClient = new MongoClient(System.getProperty("mongo-host"),
+        Integer.parseInt(System.getProperty("mongo-port")));
     database = mongoClient.getDatabase(dbName);
     accountsCollection = database.getCollection(accountsCollectionName);
   }

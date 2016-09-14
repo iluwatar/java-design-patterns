@@ -26,7 +26,6 @@ import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
-import com.iluwatar.hexagonal.mongo.MongoConnectionProperties;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -83,8 +82,8 @@ public class MongoTicketRepository implements LotteryTicketRepository {
     if (mongoClient != null) {
       mongoClient.close();
     }
-    MongoConnectionProperties properties = new MongoConnectionProperties().load();
-    mongoClient = new MongoClient(properties.getHost(), properties.getPort());
+    mongoClient = new MongoClient(System.getProperty("mongo-host"),
+        Integer.parseInt(System.getProperty("mongo-port")));
     database = mongoClient.getDatabase(dbName);
     ticketsCollection = database.getCollection(ticketsCollectionName);
     countersCollection = database.getCollection(countersCollectionName);

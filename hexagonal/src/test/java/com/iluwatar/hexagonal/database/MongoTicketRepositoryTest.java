@@ -26,7 +26,7 @@ import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
-import com.iluwatar.hexagonal.mongo.MongoConnectionProperties;
+import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.mongodb.MongoClient;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -51,8 +51,9 @@ public class MongoTicketRepositoryTest {
 
   @Before
   public void init() {
-    MongoConnectionProperties properties = new MongoConnectionProperties().load();
-    MongoClient mongoClient = new MongoClient(properties.getHost(), properties.getPort());
+    MongoConnectionPropertiesLoader.load();
+    MongoClient mongoClient = new MongoClient(System.getProperty("mongo-host"),
+        Integer.parseInt(System.getProperty("mongo-port")));
     mongoClient.dropDatabase(TEST_DB);
     mongoClient.close();
     repository = new MongoTicketRepository(TEST_DB, TEST_TICKETS_COLLECTION,

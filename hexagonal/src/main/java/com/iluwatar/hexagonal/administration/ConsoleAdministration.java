@@ -28,6 +28,7 @@ import com.iluwatar.hexagonal.domain.LotteryAdministration;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
+import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.iluwatar.hexagonal.sampledata.SampleData;
 
 import java.util.Scanner;
@@ -41,6 +42,7 @@ public class ConsoleAdministration {
    * Program entry point
    */
   public static void main(String[] args) {
+    MongoConnectionPropertiesLoader.load();
     Injector injector = Guice.createInjector(new LotteryModule());
     LotteryAdministration administartion = injector.getInstance(LotteryAdministration.class);
     LotteryService service = injector.getInstance(LotteryService.class);

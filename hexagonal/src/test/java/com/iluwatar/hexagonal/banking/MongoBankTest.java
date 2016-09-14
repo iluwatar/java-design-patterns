@@ -22,7 +22,7 @@
  */
 package com.iluwatar.hexagonal.banking;
 
-import com.iluwatar.hexagonal.mongo.MongoConnectionProperties;
+import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.mongodb.MongoClient;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -43,8 +43,9 @@ public class MongoBankTest {
 
   @Before
   public void init() {
-    MongoConnectionProperties properties = new MongoConnectionProperties().load();
-    MongoClient mongoClient = new MongoClient(properties.getHost(), properties.getPort());
+    MongoConnectionPropertiesLoader.load();
+    MongoClient mongoClient = new MongoClient(System.getProperty("mongo-host"),
+        Integer.parseInt(System.getProperty("mongo-port")));
     mongoClient.dropDatabase(TEST_DB);
     mongoClient.close();
     mongoBank = new MongoBank(TEST_DB, TEST_ACCOUNTS_COLLECTION);

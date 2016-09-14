@@ -32,6 +32,7 @@ import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 import com.iluwatar.hexagonal.module.LotteryModule;
+import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -48,6 +49,7 @@ public class ConsoleLottery {
    * Program entry point
    */
   public static void main(String[] args) {
+    MongoConnectionPropertiesLoader.load();
     Injector injector = Guice.createInjector(new LotteryModule());
     LotteryService service = injector.getInstance(LotteryService.class);
     WireTransfers bank = injector.getInstance(WireTransfers.class);
