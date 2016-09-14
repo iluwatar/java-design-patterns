@@ -22,6 +22,7 @@
  */
 package com.iluwatar.hexagonal.banking;
 
+import com.iluwatar.hexagonal.mongo.MongoConnectionProperties;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -35,8 +36,6 @@ import java.util.ArrayList;
  */
 public class MongoBank implements WireTransfers {
 
-  private static final String DEFAULT_HOST = "localhost";
-  private static final int DEFAULT_PORT = 27017;
   private static final String DEFAULT_DB = "lotteryDB";
   private static final String DEFAULT_ACCOUNTS_COLLECTION = "accounts";
 
@@ -54,25 +53,26 @@ public class MongoBank implements WireTransfers {
   /**
    * Constructor accepting parameters
    */
-  public MongoBank(String host, int port, String dbName, String accountsCollectionName) {
-    connect(host, port, dbName, accountsCollectionName);
+  public MongoBank(String dbName, String accountsCollectionName) {
+    connect(dbName, accountsCollectionName);
   }
 
   /**
    * Connect to database with default parameters
    */
   public void connect() {
-    connect(DEFAULT_HOST, DEFAULT_PORT, DEFAULT_DB, DEFAULT_ACCOUNTS_COLLECTION);
+    connect(DEFAULT_DB, DEFAULT_ACCOUNTS_COLLECTION);
   }
 
   /**
    * Connect to database with given parameters
    */
-  public void connect(String host, int port, String dbName, String accountsCollectionName) {
+  public void connect(String dbName, String accountsCollectionName) {
     if (mongoClient != null) {
       mongoClient.close();
     }
-    mongoClient = new MongoClient(host , port);
+    MongoConnectionProperties properties = new MongoConnectionProperties().load();
+    mongoClient = new MongoClient(properties.getHost(), properties.getPort());
     database = mongoClient.getDatabase(dbName);
     accountsCollection = database.getCollection(accountsCollectionName);
   }

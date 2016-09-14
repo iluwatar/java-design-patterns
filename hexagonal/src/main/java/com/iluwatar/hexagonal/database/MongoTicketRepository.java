@@ -26,6 +26,7 @@ import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
+import com.iluwatar.hexagonal.mongo.MongoConnectionProperties;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -43,8 +44,6 @@ import java.util.Optional;
  */
 public class MongoTicketRepository implements LotteryTicketRepository {
 
-  private static final String DEFAULT_HOST = "localhost";
-  private static final int DEFAULT_PORT = 27017;
   private static final String DEFAULT_DB = "lotteryDB";
   private static final String DEFAULT_TICKETS_COLLECTION = "lotteryTickets";
   private static final String DEFAULT_COUNTERS_COLLECTION = "counters";
@@ -64,27 +63,28 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   /**
    * Constructor accepting parameters
    */
-  public MongoTicketRepository(String host, int port, String dbName, String ticketsCollectionName,
+  public MongoTicketRepository(String dbName, String ticketsCollectionName,
                                String countersCollectionName) {
-    connect(host, port, dbName, ticketsCollectionName, countersCollectionName);
+    connect(dbName, ticketsCollectionName, countersCollectionName);
   }
 
   /**
    * Connect to database with default parameters
    */
   public void connect() {
-    connect(DEFAULT_HOST, DEFAULT_PORT, DEFAULT_DB, DEFAULT_TICKETS_COLLECTION, DEFAULT_COUNTERS_COLLECTION);
+    connect(DEFAULT_DB, DEFAULT_TICKETS_COLLECTION, DEFAULT_COUNTERS_COLLECTION);
   }
 
   /**
    * Connect to database with given parameters
    */
-  public void connect(String host, int port, String dbName, String ticketsCollectionName,
+  public void connect(String dbName, String ticketsCollectionName,
                       String countersCollectionName) {
     if (mongoClient != null) {
       mongoClient.close();
     }
-    mongoClient = new MongoClient(host , port);
+    MongoConnectionProperties properties = new MongoConnectionProperties().load();
+    mongoClient = new MongoClient(properties.getHost(), properties.getPort());
     database = mongoClient.getDatabase(dbName);
     ticketsCollection = database.getCollection(ticketsCollectionName);
     countersCollection = database.getCollection(countersCollectionName);
