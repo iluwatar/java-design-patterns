@@ -34,83 +34,82 @@ Naked Objects design pattern is considered an implementation of Hexagonal Archit
 
 Next we will demonstrate Hexagonal Architecture by building a lottery system. The lottery system will provide two primary ports: One for the users to submit lottery tickets and another for system administrators to perform the draw.
 
-Secondary ports consist of lottery ticket database, banking for wire transfers and notifications for pushing the lottery results to the players. The resulting hexagon of the system can be seen in the following diagram.
+The secondary ports consist of lottery ticket database, banking for wire transfers and event log for handling and storing lottery events. The resulting hexagon of the system can be seen in the following diagram.
 
 ![Lottery system]({{ site.url }}{{ site.baseurl }}/assets/lottery.png)
 
 ## Start from the core concepts
 
-We start the implementation from the system core. First we need to identify the core concepts of the lottery system. Probably the most important one is the lottery ticket. In lottery ticket you are supposed to pick the numbers and write your contact details to receive email notifications and possibly the prize money directly to your bank account. This leads us to write the following classes.
+We start the implementation from the system core. First we need to identify the core concepts of the lottery system. Probably the most important one is the lottery ticket. In lottery ticket you are supposed to pick the numbers and provide your contact details. This leads us to write the following classes.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryTicket.java?slice=24:71"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryNumbers.java?slice=30:121"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryTicket.java?slice=24:83"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryNumbers.java?slice=32:144"></script>
 
 `LotteryTicket` contains `LotteryNumbers` and `PlayerDetails`. `LotteryNumbers` contains means to hold given numbers or generate random numbers and test the numbers for equality with another `LotteryNumbers` instance. [PlayerDetails](https://github.com/iluwatar/java-design-patterns/blob/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/PlayerDetails.java) is a simple value object containing player's email address, bank account number and phone number.
 
 ## The core business logic
 
-Now that we have the nouns presenting our core concepts we need to implement the core business logic that defines how the system works. In `LotterySystem` interface we write the methods that are needed by the lottery players and system administrators.
+Now that we have the nouns presenting our core concepts we need to implement the core business logic that defines how the system works. In `LotteryAdministration` and `LotteryService` classes we write the methods that are needed by the lottery players and system administrators.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotterySystem.java?slice=27:58"></script>
-
-The lottery players use `submitTicket()` to submit tickets for lottery round. After the draw has been performed `checkTicketForPrize()` tells the players whether they have won.
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryAdministration.java?slice=31:"></script>
 
 For administrators `LotterySystem` has `resetLottery()` method for starting a new lottery round. At this stage the players submit their lottery tickets into the database and when the time is due the administration calls `performLottery()` to draw the winning numbers and check each of the tickets for winnings.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotterySystemImpl.java?slice=34:107"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryService.java?slice=31:"></script>
 
-`LotterySystemImpl` has dependencies to lottery ticket database, banking and notifications ports. This implementation hardwires the adapters it uses. In a more sophisticated application we would use dependency injection to determine the implementation classes. The core logic is tested in [LotteryTest](https://github.com/iluwatar/java-design-patterns/blob/master/hexagonal/src/test/java/com/iluwatar/hexagonal/domain/LotteryTest.java).
+The lottery players use `submitTicket()` to submit tickets for lottery round. After the draw has been performed `checkTicketForPrize()` tells the players whether they have won.
+
+`LotteryAdministration` and `LotteryService` have dependencies to lottery ticket database, banking and event log ports. We use [Guice](https://github.com/google/guice) dependency injection framework to provide the correct implementation classes for each purpose.
+
+The core logic is tested in [LotteryTest](https://github.com/iluwatar/java-design-patterns/blob/master/hexagonal/src/test/java/com/iluwatar/hexagonal/domain/LotteryTest.java).
 
 ## Primary port for the players
 
-Now that the core implementation is ready we need to define the primary port for the players. What we offer is basically a slice from `LotterySystem`.
+Now that the core implementation is ready we need to define the primary port for the players. We introduce `ConsoleLottery` class to provide command line interface that allows players to interact with the lottery system.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryService.java?slice=31:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryServiceImpl.java?slice=33:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/service/ConsoleLottery.java?slice=41:"></script>
 
-`LotteryService` is the port and `LotteryServiceImpl` is the adapter. Notice how the implementation just delegates the request to `LotterySystem`.
+It has commands to view and transfer bank account funds, submit and check lottery tickets.
 
 ## Primary port for the administrators
 
-We also need to define the lottery administrator facing port. As before, we offer the relevant slice from `LotterySystem`.
+We also need to define the lottery administrator facing port. This is another command line interface named `ConsoleAdministration`.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministration.java?slice=30:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministrationImpl.java?slice=32:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/ConsoleAdministration.java?slice=35:"></script>
 
-The implementation here is trivial since we can just delegate the requests to `LotterySystem`.
+The interface's commands allow us to view submitted tickets, perform the lottery draw and reset the lottery ticket database.
 
 ## Secondary port for banking
 
 Next we implement the secondary ports and adapters. The first one is the banking support that enables us to manipulate bank account funds. To explain the concept, the player can write his bank account number on the lottery ticket and in case the ticket wins the lottery system automatically wire transfers the funds.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfers.java?slice=23:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfersImpl.java?slice=29:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfers.java?slice=24:"></script>
 
-The bank back office is a simple `HashMap` based implementation. The lottery service's bank account is statically initialized to contain enough funds to pay the prizes in case some of the lottery tickets win.
+The banking port has two adapters for different purposes. The first one `InMemoryBank` is a simple `HashMap` based implementation for testing. The lottery service's bank account is statically initialized to contain enough funds to pay the prizes in case some of the lottery tickets win.
 
-## Secondary port for notifications
+The other adapter `MongoBank` is based on Mongo and is intended for production use. Running either one of the command line interfaces use this adapter.
 
-Another secondary port is the notification service. If the player has written his email address in the lottery ticket the system automatically sends notifications of the lottery system events, most importantly whether the ticket has won or not.
+## Secondary port for event log
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotifications.java?slice=26:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotificationsImpl.java?slice=26:"></script>
+Another secondary port is the lottery event log. Events are sent as the players submit their lottery tickets and when the draw is performed.
 
-The methods in `LotteryNotificationsImpl` adapter are simple `System.out` printers so the implementation is trivial to understand.
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/eventlog/LotteryEventLog.java?slice=26:"></script>
+
+We have two adapters for this port: The first one `StdOutEventLog` is for testing and simply sends the events to standard output. The second `MongoEventLog` is more sophisticated, has persistent storage and is based on Mongo.
 
 ## Secondary port for database
 
 The last secondary port is the database. It contains methods for storing and retrieving lottery tickets.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/database/LotteryTicketRepository.java?slice=30:"></script>
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/database/LotteryTicketInMemoryRepository.java?slice=31:"></script>
 
-The `LotteryTicketInMemoryRepository` is a mock database holding its contents in memory only. We use `Optional` to indicate whether the operation was successful or not.
+The port has two adapters. The `LotteryTicketInMemoryRepository` is a mock database holding its contents in memory only and is meant for testing. The `MongoTicketRepository` is used for production runs and provides persistent storage over application restarts.
 
 ## Lottery application
 
-With all the pieces in place we create a command line application to drive the lottery system. The test application initializes the lottery system using the admin interface and starts collecting lottery tickets from the players. Once all the lottery tickets have been submitted the lottery number draw is performed and all the submitted tickets are checked for wins.
+With all the pieces in place we create a command line application to drive the lottery system. The test application initializes the lottery system using the adminstration methods and starts collecting lottery tickets from the players. Once all the lottery tickets have been submitted the lottery number draw is performed and all the submitted tickets are checked for wins.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/App.java?slice=69:"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/App.java?slice=62:"></script>
 
 Running the test application produces the following output:
 
