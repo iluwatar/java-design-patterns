@@ -116,7 +116,7 @@ package com.iluwatar.hexagonal.database {
     + save(LotteryTicket) : Optional<LotteryTicketId> {abstract}
   }
 }
-package com.iluwatar.hexagonal.notifications {
+package com.iluwatar.hexagonal.eventlog {
   interface LotteryNotifications {
     + notifyNoWin(PlayerDetails) {abstract}
     + notifyPrize(PlayerDetails, int) {abstract}

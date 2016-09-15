@@ -20,40 +20,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.notifications;
+package com.iluwatar.hexagonal.eventlog;
 
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 
 /**
  * 
- * Provides notifications for lottery events.
+ * Event log for lottery events
  *
  */
-public interface LotteryNotifications {
+public interface LotteryEventLog {
 
   /**
-   * Notify lottery ticket was submitted
+   * lottery ticket submitted
    */
-  void notifyTicketSubmitted(PlayerDetails details);
+  void ticketSubmitted(PlayerDetails details);
 
   /**
-   * Notify there was an error submitting lottery ticket
+   * error submitting lottery ticket
    */
-  void notifyTicketSubmitError(PlayerDetails details);
+  void ticketSubmitError(PlayerDetails details);
 
   /**
-   * Notify lottery ticket did not win
+   * lottery ticket did not win
    */
-  void notifyNoWin(PlayerDetails details);
+  void ticketDidNotWin(PlayerDetails details);
 
   /**
-   * Notify that prize has been paid
+   * lottery ticket won
    */
-  void notifyPrize(PlayerDetails details, int prizeAmount);
+  void ticketWon(PlayerDetails details, int prizeAmount);
 
   /**
-   * Notify that there was an error paying the prize
+   * error paying the prize
    */
-  void notifyPrizeError(PlayerDetails details, int prizeAmount);
+  void prizeError(PlayerDetails details, int prizeAmount);
 
 }

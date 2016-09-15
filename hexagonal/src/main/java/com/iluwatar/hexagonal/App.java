@@ -56,7 +56,7 @@ import com.iluwatar.hexagonal.sampledata.SampleData;
  * 
  * The secondary ports that application core uses are {@link WireTransfers}
  * which is a banking service, {@link LotteryNotifications} that delivers
- * notifications as lottery events occur and {@link LotteryTicketRepository}
+ * eventlog as lottery events occur and {@link LotteryTicketRepository}
  * that is the storage for the lottery tickets.
  *
  */

@@ -25,7 +25,7 @@ package com.iluwatar.hexagonal.domain;
 import com.google.inject.Inject;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-import com.iluwatar.hexagonal.notifications.LotteryNotifications;
+import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
 
 import java.util.Map;
 
@@ -37,7 +37,7 @@ import java.util.Map;
 public class LotteryAdministration {
 
   private final LotteryTicketRepository repository;
-  private final LotteryNotifications notifications;
+  private final LotteryEventLog notifications;
   private final WireTransfers wireTransfers;
   private final LotteryTicketChecker checker;
 
@@ -45,7 +45,7 @@ public class LotteryAdministration {
    * Constructor
    */
   @Inject
-  public LotteryAdministration(LotteryTicketRepository repository, LotteryNotifications notifications,
+  public LotteryAdministration(LotteryTicketRepository repository, LotteryEventLog notifications,
                                WireTransfers wireTransfers) {
     this.repository = repository;
     this.notifications = notifications;
@@ -72,12 +72,12 @@ public class LotteryAdministration {
         boolean transferred = wireTransfers.transferFunds(LotteryConstants.PRIZE_AMOUNT,
             LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());
         if (transferred) {
-          notifications.notifyPrize(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+          notifications.ticketWon(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
         } else {
-          notifications.notifyPrizeError(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+          notifications.prizeError(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
         }
       } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
-        notifications.notifyNoWin(tickets.get(id).getPlayerDetails());
+        notifications.ticketDidNotWin(tickets.get(id).getPlayerDetails());
       }
     }
     return numbers;
