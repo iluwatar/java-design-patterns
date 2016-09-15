@@ -49,13 +49,13 @@ import com.iluwatar.hexagonal.sampledata.SampleData;
  * The application core is separate from the services that drive it and
  * from the services it uses.<p>
  * 
- * The primary ports for the application are {@link LotteryAdministration} 
- * through which the lottery round is initiated and run and 
- * {@link LotteryService} that allows players to submit lottery tickets for 
- * the draw.<p>
+ * The primary ports for the application are console interfaces
+ * {@link ConsoleAdministration} through which the lottery round is
+ * initiated and run and {@link ConsoleLottery} that allows players to
+ * submit lottery tickets for the draw.<p>
  * 
  * The secondary ports that application core uses are {@link WireTransfers}
- * which is a banking service, {@link LotteryNotifications} that delivers
+ * which is a banking service, {@link LotteryEventLog} that delivers
  * eventlog as lottery events occur and {@link LotteryTicketRepository}
  * that is the storage for the lottery tickets.
  *
