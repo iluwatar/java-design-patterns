@@ -50,8 +50,8 @@ public class LotteryTestUtils {
    */
   public static LotteryTicket createLotteryTicket(String email, String account, String phone,
       Set<Integer> givenNumbers) {
-    PlayerDetails details = PlayerDetails.create(email, account, phone);
+    PlayerDetails details = new PlayerDetails(email, account, phone);
     LotteryNumbers numbers = LotteryNumbers.create(givenNumbers);
-    return LotteryTicket.create(new LotteryTicketId(), details, numbers);
+    return new LotteryTicket(new LotteryTicketId(), details, numbers);
   }
 }

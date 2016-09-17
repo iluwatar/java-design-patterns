@@ -59,7 +59,7 @@ public class MongoEventLogTest {
 
   @Test
   public void testFundTransfers() {
-    PlayerDetails playerDetails = PlayerDetails.create("john@wayne.com", "000-000", "03432534543");
+    PlayerDetails playerDetails = new PlayerDetails("john@wayne.com", "000-000", "03432534543");
     mongoEventLog.prizeError(playerDetails, 1000);
     assertEquals(1, mongoEventLog.getEventsCollection().count());
     mongoEventLog.prizeError(playerDetails, 1000);

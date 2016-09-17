@@ -76,7 +76,7 @@ public class ConsoleLottery {
         String account = readString(scanner);
         System.out.println("What is your phone number?");
         String phone = readString(scanner);
-        PlayerDetails details = PlayerDetails.create(email, account, phone);
+        PlayerDetails details = new PlayerDetails(email, account, phone);
         System.out.println("Give 4 comma separated lottery numbers?");
         String numbers = readString(scanner);
         try {
@@ -86,7 +86,7 @@ public class ConsoleLottery {
             chosen.add(Integer.parseInt(parts[i]));
           }
           LotteryNumbers lotteryNumbers = LotteryNumbers.create(chosen);
-          LotteryTicket lotteryTicket = LotteryTicket.create(new LotteryTicketId(), details, lotteryNumbers);
+          LotteryTicket lotteryTicket = new LotteryTicket(new LotteryTicketId(), details, lotteryNumbers);
           Optional<LotteryTicketId> id = service.submitTicket(lotteryTicket);
           if (id.isPresent()) {
             System.out.println("Submitted lottery ticket with id: " + id.get());

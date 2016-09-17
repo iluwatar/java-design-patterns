@@ -39,7 +39,6 @@ public class LotteryService {
   private final LotteryTicketRepository repository;
   private final LotteryEventLog notifications;
   private final WireTransfers wireTransfers;
-  private final LotteryTicketChecker checker;
 
   /**
    * Constructor
@@ -50,7 +49,6 @@ public class LotteryService {
     this.repository = repository;
     this.notifications = notifications;
     this.wireTransfers = wireTransfers;
-    this.checker = new LotteryTicketChecker(this.repository);
   }
 
   /**
@@ -74,6 +72,6 @@ public class LotteryService {
    * Check if lottery ticket has won
    */
   public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
-    return checker.checkTicketForPrize(id, winningNumbers);
+    return new LotteryTicketChecker(repository).checkTicketForPrize(id, winningNumbers);
   }
 }

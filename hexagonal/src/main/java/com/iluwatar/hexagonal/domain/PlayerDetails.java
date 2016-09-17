@@ -36,19 +36,12 @@ public class PlayerDetails {
   /**
    * Constructor.
    */
-  private PlayerDetails(String email, String bankAccount, String phone) {
+  public PlayerDetails(String email, String bankAccount, String phone) {
     emailAddress = email;
     bankAccountNumber = bankAccount;
     phoneNumber = phone;
   }
-  
-  /**
-   * Factory for creating new objects.
-   */
-  public static PlayerDetails create(String email, String bankAccount, String phone) {
-    return new PlayerDetails(email, bankAccount, phone);
-  }
-  
+
   /**
    * @return email
    */

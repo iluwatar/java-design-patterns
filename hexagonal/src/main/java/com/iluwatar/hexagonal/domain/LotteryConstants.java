@@ -29,6 +29,9 @@ package com.iluwatar.hexagonal.domain;
  */
 public class LotteryConstants {
 
+  private LotteryConstants() {
+  }
+
   public static final int PRIZE_AMOUNT = 100000;
   public static final String SERVICE_BANK_ACCOUNT = "123-123";
   public static final int TICKET_PRIZE = 3;

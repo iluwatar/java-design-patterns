@@ -180,7 +180,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   }
 
   private LotteryTicket docToTicket(Document doc) {
-    PlayerDetails playerDetails = PlayerDetails.create(doc.getString("email"), doc.getString("bank"),
+    PlayerDetails playerDetails = new PlayerDetails(doc.getString("email"), doc.getString("bank"),
         doc.getString("phone"));
     int[] numArray = Arrays.asList(doc.getString("numbers").split(",")).stream().mapToInt(Integer::parseInt).toArray();
     HashSet<Integer> numbers = new HashSet<>();
@@ -188,6 +188,6 @@ public class MongoTicketRepository implements LotteryTicketRepository {
       numbers.add(num);
     }
     LotteryNumbers lotteryNumbers = LotteryNumbers.create(numbers);
-    return LotteryTicket.create(new LotteryTicketId(doc.getInteger("ticketId")), playerDetails, lotteryNumbers);
+    return new LotteryTicket(new LotteryTicketId(doc.getInteger("ticketId")), playerDetails, lotteryNumbers);
   }
 }

@@ -43,45 +43,45 @@ public class SampleData {
 
   static {
     PLAYERS = new ArrayList<>();
-    PLAYERS.add(PlayerDetails.create("john@google.com", "312-342", "+3242434242"));
-    PLAYERS.add(PlayerDetails.create("mary@google.com", "234-987", "+23452346"));
-    PLAYERS.add(PlayerDetails.create("steve@google.com", "833-836", "+63457543"));
-    PLAYERS.add(PlayerDetails.create("wayne@google.com", "319-826", "+24626"));
-    PLAYERS.add(PlayerDetails.create("johnie@google.com", "983-322", "+3635635"));
-    PLAYERS.add(PlayerDetails.create("andy@google.com", "934-734", "+0898245"));
-    PLAYERS.add(PlayerDetails.create("richard@google.com", "536-738", "+09845325"));
-    PLAYERS.add(PlayerDetails.create("kevin@google.com", "453-936", "+2423532"));
-    PLAYERS.add(PlayerDetails.create("arnold@google.com", "114-988", "+5646346524"));
-    PLAYERS.add(PlayerDetails.create("ian@google.com", "663-765", "+928394235"));
-    PLAYERS.add(PlayerDetails.create("robin@google.com", "334-763", "+35448"));
-    PLAYERS.add(PlayerDetails.create("ted@google.com", "735-964", "+98752345"));
-    PLAYERS.add(PlayerDetails.create("larry@google.com", "734-853", "+043842423"));
-    PLAYERS.add(PlayerDetails.create("calvin@google.com", "334-746", "+73294135"));
-    PLAYERS.add(PlayerDetails.create("jacob@google.com", "444-766", "+358042354"));
-    PLAYERS.add(PlayerDetails.create("edwin@google.com", "895-345", "+9752435"));
-    PLAYERS.add(PlayerDetails.create("mary@google.com", "760-009", "+34203542"));
-    PLAYERS.add(PlayerDetails.create("lolita@google.com", "425-907", "+9872342"));
-    PLAYERS.add(PlayerDetails.create("bruno@google.com", "023-638", "+673824122"));
-    PLAYERS.add(PlayerDetails.create("peter@google.com", "335-886", "+5432503945"));
-    PLAYERS.add(PlayerDetails.create("warren@google.com", "225-946", "+9872341324"));
-    PLAYERS.add(PlayerDetails.create("monica@google.com", "265-748", "+134124"));
-    PLAYERS.add(PlayerDetails.create("ollie@google.com", "190-045", "+34453452"));
-    PLAYERS.add(PlayerDetails.create("yngwie@google.com", "241-465", "+9897641231"));
-    PLAYERS.add(PlayerDetails.create("lars@google.com", "746-936", "+42345298345"));
-    PLAYERS.add(PlayerDetails.create("bobbie@google.com", "946-384", "+79831742"));
-    PLAYERS.add(PlayerDetails.create("tyron@google.com", "310-992", "+0498837412"));
-    PLAYERS.add(PlayerDetails.create("tyrell@google.com", "032-045", "+67834134"));
-    PLAYERS.add(PlayerDetails.create("nadja@google.com", "000-346", "+498723"));
-    PLAYERS.add(PlayerDetails.create("wendy@google.com", "994-989", "+987324454"));
-    PLAYERS.add(PlayerDetails.create("luke@google.com", "546-634", "+987642435"));
-    PLAYERS.add(PlayerDetails.create("bjorn@google.com", "342-874", "+7834325"));
-    PLAYERS.add(PlayerDetails.create("lisa@google.com", "024-653", "+980742154"));
-    PLAYERS.add(PlayerDetails.create("anton@google.com", "834-935", "+876423145"));
-    PLAYERS.add(PlayerDetails.create("bruce@google.com", "284-936", "+09843212345"));
-    PLAYERS.add(PlayerDetails.create("ray@google.com", "843-073", "+678324123"));
-    PLAYERS.add(PlayerDetails.create("ron@google.com", "637-738", "+09842354"));
-    PLAYERS.add(PlayerDetails.create("xavier@google.com", "143-947", "+375245"));
-    PLAYERS.add(PlayerDetails.create("harriet@google.com", "842-404", "+131243252"));
+    PLAYERS.add(new PlayerDetails("john@google.com", "312-342", "+3242434242"));
+    PLAYERS.add(new PlayerDetails("mary@google.com", "234-987", "+23452346"));
+    PLAYERS.add(new PlayerDetails("steve@google.com", "833-836", "+63457543"));
+    PLAYERS.add(new PlayerDetails("wayne@google.com", "319-826", "+24626"));
+    PLAYERS.add(new PlayerDetails("johnie@google.com", "983-322", "+3635635"));
+    PLAYERS.add(new PlayerDetails("andy@google.com", "934-734", "+0898245"));
+    PLAYERS.add(new PlayerDetails("richard@google.com", "536-738", "+09845325"));
+    PLAYERS.add(new PlayerDetails("kevin@google.com", "453-936", "+2423532"));
+    PLAYERS.add(new PlayerDetails("arnold@google.com", "114-988", "+5646346524"));
+    PLAYERS.add(new PlayerDetails("ian@google.com", "663-765", "+928394235"));
+    PLAYERS.add(new PlayerDetails("robin@google.com", "334-763", "+35448"));
+    PLAYERS.add(new PlayerDetails("ted@google.com", "735-964", "+98752345"));
+    PLAYERS.add(new PlayerDetails("larry@google.com", "734-853", "+043842423"));
+    PLAYERS.add(new PlayerDetails("calvin@google.com", "334-746", "+73294135"));
+    PLAYERS.add(new PlayerDetails("jacob@google.com", "444-766", "+358042354"));
+    PLAYERS.add(new PlayerDetails("edwin@google.com", "895-345", "+9752435"));
+    PLAYERS.add(new PlayerDetails("mary@google.com", "760-009", "+34203542"));
+    PLAYERS.add(new PlayerDetails("lolita@google.com", "425-907", "+9872342"));
+    PLAYERS.add(new PlayerDetails("bruno@google.com", "023-638", "+673824122"));
+    PLAYERS.add(new PlayerDetails("peter@google.com", "335-886", "+5432503945"));
+    PLAYERS.add(new PlayerDetails("warren@google.com", "225-946", "+9872341324"));
+    PLAYERS.add(new PlayerDetails("monica@google.com", "265-748", "+134124"));
+    PLAYERS.add(new PlayerDetails("ollie@google.com", "190-045", "+34453452"));
+    PLAYERS.add(new PlayerDetails("yngwie@google.com", "241-465", "+9897641231"));
+    PLAYERS.add(new PlayerDetails("lars@google.com", "746-936", "+42345298345"));
+    PLAYERS.add(new PlayerDetails("bobbie@google.com", "946-384", "+79831742"));
+    PLAYERS.add(new PlayerDetails("tyron@google.com", "310-992", "+0498837412"));
+    PLAYERS.add(new PlayerDetails("tyrell@google.com", "032-045", "+67834134"));
+    PLAYERS.add(new PlayerDetails("nadja@google.com", "000-346", "+498723"));
+    PLAYERS.add(new PlayerDetails("wendy@google.com", "994-989", "+987324454"));
+    PLAYERS.add(new PlayerDetails("luke@google.com", "546-634", "+987642435"));
+    PLAYERS.add(new PlayerDetails("bjorn@google.com", "342-874", "+7834325"));
+    PLAYERS.add(new PlayerDetails("lisa@google.com", "024-653", "+980742154"));
+    PLAYERS.add(new PlayerDetails("anton@google.com", "834-935", "+876423145"));
+    PLAYERS.add(new PlayerDetails("bruce@google.com", "284-936", "+09843212345"));
+    PLAYERS.add(new PlayerDetails("ray@google.com", "843-073", "+678324123"));
+    PLAYERS.add(new PlayerDetails("ron@google.com", "637-738", "+09842354"));
+    PLAYERS.add(new PlayerDetails("xavier@google.com", "143-947", "+375245"));
+    PLAYERS.add(new PlayerDetails("harriet@google.com", "842-404", "+131243252"));
     InMemoryBank wireTransfers = new InMemoryBank();
     Random random = new Random();
     for (int i = 0; i < PLAYERS.size(); i++) {
@@ -95,7 +95,7 @@ public class SampleData {
    */
   public static void submitTickets(LotteryService lotteryService, int numTickets) {
     for (int i = 0; i < numTickets; i++) {
-      LotteryTicket ticket = LotteryTicket.create(new LotteryTicketId(),
+      LotteryTicket ticket = new LotteryTicket(new LotteryTicketId(),
           getRandomPlayerDetails(), LotteryNumbers.createRandom());
       lotteryService.submitTicket(ticket);
     }

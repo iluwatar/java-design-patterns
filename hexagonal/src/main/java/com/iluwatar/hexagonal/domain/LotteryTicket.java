@@ -36,19 +36,12 @@ public class LotteryTicket {
   /**
    * Constructor.
    */
-  private LotteryTicket(LotteryTicketId id, PlayerDetails details, LotteryNumbers numbers) {
+  public LotteryTicket(LotteryTicketId id, PlayerDetails details, LotteryNumbers numbers) {
     this.id = id;
     playerDetails = details;
     lotteryNumbers = numbers;
   }
 
-  /**
-   * Factory for creating lottery tickets;
-   */
-  public static LotteryTicket create(LotteryTicketId id, PlayerDetails details, LotteryNumbers numbers) {
-    return new LotteryTicket(id, details, numbers);
-  }
-  
   /**
    * @return player details
    */

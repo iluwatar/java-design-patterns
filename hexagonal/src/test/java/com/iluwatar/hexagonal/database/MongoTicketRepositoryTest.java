@@ -76,9 +76,9 @@ public class MongoTicketRepositoryTest {
   @Test
   public void testCrudOperations() {
     // create new lottery ticket and save it
-    PlayerDetails details = PlayerDetails.create("foo@bar.com", "123-123", "07001234");
+    PlayerDetails details = new PlayerDetails("foo@bar.com", "123-123", "07001234");
     LotteryNumbers random = LotteryNumbers.createRandom();
-    LotteryTicket original = LotteryTicket.create(new LotteryTicketId(), details, random);
+    LotteryTicket original = new LotteryTicket(new LotteryTicketId(), details, random);
     Optional<LotteryTicketId> saved = repository.save(original);
     assertEquals(1, repository.getTicketsCollection().count());
     assertTrue(saved.isPresent());

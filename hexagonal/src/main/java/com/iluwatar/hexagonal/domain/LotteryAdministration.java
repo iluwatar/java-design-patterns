@@ -39,7 +39,6 @@ public class LotteryAdministration {
   private final LotteryTicketRepository repository;
   private final LotteryEventLog notifications;
   private final WireTransfers wireTransfers;
-  private final LotteryTicketChecker checker;
 
   /**
    * Constructor
@@ -50,7 +49,6 @@ public class LotteryAdministration {
     this.repository = repository;
     this.notifications = notifications;
     this.wireTransfers = wireTransfers;
-    this.checker = new LotteryTicketChecker(this.repository);
   }
 
   /**
@@ -67,7 +65,7 @@ public class LotteryAdministration {
     LotteryNumbers numbers = LotteryNumbers.createRandom();
     Map<LotteryTicketId, LotteryTicket> tickets = getAllSubmittedTickets();
     for (LotteryTicketId id : tickets.keySet()) {
-      LotteryTicketCheckResult result = checker.checkTicketForPrize(id, numbers);
+      LotteryTicketCheckResult result = new LotteryTicketChecker(repository).checkTicketForPrize(id, numbers);
       if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
         boolean transferred = wireTransfers.transferFunds(LotteryConstants.PRIZE_AMOUNT,
             LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());
