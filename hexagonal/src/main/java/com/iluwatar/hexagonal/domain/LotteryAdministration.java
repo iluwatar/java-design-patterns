@@ -65,7 +65,7 @@ public class LotteryAdministration {
     LotteryNumbers numbers = LotteryNumbers.createRandom();
     Map<LotteryTicketId, LotteryTicket> tickets = getAllSubmittedTickets();
     for (LotteryTicketId id : tickets.keySet()) {
-      LotteryTicketCheckResult result = new LotteryTicketChecker(repository).checkTicketForPrize(id, numbers);
+      LotteryTicketCheckResult result = LotteryUtils.checkTicketForPrize(repository, id, numbers);
       if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
         boolean transferred = wireTransfers.transferFunds(LotteryConstants.PRIZE_AMOUNT,
             LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());

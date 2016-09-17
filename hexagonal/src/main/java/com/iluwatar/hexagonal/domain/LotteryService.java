@@ -72,6 +72,6 @@ public class LotteryService {
    * Check if lottery ticket has won
    */
   public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
-    return new LotteryTicketChecker(repository).checkTicketForPrize(id, winningNumbers);
+    return LotteryUtils.checkTicketForPrize(repository, id, winningNumbers);
   }
 }

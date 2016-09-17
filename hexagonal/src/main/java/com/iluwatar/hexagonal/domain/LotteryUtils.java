@@ -27,20 +27,18 @@ import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import java.util.Optional;
 
 /**
- * Lottery ticket checker
+ * Lottery utilities
  */
-public class LotteryTicketChecker {
+public class LotteryUtils {
 
-  private final LotteryTicketRepository repository;
-
-  public LotteryTicketChecker(LotteryTicketRepository repository) {
-    this.repository = repository;
+  private LotteryUtils() {
   }
 
   /**
-   * Check if lottery ticket has won
+   * Checks if lottery ticket has won
    */
-  public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
+  public static LotteryTicketCheckResult checkTicketForPrize(LotteryTicketRepository repository, LotteryTicketId id,
+                                                      LotteryNumbers winningNumbers) {
     Optional<LotteryTicket> optional = repository.findById(id);
     if (optional.isPresent()) {
       if (optional.get().getNumbers().equals(winningNumbers)) {
