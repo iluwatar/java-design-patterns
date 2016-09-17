@@ -8,7 +8,7 @@ author: ilu
 
 ## The fallacies of layered architecture
 
-This blog post is about implementing Alistair Cockburn's [Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture). To have something familiar to start with let's first talk about Layered Architecture. It is a well known architectural pattern that organizes application into layers each having their specific purpose. The database layer takes care of data transactions, the business layer is responsible for business logic and the presentation layer deals with the user input. The Layered Architecture implements so called separation of concerns principle which leads to more maintainable applications. Changes to one area in the software are not propagated to other areas.
+This blog post is about implementing Alistair Cockburn's [Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture). To have something familiar to start with let's first talk about Layered Architecture. It is a well known architectural pattern that organizes application into layers each having their specific purpose. The database layer takes care of data transactions, the business layer is responsible for business logic and the presentation layer deals with the user input. The Layered Architecture implements so called separation of concerns principle which leads to more maintainable applications. Changes to one area in the software do not affect the other areas.
 
 ![Layers]({{ site.url }}{{ site.baseurl }}/assets/layers.png)
 
@@ -42,7 +42,7 @@ The secondary ports consist of lottery ticket database, banking for wire transfe
 
 We start the implementation from the system core. First we need to identify the core concepts of the lottery system. Probably the most important one is the lottery ticket. In lottery ticket you are supposed to pick the numbers and provide your contact details. This leads us to write the following classes.
 
-<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryTicket.java?slice=24:83"></script>
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryTicket.java?slice=24:44"></script>
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryNumbers.java?slice=32:144"></script>
 
 `LotteryTicket` contains `LotteryNumbers` and `PlayerDetails`. `LotteryNumbers` contains means to hold given numbers or generate random numbers and test the numbers for equality with another `LotteryNumbers` instance. [PlayerDetails](https://github.com/iluwatar/java-design-patterns/blob/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/PlayerDetails.java) is a simple value object containing player's email address, bank account number and phone number.
@@ -53,15 +53,13 @@ Now that we have the nouns presenting our core concepts we need to implement the
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryAdministration.java?slice=31:"></script>
 
-For administrators `LotterySystem` has `resetLottery()` method for starting a new lottery round. At this stage the players submit their lottery tickets into the database and when the time is due the administration calls `performLottery()` to draw the winning numbers and check each of the tickets for winnings.
+For administrators `LotteryAdministration` has `resetLottery()` method for starting a new lottery round. At this stage the players submit their lottery tickets into the database and when the time is due the administration calls `performLottery()` to draw the winning numbers and check each of the tickets for winnings.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryService.java?slice=31:"></script>
 
 The lottery players use `submitTicket()` to submit tickets for lottery round. After the draw has been performed `checkTicketForPrize()` tells the players whether they have won.
 
-`LotteryAdministration` and `LotteryService` have dependencies to lottery ticket database, banking and event log ports. We use [Guice](https://github.com/google/guice) dependency injection framework to provide the correct implementation classes for each purpose.
-
-The core logic is tested in [LotteryTest](https://github.com/iluwatar/java-design-patterns/blob/master/hexagonal/src/test/java/com/iluwatar/hexagonal/domain/LotteryTest.java).
+`LotteryAdministration` and `LotteryService` have dependencies to lottery ticket database, banking and event log ports. We use [Guice](https://github.com/google/guice) dependency injection framework to provide the correct implementation classes for each purpose. The core logic is tested in [LotteryTest](https://github.com/iluwatar/java-design-patterns/blob/master/hexagonal/src/test/java/com/iluwatar/hexagonal/domain/LotteryTest.java).
 
 ## Primary port for the players
 
@@ -107,7 +105,7 @@ The port has two adapters. The `LotteryTicketInMemoryRepository` is a mock datab
 
 ## Lottery application
 
-With all the pieces in place we create a command line application to drive the lottery system. The test application initializes the lottery system using the adminstration methods and starts collecting lottery tickets from the players. Once all the lottery tickets have been submitted the lottery number draw is performed and all the submitted tickets are checked for wins.
+With all the pieces in place we create a command line application to drive the lottery system. The test application begins the lottery round using the administration methods and starts collecting lottery tickets from the players. Once all the lottery tickets have been submitted the lottery number draw is performed and all the submitted tickets are checked for wins.
 
 <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/hexagonal/src/main/java/com/iluwatar/hexagonal/App.java?slice=62:"></script>
 
