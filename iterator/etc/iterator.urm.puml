@@ -1,12 +1,16 @@
 @startuml
 package com.iluwatar.iterator {
-  interface ItemIterator {
-    + hasNext() : boolean {abstract}
-    + next() : Item {abstract}
-  }
   class App {
     + App()
     + main(args : String[]) {static}
+  }
+  class Item {
+    - name : String
+    - type : ItemType
+    + Item(type : ItemType, name : String)
+    + getType() : ItemType
+    + setType(type : ItemType)
+    + toString() : String
   }
   class TreasureChestItemIterator {
     - chest : TreasureChest
@@ -23,13 +27,9 @@ package com.iluwatar.iterator {
     + getItems() : List<Item>
     ~ iterator(itemType : ItemType) : ItemIterator
   }
-  class Item {
-    - name : String
-    - type : ItemType
-    + Item(type : ItemType, name : String)
-    + getType() : ItemType
-    + setType(type : ItemType)
-    + toString() : String
+  interface ItemIterator {
+    + hasNext() : boolean {abstract}
+    + next() : Item {abstract}
   }
   enum ItemType {
     + ANY {static}

@@ -17,9 +17,6 @@ package com.iluwatar.factory.method {
   interface Blacksmith {
     + manufactureWeapon(WeaponType) : Weapon {abstract}
   }
-  interface Weapon {
-    + getWeaponType() : WeaponType {abstract}
-  }
   class ElfWeapon {
     - weaponType : WeaponType
     + ElfWeapon(weaponType : WeaponType)
@@ -31,6 +28,9 @@ package com.iluwatar.factory.method {
     + App(blacksmith : Blacksmith)
     + main(args : String[]) {static}
     - manufactureWeapons()
+  }
+  interface Weapon {
+    + getWeaponType() : WeaponType {abstract}
   }
   enum WeaponType {
     + AXE {static}

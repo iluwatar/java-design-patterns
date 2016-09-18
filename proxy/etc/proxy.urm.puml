@@ -1,5 +1,11 @@
 @startuml
 package com.iluwatar.proxy {
+  class WizardTowerProxy {
+    - NUM_WIZARDS_ALLOWED : int {static}
+    - numWizards : int
+    + WizardTowerProxy()
+    + enter(wizard : Wizard)
+  }
   class WizardTower {
     + WizardTower()
     + enter(wizard : Wizard)
@@ -7,12 +13,6 @@ package com.iluwatar.proxy {
   class App {
     + App()
     + main(args : String[]) {static}
-  }
-  class WizardTowerProxy {
-    - NUM_WIZARDS_ALLOWED : int {static}
-    - numWizards : int
-    + WizardTowerProxy()
-    + enter(wizard : Wizard)
   }
   class Wizard {
     - name : String

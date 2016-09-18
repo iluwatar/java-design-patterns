@@ -1,18 +1,5 @@
 @startuml
 package com.iluwatar.privateclassdata {
-  class Stew {
-    - numCarrots : int
-    - numMeat : int
-    - numPeppers : int
-    - numPotatoes : int
-    + Stew(numPotatoes : int, numCarrots : int, numMeat : int, numPeppers : int)
-    + mix()
-    + taste()
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
   class StewData {
     - numCarrots : int
     - numMeat : int
@@ -23,6 +10,19 @@ package com.iluwatar.privateclassdata {
     + getNumMeat() : int
     + getNumPeppers() : int
     + getNumPotatoes() : int
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Stew {
+    - numCarrots : int
+    - numMeat : int
+    - numPeppers : int
+    - numPotatoes : int
+    + Stew(numPotatoes : int, numCarrots : int, numMeat : int, numPeppers : int)
+    + mix()
+    + taste()
   }
   class ImmutableStew {
     - data : StewData

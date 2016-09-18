@@ -1,17 +1,5 @@
 @startuml
 package com.iluwatar.doubledispatch {
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class FlamingAsteroid {
-    + FlamingAsteroid(left : int, top : int, right : int, bottom : int)
-    + collision(gameObject : GameObject)
-  }
-  class SpaceStationIss {
-    + SpaceStationIss(left : int, top : int, right : int, bottom : int)
-    + collision(gameObject : GameObject)
-  }
   abstract class GameObject {
     - damaged : boolean
     - onFire : boolean
@@ -26,6 +14,14 @@ package com.iluwatar.doubledispatch {
     + setDamaged(damaged : boolean)
     + setOnFire(onFire : boolean)
     + toString() : String
+  }
+  class SpaceStationIss {
+    + SpaceStationIss(left : int, top : int, right : int, bottom : int)
+    + collision(gameObject : GameObject)
+  }
+  class FlamingAsteroid {
+    + FlamingAsteroid(left : int, top : int, right : int, bottom : int)
+    + collision(gameObject : GameObject)
   }
   class SpaceStationMir {
     + SpaceStationMir(left : int, top : int, right : int, bottom : int)
@@ -56,10 +52,14 @@ package com.iluwatar.doubledispatch {
     ~ intersectsWith(r : Rectangle) : boolean
     + toString() : String
   }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
 }
-FlamingAsteroid --|> Meteoroid 
-SpaceStationIss --|> SpaceStationMir 
 GameObject --|> Rectangle 
+SpaceStationIss --|> SpaceStationMir 
+FlamingAsteroid --|> Meteoroid 
 SpaceStationMir --|> GameObject 
 Meteoroid --|> GameObject 
 @enduml

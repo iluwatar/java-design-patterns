@@ -1,24 +1,5 @@
 @startuml
 package com.iluwatar.servant {
-  class King {
-    - complimentReceived : boolean
-    - isDrunk : boolean
-    - isHappy : boolean
-    - isHungry : boolean
-    + King()
-    + changeMood()
-    + getDrink()
-    + getFed()
-    + getMood() : boolean
-    + receiveCompliments()
-  }
-  ~interface Royalty {
-    + changeMood() {abstract}
-    + getDrink() {abstract}
-    + getFed() {abstract}
-    + getMood() : boolean {abstract}
-    + receiveCompliments() {abstract}
-  }
   class Servant {
     + name : String
     + Servant(name : String)
@@ -48,8 +29,27 @@ package com.iluwatar.servant {
     + main(args : String[]) {static}
     + scenario(servant : Servant, compliment : int) {static}
   }
+  class King {
+    - complimentReceived : boolean
+    - isDrunk : boolean
+    - isHappy : boolean
+    - isHungry : boolean
+    + King()
+    + changeMood()
+    + getDrink()
+    + getFed()
+    + getMood() : boolean
+    + receiveCompliments()
+  }
+  ~interface Royalty {
+    + changeMood() {abstract}
+    + getDrink() {abstract}
+    + getFed() {abstract}
+    + getMood() : boolean {abstract}
+    + receiveCompliments() {abstract}
+  }
 }
 App -->  "-jenkins" Servant
-King ..|> Royalty 
 Queen ..|> Royalty 
+King ..|> Royalty 
 @enduml

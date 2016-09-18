@@ -282,6 +282,25 @@
                                         <ignore/>
                                     </action>
                                 </pluginExecution>
+                                <pluginExecution>
+                                	<pluginExecutionFilter>
+                                		<groupId>
+                                			com.github.markusmo3.urm
+                                		</groupId>
+                                		<artifactId>
+                                			urm-maven-plugin
+                                		</artifactId>
+                                		<versionRange>
+                                			[1.4.1,)
+                                		</versionRange>
+                                		<goals>
+                                			<goal>map</goal>
+                                		</goals>
+                                	</pluginExecutionFilter>
+                                	<action>
+                                		<ignore></ignore>
+                                	</action>
+                                </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>

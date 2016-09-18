@@ -1,32 +1,8 @@
 @startuml
 package com.iluwatar.event.aggregator {
-  class KingsHand {
-    + KingsHand()
-    + KingsHand(obs : EventObserver)
-    + onEvent(e : Event)
-    + timePasses(day : Weekday)
-  }
-  class KingJoffrey {
-    + KingJoffrey()
-    + onEvent(e : Event)
-  }
-  class Scout {
-    + Scout()
-    + Scout(obs : EventObserver)
-    + timePasses(day : Weekday)
-  }
   class LordVarys {
     + LordVarys()
     + LordVarys(obs : EventObserver)
-    + timePasses(day : Weekday)
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class LordBaelish {
-    + LordBaelish()
-    + LordBaelish(obs : EventObserver)
     + timePasses(day : Weekday)
   }
   abstract class EventEmitter {
@@ -37,8 +13,32 @@ package com.iluwatar.event.aggregator {
     + registerObserver(obs : EventObserver)
     + timePasses(Weekday) {abstract}
   }
+  class KingJoffrey {
+    + KingJoffrey()
+    + onEvent(e : Event)
+  }
+  class LordBaelish {
+    + LordBaelish()
+    + LordBaelish(obs : EventObserver)
+    + timePasses(day : Weekday)
+  }
   interface EventObserver {
     + onEvent(Event) {abstract}
+  }
+  class KingsHand {
+    + KingsHand()
+    + KingsHand(obs : EventObserver)
+    + onEvent(e : Event)
+    + timePasses(day : Weekday)
+  }
+  class Scout {
+    + Scout()
+    + Scout(obs : EventObserver)
+    + timePasses(day : Weekday)
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   enum Weekday {
     + FRIDAY {static}
@@ -64,10 +64,10 @@ package com.iluwatar.event.aggregator {
   }
 }
 EventEmitter -->  "-observers" EventObserver
+LordVarys --|> EventEmitter 
+KingJoffrey ..|> EventObserver 
+LordBaelish --|> EventEmitter 
 KingsHand ..|> EventObserver 
 KingsHand --|> EventEmitter 
-KingJoffrey ..|> EventObserver 
 Scout --|> EventEmitter 
-LordVarys --|> EventEmitter 
-LordBaelish --|> EventEmitter 
 @enduml

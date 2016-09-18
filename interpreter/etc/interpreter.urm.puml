@@ -1,34 +1,9 @@
 @startuml
 package com.iluwatar.interpreter {
-  abstract class Expression {
-    + Expression()
-    + interpret() : int {abstract}
-    + toString() : String {abstract}
-  }
-  class PlusExpression {
-    - leftExpression : Expression
-    - rightExpression : Expression
-    + PlusExpression(leftExpression : Expression, rightExpression : Expression)
-    + interpret() : int
-    + toString() : String
-  }
-  class App {
-    + App()
-    + getOperatorInstance(s : String, left : Expression, right : Expression) : Expression {static}
-    + isOperator(s : String) : boolean {static}
-    + main(args : String[]) {static}
-  }
   class NumberExpression {
     - number : int
     + NumberExpression(number : int)
     + NumberExpression(s : String)
-    + interpret() : int
-    + toString() : String
-  }
-  class MultiplyExpression {
-    - leftExpression : Expression
-    - rightExpression : Expression
-    + MultiplyExpression(leftExpression : Expression, rightExpression : Expression)
     + interpret() : int
     + toString() : String
   }
@@ -39,12 +14,37 @@ package com.iluwatar.interpreter {
     + interpret() : int
     + toString() : String
   }
+  class App {
+    + App()
+    + getOperatorInstance(s : String, left : Expression, right : Expression) : Expression {static}
+    + isOperator(s : String) : boolean {static}
+    + main(args : String[]) {static}
+  }
+  abstract class Expression {
+    + Expression()
+    + interpret() : int {abstract}
+    + toString() : String {abstract}
+  }
+  class MultiplyExpression {
+    - leftExpression : Expression
+    - rightExpression : Expression
+    + MultiplyExpression(leftExpression : Expression, rightExpression : Expression)
+    + interpret() : int
+    + toString() : String
+  }
+  class PlusExpression {
+    - leftExpression : Expression
+    - rightExpression : Expression
+    + PlusExpression(leftExpression : Expression, rightExpression : Expression)
+    + interpret() : int
+    + toString() : String
+  }
 }
 MultiplyExpression -->  "-leftExpression" Expression
 MinusExpression -->  "-leftExpression" Expression
 PlusExpression -->  "-leftExpression" Expression
-PlusExpression --|> Expression 
 NumberExpression --|> Expression 
-MultiplyExpression --|> Expression 
 MinusExpression --|> Expression 
+MultiplyExpression --|> Expression 
+PlusExpression --|> Expression 
 @enduml

@@ -1,42 +1,5 @@
 @startuml
 package com.iluwatar.model.view.presenter {
-  class FileLoader {
-    - fileName : String
-    - loaded : boolean
-    + FileLoader()
-    + fileExists() : boolean
-    + getFileName() : String
-    + isLoaded() : boolean
-    + loadData() : String
-    + setFileName(fileName : String)
-  }
-  class FileSelectorJFrame {
-    - area : JTextArea
-    - cancel : JButton
-    - contents : JLabel
-    - fileName : String
-    - info : JLabel
-    - input : JTextField
-    - ok : JButton
-    - panel : JPanel
-    - presenter : FileSelectorPresenter
-    - serialVersionUID : long {static}
-    + FileSelectorJFrame()
-    + actionPerformed(e : ActionEvent)
-    + close()
-    + displayData(data : String)
-    + getFileName() : String
-    + getPresenter() : FileSelectorPresenter
-    + isOpened() : boolean
-    + open()
-    + setFileName(name : String)
-    + setPresenter(presenter : FileSelectorPresenter)
-    + showMessage(message : String)
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
   interface FileSelectorView {
     + close() {abstract}
     + displayData(String) {abstract}
@@ -67,6 +30,16 @@ package com.iluwatar.model.view.presenter {
     + setPresenter(presenter : FileSelectorPresenter)
     + showMessage(message : String)
   }
+  class FileLoader {
+    - fileName : String
+    - loaded : boolean
+    + FileLoader()
+    + fileExists() : boolean
+    + getFileName() : String
+    + isLoaded() : boolean
+    + loadData() : String
+    + setFileName(fileName : String)
+  }
   class FileSelectorPresenter {
     - loader : FileLoader
     - view : FileSelectorView
@@ -77,11 +50,38 @@ package com.iluwatar.model.view.presenter {
     + setLoader(loader : FileLoader)
     + start()
   }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class FileSelectorJFrame {
+    - area : JTextArea
+    - cancel : JButton
+    - contents : JLabel
+    - fileName : String
+    - info : JLabel
+    - input : JTextField
+    - ok : JButton
+    - panel : JPanel
+    - presenter : FileSelectorPresenter
+    - serialVersionUID : long {static}
+    + FileSelectorJFrame()
+    + actionPerformed(e : ActionEvent)
+    + close()
+    + displayData(data : String)
+    + getFileName() : String
+    + getPresenter() : FileSelectorPresenter
+    + isOpened() : boolean
+    + open()
+    + setFileName(name : String)
+    + setPresenter(presenter : FileSelectorPresenter)
+    + showMessage(message : String)
+  }
 }
-FileSelectorStub -->  "-presenter" FileSelectorPresenter
 FileSelectorJFrame -->  "-presenter" FileSelectorPresenter
+FileSelectorStub -->  "-presenter" FileSelectorPresenter
 FileSelectorPresenter -->  "-loader" FileLoader
 FileSelectorPresenter -->  "-view" FileSelectorView
-FileSelectorJFrame ..|> FileSelectorView 
 FileSelectorStub ..|> FileSelectorView 
+FileSelectorJFrame ..|> FileSelectorView 
 @enduml

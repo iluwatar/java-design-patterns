@@ -1,7 +1,43 @@
 @startuml
 package com.iluwatar.visitor {
+  class Commander {
+    + Commander(children : Unit[])
+    + accept(visitor : UnitVisitor)
+    + toString() : String
+  }
+  interface UnitVisitor {
+    + visitCommander(Commander) {abstract}
+    + visitSergeant(Sergeant) {abstract}
+    + visitSoldier(Soldier) {abstract}
+  }
   class CommanderVisitor {
     + CommanderVisitor()
+    + visitCommander(commander : Commander)
+    + visitSergeant(sergeant : Sergeant)
+    + visitSoldier(soldier : Soldier)
+  }
+  class Soldier {
+    + Soldier(children : Unit[])
+    + accept(visitor : UnitVisitor)
+    + toString() : String
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  abstract class Unit {
+    - children : Unit[]
+    + Unit(children : Unit[])
+    + accept(visitor : UnitVisitor)
+  }
+  class SoldierVisitor {
+    + SoldierVisitor()
+    + visitCommander(commander : Commander)
+    + visitSergeant(sergeant : Sergeant)
+    + visitSoldier(soldier : Soldier)
+  }
+  class SergeantVisitor {
+    + SergeantVisitor()
     + visitCommander(commander : Commander)
     + visitSergeant(sergeant : Sergeant)
     + visitSoldier(soldier : Soldier)
@@ -11,47 +47,11 @@ package com.iluwatar.visitor {
     + accept(visitor : UnitVisitor)
     + toString() : String
   }
-  class Commander {
-    + Commander(children : Unit[])
-    + accept(visitor : UnitVisitor)
-    + toString() : String
-  }
-  abstract class Unit {
-    - children : Unit[]
-    + Unit(children : Unit[])
-    + accept(visitor : UnitVisitor)
-  }
-  class Soldier {
-    + Soldier(children : Unit[])
-    + accept(visitor : UnitVisitor)
-    + toString() : String
-  }
-  class SergeantVisitor {
-    + SergeantVisitor()
-    + visitCommander(commander : Commander)
-    + visitSergeant(sergeant : Sergeant)
-    + visitSoldier(soldier : Soldier)
-  }
-  interface UnitVisitor {
-    + visitCommander(Commander) {abstract}
-    + visitSergeant(Sergeant) {abstract}
-    + visitSoldier(Soldier) {abstract}
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class SoldierVisitor {
-    + SoldierVisitor()
-    + visitCommander(commander : Commander)
-    + visitSergeant(sergeant : Sergeant)
-    + visitSoldier(soldier : Soldier)
-  }
 }
-CommanderVisitor ..|> UnitVisitor 
-Sergeant --|> Unit 
 Commander --|> Unit 
+CommanderVisitor ..|> UnitVisitor 
 Soldier --|> Unit 
-SergeantVisitor ..|> UnitVisitor 
 SoldierVisitor ..|> UnitVisitor 
+SergeantVisitor ..|> UnitVisitor 
+Sergeant --|> Unit 
 @enduml

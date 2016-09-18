@@ -4,12 +4,12 @@ package com.iluwatar.resource.acquisition.is.initialization {
     + App()
     + main(args : String[]) {static}
   }
-  class TreasureChest {
-    + TreasureChest()
-    + close()
-  }
   class SlidingDoor {
     + SlidingDoor()
+    + close()
+  }
+  class TreasureChest {
+    + TreasureChest()
     + close()
   }
 }

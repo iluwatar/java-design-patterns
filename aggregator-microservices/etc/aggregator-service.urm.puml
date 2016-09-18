@@ -1,5 +1,25 @@
 @startuml
 package com.iluwatar.aggregator.microservices {
+  class ProductInventoryClientImpl {
+    + ProductInventoryClientImpl()
+    + getProductInventories() : int
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface ProductInventoryClient {
+    + getProductInventories() : int {abstract}
+  }
+  class Product {
+    - productInventories : int
+    - title : String
+    + Product()
+    + getProductInventories() : int
+    + getTitle() : String
+    + setProductInventories(productInventories : int)
+    + setTitle(title : String)
+  }
   class Aggregator {
     - informationClient : ProductInformationClient
     - inventoryClient : ProductInventoryClient
@@ -13,29 +33,9 @@ package com.iluwatar.aggregator.microservices {
   interface ProductInformationClient {
     + getProductTitle() : String {abstract}
   }
-  class Product {
-    - productInventories : int
-    - title : String
-    + Product()
-    + getProductInventories() : int
-    + getTitle() : String
-    + setProductInventories(productInventories : int)
-    + setTitle(title : String)
-  }
-  class ProductInventoryClientImpl {
-    + ProductInventoryClientImpl()
-    + getProductInventories() : int
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  interface ProductInventoryClient {
-    + getProductInventories() : int {abstract}
-  }
 }
 Aggregator -->  "-inventoryClient" ProductInventoryClient
 Aggregator -->  "-informationClient" ProductInformationClient
-ProductInformationClientImpl ..|> ProductInformationClient 
 ProductInventoryClientImpl ..|> ProductInventoryClient 
+ProductInformationClientImpl ..|> ProductInformationClient 
 @enduml

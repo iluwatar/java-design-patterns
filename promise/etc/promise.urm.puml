@@ -24,12 +24,18 @@ package com.iluwatar.promise {
     - ConsumeAction(src : Promise<T>, dest : Promise<T>, action : Consumer<T>)
     + run()
   }
-  -class TransformAction<V> {
-    - dest : Promise<V>
-    - func : Function<? super T, V>
-    - src : Promise<T>
-    - TransformAction<V>(src : Promise<T>, dest : Promise<T>, func : Function<T, R>)
-    + run()
+  class Promise<T> {
+    - exceptionHandler : Consumer<? super Throwable>
+    - fulfillmentAction : Runnable
+    + Promise<T>()
+    + fulfill(value : T)
+    + fulfillExceptionally(exception : Exception)
+    + fulfillInAsync(task : Callable<T>, executor : Executor) : Promise<T>
+    - handleException(exception : Exception)
+    + onError(exceptionHandler : Consumer<? super Throwable>) : Promise<T>
+    - postFulfillment()
+    + thenAccept(action : Consumer<? super T>) : Promise<Void>
+    + thenApply(func : Function<? super T, V>) : Promise<V>
   }
   class App {
     - DEFAULT_URL : String {static}
@@ -47,18 +53,12 @@ package com.iluwatar.promise {
     - stop()
     - taskCompleted()
   }
-  class Promise<T> {
-    - exceptionHandler : Consumer<? super Throwable>
-    - fulfillmentAction : Runnable
-    + Promise<T>()
-    + fulfill(value : T)
-    + fulfillExceptionally(exception : Exception)
-    + fulfillInAsync(task : Callable<T>, executor : Executor) : Promise<T>
-    - handleException(exception : Exception)
-    + onError(exceptionHandler : Consumer<? super Throwable>) : Promise<T>
-    - postFulfillment()
-    + thenAccept(action : Consumer<? super T>) : Promise<Void>
-    + thenApply(func : Function<? super T, V>) : Promise<V>
+  -class TransformAction<V> {
+    - dest : Promise<V>
+    - func : Function<? super T, V>
+    - src : Promise<T>
+    - TransformAction<V>(src : Promise<T>, dest : Promise<T>, func : Function<T, R>)
+    + run()
   }
   class Utility {
     + Utility()

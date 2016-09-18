@@ -1,11 +1,5 @@
 @startuml
 package com.iluwatar.tolerantreader {
-  class RainbowFishSerializer {
-    - RainbowFishSerializer()
-    + readV1(filename : String) : RainbowFish {static}
-    + writeV1(rainbowFish : RainbowFish, filename : String) {static}
-    + writeV2(rainbowFish : RainbowFishV2, filename : String) {static}
-  }
   class RainbowFish {
     - age : int
     - lengthMeters : int
@@ -18,6 +12,10 @@ package com.iluwatar.tolerantreader {
     + getName() : String
     + getWeightTons() : int
   }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
   class RainbowFishV2 {
     - angry : boolean
     - hungry : boolean
@@ -29,9 +27,11 @@ package com.iluwatar.tolerantreader {
     + getHungry() : boolean
     + getSleeping() : boolean
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
+  class RainbowFishSerializer {
+    - RainbowFishSerializer()
+    + readV1(filename : String) : RainbowFish {static}
+    + writeV1(rainbowFish : RainbowFish, filename : String) {static}
+    + writeV2(rainbowFish : RainbowFishV2, filename : String) {static}
   }
 }
 RainbowFishV2 --|> RainbowFish 

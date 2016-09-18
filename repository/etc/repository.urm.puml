@@ -1,8 +1,33 @@
 @startuml
 package com.iluwatar.repository {
+  class PersonSpecifications {
+    + PersonSpecifications()
+  }
+  class NameEqualSpec {
+    + name : String
+    + NameEqualSpec(name : String)
+    + toPredicate(root : Root<Person>, query : CriteriaQuery<?>, cb : CriteriaBuilder) : Predicate
+  }
   class App {
     + App()
     + main(args : String[]) {static}
+  }
+  interface PersonRepository {
+    + findByName(String) : Person {abstract}
+  }
+  class AgeBetweenSpec {
+    - from : int
+    - to : int
+    + AgeBetweenSpec(from : int, to : int)
+    + toPredicate(root : Root<Person>, query : CriteriaQuery<?>, cb : CriteriaBuilder) : Predicate
+  }
+  class AppConfig {
+    + AppConfig()
+    + dataSource() : DataSource
+    + entityManagerFactory() : LocalContainerEntityManagerFactoryBean
+    - jpaProperties() : Properties {static}
+    + main(args : String[]) {static}
+    + transactionManager() : JpaTransactionManager
   }
   class Person {
     - age : int
@@ -22,31 +47,6 @@ package com.iluwatar.repository {
     + setName(name : String)
     + setSurname(surname : String)
     + toString() : String
-  }
-  class AgeBetweenSpec {
-    - from : int
-    - to : int
-    + AgeBetweenSpec(from : int, to : int)
-    + toPredicate(root : Root<Person>, query : CriteriaQuery<?>, cb : CriteriaBuilder) : Predicate
-  }
-  class AppConfig {
-    + AppConfig()
-    + dataSource() : DataSource
-    + entityManagerFactory() : LocalContainerEntityManagerFactoryBean
-    - jpaProperties() : Properties {static}
-    + main(args : String[]) {static}
-    + transactionManager() : JpaTransactionManager
-  }
-  interface PersonRepository {
-    + findByName(String) : Person {abstract}
-  }
-  class NameEqualSpec {
-    + name : String
-    + NameEqualSpec(name : String)
-    + toPredicate(root : Root<Person>, query : CriteriaQuery<?>, cb : CriteriaBuilder) : Predicate
-  }
-  class PersonSpecifications {
-    + PersonSpecifications()
   }
 }
 App --+ PersonSpecifications

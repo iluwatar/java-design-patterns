@@ -1,31 +1,10 @@
 @startuml
 package com.iluwatar.semaphore {
-  class FruitShop {
-    - available : boolean[]
-    - bowls : FruitBowl[]
-    - semaphore : Semaphore
-    + FruitShop()
-    + countFruit() : int
-    + returnBowl(bowl : FruitBowl)
-    + takeBowl() : FruitBowl
-  }
-  class FruitBowl {
-    - fruit : ArrayList<Fruit>
-    + FruitBowl()
-    + countFruit() : int
-    + put(f : Fruit)
-    + take() : Fruit
-    + toString() : String
-  }
   class Fruit {
     - type : FruitType
     + Fruit(type : FruitType)
     + getType() : FruitType
     + toString() : String
-  }
-  interface Lock {
-    + acquire() {abstract}
-    + release() {abstract}
   }
   class App {
     + App()
@@ -39,6 +18,27 @@ package com.iluwatar.semaphore {
     + getAvailableLicenses() : int
     + getNumLicenses() : int
     + release()
+  }
+  class FruitShop {
+    - available : boolean[]
+    - bowls : FruitBowl[]
+    - semaphore : Semaphore
+    + FruitShop()
+    + countFruit() : int
+    + returnBowl(bowl : FruitBowl)
+    + takeBowl() : FruitBowl
+  }
+  interface Lock {
+    + acquire() {abstract}
+    + release() {abstract}
+  }
+  class FruitBowl {
+    - fruit : ArrayList<Fruit>
+    + FruitBowl()
+    + countFruit() : int
+    + put(f : Fruit)
+    + take() : Fruit
+    + toString() : String
   }
   enum FruitType {
     + APPLE {static}

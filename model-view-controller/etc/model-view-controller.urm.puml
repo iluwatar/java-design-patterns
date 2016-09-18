@@ -13,14 +13,6 @@ package com.iluwatar.model.view.controller {
     + setNourishment(nourishment : Nourishment)
     + toString() : String
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class GiantView {
-    + GiantView()
-    + displayGiant(giant : GiantModel)
-  }
   class GiantController {
     - giant : GiantModel
     - view : GiantView
@@ -32,6 +24,23 @@ package com.iluwatar.model.view.controller {
     + setHealth(health : Health)
     + setNourishment(nourishment : Nourishment)
     + updateView()
+  }
+  class GiantView {
+    + GiantView()
+    + displayGiant(giant : GiantModel)
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum Health {
+    + DEAD {static}
+    + HEALTHY {static}
+    + WOUNDED {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Health {static}
+    + values() : Health[] {static}
   }
   enum Nourishment {
     + HUNGRY {static}
@@ -50,15 +59,6 @@ package com.iluwatar.model.view.controller {
     + toString() : String
     + valueOf(name : String) : Fatigue {static}
     + values() : Fatigue[] {static}
-  }
-  enum Health {
-    + DEAD {static}
-    + HEALTHY {static}
-    + WOUNDED {static}
-    - title : String
-    + toString() : String
-    + valueOf(name : String) : Health {static}
-    + values() : Health[] {static}
   }
 }
 GiantModel -->  "-nourishment" Nourishment

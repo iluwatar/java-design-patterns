@@ -1,5 +1,19 @@
 @startuml
 package com.iluwatar.composite {
+  class Word {
+    + Word(letters : List<Letter>)
+    # printThisAfter()
+    # printThisBefore()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Messenger {
+    + Messenger()
+    ~ messageFromElves() : LetterComposite
+    ~ messageFromOrcs() : LetterComposite
+  }
   class Letter {
     - c : char
     + Letter(c : char)
@@ -10,20 +24,6 @@ package com.iluwatar.composite {
     + Sentence(words : List<Word>)
     # printThisAfter()
     # printThisBefore()
-  }
-  class Word {
-    + Word(letters : List<Letter>)
-    # printThisAfter()
-    # printThisBefore()
-  }
-  class Messenger {
-    + Messenger()
-    ~ messageFromElves() : LetterComposite
-    ~ messageFromOrcs() : LetterComposite
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
   abstract class LetterComposite {
     - children : List<LetterComposite>
@@ -36,7 +36,7 @@ package com.iluwatar.composite {
   }
 }
 LetterComposite -->  "-children" LetterComposite
+Word --|> LetterComposite 
 Letter --|> LetterComposite 
 Sentence --|> LetterComposite 
-Word --|> LetterComposite 
 @enduml

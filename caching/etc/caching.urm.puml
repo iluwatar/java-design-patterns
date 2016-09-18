@@ -1,17 +1,18 @@
 @startuml
 package com.iluwatar.caching {
-  class UserAccount {
-    - additionalInfo : String
-    - userId : String
-    - userName : String
-    + UserAccount(userId : String, userName : String, additionalInfo : String)
-    + getAdditionalInfo() : String
-    + getUserId() : String
-    + getUserName() : String
-    + setAdditionalInfo(additionalInfo : String)
-    + setUserId(userId : String)
-    + setUserName(userName : String)
-    + toString() : String
+  class App {
+    + App()
+    + main(args : String[]) {static}
+    + useReadAndWriteThroughStrategy()
+    + useReadThroughAndWriteAroundStrategy()
+    + useReadThroughAndWriteBehindStrategy()
+  }
+  ~class Node {
+    ~ next : Node
+    ~ previous : Node
+    ~ userAccount : UserAccount
+    ~ userId : String
+    + Node(this$0 : String, userId : UserAccount)
   }
   class CacheStore {
     ~ cache : LruCache {static}
@@ -36,12 +37,18 @@ package com.iluwatar.caching {
     + printCacheContent() : String {static}
     + save(userAccount : UserAccount) {static}
   }
-  ~class Node {
-    ~ next : Node
-    ~ previous : Node
-    ~ userAccount : UserAccount
-    ~ userId : String
-    + Node(this$0 : LruCache, userId : String, userAccount : UserAccount)
+  class UserAccount {
+    - additionalInfo : String
+    - userId : String
+    - userName : String
+    + UserAccount(userId : String, userName : String, additionalInfo : String)
+    + getAdditionalInfo() : String
+    + getUserId() : String
+    + getUserName() : String
+    + setAdditionalInfo(additionalInfo : String)
+    + setUserId(userId : String)
+    + setUserName(userName : String)
+    + toString() : String
   }
   class LruCache {
     ~ cache : Map<String, Node>
@@ -73,13 +80,6 @@ package com.iluwatar.caching {
     + updateDb(userAccount : UserAccount) {static}
     + upsertDb(userAccount : UserAccount) {static}
     + writeToDb(userAccount : UserAccount) {static}
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-    + useReadAndWriteThroughStrategy()
-    + useReadThroughAndWriteAroundStrategy()
-    + useReadThroughAndWriteBehindStrategy()
   }
   enum CachingPolicy {
     + AROUND {static}

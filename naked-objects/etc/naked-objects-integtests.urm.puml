@@ -1,26 +1,18 @@
 @startuml
 package domainapp.dom.app.homepage {
-  class HomePageService {
-    ~ container : DomainObjectContainer
-    + HomePageService()
-    + homePage() : HomePageViewModel
-  }
   class HomePageViewModel {
     ~ simpleObjects : SimpleObjects
     + HomePageViewModel()
     + getObjects() : List<SimpleObject>
     + title() : String
   }
+  class HomePageService {
+    ~ container : DomainObjectContainer
+    + HomePageService()
+    + homePage() : HomePageViewModel
+  }
 }
 package domainapp.dom.modules.simple {
-  class SimpleObjects {
-    ~ container : DomainObjectContainer
-    + SimpleObjects()
-    + create(name : String) : SimpleObject
-    + findByName(name : String) : List<SimpleObject>
-    + listAll() : List<SimpleObject>
-    + title() : TranslatableString
-  }
   class SimpleObject {
     - container : DomainObjectContainer
     - dnFieldFlags : byte[] {static}
@@ -78,6 +70,14 @@ package domainapp.dom.modules.simple {
     + title() : TranslatableString
     + updateName(name : String) : SimpleObject
     + validateUpdateName(name : String) : TranslatableString
+  }
+  class SimpleObjects {
+    ~ container : DomainObjectContainer
+    + SimpleObjects()
+    + create(name : String) : SimpleObject
+    + findByName(name : String) : List<SimpleObject>
+    + listAll() : List<SimpleObject>
+    + title() : TranslatableString
   }
 }
 package domainapp.fixture {
