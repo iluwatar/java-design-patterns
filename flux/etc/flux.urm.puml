@@ -1,10 +1,8 @@
 @startuml
 package com.iluwatar.flux.view {
-  class ContentView {
-    - content : Content
-    + ContentView()
-    + render()
-    + storeChanged(store : Store)
+  interface View {
+    + render() {abstract}
+    + storeChanged(Store) {abstract}
   }
   class MenuView {
     - selected : MenuItem
@@ -13,26 +11,34 @@ package com.iluwatar.flux.view {
     + render()
     + storeChanged(store : Store)
   }
-  interface View {
-    + render() {abstract}
-    + storeChanged(Store) {abstract}
+  class ContentView {
+    - content : Content
+    + ContentView()
+    + render()
+    + storeChanged(store : Store)
   }
 }
 package com.iluwatar.flux.action {
-  class ContentAction {
-    - content : Content
-    + ContentAction(content : Content)
-    + getContent() : Content
-  }
   class MenuAction {
     - menuItem : MenuItem
     + MenuAction(menuItem : MenuItem)
     + getMenuItem() : MenuItem
   }
+  class ContentAction {
+    - content : Content
+    + ContentAction(content : Content)
+    + getContent() : Content
+  }
   abstract class Action {
     - type : ActionType
     + Action(type : ActionType)
     + getType() : ActionType
+  }
+  enum ActionType {
+    + CONTENT_CHANGED {static}
+    + MENU_ITEM_SELECTED {static}
+    + valueOf(name : String) : ActionType {static}
+    + values() : ActionType[] {static}
   }
   enum MenuItem {
     + COMPANY {static}
@@ -51,38 +57,11 @@ package com.iluwatar.flux.action {
     + valueOf(name : String) : Content {static}
     + values() : Content[] {static}
   }
-  enum ActionType {
-    + CONTENT_CHANGED {static}
-    + MENU_ITEM_SELECTED {static}
-    + valueOf(name : String) : ActionType {static}
-    + values() : ActionType[] {static}
-  }
 }
 package com.iluwatar.flux.app {
   class App {
     + App()
     + main(args : String[]) {static}
-  }
-}
-package com.iluwatar.flux.store {
-  abstract class Store {
-    - views : List<View>
-    + Store()
-    # notifyChange()
-    + onAction(Action) {abstract}
-    + registerView(view : View)
-  }
-  class ContentStore {
-    - content : Content
-    + ContentStore()
-    + getContent() : Content
-    + onAction(action : Action)
-  }
-  class MenuStore {
-    - selected : MenuItem
-    + MenuStore()
-    + getSelected() : MenuItem
-    + onAction(action : Action)
   }
 }
 package com.iluwatar.flux.dispatcher {
@@ -96,6 +75,27 @@ package com.iluwatar.flux.dispatcher {
     + registerStore(store : Store)
   }
 }
+package com.iluwatar.flux.store {
+  class ContentStore {
+    - content : Content
+    + ContentStore()
+    + getContent() : Content
+    + onAction(action : Action)
+  }
+  class MenuStore {
+    - selected : MenuItem
+    + MenuStore()
+    + getSelected() : MenuItem
+    + onAction(action : Action)
+  }
+  abstract class Store {
+    - views : List<View>
+    + Store()
+    # notifyChange()
+    + onAction(Action) {abstract}
+    + registerView(view : View)
+  }
+}
 MenuAction -->  "-menuItem" MenuItem
 Action -->  "-type" ActionType
 MenuStore -->  "-selected" MenuItem
@@ -104,12 +104,12 @@ ContentView -->  "-content" Content
 Dispatcher -->  "-stores" Store
 MenuView -->  "-selected" MenuItem
 Store -->  "-views" View
-ContentStore -->  "-content" Content
 ContentAction -->  "-content" Content
-ContentAction --|> Action 
+ContentStore -->  "-content" Content
 ContentStore --|> Store 
-ContentView ..|> View 
 MenuAction --|> Action 
-MenuView ..|> View 
 MenuStore --|> Store 
+ContentAction --|> Action 
+MenuView ..|> View 
+ContentView ..|> View 
 @enduml

@@ -1,5 +1,23 @@
 @startuml
 package com.iluwatar.builder {
+  class Builder {
+    - armor : Armor
+    - hairColor : HairColor
+    - hairType : HairType
+    - name : String
+    - profession : Profession
+    - weapon : Weapon
+    + Builder(profession : Profession, name : String)
+    + build() : Hero
+    + withArmor(armor : Armor) : Builder
+    + withHairColor(hairColor : HairColor) : Builder
+    + withHairType(hairType : HairType) : Builder
+    + withWeapon(weapon : Weapon) : Builder
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
   class Hero {
     - armor : Armor
     - hairColor : HairColor
@@ -16,33 +34,25 @@ package com.iluwatar.builder {
     + getWeapon() : Weapon
     + toString() : String
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class Builder {
-    - armor : Armor
-    - hairColor : HairColor
-    - hairType : HairType
-    - name : String
-    - profession : Profession
-    - weapon : Weapon
-    + Builder(profession : Profession, name : String)
-    + build() : Hero
-    + withArmor(armor : Armor) : Builder
-    + withHairColor(hairColor : HairColor) : Builder
-    + withHairType(hairType : HairType) : Builder
-    + withWeapon(weapon : Weapon) : Builder
-  }
-  enum Armor {
-    + CHAIN_MAIL {static}
-    + CLOTHES {static}
-    + LEATHER {static}
-    + PLATE_MAIL {static}
-    - title : String
+  enum Weapon {
+    + AXE {static}
+    + BOW {static}
+    + DAGGER {static}
+    + SWORD {static}
+    + WARHAMMER {static}
     + toString() : String
-    + valueOf(name : String) : Armor {static}
-    + values() : Armor[] {static}
+    + valueOf(name : String) : Weapon {static}
+    + values() : Weapon[] {static}
+  }
+  enum HairColor {
+    + BLACK {static}
+    + BLOND {static}
+    + BROWN {static}
+    + RED {static}
+    + WHITE {static}
+    + toString() : String
+    + valueOf(name : String) : HairColor {static}
+    + values() : HairColor[] {static}
   }
   enum Profession {
     + MAGE {static}
@@ -53,15 +63,15 @@ package com.iluwatar.builder {
     + valueOf(name : String) : Profession {static}
     + values() : Profession[] {static}
   }
-  enum Weapon {
-    + AXE {static}
-    + BOW {static}
-    + DAGGER {static}
-    + SWORD {static}
-    + WARHAMMER {static}
+  enum Armor {
+    + CHAIN_MAIL {static}
+    + CLOTHES {static}
+    + LEATHER {static}
+    + PLATE_MAIL {static}
+    - title : String
     + toString() : String
-    + valueOf(name : String) : Weapon {static}
-    + values() : Weapon[] {static}
+    + valueOf(name : String) : Armor {static}
+    + values() : Armor[] {static}
   }
   enum HairType {
     + BALD {static}
@@ -74,19 +84,9 @@ package com.iluwatar.builder {
     + valueOf(name : String) : HairType {static}
     + values() : HairType[] {static}
   }
-  enum HairColor {
-    + BLACK {static}
-    + BLOND {static}
-    + BROWN {static}
-    + RED {static}
-    + WHITE {static}
-    + toString() : String
-    + valueOf(name : String) : HairColor {static}
-    + values() : HairColor[] {static}
-  }
 }
-Builder ..+ Hero
 Hero -->  "-profession" Profession
+Builder ..+ Hero
 Hero -->  "-armor" Armor
 App --+ Hero
 Builder -->  "-weapon" Weapon

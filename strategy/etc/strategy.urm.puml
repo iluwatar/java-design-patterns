@@ -6,28 +6,28 @@ package com.iluwatar.strategy {
     + changeStrategy(strategy : DragonSlayingStrategy)
     + goToBattle()
   }
-  class SpellStrategy {
-    + SpellStrategy()
+  interface DragonSlayingStrategy {
+    + execute() {abstract}
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class MeleeStrategy {
+    + MeleeStrategy()
     + execute()
   }
   class ProjectileStrategy {
     + ProjectileStrategy()
     + execute()
   }
-  interface DragonSlayingStrategy {
-    + execute() {abstract}
-  }
-  class MeleeStrategy {
-    + MeleeStrategy()
+  class SpellStrategy {
+    + SpellStrategy()
     + execute()
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
 }
 DragonSlayer -->  "-strategy" DragonSlayingStrategy
-SpellStrategy ..|> DragonSlayingStrategy 
-ProjectileStrategy ..|> DragonSlayingStrategy 
 MeleeStrategy ..|> DragonSlayingStrategy 
+ProjectileStrategy ..|> DragonSlayingStrategy 
+SpellStrategy ..|> DragonSlayingStrategy 
 @enduml

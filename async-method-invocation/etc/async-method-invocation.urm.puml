@@ -1,12 +1,21 @@
 @startuml
 package com.iluwatar.async.method.invocation {
-  interface AsyncCallback<T> {
-    + onComplete(T, Optional<Exception>) {abstract}
+  class App {
+    + App()
+    - callback(name : String) : AsyncCallback<T> {static}
+    - lazyval(value : T, delayMillis : long) : Callable<T> {static}
+    - log(msg : String) {static}
+    + main(args : String[]) {static}
   }
   interface AsyncResult<T> {
     + await() {abstract}
     + getValue() : T {abstract}
     + isCompleted() : boolean {abstract}
+  }
+  interface AsyncExecutor {
+    + endProcess(AsyncResult<T>) : T {abstract}
+    + startProcess(Callable<T>) : AsyncResult<T> {abstract}
+    + startProcess(Callable<T>, AsyncCallback<T>) : AsyncResult<T> {abstract}
   }
   class ThreadAsyncExecutor {
     - idx : AtomicInteger
@@ -15,12 +24,8 @@ package com.iluwatar.async.method.invocation {
     + startProcess(task : Callable<T>) : AsyncResult<T>
     + startProcess(task : Callable<T>, callback : AsyncCallback<T>) : AsyncResult<T>
   }
-  class App {
-    + App()
-    - callback(name : String) : AsyncCallback<T> {static}
-    - lazyval(value : T, delayMillis : long) : Callable<T> {static}
-    - log(msg : String) {static}
-    + main(args : String[]) {static}
+  interface AsyncCallback<T> {
+    + onComplete(T, Optional<Exception>) {abstract}
   }
   -class CompletableResult<T> {
     ~ COMPLETED : int {static}
@@ -37,11 +42,6 @@ package com.iluwatar.async.method.invocation {
     + isCompleted() : boolean
     ~ setException(exception : Exception)
     ~ setValue(value : T)
-  }
-  interface AsyncExecutor {
-    + endProcess(AsyncResult<T>) : T {abstract}
-    + startProcess(Callable<T>) : AsyncResult<T> {abstract}
-    + startProcess(Callable<T>, AsyncCallback<T>) : AsyncResult<T> {abstract}
   }
 }
 CompletableResult ..+ ThreadAsyncExecutor

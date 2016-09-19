@@ -1,58 +1,41 @@
 @startuml
 package com.iluwatar.prototype {
-  interface HeroFactory {
-    + createBeast() : Beast {abstract}
-    + createMage() : Mage {abstract}
-    + createWarlord() : Warlord {abstract}
+  class OrcWarlord {
+    + OrcWarlord()
+    + clone() : Warlord
+    + toString() : String
   }
   class OrcBeast {
     + OrcBeast()
     + clone() : Beast
     + toString() : String
   }
-  abstract class Mage {
-    + Mage()
-    + clone() : Mage {abstract}
-  }
-  class HeroFactoryImpl {
-    - beast : Beast
-    - mage : Mage
-    - warlord : Warlord
-    + HeroFactoryImpl(mage : Mage, warlord : Warlord, beast : Beast)
-    + createBeast() : Beast
-    + createMage() : Mage
-    + createWarlord() : Warlord
+  abstract class Beast {
+    + Beast()
+    + clone() : Beast {abstract}
   }
   class ElfMage {
     + ElfMage()
     + clone() : Mage
     + toString() : String
   }
+  abstract class Mage {
+    + Mage()
+    + clone() : Mage {abstract}
+  }
   abstract class Prototype {
     + Prototype()
     + clone() : Object {abstract}
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  abstract class Warlord {
-    + Warlord()
-    + clone() : Warlord {abstract}
-  }
-  class OrcWarlord {
-    + OrcWarlord()
-    + clone() : Warlord
-    + toString() : String
+  interface HeroFactory {
+    + createBeast() : Beast {abstract}
+    + createMage() : Mage {abstract}
+    + createWarlord() : Warlord {abstract}
   }
   class ElfWarlord {
     + ElfWarlord()
     + clone() : Warlord
     + toString() : String
-  }
-  abstract class Beast {
-    + Beast()
-    + clone() : Beast {abstract}
   }
   class OrcMage {
     + OrcMage()
@@ -64,18 +47,35 @@ package com.iluwatar.prototype {
     + clone() : Beast
     + toString() : String
   }
+  abstract class Warlord {
+    + Warlord()
+    + clone() : Warlord {abstract}
+  }
+  class HeroFactoryImpl {
+    - beast : Beast
+    - mage : Mage
+    - warlord : Warlord
+    + HeroFactoryImpl(mage : Mage, warlord : Warlord, beast : Beast)
+    + createBeast() : Beast
+    + createMage() : Mage
+    + createWarlord() : Warlord
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
 }
 HeroFactoryImpl -->  "-beast" Beast
 HeroFactoryImpl -->  "-warlord" Warlord
 HeroFactoryImpl -->  "-mage" Mage
-OrcBeast --|> Beast 
-Mage --|> Prototype 
-HeroFactoryImpl ..|> HeroFactory 
-ElfMage --|> Mage 
-Warlord --|> Prototype 
 OrcWarlord --|> Warlord 
-ElfWarlord --|> Warlord 
+OrcBeast --|> Beast 
 Beast --|> Prototype 
+ElfMage --|> Mage 
+Mage --|> Prototype 
+ElfWarlord --|> Warlord 
 OrcMage --|> Mage 
 ElfBeast --|> Beast 
+Warlord --|> Prototype 
+HeroFactoryImpl ..|> HeroFactory 
 @enduml

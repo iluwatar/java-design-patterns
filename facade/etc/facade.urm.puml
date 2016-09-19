@@ -1,7 +1,7 @@
 @startuml
 package com.iluwatar.facade {
-  class DwarvenTunnelDigger {
-    + DwarvenTunnelDigger()
+  class DwarvenGoldDigger {
+    + DwarvenGoldDigger()
     + name() : String
     + work()
   }
@@ -13,14 +13,10 @@ package com.iluwatar.facade {
     - makeActions(workers : Collection<DwarvenMineWorker>, actions : Action[]) {static}
     + startNewDay()
   }
-  class DwarvenGoldDigger {
-    + DwarvenGoldDigger()
+  class DwarvenTunnelDigger {
+    + DwarvenTunnelDigger()
     + name() : String
     + work()
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
   abstract class DwarvenMineWorker {
     + DwarvenMineWorker()
@@ -32,6 +28,10 @@ package com.iluwatar.facade {
     + name() : String {abstract}
     + wakeUp()
     + work() {abstract}
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   class DwarvenCartOperator {
     + DwarvenCartOperator()
@@ -51,7 +51,7 @@ package com.iluwatar.facade {
 DwarvenGoldmineFacade --+ DwarvenMineWorker
 DwarvenGoldmineFacade -->  "-workers" DwarvenMineWorker
 Action ..+ DwarvenMineWorker
-DwarvenTunnelDigger --|> DwarvenMineWorker 
 DwarvenGoldDigger --|> DwarvenMineWorker 
+DwarvenTunnelDigger --|> DwarvenMineWorker 
 DwarvenCartOperator --|> DwarvenMineWorker 
 @enduml

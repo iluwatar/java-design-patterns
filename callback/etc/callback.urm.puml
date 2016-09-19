@@ -1,24 +1,24 @@
 @startuml
 package com.iluwatar.callback {
-  class LambdasApp {
-    + LambdasApp()
-    + main(args : String[]) {static}
-  }
-  class SimpleTask {
-    + SimpleTask()
-    + execute()
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
+  interface Callback {
+    + call() {abstract}
   }
   abstract class Task {
     + Task()
     + execute() {abstract}
     + executeWith(callback : Callback)
   }
-  interface Callback {
-    + call() {abstract}
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class SimpleTask {
+    + SimpleTask()
+    + execute()
+  }
+  class LambdasApp {
+    + LambdasApp()
+    + main(args : String[]) {static}
   }
 }
 SimpleTask --|> Task 

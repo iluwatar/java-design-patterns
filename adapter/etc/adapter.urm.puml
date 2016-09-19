@@ -1,12 +1,18 @@
 @startuml
 package com.iluwatar.adapter {
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
   interface BattleShip {
     + fire() {abstract}
     + move() {abstract}
+  }
+  class BattleFishingBoat {
+    - boat : FishingBoat
+    + BattleFishingBoat()
+    + fire()
+    + move()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   class Captain {
     - battleship : BattleShip
@@ -16,12 +22,6 @@ package com.iluwatar.adapter {
     + move()
     + setBattleship(battleship : BattleShip)
   }
-  class BattleFishingBoat {
-    - boat : FishingBoat
-    + BattleFishingBoat()
-    + fire()
-    + move()
-  }
   class FishingBoat {
     + FishingBoat()
     + fish()
@@ -30,6 +30,6 @@ package com.iluwatar.adapter {
 }
 BattleFishingBoat -->  "-boat" FishingBoat
 Captain -->  "-battleship" BattleShip
-Captain ..|> BattleShip 
 BattleFishingBoat ..|> BattleShip 
+Captain ..|> BattleShip 
 @enduml

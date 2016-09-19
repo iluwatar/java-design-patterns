@@ -26,6 +26,7 @@ import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
+import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.mongodb.MongoClient;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -42,20 +43,20 @@ import static org.junit.Assert.assertTrue;
 @Ignore
 public class MongoTicketRepositoryTest {
 
-  private static final String TEST_HOST = "localhost";
-  private static final int TEST_PORT = 27017;
-  private static final String TEST_DB = "lotteryDB";
-  private static final String TEST_TICKETS_COLLECTION = "lotteryTickets";
-  private static final String TEST_COUNTERS_COLLECTION = "counters";
+  private static final String TEST_DB = "lotteryTestDB";
+  private static final String TEST_TICKETS_COLLECTION = "lotteryTestTickets";
+  private static final String TEST_COUNTERS_COLLECTION = "testCounters";
 
   private MongoTicketRepository repository;
 
   @Before
   public void init() {
-    MongoClient mongoClient = new MongoClient(TEST_HOST, TEST_PORT);
+    MongoConnectionPropertiesLoader.load();
+    MongoClient mongoClient = new MongoClient(System.getProperty("mongo-host"),
+        Integer.parseInt(System.getProperty("mongo-port")));
     mongoClient.dropDatabase(TEST_DB);
     mongoClient.close();
-    repository = new MongoTicketRepository(TEST_HOST, TEST_PORT, TEST_DB, TEST_TICKETS_COLLECTION,
+    repository = new MongoTicketRepository(TEST_DB, TEST_TICKETS_COLLECTION,
         TEST_COUNTERS_COLLECTION);
   }
 
@@ -75,9 +76,9 @@ public class MongoTicketRepositoryTest {
   @Test
   public void testCrudOperations() {
     // create new lottery ticket and save it
-    PlayerDetails details = PlayerDetails.create("foo@bar.com", "123-123", "07001234");
+    PlayerDetails details = new PlayerDetails("foo@bar.com", "123-123", "07001234");
     LotteryNumbers random = LotteryNumbers.createRandom();
-    LotteryTicket original = LotteryTicket.create(new LotteryTicketId(), details, random);
+    LotteryTicket original = new LotteryTicket(new LotteryTicketId(), details, random);
     Optional<LotteryTicketId> saved = repository.save(original);
     assertEquals(1, repository.getTicketsCollection().count());
     assertTrue(saved.isPresent());

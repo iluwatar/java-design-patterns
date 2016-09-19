@@ -20,40 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.notifications;
+package com.iluwatar.hexagonal.domain;
 
-import com.iluwatar.hexagonal.domain.PlayerDetails;
+import com.iluwatar.hexagonal.database.LotteryTicketRepository;
+
+import java.util.Optional;
 
 /**
- * 
- * Provides notifications for lottery events.
- *
+ * Lottery utilities
  */
-public interface LotteryNotifications {
+public class LotteryUtils {
+
+  private LotteryUtils() {
+  }
 
   /**
-   * Notify lottery ticket was submitted
+   * Checks if lottery ticket has won
    */
-  void notifyTicketSubmitted(PlayerDetails details);
-
-  /**
-   * Notify there was an error submitting lottery ticket
-   */
-  void notifyTicketSubmitError(PlayerDetails details);
-
-  /**
-   * Notify lottery ticket did not win
-   */
-  void notifyNoWin(PlayerDetails details);
-
-  /**
-   * Notify that prize has been paid
-   */
-  void notifyPrize(PlayerDetails details, int prizeAmount);
-
-  /**
-   * Notify that there was an error paying the prize
-   */
-  void notifyPrizeError(PlayerDetails details, int prizeAmount);
-
+  public static LotteryTicketCheckResult checkTicketForPrize(LotteryTicketRepository repository, LotteryTicketId id,
+                                                      LotteryNumbers winningNumbers) {
+    Optional<LotteryTicket> optional = repository.findById(id);
+    if (optional.isPresent()) {
+      if (optional.get().getNumbers().equals(winningNumbers)) {
+        return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.WIN_PRIZE, 1000);
+      } else {
+        return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.NO_PRIZE);
+      }
+    } else {
+      return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.TICKET_NOT_SUBMITTED);
+    }
+  }
 }

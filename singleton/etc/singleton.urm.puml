@@ -1,31 +1,31 @@
 @startuml
 package com.iluwatar.singleton {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
   class ThreadSafeLazyLoadedIvoryTower {
     - instance : ThreadSafeLazyLoadedIvoryTower {static}
     - ThreadSafeLazyLoadedIvoryTower()
     + getInstance() : ThreadSafeLazyLoadedIvoryTower {static}
   }
-  -class HelperHolder {
-    + INSTANCE : InitializingOnDemandHolderIdiom {static}
-    - HelperHolder()
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
+  class InitializingOnDemandHolderIdiom {
+    - InitializingOnDemandHolderIdiom()
+    + getInstance() : InitializingOnDemandHolderIdiom {static}
   }
   class ThreadSafeDoubleCheckLocking {
     - instance : ThreadSafeDoubleCheckLocking {static}
     - ThreadSafeDoubleCheckLocking()
     + getInstance() : ThreadSafeDoubleCheckLocking {static}
   }
-  class InitializingOnDemandHolderIdiom {
-    - InitializingOnDemandHolderIdiom()
-    + getInstance() : InitializingOnDemandHolderIdiom {static}
-  }
   class IvoryTower {
     - INSTANCE : IvoryTower {static}
     - IvoryTower()
     + getInstance() : IvoryTower {static}
+  }
+  -class HelperHolder {
+    - INSTANCE : InitializingOnDemandHolderIdiom {static}
+    - HelperHolder()
   }
   enum EnumIvoryTower {
     + INSTANCE {static}

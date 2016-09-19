@@ -2,20 +2,24 @@
 package com.iluwatar.lazy.loading {
   ~class HeavyFactory {
     - heavyInstance : Heavy
-    ~ HeavyFactory(this$0 : Java8Holder)
+    ~ HeavyFactory()
     + get() : Heavy
   }
-  class HolderNaive {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class HolderThreadSafe {
     - heavy : Heavy
-    + HolderNaive()
+    + HolderThreadSafe()
     + getHeavy() : Heavy
   }
   class Heavy {
     + Heavy()
   }
-  class HolderThreadSafe {
+  class HolderNaive {
     - heavy : Heavy
-    + HolderThreadSafe()
+    + HolderNaive()
     + getHeavy() : Heavy
   }
   class Java8Holder {
@@ -24,12 +28,8 @@ package com.iluwatar.lazy.loading {
     - createAndCacheHeavy() : Heavy
     + getHeavy() : Heavy
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
 }
-HolderThreadSafe -->  "-heavy" Heavy
 HolderNaive -->  "-heavy" Heavy
+HolderThreadSafe -->  "-heavy" Heavy
 HeavyFactory -->  "-heavyInstance" Heavy
 @enduml

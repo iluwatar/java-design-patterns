@@ -20,22 +20,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
+package com.iluwatar.hexagonal.eventlog;
+
+import com.iluwatar.hexagonal.domain.PlayerDetails;
 
 /**
  * 
- * Lottery domain constants
+ * Event log for lottery events
  *
  */
-public class LotteryConstants {
+public interface LotteryEventLog {
 
-  private LotteryConstants() {
-  }
+  /**
+   * lottery ticket submitted
+   */
+  void ticketSubmitted(PlayerDetails details);
 
-  public static final int PRIZE_AMOUNT = 100000;
-  public static final String SERVICE_BANK_ACCOUNT = "123-123";
-  public static final int TICKET_PRIZE = 3;
-  public static final int SERVICE_BANK_ACCOUNT_SALDO = 150000;
-  public static final int PLAYER_MAX_SALDO = 100;
-  
+  /**
+   * error submitting lottery ticket
+   */
+  void ticketSubmitError(PlayerDetails details);
+
+  /**
+   * lottery ticket did not win
+   */
+  void ticketDidNotWin(PlayerDetails details);
+
+  /**
+   * lottery ticket won
+   */
+  void ticketWon(PlayerDetails details, int prizeAmount);
+
+  /**
+   * error paying the prize
+   */
+  void prizeError(PlayerDetails details, int prizeAmount);
+
 }

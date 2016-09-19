@@ -1,11 +1,11 @@
 @startuml
 package com.iluwatar.delegation.simple.printers {
-  class EpsonPrinter {
-    + EpsonPrinter()
-    + print(message : String)
-  }
   class HpPrinter {
     + HpPrinter()
+    + print(message : String)
+  }
+  class EpsonPrinter {
+    + EpsonPrinter()
     + print(message : String)
   }
   class CanonPrinter {
@@ -14,6 +14,11 @@ package com.iluwatar.delegation.simple.printers {
   }
 }
 package com.iluwatar.delegation.simple {
+  class App {
+    + MESSAGE_TO_PRINT : String {static}
+    + App()
+    + main(args : String[]) {static}
+  }
   class PrinterController {
     - printer : Printer
     + PrinterController(printer : Printer)
@@ -22,15 +27,10 @@ package com.iluwatar.delegation.simple {
   interface Printer {
     + print(String) {abstract}
   }
-  class App {
-    + MESSAGE_TO_PRINT : String {static}
-    + App()
-    + main(args : String[]) {static}
-  }
 }
 PrinterController -->  "-printer" Printer
+HpPrinter ..|> Printer 
 PrinterController ..|> Printer 
 EpsonPrinter ..|> Printer 
-HpPrinter ..|> Printer 
 CanonPrinter ..|> Printer 
 @enduml

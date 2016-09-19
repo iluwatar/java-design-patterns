@@ -1,7 +1,15 @@
 @startuml
 package com.iluwatar.stepbuilder {
+  interface AbilityStep {
+    + noAbilities() : BuildStep {abstract}
+    + noMoreAbilities() : BuildStep {abstract}
+    + withAbility(String) : AbilityStep {abstract}
+  }
   interface BuildStep {
     + build() : Character {abstract}
+  }
+  interface NameStep {
+    + name(String) : ClassStep {abstract}
   }
   -class CharacterSteps {
     - abilities : List<String>
@@ -26,22 +34,6 @@ package com.iluwatar.stepbuilder {
   class App {
     + App()
     + main(args : String[]) {static}
-  }
-  interface ClassStep {
-    + fighterClass(String) : WeaponStep {abstract}
-    + wizardClass(String) : SpellStep {abstract}
-  }
-  interface WeaponStep {
-    + noWeapon() : BuildStep {abstract}
-    + withWeapon(String) : AbilityStep {abstract}
-  }
-  interface AbilityStep {
-    + noAbilities() : BuildStep {abstract}
-    + noMoreAbilities() : BuildStep {abstract}
-    + withAbility(String) : AbilityStep {abstract}
-  }
-  interface NameStep {
-    + name(String) : ClassStep {abstract}
   }
   class CharacterStepBuilder {
     - CharacterStepBuilder()
@@ -73,13 +65,21 @@ package com.iluwatar.stepbuilder {
     + noSpell() : BuildStep {abstract}
     + withSpell(String) : AbilityStep {abstract}
   }
+  interface ClassStep {
+    + fighterClass(String) : WeaponStep {abstract}
+    + wizardClass(String) : SpellStep {abstract}
+  }
+  interface WeaponStep {
+    + noWeapon() : BuildStep {abstract}
+    + withWeapon(String) : AbilityStep {abstract}
+  }
 }
 App --+ CharacterStepBuilder
 WeaponStep ..+ CharacterStepBuilder
-SpellStep ..+ CharacterStepBuilder
-AbilityStep ..+ CharacterStepBuilder
 ClassStep ..+ CharacterStepBuilder
+SpellStep ..+ CharacterStepBuilder
 CharacterSteps ..+ CharacterStepBuilder
+AbilityStep ..+ CharacterStepBuilder
 NameStep ..+ CharacterStepBuilder
 BuildStep ..+ CharacterStepBuilder
 CharacterSteps ..|> NameStep 

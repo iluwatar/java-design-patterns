@@ -32,6 +32,7 @@ import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 import com.iluwatar.hexagonal.module.LotteryModule;
+import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -48,6 +49,7 @@ public class ConsoleLottery {
    * Program entry point
    */
   public static void main(String[] args) {
+    MongoConnectionPropertiesLoader.load();
     Injector injector = Guice.createInjector(new LotteryModule());
     LotteryService service = injector.getInstance(LotteryService.class);
     WireTransfers bank = injector.getInstance(WireTransfers.class);
@@ -74,20 +76,24 @@ public class ConsoleLottery {
         String account = readString(scanner);
         System.out.println("What is your phone number?");
         String phone = readString(scanner);
-        PlayerDetails details = PlayerDetails.create(email, account, phone);
+        PlayerDetails details = new PlayerDetails(email, account, phone);
         System.out.println("Give 4 comma separated lottery numbers?");
         String numbers = readString(scanner);
-        String[] parts = numbers.split(",");
-        Set<Integer> chosen = new HashSet<>();
-        for (int i = 0; i < 4; i++) {
-          chosen.add(Integer.parseInt(parts[i]));
-        }
-        LotteryNumbers lotteryNumbers = LotteryNumbers.create(chosen);
-        LotteryTicket lotteryTicket = LotteryTicket.create(new LotteryTicketId(), details, lotteryNumbers);
-        Optional<LotteryTicketId> id = service.submitTicket(lotteryTicket);
-        if (id.isPresent()) {
-          System.out.println("Submitted lottery ticket with id: " + id.get());
-        } else {
+        try {
+          String[] parts = numbers.split(",");
+          Set<Integer> chosen = new HashSet<>();
+          for (int i = 0; i < 4; i++) {
+            chosen.add(Integer.parseInt(parts[i]));
+          }
+          LotteryNumbers lotteryNumbers = LotteryNumbers.create(chosen);
+          LotteryTicket lotteryTicket = new LotteryTicket(new LotteryTicketId(), details, lotteryNumbers);
+          Optional<LotteryTicketId> id = service.submitTicket(lotteryTicket);
+          if (id.isPresent()) {
+            System.out.println("Submitted lottery ticket with id: " + id.get());
+          } else {
+            System.out.println("Failed submitting lottery ticket - please try again.");
+          }
+        } catch (Exception e) {
           System.out.println("Failed submitting lottery ticket - please try again.");
         }
       } else if (cmd.equals("4")) {
@@ -95,19 +101,23 @@ public class ConsoleLottery {
         String id = readString(scanner);
         System.out.println("Give the 4 comma separated winning numbers?");
         String numbers = readString(scanner);
-        String[] parts = numbers.split(",");
-        Set<Integer> winningNumbers = new HashSet<>();
-        for (int i = 0; i < 4; i++) {
-          winningNumbers.add(Integer.parseInt(parts[i]));
-        }
-        LotteryTicketCheckResult result = service.checkTicketForPrize(
-            new LotteryTicketId(Integer.parseInt(id)), LotteryNumbers.create(winningNumbers));
-        if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
-          System.out.println("Congratulations! The lottery ticket has won!");
-        } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
-          System.out.println("Unfortunately the lottery ticket did not win.");
-        } else {
-          System.out.println("Such lottery ticket has not been submitted.");
+        try {
+          String[] parts = numbers.split(",");
+          Set<Integer> winningNumbers = new HashSet<>();
+          for (int i = 0; i < 4; i++) {
+            winningNumbers.add(Integer.parseInt(parts[i]));
+          }
+          LotteryTicketCheckResult result = service.checkTicketForPrize(
+              new LotteryTicketId(Integer.parseInt(id)), LotteryNumbers.create(winningNumbers));
+          if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
+            System.out.println("Congratulations! The lottery ticket has won!");
+          } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
+            System.out.println("Unfortunately the lottery ticket did not win.");
+          } else {
+            System.out.println("Such lottery ticket has not been submitted.");
+          }
+        } catch (Exception e) {
+          System.out.println("Failed checking the lottery ticket - please try again.");
         }
       } else if (cmd.equals("5")) {
         exit = true;

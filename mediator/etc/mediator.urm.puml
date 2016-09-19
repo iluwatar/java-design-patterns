@@ -1,24 +1,20 @@
 @startuml
 package com.iluwatar.mediator {
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class Hobbit {
-    + Hobbit()
-    + toString() : String
+  interface Party {
+    + act(PartyMember, Action) {abstract}
+    + addMember(PartyMember) {abstract}
   }
   interface PartyMember {
     + act(Action) {abstract}
     + joinedParty(Party) {abstract}
     + partyAction(Action) {abstract}
   }
-  interface Party {
-    + act(PartyMember, Action) {abstract}
-    + addMember(PartyMember) {abstract}
+  class Rogue {
+    + Rogue()
+    + toString() : String
   }
-  class Wizard {
-    + Wizard()
+  class Hunter {
+    + Hunter()
     + toString() : String
   }
   class PartyImpl {
@@ -27,12 +23,12 @@ package com.iluwatar.mediator {
     + act(actor : PartyMember, action : Action)
     + addMember(member : PartyMember)
   }
-  class Hunter {
-    + Hunter()
+  class Hobbit {
+    + Hobbit()
     + toString() : String
   }
-  class Rogue {
-    + Rogue()
+  class Wizard {
+    + Wizard()
     + toString() : String
   }
   abstract class PartyMemberBase {
@@ -42,6 +38,10 @@ package com.iluwatar.mediator {
     + joinedParty(party : Party)
     + partyAction(action : Action)
     + toString() : String {abstract}
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   enum Action {
     + ENEMY {static}
@@ -59,10 +59,10 @@ package com.iluwatar.mediator {
 }
 PartyImpl -->  "-members" PartyMember
 PartyMemberBase -->  "-party" Party
+Rogue --|> PartyMemberBase 
+Hunter --|> PartyMemberBase 
+PartyImpl ..|> Party 
 Hobbit --|> PartyMemberBase 
 Wizard --|> PartyMemberBase 
-PartyImpl ..|> Party 
-Hunter --|> PartyMemberBase 
-Rogue --|> PartyMemberBase 
 PartyMemberBase ..|> PartyMember 
 @enduml

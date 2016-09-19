@@ -20,31 +20,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.banking;
+package com.iluwatar.hexagonal.mongo;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
+import java.io.FileInputStream;
+import java.util.Properties;
 
 /**
- * 
- * Tests for banking
- *
+ * Mongo connection properties loader
  */
-public class WireTransfersTest {
+public class MongoConnectionPropertiesLoader {
 
-  private final WireTransfers bank = new InMemoryBank();
-  
-  @Test
-  public void testInit() {
-    assertEquals(bank.getFunds("foo"), 0);
-    bank.setFunds("foo", 100);
-    assertEquals(bank.getFunds("foo"), 100);
-    bank.setFunds("bar", 150);
-    assertEquals(bank.getFunds("bar"), 150);
-    assertTrue(bank.transferFunds(50, "bar", "foo"));
-    assertEquals(bank.getFunds("foo"), 150);
-    assertEquals(bank.getFunds("bar"), 100);
+  private static final String DEFAULT_HOST = "localhost";
+  private static final int DEFAULT_PORT = 27017;
+
+  /**
+   * Try to load connection properties from file.
+   * Fall back to default connection properties.
+   */
+  public static void load() {
+    String host = DEFAULT_HOST;
+    int port = DEFAULT_PORT;
+    String path = System.getProperty("hexagonal.properties.path");
+    Properties properties = new Properties();
+    if (path != null) {
+      try (FileInputStream fin = new FileInputStream(path)) {
+        properties.load(fin);
+        host = properties.getProperty("mongo-host");
+        port = Integer.parseInt(properties.getProperty("mongo-port"));
+      } catch (Exception e) {
+        // error occurred, use default properties
+        e.printStackTrace();
+      }
+    }
+    System.setProperty("mongo-host", host);
+    System.setProperty("mongo-port", String.format("%d", port));
   }
 }

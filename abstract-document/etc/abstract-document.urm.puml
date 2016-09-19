@@ -3,31 +3,30 @@ package com.iluwatar.abstractdocument.domain {
   class Part {
     + Part(properties : Map<String, Object>)
   }
-  class Car {
-    + Car(properties : Map<String, Object>)
-  }
-  interface HasModel {
+  interface HasPrice {
     + PROPERTY : String {static}
-    + getModel() : Optional<String>
+    + getPrice() : Optional<Number>
   }
   interface HasParts {
     + PROPERTY : String {static}
     + getParts() : Stream<Part>
   }
+  class Car {
+    + Car(properties : Map<String, Object>)
+  }
   interface HasType {
     + PROPERTY : String {static}
     + getType() : Optional<String>
   }
-  interface HasPrice {
+  interface HasModel {
     + PROPERTY : String {static}
-    + getPrice() : Optional<Number>
+    + getModel() : Optional<String>
   }
 }
 package com.iluwatar.abstractdocument {
-  interface Document {
-    + children(String, Function<Map<String, Object>, T>) : Stream<T> {abstract}
-    + get(String) : Object {abstract}
-    + put(String, Object) {abstract}
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   abstract class AbstractDocument {
     - properties : Map<String, Object>
@@ -37,9 +36,10 @@ package com.iluwatar.abstractdocument {
     + put(key : String, value : Object)
     + toString() : String
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
+  interface Document {
+    + children(String, Function<Map<String, Object>, T>) : Stream<T> {abstract}
+    + get(String) : Object {abstract}
+    + put(String, Object) {abstract}
   }
 }
 AbstractDocument --+ Map
@@ -47,13 +47,13 @@ Part ..|> HasType
 Part ..|> HasModel 
 Part ..|> HasPrice 
 Part --|> AbstractDocument 
+AbstractDocument ..|> Document 
+HasPrice --|> Document 
+HasParts --|> Document 
 Car ..|> HasModel 
 Car ..|> HasPrice 
 Car ..|> HasParts 
 Car --|> AbstractDocument 
-HasModel --|> Document 
-HasParts --|> Document 
-AbstractDocument ..|> Document 
 HasType --|> Document 
-HasPrice --|> Document 
+HasModel --|> Document 
 @enduml

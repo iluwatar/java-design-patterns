@@ -31,6 +31,14 @@ package com.iluwatar.fluentinterface.app {
   }
 }
 package com.iluwatar.fluentinterface.fluentiterable.lazy {
+  abstract class DecoratingIterator<E> {
+    # fromIterator : Iterator<E>
+    - next : E
+    + DecoratingIterator<E>(fromIterator : Iterator<E>)
+    + computeNext() : E {abstract}
+    + hasNext() : boolean
+    + next() : E
+  }
   class LazyFluentIterable<E> {
     - iterable : Iterable<E>
     # LazyFluentIterable<E>()
@@ -44,14 +52,6 @@ package com.iluwatar.fluentinterface.fluentiterable.lazy {
     + last() : Optional<E>
     + last(count : int) : FluentIterable<E>
     + map(function : Function<? super E, T>) : FluentIterable<T>
-  }
-  abstract class DecoratingIterator<E> {
-    # fromIterator : Iterator<E>
-    - next : E
-    + DecoratingIterator<E>(fromIterator : Iterator<E>)
-    + computeNext() : E {abstract}
-    + hasNext() : boolean
-    + next() : E
   }
 }
 package com.iluwatar.fluentinterface.fluentiterable {

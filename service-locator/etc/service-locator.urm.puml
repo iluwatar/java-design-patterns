@@ -1,24 +1,9 @@
 @startuml
 package com.iluwatar.servicelocator {
-  interface Service {
-    + execute() {abstract}
-    + getId() : int {abstract}
-    + getName() : String {abstract}
-  }
-  class InitContext {
-    + InitContext()
-    + lookup(serviceName : String) : Object
-  }
   class ServiceLocator {
     - serviceCache : ServiceCache {static}
     - ServiceLocator()
     + getService(serviceJndiName : String) : Service {static}
-  }
-  class ServiceCache {
-    - serviceCache : Map<String, Service>
-    + ServiceCache()
-    + addService(newService : Service)
-    + getService(serviceName : String) : Service
   }
   class App {
     + App()
@@ -31,6 +16,21 @@ package com.iluwatar.servicelocator {
     + execute()
     + getId() : int
     + getName() : String
+  }
+  class InitContext {
+    + InitContext()
+    + lookup(serviceName : String) : Object
+  }
+  class ServiceCache {
+    - serviceCache : Map<String, Service>
+    + ServiceCache()
+    + addService(newService : Service)
+    + getService(serviceName : String) : Service
+  }
+  interface Service {
+    + execute() {abstract}
+    + getId() : int {abstract}
+    + getName() : String {abstract}
   }
 }
 ServiceLocator -->  "-serviceCache" ServiceCache

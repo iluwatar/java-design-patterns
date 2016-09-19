@@ -1,5 +1,10 @@
 @startuml
 package com.iluwatar.decorator {
+  interface Hostile {
+    + attack() {abstract}
+    + fleeBattle() {abstract}
+    + getAttackPower() : int {abstract}
+  }
   class App {
     + App()
     + main(args : String[]) {static}
@@ -9,11 +14,6 @@ package com.iluwatar.decorator {
     + attack()
     + fleeBattle()
     + getAttackPower() : int
-  }
-  interface Hostile {
-    + attack() {abstract}
-    + fleeBattle() {abstract}
-    + getAttackPower() : int {abstract}
   }
   class SmartHostile {
     - decorated : Hostile

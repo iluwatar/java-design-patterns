@@ -1,17 +1,5 @@
 @startuml
 package com.iluwatar.specification.creature {
-  class Goblin {
-    + Goblin()
-  }
-  interface Creature {
-    + getColor() : Color {abstract}
-    + getMovement() : Movement {abstract}
-    + getName() : String {abstract}
-    + getSize() : Size {abstract}
-  }
-  class Troll {
-    + Troll()
-  }
   abstract class AbstractCreature {
     - color : Color
     - movement : Movement
@@ -24,20 +12,41 @@ package com.iluwatar.specification.creature {
     + getSize() : Size
     + toString() : String
   }
+  class Troll {
+    + Troll()
+  }
+  class Octopus {
+    + Octopus()
+  }
   class Shark {
     + Shark()
+  }
+  class Goblin {
+    + Goblin()
   }
   class KillerBee {
     + KillerBee()
   }
-  class Octopus {
-    + Octopus()
+  interface Creature {
+    + getColor() : Color {abstract}
+    + getMovement() : Movement {abstract}
+    + getName() : String {abstract}
+    + getSize() : Size {abstract}
   }
   class Dragon {
     + Dragon()
   }
 }
 package com.iluwatar.specification.property {
+  enum Size {
+    + LARGE {static}
+    + NORMAL {static}
+    + SMALL {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Size {static}
+    + values() : Size[] {static}
+  }
   enum Color {
     + DARK {static}
     + GREEN {static}
@@ -57,15 +66,6 @@ package com.iluwatar.specification.property {
     + valueOf(name : String) : Movement {static}
     + values() : Movement[] {static}
   }
-  enum Size {
-    + LARGE {static}
-    + NORMAL {static}
-    + SMALL {static}
-    - title : String
-    + toString() : String
-    + valueOf(name : String) : Size {static}
-    + values() : Size[] {static}
-  }
 }
 package com.iluwatar.specification.app {
   class App {
@@ -74,9 +74,9 @@ package com.iluwatar.specification.app {
   }
 }
 package com.iluwatar.specification.selector {
-  class SizeSelector {
-    - s : Size
-    + SizeSelector(s : Size)
+  class MovementSelector {
+    - m : Movement
+    + MovementSelector(m : Movement)
     + test(t : Creature) : boolean
   }
   class ColorSelector {
@@ -84,9 +84,9 @@ package com.iluwatar.specification.selector {
     + ColorSelector(c : Color)
     + test(t : Creature) : boolean
   }
-  class MovementSelector {
-    - m : Movement
-    + MovementSelector(m : Movement)
+  class SizeSelector {
+    - s : Size
+    + SizeSelector(s : Size)
     + test(t : Creature) : boolean
   }
 }
@@ -96,11 +96,11 @@ MovementSelector -->  "-m" Movement
 AbstractCreature -->  "-movement" Movement
 AbstractCreature -->  "-size" Size
 ColorSelector -->  "-c" Color
-Goblin --|> AbstractCreature 
-Troll --|> AbstractCreature 
 AbstractCreature ..|> Creature 
-Shark --|> AbstractCreature 
-KillerBee --|> AbstractCreature 
+Troll --|> AbstractCreature 
 Octopus --|> AbstractCreature 
+Shark --|> AbstractCreature 
+Goblin --|> AbstractCreature 
+KillerBee --|> AbstractCreature 
 Dragon --|> AbstractCreature 
 @enduml

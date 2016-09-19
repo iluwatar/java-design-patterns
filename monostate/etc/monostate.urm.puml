@@ -1,5 +1,13 @@
 @startuml
 package com.iluwatar.monostate {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Request {
+    + value : String
+    + Request(value : String)
+  }
   class LoadBalancer {
     - id : int {static}
     - lastServedId : int {static}
@@ -9,14 +17,6 @@ package com.iluwatar.monostate {
     + getLastServedId() : int {static}
     + getNoOfServers() : int
     + serverRequest(request : Request)
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class Request {
-    + value : String
-    + Request(value : String)
   }
   class Server {
     + host : String

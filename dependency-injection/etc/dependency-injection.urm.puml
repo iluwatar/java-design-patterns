@@ -1,48 +1,48 @@
 @startuml
 package com.iluwatar.dependency.injection {
-  interface Wizard {
-    + smoke() {abstract}
-  }
-  class GuiceWizard {
-    - tobacco : Tobacco
-    + GuiceWizard(tobacco : Tobacco)
-    + smoke()
-  }
-  class OldTobyTobacco {
-    + OldTobyTobacco()
-  }
-  abstract class Tobacco {
-    + Tobacco()
-    + smoke(wizard : Wizard)
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class RivendellTobacco {
-    + RivendellTobacco()
-  }
   class AdvancedWizard {
     - tobacco : Tobacco
     + AdvancedWizard(tobacco : Tobacco)
     + smoke()
   }
-  class SecondBreakfastTobacco {
-    + SecondBreakfastTobacco()
+  interface Wizard {
+    + smoke() {abstract}
+  }
+  class RivendellTobacco {
+    + RivendellTobacco()
   }
   class SimpleWizard {
     - tobacco : OldTobyTobacco
     + SimpleWizard()
     + smoke()
   }
+  class OldTobyTobacco {
+    + OldTobyTobacco()
+  }
+  class SecondBreakfastTobacco {
+    + SecondBreakfastTobacco()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  abstract class Tobacco {
+    + Tobacco()
+    + smoke(wizard : Wizard)
+  }
+  class GuiceWizard {
+    - tobacco : Tobacco
+    + GuiceWizard(tobacco : Tobacco)
+    + smoke()
+  }
 }
 SimpleWizard -->  "-tobacco" OldTobyTobacco
 AdvancedWizard -->  "-tobacco" Tobacco
 GuiceWizard -->  "-tobacco" Tobacco
-GuiceWizard ..|> Wizard 
-OldTobyTobacco --|> Tobacco 
-RivendellTobacco --|> Tobacco 
 AdvancedWizard ..|> Wizard 
-SecondBreakfastTobacco --|> Tobacco 
+RivendellTobacco --|> Tobacco 
 SimpleWizard ..|> Wizard 
+OldTobyTobacco --|> Tobacco 
+SecondBreakfastTobacco --|> Tobacco 
+GuiceWizard ..|> Wizard 
 @enduml

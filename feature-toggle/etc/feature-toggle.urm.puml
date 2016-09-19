@@ -20,17 +20,17 @@ package com.iluwatar.featuretoggle.user {
     + isPaid(user : User) : boolean {static}
   }
 }
-package com.iluwatar.featuretoggle.pattern.propertiesversion {
-  class PropertiesFeatureToggleVersion {
-    - isEnhanced : boolean
-    + PropertiesFeatureToggleVersion(properties : Properties)
+package com.iluwatar.featuretoggle.pattern.tieredversion {
+  class TieredFeatureToggleVersion {
+    + TieredFeatureToggleVersion()
     + getWelcomeMessage(user : User) : String
     + isEnhanced() : boolean
   }
 }
-package com.iluwatar.featuretoggle.pattern.tieredversion {
-  class TieredFeatureToggleVersion {
-    + TieredFeatureToggleVersion()
+package com.iluwatar.featuretoggle.pattern.propertiesversion {
+  class PropertiesFeatureToggleVersion {
+    - isEnhanced : boolean
+    + PropertiesFeatureToggleVersion(properties : Properties)
     + getWelcomeMessage(user : User) : String
     + isEnhanced() : boolean
   }
@@ -42,6 +42,6 @@ package com.iluwatar.featuretoggle {
   }
 }
 UserGroup -->  "-freeGroup" User
-TieredFeatureToggleVersion ..|> Service 
 PropertiesFeatureToggleVersion ..|> Service 
+TieredFeatureToggleVersion ..|> Service 
 @enduml

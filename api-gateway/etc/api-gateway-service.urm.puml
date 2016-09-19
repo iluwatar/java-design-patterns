@@ -1,13 +1,25 @@
 @startuml
 package com.iluwatar.api.gateway {
-  interface ImageClient {
-    + getImagePath() : String {abstract}
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class PriceClientImpl {
+    + PriceClientImpl()
+    + getPrice() : String
+  }
+  class ImageClientImpl {
+    + ImageClientImpl()
+    + getImagePath() : String
   }
   class MobileProduct {
     - price : String
     + MobileProduct()
     + getPrice() : String
     + setPrice(price : String)
+  }
+  interface ImageClient {
+    + getImagePath() : String {abstract}
   }
   class ApiGateway {
     - imageClient : ImageClient
@@ -27,18 +39,6 @@ package com.iluwatar.api.gateway {
   }
   interface PriceClient {
     + getPrice() : String {abstract}
-  }
-  class PriceClientImpl {
-    + PriceClientImpl()
-    + getPrice() : String
-  }
-  class ImageClientImpl {
-    + ImageClientImpl()
-    + getImagePath() : String
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
 }
 ApiGateway -->  "-imageClient" ImageClient

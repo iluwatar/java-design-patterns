@@ -43,8 +43,6 @@ import java.util.Optional;
  */
 public class MongoTicketRepository implements LotteryTicketRepository {
 
-  private static final String DEFAULT_HOST = "localhost";
-  private static final int DEFAULT_PORT = 27017;
   private static final String DEFAULT_DB = "lotteryDB";
   private static final String DEFAULT_TICKETS_COLLECTION = "lotteryTickets";
   private static final String DEFAULT_COUNTERS_COLLECTION = "counters";
@@ -64,27 +62,28 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   /**
    * Constructor accepting parameters
    */
-  public MongoTicketRepository(String host, int port, String dbName, String ticketsCollectionName,
+  public MongoTicketRepository(String dbName, String ticketsCollectionName,
                                String countersCollectionName) {
-    connect(host, port, dbName, ticketsCollectionName, countersCollectionName);
+    connect(dbName, ticketsCollectionName, countersCollectionName);
   }
 
   /**
    * Connect to database with default parameters
    */
   public void connect() {
-    connect(DEFAULT_HOST, DEFAULT_PORT, DEFAULT_DB, DEFAULT_TICKETS_COLLECTION, DEFAULT_COUNTERS_COLLECTION);
+    connect(DEFAULT_DB, DEFAULT_TICKETS_COLLECTION, DEFAULT_COUNTERS_COLLECTION);
   }
 
   /**
    * Connect to database with given parameters
    */
-  public void connect(String host, int port, String dbName, String ticketsCollectionName,
+  public void connect(String dbName, String ticketsCollectionName,
                       String countersCollectionName) {
     if (mongoClient != null) {
       mongoClient.close();
     }
-    mongoClient = new MongoClient(host , port);
+    mongoClient = new MongoClient(System.getProperty("mongo-host"),
+        Integer.parseInt(System.getProperty("mongo-port")));
     database = mongoClient.getDatabase(dbName);
     ticketsCollection = database.getCollection(ticketsCollectionName);
     countersCollection = database.getCollection(countersCollectionName);
@@ -181,7 +180,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   }
 
   private LotteryTicket docToTicket(Document doc) {
-    PlayerDetails playerDetails = PlayerDetails.create(doc.getString("email"), doc.getString("bank"),
+    PlayerDetails playerDetails = new PlayerDetails(doc.getString("email"), doc.getString("bank"),
         doc.getString("phone"));
     int[] numArray = Arrays.asList(doc.getString("numbers").split(",")).stream().mapToInt(Integer::parseInt).toArray();
     HashSet<Integer> numbers = new HashSet<>();
@@ -189,6 +188,6 @@ public class MongoTicketRepository implements LotteryTicketRepository {
       numbers.add(num);
     }
     LotteryNumbers lotteryNumbers = LotteryNumbers.create(numbers);
-    return LotteryTicket.create(new LotteryTicketId(doc.getInteger("ticketId")), playerDetails, lotteryNumbers);
+    return new LotteryTicket(new LotteryTicketId(doc.getInteger("ticketId")), playerDetails, lotteryNumbers);
   }
 }

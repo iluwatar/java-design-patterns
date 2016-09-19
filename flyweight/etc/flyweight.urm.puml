@@ -1,28 +1,17 @@
 @startuml
 package com.iluwatar.flyweight {
-  class PoisonPotion {
-    + PoisonPotion()
-    + drink()
-  }
-  class StrengthPotion {
-    + StrengthPotion()
-    + drink()
-  }
-  class HealingPotion {
-    + HealingPotion()
-    + drink()
-  }
   class PotionFactory {
     - potions : Map<PotionType, Potion>
     + PotionFactory()
     ~ createPotion(type : PotionType) : Potion
   }
-  interface Potion {
-    + drink() {abstract}
+  class HealingPotion {
+    + HealingPotion()
+    + drink()
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
+  class InvisibilityPotion {
+    + InvisibilityPotion()
+    + drink()
   }
   class AlchemistShop {
     - bottomShelf : List<Potion>
@@ -33,12 +22,23 @@ package com.iluwatar.flyweight {
     + getBottomShelf() : List<Potion>
     + getTopShelf() : List<Potion>
   }
-  class HolyWaterPotion {
-    + HolyWaterPotion()
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface Potion {
+    + drink() {abstract}
+  }
+  class PoisonPotion {
+    + PoisonPotion()
     + drink()
   }
-  class InvisibilityPotion {
-    + InvisibilityPotion()
+  class StrengthPotion {
+    + StrengthPotion()
+    + drink()
+  }
+  class HolyWaterPotion {
+    + HolyWaterPotion()
     + drink()
   }
   enum PotionType {
@@ -52,9 +52,9 @@ package com.iluwatar.flyweight {
   }
 }
 AlchemistShop -->  "-topShelf" Potion
+HealingPotion ..|> Potion 
+InvisibilityPotion ..|> Potion 
 PoisonPotion ..|> Potion 
 StrengthPotion ..|> Potion 
-HealingPotion ..|> Potion 
 HolyWaterPotion ..|> Potion 
-InvisibilityPotion ..|> Potion 
 @enduml

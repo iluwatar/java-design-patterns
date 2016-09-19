@@ -1,5 +1,15 @@
 @startuml
 package com.iluwatar.property {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface Prototype {
+    + get(Stats) : Integer {abstract}
+    + has(Stats) : boolean {abstract}
+    + remove(Stats) {abstract}
+    + set(Stats, Integer) {abstract}
+  }
   class Character {
     - name : String
     - properties : Map<Stats, Integer>
@@ -16,15 +26,12 @@ package com.iluwatar.property {
     + toString() : String
     + type() : Type
   }
-  interface Prototype {
-    + get(Stats) : Integer {abstract}
-    + has(Stats) : boolean {abstract}
-    + remove(Stats) {abstract}
-    + set(Stats, Integer) {abstract}
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
+  enum Type {
+    + MAGE {static}
+    + ROGUE {static}
+    + WARRIOR {static}
+    + valueOf(name : String) : Type {static}
+    + values() : Type[] {static}
   }
   enum Stats {
     + AGILITY {static}
@@ -37,13 +44,6 @@ package com.iluwatar.property {
     + STRENGTH {static}
     + valueOf(name : String) : Stats {static}
     + values() : Stats[] {static}
-  }
-  enum Type {
-    + MAGE {static}
-    + ROGUE {static}
-    + WARRIOR {static}
-    + valueOf(name : String) : Type {static}
-    + values() : Type[] {static}
   }
 }
 App --+ Character

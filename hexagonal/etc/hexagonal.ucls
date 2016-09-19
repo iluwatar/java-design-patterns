@@ -2,7 +2,7 @@
 <class-diagram version="1.1.10" icons="true" automaticImage="PNG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
   router="FAN">  
-  <class id="1" language="java" name="com.iluwatar.hexagonal.notifications.StdOutNotifications" project="hexagonal" 
+  <class id="1" language="java" name="com.iluwatar.hexagonal.eventlog.StdOutEventLog" project="hexagonal"
     file="/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/StdOutNotifications.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="167" width="235" x="731" y="122"/>    
@@ -161,7 +161,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="17" language="java" name="com.iluwatar.hexagonal.notifications.LotteryNotifications" 
+  <interface id="17" language="java" name="com.iluwatar.hexagonal.eventlog.LotteryEventLog"
     project="hexagonal" file="/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotifications.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="149" width="235" x="731" y="347"/>    

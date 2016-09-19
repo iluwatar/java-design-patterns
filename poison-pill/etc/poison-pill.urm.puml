@@ -1,5 +1,8 @@
 @startuml
 package com.iluwatar.poison.pill {
+  interface MqPublishPoint {
+    + put(Message) {abstract}
+  }
   interface Message {
     + POISON_PILL : Message {static}
     + addHeader(Headers, String) {abstract}
@@ -12,21 +15,7 @@ package com.iluwatar.poison.pill {
     + App()
     + main(args : String[]) {static}
   }
-  class SimpleMessage {
-    - body : String
-    - headers : Map<Headers, String>
-    + SimpleMessage()
-    + addHeader(header : Headers, value : String)
-    + getBody() : String
-    + getHeader(header : Headers) : String
-    + getHeaders() : Map<Headers, String>
-    + setBody(body : String)
-  }
-  class SimpleMessageQueue {
-    - queue : BlockingQueue<Message>
-    + SimpleMessageQueue(bound : int)
-    + put(msg : Message)
-    + take() : Message
+  interface MessageQueue {
   }
   class Producer {
     - isStopped : boolean
@@ -36,19 +25,30 @@ package com.iluwatar.poison.pill {
     + send(body : String)
     + stop()
   }
-  interface MqSubscribePoint {
-    + take() : Message {abstract}
-  }
   class Consumer {
     - name : String
     - queue : MqSubscribePoint
     + Consumer(name : String, queue : MqSubscribePoint)
     + consume()
   }
-  interface MessageQueue {
+  class SimpleMessageQueue {
+    - queue : BlockingQueue<Message>
+    + SimpleMessageQueue(bound : int)
+    + put(msg : Message)
+    + take() : Message
   }
-  interface MqPublishPoint {
-    + put(Message) {abstract}
+  interface MqSubscribePoint {
+    + take() : Message {abstract}
+  }
+  class SimpleMessage {
+    - body : String
+    - headers : Map<Headers, String>
+    + SimpleMessage()
+    + addHeader(header : Headers, value : String)
+    + getBody() : String
+    + getHeader(header : Headers) : String
+    + getHeaders() : Map<Headers, String>
+    + setBody(body : String)
   }
   enum Headers {
     + DATE {static}
@@ -65,8 +65,8 @@ SimpleMessage --+ Message
 Producer --+ Message
 Message -->  "-POISON_PILL" Message
 Consumer --+ Message
-SimpleMessage ..|> Message 
-SimpleMessageQueue ..|> MessageQueue 
 MessageQueue --|> MqPublishPoint 
 MessageQueue --|> MqSubscribePoint 
+SimpleMessageQueue ..|> MessageQueue 
+SimpleMessage ..|> Message 
 @enduml
