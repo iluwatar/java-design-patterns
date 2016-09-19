@@ -61,11 +61,12 @@ public class EventManager implements ThreadCompleteListener {
    */
   public int create(int eventTime)
       throws MaxNumOfEventsAllowedException, InvalidOperationException, LongRunningEventException {
-    int eventId = createEvent(eventTime);
     if (currentlyRunningSyncEvent != -1) {
       throw new InvalidOperationException(
           "Event [" + currentlyRunningSyncEvent + "] is still running. Please wait until it finishes and try again.");
     }
+
+    int eventId = createEvent(eventTime, true);
     currentlyRunningSyncEvent = eventId;
 
     return eventId;
@@ -80,10 +81,11 @@ public class EventManager implements ThreadCompleteListener {
    * @throws LongRunningEventException Long running events are not allowed in the app.
    */
   public int createAsync(int eventTime) throws MaxNumOfEventsAllowedException, LongRunningEventException {
-    return createEvent(eventTime);
+    return createEvent(eventTime, false);
   }
 
-  private int createEvent(int eventTime) throws MaxNumOfEventsAllowedException, LongRunningEventException {
+  private int createEvent(int eventTime, boolean isSynchronous)
+      throws MaxNumOfEventsAllowedException, LongRunningEventException {
     if (eventPool.size() == MAX_RUNNING_EVENTS) {
       throw new MaxNumOfEventsAllowedException("Too many events are running at the moment. Please try again later.");
     }
@@ -95,7 +97,7 @@ public class EventManager implements ThreadCompleteListener {
 
     int newEventId = generateId();
 
-    Event newEvent = new Event(newEventId, eventTime);
+    Event newEvent = new Event(newEventId, eventTime, isSynchronous);
     newEvent.addListener(this);
     eventPool.put(newEventId, newEvent);
 
@@ -194,6 +196,9 @@ public class EventManager implements ThreadCompleteListener {
   @Override
   public void completedEventHandler(int eventId) {
     eventPool.get(eventId).status();
+    if (eventPool.get(eventId).isSynchronous()) {
+      currentlyRunningSyncEvent = -1;
+    }
     eventPool.remove(eventId);
   }
 

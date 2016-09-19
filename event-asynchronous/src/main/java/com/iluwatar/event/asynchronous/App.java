@@ -138,11 +138,10 @@ public class App {
 
     Scanner s = new Scanner(System.in);
     int option = -1;
-    while (option != 5) {
+    while (option != 4) {
       System.out.println("Hello. Would you like to boil some eggs?");
-      System.out.println(
-          "(1) BOIL AN EGG \n(2) STOP BOILING THIS EGG \n(3) HOW IS MY EGG? \n(4) HOW ARE MY EGGS? \n(5) EXIT");
-      System.out.print("Choose [1,2,3,4,5]: ");
+      System.out.println("(1) BOIL AN EGG \n(2) STOP BOILING THIS EGG \n(3) HOW ARE MY EGGS? \n(4) EXIT");
+      System.out.print("Choose [1,2,3,4]: ");
       option = s.nextInt();
 
       if (option == 1) {
@@ -181,16 +180,22 @@ public class App {
           System.out.println(e.getMessage());
         }
       } else if (option == 3) {
-        System.out.print("Which egg?: ");
-        int eventId = s.nextInt();
-        try {
-          eventManager.status(eventId);
-        } catch (EventDoesNotExistException e) {
-          System.out.println(e.getMessage());
+        s.nextLine();
+        System.out.print("Just one egg (O) OR all of them (A) ?: ");
+        String eggChoice = s.nextLine();
+
+        if (eggChoice.equalsIgnoreCase("O")) {
+          System.out.print("Which egg?: ");
+          int eventId = s.nextInt();
+          try {
+            eventManager.status(eventId);
+          } catch (EventDoesNotExistException e) {
+            System.out.println(e.getMessage());
+          }
+        } else if (eggChoice.equalsIgnoreCase("A")) {
+          eventManager.statusOfAllEvents();
         }
       } else if (option == 4) {
-        eventManager.statusOfAllEvents();
-      } else if (option == 5) {
         eventManager.shutdown();
       }
     }

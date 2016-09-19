@@ -25,13 +25,25 @@ public class Event implements IEvent, Runnable {
 
   private int eventId;
   private int eventTime;
+  private boolean isSynchronous;
   private Thread thread;
   private boolean isComplete = false;
   private ThreadCompleteListener eventListener;
 
-  public Event(final int eventId, final int eventTime) {
+  /**
+   * 
+   * @param eventId event ID
+   * @param eventTime event time
+   * @param isSynchronous is of synchronous type
+   */
+  public Event(final int eventId, final int eventTime, final boolean isSynchronous) {
     this.eventId = eventId;
     this.eventTime = eventTime;
+    this.isSynchronous = isSynchronous;
+  }
+
+  public boolean isSynchronous() {
+    return isSynchronous;
   }
 
   @Override
@@ -42,6 +54,9 @@ public class Event implements IEvent, Runnable {
 
   @Override
   public void stop() {
+    if (null == thread) {
+      return;
+    }
     thread.interrupt();
   }
 
