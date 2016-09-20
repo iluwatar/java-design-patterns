@@ -15,7 +15,11 @@ layout: default
                 </div>
             </header>
             <hr>
-            <!--{% include pumlImg.html id=page.pumlid %}-->
+
+            {% if site.reviewmode %}
+                {% include pumlImg.html id=page.pumlid %}
+            {% endif %}
+
             <article>
                 {{ content }}
             </article>
