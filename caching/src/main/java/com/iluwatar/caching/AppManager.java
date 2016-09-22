@@ -64,12 +64,7 @@ public final class AppManager {
   public static void initCachingPolicy(CachingPolicy policy) {
     cachingPolicy = policy;
     if (cachingPolicy == CachingPolicy.BEHIND) {
-      Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-        @Override
-        public void run() {
-          CacheStore.flushCache();
-        }
-      }));
+      Runtime.getRuntime().addShutdownHook(new Thread(CacheStore::flushCache));
     }
     CacheStore.clearCache();
   }
