@@ -136,10 +136,11 @@ public class LruCache {
    * Invalidate cache for user
    */
   public void invalidate(String userId) {
-    System.out.println("# " + userId + " has been updated! Removing older version from cache...");
-    Node toBeRemoved = cache.get(userId);
-    remove(toBeRemoved);
-    cache.remove(userId);
+    Node toBeRemoved = cache.remove(userId);
+    if (toBeRemoved != null) {
+      System.out.println("# " + userId + " has been updated! Removing older version from cache...");
+      remove(toBeRemoved);
+    }
   }
 
   public boolean isFull() {
