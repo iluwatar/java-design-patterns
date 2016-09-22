@@ -153,4 +153,25 @@ public class CacheStore {
     sb.append("----\n");
     return sb.toString();
   }
+
+  /**
+   * Delegate to backing cache store
+   */
+  public static UserAccount get(String userId) {
+    return cache.get(userId);
+  }
+
+  /**
+   * Delegate to backing cache store
+   */
+  public static void set(String userId, UserAccount userAccount) {
+    cache.set(userId, userAccount);
+  }
+
+  /**
+   * Delegate to backing cache store
+   */
+  public static void invalidate(String userId) {
+    cache.invalidate(userId);
+  }
 }

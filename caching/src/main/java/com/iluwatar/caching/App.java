@@ -74,6 +74,7 @@ public class App {
     app.useReadAndWriteThroughStrategy();
     app.useReadThroughAndWriteAroundStrategy();
     app.useReadThroughAndWriteBehindStrategy();
+    app.useCacheAsideStategy();
   }
 
   /**
@@ -132,6 +133,28 @@ public class App {
     System.out.println(AppManager.printCacheContent());
     UserAccount userAccount6 = new UserAccount("006", "Yasha", "She is an only child.");
     AppManager.save(userAccount6);
+    System.out.println(AppManager.printCacheContent());
+    AppManager.find("004");
+    System.out.println(AppManager.printCacheContent());
+  }
+
+  /**
+   * Cache-Aside
+   */
+  public void useCacheAsideStategy() {
+    System.out.println("# CachingPolicy.ASIDE");
+    AppManager.initCachingPolicy(CachingPolicy.ASIDE);
+    System.out.println(AppManager.printCacheContent());
+
+    UserAccount userAccount3 = new UserAccount("003", "Adam", "He likes food.");
+    UserAccount userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
+    UserAccount userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
+    AppManager.save(userAccount3);
+    AppManager.save(userAccount4);
+    AppManager.save(userAccount5);
+
+    System.out.println(AppManager.printCacheContent());
+    AppManager.find("003");
     System.out.println(AppManager.printCacheContent());
     AppManager.find("004");
     System.out.println(AppManager.printCacheContent());

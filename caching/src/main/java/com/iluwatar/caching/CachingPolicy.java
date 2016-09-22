@@ -28,7 +28,7 @@ package com.iluwatar.caching;
  *
  */
 public enum CachingPolicy {
-  THROUGH("through"), AROUND("around"), BEHIND("behind");
+  THROUGH("through"), AROUND("around"), BEHIND("behind"), ASIDE("aside");
 
   private String policy;
 

@@ -60,4 +60,9 @@ public class CachingTest {
   public void testReadThroughAndWriteBehindStrategy() {
     app.useReadThroughAndWriteBehindStrategy();
   }
+
+  @Test
+  public void testCacheAsideStrategy() {
+    app.useCacheAsideStategy();
+  }
 }
