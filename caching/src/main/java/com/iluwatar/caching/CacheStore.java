@@ -40,7 +40,7 @@ public class CacheStore {
    * Init cache capacity
    */
   public static void initCapacity(int capacity) {
-    if (null == cache) {
+    if (cache == null) {
       cache = new LruCache(capacity);
     } else {
       cache.setCapacity(capacity);
@@ -121,7 +121,7 @@ public class CacheStore {
    * Clears cache
    */
   public static void clearCache() {
-    if (null != cache) {
+    if (cache != null) {
       cache.clear();
     }
   }
