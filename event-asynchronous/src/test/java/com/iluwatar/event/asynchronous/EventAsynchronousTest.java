@@ -84,15 +84,16 @@ public class EventAsynchronousTest {
   public void testFullSynchronousEvent() {
     EventManager eventManager = new EventManager();
     try {
-      int eventTime = 5;
+      int eventTime = 1;
 
       int sEventId = eventManager.create(eventTime);
       assertTrue(eventManager.getEventPool().size() == 1);
       eventManager.start(sEventId);
 
       long currentTime = System.currentTimeMillis();
-      long endTime = currentTime + (eventTime + 5 * 1000); // +5 to give a bit of buffer time for event to complete
-                                                           // properly.
+      long endTime = currentTime + (eventTime + 2 * 1000); // +2 to give a bit of buffer time for event to
+                                                           // complete
+      // properly.
       while (System.currentTimeMillis() < endTime) {
       }
 
@@ -108,7 +109,7 @@ public class EventAsynchronousTest {
   public void testFullAsynchronousEvent() {
     EventManager eventManager = new EventManager();
     try {
-      int eventTime = 5;
+      int eventTime = 1;
 
       int aEventId1 = eventManager.createAsync(eventTime);
       int aEventId2 = eventManager.createAsync(eventTime);
@@ -120,7 +121,7 @@ public class EventAsynchronousTest {
       eventManager.start(aEventId3);
 
       long currentTime = System.currentTimeMillis();
-      long endTime = currentTime + (eventTime + 5 * 1000); // +5 to give a bit of buffer time for event to complete
+      long endTime = currentTime + (eventTime + 2 * 1000); // +2 to give a bit of buffer time for event to complete
                                                            // properly.
       while (System.currentTimeMillis() < endTime) {
       }
