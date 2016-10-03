@@ -75,7 +75,7 @@ public class Event implements IEvent, Runnable {
     long endTime = currentTime + (eventTime * 1000);
     while (System.currentTimeMillis() < endTime) {
       try {
-        Thread.sleep(5000); // Sleep for 5 seconds.
+        Thread.sleep(1000); // Sleep for 1 second.
       } catch (InterruptedException e) {
         return;
       }

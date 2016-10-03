@@ -79,4 +79,56 @@ public class EventAsynchronousTest {
       System.out.println(e.getMessage());
     }
   }
+
+  @Test
+  public void testFullSynchronousEvent() {
+    EventManager eventManager = new EventManager();
+    try {
+      int eventTime = 5;
+
+      int sEventId = eventManager.create(eventTime);
+      assertTrue(eventManager.getEventPool().size() == 1);
+      eventManager.start(sEventId);
+
+      long currentTime = System.currentTimeMillis();
+      long endTime = currentTime + (eventTime + 5 * 1000); // +5 to give a bit of buffer time for event to complete
+                                                           // properly.
+      while (System.currentTimeMillis() < endTime) {
+      }
+
+      assertTrue(eventManager.getEventPool().size() == 0);
+
+    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
+        | InvalidOperationException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  @Test
+  public void testFullAsynchronousEvent() {
+    EventManager eventManager = new EventManager();
+    try {
+      int eventTime = 5;
+
+      int aEventId1 = eventManager.createAsync(eventTime);
+      int aEventId2 = eventManager.createAsync(eventTime);
+      int aEventId3 = eventManager.createAsync(eventTime);
+      assertTrue(eventManager.getEventPool().size() == 3);
+
+      eventManager.start(aEventId1);
+      eventManager.start(aEventId2);
+      eventManager.start(aEventId3);
+
+      long currentTime = System.currentTimeMillis();
+      long endTime = currentTime + (eventTime + 5 * 1000); // +5 to give a bit of buffer time for event to complete
+                                                           // properly.
+      while (System.currentTimeMillis() < endTime) {
+      }
+
+      assertTrue(eventManager.getEventPool().size() == 0);
+
+    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
+      System.out.println(e.getMessage());
+    }
+  }
 }

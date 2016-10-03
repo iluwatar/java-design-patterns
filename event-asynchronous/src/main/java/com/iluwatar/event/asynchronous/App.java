@@ -106,23 +106,23 @@ public class App {
     try {
       // Create an Asynchronous event.
       int aEventId = eventManager.createAsync(60);
-      System.out.println("Event [" + aEventId + "] has been created.");
+      System.out.println("Async Event [" + aEventId + "] has been created.");
       eventManager.start(aEventId);
-      System.out.println("Event [" + aEventId + "] has been started.");
+      System.out.println("Async Event [" + aEventId + "] has been started.");
 
       // Create a Synchronous event.
       int sEventId = eventManager.create(60);
-      System.out.println("Event [" + sEventId + "] has been created.");
+      System.out.println("Sync Event [" + sEventId + "] has been created.");
       eventManager.start(sEventId);
-      System.out.println("Event [" + sEventId + "] has been started.");
+      System.out.println("Sync Event [" + sEventId + "] has been started.");
 
       eventManager.status(aEventId);
       eventManager.status(sEventId);
 
       eventManager.cancel(aEventId);
-      System.out.println("Event [" + aEventId + "] has been stopped.");
+      System.out.println("Async Event [" + aEventId + "] has been stopped.");
       eventManager.cancel(sEventId);
-      System.out.println("Event [" + sEventId + "] has been stopped.");
+      System.out.println("Sync Event [" + sEventId + "] has been stopped.");
 
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
         | InvalidOperationException e) {
