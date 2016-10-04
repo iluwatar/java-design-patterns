@@ -36,6 +36,11 @@ Use the Singleton pattern when
 * [java.lang.System#getSecurityManager()](http://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getSecurityManager--)
 
 
+## Consequences
+
+* Violates Single Responsibility Principle (SRP) by controlling their own creation and lifecycle.
+* Encourages using a global shared instance which prevents an object and resources used by this object from being deallocated.     
+
 ## Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
