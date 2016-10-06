@@ -1,0 +1,10 @@
+@startuml
+package com.iluwatar.indextable {
+  class App {
+    + App()
+    + getData() : String {static}
+    + main(args : String[]) {static}
+    + sqlImplementation() {static}
+  }
+}
+@enduml
