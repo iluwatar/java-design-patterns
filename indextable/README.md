@@ -3,7 +3,7 @@ layout: pattern
 title: Index Table
 folder: indextable
 permalink: /patterns/indextable/
-pumlid: JSUn4S8m30NGdYbWW5Wz5QiejYuH9oi--OimFfJftdkeLyic6NRVWJ6VHC5dsHHxhZabwk4GHwb79xKy6HpqvWylJQPklWm697nIv_a7gJVvWbSJ4jHBIqOl8xlTNl83
+pumlid: JSSx4e0W30N04y6pil0s2MO0Xz-Gu7XyBTrkazdG0uZPqc8VUaLCNStj6owwoPsYEJOto4ncKt3fZ4hw3RcTyXXn4OY5N_sQrOzLomi0
 categories: Creational
 tags:
  - Java
