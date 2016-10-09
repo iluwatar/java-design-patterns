@@ -24,7 +24,7 @@ package com.iluwatar.caching;
 
 /**
  *
- * Enum class containing the three caching strategies implemented in the pattern.
+ * Enum class containing the four caching strategies implemented in the pattern.
  *
  */
 public enum CachingPolicy {

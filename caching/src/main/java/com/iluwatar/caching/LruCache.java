@@ -73,7 +73,6 @@ public class LruCache {
   }
 
   /**
-   *
    * Remove node from linked list.
    */
   public void remove(Node node) {
@@ -90,7 +89,6 @@ public class LruCache {
   }
 
   /**
-   *
    * Move node to the front of the list.
    */
   public void setHead(Node node) {
@@ -161,7 +159,6 @@ public class LruCache {
   }
 
   /**
-   *
    * Returns cache data in list form.
    */
   public List<UserAccount> getCacheDataInListForm() {
