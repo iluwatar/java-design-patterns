@@ -3,7 +3,7 @@ layout: pattern
 title: Pipeline
 folder: pipeline
 permalink: /patterns/pipeline/
-pumlid: JSUn4S8m30NGdYbWW5Wz5QiejYuH9oi--OimFfJftdkeLyic6NRVWJ6VHC5dsHHxhZabwk4GHwb79xKy6HpqvWylJQPklWm697nIv_a7gJVvWbSJ4jHBIqOl8xlTNl83
+pumlid: FSSn4e0W30J05y5PMVWRm0p48P0nmVThvNRRtDKEeBAtbMEPWjgcUTWtNEb9uIJZEe8cTxg78VUP8Sc-GLcfyo2GbpzntH9rINy1
 categories: Structural
 tags:
  - Java
