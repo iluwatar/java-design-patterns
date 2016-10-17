@@ -24,11 +24,11 @@ package com.iluwatar.caching;
 
 /**
  *
- * Enum class containing the three caching strategies implemented in the pattern.
+ * Enum class containing the four caching strategies implemented in the pattern.
  *
  */
 public enum CachingPolicy {
-  THROUGH("through"), AROUND("around"), BEHIND("behind");
+  THROUGH("through"), AROUND("around"), BEHIND("behind"), ASIDE("aside");
 
   private String policy;
 

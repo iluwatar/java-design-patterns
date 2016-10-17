@@ -82,7 +82,7 @@ public final class DbManager {
       }
       return null;
     }
-    if (null == db) {
+    if (db == null) {
       try {
         connect();
       } catch (ParseException e) {
@@ -106,7 +106,7 @@ public final class DbManager {
       virtualDB.put(userAccount.getUserId(), userAccount);
       return;
     }
-    if (null == db) {
+    if (db == null) {
       try {
         connect();
       } catch (ParseException e) {
@@ -126,7 +126,7 @@ public final class DbManager {
       virtualDB.put(userAccount.getUserId(), userAccount);
       return;
     }
-    if (null == db) {
+    if (db == null) {
       try {
         connect();
       } catch (ParseException e) {
@@ -148,7 +148,7 @@ public final class DbManager {
       virtualDB.put(userAccount.getUserId(), userAccount);
       return;
     }
-    if (null == db) {
+    if (db == null) {
       try {
         connect();
       } catch (ParseException e) {

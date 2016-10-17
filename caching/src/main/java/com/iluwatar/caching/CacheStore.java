@@ -40,7 +40,7 @@ public class CacheStore {
    * Init cache capacity
    */
   public static void initCapacity(int capacity) {
-    if (null == cache) {
+    if (cache == null) {
       cache = new LruCache(capacity);
     } else {
       cache.setCapacity(capacity);
@@ -121,7 +121,7 @@ public class CacheStore {
    * Clears cache
    */
   public static void clearCache() {
-    if (null != cache) {
+    if (cache != null) {
       cache.clear();
     }
   }
@@ -152,5 +152,26 @@ public class CacheStore {
     }
     sb.append("----\n");
     return sb.toString();
+  }
+
+  /**
+   * Delegate to backing cache store
+   */
+  public static UserAccount get(String userId) {
+    return cache.get(userId);
+  }
+
+  /**
+   * Delegate to backing cache store
+   */
+  public static void set(String userId, UserAccount userAccount) {
+    cache.set(userId, userAccount);
+  }
+
+  /**
+   * Delegate to backing cache store
+   */
+  public static void invalidate(String userId) {
+    cache.invalidate(userId);
   }
 }
