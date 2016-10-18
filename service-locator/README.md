@@ -38,7 +38,6 @@ improves the performance of application to great extent.
 * Violates Interface Segregation Principle (ISP) by providing pattern consumers with an access 
 to a number of services that they don't potentially need.
 * Creates hidden dependencies that can break the clients at runtime.
-* Limits object composability by stopping the clients to specify needed dependencies for different objects instantiation.
 
 ## Credits
 
