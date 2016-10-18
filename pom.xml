@@ -132,7 +132,8 @@
         <module>aggregator-microservices</module>
         <module>promise</module>
         <module>page-object</module>
-    </modules>
+        <module>event-asynchronous</module>
+	</modules>
 
     <dependencyManagement>
         <dependencies>
