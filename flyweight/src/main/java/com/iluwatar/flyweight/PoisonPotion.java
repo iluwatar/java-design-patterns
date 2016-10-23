@@ -22,6 +22,9 @@
  */
 package com.iluwatar.flyweight;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * PoisonPotion
@@ -29,8 +32,10 @@ package com.iluwatar.flyweight;
  */
 public class PoisonPotion implements Potion {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(PoisonPotion.class);
+
   @Override
   public void drink() {
-    System.out.println("Urgh! This is poisonous. (Potion=" + System.identityHashCode(this) + ")");
+    LOGGER.info("Urgh! This is poisonous. (Potion={})", System.identityHashCode(this));
   }
 }

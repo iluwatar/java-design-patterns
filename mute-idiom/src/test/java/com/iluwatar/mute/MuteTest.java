@@ -32,8 +32,12 @@ import java.io.PrintStream;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MuteTest {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(MuteTest.class);
 
   private static final String MESSAGE = "should not occur";
   
@@ -69,7 +73,7 @@ public class MuteTest {
   
   
   private void methodNotThrowingAnyException() {
-    System.out.println("Executed successfully");
+    LOGGER.info("Executed successfully");
   }
   
   private void methodThrowingException() throws Exception {

@@ -22,12 +22,17 @@
  */
 package com.iluwatar.layers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * View implementation for displaying cakes
  *
  */
 public class CakeViewImpl implements View {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(CakeViewImpl.class);
 
   private CakeBakingService cakeBakingService;
 
@@ -36,6 +41,6 @@ public class CakeViewImpl implements View {
   }
 
   public void render() {
-    cakeBakingService.getAllCakes().stream().forEach(cake -> System.out.println(cake));
+    cakeBakingService.getAllCakes().stream().forEach(cake -> LOGGER.info(cake.toString()));
   }
 }

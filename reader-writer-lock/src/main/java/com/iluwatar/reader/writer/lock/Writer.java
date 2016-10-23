@@ -22,12 +22,17 @@
  */
 package com.iluwatar.reader.writer.lock;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.locks.Lock;
 
 /**
  * Writer class, write when it acquired the write lock
  */
 public class Writer implements Runnable {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Writer.class);
 
   private Lock writeLock;
 
@@ -55,8 +60,8 @@ public class Writer implements Runnable {
    * Simulate the write operation
    */
   public void write() throws InterruptedException {
-    System.out.println(name + " begin");
+    LOGGER.info("{} begin", name);
     Thread.sleep(250);
-    System.out.println(name + " finish");
+    LOGGER.info("{} finish", name);
   }
 }

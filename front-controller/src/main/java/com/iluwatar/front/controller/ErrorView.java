@@ -22,6 +22,9 @@
  */
 package com.iluwatar.front.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * View for errors.
@@ -29,8 +32,10 @@ package com.iluwatar.front.controller;
  */
 public class ErrorView implements View {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(ErrorView.class);
+
   @Override
   public void display() {
-    System.out.println("Error 500");
+    LOGGER.error("Error 500");
   }
 }

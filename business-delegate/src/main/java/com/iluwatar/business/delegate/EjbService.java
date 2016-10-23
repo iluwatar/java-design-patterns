@@ -22,6 +22,9 @@
  */
 package com.iluwatar.business.delegate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Service EJB implementation
@@ -29,8 +32,10 @@ package com.iluwatar.business.delegate;
  */
 public class EjbService implements BusinessService {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(EjbService.class);
+
   @Override
   public void doProcessing() {
-    System.out.println("EjbService is now processing");
+    LOGGER.info("EjbService is now processing");
   }
 }

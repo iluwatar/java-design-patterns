@@ -22,12 +22,17 @@
  */
 package com.iluwatar.proxy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * The proxy controlling access to the {@link WizardTower}.
  * 
  */
 public class WizardTowerProxy extends WizardTower {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(WizardTowerProxy.class);
 
   private static final int NUM_WIZARDS_ALLOWED = 3;
 
@@ -39,7 +44,7 @@ public class WizardTowerProxy extends WizardTower {
       super.enter(wizard);
       numWizards++;
     } else {
-      System.out.println(wizard + " is not allowed to enter!");
+      LOGGER.info("{} is not allowed to enter!", wizard);
     }
   }
 }

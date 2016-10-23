@@ -22,6 +22,9 @@
  */
 package com.iluwatar.callback;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Callback pattern is more native for functional languages where functions are treated as
@@ -31,6 +34,8 @@ package com.iluwatar.callback;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    */
@@ -39,7 +44,7 @@ public class App {
     Callback callback = new Callback() {
       @Override
       public void call() {
-        System.out.println("I'm done now.");
+        LOGGER.info("I'm done now.");
       }
     };
     task.executeWith(callback);

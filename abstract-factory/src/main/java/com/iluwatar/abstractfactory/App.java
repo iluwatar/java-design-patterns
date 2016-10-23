@@ -22,6 +22,9 @@
  */
 package com.iluwatar.abstractfactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * The Abstract Factory pattern provides a way to encapsulate a group of individual factories that have a common theme
@@ -38,6 +41,8 @@ package com.iluwatar.abstractfactory;
  * 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private King king;
   private Castle castle;
@@ -98,17 +103,17 @@ public class App {
 
     App app = new App();
 
-    System.out.println("Elf Kingdom");
+    LOGGER.info("Elf Kingdom");
     app.createKingdom(new ElfKingdomFactory());
-    System.out.println(app.getArmy().getDescription());
-    System.out.println(app.getCastle().getDescription());
-    System.out.println(app.getKing().getDescription());
+    LOGGER.info(app.getArmy().getDescription());
+    LOGGER.info(app.getCastle().getDescription());
+    LOGGER.info(app.getKing().getDescription());
 
-    System.out.println("\nOrc Kingdom");
+    LOGGER.info("Orc Kingdom");
     app.createKingdom(new OrcKingdomFactory());
-    System.out.println(app.getArmy().getDescription());
-    System.out.println(app.getCastle().getDescription());
-    System.out.println(app.getKing().getDescription());
+    LOGGER.info(app.getArmy().getDescription());
+    LOGGER.info(app.getCastle().getDescription());
+    LOGGER.info(app.getKing().getDescription());
 
   }
 

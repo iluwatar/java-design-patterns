@@ -25,6 +25,8 @@ package com.iluwatar.flux.view;
 import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.store.ContentStore;
 import com.iluwatar.flux.store.Store;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -32,6 +34,8 @@ import com.iluwatar.flux.store.Store;
  *
  */
 public class ContentView implements View {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ContentView.class);
 
   private Content content = Content.PRODUCTS;
 
@@ -44,6 +48,6 @@ public class ContentView implements View {
 
   @Override
   public void render() {
-    System.out.println(content.toString());
+    LOGGER.info(content.toString());
   }
 }

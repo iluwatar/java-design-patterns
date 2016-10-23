@@ -31,11 +31,15 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.mockito.InOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author hongshuwei@gmail.com
  */
 public class WriterTest extends StdOutTest {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(WriterTest.class);
 
   /**
    * Verify that multiple writers will get the lock in order.
@@ -58,7 +62,7 @@ public class WriterTest extends StdOutTest {
     try {
       executeService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      System.out.println("Error waiting for ExecutorService shutdown");
+      LOGGER.error("Error waiting for ExecutorService shutdown", e);
     }
     // Write operation will hold the write lock 250 milliseconds, so here we verify that when two
     // writer execute concurrently, the second writer can only writes only when the first one is

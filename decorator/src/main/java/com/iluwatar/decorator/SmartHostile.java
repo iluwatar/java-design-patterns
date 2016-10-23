@@ -22,6 +22,9 @@
  */
 package com.iluwatar.decorator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * SmartHostile is a decorator for {@link Hostile} objects. The calls to the {@link Hostile} interface
  * are intercepted and decorated. Finally the calls are delegated to the decorated {@link Hostile}
@@ -29,6 +32,8 @@ package com.iluwatar.decorator;
  *
  */
 public class SmartHostile implements Hostile {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(SmartHostile.class);
 
   private Hostile decorated;
 
@@ -38,7 +43,7 @@ public class SmartHostile implements Hostile {
 
   @Override
   public void attack() {
-    System.out.println("It throws a rock at you!");
+    LOGGER.info("It throws a rock at you!");
     decorated.attack();
   }
 
@@ -50,7 +55,7 @@ public class SmartHostile implements Hostile {
 
   @Override
   public void fleeBattle() {
-    System.out.println("It calls for help!");
+    LOGGER.info("It calls for help!");
     decorated.fleeBattle();
   }
 }

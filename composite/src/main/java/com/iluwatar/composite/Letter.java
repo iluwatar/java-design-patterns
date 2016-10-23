@@ -22,12 +22,17 @@
  */
 package com.iluwatar.composite;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Letter
  *
  */
 public class Letter extends LetterComposite {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Letter.class);
 
   private char c;
 
@@ -37,7 +42,7 @@ public class Letter extends LetterComposite {
 
   @Override
   protected void printThisBefore() {
-    System.out.print(c);
+    LOGGER.info(String.valueOf(c));
   }
 
   @Override

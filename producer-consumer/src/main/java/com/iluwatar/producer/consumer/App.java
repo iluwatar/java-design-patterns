@@ -22,6 +22,9 @@
  */
 package com.iluwatar.producer.consumer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -36,6 +39,8 @@ import java.util.concurrent.TimeUnit;
  * 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point
@@ -72,7 +77,7 @@ public class App {
       executorService.awaitTermination(10, TimeUnit.SECONDS);
       executorService.shutdownNow();
     } catch (InterruptedException e) {
-      System.out.println("Error waiting for ExecutorService shutdown");
+      LOGGER.error("Error waiting for ExecutorService shutdown");
     }
   }
 }

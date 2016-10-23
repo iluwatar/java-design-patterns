@@ -28,12 +28,16 @@ import java.nio.channels.SelectionKey;
 import com.iluwatar.reactor.framework.AbstractNioChannel;
 import com.iluwatar.reactor.framework.ChannelHandler;
 import com.iluwatar.reactor.framework.NioDatagramChannel.DatagramPacket;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Logging server application logic. It logs the incoming requests on standard console and returns a
  * canned acknowledgement back to the remote peer.
  */
 public class LoggingHandler implements ChannelHandler {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(LoggingHandler.class);
 
   private static final byte[] ACK = "Data logged successfully".getBytes();
 
@@ -76,6 +80,6 @@ public class LoggingHandler implements ChannelHandler {
 
   private static void doLogging(ByteBuffer data) {
     // assuming UTF-8 :(
-    System.out.println(new String(data.array(), 0, data.limit()));
+    LOGGER.info(new String(data.array(), 0, data.limit()));
   }
 }

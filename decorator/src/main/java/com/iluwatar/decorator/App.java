@@ -22,6 +22,9 @@
  */
 package com.iluwatar.decorator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * The Decorator pattern is a more flexible alternative to subclassing. The Decorator class
@@ -36,6 +39,8 @@ package com.iluwatar.decorator;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
@@ -44,17 +49,17 @@ public class App {
   public static void main(String[] args) {
 
     // simple troll
-    System.out.println("A simple looking troll approaches.");
+    LOGGER.info("A simple looking troll approaches.");
     Hostile troll = new Troll();
     troll.attack();
     troll.fleeBattle();
-    System.out.printf("Simple troll power %d.\n", troll.getAttackPower());
+    LOGGER.info("Simple troll power {}.\n", troll.getAttackPower());
 
     // change the behavior of the simple troll by adding a decorator
-    System.out.println("\nA smart looking troll surprises you.");
+    LOGGER.info("A smart looking troll surprises you.");
     Hostile smart = new SmartHostile(troll);
     smart.attack();
     smart.fleeBattle();
-    System.out.printf("Smart troll power %d.\n", smart.getAttackPower());
+    LOGGER.info("Smart troll power {}.\n", smart.getAttackPower());
   }
 }

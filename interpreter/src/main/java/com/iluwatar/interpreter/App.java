@@ -22,6 +22,9 @@
  */
 package com.iluwatar.interpreter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Stack;
 
 /**
@@ -36,6 +39,8 @@ import java.util.Stack;
  * 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * 
@@ -56,21 +61,21 @@ public class App {
       if (isOperator(s)) {
         Expression rightExpression = stack.pop();
         Expression leftExpression = stack.pop();
-        System.out.println(String.format("popped from stack left: %d right: %d",
-            leftExpression.interpret(), rightExpression.interpret()));
+        LOGGER.info("popped from stack left: {} right: {}",
+            leftExpression.interpret(), rightExpression.interpret());
         Expression operator = getOperatorInstance(s, leftExpression, rightExpression);
-        System.out.println(String.format("operator: %s", operator));
+        LOGGER.info("operator: {}", operator);
         int result = operator.interpret();
         NumberExpression resultExpression = new NumberExpression(result);
         stack.push(resultExpression);
-        System.out.println(String.format("push result to stack: %d", resultExpression.interpret()));
+        LOGGER.info("push result to stack: {}", resultExpression.interpret());
       } else {
         Expression i = new NumberExpression(s);
         stack.push(i);
-        System.out.println(String.format("push to stack: %d", i.interpret()));
+        LOGGER.info("push to stack: {}", i.interpret());
       }
     }
-    System.out.println(String.format("result: %d", stack.pop().interpret()));
+    LOGGER.info("result: {}", stack.pop().interpret());
   }
 
   public static boolean isOperator(String s) {

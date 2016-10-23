@@ -22,6 +22,9 @@
  */
 package com.iluwatar.promise;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -37,6 +40,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class Utility {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Utility.class);
 
   /**
    * Calculates character frequency of the file provided.
@@ -104,7 +109,7 @@ public class Utility {
    * @return the absolute path of the file downloaded.
    */
   public static String downloadFile(String urlString) throws MalformedURLException, IOException {
-    System.out.println("Downloading contents from url: " + urlString);
+    LOGGER.info("Downloading contents from url: {}", urlString);
     URL url = new URL(urlString);
     File file = File.createTempFile("promise_pattern", null);
     try (Reader reader = new InputStreamReader(url.openStream());
@@ -114,7 +119,7 @@ public class Utility {
         writer.write(line);
         writer.write("\n");
       }
-      System.out.println("File downloaded at: " + file.getAbsolutePath());
+      LOGGER.info("File downloaded at: {}", file.getAbsolutePath());
       return file.getAbsolutePath();
     } catch (IOException ex) {
       throw ex;

@@ -22,6 +22,9 @@
  */
 package com.iluwatar.servant;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 
 
@@ -34,6 +37,8 @@ import java.util.ArrayList;
  *
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   static Servant jenkins = new Servant("Jenkins");
   static Servant travis = new Servant("Travis");
@@ -73,9 +78,9 @@ public class App {
 
     // check your luck
     if (servant.checkIfYouWillBeHanged(guests)) {
-      System.out.println(servant.name + " will live another day");
+      LOGGER.info("{} will live another day", servant.name);
     } else {
-      System.out.println("Poor " + servant.name + ". His days are numbered");
+      LOGGER.info("Poor {}. His days are numbered", servant.name);
     }
   }
 }

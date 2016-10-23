@@ -22,6 +22,9 @@
  */
 package com.iluwatar.facade;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * DwarvenTunnelDigger is one of the goldmine subsystems.
@@ -29,9 +32,11 @@ package com.iluwatar.facade;
  */
 public class DwarvenTunnelDigger extends DwarvenMineWorker {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenTunnelDigger.class);
+
   @Override
   public void work() {
-    System.out.println(name() + " creates another promising tunnel.");
+    LOGGER.info("{} creates another promising tunnel.", name());
   }
 
   @Override

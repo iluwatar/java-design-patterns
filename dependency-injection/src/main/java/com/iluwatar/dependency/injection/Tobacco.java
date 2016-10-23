@@ -22,6 +22,9 @@
  */
 package com.iluwatar.dependency.injection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Tobacco abstraction
@@ -29,8 +32,10 @@ package com.iluwatar.dependency.injection;
  */
 public abstract class Tobacco {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(Tobacco.class);
+
   public void smoke(Wizard wizard) {
-    System.out.println(String.format("%s smoking %s", wizard.getClass().getSimpleName(), this
-        .getClass().getSimpleName()));
+    LOGGER.info("{} smoking {}", wizard.getClass().getSimpleName(),
+        this.getClass().getSimpleName());
   }
 }

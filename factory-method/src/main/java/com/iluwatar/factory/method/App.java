@@ -22,6 +22,9 @@
  */
 package com.iluwatar.factory.method;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * The Factory Method is a creational design pattern which uses factory methods to deal with the
@@ -37,6 +40,8 @@ package com.iluwatar.factory.method;
  * 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private final Blacksmith blacksmith;
   
@@ -70,8 +75,8 @@ public class App {
   private void manufactureWeapons() {
     Weapon weapon;
     weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
-    System.out.println(weapon);
+    LOGGER.info(weapon.toString());
     weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
-    System.out.println(weapon);
+    LOGGER.info(weapon.toString());
   }
 }

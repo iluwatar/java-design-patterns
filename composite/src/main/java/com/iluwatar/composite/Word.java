@@ -22,6 +22,9 @@
  */
 package com.iluwatar.composite;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 /**
@@ -30,6 +33,8 @@ import java.util.List;
  *
  */
 public class Word extends LetterComposite {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Word.class);
 
   /**
    * Constructor
@@ -42,7 +47,7 @@ public class Word extends LetterComposite {
 
   @Override
   protected void printThisBefore() {
-    System.out.print(" ");
+    LOGGER.info(" ");
   }
 
   @Override

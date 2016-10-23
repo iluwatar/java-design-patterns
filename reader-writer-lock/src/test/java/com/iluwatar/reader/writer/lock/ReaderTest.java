@@ -31,11 +31,15 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.mockito.InOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author hongshuwei@gmail.com
  */
 public class ReaderTest extends StdOutTest {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderTest.class);
 
   /**
    * Verify that multiple readers can get the read lock concurrently
@@ -57,7 +61,7 @@ public class ReaderTest extends StdOutTest {
     try {
       executeService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      System.out.println("Error waiting for ExecutorService shutdown");
+      LOGGER.error("Error waiting for ExecutorService shutdown", e);
     }
 
     // Read operation will hold the read lock 250 milliseconds, so here we prove that multiple reads

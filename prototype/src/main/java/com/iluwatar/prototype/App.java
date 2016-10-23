@@ -22,6 +22,9 @@
  */
 package com.iluwatar.prototype;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * The Prototype pattern is a creational design pattern in software development. It is used when the
@@ -35,6 +38,8 @@ package com.iluwatar.prototype;
  * 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point
@@ -51,16 +56,16 @@ public class App {
     mage = factory.createMage();
     warlord = factory.createWarlord();
     beast = factory.createBeast();
-    System.out.println(mage);
-    System.out.println(warlord);
-    System.out.println(beast);
+    LOGGER.info(mage.toString());
+    LOGGER.info(warlord.toString());
+    LOGGER.info(beast.toString());
 
     factory = new HeroFactoryImpl(new OrcMage(), new OrcWarlord(), new OrcBeast());
     mage = factory.createMage();
     warlord = factory.createWarlord();
     beast = factory.createBeast();
-    System.out.println(mage);
-    System.out.println(warlord);
-    System.out.println(beast);
+    LOGGER.info(mage.toString());
+    LOGGER.info(warlord.toString());
+    LOGGER.info(beast.toString());
   }
 }
