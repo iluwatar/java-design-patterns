@@ -26,22 +26,23 @@ package com.iluwatar.caching;
  *
  * The Caching pattern describes how to avoid expensive re-acquisition of resources by not releasing
  * the resources immediately after their use. The resources retain their identity, are kept in some
- * fast-access storage, and are re-used to avoid having to acquire them again. There are three main
- * caching strategies/techniques in this pattern; each with their own pros and cons. They are:
+ * fast-access storage, and are re-used to avoid having to acquire them again. There are four main
+ * caching strategies/techniques in this pattern; each with their own pros and cons. They are;
  * <code>write-through</code> which writes data to the cache and DB in a single transaction,
- * <code>write-around</code> which writes data immediately into the DB instead of the cache, and
+ * <code>write-around</code> which writes data immediately into the DB instead of the cache,
  * <code>write-behind</code> which writes data into the cache initially whilst the data is only
- * written into the DB when the cache is full. The <code>read-through</code> strategy is also
- * included in the mentioned three strategies -- returns data from the cache to the caller <b>if</b>
- * it exists <b>else</b> queries from DB and stores it into the cache for future use. These
- * strategies determine when the data in the cache should be written back to the backing store (i.e.
- * Database) and help keep both data sources synchronized/up-to-date. This pattern can improve
- * performance and also helps to maintain consistency between data held in the cache and the data in
- * the underlying data store.
+ * written into the DB when the cache is full, and <code>cache-aside</code> which pushes the
+ * responsibility of keeping the data synchronized in both data sources to the application itself.
+ * The <code>read-through</code> strategy is also included in the mentioned four strategies --
+ * returns data from the cache to the caller <b>if</b> it exists <b>else</b> queries from DB and
+ * stores it into the cache for future use. These strategies determine when the data in the cache
+ * should be written back to the backing store (i.e. Database) and help keep both data sources
+ * synchronized/up-to-date. This pattern can improve performance and also helps to maintain
+ * consistency between data held in the cache and the data in the underlying data store.
  * <p>
  * In this example, the user account ({@link UserAccount}) entity is used as the underlying
  * application data. The cache itself is implemented as an internal (Java) data structure. It adopts
- * a Least-Recently-Used (LRU) strategy for evicting data from itself when its full. The three
+ * a Least-Recently-Used (LRU) strategy for evicting data from itself when its full. The four
  * strategies are individually tested. The testing of the cache is restricted towards saving and
  * querying of user accounts from the underlying data store ( {@link DbManager}). The main class (
  * {@link App} is not aware of the underlying mechanics of the application (i.e. save and query) and
@@ -74,6 +75,7 @@ public class App {
     app.useReadAndWriteThroughStrategy();
     app.useReadThroughAndWriteAroundStrategy();
     app.useReadThroughAndWriteBehindStrategy();
+    app.useCacheAsideStategy();
   }
 
   /**
@@ -132,6 +134,28 @@ public class App {
     System.out.println(AppManager.printCacheContent());
     UserAccount userAccount6 = new UserAccount("006", "Yasha", "She is an only child.");
     AppManager.save(userAccount6);
+    System.out.println(AppManager.printCacheContent());
+    AppManager.find("004");
+    System.out.println(AppManager.printCacheContent());
+  }
+
+  /**
+   * Cache-Aside
+   */
+  public void useCacheAsideStategy() {
+    System.out.println("# CachingPolicy.ASIDE");
+    AppManager.initCachingPolicy(CachingPolicy.ASIDE);
+    System.out.println(AppManager.printCacheContent());
+
+    UserAccount userAccount3 = new UserAccount("003", "Adam", "He likes food.");
+    UserAccount userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
+    UserAccount userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
+    AppManager.save(userAccount3);
+    AppManager.save(userAccount4);
+    AppManager.save(userAccount5);
+
+    System.out.println(AppManager.printCacheContent());
+    AppManager.find("003");
     System.out.println(AppManager.printCacheContent());
     AppManager.find("004");
     System.out.println(AppManager.printCacheContent());

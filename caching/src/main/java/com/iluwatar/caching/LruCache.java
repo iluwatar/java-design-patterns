@@ -73,7 +73,6 @@ public class LruCache {
   }
 
   /**
-   *
    * Remove node from linked list.
    */
   public void remove(Node node) {
@@ -90,7 +89,6 @@ public class LruCache {
   }
 
   /**
-   *
    * Move node to the front of the list.
    */
   public void setHead(Node node) {
@@ -136,10 +134,11 @@ public class LruCache {
    * Invalidate cache for user
    */
   public void invalidate(String userId) {
-    System.out.println("# " + userId + " has been updated! Removing older version from cache...");
-    Node toBeRemoved = cache.get(userId);
-    remove(toBeRemoved);
-    cache.remove(userId);
+    Node toBeRemoved = cache.remove(userId);
+    if (toBeRemoved != null) {
+      System.out.println("# " + userId + " has been updated! Removing older version from cache...");
+      remove(toBeRemoved);
+    }
   }
 
   public boolean isFull() {
@@ -160,7 +159,6 @@ public class LruCache {
   }
 
   /**
-   *
    * Returns cache data in list form.
    */
   public List<UserAccount> getCacheDataInListForm() {

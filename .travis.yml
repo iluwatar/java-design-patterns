@@ -6,6 +6,7 @@ env:
   global:
   - GH_REF: github.com/iluwatar/java-design-patterns.git
   - secure: LxTDuNS/rBWIvKkaEqr79ImZAe48mCdoYCF41coxNXgNoippo4GIBArknqtv+XvdkiuRZ1yGyj6pn8GU33c/yn+krddTUkVCwTbVatbalW5jhQjDbHYym/JcxaK9ZS/3JTeGcWrBgiPqHEEDhCf26vPZsXoMSeVCEORVKTp1BSg=
+  - secure: "eoWlW9GyTJY04P8K3pxayXwU9/hmptQg/LfirispQkV9YvmziCfSzXnatnBhNfud98sCzY8BScXnb+OWLTnjLKpId4rtEqb0aJ40Jc32cUKzgzFAUn7cNcDAbUIfyPAGVqyQqfj/11wYSADwWMMOPlW97ExUtoyiH2WenXuRHso="
   
 before_install:
 - export DISPLAY=:99.0
@@ -17,6 +18,7 @@ install:
 
 after_success:
 - mvn clean test jacoco:report coveralls:report
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarqube.com -Dsonar.login=$SONAR_TOKEN
 - bash update-ghpages.sh
 
 # use latest java version available instead of travis default

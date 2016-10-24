@@ -23,9 +23,7 @@
 package com.iluwatar.caching;
 
 /**
- *
  * Entity class (stored in cache and DB) used in the application.
- *
  */
 public class UserAccount {
   private String userId;
