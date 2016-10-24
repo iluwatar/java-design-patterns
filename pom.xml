@@ -132,6 +132,7 @@
         <module>aggregator-microservices</module>
         <module>promise</module>
         <module>page-object</module>
+        <module>object-mother</module>
     </modules>
 
     <dependencyManagement>
