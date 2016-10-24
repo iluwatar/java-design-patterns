@@ -132,13 +132,10 @@
         <module>aggregator-microservices</module>
         <module>promise</module>
         <module>page-object</module>
-<<<<<<< HEAD
+        <module>event-asynchronous</module>
         <module>object-mother</module>
     </modules>
-=======
-        <module>event-asynchronous</module>
 	</modules>
->>>>>>> refs/remotes/iluwatar/master
 
     <dependencyManagement>
         <dependencies>
