@@ -135,7 +135,6 @@
         <module>event-asynchronous</module>
         <module>object-mother</module>
     </modules>
-	</modules>
 
     <dependencyManagement>
         <dependencies>
