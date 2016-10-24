@@ -45,26 +45,26 @@ public class RoyaltyObjectMotherTest {
   
   @Test
   public void queenIsBlockingFlirtCauseDrunkKing() {
-    King soberUnhappyKing = RoyaltyObjectMother.createDrunkKing();
+    King drunkUnhappyKing = RoyaltyObjectMother.createDrunkKing();
     Queen notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
-    soberUnhappyKing.flirt(notFlirtyQueen);
-    assertFalse(soberUnhappyKing.isHappy());
+    drunkUnhappyKing.flirt(notFlirtyQueen);
+    assertFalse(drunkUnhappyKing.isHappy());
   }
   
   @Test
   public void queenIsBlockingFlirt() {
-    King soberUnhappyKing = RoyaltyObjectMother.createHappyKing();
+    King soberHappyKing = RoyaltyObjectMother.createHappyKing();
     Queen notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
-    soberUnhappyKing.flirt(notFlirtyQueen);
-    assertFalse(soberUnhappyKing.isHappy());
+    soberHappyKing.flirt(notFlirtyQueen);
+    assertFalse(soberHappyKing.isHappy());
   }
   
   @Test
   public void successfullKingFlirt() {
-    King soberUnhappyKing = RoyaltyObjectMother.createHappyKing();
+    King soberHappyKing = RoyaltyObjectMother.createHappyKing();
     Queen flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
-    soberUnhappyKing.flirt(flirtyQueen);
-    assertTrue(soberUnhappyKing.isHappy());
+    soberHappyKing.flirt(flirtyQueen);
+    assertTrue(soberHappyKing.isHappy());
   }
   
   @Test
