@@ -29,9 +29,9 @@ import org.junit.Test;
  */
 public final class AppTest {
 
-	@Test
-	public void test() throws FileNotFoundException {
-		final String[] args = {};
-		App.main(args);
-	}
+  @Test
+  public void test() throws FileNotFoundException {
+    final String[] args = {};
+    App.main(args);
+  }
 }

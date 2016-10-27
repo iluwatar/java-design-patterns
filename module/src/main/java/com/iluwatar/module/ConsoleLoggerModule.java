@@ -18,89 +18,91 @@
  */
 package com.iluwatar.module;
 
-import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 import org.apache.log4j.Logger;
 
 /**
- * The Module pattern can be considered a Creational pattern and a Structural
- * pattern. It manages the creation and organization of other elements, and
- * groups them as the structural pattern does. An object that applies this
- * pattern can provide the equivalent of a namespace, providing the
- * initialization and finalization process of a static class or a class with
- * static members with cleaner, more concise syntax and semantics.
+ * The Module pattern can be considered a Creational pattern and a Structural pattern. It manages
+ * the creation and organization of other elements, and groups them as the structural pattern does.
+ * An object that applies this pattern can provide the equivalent of a namespace, providing the
+ * initialization and finalization process of a static class or a class with static members with
+ * cleaner, more concise syntax and semantics.
  * <p>
- * The below example demonstrates a Console logger module, which can print
- * simple and error messages in two designated formats
+ * The below example demonstrates a Console logger module, which can print simple and error messages
+ * in two designated formats
  */
-public class ConsoleLoggerModule {
+public final class ConsoleLoggerModule {
 
-	private static final Logger logger = Logger
-			.getLogger(ConsoleLoggerModule.class);
+  private static final Logger LOGGER = Logger.getLogger(ConsoleLoggerModule.class);
 
-	private static ConsoleLoggerModule singleton = null;
+  private static ConsoleLoggerModule singleton = null;
 
-	public PrintStream output = null;
-	public PrintStream error = null;
+  public PrintStream output = null;
+  public PrintStream error = null;
 
-	private ConsoleLoggerModule() {
-	}
+  private ConsoleLoggerModule() {}
 
-	public static final ConsoleLoggerModule getSingleton() {
+  /**
+   * Static method to get single instance of class
+   * 
+   * @return singleton instance of ConsoleLoggerModule
+   */
+  public static ConsoleLoggerModule getSingleton() {
 
-		if (ConsoleLoggerModule.singleton == null) {
-			ConsoleLoggerModule.singleton = new ConsoleLoggerModule();
-		}
+    if (ConsoleLoggerModule.singleton == null) {
+      ConsoleLoggerModule.singleton = new ConsoleLoggerModule();
+    }
 
-		return ConsoleLoggerModule.singleton;
-	}
+    return ConsoleLoggerModule.singleton;
+  }
 
-	/**
-	 * 
-	 * @throws FileNotFoundException
-	 */
-	public final void prepare() {
+  /**
+   * Following method performs the initialization
+   */
+  public void prepare() {
 
-		logger.debug("ConsoleLoggerModule::prepare();");
+    LOGGER.debug("ConsoleLoggerModule::prepare();");
 
-		this.output = new PrintStream(System.out);
-		this.error = new PrintStream(System.err);
-	}
+    this.output = new PrintStream(System.out);
+    this.error = new PrintStream(System.err);
+  }
 
-	/**
-	 * 
-	 */
-	public final void unprepare() {
+  /**
+   * Following method performs the finalization
+   */
+  public void unprepare() {
 
-		if (this.output != null) {
+    if (this.output != null) {
 
-			this.output.flush();
-			this.output.close();
-		}
+      this.output.flush();
+      this.output.close();
+    }
 
-		if (this.error != null) {
+    if (this.error != null) {
 
-			this.error.flush();
-			this.error.close();
-		}
+      this.error.flush();
+      this.error.close();
+    }
 
-		logger.debug("ConsoleLoggerModule::unprepare();");
-	}
+    LOGGER.debug("ConsoleLoggerModule::unprepare();");
+  }
 
-	/**
-	 * 
-	 * @param value
-	 */
-	public final void printString(final String value) {
-		this.output.println(value);
-	}
+  /**
+   * Used to print a message
+   * 
+   * @param value will be printed on console
+   */
+  public void printString(final String value) {
+    this.output.println(value);
+  }
 
-	/**
-	 * 
-	 * @param value
-	 */
-	public final void printErrorString(final String value) {
-		this.error.println(value);
-	}
+  /**
+   * Used to print a error message
+   * 
+   * @param value will be printed on error console
+   */
+  public void printErrorString(final String value) {
+    this.error.println(value);
+  }
 }
