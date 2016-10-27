@@ -21,16 +21,15 @@ package com.iluwatar.module;
 import java.io.FileNotFoundException;
 
 /**
- * The Data Mapper (DM) is a layer of software that separates the in-memory
- * objects from the database. Its responsibility is to transfer data between the
- * two and also to isolate them from each other. With Data Mapper the in-memory
- * objects needn't know even that there's a database present; they need no SQL
- * interface code, and certainly no knowledge of the database schema. (The
- * database schema is always ignorant of the objects that use it.) Since it's a
- * form of Mapper , Data Mapper itself is even unknown to the domain layer.
+ * The Module pattern can be considered a Creational pattern and a Structural
+ * pattern. It manages the creation and organization of other elements, and
+ * groups them as the structural pattern does. An object that applies this
+ * pattern can provide the equivalent of a namespace, providing the
+ * initialization and finalization process of a static class or a class with
+ * static members with cleaner, more concise syntax and semantics.
  * <p>
- * The below example demonstrates basic CRUD operations: Create, Read, Update,
- * and Delete.
+ * The below example demonstrates a use case for testing two different modules:
+ * File Logger and Console Logger
  * 
  */
 public final class App {
@@ -39,7 +38,7 @@ public final class App {
 	public static ConsoleLoggerModule consoleLoggerModule = null;
 
 	public static void prepare() throws FileNotFoundException {
-		
+
 		fileLoggerModule = FileLoggerModule.getSingleton();
 		consoleLoggerModule = ConsoleLoggerModule.getSingleton();
 

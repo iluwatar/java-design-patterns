@@ -25,7 +25,6 @@ import com.iluwatar.module.App;
 import org.junit.Test;
 
 /**
- * Tests that Data-Mapper example runs without errors.
  */
 public final class AppTest {
 
