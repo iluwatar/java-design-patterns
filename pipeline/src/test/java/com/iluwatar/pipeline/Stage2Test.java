@@ -51,11 +51,12 @@ public class Stage2Test {
    * Test of removeChar method, of class Stage2.
    */
   @Test
-  public void testRemoveChar() {
+  public void testRemoveChar() throws InterruptedException {
     System.out.println("Stage2 testing");
-    Stage2 instance = new Stage2();
+    Stage2 instance = new Stage2("Stage 2");
     buffer2.add("Testing 234s4tage2");
-    instance.removeChar();
+    instance.start();
+    Thread.sleep(1000);
     String result = (String) buffer3.remove();
     assertEquals("Testing stage",result);
  

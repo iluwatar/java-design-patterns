@@ -33,30 +33,60 @@ package com.iluwatar.pipeline;
 
 import static com.iluwatar.pipeline.App.buffer2;
 import static com.iluwatar.pipeline.App.buffer3;
+import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Ayush
  */
-public class Stage2 implements Filter{
-
+public class Stage2 implements Filter, Runnable {
+  
+  private Thread t;
+  private final String threadName;
+  
+  Stage2(String name) {
+    threadName = name;
+    //System.out.println("Creating " +  threadName );
+  }
     /**
      * @return void
      */
   @Override
   public void removeChar() {
-    String data = (String) buffer2.remove();
-    String result = "";
-    for (int i = 0;i < data.length();++i) {
-      char ch = data.charAt(i);
-      boolean cond1 = ch >= 'a' && ch <= 'z';
-      boolean cond2 = ch >= 'A' && ch <= 'Z';
-      boolean cond = cond1 || cond2 || ch == ' ';
-      if (cond) {
-        result = result + ch;
+    try {
+      if (!buffer2.isEmpty()) {
+        Thread.sleep(0);
+        String data = (String) buffer2.remove();
+        String result = "";
+        for (int i = 0;i < data.length();++i) {
+          char ch = data.charAt(i);
+          boolean cond1 = ch >= 'a' && ch <= 'z';
+          boolean cond2 = ch >= 'A' && ch <= 'Z';
+          boolean cond = cond1 || cond2 || ch == ' ';
+          if (cond) {
+            result = result + ch;
+          }
+        }
+        System.out.println("Data filtered through 2nd stage");
+        buffer3.add(result);
       }
+    } catch (InterruptedException | NoSuchElementException ex) {
+      Logger.getLogger(Stage2.class.getName()).log(Level.SEVERE, null, ex);
     }
-    buffer3.add(result);        
   }
-    
+
+  @Override
+  public void run() {
+    removeChar();
+  }
+  
+  @Override
+  public void start() {
+    if (t == null) {
+      t = new Thread(this, threadName);
+      t.start();
+    }
+  }  
 }

@@ -32,23 +32,54 @@ package com.iluwatar.pipeline;
  */
 
 import static com.iluwatar.pipeline.App.buffer4;
+import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Ayush
  */
-public class Stage4 implements Print {
-    
+public class Stage4 implements Print, Runnable {
+  
+  private Thread t;
+  private final String threadName;
+  
+  Stage4(String name) {
+    threadName = name;
+    //System.out.println("Creating " +  threadName );
+  }
     /**
      * @return String
      */
   @Override
   public String printData() {
-    String data = (String) buffer4.remove();
-    data = data.toLowerCase();
-    data = (char)(data.charAt(0) - 32) + data.substring(1);
-    System.out.println("Output through 4th stage : \n" + data + ".\n");
-    return data;
+    try {
+      if (!buffer4.isEmpty()) {
+        Thread.sleep(0);
+        String data = (String) buffer4.remove();
+        data = data.toLowerCase();
+        data = (char)(data.charAt(0) - 32) + data.substring(1);
+        System.out.println("Output through 4th stage : \n" + data + ".\n");
+        return data;
+      }
+    } catch (InterruptedException | NoSuchElementException ex) {
+      Logger.getLogger(Stage4.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
   }
+
+  @Override
+  public void run() {
+    printData();
+  }
+  
+  @Override
+  public void start() {
+    if (t == null) {
+      t = new Thread(this, threadName);
+      t.start();
+    }
+  }  
     
 }

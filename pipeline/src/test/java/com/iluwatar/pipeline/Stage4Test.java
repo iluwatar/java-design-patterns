@@ -53,7 +53,7 @@ public class Stage4Test {
   @Test
   public void testPrintData() {
     System.out.println("Stage4 testing");
-    Stage4 instance = new Stage4();
+    Stage4 instance = new Stage4("Stage 4");
     String expResult = "Testing stage";
     buffer4.add("tEsTiNg StAgE");
     String result = instance.printData();

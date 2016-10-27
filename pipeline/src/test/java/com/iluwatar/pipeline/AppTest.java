@@ -34,12 +34,10 @@ import org.junit.Test;
  * @author Ayush
  */
 public class AppTest {
-  
-  /**
-   * Test of main method, of class App.
-   */
+    
+
   @Test
-  public void testMain() {
+  public void testMain() throws InterruptedException {
     String[] args = {};
     App.main(args);
   }

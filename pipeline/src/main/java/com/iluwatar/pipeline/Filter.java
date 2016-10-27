@@ -34,5 +34,7 @@ package com.iluwatar.pipeline;
 public interface Filter {
   
   void removeChar();
+
+  void start();
     
 }

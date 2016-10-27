@@ -38,5 +38,7 @@ public interface Print {
    * @return String
    */
   String printData();
+
+  void start();
     
 }

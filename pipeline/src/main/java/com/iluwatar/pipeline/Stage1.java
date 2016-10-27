@@ -38,26 +38,48 @@ import static com.iluwatar.pipeline.App.buffer2;
  *
  * @author Ayush
  */
-public class Stage1 implements Filter{
+public class Stage1 implements Filter, Runnable {
+    
+  private Thread t;
+  private final String threadName;
   
+  Stage1(String name) {
+    threadName = name;
+    //System.out.println("Creating " +  threadName );
+  }
     /**
      * @return void
      */
   @Override
   public void removeChar() {
-    String data = (String) buffer1.remove();
-    String result = "";
-    for (int i = 0;i < data.length();++i) {
-      char ch = data.charAt(i);
-      boolean cond1 = ch >= 'a' && ch <= 'z';
-      boolean cond2 = ch >= 'A' && ch <= 'Z';
-      boolean cond3 = ch >= '0' && ch <= '9';
-      boolean cond = cond1 || cond2 || cond3 || ch == ' ';
-      if (cond) {
-        result = result + ch;
+    if (!buffer1.isEmpty()) {
+      String data = (String) buffer1.remove();
+      String result = "";
+      for (int i = 0;i < data.length();++i) {
+        char ch = data.charAt(i);
+        boolean cond1 = ch >= 'a' && ch <= 'z';
+        boolean cond2 = ch >= 'A' && ch <= 'Z';
+        boolean cond3 = ch >= '0' && ch <= '9';
+        boolean cond = cond1 || cond2 || cond3 || ch == ' ';
+        if (cond) {
+          result = result + ch;
+        }
       }
+      System.out.println("Data filtered through 1st stage");
+      buffer2.add(result);
     }
-    buffer2.add(result);
   } 
-    
+
+  @Override
+  public void run() {
+    removeChar();
+  }
+  
+  @Override
+  public void start() {
+    if (t == null) {
+      t = new Thread(this, threadName);
+      t.start();
+    }
+  }
 }

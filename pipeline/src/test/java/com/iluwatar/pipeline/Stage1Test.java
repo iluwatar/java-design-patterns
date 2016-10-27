@@ -50,11 +50,12 @@ public class Stage1Test {
    * Test of removeChar method, of class Stage1.
    */
   @Test
-  public void testRemoveChar() {
+  public void testRemoveChar() throws InterruptedException {
     System.out.println("Stage 1 testing : ");
-    Stage1 instance = new Stage1();
+    Stage1 instance = new Stage1("Stage 1");
     buffer1.add("Tes@ti$ng sta*ge&1$");
-    instance.removeChar();
+    instance.start();
+    Thread.sleep(1000);
     String result = (String) buffer2.remove();
     assertEquals("Testing stage1",result);
   }

@@ -33,5 +33,7 @@ package com.iluwatar.pipeline;
  */
 public interface Process {
   void process();
+
+  void start();
     
 }

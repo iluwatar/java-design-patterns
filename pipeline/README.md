@@ -7,7 +7,6 @@ pumlid: FSSn4e0W30J05y5PMVWRm0p48P0nmVThvNRRtDKEeBAtbMEPWjgcUTWtNEb9uIJZEe8cTxg7
 categories: Structural
 tags:
  - Java
- - Gang Of Four
  - Difficulty-Intermediate
 ---
 
@@ -20,7 +19,7 @@ The basic idea of this pattern is much like the idea of an assembly line: To per
 ![alt text](./etc/pipeline.png "Pipeline")
 
 ## Applicability
-Use Index Table pattern when
+Use Pipeline pattern when
 
 * The problem consists of performing a sequence of calculations, each of which can be broken down into distinct stages, on a sequence of inputs, such that for each input the calculations must be done in order, but it is possible to overlap computation of different stages for different inputs.
 
@@ -35,5 +34,4 @@ The pattern is particularly effective when:
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
 * [PipelineProcessing Design Pattern](https://www.cise.ufl.edu/research/ParallelPatterns/PatternLanguage/AlgorithmStructure/Pipeline.htm)

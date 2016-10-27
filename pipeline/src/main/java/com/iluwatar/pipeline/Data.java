@@ -38,13 +38,13 @@ import java.util.Queue;
  * @author Ayush
  */
 public class Data {
-    
+  private static Queue v;
     /**
      * @return Vector
      * @Data initialization
      */
-  public static Queue data() {
-    Queue v = new LinkedList();
+  Data() {
+    v = new LinkedList();
     String []list = {"g%2O%d2& Y$7z$A8)l !8E)h6&T ^1R&e9#Vo$7 ^p0*Mu)6J^ 9#xO(5"
             + "f* 3#Nw(1O!r1)B (4k&C3@iU&9q^ 9@Eh$5T$" ,
       "o^4D$ 7(I $5T)a2&Ht^7 )S5)gN@8i@H6(t (6E(m2^As(8 (E5*hT&8 ^l9^La)7 ^S7*e"
@@ -72,6 +72,8 @@ public class Data {
     for (int i = 0;i < 10;++i) {
       v.add(list[i]);
     }
+  }
+  public static Queue data() {
     return v;
   }
     

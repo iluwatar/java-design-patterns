@@ -51,11 +51,12 @@ public class Stage3Test {
    * Test of process method, of class Stage3.
    */
   @Test
-  public void testProcess() {
+  public void testProcess() throws InterruptedException {
     System.out.println("process");
-    Stage3 instance = new Stage3();
+    Stage3 instance = new Stage3("Stage 3");
     buffer3.add("egats gnitseT");
-    instance.process();
+    instance.start();
+    Thread.sleep(1000);
     String result = (String) buffer4.remove();
     assertEquals("Testing stage",result);
   }

@@ -33,21 +33,52 @@ package com.iluwatar.pipeline;
 
 import static com.iluwatar.pipeline.App.buffer3;
 import static com.iluwatar.pipeline.App.buffer4;
+import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Ayush
  */
-public class Stage3 implements Process{
+public class Stage3 implements Process, Runnable{
+    
+  private Thread t;
+  private final String threadName;
   
+  Stage3(String name) {
+    threadName = name;
+    //System.out.println("Creating " +  threadName );
+  }
     /**
      * @return void
      */
   @Override
   public void process() {
-    String data  = (String) buffer3.remove();
-    String result = new StringBuilder(data).reverse().toString();
-    buffer4.add(result);
+    try {
+      if (!buffer3.isEmpty()) {
+        Thread.sleep(0);
+        String data  = (String) buffer3.remove();
+        String result = new StringBuilder(data).reverse().toString();
+        System.out.println("Data processed through 3rd stage");
+        buffer4.add(result);
+      }
+    } catch (InterruptedException | NoSuchElementException ex) {
+      Logger.getLogger(Stage3.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+
+  @Override
+  public void run() {
+    process();        
+  }
+  
+  @Override
+  public void start() {
+    if (t == null) {
+      t = new Thread(this, threadName);
+      t.start();
+    }
   }
     
 }
