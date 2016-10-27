@@ -25,6 +25,7 @@ import com.iluwatar.module.App;
 import org.junit.Test;
 
 /**
+ * Tests that Module example runs without errors.
  */
 public final class AppTest {
 
