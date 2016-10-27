@@ -35,23 +35,35 @@ import java.io.FileNotFoundException;
  */
 public final class App {
 
-	private static final String OUTPUT_FILE = "output.txt";
-	private static final String ERROR_FILE = "error.txt";
-
-	public static FilePrinterModule filePrinterModule = null;
+	public static FileLoggerModule fileLoggerModule = null;
+	public static ConsoleLoggerModule consoleLoggerModule = null;
 
 	public static void prepare() throws FileNotFoundException {
-		filePrinterModule = FilePrinterModule.getSingleton();
+		
+		fileLoggerModule = FileLoggerModule.getSingleton();
+		consoleLoggerModule = ConsoleLoggerModule.getSingleton();
 
-		filePrinterModule.prepare(OUTPUT_FILE, ERROR_FILE);
+		/* Prepare modules */
+		fileLoggerModule.prepare();
+		consoleLoggerModule.prepare();
 	}
 
 	public static void unprepare() {
-		filePrinterModule.unprepare();
+
+		/* Close all resources */
+		fileLoggerModule.unprepare();
+		consoleLoggerModule.unprepare();
 	}
 
 	public static final void execute(final String... args) {
-		filePrinterModule.printString("Hello World");
+
+		/* Send logs on file system */
+		fileLoggerModule.printString("Message");
+		fileLoggerModule.printErrorString("Error");
+
+		/* Send logs on console */
+		consoleLoggerModule.printString("Message");
+		consoleLoggerModule.printErrorString("Error");
 	}
 
 	/**

@@ -1,11 +1,3 @@
-package com.iluwatar.module;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-
-import org.apache.log4j.Logger;
-
 /**
  * The MIT License Copyright (c) 2016 Amit Dixit
  *
@@ -27,39 +19,60 @@ import org.apache.log4j.Logger;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-public final class FilePrinterModule {
+package com.iluwatar.module;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
+import org.apache.log4j.Logger;
+
+/**
+ * The Module pattern can be considered a Creational pattern and a Structural
+ * pattern. It manages the creation and organization of other elements, and
+ * groups them as the structural pattern does. An object that applies this
+ * pattern can provide the equivalent of a namespace, providing the
+ * initialization and finalization process of a static class or a class with
+ * static members with cleaner, more concise syntax and semantics.
+ * <p>
+ * The below example demonstrates a File logger module, which can print simple
+ * and error messages in two designated files
+ */
+public final class FileLoggerModule {
 
 	private static final Logger logger = Logger
-			.getLogger(FilePrinterModule.class);
+			.getLogger(FileLoggerModule.class);
 
-	private static FilePrinterModule singleton = null;
+	private static FileLoggerModule singleton = null;
+
+	private static final String OUTPUT_FILE = "output.txt";
+	private static final String ERROR_FILE = "error.txt";
 
 	public PrintStream output = null;
 	public PrintStream error = null;
 
-	private FilePrinterModule() {
+	private FileLoggerModule() {
 	}
 
-	public static final FilePrinterModule getSingleton() {
+	public static final FileLoggerModule getSingleton() {
 
-		if (FilePrinterModule.singleton == null) {
-			FilePrinterModule.singleton = new FilePrinterModule();
+		if (FileLoggerModule.singleton == null) {
+			FileLoggerModule.singleton = new FileLoggerModule();
 		}
 
-		return FilePrinterModule.singleton;
+		return FileLoggerModule.singleton;
 	}
 
 	/**
 	 * 
 	 * @throws FileNotFoundException
 	 */
-	public final void prepare(final String outputFile, final String errorFile)
-			throws FileNotFoundException {
+	public final void prepare() throws FileNotFoundException {
 
-		logger.debug("MainModule::prepare();");
+		logger.debug("FileLoggerModule::prepare();");
 
-		this.output = new PrintStream(new FileOutputStream(outputFile));
-		this.error = new PrintStream(new FileOutputStream(errorFile));
+		this.output = new PrintStream(new FileOutputStream(OUTPUT_FILE));
+		this.error = new PrintStream(new FileOutputStream(ERROR_FILE));
 	}
 
 	/**
@@ -79,7 +92,7 @@ public final class FilePrinterModule {
 			this.error.close();
 		}
 
-		logger.debug("MainModule::unprepare();");
+		logger.debug("FileLoggerModule::unprepare();");
 	}
 
 	/**
@@ -87,7 +100,7 @@ public final class FilePrinterModule {
 	 * @param value
 	 */
 	public final void printString(final String value) {
-		this.output.print(value);
+		this.output.println(value);
 	}
 
 	/**
@@ -95,6 +108,6 @@ public final class FilePrinterModule {
 	 * @param value
 	 */
 	public final void printErrorString(final String value) {
-		this.error.print(value);
+		this.error.println(value);
 	}
 }

@@ -24,19 +24,21 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
 /**
- * The Data Mapper (DM) is a layer of software that separates the in-memory
- * objects from the database. Its responsibility is to transfer data between the
- * two and also to isolate them from each other. With Data Mapper the in-memory
- * objects needn't know even that there's a database present; they need no SQL
- * interface code, and certainly no knowledge of the database schema. (The
- * database schema is always ignorant of the objects that use it.) Since it's a
- * form of Mapper , Data Mapper itself is even unknown to the domain layer.
+ * The Module pattern can be considered a Creational pattern and a Structural
+ * pattern. It manages the creation and organization of other elements, and
+ * groups them as the structural pattern does. An object that applies this
+ * pattern can provide the equivalent of a namespace, providing the
+ * initialization and finalization process of a static class or a class with
+ * static members with cleaner, more concise syntax and semantics.
  * <p>
+ * The below example demonstrates a JUnit test for testing two different
+ * modules: File Logger and Console Logger
  */
 public class ModuleTest {
 
@@ -54,23 +56,23 @@ public class ModuleTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void testPositiveMessage() throws IOException {
+	public void positiveTestConsoleMessage() throws IOException {
 
 		/* Prepare the essential sub modules, to perform the sequence of jobs */
-		final FilePrinterModule filePrinterModule = FilePrinterModule
+		final FileLoggerModule fileLoggerModule = FileLoggerModule
 				.getSingleton();
 
 		/* Prepare the essential sub modules, to perform the sequence of jobs */
-		filePrinterModule.prepare(OUTPUT_FILE, ERROR_FILE);
+		fileLoggerModule.prepare();
 
 		/* Print 'Message' in file */
-		filePrinterModule.printString(MESSAGE);
+		fileLoggerModule.printString(MESSAGE);
 
-		/* Test if 'Message' is printed in file */
-		assertEquals(readFirstLine(OUTPUT_FILE), MESSAGE);
+		/* Test if 'Message' is printed on console */
+		assertEquals(readFirstLine(), MESSAGE);
 
 		/* Unprepare to cleanup the modules */
-		filePrinterModule.unprepare();
+		fileLoggerModule.unprepare();
 	}
 
 	/**
@@ -79,20 +81,20 @@ public class ModuleTest {
 	 * @throws IOException
 	 */
 	@Test
-	public void testNegativeMessage() throws IOException {
+	public void negativeTestConsoleMessage() throws IOException {
 
 		/* Prepare the essential sub modules, to perform the sequence of jobs */
-		final FilePrinterModule filePrinterModule = FilePrinterModule
+		final ConsoleLoggerModule consoleLoggerModule = ConsoleLoggerModule
 				.getSingleton();
 
 		/* Prepare the essential sub modules, to perform the sequence of jobs */
-		filePrinterModule.prepare(OUTPUT_FILE, ERROR_FILE);
+		consoleLoggerModule.prepare();
 
-		/* Test if nothing is printed in file */
-		assertEquals(readFirstLine(OUTPUT_FILE), null);
+		/* Test if nothing is printed on console */
+		assertEquals(readFirstLine(), null);
 
 		/* Unprepare to cleanup the modules */
-		filePrinterModule.unprepare();
+		consoleLoggerModule.unprepare();
 	}
 
 	/**
@@ -101,23 +103,23 @@ public class ModuleTest {
 	 * @throws FileNotFoundException
 	 */
 	@Test
-	public void testPositiveErrorMessage() throws FileNotFoundException {
+	public void positiveTestConsoleErrorMessage() {
 
 		/* Prepare the essential sub modules, to perform the sequence of jobs */
-		final FilePrinterModule filePrinterModule = FilePrinterModule
+		final ConsoleLoggerModule consoleLoggerModule = ConsoleLoggerModule
 				.getSingleton();
 
 		/* Prepare the essential sub modules, to perform the sequence of jobs */
-		filePrinterModule.prepare(OUTPUT_FILE, ERROR_FILE);
+		consoleLoggerModule.prepare();
 
 		/* Print 'Error' in file */
-		filePrinterModule.printErrorString(ERROR);
+		consoleLoggerModule.printErrorString(ERROR);
 
-		/* Test if 'Message' is printed in file */
-		assertEquals(readFirstLine(ERROR_FILE), ERROR);
+		/* Test if 'Message' is printed on console */
+		assertEquals(readFirstLine(), ERROR);
 
 		/* Unprepare to cleanup the modules */
-		filePrinterModule.unprepare();
+		consoleLoggerModule.unprepare();
 	}
 
 	/**
@@ -126,20 +128,152 @@ public class ModuleTest {
 	 * @throws FileNotFoundException
 	 */
 	@Test
-	public void testNegativeErrorMessage() throws FileNotFoundException {
+	public void negativeTestConsoleErrorMessage() {
 
 		/* Prepare the essential sub modules, to perform the sequence of jobs */
-		final FilePrinterModule filePrinterModule = FilePrinterModule
+		final ConsoleLoggerModule consoleLoggerModule = ConsoleLoggerModule
 				.getSingleton();
 
 		/* Prepare the essential sub modules, to perform the sequence of jobs */
-		filePrinterModule.prepare(OUTPUT_FILE, ERROR_FILE);
+		consoleLoggerModule.prepare();
+
+		/* Test if nothing is printed on console */
+		assertEquals(readFirstLine(), null);
+
+		/* Unprepare to cleanup the modules */
+		consoleLoggerModule.unprepare();
+	}
+
+	/**
+	 * This test verify that 'MESSAGE' is perfectly printed in output file
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public void positiveTestFileMessage() throws IOException {
+
+		/* Prepare the essential sub modules, to perform the sequence of jobs */
+		final FileLoggerModule fileLoggerModule = FileLoggerModule
+				.getSingleton();
+
+		/* Prepare the essential sub modules, to perform the sequence of jobs */
+		fileLoggerModule.prepare();
+
+		/* Print 'Message' in file */
+		fileLoggerModule.printString(MESSAGE);
+
+		/* Test if 'Message' is printed in file */
+		assertEquals(readFirstLine(OUTPUT_FILE), MESSAGE);
+
+		/* Unprepare to cleanup the modules */
+		fileLoggerModule.unprepare();
+	}
+
+	/**
+	 * This test verify that nothing is printed in output file
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public void negativeTestFileMessage() throws IOException {
+
+		/* Prepare the essential sub modules, to perform the sequence of jobs */
+		final FileLoggerModule fileLoggerModule = FileLoggerModule
+				.getSingleton();
+
+		/* Prepare the essential sub modules, to perform the sequence of jobs */
+		fileLoggerModule.prepare();
+
+		/* Test if nothing is printed in file */
+		assertEquals(readFirstLine(OUTPUT_FILE), null);
+
+		/* Unprepare to cleanup the modules */
+		fileLoggerModule.unprepare();
+	}
+
+	/**
+	 * This test verify that 'ERROR' is perfectly printed in error file
+	 * 
+	 * @throws FileNotFoundException
+	 */
+	@Test
+	public void positiveTestFileErrorMessage() throws FileNotFoundException {
+
+		/* Prepare the essential sub modules, to perform the sequence of jobs */
+		final FileLoggerModule fileLoggerModule = FileLoggerModule
+				.getSingleton();
+
+		/* Prepare the essential sub modules, to perform the sequence of jobs */
+		fileLoggerModule.prepare();
+
+		/* Print 'Error' in file */
+		fileLoggerModule.printErrorString(ERROR);
+
+		/* Test if 'Message' is printed in file */
+		assertEquals(readFirstLine(ERROR_FILE), ERROR);
+
+		/* Unprepare to cleanup the modules */
+		fileLoggerModule.unprepare();
+	}
+
+	/**
+	 * This test verify that nothing is printed in error file
+	 * 
+	 * @throws FileNotFoundException
+	 */
+	@Test
+	public void negativeTestFileErrorMessage() throws FileNotFoundException {
+
+		/* Prepare the essential sub modules, to perform the sequence of jobs */
+		final FileLoggerModule fileLoggerModule = FileLoggerModule
+				.getSingleton();
+
+		/* Prepare the essential sub modules, to perform the sequence of jobs */
+		fileLoggerModule.prepare();
 
 		/* Test if nothing is printed in file */
 		assertEquals(readFirstLine(ERROR_FILE), null);
 
 		/* Unprepare to cleanup the modules */
-		filePrinterModule.unprepare();
+		fileLoggerModule.unprepare();
+	}
+
+	/**
+	 * Utility method to read first line of a file
+	 * 
+	 * @param file
+	 * @return
+	 */
+	private static final String readFirstLine() {
+
+		String firstLine = null;
+		BufferedReader bufferedReader = null;
+		try {
+
+			/* Create a buffered reader */
+			bufferedReader = new BufferedReader(
+					new InputStreamReader(System.in));
+
+			/* Read the line */
+			firstLine = bufferedReader.readLine();
+
+			logger.info("ModuleTest::readFirstLineFromConsole() : firstLine : "
+					+ firstLine);
+
+		} catch (final IOException e) {
+			logger.error("ModuleTest::readFirstLineFromConsole()", e);
+		} finally {
+
+			if (bufferedReader != null) {
+				try {
+					bufferedReader.close();
+				} catch (final IOException e) {
+					logger.error("ModuleTest::readFirstLineFromConsole()", e);
+				}
+			}
+		}
+
+		return firstLine;
 	}
 
 	/**
@@ -160,17 +294,18 @@ public class ModuleTest {
 			/* Read the line */
 			firstLine = bufferedReader.readLine();
 
-			logger.info("ModuleTest::readFile() : firstLine : " + firstLine);
+			logger.info("ModuleTest::readFirstLine() : firstLine : "
+					+ firstLine);
 
 		} catch (final IOException e) {
-			logger.error("ModuleTest::readFile()", e);
+			logger.error("ModuleTest::readFirstLine()", e);
 		} finally {
 
 			if (bufferedReader != null) {
 				try {
 					bufferedReader.close();
 				} catch (final IOException e) {
-					logger.error("ModuleTest::readFile()", e);
+					logger.error("ModuleTest::readFirstLine()", e);
 				}
 			}
 		}
