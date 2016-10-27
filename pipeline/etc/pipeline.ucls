@@ -4,7 +4,7 @@
   router="FAN">  
   <class id="1" language="java" name="com.iluwatar.pipeline.App" project="pipeline" 
     file="/pipeline/src/main/java/com/iluwatar/pipeline/App.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="130" x="41" y="37"/>    
+    <position height="178" width="130" x="219" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -13,7 +13,7 @@
   </class>  
   <class id="2" language="java" name="com.iluwatar.pipeline.Stage1" project="pipeline" 
     file="/pipeline/src/main/java/com/iluwatar/pipeline/Stage1.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="128" x="711" y="37"/>    
+    <position height="178" width="138" x="567" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -22,7 +22,7 @@
   </class>  
   <class id="3" language="java" name="com.iluwatar.pipeline.Stage2" project="pipeline" 
     file="/pipeline/src/main/java/com/iluwatar/pipeline/Stage2.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="128" x="543" y="37"/>    
+    <position height="178" width="138" x="389" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -31,7 +31,7 @@
   </class>  
   <class id="4" language="java" name="com.iluwatar.pipeline.Stage3" project="pipeline" 
     file="/pipeline/src/main/java/com/iluwatar/pipeline/Stage3.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="126" x="211" y="37"/>    
+    <position height="178" width="138" x="745" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -40,7 +40,7 @@
   </class>  
   <class id="5" language="java" name="com.iluwatar.pipeline.Stage4" project="pipeline" 
     file="/pipeline/src/main/java/com/iluwatar/pipeline/Stage4.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="126" x="377" y="37"/>    
+    <position height="178" width="138" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -49,7 +49,7 @@
   </class>  
   <interface id="6" language="java" name="com.iluwatar.pipeline.Filter" project="pipeline" 
     file="/pipeline/src/main/java/com/iluwatar/pipeline/Filter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="128" x="627" y="255"/>    
+    <position height="106" width="128" x="478" y="255"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
   </interface>  
   <interface id="7" language="java" name="com.iluwatar.pipeline.Process" project="pipeline" 
     file="/pipeline/src/main/java/com/iluwatar/pipeline/Process.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="126" x="211" y="255"/>    
+    <position height="106" width="126" x="745" y="255"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -67,7 +67,7 @@
   </interface>  
   <interface id="8" language="java" name="com.iluwatar.pipeline.Print" project="pipeline" 
     file="/pipeline/src/main/java/com/iluwatar/pipeline/Print.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="126" x="377" y="255"/>    
+    <position height="106" width="126" x="41" y="255"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,20 +75,20 @@
     </display>  
   </interface>  
   <realization id="9">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
   </realization>  
   <realization id="10">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <realization id="11">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="6"/>  
   </realization>  
+  <realization id="11">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
   <realization id="12">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="6"/>  
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

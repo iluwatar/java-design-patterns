@@ -7,7 +7,6 @@ pumlid: JSUn4S8m30NGdYbWW5Wz5QiejYuH9oi--OimFfJftdkeLyic6NRVWJ6VHC5dsHHxhZabwk4G
 categories: Creational
 tags:
  - Java
- - Gang Of Four
  - Difficulty-Intermediate
 ---
 
@@ -36,5 +35,4 @@ This pattern might not be suitable when
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
 * [Index Table Pattern](https://msdn.microsoft.com/en-us/library/dn589791.aspx)
