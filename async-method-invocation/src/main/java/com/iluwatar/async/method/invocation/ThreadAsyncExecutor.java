@@ -57,12 +57,10 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 
   @Override
   public <T> T endProcess(AsyncResult<T> asyncResult) throws ExecutionException, InterruptedException {
-    if (asyncResult.isCompleted()) {
-      return asyncResult.getValue();
-    } else {
+    if (!asyncResult.isCompleted()) {
       asyncResult.await();
-      return asyncResult.getValue();
     }
+    return asyncResult.getValue();
   }
 
   /**
