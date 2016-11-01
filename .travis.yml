@@ -17,7 +17,6 @@ install:
 - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -e
 
 after_success:
-- mvn clean test jacoco:report coveralls:report
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarqube.com -Dsonar.login=$SONAR_TOKEN
 - bash update-ghpages.sh
 
