@@ -22,22 +22,36 @@
  */
 package com.iluwatar.reader.writer.lock;
 
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.spy;
+import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
-import org.mockito.InOrder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static junit.framework.TestCase.assertTrue;
+import static org.mockito.Mockito.spy;
 
 /**
  * @author hongshuwei@gmail.com
  */
-public class ReaderTest extends StdOutTest {
+public class ReaderTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender(Reader.class);
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ReaderTest.class);
 
@@ -66,11 +80,9 @@ public class ReaderTest extends StdOutTest {
 
     // Read operation will hold the read lock 250 milliseconds, so here we prove that multiple reads
     // can be performed in the same time.
-    final InOrder inOrder = inOrder(getStdOutMock());
-    inOrder.verify(getStdOutMock()).println("Reader 1 begin");
-    inOrder.verify(getStdOutMock()).println("Reader 2 begin");
-    inOrder.verify(getStdOutMock()).println("Reader 1 finish");
-    inOrder.verify(getStdOutMock()).println("Reader 2 finish");
-
+    assertTrue(appender.logContains("Reader 1 begin"));
+    assertTrue(appender.logContains("Reader 2 begin"));
+    assertTrue(appender.logContains("Reader 1 finish"));
+    assertTrue(appender.logContains("Reader 2 finish"));
   }
 }

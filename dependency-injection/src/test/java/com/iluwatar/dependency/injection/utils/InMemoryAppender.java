@@ -20,66 +20,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.resource.acquisition.is.initialization;
+package com.iluwatar.dependency.injection.utils;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
-/**
- * Date: 12/28/15 - 9:31 PM
- *
- * @author Jeroen Meulemeester
- */
-public class ClosableTest {
+  private List<ILoggingEvent> log = new LinkedList<>();
 
-  private InMemoryAppender appender;
-
-  @Before
-  public void setUp() {
-    appender = new InMemoryAppender();
+  public InMemoryAppender(Class clazz) {
+    ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
+    start();
   }
 
-  @After
-  public void tearDown() {
-    appender.stop();
+  @Override
+  protected void append(ILoggingEvent eventObject) {
+    log.add(eventObject);
   }
 
-  @Test
-  public void testOpenClose() throws Exception {
-    try (final SlidingDoor door = new SlidingDoor(); final TreasureChest chest = new TreasureChest()) {
-      assertTrue(appender.logContains("Sliding door opens."));
-      assertTrue(appender.logContains("Treasure chest opens."));
-    }
-    assertTrue(appender.logContains("Treasure chest closes."));
-    assertTrue(appender.logContains("Sliding door closes."));
+  public String getLastMessage() {
+    return log.get(log.size() - 1).getFormattedMessage();
   }
 
-  public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
-
-    public InMemoryAppender() {
-      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
-      start();
-    }
-
-    @Override
-    protected void append(ILoggingEvent eventObject) {
-      log.add(eventObject);
-    }
-
-    public boolean logContains(String message) {
-      return log.stream().anyMatch(event -> event.getMessage().equals(message));
-    }
+  public int getLogSize() {
+    return log.size();
   }
-
 }

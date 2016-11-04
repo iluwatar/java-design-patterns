@@ -22,22 +22,36 @@
  */
 package com.iluwatar.reader.writer.lock;
 
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.spy;
+import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
-import org.mockito.InOrder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.spy;
 
 /**
  * @author hongshuwei@gmail.com
  */
-public class WriterTest extends StdOutTest {
+public class WriterTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender(Writer.class);
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   private static final Logger LOGGER = LoggerFactory.getLogger(WriterTest.class);
 
@@ -67,10 +81,9 @@ public class WriterTest extends StdOutTest {
     // Write operation will hold the write lock 250 milliseconds, so here we verify that when two
     // writer execute concurrently, the second writer can only writes only when the first one is
     // finished.
-    final InOrder inOrder = inOrder(getStdOutMock());
-    inOrder.verify(getStdOutMock()).println("Writer 1 begin");
-    inOrder.verify(getStdOutMock()).println("Writer 1 finish");
-    inOrder.verify(getStdOutMock()).println("Writer 2 begin");
-    inOrder.verify(getStdOutMock()).println("Writer 2 finish");
+    assertTrue(appender.logContains("Writer 1 begin"));
+    assertTrue(appender.logContains("Writer 1 finish"));
+    assertTrue(appender.logContains("Writer 2 begin"));
+    assertTrue(appender.logContains("Writer 2 finish"));
   }
 }

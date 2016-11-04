@@ -24,7 +24,6 @@ package com.iluwatar.hexagonal.service;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.iluwatar.hexagonal.administration.ConsoleAdministration;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryService;
