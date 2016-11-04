@@ -16,10 +16,12 @@
  */
 package com.iluwatar.event.asynchronous;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -28,6 +30,8 @@ import org.junit.Test;
  */
 public class EventAsynchronousTest {
   App app;
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(EventAsynchronousTest.class);
 
   @Before
   public void setUp() {
@@ -46,7 +50,7 @@ public class EventAsynchronousTest {
       eventManager.cancel(aEventId);
       assertTrue(eventManager.getEventPool().size() == 0);
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-      System.out.println(e.getMessage());
+      LOGGER.error(e.getMessage());
     }
   }
 
@@ -63,7 +67,7 @@ public class EventAsynchronousTest {
       assertTrue(eventManager.getEventPool().size() == 0);
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
         | InvalidOperationException e) {
-      System.out.println(e.getMessage());
+      LOGGER.error(e.getMessage());
     }
   }
 
@@ -76,7 +80,7 @@ public class EventAsynchronousTest {
       sEventId = eventManager.create(60);
       eventManager.start(sEventId);
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-      System.out.println(e.getMessage());
+      LOGGER.error(e.getMessage());
     }
   }
 
@@ -101,7 +105,7 @@ public class EventAsynchronousTest {
 
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
         | InvalidOperationException e) {
-      System.out.println(e.getMessage());
+      LOGGER.error(e.getMessage());
     }
   }
 
@@ -129,7 +133,7 @@ public class EventAsynchronousTest {
       assertTrue(eventManager.getEventPool().size() == 0);
 
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-      System.out.println(e.getMessage());
+      LOGGER.error(e.getMessage());
     }
   }
 }

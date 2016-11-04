@@ -149,9 +149,9 @@ public class App {
    * Cache-Aside
    */
   public void useCacheAsideStategy() {
-    System.out.println("# CachingPolicy.ASIDE");
+    LOGGER.info("# CachingPolicy.ASIDE");
     AppManager.initCachingPolicy(CachingPolicy.ASIDE);
-    System.out.println(AppManager.printCacheContent());
+    LOGGER.info(AppManager.printCacheContent());
 
     UserAccount userAccount3 = new UserAccount("003", "Adam", "He likes food.");
     UserAccount userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
@@ -160,10 +160,10 @@ public class App {
     AppManager.save(userAccount4);
     AppManager.save(userAccount5);
 
-    System.out.println(AppManager.printCacheContent());
+    LOGGER.info(AppManager.printCacheContent());
     AppManager.find("003");
-    System.out.println(AppManager.printCacheContent());
+    LOGGER.info(AppManager.printCacheContent());
     AppManager.find("004");
-    System.out.println(AppManager.printCacheContent());
+    LOGGER.info(AppManager.printCacheContent());
   }
 }
