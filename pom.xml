@@ -35,7 +35,6 @@
         <h2.version>1.4.190</h2.version>
         <junit.version>4.12</junit.version>
         <compiler.version>3.0</compiler.version>
-        <coveralls.version>4.0.0</coveralls.version>
         <jacoco.version>0.7.2.201409121644</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.16.1</camel.version>
@@ -133,7 +132,8 @@
         <module>aggregator-microservices</module>
         <module>promise</module>
         <module>page-object</module>
-    </modules>
+        <module>event-asynchronous</module>
+	</modules>
 
     <dependencyManagement>
         <dependencies>
@@ -333,28 +333,9 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>${coveralls.version}</version>
-                <configuration>
-                    <repoToken>jb6wYzxkVvjolD6qOWpzWdcWBzYk2fAmF</repoToken>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
-                <!-- The following exclude configuration was added because error occurred
-                    when executing "mvn clean test jacoco:report coveralls:report" -->
-                <!-- [ERROR] Failed to execute goal org.eluder.coveralls:coveralls-maven-plugin:3.1.0:report
-                    (default-cli) on project java-design-patterns: I/O operation failed: No source
-                    found for domainapp/dom/modules/simple/QSimpleObject.java -> [Help 1] -->
-                <configuration>
-                    <excludes>
-                        <exclude>domainapp/dom/modules/simple/QSimpleObject.class</exclude>
-                        <exclude>**com.steadystate*</exclude>
-                    </excludes>
-                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -387,26 +368,6 @@
                             <failsOnError>true</failsOnError>
                             <includeTestSourceDirectory>true</includeTestSourceDirectory>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.5.201505241946</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
