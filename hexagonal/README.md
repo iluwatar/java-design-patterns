@@ -26,6 +26,9 @@ Use Hexagonal Architecture pattern when
 * it is important that the application is fully testable
 * you use Domain Driven Design methodology and/or Microservices architectural style
 
+## Tutorials
+* [Build Maintainable Systems With Hexagonal Architecture](http://java-design-patterns.com/blog/build-maintainable-systems-with-hexagonal-architecture/)
+
 ## Real world examples
 
 * [Apache Isis](https://isis.apache.org/)
