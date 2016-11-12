@@ -23,8 +23,8 @@ Allow an application to equally be driven by users, programs, automated test or 
 ## Applicability
 Use Hexagonal Architecture pattern when
 
-* it is important that the application is fully testable
-* you use Domain Driven Design methodology and/or Microservices architectural style
+* When the application needs to be independent of any frameworks
+* When it is important that the application highly maintainable and fully testable
 
 ## Real world examples
 
