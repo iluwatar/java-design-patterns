@@ -26,6 +26,9 @@ Use Hexagonal Architecture pattern when
 * When the application needs to be independent of any frameworks
 * When it is important that the application highly maintainable and fully testable
 
+## Tutorials
+* [Build Maintainable Systems With Hexagonal Architecture](http://java-design-patterns.com/blog/build-maintainable-systems-with-hexagonal-architecture/)
+
 ## Real world examples
 
 * [Apache Isis](https://isis.apache.org/)
