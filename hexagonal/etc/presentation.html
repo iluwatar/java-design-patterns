@@ -60,29 +60,37 @@ Use Hexagonal Architecture pattern
 
 ---
 
-# Diagram
+# Concepts
 
-.center[![Alt text](hexagon.png)]
+* Ports are interfaces
+* The ports that drive the application are called primary ports
+* The ports that are driven by the application are called secondary ports
 
 ---
 
 # Concepts
 
-* Ports are interfaces
-* Adapters are implementations
-* Driver ports vs driven ports
+* Adapters are interface implementations
+* Typically different adapters for testing and production are provided
+
+---
+
+# Diagram
+
+.center[![Alt text](ports_and_adapters.png)]
 
 ---
 
 # Real world examples
 
-* [Apache Isis](https://isis.apache.org/)
+* [Apache Isis](https://isis.apache.org/) builds generic UI and REST API directly from the underlying domain objects
 
 ---
 
-# Implementation example
+# Tutorials
 
-* http://java-design-patterns.com/patterns/hexagonal/
+* Blog http://java-design-patterns.com/blog/build-maintainable-systems-with-hexagonal-architecture/
+* Source code http://java-design-patterns.com/patterns/hexagonal/
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
