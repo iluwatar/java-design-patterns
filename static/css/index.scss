@@ -203,22 +203,16 @@ a {
         background-color: $base06;
         color: $base03;
     }
-    .amount-badge {
-        font-size: 12px;
-        font-weight: bold;
-        color: $base16-blue;
-        border: 1px solid $base16-blue;
-        //background-color: $base05;
-        //padding: 0 0 1px 0;
-        border-radius: 5px;
-        float: right;
-        width: 32px;
-        text-align: center;
-    }
-    /*&:hover .amount-badge {
-        @include transition(0.4s ease);
-        @include transform(rotate(360deg) scale(1.2));
-    }*/
+}
+.amount-badge {
+    font-size: 12px;
+    font-weight: bold;
+    color: $base16-blue;
+    border: 1px solid $base16-blue;
+    border-radius: 5px;
+    float: right;
+    width: 32px;
+    text-align: center;
 }
 
 .checkbox label::before {
@@ -573,4 +567,10 @@ h6:hover .header-link {
     bottom: intial !important;
     top: 45px !important;
     right: 45px !important;
+}
+
+.pattern-statistics {
+  color: $base02;
+  font-style: italic;
+  text-align: center;
 }

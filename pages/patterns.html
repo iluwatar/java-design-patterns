@@ -8,10 +8,10 @@ page-index: 1
 
 {% assign allPatterns = site.pages | where:"layout","pattern" | sort: 'title' %}
 <div id="patterns" class="row">
-<!-- SIDEBAR -->
-<div class="col-md-3 col-md-push-9">
-    {% include sidebar.html allItems=allPatterns %}
-</div>
+    <!-- SIDEBAR -->
+    <div class="col-md-3 col-md-push-9">
+        {% include sidebar.html allItems=allPatterns %}
+    </div>
     <!-- MAIN -->
     <div class="col-md-9 col-md-pull-3">
         <div class="content-area">
@@ -41,5 +41,10 @@ page-index: 1
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="pattern-statistics row">
+    <div class="col-md-9">
+        Currently showing <span id="current-pattern-count-showing">{{ allPatterns | size }}</span> Patterns of {{ allPatterns | size }} Patterns total
     </div>
 </div>

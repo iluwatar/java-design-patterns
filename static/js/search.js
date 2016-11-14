@@ -141,6 +141,9 @@ function updateResults() {
         } else if (text.length > 2) {
             intersectionQuery = EMPTY_QUERY;
         }
+        // update the pattern counter
+        $('#current-pattern-count-showing').text(intersectionQuery.length);
+
         var diffQuery = $('.list-item').not(intersectionQuery);
         /* further narrow down to only REAL changes */
         diffQuery = diffQuery.filter(':visible');

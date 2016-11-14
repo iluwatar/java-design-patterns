@@ -11,6 +11,9 @@
         <label for="checkbox_allcats">
             Categories
         </label>
+        <span class="amount-badge">
+            {{ site.data.categories | size }}
+        </span>
     </div>
 
     {% for category in sortedCats %}
@@ -46,6 +49,9 @@
         <label for="checkbox_alltags">
             Tags
         </label>
+        <span class="amount-badge">
+            {{ site.data.tags | size }}
+        </span>
     </div>
 
     <!-- All / None Buttons -->
