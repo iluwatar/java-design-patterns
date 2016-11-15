@@ -33,8 +33,8 @@ import java.io.FileNotFoundException;
  */
 public final class App {
 
-  public static FileLoggerModule fileLoggerModule = null;
-  public static ConsoleLoggerModule consoleLoggerModule = null;
+  public static FileLoggerModule fileLoggerModule;
+  public static ConsoleLoggerModule consoleLoggerModule;
 
   /**
    * Following method performs the initialization
@@ -44,6 +44,7 @@ public final class App {
    */
   public static void prepare() throws FileNotFoundException {
 
+    /* Create new singleton objects and prepare their modules */
     fileLoggerModule = FileLoggerModule.getSingleton();
     consoleLoggerModule = ConsoleLoggerModule.getSingleton();
 

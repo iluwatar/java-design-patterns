@@ -55,7 +55,7 @@ public final class FileLoggerModuleTest {
    * @throws IOException if program is not able to find log files (output.txt and error.txt)
    */
   @Test
-  public void positiveTestFileMessage() throws IOException {
+  public void testFileMessage() throws IOException {
 
     /* Get singletong instance of File Logger Module */
     final FileLoggerModule fileLoggerModule = FileLoggerModule.getSingleton();
@@ -79,7 +79,7 @@ public final class FileLoggerModuleTest {
    * @throws IOException if program is not able to find log files (output.txt and error.txt)
    */
   @Test
-  public void negativeTestFileMessage() throws IOException {
+  public void testNoFileMessage() throws IOException {
 
     /* Get singletong instance of File Logger Module */
     final FileLoggerModule fileLoggerModule = FileLoggerModule.getSingleton();
@@ -101,7 +101,7 @@ public final class FileLoggerModuleTest {
    *         error.txt)
    */
   @Test
-  public void positiveTestFileErrorMessage() throws FileNotFoundException {
+  public void testFileErrorMessage() throws FileNotFoundException {
 
     /* Get singletong instance of File Logger Module */
     final FileLoggerModule fileLoggerModule = FileLoggerModule.getSingleton();
@@ -126,7 +126,7 @@ public final class FileLoggerModuleTest {
    *         error.txt)
    */
   @Test
-  public void negativeTestFileErrorMessage() throws FileNotFoundException {
+  public void testNoFileErrorMessage() throws FileNotFoundException {
 
     /* Get singletong instance of File Logger Module */
     final FileLoggerModule fileLoggerModule = FileLoggerModule.getSingleton();

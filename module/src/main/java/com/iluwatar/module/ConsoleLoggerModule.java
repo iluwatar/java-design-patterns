@@ -23,11 +23,7 @@ import java.io.PrintStream;
 import org.apache.log4j.Logger;
 
 /**
- * The Module pattern can be considered a Creational pattern and a Structural pattern. It manages
- * the creation and organization of other elements, and groups them as the structural pattern does.
- * An object that applies this pattern can provide the equivalent of a namespace, providing the
- * initialization and finalization process of a static class or a class with static members with
- * cleaner, more concise syntax and semantics.
+ * The ConsoleLoggerModule is responsible for showing logs on System Console
  * <p>
  * The below example demonstrates a Console logger module, which can print simple and error messages
  * in two designated formats
