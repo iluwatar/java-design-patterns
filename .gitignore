@@ -17,3 +17,4 @@ datanucleus.log
 /bin/
 
 data-mapper/src/main/resources/log4j.xml
+/pipeline/nbproject/
