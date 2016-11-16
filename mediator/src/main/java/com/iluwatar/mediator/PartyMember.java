@@ -31,7 +31,9 @@ public interface PartyMember {
 
   void joinedParty(Party party);
 
-  void partyAction(Action action);
+  default void partyAction(Action action) {
+    System.out.println(this + " " + action.getDescription());
+  }
 
   void act(Action action);
 }

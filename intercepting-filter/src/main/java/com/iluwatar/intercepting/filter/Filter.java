@@ -34,7 +34,13 @@ public interface Filter {
   /**
    * Execute order processing filter.
    */
-  String execute(Order order);
+  default String execute(Order order) {
+    if (getNext() != null) {
+      return getNext().execute(order);
+    } else {
+      return "";
+    }
+  }
 
   /**
    * Set next filter in chain after this.
@@ -49,5 +55,11 @@ public interface Filter {
   /**
    * Get last filter in the chain.
    */
-  Filter getLast();
+  default Filter getLast() {
+    Filter last = this;
+    while (last.getNext() != null) {
+      last = last.getNext();
+    }
+    return last;
+  }
 }
