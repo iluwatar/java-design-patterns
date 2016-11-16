@@ -1,37 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
-  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="com.iluwatar.proxy.WizardTowerProxy" project="proxy" 
-    file="/proxy/src/main/java/com/iluwatar/proxy/WizardTowerProxy.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="214" x="260" y="438"/>    
+<class-diagram version="1.1.10" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <class id="1" language="java" name="com.iluwatar.proxy.example1.WizardTowerProxy" project="proxy" 
+    file="/proxy/src/main/java/com/iluwatar/proxy/example1/WizardTowerProxy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="407" y="454"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="com.iluwatar.proxy.Wizard" project="proxy" 
-    file="/proxy/src/main/java/com/iluwatar/proxy/Wizard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="117" x="187" y="274"/>    
+  <class id="2" language="java" name="com.iluwatar.proxy.example1.Wizard" project="proxy" 
+    file="/proxy/src/main/java/com/iluwatar/proxy/example1/Wizard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="684" y="455"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="com.iluwatar.proxy.WizardTower" project="proxy" 
-    file="/proxy/src/main/java/com/iluwatar/proxy/WizardTower.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="130" x="344" y="274"/>    
+  <class id="3" language="java" name="com.iluwatar.proxy.example1.WizardTower" project="proxy" 
+    file="/proxy/src/main/java/com/iluwatar/proxy/example1/WizardTower.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="408" y="217"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="4">    
+  <class id="4" language="java" name="com.iluwatar.proxy.example1.App" project="proxy" 
+    file="/proxy/src/main/java/com/iluwatar/proxy/example1/App.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="141" y="455"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="5">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="6">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <generalization id="7">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
+  <dependency id="8">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

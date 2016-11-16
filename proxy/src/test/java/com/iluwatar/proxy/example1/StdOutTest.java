@@ -20,41 +20,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.proxy;
+package com.iluwatar.proxy.example1;
 
-import org.junit.Test;
-import org.mockito.InOrder;
+import org.junit.After;
+import org.junit.Before;
 
-import static org.mockito.Mockito.inOrder;
+import java.io.PrintStream;
+
+import static org.mockito.Mockito.mock;
 
 /**
- * Date: 12/28/15 - 9:18 PM
+ * Date: 12/10/15 - 8:37 PM
  *
  * @author Jeroen Meulemeester
  */
-public class WizardTowerTest extends StdOutTest {
+public abstract class StdOutTest {
 
-  @Test
-  public void testEnter() throws Exception {
-    final Wizard[] wizards = new Wizard[]{
-        new Wizard("Gandalf"),
-        new Wizard("Dumbledore"),
-        new Wizard("Oz"),
-        new Wizard("Merlin")
-    };
+  /**
+   * The mocked standard out {@link PrintStream}, required since some actions don't have any
+   * influence on accessible objects, except for writing to std-out using {@link System#out}
+   */
+  private final PrintStream stdOutMock = mock(PrintStream.class);
 
-    final WizardTower tower = new WizardTower();
-    for (final Wizard wizard : wizards) {
-      tower.enter(wizard);
-    }
+  /**
+   * Keep the original std-out so it can be restored after the test
+   */
+  private final PrintStream stdOutOrig = System.out;
 
-    final InOrder inOrder = inOrder(getStdOutMock());
-    inOrder.verify(getStdOutMock()).println("Gandalf enters the tower.");
-    inOrder.verify(getStdOutMock()).println("Dumbledore enters the tower.");
-    inOrder.verify(getStdOutMock()).println("Oz enters the tower.");
-    inOrder.verify(getStdOutMock()).println("Merlin enters the tower.");
-    inOrder.verifyNoMoreInteractions();
+  /**
+   * Inject the mocked std-out {@link PrintStream} into the {@link System} class before each test
+   */
+  @Before
+  public void setUp() {
+    System.setOut(this.stdOutMock);
+  }
 
+  /**
+   * Removed the mocked std-out {@link PrintStream} again from the {@link System} class
+   */
+  @After
+  public void tearDown() {
+    System.setOut(this.stdOutOrig);
+  }
+
+  /**
+   * Get the mocked stdOut {@link PrintStream}
+   *
+   * @return The stdOut print stream mock, renewed before each test
+   */
+  final PrintStream getStdOutMock() {
+    return this.stdOutMock;
   }
 
 }

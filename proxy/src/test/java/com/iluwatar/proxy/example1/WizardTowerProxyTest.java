@@ -20,26 +20,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.proxy;
+package com.iluwatar.proxy.example1;
+
+import org.junit.Test;
+import org.mockito.InOrder;
+
+import com.iluwatar.proxy.example1.Wizard;
+import com.iluwatar.proxy.example1.WizardTowerProxy;
+
+import static org.mockito.Mockito.inOrder;
 
 /**
- * 
- * The proxy controlling access to the {@link WizardTower}.
- * 
+ * Date: 12/28/15 - 9:18 PM
+ *
+ * @author Jeroen Meulemeester
  */
-public class WizardTowerProxy extends WizardTower {
+public class WizardTowerProxyTest extends StdOutTest {
 
-  private static final int NUM_WIZARDS_ALLOWED = 3;
+  @Test
+  public void testEnter() throws Exception {
+    final Wizard[] wizards = new Wizard[]{
+        new Wizard("Gandalf"),
+        new Wizard("Dumbledore"),
+        new Wizard("Oz"),
+        new Wizard("Merlin")
+    };
 
-  private int numWizards;
-
-  @Override
-  public void enter(Wizard wizard) {
-    if (numWizards < NUM_WIZARDS_ALLOWED) {
-      super.enter(wizard);
-      numWizards++;
-    } else {
-      System.out.println(wizard + " is not allowed to enter!");
+    final WizardTowerProxy tower = new WizardTowerProxy();
+    for (final Wizard wizard : wizards) {
+      tower.enter(wizard);
     }
+
+    final InOrder inOrder = inOrder(getStdOutMock());
+    inOrder.verify(getStdOutMock()).println("Gandalf enters the tower.");
+    inOrder.verify(getStdOutMock()).println("Dumbledore enters the tower.");
+    inOrder.verify(getStdOutMock()).println("Oz enters the tower.");
+    inOrder.verify(getStdOutMock()).println("Merlin is not allowed to enter!");
+    inOrder.verifyNoMoreInteractions();
+
   }
+
 }
