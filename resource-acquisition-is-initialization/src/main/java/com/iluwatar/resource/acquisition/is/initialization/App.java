@@ -22,6 +22,9 @@
  */
 package com.iluwatar.resource.acquisition.is.initialization;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Resource Acquisition Is Initialization pattern was developed for exception safe resource
@@ -44,17 +47,19 @@ package com.iluwatar.resource.acquisition.is.initialization;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    */
   public static void main(String[] args) throws Exception {
 
     try (SlidingDoor slidingDoor = new SlidingDoor()) {
-      System.out.println("Walking in.");
+      LOGGER.info("Walking in.");
     }
 
     try (TreasureChest treasureChest = new TreasureChest()) {
-      System.out.println("Looting contents.");
+      LOGGER.info("Looting contents.");
     }
   }
 }

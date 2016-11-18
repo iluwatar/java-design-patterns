@@ -38,7 +38,6 @@
         <jacoco.version>0.7.2.201409121644</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.16.1</camel.version>
-        <log4j.version>1.2.17</log4j.version>
         <guava.version>19.0</guava.version>
         <systemrules.version>1.15.1</systemrules.version>
         <mockito.version>1.10.19</mockito.version>
@@ -48,6 +47,8 @@
         <urm.version>1.4.1</urm.version>
         <guice.version>4.0</guice.version>
         <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <logback.version>1.1.7</logback.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -211,11 +212,6 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
@@ -251,6 +247,23 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>

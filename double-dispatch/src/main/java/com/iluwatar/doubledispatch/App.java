@@ -22,6 +22,9 @@
  */
 package com.iluwatar.doubledispatch;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +48,8 @@ import java.util.List;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
@@ -58,8 +63,8 @@ public class App {
     objects.add(new SpaceStationMir(1, 1, 2, 2));
     objects.add(new Meteoroid(10, 10, 15, 15));
     objects.add(new SpaceStationIss(12, 12, 14, 14));
-    objects.stream().forEach(o -> System.out.println(o));
-    System.out.println("");
+    objects.stream().forEach(o -> LOGGER.info(o.toString()));
+    LOGGER.info("");
 
     // collision check
     objects.stream().forEach(o1 -> objects.stream().forEach(o2 -> {
@@ -67,10 +72,10 @@ public class App {
         o1.collision(o2);
       }
     }));
-    System.out.println("");
+    LOGGER.info("");
 
     // output eventual object statuses
-    objects.stream().forEach(o -> System.out.println(o));
-    System.out.println("");
+    objects.stream().forEach(o -> LOGGER.info(o.toString()));
+    LOGGER.info("");
   }
 }

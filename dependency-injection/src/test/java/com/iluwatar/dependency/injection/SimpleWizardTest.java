@@ -22,16 +22,31 @@
  */
 package com.iluwatar.dependency.injection;
 
+import com.iluwatar.dependency.injection.utils.InMemoryAppender;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Date: 12/10/15 - 8:26 PM
  *
  * @author Jeroen Meulemeester
  */
-public class SimpleWizardTest extends StdOutTest {
+public class SimpleWizardTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender(Tobacco.class);
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * Test if the {@link SimpleWizard} does the only thing it can do: Smoke it's {@link
@@ -41,8 +56,8 @@ public class SimpleWizardTest extends StdOutTest {
   public void testSmoke() {
     final SimpleWizard simpleWizard = new SimpleWizard();
     simpleWizard.smoke();
-    verify(getStdOutMock(), times(1)).println("SimpleWizard smoking OldTobyTobacco");
-    verifyNoMoreInteractions(getStdOutMock());
+    assertEquals("SimpleWizard smoking OldTobyTobacco", appender.getLastMessage());
+    assertEquals(1, appender.getLogSize());
   }
 
 }

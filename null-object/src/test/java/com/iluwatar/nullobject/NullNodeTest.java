@@ -23,19 +23,15 @@
 package com.iluwatar.nullobject;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.*;
 
 /**
  * Date: 12/26/15 - 11:47 PM
  *
  * @author Jeroen Meulemeester
  */
-public class NullNodeTest extends StdOutTest {
+public class NullNodeTest {
 
   /**
    * Verify if {@link NullNode#getInstance()} actually returns the same object instance
@@ -59,7 +55,6 @@ public class NullNodeTest extends StdOutTest {
   @Test
   public void testWalk() throws Exception {
     NullNode.getInstance().walk();
-    Mockito.verifyZeroInteractions(getStdOutMock());
   }
 
 }

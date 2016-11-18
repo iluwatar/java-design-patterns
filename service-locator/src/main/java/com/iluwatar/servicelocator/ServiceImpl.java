@@ -22,6 +22,9 @@
  */
 package com.iluwatar.servicelocator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * This is a single service implementation of a sample service. This is the actual service that will
  * process the request. The reference for this service is to be looked upon in the JNDI server that
@@ -30,6 +33,8 @@ package com.iluwatar.servicelocator;
  * @author saifasif
  */
 public class ServiceImpl implements Service {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
 
   private final String serviceName;
   private final int id;
@@ -57,6 +62,6 @@ public class ServiceImpl implements Service {
 
   @Override
   public void execute() {
-    System.out.println("Service " + getName() + " is now executing with id " + getId());
+    LOGGER.info("Service {} is now executing with id {}", getName(), getId());
   }
 }

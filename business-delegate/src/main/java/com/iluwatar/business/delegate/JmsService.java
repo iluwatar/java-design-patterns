@@ -22,6 +22,9 @@
  */
 package com.iluwatar.business.delegate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Service JMS implementation
@@ -29,8 +32,10 @@ package com.iluwatar.business.delegate;
  */
 public class JmsService implements BusinessService {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(JmsService.class);
+
   @Override
   public void doProcessing() {
-    System.out.println("JmsService is now processing");
+    LOGGER.info("JmsService is now processing");
   }
 }

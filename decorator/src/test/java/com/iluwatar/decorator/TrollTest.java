@@ -22,16 +22,18 @@
  */
 package com.iluwatar.decorator;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.LoggerFactory;
 
-import java.io.PrintStream;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
  * Date: 12/7/15 - 7:26 PM
@@ -40,31 +42,16 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
  */
 public class TrollTest {
 
-  /**
-   * The mocked standard out stream, required since the actions don't have any influence on other
-   * objects, except for writing to the std-out using {@link System#out}
-   */
-  private final PrintStream stdOutMock = mock(PrintStream.class);
+  private InMemoryAppender appender;
 
-  /**
-   * Keep the original std-out so it can be restored after the test
-   */
-  private final PrintStream stdOutOrig = System.out;
-
-  /**
-   * Inject the mocked std-out {@link PrintStream} into the {@link System} class before each test
-   */
   @Before
   public void setUp() {
-    System.setOut(this.stdOutMock);
+    appender = new InMemoryAppender(Troll.class);
   }
 
-  /**
-   * Removed the mocked std-out {@link PrintStream} again from the {@link System} class
-   */
   @After
   public void tearDown() {
-    System.setOut(this.stdOutOrig);
+    appender.stop();
   }
 
   @Test
@@ -73,12 +60,34 @@ public class TrollTest {
     assertEquals(10, troll.getAttackPower());
 
     troll.attack();
-    verify(this.stdOutMock, times(1)).println(eq("The troll swings at you with a club!"));
+    assertEquals("The troll swings at you with a club!", appender.getLastMessage());
 
     troll.fleeBattle();
-    verify(this.stdOutMock, times(1)).println(eq("The troll shrieks in horror and runs away!"));
+    assertEquals("The troll shrieks in horror and runs away!", appender.getLastMessage());
 
-    verifyNoMoreInteractions(this.stdOutMock);
+    assertEquals(2, appender.getLogSize());
   }
 
+  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+
+    private List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender(Class clazz) {
+      ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public String getLastMessage() {
+      return log.get(log.size() - 1).getMessage();
+    }
+
+    public int getLogSize() {
+      return log.size();
+    }
+  }
 }

@@ -23,7 +23,7 @@
 package com.iluwatar.composite;
 
 /**
- * 
+ *
  * Letter
  *
  */

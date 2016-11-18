@@ -22,6 +22,9 @@
  */
 package com.iluwatar.front.controller;
 
+import com.iluwatar.front.controller.utils.InMemoryAppender;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -30,9 +33,7 @@ import org.junit.runners.Parameterized.Parameters;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Date: 12/13/15 - 1:39 PM
@@ -40,7 +41,19 @@ import static org.mockito.Mockito.verifyZeroInteractions;
  * @author Jeroen Meulemeester
  */
 @RunWith(Parameterized.class)
-public class CommandTest extends StdOutTest {
+public class CommandTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   @Parameters
   public static List<Object[]> data() {
@@ -75,10 +88,10 @@ public class CommandTest extends StdOutTest {
   @Test
   public void testDisplay() {
     final FrontController frontController = new FrontController();
-    verifyZeroInteractions(getStdOutMock());
+    assertEquals(0, appender.getLogSize());
     frontController.handleRequest(request);
-    verify(getStdOutMock()).println(displayMessage);
-    verifyNoMoreInteractions(getStdOutMock());
+    assertEquals(displayMessage, appender.getLastMessage());
+    assertEquals(1, appender.getLogSize());
   }
 
 }

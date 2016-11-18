@@ -25,7 +25,7 @@ package com.iluwatar.composite;
 import java.util.List;
 
 /**
- * 
+ *
  * Sentence
  *
  */

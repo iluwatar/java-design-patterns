@@ -22,6 +22,9 @@
  */
 package com.iluwatar.memento;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Stack;
 
 /**
@@ -45,6 +48,8 @@ import java.util.Stack;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    */
@@ -52,22 +57,22 @@ public class App {
     Stack<StarMemento> states = new Stack<>();
 
     Star star = new Star(StarType.SUN, 10000000, 500000);
-    System.out.println(star);
+    LOGGER.info(star.toString());
     states.add(star.getMemento());
     star.timePasses();
-    System.out.println(star);
+    LOGGER.info(star.toString());
     states.add(star.getMemento());
     star.timePasses();
-    System.out.println(star);
+    LOGGER.info(star.toString());
     states.add(star.getMemento());
     star.timePasses();
-    System.out.println(star);
+    LOGGER.info(star.toString());
     states.add(star.getMemento());
     star.timePasses();
-    System.out.println(star);
+    LOGGER.info(star.toString());
     while (states.size() > 0) {
       star.setMemento(states.pop());
-      System.out.println(star);
+      LOGGER.info(star.toString());
     }
   }
 }

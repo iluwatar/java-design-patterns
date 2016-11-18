@@ -22,6 +22,9 @@
  */
 package com.iluwatar.visitor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * SoldierVisitor
@@ -29,9 +32,11 @@ package com.iluwatar.visitor;
  */
 public class SoldierVisitor implements UnitVisitor {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(SoldierVisitor.class);
+
   @Override
   public void visitSoldier(Soldier soldier) {
-    System.out.println("Greetings " + soldier);
+    LOGGER.info("Greetings {}", soldier);
   }
 
   @Override

@@ -22,6 +22,9 @@
  */
 package com.iluwatar.reactor.framework;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -34,6 +37,8 @@ import java.nio.channels.SelectionKey;
  * A wrapper over {@link DatagramChannel} which can read and write data on a DatagramChannel.
  */
 public class NioDatagramChannel extends AbstractNioChannel {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(NioDatagramChannel.class);
 
   private final int port;
 
@@ -99,7 +104,7 @@ public class NioDatagramChannel extends AbstractNioChannel {
   public void bind() throws IOException {
     getJavaChannel().socket().bind(new InetSocketAddress(InetAddress.getLocalHost(), port));
     getJavaChannel().configureBlocking(false);
-    System.out.println("Bound UDP socket at port: " + port);
+    LOGGER.info("Bound UDP socket at port: {}", port);
   }
 
   /**

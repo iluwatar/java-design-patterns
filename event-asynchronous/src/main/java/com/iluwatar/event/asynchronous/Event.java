@@ -16,12 +16,17 @@
  */
 package com.iluwatar.event.asynchronous;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- * 
+ *
  * Each Event runs as a separate/individual thread.
  *
  */
 public class Event implements IEvent, Runnable {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Event.class);
 
   private int eventId;
   private int eventTime;
@@ -31,7 +36,7 @@ public class Event implements IEvent, Runnable {
   private ThreadCompleteListener eventListener;
 
   /**
-   * 
+   *
    * @param eventId event ID
    * @param eventTime event time
    * @param isSynchronous is of synchronous type
@@ -63,9 +68,9 @@ public class Event implements IEvent, Runnable {
   @Override
   public void status() {
     if (!isComplete) {
-      System.out.println("[" + eventId + "] is not done.");
+      LOGGER.info("[{}] is not done.", eventId);
     } else {
-      System.out.println("[" + eventId + "] is done.");
+      LOGGER.info("[{}] is done.", eventId);
     }
   }
 

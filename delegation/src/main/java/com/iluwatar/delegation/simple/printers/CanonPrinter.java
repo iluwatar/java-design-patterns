@@ -23,6 +23,8 @@
 package com.iluwatar.delegation.simple.printers;
 
 import com.iluwatar.delegation.simple.Printer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Specialised Implementation of {@link Printer} for a Canon Printer, in
@@ -32,12 +34,14 @@ import com.iluwatar.delegation.simple.Printer;
  */
 public class CanonPrinter implements Printer {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(CanonPrinter.class);
+
   /**
    * {@inheritDoc}
    */
   @Override
   public void print(String message) {
-    System.out.print("Canon Printer : " + message);
+    LOGGER.info("Canon Printer : {}", message);
   }
 
 }

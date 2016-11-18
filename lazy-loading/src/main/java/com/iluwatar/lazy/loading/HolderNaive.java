@@ -22,6 +22,9 @@
  */
 package com.iluwatar.lazy.loading;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Simple implementation of the lazy loading idiom. However, this is not thread safe.
@@ -29,13 +32,15 @@ package com.iluwatar.lazy.loading;
  */
 public class HolderNaive {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(HolderNaive.class);
+
   private Heavy heavy;
 
   /**
    * Constructor
    */
   public HolderNaive() {
-    System.out.println("HolderNaive created");
+    LOGGER.info("HolderNaive created");
   }
 
   /**

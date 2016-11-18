@@ -22,12 +22,17 @@
  */
 package com.iluwatar.reader.writer.lock;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.locks.Lock;
 
 /**
  * Reader class, read when it acquired the read lock
  */
 public class Reader implements Runnable {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Reader.class);
 
   private Lock readLock;
 
@@ -55,8 +60,8 @@ public class Reader implements Runnable {
    * 
    */
   public void read() throws InterruptedException {
-    System.out.println(name + " begin");
+    LOGGER.info("{} begin", name);
     Thread.sleep(250);
-    System.out.println(name + " finish");
+    LOGGER.info("{} finish", name);
   }
 }

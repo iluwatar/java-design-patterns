@@ -22,6 +22,9 @@
  */
 package com.iluwatar.adapter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  *
  * Adapter class. Adapts the interface of the device ({@link FishingBoat}) into {@link BattleShip}
@@ -33,6 +36,8 @@ package com.iluwatar.adapter;
  */
 public class BattleFishingBoat implements BattleShip {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(BattleFishingBoat.class);
+
   private FishingBoat boat;
 
   public BattleFishingBoat() {
@@ -41,7 +46,7 @@ public class BattleFishingBoat implements BattleShip {
 
   @Override
   public void fire() {
-    System.out.println("fire!");
+    LOGGER.info("fire!");
   }
 
   @Override

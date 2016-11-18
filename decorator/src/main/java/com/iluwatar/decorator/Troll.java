@@ -22,6 +22,9 @@
  */
 package com.iluwatar.decorator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Troll implements {@link Hostile} interface directly.
@@ -29,9 +32,11 @@ package com.iluwatar.decorator;
  */
 public class Troll implements Hostile {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(Troll.class);
+
   @Override
   public void attack() {
-    System.out.println("The troll swings at you with a club!");
+    LOGGER.info("The troll swings at you with a club!");
   }
 
   @Override
@@ -41,6 +46,6 @@ public class Troll implements Hostile {
 
   @Override
   public void fleeBattle() {
-    System.out.println("The troll shrieks in horror and runs away!");
+    LOGGER.info("The troll shrieks in horror and runs away!");
   }
 }

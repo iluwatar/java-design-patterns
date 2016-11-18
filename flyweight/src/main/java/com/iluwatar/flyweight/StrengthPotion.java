@@ -22,6 +22,9 @@
  */
 package com.iluwatar.flyweight;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * StrengthPotion
@@ -29,8 +32,10 @@ package com.iluwatar.flyweight;
  */
 public class StrengthPotion implements Potion {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(StrengthPotion.class);
+
   @Override
   public void drink() {
-    System.out.println("You feel strong. (Potion=" + System.identityHashCode(this) + ")");
+    LOGGER.info("You feel strong. (Potion={})", System.identityHashCode(this));
   }
 }

@@ -22,7 +22,7 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 
+ *
  * EventManager handles and maintains a pool of event threads. {@link Event} threads are created upon user request. Thre
  * are two types of events; Asynchronous and Synchronous. There can be multiple Asynchronous events running at once but
  * only one Synchronous event running at a time. Currently supported event operations are: start, stop, and getStatus.
@@ -52,7 +52,7 @@ public class EventManager implements ThreadCompleteListener {
 
   /**
    * Create a Synchronous event.
-   * 
+   *
    * @param eventTime Time an event should run for.
    * @return eventId
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
@@ -74,7 +74,7 @@ public class EventManager implements ThreadCompleteListener {
 
   /**
    * Create an Asynchronous event.
-   * 
+   *
    * @param eventTime Time an event should run for.
    * @return eventId
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
@@ -106,7 +106,7 @@ public class EventManager implements ThreadCompleteListener {
 
   /**
    * Starts event.
-   * 
+   *
    * @param eventId The event that needs to be started.
    * @throws EventDoesNotExistException If event does not exist in our eventPool.
    */
@@ -120,7 +120,7 @@ public class EventManager implements ThreadCompleteListener {
 
   /**
    * Stops event.
-   * 
+   *
    * @param eventId The event that needs to be stopped.
    * @throws EventDoesNotExistException If event does not exist in our eventPool.
    */
@@ -139,7 +139,7 @@ public class EventManager implements ThreadCompleteListener {
 
   /**
    * Get status of a running event.
-   * 
+   *
    * @param eventId The event to inquire status of.
    * @throws EventDoesNotExistException If event does not exist in our eventPool.
    */

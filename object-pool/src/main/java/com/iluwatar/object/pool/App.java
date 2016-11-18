@@ -22,6 +22,9 @@
  */
 package com.iluwatar.object.pool;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * When it is necessary to work with a large number of objects that are particularly expensive to
@@ -44,6 +47,8 @@ package com.iluwatar.object.pool;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
@@ -51,24 +56,24 @@ public class App {
    */
   public static void main(String[] args) {
     OliphauntPool pool = new OliphauntPool();
-    System.out.println(pool);
+    LOGGER.info(pool.toString());
     Oliphaunt oliphaunt1 = pool.checkOut();
-    System.out.println("Checked out " + oliphaunt1);
-    System.out.println(pool);
+    LOGGER.info("Checked out {}", oliphaunt1);
+    LOGGER.info(pool.toString());
     Oliphaunt oliphaunt2 = pool.checkOut();
-    System.out.println("Checked out " + oliphaunt2);
+    LOGGER.info("Checked out {}", oliphaunt2);
     Oliphaunt oliphaunt3 = pool.checkOut();
-    System.out.println("Checked out " + oliphaunt3);
-    System.out.println(pool);
-    System.out.println("Checking in " + oliphaunt1);
+    LOGGER.info("Checked out {}", oliphaunt3);
+    LOGGER.info(pool.toString());
+    LOGGER.info("Checking in {}", oliphaunt1);
     pool.checkIn(oliphaunt1);
-    System.out.println("Checking in " + oliphaunt2);
+    LOGGER.info("Checking in {}", oliphaunt2);
     pool.checkIn(oliphaunt2);
-    System.out.println(pool);
+    LOGGER.info(pool.toString());
     Oliphaunt oliphaunt4 = pool.checkOut();
-    System.out.println("Checked out " + oliphaunt4);
+    LOGGER.info("Checked out {}", oliphaunt4);
     Oliphaunt oliphaunt5 = pool.checkOut();
-    System.out.println("Checked out " + oliphaunt5);
-    System.out.println(pool);
+    LOGGER.info("Checked out {}", oliphaunt5);
+    LOGGER.info(pool.toString());
   }
 }

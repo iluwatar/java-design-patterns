@@ -22,6 +22,9 @@
  */
 package com.iluwatar.doublechecked.locking;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +37,8 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  */
 public class Inventory {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Inventory.class);
 
   private final int inventorySize;
   private final List<Item> items;
@@ -57,8 +62,7 @@ public class Inventory {
       try {
         if (items.size() < inventorySize) {
           items.add(item);
-          System.out.println(Thread.currentThread() + ": items.size()=" + items.size()
-              + ", inventorySize=" + inventorySize);
+          LOGGER.info("{}: items.size()={}, inventorySize={}", Thread.currentThread(), items.size(), inventorySize);
           return true;
         }
       } finally {

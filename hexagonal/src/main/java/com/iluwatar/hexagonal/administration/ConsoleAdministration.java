@@ -30,6 +30,8 @@ import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.iluwatar.hexagonal.sampledata.SampleData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
@@ -37,6 +39,8 @@ import java.util.Scanner;
  * Console interface for lottery administration
  */
 public class ConsoleAdministration {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleAdministration.class);
 
   /**
    * Program entry point
@@ -53,29 +57,29 @@ public class ConsoleAdministration {
       printMainMenu();
       String cmd = readString(scanner);
       if (cmd.equals("1")) {
-        administartion.getAllSubmittedTickets().forEach((k,v)->System.out.println("Key: " + k + " Value: " + v));
+        administartion.getAllSubmittedTickets().forEach((k,v)->LOGGER.info("Key: {}, Value: {}", k, v));
       } else if (cmd.equals("2")) {
         LotteryNumbers numbers = administartion.performLottery();
-        System.out.println("The winning numbers: " + numbers.getNumbersAsString());
-        System.out.println("Time to reset the database for next round, eh?");
+        LOGGER.info("The winning numbers: {}", numbers.getNumbersAsString());
+        LOGGER.info("Time to reset the database for next round, eh?");
       } else if (cmd.equals("3")) {
         administartion.resetLottery();
-        System.out.println("The lottery ticket database was cleared.");
+        LOGGER.info("The lottery ticket database was cleared.");
       } else if (cmd.equals("4")) {
         exit = true;
       } else {
-        System.out.println("Unknown command: " + cmd);
+        LOGGER.info("Unknown command: {}", cmd);
       }
     }
   }
 
   private static void printMainMenu() {
-    System.out.println("");
-    System.out.println("### Lottery Administration Console ###");
-    System.out.println("(1) Show all submitted tickets");
-    System.out.println("(2) Perform lottery draw");
-    System.out.println("(3) Reset lottery ticket database");
-    System.out.println("(4) Exit");
+    LOGGER.info("");
+    LOGGER.info("### Lottery Administration Console ###");
+    LOGGER.info("(1) Show all submitted tickets");
+    LOGGER.info("(2) Perform lottery draw");
+    LOGGER.info("(3) Reset lottery ticket database");
+    LOGGER.info("(4) Exit");
   }
 
   private static String readString(Scanner scanner) {
