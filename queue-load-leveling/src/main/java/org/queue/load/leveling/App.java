@@ -71,17 +71,17 @@ public class App {
       LOGGER.info("All the TaskGenerators started.");
       
       // Create three TaskGenerator threads. Each of them will submit different number of jobs.
-      Runnable taskRunnable_1 = new TaskGenerator(msgQueue, 5);
-      Runnable taskRunnable_2 = new TaskGenerator(msgQueue, 1);
-      Runnable taskRunnable_3 = new TaskGenerator(msgQueue, 2);
+      Runnable taskRunnable1 = new TaskGenerator(msgQueue, 5);
+      Runnable taskRunnable2 = new TaskGenerator(msgQueue, 1);
+      Runnable taskRunnable3 = new TaskGenerator(msgQueue, 2);
       
-      Thread taskGenerator_1 = new Thread(taskRunnable_1, "Task_Generator_1");
-      Thread taskGenerator_2 = new Thread(taskRunnable_2, "Task_Generator_2");
-      Thread taskGenerator_3 = new Thread(taskRunnable_3, "Task_Generator_3");
+      Thread taskGenerator1 = new Thread(taskRunnable1, "Task_Generator_1");
+      Thread taskGenerator2 = new Thread(taskRunnable2, "Task_Generator_2");
+      Thread taskGenerator3 = new Thread(taskRunnable3, "Task_Generator_3");
       
-      taskGenerator_1.start();
-      taskGenerator_2.start();
-      taskGenerator_3.start();
+      taskGenerator1.start();
+      taskGenerator2.start();
+      taskGenerator3.start();
       
       LOGGER.info("Service Executor started.");
       
@@ -89,7 +89,7 @@ public class App {
       Runnable srvRunnable = new ServiceExecutor(msgQueue);
       Thread srvExec = new Thread(srvRunnable, "Service_Executor_Thread");
       srvExec.start();
-    } catch(Exception e) {
+    } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }
   }

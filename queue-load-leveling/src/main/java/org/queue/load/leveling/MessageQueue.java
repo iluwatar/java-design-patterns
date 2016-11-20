@@ -48,14 +48,13 @@ public class MessageQueue {
   /**
    * All the TaskGenerator threads will call this method to insert the
    * Messages in to the Blocking Queue. 
-   * @param msg
    */
   public void submitMsg(Message msg) {
     try {
-      if(null != msg) {
+      if (null != msg) {
         blkQueue.add(msg);
       }
-    } catch(Exception e) {
+    } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }
   }
@@ -68,8 +67,8 @@ public class MessageQueue {
   public Message retrieveMsg() {
     Message retrievedMsg = null;
     try {
-       retrievedMsg = blkQueue.poll();
-    } catch(Exception e) {
+      retrievedMsg = blkQueue.poll();
+    } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }
     

@@ -47,10 +47,10 @@ public class ServiceExecutor implements Runnable {
    */
   public void run() {
     try {
-      while(true) {
+      while (true) {
         Message msg = msgQueue.retrieveMsg();
         
-        if(null != msg) {
+        if (null != msg) {
           LOGGER.info(msg.toString() + " is served.");
         } else {
           LOGGER.info("ServiceExecutor: All tasks are executed. Waiting.");
@@ -58,9 +58,9 @@ public class ServiceExecutor implements Runnable {
         
         Thread.sleep(1000);
       }
-    } catch(InterruptedException ie) { 
+    } catch (InterruptedException ie) { 
       LOGGER.error(ie.getMessage());
-    } catch(Exception e) {
+    } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }
   }

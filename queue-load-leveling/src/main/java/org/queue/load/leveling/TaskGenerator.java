@@ -54,7 +54,7 @@ public class TaskGenerator implements Task, Runnable {
   public void submit(Message msg) {
     try {
       this.msgQueue.submitMsg(msg);
-    } catch(Exception e) {
+    } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }
   }
@@ -65,7 +65,7 @@ public class TaskGenerator implements Task, Runnable {
    */
   public void run() {
     try {
-      while(this.msgCount > 0) {
+      while (this.msgCount > 0) {
         String statusMsg = "Message-" + this.msgCount + " submitted by " + Thread.currentThread().getName();
         Message newMessage = new Message(statusMsg);
         this.submit(newMessage);
@@ -78,9 +78,9 @@ public class TaskGenerator implements Task, Runnable {
         // Make the current thread to sleep after every Message submission.
         Thread.sleep(1000);
       }
-    } catch(InterruptedException ie) {
+    } catch (InterruptedException ie) {
       LOGGER.error(ie.getMessage());
-    } catch(Exception e) {
+    } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }
   }
