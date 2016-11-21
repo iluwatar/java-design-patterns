@@ -4,13 +4,13 @@ title: Build Maintainable Systems With Hexagonal Architecture
 author: ilu
 ---
 
-![Hexagonal Architecture]({{ site.url }}{{ site.baseurl }}/assets/hexagonal-architecture.png)
+![Hexagonal Architecture]({{ site.baseurl }}/assets/hexagonal-architecture.png)
 
 ## The fallacies of layered architecture
 
 This blog post is about implementing Alistair Cockburn's [Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture). To have something familiar to start with let's first talk about Layered Architecture. It is a well known architectural pattern that organizes application into layers each having their specific purpose. The database layer takes care of data transactions, the business layer is responsible for business logic and the presentation layer deals with the user input. The Layered Architecture implements so called separation of concerns principle which leads to more maintainable applications. Changes to one area in the software do not affect the other areas.
 
-![Layers]({{ site.url }}{{ site.baseurl }}/assets/layers.png)
+![Layers]({{ site.baseurl }}/assets/layers.png)
 
 This way of building applications can be considered simple and effective. But it also has several drawbacks. When you see an application implemented with Layered Architecture, where is the application core? Is it the database? Maybe it's the business logic with some little things scattered over to the presentation layer. This is the typical problem with layers. There is no application core, there are just the layers and the core logic is scattered here and there. When the business logic starts to leak over to the presentation layer, the application can no longer be tested without the user interface.
 
@@ -24,9 +24,9 @@ Each of the ports may have one or more implementation. For example there may be 
 
 The name of the pattern comes from the following hexagonal drawing.
 
-![Hexagon]({{ site.url }}{{ site.baseurl }}/assets/hexagon.png)
+![Hexagon]({{ site.baseurl }}/assets/hexagon.png)
 
-The diagram shows how the domain is in the middle surrounded by ports on each side of hexagon. The actual amount of ports does not have to be exactly six, it can be less or it can be more depending on the application needs. 
+The diagram shows how the domain is in the middle surrounded by ports on each side of hexagon. The actual amount of ports does not have to be exactly six, it can be less or it can be more depending on the application needs.
 
 Naked Objects design pattern is considered an implementation of Hexagonal Architecture. Naked Objects is utilized by [Apache Isis](https://isis.apache.org/) framework. User defines the domain objects and the framework automatically generates user interface and REST API around it.
 
@@ -36,7 +36,7 @@ Next we will demonstrate Hexagonal Architecture by building a lottery system. Th
 
 The secondary ports consist of lottery ticket database, banking for wire transfers and event log for handling and storing lottery events. The resulting hexagon of the system can be seen in the following diagram.
 
-![Lottery system]({{ site.url }}{{ site.baseurl }}/assets/lottery.png)
+![Lottery system]({{ site.baseurl }}/assets/lottery.png)
 
 ## Start from the core concepts
 
