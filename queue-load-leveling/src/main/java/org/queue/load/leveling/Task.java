@@ -26,5 +26,5 @@ package org.queue.load.leveling;
  * 
 */
 public interface Task {
-  public void submit(Message msg);
+  void submit(Message msg);
 }
