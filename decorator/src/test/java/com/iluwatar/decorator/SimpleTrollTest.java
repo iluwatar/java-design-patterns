@@ -36,17 +36,15 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Date: 12/7/15 - 7:26 PM
- *
- * @author Jeroen Meulemeester
+ * Tests for {@link SimpleTroll}
  */
-public class TrollTest {
+public class SimpleTrollTest {
 
   private InMemoryAppender appender;
 
   @Before
   public void setUp() {
-    appender = new InMemoryAppender(Troll.class);
+    appender = new InMemoryAppender(SimpleTroll.class);
   }
 
   @After
@@ -56,11 +54,11 @@ public class TrollTest {
 
   @Test
   public void testTrollActions() throws Exception {
-    final Troll troll = new Troll();
+    final SimpleTroll troll = new SimpleTroll();
     assertEquals(10, troll.getAttackPower());
 
     troll.attack();
-    assertEquals("The troll swings at you with a club!", appender.getLastMessage());
+    assertEquals("The troll tries to grab you!", appender.getLastMessage());
 
     troll.fleeBattle();
     assertEquals("The troll shrieks in horror and runs away!", appender.getLastMessage());

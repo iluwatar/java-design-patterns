@@ -22,37 +22,28 @@
  */
 package com.iluwatar.decorator;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/7/15 - 7:47 PM
- *
- * @author Jeroen Meulemeester
+ * Decorator that adds a club for the troll
  */
-public class SmartHostileTest {
+public class ClubbedTroll extends TrollDecorator {
 
-  @Test
-  public void testSmartHostile() throws Exception {
-    // Create a normal troll first, but make sure we can spy on it later on.
-    final Hostile simpleTroll = spy(new Troll());
+  private static final Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);
 
-    // Now we want to decorate the troll to make it smarter ...
-    final Hostile smartTroll = new SmartHostile(simpleTroll);
-    assertEquals(30, smartTroll.getAttackPower());
-    verify(simpleTroll, times(1)).getAttackPower();
-
-    // Check if the smart troll actions are delegated to the decorated troll
-    smartTroll.attack();
-    verify(simpleTroll, times(1)).attack();
-
-    smartTroll.fleeBattle();
-    verify(simpleTroll, times(1)).fleeBattle();
-    verifyNoMoreInteractions(simpleTroll);
-
+  public ClubbedTroll(Troll decorated) {
+    super(decorated);
   }
 
+  @Override
+  public void attack() {
+    super.attack();
+    LOGGER.info("The troll swings at you with a club!");
+  }
+
+  @Override
+  public int getAttackPower() {
+    return super.getAttackPower() + 10;
+  }
 }
