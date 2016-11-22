@@ -38,11 +38,5 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-pmd-plugin</artifactId>
-      <version>3.7</version>
-      <type>maven-plugin</type>
-    </dependency>
   </dependencies>
 </project>
