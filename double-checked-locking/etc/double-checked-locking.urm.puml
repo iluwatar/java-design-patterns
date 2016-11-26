@@ -1,10 +1,12 @@
 @startuml
 package com.iluwatar.doublechecked.locking {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
   class Inventory {
+    - LOGGER : Logger {static}
     - inventorySize : int
     - items : List<Item>
     - lock : Lock

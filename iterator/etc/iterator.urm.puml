@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.iterator {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
@@ -11,21 +12,6 @@ package com.iluwatar.iterator {
     + getType() : ItemType
     + setType(type : ItemType)
     + toString() : String
-  }
-  class TreasureChestItemIterator {
-    - chest : TreasureChest
-    - idx : int
-    - type : ItemType
-    + TreasureChestItemIterator(chest : TreasureChest, type : ItemType)
-    - findNextIdx() : int
-    + hasNext() : boolean
-    + next() : Item
-  }
-  class TreasureChest {
-    - items : List<Item>
-    + TreasureChest()
-    + getItems() : List<Item>
-    ~ iterator(itemType : ItemType) : ItemIterator
   }
   interface ItemIterator {
     + hasNext() : boolean {abstract}
@@ -38,6 +24,21 @@ package com.iluwatar.iterator {
     + WEAPON {static}
     + valueOf(name : String) : ItemType {static}
     + values() : ItemType[] {static}
+  }
+  class TreasureChest {
+    - items : List<Item>
+    + TreasureChest()
+    + getItems() : List<Item>
+    ~ iterator(itemType : ItemType) : ItemIterator
+  }
+  class TreasureChestItemIterator {
+    - chest : TreasureChest
+    - idx : int
+    - type : ItemType
+    + TreasureChestItemIterator(chest : TreasureChest, type : ItemType)
+    - findNextIdx() : int
+    + hasNext() : boolean
+    + next() : Item
   }
 }
 Item -->  "-type" ItemType

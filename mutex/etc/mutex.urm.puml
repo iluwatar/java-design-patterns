@@ -1,5 +1,9 @@
 @startuml
 package com.iluwatar.mutex {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
   class Jar {
     - beans : int
     - lock : Lock
@@ -16,10 +20,6 @@ package com.iluwatar.mutex {
     + acquire()
     + getOwner() : Object
     + release()
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
 }
 Jar -->  "-lock" Lock

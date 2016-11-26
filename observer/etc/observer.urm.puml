@@ -1,17 +1,22 @@
 @startuml
 package com.iluwatar.observer {
-  class Orcs {
-    + Orcs()
-    + update(currentWeather : WeatherType)
-  }
-  interface WeatherObserver {
-    + update(WeatherType) {abstract}
-  }
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
+  class Hobbits {
+    - LOGGER : Logger {static}
+    + Hobbits()
+    + update(currentWeather : WeatherType)
+  }
+  class Orcs {
+    - LOGGER : Logger {static}
+    + Orcs()
+    + update(currentWeather : WeatherType)
+  }
   class Weather {
+    - LOGGER : Logger {static}
     - currentWeather : WeatherType
     - observers : List<WeatherObserver>
     + Weather()
@@ -20,9 +25,8 @@ package com.iluwatar.observer {
     + removeObserver(obs : WeatherObserver)
     + timePasses()
   }
-  class Hobbits {
-    + Hobbits()
-    + update(currentWeather : WeatherType)
+  interface WeatherObserver {
+    + update(WeatherType) {abstract}
   }
   enum WeatherType {
     + COLD {static}
@@ -35,13 +39,18 @@ package com.iluwatar.observer {
   }
 }
 package com.iluwatar.observer.generic {
+  class GHobbits {
+    - LOGGER : Logger {static}
+    + GHobbits()
+    + update(weather : GWeather, weatherType : WeatherType)
+  }
   class GOrcs {
+    - LOGGER : Logger {static}
     + GOrcs()
     + update(weather : GWeather, weatherType : WeatherType)
   }
-  interface Race {
-  }
   class GWeather {
+    - LOGGER : Logger {static}
     - currentWeather : WeatherType
     + GWeather()
     + timePasses()
@@ -53,21 +62,19 @@ package com.iluwatar.observer.generic {
     + notifyObservers(argument : A)
     + removeObserver(observer : O extends Observer<S, O, A>)
   }
-  class GHobbits {
-    + GHobbits()
-    + update(weather : GWeather, weatherType : WeatherType)
-  }
   interface Observer<S extends Observable<S, O, A>, O extends Observer, A> {
     + update(S extends Observable<S, O, A>, A) {abstract}
+  }
+  interface Race {
   }
 }
 Weather -->  "-currentWeather" WeatherType
 GWeather -->  "-currentWeather" WeatherType
 Weather -->  "-observers" WeatherObserver
-GOrcs ..|> Race 
-Orcs ..|> WeatherObserver 
-Race --|> Observer 
-GWeather --|> Observable 
-GHobbits ..|> Race 
 Hobbits ..|> WeatherObserver 
+Orcs ..|> WeatherObserver 
+GHobbits ..|> Race 
+GOrcs ..|> Race 
+GWeather --|> Observable 
+Race --|> Observer 
 @enduml

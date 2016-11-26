@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.abstractfactory {
   class App {
+    - LOGGER : Logger {static}
     - army : Army
     - castle : Castle
     - king : King
@@ -17,15 +18,44 @@ package com.iluwatar.abstractfactory {
     - setCastle(castle : Castle)
     - setKing(king : King)
   }
-  class OrcKingdomFactory {
-    + OrcKingdomFactory()
-    + createArmy() : Army
-    + createCastle() : Castle
-    + createKing() : King
+  interface Army {
+    + getDescription() : String {abstract}
+  }
+  interface Castle {
+    + getDescription() : String {abstract}
+  }
+  class ElfArmy {
+    ~ DESCRIPTION : String {static}
+    + ElfArmy()
+    + getDescription() : String
   }
   class ElfCastle {
     ~ DESCRIPTION : String {static}
     + ElfCastle()
+    + getDescription() : String
+  }
+  class ElfKing {
+    ~ DESCRIPTION : String {static}
+    + ElfKing()
+    + getDescription() : String
+  }
+  class ElfKingdomFactory {
+    + ElfKingdomFactory()
+    + createArmy() : Army
+    + createCastle() : Castle
+    + createKing() : King
+  }
+  interface King {
+    + getDescription() : String {abstract}
+  }
+  interface KingdomFactory {
+    + createArmy() : Army {abstract}
+    + createCastle() : Castle {abstract}
+    + createKing() : King {abstract}
+  }
+  class OrcArmy {
+    ~ DESCRIPTION : String {static}
+    + OrcArmy()
     + getDescription() : String
   }
   class OrcCastle {
@@ -33,42 +63,13 @@ package com.iluwatar.abstractfactory {
     + OrcCastle()
     + getDescription() : String
   }
-  interface KingdomFactory {
-    + createArmy() : Army {abstract}
-    + createCastle() : Castle {abstract}
-    + createKing() : King {abstract}
-  }
-  class ElfKing {
-    ~ DESCRIPTION : String {static}
-    + ElfKing()
-    + getDescription() : String
-  }
-  class ElfArmy {
-    ~ DESCRIPTION : String {static}
-    + ElfArmy()
-    + getDescription() : String
-  }
-  interface Castle {
-    + getDescription() : String {abstract}
-  }
-  interface Army {
-    + getDescription() : String {abstract}
-  }
   class OrcKing {
     ~ DESCRIPTION : String {static}
     + OrcKing()
     + getDescription() : String
   }
-  class OrcArmy {
-    ~ DESCRIPTION : String {static}
-    + OrcArmy()
-    + getDescription() : String
-  }
-  interface King {
-    + getDescription() : String {abstract}
-  }
-  class ElfKingdomFactory {
-    + ElfKingdomFactory()
+  class OrcKingdomFactory {
+    + OrcKingdomFactory()
     + createArmy() : Army
     + createCastle() : Castle
     + createKing() : King
@@ -77,12 +78,12 @@ package com.iluwatar.abstractfactory {
 App -->  "-castle" Castle
 App -->  "-king" King
 App -->  "-army" Army
-OrcKingdomFactory ..|> KingdomFactory 
-ElfCastle ..|> Castle 
-OrcCastle ..|> Castle 
-ElfKing ..|> King 
 ElfArmy ..|> Army 
-OrcKing ..|> King 
-OrcArmy ..|> Army 
+ElfCastle ..|> Castle 
+ElfKing ..|> King 
 ElfKingdomFactory ..|> KingdomFactory 
+OrcArmy ..|> Army 
+OrcCastle ..|> Castle 
+OrcKing ..|> King 
+OrcKingdomFactory ..|> KingdomFactory 
 @enduml
