@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,30 +22,17 @@
  */
 package com.iluwatar.decorator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * 
- * Troll implements {@link Hostile} interface directly.
+ * Interface for trolls
  *
  */
-public class Troll implements Hostile {
+public interface Troll {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Troll.class);
+  void attack();
 
-  @Override
-  public void attack() {
-    LOGGER.info("The troll swings at you with a club!");
-  }
+  int getAttackPower();
 
-  @Override
-  public int getAttackPower() {
-    return 10;
-  }
+  void fleeBattle();
 
-  @Override
-  public void fleeBattle() {
-    LOGGER.info("The troll shrieks in horror and runs away!");
-  }
 }

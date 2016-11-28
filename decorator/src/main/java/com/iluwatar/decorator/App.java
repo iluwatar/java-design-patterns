@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,8 +32,8 @@ import org.slf4j.LoggerFactory;
  * target. Using the Decorator pattern it is possible to change the behavior of the class during
  * runtime.
  * <p>
- * In this example we show how the simple {@link Troll} first attacks and then flees the battle.
- * Then we decorate the {@link Troll} with a {@link SmartHostile} and perform the attack again. You
+ * In this example we show how the simple {@link SimpleTroll} first attacks and then flees the battle.
+ * Then we decorate the {@link SimpleTroll} with a {@link ClubbedTroll} and perform the attack again. You
  * can see how the behavior changes after the decoration.
  * 
  */
@@ -50,16 +50,16 @@ public class App {
 
     // simple troll
     LOGGER.info("A simple looking troll approaches.");
-    Hostile troll = new Troll();
+    Troll troll = new SimpleTroll();
     troll.attack();
     troll.fleeBattle();
     LOGGER.info("Simple troll power {}.\n", troll.getAttackPower());
 
     // change the behavior of the simple troll by adding a decorator
-    LOGGER.info("A smart looking troll surprises you.");
-    Hostile smart = new SmartHostile(troll);
-    smart.attack();
-    smart.fleeBattle();
-    LOGGER.info("Smart troll power {}.\n", smart.getAttackPower());
+    LOGGER.info("A troll with huge club surprises you.");
+    Troll clubbed = new ClubbedTroll(troll);
+    clubbed.attack();
+    clubbed.fleeBattle();
+    LOGGER.info("Clubbed troll power {}.\n", clubbed.getAttackPower());
   }
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.decorator;
+package com.iluwatar.proxy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
- * Interface for the hostile enemies.
- *
+ * The object to be proxyed.
+ * 
  */
-public interface Hostile {
+public class IvoryTower implements WizardTower {
 
-  void attack();
+  private static final Logger LOGGER = LoggerFactory.getLogger(IvoryTower.class);
 
-  int getAttackPower();
-
-  void fleeBattle();
+  public void enter(Wizard wizard) {
+    LOGGER.info("{} enters the tower.", wizard);
+  }
 
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,21 +27,21 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Date: 12/28/15 - 9:18 PM
- *
- * @author Jeroen Meulemeester
+ * Tests for {@link IvoryTower}
  */
-public class WizardTowerTest {
+public class IvoryTowerTest {
 
   private InMemoryAppender appender;
 
   @Before
   public void setUp() {
-    appender = new InMemoryAppender(WizardTower.class);
+    appender = new InMemoryAppender(IvoryTower.class);
   }
 
   @After
@@ -58,8 +58,8 @@ public class WizardTowerTest {
         new Wizard("Merlin")
     };
 
-    final WizardTower tower = new WizardTower();
-    for (final Wizard wizard : wizards) {
+    IvoryTower tower = new IvoryTower();
+    for (Wizard wizard : wizards) {
       tower.enter(wizard);
     }
 
@@ -69,5 +69,4 @@ public class WizardTowerTest {
     assertTrue(appender.logContains("Merlin enters the tower."));
     assertEquals(4, appender.getLogSize());
   }
-
 }

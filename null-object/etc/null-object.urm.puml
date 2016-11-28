@@ -4,7 +4,15 @@ package com.iluwatar.nullobject {
     + App()
     + main(args : String[]) {static}
   }
+  interface Node {
+    + getLeft() : Node {abstract}
+    + getName() : String {abstract}
+    + getRight() : Node {abstract}
+    + getTreeSize() : int {abstract}
+    + walk() {abstract}
+  }
   class NodeImpl {
+    - LOGGER : Logger {static}
     - left : Node
     - name : String
     - right : Node
@@ -14,13 +22,6 @@ package com.iluwatar.nullobject {
     + getRight() : Node
     + getTreeSize() : int
     + walk()
-  }
-  interface Node {
-    + getLeft() : Node {abstract}
-    + getName() : String {abstract}
-    + getRight() : Node {abstract}
-    + getTreeSize() : int {abstract}
-    + walk() {abstract}
   }
   class NullNode {
     - instance : NullNode {static}

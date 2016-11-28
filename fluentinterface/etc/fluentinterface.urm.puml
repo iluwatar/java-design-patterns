@@ -21,6 +21,7 @@ package com.iluwatar.fluentinterface.fluentiterable.simple {
 }
 package com.iluwatar.fluentinterface.app {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
     - negatives() : Predicate<? super Integer> {static}

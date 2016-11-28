@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,9 +31,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Date: 12/28/15 - 9:18 PM
- *
- * @author Jeroen Meulemeester
+ * Tests for {@link WizardTowerProxy}
  */
 public class WizardTowerProxyTest {
 
@@ -58,9 +56,9 @@ public class WizardTowerProxyTest {
         new Wizard("Merlin")
     };
 
-    final WizardTowerProxy tower = new WizardTowerProxy();
-    for (final Wizard wizard : wizards) {
-      tower.enter(wizard);
+    final WizardTowerProxy proxy = new WizardTowerProxy(new IvoryTower());
+    for (Wizard wizard : wizards) {
+      proxy.enter(wizard);
     }
 
     assertTrue(appender.logContains("Gandalf enters the tower."));
@@ -69,5 +67,4 @@ public class WizardTowerProxyTest {
     assertTrue(appender.logContains("Merlin is not allowed to enter!"));
     assertEquals(4, appender.getLogSize());
   }
-
 }

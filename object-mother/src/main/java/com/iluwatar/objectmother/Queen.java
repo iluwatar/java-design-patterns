@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,42 +20,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.decorator;
+package com.iluwatar.objectmother;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+public class Queen implements Royalty {
+  private boolean isDrunk = false;
+  private boolean isHappy = false;
+  private boolean isFlirty = false;
 
-/**
- * SmartHostile is a decorator for {@link Hostile} objects. The calls to the {@link Hostile} interface
- * are intercepted and decorated. Finally the calls are delegated to the decorated {@link Hostile}
- * object.
- *
- */
-public class SmartHostile implements Hostile {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SmartHostile.class);
-
-  private Hostile decorated;
-
-  public SmartHostile(Hostile decorated) {
-    this.decorated = decorated;
+  @Override
+  public void makeDrunk() {
+    isDrunk = true;
   }
 
   @Override
-  public void attack() {
-    LOGGER.info("It throws a rock at you!");
-    decorated.attack();
+  public void makeSober() {
+    isDrunk = false;
   }
 
   @Override
-  public int getAttackPower() {
-    // decorated hostile's power + 20 because it is smart
-    return decorated.getAttackPower() + 20;
+  public void makeHappy() {
+    isHappy = true;
   }
 
   @Override
-  public void fleeBattle() {
-    LOGGER.info("It calls for help!");
-    decorated.fleeBattle();
+  public void makeUnhappy() {
+    isHappy = false;
+  }
+  
+  public boolean isFlirty() {
+    return isFlirty;
+  }
+
+  public void setFlirtiness(boolean flirtiness) {
+    this.isFlirty = flirtiness;
+  }
+  
+  /**
+   * Method which is called when the king is flirting to a queen.
+   * @param king King who initialized the flirt.
+   * @return A value which describes if the flirt was successful or not.
+   */
+  public boolean getFlirted(King king) {
+    if (this.isFlirty && king.isHappy && !king.isDrunk) {
+      return true;
+    }
+    return false;
   }
 }

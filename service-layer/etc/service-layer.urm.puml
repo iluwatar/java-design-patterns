@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.servicelayer.hibernate {
   class HibernateUtil {
+    - LOGGER : Logger {static}
     - sessionFactory : SessionFactory {static}
     - HibernateUtil()
     + dropSession() {static}
@@ -55,9 +56,6 @@ package com.iluwatar.servicelayer.magic {
   }
 }
 package com.iluwatar.servicelayer.wizard {
-  interface WizardDao {
-    + findByName(String) : Wizard {abstract}
-  }
   class Wizard {
     - id : Long
     - name : String
@@ -73,27 +71,15 @@ package com.iluwatar.servicelayer.wizard {
     + setSpellbooks(spellbooks : Set<Spellbook>)
     + toString() : String
   }
+  interface WizardDao {
+    + findByName(String) : Wizard {abstract}
+  }
   class WizardDaoImpl {
     + WizardDaoImpl()
     + findByName(name : String) : Wizard
   }
 }
-package com.iluwatar.servicelayer.app {
-  class App {
-    + App()
-    + initData() {static}
-    + main(args : String[]) {static}
-    + queryData() {static}
-  }
-}
 package com.iluwatar.servicelayer.spellbook {
-  interface SpellbookDao {
-    + findByName(String) : Spellbook {abstract}
-  }
-  class SpellbookDaoImpl {
-    + SpellbookDaoImpl()
-    + findByName(name : String) : Spellbook
-  }
   class Spellbook {
     - id : Long
     - name : String
@@ -112,15 +98,15 @@ package com.iluwatar.servicelayer.spellbook {
     + setWizards(wizards : Set<Wizard>)
     + toString() : String
   }
+  interface SpellbookDao {
+    + findByName(String) : Spellbook {abstract}
+  }
+  class SpellbookDaoImpl {
+    + SpellbookDaoImpl()
+    + findByName(name : String) : Spellbook
+  }
 }
 package com.iluwatar.servicelayer.spell {
-  class SpellDaoImpl {
-    + SpellDaoImpl()
-    + findByName(name : String) : Spell
-  }
-  interface SpellDao {
-    + findByName(String) : Spell {abstract}
-  }
   class Spell {
     - id : Long
     - name : String
@@ -135,24 +121,40 @@ package com.iluwatar.servicelayer.spell {
     + setSpellbook(spellbook : Spellbook)
     + toString() : String
   }
+  interface SpellDao {
+    + findByName(String) : Spell {abstract}
+  }
+  class SpellDaoImpl {
+    + SpellDaoImpl()
+    + findByName(name : String) : Spell
+  }
+}
+package com.iluwatar.servicelayer.app {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + initData() {static}
+    + main(args : String[]) {static}
+    + queryData() {static}
+  }
 }
 MagicServiceImpl -->  "-wizardDao" WizardDao
 MagicServiceImpl -->  "-spellbookDao" SpellbookDao
 MagicServiceImpl -->  "-spellDao" SpellDao
 Spellbook -->  "-spells" Spell
 Spellbook -->  "-wizards" Wizard
+DaoBaseImpl ..|> Dao 
+MagicServiceImpl ..|> MagicService 
+Spell --|> BaseEntity 
+SpellDao --|> Dao 
 SpellDaoImpl ..|> SpellDao 
 SpellDaoImpl --|> DaoBaseImpl 
+Spellbook --|> BaseEntity 
 SpellbookDao --|> Dao 
-WizardDao --|> Dao 
 SpellbookDaoImpl ..|> SpellbookDao 
 SpellbookDaoImpl --|> DaoBaseImpl 
-MagicServiceImpl ..|> MagicService 
-SpellDao --|> Dao 
-Spell --|> BaseEntity 
-Spellbook --|> BaseEntity 
 Wizard --|> BaseEntity 
+WizardDao --|> Dao 
 WizardDaoImpl ..|> WizardDao 
 WizardDaoImpl --|> DaoBaseImpl 
-DaoBaseImpl ..|> Dao 
 @enduml

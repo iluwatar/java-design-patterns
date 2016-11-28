@@ -1,6 +1,18 @@
 @startuml
 package com.iluwatar.event.asynchronous {
+  class App {
+    - LOGGER : Logger {static}
+    + PROP_FILE_NAME : String {static}
+    ~ interactiveMode : boolean
+    + App()
+    + main(args : String[]) {static}
+    + quickRun()
+    + run()
+    + runInteractiveMode()
+    + setUp()
+  }
   class Event {
+    - LOGGER : Logger {static}
     - eventId : int
     - eventListener : ThreadCompleteListener
     - eventTime : int
@@ -16,9 +28,6 @@ package com.iluwatar.event.asynchronous {
     + start()
     + status()
     + stop()
-  }
-  interface ThreadCompleteListener {
-    + completedEventHandler(int) {abstract}
   }
   class EventManager {
     + MAX_EVENT_TIME : int {static}
@@ -42,24 +51,16 @@ package com.iluwatar.event.asynchronous {
     + status(eventId : int)
     + statusOfAllEvents()
   }
-  class App {
-    + PROP_FILE_NAME : String {static}
-    ~ interactiveMode : boolean
-    + App()
-    + main(args : String[]) {static}
-    + quickRun()
-    + run()
-    + runInteractiveMode()
-    + setUp()
-  }
   interface IEvent {
     + start() {abstract}
     + status() {abstract}
     + stop() {abstract}
   }
+  interface ThreadCompleteListener {
+    + completedEventHandler(int) {abstract}
+  }
 }
 Event -->  "-eventListener" ThreadCompleteListener
-EventManager --+ Map
 Event ..|> IEvent 
 EventManager ..|> ThreadCompleteListener 
 @enduml
