@@ -36,7 +36,7 @@ public class ServiceExecutor implements Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   
-  private MessageQueue msgQueue;
+  private final MessageQueue msgQueue;
 
   public ServiceExecutor(MessageQueue msgQueue) {
     this.msgQueue = msgQueue;
@@ -53,12 +53,12 @@ public class ServiceExecutor implements Runnable {
         if (null != msg) {
           LOGGER.info(msg.toString() + " is served.");
         } else {
-          LOGGER.info("ServiceExecutor: All tasks are executed. Waiting.");
+          LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
         }
         
         Thread.sleep(1000);
       }
-    } catch (InterruptedException ie) { 
+    } catch (InterruptedException ie) {
       LOGGER.error(ie.getMessage());
     } catch (Exception e) {
       LOGGER.error(e.getMessage());

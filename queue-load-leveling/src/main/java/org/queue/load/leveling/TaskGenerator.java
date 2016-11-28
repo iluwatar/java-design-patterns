@@ -37,10 +37,10 @@ public class TaskGenerator implements Task, Runnable {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   
   // MessageQueue reference using which we will submit our messages.
-  private MessageQueue msgQueue;
+  private final MessageQueue msgQueue;
   
   // Total message count that a TaskGenerator will submit.
-  private int msgCount;
+  private final int msgCount;
   
   // Parameterized constructor.
   public TaskGenerator(MessageQueue msgQueue, int msgCount) {
@@ -64,16 +64,18 @@ public class TaskGenerator implements Task, Runnable {
    * After every message submission TaskGenerator thread will sleep for 1 second.
    */
   public void run() {
+    
+    int count = this.msgCount;
+    
     try {
-      while (this.msgCount > 0) {
-        String statusMsg = "Message-" + this.msgCount + " submitted by " + Thread.currentThread().getName();
-        Message newMessage = new Message(statusMsg);
-        this.submit(newMessage);
+      while (count > 0) {
+        String statusMsg = "Message-" + count + " submitted by " + Thread.currentThread().getName();
+        this.submit(new Message(statusMsg));
         
         LOGGER.info(statusMsg);
         
         // reduce the message count.
-        this.msgCount--;
+        count--;
         
         // Make the current thread to sleep after every Message submission.
         Thread.sleep(1000);

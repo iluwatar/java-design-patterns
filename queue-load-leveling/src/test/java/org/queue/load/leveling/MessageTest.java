@@ -39,10 +39,5 @@ public class MessageTest {
     String testMsg = "Message Test";
     Message msg = new Message(testMsg);
     assertEquals(msg.getMsg(), testMsg);
-
-    // Default constructor and setter method test.
-    Message simpleMsg = new Message();
-    simpleMsg.setMsg(testMsg);
-    assertEquals(simpleMsg.getMsg(), testMsg);
   }
 }

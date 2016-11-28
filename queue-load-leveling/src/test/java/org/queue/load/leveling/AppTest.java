@@ -27,7 +27,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 /**
- * Tests that Caching example runs without errors.
+ * Application Test
  */
 public class AppTest {
   @Test

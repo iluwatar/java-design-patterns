@@ -38,7 +38,7 @@ public class MessageQueue {
   
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   
-  private BlockingQueue<Message> blkQueue;
+  private final BlockingQueue<Message> blkQueue;
   
   // Default constructor when called creates Blocking Queue object. 
   public MessageQueue() {

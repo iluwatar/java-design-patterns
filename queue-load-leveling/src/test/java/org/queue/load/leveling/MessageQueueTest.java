@@ -22,8 +22,9 @@
  */
 package org.queue.load.leveling;
 
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 /**
  * 
@@ -36,13 +37,12 @@ public class MessageQueueTest {
   public void messageQueueTest() {
     
     MessageQueue msgQueue = new MessageQueue();
-    Message msg = new Message("MessageQueue Test");
     
     // submit message
-    msgQueue.submitMsg(msg);
+    msgQueue.submitMsg(new Message("MessageQueue Test"));
     
     // retrieve message
-    assertEquals(msg.getMsg(), msgQueue.retrieveMsg().getMsg());
+    assertEquals(msgQueue.retrieveMsg().getMsg(), "MessageQueue Test");
   }
 
 }

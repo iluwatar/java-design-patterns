@@ -27,12 +27,8 @@ package org.queue.load.leveling;
  *
 */
 public class Message {
-  private String msg;
-
-  // Empty constructor.
-  public Message() {
-  }
-  
+  private final String msg;
+ 
   // Parameter constructor.
   public Message(String msg) {
     super();
@@ -42,11 +38,6 @@ public class Message {
   // Get Method for attribute msg.
   public String getMsg() {
     return msg;
-  }
-  
-  // Set Method for attribute msg.
-  public void setMsg(String msg) {
-    this.msg = msg;
   }
   
   @Override
