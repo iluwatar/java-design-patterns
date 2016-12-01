@@ -45,12 +45,8 @@ public final class App {
   public static void prepare() throws FileNotFoundException {
 
     /* Create new singleton objects and prepare their modules */
-    fileLoggerModule = FileLoggerModule.getSingleton();
-    consoleLoggerModule = ConsoleLoggerModule.getSingleton();
-
-    /* Prepare modules */
-    fileLoggerModule.prepare();
-    consoleLoggerModule.prepare();
+    fileLoggerModule = FileLoggerModule.getSingleton().prepare();
+    consoleLoggerModule = ConsoleLoggerModule.getSingleton().prepare();
   }
 
   /**

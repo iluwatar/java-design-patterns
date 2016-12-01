@@ -64,12 +64,14 @@ public final class FileLoggerModule {
    * @throws FileNotFoundException if program is not able to find log files (output.txt and
    *         error.txt)
    */
-  public void prepare() throws FileNotFoundException {
+  public FileLoggerModule prepare() throws FileNotFoundException {
 
     LOGGER.debug("FileLoggerModule::prepare();");
 
     this.output = new PrintStream(new FileOutputStream(OUTPUT_FILE));
     this.error = new PrintStream(new FileOutputStream(ERROR_FILE));
+
+    return this;
   }
 
   /**

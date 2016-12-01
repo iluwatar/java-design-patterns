@@ -56,12 +56,14 @@ public final class ConsoleLoggerModule {
   /**
    * Following method performs the initialization
    */
-  public void prepare() {
+  public ConsoleLoggerModule prepare() {
 
     LOGGER.debug("ConsoleLoggerModule::prepare();");
 
     this.output = new PrintStream(System.out);
     this.error = new PrintStream(System.err);
+
+    return this;
   }
 
   /**
