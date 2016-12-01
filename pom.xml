@@ -121,6 +121,7 @@
         <module>factory-kit</module>
         <module>feature-toggle</module>
         <module>value-object</module>
+		<module>module</module>
         <module>monad</module>
         <module>mute-idiom</module>
         <module>mutex</module>
