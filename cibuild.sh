@@ -14,7 +14,16 @@ git log --pretty=format:'%H' -n 1 >> _config.yml
 
 bundle exec jekyll build
 
-# - ignore everything below every webapp directory, so we dont mess with the source code
+# credit: code snippet borrowed from jekyllrb.com website source
+IGNORE_HREFS=$(ruby -e 'puts %w{
+    example\.com.*
+    https:\/\/github.com\/iluwatar\/java-design-patterns\/fork
+    https:\/\/sonarqube.com.*
+}.map{|h| "/#{h}/"}.join(",")')
+# - ignore example.com because they are just examples/fakes
 # - ignore the fork link of our project, because it somehow is not valid (https://validator.w3.org/)
+# - ignore sonarqube.com/api/badges/gate because of travis-only 'SSL Connect Error's
+
+# - ignore everything below every webapp directory, so we dont mess with the source code
 # - ignore the folder principles of the external dependency (git submodule) webpro/programming-principles
-bundle exec htmlproofer ./_site/ --file-ignore "/.+\/(webapp|principles)\/.*/" --url-ignore "https://github.com/iluwatar/java-design-patterns/fork"
+bundle exec htmlproofer ./_site/ --file-ignore "/.+\/(webapp|principles)\/.*/" --url-ignore $IGNORE_HREFS --check-html --allow-hash-href
