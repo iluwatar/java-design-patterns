@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.event.aggregator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * KingJoffrey observes events from {@link KingsHand}.
@@ -29,8 +32,10 @@ package com.iluwatar.event.aggregator;
  */
 public class KingJoffrey implements EventObserver {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(KingJoffrey.class);
+
   @Override
   public void onEvent(Event e) {
-    System.out.println("Received event from the King's Hand: " + e.toString());
+    LOGGER.info("Received event from the King's Hand: {}", e.toString());
   }
 }

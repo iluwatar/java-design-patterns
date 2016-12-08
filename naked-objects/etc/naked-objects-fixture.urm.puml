@@ -86,7 +86,8 @@ package domainapp.fixture {
     + getSpecification() : FixtureScriptsSpecification
   }
 }
-DomainAppFixturesProvider --+ FixtureScripts
-DomainAppFixturesProvider --+ FixtureScriptsSpecification
+Builder ..+ FixtureScriptsSpecification
+DropDownPolicy ..+ FixtureScriptsSpecification
+MultipleExecutionStrategy ..+ FixtureScripts
 HomePageViewModel -->  "-simpleObjects" SimpleObjects
 @enduml

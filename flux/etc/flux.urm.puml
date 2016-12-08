@@ -1,34 +1,26 @@
 @startuml
 package com.iluwatar.flux.view {
-  interface View {
-    + render() {abstract}
-    + storeChanged(Store) {abstract}
+  class ContentView {
+    - LOGGER : Logger {static}
+    - content : Content
+    + ContentView()
+    + render()
+    + storeChanged(store : Store)
   }
   class MenuView {
+    - LOGGER : Logger {static}
     - selected : MenuItem
     + MenuView()
     + itemClicked(item : MenuItem)
     + render()
     + storeChanged(store : Store)
   }
-  class ContentView {
-    - content : Content
-    + ContentView()
-    + render()
-    + storeChanged(store : Store)
+  interface View {
+    + render() {abstract}
+    + storeChanged(Store) {abstract}
   }
 }
 package com.iluwatar.flux.action {
-  class MenuAction {
-    - menuItem : MenuItem
-    + MenuAction(menuItem : MenuItem)
-    + getMenuItem() : MenuItem
-  }
-  class ContentAction {
-    - content : Content
-    + ContentAction(content : Content)
-    + getContent() : Content
-  }
   abstract class Action {
     - type : ActionType
     + Action(type : ActionType)
@@ -40,6 +32,24 @@ package com.iluwatar.flux.action {
     + valueOf(name : String) : ActionType {static}
     + values() : ActionType[] {static}
   }
+  enum Content {
+    + COMPANY {static}
+    + PRODUCTS {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Content {static}
+    + values() : Content[] {static}
+  }
+  class ContentAction {
+    - content : Content
+    + ContentAction(content : Content)
+    + getContent() : Content
+  }
+  class MenuAction {
+    - menuItem : MenuItem
+    + MenuAction(menuItem : MenuItem)
+    + getMenuItem() : MenuItem
+  }
   enum MenuItem {
     + COMPANY {static}
     + HOME {static}
@@ -49,30 +59,11 @@ package com.iluwatar.flux.action {
     + valueOf(name : String) : MenuItem {static}
     + values() : MenuItem[] {static}
   }
-  enum Content {
-    + COMPANY {static}
-    + PRODUCTS {static}
-    - title : String
-    + toString() : String
-    + valueOf(name : String) : Content {static}
-    + values() : Content[] {static}
-  }
 }
 package com.iluwatar.flux.app {
   class App {
     + App()
     + main(args : String[]) {static}
-  }
-}
-package com.iluwatar.flux.dispatcher {
-  class Dispatcher {
-    - instance : Dispatcher {static}
-    - stores : List<Store>
-    - Dispatcher()
-    - dispatchAction(action : Action)
-    + getInstance() : Dispatcher {static}
-    + menuItemSelected(menuItem : MenuItem)
-    + registerStore(store : Store)
   }
 }
 package com.iluwatar.flux.store {
@@ -96,20 +87,31 @@ package com.iluwatar.flux.store {
     + registerView(view : View)
   }
 }
+package com.iluwatar.flux.dispatcher {
+  class Dispatcher {
+    - instance : Dispatcher {static}
+    - stores : List<Store>
+    - Dispatcher()
+    - dispatchAction(action : Action)
+    + getInstance() : Dispatcher {static}
+    + menuItemSelected(menuItem : MenuItem)
+    + registerStore(store : Store)
+  }
+}
 MenuAction -->  "-menuItem" MenuItem
-Action -->  "-type" ActionType
 MenuStore -->  "-selected" MenuItem
+Action -->  "-type" ActionType
 Dispatcher -->  "-instance" Dispatcher
 ContentView -->  "-content" Content
 Dispatcher -->  "-stores" Store
 MenuView -->  "-selected" MenuItem
 Store -->  "-views" View
-ContentAction -->  "-content" Content
 ContentStore -->  "-content" Content
-ContentStore --|> Store 
-MenuAction --|> Action 
-MenuStore --|> Store 
+ContentAction -->  "-content" Content
 ContentAction --|> Action 
-MenuView ..|> View 
+MenuAction --|> Action 
+ContentStore --|> Store 
+MenuStore --|> Store 
 ContentView ..|> View 
+MenuView ..|> View 
 @enduml

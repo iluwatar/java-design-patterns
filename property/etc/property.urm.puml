@@ -1,14 +1,9 @@
 @startuml
 package com.iluwatar.property {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
-  }
-  interface Prototype {
-    + get(Stats) : Integer {abstract}
-    + has(Stats) : boolean {abstract}
-    + remove(Stats) {abstract}
-    + set(Stats, Integer) {abstract}
   }
   class Character {
     - name : String
@@ -33,6 +28,12 @@ package com.iluwatar.property {
     + valueOf(name : String) : Type {static}
     + values() : Type[] {static}
   }
+  interface Prototype {
+    + get(Stats) : Integer {abstract}
+    + has(Stats) : boolean {abstract}
+    + remove(Stats) {abstract}
+    + set(Stats, Integer) {abstract}
+  }
   enum Stats {
     + AGILITY {static}
     + ARMOR {static}
@@ -46,9 +47,8 @@ package com.iluwatar.property {
     + values() : Stats[] {static}
   }
 }
-App --+ Character
 Character -->  "-prototype" Prototype
-Character -->  "-type" Type
 Type ..+ Character
+Character -->  "-type" Type
 Character ..|> Prototype 
 @enduml

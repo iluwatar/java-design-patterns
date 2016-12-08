@@ -1,25 +1,5 @@
 @startuml
 package com.iluwatar.dao {
-  class InMemoryCustomerDao {
-    - idToCustomer : Map<Integer, Customer>
-    + InMemoryCustomerDao()
-    + add(customer : Customer) : boolean
-    + delete(customer : Customer) : boolean
-    + getAll() : Stream<Customer>
-    + getById(id : int) : Optional<Customer>
-    + update(customer : Customer) : boolean
-  }
-  interface CustomerSchemaSql {
-    + CREATE_SCHEMA_SQL : String {static}
-    + DELETE_SCHEMA_SQL : String {static}
-  }
-  interface CustomerDao {
-    + add(Customer) : boolean {abstract}
-    + delete(Customer) : boolean {abstract}
-    + getAll() : Stream<Customer> {abstract}
-    + getById(int) : Optional<Customer> {abstract}
-    + update(Customer) : boolean {abstract}
-  }
   class App {
     - DB_URL : String {static}
     - log : Logger {static}
@@ -31,18 +11,6 @@ package com.iluwatar.dao {
     + generateSampleCustomers() : List<Customer> {static}
     + main(args : String[]) {static}
     - performOperationsUsing(customerDao : CustomerDao) {static}
-  }
-  class DbCustomerDao {
-    - dataSource : DataSource
-    + DbCustomerDao(dataSource : DataSource)
-    + add(customer : Customer) : boolean
-    - createCustomer(resultSet : ResultSet) : Customer
-    + delete(customer : Customer) : boolean
-    + getAll() : Stream<Customer>
-    + getById(id : int) : Optional<Customer>
-    - getConnection() : Connection
-    - mutedClose(connection : Connection)
-    + update(customer : Customer) : boolean
   }
   class Customer {
     - firstName : String
@@ -59,7 +27,39 @@ package com.iluwatar.dao {
     + setLastName(lastName : String)
     + toString() : String
   }
+  interface CustomerDao {
+    + add(Customer) : boolean {abstract}
+    + delete(Customer) : boolean {abstract}
+    + getAll() : Stream<Customer> {abstract}
+    + getById(int) : Optional<Customer> {abstract}
+    + update(Customer) : boolean {abstract}
+  }
+  interface CustomerSchemaSql {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+  }
+  class DbCustomerDao {
+    - dataSource : DataSource
+    + DbCustomerDao(dataSource : DataSource)
+    + add(customer : Customer) : boolean
+    - createCustomer(resultSet : ResultSet) : Customer
+    + delete(customer : Customer) : boolean
+    + getAll() : Stream<Customer>
+    + getById(id : int) : Optional<Customer>
+    - getConnection() : Connection
+    - mutedClose(connection : Connection)
+    + update(customer : Customer) : boolean
+  }
+  class InMemoryCustomerDao {
+    - idToCustomer : Map<Integer, Customer>
+    + InMemoryCustomerDao()
+    + add(customer : Customer) : boolean
+    + delete(customer : Customer) : boolean
+    + getAll() : Stream<Customer>
+    + getById(id : int) : Optional<Customer>
+    + update(customer : Customer) : boolean
+  }
 }
-InMemoryCustomerDao ..|> CustomerDao 
 DbCustomerDao ..|> CustomerDao 
+InMemoryCustomerDao ..|> CustomerDao 
 @enduml

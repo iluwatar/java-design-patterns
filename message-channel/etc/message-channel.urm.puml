@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.message.channel {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.servicelocator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +37,8 @@ import java.util.Map;
  * @author saifasif
  */
 public class ServiceCache {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceCache.class);
 
   private final Map<String, Service> serviceCache;
 
@@ -52,8 +57,8 @@ public class ServiceCache {
     for (String serviceJndiName : serviceCache.keySet()) {
       if (serviceJndiName.equals(serviceName)) {
         cachedService = serviceCache.get(serviceJndiName);
-        System.out.println("(cache call) Fetched service " + cachedService.getName() + "("
-            + cachedService.getId() + ") from cache... !");
+        LOGGER.info("(cache call) Fetched service {}({}) from cache... !",
+                cachedService.getName(), cachedService.getId());
       }
     }
     return cachedService;

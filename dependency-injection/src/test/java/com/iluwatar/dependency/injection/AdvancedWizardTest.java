@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,18 +22,31 @@
  */
 package com.iluwatar.dependency.injection;
 
+import com.iluwatar.dependency.injection.utils.InMemoryAppender;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Date: 12/10/15 - 8:40 PM
  *
  * @author Jeroen Meulemeester
  */
-public class AdvancedWizardTest extends StdOutTest {
+public class AdvancedWizardTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender(Tobacco.class);
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * Test if the {@link AdvancedWizard} smokes whatever instance of {@link Tobacco} is passed to him
@@ -51,11 +64,12 @@ public class AdvancedWizardTest extends StdOutTest {
       advancedWizard.smoke();
 
       // Verify if the wizard is smoking the correct tobacco ...
-      verify(getStdOutMock(), times(1)).println("AdvancedWizard smoking " + tobacco.getClass().getSimpleName());
+      assertEquals("AdvancedWizard smoking " + tobacco.getClass().getSimpleName(), appender.getLastMessage());
 
-      // ... and nothing else is happening.
-      verifyNoMoreInteractions(getStdOutMock());
     }
+
+    // ... and nothing else is happening.
+    assertEquals(tobaccos.length, appender.getLogSize());
 
   }
 

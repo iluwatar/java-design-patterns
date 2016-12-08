@@ -1,28 +1,8 @@
 @startuml
 package com.iluwatar.business.delegate {
-  class EjbService {
-    + EjbService()
-    + doProcessing()
-  }
-  class BusinessLookup {
-    - ejbService : EjbService
-    - jmsService : JmsService
-    + BusinessLookup()
-    + getBusinessService(serviceType : ServiceType) : BusinessService
-    + setEjbService(ejbService : EjbService)
-    + setJmsService(jmsService : JmsService)
-  }
   class App {
     + App()
     + main(args : String[]) {static}
-  }
-  interface BusinessService {
-    + doProcessing() {abstract}
-  }
-  class Client {
-    - businessDelegate : BusinessDelegate
-    + Client(businessDelegate : BusinessDelegate)
-    + doTask()
   }
   class BusinessDelegate {
     - businessService : BusinessService
@@ -33,7 +13,29 @@ package com.iluwatar.business.delegate {
     + setLookupService(businessLookup : BusinessLookup)
     + setServiceType(serviceType : ServiceType)
   }
+  class BusinessLookup {
+    - ejbService : EjbService
+    - jmsService : JmsService
+    + BusinessLookup()
+    + getBusinessService(serviceType : ServiceType) : BusinessService
+    + setEjbService(ejbService : EjbService)
+    + setJmsService(jmsService : JmsService)
+  }
+  interface BusinessService {
+    + doProcessing() {abstract}
+  }
+  class Client {
+    - businessDelegate : BusinessDelegate
+    + Client(businessDelegate : BusinessDelegate)
+    + doTask()
+  }
+  class EjbService {
+    - LOGGER : Logger {static}
+    + EjbService()
+    + doProcessing()
+  }
   class JmsService {
+    - LOGGER : Logger {static}
     + JmsService()
     + doProcessing()
   }

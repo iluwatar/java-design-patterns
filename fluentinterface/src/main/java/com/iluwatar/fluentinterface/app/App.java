@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,6 +35,8 @@ import java.util.function.Predicate;
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API.
@@ -49,6 +51,8 @@ import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;
  * 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point
@@ -74,9 +78,7 @@ public class App {
         .fromCopyOf(integerList)
         .filter(number -> number % 2 == 0)
         .first()
-        .ifPresent(
-            evenNumber -> System.out.println(String.format("The first even number is: %d",
-                evenNumber)));
+        .ifPresent(evenNumber -> LOGGER.info("The first even number is: {}", evenNumber));
 
 
     List<String> transformedList =
@@ -97,9 +99,7 @@ public class App {
         .filter(negatives())
         .first(2)
         .last()
-        .ifPresent(
-            lastOfFirstTwo -> System.out.println(String.format(
-                "The last of the first two negatives is: %d", lastOfFirstTwo)));
+        .ifPresent(lastOfFirstTwo -> LOGGER.info("The last of the first two negatives is: {}", lastOfFirstTwo));
   }
 
   private static Function<Integer, String> transformToString() {
@@ -126,6 +126,6 @@ public class App {
       joiner.add(iterator.next().toString());
     }
 
-    System.out.println(joiner);
+    LOGGER.info(joiner.toString());
   }
 }

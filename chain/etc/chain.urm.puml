@@ -1,9 +1,8 @@
 @startuml
 package com.iluwatar.chain {
-  class OrcSoldier {
-    + OrcSoldier(handler : RequestHandler)
-    + handleRequest(req : Request)
-    + toString() : String
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   class OrcCommander {
     + OrcCommander(handler : RequestHandler)
@@ -16,6 +15,16 @@ package com.iluwatar.chain {
     - buildChain()
     + makeRequest(req : Request)
   }
+  class OrcOfficer {
+    + OrcOfficer(handler : RequestHandler)
+    + handleRequest(req : Request)
+    + toString() : String
+  }
+  class OrcSoldier {
+    + OrcSoldier(handler : RequestHandler)
+    + handleRequest(req : Request)
+    + toString() : String
+  }
   class Request {
     - handled : boolean
     - requestDescription : String
@@ -27,21 +36,13 @@ package com.iluwatar.chain {
     + markHandled()
     + toString() : String
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
   abstract class RequestHandler {
+    - LOGGER : Logger {static}
     - next : RequestHandler
     + RequestHandler(next : RequestHandler)
     + handleRequest(req : Request)
     # printHandling(req : Request)
     + toString() : String {abstract}
-  }
-  class OrcOfficer {
-    + OrcOfficer(handler : RequestHandler)
-    + handleRequest(req : Request)
-    + toString() : String
   }
   enum RequestType {
     + COLLECT_TAX {static}
@@ -52,9 +53,9 @@ package com.iluwatar.chain {
   }
 }
 RequestHandler -->  "-next" RequestHandler
-Request -->  "-requestType" RequestType
 OrcKing -->  "-chain" RequestHandler
-OrcSoldier --|> RequestHandler 
+Request -->  "-requestType" RequestType
 OrcCommander --|> RequestHandler 
 OrcOfficer --|> RequestHandler 
+OrcSoldier --|> RequestHandler 
 @enduml

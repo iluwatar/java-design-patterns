@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,18 +27,15 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Date: 12/28/15 - 9:02 PM
- *
- * @author Jeroen Meulemeester
+ * Tests for {@link Wizard}
  */
 public class WizardTest {
 
   @Test
   public void testToString() throws Exception {
     final String[] wizardNames = {"Gandalf", "Dumbledore", "Oz", "Merlin"};
-    for (final String name : wizardNames) {
+    for (String name : wizardNames) {
       assertEquals(name, new Wizard(name).toString());
     }
   }
-
 }

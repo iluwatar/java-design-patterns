@@ -1,13 +1,5 @@
 @startuml
 package com.iluwatar.command {
-  class InvisibilitySpell {
-    - target : Target
-    + InvisibilitySpell()
-    + execute(target : Target)
-    + redo()
-    + toString() : String
-    + undo()
-  }
   class App {
     + App()
     + main(args : String[]) {static}
@@ -23,25 +15,13 @@ package com.iluwatar.command {
     + Goblin()
     + toString() : String
   }
-  abstract class Target {
-    - size : Size
-    - visibility : Visibility
-    + Target()
-    + getSize() : Size
-    + getVisibility() : Visibility
-    + printStatus()
-    + setSize(size : Size)
-    + setVisibility(visibility : Visibility)
-    + toString() : String {abstract}
-  }
-  class Wizard {
-    - redoStack : Deque<Command>
-    - undoStack : Deque<Command>
-    + Wizard()
-    + castSpell(command : Command, target : Target)
-    + redoLastSpell()
+  class InvisibilitySpell {
+    - target : Target
+    + InvisibilitySpell()
+    + execute(target : Target)
+    + redo()
     + toString() : String
-    + undoLastSpell()
+    + undo()
   }
   class ShrinkSpell {
     - oldSize : Size
@@ -62,6 +42,18 @@ package com.iluwatar.command {
     + valueOf(name : String) : Size {static}
     + values() : Size[] {static}
   }
+  abstract class Target {
+    - LOGGER : Logger {static}
+    - size : Size
+    - visibility : Visibility
+    + Target()
+    + getSize() : Size
+    + getVisibility() : Visibility
+    + printStatus()
+    + setSize(size : Size)
+    + setVisibility(visibility : Visibility)
+    + toString() : String {abstract}
+  }
   enum Visibility {
     + INVISIBLE {static}
     + UNDEFINED {static}
@@ -71,6 +63,16 @@ package com.iluwatar.command {
     + valueOf(name : String) : Visibility {static}
     + values() : Visibility[] {static}
   }
+  class Wizard {
+    - LOGGER : Logger {static}
+    - redoStack : Deque<Command>
+    - undoStack : Deque<Command>
+    + Wizard()
+    + castSpell(command : Command, target : Target)
+    + redoLastSpell()
+    + toString() : String
+    + undoLastSpell()
+  }
 }
 Target -->  "-size" Size
 Wizard -->  "-undoStack" Command
@@ -78,7 +80,7 @@ ShrinkSpell -->  "-oldSize" Size
 InvisibilitySpell -->  "-target" Target
 ShrinkSpell -->  "-target" Target
 Target -->  "-visibility" Visibility
-InvisibilitySpell --|> Command 
 Goblin --|> Target 
+InvisibilitySpell --|> Command 
 ShrinkSpell --|> Command 
 @enduml

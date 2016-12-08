@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,9 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.promise;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
@@ -60,6 +63,8 @@ import java.util.concurrent.Executors;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   private static final String DEFAULT_URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/Promise/promise/README.md";
   private final ExecutorService executor;
   private final CountDownLatch stopLatch;
@@ -98,7 +103,7 @@ public class App {
     lowestFrequencyChar()
         .thenAccept(
           charFrequency -> {
-            System.out.println("Char with lowest frequency is: " + charFrequency);
+            LOGGER.info("Char with lowest frequency is: {}", charFrequency);
             taskCompleted();
           }
       );
@@ -112,7 +117,7 @@ public class App {
     countLines()
         .thenAccept(
           count -> {
-            System.out.println("Line count is: " + count);
+            LOGGER.info("Line count is: {}", count);
             taskCompleted();
           }
       );

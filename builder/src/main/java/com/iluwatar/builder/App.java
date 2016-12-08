@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,8 @@
 package com.iluwatar.builder;
 
 import com.iluwatar.builder.Hero.Builder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -50,6 +52,8 @@ import com.iluwatar.builder.Hero.Builder;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
@@ -60,18 +64,18 @@ public class App {
     Hero mage =
         new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.BLACK)
             .withWeapon(Weapon.DAGGER).build();
-    System.out.println(mage);
+    LOGGER.info(mage.toString());
 
     Hero warrior =
         new Hero.Builder(Profession.WARRIOR, "Amberjill").withHairColor(HairColor.BLOND)
             .withHairType(HairType.LONG_CURLY).withArmor(Armor.CHAIN_MAIL).withWeapon(Weapon.SWORD)
             .build();
-    System.out.println(warrior);
+    LOGGER.info(warrior.toString());
 
     Hero thief =
         new Hero.Builder(Profession.THIEF, "Desmond").withHairType(HairType.BALD)
             .withWeapon(Weapon.BOW).build();
-    System.out.println(thief);
+    LOGGER.info(thief.toString());
 
   }
 }

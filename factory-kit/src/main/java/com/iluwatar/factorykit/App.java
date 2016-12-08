@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.factorykit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Factory-kit is a creational pattern which defines a factory of immutable content
  * with separated builder and factory interfaces to deal with the problem of
@@ -36,6 +39,9 @@ package com.iluwatar.factorykit;
  * be mapped explicitly with desired class type in the factory instance.
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point.
    *
@@ -49,6 +55,6 @@ public class App {
       builder.add(WeaponType.BOW, Bow::new);
     });
     Weapon axe = factory.create(WeaponType.AXE);
-    System.out.println(axe);
+    LOGGER.info(axe.toString());
   }
 }
