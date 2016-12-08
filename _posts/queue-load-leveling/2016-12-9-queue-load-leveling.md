@@ -4,7 +4,7 @@ title: Queue-Based Load Leveling Pattern
 author: Amarnath Ch
 ---
 
-![Queue-Based Load Leveling Pattern](Queue-load-level-pattern.png)
+![Queue-Based Load Leveling Pattern]({{ site.baseurl }}/assets/Queue-load-level-pattern.png)
 
 ## Problem
 Many solutions in the cloud involve running tasks that invoke services. In this environment, if a service is subjected to intermittent heavy loads, it can cause performance or reliability issues. If the same service is utilized by a number of tasks running concurrently, it can be difficult to predict the volume of requests to which the service might be subjected at any given point in time. It is possible that a service might experience peaks in demand that cause it to become overloaded and unable to respond to requests in a timely manner.
@@ -12,7 +12,7 @@ Many solutions in the cloud involve running tasks that invoke services. In this 
 ## Solution
 Introduce a queue between the task and the service. The task and the service run asynchronously. The task posts a message containing the data required by the service to a queue. The queue acts as a buffer, storing the message until it is retrieved by the service. The service retrieves the messages from the queue and processes them. Requests from a number of tasks, which can be generated at a highly variable rate, can be passed to the service through the same message queue.
 
-![Using a queue and a worker role to level the load between instances of the web role and the service](Queue-load-level-scenario.png)
+![Using a queue and a worker role to level the load between instances of the web role and the service]({{ site.baseurl }}/assets/Queue-load-level-scenario.png)
 
 The queue effectively decouples the tasks from the service, and the service can handle the messages at its own pace irrespective of the volume of requests from concurrent tasks. Additionally, there is no delay to a task if the service is not available at the time it posts a message to the queue.
 
