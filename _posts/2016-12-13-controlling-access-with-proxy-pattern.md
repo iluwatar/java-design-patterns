@@ -18,7 +18,19 @@ Basically it wraps an object and acts as a proxy between calls to the object. At
 
 To elaborate let's think of a simple example. In a fantasy land far away inhabited by creatures from hobbits to dragons the mystic profession of wizard also exists. Wizards are known from their great magic but this power comes with a price. To upkeep and gain spell power the wizards must spend their time studying spellbooks and practising their spells. The best place in the neighborhood to study is the famous Ivory Tower built by the archmage Ivorious and it has become very popular among the wizards. However, to keep his tower tidy and not too crowded Ivorious decided to limit the amount of wizards that are allowed to enter simultaneously. He cast a protection spell on the tower that allows only the three first wizards to enter.
 
+![Proxy class diagram]({{ site.baseurl }}/assets/proxy-class-diagram.png)
+
 The class diagram shows the structure used to implement the Proxy pattern. WizardTower is the interface for all the towers and IvoryTower implements it. The plain IvoryTower allows everyone to enter but Ivorius has specifically cast a protection spell on it to limit the number of simultaneous visitors. The protection spell WizardTowerProxy also implements WizardTower but then it wraps IvoryTower. Now everyone wanting to access IvoryTower needs to go through WizardTowerProxy.
+
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/proxy/src/main/java/com/iluwatar/proxy/WizardTower.java?slice=27:"></script>
+
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/proxy/src/main/java/com/iluwatar/proxy/IvoryTower.java?slice=32:"></script>
+
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/proxy/src/main/java/com/iluwatar/proxy/Wizard.java?slice=29:"></script>
+
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/proxy/src/main/java/com/iluwatar/proxy/WizardTowerProxy.java?slice=32:"></script>
+
+<script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/proxy/src/main/java/com/iluwatar/proxy/App.java?slice=40:"></script>
 
 ## Types of proxies
 
