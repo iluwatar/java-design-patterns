@@ -1,5 +1,13 @@
 @startuml
 package com.iluwatar.servant {
+  class App {
+    - LOGGER : Logger {static}
+    ~ jenkins : Servant {static}
+    ~ travis : Servant {static}
+    + App()
+    + main(args : String[]) {static}
+    + scenario(servant : Servant, compliment : int) {static}
+  }
   class King {
     - complimentReceived : boolean
     - isDrunk : boolean
@@ -11,21 +19,6 @@ package com.iluwatar.servant {
     + getFed()
     + getMood() : boolean
     + receiveCompliments()
-  }
-  ~interface Royalty {
-    + changeMood() {abstract}
-    + getDrink() {abstract}
-    + getFed() {abstract}
-    + getMood() : boolean {abstract}
-    + receiveCompliments() {abstract}
-  }
-  class Servant {
-    + name : String
-    + Servant(name : String)
-    + checkIfYouWillBeHanged(tableGuests : List<Royalty>) : boolean
-    + feed(r : Royalty)
-    + giveCompliments(r : Royalty)
-    + giveWine(r : Royalty)
   }
   class Queen {
     - complimentReceived : boolean
@@ -41,12 +34,20 @@ package com.iluwatar.servant {
     + receiveCompliments()
     + setFlirtiness(f : boolean)
   }
-  class App {
-    ~ jenkins : Servant {static}
-    ~ travis : Servant {static}
-    + App()
-    + main(args : String[]) {static}
-    + scenario(servant : Servant, compliment : int) {static}
+  ~interface Royalty {
+    + changeMood() {abstract}
+    + getDrink() {abstract}
+    + getFed() {abstract}
+    + getMood() : boolean {abstract}
+    + receiveCompliments() {abstract}
+  }
+  class Servant {
+    + name : String
+    + Servant(name : String)
+    + checkIfYouWillBeHanged(tableGuests : List<Royalty>) : boolean
+    + feed(r : Royalty)
+    + giveCompliments(r : Royalty)
+    + giveWine(r : Royalty)
   }
 }
 App -->  "-jenkins" Servant

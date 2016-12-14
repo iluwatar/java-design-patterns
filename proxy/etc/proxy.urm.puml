@@ -1,17 +1,12 @@
 @startuml
 package com.iluwatar.proxy {
-  class WizardTower {
-    + WizardTower()
-    + enter(wizard : Wizard)
-  }
   class App {
     + App()
     + main(args : String[]) {static}
   }
-  class WizardTowerProxy {
-    - NUM_WIZARDS_ALLOWED : int {static}
-    - numWizards : int
-    + WizardTowerProxy()
+  class IvoryTower {
+    - LOGGER : Logger {static}
+    + IvoryTower()
     + enter(wizard : Wizard)
   }
   class Wizard {
@@ -19,6 +14,19 @@ package com.iluwatar.proxy {
     + Wizard(name : String)
     + toString() : String
   }
+  interface WizardTower {
+    + enter(Wizard) {abstract}
+  }
+  class WizardTowerProxy {
+    - LOGGER : Logger {static}
+    - NUM_WIZARDS_ALLOWED : int {static}
+    - numWizards : int
+    - tower : WizardTower
+    + WizardTowerProxy(tower : WizardTower)
+    + enter(wizard : Wizard)
+  }
 }
-WizardTowerProxy --|> WizardTower 
+WizardTowerProxy -->  "-tower" WizardTower
+IvoryTower ..|> WizardTower 
+WizardTowerProxy ..|> WizardTower 
 @enduml

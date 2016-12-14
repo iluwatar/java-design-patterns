@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.reactor.app;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -41,6 +44,9 @@ import java.util.concurrent.TimeUnit;
  * requests to Reactor.
  */
 public class AppClient {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(AppClient.class);
+
   private final ExecutorService service = Executors.newFixedThreadPool(4);
 
   /**
@@ -126,9 +132,9 @@ public class AppClient {
         byte[] data = new byte[1024];
         int read = inputStream.read(data, 0, data.length);
         if (read == 0) {
-          System.out.println("Read zero bytes");
+          LOGGER.info("Read zero bytes");
         } else {
-          System.out.println(new String(data, 0, read));
+          LOGGER.info(new String(data, 0, read));
         }
 
         artificialDelayOf(100);
@@ -171,9 +177,9 @@ public class AppClient {
           DatagramPacket reply = new DatagramPacket(data, data.length);
           socket.receive(reply);
           if (reply.getLength() == 0) {
-            System.out.println("Read zero bytes");
+            LOGGER.info("Read zero bytes");
           } else {
-            System.out.println(new String(reply.getData(), 0, reply.getLength()));
+            LOGGER.info(new String(reply.getData(), 0, reply.getLength()));
           }
 
           artificialDelayOf(100);

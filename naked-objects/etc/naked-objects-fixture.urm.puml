@@ -1,15 +1,15 @@
 @startuml
 package domainapp.dom.app.homepage {
+  class HomePageService {
+    ~ container : DomainObjectContainer
+    + HomePageService()
+    + homePage() : HomePageViewModel
+  }
   class HomePageViewModel {
     ~ simpleObjects : SimpleObjects
     + HomePageViewModel()
     + getObjects() : List<SimpleObject>
     + title() : String
-  }
-  class HomePageService {
-    ~ container : DomainObjectContainer
-    + HomePageService()
-    + homePage() : HomePageViewModel
   }
 }
 package domainapp.dom.modules.simple {
@@ -86,7 +86,8 @@ package domainapp.fixture {
     + getSpecification() : FixtureScriptsSpecification
   }
 }
-DomainAppFixturesProvider --+ FixtureScripts
-DomainAppFixturesProvider --+ FixtureScriptsSpecification
+Builder ..+ FixtureScriptsSpecification
+DropDownPolicy ..+ FixtureScriptsSpecification
+MultipleExecutionStrategy ..+ FixtureScripts
 HomePageViewModel -->  "-simpleObjects" SimpleObjects
 @enduml

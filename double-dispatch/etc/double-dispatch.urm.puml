@@ -1,15 +1,12 @@
 @startuml
 package com.iluwatar.doubledispatch {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
   class FlamingAsteroid {
     + FlamingAsteroid(left : int, top : int, right : int, bottom : int)
-    + collision(gameObject : GameObject)
-  }
-  class SpaceStationIss {
-    + SpaceStationIss(left : int, top : int, right : int, bottom : int)
     + collision(gameObject : GameObject)
   }
   abstract class GameObject {
@@ -27,15 +24,8 @@ package com.iluwatar.doubledispatch {
     + setOnFire(onFire : boolean)
     + toString() : String
   }
-  class SpaceStationMir {
-    + SpaceStationMir(left : int, top : int, right : int, bottom : int)
-    + collision(gameObject : GameObject)
-    + collisionResolve(asteroid : FlamingAsteroid)
-    + collisionResolve(iss : SpaceStationIss)
-    + collisionResolve(meteoroid : Meteoroid)
-    + collisionResolve(mir : SpaceStationMir)
-  }
   class Meteoroid {
+    - LOGGER : Logger {static}
     + Meteoroid(left : int, top : int, right : int, bottom : int)
     + collision(gameObject : GameObject)
     + collisionResolve(asteroid : FlamingAsteroid)
@@ -56,10 +46,23 @@ package com.iluwatar.doubledispatch {
     ~ intersectsWith(r : Rectangle) : boolean
     + toString() : String
   }
+  class SpaceStationIss {
+    + SpaceStationIss(left : int, top : int, right : int, bottom : int)
+    + collision(gameObject : GameObject)
+  }
+  class SpaceStationMir {
+    - LOGGER : Logger {static}
+    + SpaceStationMir(left : int, top : int, right : int, bottom : int)
+    + collision(gameObject : GameObject)
+    + collisionResolve(asteroid : FlamingAsteroid)
+    + collisionResolve(iss : SpaceStationIss)
+    + collisionResolve(meteoroid : Meteoroid)
+    + collisionResolve(mir : SpaceStationMir)
+  }
 }
 FlamingAsteroid --|> Meteoroid 
-SpaceStationIss --|> SpaceStationMir 
 GameObject --|> Rectangle 
-SpaceStationMir --|> GameObject 
 Meteoroid --|> GameObject 
+SpaceStationIss --|> SpaceStationMir 
+SpaceStationMir --|> GameObject 
 @enduml

@@ -1,8 +1,5 @@
 @startuml
 package com.iluwatar.abstractdocument.domain {
-  class Part {
-    + Part(properties : Map<String, Object>)
-  }
   class Car {
     + Car(properties : Map<String, Object>)
   }
@@ -14,21 +11,19 @@ package com.iluwatar.abstractdocument.domain {
     + PROPERTY : String {static}
     + getParts() : Stream<Part>
   }
-  interface HasType {
-    + PROPERTY : String {static}
-    + getType() : Optional<String>
-  }
   interface HasPrice {
     + PROPERTY : String {static}
     + getPrice() : Optional<Number>
   }
+  interface HasType {
+    + PROPERTY : String {static}
+    + getType() : Optional<String>
+  }
+  class Part {
+    + Part(properties : Map<String, Object>)
+  }
 }
 package com.iluwatar.abstractdocument {
-  interface Document {
-    + children(String, Function<Map<String, Object>, T>) : Stream<T> {abstract}
-    + get(String) : Object {abstract}
-    + put(String, Object) {abstract}
-  }
   abstract class AbstractDocument {
     - properties : Map<String, Object>
     # AbstractDocument(properties : Map<String, Object>)
@@ -38,22 +33,27 @@ package com.iluwatar.abstractdocument {
     + toString() : String
   }
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
+  interface Document {
+    + children(String, Function<Map<String, Object>, T>) : Stream<T> {abstract}
+    + get(String) : Object {abstract}
+    + put(String, Object) {abstract}
+  }
 }
-AbstractDocument --+ Map
-Part ..|> HasType 
-Part ..|> HasModel 
-Part ..|> HasPrice 
-Part --|> AbstractDocument 
+AbstractDocument ..|> Document 
 Car ..|> HasModel 
 Car ..|> HasPrice 
 Car ..|> HasParts 
 Car --|> AbstractDocument 
 HasModel --|> Document 
 HasParts --|> Document 
-AbstractDocument ..|> Document 
-HasType --|> Document 
 HasPrice --|> Document 
+HasType --|> Document 
+Part ..|> HasType 
+Part ..|> HasModel 
+Part ..|> HasPrice 
+Part --|> AbstractDocument 
 @enduml

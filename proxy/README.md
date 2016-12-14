@@ -18,24 +18,24 @@ Surrogate
 Provide a surrogate or placeholder for another object to control
 access to it.
 
-![alt text](./etc/proxy_1.png "Proxy")
+![alt text](./etc/proxy.png "Proxy")
 
 ## Applicability
 Proxy is applicable whenever there is a need for a more
 versatile or sophisticated reference to an object than a simple pointer. Here
 are several common situations in which the Proxy pattern is applicable
 
-* a remote proxy provides a local representative for an object in a different address space.
-* a virtual proxy creates expensive objects on demand.
-* a protection proxy controls access to the original object. Protection proxies are useful when objects should have different access rights.
+* Remote proxy provides a local representative for an object in a different address space.
+* Virtual proxy creates expensive objects on demand.
+* Protection proxy controls access to the original object. Protection proxies are useful when objects should have different access rights.
 
 ## Typical Use Case
 
-* control access to another object
-* lazy initialization
-* implement logging
-* facilitate network connection
-* to count references to an object
+* Control access to another object
+* Lazy initialization
+* Implement logging
+* Facilitate network connection
+* Count references to an object
 
 ## Real world examples
 

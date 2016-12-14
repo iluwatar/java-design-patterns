@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,20 +22,37 @@
  */
 package com.iluwatar.nullobject;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InOrder;
-import org.mockito.Mockito;
+import org.slf4j.LoggerFactory;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * Date: 12/26/15 - 11:44 PM
  *
  * @author Jeroen Meulemeester
  */
-public class TreeTest extends StdOutTest {
+public class TreeTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * During the tests, the same tree structure will be used, shown below. End points will be
@@ -79,15 +96,14 @@ public class TreeTest extends StdOutTest {
   public void testWalk() {
     TREE_ROOT.walk();
 
-    final InOrder inOrder = Mockito.inOrder(getStdOutMock());
-    inOrder.verify(getStdOutMock()).println("root");
-    inOrder.verify(getStdOutMock()).println("level1_a");
-    inOrder.verify(getStdOutMock()).println("level2_a");
-    inOrder.verify(getStdOutMock()).println("level3_a");
-    inOrder.verify(getStdOutMock()).println("level3_b");
-    inOrder.verify(getStdOutMock()).println("level2_b");
-    inOrder.verify(getStdOutMock()).println("level1_b");
-    inOrder.verifyNoMoreInteractions();
+    assertTrue(appender.logContains("root"));
+    assertTrue(appender.logContains("level1_a"));
+    assertTrue(appender.logContains("level2_a"));
+    assertTrue(appender.logContains("level3_a"));
+    assertTrue(appender.logContains("level3_b"));
+    assertTrue(appender.logContains("level2_b"));
+    assertTrue(appender.logContains("level1_b"));
+    assertEquals(7, appender.getLogSize());
   }
 
   @Test
@@ -118,6 +134,28 @@ public class TreeTest extends StdOutTest {
     assertEquals(1, level1.getTreeSize());
     assertSame(NullNode.getInstance(), level1.getRight());
     assertSame(NullNode.getInstance(), level1.getLeft());
+  }
+
+  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender() {
+      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public boolean logContains(String message) {
+      return log.stream().anyMatch(event -> event.getMessage().equals(message));
+    }
+
+    public int getLogSize() {
+      return log.size();
+    }
   }
 
 }

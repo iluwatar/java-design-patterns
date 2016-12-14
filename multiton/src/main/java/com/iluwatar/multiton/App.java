@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.multiton;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Whereas Singleton design pattern introduces single globally accessible object the Multiton
@@ -35,20 +38,22 @@ package com.iluwatar.multiton;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
    * @param args command line args
    */
   public static void main(String[] args) {
-    System.out.println("KHAMUL=" + Nazgul.getInstance(NazgulName.KHAMUL));
-    System.out.println("MURAZOR=" + Nazgul.getInstance(NazgulName.MURAZOR));
-    System.out.println("DWAR=" + Nazgul.getInstance(NazgulName.DWAR));
-    System.out.println("JI_INDUR=" + Nazgul.getInstance(NazgulName.JI_INDUR));
-    System.out.println("AKHORAHIL=" + Nazgul.getInstance(NazgulName.AKHORAHIL));
-    System.out.println("HOARMURATH=" + Nazgul.getInstance(NazgulName.HOARMURATH));
-    System.out.println("ADUNAPHEL=" + Nazgul.getInstance(NazgulName.ADUNAPHEL));
-    System.out.println("REN=" + Nazgul.getInstance(NazgulName.REN));
-    System.out.println("UVATHA=" + Nazgul.getInstance(NazgulName.UVATHA));
+    LOGGER.info("KHAMUL={}", Nazgul.getInstance(NazgulName.KHAMUL));
+    LOGGER.info("MURAZOR={}", Nazgul.getInstance(NazgulName.MURAZOR));
+    LOGGER.info("DWAR={}", Nazgul.getInstance(NazgulName.DWAR));
+    LOGGER.info("JI_INDUR={}", Nazgul.getInstance(NazgulName.JI_INDUR));
+    LOGGER.info("AKHORAHIL={}", Nazgul.getInstance(NazgulName.AKHORAHIL));
+    LOGGER.info("HOARMURATH={}", Nazgul.getInstance(NazgulName.HOARMURATH));
+    LOGGER.info("ADUNAPHEL={}", Nazgul.getInstance(NazgulName.ADUNAPHEL));
+    LOGGER.info("REN={}", Nazgul.getInstance(NazgulName.REN));
+    LOGGER.info("UVATHA={}", Nazgul.getInstance(NazgulName.UVATHA));
   }
 }

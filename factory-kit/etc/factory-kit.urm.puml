@@ -1,5 +1,18 @@
 @startuml
 package com.iluwatar.factorykit {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Axe {
+    + Axe()
+    + toString() : String
+  }
+  class Bow {
+    + Bow()
+    + toString() : String
+  }
   interface Builder {
     + add(WeaponType, Supplier<Weapon>) {abstract}
   }
@@ -7,23 +20,11 @@ package com.iluwatar.factorykit {
     + Spear()
     + toString() : String
   }
-  class Bow {
-    + Bow()
-    + toString() : String
-  }
   class Sword {
     + Sword()
     + toString() : String
   }
   interface Weapon {
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class Axe {
-    + Axe()
-    + toString() : String
   }
   interface WeaponFactory {
     + create(WeaponType) : Weapon {abstract}
@@ -38,8 +39,8 @@ package com.iluwatar.factorykit {
     + values() : WeaponType[] {static}
   }
 }
-Spear ..|> Weapon 
-Bow ..|> Weapon 
-Sword ..|> Weapon 
 Axe ..|> Weapon 
+Bow ..|> Weapon 
+Spear ..|> Weapon 
+Sword ..|> Weapon 
 @enduml

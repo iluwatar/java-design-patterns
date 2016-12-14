@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,8 @@ import com.iluwatar.featuretoggle.pattern.Service;
 import com.iluwatar.featuretoggle.pattern.propertiesversion.PropertiesFeatureToggleVersion;
 import com.iluwatar.featuretoggle.user.User;
 import com.iluwatar.featuretoggle.user.UserGroup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
@@ -44,6 +46,8 @@ import java.util.Properties;
  *
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    *  Block 1 shows the {@link PropertiesFeatureToggleVersion} being run with {@link Properties} setting the feature
@@ -70,7 +74,7 @@ public class App {
     properties.put("enhancedWelcome", true);
     Service service = new PropertiesFeatureToggleVersion(properties);
     final String welcomeMessage = service.getWelcomeMessage(new User("Jamie No Code"));
-    System.out.println(welcomeMessage);
+    LOGGER.info(welcomeMessage);
 
     // ---------------------------------------------
 
@@ -78,7 +82,7 @@ public class App {
     turnedOff.put("enhancedWelcome", false);
     Service turnedOffService = new PropertiesFeatureToggleVersion(turnedOff);
     final String welcomeMessageturnedOff = turnedOffService.getWelcomeMessage(new User("Jamie No Code"));
-    System.out.println(welcomeMessageturnedOff);
+    LOGGER.info(welcomeMessageturnedOff);
 
     // --------------------------------------------
 
@@ -90,7 +94,7 @@ public class App {
 
     final String welcomeMessagePaidUser = service.getWelcomeMessage(paidUser);
     final String welcomeMessageFreeUser = service.getWelcomeMessage(freeUser);
-    System.out.println(welcomeMessageFreeUser);
-    System.out.println(welcomeMessagePaidUser);
+    LOGGER.info(welcomeMessageFreeUser);
+    LOGGER.info(welcomeMessagePaidUser);
   }
 }

@@ -1,29 +1,38 @@
 @startuml
 package com.iluwatar.decorator {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
-  class Troll {
-    + Troll()
+  class ClubbedTroll {
+    - LOGGER : Logger {static}
+    + ClubbedTroll(decorated : Troll)
+    + attack()
+    + getAttackPower() : int
+  }
+  class SimpleTroll {
+    - LOGGER : Logger {static}
+    + SimpleTroll()
     + attack()
     + fleeBattle()
     + getAttackPower() : int
   }
-  interface Hostile {
+  interface Troll {
     + attack() {abstract}
     + fleeBattle() {abstract}
     + getAttackPower() : int {abstract}
   }
-  class SmartHostile {
-    - decorated : Hostile
-    + SmartHostile(decorated : Hostile)
+  class TrollDecorator {
+    - decorated : Troll
+    + TrollDecorator(decorated : Troll)
     + attack()
     + fleeBattle()
     + getAttackPower() : int
   }
 }
-SmartHostile -->  "-decorated" Hostile
-Troll ..|> Hostile 
-SmartHostile ..|> Hostile 
+TrollDecorator -->  "-decorated" Troll
+ClubbedTroll --|> TrollDecorator 
+SimpleTroll ..|> Troll 
+TrollDecorator ..|> Troll 
 @enduml

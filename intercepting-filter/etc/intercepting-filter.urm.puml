@@ -1,11 +1,5 @@
 @startuml
 package com.iluwatar.intercepting.filter {
-  interface Filter {
-    + execute(Order) : String {abstract}
-    + getLast() : Filter {abstract}
-    + getNext() : Filter {abstract}
-    + setNext(Filter) {abstract}
-  }
   abstract class AbstractFilter {
     - next : Filter
     + AbstractFilter()
@@ -15,12 +9,42 @@ package com.iluwatar.intercepting.filter {
     + getNext() : Filter
     + setNext(filter : Filter)
   }
+  class AddressFilter {
+    + AddressFilter()
+    + execute(order : Order) : String
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
   class ContactFilter {
     + ContactFilter()
     + execute(order : Order) : String
   }
-  class OrderFilter {
-    + OrderFilter()
+  class DepositFilter {
+    + DepositFilter()
+    + execute(order : Order) : String
+  }
+  interface Filter {
+    + execute(Order) : String {abstract}
+    + getLast() : Filter {abstract}
+    + getNext() : Filter {abstract}
+    + setNext(Filter) {abstract}
+  }
+  class FilterChain {
+    - chain : Filter
+    + FilterChain()
+    + addFilter(filter : Filter)
+    + execute(order : Order) : String
+  }
+  class FilterManager {
+    - filterChain : FilterChain
+    + FilterManager()
+    + addFilter(filter : Filter)
+    + filterRequest(order : Order) : String
+  }
+  class NameFilter {
+    + NameFilter()
     + execute(order : Order) : String
   }
   class Order {
@@ -42,47 +66,23 @@ package com.iluwatar.intercepting.filter {
     + setName(name : String)
     + setOrder(order : String)
   }
-  class AddressFilter {
-    + AddressFilter()
+  class OrderFilter {
+    + OrderFilter()
     + execute(order : Order) : String
   }
   ~class DListener {
-    ~ DListener(this$0 : Target)
+    ~ DListener()
     + actionPerformed(e : ActionEvent)
-  }
-  class FilterManager {
-    - filterChain : FilterChain
-    + FilterManager()
-    + addFilter(filter : Filter)
-    + filterRequest(order : Order) : String
-  }
-  class FilterChain {
-    - chain : Filter
-    + FilterChain()
-    + addFilter(filter : Filter)
-    + execute(order : Order) : String
-  }
-  class DepositFilter {
-    + DepositFilter()
-    + execute(order : Order) : String
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class NameFilter {
-    + NameFilter()
-    + execute(order : Order) : String
   }
 }
 AbstractFilter -->  "-next" Filter
 DListener --+ Target
-FilterChain -->  "-chain" Filter
 FilterManager -->  "-filterChain" FilterChain
+FilterChain -->  "-chain" Filter
 AbstractFilter ..|> Filter 
-ContactFilter --|> AbstractFilter 
-OrderFilter --|> AbstractFilter 
 AddressFilter --|> AbstractFilter 
+ContactFilter --|> AbstractFilter 
 DepositFilter --|> AbstractFilter 
 NameFilter --|> AbstractFilter 
+OrderFilter --|> AbstractFilter 
 @enduml

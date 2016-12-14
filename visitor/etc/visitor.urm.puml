@@ -1,6 +1,16 @@
 @startuml
 package com.iluwatar.visitor {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Commander {
+    + Commander(children : Unit[])
+    + accept(visitor : UnitVisitor)
+    + toString() : String
+  }
   class CommanderVisitor {
+    - LOGGER : Logger {static}
     + CommanderVisitor()
     + visitCommander(commander : Commander)
     + visitSergeant(sergeant : Sergeant)
@@ -11,47 +21,40 @@ package com.iluwatar.visitor {
     + accept(visitor : UnitVisitor)
     + toString() : String
   }
-  class Commander {
-    + Commander(children : Unit[])
-    + accept(visitor : UnitVisitor)
-    + toString() : String
-  }
-  abstract class Unit {
-    - children : Unit[]
-    + Unit(children : Unit[])
-    + accept(visitor : UnitVisitor)
+  class SergeantVisitor {
+    - LOGGER : Logger {static}
+    + SergeantVisitor()
+    + visitCommander(commander : Commander)
+    + visitSergeant(sergeant : Sergeant)
+    + visitSoldier(soldier : Soldier)
   }
   class Soldier {
     + Soldier(children : Unit[])
     + accept(visitor : UnitVisitor)
     + toString() : String
   }
-  class SergeantVisitor {
-    + SergeantVisitor()
+  class SoldierVisitor {
+    - LOGGER : Logger {static}
+    + SoldierVisitor()
     + visitCommander(commander : Commander)
     + visitSergeant(sergeant : Sergeant)
     + visitSoldier(soldier : Soldier)
+  }
+  abstract class Unit {
+    - children : Unit[]
+    + Unit(children : Unit[])
+    + accept(visitor : UnitVisitor)
   }
   interface UnitVisitor {
     + visitCommander(Commander) {abstract}
     + visitSergeant(Sergeant) {abstract}
     + visitSoldier(Soldier) {abstract}
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class SoldierVisitor {
-    + SoldierVisitor()
-    + visitCommander(commander : Commander)
-    + visitSergeant(sergeant : Sergeant)
-    + visitSoldier(soldier : Soldier)
-  }
 }
+Commander --|> Unit 
 CommanderVisitor ..|> UnitVisitor 
 Sergeant --|> Unit 
-Commander --|> Unit 
-Soldier --|> Unit 
 SergeantVisitor ..|> UnitVisitor 
+Soldier --|> Unit 
 SoldierVisitor ..|> UnitVisitor 
 @enduml

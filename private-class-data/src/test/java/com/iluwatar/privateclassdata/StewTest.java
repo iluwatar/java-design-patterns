@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,31 @@
  */
 package com.iluwatar.privateclassdata;
 
+import com.iluwatar.privateclassdata.utils.InMemoryAppender;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InOrder;
 
-import static org.mockito.Mockito.inOrder;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Date: 12/27/15 - 10:46 PM
  *
  * @author Jeroen Meulemeester
  */
-public class StewTest extends StdOutTest {
+public class StewTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * Verify if mixing the stew doesn't change the internal state
@@ -43,13 +57,12 @@ public class StewTest extends StdOutTest {
     final String expectedMessage = "Mixing the immutable stew we find: 1 potatoes, "
         + "2 carrots, 3 meat and 4 peppers";
 
-    final InOrder inOrder = inOrder(getStdOutMock());
     for (int i = 0; i < 20; i++) {
       stew.mix();
-      inOrder.verify(getStdOutMock()).println(expectedMessage);
+      assertEquals(expectedMessage, appender.getLastMessage());
     }
 
-    inOrder.verifyNoMoreInteractions();
+    assertEquals(20, appender.getLogSize());
   }
 
 }

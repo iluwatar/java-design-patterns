@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.front.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * View for catapults.
@@ -29,8 +32,10 @@ package com.iluwatar.front.controller;
  */
 public class CatapultView implements View {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(CatapultView.class);
+
   @Override
   public void display() {
-    System.out.println("Displaying catapults");
+    LOGGER.info("Displaying catapults");
   }
 }

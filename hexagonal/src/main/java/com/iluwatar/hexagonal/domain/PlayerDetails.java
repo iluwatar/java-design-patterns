@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,19 +36,12 @@ public class PlayerDetails {
   /**
    * Constructor.
    */
-  private PlayerDetails(String email, String bankAccount, String phone) {
+  public PlayerDetails(String email, String bankAccount, String phone) {
     emailAddress = email;
     bankAccountNumber = bankAccount;
     phoneNumber = phone;
   }
-  
-  /**
-   * Factory for creating new objects.
-   */
-  public static PlayerDetails create(String email, String bankAccount, String phone) {
-    return new PlayerDetails(email, bankAccount, phone);
-  }
-  
+
   /**
    * @return email
    */
@@ -68,6 +61,13 @@ public class PlayerDetails {
    */
   public String getPhoneNumber() {
     return phoneNumber;
+  }
+
+  @Override
+  public String toString() {
+    return "PlayerDetails{" + "emailAddress='" + emailAddress + '\''
+        + ", bankAccountNumber='" + bankAccountNumber + '\''
+        + ", phoneNumber='" + phoneNumber + '\'' + '}';
   }
 
   @Override

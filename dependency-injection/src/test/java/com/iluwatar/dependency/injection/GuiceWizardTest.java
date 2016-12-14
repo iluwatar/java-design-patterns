@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,19 +25,31 @@ package com.iluwatar.dependency.injection;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-
+import com.iluwatar.dependency.injection.utils.InMemoryAppender;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Date: 12/10/15 - 8:57 PM
  *
  * @author Jeroen Meulemeester
  */
-public class GuiceWizardTest extends StdOutTest {
+public class GuiceWizardTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender(Tobacco.class);
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * Test if the {@link GuiceWizard} smokes whatever instance of {@link Tobacco} is passed to him
@@ -55,12 +67,11 @@ public class GuiceWizardTest extends StdOutTest {
       guiceWizard.smoke();
 
       // Verify if the wizard is smoking the correct tobacco ...
-      verify(getStdOutMock(), times(1)).println("GuiceWizard smoking " + tobacco.getClass().getSimpleName());
-
-      // ... and nothing else is happening.
-      verifyNoMoreInteractions(getStdOutMock());
+      assertEquals("GuiceWizard smoking " + tobacco.getClass().getSimpleName(), appender.getLastMessage());
     }
 
+    // ... and nothing else is happening.
+    assertEquals(tobaccos.length, appender.getLogSize());
   }
 
   /**
@@ -89,12 +100,11 @@ public class GuiceWizardTest extends StdOutTest {
       guiceWizard.smoke();
 
       // Verify if the wizard is smoking the correct tobacco ...
-      verify(getStdOutMock(), times(1)).println("GuiceWizard smoking " + tobaccoClass.getSimpleName());
-
-      // ... and nothing else is happening.
-      verifyNoMoreInteractions(getStdOutMock());
+      assertEquals("GuiceWizard smoking " + tobaccoClass.getSimpleName(), appender.getLastMessage());
     }
 
+    // ... and nothing else is happening.
+    assertEquals(tobaccos.length, appender.getLogSize());
   }
 
 }

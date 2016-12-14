@@ -1,13 +1,21 @@
 @startuml
 package com.iluwatar.semaphore {
-  class FruitShop {
-    - available : boolean[]
-    - bowls : FruitBowl[]
-    - semaphore : Semaphore
-    + FruitShop()
-    + countFruit() : int
-    + returnBowl(bowl : FruitBowl)
-    + takeBowl() : FruitBowl
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Fruit {
+    - type : FruitType
+    + Fruit(type : FruitType)
+    + getType() : FruitType
+    + toString() : String
+  }
+  enum FruitType {
+    + APPLE {static}
+    + LEMON {static}
+    + ORANGE {static}
+    + valueOf(name : String) : FruitType {static}
+    + values() : FruitType[] {static}
   }
   class FruitBowl {
     - fruit : ArrayList<Fruit>
@@ -17,19 +25,18 @@ package com.iluwatar.semaphore {
     + take() : Fruit
     + toString() : String
   }
-  class Fruit {
-    - type : FruitType
-    + Fruit(type : FruitType)
-    + getType() : FruitType
-    + toString() : String
+  class FruitShop {
+    - available : boolean[]
+    - bowls : FruitBowl[]
+    - semaphore : Semaphore
+    + FruitShop()
+    + countFruit() : int
+    + returnBowl(bowl : FruitBowl)
+    + takeBowl() : FruitBowl
   }
   interface Lock {
     + acquire() {abstract}
     + release() {abstract}
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
   class Semaphore {
     - counter : int
@@ -40,19 +47,10 @@ package com.iluwatar.semaphore {
     + getNumLicenses() : int
     + release()
   }
-  enum FruitType {
-    + APPLE {static}
-    + LEMON {static}
-    + ORANGE {static}
-    + valueOf(name : String) : FruitType {static}
-    + values() : FruitType[] {static}
-  }
 }
-FruitShop --+ Fruit
 Fruit -->  "-type" FruitType
 FruitType ..+ Fruit
-FruitBowl --+ Fruit
-FruitBowl -->  "-fruit" Fruit
 FruitShop -->  "-semaphore" Semaphore
+FruitBowl -->  "-fruit" Fruit
 Semaphore ..|> Lock 
 @enduml

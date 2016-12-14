@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.iterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * The Iterator pattern is a design pattern in which an iterator is used to traverse a container and
@@ -34,6 +37,8 @@ package com.iluwatar.iterator;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
@@ -44,28 +49,28 @@ public class App {
 
     ItemIterator ringIterator = chest.iterator(ItemType.RING);
     while (ringIterator.hasNext()) {
-      System.out.println(ringIterator.next());
+      LOGGER.info(ringIterator.next().toString());
     }
 
-    System.out.println("----------");
+    LOGGER.info("----------");
 
     ItemIterator potionIterator = chest.iterator(ItemType.POTION);
     while (potionIterator.hasNext()) {
-      System.out.println(potionIterator.next());
+      LOGGER.info(potionIterator.next().toString());
     }
 
-    System.out.println("----------");
+    LOGGER.info("----------");
 
     ItemIterator weaponIterator = chest.iterator(ItemType.WEAPON);
     while (weaponIterator.hasNext()) {
-      System.out.println(weaponIterator.next());
+      LOGGER.info(weaponIterator.next().toString());
     }
 
-    System.out.println("----------");
+    LOGGER.info("----------");
 
     ItemIterator it = chest.iterator(ItemType.ANY);
     while (it.hasNext()) {
-      System.out.println(it.next());
+      LOGGER.info(it.next().toString());
     }
   }
 }

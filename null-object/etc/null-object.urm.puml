@@ -1,14 +1,8 @@
 @startuml
 package com.iluwatar.nullobject {
-  class NullNode {
-    - instance : NullNode {static}
-    - NullNode()
-    + getInstance() : NullNode {static}
-    + getLeft() : Node
-    + getName() : String
-    + getRight() : Node
-    + getTreeSize() : int
-    + walk()
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   interface Node {
     + getLeft() : Node {abstract}
@@ -17,11 +11,8 @@ package com.iluwatar.nullobject {
     + getTreeSize() : int {abstract}
     + walk() {abstract}
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
   class NodeImpl {
+    - LOGGER : Logger {static}
     - left : Node
     - name : String
     - right : Node
@@ -32,9 +23,19 @@ package com.iluwatar.nullobject {
     + getTreeSize() : int
     + walk()
   }
+  class NullNode {
+    - instance : NullNode {static}
+    - NullNode()
+    + getInstance() : NullNode {static}
+    + getLeft() : Node
+    + getName() : String
+    + getRight() : Node
+    + getTreeSize() : int
+    + walk()
+  }
 }
 NullNode -->  "-instance" NullNode
 NodeImpl -->  "-left" Node
-NullNode ..|> Node 
 NodeImpl ..|> Node 
+NullNode ..|> Node 
 @enduml

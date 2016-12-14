@@ -1,24 +1,8 @@
 @startuml
 package com.iluwatar.bridge {
-  class FlyingMagicWeapon {
-    + FlyingMagicWeapon(imp : FlyingMagicWeaponImpl)
-    + fly()
-    + getImp() : FlyingMagicWeaponImpl
-    + swing()
-    + unwield()
-    + wield()
-  }
-  abstract class MagicWeapon {
-    # imp : MagicWeaponImpl
-    + MagicWeapon(imp : MagicWeaponImpl)
-    + getImp() : MagicWeaponImpl
-    + swing() {abstract}
-    + unwield() {abstract}
-    + wield() {abstract}
-  }
-  abstract class SoulEatingMagicWeaponImpl {
-    + SoulEatingMagicWeaponImpl()
-    + eatSoulImp() {abstract}
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   class BlindingMagicWeapon {
     + BlindingMagicWeapon(imp : BlindingMagicWeaponImpl)
@@ -28,16 +12,51 @@ package com.iluwatar.bridge {
     + unwield()
     + wield()
   }
-  class Stormbringer {
-    + Stormbringer()
-    + eatSoulImp()
+  abstract class BlindingMagicWeaponImpl {
+    + BlindingMagicWeaponImpl()
+    + blindImp() {abstract}
+  }
+  class Excalibur {
+    - LOGGER : Logger {static}
+    + Excalibur()
+    + blindImp()
     + swingImp()
     + unwieldImp()
     + wieldImp()
   }
-  abstract class BlindingMagicWeaponImpl {
-    + BlindingMagicWeaponImpl()
-    + blindImp() {abstract}
+  class FlyingMagicWeapon {
+    + FlyingMagicWeapon(imp : FlyingMagicWeaponImpl)
+    + fly()
+    + getImp() : FlyingMagicWeaponImpl
+    + swing()
+    + unwield()
+    + wield()
+  }
+  abstract class FlyingMagicWeaponImpl {
+    + FlyingMagicWeaponImpl()
+    + flyImp() {abstract}
+  }
+  abstract class MagicWeapon {
+    # imp : MagicWeaponImpl
+    + MagicWeapon(imp : MagicWeaponImpl)
+    + getImp() : MagicWeaponImpl
+    + swing() {abstract}
+    + unwield() {abstract}
+    + wield() {abstract}
+  }
+  abstract class MagicWeaponImpl {
+    + MagicWeaponImpl()
+    + swingImp() {abstract}
+    + unwieldImp() {abstract}
+    + wieldImp() {abstract}
+  }
+  class Mjollnir {
+    - LOGGER : Logger {static}
+    + Mjollnir()
+    + flyImp()
+    + swingImp()
+    + unwieldImp()
+    + wieldImp()
   }
   class SoulEatingMagicWeapon {
     + SoulEatingMagicWeapon(imp : SoulEatingMagicWeaponImpl)
@@ -47,43 +66,27 @@ package com.iluwatar.bridge {
     + unwield()
     + wield()
   }
-  abstract class MagicWeaponImpl {
-    + MagicWeaponImpl()
-    + swingImp() {abstract}
-    + unwieldImp() {abstract}
-    + wieldImp() {abstract}
+  abstract class SoulEatingMagicWeaponImpl {
+    + SoulEatingMagicWeaponImpl()
+    + eatSoulImp() {abstract}
   }
-  class Excalibur {
-    + Excalibur()
-    + blindImp()
+  class Stormbringer {
+    - LOGGER : Logger {static}
+    + Stormbringer()
+    + eatSoulImp()
     + swingImp()
     + unwieldImp()
     + wieldImp()
-  }
-  abstract class FlyingMagicWeaponImpl {
-    + FlyingMagicWeaponImpl()
-    + flyImp() {abstract}
-  }
-  class Mjollnir {
-    + Mjollnir()
-    + flyImp()
-    + swingImp()
-    + unwieldImp()
-    + wieldImp()
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
 }
 MagicWeapon -->  "-imp" MagicWeaponImpl
-FlyingMagicWeapon --|> MagicWeapon 
-SoulEatingMagicWeaponImpl --|> MagicWeaponImpl 
 BlindingMagicWeapon --|> MagicWeapon 
-Stormbringer --|> SoulEatingMagicWeaponImpl 
 BlindingMagicWeaponImpl --|> MagicWeaponImpl 
-SoulEatingMagicWeapon --|> MagicWeapon 
 Excalibur --|> BlindingMagicWeaponImpl 
+FlyingMagicWeapon --|> MagicWeapon 
 FlyingMagicWeaponImpl --|> MagicWeaponImpl 
 Mjollnir --|> FlyingMagicWeaponImpl 
+SoulEatingMagicWeapon --|> MagicWeapon 
+SoulEatingMagicWeaponImpl --|> MagicWeaponImpl 
+Stormbringer --|> SoulEatingMagicWeaponImpl 
 @enduml

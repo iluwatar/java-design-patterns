@@ -1,17 +1,5 @@
 @startuml
 package com.iluwatar.specification.creature {
-  class Goblin {
-    + Goblin()
-  }
-  interface Creature {
-    + getColor() : Color {abstract}
-    + getMovement() : Movement {abstract}
-    + getName() : String {abstract}
-    + getSize() : Size {abstract}
-  }
-  class Troll {
-    + Troll()
-  }
   abstract class AbstractCreature {
     - color : Color
     - movement : Movement
@@ -24,8 +12,17 @@ package com.iluwatar.specification.creature {
     + getSize() : Size
     + toString() : String
   }
-  class Shark {
-    + Shark()
+  interface Creature {
+    + getColor() : Color {abstract}
+    + getMovement() : Movement {abstract}
+    + getName() : String {abstract}
+    + getSize() : Size {abstract}
+  }
+  class Dragon {
+    + Dragon()
+  }
+  class Goblin {
+    + Goblin()
   }
   class KillerBee {
     + KillerBee()
@@ -33,8 +30,11 @@ package com.iluwatar.specification.creature {
   class Octopus {
     + Octopus()
   }
-  class Dragon {
-    + Dragon()
+  class Shark {
+    + Shark()
+  }
+  class Troll {
+    + Troll()
   }
 }
 package com.iluwatar.specification.property {
@@ -67,18 +67,7 @@ package com.iluwatar.specification.property {
     + values() : Size[] {static}
   }
 }
-package com.iluwatar.specification.app {
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-}
 package com.iluwatar.specification.selector {
-  class SizeSelector {
-    - s : Size
-    + SizeSelector(s : Size)
-    + test(t : Creature) : boolean
-  }
   class ColorSelector {
     - c : Color
     + ColorSelector(c : Color)
@@ -89,6 +78,18 @@ package com.iluwatar.specification.selector {
     + MovementSelector(m : Movement)
     + test(t : Creature) : boolean
   }
+  class SizeSelector {
+    - s : Size
+    + SizeSelector(s : Size)
+    + test(t : Creature) : boolean
+  }
+}
+package com.iluwatar.specification.app {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
 }
 SizeSelector -->  "-s" Size
 AbstractCreature -->  "-color" Color
@@ -96,11 +97,11 @@ MovementSelector -->  "-m" Movement
 AbstractCreature -->  "-movement" Movement
 AbstractCreature -->  "-size" Size
 ColorSelector -->  "-c" Color
-Goblin --|> AbstractCreature 
-Troll --|> AbstractCreature 
 AbstractCreature ..|> Creature 
-Shark --|> AbstractCreature 
+Dragon --|> AbstractCreature 
+Goblin --|> AbstractCreature 
 KillerBee --|> AbstractCreature 
 Octopus --|> AbstractCreature 
-Dragon --|> AbstractCreature 
+Shark --|> AbstractCreature 
+Troll --|> AbstractCreature 
 @enduml
