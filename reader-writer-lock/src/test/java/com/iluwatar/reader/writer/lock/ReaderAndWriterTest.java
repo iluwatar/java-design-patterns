@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,37 @@
 
 package com.iluwatar.reader.writer.lock;
 
-import static org.mockito.Mockito.inOrder;
+import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
-import org.mockito.InOrder;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author hongshuwei@gmail.com
  */
-public class ReaderAndWriterTest extends StdOutTest {
+public class ReaderAndWriterTest {
 
+  private InMemoryAppender appender;
 
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderAndWriterTest.class);
 
   /**
    * Verify reader and writer can only get the lock to read and write orderly
@@ -60,14 +76,13 @@ public class ReaderAndWriterTest extends StdOutTest {
     try {
       executeService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      System.out.println("Error waiting for ExecutorService shutdown");
+      LOGGER.error("Error waiting for ExecutorService shutdown", e);
     }
 
-    final InOrder inOrder = inOrder(getStdOutMock());
-    inOrder.verify(getStdOutMock()).println("Reader 1 begin");
-    inOrder.verify(getStdOutMock()).println("Reader 1 finish");
-    inOrder.verify(getStdOutMock()).println("Writer 1 begin");
-    inOrder.verify(getStdOutMock()).println("Writer 1 finish");
+    assertTrue(appender.logContains("Reader 1 begin"));
+    assertTrue(appender.logContains("Reader 1 finish"));
+    assertTrue(appender.logContains("Writer 1 begin"));
+    assertTrue(appender.logContains("Writer 1 finish"));
   }
 
   /**
@@ -91,14 +106,13 @@ public class ReaderAndWriterTest extends StdOutTest {
     try {
       executeService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      System.out.println("Error waiting for ExecutorService shutdown");
+      LOGGER.error("Error waiting for ExecutorService shutdown", e);
     }
 
-    final InOrder inOrder = inOrder(getStdOutMock());
-    inOrder.verify(getStdOutMock()).println("Writer 1 begin");
-    inOrder.verify(getStdOutMock()).println("Writer 1 finish");
-    inOrder.verify(getStdOutMock()).println("Reader 1 begin");
-    inOrder.verify(getStdOutMock()).println("Reader 1 finish");
+    assertTrue(appender.logContains("Writer 1 begin"));
+    assertTrue(appender.logContains("Writer 1 finish"));
+    assertTrue(appender.logContains("Reader 1 begin"));
+    assertTrue(appender.logContains("Reader 1 finish"));
   }
 }
 

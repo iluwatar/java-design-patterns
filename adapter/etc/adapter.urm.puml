@@ -1,18 +1,19 @@
 @startuml
 package com.iluwatar.adapter {
-  interface BattleShip {
-    + fire() {abstract}
-    + move() {abstract}
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   class BattleFishingBoat {
+    - LOGGER : Logger {static}
     - boat : FishingBoat
     + BattleFishingBoat()
     + fire()
     + move()
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
+  interface BattleShip {
+    + fire() {abstract}
+    + move() {abstract}
   }
   class Captain {
     - battleship : BattleShip
@@ -23,6 +24,7 @@ package com.iluwatar.adapter {
     + setBattleship(battleship : BattleShip)
   }
   class FishingBoat {
+    - LOGGER : Logger {static}
     + FishingBoat()
     + fish()
     + sail()

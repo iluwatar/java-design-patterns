@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,42 +23,42 @@
 package com.iluwatar.hexagonal.eventlog;
 
 import com.iluwatar.hexagonal.domain.PlayerDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Standard output event log
  */
 public class StdOutEventLog implements LotteryEventLog {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(StdOutEventLog.class);
+
   @Override
   public void ticketSubmitted(PlayerDetails details) {
-    System.out.println(String.format("Lottery ticket for %s was submitted. Bank account %s was charged for 3 credits.",
-        details.getEmail(), details.getBankAccount()));
+    LOGGER.info("Lottery ticket for {} was submitted. Bank account {} was charged for 3 credits.",
+        details.getEmail(), details.getBankAccount());
   }
 
   @Override
   public void ticketDidNotWin(PlayerDetails details) {
-    System.out.println(String.format("Lottery ticket for %s was checked and unfortunately did not win this time.",
-        details.getEmail()));
+    LOGGER.info("Lottery ticket for {} was checked and unfortunately did not win this time.", details.getEmail());
   }
 
   @Override
   public void ticketWon(PlayerDetails details, int prizeAmount) {
-    System.out
-        .println(String.format("Lottery ticket for %s has won! The bank account %s was deposited with %d credits.",
-            details.getEmail(), details.getBankAccount(), prizeAmount));
+    LOGGER.info("Lottery ticket for {} has won! The bank account {} was deposited with {} credits.",
+            details.getEmail(), details.getBankAccount(), prizeAmount);
   }
 
   @Override
   public void prizeError(PlayerDetails details, int prizeAmount) {
-    System.out
-        .println(String.format("Lottery ticket for %s has won! Unfortunately the bank credit transfer of %d failed.",
-            details.getEmail(), prizeAmount));
+    LOGGER.error("Lottery ticket for {} has won! Unfortunately the bank credit transfer of {} failed.",
+            details.getEmail(), prizeAmount);
   }
 
   @Override
   public void ticketSubmitError(PlayerDetails details) {
-    System.out.println(
-        String.format("Lottery ticket for %s could not be submitted because the credit transfer of 3 credits failed.",
-            details.getEmail()));
+    LOGGER.error("Lottery ticket for {} could not be submitted because the credit transfer of 3 credits failed.",
+            details.getEmail());
   }
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,25 +22,35 @@
  */
 package com.iluwatar.observer.generic;
 
-import com.iluwatar.observer.StdOutTest;
 import com.iluwatar.observer.WeatherObserver;
 import com.iluwatar.observer.WeatherType;
-
+import com.iluwatar.observer.utils.InMemoryAppender;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
 
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/27/15 - 11:08 AM
  *
  * @author Jeroen Meulemeester
  */
-public class GWeatherTest extends StdOutTest {
+public class GWeatherTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender(GWeather.class);
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * Add a {@link WeatherObserver}, verify if it gets notified of a weather change, remove the
@@ -55,14 +65,15 @@ public class GWeatherTest extends StdOutTest {
     verifyZeroInteractions(observer);
 
     weather.timePasses();
-    verify(getStdOutMock()).println("The weather changed to rainy.");
+    assertEquals("The weather changed to rainy.", appender.getLastMessage());
     verify(observer).update(weather, WeatherType.RAINY);
 
     weather.removeObserver(observer);
     weather.timePasses();
-    verify(getStdOutMock()).println("The weather changed to windy.");
+    assertEquals("The weather changed to windy.", appender.getLastMessage());
 
-    verifyNoMoreInteractions(observer, getStdOutMock());
+    verifyNoMoreInteractions(observer);
+    assertEquals(2, appender.getLogSize());
   }
 
   /**
@@ -74,7 +85,7 @@ public class GWeatherTest extends StdOutTest {
     final GWeather weather = new GWeather();
     weather.addObserver(observer);
 
-    final InOrder inOrder = inOrder(observer, getStdOutMock());
+    final InOrder inOrder = inOrder(observer);
     final WeatherType[] weatherTypes = WeatherType.values();
     for (int i = 1; i < 20; i++) {
       weather.timePasses();

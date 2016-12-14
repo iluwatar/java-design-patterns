@@ -1,33 +1,29 @@
 @startuml
 package com.iluwatar.abstractdocument.domain {
-  class Part {
-    + Part(properties : Map<String, Object>)
-  }
-  interface HasPrice {
-    + PROPERTY : String {static}
-    + getPrice() : Optional<Number>
-  }
-  interface HasParts {
-    + PROPERTY : String {static}
-    + getParts() : Stream<Part>
-  }
   class Car {
     + Car(properties : Map<String, Object>)
-  }
-  interface HasType {
-    + PROPERTY : String {static}
-    + getType() : Optional<String>
   }
   interface HasModel {
     + PROPERTY : String {static}
     + getModel() : Optional<String>
   }
+  interface HasParts {
+    + PROPERTY : String {static}
+    + getParts() : Stream<Part>
+  }
+  interface HasPrice {
+    + PROPERTY : String {static}
+    + getPrice() : Optional<Number>
+  }
+  interface HasType {
+    + PROPERTY : String {static}
+    + getType() : Optional<String>
+  }
+  class Part {
+    + Part(properties : Map<String, Object>)
+  }
 }
 package com.iluwatar.abstractdocument {
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
   abstract class AbstractDocument {
     - properties : Map<String, Object>
     # AbstractDocument(properties : Map<String, Object>)
@@ -36,24 +32,28 @@ package com.iluwatar.abstractdocument {
     + put(key : String, value : Object)
     + toString() : String
   }
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
   interface Document {
     + children(String, Function<Map<String, Object>, T>) : Stream<T> {abstract}
     + get(String) : Object {abstract}
     + put(String, Object) {abstract}
   }
 }
-AbstractDocument --+ Map
-Part ..|> HasType 
-Part ..|> HasModel 
-Part ..|> HasPrice 
-Part --|> AbstractDocument 
 AbstractDocument ..|> Document 
-HasPrice --|> Document 
-HasParts --|> Document 
 Car ..|> HasModel 
 Car ..|> HasPrice 
 Car ..|> HasParts 
 Car --|> AbstractDocument 
-HasType --|> Document 
 HasModel --|> Document 
+HasParts --|> Document 
+HasPrice --|> Document 
+HasType --|> Document 
+Part ..|> HasType 
+Part ..|> HasModel 
+Part ..|> HasPrice 
+Part --|> AbstractDocument 
 @enduml

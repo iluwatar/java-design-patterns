@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,18 +22,31 @@
  */
 package com.iluwatar.privateclassdata;
 
+import com.iluwatar.privateclassdata.utils.InMemoryAppender;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InOrder;
 
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.verify;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Date: 12/27/15 - 10:46 PM
  *
  * @author Jeroen Meulemeester
  */
-public class ImmutableStewTest extends StdOutTest {
+public class ImmutableStewTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * Verify if mixing the stew doesn't change the internal state
@@ -41,15 +54,14 @@ public class ImmutableStewTest extends StdOutTest {
   @Test
   public void testMix() {
     final Stew stew = new Stew(1, 2, 3, 4);
-    final String message = "Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers";
+    final String expectedMessage = "Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers";
 
-    final InOrder inOrder = inOrder(getStdOutMock());
     for (int i = 0; i < 20; i++) {
       stew.mix();
-      inOrder.verify(getStdOutMock()).println(message);
+      assertEquals(expectedMessage, appender.getLastMessage());
     }
 
-    inOrder.verifyNoMoreInteractions();
+    assertEquals(20, appender.getLogSize());
   }
 
   /**
@@ -60,15 +72,12 @@ public class ImmutableStewTest extends StdOutTest {
     final Stew stew = new Stew(1, 2, 3, 4);
     stew.mix();
 
-    verify(getStdOutMock())
-            .println("Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers");
+    assertEquals("Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers",  appender.getLastMessage());
 
     stew.taste();
-    verify(getStdOutMock()).println("Tasting the stew");
+    assertEquals("Tasting the stew",  appender.getLastMessage());
 
     stew.mix();
-    verify(getStdOutMock())
-            .println("Mixing the stew we find: 0 potatoes, 1 carrots, 2 meat and 3 peppers");
-
+    assertEquals("Mixing the stew we find: 0 potatoes, 1 carrots, 2 meat and 3 peppers",  appender.getLastMessage());
   }
 }

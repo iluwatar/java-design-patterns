@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.reactor.framework;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -35,6 +38,8 @@ import java.nio.channels.SocketChannel;
  * {@link SocketChannel}.
  */
 public class NioServerSocketChannel extends AbstractNioChannel {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(NioServerSocketChannel.class);
 
   private final int port;
 
@@ -96,7 +101,7 @@ public class NioServerSocketChannel extends AbstractNioChannel {
     ((ServerSocketChannel) getJavaChannel()).socket().bind(
         new InetSocketAddress(InetAddress.getLocalHost(), port));
     ((ServerSocketChannel) getJavaChannel()).configureBlocking(false);
-    System.out.println("Bound TCP socket at port: " + port);
+    LOGGER.info("Bound TCP socket at port: {}", port);
   }
 
   /**

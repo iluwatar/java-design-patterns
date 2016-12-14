@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,19 +22,24 @@
  */
 package com.iluwatar.decorator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * The Decorator pattern is a more flexible alternative to subclassing. The Decorator class
- * implements the same interface as the target and uses composition to "decorate" calls to the
+ * implements the same interface as the target and uses aggregation to "decorate" calls to the
  * target. Using the Decorator pattern it is possible to change the behavior of the class during
  * runtime.
  * <p>
- * In this example we show how the simple {@link Troll} first attacks and then flees the battle.
- * Then we decorate the {@link Troll} with a {@link SmartHostile} and perform the attack again. You
+ * In this example we show how the simple {@link SimpleTroll} first attacks and then flees the battle.
+ * Then we decorate the {@link SimpleTroll} with a {@link ClubbedTroll} and perform the attack again. You
  * can see how the behavior changes after the decoration.
  * 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point
@@ -44,17 +49,17 @@ public class App {
   public static void main(String[] args) {
 
     // simple troll
-    System.out.println("A simple looking troll approaches.");
-    Hostile troll = new Troll();
+    LOGGER.info("A simple looking troll approaches.");
+    Troll troll = new SimpleTroll();
     troll.attack();
     troll.fleeBattle();
-    System.out.printf("Simple troll power %d.\n", troll.getAttackPower());
+    LOGGER.info("Simple troll power {}.\n", troll.getAttackPower());
 
     // change the behavior of the simple troll by adding a decorator
-    System.out.println("\nA smart looking troll surprises you.");
-    Hostile smart = new SmartHostile(troll);
-    smart.attack();
-    smart.fleeBattle();
-    System.out.printf("Smart troll power %d.\n", smart.getAttackPower());
+    LOGGER.info("A troll with huge club surprises you.");
+    Troll clubbed = new ClubbedTroll(troll);
+    clubbed.attack();
+    clubbed.fleeBattle();
+    LOGGER.info("Clubbed troll power {}.\n", clubbed.getAttackPower());
   }
 }

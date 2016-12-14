@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.multiton {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }

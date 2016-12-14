@@ -1,19 +1,7 @@
 @startuml
 package com.iluwatar.flyweight {
-  class PotionFactory {
-    - potions : Map<PotionType, Potion>
-    + PotionFactory()
-    ~ createPotion(type : PotionType) : Potion
-  }
-  class HealingPotion {
-    + HealingPotion()
-    + drink()
-  }
-  class InvisibilityPotion {
-    + InvisibilityPotion()
-    + drink()
-  }
   class AlchemistShop {
+    - LOGGER : Logger {static}
     - bottomShelf : List<Potion>
     - topShelf : List<Potion>
     + AlchemistShop()
@@ -26,20 +14,33 @@ package com.iluwatar.flyweight {
     + App()
     + main(args : String[]) {static}
   }
-  interface Potion {
-    + drink() {abstract}
-  }
-  class PoisonPotion {
-    + PoisonPotion()
-    + drink()
-  }
-  class StrengthPotion {
-    + StrengthPotion()
+  class HealingPotion {
+    - LOGGER : Logger {static}
+    + HealingPotion()
     + drink()
   }
   class HolyWaterPotion {
+    - LOGGER : Logger {static}
     + HolyWaterPotion()
     + drink()
+  }
+  class InvisibilityPotion {
+    - LOGGER : Logger {static}
+    + InvisibilityPotion()
+    + drink()
+  }
+  class PoisonPotion {
+    - LOGGER : Logger {static}
+    + PoisonPotion()
+    + drink()
+  }
+  interface Potion {
+    + drink() {abstract}
+  }
+  class PotionFactory {
+    - potions : Map<PotionType, Potion>
+    + PotionFactory()
+    ~ createPotion(type : PotionType) : Potion
   }
   enum PotionType {
     + HEALING {static}
@@ -50,11 +51,16 @@ package com.iluwatar.flyweight {
     + valueOf(name : String) : PotionType {static}
     + values() : PotionType[] {static}
   }
+  class StrengthPotion {
+    - LOGGER : Logger {static}
+    + StrengthPotion()
+    + drink()
+  }
 }
 AlchemistShop -->  "-topShelf" Potion
 HealingPotion ..|> Potion 
+HolyWaterPotion ..|> Potion 
 InvisibilityPotion ..|> Potion 
 PoisonPotion ..|> Potion 
 StrengthPotion ..|> Potion 
-HolyWaterPotion ..|> Potion 
 @enduml

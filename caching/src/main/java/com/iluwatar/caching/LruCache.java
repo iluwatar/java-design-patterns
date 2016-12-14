@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.caching;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +40,8 @@ import java.util.Map;
  *
  */
 public class LruCache {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(LruCache.class);
 
   class Node {
     String userId;
@@ -115,7 +120,7 @@ public class LruCache {
     } else {
       Node newNode = new Node(userId, userAccount);
       if (cache.size() >= capacity) {
-        System.out.println("# Cache is FULL! Removing " + end.userId + " from cache...");
+        LOGGER.info("# Cache is FULL! Removing {} from cache...", end.userId);
         cache.remove(end.userId); // remove LRU data from cache.
         remove(end);
         setHead(newNode);
@@ -136,7 +141,7 @@ public class LruCache {
   public void invalidate(String userId) {
     Node toBeRemoved = cache.remove(userId);
     if (toBeRemoved != null) {
-      System.out.println("# " + userId + " has been updated! Removing older version from cache...");
+      LOGGER.info("# {} has been updated! Removing older version from cache...", userId);
       remove(toBeRemoved);
     }
   }

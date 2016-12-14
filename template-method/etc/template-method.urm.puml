@@ -1,10 +1,8 @@
 @startuml
 package com.iluwatar.templatemethod {
-  class HitAndRunMethod {
-    + HitAndRunMethod()
-    # confuseTarget(target : String)
-    # pickTarget() : String
-    # stealTheItem(target : String)
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   class HalflingThief {
     - method : StealingMethod
@@ -12,7 +10,15 @@ package com.iluwatar.templatemethod {
     + changeMethod(method : StealingMethod)
     + steal()
   }
+  class HitAndRunMethod {
+    - LOGGER : Logger {static}
+    + HitAndRunMethod()
+    # confuseTarget(target : String)
+    # pickTarget() : String
+    # stealTheItem(target : String)
+  }
   abstract class StealingMethod {
+    - LOGGER : Logger {static}
     + StealingMethod()
     # confuseTarget(String) {abstract}
     # pickTarget() : String {abstract}
@@ -20,14 +26,11 @@ package com.iluwatar.templatemethod {
     # stealTheItem(String) {abstract}
   }
   class SubtleMethod {
+    - LOGGER : Logger {static}
     + SubtleMethod()
     # confuseTarget(target : String)
     # pickTarget() : String
     # stealTheItem(target : String)
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
 }
 HalflingThief -->  "-method" StealingMethod
