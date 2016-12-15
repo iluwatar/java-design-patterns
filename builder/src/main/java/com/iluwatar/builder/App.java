@@ -77,5 +77,6 @@ public class App {
             .withWeapon(Weapon.BOW).build();
     LOGGER.info(thief.toString());
 
+    LOGGER.info("git pull test");
   }
 }
