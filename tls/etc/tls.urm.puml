@@ -1,0 +1,28 @@
+@startuml
+package com.iluwatar.tls {
+  class App {
+    ~ dateList : List<Date> {static}
+    ~ exceptionList : List<String> {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class AppUgly {
+    ~ dateList : List<Date> {static}
+    ~ exceptionList : List<String> {static}
+    + AppUgly()
+    + main(args : String[]) {static}
+  }
+  class DateFormatRunnable {
+    - dateValue : String
+    - df : ThreadLocal<DateFormat>
+    + DateFormatRunnable(inDateFormat : String, inDateValue : String)
+    + run()
+  }
+  class DateFormatUglyRunnable {
+    - dateValue : String
+    - df : DateFormat
+    + DateFormatUglyRunnable(inDateFormat : String, inDateValue : String)
+    + run()
+  }
+}
+@enduml
