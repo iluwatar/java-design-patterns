@@ -51,24 +51,25 @@ public class ConsoleAdministration {
     LotteryAdministration administartion = injector.getInstance(LotteryAdministration.class);
     LotteryService service = injector.getInstance(LotteryService.class);
     SampleData.submitTickets(service, 20);
-    Scanner scanner = new Scanner(System.in);
-    boolean exit = false;
-    while (!exit) {
-      printMainMenu();
-      String cmd = readString(scanner);
-      if (cmd.equals("1")) {
-        administartion.getAllSubmittedTickets().forEach((k,v)->LOGGER.info("Key: {}, Value: {}", k, v));
-      } else if (cmd.equals("2")) {
-        LotteryNumbers numbers = administartion.performLottery();
-        LOGGER.info("The winning numbers: {}", numbers.getNumbersAsString());
-        LOGGER.info("Time to reset the database for next round, eh?");
-      } else if (cmd.equals("3")) {
-        administartion.resetLottery();
-        LOGGER.info("The lottery ticket database was cleared.");
-      } else if (cmd.equals("4")) {
-        exit = true;
-      } else {
-        LOGGER.info("Unknown command: {}", cmd);
+    try (Scanner scanner = new Scanner(System.in)) {
+      boolean exit = false;
+      while (!exit) {
+        printMainMenu();
+        String cmd = readString(scanner);
+        if ("1".equals(cmd)) {
+          administartion.getAllSubmittedTickets().forEach((k, v) -> LOGGER.info("Key: {}, Value: {}", k, v));
+        } else if ("2".equals(cmd)) {
+          LotteryNumbers numbers = administartion.performLottery();
+          LOGGER.info("The winning numbers: {}", numbers.getNumbersAsString());
+          LOGGER.info("Time to reset the database for next round, eh?");
+        } else if ("3".equals(cmd)) {
+          administartion.resetLottery();
+          LOGGER.info("The lottery ticket database was cleared.");
+        } else if ("4".equals(cmd)) {
+          exit = true;
+        } else {
+          LOGGER.info("Unknown command: {}", cmd);
+        }
       }
     }
   }
@@ -84,7 +85,6 @@ public class ConsoleAdministration {
 
   private static String readString(Scanner scanner) {
     System.out.print("> ");
-    String cmd = scanner.next();
-    return cmd;
+    return scanner.next();
   }
 }
