@@ -67,7 +67,7 @@ public class ConsoleLottery {
           addFundsToLotteryAccount(bank, scanner);
         } else if ("3".equals(cmd)) {
           submitTicket(service, scanner);
-        } else if (cmd.equals("4")) {
+        } else if ("4".equals(cmd)) {
           checkTicket(service, scanner);
         } else if ("5".equals(cmd)) {
           exit = true;
