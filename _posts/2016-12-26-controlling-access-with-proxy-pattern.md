@@ -4,7 +4,7 @@ title: Controlling Access With Proxy Pattern
 author: ilu
 ---
 
-![Hexagonal Architecture]({{ site.baseurl }}/assets/hexagonal-architecture.png)
+![Proxy]({{ site.baseurl }}/assets/castle.jpg)
 
 ## Introduction
 
