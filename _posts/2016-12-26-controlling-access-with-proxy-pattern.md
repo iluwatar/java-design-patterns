@@ -14,7 +14,7 @@ One of the most useful and versatile design patterns is the classic Proxy.
 
 Basically it wraps an object and acts as a proxy between the calls to the object. At first thought it might not sound so useful but this simple concept is a great solution to many problems.
 
-![Proxy class diagram]({{ site.baseurl }}/assets/proxy.png)
+![Proxy class diagram]({{ site.baseurl }}/assets/proxy-concept.png)
 
 In the class diagram we see that the client depends only on the interface so it can as well use the proxy instead of the real subject. When the proxy object is called it does its thing and eventually forwards the call to the real subject.
 
