@@ -37,6 +37,9 @@ are several common situations in which the Proxy pattern is applicable
 * Facilitate network connection
 * Count references to an object
 
+## Presentations
+* [Proxy](https://github.com/iluwatar/java-design-patterns/tree/master/proxy/etc/presentation.html)
+
 ## Real world examples
 
 * [java.lang.reflect.Proxy](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)
