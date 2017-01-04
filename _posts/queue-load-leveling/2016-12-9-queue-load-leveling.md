@@ -4,7 +4,7 @@ title: Queue-Based Load Leveling Pattern
 author: cha
 ---
 
-![Queue-Based Load Leveling Pattern]({{ site.baseurl }}/assets/Queue-load-level-pattern.png)
+![Queue-Based Load Leveling]({{ site.baseurl }}/assets/queue-load-leveling-title.png)	
 
 ## Problem
 Many solutions in the cloud involve running tasks that invoke services. In this environment, if a service is subjected to intermittent heavy loads, it can cause performance or reliability issues. If the same service is utilized by a number of tasks running concurrently, it can be difficult to predict the volume of requests to which the service might be subjected at any given point in time. It is possible that a service might experience peaks in demand that cause it to become overloaded and unable to respond to requests in a timely manner.
@@ -12,9 +12,11 @@ Many solutions in the cloud involve running tasks that invoke services. In this 
 ## Solution
 Introduce a queue between the task and the service. The task and the service run asynchronously. The task posts a message containing the data required by the service to a queue. The queue acts as a buffer, storing the message until it is retrieved by the service. The service retrieves the messages from the queue and processes them. Requests from a number of tasks, which can be generated at a highly variable rate, can be passed to the service through the same message queue.
 
-![Using a queue and a worker role to level the load between instances of the web role and the service]({{ site.baseurl }}/assets/Queue-load-level-scenario.png)
+![Queue-Based Load Leveling Pattern]({{ site.baseurl }}/assets/Queue-load-level-pattern.png)
 
 The queue effectively decouples the tasks from the service, and the service can handle the messages at its own pace irrespective of the volume of requests from concurrent tasks. Additionally, there is no delay to a task if the service is not available at the time it posts a message to the queue.
+
+![Using a queue and a worker role to level the load between instances of the web role and the service]({{ site.baseurl }}/assets/Queue-load-level-scenario.png)
 
 ## Benefits
 * It can help to maximize availability because delays arising in services will not have an immediate and direct impact on the application, which can continue to post messages to the queue even when the service is not available or is not currently processing messages.
@@ -27,192 +29,23 @@ load rather than the peak load.
 * Following are the core classes in the application,
   - TaskGenerator: This is the service requester class where we create any number of requests and submit them to the Task Queue. Each TaskGenerator instance is a Thread. Each requester submits requests at its own rate.
   
-    ```Java
-    
-    /**
-     * TaskGenerator class.
-     * Each TaskGenerator thread will be a Worker which submit's messages to the queue.
-     * We need to mention the message count for each of the TaskGenerator threads.
-     * 
-    */
-    public class TaskGenerator implements Task, Runnable {
-  
-      private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-  
-      // MessageQueue reference using which we will submit our messages.
-      private final MessageQueue msgQueue;
-
-      // Total message count that a TaskGenerator will submit.
-      private final int msgCount;
-
-      // Parameterized constructor.
-      public TaskGenerator(MessageQueue msgQueue, int msgCount) {
-        this.msgQueue = msgQueue;
-        this.msgCount = msgCount;
-      }
-  
-      /**
-       * Submit messages to the Blocking Queue.
-       */
-      public void submit(Message msg) {
-        try {
-          this.msgQueue.submitMsg(msg);
-        } catch (Exception e) {
-          LOGGER.error(e.getMessage());
-        }
-      }
-  
-      /**
-       * Each TaskGenerator thread will submit all the messages to the Queue.
-       * After every message submission TaskGenerator thread will sleep for 1 second.
-       */
-      public void run() {
-
-        int count = this.msgCount;
-
-        try {
-          while (count > 0) {
-            String statusMsg = "Message-" + count + " submitted by " + Thread.currentThread().getName();
-            this.submit(new Message(statusMsg));
-
-            LOGGER.info(statusMsg);
-
-            // reduce the message count.
-            count--;
-
-            // Make the current thread to sleep after every Message submission.
-            Thread.sleep(1000);
-          }
-        } catch (InterruptedException ie) {
-          LOGGER.error(ie.getMessage());
-        } catch (Exception e) {
-          LOGGER.error(e.getMessage());
-        }
-      }
-    }
-    ```
+    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/org/queue/load/leveling/TaskGenerator.java?slice=27:89"></script>
   
   - Message: TaskGenerators create objects of Message class and submit them to the MessageQueue.
   
-    ```Java
-    public class Message {
-      private final String msg;
- 
-      // Parameter constructor.
-      public Message(String msg) {
-        super();
-        this.msg = msg;
-      }
-
-      // Get Method for attribute msg.
-      public String getMsg() {
-        return msg;
-      }
-
-      @Override
-      public String toString() {
-        return msg;
-      }
-    }
-    ```
+    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/org/queue/load/leveling/Message.java?slice=28:47"></script>
     
   - MessageQueue: In this class we have a BlockingQueue which takes messages submitted from the TaskGenerators. This class is just used for storing and retreiving tasks from the Queue.
   
-    ```Java
-    /**
-     * 
-     * MessageQueue class.
-     * In this class we will create a Blocking Queue and 
-     * submit/retrieve all the messages from it.
-     */
-    public class MessageQueue {
-
-        private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-        private final BlockingQueue<Message> blkQueue;
-
-        // Default constructor when called creates Blocking Queue object. 
-        public MessageQueue() {
-          this.blkQueue = new ArrayBlockingQueue<Message>(1024);
-        }
-
-        /**
-         * All the TaskGenerator threads will call this method to insert the
-         * Messages in to the Blocking Queue. 
-         */
-        public void submitMsg(Message msg) {
-          try {
-            if (null != msg) {
-              blkQueue.add(msg);
-            }
-          } catch (Exception e) {
-            LOGGER.error(e.getMessage());
-          }
-        }
-
-        /**
-         * All the messages will be retrieved by the ServiceExecutor by 
-         * calling this method and process them.
-         * Retrieves and removes the head of this queue, or returns null if this queue is empty.
-         */
-        public Message retrieveMsg() {
-          Message retrievedMsg = null;
-          try {
-            retrievedMsg = blkQueue.poll();
-          } catch (Exception e) {
-            LOGGER.error(e.getMessage());
-          }
-
-          return retrievedMsg;
-        }
-      }
-    ```
+    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/org/queue/load/leveling/MessageQueue.java?slice=30:77"></script>
   
   - ServiceExecutor: Picks up the tasks from the MessageQueue and serves them. The ServiceRequester picks up requests at constant rate even though the TaksGenerators submitted at a different rate.
   
-  ```Java
-  /**
-   * 
-   *  ServiceExecuotr class.
-   *  This class will pick up Messages one by one from 
-   *  the Blocking Queue and process them.
-   */
-  public class ServiceExecutor implements Runnable {
+    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/org/queue/load/leveling/ServiceExecutor.java?slice=28:67"></script>
 
-      private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+## Output
+   Running the test application produces the following output:
 
-      private final MessageQueue msgQueue;
-
-      public ServiceExecutor(MessageQueue msgQueue) {
-        this.msgQueue = msgQueue;
-      }
-
-      /**
-       * The ServiceExecutor thread will retrieve each message and process it.
-       */
-      public void run() {
-        try {
-          while (true) {
-            Message msg = msgQueue.retrieveMsg();
-
-            if (null != msg) {
-              LOGGER.info(msg.toString() + " is served.");
-            } else {
-              LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
-            }
-
-            Thread.sleep(1000);
-          }
-        } catch (InterruptedException ie) {
-          LOGGER.error(ie.getMessage());
-        } catch (Exception e) {
-          LOGGER.error(e.getMessage());
-        }
-      }
-  }
-  
-  ```
-
-Running the test application produces the following output:
 ```
 21:04:03.897 [main] INFO org.queue.load.leveling.App - Submitting TaskGenerators and ServiceExecutor threads.
 21:04:03.907 [main] INFO org.queue.load.leveling.App - Intiating shutdown. Executor will shutdown only after all the Threads are completed.
