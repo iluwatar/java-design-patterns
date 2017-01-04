@@ -4,11 +4,10 @@ title: Combinator Ever # the properly formatted title
 folder: combinator # the folder name in which this pattern lies
 permalink: /patterns/combinator/ # the permalink to the pattern, to keep this uniform please stick to /patterns/FOLDER/
 
-categories: creational # categories of the pattern
+categories: Behavioral # categories of the pattern
 tags: # tags of the pattern
- - best
- - ever
- - awesome
+ - Java
+ - Difficulty-Intermediate
 ---
 
 
@@ -19,9 +18,7 @@ tags: # tags of the pattern
 ## Applicability
 Use the Best Pattern Ever pattern when
 
-* you want to be the best
-* you need to ...
+* you want to combine primitives into more complex structures
+* you want to strengthen the Single Responsibility Principle
 
-## Real world examples
 
-* [Nowhere](http://no.where.com)
