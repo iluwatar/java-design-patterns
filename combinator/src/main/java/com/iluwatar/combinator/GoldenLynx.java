@@ -1,4 +1,4 @@
-package com.Iluwatar.combinator;
+package com.iluwatar.combinator;
 
 public enum GoldenLynx {
 	BlueStoneOfTreason, GreenStoneOfJudgement, RedStoneOfFaith;
