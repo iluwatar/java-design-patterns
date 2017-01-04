@@ -15,11 +15,13 @@ tags: # tags of the pattern
 
 ![alt text](./etc/combinator.png)
 
+
 ## Applicability
-Use the Best Pattern Ever pattern when
+Use the Combiner pattern when
 
 * you want to combine primitives into more complex structures
 * you want to strengthen the Single Responsibility Principle
+
 
 ## Related patterns
 * Specification pattern
