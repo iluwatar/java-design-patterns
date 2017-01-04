@@ -1,1 +1,1 @@
-(./etc/combinator.png)
+![alt text](./etc/combinator.png)
