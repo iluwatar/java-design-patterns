@@ -21,4 +21,6 @@ Use the Best Pattern Ever pattern when
 * you want to combine primitives into more complex structures
 * you want to strengthen the Single Responsibility Principle
 
+## Related patterns
+* Specification pattern
 
