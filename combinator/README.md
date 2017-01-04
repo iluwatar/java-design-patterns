@@ -1,3 +1,4 @@
+layout: post
 
 ## Intent
 
