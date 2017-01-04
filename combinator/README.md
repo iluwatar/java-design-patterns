@@ -1,4 +1,5 @@
 --- 
+font-size:24pt
 layout: pattern # layout must allways be pattern
 title: Best Pattern Ever # the properly formatted title
 folder: best-pattern-ever # the folder name in which this pattern lies
