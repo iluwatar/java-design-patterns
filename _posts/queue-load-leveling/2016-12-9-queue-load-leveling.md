@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Queue-Based Load Leveling Pattern
-author: Amarnath Ch
+author: cha
 ---
 
 ![Queue-Based Load Leveling Pattern]({{ site.baseurl }}/assets/Queue-load-level-pattern.png)
