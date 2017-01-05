@@ -134,6 +134,7 @@
         <module>event-asynchronous</module>
         <module>queue-load-leveling</module>
         <module>object-mother</module>
+        <module>guarded-suspension</module>
     </modules>
 
     <dependencyManagement>
