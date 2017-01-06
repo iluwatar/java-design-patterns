@@ -29,9 +29,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by robertt240 on 1/2/17.
- */
 public class GuardedQueueTest {
   private volatile Integer value;
 
