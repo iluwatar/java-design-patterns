@@ -25,6 +25,9 @@ for both the task and the service.
 * This pattern is ideally suited to any type of application that uses services that may be subject to overloading.
 * This pattern might not be suitable if the application expects a response from the service with minimal latency.
 
+## Tutorials
+* [Queue-Based Load Leveling Pattern](http://java-design-patterns.com/blog/queue-load-leveling/)
+
 ## Real world example
 
 * A Microsoft Azure web role stores data by using a separate storage service. If a large number of instances of the web role run concurrently, it is possible that the storage service could be overwhelmed and be unable to respond to requests quickly enough to prevent these requests from timing out or failing. 
