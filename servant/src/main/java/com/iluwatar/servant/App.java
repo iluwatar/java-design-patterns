@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -58,7 +59,7 @@ public class App {
     King k = new King();
     Queen q = new Queen();
 
-    ArrayList<Royalty> guests = new ArrayList<>();
+    List<Royalty> guests = new ArrayList<>();
     guests.add(k);
     guests.add(q);
 

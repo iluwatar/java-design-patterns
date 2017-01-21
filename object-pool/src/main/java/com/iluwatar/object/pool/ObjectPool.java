@@ -23,6 +23,7 @@
 package com.iluwatar.object.pool;
 
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 
@@ -30,8 +31,8 @@ import java.util.HashSet;
  */
 public abstract class ObjectPool<T> {
 
-  private HashSet<T> available = new HashSet<>();
-  private HashSet<T> inUse = new HashSet<>();
+  private Set<T> available = new HashSet<>();
+  private Set<T> inUse = new HashSet<>();
 
   protected abstract T create();
 
