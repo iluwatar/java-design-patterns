@@ -32,12 +32,10 @@ public final class IvoryTower {
    */
   private IvoryTower() {}
 
-  private static class IvoryTowerHolder {
-    /**
+  /**
    * Static to class instance of the class.
    */
-    private static final IvoryTower INSTANCE = new IvoryTower();
-  }
+  private static final IvoryTower INSTANCE = new IvoryTower();
 
   /**
    * To be called by user to obtain instance of the class.
@@ -45,6 +43,6 @@ public final class IvoryTower {
    * @return instance of the singleton.
    */
   public static IvoryTower getInstance() {
-    return IvoryTowerHolder.INSTANCE;
+    return INSTANCE;
   }
 }
