@@ -167,7 +167,7 @@ public class LruCache {
    * Returns cache data in list form.
    */
   public List<UserAccount> getCacheDataInListForm() {
-    ArrayList<UserAccount> listOfCacheData = new ArrayList<>();
+    List<UserAccount> listOfCacheData = new ArrayList<>();
     Node temp = head;
     while (temp != null) {
       listOfCacheData.add(temp.userAccount);

@@ -22,10 +22,13 @@
  */
 package com.iluwatar.dao;
 
-public interface CustomerSchemaSql {
+public final class CustomerSchemaSql {
 
-  String CREATE_SCHEMA_SQL = "CREATE TABLE CUSTOMERS (ID NUMBER, FNAME VARCHAR(100), " 
+  private CustomerSchemaSql() {}
+
+  public static final String CREATE_SCHEMA_SQL = "CREATE TABLE CUSTOMERS (ID NUMBER, FNAME VARCHAR(100), " 
       + "LNAME VARCHAR(100))";
   
-  String DELETE_SCHEMA_SQL = "DROP TABLE CUSTOMERS";
+  public static final String DELETE_SCHEMA_SQL = "DROP TABLE CUSTOMERS";
+  
 }

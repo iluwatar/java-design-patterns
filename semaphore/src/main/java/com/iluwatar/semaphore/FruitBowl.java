@@ -22,6 +22,7 @@
  */
 package com.iluwatar.semaphore;
 
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  */
 public class FruitBowl {
     
-  private ArrayList<Fruit> fruit = new ArrayList<>();
+  private List<Fruit> fruit = new ArrayList<>();
 
   /**
    * 

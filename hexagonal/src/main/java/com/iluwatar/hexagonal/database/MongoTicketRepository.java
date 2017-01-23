@@ -35,8 +35,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Mongo lottery ticket database
@@ -142,7 +144,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   @Override
   public Optional<LotteryTicket> findById(LotteryTicketId id) {
     Document find = new Document("ticketId", id.getId());
-    ArrayList<Document> results = ticketsCollection.find(find).limit(1).into(new ArrayList<Document>());
+    List<Document> results = ticketsCollection.find(find).limit(1).into(new ArrayList<Document>());
     if (results.size() > 0) {
       LotteryTicket lotteryTicket = docToTicket(results.get(0));
       return Optional.of(lotteryTicket);
@@ -166,7 +168,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   @Override
   public Map<LotteryTicketId, LotteryTicket> findAll() {
     Map<LotteryTicketId, LotteryTicket> map = new HashMap<>();
-    ArrayList<Document> docs = ticketsCollection.find(new Document()).into(new ArrayList<Document>());
+    List<Document> docs = ticketsCollection.find(new Document()).into(new ArrayList<Document>());
     for (Document doc: docs) {
       LotteryTicket lotteryTicket = docToTicket(doc);
       map.put(lotteryTicket.getId(), lotteryTicket);
@@ -183,7 +185,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
     PlayerDetails playerDetails = new PlayerDetails(doc.getString("email"), doc.getString("bank"),
         doc.getString("phone"));
     int[] numArray = Arrays.asList(doc.getString("numbers").split(",")).stream().mapToInt(Integer::parseInt).toArray();
-    HashSet<Integer> numbers = new HashSet<>();
+    Set<Integer> numbers = new HashSet<>();
     for (int num: numArray) {
       numbers.add(num);
     }
