@@ -13,6 +13,7 @@ tags: # tags of the pattern
 
 ## Intent
 Combinator pattern is used to enable datailed validation of objects using functional programming.
+
 ![alt text](./etc/combinator.png)
 
 
