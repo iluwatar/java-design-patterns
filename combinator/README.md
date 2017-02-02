@@ -1,6 +1,6 @@
 --- 
 layout: pattern # layout must allways be pattern
-title: Combinator Ever # the properly formatted title
+title: Combinator # the properly formatted title
 folder: combinator # the folder name in which this pattern lies
 permalink: /patterns/combinator/ # the permalink to the pattern, to keep this uniform please stick to /patterns/FOLDER/
 
@@ -12,15 +12,15 @@ tags: # tags of the pattern
 
 
 ## Intent
-
+Combinator pattern is used to enable datailed validation of objects using functional programming.
 ![alt text](./etc/combinator.png)
 
 
 ## Applicability
-Use the Combiner pattern when
+Use the Combinator pattern when
 
-* you want to combine primitives into more complex structures
-* you want to strengthen the Single Responsibility Principle
+* You want to combine primitives into more complex structures
+* You want to strengthen the Single Responsibility Principle
 
 
 ## Related patterns
