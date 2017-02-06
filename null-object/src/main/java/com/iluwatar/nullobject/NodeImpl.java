@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,17 @@
  */
 package com.iluwatar.nullobject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Implementation for binary tree's normal nodes.
  *
  */
 public class NodeImpl implements Node {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(NodeImpl.class);
 
   private final String name;
   private final Node left;
@@ -64,7 +69,7 @@ public class NodeImpl implements Node {
 
   @Override
   public void walk() {
-    System.out.println(name);
+    LOGGER.info(name);
     if (left.getTreeSize() > 0) {
       left.walk();
     }

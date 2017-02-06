@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ public final class ThreadSafeLazyLoadedIvoryTower {
   /**
    * The instance gets created only when it is called for first time. Lazy-loading
    */
-  public  static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
+  public static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
 
     if (instance == null) {
       instance = new ThreadSafeLazyLoadedIvoryTower();

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,9 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.halfsynchalfasync;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -65,6 +68,8 @@ import java.util.concurrent.LinkedBlockingQueue;
  * 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point
@@ -128,7 +133,7 @@ public class App {
     @Override
     public void onPostCall(Long result) {
       // Handle the result of computation
-      System.out.println(result);
+      LOGGER.info(result.toString());
     }
 
     @Override
@@ -141,7 +146,7 @@ public class App {
     try {
       Thread.sleep(i);
     } catch (InterruptedException e) {
-      System.out.println(e);
+      LOGGER.error("Exception caught.", e);
     }
     return i * (i + 1) / 2;
   }

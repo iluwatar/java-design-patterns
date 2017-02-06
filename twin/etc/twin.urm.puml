@@ -1,0 +1,27 @@
+@startuml
+package com.iluwatar.twin {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+    - waiting() {static}
+  }
+  class BallItem {
+    - LOGGER : Logger {static}
+    - isSuspended : boolean
+    - twin : BallThread
+    + BallItem()
+    + click()
+    + doDraw()
+    + move()
+    + setTwin(twin : BallThread)
+  }
+  abstract class GameItem {
+    - LOGGER : Logger {static}
+    + GameItem()
+    + click() {abstract}
+    + doDraw() {abstract}
+    + draw()
+  }
+}
+BallItem --|> GameItem 
+@enduml

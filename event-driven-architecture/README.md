@@ -3,6 +3,7 @@ layout: pattern
 title: Event Driven Architecture
 folder: event-driven-architecture
 permalink: /patterns/event-driven-architecture/
+pumlid: TOhH3SCW30LNQGS0_tSRnrZ15H1adfFromBzkfFktZQaHT7mzgh0N1yYvoUVXXf7B7Mv1dGWozN9MZmCTlhopQdeidEaoO3wMDHvRI6zzvwAssPYbsfGGRYIGlxN7DxpZDv-
 categories: Architectural
 tags:
  - Java

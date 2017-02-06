@@ -3,6 +3,7 @@ layout: pattern
 title: Page Object
 folder: page-object
 permalink: /patterns/page-object/
+pumlid: JSV14OGW30NGLjO28FVj9iOCua1Wme-sxnxtzjvMJLeS6ju-9p3NbyZvoQNYZ3sMkWo36hACJhN5ms2dYszEXwvQB4q6r6rHv_K3JIwQndwfW1Jo_npUyupUNW00
 categories: Testing
 tags:
 - Java

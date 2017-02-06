@@ -1,0 +1,60 @@
+@startuml
+package com.iluwatar.visitor {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Commander {
+    + Commander(children : Unit[])
+    + accept(visitor : UnitVisitor)
+    + toString() : String
+  }
+  class CommanderVisitor {
+    - LOGGER : Logger {static}
+    + CommanderVisitor()
+    + visitCommander(commander : Commander)
+    + visitSergeant(sergeant : Sergeant)
+    + visitSoldier(soldier : Soldier)
+  }
+  class Sergeant {
+    + Sergeant(children : Unit[])
+    + accept(visitor : UnitVisitor)
+    + toString() : String
+  }
+  class SergeantVisitor {
+    - LOGGER : Logger {static}
+    + SergeantVisitor()
+    + visitCommander(commander : Commander)
+    + visitSergeant(sergeant : Sergeant)
+    + visitSoldier(soldier : Soldier)
+  }
+  class Soldier {
+    + Soldier(children : Unit[])
+    + accept(visitor : UnitVisitor)
+    + toString() : String
+  }
+  class SoldierVisitor {
+    - LOGGER : Logger {static}
+    + SoldierVisitor()
+    + visitCommander(commander : Commander)
+    + visitSergeant(sergeant : Sergeant)
+    + visitSoldier(soldier : Soldier)
+  }
+  abstract class Unit {
+    - children : Unit[]
+    + Unit(children : Unit[])
+    + accept(visitor : UnitVisitor)
+  }
+  interface UnitVisitor {
+    + visitCommander(Commander) {abstract}
+    + visitSergeant(Sergeant) {abstract}
+    + visitSoldier(Soldier) {abstract}
+  }
+}
+Commander --|> Unit 
+CommanderVisitor ..|> UnitVisitor 
+Sergeant --|> Unit 
+SergeantVisitor ..|> UnitVisitor 
+Soldier --|> Unit 
+SoldierVisitor ..|> UnitVisitor 
+@enduml

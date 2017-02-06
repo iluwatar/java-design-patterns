@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.lazy.loading;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Same as HolderNaive but with added synchronization. This implementation is thread safe, but each
@@ -30,13 +33,15 @@ package com.iluwatar.lazy.loading;
  */
 public class HolderThreadSafe {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(HolderThreadSafe.class);
+
   private Heavy heavy;
 
   /**
    * Constructor
    */
   public HolderThreadSafe() {
-    System.out.println("HolderThreadSafe created");
+    LOGGER.info("HolderThreadSafe created");
   }
 
   /**

@@ -3,8 +3,9 @@ layout: pattern
 title: Flyweight
 folder: flyweight
 permalink: /patterns/flyweight/
+pumlid: HSV94S8m3030Lg20M7-w4OvYAoCh7Xtnq3ty-Eq-MQlaJcdow17JNm26gpIEdkzqidffa4Qfrm2MN1XeSEADsqxEJRU94MJgCD1_W4C-YxZr08hwNqaRPUQGBm00
 categories: Structural
-tags: 
+tags:
  - Java
  - Gang Of Four
  - Difficulty-Intermediate
@@ -30,7 +31,7 @@ true
 
 ## Real world examples
 
-* [java.lang.Integer#valueOf(int)](http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html#valueOf%28int%29)
+* [java.lang.Integer#valueOf(int)](http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html#valueOf%28int%29) and similarly for Byte, Character and other wrapped types.
 
 ## Credits
 

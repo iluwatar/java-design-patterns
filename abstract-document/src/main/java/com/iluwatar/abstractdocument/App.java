@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,8 @@ import com.iluwatar.abstractdocument.domain.HasModel;
 import com.iluwatar.abstractdocument.domain.HasParts;
 import com.iluwatar.abstractdocument.domain.HasPrice;
 import com.iluwatar.abstractdocument.domain.HasType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -44,11 +46,13 @@ import java.util.Map;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Executes the App
    */
   public App() {
-    System.out.println("Constructing parts and car");
+    LOGGER.info("Constructing parts and car");
 
     Map<String, Object> carProperties = new HashMap<>();
     carProperties.put(HasModel.PROPERTY, "300SL");
@@ -68,12 +72,11 @@ public class App {
 
     Car car = new Car(carProperties);
 
-    System.out.println("Here is our car:");
-    System.out.println("-> model: " + car.getModel().get());
-    System.out.println("-> price: " + car.getPrice().get());
-    System.out.println("-> parts: ");
-    car.getParts().forEach(p -> System.out
-        .println("\t" + p.getType().get() + "/" + p.getModel().get() + "/" + p.getPrice().get()));
+    LOGGER.info("Here is our car:");
+    LOGGER.info("-> model: {}", car.getModel().get());
+    LOGGER.info("-> price: {}", car.getPrice().get());
+    LOGGER.info("-> parts: ");
+    car.getParts().forEach(p -> LOGGER.info("\t{}/{}/{}", p.getType().get(), p.getModel().get(), p.getPrice().get()));
   }
 
   /**

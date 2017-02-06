@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,19 +22,22 @@
  */
 package com.iluwatar.strategy;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.slf4j.LoggerFactory;
 
-import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Date: 12/29/15 - 10:58 PM
@@ -71,20 +74,22 @@ public class DragonSlayingStrategyTest {
   private final DragonSlayingStrategy strategy;
 
   /**
-   * The expected action on the std-out
+   * The expected action in the log
    */
   private final String expectedResult;
 
-  /**
-   * The mocked standard out {@link PrintStream}, required since some actions don't have any
-   * influence on accessible objects, except for writing to std-out using {@link System#out}
-   */
-  private final PrintStream stdOutMock = mock(PrintStream.class);
+  private InMemoryAppender appender;
 
-  /**
-   * Keep the original std-out so it can be restored after the test
-   */
-  private final PrintStream stdOutOrig = System.out;
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
+
 
   /**
    * Create a new test instance for the given strategy
@@ -98,29 +103,34 @@ public class DragonSlayingStrategyTest {
   }
 
   /**
-   * Inject the mocked std-out {@link PrintStream} into the {@link System} class before each test
-   */
-  @Before
-  public void setUp() {
-    System.setOut(this.stdOutMock);
-  }
-
-  /**
-   * Removed the mocked std-out {@link PrintStream} again from the {@link System} class
-   */
-  @After
-  public void tearDown() {
-    System.setOut(this.stdOutOrig);
-  }
-
-  /**
    * Test if executing the strategy gives the correct response
    */
   @Test
   public void testExecute() {
     this.strategy.execute();
-    verify(this.stdOutMock).println(this.expectedResult);
-    verifyNoMoreInteractions(this.stdOutMock);
+    assertEquals(this.expectedResult, appender.getLastMessage());
+    assertEquals(1, appender.getLogSize());
   }
 
+  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender() {
+      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public int getLogSize() {
+      return log.size();
+    }
+
+    public String getLastMessage() {
+      return log.get(log.size() - 1).getFormattedMessage();
+    }
+  }
 }

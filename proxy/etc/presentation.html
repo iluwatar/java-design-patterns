@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Proxy
+
+---
+
+# Also known as
+
+* Surrogate
+
+---
+
+# Intent
+
+* Provide a surrogate or placeholder for another object to control access to it.
+
+---
+
+# Applicability
+
+* Protection proxy limits access to the real subject.
+* Virtual proxies are used when an object is expensive to instantiate.
+* Caching proxies are used to cache expensive calls to the real subject.
+* Remote proxies are used in distributed object communication.
+* Smart proxies are used to implement reference counting and log calls to the object.
+
+---
+
+# Diagram
+
+.center[![Alt text](proxy-concept.png)]
+
+---
+
+# Tutorials
+
+* Blog http://java-design-patterns.com/blog/controlling-access-with-proxy-pattern/
+* Source code http://java-design-patterns.com/patterns/proxy/
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>

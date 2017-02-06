@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,9 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.resource.acquisition.is.initialization;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -44,17 +47,19 @@ package com.iluwatar.resource.acquisition.is.initialization;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    */
   public static void main(String[] args) throws Exception {
 
     try (SlidingDoor slidingDoor = new SlidingDoor()) {
-      System.out.println("Walking in.");
+      LOGGER.info("Walking in.");
     }
 
     try (TreasureChest treasureChest = new TreasureChest()) {
-      System.out.println("Looting contents.");
+      LOGGER.info("Looting contents.");
     }
   }
 }

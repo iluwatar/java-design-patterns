@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ package com.iluwatar.hexagonal.domain;
  */
 public class LotteryTicketCheckResult {
 
-  public enum CheckResult { WIN_PRIZE, NO_PRIZE, TICKET_NOT_SUBMITTED };
+  public enum CheckResult { WIN_PRIZE, NO_PRIZE, TICKET_NOT_SUBMITTED }
 
   private final CheckResult checkResult;
   private final int prizeAmount;
@@ -85,12 +85,6 @@ public class LotteryTicketCheckResult {
       return false;
     }
     LotteryTicketCheckResult other = (LotteryTicketCheckResult) obj;
-    if (checkResult != other.checkResult) {
-      return false;
-    }
-    if (prizeAmount != other.prizeAmount) {
-      return false;
-    }
-    return true;
+    return checkResult == other.checkResult && prizeAmount == other.prizeAmount;
   }
 }
