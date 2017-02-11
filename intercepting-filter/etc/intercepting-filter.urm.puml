@@ -77,8 +77,8 @@ package com.iluwatar.intercepting.filter {
 }
 AbstractFilter -->  "-next" Filter
 DListener --+ Target
-FilterManager -->  "-filterChain" FilterChain
 FilterChain -->  "-chain" Filter
+FilterManager -->  "-filterChain" FilterChain
 AbstractFilter ..|> Filter 
 AddressFilter --|> AbstractFilter 
 ContactFilter --|> AbstractFilter 

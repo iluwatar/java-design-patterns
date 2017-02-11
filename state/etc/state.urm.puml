@@ -31,8 +31,8 @@ package com.iluwatar.state {
     + onEnterState() {abstract}
   }
 }
-AngryState -->  "-mammoth" Mammoth
 PeacefulState -->  "-mammoth" Mammoth
+AngryState -->  "-mammoth" Mammoth
 Mammoth -->  "-state" State
 AngryState ..|> State 
 PeacefulState ..|> State 

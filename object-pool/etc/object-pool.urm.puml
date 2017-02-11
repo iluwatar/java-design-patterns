@@ -6,8 +6,8 @@ package com.iluwatar.object.pool {
     + main(args : String[]) {static}
   }
   abstract class ObjectPool<T> {
-    - available : HashSet<T>
-    - inUse : HashSet<T>
+    - available : Set<T>
+    - inUse : Set<T>
     + ObjectPool<T>()
     + checkIn(instance : T)
     + checkOut() : T

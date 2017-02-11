@@ -46,8 +46,8 @@ package com.iluwatar.business.delegate {
     + values() : ServiceType[] {static}
   }
 }
-BusinessDelegate -->  "-serviceType" ServiceType
 BusinessLookup -->  "-ejbService" EjbService
+BusinessDelegate -->  "-serviceType" ServiceType
 Client -->  "-businessDelegate" BusinessDelegate
 BusinessDelegate -->  "-businessService" BusinessService
 BusinessDelegate -->  "-lookupService" BusinessLookup

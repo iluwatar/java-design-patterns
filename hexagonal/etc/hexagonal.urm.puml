@@ -11,9 +11,13 @@ package com.iluwatar.hexagonal.service {
   class ConsoleLottery {
     - LOGGER : Logger {static}
     + ConsoleLottery()
+    - addFundsToLotteryAccount(bank : WireTransfers, scanner : Scanner) {static}
+    - checkTicket(service : LotteryService, scanner : Scanner) {static}
     + main(args : String[]) {static}
     - printMainMenu() {static}
+    - queryLotteryAccountFunds(bank : WireTransfers, scanner : Scanner) {static}
     - readString(scanner : Scanner) : String {static}
+    - submitTicket(service : LotteryService, scanner : Scanner) {static}
   }
 }
 package com.iluwatar.hexagonal.mongo {
@@ -252,16 +256,16 @@ package com.iluwatar.hexagonal.eventlog {
     + ticketWon(details : PlayerDetails, prizeAmount : int)
   }
 }
-LotteryAdministration -->  "-wireTransfers" WireTransfers
-LotteryTicket -->  "-id" LotteryTicketId
 LotteryTicket -->  "-playerDetails" PlayerDetails
-LotteryService -->  "-notifications" LotteryEventLog
-LotteryAdministration -->  "-repository" LotteryTicketRepository
-LotteryTicket -->  "-lotteryNumbers" LotteryNumbers
 MongoEventLog -->  "-stdOutEventLog" StdOutEventLog
 LotteryService -->  "-wireTransfers" WireTransfers
-SampleData -->  "-PLAYERS" PlayerDetails
 LotteryAdministration -->  "-notifications" LotteryEventLog
+LotteryAdministration -->  "-wireTransfers" WireTransfers
+LotteryService -->  "-notifications" LotteryEventLog
+LotteryTicket -->  "-id" LotteryTicketId
+LotteryAdministration -->  "-repository" LotteryTicketRepository
+LotteryTicket -->  "-lotteryNumbers" LotteryNumbers
+SampleData -->  "-PLAYERS" PlayerDetails
 RandomNumberGenerator ..+ LotteryNumbers
 LotteryService -->  "-repository" LotteryTicketRepository
 CheckResult ..+ LotteryTicketCheckResult

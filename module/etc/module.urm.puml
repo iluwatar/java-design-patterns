@@ -16,7 +16,7 @@ package com.iluwatar.module {
     - singleton : ConsoleLoggerModule {static}
     - ConsoleLoggerModule()
     + getSingleton() : ConsoleLoggerModule {static}
-    + prepare()
+    + prepare() : ConsoleLoggerModule
     + printErrorString(value : String)
     + printString(value : String)
     + unprepare()
@@ -30,7 +30,7 @@ package com.iluwatar.module {
     - singleton : FileLoggerModule {static}
     - FileLoggerModule()
     + getSingleton() : FileLoggerModule {static}
-    + prepare()
+    + prepare() : FileLoggerModule
     + printErrorString(value : String)
     + printString(value : String)
     + unprepare()

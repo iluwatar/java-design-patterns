@@ -53,8 +53,8 @@ package com.iluwatar.chain {
   }
 }
 RequestHandler -->  "-next" RequestHandler
-OrcKing -->  "-chain" RequestHandler
 Request -->  "-requestType" RequestType
+OrcKing -->  "-chain" RequestHandler
 OrcCommander --|> RequestHandler 
 OrcOfficer --|> RequestHandler 
 OrcSoldier --|> RequestHandler 

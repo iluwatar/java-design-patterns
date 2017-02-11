@@ -86,15 +86,15 @@ package com.iluwatar.builder {
     + values() : Weapon[] {static}
   }
 }
-Hero -->  "-profession" Profession
 Builder ..+ Hero
+Hero -->  "-profession" Profession
 Hero -->  "-armor" Armor
+Builder -->  "-hairColor" HairColor
 Builder -->  "-weapon" Weapon
 Builder -->  "-hairType" HairType
-Builder -->  "-hairColor" HairColor
 Hero -->  "-hairColor" HairColor
 Builder -->  "-profession" Profession
-Hero -->  "-weapon" Weapon
 Hero -->  "-hairType" HairType
+Hero -->  "-weapon" Weapon
 Builder -->  "-armor" Armor
 @enduml

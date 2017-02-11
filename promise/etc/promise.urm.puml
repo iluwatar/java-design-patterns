@@ -72,7 +72,7 @@ package com.iluwatar.promise {
 }
 TransformAction -->  "-src" Promise
 TransformAction --+ Promise
-ConsumeAction -->  "-src" Promise
 ConsumeAction --+ Promise
+ConsumeAction -->  "-src" Promise
 Promise --|> PromiseSupport 
 @enduml

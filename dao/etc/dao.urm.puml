@@ -34,9 +34,10 @@ package com.iluwatar.dao {
     + getById(int) : Optional<Customer> {abstract}
     + update(Customer) : boolean {abstract}
   }
-  interface CustomerSchemaSql {
+  class CustomerSchemaSql {
     + CREATE_SCHEMA_SQL : String {static}
     + DELETE_SCHEMA_SQL : String {static}
+    - CustomerSchemaSql()
   }
   class DbCustomerDao {
     - dataSource : DataSource
