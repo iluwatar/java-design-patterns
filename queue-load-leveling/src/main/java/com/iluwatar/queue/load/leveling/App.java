@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package org.queue.load.leveling;
+package com.iluwatar.queue.load.leveling;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

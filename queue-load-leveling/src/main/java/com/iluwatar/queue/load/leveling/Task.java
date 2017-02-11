@@ -20,31 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.queue.load.leveling;
-
-import org.junit.Test;
-
+package com.iluwatar.queue.load.leveling;
 /**
+ * Task Interface.
  * 
- * Test case for submitting Message to Blocking Queue by TaskGenerator
- * and retrieve the message by ServiceExecutor.
- * 
- */
-public class TaskGenSrvExeTest {
-
-  @Test
-  public void taskGeneratorTest() {
-    MessageQueue msgQueue = new MessageQueue();
-    
-    // Create a task generator thread with 1 job to submit.
-    Runnable taskRunnable = new TaskGenerator(msgQueue, 1);
-    Thread taskGenThr = new Thread(taskRunnable);
-    taskGenThr.start();
-    
-    // Create a service executor thread.
-    Runnable srvRunnable = new ServiceExecutor(msgQueue);
-    Thread srvExeThr = new Thread(srvRunnable);
-    srvExeThr.start();
-  }
-
+*/
+public interface Task {
+  void submit(Message msg);
 }

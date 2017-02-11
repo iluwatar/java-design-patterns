@@ -20,48 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package com.iluwatar.queue.load.leveling;
 
-package org.queue.load.leveling;
+import static org.junit.Assert.assertEquals;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.Test;
 
 /**
  * 
- *  ServiceExecuotr class.
- *  This class will pick up Messages one by one from 
- *  the Blocking Queue and process them.
+ * Test case for submitting and retrieving messages from Blocking Queue.
+ * 
  */
-public class ServiceExecutor implements Runnable {
+public class MessageQueueTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-  
-  private final MessageQueue msgQueue;
+  @Test
+  public void messageQueueTest() {
+    
+    MessageQueue msgQueue = new MessageQueue();
+    
+    // submit message
+    msgQueue.submitMsg(new Message("MessageQueue Test"));
+    
+    // retrieve message
+    assertEquals(msgQueue.retrieveMsg().getMsg(), "MessageQueue Test");
+  }
 
-  public ServiceExecutor(MessageQueue msgQueue) {
-    this.msgQueue = msgQueue;
-  }
-  
-  /**
-   * The ServiceExecutor thread will retrieve each message and process it.
-   */
-  public void run() {
-    try {
-      while (true) {
-        Message msg = msgQueue.retrieveMsg();
-        
-        if (null != msg) {
-          LOGGER.info(msg.toString() + " is served.");
-        } else {
-          LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
-        }
-        
-        Thread.sleep(1000);
-      }
-    } catch (InterruptedException ie) {
-      LOGGER.error(ie.getMessage());
-    } catch (Exception e) {
-      LOGGER.error(e.getMessage());
-    }
-  }
 }

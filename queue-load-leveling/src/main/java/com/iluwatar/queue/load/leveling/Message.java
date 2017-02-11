@@ -20,19 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.queue.load.leveling;
-
-import java.io.IOException;
-
-import org.junit.Test;
+package com.iluwatar.queue.load.leveling;
 
 /**
- * Application Test
- */
-public class AppTest {
-  @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+ *  Message class with only one parameter.
+ *
+*/
+public class Message {
+  private final String msg;
+ 
+  // Parameter constructor.
+  public Message(String msg) {
+    super();
+    this.msg = msg;
+  }
+
+  // Get Method for attribute msg.
+  public String getMsg() {
+    return msg;
+  }
+  
+  @Override
+  public String toString() {
+    return msg;
   }
 }

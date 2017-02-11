@@ -20,24 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.queue.load.leveling;
+package com.iluwatar.queue.load.leveling;
 
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
 /**
  * 
- * Test case for creating and checking the Message.
+ * Test case for submitting Message to Blocking Queue by TaskGenerator
+ * and retrieve the message by ServiceExecutor.
  * 
  */
-public class MessageTest {
-  
+public class TaskGenSrvExeTest {
+
   @Test
-  public void messageTest() {
+  public void taskGeneratorTest() {
+    MessageQueue msgQueue = new MessageQueue();
     
-    // Parameterized constructor test.
-    String testMsg = "Message Test";
-    Message msg = new Message(testMsg);
-    assertEquals(msg.getMsg(), testMsg);
+    // Create a task generator thread with 1 job to submit.
+    Runnable taskRunnable = new TaskGenerator(msgQueue, 1);
+    Thread taskGenThr = new Thread(taskRunnable);
+    taskGenThr.start();
+    
+    // Create a service executor thread.
+    Runnable srvRunnable = new ServiceExecutor(msgQueue);
+    Thread srvExeThr = new Thread(srvRunnable);
+    srvExeThr.start();
   }
+
 }

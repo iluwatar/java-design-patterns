@@ -20,11 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.queue.load.leveling;
+package com.iluwatar.queue.load.leveling;
+
+import java.io.IOException;
+
+import org.junit.Test;
+
 /**
- * Task Interface.
- * 
-*/
-public interface Task {
-  void submit(Message msg);
+ * Application Test
+ */
+public class AppTest {
+  @Test
+  public void test() throws IOException {
+    String[] args = {};
+    App.main(args);
+  }
 }

@@ -20,28 +20,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.queue.load.leveling;
+
+package com.iluwatar.queue.load.leveling;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- *  Message class with only one parameter.
- *
-*/
-public class Message {
-  private final String msg;
- 
-  // Parameter constructor.
-  public Message(String msg) {
-    super();
-    this.msg = msg;
-  }
+ * 
+ *  ServiceExecuotr class.
+ *  This class will pick up Messages one by one from 
+ *  the Blocking Queue and process them.
+ */
+public class ServiceExecutor implements Runnable {
 
-  // Get Method for attribute msg.
-  public String getMsg() {
-    return msg;
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  
+  private final MessageQueue msgQueue;
+
+  public ServiceExecutor(MessageQueue msgQueue) {
+    this.msgQueue = msgQueue;
   }
   
-  @Override
-  public String toString() {
-    return msg;
+  /**
+   * The ServiceExecutor thread will retrieve each message and process it.
+   */
+  public void run() {
+    try {
+      while (true) {
+        Message msg = msgQueue.retrieveMsg();
+        
+        if (null != msg) {
+          LOGGER.info(msg.toString() + " is served.");
+        } else {
+          LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
+        }
+        
+        Thread.sleep(1000);
+      }
+    } catch (InterruptedException ie) {
+      LOGGER.error(ie.getMessage());
+    } catch (Exception e) {
+      LOGGER.error(e.getMessage());
+    }
   }
 }

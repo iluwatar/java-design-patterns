@@ -20,29 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.queue.load.leveling;
-
-import static org.junit.Assert.assertEquals;
+package com.iluwatar.queue.load.leveling;
 
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 /**
  * 
- * Test case for submitting and retrieving messages from Blocking Queue.
+ * Test case for creating and checking the Message.
  * 
  */
-public class MessageQueueTest {
-
+public class MessageTest {
+  
   @Test
-  public void messageQueueTest() {
+  public void messageTest() {
     
-    MessageQueue msgQueue = new MessageQueue();
-    
-    // submit message
-    msgQueue.submitMsg(new Message("MessageQueue Test"));
-    
-    // retrieve message
-    assertEquals(msgQueue.retrieveMsg().getMsg(), "MessageQueue Test");
+    // Parameterized constructor test.
+    String testMsg = "Message Test";
+    Message msg = new Message(testMsg);
+    assertEquals(msg.getMsg(), testMsg);
   }
-
 }
