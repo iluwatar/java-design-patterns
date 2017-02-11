@@ -4,7 +4,7 @@ title: Queue-Based Load Leveling Pattern
 author: cha
 ---
 
-![Queue-Based Load Leveling]({{ site.baseurl }}/assets/queue-load-leveling-title.png)	
+![Queue-Based Load Leveling]({{ site.baseurl }}/assets/queue-load-leveling-title.png)
 
 ## Problem
 Many solutions in the cloud involve running tasks that invoke services. In this environment, if a service is subjected to intermittent heavy loads, it can cause performance or reliability issues. If the same service is utilized by a number of tasks running concurrently, it can be difficult to predict the volume of requests to which the service might be subjected at any given point in time. It is possible that a service might experience peaks in demand that cause it to become overloaded and unable to respond to requests in a timely manner.
@@ -21,27 +21,27 @@ The queue effectively decouples the tasks from the service, and the service can 
 ## Benefits
 * It can help to maximize availability because delays arising in services will not have an immediate and direct impact on the application, which can continue to post messages to the queue even when the service is not available or is not currently processing messages.
 * It can help to maximize scalability because both the number of queues and the number of services can be varied to meet demand.
-* It can help to control costs because the number of service instances deployed needs only to be sufficient to meet average 
+* It can help to control costs because the number of service instances deployed needs only to be sufficient to meet average
 load rather than the peak load.
 
 ## Implementation
 * We will demonstrate Queue-Based Load Leveling Pattern by developing a simple application.
 * Following are the core classes in the application,
   - TaskGenerator: This is the service requester class where we create any number of requests and submit them to the Task Queue. Each TaskGenerator instance is a Thread. Each requester submits requests at its own rate.
-  
-    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/org/queue/load/leveling/TaskGenerator.java?slice=27:89"></script>
-  
+
+    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/com/iluwatar/queue/load/leveling/TaskGenerator.java?slice=27:89"></script>
+
   - Message: TaskGenerators create objects of Message class and submit them to the MessageQueue.
-  
-    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/org/queue/load/leveling/Message.java?slice=28:47"></script>
-    
+
+    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/com/iluwatar/queue/load/leveling/Message.java?slice=28:47"></script>
+
   - MessageQueue: In this class we have a BlockingQueue which takes messages submitted from the TaskGenerators. This class is just used for storing and retreiving tasks from the Queue.
-  
-    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/org/queue/load/leveling/MessageQueue.java?slice=30:77"></script>
-  
+
+    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/com/iluwatar/queue/load/leveling/MessageQueue.java?slice=30:77"></script>
+
   - ServiceExecutor: Picks up the tasks from the MessageQueue and serves them. The ServiceRequester picks up requests at constant rate even though the TaksGenerators submitted at a different rate.
-  
-    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/org/queue/load/leveling/ServiceExecutor.java?slice=28:67"></script>
+
+    <script src="http://gist-it.appspot.com/http://github.com/iluwatar/java-design-patterns/raw/master/queue-load-leveling/src/main/java/com/iluwatar/queue/load/leveling/ServiceExecutor.java?slice=28:67"></script>
 
 ## Output
    Running the test application produces the following output:
@@ -65,7 +65,7 @@ load rather than the peak load.
 21:04:11.913 [pool-1-thread-2] INFO org.queue.load.leveling.App - Message-3 submitted by pool-1-thread-1 is served.
 21:04:12.914 [pool-1-thread-2] INFO org.queue.load.leveling.App - Message-2 submitted by pool-1-thread-1 is served.
 21:04:13.914 [pool-1-thread-2] INFO org.queue.load.leveling.App - Message-1 submitted by pool-1-thread-1 is served.
-21:04:14.915 [pool-1-thread-2] INFO org.queue.load.leveling.App - Service Executor: Waiting for Messages to serve .. 
+21:04:14.915 [pool-1-thread-2] INFO org.queue.load.leveling.App - Service Executor: Waiting for Messages to serve ..
 21:04:15.915 [pool-1-thread-2] INFO org.queue.load.leveling.App - Service Executor: Waiting for Messages to serve ..
 ```
 
