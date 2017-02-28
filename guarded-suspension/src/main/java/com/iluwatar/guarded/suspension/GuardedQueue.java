@@ -31,7 +31,7 @@ import java.util.Queue;
 
 public class GuardedQueue {
   private static final Logger LOGGER = LoggerFactory.getLogger(GuardedQueue.class);
-  private Queue<Integer> sourceList;
+  private final Queue<Integer> sourceList;
 
   public GuardedQueue() {
     this.sourceList = new LinkedList<>();
@@ -49,7 +49,7 @@ public class GuardedQueue {
         e.printStackTrace();
       }
     }
-
+    LOGGER.info("getting");
     return sourceList.peek();
   }
 
@@ -57,9 +57,9 @@ public class GuardedQueue {
    * @param e number which we want to put to our queue
    */
   public synchronized void put(Integer e) {
+    LOGGER.info("putting");
     sourceList.add(e);
-    notify();
     LOGGER.info("notifying");
-
+    notify();
   }
 }
