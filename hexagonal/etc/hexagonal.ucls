@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.10" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <class id="1" language="java" name="com.iluwatar.hexagonal.eventlog.StdOutEventLog" project="hexagonal"
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/StdOutNotifications.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="167" width="235" x="731" y="122"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.iluwatar.hexagonal.banking.InMemoryBank" project="hexagonal" 
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/InMemoryBank.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="149" width="217" x="1006" y="122"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.iluwatar.hexagonal.domain.LotterySystem" project="hexagonal"
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotterySystemImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="167" width="421" x="1263" y="122"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.iluwatar.hexagonal.domain.LotteryTicket" project="hexagonal" 
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryTicket.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="167" width="278" x="1568" y="347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.iluwatar.hexagonal.database.InMemoryTicketRepository" project="hexagonal" 
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/database/InMemoryTicketRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="149" width="265" x="1724" y="122"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="6" language="java" name="com.iluwatar.hexagonal.banking.WireTransfers" project="hexagonal" 
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/banking/WireTransfers.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="113" width="217" x="1006" y="347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="com.iluwatar.hexagonal.domain.LotteryService" project="hexagonal"
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/service/ConsoleService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="113" width="421" x="2029" y="122"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="8" language="java" name="com.iluwatar.hexagonal.database.LotteryTicketRepository" project="hexagonal" 
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/database/LotteryTicketRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="131" width="265" x="1263" y="347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="9" language="java" name="com.iluwatar.hexagonal.domain.LotterySystem" project="hexagonal" 
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotterySystem.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="149" width="421" x="1886" y="347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="10" language="java" name="com.iluwatar.hexagonal.domain.LotteryNumbers" project="hexagonal" 
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryNumbers.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="275" width="209" x="1568" y="554"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="11" language="java" name="com.iluwatar.hexagonal.domain.LotteryAdministration"
+    project="hexagonal" file="/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/LotteryAdministration.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="113" width="320" x="2808" y="347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="12" language="java" name="com.iluwatar.hexagonal.domain.LotteryNumbers.RandomNumberGenerator" 
+    project="hexagonal" file="/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/LotteryNumbers.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="113" width="189" x="1568" y="869"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.iluwatar.hexagonal.domain.LotteryAdministration" project="hexagonal"
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/administration/ConsoleAdministration.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="131" width="320" x="2490" y="122"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.iluwatar.hexagonal.domain.PlayerDetails" project="hexagonal" 
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/domain/PlayerDetails.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="239" width="222" x="1019" y="554"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="15" language="java" name="com.iluwatar.hexagonal.domain.LotteryService" project="hexagonal"
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/service/LotteryService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="95" width="421" x="2347" y="347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="16" language="java" name="com.iluwatar.hexagonal.App" project="hexagonal" 
+    file="/hexagonal/src/main/java/com/iluwatar/hexagonal/App.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="131" width="221" x="470" y="347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="17" language="java" name="com.iluwatar.hexagonal.eventlog.LotteryEventLog"
+    project="hexagonal" file="/hexagonal/src/main/java/com/iluwatar/hexagonal/notifications/LotteryNotifications.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="149" width="235" x="731" y="347"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <association id="18">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="19" name="PLAYERS"/>      
+      <multiplicity id="20" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="21">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="22" name="wireTransfers"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="24">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <nesting id="25">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </nesting>  
+  <association id="26">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="27" name="tickets"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="29">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <realization id="30">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <realization id="31">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <association id="32">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="33" name="lotteryNumbers"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="35">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <association id="36">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="37" name="lotterySystem"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="39">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="40" name="lotterySystem"/>      
+      <multiplicity id="41" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="42">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="43" name="repository"/>      
+      <multiplicity id="44" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="45">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="46">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="47" name="notifications"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="50" name="playerDetails"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
