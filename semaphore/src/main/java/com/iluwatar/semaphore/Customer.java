@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,16 @@
  */
 package com.iluwatar.semaphore;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * A Customer attempts to repeatedly take Fruit from the FruitShop by
  * taking Fruit from FruitBowl instances.
  */
 public class Customer extends Thread {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Customer.class);
 
   /**
    * Name of the Customer.
@@ -63,13 +68,13 @@ public class Customer extends Thread {
       Fruit fruit;
             
       if (bowl != null && (fruit = bowl.take()) != null) {
-        System.out.println(name + " took an " + fruit);
+        LOGGER.info("{} took an {}", name, fruit);
         fruitBowl.put(fruit);
         fruitShop.returnBowl(bowl);
       }
     }
-        
-    System.out.println(name + " took " + fruitBowl);
+
+    LOGGER.info("{} took {}", name, fruitBowl);
         
   }
     

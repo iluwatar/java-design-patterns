@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.servicelocator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * For JNDI lookup of services from the web.xml. Will match name of the service name that is being
  * requested and return a newly created service object with the name
@@ -29,6 +32,8 @@ package com.iluwatar.servicelocator;
  * @author saifasif
  */
 public class InitContext {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(InitContext.class);
 
   /**
    * Perform the lookup based on the service name. The returned object will need to be casted into a
@@ -39,10 +44,10 @@ public class InitContext {
    */
   public Object lookup(String serviceName) {
     if (serviceName.equals("jndi/serviceA")) {
-      System.out.println("Looking up service A and creating new service for A");
+      LOGGER.info("Looking up service A and creating new service for A");
       return new ServiceImpl("jndi/serviceA");
     } else if (serviceName.equals("jndi/serviceB")) {
-      System.out.println("Looking up service B and creating new service for B");
+      LOGGER.info("Looking up service B and creating new service for B");
       return new ServiceImpl("jndi/serviceB");
     } else {
       return null;

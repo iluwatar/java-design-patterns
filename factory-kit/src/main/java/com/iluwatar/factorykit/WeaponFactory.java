@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 package com.iluwatar.factorykit;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -48,7 +49,7 @@ public interface WeaponFactory {
    * @return factory with specified {@link Builder}s
    */
   static WeaponFactory factory(Consumer<Builder> consumer) {
-    HashMap<WeaponType, Supplier<Weapon>> map = new HashMap<>();
+    Map<WeaponType, Supplier<Weapon>> map = new HashMap<>();
     consumer.accept(map::put);
     return name -> map.get(name).get();
   }

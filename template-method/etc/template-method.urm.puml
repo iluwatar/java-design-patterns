@@ -1,0 +1,39 @@
+@startuml
+package com.iluwatar.templatemethod {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class HalflingThief {
+    - method : StealingMethod
+    + HalflingThief(method : StealingMethod)
+    + changeMethod(method : StealingMethod)
+    + steal()
+  }
+  class HitAndRunMethod {
+    - LOGGER : Logger {static}
+    + HitAndRunMethod()
+    # confuseTarget(target : String)
+    # pickTarget() : String
+    # stealTheItem(target : String)
+  }
+  abstract class StealingMethod {
+    - LOGGER : Logger {static}
+    + StealingMethod()
+    # confuseTarget(String) {abstract}
+    # pickTarget() : String {abstract}
+    + steal()
+    # stealTheItem(String) {abstract}
+  }
+  class SubtleMethod {
+    - LOGGER : Logger {static}
+    + SubtleMethod()
+    # confuseTarget(target : String)
+    # pickTarget() : String
+    # stealTheItem(target : String)
+  }
+}
+HalflingThief -->  "-method" StealingMethod
+HitAndRunMethod --|> StealingMethod 
+SubtleMethod --|> StealingMethod 
+@enduml

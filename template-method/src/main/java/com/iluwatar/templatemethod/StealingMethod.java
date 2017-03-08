@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,17 @@
  */
 package com.iluwatar.templatemethod;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * StealingMethod defines skeleton for the algorithm.
  * 
  */
 public abstract class StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(StealingMethod.class);
 
   protected abstract String pickTarget();
 
@@ -40,7 +45,7 @@ public abstract class StealingMethod {
    */
   public void steal() {
     String target = pickTarget();
-    System.out.println("The target has been chosen as " + target + ".");
+    LOGGER.info("The target has been chosen as {}.", target);
     confuseTarget(target);
     stealTheItem(target);
   }

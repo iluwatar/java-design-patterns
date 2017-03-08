@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,9 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.async.method.invocation;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Callable;
 
@@ -53,6 +56,8 @@ import java.util.concurrent.Callable;
  * @see java.util.concurrent.ExecutorService
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point
@@ -120,6 +125,6 @@ public class App {
   }
 
   private static void log(String msg) {
-    System.out.println(String.format("[%1$-10s] - %2$s", Thread.currentThread().getName(), msg));
+    LOGGER.info(msg);
   }
 }

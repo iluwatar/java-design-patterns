@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -64,12 +64,7 @@ public final class AppManager {
   public static void initCachingPolicy(CachingPolicy policy) {
     cachingPolicy = policy;
     if (cachingPolicy == CachingPolicy.BEHIND) {
-      Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-        @Override
-        public void run() {
-          CacheStore.flushCache();
-        }
-      }));
+      Runtime.getRuntime().addShutdownHook(new Thread(CacheStore::flushCache));
     }
     CacheStore.clearCache();
   }
@@ -86,6 +81,8 @@ public final class AppManager {
       return CacheStore.readThrough(userId);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
       return CacheStore.readThroughWithWriteBackPolicy(userId);
+    } else if (cachingPolicy == CachingPolicy.ASIDE) {
+      return findAside(userId);
     }
     return null;
   }
@@ -100,10 +97,37 @@ public final class AppManager {
       CacheStore.writeAround(userAccount);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
       CacheStore.writeBehind(userAccount);
+    } else if (cachingPolicy == CachingPolicy.ASIDE) {
+      saveAside(userAccount);
     }
   }
 
   public static String printCacheContent() {
     return CacheStore.print();
+  }
+
+  /**
+   * Cache-Aside save user account helper
+   */
+  private static void saveAside(UserAccount userAccount) {
+    DbManager.updateDb(userAccount);
+    CacheStore.invalidate(userAccount.getUserId());
+  }
+
+  /**
+   * Cache-Aside find user account helper
+   */
+  private static UserAccount findAside(String userId) {
+    UserAccount userAccount = CacheStore.get(userId);
+    if (userAccount != null) {
+      return userAccount;
+    }
+
+    userAccount = DbManager.readFromDb(userId);
+    if (userAccount != null) {
+      CacheStore.set(userId, userAccount);
+    }
+
+    return userAccount;
   }
 }

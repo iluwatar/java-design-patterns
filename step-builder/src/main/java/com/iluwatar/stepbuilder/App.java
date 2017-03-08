@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,9 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.stepbuilder;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Step Builder Pattern
@@ -56,6 +59,8 @@ package com.iluwatar.stepbuilder;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
@@ -67,18 +72,18 @@ public class App {
         CharacterStepBuilder.newBuilder().name("Amberjill").fighterClass("Paladin")
             .withWeapon("Sword").noAbilities().build();
 
-    System.out.println(warrior);
+    LOGGER.info(warrior.toString());
 
     Character mage =
         CharacterStepBuilder.newBuilder().name("Riobard").wizardClass("Sorcerer")
             .withSpell("Fireball").withAbility("Fire Aura").withAbility("Teleport")
             .noMoreAbilities().build();
 
-    System.out.println(mage);
+    LOGGER.info(mage.toString());
 
     Character thief =
         CharacterStepBuilder.newBuilder().name("Desmond").fighterClass("Rogue").noWeapon().build();
 
-    System.out.println(thief);
+    LOGGER.info(thief.toString());
   }
 }

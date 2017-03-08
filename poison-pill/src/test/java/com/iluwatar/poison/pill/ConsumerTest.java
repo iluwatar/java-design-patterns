@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,19 +22,38 @@
  */
 package com.iluwatar.poison.pill;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InOrder;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 
-import static org.mockito.Mockito.inOrder;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Date: 12/27/15 - 9:45 PM
  *
  * @author Jeroen Meulemeester
  */
-public class ConsumerTest extends StdOutTest {
+public class ConsumerTest {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender(Consumer.class);
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   @Test
   public void testConsume() throws Exception {
@@ -52,12 +71,9 @@ public class ConsumerTest extends StdOutTest {
 
     new Consumer("NSA", queue).consume();
 
-    final InOrder inOrder = inOrder(getStdOutMock());
-    inOrder.verify(getStdOutMock()).println("Message [Hello!] from [you] received by [NSA]");
-    inOrder.verify(getStdOutMock()).println("Message [Hi!] from [me] received by [NSA]");
-    inOrder.verify(getStdOutMock()).println("Consumer NSA receive request to terminate.");
-    inOrder.verifyNoMoreInteractions();
-
+    assertTrue(appender.logContains("Message [Hello!] from [you] received by [NSA]"));
+    assertTrue(appender.logContains("Message [Hi!] from [me] received by [NSA]"));
+    assertTrue(appender.logContains("Consumer NSA receive request to terminate."));
   }
 
   /**
@@ -73,6 +89,24 @@ public class ConsumerTest extends StdOutTest {
     msg.addHeader(Message.Headers.DATE, LocalDateTime.now().toString());
     msg.setBody(message);
     return msg;
+  }
+
+  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender(Class clazz) {
+      ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public boolean logContains(String message) {
+      return log.stream().anyMatch(event -> event.getFormattedMessage().equals(message));
+    }
   }
 
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,8 @@
 package com.iluwatar.delegation.simple.printers;
 
 import com.iluwatar.delegation.simple.Printer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Specialised Implementation of {@link Printer} for a HP Printer, in
@@ -32,12 +34,14 @@ import com.iluwatar.delegation.simple.Printer;
  */
 public class HpPrinter implements Printer {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(HpPrinter.class);
+
   /**
    * {@inheritDoc}
    */
   @Override
   public void print(String message) {
-    System.out.print("HP Printer : " + message);
+    LOGGER.info("HP Printer : {}", message);
   }
 
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.facade;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * DwarvenMineWorker is one of the goldmine subsystems.
@@ -29,20 +32,22 @@ package com.iluwatar.facade;
  */
 public abstract class DwarvenMineWorker {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenMineWorker.class);
+
   public void goToSleep() {
-    System.out.println(name() + " goes to sleep.");
+    LOGGER.info("{} goes to sleep.", name());
   }
 
   public void wakeUp() {
-    System.out.println(name() + " wakes up.");
+    LOGGER.info("{} wakes up.", name());
   }
 
   public void goHome() {
-    System.out.println(name() + " goes home.");
+    LOGGER.info("{} goes home.", name());
   }
 
   public void goToMine() {
-    System.out.println(name() + " goes to the mine.");
+    LOGGER.info("{} goes to the mine.", name());
   }
 
   private void action(Action action) {
@@ -63,7 +68,7 @@ public abstract class DwarvenMineWorker {
         work();
         break;
       default:
-        System.out.println("Undefined action");
+        LOGGER.info("Undefined action");
         break;
     }
   }

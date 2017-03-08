@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.bridge;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Mjollnir
@@ -29,23 +32,25 @@ package com.iluwatar.bridge;
  */
 public class Mjollnir extends FlyingMagicWeaponImpl {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(Mjollnir.class);
+
   @Override
   public void wieldImp() {
-    System.out.println("wielding Mjollnir");
+    LOGGER.info("wielding Mjollnir");
   }
 
   @Override
   public void swingImp() {
-    System.out.println("swinging Mjollnir");
+    LOGGER.info("swinging Mjollnir");
   }
 
   @Override
   public void unwieldImp() {
-    System.out.println("unwielding Mjollnir");
+    LOGGER.info("unwielding Mjollnir");
   }
 
   @Override
   public void flyImp() {
-    System.out.println("Mjollnir hits the enemy in the air and returns back to the owner's hand");
+    LOGGER.info("Mjollnir hits the enemy in the air and returns back to the owner's hand");
   }
 }

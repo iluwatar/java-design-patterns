@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.mediator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Abstract base class for party members.
@@ -29,23 +32,25 @@ package com.iluwatar.mediator;
  */
 public abstract class PartyMemberBase implements PartyMember {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(PartyMemberBase.class);
+
   protected Party party;
 
   @Override
   public void joinedParty(Party party) {
-    System.out.println(this + " joins the party");
+    LOGGER.info("{} joins the party", this);
     this.party = party;
   }
 
   @Override
   public void partyAction(Action action) {
-    System.out.println(this + " " + action.getDescription());
+    LOGGER.info("{} {}", this, action.getDescription());
   }
 
   @Override
   public void act(Action action) {
     if (party != null) {
-      System.out.println(this + " " + action.toString());
+      LOGGER.info("{} {}", this, action);
       party.act(this, action);
     }
   }

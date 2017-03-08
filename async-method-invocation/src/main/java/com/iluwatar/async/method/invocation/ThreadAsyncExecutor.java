@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -57,12 +57,10 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 
   @Override
   public <T> T endProcess(AsyncResult<T> asyncResult) throws ExecutionException, InterruptedException {
-    if (asyncResult.isCompleted()) {
-      return asyncResult.getValue();
-    } else {
+    if (!asyncResult.isCompleted()) {
       asyncResult.await();
-      return asyncResult.getValue();
     }
+    return asyncResult.getValue();
   }
 
   /**
