@@ -22,10 +22,6 @@
  */
 package com.iluwatar.converter;
 
-/**
- *
- *
- */
 public class App {
   /**
    * Program entry point
@@ -34,10 +30,10 @@ public class App {
    */
   public static void main(String[] args) {
     Converter<UserDto, User> userConverter = new Converter<>(
-        userDto -> new User(userDto.getName(), userDto.getSurname(), userDto.isActive()),
-        user -> new UserDto(user.getName(), user.getSurname(), user.isActive()));
+        userDto -> new User(userDto.getFirstName(), userDto.getLastName(), userDto.isActive()),
+        user -> new UserDto(user.getFirstName(), user.getLastName(), user.isActive()));
     UserDto dtoUser = new UserDto("John", "Doe", true);
-    User user = userConverter.convertFromDTO(dtoUser);
+    User user = userConverter.convertFromDto(dtoUser);
     UserDto dtoUserCopy = userConverter.convertFromEntity(user);
 
   }

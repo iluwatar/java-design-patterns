@@ -29,55 +29,52 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * @param <T>
- * @param <U>
+ * @param <T> DTO representation's type
+ * @param <U> Domain representation's type
  */
 public class Converter<T, U> {
-  /**
-   *
-   */
-  private final Function<T, U> fromDTO;
-  /**
-   *
-   */
+
+  private final Function<T, U> fromDto;
   private final Function<U, T> fromEntity;
 
   /**
-   * @param fromDTO
-   * @param fromEntity
+   * @param fromDto Function that converts given dto entity into the domain entity.
+   * @param fromEntity Function that converts given domain entity into the dto entity.
    */
-  public Converter(final Function<T, U> fromDTO, final Function<U, T> fromEntity) {
-    this.fromDTO = fromDTO;
+  public Converter(final Function<T, U> fromDto, final Function<U, T> fromEntity) {
+    this.fromDto = fromDto;
     this.fromEntity = fromEntity;
   }
 
   /**
-   * @param arg
-   * @return
+   * @param arg DTO entity
+   * @return The domain representation - the result of the converting function application on dto entity.
    */
-  public U convertFromDTO(final T arg) {
-    return fromDTO.apply(arg);
+  public U convertFromDto(final T arg) {
+    return fromDto.apply(arg);
   }
 
   /**
-   * @param arg
-   * @return
+   * @param arg domain entity
+   * @return The DTO representation - the result of the converting function application on domain entity.
    */
   public T convertFromEntity(final U arg) {
     return fromEntity.apply(arg);
   }
 
   /**
-   * @param arg
-   * @return
+   * @param arg collection of DTO entities
+   * @return List of domain representation of provided entities retrieved by
+   *        mapping each of them with the convertion function
    */
-  public List<U> createFromDTOs(final Collection<T> arg) {
-    return arg.stream().map(this::convertFromDTO).collect(Collectors.toList());
+  public List<U> createFromDtos(final Collection<T> arg) {
+    return arg.stream().map(this::convertFromDto).collect(Collectors.toList());
   }
 
   /**
-   * @param arg
-   * @return
+   * @param arg collection of domain entities
+   * @return List of domain representation of provided entities retrieved by
+   *        mapping each of them with the convertion function
    */
   public List<T> createFromEntities(final Collection<U> arg) {
     return arg.stream().map(this::convertFromEntity).collect(Collectors.toList());
