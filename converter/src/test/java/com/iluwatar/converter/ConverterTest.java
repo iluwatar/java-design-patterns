@@ -37,9 +37,9 @@ public class ConverterTest {
    */
   @Test public void testCustomConverter() {
     Converter<UserDto, User> converter = new Converter<>(
-      userDto -> new User(userDto.getFirstName(), userDto.getLastName(), userDto.isActive(),
+        userDto -> new User(userDto.getFirstName(), userDto.getLastName(), userDto.isActive(),
         String.valueOf(new Random().nextInt())),
-      user -> new UserDto(user.getFirstName(), user.getLastName(), user.isActive(),
+        user -> new UserDto(user.getFirstName(), user.getLastName(), user.isActive(),
         user.getFirstName().toLowerCase() + user.getLastName().toLowerCase() + "@whatever.com"));
     User u1 = new User("John", "Doe", false, "12324");
     UserDto userDto = converter.convertFromEntity(u1);
@@ -52,7 +52,7 @@ public class ConverterTest {
    */
   @Test public void testCollectionConversion() {
     ArrayList<User> users = Lists.newArrayList(new User("Camile", "Tough", false, "124sad"),
-      new User("Marti", "Luther", true, "42309fd"), new User("Kate", "Smith", true, "if0243"));
+        new User("Marti", "Luther", true, "42309fd"), new User("Kate", "Smith", true, "if0243"));
     List<User> fromDtos = userConverter.createFromDtos(userConverter.createFromEntities(users));
     assertEquals(fromDtos, users);
   }
