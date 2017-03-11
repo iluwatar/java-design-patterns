@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,37 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.api.gateway;
 
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-import org.springframework.stereotype.Component;
-
-import java.io.IOException;
+package com.iluwatar.converter;
 
 /**
- * An adapter to communicate with the Price microservice
+ * Example implementation of the simple User converter.
  */
-@Component
-public class PriceClientImpl implements PriceClient {
+public class UserConverter extends Converter<UserDto, User> {
+
   /**
-   * Makes a simple HTTP Get request to the Price microservice
-   * @return The price of the product
+   * Constructor.
    */
-  @Override
-  public String getPrice() {
-    String response = null;
-    try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-      HttpGet httpGet = new HttpGet("http://localhost:50006/price");
-      try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
-        response = EntityUtils.toString(httpResponse.getEntity());
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return response;
+  public UserConverter() {
+    super(userDto -> new User(userDto.getFirstName(), userDto.getLastName(), userDto.isActive(),
+        userDto.getEmail()),
+        user -> new UserDto(user.getFirstName(), user.getLastName(), user.isActive(),
+        user.getUserId()));
   }
 }
