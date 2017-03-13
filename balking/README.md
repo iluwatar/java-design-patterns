@@ -21,3 +21,7 @@ Use the Balking pattern when
 *you want to invoke an action on an object only when it is in a particular state
 *objects are generally only in a state that is prone to balking temporarily
 but for an unknown amount of time
+
+## Related patterns
+* Guarded Suspendion Pattern
+* Double Checked Locking Pattern
