@@ -104,7 +104,7 @@ public class App {
       System.out.println("The List exceptionList contains " + counterExceptions + " exceptions");
 
     } catch (Exception e) {
-      // no action here 
+      System.out.println("Abnormal end of program. Program throws exception: "); 
     }
     executor.shutdown();
   }
