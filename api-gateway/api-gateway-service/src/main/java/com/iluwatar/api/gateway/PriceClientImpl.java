@@ -35,7 +35,7 @@ import java.io.IOException;
  * An adapter to communicate with the Price microservice
  */
 @Component
-public class PriceClientImpl implements PriceClient{
+public class PriceClientImpl implements PriceClient {
   /**
    * Makes a simple HTTP Get request to the Price microservice
    * @return The price of the product

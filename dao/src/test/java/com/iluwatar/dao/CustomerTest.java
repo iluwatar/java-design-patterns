@@ -29,6 +29,9 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests {@link Customer}.
+ */
 public class CustomerTest {
 
   private Customer customer;

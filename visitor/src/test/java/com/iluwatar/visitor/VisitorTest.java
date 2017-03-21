@@ -22,23 +22,23 @@
  */
 package com.iluwatar.visitor;
 
+import static org.junit.Assert.assertEquals;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
-
 /**
  * Date: 12/30/15 - 18:59 PM
- *
+ * Test case for Visitor Pattern
+ * @param <V> Type of UnitVisitor
  * @author Jeroen Meulemeester
  */
 public abstract class VisitorTest<V extends UnitVisitor> {

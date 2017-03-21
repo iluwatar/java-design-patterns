@@ -14,11 +14,14 @@
  */
 package domainapp.dom.modules.simple;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Test for SimpleObject
+ */
 public class SimpleObjectTest {
 
   SimpleObject simpleObject;
@@ -28,6 +31,9 @@ public class SimpleObjectTest {
     simpleObject = new SimpleObject();
   }
 
+  /**
+   * Test for Names for SimpleObjects
+   */
   public static class Name extends SimpleObjectTest {
 
     @Test

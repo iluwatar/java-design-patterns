@@ -34,6 +34,9 @@ import org.springframework.data.jpa.domain.Specification;
  */
 public class PersonSpecifications {
 
+  /**
+   * Specifications stating the Between (From - To) Age Specification
+   */
   public static class AgeBetweenSpec implements Specification<Person> {
 
     private int from;
