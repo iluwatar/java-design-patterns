@@ -31,8 +31,8 @@
     <script type="text/javascript" src="{{ '/static/js/viewer.min.js' | prepend: site.baseurl }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ '/static/css/viewer.min.css' | prepend: site.baseurl }}">
     <script type="text/javascript">
-        $.fn.viewer.setDefaults({ navbar: false });
-        $('.row.post img, .row.pattern img').viewer();
+        $.fn.viewer.setDefaults({ navbar: false, zoomRatio: 0.2 });
+        $('.row.post img, .row.pattern img').not('.noViewer').viewer();
     </script>
 {% endif %}
 

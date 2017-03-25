@@ -276,10 +276,12 @@ a {
     }
     img {
         max-width: 100%;
-        max-height: 400px;
+        max-height: 600px;
         vertical-align: middle;
-        background-color: $base06;
-        padding: 2px 2px;
+        background: $base07;
+        &:not(.viewer-move) {
+          border: solid 2px $base06;
+        }
     }
     article {
         position: relative;
@@ -382,6 +384,9 @@ blockquote {
 @media screen and (max-width: 991px) {
     #fall ul {
         width: auto;
+    }
+    .page img {
+      max-height: 300px;
     }
 }
 
