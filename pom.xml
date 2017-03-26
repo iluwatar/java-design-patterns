@@ -136,6 +136,7 @@
         <module>object-mother</module>
         <module>converter</module>
         <module>guarded-suspension</module>
+        <module>balking</module>
     </modules>
 
     <dependencyManagement>

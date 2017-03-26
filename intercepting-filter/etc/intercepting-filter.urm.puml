@@ -1,4 +1,5 @@
 @startuml
+left to right direction
 package com.iluwatar.intercepting.filter {
   abstract class AbstractFilter {
     - next : Filter
@@ -79,10 +80,10 @@ AbstractFilter -->  "-next" Filter
 DListener --+ Target
 FilterChain -->  "-chain" Filter
 FilterManager -->  "-filterChain" FilterChain
-AbstractFilter ..|> Filter 
-AddressFilter --|> AbstractFilter 
-ContactFilter --|> AbstractFilter 
-DepositFilter --|> AbstractFilter 
-NameFilter --|> AbstractFilter 
-OrderFilter --|> AbstractFilter 
+AbstractFilter ..|> Filter
+AddressFilter --|> AbstractFilter
+ContactFilter --|> AbstractFilter
+DepositFilter --|> AbstractFilter
+NameFilter --|> AbstractFilter
+OrderFilter --|> AbstractFilter
 @enduml
