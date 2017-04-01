@@ -30,6 +30,9 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
+/**
+ * Tests for {@link WashingMachine}
+ */
 public class WashingMachineTest {
 
   private volatile WashingMachineState machineStateGlobal;
