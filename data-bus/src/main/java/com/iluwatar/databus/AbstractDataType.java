@@ -25,7 +25,7 @@ SOFTWARE.
 package com.iluwatar.databus;
 
 /**
- * .
+ * Base for data to send via the Data-Bus.
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */

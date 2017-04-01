@@ -29,7 +29,7 @@ import com.iluwatar.databus.DataType;
 import java.time.LocalDateTime;
 
 /**
- * .
+ * An event raised when applications stops, containing the stop time of the application.
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
