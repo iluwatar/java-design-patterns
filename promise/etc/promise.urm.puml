@@ -1,4 +1,5 @@
 @startuml
+left to right direction
 package com.iluwatar.promise {
   class App {
     - DEFAULT_URL : String {static}
@@ -70,8 +71,8 @@ package com.iluwatar.promise {
     + lowestFrequencyChar(charFrequency : Map<Character, Integer>) : Character {static}
   }
 }
-TransformAction -->  "-src" Promise
 TransformAction --+ Promise
+TransformAction -->  "-src" Promise
 ConsumeAction --+ Promise
 ConsumeAction -->  "-src" Promise
 Promise --|> PromiseSupport 

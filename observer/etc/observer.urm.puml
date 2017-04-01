@@ -1,4 +1,5 @@
 @startuml
+left to right direction
 package com.iluwatar.observer {
   class App {
     - LOGGER : Logger {static}
@@ -71,10 +72,10 @@ package com.iluwatar.observer.generic {
 Weather -->  "-currentWeather" WeatherType
 GWeather -->  "-currentWeather" WeatherType
 Weather -->  "-observers" WeatherObserver
-Hobbits ..|> WeatherObserver 
-Orcs ..|> WeatherObserver 
-GHobbits ..|> Race 
-GOrcs ..|> Race 
-GWeather --|> Observable 
-Race --|> Observer 
+Hobbits ..|> WeatherObserver
+Orcs ..|> WeatherObserver
+GHobbits ..|> Race
+GOrcs ..|> Race
+GWeather --|> Observable
+Race --|> Observer
 @enduml

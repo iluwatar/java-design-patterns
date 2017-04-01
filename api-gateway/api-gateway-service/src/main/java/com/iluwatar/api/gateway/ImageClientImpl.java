@@ -35,7 +35,7 @@ import java.io.IOException;
  * An adapter to communicate with the Image microservice
  */
 @Component
-public class ImageClientImpl implements ImageClient{
+public class ImageClientImpl implements ImageClient {
   /**
    * Makes a simple HTTP Get request to the Image microservice
    * @return The path to the image

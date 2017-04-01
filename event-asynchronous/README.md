@@ -12,11 +12,12 @@ tags:
 
 ## Intent
 The Event-based Asynchronous Pattern makes available the advantages of multithreaded applications while hiding many
-of the complex issues inherent in multithreaded design. Using a class that supports this pattern can allow you to:-
-(1) Perform time-consuming tasks, such as downloads and database operations, "in the background," without interrupting your application. 
-(2) Execute multiple operations simultaneously, receiving notifications when each completes. 
-(3) Wait for resources to become available without stopping ("hanging") your application. 
-(4) Communicate with pending asynchronous operations using the familiar events-and-delegates model.
+of the complex issues inherent in multithreaded design. Using a class that supports this pattern can allow you to:
+
+1. Perform time-consuming tasks, such as downloads and database operations, "in the background," without interrupting your application.
+2. Execute multiple operations simultaneously, receiving notifications when each completes.
+3. Wait for resources to become available without stopping ("hanging") your application.
+4. Communicate with pending asynchronous operations using the familiar events-and-delegates model.
 
 ![alt text](./etc/event-asynchronous.png "Event-based Asynchronous")
 
