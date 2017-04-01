@@ -46,6 +46,16 @@ import java.time.LocalDateTime;
  * will receive the same data, the order each receives a given piece of data, is an
  * implementation detail.</p>
  * <p>Members may unsubscribe from the Data-Bus to stop receiving data.</p>
+ * <p>This example of the pattern implements a Synchronous Data-Bus, meaning that
+ * when data is published to the Data-Bus, the publish method will not return until
+ * all members have received the data and returned.</p>
+ * <p>The {@link DataBus} class is a Singleton.</p>
+ * <p>Members of the Data-Bus must implement the {@link Member} interface.</p>
+ * <p>Data to be published via the Data-Bus must implement the {@link DataType} interface.</p>
+ * <p>The {@code data} package contains example {@link DataType} implementations.</p>
+ * <p>The {@code members} package contains example {@link Member} implementations.</p>
+ * <p>The {@link StatusMember} demonstrates using the DataBus to publish a message
+ * to the Data-Bus when it receives a message.</p>
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
