@@ -23,12 +23,11 @@
 
 package com.iluwatar.databus;
 
-import com.iluwatar.databus.data.StoppingData;
-import com.iluwatar.databus.data.StartingData;
 import com.iluwatar.databus.data.MessageData;
+import com.iluwatar.databus.data.StartingData;
+import com.iluwatar.databus.data.StoppingData;
 import com.iluwatar.databus.members.CounterMember;
 import com.iluwatar.databus.members.StatusMember;
-import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 
@@ -39,7 +38,6 @@ import java.time.LocalDateTime;
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
-@Slf4j
 class App {
 
   public static void main(String[] args) {

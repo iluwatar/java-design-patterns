@@ -26,19 +26,23 @@ package com.iluwatar.databus.members;
 import com.iluwatar.databus.DataType;
 import com.iluwatar.databus.Member;
 import com.iluwatar.databus.data.MessageData;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
+import java.util.logging.Logger;
 
 /**
  * Receiver of Data-Bus events.
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
-@Slf4j
-@RequiredArgsConstructor
 public class CounterMember implements Member {
 
+  private static final Logger LOGGER = Logger.getLogger(CounterMember.class.getName());
+
   private final String name;
+
+  public CounterMember(String name) {
+    this.name = name;
+  }
 
   @Override
   public void accept(final DataType data) {
@@ -48,6 +52,6 @@ public class CounterMember implements Member {
   }
 
   private void handleEvent(MessageData data) {
-    log.info("{} sees message {}", name, data.getMessage());
+    LOGGER.info(String.format("%s sees message %s", name, data.getMessage()));
   }
 }

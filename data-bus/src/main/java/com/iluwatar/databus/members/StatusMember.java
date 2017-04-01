@@ -28,19 +28,23 @@ import com.iluwatar.databus.Member;
 import com.iluwatar.databus.data.MessageData;
 import com.iluwatar.databus.data.StartingData;
 import com.iluwatar.databus.data.StoppingData;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
+import java.util.logging.Logger;
 
 /**
  * Receiver of Data-Bus events.
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
-@Slf4j
-@RequiredArgsConstructor
 public class StatusMember implements Member {
 
+  private static final Logger LOGGER = Logger.getLogger(StatusMember.class.getName());
+
   private final int id;
+
+  public StatusMember(int id) {
+    this.id = id;
+  }
 
   @Override
   public void accept(final DataType data) {
@@ -52,12 +56,12 @@ public class StatusMember implements Member {
   }
 
   private void handleEvent(StartingData data) {
-    log.info("Receiver #{} sees application started at {}", id, data.getWhen());
+    LOGGER.info(String.format("Receiver #%d sees application started at %s", id, data.getWhen()));
   }
 
   private void handleEvent(StoppingData data) {
-    log.info("Receiver #{} sees application stopping at {}", id, data.getWhen());
-    log.info("Receiver #{} sending goodbye message", id);
+    LOGGER.info(String.format("Receiver #%d sees application stopping at %s", id, data.getWhen()));
+    LOGGER.info(String.format("Receiver #%d sending goodbye message", id));
     data.getDataBus().publish(MessageData.of(String.format("Goodbye cruel world from #%d!", id)));
   }
 }

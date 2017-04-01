@@ -25,7 +25,6 @@ package com.iluwatar.databus.data;
 
 import com.iluwatar.databus.AbstractDataType;
 import com.iluwatar.databus.DataType;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -34,10 +33,13 @@ import java.time.LocalDateTime;
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
-@RequiredArgsConstructor
 public class StoppingData extends AbstractDataType {
 
   private final LocalDateTime when;
+
+  public StoppingData(LocalDateTime when) {
+    this.when = when;
+  }
 
   public LocalDateTime getWhen() {
     return when;
