@@ -31,6 +31,9 @@ import java.util.Random;
 
 import static junit.framework.TestCase.assertEquals;
 
+/**
+ * Tests for {@link Converter}
+ */
 public class ConverterTest {
 
   private UserConverter userConverter = new UserConverter();

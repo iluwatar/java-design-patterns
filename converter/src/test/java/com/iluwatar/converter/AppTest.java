@@ -24,6 +24,9 @@ package com.iluwatar.converter;
 
 import org.junit.Test;
 
+/**
+ * App running test
+ */
 public class AppTest {
 
   @Test
