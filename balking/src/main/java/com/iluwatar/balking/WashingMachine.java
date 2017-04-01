@@ -25,6 +25,9 @@ package com.iluwatar.balking;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Washing machine class
+ */
 public class WashingMachine {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(WashingMachine.class);

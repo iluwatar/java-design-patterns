@@ -26,6 +26,9 @@ package com.iluwatar.converter;
 
 import java.util.Objects;
 
+/**
+ * User DTO class
+ */
 public class UserDto {
 
   private String firstName;
