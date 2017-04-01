@@ -22,6 +22,9 @@
  */
 package com.iluwatar.objectmother;
 
+/**
+ * Defines all attributes and behaviour related to the Queen
+ */
 public class Queen implements Royalty {
   private boolean isDrunk = false;
   private boolean isHappy = false;
@@ -46,7 +49,7 @@ public class Queen implements Royalty {
   public void makeUnhappy() {
     isHappy = false;
   }
-  
+
   public boolean isFlirty() {
     return isFlirty;
   }
@@ -54,7 +57,7 @@ public class Queen implements Royalty {
   public void setFlirtiness(boolean flirtiness) {
     this.isFlirty = flirtiness;
   }
-  
+
   /**
    * Method which is called when the king is flirting to a queen.
    * @param king King who initialized the flirt.

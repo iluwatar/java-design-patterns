@@ -33,8 +33,11 @@ import com.iluwatar.objectmother.Queen;
 import com.iluwatar.objectmother.Royalty;
 import com.iluwatar.objectmother.RoyaltyObjectMother;
 
+/**
+ * Test Generation of Royalty Types using the object-mother
+ */
 public class RoyaltyObjectMotherTest {
-  
+
   @Test
   public void unsuccessfulKingFlirt() {
     King soberUnhappyKing = RoyaltyObjectMother.createSoberUnhappyKing();
@@ -42,7 +45,7 @@ public class RoyaltyObjectMotherTest {
     soberUnhappyKing.flirt(flirtyQueen);
     assertFalse(soberUnhappyKing.isHappy());
   }
-  
+
   @Test
   public void queenIsBlockingFlirtCauseDrunkKing() {
     King drunkUnhappyKing = RoyaltyObjectMother.createDrunkKing();
@@ -50,7 +53,7 @@ public class RoyaltyObjectMotherTest {
     drunkUnhappyKing.flirt(notFlirtyQueen);
     assertFalse(drunkUnhappyKing.isHappy());
   }
-  
+
   @Test
   public void queenIsBlockingFlirt() {
     King soberHappyKing = RoyaltyObjectMother.createHappyKing();
@@ -58,7 +61,7 @@ public class RoyaltyObjectMotherTest {
     soberHappyKing.flirt(notFlirtyQueen);
     assertFalse(soberHappyKing.isHappy());
   }
-  
+
   @Test
   public void successfullKingFlirt() {
     King soberHappyKing = RoyaltyObjectMother.createHappyKing();
@@ -66,7 +69,7 @@ public class RoyaltyObjectMotherTest {
     soberHappyKing.flirt(flirtyQueen);
     assertTrue(soberHappyKing.isHappy());
   }
-  
+
   @Test
   public void testQueenType() {
     Royalty flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
@@ -74,7 +77,7 @@ public class RoyaltyObjectMotherTest {
     assertEquals(flirtyQueen.getClass(), Queen.class);
     assertEquals(notFlirtyQueen.getClass(), Queen.class);
   }
-  
+
   @Test
   public void testKingType() {
     Royalty drunkKing = RoyaltyObjectMother.createDrunkKing();

@@ -30,6 +30,9 @@ import org.junit.rules.ExpectedException;
 
 import java.util.Objects;
 
+/**
+ * Test for Monad Pattern
+ */
 public class MonadTest {
 
   @Rule

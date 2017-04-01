@@ -30,6 +30,9 @@ import java.util.HashSet;
 
 import org.junit.Test;
 
+/**
+ * Test Lottery Tickets for equality
+ */
 public class LotteryTicketTest {
 
   @Test

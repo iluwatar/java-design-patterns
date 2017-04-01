@@ -25,8 +25,8 @@ package com.iluwatar.async.method.invocation;
 import java.util.concurrent.ExecutionException;
 
 /**
- * 
  * AsyncResult interface
+ * @param <T> parameter returned when getValue is invoked
  */
 public interface AsyncResult<T> {
 

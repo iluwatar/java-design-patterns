@@ -22,19 +22,19 @@
  */
 package com.iluwatar.observer.generic;
 
+import static org.junit.Assert.assertEquals;
+
 import com.iluwatar.observer.WeatherType;
 import com.iluwatar.observer.utils.InMemoryAppender;
+import java.util.function.Supplier;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.function.Supplier;
-
-import static org.junit.Assert.assertEquals;
-
 /**
  * Date: 12/27/15 - 11:44 AM
- *
+ * Test for Observers
+ * @param <O> Type of Observer
  * @author Jeroen Meulemeester
  */
 public abstract class ObserverTest<O extends Observer> {

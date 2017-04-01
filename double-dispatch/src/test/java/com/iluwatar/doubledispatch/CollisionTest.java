@@ -22,13 +22,14 @@
  */
 package com.iluwatar.doubledispatch;
 
-import java.util.Objects;
-
 import static org.junit.Assert.assertEquals;
+
+import java.util.Objects;
 
 /**
  * Date: 12/10/15 - 8:37 PM
- *
+ * Test for Collision
+ * @param <O> Type of GameObject
  * @author Jeroen Meulemeester
  */
 public abstract class CollisionTest<O extends GameObject> {

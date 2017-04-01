@@ -22,8 +22,11 @@
  */
 package com.iluwatar.objectmother;
 
+/**
+ * Object Mother Pattern generating Royalty Types
+ */
 public final class RoyaltyObjectMother {
-  
+
   /**
    * Method to create a sober and unhappy king. The standard paramters are set.
    * @return An instance of {@link com.iluwatar.objectmother.King} with the standard properties.
@@ -31,7 +34,7 @@ public final class RoyaltyObjectMother {
   public static King createSoberUnhappyKing() {
     return new King();
   }
-  
+
   /**
    * Method of the object mother to create a drunk king.
    * @return A drunk {@link com.iluwatar.objectmother.King}.
@@ -41,7 +44,7 @@ public final class RoyaltyObjectMother {
     king.makeDrunk();
     return king;
   }
-  
+
   /**
    * Method to create a happy king.
    * @return A happy {@link com.iluwatar.objectmother.King}.
@@ -51,7 +54,7 @@ public final class RoyaltyObjectMother {
     king.makeHappy();
     return king;
   }
-  
+
   /**
    * Method to create a happy and drunk king.
    * @return A drunk and happy {@link com.iluwatar.objectmother.King}.
@@ -62,7 +65,7 @@ public final class RoyaltyObjectMother {
     king.makeDrunk();
     return king;
   }
-  
+
   /**
    * Method to create a flirty queen.
    * @return A flirty {@link com.iluwatar.objectmother.Queen}.
@@ -72,7 +75,7 @@ public final class RoyaltyObjectMother {
     queen.setFlirtiness(true);
     return queen;
   }
-  
+
   /**
    * Method to create a not flirty queen.
    * @return A not flirty {@link com.iluwatar.objectmother.Queen}.

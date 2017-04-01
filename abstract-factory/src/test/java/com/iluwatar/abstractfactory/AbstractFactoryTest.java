@@ -28,6 +28,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test for abstract factory
+ */
 public class AbstractFactoryTest {
 
   private App app = new App();

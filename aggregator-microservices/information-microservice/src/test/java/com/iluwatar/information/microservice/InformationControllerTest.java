@@ -25,6 +25,9 @@ package com.iluwatar.information.microservice;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Test for Information Rest Controller
+ */
 public class InformationControllerTest {
 
   @Test

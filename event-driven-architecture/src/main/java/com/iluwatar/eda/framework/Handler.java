@@ -25,6 +25,7 @@ package com.iluwatar.eda.framework;
 /**
  * This interface can be implemented to handle different types of messages.
  * Every handler is responsible for a single of type message
+ * @param <E> Handler can handle events of type E
  */
 public interface Handler<E extends Event> {
 

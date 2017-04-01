@@ -22,6 +22,9 @@
  */
 package com.iluwatar.monad;
 
+/**
+ * User Definition
+ */
 public class User {
 
   private String name;
