@@ -29,6 +29,7 @@ import com.iluwatar.databus.data.MessageData;
 import com.iluwatar.databus.data.StartingData;
 import com.iluwatar.databus.data.StoppingData;
 
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 /**
@@ -41,6 +42,10 @@ public class StatusMember implements Member {
   private static final Logger LOGGER = Logger.getLogger(StatusMember.class.getName());
 
   private final int id;
+
+  private LocalDateTime started;
+
+  private LocalDateTime stopped;
 
   public StatusMember(int id) {
     this.id = id;
@@ -56,12 +61,22 @@ public class StatusMember implements Member {
   }
 
   private void handleEvent(StartingData data) {
-    LOGGER.info(String.format("Receiver #%d sees application started at %s", id, data.getWhen()));
+    started = data.getWhen();
+    LOGGER.info(String.format("Receiver #%d sees application started at %s", id, started));
   }
 
   private void handleEvent(StoppingData data) {
-    LOGGER.info(String.format("Receiver #%d sees application stopping at %s", id, data.getWhen()));
+    stopped = data.getWhen();
+    LOGGER.info(String.format("Receiver #%d sees application stopping at %s", id, stopped));
     LOGGER.info(String.format("Receiver #%d sending goodbye message", id));
     data.getDataBus().publish(MessageData.of(String.format("Goodbye cruel world from #%d!", id)));
+  }
+
+  public LocalDateTime getStarted() {
+    return started;
+  }
+
+  public LocalDateTime getStopped() {
+    return stopped;
   }
 }
