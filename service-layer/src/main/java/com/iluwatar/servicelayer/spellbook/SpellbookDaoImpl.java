@@ -38,7 +38,7 @@ public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements Spellboo
 
   @Override
   public Spellbook findByName(String name) {
-    Session session = getSession();
+    Session session = getSessionFactory().openSession();
     Transaction tx = null;
     Spellbook result = null;
     try {
