@@ -1,14 +1,11 @@
---- # this is so called 'Yaml Front Matter', read up on it here: http://jekyllrb.com/docs/frontmatter/
-layout: pattern # layout must allways be pattern
-title: Data Bus # the properly formatted title
-folder: data-bus # the folder name in which this pattern lies
-permalink: /patterns/data-bus/ # the permalink to the pattern, to keep this uniform please stick to /patterns/FOLDER/
+---
+layout: pattern
+title: Data Bus
+folder: data-bus
+permalink: /patterns/data-bus/
 
-# both categories and tags are Yaml Lists
-# you can either just pick one or write a list with '-'s
-# usable categories and tags are listed here: https://github.com/iluwatar/java-design-patterns/blob/gh-pages/_config.yml
-categories: Architectural # categories of the pattern
-tags: # tags of the pattern
+categories: Architectural
+tags:
  - Java
  - Difficulty-Intermediate
 ---
