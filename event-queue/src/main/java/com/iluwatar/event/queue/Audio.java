@@ -47,10 +47,6 @@ public class Audio {
 
   private static PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
 
-  public static boolean isServiceRunning() {
-    return updateThread.isAlive();
-  }
-
   /**
    * This method stops the Update Method's thread. 
    */
@@ -117,6 +113,8 @@ public class Audio {
     try {
       clip = AudioSystem.getClip();
       clip.open(pendingAudio[headIndex].stream);
+      clip.start();
+      headIndex++;
     } catch (LineUnavailableException e) {
       System.err.println("Error occoured while loading the audio: The line is unavailable");
       e.printStackTrace();
@@ -124,8 +122,5 @@ public class Audio {
       System.err.println("Input/Output error while loading the audio");
       e.printStackTrace();
     }
-    clip.start();
-
-    headIndex++;
   }
 }
