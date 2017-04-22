@@ -135,6 +135,7 @@
         <module>event-asynchronous</module>
         <module>queue-load-leveling</module>
         <module>object-mother</module>
+        <module>data-bus</module>
         <module>converter</module>
         <module>guarded-suspension</module>
         <module>balking</module>
