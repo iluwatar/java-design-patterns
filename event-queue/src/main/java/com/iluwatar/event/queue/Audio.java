@@ -52,7 +52,7 @@ public class Audio {
   /**
    * This method stops the Update Method's thread. 
    */
-  public static void stopService() {
+  public static synchronized void stopService() {
     if (updateThread != null) {
       updateThread.interrupt();
     }
@@ -62,11 +62,12 @@ public class Audio {
    * This method stops the Update Method's thread. 
    * @return boolean
    */
-  public static boolean isServiceRunning() {
-    if (updateThread != null) {
-      return updateThread.isAlive();
+  public static synchronized boolean isServiceRunning() {
+    if (updateThread != null && updateThread.isAlive() ) {
+      return true;
+    } else {
+      return false;
     }
-    return false;
   }
 
   /**
@@ -83,6 +84,13 @@ public class Audio {
         }
       });
     }
+    startThread();
+  }
+  
+  /**
+   * This is a synchronized thread starter
+   */
+  public static synchronized void startThread() {
     if (!updateThread.isAlive()) {
       updateThread.start();
       headIndex = 0;
