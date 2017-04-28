@@ -24,12 +24,9 @@
 package com.iluwatar.event.queue;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
@@ -51,17 +48,12 @@ public class App {
    * @throws UnsupportedAudioFileException  when the loaded audio file is unsupported 
    */
   public static void main(String[] args) throws UnsupportedAudioFileException, IOException {
-    Audio.playSound(getAudioStream("./etc/Bass-Drum-1.wav"), -10.0f);
-    Audio.playSound(getAudioStream("./etc/Closed-Hi-Hat-1.wav"), -8.0f);
+    Audio.playSound(Audio.getAudioStream("./etc/Bass-Drum-1.wav"), -10.0f);
+    Audio.playSound(Audio.getAudioStream("./etc/Closed-Hi-Hat-1.wav"), -8.0f);
     
     System.out.println("Press Enter key to stop the program...");
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     br.read();
     Audio.stopService();
-  }
-  
-  public static AudioInputStream getAudioStream(String filePath) 
-      throws UnsupportedAudioFileException, IOException {
-    return AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
   }
 }

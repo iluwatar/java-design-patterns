@@ -23,12 +23,15 @@
 
 package com.iluwatar.event.queue;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.Thread.State;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * This class implements the Event Queue pattern.
@@ -54,6 +57,17 @@ public class Audio {
     if (updateThread != null) {
       updateThread.interrupt();
     }
+  }
+  
+  /**
+   * This method stops the Update Method's thread. 
+   * @return boolean
+   */
+  public static boolean isServiceRunning() {
+    if (updateThread != null) {
+      return updateThread.isAlive();
+    }
+    return false;
   }
 
   /**
@@ -86,17 +100,17 @@ public class Audio {
     init();
     // Walk the pending requests.
     for (int i = headIndex; i != tailIndex; i = (i + 1) % MAX_PENDING) {
-      if (pendingAudio[i].stream == stream) {
+      if (getPendingAudio()[i].stream == stream) {
         // Use the larger of the two volumes.
-        pendingAudio[i].volume = Math.max(volume, pendingAudio[i].volume);
+        getPendingAudio()[i].volume = Math.max(volume, getPendingAudio()[i].volume);
 
         // Don't need to enqueue.
         return;
       }
     }
-    pendingAudio[tailIndex] = new PlayMessage();
-    pendingAudio[tailIndex].stream = stream;
-    pendingAudio[tailIndex].volume = volume;
+    getPendingAudio()[tailIndex] = new PlayMessage();
+    getPendingAudio()[tailIndex].stream = stream;
+    getPendingAudio()[tailIndex].volume = volume;
     tailIndex = (tailIndex + 1) % MAX_PENDING;
   }
   
@@ -112,7 +126,7 @@ public class Audio {
     Clip clip = null;
     try {
       clip = AudioSystem.getClip();
-      clip.open(pendingAudio[headIndex].stream);
+      clip.open(getPendingAudio()[headIndex].stream);
       clip.start();
       headIndex++;
     } catch (LineUnavailableException e) {
@@ -123,4 +137,25 @@ public class Audio {
       e.printStackTrace();
     }
   }
+
+  /**
+   * Returns the AudioInputStream of a file
+   * @param filePath is the path of the audio file
+   * @return AudioInputStream
+   * @throws UnsupportedAudioFileException when the audio file is not supported 
+   * @throws IOException when the file is not readable
+   */
+  public static AudioInputStream getAudioStream(String filePath) 
+      throws UnsupportedAudioFileException, IOException {
+    return AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
+  }
+
+  /**
+   * Returns with the message array of the queue 
+   * @return PlayMessage[]
+   */
+  public static PlayMessage[] getPendingAudio() {
+    return pendingAudio;
+  }
+
 }
