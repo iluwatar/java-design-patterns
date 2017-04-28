@@ -62,9 +62,9 @@ public class AudioTest {
    */
   @Test
   public void testQueue() throws UnsupportedAudioFileException, IOException, InterruptedException {
-    Audio.playSound(Audio.getAudioStream("./etc/Bass-Drum-1.wav"), -10.0f);
-    Audio.playSound(Audio.getAudioStream("./etc/Bass-Drum-1.wav"), -10.0f);
-    Audio.playSound(Audio.getAudioStream("./etc/Bass-Drum-1.wav"), -10.0f);
+    Audio.playSound(Audio.getAudioStream("./etc/Bass-Drum-1.aif"), -10.0f);
+    Audio.playSound(Audio.getAudioStream("./etc/Bass-Drum-1.aif"), -10.0f);
+    Audio.playSound(Audio.getAudioStream("./etc/Bass-Drum-1.aif"), -10.0f);
     assertTrue(Audio.getPendingAudio().length > 0);
     // test that service is started
     assertTrue(Audio.isServiceRunning());
