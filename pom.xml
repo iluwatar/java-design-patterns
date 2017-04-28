@@ -139,6 +139,7 @@
         <module>converter</module>
         <module>guarded-suspension</module>
         <module>balking</module>
+        <module>marker</module>
     </modules>
 
     <dependencyManagement>
