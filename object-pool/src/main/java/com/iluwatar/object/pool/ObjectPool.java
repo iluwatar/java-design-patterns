@@ -26,8 +26,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 
  * Generic object pool
+ * @param <T> Type T of Object in the Pool
  */
 public abstract class ObjectPool<T> {
 
@@ -40,7 +40,7 @@ public abstract class ObjectPool<T> {
    * Checkout object from pool
    */
   public synchronized T checkOut() {
-    if (available.size() <= 0) {
+    if (available.isEmpty()) {
       available.add(create());
     }
     T instance = available.iterator().next();

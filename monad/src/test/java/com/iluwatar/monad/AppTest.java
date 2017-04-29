@@ -24,6 +24,9 @@ package com.iluwatar.monad;
 
 import org.junit.Test;
 
+/**
+ * Application Test
+ */
 public class AppTest {
 
   @Test

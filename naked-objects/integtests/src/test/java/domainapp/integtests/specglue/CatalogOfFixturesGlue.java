@@ -19,6 +19,9 @@ import org.apache.isis.core.specsupport.specs.CukeGlueAbstract;
 import cucumber.api.java.Before;
 import domainapp.fixture.scenarios.RecreateSimpleObjects;
 
+/**
+ * Test Execution to append a fixture of SimpleObjects
+ */
 public class CatalogOfFixturesGlue extends CukeGlueAbstract {
 
   @Before(value = {"@integration", "@SimpleObjectsFixture"}, order = 20000)
