@@ -55,6 +55,7 @@
         <module>factory-method</module>
         <module>prototype</module>
         <module>singleton</module>
+		<module>type-object</module>
         <module>adapter</module>
         <module>bridge</module>
         <module>composite</module>
