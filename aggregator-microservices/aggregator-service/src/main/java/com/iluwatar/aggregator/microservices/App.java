@@ -25,6 +25,9 @@ package com.iluwatar.aggregator.microservices;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Spring Boot EntryPoint Class
+ */
 @SpringBootApplication
 public class App {
 

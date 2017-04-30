@@ -1,4 +1,5 @@
 @startuml
+left to right direction
 package com.iluwatar.reactor.framework {
   abstract class AbstractNioChannel {
     - channel : SelectableChannel
@@ -147,9 +148,9 @@ App -->  "-channels" AbstractNioChannel
 DatagramPacket ..+ NioDatagramChannel
 App -->  "-dispatcher" Dispatcher
 ChangeKeyOpsCommand --+ NioReactor
-LoggingHandler ..|> ChannelHandler 
-NioDatagramChannel --|> AbstractNioChannel 
-NioServerSocketChannel --|> AbstractNioChannel 
-SameThreadDispatcher ..|> Dispatcher 
-ThreadPoolDispatcher ..|> Dispatcher 
+LoggingHandler ..|> ChannelHandler
+NioDatagramChannel --|> AbstractNioChannel
+NioServerSocketChannel --|> AbstractNioChannel
+SameThreadDispatcher ..|> Dispatcher
+ThreadPoolDispatcher ..|> Dispatcher
 @enduml

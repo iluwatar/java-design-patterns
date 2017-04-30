@@ -1,4 +1,4 @@
-/**
+  /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
  *
@@ -22,12 +22,19 @@
  */
 package com.iluwatar.factorykit.factorykit;
 
-import com.iluwatar.factorykit.*;
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.junit.Assert.assertTrue;
 
+import com.iluwatar.factorykit.Axe;
+import com.iluwatar.factorykit.Spear;
+import com.iluwatar.factorykit.Sword;
+import com.iluwatar.factorykit.Weapon;
+import com.iluwatar.factorykit.WeaponFactory;
+import com.iluwatar.factorykit.WeaponType;
+import org.junit.Before;
+import org.junit.Test;
+/**
+ *  Test Factory Kit Pattern
+ */
 public class FactoryKitTest {
 
   private WeaponFactory factory;

@@ -1,4 +1,5 @@
 @startuml
+left to right direction
 package com.iluwatar.servicelayer.hibernate {
   class HibernateUtil {
     - LOGGER : Logger {static}
@@ -143,18 +144,18 @@ MagicServiceImpl -->  "-spellbookDao" SpellbookDao
 MagicServiceImpl -->  "-spellDao" SpellDao
 Spellbook -->  "-spells" Spell
 Spellbook -->  "-wizards" Wizard
-DaoBaseImpl ..|> Dao 
-MagicServiceImpl ..|> MagicService 
-Spell --|> BaseEntity 
-SpellDao --|> Dao 
-SpellDaoImpl ..|> SpellDao 
-SpellDaoImpl --|> DaoBaseImpl 
-Spellbook --|> BaseEntity 
-SpellbookDao --|> Dao 
-SpellbookDaoImpl ..|> SpellbookDao 
-SpellbookDaoImpl --|> DaoBaseImpl 
-Wizard --|> BaseEntity 
-WizardDao --|> Dao 
-WizardDaoImpl ..|> WizardDao 
-WizardDaoImpl --|> DaoBaseImpl 
+DaoBaseImpl ..|> Dao
+MagicServiceImpl ..|> MagicService
+Spell --|> BaseEntity
+SpellDao --|> Dao
+SpellDaoImpl ..|> SpellDao
+SpellDaoImpl --|> DaoBaseImpl
+Spellbook --|> BaseEntity
+SpellbookDao --|> Dao
+SpellbookDaoImpl ..|> SpellbookDao
+SpellbookDaoImpl --|> DaoBaseImpl
+Wizard --|> BaseEntity
+WizardDao --|> Dao
+WizardDaoImpl ..|> WizardDao
+WizardDaoImpl --|> DaoBaseImpl
 @enduml

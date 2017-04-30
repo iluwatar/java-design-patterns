@@ -22,23 +22,22 @@
  */
 package com.iluwatar.templatemethod;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 /**
  * Date: 12/30/15 - 18:12 PM
- *
+ * @param <M> Type of StealingMethod
  * @author Jeroen Meulemeester
  */
 public abstract class StealingMethodTest<M extends StealingMethod> {

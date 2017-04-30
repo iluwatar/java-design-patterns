@@ -1,4 +1,5 @@
 @startuml
+left to right direction
 package com.iluwatar.interpreter {
   class App {
     - LOGGER : Logger {static}
@@ -44,8 +45,8 @@ package com.iluwatar.interpreter {
 MultiplyExpression -->  "-leftExpression" Expression
 MinusExpression -->  "-leftExpression" Expression
 PlusExpression -->  "-leftExpression" Expression
-MinusExpression --|> Expression 
-MultiplyExpression --|> Expression 
-NumberExpression --|> Expression 
-PlusExpression --|> Expression 
+MinusExpression --|> Expression
+MultiplyExpression --|> Expression
+NumberExpression --|> Expression
+PlusExpression --|> Expression
 @enduml

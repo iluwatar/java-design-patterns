@@ -39,6 +39,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * Utility to perform various operations
+ */
 public class Utility {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Utility.class);

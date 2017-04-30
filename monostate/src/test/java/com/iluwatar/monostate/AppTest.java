@@ -24,6 +24,9 @@ package com.iluwatar.monostate;
 
 import org.junit.Test;
 
+/**
+ * Application Test Entry
+ */
 public class AppTest {
 
   @Test

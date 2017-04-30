@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.15.0-SNAPSHOT</version>
+    <version>1.16.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2014</inceptionYear>
     <properties>
@@ -50,6 +50,7 @@
     </properties>
     <modules>
         <module>abstract-factory</module>
+        <module>tls</module>
         <module>builder</module>
         <module>factory-method</module>
         <module>prototype</module>
@@ -134,8 +135,10 @@
         <module>event-asynchronous</module>
         <module>queue-load-leveling</module>
         <module>object-mother</module>
+        <module>data-bus</module>
+        <module>converter</module>
         <module>guarded-suspension</module>
-
+        <module>balking</module>
     </modules>
 
     <dependencyManagement>
