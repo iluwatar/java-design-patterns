@@ -46,6 +46,7 @@ public class AdvancedSorceressTest {
      * Test if the {@link AdvancedSorceress} smokes whatever instance of {@link Tobacco} is passed to her
      * through the setter's parameter
      */
+    
     @Test
     public void testSmokeEveryThing() throws Exception {
 
@@ -64,7 +65,5 @@ public class AdvancedSorceressTest {
 
         // ... and nothing else is happening.
         assertEquals(tobaccos.length, appender.getLogSize());
-
     }
-
 }
