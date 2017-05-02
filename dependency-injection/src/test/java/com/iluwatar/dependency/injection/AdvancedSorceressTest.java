@@ -26,14 +26,7 @@ import com.iluwatar.dependency.injection.utils.InMemoryAppender;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
-
-/**
- * Date: 28/04/17 - 7:40 AM
- *
- * @author Stanislav Kapinus
- */
 
 public class AdvancedSorceressTest {
 
