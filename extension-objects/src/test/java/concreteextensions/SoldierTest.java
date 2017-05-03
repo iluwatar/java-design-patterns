@@ -3,8 +3,6 @@ package concreteextensions;
 import org.junit.Test;
 import units.SoldierUnit;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Srdjan on 03-May-17.
  */

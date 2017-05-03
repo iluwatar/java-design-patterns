@@ -1,6 +1,5 @@
 package units;
 
-import abstractextensions.SergeantExtension;
 import abstractextensions.UnitExtension;
 import concreteextensions.Sergeant;
 

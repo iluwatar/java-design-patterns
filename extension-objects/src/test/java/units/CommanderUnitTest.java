@@ -3,7 +3,8 @@ package units;
 import abstractextensions.CommanderExtension;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by Srdjan on 03-May-17.
@@ -16,7 +17,7 @@ public class CommanderUnitTest {
 
     assertNull(unit.getUnitExtension("SoldierExtension"));
     assertNull(unit.getUnitExtension("SergeantExtension"));
-    assertNotNull((CommanderExtension)unit.getUnitExtension("CommanderExtension"));
+    assertNotNull((CommanderExtension) unit.getUnitExtension("CommanderExtension"));
   }
 
 }

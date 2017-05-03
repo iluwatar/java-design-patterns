@@ -1,6 +1,5 @@
 package units;
 
-import abstractextensions.CommanderExtension;
 import abstractextensions.UnitExtension;
 import concreteextensions.Commander;
 
