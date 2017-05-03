@@ -38,6 +38,7 @@ public class App {
     SergeantExtension sergeantExtension = (SergeantExtension) unit.getUnitExtension("SergeantExtension");
     CommanderExtension commanderExtension = (CommanderExtension) unit.getUnitExtension("CommanderExtension");
 
+    //if unit have extension call the method
     if (soldierExtension != null) {
       soldierExtension.soldierReady();
     } else {
@@ -51,7 +52,7 @@ public class App {
     }
 
     if (commanderExtension != null) {
-      // commanderExtension.sergeantReady();
+      commanderExtension.commanderReady();
     } else {
       System.out.println(unit.getName() + " without CommanderExtension");
     }

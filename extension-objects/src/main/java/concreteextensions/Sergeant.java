@@ -16,6 +16,6 @@ public class Sergeant implements SergeantExtension {
 
   @Override
   public void sergeantReady() {
-    System.out.println("[Sergeant] " + unit.getName() + " do command! ");
+    System.out.println("[Sergeant] " + unit.getName() + " is ready! ");
   }
 }

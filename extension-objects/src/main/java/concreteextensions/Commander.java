@@ -13,4 +13,9 @@ public class Commander implements CommanderExtension {
   public Commander(CommanderUnit commanderUnit) {
     this.unit = commanderUnit;
   }
+
+  @Override
+  public void commanderReady() {
+    System.out.println("[Commander] " + unit.getName() + " is ready!");
+  }
 }

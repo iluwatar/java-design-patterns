@@ -16,6 +16,6 @@ public class Soldier implements SoldierExtension {
 
   @Override
   public void soldierReady() {
-    System.out.println("[Solider] " + unit.getName() + "  do command");
+    System.out.println("[Solider] " + unit.getName() + "  is ready!");
   }
 }
