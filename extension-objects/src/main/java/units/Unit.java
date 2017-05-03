@@ -8,6 +8,7 @@ import abstractextensions.UnitExtension;
 public class Unit {
 
   private String name;
+  protected UnitExtension unitExtension = null;
 
   public Unit(String name) {
     this.name = name;

@@ -9,8 +9,6 @@ import concreteextensions.Sergeant;
  */
 public class SergeantUnit extends Unit {
 
-  private SergeantExtension sergeantExtension;
-
   public SergeantUnit(String name) {
     super(name);
   }
@@ -19,10 +17,10 @@ public class SergeantUnit extends Unit {
   public UnitExtension getUnitExtension(String extensionName) {
 
     if (extensionName.equals("SergeantExtension")) {
-      if (sergeantExtension == null) {
-        sergeantExtension = new Sergeant(this);
+      if (unitExtension == null) {
+        unitExtension = new Sergeant(this);
       }
-      return sergeantExtension;
+      return unitExtension;
     }
 
     return super.getUnitExtension(extensionName);

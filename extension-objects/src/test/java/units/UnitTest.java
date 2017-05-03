@@ -11,8 +11,6 @@ import static org.junit.Assert.*;
  */
 public class UnitTest {
 
-  private Unit unit;
-
   @Test
   public void testConstGetSet() throws Exception {
     final String name = "testName";
