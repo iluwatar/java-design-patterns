@@ -23,21 +23,18 @@
 package com.iluwatar.type.object;
 
 /**
- * 
- * !!!!!!!!!!!!!!!!!!!!!!!!
+ *
+ * Monster class
  * 
  * @author JAPO
- * 
+ *
  */
-public class App {
+public class Monster {
   
-  /**
-   * Program entry point
-   * 
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+  public Monster(){
     
   }
+       
+  
   
 }

@@ -24,20 +24,67 @@ package com.iluwatar.type.object;
 
 /**
  * 
- * !!!!!!!!!!!!!!!!!!!!!!!!
+ * Breed class
  * 
  * @author JAPO
- * 
+ *
  */
-public class App {
+public class Breed {
   
-  /**
-   * Program entry point
-   * 
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+  private int health;
+  
+  private String attack;
+  
+/**
+ * 
+ * constructor
+ */  
+  public Breed(int health, final String attack) {
+    
+    this.health = health;
+    
+    this.attack = attack;
     
   }
   
+  /**
+   * 
+   * get health
+   */
+  public int getHealth() {
+    
+    return health;
+    
+  }
+  
+  /**
+   * 
+   * set health
+   */
+  public int setHealth(int health) {
+    
+    return this.health = health;
+    
+  }
+  
+  /**
+   * 
+   * get attack
+   */
+  public String getAttack() {
+    
+    return attack;
+    
+  }
+  
+  /**
+   * 
+   * set attack
+   */
+  public String setAttack(String attack) {
+    
+    return this.attack = attack;
+    
+  }
+
 }
