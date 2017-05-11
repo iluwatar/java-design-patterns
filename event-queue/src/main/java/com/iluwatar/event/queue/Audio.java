@@ -132,9 +132,10 @@ public class Audio {
     }
     Clip clip = null;
     try {
+      AudioInputStream audioStream = getPendingAudio()[headIndex].stream;
       headIndex++;
       clip = AudioSystem.getClip();
-      clip.open(getPendingAudio()[headIndex].stream);
+      clip.open(audioStream);
       clip.start();
     } catch (LineUnavailableException e) {
       System.err.println("Error occoured while loading the audio: The line is unavailable");
