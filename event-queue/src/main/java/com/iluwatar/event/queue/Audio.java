@@ -132,16 +132,18 @@ public class Audio {
     }
     Clip clip = null;
     try {
+      headIndex++;
       clip = AudioSystem.getClip();
       clip.open(getPendingAudio()[headIndex].stream);
       clip.start();
-      headIndex++;
     } catch (LineUnavailableException e) {
       System.err.println("Error occoured while loading the audio: The line is unavailable");
       e.printStackTrace();
     } catch (IOException e) {
       System.err.println("Input/Output error while loading the audio");
       e.printStackTrace();
+    } catch (IllegalArgumentException e) {
+      System.err.println("The system doesn't support the sound: " + e.getMessage());
     }
   }
 
