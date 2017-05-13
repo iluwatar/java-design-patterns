@@ -23,36 +23,22 @@
 package com.iluwatar.type.object;
 
 /**
- *
- * Monster class
+ * 
+ * Breed type enumeration
  * 
  * @author Imp92
  */
-public class Monster {
-  
-  private int health;
-  
-  private Breed bread;
-
-  public Monster( Breed bread ) {
-    setBread(bread);
-    setHealth(getBread().getHealth());
-  }
-
-  public int getHealth() {
-    return health;
-  }
-
-  public void setHealth(int health) {
-    this.health = health;
-  }
-
-  public Breed getBread() {
-    return bread;
-  }
-
-  private void setBread(Breed bread) {
-    this.bread = bread;
-  }
-  
+public enum BreedType {
+  TROLL,
+  TROLL_ARCHER,
+  TROLL_WIZARD,
+  DRAGON,
+  DRAGON_WARRIOR,
+  DRAGON_KNIGHT,
+  GIANT,
+  GIANT_WARRIOR,
+  GIANT_CYCLOPS,
+  GIANT_CHIMERA,
+  BEAST,
+  BEAST_HUNTER;
 }

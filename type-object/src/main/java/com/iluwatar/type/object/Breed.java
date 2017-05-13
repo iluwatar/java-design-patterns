@@ -26,25 +26,38 @@ package com.iluwatar.type.object;
  * 
  * Breed class
  * 
- * @author JAPO
- *
+ * @author Imp92
  */
 public class Breed {
+  
+  private BreedType type;
   
   private int health;
   
   private String attack;
   
-/**
- * 
- * constructor
- */  
-  public Breed(int health, final String attack) {
-    
-    this.health = health;
-    
-    this.attack = attack;
-    
+  private Breed parent = null;
+  
+  /**
+   * 
+   * constructor
+   */
+  public Breed(BreedType type, int health, String attack) {
+    setHealth(health);
+    setAttack(attack);
+    setType(type);
+  }
+  
+  /**
+   * 
+   * constructor
+   * to allow a breed to have a parent breed
+   */
+  public Breed(BreedType type, Breed parent, int health, String attack) {
+    setParent(parent);
+    setHealth(health);
+    setAttack(attack);
+    setType(type);
   }
   
   /**
@@ -52,19 +65,19 @@ public class Breed {
    * get health
    */
   public int getHealth() {
-    
+    if ( getParent() != null && health == 0 ) {
+    //Inherit when the health's value is 0 but the parent exist
+      return parent.getHealth();
+    }
     return health;
-    
   }
   
   /**
    * 
    * set health
    */
-  public int setHealth(int health) {
-    
-    return this.health = health;
-    
+  private void setHealth(int health) {
+    this.health = health;
   }
   
   /**
@@ -72,19 +85,35 @@ public class Breed {
    * get attack
    */
   public String getAttack() {
-    
+    if ( getParent() != null && attack == null ) {
+    //Inherit when the attack's value is null character but the parent exist
+      return parent.getAttack();
+    }
     return attack;
-    
-  }
-  
-  /**
-   * 
-   * set attack
-   */
-  public String setAttack(String attack) {
-    
-    return this.attack = attack;
-    
   }
 
+  private void setAttack(String attack) {
+    this.attack = attack;
+  }
+  
+  public Monster newMonster() {
+    return new Monster(this);
+  }
+
+  public Breed getParent() {
+    return parent;
+  }
+
+  private void setParent(Breed parent) {
+    this.parent = parent;
+  }
+
+  public BreedType getType() {
+    return type;
+  }
+
+  private void setType(BreedType type) {
+    this.type = type;
+  }
+  
 }

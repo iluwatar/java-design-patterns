@@ -22,37 +22,20 @@
  */
 package com.iluwatar.type.object;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 /**
- *
- * Monster class
  * 
- * @author Imp92
+ * Application test
+ * @author JAPO
  */
-public class Monster {
+public class AppTest {
   
-  private int health;
-  
-  private Breed bread;
-
-  public Monster( Breed bread ) {
-    setBread(bread);
-    setHealth(getBread().getHealth());
+  @Test
+  public void test() {
+    String[] args = {};
+    App.main(args);
   }
-
-  public int getHealth() {
-    return health;
-  }
-
-  public void setHealth(int health) {
-    this.health = health;
-  }
-
-  public Breed getBread() {
-    return bread;
-  }
-
-  private void setBread(Breed bread) {
-    this.bread = bread;
-  }
-  
 }

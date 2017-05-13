@@ -24,10 +24,7 @@ package com.iluwatar.type.object;
 
 /**
  * 
- * !!!!!!!!!!!!!!!!!!!!!!!!
- * 
- * @author JAPO
- * 
+ * @author Imp92
  */
 public class App {
   
@@ -37,6 +34,48 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+    
+    Breed troll = new Breed(BreedType.TROLL, 20, "Troll attack!");
+    
+    System.out.println(troll.getHealth());
+    
+    System.out.println(troll.getAttack());
+    
+    Breed trollArcher = new Breed(BreedType.TROLL_ARCHER, troll, 10, "TrollArcher attack!");
+    
+    System.out.println(trollArcher.getType());
+    
+    System.out.println(trollArcher.getParent().getType());
+    
+    System.out.println(trollArcher.getHealth());
+    
+    System.out.println(trollArcher.getAttack());
+    
+    Breed trollWizard = new Breed(BreedType.TROLL_WIZARD, troll, 30, "TrollWizard attack!");
+    
+    System.out.println(trollWizard.getType());
+    
+    System.out.println(trollWizard.getParent().getType());
+    
+    System.out.println(trollWizard.getHealth());
+    
+    System.out.println(trollWizard.getAttack());
+    
+    Breed dragon = new Breed(BreedType.DRAGON, 25, "Dragon attack!");
+    
+    System.out.println(trollWizard.getHealth());
+    
+    System.out.println(trollWizard.getAttack());
+    
+    Breed dragonKnight = new Breed(BreedType.DRAGON, dragon, 0, "Dragon attack!");
+    
+    System.out.println(trollWizard.getType());
+    
+    System.out.println(trollWizard.getParent().getType());
+    
+    System.out.println(trollWizard.getHealth());
+    
+    System.out.println(trollWizard.getAttack());
     
   }
   
