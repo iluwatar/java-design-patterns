@@ -3,7 +3,8 @@ layout: pattern
 title: Double buffer
 folder: double-buffer
 permalink: /patterns/double-buffer/
-categories: Game development - Graphics; Sequencing Patterns
+categories: Behavioral
+pumlid:LSZB4SCW303HLk82GFTq8q2syGZ1w6Et7rzpsxTRbyhHA9G_f_koBu3Yau_kPvGmqZh5IJpNEQ1pFEYeSE6DgP7rGz92Tr8n66XlG9jHc5A9VNz5NlzF3XrvnU0V
 tags:
  - Java
  - Difficulty-Beginner
