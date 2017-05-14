@@ -37,45 +37,64 @@ public class App {
     
     Breed troll = new Breed(BreedType.TROLL, 20, "Troll attack!");
     
-    System.out.println(troll.getHealth());
+    System.out.println("MonsterType: " + troll.getType());
     
-    System.out.println(troll.getAttack());
+    System.out.println("Health: " + troll.getHealth());
+    
+    System.out.println("Attack: " + troll.getAttack());
+    
     
     Breed trollArcher = new Breed(BreedType.TROLL_ARCHER, troll, 10, "TrollArcher attack!");
     
-    System.out.println(trollArcher.getType());
+    System.out.println("MonsterType: " + trollArcher.getType());
     
-    System.out.println(trollArcher.getParent().getType());
+    System.out.println("MonsterBreed: " + trollArcher.getParent().getType());
     
-    System.out.println(trollArcher.getHealth());
+    System.out.println("Health: " + trollArcher.getHealth());
     
-    System.out.println(trollArcher.getAttack());
+    System.out.println("Attack: " + trollArcher.getAttack());
+    
     
     Breed trollWizard = new Breed(BreedType.TROLL_WIZARD, troll, 30, "TrollWizard attack!");
     
-    System.out.println(trollWizard.getType());
+    System.out.println("MonsterType: " + trollWizard.getType());
     
-    System.out.println(trollWizard.getParent().getType());
+    System.out.println("MonsterBreed: " + trollWizard.getParent().getType());
     
-    System.out.println(trollWizard.getHealth());
+    System.out.println("Health: " + trollWizard.getHealth());
     
-    System.out.println(trollWizard.getAttack());
+    System.out.println("Attack: " + trollWizard.getAttack());
+    
     
     Breed dragon = new Breed(BreedType.DRAGON, 25, "Dragon attack!");
     
-    System.out.println(trollWizard.getHealth());
+    System.out.println("MonsterType: " + dragon.getType());
     
-    System.out.println(trollWizard.getAttack());
+    System.out.println("Health: " + dragon.getHealth());
     
-    Breed dragonKnight = new Breed(BreedType.DRAGON, dragon, 0, "Dragon attack!");
+    System.out.println("Attack: " + dragon.getAttack());
     
-    System.out.println(trollWizard.getType());
     
-    System.out.println(trollWizard.getParent().getType());
+    Breed dragonKnight = new Breed(BreedType.DRAGON_KNIGHT, dragon, 0, null);
     
-    System.out.println(trollWizard.getHealth());
+    System.out.println("MonsterType: " + dragonKnight.getType());
     
-    System.out.println(trollWizard.getAttack());
+    System.out.println("MonsterBreed: " + dragonKnight.getParent().getType());
+    
+    System.out.println("Health: " + dragonKnight.getHealth());
+    
+    System.out.println("Attack: " + dragonKnight.getAttack());
+    
+    
+    Breed giant = new Breed(BreedType.GIANT, 15, "Giant attack!");
+    
+    Breed giantCyclops = new Breed(BreedType.GIANT_CYCLOPS, giant, 12, "Cyclops attack!");
+    
+    Breed giantChimera = new Breed(BreedType.GIANT_CHIMERA, giant, 17, "Chimera attack!");
+    
+    Breed beast = new Breed(BreedType.BEAST, 25, "Beast attack!");
+    
+    Breed beastHunter = new Breed(BreedType.BEAST_HUNTER, beast, 22, "Beast Hunter attack!");
     
   }
   

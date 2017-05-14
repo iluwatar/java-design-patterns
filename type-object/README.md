@@ -6,24 +6,21 @@ permalink: /patterns/type-object/
 categories: Creational
 tags:
  - Java
- - Difficulty-xxxxx
+ - Gang Of Four
+ - Difficulty-Intermediate
 ---
 
 ## Intent
-xxxxx
+Allow the flexible creation of new “classes” by creating a single class, each instance of which represents a different type of object.
 
 ![alt text](./etc/model.png "Type object")
 
 ## Applicability
-Use the Type object pattern when
+This pattern is useful anytime you need to define a variety of different “kinds” of things, but baking the kinds into your language’s type system is too rigid. In particular, it’s useful when either of these is true:
 
-* xxxxx
-* xxxxx
-* xxxxx
-* xxxxx
+*You don’t know what types you will need up front.
 
-
-
+*You want to be able to modify or add new types without having to recompile or change code.
 
 ## Credits
 

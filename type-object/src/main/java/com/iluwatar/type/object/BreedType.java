@@ -29,16 +29,26 @@ package com.iluwatar.type.object;
  * @author Imp92
  */
 public enum BreedType {
-  TROLL,
-  TROLL_ARCHER,
-  TROLL_WIZARD,
-  DRAGON,
-  DRAGON_WARRIOR,
-  DRAGON_KNIGHT,
-  GIANT,
-  GIANT_WARRIOR,
-  GIANT_CYCLOPS,
-  GIANT_CHIMERA,
-  BEAST,
-  BEAST_HUNTER;
+  TROLL("Troll"),
+  TROLL_ARCHER("Troll Archer"),
+  TROLL_WIZARD("Troll Wizard"),
+  DRAGON("Dragon"),
+  DRAGON_WARRIOR("Dragon Warrior"),
+  DRAGON_KNIGHT("Dragon Knight"),
+  GIANT("Giant"),
+  GIANT_CYCLOPS("Cyclops"),
+  GIANT_CHIMERA("Chimera"),
+  BEAST("Beast"),
+  BEAST_HUNTER("Beast Hunter");
+  
+  private String title;
+  
+  BreedType(String title) {
+    this.title = title;
+  }
+  
+  @Override
+  public String toString() {
+    return title;
+  }
 }
