@@ -23,10 +23,7 @@
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Field;
@@ -39,17 +36,10 @@ import static org.junit.Assert.assertTrue;
  */
 public class DoubleBufferTest {
 
-  @Mock
-  private Graphics graphics;
-
-  @Mock
-  private Dimension dimension;
-
   private DoubleBuffer doubleBuffer;
 
   @Before
   public void setUp() throws Exception {
-    MockitoAnnotations.initMocks(this);
     this.doubleBuffer = new DoubleBuffer();
   }
 
