@@ -1,3 +1,25 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014-2016 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -8,7 +30,6 @@ import java.awt.event.MouseListener;
  * This means that drawing is first done to an off-screen image, and when all
  * is done, the off-screen image is drawn on the screen.
  * This reduces the nasty flickering applets otherwise have.
- *
  * */
 public class DoubleBuffer extends Applet implements Runnable, MouseListener {
 
@@ -85,17 +106,11 @@ public class DoubleBuffer extends Applet implements Runnable, MouseListener {
         boolean fillNextFrame;
         int rowWidth = 0;
         int x = 0, y = 0;
-        int w, h;
+        int width;
         int tmp;
 
         //Create the off-screen graphics context, if no good one exists.
-        if ((offGraphics == null)
-                || (d.width != offDimension.width)
-                || (d.height != offDimension.height)) {
-            offDimension = d;
-            offImage = createImage(d.width, d.height);
-            offGraphics = offImage.getGraphics();
-        }
+        getOffScreenGraphics(d);
 
         //Erase the previous image.
         offGraphics.setColor(getBackground());
@@ -108,54 +123,70 @@ public class DoubleBuffer extends Applet implements Runnable, MouseListener {
         int squareSize = 20;
         tmp = frameNumber % squareSize;
         if (tmp == 0) {
-            w = squareSize;
+            width = squareSize;
             fillNextFrame = !fillSquare;
         } else {
-            w = tmp;
+            width = tmp;
             fillNextFrame = fillSquare;
         }
 
         //Draw from left to right.
-        while (x < d.width) {
+        drawSquares(d, fillSquare, rowWidth, x, y, width, squareSize);
+
+        fillColumnTop = fillNextFrame;
+
+        //Paint the image onto the screen.
+        g.drawImage(offImage, 0, 0, this);
+    }
+
+    private void drawSquares(Dimension dimension, boolean fillSquare, int rowWidth, int x, int y, int width, int squareSize) {
+        int height;
+        while (x < dimension.width) {
             int colHeight = 0;
 
             //Draw the column.
-            while (y < d.height) {
+            while (y < dimension.height) {
                 colHeight += squareSize;
 
                 //If we don't have room for a full square, cut if off.
-                if (colHeight > d.height) {
-                    h = d.height - y;
+                if (colHeight > dimension.height) {
+                    height = dimension.height - y;
                 } else {
-                    h = squareSize;
+                    height = squareSize;
                 }
 
                 //Draw the rectangle if necessary.
                 if (fillSquare) {
-                    offGraphics.fillRect(x, y, w, h);
+                    offGraphics.fillRect(x, y, width, height);
                     fillSquare = false;
                 } else {
                     fillSquare = true;
                 }
 
-                y += h;
+                y += height;
             }
 
-            //Determine x, y, and w for the next go around.
-            x += w;
+            //Determine x, y, and width for the next go around.
+            x += width;
             y = 0;
-            w = squareSize;
-            rowWidth += w;
-            if (rowWidth > d.width) {
-                w = d.width - x;
+            width = squareSize;
+            rowWidth += width;
+            if (rowWidth > dimension.width) {
+                width = dimension.width - x;
             }
             fillSquare = fillColumnTop;
             fillColumnTop = !fillColumnTop;
         }
-        fillColumnTop = fillNextFrame;
+    }
 
-        //Paint the image onto the screen.
-        g.drawImage(offImage, 0, 0, this);
+    private void getOffScreenGraphics(Dimension d) {
+        if ((offGraphics == null)
+                || (d.width != offDimension.width)
+                || (d.height != offDimension.height)) {
+            offDimension = d;
+            offImage = createImage(d.width, d.height);
+            offGraphics = offImage.getGraphics();
+        }
     }
 
     @Override
