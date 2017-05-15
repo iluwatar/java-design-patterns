@@ -17,7 +17,7 @@ package com.iluwatar.spatial.partition {
     - handleAttack(unit : Unit, anotherUnit : Unit)
     - handleCell(x : int, y : int)
     + handleMelee()
-    - handleMissedAttack(unit : Unit, anotherUnit : Unit)
+    - handleMissedAttack()
     - handleUnit(unit : Unit, otherUnit : Unit)
     - init()
     ~ moveUnitToNewCell(unit : Unit, x : double, y : double)

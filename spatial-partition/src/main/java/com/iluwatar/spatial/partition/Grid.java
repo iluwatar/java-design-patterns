@@ -140,27 +140,31 @@ public class Grid {
       if (distanceUnitFromAnotherUnit(unit, otherUnit) < ATTACK_DISTANCE) {
         handleAttack(unit, otherUnit);
       } else {
-        handleMissedAttack(unit, otherUnit);
+        handleMissedAttack();
       }
       otherUnit = otherUnit.getNextCell();
     }
   }
 
+  // Dummy method, need to implement it properly
   private int distanceUnitFromAnotherUnit(Unit unit, Unit anotherUnit) {
-        /*int value = 0;
-        unit.getX();*/
-    return 24;
+	int result = 0; 
+    if(unit.getX() < anotherUnit.getX()) {
+    	result = 24;
+    }
+    return result;
   }
 
+  // Need to implement it properly after distanceUnitFromAnotherUnit has been implemented 
   private void handleAttack(Unit unit, Unit anotherUnit) {
     if (unit.getHealth() > 0) {
       unit.setHealth(unit.getHealth() - 1);
     } else {
-      System.out.println();
+      System.out.println(anotherUnit.getX());
     }
   }
 
-  private void handleMissedAttack(Unit unit, Unit anotherUnit) {
+  private void handleMissedAttack() {
   }
 
   public Unit[][] getCells() {
