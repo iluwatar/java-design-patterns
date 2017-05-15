@@ -88,13 +88,13 @@ public class App {
     
     Breed giant = new Breed(BreedType.GIANT, 15, "Giant attack!");
     
-    Breed giantCyclops = new Breed(BreedType.GIANT_CYCLOPS, giant, 12, "Cyclops attack!");
+    new Breed(BreedType.GIANT_CYCLOPS, giant, 12, "Cyclops attack!");
     
-    Breed giantChimera = new Breed(BreedType.GIANT_CHIMERA, giant, 17, "Chimera attack!");
+    new Breed(BreedType.GIANT_CHIMERA, giant, 17, "Chimera attack!");
     
     Breed beast = new Breed(BreedType.BEAST, 25, "Beast attack!");
     
-    Breed beastHunter = new Breed(BreedType.BEAST_HUNTER, beast, 22, "Beast Hunter attack!");
+    new Breed(BreedType.BEAST_HUNTER, beast, 22, "Beast Hunter attack!");
     
   }
   
