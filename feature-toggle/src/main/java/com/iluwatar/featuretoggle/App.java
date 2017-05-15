@@ -25,6 +25,7 @@ package com.iluwatar.featuretoggle;
 
 import com.iluwatar.featuretoggle.pattern.Service;
 import com.iluwatar.featuretoggle.pattern.propertiesversion.PropertiesFeatureToggleVersion;
+import com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion;
 import com.iluwatar.featuretoggle.user.User;
 import com.iluwatar.featuretoggle.user.UserGroup;
 import org.slf4j.Logger;
@@ -85,6 +86,8 @@ public class App {
     LOGGER.info(welcomeMessageturnedOff);
 
     // --------------------------------------------
+    
+    Service service2 = new TieredFeatureToggleVersion();
 
     final User paidUser = new User("Jamie Coder");
     final User freeUser = new User("Alan Defect");
@@ -92,8 +95,8 @@ public class App {
     UserGroup.addUserToPaidGroup(paidUser);
     UserGroup.addUserToFreeGroup(freeUser);
 
-    final String welcomeMessagePaidUser = service.getWelcomeMessage(paidUser);
-    final String welcomeMessageFreeUser = service.getWelcomeMessage(freeUser);
+    final String welcomeMessagePaidUser = service2.getWelcomeMessage(paidUser);
+    final String welcomeMessageFreeUser = service2.getWelcomeMessage(freeUser);
     LOGGER.info(welcomeMessageFreeUser);
     LOGGER.info(welcomeMessagePaidUser);
   }
