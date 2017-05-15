@@ -31,6 +31,29 @@ import javax.sound.sampled.AudioInputStream;
  *
  */
 public class PlayMessage {
-  AudioInputStream stream;
-  float volume;
+  
+  private AudioInputStream stream;
+  
+  private float volume;
+  
+  public PlayMessage(AudioInputStream stream, float volume) {
+    setStream(stream);
+    setVolume(volume);
+  }
+
+  public AudioInputStream getStream() {
+    return stream;
+  }
+
+  private void setStream(AudioInputStream stream) {
+    this.stream = stream;
+  }
+
+  public float getVolume() {
+    return volume;
+  }
+
+  public void setVolume(float volume) {
+    this.volume = volume;
+  }
 }

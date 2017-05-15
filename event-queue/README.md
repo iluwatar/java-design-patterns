@@ -26,4 +26,4 @@ Use the Event Queue pattern when
 
 ## Credits
 
-* [Mihály Kuprivecz - Event Queue]
+* [Mihaly Kuprivecz - Event Queue] (http://gameprogrammingpatterns.com/event-queue.html)

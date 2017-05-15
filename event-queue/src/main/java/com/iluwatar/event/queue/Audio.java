@@ -107,17 +107,15 @@ public class Audio {
     init();
     // Walk the pending requests.
     for (int i = headIndex; i != tailIndex; i = (i + 1) % MAX_PENDING) {
-      if (getPendingAudio()[i].stream == stream) {
+      if (getPendingAudio()[i].getStream() == stream) {
         // Use the larger of the two volumes.
-        getPendingAudio()[i].volume = Math.max(volume, getPendingAudio()[i].volume);
+        getPendingAudio()[i].setVolume(Math.max(volume, getPendingAudio()[i].getVolume()));
 
         // Don't need to enqueue.
         return;
       }
     }
-    getPendingAudio()[tailIndex] = new PlayMessage();
-    getPendingAudio()[tailIndex].stream = stream;
-    getPendingAudio()[tailIndex].volume = volume;
+    getPendingAudio()[tailIndex] = new PlayMessage(stream, volume);
     tailIndex = (tailIndex + 1) % MAX_PENDING;
   }
   
@@ -132,7 +130,7 @@ public class Audio {
     }
     Clip clip = null;
     try {
-      AudioInputStream audioStream = getPendingAudio()[headIndex].stream;
+      AudioInputStream audioStream = getPendingAudio()[headIndex].getStream();
       headIndex++;
       clip = AudioSystem.getClip();
       clip.open(audioStream);
