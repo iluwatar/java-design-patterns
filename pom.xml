@@ -122,7 +122,7 @@
         <module>factory-kit</module>
         <module>feature-toggle</module>
         <module>value-object</module>
-		    <module>module</module>
+        <module>module</module>
         <module>monad</module>
         <module>mute-idiom</module>
         <module>mutex</module>
@@ -133,6 +133,7 @@
         <module>promise</module>
         <module>page-object</module>
         <module>event-asynchronous</module>
+        <module>event-queue</module>
         <module>queue-load-leveling</module>
         <module>object-mother</module>
         <module>data-bus</module>
@@ -302,23 +303,23 @@
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
-                                	<pluginExecutionFilter>
-                                		<groupId>
-                                			com.github.markusmo3.urm
-                                		</groupId>
-                                		<artifactId>
-                                			urm-maven-plugin
-                                		</artifactId>
-                                		<versionRange>
-                                			[1.4.1,)
-                                		</versionRange>
-                                		<goals>
-                                			<goal>map</goal>
-                                		</goals>
-                                	</pluginExecutionFilter>
-                                	<action>
-                                		<ignore/>
-                                	</action>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            com.github.markusmo3.urm
+                                        </groupId>
+                                        <artifactId>
+                                            urm-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.4.1,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>map</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore/>
+                                    </action>
                                 </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
