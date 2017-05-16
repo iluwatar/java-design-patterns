@@ -22,43 +22,32 @@
  */
 package com.iluwatar.update.method;
 
-/**
- * @author aungor
- *
- */
-public abstract class Entity implements java.io.Closeable{
-  public Entity()
+public class Skeleton extends Entity
+{
+  public Skeleton()
   {
-	  this.x_ = 0;
-	  this.y_ = 0;
+	  this.patrollingLeft_ = false;
   }
 
-  public void close()
+  public void update()
   {
-  }
-  public abstract void update();
-
-  public final double x()
-  {
-	  return x_;
-  }
-
-  public final double y()
-  {
-	  return y_;
-  }
-
-  public final void setX(double x)
-  {
-	  x_ = x;
-  }
-  public final void setY(double y)
-  {
-	  y_ = y;
+	if (patrollingLeft_)
+	{
+	  setX(x() - 1);
+	  if (x() == 0)
+	  {
+		  patrollingLeft_ = false;
+	  }
+	}
+	else
+	{
+	  setX(x() + 1);
+	  if (x() == 100)
+	  {
+		  patrollingLeft_ = true;
+	  }
+	}
   }
 
-  private double x_;
-  private double y_;
-
-
+  private boolean patrollingLeft_;
 }

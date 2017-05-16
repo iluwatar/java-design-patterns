@@ -20,45 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.update.method;
+import org.junit.Test;
+
+import com.iluwatar.update.method.App;
 
 /**
+ * 
+ * Application test
  * @author aungor
- *
  */
-public abstract class Entity implements java.io.Closeable{
-  public Entity()
-  {
-	  this.x_ = 0;
-	  this.y_ = 0;
+public class AppTest {
+  
+  @Test
+  public void test() {
+    String[] args = {};
+    App.main(args);
   }
-
-  public void close()
-  {
-  }
-  public abstract void update();
-
-  public final double x()
-  {
-	  return x_;
-  }
-
-  public final double y()
-  {
-	  return y_;
-  }
-
-  public final void setX(double x)
-  {
-	  x_ = x;
-  }
-  public final void setY(double y)
-  {
-	  y_ = y;
-  }
-
-  private double x_;
-  private double y_;
-
-
 }

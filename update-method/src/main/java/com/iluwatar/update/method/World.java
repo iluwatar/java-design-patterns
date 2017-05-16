@@ -22,43 +22,35 @@
  */
 package com.iluwatar.update.method;
 
-/**
- * @author aungor
- *
- */
-public abstract class Entity implements java.io.Closeable{
-  public Entity()
+public class World extends Entity
   {
-	  this.x_ = 0;
-	  this.y_ = 0;
+    private final Entity[] MAX_ENTITIES = null;
+	public World()
+    {
+  	  this.numEntities_ = 0;
+    }
+
+    public final void gameLoop()
+    {
+    while (true)
+    {
+  	// Handle user input...
+
+  	// Update each entity.
+  	for (int i = 0; i < numEntities_; i++)
+  	{
+  	  entities_[i].update();
+  	}
+
+  	// Physics and rendering...
+    }
+    }
+
+    private Entity[] entities_ = (MAX_ENTITIES);
+    private int numEntities_;
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
   }
-
-  public void close()
-  {
-  }
-  public abstract void update();
-
-  public final double x()
-  {
-	  return x_;
-  }
-
-  public final double y()
-  {
-	  return y_;
-  }
-
-  public final void setX(double x)
-  {
-	  x_ = x;
-  }
-  public final void setY(double y)
-  {
-	  y_ = y;
-  }
-
-  private double x_;
-  private double y_;
-
-
-}
