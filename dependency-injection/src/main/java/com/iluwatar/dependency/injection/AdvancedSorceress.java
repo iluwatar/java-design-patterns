@@ -28,7 +28,6 @@ package com.iluwatar.dependency.injection;
  *
  * AdvancedSorceress implements inversion of control. It depends on abstraction that can be injected
  * through its setter.
- *
  */
 public class AdvancedSorceress implements Wizard {
 
