@@ -26,7 +26,6 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 /**
- *
  * Dependency Injection pattern deals with how objects handle their dependencies. The pattern
  * implements so called inversion of control principle. Inversion of control has two specific rules:
  * - High-level modules should not depend on low-level modules. Both should depend on abstractions.
@@ -45,28 +44,27 @@ import com.google.inject.Injector;
  * The fourth example takes the pattern a step further. It uses Guice framework for Dependency
  * Injection. {@link TobaccoModule} binds a concrete implementation to abstraction. Injector is then
  * used to create {@link GuiceWizard} object with correct dependencies.
- *
  */
 public class App {
 
-    /**
-     * Program entry point
-     *
-     * @param args command line args
-     */
-    public static void main(String[] args) {
-        SimpleWizard simpleWizard = new SimpleWizard();
-        simpleWizard.smoke();
+  /**
+   * Program entry point
+   *
+   * @param args command line args
+   */
+  public static void main(String[] args) {
+    SimpleWizard simpleWizard = new SimpleWizard();
+    simpleWizard.smoke();
 
-        AdvancedWizard advancedWizard = new AdvancedWizard(new SecondBreakfastTobacco());
-        advancedWizard.smoke();
+    AdvancedWizard advancedWizard = new AdvancedWizard(new SecondBreakfastTobacco());
+    advancedWizard.smoke();
 
-        AdvancedSorceress advancedSorceress = new AdvancedSorceress();
-        advancedSorceress.setTobacco(new SecondBreakfastTobacco());
-        advancedSorceress.smoke();
+    AdvancedSorceress advancedSorceress = new AdvancedSorceress();
+    advancedSorceress.setTobacco(new SecondBreakfastTobacco());
+    advancedSorceress.smoke();
 
-        Injector injector = Guice.createInjector(new TobaccoModule());
-        GuiceWizard guiceWizard = injector.getInstance(GuiceWizard.class);
-        guiceWizard.smoke();
-    }
+    Injector injector = Guice.createInjector(new TobaccoModule());
+    GuiceWizard guiceWizard = injector.getInstance(GuiceWizard.class);
+    guiceWizard.smoke();
+  }
 }
