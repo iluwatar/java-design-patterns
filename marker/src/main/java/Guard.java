@@ -1,10 +1,15 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- * Created by Alexis on 29-Apr-17.
+ * Class defining Guard
  */
 public class Guard implements Permission {
 
-  protected static void enter() {
-    System.out.println("You can enter");
-  }
+  private static final Logger LOGGER = LoggerFactory.getLogger(Guard.class);
 
+  protected static void enter() {
+
+    LOGGER.info("You can enter");
+  }
 }

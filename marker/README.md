@@ -10,20 +10,20 @@ tags:
 ---
 
 ## Intent
-Using empy interfaces as markers to distinguish special treated objects.
+Using empty interfaces as markers to distinguish special treated objects.
 
 ![alt text](./etc/MarkerDiagram.png "Marker Interface")
 
 ## Applicability
 Use the Marker Interface pattern when
 
-* you want to identify the special objects from normal objects
-* define a type that is implemented by instances of the marked class, marker annotations can not do that
+* you want to identify the special objects from normal objects (to treat them differently)
+* you want to mark that some object is available for certain sort of operations
 
 ## Real world examples
 
-* [javase.7.docs.api.java.io.Serializable](https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html)
-* [javase.7.docs.api.java.lang.Cloneable](https://docs.oracle.com/javase/7/docs/api/java/lang/Cloneable.html)
+* [javase.8.docs.api.java.io.Serializable](https://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html)
+* [javase.8.docs.api.java.lang.Cloneable](https://docs.oracle.com/javase/8/docs/api/java/lang/Cloneable.html)
 
 ## Credits
 

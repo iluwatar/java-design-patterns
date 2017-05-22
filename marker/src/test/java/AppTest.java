@@ -1,7 +1,3 @@
-/**
- * Created by Alexis on 01-May-17.
- */
-
 import org.junit.Test;
 
 /**

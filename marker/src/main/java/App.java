@@ -1,3 +1,6 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Created by Alexis on 28-Apr-17.
  * With Marker interface idea is to make empty interface and extend it.
@@ -25,13 +28,14 @@ public class App {
    */
   public static void main(String[] args) {
 
+    final Logger logger = LoggerFactory.getLogger(App.class);
     Guard guard = new Guard();
     Thief thief = new Thief();
 
     if (guard instanceof Permission) {
       guard.enter();
     } else {
-      System.out.println("You have no permission to enter, please leave this area");
+      logger.info("You have no permission to enter, please leave this area");
     }
 
     if (thief instanceof Permission) {

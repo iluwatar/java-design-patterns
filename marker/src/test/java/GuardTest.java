@@ -4,7 +4,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 
 /**
- * Created by Alexis on 02-May-17.
+ * Guard test
  */
 public class GuardTest {
 
