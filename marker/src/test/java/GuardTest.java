@@ -20,43 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.databus.members;
-
-import com.iluwatar.databus.data.MessageData;
-import com.iluwatar.databus.data.StartingData;
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertThat;
 
 /**
- * Tests for {@link MessageCollectorMember}.
- *
- * @author Paul Campbell (pcampbell@kemitix.net)
+ * Guard test
  */
-public class MessageCollectorMemberTest {
+public class GuardTest {
 
   @Test
-  public void collectMessageFromMessageData() {
-    //given
-    final String message = "message";
-    final MessageData messageData = new MessageData(message);
-    final MessageCollectorMember collector = new MessageCollectorMember("collector");
-    //when
-    collector.accept(messageData);
-    //then
-    Assert.assertTrue(collector.getMessages().contains(message));
+  public void testGuard() {
+    Guard guard = new Guard();
+    assertThat(guard, instanceOf(Permission.class));
   }
-
-  @Test
-  public void collectIgnoresMessageFromOtherDataTypes() {
-    //given
-    final StartingData startingData = new StartingData(LocalDateTime.now());
-    final MessageCollectorMember collector = new MessageCollectorMember("collector");
-    //when
-    collector.accept(startingData);
-    //then
-    Assert.assertEquals(0, collector.getMessages().size());
-  }
-
 }

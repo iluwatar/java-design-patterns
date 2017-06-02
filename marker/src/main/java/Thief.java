@@ -20,43 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.databus.members;
-
-import com.iluwatar.databus.data.MessageData;
-import com.iluwatar.databus.data.StartingData;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.time.LocalDateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Tests for {@link MessageCollectorMember}.
- *
- * @author Paul Campbell (pcampbell@kemitix.net)
+ * Class defining Thief
  */
-public class MessageCollectorMemberTest {
+public class Thief {
 
-  @Test
-  public void collectMessageFromMessageData() {
-    //given
-    final String message = "message";
-    final MessageData messageData = new MessageData(message);
-    final MessageCollectorMember collector = new MessageCollectorMember("collector");
-    //when
-    collector.accept(messageData);
-    //then
-    Assert.assertTrue(collector.getMessages().contains(message));
+  private static final Logger LOGGER = LoggerFactory.getLogger(Thief.class);
+
+  protected static void steal() {
+    LOGGER.info("Steal valuable items");
   }
 
-  @Test
-  public void collectIgnoresMessageFromOtherDataTypes() {
-    //given
-    final StartingData startingData = new StartingData(LocalDateTime.now());
-    final MessageCollectorMember collector = new MessageCollectorMember("collector");
-    //when
-    collector.accept(startingData);
-    //then
-    Assert.assertEquals(0, collector.getMessages().size());
+  protected static void doNothing() {
+    LOGGER.info("Pretend nothing happened and just leave");
   }
-
 }
