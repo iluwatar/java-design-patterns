@@ -5,6 +5,8 @@ import units.CommanderUnit;
 import units.SergeantUnit;
 import units.SoldierUnit;
 import units.Unit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by Srdjan on 26-Apr-17.
@@ -19,20 +21,19 @@ public class App {
   public static void main(String[] args) {
 
     //Create 3 different units
-    Unit unit = new SoldierUnit("SoldierUnit1");
-    Unit unit1 = new SergeantUnit("SergeantUnit1");
-    Unit unit2 = new CommanderUnit("CommanderUnit1");
+    Unit soldierUnit = new SoldierUnit("SoldierUnit1");
+    Unit sergeantUnit = new SergeantUnit("SergeantUnit1");
+    Unit commanderUnit = new CommanderUnit("CommanderUnit1");
 
     //check for each unit to have an extension
-    checkExtensionsForUnit(unit);
-    checkExtensionsForUnit(unit1);
-    checkExtensionsForUnit(unit2);
+    checkExtensionsForUnit(soldierUnit);
+    checkExtensionsForUnit(sergeantUnit);
+    checkExtensionsForUnit(commanderUnit);
 
   }
 
   private static void checkExtensionsForUnit(Unit unit) {
-    //separate for better view
-    System.out.println();
+    final Logger logger = LoggerFactory.getLogger(App.class);
 
     SoldierExtension soldierExtension = (SoldierExtension) unit.getUnitExtension("SoldierExtension");
     SergeantExtension sergeantExtension = (SergeantExtension) unit.getUnitExtension("SergeantExtension");
@@ -42,19 +43,19 @@ public class App {
     if (soldierExtension != null) {
       soldierExtension.soldierReady();
     } else {
-      System.out.println(unit.getName() + " without SoldierExtension");
+      logger.info(unit.getName() + " without SoldierExtension");
     }
 
     if (sergeantExtension != null) {
       sergeantExtension.sergeantReady();
     } else {
-      System.out.println(unit.getName() + " without SergeantExtension");
+      logger.info(unit.getName() + " without SergeantExtension");
     }
 
     if (commanderExtension != null) {
       commanderExtension.commanderReady();
     } else {
-      System.out.println(unit.getName() + " without CommanderExtension");
+      logger.info(unit.getName() + " without CommanderExtension");
     }
   }
 }

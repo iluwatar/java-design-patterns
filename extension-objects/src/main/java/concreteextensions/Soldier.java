@@ -1,6 +1,8 @@
 package concreteextensions;
 
 import abstractextensions.SoldierExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import units.SoldierUnit;
 
 /**
@@ -14,8 +16,10 @@ public class Soldier implements SoldierExtension {
     this.unit = soldierUnit;
   }
 
+  final Logger logger = LoggerFactory.getLogger(Soldier.class);
+
   @Override
   public void soldierReady() {
-    System.out.println("[Solider] " + unit.getName() + "  is ready!");
+    logger.info("[Solider] " + unit.getName() + "  is ready!");
   }
 }

@@ -1,6 +1,8 @@
 package concreteextensions;
 
 import abstractextensions.CommanderExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import units.CommanderUnit;
 
 /**
@@ -14,8 +16,10 @@ public class Commander implements CommanderExtension {
     this.unit = commanderUnit;
   }
 
+  final Logger logger = LoggerFactory.getLogger(Commander.class);
+
   @Override
   public void commanderReady() {
-    System.out.println("[Commander] " + unit.getName() + " is ready!");
+    logger.info("[Commander] " + unit.getName() + " is ready!");
   }
 }
