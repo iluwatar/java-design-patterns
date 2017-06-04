@@ -1,7 +1,7 @@
 package abstractextensions;
 
 /**
- * Created by Srdjan on 27-Apr-17.
+ * Interface with their method
  */
 public interface SergeantExtension extends UnitExtension {
 

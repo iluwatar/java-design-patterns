@@ -3,7 +3,7 @@ package units;
 import abstractextensions.UnitExtension;
 
 /**
- * Created by Srdjan on 26-Apr-17.
+ * Class defining Unit, other units will extend this class
  */
 public class Unit {
 

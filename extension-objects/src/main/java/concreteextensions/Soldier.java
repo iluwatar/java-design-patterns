@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import units.SoldierUnit;
 
 /**
- * Created by Srdjan on 26-Apr-17.
+ * Class defining Soldier
  */
 public class Soldier implements SoldierExtension {
 

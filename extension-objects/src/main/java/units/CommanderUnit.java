@@ -4,7 +4,7 @@ import abstractextensions.UnitExtension;
 import concreteextensions.Commander;
 
 /**
- * Created by Srdjan on 27-Apr-17.
+ * Class defining CommanderUnit
  */
 public class CommanderUnit extends Unit {
 

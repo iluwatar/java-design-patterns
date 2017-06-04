@@ -4,7 +4,7 @@ import abstractextensions.UnitExtension;
 import concreteextensions.Soldier;
 
 /**
- * Created by Srdjan on 26-Apr-17.
+ * Class defining SoldierUnit
  */
 public class SoldierUnit extends Unit {
 

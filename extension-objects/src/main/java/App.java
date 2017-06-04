@@ -9,7 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by Srdjan on 26-Apr-17.
+ * Anticipate that an object’s interface needs to be extended in the future.
+ * Additional interfaces are defined by extension objects.
  */
 public class App {
 

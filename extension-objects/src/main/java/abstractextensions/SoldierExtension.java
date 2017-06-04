@@ -1,7 +1,7 @@
 package abstractextensions;
 
 /**
- * Created by Srdjan on 26-Apr-17.
+ * Interface with their method
  */
 public interface SoldierExtension extends UnitExtension {
   void soldierReady();

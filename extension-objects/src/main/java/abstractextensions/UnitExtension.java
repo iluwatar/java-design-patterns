@@ -1,7 +1,7 @@
 package abstractextensions;
 
 /**
- * Created by Srdjan on 26-Apr-17.
+ * Other Extensions will extend this interface
  */
 public interface UnitExtension {
 }

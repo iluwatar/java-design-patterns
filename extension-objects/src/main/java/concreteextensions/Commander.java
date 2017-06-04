@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import units.CommanderUnit;
 
 /**
- * Created by Srdjan on 27-Apr-17.
+ * Class defining Commander
  */
 public class Commander implements CommanderExtension {
 

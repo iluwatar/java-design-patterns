@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import units.SergeantUnit;
 
 /**
- * Created by Srdjan on 27-Apr-17.
+ * Class defining Sergeant
  */
 public class Sergeant implements SergeantExtension {
 
