@@ -30,15 +30,7 @@ public class Captain implements BattleShip {
 
   private BattleShip battleship;
 
-  public Captain() {
-
-  }
-
   public Captain(BattleShip battleship) {
-    this.battleship = battleship;
-  }
-
-  public void setBattleship(BattleShip battleship) {
     this.battleship = battleship;
   }
 
