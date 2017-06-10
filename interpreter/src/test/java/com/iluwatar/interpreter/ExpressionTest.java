@@ -28,6 +28,8 @@ import static org.junit.Assert.assertNotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.IntBinaryOperator;
+
 import org.junit.Test;
 
 /**
@@ -45,14 +47,14 @@ public abstract class ExpressionTest<E extends Expression> {
    * @param resultCalc The function used to calculate the expected result
    * @return A data set with test entries
    */
-  static List<Object[]> prepareParameters(final BiFunction<Integer, Integer, Integer> resultCalc) {
+  static List<Object[]> prepareParameters(final IntBinaryOperator resultCalc) {
     final List<Object[]> testData = new ArrayList<>();
     for (int i = -10; i < 10; i++) {
       for (int j = -10; j < 10; j++) {
         testData.add(new Object[]{
             new NumberExpression(i),
             new NumberExpression(j),
-            resultCalc.apply(i, j)
+            resultCalc.applyAsInt(i, j)
         });
       }
     }
