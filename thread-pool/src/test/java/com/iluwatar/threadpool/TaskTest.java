@@ -34,6 +34,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.function.Function;
+import java.util.function.IntFunction;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 import org.junit.Test;
 
@@ -58,7 +60,7 @@ public abstract class TaskTest<T extends Task> {
   /**
    * The task factory, used to create new test items
    */
-  private final Function<Integer, T> factory;
+  private final IntFunction<T> factory;
 
   /**
    * The expected time needed to run the task 1 single time, in milli seconds
@@ -71,7 +73,7 @@ public abstract class TaskTest<T extends Task> {
    * @param factory               The task factory, used to create new test items
    * @param expectedExecutionTime The expected time needed to run the task 1 time, in milli seconds
    */
-  public TaskTest(final Function<Integer, T> factory, final int expectedExecutionTime) {
+  public TaskTest(final IntFunction<T> factory, final int expectedExecutionTime) {
     this.factory = factory;
     this.expectedExecutionTime = expectedExecutionTime;
   }
