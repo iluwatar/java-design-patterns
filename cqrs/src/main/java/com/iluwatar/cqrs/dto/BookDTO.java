@@ -23,4 +23,9 @@ public class BookDTO {
     return price;
   }
 
+  @Override
+  public String toString() {
+    return "BookDTO [title=" + title + ", price=" + price + "]";
+  }
+
 }
