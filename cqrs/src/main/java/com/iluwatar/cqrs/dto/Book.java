@@ -1,17 +1,29 @@
 package com.iluwatar.cqrs.dto;
 
-public class BookDTO {
+/**
+ * 
+ * This is a DTO (Data Transfer Object) book, contains only useful information to be returned
+ *
+ */
+public class Book {
 
   private String title;
   private double price;
 
-  public BookDTO(String title, double price) {
+  /**
+   * 
+   * @param title
+   *          title of the book
+   * @param price
+   *          price of the book
+   */
+  public Book(String title, double price) {
     super();
     this.title = title;
     this.price = price;
   }
 
-  public BookDTO() {
+  public Book() {
     super();
   }
 

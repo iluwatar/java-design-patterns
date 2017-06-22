@@ -4,27 +4,27 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * 
- * @author Sabiq Ihab
+ * This class simply returns one instance of {@link SessionFactory} initialized when the application is started
  *
  */
 public class HibernateUtil {
 
   private static final SessionFactory SESSIONFACTORY = buildSessionFactory();
+  private static final Logger LOGGER = LoggerFactory.getLogger(HibernateUtil.class);
 
   private static SessionFactory buildSessionFactory() {
-    // A SessionFactory is set up once for an application!
-    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure() // configures settings //
-                                                                                              // from hibernate.cfg.xml
-        .build();
+
+    // configures settings from hibernate.cfg.xml
+    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
     try {
       return new MetadataSources(registry).buildMetadata().buildSessionFactory();
-    } catch (Throwable ex) {
+    } catch (Exception ex) {
       StandardServiceRegistryBuilder.destroy(registry);
-      // TODO HibernateUtil : change print with logger
-      System.err.println("Initial SessionFactory creation failed." + ex);
+      LOGGER.error("Initial SessionFactory creation failed." + ex);
       throw new ExceptionInInitializerError(ex);
     }
   }

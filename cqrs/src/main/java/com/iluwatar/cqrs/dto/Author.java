@@ -1,19 +1,33 @@
 package com.iluwatar.cqrs.dto;
 
-public class AuthorDTO {
+/**
+ * 
+ * This is a DTO (Data Transfer Object) author, contains only useful information to be returned
+ *
+ */
+public class Author {
 
   private String name;
   private String email;
   private String username;
 
-  public AuthorDTO(String name, String email, String username) {
+  /**
+   * 
+   * @param name
+   *          name of the author
+   * @param email
+   *          email of the author
+   * @param username
+   *          username of the author
+   */
+  public Author(String name, String email, String username) {
     super();
     this.name = name;
     this.email = email;
     this.username = username;
   }
 
-  public AuthorDTO() {
+  public Author() {
     super();
   }
 

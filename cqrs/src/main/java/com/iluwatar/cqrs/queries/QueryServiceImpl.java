@@ -8,47 +8,51 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 
-import com.iluwatar.cqrs.dto.AuthorDTO;
-import com.iluwatar.cqrs.dto.BookDTO;
+import com.iluwatar.cqrs.dto.Author;
+import com.iluwatar.cqrs.dto.Book;
 import com.iluwatar.cqrs.util.HibernateUtil;
 
+/**
+ * This class is an implementation of {@link IQueryService}. It uses Hibernate native queries to return DTOs from the
+ * database.
+ *
+ */
 public class QueryServiceImpl implements IQueryService {
 
   private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
   @Override
-  public AuthorDTO getAuthorByUsername(String username) {
+  public Author getAuthorByUsername(String username) {
     Session session = sessionFactory.openSession();
     SQLQuery sqlQuery = session
         .createSQLQuery("SELECT a.username as \"username\", a.name as \"name\", a.email as \"email\""
             + "FROM Author a where a.username=:username");
     sqlQuery.setParameter("username", username);
-    AuthorDTO authorDTO = (AuthorDTO) sqlQuery.setResultTransformer(Transformers.aliasToBean(AuthorDTO.class))
-        .uniqueResult();
+    Author authorDTo = (Author) sqlQuery.setResultTransformer(Transformers.aliasToBean(Author.class)).uniqueResult();
     session.close();
-    return authorDTO;
+    return authorDTo;
   }
 
   @Override
-  public BookDTO getBook(String title) {
+  public Book getBook(String title) {
     Session session = sessionFactory.openSession();
     SQLQuery sqlQuery = session
         .createSQLQuery("SELECT b.title as \"title\", b.price as \"price\"" + " FROM Book b where b.title=:title");
     sqlQuery.setParameter("title", title);
-    BookDTO bookDTO = (BookDTO) sqlQuery.setResultTransformer(Transformers.aliasToBean(BookDTO.class)).uniqueResult();
+    Book bookDTo = (Book) sqlQuery.setResultTransformer(Transformers.aliasToBean(Book.class)).uniqueResult();
     session.close();
-    return bookDTO;
+    return bookDTo;
   }
 
   @Override
-  public List<BookDTO> getAuthorBooks(String username) {
+  public List<Book> getAuthorBooks(String username) {
     Session session = sessionFactory.openSession();
     SQLQuery sqlQuery = session.createSQLQuery("SELECT b.title as \"title\", b.price as \"price\""
         + " FROM Author a , Book b where b.author_id = a.id and a.username=:username");
     sqlQuery.setParameter("username", username);
-    List<BookDTO> bookDTOs = sqlQuery.setResultTransformer(Transformers.aliasToBean(BookDTO.class)).list();
+    List<Book> bookDTos = sqlQuery.setResultTransformer(Transformers.aliasToBean(Book.class)).list();
     session.close();
-    return bookDTOs;
+    return bookDTos;
   }
 
   @Override

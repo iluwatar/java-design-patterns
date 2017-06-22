@@ -6,8 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * 
- * @author Sabiq Ihab
+ * This is an Author entity. It is used by Hibernate for persistence.
  *
  */
 @Entity
@@ -22,8 +21,11 @@ public class Author {
   /**
    * 
    * @param username
+   *          username of the author
    * @param name
+   *          name of the author
    * @param email
+   *          email of the author
    */
   public Author(String username, String name, String email) {
     super();

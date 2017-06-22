@@ -1,5 +1,9 @@
 package com.iluwatar.cqrs.commandes;
 
+/**
+ * This interface represents the commands of the CQRS pattern
+ *
+ */
 public interface ICommandService {
 
   public abstract void authorCreated(String username, String name, String email);

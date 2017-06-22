@@ -8,6 +8,10 @@ import com.iluwatar.cqrs.domain.model.Author;
 import com.iluwatar.cqrs.domain.model.Book;
 import com.iluwatar.cqrs.util.HibernateUtil;
 
+/**
+ * This class is implementation of {@link ICommandService} interface. It uses Hibernate as an api for persistence.
+ *
+ */
 public class CommandServiceImpl implements ICommandService {
 
   private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
