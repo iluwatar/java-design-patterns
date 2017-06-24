@@ -1,14 +1,19 @@
 package com.iluwatar.cqrs;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
+import com.iluwatar.cqrs.app.App;
+
+/**
+ * Application test
+ *
+ */
 public class AppTest {
 
   @Test
   public void test() {
-    fail("Not yet implemented");
+    String[] args = {};
+    App.main(args);
   }
 
 }
