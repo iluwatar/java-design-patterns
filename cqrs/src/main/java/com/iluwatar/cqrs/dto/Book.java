@@ -1,5 +1,7 @@
 package com.iluwatar.cqrs.dto;
 
+import java.util.Objects;
+
 /**
  * 
  * This is a DTO (Data Transfer Object) book, contains only useful information to be returned
@@ -38,6 +40,23 @@ public class Book {
   @Override
   public String toString() {
     return "BookDTO [title=" + title + ", price=" + price + "]";
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(title, price);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof Book)) {
+      return false;
+    }
+    Book book = (Book) obj;
+    return title.equals(book.getTitle()) && price == book.getPrice();
   }
 
 }
