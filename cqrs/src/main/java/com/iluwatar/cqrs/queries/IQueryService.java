@@ -13,14 +13,14 @@ import com.iluwatar.cqrs.dto.Book;
  */
 public interface IQueryService {
 
-  public abstract Author getAuthorByUsername(String username);
+  Author getAuthorByUsername(String username);
 
-  public abstract Book getBook(String title);
+  Book getBook(String title);
 
-  public abstract List<Book> getAuthorBooks(String username);
+  List<Book> getAuthorBooks(String username);
 
-  public abstract BigInteger getAuthorBooksCount(String username);
+  BigInteger getAuthorBooksCount(String username);
 
-  public abstract BigInteger getAuthorsCount();
+  BigInteger getAuthorsCount();
 
 }

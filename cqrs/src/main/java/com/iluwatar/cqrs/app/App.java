@@ -71,6 +71,13 @@ public class App {
     Book dddBook = queries.getBook("Domain-Driven Design");
     List<Book> jBlochBooks = queries.getAuthorBooks("jBloch");
 
+    System.out.println("Author username : " + nullAuthor);
+    System.out.println("Author eEvans : " + eEvans);
+    System.out.println("jBloch number of books : " + jBlochBooksCount);
+    System.out.println("Number of authors : " + authorsCount);
+    System.out.println("DDD book : " + dddBook);
+    System.out.println("jBloch books : " + jBlochBooks);
+
     HibernateUtil.getSessionFactory().close();
   }
 
