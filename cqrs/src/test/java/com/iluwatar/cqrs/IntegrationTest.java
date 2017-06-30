@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import java.math.BigInteger;
 import java.util.List;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -16,7 +15,6 @@ import com.iluwatar.cqrs.dto.Author;
 import com.iluwatar.cqrs.dto.Book;
 import com.iluwatar.cqrs.queries.IQueryService;
 import com.iluwatar.cqrs.queries.QueryServiceImpl;
-import com.iluwatar.cqrs.util.HibernateUtil;
 
 /**
  * Integration test of IQueryService and ICommandService with h2 data
