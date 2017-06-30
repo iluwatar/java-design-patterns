@@ -142,6 +142,7 @@
         <module>balking</module>
         <module>extension-objects</module>
         <module>marker</module>
+        <module>cqrs</module>
 
     </modules>
 
