@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,17 @@
  */
 package com.iluwatar.privateclassdata;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Mutable stew class
  *
  */
 public class Stew {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Stew.class);
 
   private int numPotatoes;
   private int numCarrots;
@@ -48,16 +53,15 @@ public class Stew {
    * Mix the stew
    */
   public void mix() {
-    System.out.println(String.format(
-        "Mixing the stew we find: %d potatoes, %d carrots, %d meat and %d peppers", numPotatoes,
-        numCarrots, numMeat, numPeppers));
+    LOGGER.info("Mixing the stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
+        numPotatoes, numCarrots, numMeat, numPeppers);
   }
 
   /**
    * Taste the stew
    */
   public void taste() {
-    System.out.println("Tasting the stew");
+    LOGGER.info("Tasting the stew");
     if (numPotatoes > 0) {
       numPotatoes--;
     }

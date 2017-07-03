@@ -3,9 +3,13 @@ layout: pattern
 title: Reader Writer Lock
 folder: reader-writer-lock
 permalink: /patterns/reader-writer-lock/
-categories: Concurrent
+pumlid: RSZB4S8m303HLg00MtUw4R8cCP5bZpwuVL80jttxx4gIZTFaSKOiVm4OxdhqEFETpaPJWpKgpG5TScEWmGU_M1fxFxGiZ61JXu5-1nXZOolR-gqYaoxWe3-xfeswSiWF
+categories: Concurrency
 tags: 
-- Java
+ - Java
+ - Difficulty-Intermediate
+ - I/O
+ - Performance
 ---
 
 **Intent:**  

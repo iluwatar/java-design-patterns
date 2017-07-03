@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,18 +22,21 @@
  */
 package com.iluwatar.interpreter;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.IntBinaryOperator;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.Test;
 
 /**
  * Date: 12/14/15 - 11:48 AM
  *
+ * Test Case for Expressions
+ * @param <E> Type of Expression
  * @author Jeroen Meulemeester
  */
 public abstract class ExpressionTest<E extends Expression> {
@@ -44,14 +47,14 @@ public abstract class ExpressionTest<E extends Expression> {
    * @param resultCalc The function used to calculate the expected result
    * @return A data set with test entries
    */
-  static List<Object[]> prepareParameters(final BiFunction<Integer, Integer, Integer> resultCalc) {
+  static List<Object[]> prepareParameters(final IntBinaryOperator resultCalc) {
     final List<Object[]> testData = new ArrayList<>();
     for (int i = -10; i < 10; i++) {
       for (int j = -10; j < 10; j++) {
         testData.add(new Object[]{
             new NumberExpression(i),
             new NumberExpression(j),
-            resultCalc.apply(i, j)
+            resultCalc.applyAsInt(i, j)
         });
       }
     }

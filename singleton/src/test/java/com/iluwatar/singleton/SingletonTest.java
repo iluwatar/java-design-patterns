@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,8 @@
  */
 package com.iluwatar.singleton;
 
-import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +32,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.function.Supplier;
-
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
+import org.junit.Test;
 
 /**
  * This class provides several test case that test singleton construction.
@@ -43,7 +42,7 @@ import static org.junit.Assert.assertSame;
  * the same when called in the DIFFERENT thread.
  *
  * Date: 12/29/15 - 19:25 PM
- *
+ * @param <S> Supplier method generating singletons
  * @author Jeroen Meulemeester
  * @author Richard Jones
  */

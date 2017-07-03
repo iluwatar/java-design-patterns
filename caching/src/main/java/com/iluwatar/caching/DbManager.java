@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -82,7 +82,7 @@ public final class DbManager {
       }
       return null;
     }
-    if (null == db) {
+    if (db == null) {
       try {
         connect();
       } catch (ParseException e) {
@@ -106,7 +106,7 @@ public final class DbManager {
       virtualDB.put(userAccount.getUserId(), userAccount);
       return;
     }
-    if (null == db) {
+    if (db == null) {
       try {
         connect();
       } catch (ParseException e) {
@@ -126,7 +126,7 @@ public final class DbManager {
       virtualDB.put(userAccount.getUserId(), userAccount);
       return;
     }
-    if (null == db) {
+    if (db == null) {
       try {
         connect();
       } catch (ParseException e) {
@@ -148,7 +148,7 @@ public final class DbManager {
       virtualDB.put(userAccount.getUserId(), userAccount);
       return;
     }
-    if (null == db) {
+    if (db == null) {
       try {
         connect();
       } catch (ParseException e) {

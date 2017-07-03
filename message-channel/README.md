@@ -4,7 +4,7 @@ title: Message Channel
 folder: message-channel
 permalink: /patterns/message-channel/
 categories: Integration
-tags: 
+tags:
  - Java
  - EIP
  - Apache Camel™

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.observer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Orcs
@@ -29,20 +32,22 @@ package com.iluwatar.observer;
  */
 public class Orcs implements WeatherObserver {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(Orcs.class);
+
   @Override
   public void update(WeatherType currentWeather) {
     switch (currentWeather) {
       case COLD:
-        System.out.println("The orcs are freezing cold.");
+        LOGGER.info("The orcs are freezing cold.");
         break;
       case RAINY:
-        System.out.println("The orcs are dripping wet.");
+        LOGGER.info("The orcs are dripping wet.");
         break;
       case SUNNY:
-        System.out.println("The sun hurts the orcs' eyes.");
+        LOGGER.info("The sun hurts the orcs' eyes.");
         break;
       case WINDY:
-        System.out.println("The orc smell almost vanishes in the wind.");
+        LOGGER.info("The orc smell almost vanishes in the wind.");
         break;
       default:
         break;

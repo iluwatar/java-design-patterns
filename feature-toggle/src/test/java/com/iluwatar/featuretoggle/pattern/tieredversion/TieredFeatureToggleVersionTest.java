@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,15 +22,18 @@
  */
 package com.iluwatar.featuretoggle.pattern.tieredversion;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import com.iluwatar.featuretoggle.pattern.Service;
 import com.iluwatar.featuretoggle.user.User;
 import com.iluwatar.featuretoggle.user.UserGroup;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
+/**
+ * Test Tiered Feature Toggle
+ */
 public class TieredFeatureToggleVersionTest {
 
   final User paidUser = new User("Jamie Coder");

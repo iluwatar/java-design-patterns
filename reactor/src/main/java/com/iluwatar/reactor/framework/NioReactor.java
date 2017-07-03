@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,9 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.reactor.framework;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
@@ -52,6 +55,8 @@ import java.util.concurrent.TimeUnit;
  * Reactor pattern.
  */
 public class NioReactor {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(NioReactor.class);
 
   private final Selector selector;
   private final Dispatcher dispatcher;
@@ -86,7 +91,7 @@ public class NioReactor {
   public void start() throws IOException {
     reactorMain.execute(() -> {
       try {
-        System.out.println("Reactor started, waiting for events...");
+        LOGGER.info("Reactor started, waiting for events...");
         eventLoop();
       } catch (IOException e) {
         e.printStackTrace();

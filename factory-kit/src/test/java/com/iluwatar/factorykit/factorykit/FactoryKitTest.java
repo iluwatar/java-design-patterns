@@ -1,6 +1,6 @@
-/**
+  /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,19 @@
  */
 package com.iluwatar.factorykit.factorykit;
 
-import com.iluwatar.factorykit.*;
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.junit.Assert.assertTrue;
 
+import com.iluwatar.factorykit.Axe;
+import com.iluwatar.factorykit.Spear;
+import com.iluwatar.factorykit.Sword;
+import com.iluwatar.factorykit.Weapon;
+import com.iluwatar.factorykit.WeaponFactory;
+import com.iluwatar.factorykit.WeaponType;
+import org.junit.Before;
+import org.junit.Test;
+/**
+ *  Test Factory Kit Pattern
+ */
 public class FactoryKitTest {
 
   private WeaponFactory factory;

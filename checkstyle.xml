@@ -2,7 +2,7 @@
 <!--
 
     The MIT License
-    Copyright (c) 2014 Ilkka Seppälä
+    Copyright (c) 2014-2016 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -32,10 +32,10 @@
     Source = https://github.com/checkstyle/checkstyle/tree/master/src/main/resources
 
     Checkstyle configurartion that checks the Google coding conventions from:
-    
+
     -  Google Java Style
        https://google-styleguide.googlecode.com/svn-history/r130/trunk/javaguide.html
-       
+
     Checkstyle is very configurable. Be sure to read the documentation at
     http://checkstyle.sf.net (or in your downloaded distribution).
 
@@ -44,12 +44,12 @@
     To completely disable a check, just comment it out or delete it from the file.
 
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
-    
+
  -->
 
 <module name="Checker">
     <property name="charset" value="UTF-8"/>
-	
+
 	<property name="fileExtensions" value="java, xml, properties"/>
 
     <property name="severity" value="error"/>
@@ -77,7 +77,6 @@
             <property name="max" value="120"/>
             <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
         </module>
-        <module name="AvoidStarImport"/>
         <module name="OneTopLevelClass"/>
         <module name="NoLineWrap"/>
         <module name="EmptyBlock">
@@ -120,7 +119,7 @@
             <property name="tokens" value="COMMA"/>
             <property name="option" value="EOL"/>
         </module>
-		
+
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
         <module name="ConstantName"/>
@@ -184,6 +183,10 @@
             <property name="minLineCount" value="2"/>
             <property name="allowedAnnotations" value="Override, Test, Before, After, Parameters, Given, When, BeforeClass, AfterClass, Parameterized"/>
             <property name="allowThrowsTagsForSubclasses" value="true"/>
+        </module>
+        <module name="JavadocType">
+            <property name="scope" value="public"/>
+            <property name="allowUnknownTags" value="true"/>
         </module>
         <module name="MethodName">
             <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>

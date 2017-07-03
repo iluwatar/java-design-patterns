@@ -3,8 +3,10 @@ layout: pattern
 title: Reactor
 folder: reactor
 permalink: /patterns/reactor/
+pumlid: DSR14OGm20NGLjO23FVj1f7Hx2Ga0nzjVxtuJc-f9YrtJM-V4vZn9NA-or5nvfQXBiEWXYAZKsrvCzZfnnUlkqOzR9qCg5jGvtX2hYmOJWfvNz9xcTdR7m00
+pumlformat: svg
 categories: Concurrency
-tags: 
+tags:
  - Java
  - Difficulty-Expert
  - I/O

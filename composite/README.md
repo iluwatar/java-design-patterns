@@ -3,6 +3,7 @@ layout: pattern
 title: Composite
 folder: composite
 permalink: /patterns/composite/
+pumlid: HSf13eCm30NHgy01YFUzZGaM62LEP7-NwvTTT_EaMTLgoqFIst81Cpv4payv5LVk6U9r6CHGwkYaBHy6EztyvUsGqDEsoO2u1NMED-WTvmY5aA3-LT9xcTdR3m00
 categories: Structural
 tags:
  - Java

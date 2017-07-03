@@ -3,6 +3,7 @@ layout: pattern
 title: Intercepting Filter
 folder: intercepting-filter
 permalink: /patterns/intercepting-filter/
+pumlid: RSfB3i8m303Hgy014k-vZN5DQkIuaJ_q-fGzkz7JtCL8Q-DolUsPAnu0ZcSVadizAzZfi6JBJiS4qJenqU6D7smRXmnh2pFPBM1YN05o_KwyKcoqb-ZFEEcVz_BPLqtz0W00
 categories: Behavioral
 tags:
  - Java
@@ -24,6 +25,7 @@ Use the Intercepting Filter pattern when
 
 ## Real world examples
 
+* [javax.servlet.FilterChain](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/FilterChain.html) and [javax.servlet.Filter](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/Filter.html)
 * [Struts 2 - Interceptors](https://struts.apache.org/docs/interceptors.html)
 
 ## Credits

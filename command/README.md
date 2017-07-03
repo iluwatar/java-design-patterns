@@ -3,11 +3,13 @@ layout: pattern
 title: Command
 folder: command
 permalink: /patterns/command/
+pumlid: DSgn4OCm30NGLM00h3xR25i7vYpXaxx2-g59zugtTgiZcwIFvGHcV8YSdt9qdBbdYDVR88PIRwK-yc6mqyLVtff4FsoR38XRa7Aye3SgMoD1_RkaQvcfumS0
 categories: Behavioral
-tags: 
+tags:
  - Java
  - Gang Of Four
  - Difficulty-Intermediate
+ - Functional
 ---
 
 ## Also known as
@@ -39,6 +41,7 @@ Use the Command pattern when you want to
 
 * [java.lang.Runnable](http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html)
 * [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki)
+* [javax.swing.Action](http://docs.oracle.com/javase/8/docs/api/javax/swing/Action.html)
 
 ## Credits
 

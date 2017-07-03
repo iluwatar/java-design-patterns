@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,46 +32,53 @@ import java.io.PrintStream;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * Test for the mute-idiom pattern
+ */
 public class MuteTest {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(MuteTest.class);
+
   private static final String MESSAGE = "should not occur";
-  
+
   @Rule public ExpectedException exception = ExpectedException.none();
-  
+
   @Test
   public void muteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
     Mute.mute(() -> methodNotThrowingAnyException());
   }
-  
+
   @Test
   public void muteShouldRethrowUnexpectedExceptionAsAssertionError() throws Exception {
     exception.expect(AssertionError.class);
     exception.expectMessage(MESSAGE);
-    
+
     Mute.mute(() -> methodThrowingException());
   }
-  
+
   @Test
   public void loggedMuteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
     Mute.loggedMute(() -> methodNotThrowingAnyException());
   }
-  
+
   @Test
   public void loggedMuteShouldLogExceptionTraceBeforeSwallowingIt() throws IOException {
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
     System.setErr(new PrintStream(stream));
-    
+
     Mute.loggedMute(() -> methodThrowingException());
-    
+
     assertTrue(new String(stream.toByteArray()).contains(MESSAGE));
   }
-  
-  
+
+
   private void methodNotThrowingAnyException() {
-    System.out.println("Executed successfully");
+    LOGGER.info("Executed successfully");
   }
-  
+
   private void methodThrowingException() throws Exception {
     throw new Exception(MESSAGE);
   }

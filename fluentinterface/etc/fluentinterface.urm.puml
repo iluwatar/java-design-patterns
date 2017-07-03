@@ -1,0 +1,72 @@
+@startuml
+package com.iluwatar.fluentinterface.fluentiterable.simple {
+  class SimpleFluentIterable<E> {
+    - iterable : Iterable<E>
+    # SimpleFluentIterable<E>(iterable : Iterable<E>)
+    + asList() : List<E>
+    + filter(predicate : Predicate<? super E>) : FluentIterable<E>
+    + first() : Optional<E>
+    + first(count : int) : FluentIterable<E>
+    + forEach(action : Consumer<? super E>)
+    + from(iterable : Iterable<E>) : FluentIterable<E> {static}
+    + fromCopyOf(iterable : Iterable<E>) : FluentIterable<E> {static}
+    + getRemainingElementsCount() : int
+    + iterator() : Iterator<E>
+    + last() : Optional<E>
+    + last(count : int) : FluentIterable<E>
+    + map(function : Function<? super E, T>) : FluentIterable<T>
+    + spliterator() : Spliterator<E>
+    + toList(iterator : Iterator<E>) : List<E> {static}
+  }
+}
+package com.iluwatar.fluentinterface.app {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+    - negatives() : Predicate<? super Integer> {static}
+    - positives() : Predicate<? super Integer> {static}
+    - prettyPrint(delimiter : String, prefix : String, iterable : Iterable<E>) {static}
+    - prettyPrint(prefix : String, iterable : Iterable<E>) {static}
+    - transformToString() : Function<Integer, String> {static}
+  }
+}
+package com.iluwatar.fluentinterface.fluentiterable.lazy {
+  abstract class DecoratingIterator<E> {
+    # fromIterator : Iterator<E>
+    - next : E
+    + DecoratingIterator<E>(fromIterator : Iterator<E>)
+    + computeNext() : E {abstract}
+    + hasNext() : boolean
+    + next() : E
+  }
+  class LazyFluentIterable<E> {
+    - iterable : Iterable<E>
+    # LazyFluentIterable<E>()
+    # LazyFluentIterable<E>(iterable : Iterable<E>)
+    + asList() : List<E>
+    + filter(predicate : Predicate<? super E>) : FluentIterable<E>
+    + first() : Optional<E>
+    + first(count : int) : FluentIterable<E>
+    + from(iterable : Iterable<E>) : FluentIterable<E> {static}
+    + iterator() : Iterator<E>
+    + last() : Optional<E>
+    + last(count : int) : FluentIterable<E>
+    + map(function : Function<? super E, T>) : FluentIterable<T>
+  }
+}
+package com.iluwatar.fluentinterface.fluentiterable {
+  interface FluentIterable<E> {
+    + asList() : List<E> {abstract}
+    + copyToList(iterable : Iterable<E>) : List<E> {static}
+    + filter(Predicate<? super E>) : FluentIterable<E> {abstract}
+    + first() : Optional<E> {abstract}
+    + first(int) : FluentIterable<E> {abstract}
+    + last() : Optional<E> {abstract}
+    + last(int) : FluentIterable<E> {abstract}
+    + map(Function<? super E, T>) : FluentIterable<T> {abstract}
+  }
+}
+LazyFluentIterable ..|> FluentIterable 
+SimpleFluentIterable ..|> FluentIterable 
+@enduml

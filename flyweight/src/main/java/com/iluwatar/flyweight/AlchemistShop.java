@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.flyweight;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,6 +35,8 @@ import java.util.List;
  * 
  */
 public class AlchemistShop {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(AlchemistShop.class);
 
   private List<Potion> topShelf;
   private List<Potion> bottomShelf;
@@ -88,13 +93,13 @@ public class AlchemistShop {
    */
   public void enumerate() {
 
-    System.out.println("Enumerating top shelf potions\n");
+    LOGGER.info("Enumerating top shelf potions\n");
 
     for (Potion p : topShelf) {
       p.drink();
     }
 
-    System.out.println("\nEnumerating bottom shelf potions\n");
+    LOGGER.info("Enumerating bottom shelf potions\n");
 
     for (Potion p : bottomShelf) {
       p.drink();

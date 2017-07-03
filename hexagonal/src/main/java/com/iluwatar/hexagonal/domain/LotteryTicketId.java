@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,20 +22,49 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-import java.util.UUID;
-
 /**
  * Lottery ticked id
  */
 public class LotteryTicketId {
-  
-  private final UUID id;
+
+  private static volatile int numAllocated;
+  private final int id;
   
   public LotteryTicketId() {
-    id = UUID.randomUUID();
+    this.id = numAllocated + 1;
+    numAllocated++;
+  }
+
+  public LotteryTicketId(int id) {
+    this.id = id;
   }
   
-  public UUID getId() {
+  public int getId() {
+    return id;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("%d", id);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    LotteryTicketId that = (LotteryTicketId) o;
+
+    return id == that.id;
+
+  }
+
+  @Override
+  public int hashCode() {
     return id;
   }
 }

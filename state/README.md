@@ -3,6 +3,7 @@ layout: pattern
 title: State
 folder: state
 permalink: /patterns/state/
+pumlid: 9SRH3O0m20N0LNG0ox_RO2LQqz867hg-9jxNpKLpZLt2wdG2mrSYuoST1MTiuMAvAqIHSczKQZmCDhhuvcKNBuSkWm4nTMhiNyZ141BaVocifH6jlW00
 categories: Behavioral
 tags:
  - Java
@@ -24,6 +25,11 @@ Use the State pattern in either of the following cases
 
 * an object's behavior depends on its state, and it must change its behavior at run-time depending on that state
 * operations have large, multipart conditional statements that depend on the object's state. This state is usually represented by one or more enumerated constants. Often, several operations will contain this same conditional structure. The State pattern puts each branch of the conditional in a separate class. This lets you treat the object's state as an object in its own right that can vary independently from other objects.
+
+## Real world examples
+
+* [javax.faces.lifecycle.Lifecycle#execute()](http://docs.oracle.com/javaee/7/api/javax/faces/lifecycle/Lifecycle.html#execute-javax.faces.context.FacesContext-) controlled by [FacesServlet](http://docs.oracle.com/javaee/7/api/javax/faces/webapp/FacesServlet.html), the behavior is dependent on current phase of lifecycle.
+* [JDiameter - Diameter State Machine](https://github.com/npathai/jdiameter/blob/master/core/jdiameter/api/src/main/java/org/jdiameter/api/app/State.java)
 
 ## Credits
 

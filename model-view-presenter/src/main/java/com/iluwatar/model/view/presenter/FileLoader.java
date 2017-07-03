@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -48,8 +48,7 @@ public class FileLoader {
    * Loads the data of the file specified.
    */
   public String loadData() {
-    try {
-      BufferedReader br = new BufferedReader(new FileReader(new File(this.fileName)));
+    try (BufferedReader br = new BufferedReader(new FileReader(new File(this.fileName)))) {
       StringBuilder sb = new StringBuilder();
       String line;
 
@@ -58,7 +57,6 @@ public class FileLoader {
       }
 
       this.loaded = true;
-      br.close();
 
       return sb.toString();
     } catch (Exception e) {

@@ -3,6 +3,7 @@ layout: pattern
 title: Facade
 folder: facade
 permalink: /patterns/facade/
+pumlid: BSP15eCm20N0gxG7CEoz3ILKqvTW7dpq-hhehERTJ7fMJU-l7PYn4ZbVPMlOyvEXBeT13KMEGQtdnM2d7v-yL8sssJ8PKBUWmV64lYnSbHJoRqaVPUReDm00
 categories: Structural
 tags:
  - Java

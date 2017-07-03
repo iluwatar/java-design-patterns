@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,22 +22,22 @@
  */
 package com.iluwatar.event.aggregator;
 
-import org.junit.Test;
-
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
+
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import org.junit.Test;
 
 /**
  * Date: 12/12/15 - 10:58 PM
- *
+ * Tests for Event Emitter
+ * @param <E> Type of Event Emitter
  * @author Jeroen Meulemeester
  */
 public abstract class EventEmitterTest<E extends EventEmitter> {
@@ -115,7 +115,7 @@ public abstract class EventEmitterTest<E extends EventEmitter> {
     // The observers should not have received any additional events after the week
     verifyNoMoreInteractions(observers);
   }
-  
+
   /**
    * Go over every day of the month, and check if the event is emitted on the given day. Use an
    * event emitter without a default observer
