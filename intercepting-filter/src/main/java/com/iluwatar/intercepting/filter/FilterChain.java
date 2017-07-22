@@ -32,11 +32,6 @@ public class FilterChain {
 
   private Filter chain;
 
-  /**
-   * Constructor
-   */
-  public FilterChain() {
-  }
 
   /**
    * Adds filter
