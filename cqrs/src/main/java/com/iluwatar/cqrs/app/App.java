@@ -25,6 +25,9 @@ package com.iluwatar.cqrs.app;
 import java.math.BigInteger;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.iluwatar.cqrs.commandes.CommandServiceImpl;
 import com.iluwatar.cqrs.commandes.ICommandService;
 import com.iluwatar.cqrs.dto.Author;
@@ -39,6 +42,8 @@ import com.iluwatar.cqrs.util.HibernateUtil;
  *
  */
 public class App {
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
@@ -71,12 +76,12 @@ public class App {
     Book dddBook = queries.getBook("Domain-Driven Design");
     List<Book> jBlochBooks = queries.getAuthorBooks("jBloch");
 
-    System.out.println("Author username : " + nullAuthor);
-    System.out.println("Author eEvans : " + eEvans);
-    System.out.println("jBloch number of books : " + jBlochBooksCount);
-    System.out.println("Number of authors : " + authorsCount);
-    System.out.println("DDD book : " + dddBook);
-    System.out.println("jBloch books : " + jBlochBooks);
+    LOGGER.info("Author username : {}", nullAuthor);
+    LOGGER.info("Author eEvans : {}", eEvans);
+    LOGGER.info("jBloch number of books : {}", jBlochBooksCount);
+    LOGGER.info("Number of authors : {}", authorsCount);
+    LOGGER.info("DDD book : {}", dddBook);
+    LOGGER.info("jBloch books : {}", jBlochBooks);
 
     HibernateUtil.getSessionFactory().close();
   }
