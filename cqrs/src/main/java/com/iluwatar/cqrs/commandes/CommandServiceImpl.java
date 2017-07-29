@@ -23,6 +23,9 @@ public class CommandServiceImpl implements ICommandService {
       query.setParameter("username", username);
       author = (Author) query.uniqueResult();
     }
+    if (author == null) {
+      throw new NullPointerException("Author " + username + " doesn't exist!");
+    }
     return author;
   }
 
@@ -32,6 +35,9 @@ public class CommandServiceImpl implements ICommandService {
       Query query = session.createQuery("from Book where title=:title");
       query.setParameter("title", title);
       book = (Book) query.uniqueResult();
+    }
+    if (book == null) {
+      throw new NullPointerException("Book " + title + " doesn't exist!");
     }
     return book;
   }
