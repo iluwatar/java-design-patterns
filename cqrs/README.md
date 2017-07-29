@@ -11,7 +11,7 @@ tags:
 ---
 
 ## Intent
-CQRS Command Query Responsibility Segregation - Seperate the query side from the command side.
+CQRS Command Query Responsibility Segregation - Separate the query side from the command side.
 
 ![alt text](./etc/cqrs.png "CQRS")
 
@@ -24,6 +24,6 @@ Use the CQRS pattern when
 
 ## Credits
 
-* [Greg Young - CQRS, Task Based UIs, Event Sourcing agh!](http://www.amazon.com/Effective-Java-Edition-Joshua-Bloch/dp/0321356683)
-* [Martin Fowler - CQRS](http://codebetter.com/gregyoung/2010/02/16/cqrs-task-based-uis-event-sourcing-agh/)
+* [Greg Young - CQRS, Task Based UIs, Event Sourcing agh!](http://codebetter.com/gregyoung/2010/02/16/cqrs-task-based-uis-event-sourcing-agh/)
+* [Martin Fowler - CQRS](https://martinfowler.com/bliki/CQRS.html)
 * [Oliver Wolf - CQRS for Great Good](https://www.youtube.com/watch?v=Ge53swja9Dw)
