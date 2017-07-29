@@ -23,55 +23,60 @@ public class QueryServiceImpl implements IQueryService {
 
   @Override
   public Author getAuthorByUsername(String username) {
-    Session session = sessionFactory.openSession();
-    SQLQuery sqlQuery = session
-        .createSQLQuery("SELECT a.username as \"username\", a.name as \"name\", a.email as \"email\""
-            + "FROM Author a where a.username=:username");
-    sqlQuery.setParameter("username", username);
-    Author authorDTo = (Author) sqlQuery.setResultTransformer(Transformers.aliasToBean(Author.class)).uniqueResult();
-    session.close();
+    Author authorDTo = null;
+    try (Session session = sessionFactory.openSession()) {
+      SQLQuery sqlQuery = session
+          .createSQLQuery("SELECT a.username as \"username\", a.name as \"name\", a.email as \"email\""
+              + "FROM Author a where a.username=:username");
+      sqlQuery.setParameter("username", username);
+      authorDTo = (Author) sqlQuery.setResultTransformer(Transformers.aliasToBean(Author.class)).uniqueResult();
+    }
     return authorDTo;
   }
 
   @Override
   public Book getBook(String title) {
-    Session session = sessionFactory.openSession();
-    SQLQuery sqlQuery = session
-        .createSQLQuery("SELECT b.title as \"title\", b.price as \"price\"" + " FROM Book b where b.title=:title");
-    sqlQuery.setParameter("title", title);
-    Book bookDTo = (Book) sqlQuery.setResultTransformer(Transformers.aliasToBean(Book.class)).uniqueResult();
-    session.close();
+    Book bookDTo = null;
+    try (Session session = sessionFactory.openSession()) {
+      SQLQuery sqlQuery = session
+          .createSQLQuery("SELECT b.title as \"title\", b.price as \"price\"" + " FROM Book b where b.title=:title");
+      sqlQuery.setParameter("title", title);
+      bookDTo = (Book) sqlQuery.setResultTransformer(Transformers.aliasToBean(Book.class)).uniqueResult();
+    }
     return bookDTo;
   }
 
   @Override
   public List<Book> getAuthorBooks(String username) {
-    Session session = sessionFactory.openSession();
-    SQLQuery sqlQuery = session.createSQLQuery("SELECT b.title as \"title\", b.price as \"price\""
-        + " FROM Author a , Book b where b.author_id = a.id and a.username=:username");
-    sqlQuery.setParameter("username", username);
-    List<Book> bookDTos = sqlQuery.setResultTransformer(Transformers.aliasToBean(Book.class)).list();
-    session.close();
+    List<Book> bookDTos = null;
+    try (Session session = sessionFactory.openSession()) {
+      SQLQuery sqlQuery = session.createSQLQuery("SELECT b.title as \"title\", b.price as \"price\""
+          + " FROM Author a , Book b where b.author_id = a.id and a.username=:username");
+      sqlQuery.setParameter("username", username);
+      bookDTos = sqlQuery.setResultTransformer(Transformers.aliasToBean(Book.class)).list();
+    }
     return bookDTos;
   }
 
   @Override
   public BigInteger getAuthorBooksCount(String username) {
-    Session session = sessionFactory.openSession();
-    SQLQuery sqlQuery = session.createSQLQuery(
-        "SELECT count(b.title)" + " FROM  Book b, Author a where b.author_id = a.id and a.username=:username");
-    sqlQuery.setParameter("username", username);
-    BigInteger bookcount = (BigInteger) sqlQuery.uniqueResult();
-    session.close();
+    BigInteger bookcount = null;
+    try (Session session = sessionFactory.openSession()) {
+      SQLQuery sqlQuery = session.createSQLQuery(
+          "SELECT count(b.title)" + " FROM  Book b, Author a where b.author_id = a.id and a.username=:username");
+      sqlQuery.setParameter("username", username);
+      bookcount = (BigInteger) sqlQuery.uniqueResult();
+    }
     return bookcount;
   }
 
   @Override
   public BigInteger getAuthorsCount() {
-    Session session = sessionFactory.openSession();
-    SQLQuery sqlQuery = session.createSQLQuery("SELECT count(id) from Author");
-    BigInteger authorcount = (BigInteger) sqlQuery.uniqueResult();
-    session.close();
+    BigInteger authorcount = null;
+    try (Session session = sessionFactory.openSession()) {
+      SQLQuery sqlQuery = session.createSQLQuery("SELECT count(id) from Author");
+      authorcount = (BigInteger) sqlQuery.uniqueResult();
+    }
     return authorcount;
   }
 
