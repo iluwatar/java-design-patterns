@@ -38,7 +38,13 @@ import com.iluwatar.cqrs.util.HibernateUtil;
 
 /**
  * CQRS : Command Query Responsibility Segregation. A pattern used to separate query services from commands or writes
- * services.
+ * services. The pattern is very simple but it has many consequences. For example, it can be used to tackle down a
+ * complex domain, or to use other architectures that were hard to implement with the classical way.
+ * 
+ * This implementation is an example of managing books and authors in a library. The persistence of books and authors is
+ * done according to the CQRS architecture. A command side that deals with a data model to persist(insert,update,delete)
+ * objects to a database. And a query side that uses native queries to get data from the database and return objects as
+ * DTOs (Data transfer Objects).
  *
  */
 public class App {
