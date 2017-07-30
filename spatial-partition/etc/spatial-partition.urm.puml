@@ -1,0 +1,50 @@
+@startuml
+package com.iluwatar.spatial.partition {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Grid {
+    - ATTACK_DISTANCE : int {static}
+    - CELL_SIZE : int {static}
+    - NUM_CELLS : int {static}
+    - cells : Unit[][]
+    + Grid()
+    ~ add(unit : Unit)
+    ~ clearGrid()
+    - distanceUnitFromAnotherUnit(unit : Unit, anotherUnit : Unit) : int
+    + getCells() : Unit[][]
+    - handleAttack(unit : Unit, anotherUnit : Unit)
+    - handleCell(x : int, y : int)
+    + handleMelee()
+    - handleMissedAttack()
+    - handleUnit(unit : Unit, otherUnit : Unit)
+    - init()
+    ~ moveUnitToNewCell(unit : Unit, x : double, y : double)
+    + setCells(cells : Unit[][])
+  }
+  class Unit {
+    - grid : Grid
+    - health : int
+    - nextCell : Unit
+    - previousCell : Unit
+    - x : double
+    - y : double
+    + Unit(grid : Grid, x : double, y : double)
+    + getHealth() : int
+    + getNextCell() : Unit
+    + getPreviousCell() : Unit
+    + getX() : double
+    + getY() : double
+    - init(grid : Grid, x : double, y : double)
+    ~ move(x : double, y : double)
+    + setHealth(health : int)
+    + setNextCell(nextCell : Unit)
+    + setPreviousCell(previousCell : Unit)
+    + setX(x : double)
+    + setY(y : double)
+  }
+}
+Unit -->  "-previousCell" Unit
+Unit -->  "-grid" Grid
+@enduml
