@@ -66,8 +66,8 @@ public class OrderTest {
   @Test
   public void testSetOrder() throws Exception {
     final Order order = new Order();
-    order.setOrder(EXPECTED_VALUE);
-    assertEquals(EXPECTED_VALUE, order.getOrder());
+    order.setOrderItem(EXPECTED_VALUE);
+    assertEquals(EXPECTED_VALUE, order.getOrderItem());
   }
 
 }
