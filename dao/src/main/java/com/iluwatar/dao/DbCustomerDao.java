@@ -65,7 +65,7 @@ public class DbCustomerDao implements CustomerDao {
     Connection connection;
     try {
       connection = getConnection();
-      PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMERS");
+      PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMERS"); //NOSONAR
       ResultSet resultSet = statement.executeQuery();
       return StreamSupport.stream(new Spliterators.AbstractSpliterator<Customer>(Long.MAX_VALUE, 
           Spliterator.ORDERED) {

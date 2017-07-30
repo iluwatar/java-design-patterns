@@ -32,12 +32,18 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * This class implements the Event Queue pattern.
+ * 
  * @author mkuprivecz
  *
  */
 public class Audio {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Audio.class);
 
   private static final int MAX_PENDING = 16;
 
@@ -50,43 +56,46 @@ public class Audio {
   private static PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
 
   /**
-   * This method stops the Update Method's thread. 
+   * This method stops the Update Method's thread.
    */
   public static synchronized void stopService() {
     if (updateThread != null) {
       updateThread.interrupt();
     }
   }
-  
+
   /**
-   * This method stops the Update Method's thread. 
+   * This method stops the Update Method's thread.
+   * 
    * @return boolean
    */
   public static synchronized boolean isServiceRunning() {
-    if (updateThread != null && updateThread.isAlive() ) {
-      return true;
-    } else {
-      return false;
-    }
+    return updateThread != null && updateThread.isAlive();
   }
 
   /**
-   * Starts the thread for the Update Method pattern if it was not started previously.
-   * Also when the thread is is ready initializes the indexes of the queue 
+   * Starts the thread for the Update Method pattern if it was not started previously. Also when the thread is is ready
+   * initializes the indexes of the queue
    */
   public static void init() {
     if (updateThread == null) {
-      updateThread = new Thread(new Runnable() {
-        public void run() {
-          while (!Thread.currentThread().isInterrupted()) {
-            Audio.update();
+      updateThread = new Thread(() -> {
+        while (!Thread.currentThread().isInterrupted()) {
+          Audio.update();
+          try {
+            Thread.sleep(1000); // Sleep a second before processing next in queue. If not in this example all messages
+                                // in the queue played in parallel.
+          } catch (InterruptedException e) {
+            LOGGER.warn("Interrupted!", e);
+            // Restore interrupted state as per sonarqube recommendation
+            Thread.currentThread().interrupt();
           }
         }
       });
     }
     startThread();
   }
-  
+
   /**
    * This is a synchronized thread starter
    */
@@ -100,8 +109,11 @@ public class Audio {
 
   /**
    * This method adds a new audio into the queue.
-   * @param stream is the AudioInputStream for the method
-   * @param volume is the level of the audio's volume 
+   * 
+   * @param stream
+   *          is the AudioInputStream for the method
+   * @param volume
+   *          is the level of the audio's volume
    */
   public static void playSound(AudioInputStream stream, float volume) {
     init();
@@ -116,12 +128,12 @@ public class Audio {
       }
     }
     getPendingAudio()[tailIndex] = new PlayMessage(stream, volume);
+    LOGGER.info("Added audio stream at queue index {}", tailIndex);
     tailIndex = (tailIndex + 1) % MAX_PENDING;
   }
-  
+
   /**
-   * This method uses the Update Method pattern.
-   * It takes the audio from the queue and plays it
+   * This method uses the Update Method pattern. It takes the audio from the queue and plays it
    */
   public static void update() {
     // If there are no pending requests, do nothing.
@@ -129,37 +141,54 @@ public class Audio {
       return;
     }
     Clip clip = null;
+    AudioInputStream audioStream = getPendingAudio()[headIndex].getStream();
     try {
-      AudioInputStream audioStream = getPendingAudio()[headIndex].getStream();
-      headIndex++;
       clip = AudioSystem.getClip();
       clip.open(audioStream);
       clip.start();
+      LOGGER.info("Started playing stream from index {}", headIndex);
+      headIndex++;
     } catch (LineUnavailableException e) {
-      System.err.println("Error occoured while loading the audio: The line is unavailable");
-      e.printStackTrace();
+      LOGGER.error("Error occoured while loading the audio: The line is unavailable", e);
     } catch (IOException e) {
-      System.err.println("Input/Output error while loading the audio");
-      e.printStackTrace();
+      LOGGER.error("Input/Output error while loading the audio", e);
     } catch (IllegalArgumentException e) {
-      System.err.println("The system doesn't support the sound: " + e.getMessage());
+      LOGGER.error("The system doesn't support the sound: " + e.getMessage());
+    } finally {
+      if (clip != null) {
+        while (clip.isActive()) {
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e) {
+            LOGGER.warn("Interrupted!", e);
+            // Restore interrupted state as per sonarqube recommendation
+            Thread.currentThread().interrupt();
+          }
+        }
+        clip.close();
+      }
     }
+
   }
 
   /**
    * Returns the AudioInputStream of a file
-   * @param filePath is the path of the audio file
+   * 
+   * @param filePath
+   *          is the path of the audio file
    * @return AudioInputStream
-   * @throws UnsupportedAudioFileException when the audio file is not supported 
-   * @throws IOException when the file is not readable
+   * @throws UnsupportedAudioFileException
+   *           when the audio file is not supported
+   * @throws IOException
+   *           when the file is not readable
    */
-  public static AudioInputStream getAudioStream(String filePath) 
-      throws UnsupportedAudioFileException, IOException {
+  public static AudioInputStream getAudioStream(String filePath) throws UnsupportedAudioFileException, IOException {
     return AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
   }
 
   /**
-   * Returns with the message array of the queue 
+   * Returns with the message array of the queue
+   * 
    * @return PlayMessage[]
    */
   public static PlayMessage[] getPendingAudio() {
