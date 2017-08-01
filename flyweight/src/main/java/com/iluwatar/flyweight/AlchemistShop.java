@@ -101,8 +101,8 @@ public class AlchemistShop {
 
     LOGGER.info("Enumerating bottom shelf potions\n");
 
-    for (Potion p : bottomShelf) {
+    bottomShelf.forEach(p -> {
       p.drink();
-    }
+    });
   }
 }

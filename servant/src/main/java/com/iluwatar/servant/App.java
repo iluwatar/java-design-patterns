@@ -73,9 +73,9 @@ public class App {
     servant.giveCompliments(guests.get(compliment));
 
     // outcome of the night
-    for (Royalty r : guests) {
+    guests.forEach(r -> {
       r.changeMood();
-    }
+    });
 
     // check your luck
     if (servant.checkIfYouWillBeHanged(guests)) {

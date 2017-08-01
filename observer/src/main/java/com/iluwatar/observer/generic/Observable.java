@@ -53,8 +53,8 @@ public abstract class Observable<S extends Observable<S, O, A>, O extends Observ
    */
   @SuppressWarnings("unchecked")
   public void notifyObservers(A argument) {
-    for (O observer : observers) {
+    observers.forEach(observer -> {
       observer.update((S) this, argument);
-    }
+    });
   }
 }
