@@ -22,13 +22,20 @@
  */
 package com.iluwatar.model.view.presenter;
 
+import java.io.Serializable;
+
 /**
  * Every instance of this class represents the Presenter component in the Model-View-Presenter
  * architectural pattern.
  * <p>
  * It is responsible for reacting to the user's actions and update the View component.
  */
-public class FileSelectorPresenter {
+public class FileSelectorPresenter implements Serializable{
+
+  /**
+   * Generated serial version UID
+   */
+  private static final long serialVersionUID = 1210314339075855074L;
 
   /**
    * The View component that the presenter interacts with.
