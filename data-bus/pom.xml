@@ -27,6 +27,10 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>../data-transfer-object</module>
+    </modules>
     <properties>
         <lombok.version>1.16.14</lombok.version>
     </properties>
