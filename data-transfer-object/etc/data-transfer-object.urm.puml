@@ -1,5 +1,10 @@
 @startuml
 package com.iluwatar.datatransfer {
+  class CustomerClientApp {
+    + CustomerClientApp()
+    + main(args : String[]) {static}
+    - printCustomerDetails(allCustomers : List<CustomerDto>) {static}
+  }
   class CustomerDto {
     - firstName : String
     - id : String
