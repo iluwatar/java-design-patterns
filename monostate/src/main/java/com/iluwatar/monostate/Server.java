@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.monostate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * The Server class. Each Server sits behind a LoadBalancer which delegates the call to the servers
@@ -29,6 +32,9 @@ package com.iluwatar.monostate;
  *
  */
 public class Server {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Server.class);
+
   public final String host;
   public final int port;
   public final int id;
@@ -51,7 +57,7 @@ public class Server {
   }
 
   public void serve(Request request) {
-    System.out.println("Server ID " + id + " associated to host : " + getHost() + " and Port "
-        + getPort() + " Processed request with value  " + request.value);
+    LOGGER.info("Server ID {} associated to host : {} and port {}. Processed request with value {}",
+            id, host, port, request.value);
   }
 }

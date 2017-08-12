@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,16 @@
  */
 package com.iluwatar.mutex;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Thief is a class which continually tries to acquire a jar and take a bean
  * from it. When the jar is empty the thief stops.
  */
 public class Thief extends Thread {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Thief.class);
 
   /**
    * The name of the thief. 
@@ -53,10 +58,10 @@ public class Thief extends Thread {
 
     while (jar.takeBean()) {
       beans = beans + 1;
-      System.out.println(name + " took a bean.");
+      LOGGER.info("{} took a bean.", name);
     }
 
-    System.out.println(name + " took " + beans + " beans.");
+    LOGGER.info("{} took {} beans.", name, beans);
   }
 
 }

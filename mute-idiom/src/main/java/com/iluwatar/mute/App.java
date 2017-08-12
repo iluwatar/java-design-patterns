@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 
 package com.iluwatar.mute;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -45,6 +48,8 @@ import java.sql.SQLException;
  * 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -88,7 +93,7 @@ public class App {
   }
 
   private static void utilizeResource(Resource resource) throws SQLException {
-    System.out.println("Utilizing acquired resource: " + resource);
+    LOGGER.info("Utilizing acquired resource: {}", resource);
   }
 
   private static Resource acquireResource() throws SQLException {

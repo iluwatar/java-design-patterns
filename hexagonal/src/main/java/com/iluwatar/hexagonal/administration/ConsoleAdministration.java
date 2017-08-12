@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,40 +22,69 @@
  */
 package com.iluwatar.hexagonal.administration;
 
-import com.google.inject.Inject;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.iluwatar.hexagonal.domain.LotteryAdministration;
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
-import com.iluwatar.hexagonal.domain.LotterySystem;
-import com.iluwatar.hexagonal.domain.LotteryTicket;
-import com.iluwatar.hexagonal.domain.LotteryTicketId;
+import com.iluwatar.hexagonal.domain.LotteryService;
+import com.iluwatar.hexagonal.module.LotteryModule;
+import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
+import com.iluwatar.hexagonal.sampledata.SampleData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.Map;
+import java.util.Scanner;
 
 /**
- * 
- * Lottery administration implementation
- *
+ * Console interface for lottery administration
  */
-public class ConsoleAdministration implements LotteryAdministration {
+public class ConsoleAdministration {
 
-  private final LotterySystem lotterySystem;
+  private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleAdministration.class);
 
-  @Inject
-  public ConsoleAdministration(LotterySystem lotterySystem) {
-    this.lotterySystem = lotterySystem;
+  /**
+   * Program entry point
+   */
+  public static void main(String[] args) {
+    MongoConnectionPropertiesLoader.load();
+    Injector injector = Guice.createInjector(new LotteryModule());
+    LotteryAdministration administartion = injector.getInstance(LotteryAdministration.class);
+    LotteryService service = injector.getInstance(LotteryService.class);
+    SampleData.submitTickets(service, 20);
+    try (Scanner scanner = new Scanner(System.in)) {
+      boolean exit = false;
+      while (!exit) {
+        printMainMenu();
+        String cmd = readString(scanner);
+        if ("1".equals(cmd)) {
+          administartion.getAllSubmittedTickets().forEach((k, v) -> LOGGER.info("Key: {}, Value: {}", k, v));
+        } else if ("2".equals(cmd)) {
+          LotteryNumbers numbers = administartion.performLottery();
+          LOGGER.info("The winning numbers: {}", numbers.getNumbersAsString());
+          LOGGER.info("Time to reset the database for next round, eh?");
+        } else if ("3".equals(cmd)) {
+          administartion.resetLottery();
+          LOGGER.info("The lottery ticket database was cleared.");
+        } else if ("4".equals(cmd)) {
+          exit = true;
+        } else {
+          LOGGER.info("Unknown command: {}", cmd);
+        }
+      }
+    }
   }
-  
-  @Override
-  public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
-    return lotterySystem.getAllSubmittedTickets();
+
+  private static void printMainMenu() {
+    LOGGER.info("");
+    LOGGER.info("### Lottery Administration Console ###");
+    LOGGER.info("(1) Show all submitted tickets");
+    LOGGER.info("(2) Perform lottery draw");
+    LOGGER.info("(3) Reset lottery ticket database");
+    LOGGER.info("(4) Exit");
   }
 
-  @Override
-  public LotteryNumbers performLottery() {
-    return lotterySystem.performLottery();
-  }
-
-  @Override
-  public void resetLottery() {
-    lotterySystem.resetLottery();
+  private static String readString(Scanner scanner) {
+    System.out.print("> ");
+    return scanner.next();
   }
 }

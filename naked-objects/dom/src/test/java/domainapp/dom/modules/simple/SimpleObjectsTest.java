@@ -14,10 +14,13 @@
  */
 package domainapp.dom.modules.simple;
 
-import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.google.common.collect.Lists;
-
+import java.util.List;
+import org.apache.isis.applib.DomainObjectContainer;
+import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
+import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2.Mode;
 import org.jmock.Expectations;
 import org.jmock.Sequence;
 import org.jmock.auto.Mock;
@@ -25,12 +28,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
-import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2.Mode;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Test for SimpleObjects
+ */
 public class SimpleObjectsTest {
 
   @Rule
@@ -47,6 +47,9 @@ public class SimpleObjectsTest {
     simpleObjects.container = mockContainer;
   }
 
+  /**
+   * Test Creation of Simple Objects
+   */
   public static class Create extends SimpleObjectsTest {
 
     @Test
@@ -77,6 +80,9 @@ public class SimpleObjectsTest {
 
   }
 
+  /**
+   * Test Listing of Simple Objects
+   */
   public static class ListAll extends SimpleObjectsTest {
 
     @Test

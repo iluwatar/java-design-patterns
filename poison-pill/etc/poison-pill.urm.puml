@@ -1,5 +1,16 @@
 @startuml
 package com.iluwatar.poison.pill {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Consumer {
+    - LOGGER : Logger {static}
+    - name : String
+    - queue : MqSubscribePoint
+    + Consumer(name : String, queue : MqSubscribePoint)
+    + consume()
+  }
   interface Message {
     + POISON_PILL : Message {static}
     + addHeader(Headers, String) {abstract}
@@ -8,9 +19,28 @@ package com.iluwatar.poison.pill {
     + getHeaders() : Map<Headers, String> {abstract}
     + setBody(String) {abstract}
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
+  enum Headers {
+    + DATE {static}
+    + SENDER {static}
+    + valueOf(name : String) : Headers {static}
+    + values() : Headers[] {static}
+  }
+  interface MessageQueue {
+  }
+  interface MqPublishPoint {
+    + put(Message) {abstract}
+  }
+  interface MqSubscribePoint {
+    + take() : Message {abstract}
+  }
+  class Producer {
+    - LOGGER : Logger {static}
+    - isStopped : boolean
+    - name : String
+    - queue : MqPublishPoint
+    + Producer(name : String, queue : MqPublishPoint)
+    + send(body : String)
+    + stop()
   }
   class SimpleMessage {
     - body : String
@@ -28,45 +58,14 @@ package com.iluwatar.poison.pill {
     + put(msg : Message)
     + take() : Message
   }
-  class Producer {
-    - isStopped : boolean
-    - name : String
-    - queue : MqPublishPoint
-    + Producer(name : String, queue : MqPublishPoint)
-    + send(body : String)
-    + stop()
-  }
-  interface MqSubscribePoint {
-    + take() : Message {abstract}
-  }
-  class Consumer {
-    - name : String
-    - queue : MqSubscribePoint
-    + Consumer(name : String, queue : MqSubscribePoint)
-    + consume()
-  }
-  interface MessageQueue {
-  }
-  interface MqPublishPoint {
-    + put(Message) {abstract}
-  }
-  enum Headers {
-    + DATE {static}
-    + SENDER {static}
-    + valueOf(name : String) : Headers {static}
-    + values() : Headers[] {static}
-  }
 }
 SimpleMessageQueue -->  "-queue" Message
-Headers ..+ Message
 Consumer -->  "-queue" MqSubscribePoint
+Headers ..+ Message
 Producer -->  "-queue" MqPublishPoint
-SimpleMessage --+ Message
-Producer --+ Message
 Message -->  "-POISON_PILL" Message
-Consumer --+ Message
-SimpleMessage ..|> Message 
-SimpleMessageQueue ..|> MessageQueue 
 MessageQueue --|> MqPublishPoint 
 MessageQueue --|> MqSubscribePoint 
+SimpleMessage ..|> Message 
+SimpleMessageQueue ..|> MessageQueue 
 @enduml

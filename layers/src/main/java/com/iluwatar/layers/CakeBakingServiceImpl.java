@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -163,7 +163,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
       CakeToppingInfo cakeToppingInfo =
           new CakeToppingInfo(cake.getTopping().getId(), cake.getTopping().getName(), cake
               .getTopping().getCalories());
-      ArrayList<CakeLayerInfo> cakeLayerInfos = new ArrayList<>();
+      List<CakeLayerInfo> cakeLayerInfos = new ArrayList<>();
       for (CakeLayer layer : cake.getLayers()) {
         cakeLayerInfos.add(new CakeLayerInfo(layer.getId(), layer.getName(), layer.getCalories()));
       }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,8 @@
 package com.iluwatar.property;
 
 import com.iluwatar.property.Character.Type;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -38,6 +40,8 @@ import com.iluwatar.property.Character.Type;
  * 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point
@@ -67,16 +71,16 @@ public class App {
     /* usage */
     Character mag = new Character("Player_1", mageProto);
     mag.set(Stats.ARMOR, 8);
-    System.out.println(mag);
+    LOGGER.info(mag.toString());
 
     Character warrior = new Character("Player_2", warProto);
-    System.out.println(warrior);
+    LOGGER.info(warrior.toString());
 
     Character rogue = new Character("Player_3", rogueProto);
-    System.out.println(rogue);
+    LOGGER.info(rogue.toString());
 
     Character rogueDouble = new Character("Player_4", rogue);
     rogueDouble.set(Stats.ATTACK_POWER, 12);
-    System.out.println(rogueDouble);
+    LOGGER.info(rogueDouble.toString());
   }
 }

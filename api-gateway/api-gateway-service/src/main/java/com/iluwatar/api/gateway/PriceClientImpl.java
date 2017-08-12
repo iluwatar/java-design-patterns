@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ import java.io.IOException;
  * An adapter to communicate with the Price microservice
  */
 @Component
-public class PriceClientImpl implements PriceClient{
+public class PriceClientImpl implements PriceClient {
   /**
    * Makes a simple HTTP Get request to the Price microservice
    * @return The price of the product

@@ -1,11 +1,27 @@
 @startuml
 package com.iluwatar.factory.method {
-  class OrcBlacksmith {
-    + OrcBlacksmith()
-    + manufactureWeapon(weaponType : WeaponType) : Weapon
+  class App {
+    - LOGGER : Logger {static}
+    - blacksmith : Blacksmith
+    + App(blacksmith : Blacksmith)
+    + main(args : String[]) {static}
+    - manufactureWeapons()
+  }
+  interface Blacksmith {
+    + manufactureWeapon(WeaponType) : Weapon {abstract}
   }
   class ElfBlacksmith {
     + ElfBlacksmith()
+    + manufactureWeapon(weaponType : WeaponType) : Weapon
+  }
+  class ElfWeapon {
+    - weaponType : WeaponType
+    + ElfWeapon(weaponType : WeaponType)
+    + getWeaponType() : WeaponType
+    + toString() : String
+  }
+  class OrcBlacksmith {
+    + OrcBlacksmith()
     + manufactureWeapon(weaponType : WeaponType) : Weapon
   }
   class OrcWeapon {
@@ -14,23 +30,8 @@ package com.iluwatar.factory.method {
     + getWeaponType() : WeaponType
     + toString() : String
   }
-  interface Blacksmith {
-    + manufactureWeapon(WeaponType) : Weapon {abstract}
-  }
   interface Weapon {
     + getWeaponType() : WeaponType {abstract}
-  }
-  class ElfWeapon {
-    - weaponType : WeaponType
-    + ElfWeapon(weaponType : WeaponType)
-    + getWeaponType() : WeaponType
-    + toString() : String
-  }
-  class App {
-    - blacksmith : Blacksmith
-    + App(blacksmith : Blacksmith)
-    + main(args : String[]) {static}
-    - manufactureWeapons()
   }
   enum WeaponType {
     + AXE {static}
@@ -46,8 +47,8 @@ package com.iluwatar.factory.method {
 ElfWeapon -->  "-weaponType" WeaponType
 OrcWeapon -->  "-weaponType" WeaponType
 App -->  "-blacksmith" Blacksmith
-OrcBlacksmith ..|> Blacksmith 
 ElfBlacksmith ..|> Blacksmith 
-OrcWeapon ..|> Weapon 
 ElfWeapon ..|> Weapon 
+OrcBlacksmith ..|> Blacksmith 
+OrcWeapon ..|> Weapon 
 @enduml

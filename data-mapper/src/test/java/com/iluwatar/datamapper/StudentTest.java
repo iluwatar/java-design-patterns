@@ -18,17 +18,21 @@
  */
 package com.iluwatar.datamapper;
 
-import org.junit.Test;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.Test;
+
+/**
+ * Tests {@link Student}.
+ */
 public final class StudentTest {
 
   @Test
   /**
    * This API tests the equality behaviour of Student object
    * Object Equality should work as per logic defined in equals method
-   * 
+   *
    * @throws Exception if any execution error during test
    */
   public void testEquality() throws Exception {

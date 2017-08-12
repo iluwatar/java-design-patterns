@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,14 +22,17 @@
  */
 package com.iluwatar.pageobject;
 
+import static org.junit.Assert.assertTrue;
+
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.iluwatar.pageobject.pages.AlbumListPage;
 import com.iluwatar.pageobject.pages.LoginPage;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
-
+/**
+ * Test Login Page Object
+ */
 public class LoginPageTest {
 
   private LoginPage loginPage = new LoginPage(new WebClient());

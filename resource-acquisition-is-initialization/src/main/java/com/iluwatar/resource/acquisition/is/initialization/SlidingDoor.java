@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.resource.acquisition.is.initialization;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * SlidingDoor resource
@@ -29,12 +32,14 @@ package com.iluwatar.resource.acquisition.is.initialization;
  */
 public class SlidingDoor implements AutoCloseable {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(SlidingDoor.class);
+
   public SlidingDoor() {
-    System.out.println("Sliding door opens.");
+    LOGGER.info("Sliding door opens.");
   }
 
   @Override
   public void close() throws Exception {
-    System.out.println("Sliding door closes.");
+    LOGGER.info("Sliding door closes.");
   }
 }

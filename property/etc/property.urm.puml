@@ -1,5 +1,10 @@
 @startuml
 package com.iluwatar.property {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
   class Character {
     - name : String
     - properties : Map<Stats, Integer>
@@ -16,15 +21,18 @@ package com.iluwatar.property {
     + toString() : String
     + type() : Type
   }
+  enum Type {
+    + MAGE {static}
+    + ROGUE {static}
+    + WARRIOR {static}
+    + valueOf(name : String) : Type {static}
+    + values() : Type[] {static}
+  }
   interface Prototype {
     + get(Stats) : Integer {abstract}
     + has(Stats) : boolean {abstract}
     + remove(Stats) {abstract}
     + set(Stats, Integer) {abstract}
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
   enum Stats {
     + AGILITY {static}
@@ -38,17 +46,9 @@ package com.iluwatar.property {
     + valueOf(name : String) : Stats {static}
     + values() : Stats[] {static}
   }
-  enum Type {
-    + MAGE {static}
-    + ROGUE {static}
-    + WARRIOR {static}
-    + valueOf(name : String) : Type {static}
-    + values() : Type[] {static}
-  }
 }
-App --+ Character
 Character -->  "-prototype" Prototype
-Character -->  "-type" Type
 Type ..+ Character
+Character -->  "-type" Type
 Character ..|> Prototype 
 @enduml

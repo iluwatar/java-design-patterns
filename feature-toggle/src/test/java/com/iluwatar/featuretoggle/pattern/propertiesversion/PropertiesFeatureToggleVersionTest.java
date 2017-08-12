@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +23,18 @@
 
 package com.iluwatar.featuretoggle.pattern.propertiesversion;
 
-import com.iluwatar.featuretoggle.pattern.Service;
-import com.iluwatar.featuretoggle.user.User;
-import org.junit.Test;
-
-import java.util.Properties;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import com.iluwatar.featuretoggle.pattern.Service;
+import com.iluwatar.featuretoggle.user.User;
+import java.util.Properties;
+import org.junit.Test;
+
+/**
+ * Test Properties Toggle
+ */
 public class PropertiesFeatureToggleVersionTest {
 
   @Test(expected = IllegalArgumentException.class)

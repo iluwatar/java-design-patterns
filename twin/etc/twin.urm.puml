@@ -6,6 +6,7 @@ package com.iluwatar.twin {
     - waiting() {static}
   }
   class BallItem {
+    - LOGGER : Logger {static}
     - isSuspended : boolean
     - twin : BallThread
     + BallItem()
@@ -15,6 +16,7 @@ package com.iluwatar.twin {
     + setTwin(twin : BallThread)
   }
   abstract class GameItem {
+    - LOGGER : Logger {static}
     + GameItem()
     + click() {abstract}
     + doDraw() {abstract}

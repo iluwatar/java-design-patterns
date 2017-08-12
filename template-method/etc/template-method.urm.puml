@@ -1,24 +1,5 @@
 @startuml
 package com.iluwatar.templatemethod {
-  class SubtleMethod {
-    + SubtleMethod()
-    # confuseTarget(target : String)
-    # pickTarget() : String
-    # stealTheItem(target : String)
-  }
-  class HitAndRunMethod {
-    + HitAndRunMethod()
-    # confuseTarget(target : String)
-    # pickTarget() : String
-    # stealTheItem(target : String)
-  }
-  abstract class StealingMethod {
-    + StealingMethod()
-    # confuseTarget(String) {abstract}
-    # pickTarget() : String {abstract}
-    + steal()
-    # stealTheItem(String) {abstract}
-  }
   class App {
     + App()
     + main(args : String[]) {static}
@@ -29,8 +10,30 @@ package com.iluwatar.templatemethod {
     + changeMethod(method : StealingMethod)
     + steal()
   }
+  class HitAndRunMethod {
+    - LOGGER : Logger {static}
+    + HitAndRunMethod()
+    # confuseTarget(target : String)
+    # pickTarget() : String
+    # stealTheItem(target : String)
+  }
+  abstract class StealingMethod {
+    - LOGGER : Logger {static}
+    + StealingMethod()
+    # confuseTarget(String) {abstract}
+    # pickTarget() : String {abstract}
+    + steal()
+    # stealTheItem(String) {abstract}
+  }
+  class SubtleMethod {
+    - LOGGER : Logger {static}
+    + SubtleMethod()
+    # confuseTarget(target : String)
+    # pickTarget() : String
+    # stealTheItem(target : String)
+  }
 }
 HalflingThief -->  "-method" StealingMethod
-SubtleMethod --|> StealingMethod 
 HitAndRunMethod --|> StealingMethod 
+SubtleMethod --|> StealingMethod 
 @enduml

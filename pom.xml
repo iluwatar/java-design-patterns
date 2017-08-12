@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     The MIT License
-    Copyright (c) 2014 Ilkka Seppälä
+    Copyright (c) 2014-2016 Ilkka Seppälä
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
@@ -17,13 +17,11 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.13.0-SNAPSHOT</version>
+    <version>1.17.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2014</inceptionYear>
     <properties>
@@ -35,22 +33,24 @@
         <h2.version>1.4.190</h2.version>
         <junit.version>4.12</junit.version>
         <compiler.version>3.0</compiler.version>
-        <coveralls.version>4.0.0</coveralls.version>
         <jacoco.version>0.7.2.201409121644</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.16.1</camel.version>
-        <log4j.version>1.2.17</log4j.version>
         <guava.version>19.0</guava.version>
         <systemrules.version>1.15.1</systemrules.version>
         <mockito.version>1.10.19</mockito.version>
         <hierarchical-junit-runner-version>4.12.1</hierarchical-junit-runner-version>
         <apache-httpcomponents.version>4.5.2</apache-httpcomponents.version>
         <htmlunit.version>2.22</htmlunit.version>
-        <urm.version>1.4.1</urm.version>
+        <urm.version>1.4.4</urm.version>
         <guice.version>4.0</guice.version>
+        <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <logback.version>1.1.7</logback.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
+        <module>tls</module>
         <module>builder</module>
         <module>factory-method</module>
         <module>prototype</module>
@@ -122,6 +122,7 @@
         <module>factory-kit</module>
         <module>feature-toggle</module>
         <module>value-object</module>
+        <module>module</module>
         <module>monad</module>
         <module>mute-idiom</module>
         <module>mutex</module>
@@ -131,6 +132,18 @@
         <module>aggregator-microservices</module>
         <module>promise</module>
         <module>page-object</module>
+        <module>event-asynchronous</module>
+        <module>event-queue</module>
+        <module>queue-load-leveling</module>
+        <module>object-mother</module>
+        <module>data-bus</module>
+        <module>converter</module>
+        <module>guarded-suspension</module>
+        <module>balking</module>
+        <module>extension-objects</module>
+        <module>marker</module>
+        <module>cqrs</module>
+
     </modules>
 
     <dependencyManagement>
@@ -210,11 +223,6 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
@@ -242,9 +250,31 @@
                 <artifactId>guice</artifactId>
                 <version>${guice.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>${mongo-java-driver.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>
@@ -276,6 +306,25 @@
                                         <ignore/>
                                     </action>
                                 </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            com.github.markusmo3.urm
+                                        </groupId>
+                                        <artifactId>
+                                            urm-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.4.1,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>map</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore/>
+                                    </action>
+                                </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>
@@ -295,28 +344,9 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>${coveralls.version}</version>
-                <configuration>
-                    <repoToken>jb6wYzxkVvjolD6qOWpzWdcWBzYk2fAmF</repoToken>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
-                <!-- The following exclude configuration was added because error occurred
-                    when executing "mvn clean test jacoco:report coveralls:report" -->
-                <!-- [ERROR] Failed to execute goal org.eluder.coveralls:coveralls-maven-plugin:3.1.0:report
-                    (default-cli) on project java-design-patterns: I/O operation failed: No source
-                    found for domainapp/dom/modules/simple/QSimpleObject.java -> [Help 1] -->
-                <configuration>
-                    <excludes>
-                        <exclude>domainapp/dom/modules/simple/QSimpleObject.class</exclude>
-                        <exclude>**com.steadystate*</exclude>
-                    </excludes>
-                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -349,26 +379,6 @@
                             <failsOnError>true</failsOnError>
                             <includeTestSourceDirectory>true</includeTestSourceDirectory>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.5.201505241946</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>

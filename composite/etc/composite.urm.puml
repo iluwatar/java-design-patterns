@@ -1,10 +1,29 @@
 @startuml
 package com.iluwatar.composite {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
   class Letter {
     - c : char
     + Letter(c : char)
     # printThisAfter()
     # printThisBefore()
+  }
+  abstract class LetterComposite {
+    - children : List<LetterComposite>
+    + LetterComposite()
+    + add(letter : LetterComposite)
+    + count() : int
+    + print()
+    # printThisAfter() {abstract}
+    # printThisBefore() {abstract}
+  }
+  class Messenger {
+    + Messenger()
+    ~ messageFromElves() : LetterComposite
+    ~ messageFromOrcs() : LetterComposite
   }
   class Sentence {
     + Sentence(words : List<Word>)
@@ -15,24 +34,6 @@ package com.iluwatar.composite {
     + Word(letters : List<Letter>)
     # printThisAfter()
     # printThisBefore()
-  }
-  class Messenger {
-    + Messenger()
-    ~ messageFromElves() : LetterComposite
-    ~ messageFromOrcs() : LetterComposite
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  abstract class LetterComposite {
-    - children : List<LetterComposite>
-    + LetterComposite()
-    + add(letter : LetterComposite)
-    + count() : int
-    + print()
-    # printThisAfter() {abstract}
-    # printThisBefore() {abstract}
   }
 }
 LetterComposite -->  "-children" LetterComposite

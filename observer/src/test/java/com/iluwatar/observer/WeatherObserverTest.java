@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,20 +22,33 @@
  */
 package com.iluwatar.observer;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
+import com.iluwatar.observer.utils.InMemoryAppender;
 import java.util.function.Supplier;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Date: 12/27/15 - 11:44 AM
- *
+ * Weather Observer Tests
+ * @param <O> Type of WeatherObserver
  * @author Jeroen Meulemeester
  */
-public abstract class WeatherObserverTest<O extends WeatherObserver> extends StdOutTest {
+public abstract class WeatherObserverTest<O extends WeatherObserver> {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * The observer instance factory
@@ -71,11 +84,11 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> extends Std
   @Test
   public void testObserver() {
     final O observer = this.factory.get();
-    verifyZeroInteractions(getStdOutMock());
+    assertEquals(0, appender.getLogSize());
 
     observer.update(this.weather);
-    verify(getStdOutMock()).println(this.response);
-    verifyNoMoreInteractions(getStdOutMock());
+    assertEquals(response, appender.getLastMessage());
+    assertEquals(1, appender.getLogSize());
   }
 
 }

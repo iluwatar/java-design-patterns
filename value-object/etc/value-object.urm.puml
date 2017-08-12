@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.value.object {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }

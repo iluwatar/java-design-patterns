@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,12 +25,16 @@ package com.iluwatar.poison.pill;
 import java.util.Date;
 
 import com.iluwatar.poison.pill.Message.Headers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class responsible for producing unit of work that can be expressed as message and submitted to
  * queue
  */
 public class Producer {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
 
   private final MqPublishPoint queue;
   private final String name;
@@ -62,7 +66,7 @@ public class Producer {
       queue.put(msg);
     } catch (InterruptedException e) {
       // allow thread to exit
-      System.err.println(e);
+      LOGGER.error("Exception caught.", e);
     }
   }
 
@@ -75,7 +79,7 @@ public class Producer {
       queue.put(Message.POISON_PILL);
     } catch (InterruptedException e) {
       // allow thread to exit
-      System.err.println(e);
+      LOGGER.error("Exception caught.", e);
     }
   }
 }

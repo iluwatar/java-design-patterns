@@ -1,5 +1,17 @@
 @startuml
 package com.iluwatar.dao {
+  class App {
+    - DB_URL : String {static}
+    - log : Logger {static}
+    + App()
+    - addCustomers(customerDao : CustomerDao) {static}
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteSchema(dataSource : DataSource) {static}
+    + generateSampleCustomers() : List<Customer> {static}
+    + main(args : String[]) {static}
+    - performOperationsUsing(customerDao : CustomerDao) {static}
+  }
   class Customer {
     - firstName : String
     - id : int
@@ -22,6 +34,11 @@ package com.iluwatar.dao {
     + getById(int) : Optional<Customer> {abstract}
     + update(Customer) : boolean {abstract}
   }
+  class CustomerSchemaSql {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    - CustomerSchemaSql()
+  }
   class DbCustomerDao {
     - dataSource : DataSource
     + DbCustomerDao(dataSource : DataSource)
@@ -42,22 +59,6 @@ package com.iluwatar.dao {
     + getAll() : Stream<Customer>
     + getById(id : int) : Optional<Customer>
     + update(customer : Customer) : boolean
-  }
-  interface CustomerSchemaSql {
-    + CREATE_SCHEMA_SQL : String {static}
-    + DELETE_SCHEMA_SQL : String {static}
-  }
-  class App {
-    - DB_URL : String {static}
-    - log : Logger {static}
-    + App()
-    - addCustomers(customerDao : CustomerDao) {static}
-    - createDataSource() : DataSource {static}
-    - createSchema(dataSource : DataSource) {static}
-    - deleteSchema(dataSource : DataSource) {static}
-    + generateSampleCustomers() : List<Customer> {static}
-    + main(args : String[]) {static}
-    - performOperationsUsing(customerDao : CustomerDao) {static}
   }
 }
 DbCustomerDao ..|> CustomerDao 

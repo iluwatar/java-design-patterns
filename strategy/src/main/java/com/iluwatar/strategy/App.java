@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.strategy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * The Strategy pattern (also known as the policy pattern) is a software design pattern that enables
@@ -37,6 +40,8 @@ package com.iluwatar.strategy;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  
   /**
    * Program entry point
    * 
@@ -44,27 +49,27 @@ public class App {
    */
   public static void main(String[] args) {
     // GoF Strategy pattern
-    System.out.println("Green dragon spotted ahead!");
+    LOGGER.info("Green dragon spotted ahead!");
     DragonSlayer dragonSlayer = new DragonSlayer(new MeleeStrategy());
     dragonSlayer.goToBattle();
-    System.out.println("Red dragon emerges.");
+    LOGGER.info("Red dragon emerges.");
     dragonSlayer.changeStrategy(new ProjectileStrategy());
     dragonSlayer.goToBattle();
-    System.out.println("Black dragon lands before you.");
+    LOGGER.info("Black dragon lands before you.");
     dragonSlayer.changeStrategy(new SpellStrategy());
     dragonSlayer.goToBattle();
 
     // Java 8 Strategy pattern
-    System.out.println("Green dragon spotted ahead!");
+    LOGGER.info("Green dragon spotted ahead!");
     dragonSlayer = new DragonSlayer(
-        () -> System.out.println("With your Excalibur you severe the dragon's head!"));
+        () -> LOGGER.info("With your Excalibur you severe the dragon's head!"));
     dragonSlayer.goToBattle();
-    System.out.println("Red dragon emerges.");
-    dragonSlayer.changeStrategy(() -> System.out.println(
+    LOGGER.info("Red dragon emerges.");
+    dragonSlayer.changeStrategy(() -> LOGGER.info(
         "You shoot the dragon with the magical crossbow and it falls dead on the ground!"));
     dragonSlayer.goToBattle();
-    System.out.println("Black dragon lands before you.");
-    dragonSlayer.changeStrategy(() -> System.out.println(
+    LOGGER.info("Black dragon lands before you.");
+    dragonSlayer.changeStrategy(() -> LOGGER.info(
         "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
     dragonSlayer.goToBattle();
   }

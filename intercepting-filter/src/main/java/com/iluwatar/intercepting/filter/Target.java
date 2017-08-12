@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,7 @@ import javax.swing.table.DefaultTableModel;
  * @author mjoshzambales
  *
  */
-public class Target extends JFrame {
+public class Target extends JFrame { //NOSONAR
 
   private static final long serialVersionUID = 1L;
 

@@ -1,11 +1,5 @@
 @startuml
 package com.iluwatar.datamapper {
-  interface StudentDataMapper {
-    + delete(Student) {abstract}
-    + find(int) : Optional<Student> {abstract}
-    + insert(Student) {abstract}
-    + update(Student) {abstract}
-  }
   class App {
     - log : Logger {static}
     - App()
@@ -26,6 +20,12 @@ package com.iluwatar.datamapper {
     + setName(name : String)
     + setStudentId(studentId : int)
     + toString() : String
+  }
+  interface StudentDataMapper {
+    + delete(Student) {abstract}
+    + find(int) : Optional<Student> {abstract}
+    + insert(Student) {abstract}
+    + update(Student) {abstract}
   }
   class StudentDataMapperImpl {
     - students : List<Student>

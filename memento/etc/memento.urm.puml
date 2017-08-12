@@ -1,5 +1,10 @@
 @startuml
 package com.iluwatar.memento {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
   class Star {
     - ageYears : int
     - massTons : int
@@ -9,8 +14,6 @@ package com.iluwatar.memento {
     ~ setMemento(memento : StarMemento)
     + timePasses()
     + toString() : String
-  }
-  interface StarMemento {
   }
   -class StarMementoInternal {
     - ageYears : int
@@ -24,9 +27,7 @@ package com.iluwatar.memento {
     + setMassTons(massTons : int)
     + setType(type : StarType)
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
+  interface StarMemento {
   }
   enum StarType {
     + DEAD {static}

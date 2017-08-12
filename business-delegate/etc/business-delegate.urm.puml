@@ -1,21 +1,8 @@
 @startuml
 package com.iluwatar.business.delegate {
-  class BusinessLookup {
-    - ejbService : EjbService
-    - jmsService : JmsService
-    + BusinessLookup()
-    + getBusinessService(serviceType : ServiceType) : BusinessService
-    + setEjbService(ejbService : EjbService)
-    + setJmsService(jmsService : JmsService)
-  }
-  class Client {
-    - businessDelegate : BusinessDelegate
-    + Client(businessDelegate : BusinessDelegate)
-    + doTask()
-  }
-  class EjbService {
-    + EjbService()
-    + doProcessing()
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   class BusinessDelegate {
     - businessService : BusinessService
@@ -26,16 +13,31 @@ package com.iluwatar.business.delegate {
     + setLookupService(businessLookup : BusinessLookup)
     + setServiceType(serviceType : ServiceType)
   }
+  class BusinessLookup {
+    - ejbService : EjbService
+    - jmsService : JmsService
+    + BusinessLookup()
+    + getBusinessService(serviceType : ServiceType) : BusinessService
+    + setEjbService(ejbService : EjbService)
+    + setJmsService(jmsService : JmsService)
+  }
   interface BusinessService {
     + doProcessing() {abstract}
   }
-  class JmsService {
-    + JmsService()
+  class Client {
+    - businessDelegate : BusinessDelegate
+    + Client(businessDelegate : BusinessDelegate)
+    + doTask()
+  }
+  class EjbService {
+    - LOGGER : Logger {static}
+    + EjbService()
     + doProcessing()
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
+  class JmsService {
+    - LOGGER : Logger {static}
+    + JmsService()
+    + doProcessing()
   }
   enum ServiceType {
     + EJB {static}
@@ -44,8 +46,8 @@ package com.iluwatar.business.delegate {
     + values() : ServiceType[] {static}
   }
 }
-BusinessDelegate -->  "-serviceType" ServiceType
 BusinessLookup -->  "-ejbService" EjbService
+BusinessDelegate -->  "-serviceType" ServiceType
 Client -->  "-businessDelegate" BusinessDelegate
 BusinessDelegate -->  "-businessService" BusinessService
 BusinessDelegate -->  "-lookupService" BusinessLookup

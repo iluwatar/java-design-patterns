@@ -1,48 +1,5 @@
 @startuml
 package com.iluwatar.mediator {
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class Hobbit {
-    + Hobbit()
-    + toString() : String
-  }
-  interface PartyMember {
-    + act(Action) {abstract}
-    + joinedParty(Party) {abstract}
-    + partyAction(Action) {abstract}
-  }
-  interface Party {
-    + act(PartyMember, Action) {abstract}
-    + addMember(PartyMember) {abstract}
-  }
-  class Wizard {
-    + Wizard()
-    + toString() : String
-  }
-  class PartyImpl {
-    - members : List<PartyMember>
-    + PartyImpl()
-    + act(actor : PartyMember, action : Action)
-    + addMember(member : PartyMember)
-  }
-  class Hunter {
-    + Hunter()
-    + toString() : String
-  }
-  class Rogue {
-    + Rogue()
-    + toString() : String
-  }
-  abstract class PartyMemberBase {
-    # party : Party
-    + PartyMemberBase()
-    + act(action : Action)
-    + joinedParty(party : Party)
-    + partyAction(action : Action)
-    + toString() : String {abstract}
-  }
   enum Action {
     + ENEMY {static}
     + GOLD {static}
@@ -56,13 +13,57 @@ package com.iluwatar.mediator {
     + valueOf(name : String) : Action {static}
     + values() : Action[] {static}
   }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Hobbit {
+    + Hobbit()
+    + toString() : String
+  }
+  class Hunter {
+    + Hunter()
+    + toString() : String
+  }
+  interface Party {
+    + act(PartyMember, Action) {abstract}
+    + addMember(PartyMember) {abstract}
+  }
+  class PartyImpl {
+    - members : List<PartyMember>
+    + PartyImpl()
+    + act(actor : PartyMember, action : Action)
+    + addMember(member : PartyMember)
+  }
+  interface PartyMember {
+    + act(Action) {abstract}
+    + joinedParty(Party) {abstract}
+    + partyAction(Action) {abstract}
+  }
+  abstract class PartyMemberBase {
+    - LOGGER : Logger {static}
+    # party : Party
+    + PartyMemberBase()
+    + act(action : Action)
+    + joinedParty(party : Party)
+    + partyAction(action : Action)
+    + toString() : String {abstract}
+  }
+  class Rogue {
+    + Rogue()
+    + toString() : String
+  }
+  class Wizard {
+    + Wizard()
+    + toString() : String
+  }
 }
 PartyImpl -->  "-members" PartyMember
 PartyMemberBase -->  "-party" Party
 Hobbit --|> PartyMemberBase 
-Wizard --|> PartyMemberBase 
-PartyImpl ..|> Party 
 Hunter --|> PartyMemberBase 
-Rogue --|> PartyMemberBase 
+PartyImpl ..|> Party 
 PartyMemberBase ..|> PartyMember 
+Rogue --|> PartyMemberBase 
+Wizard --|> PartyMemberBase 
 @enduml

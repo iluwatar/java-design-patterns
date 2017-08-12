@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.bridge;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Stormbringer
@@ -29,23 +32,25 @@ package com.iluwatar.bridge;
  */
 public class Stormbringer extends SoulEatingMagicWeaponImpl {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(Stormbringer.class);
+
   @Override
   public void wieldImp() {
-    System.out.println("wielding Stormbringer");
+    LOGGER.info("wielding Stormbringer");
   }
 
   @Override
   public void swingImp() {
-    System.out.println("swinging Stormbringer");
+    LOGGER.info("swinging Stormbringer");
   }
 
   @Override
   public void unwieldImp() {
-    System.out.println("unwielding Stormbringer");
+    LOGGER.info("unwielding Stormbringer");
   }
 
   @Override
   public void eatSoulImp() {
-    System.out.println("Stormbringer devours the enemy's soul");
+    LOGGER.info("Stormbringer devours the enemy's soul");
   }
 }

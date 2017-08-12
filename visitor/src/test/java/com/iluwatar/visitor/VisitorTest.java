@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,19 +22,38 @@
  */
 package com.iluwatar.visitor;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.LoggerFactory;
 
 /**
  * Date: 12/30/15 - 18:59 PM
- *
+ * Test case for Visitor Pattern
+ * @param <V> Type of UnitVisitor
  * @author Jeroen Meulemeester
  */
-public abstract class VisitorTest<V extends UnitVisitor> extends StdOutTest {
+public abstract class VisitorTest<V extends UnitVisitor> {
+
+  private InMemoryAppender appender;
+
+  @Before
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @After
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * The tested visitor instance
@@ -76,27 +95,48 @@ public abstract class VisitorTest<V extends UnitVisitor> extends StdOutTest {
   public void testVisitCommander() {
     this.visitor.visitCommander(new Commander());
     if (this.commanderResponse.isPresent()) {
-      verify(getStdOutMock()).println(this.commanderResponse.get());
+      assertEquals(this.commanderResponse.get(), appender.getLastMessage());
+      assertEquals(1, appender.getLogSize());
     }
-    verifyNoMoreInteractions(getStdOutMock());
   }
 
   @Test
   public void testVisitSergeant() {
     this.visitor.visitSergeant(new Sergeant());
     if (this.sergeantResponse.isPresent()) {
-      verify(getStdOutMock()).println(this.sergeantResponse.get());
+      assertEquals(this.sergeantResponse.get(), appender.getLastMessage());
+      assertEquals(1, appender.getLogSize());
     }
-    verifyNoMoreInteractions(getStdOutMock());
   }
 
   @Test
   public void testVisitSoldier() {
     this.visitor.visitSoldier(new Soldier());
     if (this.soldierResponse.isPresent()) {
-      verify(getStdOutMock()).println(this.soldierResponse.get());
+      assertEquals(this.soldierResponse.get(), appender.getLastMessage());
+      assertEquals(1, appender.getLogSize());
     }
-    verifyNoMoreInteractions(getStdOutMock());
   }
 
+  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender() {
+      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public int getLogSize() {
+      return log.size();
+    }
+
+    public String getLastMessage() {
+      return log.get(log.size() - 1).getFormattedMessage();
+    }
+  }
 }

@@ -1,12 +1,14 @@
 @startuml
 package com.iluwatar.eda.handler {
-  class UserUpdatedEventHandler {
-    + UserUpdatedEventHandler()
-    + onEvent(event : UserUpdatedEvent)
-  }
   class UserCreatedEventHandler {
+    - LOGGER : Logger {static}
     + UserCreatedEventHandler()
     + onEvent(event : UserCreatedEvent)
+  }
+  class UserUpdatedEventHandler {
+    - LOGGER : Logger {static}
+    + UserUpdatedEventHandler()
+    + onEvent(event : UserUpdatedEvent)
   }
 }
 package com.iluwatar.eda.event {
@@ -14,26 +16,26 @@ package com.iluwatar.eda.event {
     + AbstractEvent()
     + getType() : Class<? extends Event>
   }
-  class UserUpdatedEvent {
-    - user : User
-    + UserUpdatedEvent(user : User)
-    + getUser() : User
-  }
   class UserCreatedEvent {
     - user : User
     + UserCreatedEvent(user : User)
     + getUser() : User
   }
+  class UserUpdatedEvent {
+    - user : User
+    + UserUpdatedEvent(user : User)
+    + getUser() : User
+  }
 }
 package com.iluwatar.eda.framework {
+  interface Event {
+    + getType() : Class<? extends Event> {abstract}
+  }
   class EventDispatcher {
     - handlers : Map<Class<? extends Event>, Handler<? extends Event>>
     + EventDispatcher()
     + dispatch(event : E extends Event)
     + registerHandler(eventType : Class<E extends Event>, handler : Handler<E extends Event>)
-  }
-  interface Event {
-    + getType() : Class<? extends Event> {abstract}
   }
   interface Handler<E extends Event> {
     + onEvent(E extends Event) {abstract}
@@ -52,11 +54,11 @@ package com.iluwatar.eda {
     + main(args : String[]) {static}
   }
 }
-UserCreatedEvent -->  "-user" User
 UserUpdatedEvent -->  "-user" User
+UserCreatedEvent -->  "-user" User
 AbstractEvent ..|> Event 
-UserUpdatedEventHandler ..|> Handler 
-UserCreatedEventHandler ..|> Handler 
-UserUpdatedEvent --|> AbstractEvent 
 UserCreatedEvent --|> AbstractEvent 
+UserUpdatedEvent --|> AbstractEvent 
+UserCreatedEventHandler ..|> Handler 
+UserUpdatedEventHandler ..|> Handler 
 @enduml

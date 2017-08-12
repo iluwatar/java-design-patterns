@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.composite;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Composite pattern is a partitioning design pattern. The Composite pattern describes that a
  * group of objects is to be treated in the same way as a single instance of an object. The intent
@@ -35,20 +38,22 @@ package com.iluwatar.composite;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
    * @param args command line args
    */
   public static void main(String[] args) {
-    System.out.println("Message from the orcs: ");
+    LOGGER.info("Message from the orcs: ");
 
     LetterComposite orcMessage = new Messenger().messageFromOrcs();
     orcMessage.print();
 
-    System.out.println("\n");
+    LOGGER.info("\n");
 
-    System.out.println("Message from the elves: ");
+    LOGGER.info("Message from the elves: ");
 
     LetterComposite elfMessage = new Messenger().messageFromElves();
     elfMessage.print();

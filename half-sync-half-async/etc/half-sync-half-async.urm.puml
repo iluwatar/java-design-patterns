@@ -1,15 +1,10 @@
 @startuml
 package com.iluwatar.halfsynchalfasync {
   class App {
+    - LOGGER : Logger {static}
     + App()
     - ap(i : long) : long {static}
     + main(args : String[]) {static}
-  }
-  interface AsyncTask<O> {
-    + call() : O {abstract}
-    + onError(Throwable) {abstract}
-    + onPostCall(O) {abstract}
-    + onPreCall() {abstract}
   }
   ~class ArithmeticSumTask {
     - n : long
@@ -18,6 +13,12 @@ package com.iluwatar.halfsynchalfasync {
     + onError(throwable : Throwable)
     + onPostCall(result : Long)
     + onPreCall()
+  }
+  interface AsyncTask<O> {
+    + call() : O {abstract}
+    + onError(Throwable) {abstract}
+    + onPostCall(O) {abstract}
+    + onPreCall() {abstract}
   }
   class AsynchronousService {
     - service : ExecutorService

@@ -4,6 +4,13 @@ package com.iluwatar.adapter {
     + App()
     + main(args : String[]) {static}
   }
+  class BattleFishingBoat {
+    - LOGGER : Logger {static}
+    - boat : FishingBoat
+    + BattleFishingBoat()
+    + fire()
+    + move()
+  }
   interface BattleShip {
     + fire() {abstract}
     + move() {abstract}
@@ -16,13 +23,8 @@ package com.iluwatar.adapter {
     + move()
     + setBattleship(battleship : BattleShip)
   }
-  class BattleFishingBoat {
-    - boat : FishingBoat
-    + BattleFishingBoat()
-    + fire()
-    + move()
-  }
   class FishingBoat {
+    - LOGGER : Logger {static}
     + FishingBoat()
     + fish()
     + sail()
@@ -30,6 +32,6 @@ package com.iluwatar.adapter {
 }
 BattleFishingBoat -->  "-boat" FishingBoat
 Captain -->  "-battleship" BattleShip
-Captain ..|> BattleShip 
 BattleFishingBoat ..|> BattleShip 
+Captain ..|> BattleShip 
 @enduml

@@ -3,9 +3,8 @@ layout: pattern
 title: Publish Subscribe
 folder: publish-subscribe
 permalink: /patterns/publish-subscribe/
-pumlid: PSZB3SCm203GLTe1RExT1XCKKs5YyMdMR--zFRsd66aTNAwFcRdZ1U1uzrDorgXWfykIBJjT2qJhnaI7Dtwm7HnoMjkOoMu12-C7s3LKOhQe4UGo63ZfVtlvwhkMVW40
 categories: Integration
-tags: 
+tags:
  - Java
  - EIP
  - Apache Camel™

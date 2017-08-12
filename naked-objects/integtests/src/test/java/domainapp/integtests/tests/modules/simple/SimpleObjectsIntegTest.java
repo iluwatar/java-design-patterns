@@ -18,28 +18,27 @@
  */
 package domainapp.integtests.tests.modules.simple;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.List;
-
-import javax.inject.Inject;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.google.common.base.Throwables;
-
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
-import org.junit.Test;
-
-import org.apache.isis.applib.fixturescripts.FixtureScript;
-import org.apache.isis.applib.fixturescripts.FixtureScripts;
-
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.dom.modules.simple.SimpleObjects;
 import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
 import domainapp.fixture.scenarios.RecreateSimpleObjects;
 import domainapp.integtests.tests.SimpleAppIntegTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
+import javax.inject.Inject;
+import org.apache.isis.applib.fixturescripts.FixtureScript;
+import org.apache.isis.applib.fixturescripts.FixtureScripts;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
+import org.junit.Test;
 
+/**
+ * Fixture Pattern Integration Test
+ */
 public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
 
   @Inject
@@ -47,6 +46,9 @@ public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
   @Inject
   SimpleObjects simpleObjects;
 
+  /**
+   * Test Listing of All Simple Objects
+   */
   public static class ListAll extends SimpleObjectsIntegTest {
 
     @Test
@@ -83,6 +85,10 @@ public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
     }
   }
 
+
+  /**
+   * Test Creation of Simple Objects
+   */
   public static class Create extends SimpleObjectsIntegTest {
 
     @Test
