@@ -460,6 +460,7 @@
                     <skipForProjects>
                         <!-- skip for parent project -->
                         <param>java-design-patterns</param>
+                        <param>singleton</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
