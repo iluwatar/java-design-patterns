@@ -1,3 +1,25 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.event.sourcing.api;
 
 import java.io.Serializable;
@@ -6,36 +28,72 @@ import java.io.Serializable;
  * Created by serdarh on 06.08.2017.
  */
 public abstract class DomainEvent implements Serializable {
-    private final long sequenceId;
-    private final long createdTime;
-    private boolean realTime = true;
-    private final String eventClassName;
 
-    public DomainEvent(long sequenceId, long createdTime, String eventClassName) {
-        this.sequenceId = sequenceId;
-        this.createdTime = createdTime;
-        this.eventClassName = eventClassName;
-    }
+  private final long sequenceId;
+  private final long createdTime;
+  private final String eventClassName;
+  private boolean realTime = true;
 
-    public long getSequenceId() {
-        return sequenceId;
-    }
+  /**
+   * Instantiates a new Domain event.
+   *
+   * @param sequenceId the sequence id
+   * @param createdTime the created time
+   * @param eventClassName the event class name
+   */
+  public DomainEvent(long sequenceId, long createdTime, String eventClassName) {
+    this.sequenceId = sequenceId;
+    this.createdTime = createdTime;
+    this.eventClassName = eventClassName;
+  }
 
-    public long getCreatedTime() {
-        return createdTime;
-    }
+  /**
+   * Gets sequence id.
+   *
+   * @return the sequence id
+   */
+  public long getSequenceId() {
+    return sequenceId;
+  }
 
-    public boolean isRealTime() {
-        return realTime;
-    }
+  /**
+   * Gets created time.
+   *
+   * @return the created time
+   */
+  public long getCreatedTime() {
+    return createdTime;
+  }
 
-    public void setRealTime(boolean realTime) {
-        this.realTime = realTime;
-    }
+  /**
+   * Is real time boolean.
+   *
+   * @return the boolean
+   */
+  public boolean isRealTime() {
+    return realTime;
+  }
 
-    public abstract void process();
+  /**
+   * Sets real time.
+   *
+   * @param realTime the real time
+   */
+  public void setRealTime(boolean realTime) {
+    this.realTime = realTime;
+  }
 
-    public String getEventClassName() {
-        return eventClassName;
-    }
+  /**
+   * Process.
+   */
+  public abstract void process();
+
+  /**
+   * Gets event class name.
+   *
+   * @return the event class name
+   */
+  public String getEventClassName() {
+    return eventClassName;
+  }
 }
