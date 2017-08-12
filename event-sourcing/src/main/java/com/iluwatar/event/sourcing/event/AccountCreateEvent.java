@@ -2,7 +2,6 @@ package com.iluwatar.event.sourcing.event;
 
 import com.iluwatar.event.sourcing.api.DomainEvent;
 import com.iluwatar.event.sourcing.domain.Account;
-import com.iluwatar.event.sourcing.gateway.Gateways;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 
 /**
@@ -33,11 +32,6 @@ public class AccountCreateEvent extends DomainEvent {
             throw new RuntimeException("Account already exists");
         }
         account = new Account(accountNo,owner);
-        AccountAggregate.putAccount(account);
-
-        // check if this event is replicated from journal before calling an external gateway function
-        if(!isReplica()) {
-            Gateways.getAccountCreateContractSender().sendContractInfo(account);
-        }
+        account.handleEvent(this);
     }
 }

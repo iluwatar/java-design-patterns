@@ -2,8 +2,6 @@ package com.iluwatar.event.sourcing.event;
 
 import com.iluwatar.event.sourcing.api.DomainEvent;
 import com.iluwatar.event.sourcing.domain.Account;
-import com.iluwatar.event.sourcing.domain.Transaction;
-import com.iluwatar.event.sourcing.gateway.Gateways;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 
 import java.math.BigDecimal;
@@ -21,18 +19,20 @@ public class MoneyWithdrawalEvent extends DomainEvent {
         this.accountNo = accountNo;
     }
 
+    public BigDecimal getMoney() {
+        return money;
+    }
+
+    public int getAccountNo() {
+        return accountNo;
+    }
+
     @Override
     public void process() {
         Account account = AccountAggregate.getAccount(accountNo);
         if(account==null){
             throw new RuntimeException("Account not found");
         }
-        account.setMoney(account.getMoney().subtract(money));
-        Transaction transaction = new Transaction(accountNo,BigDecimal.ZERO,money,account.getMoney());
-        account.getTransactions().add(transaction);
-        AccountAggregate.putAccount(account);
-        if(!isReplica()) {
-            Gateways.getTransactionLogger().log(transaction);
-        }
+        account.handleEvent(this);
     }
 }

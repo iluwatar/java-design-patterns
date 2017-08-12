@@ -93,7 +93,7 @@ public class JsonFileJournal implements ProcessorJournal{
             throw new RuntimeException("Journal Event not recegnized");
         }
 
-        domainEvent.setReplica(true);
+        domainEvent.setRealTime(false);
         return domainEvent;
     }
 }

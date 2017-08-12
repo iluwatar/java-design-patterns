@@ -8,7 +8,7 @@ import java.io.Serializable;
 public abstract class DomainEvent implements Serializable {
     private final long sequenceId;
     private final long createdTime;
-    private boolean replica = false;
+    private boolean realTime = true;
     private final String eventClassName;
 
     public DomainEvent(long sequenceId, long createdTime, String eventClassName) {
@@ -25,12 +25,12 @@ public abstract class DomainEvent implements Serializable {
         return createdTime;
     }
 
-    public boolean isReplica() {
-        return replica;
+    public boolean isRealTime() {
+        return realTime;
     }
 
-    public void setReplica(boolean replica) {
-        this.replica = replica;
+    public void setRealTime(boolean realTime) {
+        this.realTime = realTime;
     }
 
     public abstract void process();

@@ -6,6 +6,5 @@ package com.iluwatar.event.sourcing.api;
 public interface EventProcessor {
     void process(DomainEvent domainEvent);
     void setPrecessorJournal(ProcessorJournal precessorJournal);
-    void addExternalEventListener(ExternalEventListener externalEventListener);
     void recover();
 }
