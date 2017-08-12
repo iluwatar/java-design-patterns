@@ -461,6 +461,7 @@
                         <!-- skip for parent project -->
                         <param>java-design-patterns</param>
                         <param>singleton</param>
+                        <param>factory-method</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
