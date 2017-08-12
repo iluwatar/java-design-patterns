@@ -18,24 +18,31 @@ access to it.
 
 ## Explanation
 Real world example
+
 > There can only be one ivory tower where the wizards study their magic. The same enchanted ivory tower is always used by the wizards. Ivory tower here is singleton.
 
 In plain words
+
 > Ensures that only one object of a particular class is ever created.
 
 Wikipedia says
+
 > In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system.
 
 **Programmatic Example**
 
 Joshua Bloch, Effective Java 2nd Edition p.18
+
 > A single-element enum type is the best way to implement a singleton
+
 ```
 public enum EnumIvoryTower {
   INSTANCE;
 }
 ```
+
 Then in order to use
+
 ```
 EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.INSTANCE;
 EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
