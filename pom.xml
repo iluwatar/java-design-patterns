@@ -463,6 +463,7 @@
                         <param>singleton</param>
                         <param>factory-method</param>
                         <param>abstract-factory</param>
+                        <param>builder</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
