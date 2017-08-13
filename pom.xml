@@ -143,6 +143,7 @@
         <module>extension-objects</module>
         <module>marker</module>
         <module>cqrs</module>
+        <module>data-transfer-object</module>
 
     </modules>
 
