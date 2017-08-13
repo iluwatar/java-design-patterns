@@ -31,9 +31,9 @@ package com.iluwatar.datatransfer;
  * Dto will not have any business logic in it.
  */
 public class CustomerDto {
-  private String id;
-  private String firstName;
-  private String lastName;
+  private final String id;
+  private final String firstName;
+  private final String lastName;
 
   /**
    * @param id        customer id
