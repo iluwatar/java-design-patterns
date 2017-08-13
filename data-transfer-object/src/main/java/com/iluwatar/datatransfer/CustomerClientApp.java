@@ -24,6 +24,9 @@
 
 package com.iluwatar.datatransfer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +41,9 @@ import java.util.List;
  * And The CustomerDto ({@link CustomerDto} is data transfer object to share customer information.
  */
 public class CustomerClientApp {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(CustomerClientApp.class);
+
   /**
    * Method as act client and request to server for details.
    *
@@ -52,20 +58,20 @@ public class CustomerClientApp {
 
     CustomerResource customerResource = new CustomerResource(customers);
 
-    System.out.println("All customers:-");
+    LOGGER.info("All customers:-");
     List<CustomerDto> allCustomers = customerResource.getAllCustomers();
     printCustomerDetails(allCustomers);
 
-    System.out.println("----------------------------------------------------------");
+    LOGGER.info("----------------------------------------------------------");
 
-    System.out.println("Deleting customer with id {1}");
+    LOGGER.info("Deleting customer with id {1}");
     customerResource.delete(customerOne.getId());
     allCustomers = customerResource.getAllCustomers();
     printCustomerDetails(allCustomers);
 
-    System.out.println("----------------------------------------------------------");
+    LOGGER.info("----------------------------------------------------------");
 
-    System.out.println("Adding customer three}");
+    LOGGER.info("Adding customer three}");
     CustomerDto customerThree = new CustomerDto("3", "Lynda", "Blair");
     customerResource.save(customerThree);
     allCustomers = customerResource.getAllCustomers();
@@ -73,6 +79,6 @@ public class CustomerClientApp {
   }
 
   private static void printCustomerDetails(List<CustomerDto> allCustomers) {
-    allCustomers.forEach(customer -> System.out.println(customer.getFirstName()));
+    allCustomers.forEach(customer -> LOGGER.info(customer.getFirstName()));
   }
 }
