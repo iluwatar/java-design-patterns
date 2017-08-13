@@ -462,6 +462,7 @@
                         <param>java-design-patterns</param>
                         <param>singleton</param>
                         <param>factory-method</param>
+                        <param>abstract-factory</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
