@@ -142,6 +142,7 @@
         <module>balking</module>
         <module>extension-objects</module>
         <module>marker</module>
+        <module>cqrs</module>
 
     </modules>
 
@@ -459,6 +460,10 @@
                     <skipForProjects>
                         <!-- skip for parent project -->
                         <param>java-design-patterns</param>
+                        <param>singleton</param>
+                        <param>factory-method</param>
+                        <param>abstract-factory</param>
+                        <param>builder</param>
                     </skipForProjects>
                 </configuration>
             </plugin>

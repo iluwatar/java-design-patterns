@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright (c) 2014 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,38 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.intercepting.filter;
-
+package com.iluwatar.cqrs.commandes;
 
 /**
- * Filter Chain carries multiple filters and help to execute them in defined order on target.
- * 
- * @author joshzambales
+ * This interface represents the commands of the CQRS pattern
+ *
  */
-public class FilterChain {
+public interface ICommandService {
 
-  private Filter chain;
+  void authorCreated(String username, String name, String email);
 
+  void bookAddedToAuthor(String title, double price, String username);
 
-  /**
-   * Adds filter
-   */
-  public void addFilter(Filter filter) {
-    if (chain == null) {
-      chain = filter;
-    } else {
-      chain.getLast().setNext(filter);
-    }
-  }
+  void authorNameUpdated(String username, String name);
 
-  /**
-   * Execute filter chain
-   */
-  public String execute(Order order) {
-    if (chain != null) {
-      return chain.execute(order);
-    } else {
-      return "RUNNING...";
-    }
-  }
+  void authorUsernameUpdated(String oldUsername, String newUsername);
+
+  void authorEmailUpdated(String username, String email);
+
+  void bookTitleUpdated(String oldTitle, String newTitle);
+
+  void bookPriceUpdated(String title, double price);
+
 }

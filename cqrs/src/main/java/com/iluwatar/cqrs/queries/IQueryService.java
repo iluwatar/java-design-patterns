@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright (c) 2014 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,38 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.intercepting.filter;
+package com.iluwatar.cqrs.queries;
 
+import java.math.BigInteger;
+import java.util.List;
+
+import com.iluwatar.cqrs.dto.Author;
+import com.iluwatar.cqrs.dto.Book;
 
 /**
- * Filter Chain carries multiple filters and help to execute them in defined order on target.
  * 
- * @author joshzambales
+ * This interface represents the query methods of the CQRS pattern
+ *
  */
-public class FilterChain {
+public interface IQueryService {
 
-  private Filter chain;
+  Author getAuthorByUsername(String username);
 
+  Book getBook(String title);
 
-  /**
-   * Adds filter
-   */
-  public void addFilter(Filter filter) {
-    if (chain == null) {
-      chain = filter;
-    } else {
-      chain.getLast().setNext(filter);
-    }
-  }
+  List<Book> getAuthorBooks(String username);
 
-  /**
-   * Execute filter chain
-   */
-  public String execute(Order order) {
-    if (chain != null) {
-      return chain.execute(order);
-    } else {
-      return "RUNNING...";
-    }
-  }
+  BigInteger getAuthorBooksCount(String username);
+
+  BigInteger getAuthorsCount();
+
 }

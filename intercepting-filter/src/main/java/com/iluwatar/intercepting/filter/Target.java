@@ -42,7 +42,7 @@ import javax.swing.table.DefaultTableModel;
  * @author mjoshzambales
  *
  */
-public class Target extends JFrame {
+public class Target extends JFrame { //NOSONAR
 
   private static final long serialVersionUID = 1L;
 
