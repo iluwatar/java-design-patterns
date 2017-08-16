@@ -464,6 +464,7 @@
                         <param>factory-method</param>
                         <param>abstract-factory</param>
                         <param>builder</param>
+                        <param>prototype</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
