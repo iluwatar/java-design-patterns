@@ -139,7 +139,7 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
     @Override
     public void await() throws InterruptedException {
       synchronized (lock) {
-        if (!isCompleted()) {
+        while (!isCompleted()) {
           lock.wait();
         }
       }
