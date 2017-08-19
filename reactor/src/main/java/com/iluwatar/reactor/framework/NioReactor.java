@@ -94,7 +94,7 @@ public class NioReactor {
         LOGGER.info("Reactor started, waiting for events...");
         eventLoop();
       } catch (IOException e) {
-        e.printStackTrace();
+        LOGGER.error("exception in event loop", e);
       }
     });
   }
@@ -112,6 +112,7 @@ public class NioReactor {
     selector.wakeup();
     reactorMain.awaitTermination(4, TimeUnit.SECONDS);
     selector.close();
+    LOGGER.info("Reactor stopped");
   }
 
   /**
@@ -206,7 +207,7 @@ public class NioReactor {
       try {
         key.channel().close();
       } catch (IOException e1) {
-        e1.printStackTrace();
+        LOGGER.error("error closing channel", e1);
       }
     }
   }
