@@ -25,7 +25,7 @@ package com.iluwatar.event.sourcing.api;
 import java.io.Serializable;
 
 /**
- * Created by serdarh on 06.08.2017.
+ * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public abstract class DomainEvent implements Serializable {
 

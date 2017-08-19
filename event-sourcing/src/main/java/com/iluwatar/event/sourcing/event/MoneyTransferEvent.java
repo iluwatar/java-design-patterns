@@ -28,7 +28,7 @@ import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
 
 /**
- * Created by serdarh on 06.08.2017.
+ * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class MoneyTransferEvent extends DomainEvent {
 

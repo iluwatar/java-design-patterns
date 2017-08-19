@@ -27,7 +27,7 @@ import com.iluwatar.event.sourcing.domain.Account;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 
 /**
- * Created by serdarh on 06.08.2017.
+ * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class AccountCreateEvent extends DomainEvent {
 

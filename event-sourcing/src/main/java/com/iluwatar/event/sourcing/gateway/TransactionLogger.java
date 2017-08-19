@@ -25,7 +25,7 @@ package com.iluwatar.event.sourcing.gateway;
 import com.iluwatar.event.sourcing.domain.Transaction;
 
 /**
- * Created by serdarh on 06.08.2017.
+ * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class TransactionLogger {
 

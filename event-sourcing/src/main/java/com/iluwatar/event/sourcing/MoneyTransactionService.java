@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.event.sourcing.service;
+package com.iluwatar.event.sourcing;
 
 import com.iluwatar.event.sourcing.api.EventProcessor;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
@@ -30,7 +30,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by serdarh on 06.08.2017.
+ * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class MoneyTransactionService {
 

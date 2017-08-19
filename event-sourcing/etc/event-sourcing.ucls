@@ -122,7 +122,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="com.iluwatar.event.sourcing.service.AccountService" project="event-sourcing" 
+  <class id="13" language="java" name="AccountService" project="event-sourcing"
     file="/event-sourcing/src/main/java/com/iluwatar/event/sourcing/service/AccountService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="687" y="68"/>    
@@ -132,7 +132,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="com.iluwatar.event.sourcing.service.MoneyTransactionService" 
+  <class id="14" language="java" name="MoneyTransactionService"
     project="event-sourcing" 
     file="/event-sourcing/src/main/java/com/iluwatar/event/sourcing/service/MoneyTransactionService.java" binary="false" 
     corner="BOTTOM_RIGHT">    

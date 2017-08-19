@@ -27,7 +27,7 @@ import com.iluwatar.event.sourcing.api.EventProcessor;
 import com.iluwatar.event.sourcing.api.ProcessorJournal;
 
 /**
- * Created by serdarh on 06.08.2017.
+ * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class DomainEventProcessor implements EventProcessor {
 
