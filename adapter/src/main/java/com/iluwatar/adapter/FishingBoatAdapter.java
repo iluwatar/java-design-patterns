@@ -22,15 +22,27 @@
  */
 package com.iluwatar.adapter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- * The interface expected by the client.<br>
- * A Battleship can fire and move.
+ *
+ * Adapter class. Adapts the interface of the device ({@link FishingBoat}) into {@link RowingBoat}
+ * interface expected by the client ({@link Captain}).
  *
  */
-public interface BattleShip {
+public class FishingBoatAdapter implements RowingBoat {
 
-  void fire();
+  private static final Logger LOGGER = LoggerFactory.getLogger(FishingBoatAdapter.class);
 
-  void move();
+  private FishingBoat boat;
 
+  public FishingBoatAdapter() {
+    boat = new FishingBoat();
+  }
+
+  @Override
+  public void row() {
+    boat.sail();
+  }
 }

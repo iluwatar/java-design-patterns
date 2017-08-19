@@ -466,6 +466,7 @@
                         <param>abstract-factory</param>
                         <param>builder</param>
                         <param>prototype</param>
+                        <param>adapter</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
