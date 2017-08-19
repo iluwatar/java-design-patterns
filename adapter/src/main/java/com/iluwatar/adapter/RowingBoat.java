@@ -24,13 +24,11 @@ package com.iluwatar.adapter;
 
 /**
  * The interface expected by the client.<br>
- * A Battleship can fire and move.
+ * A rowing boat is rowed to move.
  *
  */
-public interface BattleShip {
+public interface RowingBoat {
 
-  void fire();
-
-  void move();
+  void row();
 
 }

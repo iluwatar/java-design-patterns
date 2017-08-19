@@ -27,7 +27,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * Device class (adaptee in the pattern). We want to reuse this class
+ * Device class (adaptee in the pattern). We want to reuse this class.
+ * Fishing boat moves by sailing.
  *
  */
 public class FishingBoat {
@@ -35,11 +36,7 @@ public class FishingBoat {
   private static final Logger LOGGER = LoggerFactory.getLogger(FishingBoat.class);
 
   public void sail() {
-    LOGGER.info("The Boat is moving to that place");
-  }
-
-  public void fish() {
-    LOGGER.info("fishing ...");
+    LOGGER.info("The fishing boat is sailing");
   }
 
 }

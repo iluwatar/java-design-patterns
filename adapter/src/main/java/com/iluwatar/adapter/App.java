@@ -34,14 +34,14 @@ package com.iluwatar.adapter;
  * object. This example uses the object adapter approach.
  *
  * <p>
- * The Adapter ({@link BattleFishingBoat}) converts the interface of the adaptee class (
- * {@link FishingBoat}) into a suitable one expected by the client ( {@link BattleShip} ).
+ * The Adapter ({@link FishingBoatAdapter}) converts the interface of the adaptee class (
+ * {@link FishingBoat}) into a suitable one expected by the client ( {@link RowingBoat} ).
  *
  * <p>
  * The story of this implementation is this. <br>
- * Pirates are coming! we need a {@link BattleShip} to fight! We have a {@link FishingBoat} and our
+ * Pirates are coming! we need a {@link RowingBoat} to flee! We have a {@link FishingBoat} and our
  * captain. We have no time to make up a new ship! we need to reuse this {@link FishingBoat}. The
- * captain needs a battleship which can fire and move. The spec is in {@link BattleShip}. We will
+ * captain needs a rowing boat which he can operate. The spec is in {@link RowingBoat}. We will
  * use the Adapter pattern to reuse {@link FishingBoat}.
  *
  */
@@ -53,8 +53,8 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    Captain captain = new Captain(new BattleFishingBoat());
-    captain.move();
-    captain.fire();
+    // The captain can only operate rowing boats but with adapter he is able to use fishing boats as well
+    Captain captain = new Captain(new FishingBoatAdapter());
+    captain.row();
   }
 }

@@ -65,8 +65,8 @@ public class DbCustomerDao implements CustomerDao {
     Connection connection;
     try {
       connection = getConnection();
-      PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMERS");
-      ResultSet resultSet = statement.executeQuery();
+      PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMERS");  //NOSONAR
+      ResultSet resultSet = statement.executeQuery(); //NOSONAR
       return StreamSupport.stream(new Spliterators.AbstractSpliterator<Customer>(Long.MAX_VALUE, 
           Spliterator.ORDERED) {
 
@@ -82,7 +82,7 @@ public class DbCustomerDao implements CustomerDao {
             throw new RuntimeException(e);
           }
         }
-      }, false).onClose(() -> mutedClose(connection));
+      }, false).onClose(() -> mutedClose(connection, statement, resultSet));
     } catch (SQLException e) {
       throw new Exception(e.getMessage(), e);
     }
@@ -92,8 +92,10 @@ public class DbCustomerDao implements CustomerDao {
     return dataSource.getConnection();
   }
 
-  private void mutedClose(Connection connection) {
+  private void mutedClose(Connection connection, PreparedStatement statement, ResultSet resultSet) {
     try {
+      resultSet.close();
+      statement.close();
       connection.close();
     } catch (SQLException e) {
       e.printStackTrace();
