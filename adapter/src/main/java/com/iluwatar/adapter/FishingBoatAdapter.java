@@ -22,9 +22,6 @@
  */
 package com.iluwatar.adapter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  *
  * Adapter class. Adapts the interface of the device ({@link FishingBoat}) into {@link RowingBoat}
@@ -32,8 +29,6 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class FishingBoatAdapter implements RowingBoat {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(FishingBoatAdapter.class);
 
   private FishingBoat boat;
 
