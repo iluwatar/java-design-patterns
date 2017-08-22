@@ -22,26 +22,39 @@
  */
 package com.iluwatar.bridge;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
- * MagicWeapon
- * 
+ * Hammer
+ *
  */
-public abstract class MagicWeapon {
+public class Hammer implements Weapon {
 
-  protected MagicWeaponImpl imp;
+  private static final Logger LOGGER = LoggerFactory.getLogger(Hammer.class);
 
-  public MagicWeapon(MagicWeaponImpl imp) {
-    this.imp = imp;
+  private final Enchantment enchantment;
+
+  public Hammer(Enchantment enchantment) {
+    this.enchantment = enchantment;
   }
 
-  public abstract void wield();
+  @Override
+  public void wield() {
+    LOGGER.info("The hammer is wielded.");
+    enchantment.onActivate();
+  }
 
-  public abstract void swing();
+  @Override
+  public void swing() {
+    LOGGER.info("The hammer is swinged.");
+    enchantment.apply();
+  }
 
-  public abstract void unwield();
-
-  public MagicWeaponImpl getImp() {
-    return imp;
+  @Override
+  public void unwield() {
+    LOGGER.info("The hammer is unwielded.");
+    enchantment.onDeactivate();
   }
 }

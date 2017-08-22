@@ -27,30 +27,25 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * Stormbringer
+ * SoulEatingEnchantment
  *
  */
-public class Stormbringer extends SoulEatingMagicWeaponImpl {
+public class SoulEatingEnchantment implements Enchantment {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Stormbringer.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(SoulEatingEnchantment.class);
 
   @Override
-  public void wieldImp() {
-    LOGGER.info("wielding Stormbringer");
+  public void onActivate() {
+    LOGGER.info("The item spreads bloodlust.");
   }
 
   @Override
-  public void swingImp() {
-    LOGGER.info("swinging Stormbringer");
+  public void apply() {
+    LOGGER.info("The item eats the soul of enemies.");
   }
 
   @Override
-  public void unwieldImp() {
-    LOGGER.info("unwielding Stormbringer");
-  }
-
-  @Override
-  public void eatSoulImp() {
-    LOGGER.info("Stormbringer devours the enemy's soul");
+  public void onDeactivate() {
+    LOGGER.info("Bloodlust slowly disappears.");
   }
 }

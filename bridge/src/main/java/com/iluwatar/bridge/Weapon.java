@@ -22,35 +22,16 @@
  */
 package com.iluwatar.bridge;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * 
- * Mjollnir
- *
+ * Weapon
+ * 
  */
-public class Mjollnir extends FlyingMagicWeaponImpl {
+public interface Weapon {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Mjollnir.class);
+  void wield();
 
-  @Override
-  public void wieldImp() {
-    LOGGER.info("wielding Mjollnir");
-  }
+  void swing();
 
-  @Override
-  public void swingImp() {
-    LOGGER.info("swinging Mjollnir");
-  }
-
-  @Override
-  public void unwieldImp() {
-    LOGGER.info("unwielding Mjollnir");
-  }
-
-  @Override
-  public void flyImp() {
-    LOGGER.info("Mjollnir hits the enemy in the air and returns back to the owner's hand");
-  }
+  void unwield();
 }

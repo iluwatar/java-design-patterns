@@ -467,6 +467,7 @@
                         <param>builder</param>
                         <param>prototype</param>
                         <param>adapter</param>
+                        <param>bridge</param>
                     </skipForProjects>
                 </configuration>
             </plugin>

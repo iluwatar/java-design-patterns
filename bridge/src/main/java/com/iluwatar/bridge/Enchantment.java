@@ -24,36 +24,14 @@ package com.iluwatar.bridge;
 
 /**
  * 
- * FlyingMagicWeapon
- *
+ * Enchantment
+ * 
  */
-public class FlyingMagicWeapon extends MagicWeapon {
+public interface Enchantment {
 
-  public FlyingMagicWeapon(FlyingMagicWeaponImpl imp) {
-    super(imp);
-  }
+  void onActivate();
 
-  public FlyingMagicWeaponImpl getImp() {
-    return (FlyingMagicWeaponImpl) imp;
-  }
+  void apply();
 
-  @Override
-  public void wield() {
-    getImp().wieldImp();
-  }
-
-  @Override
-  public void swing() {
-    getImp().swingImp();
-  }
-
-  @Override
-  public void unwield() {
-    getImp().unwieldImp();
-  }
-
-  public void fly() {
-    getImp().flyImp();
-  }
-
+  void onDeactivate();
 }
