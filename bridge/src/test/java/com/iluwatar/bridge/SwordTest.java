@@ -24,32 +24,22 @@ package com.iluwatar.bridge;
 
 import org.junit.Test;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
- * Date: 12/6/15 - 11:15 PM
- *
- * @author Jeroen Meulemeester
+ * Tests for sword
  */
-public class BlindingMagicWeaponTest extends MagicWeaponTest {
+public class SwordTest extends WeaponTest {
 
   /**
    * Invoke all possible actions on the weapon and check if the actions are executed on the actual
    * underlying weapon implementation.
    */
   @Test
-  public void testExcalibur() throws Exception {
-//    final Excalibur excalibur = spy(new Excalibur());
-//    final Hammer blindingMagicWeapon = new Hammer(excalibur);
-//
-//    testBasicWeaponActions(blindingMagicWeapon, excalibur);
-//
-//    blindingMagicWeapon.blind();
-//    verify(excalibur, times(1)).blindImp();
-//    verifyNoMoreInteractions(excalibur);
+  public void testSword() throws Exception {
+    final Sword sword = spy(new Sword(mock(FlyingEnchantment.class)));
+    testBasicWeaponActions(sword);
   }
-
 }

@@ -28,37 +28,32 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
- * Date: 12/6/15 - 11:28 PM
- *
- * @author Jeroen Meulemeester
+ * Base class for weapon tests
  */
-public abstract class MagicWeaponTest {
+public abstract class WeaponTest {
 
   /**
-   * Invoke the basic actions of the given weapon, and test if the underlying weapon implementation
+   * Invoke the basic actions of the given weapon, and test if the underlying enchantment implementation
    * is invoked
    *
-   * @param weaponImpl The spied weapon implementation where actions are bridged to
-   * @param weapon               The weapon, handled by the app
    */
-  protected final void testBasicWeaponActions(final Weapon weapon,
-                                              final Enchantment weaponImpl) {
-//    assertNotNull(weapon);
-//    assertNotNull(weaponImpl);
-//    assertNotNull(weapon.getEnchantment());
-//
-//    weapon.swing();
-//    verify(weaponImpl, times(1)).swingImp();
-//    verifyNoMoreInteractions(weaponImpl);
-//
-//    weapon.wield();
-//    verify(weaponImpl, times(1)).wieldImp();
-//    verifyNoMoreInteractions(weaponImpl);
-//
-//    weapon.unwield();
-//    verify(weaponImpl, times(1)).unwieldImp();
-//    verifyNoMoreInteractions(weaponImpl);
-//
-  }
+  protected final void testBasicWeaponActions(final Weapon weapon) {
+    assertNotNull(weapon);
+    Enchantment enchantment = weapon.getEnchantment();
+    assertNotNull(enchantment);
+    assertNotNull(weapon.getEnchantment());
 
+    weapon.swing();
+    verify(enchantment, times(1)).apply();
+    verifyNoMoreInteractions(enchantment);
+
+    weapon.wield();
+    verify(enchantment, times(1)).onActivate();
+    verifyNoMoreInteractions(enchantment);
+
+    weapon.unwield();
+    verify(enchantment, times(1)).onDeactivate();
+    verifyNoMoreInteractions(enchantment);
+
+  }
 }

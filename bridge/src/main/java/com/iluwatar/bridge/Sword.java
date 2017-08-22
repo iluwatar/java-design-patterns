@@ -57,4 +57,9 @@ public class Sword implements Weapon {
     LOGGER.info("The sword is unwielded.");
     enchantment.onDeactivate();
   }
+
+  @Override
+  public Enchantment getEnchantment() {
+    return enchantment;
+  }
 }

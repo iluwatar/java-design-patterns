@@ -34,4 +34,6 @@ public interface Weapon {
   void swing();
 
   void unwield();
+
+  Enchantment getEnchantment();
 }

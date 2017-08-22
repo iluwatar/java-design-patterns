@@ -24,32 +24,22 @@ package com.iluwatar.bridge;
 
 import org.junit.Test;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
- * Date: 12/6/15 - 11:26 PM
- *
- * @author Jeroen Meulemeester
+ * Tests for hammer
  */
-public class FlyingMagicWeaponTest extends MagicWeaponTest {
+public class HammerTest extends WeaponTest {
 
   /**
    * Invoke all possible actions on the weapon and check if the actions are executed on the actual
    * underlying weapon implementation.
    */
   @Test
-  public void testMjollnir() throws Exception {
-//    final Mjollnir mjollnir = spy(new Mjollnir());
-//    final FlyingMagicWeapon flyingMagicWeapon = new FlyingMagicWeapon(mjollnir);
-//
-//    testBasicWeaponActions(flyingMagicWeapon, mjollnir);
-//
-//    flyingMagicWeapon.fly();
-//    verify(mjollnir, times(1)).flyImp();
-//    verifyNoMoreInteractions(mjollnir);
+  public void testHammer() throws Exception {
+    final Hammer hammer = spy(new Hammer(mock(FlyingEnchantment.class)));
+    testBasicWeaponActions(hammer);
   }
-
 }

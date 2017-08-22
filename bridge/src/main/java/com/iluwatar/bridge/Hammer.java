@@ -57,4 +57,9 @@ public class Hammer implements Weapon {
     LOGGER.info("The hammer is unwielded.");
     enchantment.onDeactivate();
   }
+
+  @Override
+  public Enchantment getEnchantment() {
+    return enchantment;
+  }
 }
