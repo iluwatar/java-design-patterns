@@ -24,15 +24,14 @@ package com.iluwatar.bridge;
 
 /**
  * 
- * MagicWeaponImpl
+ * Enchantment
  * 
  */
-public abstract class MagicWeaponImpl {
+public interface Enchantment {
 
-  public abstract void wieldImp();
+  void onActivate();
 
-  public abstract void swingImp();
+  void apply();
 
-  public abstract void unwieldImp();
-
+  void onDeactivate();
 }

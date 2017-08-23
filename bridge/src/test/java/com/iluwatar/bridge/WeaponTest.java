@@ -22,34 +22,38 @@
  */
 package com.iluwatar.bridge;
 
-import org.junit.Test;
-
-import static org.mockito.Mockito.spy;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
- * Date: 12/6/15 - 11:15 PM
- *
- * @author Jeroen Meulemeester
+ * Base class for weapon tests
  */
-public class BlindingMagicWeaponTest extends MagicWeaponTest {
+public abstract class WeaponTest {
 
   /**
-   * Invoke all possible actions on the weapon and check if the actions are executed on the actual
-   * underlying weapon implementation.
+   * Invoke the basic actions of the given weapon, and test if the underlying enchantment implementation
+   * is invoked
+   *
    */
-  @Test
-  public void testExcalibur() throws Exception {
-    final Excalibur excalibur = spy(new Excalibur());
-    final BlindingMagicWeapon blindingMagicWeapon = new BlindingMagicWeapon(excalibur);
+  protected final void testBasicWeaponActions(final Weapon weapon) {
+    assertNotNull(weapon);
+    Enchantment enchantment = weapon.getEnchantment();
+    assertNotNull(enchantment);
+    assertNotNull(weapon.getEnchantment());
 
-    testBasicWeaponActions(blindingMagicWeapon, excalibur);
+    weapon.swing();
+    verify(enchantment, times(1)).apply();
+    verifyNoMoreInteractions(enchantment);
 
-    blindingMagicWeapon.blind();
-    verify(excalibur, times(1)).blindImp();
-    verifyNoMoreInteractions(excalibur);
+    weapon.wield();
+    verify(enchantment, times(1)).onActivate();
+    verifyNoMoreInteractions(enchantment);
+
+    weapon.unwield();
+    verify(enchantment, times(1)).onDeactivate();
+    verifyNoMoreInteractions(enchantment);
+
   }
-
 }
