@@ -22,10 +22,10 @@
  */
 package com.iluwatar.reader.writer.lock;
 
+import java.util.concurrent.locks.Lock;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.concurrent.locks.Lock;
 
 /**
  * Reader class, read when it acquired the read lock
@@ -37,10 +37,30 @@ public class Reader implements Runnable {
   private Lock readLock;
 
   private String name;
+  
+  private long readingTime;
 
-  public Reader(String name, Lock readLock) {
+  /**
+   * Create new Reader
+   * 
+   * @param name - Name of the thread owning the reader
+   * @param readLock - Lock for this reader
+   * @param readingTime - amount of time (in milliseconds) for this reader to engage reading
+   */
+  public Reader(String name, Lock readLock, long readingTime) {
     this.name = name;
     this.readLock = readLock;
+    this.readingTime = readingTime;
+  }
+  
+  /**
+   * Create new Reader who reads for 250ms
+   * 
+   * @param name - Name of the thread owning the reader
+   * @param readLock - Lock for this reader
+   */
+  public Reader(String name, Lock readLock) {
+    this(name, readLock, 250L);
   }
 
   @Override
@@ -49,7 +69,8 @@ public class Reader implements Runnable {
     try {
       read();
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.info("InterruptedException when reading", e);
+      Thread.currentThread().interrupt();
     } finally {
       readLock.unlock();
     }
@@ -61,7 +82,7 @@ public class Reader implements Runnable {
    */
   public void read() throws InterruptedException {
     LOGGER.info("{} begin", name);
-    Thread.sleep(250);
-    LOGGER.info("{} finish", name);
+    Thread.sleep(readingTime);
+    LOGGER.info("{} finish after reading {}ms", name, readingTime);
   }
 }
