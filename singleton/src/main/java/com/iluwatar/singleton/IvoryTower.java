@@ -33,16 +33,19 @@ public final class IvoryTower {
   private IvoryTower() {}
 
   /**
-   * Static to class instance of the class.
+   * private instance of the class.
    */
-  private static final IvoryTower INSTANCE = new IvoryTower();
+  private static IvoryTower INSTANCE;
 
   /**
    * To be called by user to obtain instance of the class.
-   *
+   * Creates new instance of class when null else return already instanciated object.
    * @return instance of the singleton.
    */
   public static IvoryTower getInstance() {
+    if(INSTANCE == null){
+      INSTANCE = new IvoryTower();
+    }
     return INSTANCE;
   }
 }
