@@ -23,5 +23,5 @@ Use the Balking pattern when
 but for an unknown amount of time
 
 ## Related patterns
-* Guarded Suspendion Pattern
+* Guarded Suspension Pattern
 * Double Checked Locking Pattern
