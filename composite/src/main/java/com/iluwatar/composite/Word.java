@@ -44,9 +44,4 @@ public class Word extends LetterComposite {
   protected void printThisBefore() {
     System.out.print(" ");
   }
-
-  @Override
-  protected void printThisAfter() {
-    // nop
-  }
 }

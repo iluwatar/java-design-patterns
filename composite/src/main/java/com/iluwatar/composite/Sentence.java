@@ -41,11 +41,6 @@ public class Sentence extends LetterComposite {
   }
 
   @Override
-  protected void printThisBefore() {
-    // nop
-  }
-
-  @Override
   protected void printThisAfter() {
     System.out.print(".");
   }

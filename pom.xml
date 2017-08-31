@@ -468,6 +468,7 @@
                         <param>prototype</param>
                         <param>adapter</param>
                         <param>bridge</param>
+                        <param>composite</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
