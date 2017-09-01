@@ -14,7 +14,7 @@
 
 <!-- Only load Lunr if we are on the one pattern search page -->
 {% if url_parts[0] == "patterns" and url_parts.size == 1 %}
-    <script type="text/javascript" src="{{ '/static/js/elasticlunr.min.js' | prepend: site.baseurl }}"></script>
+    <script type="text/javascript" src="{{ '/static/js/lunr.min.js' | prepend: site.baseurl }}"></script>
     <script type="text/javascript" src="{{ '/static/js/search.js' | prepend: site.baseurl }}"></script>
 {% endif %}
 

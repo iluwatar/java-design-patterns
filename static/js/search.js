@@ -44,37 +44,27 @@ function initSidebar() {
 }
 
 function initLunrIndex() {
-    // Initalize lunr with the fields it will be searching on. I've given title
-    // a boost of 10 to indicate matches on this field are more important.
-    window.idx = elasticlunr(function() {
-        this.setRef('id');
-        this.addField('title', {
-            boost: 5
-        });
-        this.addField('category', {
-            boost: 3
-        });
-        this.addField('tags', {
-            boost: 3
-        });
-        this.addField('date');
-        this.addField('content', {
-            boost: 2
-        });
-    });
-
     // Download the data from the JSON file we generated
     window.search_index = $.getJSON("{{ '/search_index.json' | prepend: site.baseurl }}");
 
     // Wait for the data to load and add it to lunr
     window.search_index.then(function(loaded_data) {
-        $.each(loaded_data, function(index, value) {
-            window.idx.addDoc(
+      window.idx = lunr(function() {
+          this.ref('id');
+          this.field('title');
+          this.field('category');
+          this.field('tags');
+          this.field('date');
+          this.field('content');
+
+          loaded_data.forEach(function (doc, index) {
+            this.add(
                 $.extend({
                     "id": index
-                }, value)
+                }, doc)
             );
-        });
+          }, this)
+      });
     });
 }
 
@@ -113,22 +103,7 @@ function updateResults() {
     var intersectionQuery = catsQuery.filter(tagsQuery);
 
     var text = $('#searchBox').val();
-    var results = window.idx.search(text, {
-        fields: {
-            title: {
-                boost: 5
-            },
-            category: {
-                boost: 3
-            },
-            tags: {
-                boost: 3
-            },
-            content: {
-                boost: 2
-            }
-        }
-    });
+    var results = window.idx.search(text + '*');
 
     window.search_index.then(function(loaded_data) {
         // Are there any results?
