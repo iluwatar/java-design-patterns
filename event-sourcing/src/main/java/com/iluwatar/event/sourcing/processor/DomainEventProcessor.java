@@ -22,33 +22,43 @@
  */
 package com.iluwatar.event.sourcing.processor;
 
-import com.iluwatar.event.sourcing.api.DomainEvent;
-import com.iluwatar.event.sourcing.api.EventProcessor;
-import com.iluwatar.event.sourcing.api.ProcessorJournal;
+import com.iluwatar.event.sourcing.event.DomainEvent;
 
 /**
+ * This is the implementation of event processor.
+ * All events are processed by this class.
+ * This processor uses processorJournal to persist and recover events.
+ *
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
-public class DomainEventProcessor implements EventProcessor {
+public class DomainEventProcessor {
 
-  private ProcessorJournal precessorJournal;
+  private final JsonFileJournal processorJournal = new JsonFileJournal();
 
-  @Override
+  /**
+   * Process.
+   *
+   * @param domainEvent the domain event
+   */
   public void process(DomainEvent domainEvent) {
     domainEvent.process();
-    precessorJournal.write(domainEvent);
+    processorJournal.write(domainEvent);
   }
 
-  @Override
-  public void setPrecessorJournal(ProcessorJournal precessorJournal) {
-    this.precessorJournal = precessorJournal;
+  /**
+   * Reset.
+   */
+  public void reset() {
+    processorJournal.reset();
   }
 
-  @Override
+  /**
+   * Recover.
+   */
   public void recover() {
     DomainEvent domainEvent;
     while (true) {
-      domainEvent = precessorJournal.readNext();
+      domainEvent = processorJournal.readNext();
       if (domainEvent == null) {
         break;
       } else {

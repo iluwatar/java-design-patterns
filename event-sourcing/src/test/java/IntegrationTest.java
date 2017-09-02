@@ -20,16 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.event.sourcing;
 
 import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_DAENERYS;
 import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_JON;
 
 import com.iluwatar.event.sourcing.domain.Account;
-import com.iluwatar.event.sourcing.journal.JsonFileJournal;
+import com.iluwatar.event.sourcing.event.AccountCreateEvent;
+import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
+import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
 import com.iluwatar.event.sourcing.processor.DomainEventProcessor;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
+import java.util.Date;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,31 +46,14 @@ public class IntegrationTest {
   /**
    * The Domain event processor.
    */
-  DomainEventProcessor domainEventProcessor;
-  /**
-   * The Json file journal.
-   */
-  JsonFileJournal jsonFileJournal;
-  /**
-   * The Account service.
-   */
-  AccountService accountService;
-  /**
-   * The Money transaction service.
-   */
-  MoneyTransactionService moneyTransactionService;
+  private DomainEventProcessor eventProcessor;
 
   /**
    * Initialize.
    */
   @Before
   public void initialize() {
-    domainEventProcessor = new DomainEventProcessor();
-    jsonFileJournal = new JsonFileJournal();
-    domainEventProcessor.setPrecessorJournal(jsonFileJournal);
-    accountService = new AccountService(domainEventProcessor);
-    moneyTransactionService = new MoneyTransactionService(
-        domainEventProcessor);
+    eventProcessor = new DomainEventProcessor();
   }
 
   /**
@@ -76,27 +61,31 @@ public class IntegrationTest {
    */
   @Test
   public void testStateRecovery() {
-    jsonFileJournal.reset();
+    eventProcessor.reset();
 
-    accountService.createAccount(ACCOUNT_OF_DAENERYS, "Daenerys Targaryen");
-    accountService.createAccount(ACCOUNT_OF_JON, "Jon Snow");
+    eventProcessor.process(new AccountCreateEvent(
+        0, new Date().getTime(), ACCOUNT_OF_DAENERYS, "Daenerys Targaryen"));
 
-    moneyTransactionService.depositMoney(ACCOUNT_OF_DAENERYS, new BigDecimal("100000"));
-    moneyTransactionService.depositMoney(ACCOUNT_OF_JON, new BigDecimal("100"));
+    eventProcessor.process(new AccountCreateEvent(
+        1, new Date().getTime(), ACCOUNT_OF_JON, "Jon Snow"));
 
-    moneyTransactionService
-        .transferMoney(ACCOUNT_OF_DAENERYS, ACCOUNT_OF_JON, new BigDecimal("10000"));
-    moneyTransactionService.withdrawalMoney(ACCOUNT_OF_JON, new BigDecimal("1000"));
+    eventProcessor.process(new MoneyDepositEvent(
+        2, new Date().getTime(), ACCOUNT_OF_DAENERYS,  new BigDecimal("100000")));
+
+    eventProcessor.process(new MoneyDepositEvent(
+        3, new Date().getTime(), ACCOUNT_OF_JON,  new BigDecimal("100")));
+
+    eventProcessor.process(new MoneyTransferEvent(
+        4, new Date().getTime(), new BigDecimal("10000"), ACCOUNT_OF_DAENERYS,
+        ACCOUNT_OF_JON));
 
     Account accountOfDaenerysBeforeShotDown = AccountAggregate.getAccount(ACCOUNT_OF_DAENERYS);
     Account accountOfJonBeforeShotDown = AccountAggregate.getAccount(ACCOUNT_OF_JON);
 
     AccountAggregate.resetState();
 
-    domainEventProcessor = new DomainEventProcessor();
-    jsonFileJournal = new JsonFileJournal();
-    domainEventProcessor.setPrecessorJournal(jsonFileJournal);
-    domainEventProcessor.recover();
+    eventProcessor = new DomainEventProcessor();
+    eventProcessor.recover();
 
     Account accountOfDaenerysAfterShotDown = AccountAggregate.getAccount(ACCOUNT_OF_DAENERYS);
     Account accountOfJonAfterShotDown = AccountAggregate.getAccount(ACCOUNT_OF_JON);
@@ -105,11 +94,6 @@ public class IntegrationTest {
         accountOfDaenerysAfterShotDown.getMoney());
     Assert
         .assertEquals(accountOfJonBeforeShotDown.getMoney(), accountOfJonAfterShotDown.getMoney());
-    Assert.assertEquals(accountOfDaenerysBeforeShotDown.getTransactions().size(),
-        accountOfDaenerysAfterShotDown.getTransactions().size());
-    Assert.assertEquals(accountOfJonBeforeShotDown.getTransactions().size(),
-        accountOfJonAfterShotDown.getTransactions().size());
-
   }
 
 }

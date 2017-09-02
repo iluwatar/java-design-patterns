@@ -27,11 +27,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * This is the static accounts map holder class.
+ * This class holds the state of the accounts.
+ *
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class AccountAggregate {
 
   private static Map<Integer, Account> accounts = new HashMap<>();
+
+  private AccountAggregate() {
+  }
 
   /**
    * Put account.
@@ -46,7 +52,7 @@ public class AccountAggregate {
    * Gets account.
    *
    * @param accountNo the account no
-   * @return the account
+   * @return the copy of the account or null if not found
    */
   public static Account getAccount(int accountNo) {
     Account account = accounts.get(accountNo);

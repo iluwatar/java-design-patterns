@@ -20,11 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.event.sourcing.api;
+package com.iluwatar.event.sourcing.event;
 
 import java.io.Serializable;
 
 /**
+ * This is the base class for domain events. All events must extend this class.
+ *
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public abstract class DomainEvent implements Serializable {

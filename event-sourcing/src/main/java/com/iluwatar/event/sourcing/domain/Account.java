@@ -25,22 +25,25 @@ package com.iluwatar.event.sourcing.domain;
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
-import com.iluwatar.event.sourcing.event.MoneyWithdrawalEvent;
-import com.iluwatar.event.sourcing.gateway.Gateways;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
+ * This is the Account class that holds the account info, the account number,
+ * account owner name and money of the account. Account class also have the business logic of events
+ * that effects this account.
+ *
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class Account {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(Account.class);
+
   private final int accountNo;
   private final String owner;
   private BigDecimal money;
-  private List<Transaction> transactions;
 
   /**
    * Instantiates a new Account.
@@ -52,7 +55,6 @@ public class Account {
     this.accountNo = accountNo;
     this.owner = owner;
     money = BigDecimal.ZERO;
-    transactions = new ArrayList<>();
   }
 
   /**
@@ -91,23 +93,6 @@ public class Account {
     this.money = money;
   }
 
-  /**
-   * Gets transactions.
-   *
-   * @return the transactions
-   */
-  public List<Transaction> getTransactions() {
-    return transactions;
-  }
-
-  /**
-   * Sets transactions.
-   *
-   * @param transactions the transactions
-   */
-  public void setTransactions(List<Transaction> transactions) {
-    this.transactions = transactions;
-  }
 
   /**
    * Copy account.
@@ -117,7 +102,6 @@ public class Account {
   public Account copy() {
     Account account = new Account(accountNo, owner);
     account.setMoney(money);
-    account.setTransactions(transactions);
     return account;
   }
 
@@ -127,29 +111,22 @@ public class Account {
         + "accountNo=" + accountNo
         + ", owner='" + owner + '\''
         + ", money=" + money
-        + ", transactions=" + transactions
         + '}';
   }
 
-  private Transaction depositMoney(BigDecimal money) {
+  private void depositMoney(BigDecimal money) {
     this.money = this.money.add(money);
-    Transaction transaction = new Transaction(accountNo, money, BigDecimal.ZERO, this.money);
-    transactions.add(transaction);
-    return transaction;
   }
 
-  private Transaction withdrawMoney(BigDecimal money) {
+  private void withdrawMoney(BigDecimal money) {
     this.money = this.money.subtract(money);
-    Transaction transaction = new Transaction(accountNo, BigDecimal.ZERO, money, this.money);
-    transactions.add(transaction);
-    return transaction;
   }
 
   private void handleDeposit(BigDecimal money, boolean realTime) {
-    Transaction transaction = depositMoney(money);
+    depositMoney(money);
     AccountAggregate.putAccount(this);
     if (realTime) {
-      Gateways.getTransactionLogger().log(transaction);
+      LOGGER.info("Some external api for only realtime execution could be called here.");
     }
   }
 
@@ -158,15 +135,15 @@ public class Account {
       throw new RuntimeException("Insufficient Account Balance");
     }
 
-    Transaction transaction = withdrawMoney(money);
+    withdrawMoney(money);
     AccountAggregate.putAccount(this);
     if (realTime) {
-      Gateways.getTransactionLogger().log(transaction);
+      LOGGER.info("Some external api for only realtime execution could be called here.");
     }
   }
 
   /**
-   * Handle event.
+   * Handles the MoneyDepositEvent.
    *
    * @param moneyDepositEvent the money deposit event
    */
@@ -176,29 +153,19 @@ public class Account {
 
 
   /**
-   * Handle event.
-   *
-   * @param moneyWithdrawalEvent the money withdrawal event
-   */
-  public void handleEvent(MoneyWithdrawalEvent moneyWithdrawalEvent) {
-    handleWithdrawal(moneyWithdrawalEvent.getMoney(), moneyWithdrawalEvent.isRealTime());
-  }
-
-  /**
-   * Handle event.
+   * Handles the AccountCreateEvent.
    *
    * @param accountCreateEvent the account create event
    */
   public void handleEvent(AccountCreateEvent accountCreateEvent) {
     AccountAggregate.putAccount(this);
-    // check if this event is replicated from journal before calling an external gateway function
     if (accountCreateEvent.isRealTime()) {
-      Gateways.getAccountCreateContractSender().sendContractInfo(this);
+      LOGGER.info("Some external api for only realtime execution could be called here.");
     }
   }
 
   /**
-   * Handle transfer from event.
+   * Handles transfer from account event.
    *
    * @param moneyTransferEvent the money transfer event
    */
@@ -207,7 +174,7 @@ public class Account {
   }
 
   /**
-   * Handle transfer to event.
+   * Handles transfer to account event.
    *
    * @param moneyTransferEvent the money transfer event
    */

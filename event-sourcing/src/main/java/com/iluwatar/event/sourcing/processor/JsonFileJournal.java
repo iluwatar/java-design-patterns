@@ -20,17 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.event.sourcing.journal;
+package com.iluwatar.event.sourcing.processor;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.iluwatar.event.sourcing.api.DomainEvent;
-import com.iluwatar.event.sourcing.api.ProcessorJournal;
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
+import com.iluwatar.event.sourcing.event.DomainEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
-import com.iluwatar.event.sourcing.event.MoneyWithdrawalEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -44,12 +42,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This is the implementation of event journal.
+ * This implementation serialize/deserialize the events with JSON
+ * and writes/reads them on a Journal.json file at the working directory.
+ *
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
-public class JsonFileJournal implements ProcessorJournal {
+public class JsonFileJournal {
 
-  private File aFile;
-  private List<String> events = new ArrayList<>();
+  private final File aFile;
+  private final List<String> events = new ArrayList<>();
   private int index = 0;
 
   /**
@@ -72,7 +74,12 @@ public class JsonFileJournal implements ProcessorJournal {
     }
   }
 
-  @Override
+
+  /**
+   * Write.
+   *
+   * @param domainEvent the domain event
+   */
   public void write(DomainEvent domainEvent) {
     Gson gson = new Gson();
     JsonElement jsonElement;
@@ -80,9 +87,7 @@ public class JsonFileJournal implements ProcessorJournal {
       jsonElement = gson.toJsonTree(domainEvent, AccountCreateEvent.class);
     } else if (domainEvent instanceof MoneyDepositEvent) {
       jsonElement = gson.toJsonTree(domainEvent, MoneyDepositEvent.class);
-    } else if (domainEvent instanceof MoneyWithdrawalEvent) {
-      jsonElement = gson.toJsonTree(domainEvent, MoneyWithdrawalEvent.class);
-    } else if (domainEvent instanceof MoneyTransferEvent) {
+    }  else if (domainEvent instanceof MoneyTransferEvent) {
       jsonElement = gson.toJsonTree(domainEvent, MoneyTransferEvent.class);
     } else {
       throw new RuntimeException("Journal Event not recegnized");
@@ -97,13 +102,20 @@ public class JsonFileJournal implements ProcessorJournal {
     }
   }
 
-  @Override
+
+  /**
+   * Reset.
+   */
   public void reset() {
     aFile.delete();
   }
 
 
-  @Override
+  /**
+   * Read next domain event.
+   *
+   * @return the domain event
+   */
   public DomainEvent readNext() {
     if (index >= events.size()) {
       return null;
@@ -122,9 +134,7 @@ public class JsonFileJournal implements ProcessorJournal {
       domainEvent = gson.fromJson(jsonElement, MoneyDepositEvent.class);
     } else if (eventClassName.equals("MoneyTransferEvent")) {
       domainEvent = gson.fromJson(jsonElement, MoneyTransferEvent.class);
-    } else if (eventClassName.equals("MoneyWithdrawalEvent")) {
-      domainEvent = gson.fromJson(jsonElement, MoneyWithdrawalEvent.class);
-    } else {
+    }  else {
       throw new RuntimeException("Journal Event not recegnized");
     }
 

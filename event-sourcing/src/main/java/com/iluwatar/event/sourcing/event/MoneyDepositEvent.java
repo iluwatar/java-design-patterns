@@ -22,18 +22,22 @@
  */
 package com.iluwatar.event.sourcing.event;
 
-import com.iluwatar.event.sourcing.api.DomainEvent;
 import com.iluwatar.event.sourcing.domain.Account;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
 
 /**
+ * This is the class that implements money deposit event.
+ * Holds the necessary info for a money deposit event.
+ * Implements the process function that finds the event related
+ * domain objects and calls the related domain object's handle event functions
+ *
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class MoneyDepositEvent extends DomainEvent {
 
-  private BigDecimal money;
-  private int accountNo;
+  private final BigDecimal money;
+  private final int accountNo;
 
   /**
    * Instantiates a new Money deposit event.
