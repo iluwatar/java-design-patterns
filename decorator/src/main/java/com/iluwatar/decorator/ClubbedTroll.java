@@ -28,22 +28,29 @@ import org.slf4j.LoggerFactory;
 /**
  * Decorator that adds a club for the troll
  */
-public class ClubbedTroll extends TrollDecorator {
+public class ClubbedTroll implements Troll {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);
 
+  private Troll decorated;
+
   public ClubbedTroll(Troll decorated) {
-    super(decorated);
+    this.decorated = decorated;
   }
 
   @Override
   public void attack() {
-    super.attack();
+    decorated.attack();
     LOGGER.info("The troll swings at you with a club!");
   }
 
   @Override
   public int getAttackPower() {
-    return super.getAttackPower() + 10;
+    return decorated.getAttackPower() + 10;
+  }
+
+  @Override
+  public void fleeBattle() {
+    decorated.fleeBattle();
   }
 }

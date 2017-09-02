@@ -34,7 +34,7 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 public class ClubbedTrollTest {
 
   @Test
-  public void testSmartHostile() throws Exception {
+  public void testClubbedTroll() throws Exception {
     // Create a normal troll first, but make sure we can spy on it later on.
     final Troll simpleTroll = spy(new SimpleTroll());
 
