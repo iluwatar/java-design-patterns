@@ -143,8 +143,8 @@
         <module>extension-objects</module>
         <module>marker</module>
         <module>cqrs</module>
+        <module>event-sourcing</module>
         <module>data-transfer-object</module>
-
     </modules>
 
     <dependencyManagement>
