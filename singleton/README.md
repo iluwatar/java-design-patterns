@@ -15,7 +15,39 @@ tags:
 Ensure a class only has one instance, and provide a global point of
 access to it.
 
-![alt text](./etc/singleton_1.png "Singleton")
+
+## Explanation
+Real world example
+
+> There can only be one ivory tower where the wizards study their magic. The same enchanted ivory tower is always used by the wizards. Ivory tower here is singleton.
+
+In plain words
+
+> Ensures that only one object of a particular class is ever created.
+
+Wikipedia says
+
+> In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system.
+
+**Programmatic Example**
+
+Joshua Bloch, Effective Java 2nd Edition p.18
+
+> A single-element enum type is the best way to implement a singleton
+
+```
+public enum EnumIvoryTower {
+  INSTANCE;
+}
+```
+
+Then in order to use
+
+```
+EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.INSTANCE;
+EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
+assertEquals(enumIvoryTower1, enumIvoryTower2); // true
+```
 
 ## Applicability
 Use the Singleton pattern when
@@ -40,7 +72,7 @@ Use the Singleton pattern when
 
 * Violates Single Responsibility Principle (SRP) by controlling their own creation and lifecycle.
 * Encourages using a global shared instance which prevents an object and resources used by this object from being deallocated.     
-* Creates tightly coupled code that is difficult to test.
+* Creates tightly coupled code. The clients of the Singleton become difficult to test.
 * Makes it almost impossible to subclass a Singleton.
 
 ## Credits

@@ -143,7 +143,8 @@
         <module>extension-objects</module>
         <module>marker</module>
         <module>cqrs</module>
-
+        <module>event-sourcing</module>
+        <module>data-transfer-object</module>
     </modules>
 
     <dependencyManagement>
@@ -460,6 +461,15 @@
                     <skipForProjects>
                         <!-- skip for parent project -->
                         <param>java-design-patterns</param>
+                        <param>singleton</param>
+                        <param>factory-method</param>
+                        <param>abstract-factory</param>
+                        <param>builder</param>
+                        <param>prototype</param>
+                        <param>adapter</param>
+                        <param>bridge</param>
+                        <param>composite</param>
+                        <param>decorator</param>
                     </skipForProjects>
                 </configuration>
             </plugin>

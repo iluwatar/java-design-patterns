@@ -36,4 +36,4 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
     on_start: never     # options: [always|never|change] default: always
 
-sudo: false # route the build to the container-based infrastructure for a faster build
+sudo: required

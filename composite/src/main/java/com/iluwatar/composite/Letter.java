@@ -39,9 +39,4 @@ public class Letter extends LetterComposite {
   protected void printThisBefore() {
     System.out.print(c);
   }
-
-  @Override
-  protected void printThisAfter() {
-    // nop
-  }
 }
