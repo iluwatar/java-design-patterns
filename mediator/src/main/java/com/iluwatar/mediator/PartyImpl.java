@@ -40,7 +40,9 @@ public class PartyImpl implements Party {
 
   @Override
   public void act(PartyMember actor, Action action) {
-    members.stream().filter(member -> !member.equals(actor)).forEach(member -> {
+    members.stream()
+    .filter(member -> !member.equals(actor))
+    .forEach(member -> {
       member.partyAction(action);
     });
   }
