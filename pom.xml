@@ -470,6 +470,7 @@
                         <param>bridge</param>
                         <param>composite</param>
                         <param>decorator</param>
+                        <param>facade</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
