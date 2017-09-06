@@ -30,19 +30,19 @@ public class RocketActions {
 	private static final int COUNTER_MAX = 10;
 	private RocketModel model;
 	
-	public RocketActions(RocketModel model){
-		this.model=model;
+	public RocketActions(RocketModel model) {
+		this.model = model;
 	}
 	
-	public void start(){
-		RocketModel proposedModel=new RocketModel();
+	public void start() {
+		RocketModel proposedModel = new RocketModel();
 		proposedModel.setCounter(COUNTER_MAX);
 		model.present(proposedModel);
 	}
 	
-	public void decrement(){
-		RocketModel proposedModel=new RocketModel();
-		int proposedCounter=model.getCounter()-1;
+	public void decrement() {
+		RocketModel proposedModel = new RocketModel();
+		int proposedCounter = model.getCounter() - 1;
 		proposedModel.setCounter(proposedCounter);
 		model.present(proposedModel);
 	}

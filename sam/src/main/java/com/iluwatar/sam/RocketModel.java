@@ -32,18 +32,18 @@ public class RocketModel {
 	private int counter;
 	private StateEngine stateEngine; 
 	
-	public RocketModel(){
+	public RocketModel() {
 	}
 	
-	public void present(RocketModel proposedModel){
-		if(proposedModel.getCounter()>=0 && proposedModel.getCounter()<=10){
+	public void present(RocketModel proposedModel) {
+		if((proposedModel.getCounter() >= 0) && (proposedModel.getCounter() <= 10)) {
 			this.setCounter(proposedModel.getCounter());
 			stateEngine.render(this);
 		}
 	}
 	
-	public void initModel(){
-		this.counter=-1;
+	public void initModel() {
+		this.counter = -1;
 		this.stateEngine.setState(new ReadyState());
 		stateEngine.render(this);
 	}

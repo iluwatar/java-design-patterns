@@ -32,15 +32,15 @@ public class StateEngine {
 	private RocketView view;
 	private RocketActions actions;
 	
-	public StateEngine(RocketView view,RocketActions actions){
-		this.view=view;
-		this.actions=actions;
+	public StateEngine(RocketView view, RocketActions actions) {
+		this.view = view;
+		this.actions = actions;
 	}
 	
-	public void render(RocketModel model){
-		if(model.getCounter()==0){
+	public void render(RocketModel model) {
+		if(model.getCounter() == 0) {
 			this.changeStateToLaunched();
-		}else if(model.getCounter()==10){
+		} else if(model.getCounter() == 10) {
 			this.changeStateToCounting();
 		}
 		
@@ -48,25 +48,25 @@ public class StateEngine {
 		this.nextAction(model);
 	}
 	
-	public void nextAction(RocketModel model){
-		if(model.getCounter()<=10 && model.getCounter()>0 && this.state.getClass().equals(CountingState.class)){
+	public void nextAction(RocketModel model) {
+		if(model.getCounter() <= 10 && model.getCounter() > 0 && this.state.getClass().equals(CountingState.class)){
 			this.actions.decrement();
 		}
 	}
 	
-	public String getRepresentation(RocketModel model){
+	public String getRepresentation(RocketModel model) {
 		return this.state.getStateRepresentation(model);
 	}
 	
-	public void changeStateToLaunched(){
+	public void changeStateToLaunched() {
 		this.setState(new LaunchedState());
 	}
 	
-	public void changeStateToCounting(){
+	public void changeStateToCounting() {
 		this.setState(new CountingState());
 	}
 	
-	public RocketState getState(){
+	public RocketState getState() {
 		return this.state;
 	}
 

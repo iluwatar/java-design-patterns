@@ -22,15 +22,14 @@
  */
 package com.iluwatar.sam;
 
-public class App 
-{
+public class App {
 	/**
 	 * Program entry point
 	 * 
 	 * @param args command line args
 	 */
-    public static void main( String[] args )
-    {
+    public static void main(String[] args) {
+
     	//create model, actions, view, state engine
         RocketModel model = new RocketModel();
         RocketActions actions = new RocketActions(model);

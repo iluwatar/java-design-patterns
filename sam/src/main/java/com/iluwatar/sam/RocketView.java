@@ -34,17 +34,17 @@ public class RocketView {
 	private RocketActions actions;
 	private static final Logger LOGGER = LoggerFactory.getLogger(RocketView.class);
 
-	public RocketView(RocketActions actions){
-		this.actions=actions;
+	public RocketView(RocketActions actions) {
+		this.actions = actions;
 	}
 	
 	//Simulate view event
-	public void start(){
+	public void start() {
 		LOGGER.info("Rocket counter started.");
 		this.actions.start();
 	}
 	
-	public void display(String representation){
+	public void display(String representation) {
 		LOGGER.info(representation);
 	}
 	

@@ -30,7 +30,7 @@ public class LaunchedState implements RocketState {
 
 	@Override
 	public String getStateRepresentation(RocketModel model) {
-		return "Rocket counter: "+model.getCounter()+" Rocket launched.";
+		return "Rocket counter: " + model.getCounter() + " Rocket launched.";
 	}
 
 }
