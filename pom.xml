@@ -471,6 +471,7 @@
                         <param>composite</param>
                         <param>decorator</param>
                         <param>facade</param>
+                        <param>flyweight</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
