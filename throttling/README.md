@@ -9,6 +9,10 @@ tags:
  - Throttling
 ---
 
+## Intent
+Ensure that a given tenant is not able to access resources more than the assigned limit.
+![alt text](./etc/throttling-patern.png "Throttling pattern")
+
 ## Applicability
 The Throttling pattern should be used:
 
