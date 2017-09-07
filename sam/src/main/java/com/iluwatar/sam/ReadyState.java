@@ -28,9 +28,8 @@ package com.iluwatar.sam;
  */
 public class ReadyState implements RocketState {
 
-	@Override
-	public String getStateRepresentation(RocketModel model) {
-		return "Rocket is in ready state.";
-	}
-
+  @Override
+  public String getStateRepresentation(RocketModel model) {
+    return "Rocket is in ready state.";
+  }
 }

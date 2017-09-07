@@ -28,9 +28,8 @@ package com.iluwatar.sam;
  */
 public class CountingState implements RocketState {
 
-	@Override
-	public String getStateRepresentation(RocketModel model) {
-		return "Rocket Counter: " + model.getCounter();
-	}
-
+  @Override
+  public String getStateRepresentation(RocketModel model) {
+    return "Rocket Counter: " + model.getCounter();
+  }
 }

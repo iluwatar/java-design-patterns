@@ -27,51 +27,60 @@ package com.iluwatar.sam;
  *
  */
 public class StateEngine {
-	
-	private RocketState state;
-	private RocketView view;
-	private RocketActions actions;
-	
-	public StateEngine(RocketView view, RocketActions actions) {
-		this.view = view;
-		this.actions = actions;
-	}
-	
-	public void render(RocketModel model) {
-		if(model.getCounter() == 0) {
-			this.changeStateToLaunched();
-		} else if(model.getCounter() == 10) {
-			this.changeStateToCounting();
-		}
-		
-		this.view.display(this.getRepresentation(model));
-		this.nextAction(model);
-	}
-	
-	public void nextAction(RocketModel model) {
-		if(model.getCounter() <= 10 && model.getCounter() > 0 && this.state.getClass().equals(CountingState.class)){
-			this.actions.decrement();
-		}
-	}
-	
-	public String getRepresentation(RocketModel model) {
-		return this.state.getStateRepresentation(model);
-	}
-	
-	public void changeStateToLaunched() {
-		this.setState(new LaunchedState());
-	}
-	
-	public void changeStateToCounting() {
-		this.setState(new CountingState());
-	}
-	
-	public RocketState getState() {
-		return this.state;
-	}
 
-	public void setState(RocketState state) {
-		this.state = state;
-	}
+  private RocketState state;
+  private RocketView view;
+  private RocketActions actions;
 
+  public StateEngine(RocketView view, RocketActions actions) {
+    this.view = view;
+    this.actions = actions;
+  }
+
+  /**
+   * Method for render model 
+   * 
+   * @param model from RocketModel
+   */
+  public void render(RocketModel model) {
+    if (model.getCounter() == 0) {
+      this.changeStateToLaunched();
+    } else if (model.getCounter() == 10) {
+      this.changeStateToCounting();
+    }
+
+    this.view.display(this.getRepresentation(model));
+    this.nextAction(model);
+  }
+
+  /**
+   * Method calculates next action
+   * 
+   * @param model contains rocket model data
+   */
+  public void nextAction(RocketModel model) {
+    if (model.getCounter() <= 10 && model.getCounter() > 0 && this.state.getClass().equals(CountingState.class)) {
+      this.actions.decrement(); 
+    }
+  }
+
+  public String getRepresentation(RocketModel model) {
+    return this.state.getStateRepresentation(model);
+  }
+
+  public void changeStateToLaunched() {
+    this.setState(new LaunchedState());
+  }
+
+  public void changeStateToCounting() {
+    this.setState(new CountingState());
+  }
+
+  public RocketState getState() {
+    return this.state;  
+  }
+
+  public void setState(RocketState state) {
+    this.state = state;
+  }
 }

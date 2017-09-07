@@ -28,39 +28,47 @@ package com.iluwatar.sam;
  *
  */
 public class RocketModel {
-	
-	private int counter;
-	private StateEngine stateEngine; 
-	
-	public RocketModel() {
-	}
-	
-	public void present(RocketModel proposedModel) {
-		if((proposedModel.getCounter() >= 0) && (proposedModel.getCounter() <= 10)) {
-			this.setCounter(proposedModel.getCounter());
-			stateEngine.render(this);
-		}
-	}
-	
-	public void initModel() {
-		this.counter = -1;
-		this.stateEngine.setState(new ReadyState());
-		stateEngine.render(this);
-	}
-	
-	public int getCounter() {
-		return counter;
-	}
 
-	public StateEngine getStateEngine() {
-		return stateEngine;
-	}
+  private int counter;
+  private StateEngine stateEngine; 
 
-	public void setCounter(int counter) {
-		this.counter = counter;
-	}
+  public RocketModel() {
+  }
+  
+  /**
+   * Method present model from actions
+   * 
+   * @param proposedModel model from actions
+   */
+  public void present(RocketModel proposedModel) {
+    if (proposedModel.getCounter() >= 0 && proposedModel.getCounter() <= 10 ) {
+      this.setCounter(proposedModel.getCounter());
+      stateEngine.render(this);
+    }
+  }
 
-	public void setStateEngine(StateEngine stateEngine) {
-		this.stateEngine = stateEngine;
-	}
+  /**
+   * Method for init model
+   */
+  public void initModel() {
+    this.counter = -1;
+    this.stateEngine.setState(new ReadyState());
+    stateEngine.render(this); 
+  }
+
+  public int getCounter() {
+    return counter;
+  }
+
+  public StateEngine getStateEngine() {
+    return stateEngine;
+  }
+
+  public void setCounter(int counter) {
+    this.counter = counter;
+  }
+  
+  public void setStateEngine(StateEngine stateEngine) {
+    this.stateEngine = stateEngine;
+  }
 }

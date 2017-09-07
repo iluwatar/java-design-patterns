@@ -26,6 +26,6 @@ package com.iluwatar.sam;
  * State interface
  */
 public interface RocketState {
-	
-	String getStateRepresentation(RocketModel model);	
+
+  String getStateRepresentation(RocketModel model);
 }
