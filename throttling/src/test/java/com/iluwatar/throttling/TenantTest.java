@@ -20,32 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.tls;
+package com.iluwatar.throttling;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.nio.file.AccessDeniedException;
+import com.iluwatar.throttling.Tenant;
+
+import java.security.InvalidParameterException;
 
 /**
- * B2BServiceTest class to test the B2BService
+ * TenantTest to test the creation of Tenant with valid parameters.
  */
-public class B2BServiceTest {
+public class TenantTest {
 
-  @Test
-  public void counterResetTest() throws AccessDeniedException {
-    Tenant tenant = new Tenant("testTenant", 100);
-    B2BService service = new B2BService(tenant);
-
-    for (int i = 0; i < 20; i++) {
-      service.dummyCustomerApi();
-      try {
-        Thread.sleep(100);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-    }
-    int counter = service.getCurrentCallsCount();
-    Assert.assertTrue("", counter < 11);
+  @Test(expected = InvalidParameterException.class)
+  public void constructorTest() {
+    Tenant tenant = new Tenant("FailTenant", -1);
   }
 }

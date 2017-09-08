@@ -20,19 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.tls;
+package com.iluwatar.throttling;
 
 import org.junit.Test;
 
-import java.security.InvalidParameterException;
-
 /**
- * TenantTest to test the creation of Tenant with valid parameters.
+ * Application test
  */
-public class TenantTest {
+public class AppTest {
 
-  @Test(expected = InvalidParameterException.class)
-  public void constructorTest() {
-    Tenant tenant = new Tenant("FailTenant", -1);
+  @Test
+  public void test() {
+    final String[] args = {};
+    App.main(args);
   }
 }

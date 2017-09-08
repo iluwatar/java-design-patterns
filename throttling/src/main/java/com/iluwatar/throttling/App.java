@@ -21,12 +21,17 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.tls;
+package com.iluwatar.throttling;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.file.AccessDeniedException;
+import com.iluwatar.throttling.timer.Throttler;
+import com.iluwatar.throttling.timer.ThrottleTimerImpl;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Throttling pattern is a design pattern to throttle or limit the use of resources or even a complete service by
@@ -49,36 +54,36 @@ public class App {
    */
   public static void main(String[] args) {
 
-    Tenant adidas = new Tenant("Adidas", 80);
-    Tenant nike = new Tenant("Nike", 70);
+    Tenant adidas = new Tenant("Adidas", 5);
+    Tenant nike = new Tenant("Nike", 6);
 
-    B2BService adidasService = new B2BService(adidas);
-    B2BService nikeService = new B2BService(nike);
-
-    Runnable adidasTask = () -> makeServiceCalls(adidasService);
-    Runnable nikeTask = () -> makeServiceCalls(nikeService);
-
-    new Thread(adidasTask).start();
-    new Thread(nikeTask).start();
+    ExecutorService executorService = Executors.newFixedThreadPool(2);
+    
+    executorService.execute(() -> makeServiceCalls(adidas));
+    executorService.execute(() -> makeServiceCalls(nike));
+    
+    executorService.shutdown();
+    try {
+      executorService.awaitTermination(10, TimeUnit.SECONDS);
+    } catch (InterruptedException e) {
+      LOGGER.error("Executor Service terminated: {}", e.getMessage());
+    }
   }
 
   /**
    * Make calls to the B2BService dummy API
    * @param service an instance of B2BService
    */
-  private static void makeServiceCalls(B2BService service) {
-    for (int i = 0; i < 500; i++) {
+  private static void makeServiceCalls(Tenant tenant) {
+    Throttler timer = new ThrottleTimerImpl(10);
+    B2BService service = new B2BService(timer);
+    for (int i = 0; i < 20; i++) {
+      service.dummyCustomerApi(tenant);
+//    Sleep is introduced to keep the output in check and easy to view and analyze the results.
       try {
-        service.dummyCustomerApi();
-//      This block is introduced to keep the output in check and easy to view and analyze the results.
-        try {
-          Thread.sleep(10);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-//      It can be removed if required.
-      } catch (AccessDeniedException e) {
-        LOGGER.error("###  {}  ###", e.getMessage());
+        Thread.sleep(1);
+      } catch (InterruptedException e) {
+        LOGGER.error("Thread interrupted: {}", e.getMessage());
       }
     }
   }
