@@ -50,20 +50,23 @@ function initLunrIndex() {
     // Wait for the data to load and add it to lunr
     window.search_index.then(function(loaded_data) {
       window.idx = lunr(function() {
-          this.ref('id');
-          this.field('title');
-          this.field('category');
-          this.field('tags');
-          this.field('date');
-          this.field('content');
+        // remove stemmer to prevent 'caching' to be mapped to 'cach'
+        this.pipeline.remove(lunr.stemmer)
 
-          loaded_data.forEach(function (doc, index) {
-            this.add(
-                $.extend({
-                    "id": index
-                }, doc)
-            );
-          }, this)
+        this.ref('id');
+        this.field('title');
+        this.field('category');
+        this.field('tags');
+        this.field('date');
+        this.field('content');
+
+        loaded_data.forEach(function (doc, index) {
+          this.add(
+              $.extend({
+                  "id": index
+              }, doc)
+          );
+        }, this)
       });
     });
 }
