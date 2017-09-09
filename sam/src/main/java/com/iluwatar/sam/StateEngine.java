@@ -31,7 +31,7 @@ public class StateEngine {
   private RocketState state;
   private RocketView view;
   private RocketActions actions;
-
+  
   public StateEngine(RocketView view, RocketActions actions) {
     this.view = view;
     this.actions = actions;
@@ -76,11 +76,11 @@ public class StateEngine {
     this.setState(new CountingState());
   }
 
-  public RocketState getState() {
-    return this.state;  
-  }
-
   public void setState(RocketState state) {
     this.state = state;
+  }
+  
+  public RocketState getState() {
+    return this.state;
   }
 }

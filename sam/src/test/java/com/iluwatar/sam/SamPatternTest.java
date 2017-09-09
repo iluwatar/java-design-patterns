@@ -20,55 +20,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.sam;
 
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
 /**
- * Class defining model
+ * 
+ * Test pattern
  *
  */
-public class RocketModel {
+public class SamPatternTest {
 
-  private int counter;
-  private StateEngine stateEngine; 
-
-  public RocketModel() {
+  private RocketModel model;
+  private RocketView view;
+  private RocketActions actions;
+  private StateEngine stateEngine;
+  
+  @Before
+  public void setUp() throws Exception {
+    model = new RocketModel();
+    actions = new RocketActions(model);
+    view = new RocketView(actions);
+    stateEngine = new StateEngine(view, actions);
+    
   }
   
-  /**
-   * Method present model from actions
-   * 
-   * @param proposedModel model from actions
-   */
-  public void present(RocketModel proposedModel) {
-    if (proposedModel.getCounter() >= 0 && proposedModel.getCounter() <= 10 ) {
-      this.setCounter(proposedModel.getCounter());
-      stateEngine.render(this);
-    }
+  @Test
+  public void testPattern() throws Exception {
+    assertNotNull(model);
+    assertNotNull(view);
+    assertNotNull(actions);
+    assertNotNull(stateEngine);
+    
+    model.setStateEngine(stateEngine);
+    model.initModel();
+    view.start();
+    
+    assertTrue(model.getStateEngine().getState() instanceof LaunchedState);
+    
   }
 
-  /**
-   * Method for init model
-   */
-  public void initModel() {
-    this.counter = -1;
-    this.stateEngine.setState(new ReadyState());
-    stateEngine.render(this); 
-  }
-
-  public int getCounter() {
-    return counter;
-  }
-
-  public void setCounter(int counter) {
-    this.counter = counter;
-  }
-  
-  public void setStateEngine(StateEngine stateEngine) {
-    this.stateEngine = stateEngine;
-  }
-  
-  public StateEngine getStateEngine() {
-    return stateEngine;
-  }
 }
