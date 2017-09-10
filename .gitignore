@@ -17,3 +17,4 @@ datanucleus.log
 /bin/
 *.log
 data-mapper/src/main/resources/log4j.xml
+event-sourcing/Journal.json
