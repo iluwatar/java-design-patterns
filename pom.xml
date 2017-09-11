@@ -145,7 +145,8 @@
         <module>cqrs</module>
         <module>event-sourcing</module>
         <module>data-transfer-object</module>
-    </modules>
+    <module>throttling</module>
+  </modules>
 
     <dependencyManagement>
         <dependencies>
