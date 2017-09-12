@@ -57,8 +57,6 @@ function initLunrIndex() {
         this.field('title');
         this.field('category');
         this.field('tags');
-        this.field('date');
-        this.field('content');
 
         loaded_data.forEach(function (doc, index) {
           this.add(
