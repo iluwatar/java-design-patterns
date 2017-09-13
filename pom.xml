@@ -394,7 +394,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <argLine>-Xmx1024M ${argLine}</argLine>
+                    <argLine>-Xmx1024M --add-modules java.xml.bind ${argLine}</argLine>
                 </configuration>
             </plugin>
             <plugin>
