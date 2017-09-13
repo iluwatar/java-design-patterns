@@ -111,7 +111,7 @@
 						<artifactId>datanucleus-maven-plugin</artifactId>
 						<version>${datanucleus-maven-plugin.version}</version>
 						<configuration>
-							<fork>false</fork>
+							<fork>true</fork>
 							<log4jConfiguration>${basedir}/log4j.properties</log4jConfiguration>
 							<verbose>true</verbose>
 							<props>${basedir}/datanucleus.properties</props>
