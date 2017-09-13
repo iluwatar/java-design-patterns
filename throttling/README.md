@@ -1,6 +1,6 @@
 ---
 layout: pattern
-title: Throttling pattern
+title: Throttling
 folder: throttling
 permalink: /patterns/throttling/
 tags:
