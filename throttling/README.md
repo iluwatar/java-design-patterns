@@ -3,15 +3,14 @@ layout: pattern
 title: Throttling
 folder: throttling
 permalink: /patterns/throttling/
+categories: Behavioral
 tags:
  - Java
  - Difficulty-Beginner
- - Throttling
 ---
 
 ## Intent
 Ensure that a given client is not able to access service resources more than the assigned limit.
-![alt text](./etc/throttling-patern.png "Throttling pattern")
 
 ## Applicability
 The Throttling pattern should be used:
