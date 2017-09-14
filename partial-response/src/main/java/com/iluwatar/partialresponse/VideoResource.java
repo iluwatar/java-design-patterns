@@ -46,7 +46,7 @@ public class VideoResource {
   /**
    * @param id     video id
    * @param fields fields to get information about
-   * @return json of specified fields of particular video by id
+   * @return full response if no fields specified else partial response for given field.
    */
   public String getDetails(Integer id, String... fields) throws Exception {
     if (fields.length == 0) {
