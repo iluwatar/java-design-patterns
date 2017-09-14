@@ -52,4 +52,16 @@ public class Video {
     this.publisher = publisher;
     this.status = status;
   }
+
+  @Override
+  public String toString() {
+    return "Video{" +
+        "id='" + id + '\'' +
+        ", title='" + title + '\'' +
+        ", length=" + length +
+        ", description='" + description + '\'' +
+        ", publisher='" + publisher + '\'' +
+        ", status='" + status + '\'' +
+        '}';
+  }
 }
