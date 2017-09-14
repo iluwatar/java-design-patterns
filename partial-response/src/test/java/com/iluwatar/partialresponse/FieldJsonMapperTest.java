@@ -24,37 +24,30 @@
 
 package com.iluwatar.partialresponse;
 
-import java.lang.reflect.Field;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
- * Map a video to json
+ * tests {@link FieldJsonMapper}.
  */
-public class FieldJsonMapper {
+public class FieldJsonMapperTest {
+  private FieldJsonMapper mapper;
 
-  /**
-   * @param video  object containing video information
-   * @param fields fields information to get
-   * @return json of required fields from video
-   */
-  public String toJson(Video video, String[] fields) throws Exception {
-    StringBuilder json = new StringBuilder().append("{");
-
-    for (int i = 0, fieldsLength = fields.length; i < fieldsLength; i++) {
-      json.append(getString(video, Video.class.getDeclaredField(fields[i])));
-      if (i != fieldsLength - 1) {
-        json.append(",");
-      }
-    }
-    json.append("}");
-    return json.toString();
+  @Before
+  public void setUp() {
+    mapper = new FieldJsonMapper();
   }
 
-  private String getString(Video video, Field declaredField) throws IllegalAccessException {
-    declaredField.setAccessible(true);
-    Object value = declaredField.get(video);
-    if (declaredField.get(video) instanceof Integer) {
-      return "\"" + declaredField.getName() + "\"" + ": " + value;
-    }
-    return "\"" + declaredField.getName() + "\"" + ": " + "\"" + value.toString() + "\"";
+  @Test
+  public void shouldReturnJsonForSpecifiedFieldsInVideo() throws Exception {
+    String[] fields = new String[]{"id", "title", "length"};
+    Video video = new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|", "Hideaki Anno", "Japanese");
+
+    String jsonFieldResponse = mapper.toJson(video, fields);
+
+    String expectedDetails = "{\"id\": 2,\"title\": \"Godzilla Resurgence\",\"length\": 120}";
+    assertEquals(expectedDetails, jsonFieldResponse);
   }
 }

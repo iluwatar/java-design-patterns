@@ -48,7 +48,7 @@ public class VideoResource {
    * @param fields fields to get information about
    * @return json of specified fields of particular video by id
    */
-  public String getDetails(Integer id, String... fields) {
+  public String getDetails(Integer id, String... fields) throws Exception {
     if (fields.length == 0) {
       return videos.get(id).toString();
     }

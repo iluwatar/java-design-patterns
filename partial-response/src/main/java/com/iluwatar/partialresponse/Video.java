@@ -59,7 +59,7 @@ public class Video {
   @Override
   public String toString() {
     return "{"
-        + "\"id\": \"" + id + "\","
+        + "\"id\": " + id + ","
         + "\"title\": \"" + title + "\","
         + "\"length\": " + length + ","
         + "\"description\": \"" + description + "\","

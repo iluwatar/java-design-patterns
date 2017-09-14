@@ -58,19 +58,19 @@ public class VideoResourceTest {
   }
 
   @Test
-  public void shouldGiveVideoDetailsById() {
+  public void shouldGiveVideoDetailsById() throws Exception {
     String actualDetails = resource.getDetails(1);
 
-    String expectedDetails = "{\"id\": \"1\",\"title\": \"Avatar\",\"length\": 178,\"description\": "
+    String expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178,\"description\": "
         + "\"epic science fiction film\",\"director\": \"James Cameron\",\"language\": \"English\",}";
     assertEquals(expectedDetails, actualDetails);
   }
 
   @Test
-  public void shouldGiveSpecifiedFieldsInformationOfVideo() {
-    String[] fields = new String[]{"title", "length"};
+  public void shouldGiveSpecifiedFieldsInformationOfVideo() throws Exception {
+    String[] fields = new String[]{"id", "title", "length"};
 
-    String expectedDetails = "{\"id\": \"1\",\"title\": \"Avatar\",\"length\": 178}";
+    String expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178}";
     when(fieldJsonMapper.toJson(any(Video.class), eq(fields))).thenReturn(expectedDetails);
 
     String actualFieldsDetails = resource.getDetails(2, fields);
