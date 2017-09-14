@@ -33,7 +33,7 @@ public class VideoResource {
     this.videos = videos;
   }
 
-  public String getDenials(String id) {
+  public String getDetails(String id) {
     return videos.get(id).toString();
   }
 }

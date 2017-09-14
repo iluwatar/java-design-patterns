@@ -44,7 +44,7 @@ public class VideoResourceTest {
 
   @Test
   public void shouldGiveVideoDetailsById() {
-    String details = resource.getDenials("1");
+    String details = resource.getDetails("1");
     System.out.println(details);
   }
 }
