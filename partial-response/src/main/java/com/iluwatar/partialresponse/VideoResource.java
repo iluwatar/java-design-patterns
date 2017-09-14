@@ -27,13 +27,13 @@ package com.iluwatar.partialresponse;
 import java.util.Map;
 
 public class VideoResource {
-  private Map<String, Video> videos;
+  private Map<Integer, Video> videos;
 
-  public VideoResource(Map<String, Video> videos) {
+  public VideoResource(Map<Integer, Video> videos) {
     this.videos = videos;
   }
 
-  public String getDetails(String id) {
+  public String getDetails(Integer id) {
     return videos.get(id).toString();
   }
 }

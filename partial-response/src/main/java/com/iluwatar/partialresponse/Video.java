@@ -29,7 +29,7 @@ package com.iluwatar.partialresponse;
  * <p>
  */
 public class Video {
-  private String id;
+  private Integer id;
   private String title;
   private Integer length;
   private String description;
@@ -41,10 +41,10 @@ public class Video {
    * @param title       video title
    * @param length      video length in minutes
    * @param description video description by publisher
-   * @param director   video director name
-   * @param language      video language {private, public}
+   * @param director    video director name
+   * @param language    video language {private, public}
    */
-  public Video(String id, String title, Integer length, String description, String director, String language) {
+  public Video(Integer id, String title, Integer length, String description, String director, String language) {
     this.id = id;
     this.title = title;
     this.length = length;
@@ -55,13 +55,12 @@ public class Video {
 
   @Override
   public String toString() {
-    return "Video{" +
-        "id='" + id + '\'' +
-        ", title='" + title + '\'' +
-        ", length=" + length +
-        ", description='" + description + '\'' +
-        ", director='" + director + '\'' +
-        ", language='" + language + '\'' +
-        '}';
+    return "{" +
+        "\"id\": \"" + id + "\"," +
+        "\"title\": \"" + title + "\"," +
+        "\"description\": \"" + description + "\"," +
+        "\"director\": \"" + director + "\"," +
+        "\"language\": \"" + language + "\"," +
+        "}";
   }
 }
