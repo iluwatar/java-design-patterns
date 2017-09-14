@@ -31,26 +31,26 @@ package com.iluwatar.partialresponse;
 public class Video {
   private String id;
   private String title;
-  private Long length;
+  private Integer length;
   private String description;
-  private String publisher;
-  private String status;
+  private String director;
+  private String language;
 
   /**
    * @param id          video unique id
    * @param title       video title
-   * @param length      video length in seconds
+   * @param length      video length in minutes
    * @param description video description by publisher
-   * @param publisher   video publisher name
-   * @param status      video status {private, public}
+   * @param director   video director name
+   * @param language      video language {private, public}
    */
-  public Video(String id, String title, Long length, String description, String publisher, String status) {
+  public Video(String id, String title, Integer length, String description, String director, String language) {
     this.id = id;
     this.title = title;
     this.length = length;
     this.description = description;
-    this.publisher = publisher;
-    this.status = status;
+    this.director = director;
+    this.language = language;
   }
 
   @Override
@@ -60,8 +60,8 @@ public class Video {
         ", title='" + title + '\'' +
         ", length=" + length +
         ", description='" + description + '\'' +
-        ", publisher='" + publisher + '\'' +
-        ", status='" + status + '\'' +
+        ", director='" + director + '\'' +
+        ", language='" + language + '\'' +
         '}';
   }
 }

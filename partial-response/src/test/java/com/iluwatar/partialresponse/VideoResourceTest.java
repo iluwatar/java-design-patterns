@@ -36,9 +36,9 @@ public class VideoResourceTest {
   @Before
   public void setUp() {
     Map<String, Video> videos = new HashMap<>();
-    videos.put("1", new Video("1", "title 1", 100L, "", "", ""));
-    videos.put("1", new Video("2", "title 2", 100L, "", "", ""));
-    videos.put("1", new Video("3", "title 3", 100L, "", "", ""));
+    videos.put("1", new Video("1", "Avatar", 178, "epic science fiction film", "James Cameron", "English"));
+    videos.put("1", new Video("2", "Godzilla Resurgence", 120, "Action & drama movie|", "Hideaki Anno", "Japanese"));
+    videos.put("1", new Video("3", "Interstellar", 169, "Adventure & Sci-Fi", "Christopher Nolan", "English"));
     resource = new VideoResource(videos);
   }
 
