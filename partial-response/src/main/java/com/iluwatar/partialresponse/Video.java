@@ -53,15 +53,18 @@ public class Video {
     this.language = language;
   }
 
+  /**
+   * @return json representaion of video
+   */
   @Override
   public String toString() {
-    return "{" +
-        "\"id\": \"" + id + "\"," +
-        "\"title\": \"" + title + "\"," +
-        "\"length\": " + length + "," +
-        "\"description\": \"" + description + "\"," +
-        "\"director\": \"" + director + "\"," +
-        "\"language\": \"" + language + "\"," +
-        "}";
+    return "{"
+        + "\"id\": \"" + id + "\","
+        + "\"title\": \"" + title + "\","
+        + "\"length\": " + length + ","
+        + "\"description\": \"" + description + "\","
+        + "\"director\": \"" + director + "\","
+        + "\"language\": \"" + language + "\","
+        + "}";
   }
 }

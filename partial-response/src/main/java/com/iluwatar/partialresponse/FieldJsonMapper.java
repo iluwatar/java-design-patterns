@@ -24,7 +24,16 @@
 
 package com.iluwatar.partialresponse;
 
+/**
+ * Map a video to json
+ */
 public class FieldJsonMapper {
+
+  /**
+   * @param video  object containing video information
+   * @param fields fields information to get
+   * @return json of required fields from video
+   */
   public String toJson(Video video, String[] fields) {
     return null;
   }
