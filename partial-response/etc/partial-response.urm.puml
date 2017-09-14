@@ -2,6 +2,7 @@
 package com.iluwatar.partialresponse {
   class FieldJsonMapper {
     + FieldJsonMapper()
+    - getString(video : Video, declaredField : Field) : String
     + toJson(video : Video, fields : String[]) : String
   }
   class Video {
@@ -13,6 +14,11 @@ package com.iluwatar.partialresponse {
     - title : String
     + Video(id : Integer, title : String, length : Integer, description : String, director : String, language : String)
     + toString() : String
+  }
+  class VideoClientApp {
+    - LOGGER : Logger {static}
+    + VideoClientApp()
+    + main(args : String[]) {static}
   }
   class VideoResource {
     - fieldJsonMapper : FieldJsonMapper
