@@ -58,6 +58,7 @@ public class Video {
     return "{" +
         "\"id\": \"" + id + "\"," +
         "\"title\": \"" + title + "\"," +
+        "\"length\": " + length + "," +
         "\"description\": \"" + description + "\"," +
         "\"director\": \"" + director + "\"," +
         "\"language\": \"" + language + "\"," +

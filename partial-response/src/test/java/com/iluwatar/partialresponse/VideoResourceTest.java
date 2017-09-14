@@ -48,7 +48,7 @@ public class VideoResourceTest {
   public void shouldGiveVideoDetailsById() {
     String details = resource.getDetails(1);
 
-    String expectedDetails = "{\"id\": \"1\",\"title\": \"Avatar\",\"description\": \"epic science fiction film\",\"director\": \"James Cameron\",\"language\": \"English\",}";
-    assertEquals(details, expectedDetails);
+    String expectedDetails = "{\"id\": \"1\",\"title\": \"Avatar\",\"length\": 178,\"description\": \"epic science fiction film\",\"director\": \"James Cameron\",\"language\": \"English\",}";
+    assertEquals(expectedDetails, details);
   }
 }
