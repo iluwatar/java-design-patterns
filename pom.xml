@@ -113,7 +113,6 @@
         <module>layers</module>
         <module>message-channel</module>
         <module>fluentinterface</module>
-        <module>reactor</module>
         <module>caching</module>
         <module>publish-subscribe</module>
         <module>delegation</module>
@@ -146,7 +145,7 @@
         <module>event-sourcing</module>
         <module>data-transfer-object</module>
     <module>throttling</module>
-        <module>unitofwork</module>
+        <module>unit-of-work</module>
     </modules>
 
     <dependencyManagement>
@@ -303,6 +302,7 @@
                                         </versionRange>
                                         <goals>
                                             <goal>prepare-agent</goal>
+                                        </goals>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
