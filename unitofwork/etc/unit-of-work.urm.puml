@@ -1,0 +1,10 @@
+@startuml
+package com.iluwatar.unitofwork {
+  class Student {
+    - address : String
+    - id : Integer
+    - name : String
+    + Student(id : Integer, name : String, address : String)
+  }
+}
+@enduml
