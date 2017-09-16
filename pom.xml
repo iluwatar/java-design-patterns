@@ -146,7 +146,8 @@
         <module>event-sourcing</module>
         <module>data-transfer-object</module>
     <module>throttling</module>
-  </modules>
+        <module>unitofwork</module>
+    </modules>
 
     <dependencyManagement>
         <dependencies>
