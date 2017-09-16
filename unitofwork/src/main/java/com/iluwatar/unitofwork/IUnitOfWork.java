@@ -34,4 +34,6 @@ public interface IUnitOfWork<T> {
 
   public void registerDeleted(T entity);
 
+  public void commit();
+
 }
