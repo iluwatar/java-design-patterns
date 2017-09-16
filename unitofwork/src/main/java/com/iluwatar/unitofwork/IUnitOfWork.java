@@ -28,12 +28,16 @@ package com.iluwatar.unitofwork;
  * @param <T> Any generic entity
  */
 public interface IUnitOfWork<T> {
-  public void registerNew(T entity);
+  String INSERT = "INSERT";
+  String DELETE = "DELETE";
+  String MODIFY = "MODIFY";
 
-  public void registerModified(T entity);
+  void registerNew(T entity);
 
-  public void registerDeleted(T entity);
+  void registerModified(T entity);
 
-  public void commit();
+  void registerDeleted(T entity);
+
+  void commit();
 
 }

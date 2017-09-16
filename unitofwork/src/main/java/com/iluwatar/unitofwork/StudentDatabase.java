@@ -25,22 +25,19 @@
 package com.iluwatar.unitofwork;
 
 /**
- * {@link Student} is an entity.
+ * Act as Database for student records.
  */
-public class Student {
-  private Integer id;
-  private String name;
-  private String address;
+public class StudentDatabase {
 
-  /**
-   * @param id      student unique id
-   * @param name    name of student
-   * @param address address of student
-   */
-  public Student(Integer id, String name, String address) {
-    this.id = id;
-    this.name = name;
-    this.address = address;
+  public void insert(Student student) {
+    //Some insert logic to DB
   }
 
+  public void modify(Student student) {
+    //Some modify logic to DB
+  }
+
+  public void delete(Student student) {
+    //Some delete logic to DB
+  }
 }
