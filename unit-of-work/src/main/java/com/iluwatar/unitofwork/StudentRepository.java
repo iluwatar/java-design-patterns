@@ -24,6 +24,9 @@
 
 package com.iluwatar.unitofwork;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +36,8 @@ import java.util.Map;
  * supports unit of work for student data.
  */
 public class StudentRepository implements IUnitOfWork<Student> {
+  private static final Logger LOGGER = LoggerFactory.getLogger(StudentRepository.class);
+
   private Map<String, List<Student>> context;
   private StudentDatabase studentDatabase;
 
@@ -47,17 +52,20 @@ public class StudentRepository implements IUnitOfWork<Student> {
 
   @Override
   public void registerNew(Student student) {
+    LOGGER.info("Registering {} for insert in context.", student.getName());
     register(student, IUnitOfWork.INSERT);
   }
 
   @Override
   public void registerModified(Student student) {
+    LOGGER.info("Registering {} for modify in context.", student.getName());
     register(student, IUnitOfWork.MODIFY);
 
   }
 
   @Override
   public void registerDeleted(Student student) {
+    LOGGER.info("Registering {} for delete in context.", student.getName());
     register(student, IUnitOfWork.DELETE);
   }
 
@@ -75,6 +83,7 @@ public class StudentRepository implements IUnitOfWork<Student> {
     if (context == null || context.size() == 0) {
       return;
     }
+    LOGGER.info("Commit started");
     if (context.containsKey(IUnitOfWork.INSERT)) {
       commitInsert();
     }
@@ -85,26 +94,30 @@ public class StudentRepository implements IUnitOfWork<Student> {
     if (context.containsKey(IUnitOfWork.DELETE)) {
       commitDelete();
     }
+    LOGGER.info("Commit finished.");
   }
 
-  private void commitDelete() {
-    List<Student> deletedStudents = context.get(IUnitOfWork.DELETE);
-    for (Student student : deletedStudents) {
-      studentDatabase.delete(student);
+  private void commitInsert() {
+    List<Student> studentsToBeInserted = context.get(IUnitOfWork.INSERT);
+    for (Student student : studentsToBeInserted) {
+      LOGGER.info("Saving {} to database.", student.getName());
+      studentDatabase.insert(student);
     }
   }
 
   private void commitModify() {
     List<Student> modifiedStudents = context.get(IUnitOfWork.MODIFY);
     for (Student student : modifiedStudents) {
+      LOGGER.info("Modifying {} to database.", student.getName());
       studentDatabase.modify(student);
     }
   }
 
-  private void commitInsert() {
-    List<Student> studentsToBeInserted = context.get(IUnitOfWork.INSERT);
-    for (Student student : studentsToBeInserted) {
-      studentDatabase.insert(student);
+  private void commitDelete() {
+    List<Student> deletedStudents = context.get(IUnitOfWork.DELETE);
+    for (Student student : deletedStudents) {
+      LOGGER.info("Deleting {} to database.", student.getName());
+      studentDatabase.delete(student);
     }
   }
 }

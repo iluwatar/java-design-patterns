@@ -24,34 +24,29 @@
 
 package com.iluwatar.unitofwork;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
- * {@link Student} is an entity.
+ * {@link StudentManagementApp} Application for managing student data.
  */
-public class Student {
-  private Integer id;
-  private String name;
-  private String address;
-
+public class StudentManagementApp {
   /**
-   * @param id      student unique id
-   * @param name    name of student
-   * @param address address of student
+   *
+   * @param args no argument sent
    */
-  public Student(Integer id, String name, String address) {
-    this.id = id;
-    this.name = name;
-    this.address = address;
-  }
+  public static void main(String[] args) {
+    Student ram = new Student(1, "Ram", "Street 9, Cupertino");
+    Student shyam = new Student(2, "Shyam", "Z bridge, Pune");
+    Student gopi = new Student(3, "Gopi", "Street 10, Mumbai");
 
-  public String getName() {
-    return name;
-  }
+    HashMap<String, List<Student>> context = new HashMap<>();
+    StudentDatabase studentDatabase = new StudentDatabase();
+    StudentRepository studentRepository = new StudentRepository(context, studentDatabase);
 
-  public Integer getId() {
-    return id;
-  }
-
-  public String getAddress() {
-    return address;
+    studentRepository.registerNew(ram);
+    studentRepository.registerModified(shyam);
+    studentRepository.registerDeleted(gopi);
+    studentRepository.commit();
   }
 }
