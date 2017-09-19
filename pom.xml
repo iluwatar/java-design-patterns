@@ -473,6 +473,8 @@
                         <param>decorator</param>
                         <param>facade</param>
                         <param>flyweight</param>
+                        <param>proxy</param>
+                        <param>chain</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
