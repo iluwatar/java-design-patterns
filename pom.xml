@@ -113,6 +113,7 @@
         <module>layers</module>
         <module>message-channel</module>
         <module>fluentinterface</module>
+        <module>reactor</module>
         <module>caching</module>
         <module>publish-subscribe</module>
         <module>delegation</module>
@@ -302,7 +303,6 @@
                                         </versionRange>
                                         <goals>
                                             <goal>prepare-agent</goal>
-                                        </goals>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
