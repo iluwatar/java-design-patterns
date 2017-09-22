@@ -1,5 +1,9 @@
 @startuml
 package com.iluwatar.unitofwork {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
   interface IUnitOfWork<T> {
     + DELETE : String {static}
     + INSERT : String {static}
@@ -23,10 +27,6 @@ package com.iluwatar.unitofwork {
     + delete(student : Student)
     + insert(student : Student)
     + modify(student : Student)
-  }
-  class StudentManagementApp {
-    + StudentManagementApp()
-    + main(args : String[]) {static}
   }
   class StudentRepository {
     - LOGGER : Logger {static}
