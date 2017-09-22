@@ -32,15 +32,15 @@ import java.util.Map;
 
 /**
  * The Partial response pattern is a design pattern in which client specifies fields to fetch to serve.
- * Here {@link VideoClientApp} is playing as client for {@link VideoResource} server.
+ * Here {@link App} is playing as client for {@link VideoResource} server.
  * Client ask for specific fields information in video to server.
  * <p>
  * <p>
  * {@link VideoResource} act as server to serve video information.
  */
 
-public class VideoClientApp {
-  private static final Logger LOGGER = LoggerFactory.getLogger(VideoClientApp.class);
+public class App {
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Method as act client and request to server for video details.
