@@ -52,8 +52,7 @@ public class App {
     videos.put(1, new Video(1, "Avatar", 178, "epic science fiction film", "James Cameron", "English"));
     videos.put(2, new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|", "Hideaki Anno", "Japanese"));
     videos.put(3, new Video(3, "Interstellar", 169, "Adventure & Sci-Fi", "Christopher Nolan", "English"));
-    FieldJsonMapper fieldJsonMapper = new FieldJsonMapper();
-    VideoResource videoResource = new VideoResource(fieldJsonMapper, videos);
+    VideoResource videoResource = new VideoResource(new FieldJsonMapper(), videos);
 
 
     LOGGER.info("Retrieving full response from server:-");
