@@ -28,9 +28,9 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * {@link StudentManagementApp} Application for managing student data.
+ * {@link App} Application for managing student data.
  */
-public class StudentManagementApp {
+public class App {
   /**
    *
    * @param args no argument sent
