@@ -28,9 +28,9 @@ package com.iluwatar.unitofwork;
  * {@link Student} is an entity.
  */
 public class Student {
-  private Integer id;
-  private String name;
-  private String address;
+  private final Integer id;
+  private final String name;
+  private final String address;
 
   /**
    * @param id      student unique id
