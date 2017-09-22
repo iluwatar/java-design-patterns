@@ -29,12 +29,12 @@ package com.iluwatar.partialresponse;
  * <p>
  */
 public class Video {
-  private Integer id;
-  private String title;
-  private Integer length;
-  private String description;
-  private String director;
-  private String language;
+  private final Integer id;
+  private final String title;
+  private final Integer length;
+  private final String description;
+  private final String director;
+  private final String language;
 
   /**
    * @param id          video unique id
