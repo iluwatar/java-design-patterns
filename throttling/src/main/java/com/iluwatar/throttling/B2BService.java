@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright (c) 2014 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.mutex;
+package com.iluwatar.throttling;
 
-import org.junit.Test;
-import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.iluwatar.throttling.timer.Throttler;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Application Test Entrypoint
+ * A service which accepts a tenant and throttles the resource based on the time given to the tenant.
  */
-public class AppTest {
-  @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+class B2BService {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(B2BService.class);
+
+  public B2BService(Throttler timer) {
+    timer.start();
+  }
+
+  /**
+   *
+   * @return customer id which is randomly generated
+   */
+  public int dummyCustomerApi(Tenant tenant) {
+    String tenantName = tenant.getName();
+    int count = CallsCount.getCount(tenantName);
+    LOGGER.debug("Counter for {} : {} ", tenant.getName(), count);
+    if (count >= tenant.getAllowedCallsPerSecond()) {
+      LOGGER.error("API access per second limit reached for: {}", tenantName);
+      return -1;
+    }
+    CallsCount.incrementCount(tenantName);
+    return getRandomCustomerId();
+  }
+
+  private int getRandomCustomerId() {
+    return ThreadLocalRandom.current().nextInt(1, 10000);
   }
 }

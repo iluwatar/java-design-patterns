@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright (c) 2014 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.mutex;
+/**
+ * 
+ */
+package com.iluwatar.throttling.timer;
 
-import org.junit.Test;
-import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import com.iluwatar.throttling.CallsCount;
 
 /**
- * Application Test Entrypoint
+ * Implementation of throttler interface. This class resets the counter every second.
+ * @author drastogi
+ *
  */
-public class AppTest {
-  @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+public class ThrottleTimerImpl implements Throttler {
+
+  private int throttlePeriod;
+  
+  public ThrottleTimerImpl(int throttlePeriod) {
+    this.throttlePeriod = throttlePeriod;
+  }
+  
+  /**
+   * A timer is initiated with this method. The timer runs every second and resets the
+   * counter.
+   */
+  public void start() {
+    new Timer(true).schedule(new TimerTask() {
+      @Override
+      public void run() {
+        CallsCount.reset();
+      }
+    }, 0, throttlePeriod);
   }
 }

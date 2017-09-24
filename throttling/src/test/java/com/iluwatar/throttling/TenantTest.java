@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright (c) 2014 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.mutex;
+package com.iluwatar.throttling;
 
 import org.junit.Test;
-import java.io.IOException;
+
+import com.iluwatar.throttling.Tenant;
+
+import java.security.InvalidParameterException;
 
 /**
- * Application Test Entrypoint
+ * TenantTest to test the creation of Tenant with valid parameters.
  */
-public class AppTest {
-  @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+public class TenantTest {
+
+  @Test(expected = InvalidParameterException.class)
+  public void constructorTest() {
+    Tenant tenant = new Tenant("FailTenant", -1);
   }
 }

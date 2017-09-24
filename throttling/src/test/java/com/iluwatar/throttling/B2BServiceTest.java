@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright (c) 2014 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.mutex;
+package com.iluwatar.throttling;
 
+import org.junit.Assert;
 import org.junit.Test;
-import java.io.IOException;
+
+import com.iluwatar.throttling.timer.ThrottleTimerImpl;
+import com.iluwatar.throttling.timer.Throttler;
 
 /**
- * Application Test Entrypoint
+ * B2BServiceTest class to test the B2BService
  */
-public class AppTest {
+public class B2BServiceTest {
+  
   @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+  public void dummyCustomerApiTest() {
+    Tenant tenant = new Tenant("testTenant", 2);
+    Throttler timer = new ThrottleTimerImpl(10);
+    B2BService service = new B2BService(timer);
+    
+    for (int i = 0; i < 5; i++) {
+      service.dummyCustomerApi(tenant);
+    }
+    
+    int counter = CallsCount.getCount(tenant.getName());
+    Assert.assertTrue("Counter limit must be reached", counter == 2);
   }
 }

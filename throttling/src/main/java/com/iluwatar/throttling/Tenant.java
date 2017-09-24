@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright (c) 2014 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.mutex;
+package com.iluwatar.throttling;
 
-import org.junit.Test;
-import java.io.IOException;
+import java.security.InvalidParameterException;
 
 /**
- * Application Test Entrypoint
+ * A Pojo class to create a basic Tenant with the allowed calls per second.
  */
-public class AppTest {
-  @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+public class Tenant {
+
+  private String name;
+  private int allowedCallsPerSecond;
+
+  /**
+   *
+   * @param name Name of the tenant
+   * @param allowedCallsPerSecond The number of calls allowed for a particular tenant.
+   * @throws InvalidParameterException If number of calls is less than 0, throws exception.
+   */
+  public Tenant(String name, int allowedCallsPerSecond) {
+    if (allowedCallsPerSecond < 0) {
+      throw new InvalidParameterException("Number of calls less than 0 not allowed");
+    }
+    this.name = name;
+    this.allowedCallsPerSecond = allowedCallsPerSecond;
+    CallsCount.addTenant(name);
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getAllowedCallsPerSecond() {
+    return allowedCallsPerSecond;
   }
 }
