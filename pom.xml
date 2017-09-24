@@ -145,8 +145,9 @@
         <module>cqrs</module>
         <module>event-sourcing</module>
         <module>data-transfer-object</module>
-    <module>throttling</module>
+        <module>throttling</module>
         <module>unit-of-work</module>
+        <module>partial-response</module>
     </modules>
 
     <dependencyManagement>
@@ -474,6 +475,8 @@
                         <param>decorator</param>
                         <param>facade</param>
                         <param>flyweight</param>
+                        <param>proxy</param>
+                        <param>chain</param>
                     </skipForProjects>
                 </configuration>
             </plugin>
