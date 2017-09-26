@@ -21,7 +21,7 @@ When a business transaction is completed all the these updates are sent as one
 ## Applicability
 Use the Unit Of Work pattern when
 
-* The client is asking to optimize the time taken for database transactions.
+* To optimize the time taken for database transactions.
 * To send changes to database as a unit of work which ensures atomicity of the transaction.
 * You want to reduce number of database calls.
 
