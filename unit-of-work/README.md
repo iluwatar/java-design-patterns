@@ -23,7 +23,7 @@ Use the Unit Of Work pattern when
 
 * To optimize the time taken for database transactions.
 * To send changes to database as a unit of work which ensures atomicity of the transaction.
-* You want to reduce number of database calls.
+* To reduce number of database calls.
 
 ## Credits
 
