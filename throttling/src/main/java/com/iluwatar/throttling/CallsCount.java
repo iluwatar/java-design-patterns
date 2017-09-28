@@ -61,7 +61,7 @@ public final class CallsCount {
    * @param tenantName name of the tenant.
    * @return the count of the tenant.
    */
-  public static Long getCount(String tenantName) {
+  public static long getCount(String tenantName) {
     return tenantCallsCount.get(tenantName).get();
   }
   
