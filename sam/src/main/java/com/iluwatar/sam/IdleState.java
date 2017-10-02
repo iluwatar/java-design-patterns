@@ -23,14 +23,14 @@
 package com.iluwatar.sam;
 
 /**
- * Class represents rocket counter in counting state and rocket counter value
+ * 
+ * Class represents rocket counter in idle state.
  *
  */
-public class CountingState implements RocketState {
-
+public class IdleState implements RocketState {
+  
   @Override
   public void render(RocketModel model) {
-    String stateRepresentation = "Rocket counter: " + model.getCounter();
-    RocketView.getInstance().display(stateRepresentation); 
+    RocketView.getInstance().display("Rocket is in IDLE state. Press 'Prepare' for prepare counter.");
   }
 }

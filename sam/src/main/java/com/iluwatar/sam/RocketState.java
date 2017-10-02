@@ -23,9 +23,12 @@
 package com.iluwatar.sam;
 
 /**
- * State interface
+ * An interface that defines the "render" method. It receives the model of the racket counter and 
+ * depending on the state of the application, the method of this state will be invoked and a certain 
+ * value will be displayed on the screen.
  */
 public interface RocketState {
+  
+  void render(RocketModel model);
 
-  String getStateRepresentation(RocketModel model);
 }

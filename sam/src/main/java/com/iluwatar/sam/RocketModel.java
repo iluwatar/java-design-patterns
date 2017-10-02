@@ -24,26 +24,58 @@
 package com.iluwatar.sam;
 
 /**
- * Class defining model
+ * Class defining model of the rocket counter. Model are the "acceptors" from "Paxos" protocol, 
+ * and when the action proposes new state then model can either accept or reject the proposal.
  *
  */
 public class RocketModel {
 
   private int counter;
-  private StateEngine stateEngine; 
+  private RocketStateEngine stateEngine; 
 
   public RocketModel() {
   }
   
   /**
-   * Method present model from actions
+   * A method that receives a new value of the model from the action. Here, checks are made 
+   * whether the state and value of the model are valid. If the model is valid, a certain change 
+   * in the state or the setting of a new value of the counter will be made and as such will be 
+   * passed to a certain state.
    * 
-   * @param proposedModel model from actions
+   * @param proposedModel Model value from actions
    */
-  public void present(RocketModel proposedModel) {
-    if (proposedModel.getCounter() >= 0 && proposedModel.getCounter() <= 10 ) {
-      this.setCounter(proposedModel.getCounter());
-      stateEngine.render(this);
+  public void propose(RocketModel proposedModel) {
+    if (proposedModel.getStateEngine().getCurrentState() instanceof IdleState 
+        && stateEngine.getCurrentState() instanceof LaunchedState) {
+      stateEngine.setIdleState();
+      stateEngine.getCurrentState().render(this);
+    } else if (stateEngine.getCurrentState() instanceof LaunchedState) {
+      stateEngine.getCurrentState().render(this);
+    } else if (proposedModel.getStateEngine().getCurrentState() instanceof ReadyState 
+        && stateEngine.getCurrentState() instanceof IdleState) {
+      stateEngine.setReadyState();
+      stateEngine.getCurrentState().render(this);
+    } else if (proposedModel.getStateEngine().getCurrentState() instanceof CountingState 
+        && stateEngine.getCurrentState() instanceof ReadyState) {
+      counter = proposedModel.getCounter();
+      stateEngine.setCountingState();
+      stateEngine.getCurrentState().render(this);
+    } else if (proposedModel.getStateEngine().getCurrentState() instanceof CountingState 
+        && stateEngine.getCurrentState() instanceof CountingState) {
+      if (proposedModel.getCounter() == 0) {
+        stateEngine.setLaunchedState();
+        stateEngine.getCurrentState().render(this);
+      }
+      counter = proposedModel.getCounter();
+      stateEngine.getCurrentState().render(this);
+    } else if (proposedModel.getStateEngine().getCurrentState() instanceof AbortedState 
+        && stateEngine.getCurrentState() instanceof CountingState) {
+      stateEngine.setAbortedState();
+      stateEngine.getCurrentState().render(this);
+    } else if (proposedModel.getStateEngine().getCurrentState() instanceof AbortedState 
+        && stateEngine.getCurrentState() instanceof AbortedState && proposedModel.getCounter() == 0) {
+      stateEngine.setIdleState();
+      stateEngine.getCurrentState().render(this);
     }
   }
 
@@ -51,9 +83,7 @@ public class RocketModel {
    * Method for init model
    */
   public void initModel() {
-    this.counter = -1;
-    this.stateEngine.setState(new ReadyState());
-    stateEngine.render(this); 
+    this.stateEngine = new RocketStateEngine();
   }
 
   public int getCounter() {
@@ -64,11 +94,7 @@ public class RocketModel {
     this.counter = counter;
   }
   
-  public void setStateEngine(StateEngine stateEngine) {
-    this.stateEngine = stateEngine;
-  }
-  
-  public StateEngine getStateEngine() {
+  public RocketStateEngine getStateEngine() {
     return stateEngine;
   }
 }

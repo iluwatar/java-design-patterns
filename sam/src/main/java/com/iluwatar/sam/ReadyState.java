@@ -23,13 +23,13 @@
 package com.iluwatar.sam;
 
 /**
- * Class defining ready state
+ * Class represents rocket counter in ready state
  *
  */
 public class ReadyState implements RocketState {
 
   @Override
-  public String getStateRepresentation(RocketModel model) {
-    return "Rocket is in ready state.";
+  public void render(RocketModel model) {
+    RocketView.getInstance().display("Rocket counter is in ready state. Press Start to Start."); 
   }
 }

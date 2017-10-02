@@ -23,13 +23,14 @@
 package com.iluwatar.sam;
 
 /**
- * Class defining launched state
+ * Class represents rocket counter in launched state and rocket counter value
  *
  */
 public class LaunchedState implements RocketState {
 
   @Override
-  public String getStateRepresentation(RocketModel model) {
-    return "Rocket counter: " + model.getCounter() + " Rocket launched.";
+  public void render(RocketModel model) {
+    RocketView.getInstance().display("Rocket LAUNCHED.");
+    RocketView.getInstance().getRocketActions().goToIdleAction();
   }
 }

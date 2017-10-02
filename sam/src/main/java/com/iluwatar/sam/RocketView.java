@@ -1,51 +1,118 @@
-/**
- * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package com.iluwatar.sam;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
- * Class defining view
+ * 
+ * Class represent rocket view class. This class is part of java swing gui library.
+ * The class contains buttons that control the operation of the counter, as well as the 
+ * display of the value of the counter and the state rocket counter.
  *
  */
-public class RocketView {
-
+public class RocketView extends JFrame {
+  
+  private static RocketView instance = null;
   private RocketActions actions;
-  private static final Logger LOGGER = LoggerFactory.getLogger(RocketView.class);
-
-  public RocketView(RocketActions actions) {
+  private JButton btnStart;
+  private JButton btnAbort;
+  private JButton btnPrepare;
+  private JLabel lbl;
+  
+  private RocketView() {
+  }
+  
+  /**
+   * Method for GUI initialization and actions for buttons.
+   */
+  private void initialise() {
+    setSize(400, 300);
+    setLocationRelativeTo(null);
+    setTitle("Rocket Counter");
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    lbl = new JLabel("Rocket is in IDLE state. Press 'Prepare' for prepare counter.");
+    btnStart = new JButton("Start Counter");
+    btnStart.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        actions.startAction();
+      }
+    });
+    
+    btnAbort = new JButton("Abort Counter");
+    btnAbort.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        actions.abortAction();
+      }
+    });
+    
+    btnPrepare = new JButton("Prepare Counter");
+    btnPrepare.addActionListener(new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        actions.prepareAction();
+      }
+    });
+    
+    JPanel panel1 = new JPanel();
+    add(panel1);
+    btnStart.setVisible(false);
+    btnAbort.setVisible(false);
+    panel1.add(lbl);
+    panel1.add(btnStart);
+    panel1.add(btnAbort);
+    panel1.add(btnPrepare);
+  }
+  
+  /**
+   * 
+   * @return Instance of rocket view. 
+   */
+  public static RocketView getInstance() {
+    if (instance == null) {
+      instance = new RocketView();
+      instance.initialise();
+    }
+    return instance;
+  }
+  
+  /**
+   * This method serves to hide or show the buttons depending on the condition in which the rocket counter is.
+   * @param stateRepresentation from rocket state
+   */
+  public void display(String stateRepresentation) {
+    lbl.setText(stateRepresentation);
+    if (this.actions.getRocketModel().getStateEngine().getCurrentState() instanceof CountingState) {
+      btnStart.setVisible(false);
+      btnAbort.setVisible(true);
+    } else if (this.actions.getRocketModel().getStateEngine().getCurrentState() instanceof LaunchedState) {
+      btnAbort.setVisible(false);
+    } else if (this.actions.getRocketModel().getStateEngine().getCurrentState() instanceof IdleState) {
+      btnAbort.setVisible(false);
+      btnStart.setVisible(false);
+      btnPrepare.setVisible(true);
+    } else if (this.actions.getRocketModel().getStateEngine().getCurrentState() instanceof ReadyState) {
+      btnPrepare.setVisible(false);
+      btnStart.setVisible(true);
+    } else if (this.actions.getRocketModel().getStateEngine().getCurrentState() instanceof AbortedState) {
+      btnAbort.setVisible(false);
+    }
+  }
+  
+  public void setRocketActions(RocketActions actions) {
     this.actions = actions;
   }
-
-  //Simulate view event
-  public void start() {
-    LOGGER.info("Rocket counter started.");
-    this.actions.start();
+  
+  public RocketActions getRocketActions() {
+    return this.actions;
   }
-
-  public void display(String representation) {
-    LOGGER.info(representation);
-  }
-
 }

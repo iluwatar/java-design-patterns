@@ -24,7 +24,7 @@ package com.iluwatar.sam;
 
 /**
  * SAM (State-Action-Model) is a pattern for implementing user interfaces. 
- * SAM decouples view from the bussines logic.
+ * SAM decouples view from the business logic.
  * We have here model, actions, view and state engine.
  * View start action simulate event on view.
  *
@@ -37,15 +37,11 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-
-    //create model, actions, view, state engine
     RocketModel model = new RocketModel();
-    RocketActions actions = new RocketActions(model);
-    RocketView view = new RocketView(actions);
-    StateEngine stateEngine = new StateEngine(view, actions);
-    model.setStateEngine(stateEngine);
     model.initModel();
-    //simulate view event
-    view.start();
+    RocketActions actions = new RocketActions(model);
+    RocketView view = RocketView.getInstance();
+    view.setRocketActions(actions);
+    view.setVisible(true);
   }
 }

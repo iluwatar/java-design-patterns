@@ -22,45 +22,16 @@
  */
 package com.iluwatar.sam;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
-
 /**
  * 
- * Test pattern
+ * Class represents rocket counter in AbortedState
  *
  */
-public class SamPatternTest {
+public class AbortedState implements RocketState {
 
-  private RocketModel model;
-  private RocketView view;
-  private RocketActions actions;
-  private StateEngine stateEngine;
-  
-  @Before
-  public void setUp() throws Exception {
-    model = new RocketModel();
-    actions = new RocketActions(model);
-    view = new RocketView(actions);
-    stateEngine = new StateEngine(view, actions);
-    
-  }
-  
-  @Test
-  public void testPattern() throws Exception {
-    assertNotNull(model);
-    assertNotNull(view);
-    assertNotNull(actions);
-    assertNotNull(stateEngine);
-    
-    model.setStateEngine(stateEngine);
-    model.initModel();
-    view.start();
-    
-    assertTrue(model.getStateEngine().getState() instanceof LaunchedState);
-    
+  @Override
+  public void render(RocketModel model) {
+    RocketView.getInstance().display("Rocket counter is in aborting state.");
   }
 
 }
