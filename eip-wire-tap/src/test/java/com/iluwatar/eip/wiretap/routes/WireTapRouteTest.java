@@ -1,4 +1,4 @@
-package com.iluwatar.eip.wiretap;
+package com.iluwatar.eip.wiretap.routes;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Message;
