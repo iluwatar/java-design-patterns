@@ -25,7 +25,7 @@ public class App {
    *
    * @param args command line args
    */
-  public static void main(String[] args) throws Exception{
+  public static void main(String[] args) throws Exception {
     // Run Spring Boot application and obtain ApplicationContext
     ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
 
