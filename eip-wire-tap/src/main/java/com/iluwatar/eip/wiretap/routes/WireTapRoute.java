@@ -27,6 +27,6 @@ public class WireTapRoute extends RouteBuilder {
     from("{{entry}}").wireTap("direct:wireTap").to("{{endpoint}}");
 
     // Wire tap route
-    from("direct:wireTap").to("{{wireTapEndpoint}}");
+    from("direct:wireTap").log("Message: ${body}").to("{{wireTapEndpoint}}");
   }
 }

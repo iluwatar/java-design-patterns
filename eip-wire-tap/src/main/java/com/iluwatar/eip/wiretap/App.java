@@ -1,7 +1,10 @@
 package com.iluwatar.eip.wiretap;
 
+import org.apache.camel.CamelContext;
+import org.apache.camel.builder.RouteBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * In most integration cases there is a need to monitor the messages flowing through the system. It is usually achieved
@@ -22,7 +25,27 @@ public class App {
    *
    * @param args command line args
    */
-  public static void main(String[] args) {
-    SpringApplication.run(App.class, args);
+  public static void main(String[] args) throws Exception{
+    // Run Spring Boot application and obtain ApplicationContext
+    ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
+
+    // Get CamelContext from ApplicationContext
+    CamelContext camelContext = (CamelContext) context.getBean("camelContext");
+
+    // Add a new routes that will handle endpoints form WireTapRoute class.
+    camelContext.addRoutes(new RouteBuilder() {
+
+      @Override
+      public void configure() throws Exception {
+        from("{{endpoint}}").log("ENDPOINT: ${body}");
+        from("{{wireTapEndpoint}}").log("WIRETAPPED ENDPOINT: ${body}");
+      }
+
+    });
+
+    // Add producer that will send test message to an entry point in WireTapRoute
+    camelContext.createProducerTemplate().sendBody("{{entry}}", "Test message");
+
+    SpringApplication.exit(context);
   }
 }
