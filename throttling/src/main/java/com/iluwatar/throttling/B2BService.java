@@ -46,7 +46,7 @@ class B2BService {
    */
   public int dummyCustomerApi(Tenant tenant) {
     String tenantName = tenant.getName();
-    int count = CallsCount.getCount(tenantName);
+    long count = CallsCount.getCount(tenantName);
     LOGGER.debug("Counter for {} : {} ", tenant.getName(), count);
     if (count >= tenant.getAllowedCallsPerSecond()) {
       LOGGER.error("API access per second limit reached for: {}", tenantName);
