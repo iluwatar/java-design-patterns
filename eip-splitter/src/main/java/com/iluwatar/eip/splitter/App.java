@@ -7,9 +7,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
+ * It is very common in integration systems that incoming messages consists of many items bundled together. For example
+ * an invoice document contains multiple invoice lines describing transaction (quantity, name of provided
+ * service/sold goods, price etc.). Such bundled messages may not be accepted by other systems. This is where splitter
+ * pattern comes in handy. It will take the whole document, split it based on given criteria and send individual
+ * items to the endpoint.
  *
  * <p>
+ * Splitter allows you to split messages based on defined criteria. It takes original message, process it and send
+ * multiple parts to the output channel. It is not defined if it should keep the order of items though.
  * </p>
+ *
  */
 @SpringBootApplication
 public class App {
