@@ -95,7 +95,7 @@ public class FactoryMethodTest {
    */
   private void verifyWeapon(Weapon weapon, WeaponType expectedWeaponType, Class<?> clazz) {
     assertTrue("Weapon must be an object of: " + clazz.getName(), clazz.isInstance(weapon));
-    assertEquals("Weapon must be of weaponType: " + clazz.getName(), expectedWeaponType,
+    assertEquals("Weapon must be of weaponType: " + expectedWeaponType, expectedWeaponType,
         weapon.getWeaponType());
   }
 }

@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
  * <p>
  * It is responsible for reading and loading the contents of a given file.
  */
-public class FileLoader implements Serializable{
+public class FileLoader implements Serializable {
 
   /**
    * Generated serial version UID

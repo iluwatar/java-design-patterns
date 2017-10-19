@@ -35,7 +35,7 @@ import com.iluwatar.throttling.CallsCount;
  * @author drastogi
  *
  */
-public class ThrottleTimerImpl implements Throttler{
+public class ThrottleTimerImpl implements Throttler {
 
   private int throttlePeriod;
   

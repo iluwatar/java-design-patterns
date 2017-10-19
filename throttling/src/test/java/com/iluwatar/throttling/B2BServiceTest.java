@@ -36,14 +36,13 @@ public class B2BServiceTest {
   @Test
   public void dummyCustomerApiTest() {
     Tenant tenant = new Tenant("testTenant", 2);
-    Throttler timer = new ThrottleTimerImpl(10);
+    Throttler timer = new ThrottleTimerImpl(100);
     B2BService service = new B2BService(timer);
-    
+
     for (int i = 0; i < 5; i++) {
       service.dummyCustomerApi(tenant);
     }
-    
-    int counter = CallsCount.getCount(tenant.getName());
+    long counter = CallsCount.getCount(tenant.getName());
     Assert.assertTrue("Counter limit must be reached", counter == 2);
   }
 }
