@@ -148,6 +148,7 @@
         <module>throttling</module>
         <module>partial-response</module>
         <module>eip-wire-tap</module>
+        <module>eip-splitter</module>
     </modules>
 
     <dependencyManagement>
