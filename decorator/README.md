@@ -35,7 +35,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Lets take the troll example. First of all we have a simple troll implementing the troll interface
+Let's take the troll example. First of all we have a simple troll implementing the troll interface
 
 ```
 public interface Troll {
