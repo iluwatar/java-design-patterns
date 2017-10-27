@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -41,78 +41,78 @@ import static org.junit.Assert.assertTrue;
  */
 public class ReaderAndWriterTest {
 
-  private InMemoryAppender appender;
+	private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
-    appender = new InMemoryAppender();
-  }
+	@Before
+	public void setUp() {
+		appender = new InMemoryAppender();
+	}
 
-  @After
-  public void tearDown() {
-    appender.stop();
-  }
+	@After
+	public void tearDown() {
+		appender.stop();
+	}
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderAndWriterTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReaderAndWriterTest.class);
 
-  /**
-   * Verify reader and writer can only get the lock to read and write orderly
-   */
-  @Test
-  public void testReadAndWrite() throws Exception {
+	/**
+	 * Verify reader and writer can only get the lock to read and write orderly
+	 */
+	@Test
+	public void testReadAndWrite() throws Exception {
 
-    ReaderWriterLock lock = new ReaderWriterLock();
+		ReaderWriterLock lock = new ReaderWriterLock();
 
-    Reader reader1 = new Reader("Reader 1", lock.readLock());
-    Writer writer1 = new Writer("Writer 1", lock.writeLock());
+		Reader reader1 = new Reader("Reader 1", lock.readLock());
+		Writer writer1 = new Writer("Writer 1", lock.writeLock());
 
-    ExecutorService executeService = Executors.newFixedThreadPool(2);
-    executeService.submit(reader1);
-    // Let reader1 execute first
-    Thread.sleep(150);
-    executeService.submit(writer1);
+		ExecutorService executeService = Executors.newFixedThreadPool(2);
+		executeService.submit(reader1);
+		// Let reader1 execute first
+		Thread.sleep(150);
+		executeService.submit(writer1);
 
-    executeService.shutdown();
-    try {
-      executeService.awaitTermination(10, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown", e);
-    }
+		executeService.shutdown();
+		try {
+			executeService.awaitTermination(10, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			LOGGER.error("Error waiting for ExecutorService shutdown", e);
+		}
 
-    assertTrue(appender.logContains("Reader 1 begin"));
-    assertTrue(appender.logContains("Reader 1 finish"));
-    assertTrue(appender.logContains("Writer 1 begin"));
-    assertTrue(appender.logContains("Writer 1 finish"));
-  }
+		assertTrue(appender.logContains("Reader 1 begin"));
+		assertTrue(appender.logContains("Reader 1 finish"));
+		assertTrue(appender.logContains("Writer 1 begin"));
+		assertTrue(appender.logContains("Writer 1 finish"));
+	}
 
-  /**
-   * Verify reader and writer can only get the lock to read and write orderly
-   */
-  @Test
-  public void testWriteAndRead() throws Exception {
+	/**
+	 * Verify reader and writer can only get the lock to read and write orderly
+	 */
+	@Test
+	public void testWriteAndRead() throws Exception {
 
-    ExecutorService executeService = Executors.newFixedThreadPool(2);
-    ReaderWriterLock lock = new ReaderWriterLock();
+		ExecutorService executeService = Executors.newFixedThreadPool(2);
+		ReaderWriterLock lock = new ReaderWriterLock();
 
-    Reader reader1 = new Reader("Reader 1", lock.readLock());
-    Writer writer1 = new Writer("Writer 1", lock.writeLock());
+		Reader reader1 = new Reader("Reader 1", lock.readLock());
+		Writer writer1 = new Writer("Writer 1", lock.writeLock());
 
-    executeService.submit(writer1);
-    // Let writer1 execute first
-    Thread.sleep(150);
-    executeService.submit(reader1);
+		executeService.submit(writer1);
+		// Let writer1 execute first
+		Thread.sleep(150);
+		executeService.submit(reader1);
 
-    executeService.shutdown();
-    try {
-      executeService.awaitTermination(10, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown", e);
-    }
+		executeService.shutdown();
+		try {
+			executeService.awaitTermination(10, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			LOGGER.error("Error waiting for ExecutorService shutdown", e);
+		}
 
-    assertTrue(appender.logContains("Writer 1 begin"));
-    assertTrue(appender.logContains("Writer 1 finish"));
-    assertTrue(appender.logContains("Reader 1 begin"));
-    assertTrue(appender.logContains("Reader 1 finish"));
-  }
+		assertTrue(appender.logContains("Writer 1 begin"));
+		assertTrue(appender.logContains("Writer 1 finish"));
+		assertTrue(appender.logContains("Reader 1 begin"));
+		assertTrue(appender.logContains("Reader 1 finish"));
+	}
 }
 

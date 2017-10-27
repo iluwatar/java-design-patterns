@@ -14,41 +14,41 @@
  */
 package domainapp.dom.app.homepage;
 
-import java.util.List;
-
-import org.apache.isis.applib.annotation.ViewModel;
-
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.dom.modules.simple.SimpleObjects;
+import org.apache.isis.applib.annotation.ViewModel;
+
+import java.util.List;
 
 /**
  * Model linked to the HomePage
  * The underlying layout is specified by json
+ *
  * @see HomePageService - Service Linked to the HomePage
  */
 @ViewModel
 public class HomePageViewModel {
 
-  // endregion
+	// endregion
 
-  // region > injected services
+	// region > injected services
 
-  @javax.inject.Inject
-  SimpleObjects simpleObjects;
+	@javax.inject.Inject
+	SimpleObjects simpleObjects;
 
-  // endregion
+	// endregion
 
-  // region > title
-  public String title() {
-    return getObjects().size() + " objects";
-  }
+	// region > title
+	public String title() {
+		return getObjects().size() + " objects";
+	}
 
-  // endregion
+	// endregion
 
-  // region > object (collection)
-  @org.apache.isis.applib.annotation.HomePage
-  public List<SimpleObject> getObjects() {
-    return simpleObjects.listAll();
-  }
+	// region > object (collection)
+	@org.apache.isis.applib.annotation.HomePage
+	public List<SimpleObject> getObjects() {
+		return simpleObjects.listAll();
+	}
 
 }

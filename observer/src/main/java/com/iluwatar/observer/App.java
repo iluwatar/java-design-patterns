@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
+ *
  * The Observer pattern is a software design pattern in which an object, called the subject,
  * maintains a list of its dependents, called observers, and notifies them automatically of any
  * state changes, usually by calling one of their methods. It is mainly used to implement
@@ -39,37 +39,37 @@ import org.slf4j.LoggerFactory;
  * <p>
  * In this example {@link Weather} has a state that can be observed. The {@link Orcs} and
  * {@link Hobbits} register as observers and receive notifications when the {@link Weather} changes.
- * 
+ *
  */
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  /**
-   * Program entry point
-   * 
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+	/**
+	 * Program entry point
+	 *
+	 * @param args command line args
+	 */
+	public static void main(String[] args) {
 
-    Weather weather = new Weather();
-    weather.addObserver(new Orcs());
-    weather.addObserver(new Hobbits());
+		Weather weather = new Weather();
+		weather.addObserver(new Orcs());
+		weather.addObserver(new Hobbits());
 
-    weather.timePasses();
-    weather.timePasses();
-    weather.timePasses();
-    weather.timePasses();
+		weather.timePasses();
+		weather.timePasses();
+		weather.timePasses();
+		weather.timePasses();
 
-    // Generic observer inspired by Java Generics and Collection by Naftalin & Wadler
-    LOGGER.info("--Running generic version--");
-    GWeather gWeather = new GWeather();
-    gWeather.addObserver(new GOrcs());
-    gWeather.addObserver(new GHobbits());
+		// Generic observer inspired by Java Generics and Collection by Naftalin & Wadler
+		LOGGER.info("--Running generic version--");
+		GWeather gWeather = new GWeather();
+		gWeather.addObserver(new GOrcs());
+		gWeather.addObserver(new GHobbits());
 
-    gWeather.timePasses();
-    gWeather.timePasses();
-    gWeather.timePasses();
-    gWeather.timePasses();
-  }
+		gWeather.timePasses();
+		gWeather.timePasses();
+		gWeather.timePasses();
+		gWeather.timePasses();
+	}
 }

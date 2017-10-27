@@ -28,5 +28,5 @@ package com.iluwatar.balking;
  */
 
 public enum WashingMachineState {
-  ENABLED, WASHING
+	ENABLED, WASHING
 }

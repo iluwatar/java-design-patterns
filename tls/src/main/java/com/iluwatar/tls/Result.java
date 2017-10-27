@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,32 +31,32 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Result object that will be returned by the Callable {@link DateFormatCallable} 
+ * Result object that will be returned by the Callable {@link DateFormatCallable}
  * used in {@link App}
  *
  * @author Thomas Bauer, 2017 
  */
 public class Result {
-  // A list to collect the date values created in one thread
-  private List<Date> dateList = new ArrayList<Date>();
+	// A list to collect the date values created in one thread
+	private List<Date> dateList = new ArrayList<Date>();
 
-  // A list to collect Exceptions thrown in one threads (should be none in
-  // this example)
-  private List<String> exceptionList = new ArrayList<String>();
-  
-  /**
-   * 
-   * @return List of date values collected within an thread execution
-   */
-  public List<Date> getDateList() {
-    return dateList;
-  }
+	// A list to collect Exceptions thrown in one threads (should be none in
+	// this example)
+	private List<String> exceptionList = new ArrayList<String>();
 
-  /**
-   * 
-   * @return List of exceptions thrown within an thread execution
-   */
-  public List<String> getExceptionList() {
-    return exceptionList;
-  }
+	/**
+	 *
+	 * @return List of date values collected within an thread execution
+	 */
+	public List<Date> getDateList() {
+		return dateList;
+	}
+
+	/**
+	 *
+	 * @return List of exceptions thrown within an thread execution
+	 */
+	public List<String> getExceptionList() {
+		return exceptionList;
+	}
 }

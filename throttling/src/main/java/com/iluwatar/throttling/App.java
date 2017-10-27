@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,11 +23,10 @@
 
 package com.iluwatar.throttling;
 
+import com.iluwatar.throttling.timer.ThrottleTimerImpl;
+import com.iluwatar.throttling.timer.Throttler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.iluwatar.throttling.timer.Throttler;
-import com.iluwatar.throttling.timer.ThrottleTimerImpl;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -46,45 +45,45 @@ import java.util.concurrent.TimeUnit;
  */
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  /**
-   * Application entry point
-   * @param args main arguments
-   */
-  public static void main(String[] args) {
+	/**
+	 * Application entry point
+	 * @param args main arguments
+	 */
+	public static void main(String[] args) {
 
-    Tenant adidas = new Tenant("Adidas", 5);
-    Tenant nike = new Tenant("Nike", 6);
+		Tenant adidas = new Tenant("Adidas", 5);
+		Tenant nike = new Tenant("Nike", 6);
 
-    ExecutorService executorService = Executors.newFixedThreadPool(2);
-    
-    executorService.execute(() -> makeServiceCalls(adidas));
-    executorService.execute(() -> makeServiceCalls(nike));
-    
-    executorService.shutdown();
-    try {
-      executorService.awaitTermination(10, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      LOGGER.error("Executor Service terminated: {}", e.getMessage());
-    }
-  }
+		ExecutorService executorService = Executors.newFixedThreadPool(2);
 
-  /**
-   * Make calls to the B2BService dummy API
-   * @param service an instance of B2BService
-   */
-  private static void makeServiceCalls(Tenant tenant) {
-    Throttler timer = new ThrottleTimerImpl(10);
-    B2BService service = new B2BService(timer);
-    for (int i = 0; i < 20; i++) {
-      service.dummyCustomerApi(tenant);
+		executorService.execute(() -> makeServiceCalls(adidas));
+		executorService.execute(() -> makeServiceCalls(nike));
+
+		executorService.shutdown();
+		try {
+			executorService.awaitTermination(10, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			LOGGER.error("Executor Service terminated: {}", e.getMessage());
+		}
+	}
+
+	/**
+	 * Make calls to the B2BService dummy API
+	 * @param service an instance of B2BService
+	 */
+	private static void makeServiceCalls(Tenant tenant) {
+		Throttler timer = new ThrottleTimerImpl(10);
+		B2BService service = new B2BService(timer);
+		for (int i = 0; i < 20; i++) {
+			service.dummyCustomerApi(tenant);
 //    Sleep is introduced to keep the output in check and easy to view and analyze the results.
-      try {
-        Thread.sleep(1);
-      } catch (InterruptedException e) {
-        LOGGER.error("Thread interrupted: {}", e.getMessage());
-      }
-    }
-  }
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				LOGGER.error("Thread interrupted: {}", e.getMessage());
+			}
+		}
+	}
 }

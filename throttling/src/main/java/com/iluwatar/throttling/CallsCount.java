@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -37,41 +37,41 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public final class CallsCount {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(CallsCount.class);
-  private static Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
+	private static final Logger LOGGER = LoggerFactory.getLogger(CallsCount.class);
+	private static Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
 
-  /**
-   * Add a new tenant to the map.
-   * @param tenantName name of the tenant.
-   */
-  public static void addTenant(String tenantName) {
-    tenantCallsCount.putIfAbsent(tenantName, new AtomicLong(0));
-  }
-  
-  /**
-   * Increment the count of the specified tenant.
-   * @param tenantName name of the tenant.
-   */
-  public static void incrementCount(String tenantName) {
-    tenantCallsCount.get(tenantName).incrementAndGet();
-  }
-  
-  /**
-   * 
-   * @param tenantName name of the tenant.
-   * @return the count of the tenant.
-   */
-  public static long getCount(String tenantName) {
-    return tenantCallsCount.get(tenantName).get();
-  }
-  
-  /**
-   * Resets the count of all the tenants in the map.
-   */
-  public static void reset() {
-    LOGGER.debug("Resetting the map.");
-    for (Entry<String, AtomicLong> e : tenantCallsCount.entrySet()) {
-      tenantCallsCount.put(e.getKey(), new AtomicLong(0));
-    }
-  }
+	/**
+	 * Add a new tenant to the map.
+	 * @param tenantName name of the tenant.
+	 */
+	public static void addTenant(String tenantName) {
+		tenantCallsCount.putIfAbsent(tenantName, new AtomicLong(0));
+	}
+
+	/**
+	 * Increment the count of the specified tenant.
+	 * @param tenantName name of the tenant.
+	 */
+	public static void incrementCount(String tenantName) {
+		tenantCallsCount.get(tenantName).incrementAndGet();
+	}
+
+	/**
+	 *
+	 * @param tenantName name of the tenant.
+	 * @return the count of the tenant.
+	 */
+	public static long getCount(String tenantName) {
+		return tenantCallsCount.get(tenantName).get();
+	}
+
+	/**
+	 * Resets the count of all the tenants in the map.
+	 */
+	public static void reset() {
+		LOGGER.debug("Resetting the map.");
+		for (Entry<String, AtomicLong> e : tenantCallsCount.entrySet()) {
+			tenantCallsCount.put(e.getKey(), new AtomicLong(0));
+		}
+	}
 }

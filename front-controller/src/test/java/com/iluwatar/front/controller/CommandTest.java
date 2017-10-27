@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,55 +43,55 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class CommandTest {
 
-  private InMemoryAppender appender;
+	private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
-    appender = new InMemoryAppender();
-  }
+	@Before
+	public void setUp() {
+		appender = new InMemoryAppender();
+	}
 
-  @After
-  public void tearDown() {
-    appender.stop();
-  }
+	@After
+	public void tearDown() {
+		appender.stop();
+	}
 
-  @Parameters
-  public static List<Object[]> data() {
-    final List<Object[]> parameters = new ArrayList<>();
-    parameters.add(new Object[]{"Archer", "Displaying archers"});
-    parameters.add(new Object[]{"Catapult", "Displaying catapults"});
-    parameters.add(new Object[]{"NonExistentCommand", "Error 500"});
-    return parameters;
-  }
+	@Parameters
+	public static List<Object[]> data() {
+		final List<Object[]> parameters = new ArrayList<>();
+		parameters.add(new Object[]{"Archer", "Displaying archers"});
+		parameters.add(new Object[]{"Catapult", "Displaying catapults"});
+		parameters.add(new Object[]{"NonExistentCommand", "Error 500"});
+		return parameters;
+	}
 
-  /**
-   * The view that's been tested
-   */
-  private final String request;
+	/**
+	 * The view that's been tested
+	 */
+	private final String request;
 
-  /**
-   * The expected display message
-   */
-  private final String displayMessage;
+	/**
+	 * The expected display message
+	 */
+	private final String displayMessage;
 
-  /**
-   * Create a new instance of the {@link CommandTest} with the given view and expected message
-   *
-   * @param request        The request that's been tested
-   * @param displayMessage The expected display message
-   */
-  public CommandTest(final String request, final String displayMessage) {
-    this.displayMessage = displayMessage;
-    this.request = request;
-  }
+	/**
+	 * Create a new instance of the {@link CommandTest} with the given view and expected message
+	 *
+	 * @param request        The request that's been tested
+	 * @param displayMessage The expected display message
+	 */
+	public CommandTest(final String request, final String displayMessage) {
+		this.displayMessage = displayMessage;
+		this.request = request;
+	}
 
-  @Test
-  public void testDisplay() {
-    final FrontController frontController = new FrontController();
-    assertEquals(0, appender.getLogSize());
-    frontController.handleRequest(request);
-    assertEquals(displayMessage, appender.getLastMessage());
-    assertEquals(1, appender.getLogSize());
-  }
+	@Test
+	public void testDisplay() {
+		final FrontController frontController = new FrontController();
+		assertEquals(0, appender.getLogSize());
+		frontController.handleRequest(request);
+		assertEquals(displayMessage, appender.getLastMessage());
+		assertEquals(1, appender.getLogSize());
+	}
 
 }

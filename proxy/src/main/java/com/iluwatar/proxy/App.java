@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,7 +23,7 @@
 package com.iluwatar.proxy;
 
 /**
- * 
+ *
  * A proxy, in its most general form, is a class functioning as an interface to something else. The
  * proxy could interface to anything: a network connection, a large object in memory, a file, or
  * some other resource that is expensive or impossible to duplicate. In short, a proxy is a wrapper
@@ -36,21 +36,21 @@ package com.iluwatar.proxy;
  * <p>
  * In this example the proxy ({@link WizardTowerProxy}) controls access to the actual object (
  * {@link IvoryTower}).
- * 
+ *
  */
 public class App {
 
-  /**
-   * Program entry point
-   */
-  public static void main(String[] args) {
+	/**
+	 * Program entry point
+	 */
+	public static void main(String[] args) {
 
-    WizardTowerProxy proxy = new WizardTowerProxy(new IvoryTower());
-    proxy.enter(new Wizard("Red wizard"));
-    proxy.enter(new Wizard("White wizard"));
-    proxy.enter(new Wizard("Black wizard"));
-    proxy.enter(new Wizard("Green wizard"));
-    proxy.enter(new Wizard("Brown wizard"));
+		WizardTowerProxy proxy = new WizardTowerProxy(new IvoryTower());
+		proxy.enter(new Wizard("Red wizard"));
+		proxy.enter(new Wizard("White wizard"));
+		proxy.enter(new Wizard("Black wizard"));
+		proxy.enter(new Wizard("Green wizard"));
+		proxy.enter(new Wizard("Brown wizard"));
 
-  }
+	}
 }

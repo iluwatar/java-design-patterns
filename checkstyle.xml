@@ -50,7 +50,7 @@
 <module name="Checker">
     <property name="charset" value="UTF-8"/>
 
-	<property name="fileExtensions" value="java, xml, properties"/>
+    <property name="fileExtensions" value="java, xml, properties"/>
 
     <property name="severity" value="error"/>
 
@@ -179,7 +179,8 @@
             <property name="allowMissingThrowsTags" value="true"/>
             <property name="allowMissingReturnTag" value="true"/>
             <property name="minLineCount" value="2"/>
-            <property name="allowedAnnotations" value="Override, Test, Before, After, Parameters, Given, When, BeforeClass, AfterClass, Parameterized"/>
+            <property name="allowedAnnotations"
+                      value="Override, Test, Before, After, Parameters, Given, When, BeforeClass, AfterClass, Parameterized"/>
             <property name="allowThrowsTagsForSubclasses" value="true"/>
         </module>
         <module name="JavadocType">

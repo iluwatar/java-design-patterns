@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,7 +31,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 
+ *
  * Thread Pool pattern is where a number of threads are created to perform a number of tasks, which
  * are usually organized in a queue. The results from the tasks being executed might also be placed
  * in a queue, or the tasks might return no result. Typically, there are many more tasks than
@@ -46,54 +46,54 @@ import java.util.concurrent.Executors;
  *
  */
 public class App {
-  
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  /**
-   * Program entry point
-   * 
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-    LOGGER.info("Program started");
+	/**
+	 * Program entry point
+	 *
+	 * @param args command line args
+	 */
+	public static void main(String[] args) {
 
-    // Create a list of tasks to be executed
-    List<Task> tasks = new ArrayList<>();
-    tasks.add(new PotatoPeelingTask(3));
-    tasks.add(new PotatoPeelingTask(6));
-    tasks.add(new CoffeeMakingTask(2));
-    tasks.add(new CoffeeMakingTask(6));
-    tasks.add(new PotatoPeelingTask(4));
-    tasks.add(new CoffeeMakingTask(2));
-    tasks.add(new PotatoPeelingTask(4));
-    tasks.add(new CoffeeMakingTask(9));
-    tasks.add(new PotatoPeelingTask(3));
-    tasks.add(new CoffeeMakingTask(2));
-    tasks.add(new PotatoPeelingTask(4));
-    tasks.add(new CoffeeMakingTask(2));
-    tasks.add(new CoffeeMakingTask(7));
-    tasks.add(new PotatoPeelingTask(4));
-    tasks.add(new PotatoPeelingTask(5));
+		LOGGER.info("Program started");
 
-    // Creates a thread pool that reuses a fixed number of threads operating off a shared
-    // unbounded queue. At any point, at most nThreads threads will be active processing
-    // tasks. If additional tasks are submitted when all threads are active, they will wait
-    // in the queue until a thread is available.
-    ExecutorService executor = Executors.newFixedThreadPool(3);
+		// Create a list of tasks to be executed
+		List<Task> tasks = new ArrayList<>();
+		tasks.add(new PotatoPeelingTask(3));
+		tasks.add(new PotatoPeelingTask(6));
+		tasks.add(new CoffeeMakingTask(2));
+		tasks.add(new CoffeeMakingTask(6));
+		tasks.add(new PotatoPeelingTask(4));
+		tasks.add(new CoffeeMakingTask(2));
+		tasks.add(new PotatoPeelingTask(4));
+		tasks.add(new CoffeeMakingTask(9));
+		tasks.add(new PotatoPeelingTask(3));
+		tasks.add(new CoffeeMakingTask(2));
+		tasks.add(new PotatoPeelingTask(4));
+		tasks.add(new CoffeeMakingTask(2));
+		tasks.add(new CoffeeMakingTask(7));
+		tasks.add(new PotatoPeelingTask(4));
+		tasks.add(new PotatoPeelingTask(5));
 
-    // Allocate new worker for each task
-    // The worker is executed when a thread becomes
-    // available in the thread pool
-    for (int i = 0; i < tasks.size(); i++) {
-      Runnable worker = new Worker(tasks.get(i));
-      executor.execute(worker);
-    }
-    // All tasks were executed, now shutdown
-    executor.shutdown();
-    while (!executor.isTerminated()) {
-      Thread.yield();
-    }
-    LOGGER.info("Program finished");
-  }
+		// Creates a thread pool that reuses a fixed number of threads operating off a shared
+		// unbounded queue. At any point, at most nThreads threads will be active processing
+		// tasks. If additional tasks are submitted when all threads are active, they will wait
+		// in the queue until a thread is available.
+		ExecutorService executor = Executors.newFixedThreadPool(3);
+
+		// Allocate new worker for each task
+		// The worker is executed when a thread becomes
+		// available in the thread pool
+		for (int i = 0; i < tasks.size(); i++) {
+			Runnable worker = new Worker(tasks.get(i));
+			executor.execute(worker);
+		}
+		// All tasks were executed, now shutdown
+		executor.shutdown();
+		while (!executor.isTerminated()) {
+			Thread.yield();
+		}
+		LOGGER.info("Program finished");
+	}
 }

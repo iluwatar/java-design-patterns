@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,13 +22,13 @@
  */
 package com.iluwatar.model.view.presenter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.Serializable;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Every instance of this class represents the Model component in the Model-View-Presenter
@@ -38,73 +38,73 @@ import org.slf4j.LoggerFactory;
  */
 public class FileLoader implements Serializable {
 
-  /**
-   * Generated serial version UID
-   */
-  private static final long serialVersionUID = -4745803872902019069L;
-  
-  private static final Logger LOGGER = LoggerFactory.getLogger(FileLoader.class);
+	/**
+	 * Generated serial version UID
+	 */
+	private static final long serialVersionUID = -4745803872902019069L;
 
-  /**
-   * Indicates if the file is loaded or not.
-   */
-  private boolean loaded;
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileLoader.class);
 
-  /**
-   * The name of the file that we want to load.
-   */
-  private String fileName;
+	/**
+	 * Indicates if the file is loaded or not.
+	 */
+	private boolean loaded;
 
-  /**
-   * Loads the data of the file specified.
-   */
-  public String loadData() {
-    String dataFileName = this.fileName;
-    try (BufferedReader br = new BufferedReader(new FileReader(new File(dataFileName)))) {
-      StringBuilder sb = new StringBuilder();
-      String line;
+	/**
+	 * The name of the file that we want to load.
+	 */
+	private String fileName;
 
-      while ((line = br.readLine()) != null) {
-        sb.append(line).append('\n');
-      }
+	/**
+	 * Loads the data of the file specified.
+	 */
+	public String loadData() {
+		String dataFileName = this.fileName;
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(dataFileName)))) {
+			StringBuilder sb = new StringBuilder();
+			String line;
 
-      this.loaded = true;
+			while ((line = br.readLine()) != null) {
+				sb.append(line).append('\n');
+			}
 
-      return sb.toString();
-    } catch (Exception e) {
-      LOGGER.error("File {} does not exist", dataFileName);
-    }
+			this.loaded = true;
 
-    return null;
-  }
+			return sb.toString();
+		} catch (Exception e) {
+			LOGGER.error("File {} does not exist", dataFileName);
+		}
 
-  /**
-   * Sets the path of the file to be loaded, to the given value.
-   * 
-   * @param fileName The path of the file to be loaded.
-   */
-  public void setFileName(String fileName) {
-    this.fileName = fileName;
-  }
+		return null;
+	}
 
-  /**
-   * @return fileName The path of the file to be loaded.
-   */
-  public String getFileName() {
-    return this.fileName;
-  }
+	/**
+	 * Sets the path of the file to be loaded, to the given value.
+	 *
+	 * @param fileName The path of the file to be loaded.
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
-  /**
-   * @return True, if the file given exists, false otherwise.
-   */
-  public boolean fileExists() {
-    return new File(this.fileName).exists();
-  }
+	/**
+	 * @return fileName The path of the file to be loaded.
+	 */
+	public String getFileName() {
+		return this.fileName;
+	}
 
-  /**
-   * @return True, if the file is loaded, false otherwise.
-   */
-  public boolean isLoaded() {
-    return this.loaded;
-  }
+	/**
+	 * @return True, if the file given exists, false otherwise.
+	 */
+	public boolean fileExists() {
+		return new File(this.fileName).exists();
+	}
+
+	/**
+	 * @return True, if the file is loaded, false otherwise.
+	 */
+	public boolean isLoaded() {
+		return this.loaded;
+	}
 }

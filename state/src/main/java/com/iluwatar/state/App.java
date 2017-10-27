@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,7 +23,7 @@
 package com.iluwatar.state;
 
 /**
- * 
+ *
  * In State pattern the container object has an internal state object that defines the current
  * behavior. The state object can be changed to alter the behavior.
  * <p>
@@ -31,21 +31,21 @@ package com.iluwatar.state;
  * large monolithic conditional statements and thus improves maintainability.
  * <p>
  * In this example the {@link Mammoth} changes its behavior as time passes by.
- * 
+ *
  */
 public class App {
 
-  /**
-   * Program entry point
-   */
-  public static void main(String[] args) {
+	/**
+	 * Program entry point
+	 */
+	public static void main(String[] args) {
 
-    Mammoth mammoth = new Mammoth();
-    mammoth.observe();
-    mammoth.timePasses();
-    mammoth.observe();
-    mammoth.timePasses();
-    mammoth.observe();
+		Mammoth mammoth = new Mammoth();
+		mammoth.observe();
+		mammoth.timePasses();
+		mammoth.observe();
+		mammoth.timePasses();
+		mammoth.observe();
 
-  }
+	}
 }

@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,6 +21,7 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.promise;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,124 +59,124 @@ import java.util.concurrent.Executors;
  * a file download promise, then a promise of character frequency, then a promise of lowest frequency
  * character which is finally consumed and result is printed on console.
  * </ul>
- * 
+ *
  * @see CompletableFuture
  */
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  private static final String DEFAULT_URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/promise/README.md";
-  private final ExecutorService executor;
-  private final CountDownLatch stopLatch;
+	private static final String DEFAULT_URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/promise/README.md";
+	private final ExecutorService executor;
+	private final CountDownLatch stopLatch;
 
-  private App() {
-    executor = Executors.newFixedThreadPool(2);
-    stopLatch = new CountDownLatch(2);
-  }
+	private App() {
+		executor = Executors.newFixedThreadPool(2);
+		stopLatch = new CountDownLatch(2);
+	}
 
-  /**
-   * Program entry point
-   * @param args arguments
-   * @throws InterruptedException if main thread is interrupted.
-   * @throws ExecutionException if an execution error occurs.
-   */
-  public static void main(String[] args) throws InterruptedException, ExecutionException {
-    App app = new App();
-    try {
-      app.promiseUsage();
-    } finally {
-      app.stop();
-    }
-  }
+	/**
+	 * Program entry point
+	 * @param args arguments
+	 * @throws InterruptedException if main thread is interrupted.
+	 * @throws ExecutionException if an execution error occurs.
+	 */
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
+		App app = new App();
+		try {
+			app.promiseUsage();
+		} finally {
+			app.stop();
+		}
+	}
 
-  private void promiseUsage() {
-    calculateLineCount();
+	private void promiseUsage() {
+		calculateLineCount();
 
-    calculateLowestFrequencyChar();
-  }
+		calculateLowestFrequencyChar();
+	}
 
-  /*
-   * Calculate the lowest frequency character and when that promise is fulfilled,
-   * consume the result in a Consumer<Character>
-   */
-  private void calculateLowestFrequencyChar() {
-    lowestFrequencyChar()
-        .thenAccept(
-          charFrequency -> {
-            LOGGER.info("Char with lowest frequency is: {}", charFrequency);
-            taskCompleted();
-          }
-      );
-  }
+	/*
+	 * Calculate the lowest frequency character and when that promise is fulfilled,
+	 * consume the result in a Consumer<Character>
+	 */
+	private void calculateLowestFrequencyChar() {
+		lowestFrequencyChar()
+				.thenAccept(
+						charFrequency -> {
+							LOGGER.info("Char with lowest frequency is: {}", charFrequency);
+							taskCompleted();
+						}
+				);
+	}
 
-  /*
-   * Calculate the line count and when that promise is fulfilled, consume the result
-   * in a Consumer<Integer>
-   */
-  private void calculateLineCount() {
-    countLines()
-        .thenAccept(
-          count -> {
-            LOGGER.info("Line count is: {}", count);
-            taskCompleted();
-          }
-      );
-  }
+	/*
+	 * Calculate the line count and when that promise is fulfilled, consume the result
+	 * in a Consumer<Integer>
+	 */
+	private void calculateLineCount() {
+		countLines()
+				.thenAccept(
+						count -> {
+							LOGGER.info("Line count is: {}", count);
+							taskCompleted();
+						}
+				);
+	}
 
-  /*
-   * Calculate the character frequency of a file and when that promise is fulfilled,
-   * then promise to apply function to calculate lowest character frequency.
-   */
-  private Promise<Character> lowestFrequencyChar() {
-    return characterFrequency()
-        .thenApply(Utility::lowestFrequencyChar);
-  }
+	/*
+	 * Calculate the character frequency of a file and when that promise is fulfilled,
+	 * then promise to apply function to calculate lowest character frequency.
+	 */
+	private Promise<Character> lowestFrequencyChar() {
+		return characterFrequency()
+				.thenApply(Utility::lowestFrequencyChar);
+	}
 
-  /*
-   * Download the file at DEFAULT_URL and when that promise is fulfilled,
-   * then promise to apply function to calculate character frequency.
-   */
-  private Promise<Map<Character, Integer>> characterFrequency() {
-    return download(DEFAULT_URL)
-        .thenApply(Utility::characterFrequency);
-  }
+	/*
+	 * Download the file at DEFAULT_URL and when that promise is fulfilled,
+	 * then promise to apply function to calculate character frequency.
+	 */
+	private Promise<Map<Character, Integer>> characterFrequency() {
+		return download(DEFAULT_URL)
+				.thenApply(Utility::characterFrequency);
+	}
 
-  /*
-   * Download the file at DEFAULT_URL and when that promise is fulfilled,
-   * then promise to apply function to count lines in that file.
-   */
-  private Promise<Integer> countLines() {
-    return download(DEFAULT_URL)
-        .thenApply(Utility::countLines);
-  }
+	/*
+	 * Download the file at DEFAULT_URL and when that promise is fulfilled,
+	 * then promise to apply function to count lines in that file.
+	 */
+	private Promise<Integer> countLines() {
+		return download(DEFAULT_URL)
+				.thenApply(Utility::countLines);
+	}
 
-  /*
-   * Return a promise to provide the local absolute path of the file downloaded in background.
-   * This is an async method and does not wait until the file is downloaded.
-   */
-  private Promise<String> download(String urlString) {
-    Promise<String> downloadPromise = new Promise<String>()
-        .fulfillInAsync(
-            () -> {
-              return Utility.downloadFile(urlString);
-            }, executor)
-        .onError(
-            throwable -> {
-              throwable.printStackTrace();
-              taskCompleted();
-            }
-        );
+	/*
+	 * Return a promise to provide the local absolute path of the file downloaded in background.
+	 * This is an async method and does not wait until the file is downloaded.
+	 */
+	private Promise<String> download(String urlString) {
+		Promise<String> downloadPromise = new Promise<String>()
+				.fulfillInAsync(
+						() -> {
+							return Utility.downloadFile(urlString);
+						}, executor)
+				.onError(
+						throwable -> {
+							throwable.printStackTrace();
+							taskCompleted();
+						}
+				);
 
-    return downloadPromise;
-  }
+		return downloadPromise;
+	}
 
-  private void stop() throws InterruptedException {
-    stopLatch.await();
-    executor.shutdownNow();
-  }
+	private void stop() throws InterruptedException {
+		stopLatch.await();
+		executor.shutdownNow();
+	}
 
-  private void taskCompleted() {
-    stopLatch.countDown();
-  }
+	private void taskCompleted() {
+		stopLatch.countDown();
+	}
 }

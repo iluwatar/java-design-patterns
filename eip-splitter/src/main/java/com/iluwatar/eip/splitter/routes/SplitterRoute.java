@@ -5,25 +5,26 @@ import org.springframework.stereotype.Component;
 
 /**
  * Sample splitter route definition.
- *
+ * <p>
  * <p>
  * It consumes messages out of the <i>direct:entry</i> entry point and forwards them to <i>direct:endpoint</i>.
  * Route accepts messages having body of array or collection of objects. Splitter component split message body and
  * forwards single objects to the endpoint.
  * </p>
- *
+ * <p>
  * In this example input/output endpoints names are stored in <i>application.properties</i> file.
  */
 @Component
 public class SplitterRoute extends RouteBuilder {
 
-  /**
-   * Configures the route
-   * @throws Exception in case of exception during configuration
-   */
-  @Override
-  public void configure() throws Exception {
-    // Main route
-    from("{{entry}}").split().body().to("{{endpoint}}");
-  }
+	/**
+	 * Configures the route
+	 *
+	 * @throws Exception in case of exception during configuration
+	 */
+	@Override
+	public void configure() throws Exception {
+		// Main route
+		from("{{entry}}").split().body().to("{{endpoint}}");
+	}
 }

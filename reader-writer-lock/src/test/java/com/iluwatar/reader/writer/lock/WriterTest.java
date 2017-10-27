@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -41,49 +41,49 @@ import static org.mockito.Mockito.spy;
  */
 public class WriterTest {
 
-  private InMemoryAppender appender;
+	private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
-    appender = new InMemoryAppender(Writer.class);
-  }
+	@Before
+	public void setUp() {
+		appender = new InMemoryAppender(Writer.class);
+	}
 
-  @After
-  public void tearDown() {
-    appender.stop();
-  }
+	@After
+	public void tearDown() {
+		appender.stop();
+	}
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(WriterTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(WriterTest.class);
 
-  /**
-   * Verify that multiple writers will get the lock in order.
-   */
-  @Test
-  public void testWrite() throws Exception {
+	/**
+	 * Verify that multiple writers will get the lock in order.
+	 */
+	@Test
+	public void testWrite() throws Exception {
 
-    ExecutorService executeService = Executors.newFixedThreadPool(2);
-    ReaderWriterLock lock = new ReaderWriterLock();
+		ExecutorService executeService = Executors.newFixedThreadPool(2);
+		ReaderWriterLock lock = new ReaderWriterLock();
 
-    Writer writer1 = spy(new Writer("Writer 1", lock.writeLock()));
-    Writer writer2 = spy(new Writer("Writer 2", lock.writeLock()));
+		Writer writer1 = spy(new Writer("Writer 1", lock.writeLock()));
+		Writer writer2 = spy(new Writer("Writer 2", lock.writeLock()));
 
-    executeService.submit(writer1);
-    // Let write1 execute first
-    Thread.sleep(150);
-    executeService.submit(writer2);
+		executeService.submit(writer1);
+		// Let write1 execute first
+		Thread.sleep(150);
+		executeService.submit(writer2);
 
-    executeService.shutdown();
-    try {
-      executeService.awaitTermination(10, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown", e);
-    }
-    // Write operation will hold the write lock 250 milliseconds, so here we verify that when two
-    // writer execute concurrently, the second writer can only writes only when the first one is
-    // finished.
-    assertTrue(appender.logContains("Writer 1 begin"));
-    assertTrue(appender.logContains("Writer 1 finish"));
-    assertTrue(appender.logContains("Writer 2 begin"));
-    assertTrue(appender.logContains("Writer 2 finish"));
-  }
+		executeService.shutdown();
+		try {
+			executeService.awaitTermination(10, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			LOGGER.error("Error waiting for ExecutorService shutdown", e);
+		}
+		// Write operation will hold the write lock 250 milliseconds, so here we verify that when two
+		// writer execute concurrently, the second writer can only writes only when the first one is
+		// finished.
+		assertTrue(appender.logContains("Writer 1 begin"));
+		assertTrue(appender.logContains("Writer 1 finish"));
+		assertTrue(appender.logContains("Writer 2 begin"));
+		assertTrue(appender.logContains("Writer 2 finish"));
+	}
 }

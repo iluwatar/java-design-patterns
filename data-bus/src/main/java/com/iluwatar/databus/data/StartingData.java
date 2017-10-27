@@ -35,17 +35,17 @@ import java.time.LocalDateTime;
  */
 public class StartingData extends AbstractDataType {
 
-  private final LocalDateTime when;
+	private final LocalDateTime when;
 
-  public StartingData(LocalDateTime when) {
-    this.when = when;
-  }
+	public StartingData(LocalDateTime when) {
+		this.when = when;
+	}
 
-  public LocalDateTime getWhen() {
-    return when;
-  }
+	public LocalDateTime getWhen() {
+		return when;
+	}
 
-  public static DataType of(final LocalDateTime when) {
-    return new StartingData(when);
-  }
+	public static DataType of(final LocalDateTime when) {
+		return new StartingData(when);
+	}
 }

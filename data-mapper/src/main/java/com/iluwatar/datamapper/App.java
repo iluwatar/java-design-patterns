@@ -1,15 +1,15 @@
 /**
  * The MIT License Copyright (c) 2016 Amit Dixit
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
  * including without limitation the rights to use, copy, modify, merge, publish, distribute,
  * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all copies or
  * substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
  * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -18,9 +18,9 @@
  */
 package com.iluwatar.datamapper;
 
-import java.util.Optional;
-
 import org.apache.log4j.Logger;
+
+import java.util.Optional;
 
 /**
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
@@ -31,47 +31,48 @@ import org.apache.log4j.Logger;
  * Data Mapper itself is even unknown to the domain layer.
  * <p>
  * The below example demonstrates basic CRUD operations: Create, Read, Update, and Delete.
- * 
+ *
  */
 public final class App {
 
-  private static Logger log = Logger.getLogger(App.class);
+	private static Logger log = Logger.getLogger(App.class);
 
-  /**
-   * Program entry point.
-   * 
-   * @param args command line args.
-   */
-  public static void main(final String... args) {
+	/**
+	 * Program entry point.
+	 *
+	 * @param args command line args.
+	 */
+	public static void main(final String... args) {
 
     /* Create new data mapper for type 'first' */
-    final StudentDataMapper mapper = new StudentDataMapperImpl();
+		final StudentDataMapper mapper = new StudentDataMapperImpl();
 
     /* Create new student */
-    Student student = new Student(1, "Adam", 'A');
+		Student student = new Student(1, "Adam", 'A');
 
     /* Add student in respectibe store */
-    mapper.insert(student);
+		mapper.insert(student);
 
-    log.debug("App.main(), student : " + student + ", is inserted");
+		log.debug("App.main(), student : " + student + ", is inserted");
 
     /* Find this student */
-    final Optional<Student> studentToBeFound = mapper.find(student.getStudentId());
+		final Optional<Student> studentToBeFound = mapper.find(student.getStudentId());
 
-    log.debug("App.main(), student : " + studentToBeFound + ", is searched");
+		log.debug("App.main(), student : " + studentToBeFound + ", is searched");
 
     /* Update existing student object */
-    student = new Student(student.getStudentId(), "AdamUpdated", 'A');
+		student = new Student(student.getStudentId(), "AdamUpdated", 'A');
 
     /* Update student in respectibe db */
-    mapper.update(student);
+		mapper.update(student);
 
-    log.debug("App.main(), student : " + student + ", is updated");
-    log.debug("App.main(), student : " + student + ", is going to be deleted");
+		log.debug("App.main(), student : " + student + ", is updated");
+		log.debug("App.main(), student : " + student + ", is going to be deleted");
 
     /* Delete student in db */
-    mapper.delete(student);
-  }
+		mapper.delete(student);
+	}
 
-  private App() {}
+	private App() {
+	}
 }

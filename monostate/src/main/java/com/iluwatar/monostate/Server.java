@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,38 +26,38 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
+ *
  * The Server class. Each Server sits behind a LoadBalancer which delegates the call to the servers
  * in a simplistic Round Robin fashion.
  *
  */
 public class Server {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Server.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Server.class);
 
-  public final String host;
-  public final int port;
-  public final int id;
+	public final String host;
+	public final int port;
+	public final int id;
 
-  /**
-   * Constructor
-   */
-  public Server(String host, int port, int id) {
-    this.host = host;
-    this.port = port;
-    this.id = id;
-  }
+	/**
+	 * Constructor
+	 */
+	public Server(String host, int port, int id) {
+		this.host = host;
+		this.port = port;
+		this.id = id;
+	}
 
-  public String getHost() {
-    return host;
-  }
+	public String getHost() {
+		return host;
+	}
 
-  public int getPort() {
-    return port;
-  }
+	public int getPort() {
+		return port;
+	}
 
-  public void serve(Request request) {
-    LOGGER.info("Server ID {} associated to host : {} and port {}. Processed request with value {}",
-            id, host, port, request.value);
-  }
+	public void serve(Request request) {
+		LOGGER.info("Server ID {} associated to host : {} and port {}. Processed request with value {}",
+				id, host, port, request.value);
+	}
 }

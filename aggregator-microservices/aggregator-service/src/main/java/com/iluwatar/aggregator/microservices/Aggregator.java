@@ -35,24 +35,24 @@ import javax.annotation.Resource;
 public class Aggregator {
 
 
-  @Resource
-  private ProductInformationClient informationClient;
+	@Resource
+	private ProductInformationClient informationClient;
 
-  @Resource
-  private ProductInventoryClient inventoryClient;
+	@Resource
+	private ProductInventoryClient inventoryClient;
 
 
-  /**
-   * Retrieves product data.
-   *
-   * @return a Product.
-   */
-  @RequestMapping("/product")
-  public Product getProduct() {
-    Product product = new Product();
-    product.setTitle(informationClient.getProductTitle());
-    product.setProductInventories(inventoryClient.getProductInventories());
-    return product;
-  }
+	/**
+	 * Retrieves product data.
+	 *
+	 * @return a Product.
+	 */
+	@RequestMapping("/product")
+	public Product getProduct() {
+		Product product = new Product();
+		product.setTitle(informationClient.getProductTitle());
+		product.setProductInventories(inventoryClient.getProductInventories());
+		return product;
+	}
 
 }

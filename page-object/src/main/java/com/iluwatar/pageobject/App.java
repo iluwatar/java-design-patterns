@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
  */
 package com.iluwatar.pageobject;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -50,40 +50,40 @@ import java.io.IOException;
  */
 public final class App {
 
-  private App() {
-  }
+	private App() {
+	}
 
-  /**
-   * Application entry point
-   *
-   * <p>
-   * The application under development is a web application. Normally you would probably have a
-   * backend that is probably implemented in an object-oriented language (e.g. Java) that serves
-   * the frontend which comprises of a series of HTML, CSS, JS etc...
-   *
-   * <p>
-   * For illustrations purposes only, a very simple static html app is used here. This main method
-   * just fires up this simple web app in a default browser.
-   *
-   * @param args arguments
-   */
-  public static void main(String[] args) {
+	/**
+	 * Application entry point
+	 *
+	 * <p>
+	 * The application under development is a web application. Normally you would probably have a
+	 * backend that is probably implemented in an object-oriented language (e.g. Java) that serves
+	 * the frontend which comprises of a series of HTML, CSS, JS etc...
+	 *
+	 * <p>
+	 * For illustrations purposes only, a very simple static html app is used here. This main method
+	 * just fires up this simple web app in a default browser.
+	 *
+	 * @param args arguments
+	 */
+	public static void main(String[] args) {
 
-    try {
-      File applicationFile = new File(App.class.getClassLoader().getResource("sample-ui/login.html").getPath());
+		try {
+			File applicationFile = new File(App.class.getClassLoader().getResource("sample-ui/login.html").getPath());
 
-      // should work for unix like OS (mac, unix etc...)
-      if (Desktop.isDesktopSupported()) {
-        Desktop.getDesktop().open(applicationFile);
+			// should work for unix like OS (mac, unix etc...)
+			if (Desktop.isDesktopSupported()) {
+				Desktop.getDesktop().open(applicationFile);
 
-      } else {
-        // java Desktop not supported - above unlikely to work for Windows so try following instead...
-        Runtime.getRuntime().exec("cmd.exe start " + applicationFile);
-      }
+			} else {
+				// java Desktop not supported - above unlikely to work for Windows so try following instead...
+				Runtime.getRuntime().exec("cmd.exe start " + applicationFile);
+			}
 
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 
-  }
+	}
 }

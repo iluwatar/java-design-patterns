@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,29 +23,32 @@
 package com.iluwatar.semaphore;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * Test taking from and putting Fruit into a FruitBowl
  */
 public class FruitBowlTest {
 
-  @Test
-  public void fruitBowlTest() {
-    FruitBowl fbowl = new FruitBowl();
-    
-    assertEquals(fbowl.countFruit(), 0);
-    
-    for (int i = 1; i <= 10; i++) {
-      fbowl.put(new Fruit(Fruit.FruitType.LEMON));
-      assertEquals(fbowl.countFruit(), i);
-    }
+	@Test
+	public void fruitBowlTest() {
+		FruitBowl fbowl = new FruitBowl();
 
-    for (int i = 9; i >= 0; i--) {
-      assertNotNull(fbowl.take());
-      assertEquals(fbowl.countFruit(), i);
-    }
+		assertEquals(fbowl.countFruit(), 0);
 
-    assertNull(fbowl.take());
-  }
+		for (int i = 1; i <= 10; i++) {
+			fbowl.put(new Fruit(Fruit.FruitType.LEMON));
+			assertEquals(fbowl.countFruit(), i);
+		}
+
+		for (int i = 9; i >= 0; i--) {
+			assertNotNull(fbowl.take());
+			assertEquals(fbowl.countFruit(), i);
+		}
+
+		assertNull(fbowl.take());
+	}
 }

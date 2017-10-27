@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,48 +23,48 @@
 package com.iluwatar.model.view.controller;
 
 /**
- * 
+ *
  * GiantModel contains the giant data
  *
  */
 public class GiantModel {
 
-  private Health health;
-  private Fatigue fatigue;
-  private Nourishment nourishment;
+	private Health health;
+	private Fatigue fatigue;
+	private Nourishment nourishment;
 
-  GiantModel(Health health, Fatigue fatigue, Nourishment nourishment) {
-    this.health = health;
-    this.fatigue = fatigue;
-    this.nourishment = nourishment;
-  }
+	GiantModel(Health health, Fatigue fatigue, Nourishment nourishment) {
+		this.health = health;
+		this.fatigue = fatigue;
+		this.nourishment = nourishment;
+	}
 
-  public Health getHealth() {
-    return health;
-  }
+	public Health getHealth() {
+		return health;
+	}
 
-  public void setHealth(Health health) {
-    this.health = health;
-  }
+	public void setHealth(Health health) {
+		this.health = health;
+	}
 
-  public Fatigue getFatigue() {
-    return fatigue;
-  }
+	public Fatigue getFatigue() {
+		return fatigue;
+	}
 
-  public void setFatigue(Fatigue fatigue) {
-    this.fatigue = fatigue;
-  }
+	public void setFatigue(Fatigue fatigue) {
+		this.fatigue = fatigue;
+	}
 
-  public Nourishment getNourishment() {
-    return nourishment;
-  }
+	public Nourishment getNourishment() {
+		return nourishment;
+	}
 
-  public void setNourishment(Nourishment nourishment) {
-    this.nourishment = nourishment;
-  }
+	public void setNourishment(Nourishment nourishment) {
+		this.nourishment = nourishment;
+	}
 
-  @Override
-  public String toString() {
-    return String.format("The giant looks %s, %s and %s.", health, fatigue, nourishment);
-  }
+	@Override
+	public String toString() {
+		return String.format("The giant looks %s, %s and %s.", health, fatigue, nourishment);
+	}
 }

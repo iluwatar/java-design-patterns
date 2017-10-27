@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,34 +30,34 @@ package com.iluwatar.servicelocator;
  */
 public final class ServiceLocator {
 
-  private static ServiceCache serviceCache = new ServiceCache();
+	private static ServiceCache serviceCache = new ServiceCache();
 
-  private ServiceLocator() {
-  }
+	private ServiceLocator() {
+	}
 
-  /**
-   * Fetch the service with the name param from the cache first, if no service is found, lookup the
-   * service from the {@link InitContext} and then add the newly created service into the cache map
-   * for future requests.
-   *
-   * @param serviceJndiName a string
-   * @return {@link Service}
-   */
-  public static Service getService(String serviceJndiName) {
-    Service serviceObj = serviceCache.getService(serviceJndiName);
-    if (serviceObj != null) {
-      return serviceObj;
-    } else {
-      /*
+	/**
+	 * Fetch the service with the name param from the cache first, if no service is found, lookup the
+	 * service from the {@link InitContext} and then add the newly created service into the cache map
+	 * for future requests.
+	 *
+	 * @param serviceJndiName a string
+	 * @return {@link Service}
+	 */
+	public static Service getService(String serviceJndiName) {
+		Service serviceObj = serviceCache.getService(serviceJndiName);
+		if (serviceObj != null) {
+			return serviceObj;
+		} else {
+	  /*
        * If we are unable to retrive anything from cache, then lookup the service and add it in the
        * cache map
        */
-      InitContext ctx = new InitContext();
-      serviceObj = (Service) ctx.lookup(serviceJndiName);
-      if (serviceObj != null) { // Only cache a service if it actually exists
-        serviceCache.addService(serviceObj);
-      }
-      return serviceObj;
-    }
-  }
+			InitContext ctx = new InitContext();
+			serviceObj = (Service) ctx.lookup(serviceJndiName);
+			if (serviceObj != null) { // Only cache a service if it actually exists
+				serviceCache.addService(serviceObj);
+			}
+			return serviceObj;
+		}
+	}
 }

@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,7 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
+ *
  * There are well-established patterns for implementing broadcasting. The Observer pattern describes
  * the need to decouple observers from their subject (that is, the originator of the event) so that
  * the subject can easily provide event notification to all interested observers no matter how many
@@ -46,27 +46,27 @@ import org.slf4j.LoggerFactory;
  * <p>
  * In this example we use Apache Camel to establish a Publish-Subscribe Channel from "direct-origin"
  * to "mock:foo", "mock:bar" and "stream:out".
- * 
+ *
  */
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  /**
-   * Program entry point
-   */
-  public static void main(String[] args) throws Exception {
-    CamelContext context = new DefaultCamelContext();
-    context.addRoutes(new RouteBuilder() {
-      @Override
-      public void configure() throws Exception {
-        from("direct:origin").multicast().to("mock:foo", "mock:bar", "stream:out");
-      }
-    });
-    ProducerTemplate template = context.createProducerTemplate();
-    context.start();
-    context.getRoutes().stream().forEach(r -> LOGGER.info(r.toString()));
-    template.sendBody("direct:origin", "Hello from origin");
-    context.stop();
-  }
+	/**
+	 * Program entry point
+	 */
+	public static void main(String[] args) throws Exception {
+		CamelContext context = new DefaultCamelContext();
+		context.addRoutes(new RouteBuilder() {
+			@Override
+			public void configure() throws Exception {
+				from("direct:origin").multicast().to("mock:foo", "mock:bar", "stream:out");
+			}
+		});
+		ProducerTemplate template = context.createProducerTemplate();
+		context.start();
+		context.getRoutes().stream().forEach(r -> LOGGER.info(r.toString()));
+		template.sendBody("direct:origin", "Hello from origin");
+		context.stop();
+	}
 }

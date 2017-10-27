@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -57,74 +57,74 @@ import java.util.concurrent.Callable;
  */
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  /**
-   * Program entry point
-   */
-  public static void main(String[] args) throws Exception {
-    // construct a new executor that will run async tasks
-    AsyncExecutor executor = new ThreadAsyncExecutor();
+	/**
+	 * Program entry point
+	 */
+	public static void main(String[] args) throws Exception {
+		// construct a new executor that will run async tasks
+		AsyncExecutor executor = new ThreadAsyncExecutor();
 
-    // start few async tasks with varying processing times, two last with callback handlers
-    AsyncResult<Integer> asyncResult1 = executor.startProcess(lazyval(10, 500));
-    AsyncResult<String> asyncResult2 = executor.startProcess(lazyval("test", 300));
-    AsyncResult<Long> asyncResult3 = executor.startProcess(lazyval(50L, 700));
-    AsyncResult<Integer> asyncResult4 = executor.startProcess(lazyval(20, 400), callback("Callback result 4"));
-    AsyncResult<String> asyncResult5 = executor.startProcess(lazyval("callback", 600), callback("Callback result 5"));
+		// start few async tasks with varying processing times, two last with callback handlers
+		AsyncResult<Integer> asyncResult1 = executor.startProcess(lazyval(10, 500));
+		AsyncResult<String> asyncResult2 = executor.startProcess(lazyval("test", 300));
+		AsyncResult<Long> asyncResult3 = executor.startProcess(lazyval(50L, 700));
+		AsyncResult<Integer> asyncResult4 = executor.startProcess(lazyval(20, 400), callback("Callback result 4"));
+		AsyncResult<String> asyncResult5 = executor.startProcess(lazyval("callback", 600), callback("Callback result 5"));
 
-    // emulate processing in the current thread while async tasks are running in their own threads
-    Thread.sleep(350); // Oh boy I'm working hard here
-    log("Some hard work done");
+		// emulate processing in the current thread while async tasks are running in their own threads
+		Thread.sleep(350); // Oh boy I'm working hard here
+		log("Some hard work done");
 
-    // wait for completion of the tasks
-    Integer result1 = executor.endProcess(asyncResult1);
-    String result2 = executor.endProcess(asyncResult2);
-    Long result3 = executor.endProcess(asyncResult3);
-    asyncResult4.await();
-    asyncResult5.await();
+		// wait for completion of the tasks
+		Integer result1 = executor.endProcess(asyncResult1);
+		String result2 = executor.endProcess(asyncResult2);
+		Long result3 = executor.endProcess(asyncResult3);
+		asyncResult4.await();
+		asyncResult5.await();
 
-    // log the results of the tasks, callbacks log immediately when complete
-    log("Result 1: " + result1);
-    log("Result 2: " + result2);
-    log("Result 3: " + result3);
-  }
+		// log the results of the tasks, callbacks log immediately when complete
+		log("Result 1: " + result1);
+		log("Result 2: " + result2);
+		log("Result 3: " + result3);
+	}
 
-  /**
-   * Creates a callable that lazily evaluates to given value with artificial delay.
-   *
-   * @param value
-   *          value to evaluate
-   * @param delayMillis
-   *          artificial delay in milliseconds
-   * @return new callable for lazy evaluation
-   */
-  private static <T> Callable<T> lazyval(T value, long delayMillis) {
-    return () -> {
-      Thread.sleep(delayMillis);
-      log("Task completed with: " + value);
-      return value;
-    };
-  }
+	/**
+	 * Creates a callable that lazily evaluates to given value with artificial delay.
+	 *
+	 * @param value
+	 *          value to evaluate
+	 * @param delayMillis
+	 *          artificial delay in milliseconds
+	 * @return new callable for lazy evaluation
+	 */
+	private static <T> Callable<T> lazyval(T value, long delayMillis) {
+		return () -> {
+			Thread.sleep(delayMillis);
+			log("Task completed with: " + value);
+			return value;
+		};
+	}
 
-  /**
-   * Creates a simple callback that logs the complete status of the async result.
-   *
-   * @param name
-   *          callback name
-   * @return new async callback
-   */
-  private static <T> AsyncCallback<T> callback(String name) {
-    return (value, ex) -> {
-      if (ex.isPresent()) {
-        log(name + " failed: " + ex.map(Exception::getMessage).orElse(""));
-      } else {
-        log(name + ": " + value);
-      }
-    };
-  }
+	/**
+	 * Creates a simple callback that logs the complete status of the async result.
+	 *
+	 * @param name
+	 *          callback name
+	 * @return new async callback
+	 */
+	private static <T> AsyncCallback<T> callback(String name) {
+		return (value, ex) -> {
+			if (ex.isPresent()) {
+				log(name + " failed: " + ex.map(Exception::getMessage).orElse(""));
+			} else {
+				log(name + ": " + value);
+			}
+		};
+	}
 
-  private static void log(String msg) {
-    LOGGER.info(msg);
-  }
+	private static void log(String msg) {
+		LOGGER.info(msg);
+	}
 }

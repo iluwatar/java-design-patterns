@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,7 +30,7 @@ import com.iluwatar.flux.view.ContentView;
 import com.iluwatar.flux.view.MenuView;
 
 /**
- * 
+ *
  * Flux is the application architecture that Facebook uses for building client-side web
  * applications. Flux eschews MVC in favor of a unidirectional data flow. When a user interacts with
  * a React view, the view propagates an action through a central dispatcher, to the various stores
@@ -47,29 +47,29 @@ import com.iluwatar.flux.view.MenuView;
  */
 public class App {
 
-  /**
-   * Program entry point
-   * 
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+	/**
+	 * Program entry point
+	 *
+	 * @param args command line args
+	 */
+	public static void main(String[] args) {
 
-    // initialize and wire the system
-    MenuStore menuStore = new MenuStore();
-    Dispatcher.getInstance().registerStore(menuStore);
-    ContentStore contentStore = new ContentStore();
-    Dispatcher.getInstance().registerStore(contentStore);
-    MenuView menuView = new MenuView();
-    menuStore.registerView(menuView);
-    ContentView contentView = new ContentView();
-    contentStore.registerView(contentView);
+		// initialize and wire the system
+		MenuStore menuStore = new MenuStore();
+		Dispatcher.getInstance().registerStore(menuStore);
+		ContentStore contentStore = new ContentStore();
+		Dispatcher.getInstance().registerStore(contentStore);
+		MenuView menuView = new MenuView();
+		menuStore.registerView(menuView);
+		ContentView contentView = new ContentView();
+		contentStore.registerView(contentView);
 
-    // render initial view
-    menuView.render();
-    contentView.render();
+		// render initial view
+		menuView.render();
+		contentView.render();
 
-    // user clicks another menu item
-    // this triggers action dispatching and eventually causes views to render with new content
-    menuView.itemClicked(MenuItem.COMPANY);
-  }
+		// user clicks another menu item
+		// this triggers action dispatching and eventually causes views to render with new content
+		menuView.itemClicked(MenuItem.COMPANY);
+	}
 }

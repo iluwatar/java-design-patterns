@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2016 Thomas Bauer
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -61,86 +61,86 @@ import java.util.concurrent.Future;
  * This example clearly show what will happen when using non thread-safe classes
  * in a thread. In real life this may happen one in of 1.000 or 10.000 conversions
  * and those are really hard to find errors.
- * 
+ *
  * @author Thomas Bauer, 2017 
  */
 public class App {
-  /**
-   * Program entry point
-   * 
-   * @param args
-   *          command line args
-   */
-  public static void main(String[] args) {
-    int counterDateValues = 0;
-    int counterExceptions = 0;
+	/**
+	 * Program entry point
+	 *
+	 * @param args
+	 *          command line args
+	 */
+	public static void main(String[] args) {
+		int counterDateValues = 0;
+		int counterExceptions = 0;
 
-    // Create a callable
-    DateFormatCallable callableDf = new DateFormatCallable("dd/MM/yyyy", "15/12/2015");
-    // start 4 threads, each using the same Callable instance
-    ExecutorService executor = Executors.newCachedThreadPool();
+		// Create a callable
+		DateFormatCallable callableDf = new DateFormatCallable("dd/MM/yyyy", "15/12/2015");
+		// start 4 threads, each using the same Callable instance
+		ExecutorService executor = Executors.newCachedThreadPool();
 
-    Future<Result> futureResult1 = executor.submit(callableDf);
-    Future<Result> futureResult2 = executor.submit(callableDf);
-    Future<Result> futureResult3 = executor.submit(callableDf);
-    Future<Result> futureResult4 = executor.submit(callableDf);
-    try {
-      Result[] result = new Result[4];
-      result[0] = futureResult1.get();
-      result[1] = futureResult2.get();
-      result[2] = futureResult3.get();
-      result[3] = futureResult4.get();
+		Future<Result> futureResult1 = executor.submit(callableDf);
+		Future<Result> futureResult2 = executor.submit(callableDf);
+		Future<Result> futureResult3 = executor.submit(callableDf);
+		Future<Result> futureResult4 = executor.submit(callableDf);
+		try {
+			Result[] result = new Result[4];
+			result[0] = futureResult1.get();
+			result[1] = futureResult2.get();
+			result[2] = futureResult3.get();
+			result[3] = futureResult4.get();
 
-      // Print results of thread executions (converted dates and raised exceptions)
-      // and count them
-      for (int i = 0; i < result.length; i++) {
-        counterDateValues = counterDateValues + printAndCountDates(result[i]);
-        counterExceptions = counterExceptions + printAndCountExceptions(result[i]);
-      }
+			// Print results of thread executions (converted dates and raised exceptions)
+			// and count them
+			for (int i = 0; i < result.length; i++) {
+				counterDateValues = counterDateValues + printAndCountDates(result[i]);
+				counterExceptions = counterExceptions + printAndCountExceptions(result[i]);
+			}
 
-      // a correct run should deliver 20 times 15.12.2015
-      // and a correct run shouldn't deliver any exception
-      System.out.println("The List dateList contains " + counterDateValues + " date values");
-      System.out.println("The List exceptionList contains " + counterExceptions + " exceptions");
+			// a correct run should deliver 20 times 15.12.2015
+			// and a correct run shouldn't deliver any exception
+			System.out.println("The List dateList contains " + counterDateValues + " date values");
+			System.out.println("The List exceptionList contains " + counterExceptions + " exceptions");
 
-    } catch (Exception e) {
-      System.out.println("Abnormal end of program. Program throws exception: " + e); 
-    }
-    executor.shutdown();
-  }
+		} catch (Exception e) {
+			System.out.println("Abnormal end of program. Program throws exception: " + e);
+		}
+		executor.shutdown();
+	}
 
-  /**
-   * Print result (date values) of a thread execution and count dates
-   * 
-   * @param res  contains results of a thread execution
-   */
-  private static int printAndCountDates(Result res) {
-    // a correct run should deliver 5 times 15.12.2015 per each thread
-    int counter = 0;
-    for (Date dt : res.getDateList()) {
-      counter++;
-      Calendar cal = Calendar.getInstance();
-      cal.setTime(dt);
-      // Formatted output of the date value: DD.MM.YYYY
-      System.out.println(
-          cal.get(Calendar.DAY_OF_MONTH) + "." + cal.get(Calendar.MONTH) + "." + +cal.get(Calendar.YEAR));
-    }
-    return counter;
-  }
+	/**
+	 * Print result (date values) of a thread execution and count dates
+	 *
+	 * @param res  contains results of a thread execution
+	 */
+	private static int printAndCountDates(Result res) {
+		// a correct run should deliver 5 times 15.12.2015 per each thread
+		int counter = 0;
+		for (Date dt : res.getDateList()) {
+			counter++;
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(dt);
+			// Formatted output of the date value: DD.MM.YYYY
+			System.out.println(
+					cal.get(Calendar.DAY_OF_MONTH) + "." + cal.get(Calendar.MONTH) + "." + +cal.get(Calendar.YEAR));
+		}
+		return counter;
+	}
 
-  /**
-   * Print result (exceptions) of a thread execution and count exceptions
-   * 
-   * @param res  contains results of a thread execution
-   * @return number of dates
-   */
-  private static int printAndCountExceptions(Result res) {
-    // a correct run shouldn't deliver any exception
-    int counter = 0;
-    for (String ex : res.getExceptionList()) {
-      counter++;
-      System.out.println(ex);
-    }
-    return counter;
-  }
+	/**
+	 * Print result (exceptions) of a thread execution and count exceptions
+	 *
+	 * @param res  contains results of a thread execution
+	 * @return number of dates
+	 */
+	private static int printAndCountExceptions(Result res) {
+		// a correct run shouldn't deliver any exception
+		int counter = 0;
+		for (String ex : res.getExceptionList()) {
+			counter++;
+			System.out.println(ex);
+		}
+		return counter;
+	}
 }

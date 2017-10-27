@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,44 +26,44 @@ package com.iluwatar.objectmother;
  * Defines all attributes and behaviour related to the King
  */
 public class King implements Royalty {
-  boolean isDrunk = false;
-  boolean isHappy = false;
+	boolean isDrunk = false;
+	boolean isHappy = false;
 
-  @Override
-  public void makeDrunk() {
-    isDrunk = true;
-  }
+	@Override
+	public void makeDrunk() {
+		isDrunk = true;
+	}
 
-  @Override
-  public void makeSober() {
-    isDrunk = false;
-  }
+	@Override
+	public void makeSober() {
+		isDrunk = false;
+	}
 
-  @Override
-  public void makeHappy() {
-    isHappy = true;
-  }
+	@Override
+	public void makeHappy() {
+		isHappy = true;
+	}
 
-  @Override
-  public void makeUnhappy() {
-    isHappy = false;
-  }
+	@Override
+	public void makeUnhappy() {
+		isHappy = false;
+	}
 
-  public boolean isHappy() {
-    return isHappy;
-  }
+	public boolean isHappy() {
+		return isHappy;
+	}
 
-  /**
-   * Method to flirt to a queen.
-   * @param queen Queen which should be flirted.
-   */
-  public void flirt(Queen queen) {
-    boolean flirtStatus = queen.getFlirted(this);
-    if (flirtStatus == false) {
-      this.makeUnhappy();
-    } else {
-      this.makeHappy();
-    }
+	/**
+	 * Method to flirt to a queen.
+	 * @param queen Queen which should be flirted.
+	 */
+	public void flirt(Queen queen) {
+		boolean flirtStatus = queen.getFlirted(this);
+		if (flirtStatus == false) {
+			this.makeUnhappy();
+		} else {
+			this.makeHappy();
+		}
 
-  }
+	}
 }

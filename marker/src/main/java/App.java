@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,28 +44,28 @@ import org.slf4j.LoggerFactory;
  */
 public class App {
 
-  /**
-   * Program entry point
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+	/**
+	 * Program entry point
+	 *
+	 * @param args command line args
+	 */
+	public static void main(String[] args) {
 
-    final Logger logger = LoggerFactory.getLogger(App.class);
-    Guard guard = new Guard();
-    Thief thief = new Thief();
+		final Logger logger = LoggerFactory.getLogger(App.class);
+		Guard guard = new Guard();
+		Thief thief = new Thief();
 
-    if (guard instanceof Permission) {
-      guard.enter();
-    } else {
-      logger.info("You have no permission to enter, please leave this area");
-    }
+		if (guard instanceof Permission) {
+			Guard.enter();
+		} else {
+			logger.info("You have no permission to enter, please leave this area");
+		}
 
-    if (thief instanceof Permission) {
-      thief.steal();
-    } else {
-      thief.doNothing();
-    }
-  }
+		if (thief instanceof Permission) {
+			Thief.steal();
+		} else {
+			Thief.doNothing();
+		}
+	}
 }
 

@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,49 +39,49 @@ import java.util.List;
  */
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  static Servant jenkins = new Servant("Jenkins");
-  static Servant travis = new Servant("Travis");
+	static Servant jenkins = new Servant("Jenkins");
+	static Servant travis = new Servant("Travis");
 
-  /**
-   * Program entry point
-   */
-  public static void main(String[] args) {
-    scenario(jenkins, 1);
-    scenario(travis, 0);
-  }
+	/**
+	 * Program entry point
+	 */
+	public static void main(String[] args) {
+		scenario(jenkins, 1);
+		scenario(travis, 0);
+	}
 
-  /**
-   * Can add a List with enum Actions for variable scenarios
-   */
-  public static void scenario(Servant servant, int compliment) {
-    King k = new King();
-    Queen q = new Queen();
+	/**
+	 * Can add a List with enum Actions for variable scenarios
+	 */
+	public static void scenario(Servant servant, int compliment) {
+		King k = new King();
+		Queen q = new Queen();
 
-    List<Royalty> guests = new ArrayList<>();
-    guests.add(k);
-    guests.add(q);
+		List<Royalty> guests = new ArrayList<>();
+		guests.add(k);
+		guests.add(q);
 
-    // feed
-    servant.feed(k);
-    servant.feed(q);
-    // serve drinks
-    servant.giveWine(k);
-    servant.giveWine(q);
-    // compliment
-    servant.giveCompliments(guests.get(compliment));
+		// feed
+		servant.feed(k);
+		servant.feed(q);
+		// serve drinks
+		servant.giveWine(k);
+		servant.giveWine(q);
+		// compliment
+		servant.giveCompliments(guests.get(compliment));
 
-    // outcome of the night
-    for (Royalty r : guests) {
-      r.changeMood();
-    }
+		// outcome of the night
+		for (Royalty r : guests) {
+			r.changeMood();
+		}
 
-    // check your luck
-    if (servant.checkIfYouWillBeHanged(guests)) {
-      LOGGER.info("{} will live another day", servant.name);
-    } else {
-      LOGGER.info("Poor {}. His days are numbered", servant.name);
-    }
-  }
+		// check your luck
+		if (servant.checkIfYouWillBeHanged(guests)) {
+			LOGGER.info("{} will live another day", servant.name);
+		} else {
+			LOGGER.info("Poor {}. His days are numbered", servant.name);
+		}
+	}
 }

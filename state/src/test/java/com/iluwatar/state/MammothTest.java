@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,78 +43,78 @@ import static org.junit.Assert.assertNotNull;
  */
 public class MammothTest {
 
-  private InMemoryAppender appender;
+	private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
-    appender = new InMemoryAppender();
-  }
+	@Before
+	public void setUp() {
+		appender = new InMemoryAppender();
+	}
 
-  @After
-  public void tearDown() {
-    appender.stop();
-  }
+	@After
+	public void tearDown() {
+		appender.stop();
+	}
 
-  /**
-   * Switch to a complete mammoth 'mood'-cycle and verify if the observed mood matches the expected
-   * value.
-   */
-  @Test
-  public void testTimePasses() {
-    final Mammoth mammoth = new Mammoth();
+	/**
+	 * Switch to a complete mammoth 'mood'-cycle and verify if the observed mood matches the expected
+	 * value.
+	 */
+	@Test
+	public void testTimePasses() {
+		final Mammoth mammoth = new Mammoth();
 
-    mammoth.observe();
-    assertEquals("The mammoth is calm and peaceful.", appender.getLastMessage());
-    assertEquals(1 , appender.getLogSize());
+		mammoth.observe();
+		assertEquals("The mammoth is calm and peaceful.", appender.getLastMessage());
+		assertEquals(1, appender.getLogSize());
 
-    mammoth.timePasses();
-    assertEquals("The mammoth gets angry!", appender.getLastMessage());
-    assertEquals(2 , appender.getLogSize());
+		mammoth.timePasses();
+		assertEquals("The mammoth gets angry!", appender.getLastMessage());
+		assertEquals(2, appender.getLogSize());
 
-    mammoth.observe();
-    assertEquals("The mammoth is furious!", appender.getLastMessage());
-    assertEquals(3 , appender.getLogSize());
+		mammoth.observe();
+		assertEquals("The mammoth is furious!", appender.getLastMessage());
+		assertEquals(3, appender.getLogSize());
 
-    mammoth.timePasses();
-    assertEquals("The mammoth calms down.", appender.getLastMessage());
-    assertEquals(4 , appender.getLogSize());
+		mammoth.timePasses();
+		assertEquals("The mammoth calms down.", appender.getLastMessage());
+		assertEquals(4, appender.getLogSize());
 
-    mammoth.observe();
-    assertEquals("The mammoth is calm and peaceful.", appender.getLastMessage());
-    assertEquals(5 , appender.getLogSize());
+		mammoth.observe();
+		assertEquals("The mammoth is calm and peaceful.", appender.getLastMessage());
+		assertEquals(5, appender.getLogSize());
 
-  }
+	}
 
-  /**
-   * Verify if {@link Mammoth#toString()} gives the expected value
-   */
-  @Test
-  public void testToString() {
-    final String toString = new Mammoth().toString();
-    assertNotNull(toString);
-    assertEquals("The mammoth", toString);
-  }
+	/**
+	 * Verify if {@link Mammoth#toString()} gives the expected value
+	 */
+	@Test
+	public void testToString() {
+		final String toString = new Mammoth().toString();
+		assertNotNull(toString);
+		assertEquals("The mammoth", toString);
+	}
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+	private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+		private List<ILoggingEvent> log = new LinkedList<>();
 
-    public InMemoryAppender() {
-      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
-      start();
-    }
+		public InMemoryAppender() {
+			((Logger) LoggerFactory.getLogger("root")).addAppender(this);
+			start();
+		}
 
-    @Override
-    protected void append(ILoggingEvent eventObject) {
-      log.add(eventObject);
-    }
+		@Override
+		protected void append(ILoggingEvent eventObject) {
+			log.add(eventObject);
+		}
 
-    public int getLogSize() {
-      return log.size();
-    }
+		public int getLogSize() {
+			return log.size();
+		}
 
-    public String getLastMessage() {
-      return log.get(log.size() - 1).getFormattedMessage();
-    }
-  }
+		public String getLastMessage() {
+			return log.get(log.size() - 1).getFormattedMessage();
+		}
+	}
 
 }

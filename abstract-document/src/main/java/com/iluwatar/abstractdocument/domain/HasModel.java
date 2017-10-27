@@ -22,19 +22,19 @@
  */
 package com.iluwatar.abstractdocument.domain;
 
-import java.util.Optional;
-
 import com.iluwatar.abstractdocument.Document;
+
+import java.util.Optional;
 
 /**
  * HasModel trait for static access to 'model' property
  */
 public interface HasModel extends Document {
 
-  String PROPERTY = "model";
+	String PROPERTY = "model";
 
-  default Optional<String> getModel() {
-    return Optional.ofNullable((String) get(PROPERTY));
-  }
+	default Optional<String> getModel() {
+		return Optional.ofNullable((String) get(PROPERTY));
+	}
 
 }

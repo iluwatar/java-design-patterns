@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -38,138 +38,138 @@ import java.util.Set;
  */
 public class LotteryNumbers {
 
-  private final Set<Integer> numbers;
-  
-  public static final int MIN_NUMBER = 1;
-  public static final int MAX_NUMBER = 20;
-  public static final int NUM_NUMBERS = 4;
+	private final Set<Integer> numbers;
 
-  /**
-   * Constructor. Creates random lottery numbers.
-   */
-  private LotteryNumbers() {
-    numbers = new HashSet<>();
-    generateRandomNumbers();
-  }
+	public static final int MIN_NUMBER = 1;
+	public static final int MAX_NUMBER = 20;
+	public static final int NUM_NUMBERS = 4;
 
-  /**
-   * Constructor. Uses given numbers.
-   */
-  private LotteryNumbers(Set<Integer> givenNumbers) {
-    numbers = new HashSet<>();
-    numbers.addAll(givenNumbers);
-  }
+	/**
+	 * Constructor. Creates random lottery numbers.
+	 */
+	private LotteryNumbers() {
+		numbers = new HashSet<>();
+		generateRandomNumbers();
+	}
 
-  /**
-   * @return random LotteryNumbers
-   */
-  public static LotteryNumbers createRandom() {
-    return new LotteryNumbers();
-  }
+	/**
+	 * Constructor. Uses given numbers.
+	 */
+	private LotteryNumbers(Set<Integer> givenNumbers) {
+		numbers = new HashSet<>();
+		numbers.addAll(givenNumbers);
+	}
 
-  /**
-   * @return given LotteryNumbers
-   */
-  public static LotteryNumbers create(Set<Integer> givenNumbers) {
-    return new LotteryNumbers(givenNumbers);
-  }
-  
-  /**
-   * @return lottery numbers
-   */
-  public Set<Integer> getNumbers() {
-    return Collections.unmodifiableSet(numbers);
-  }
+	/**
+	 * @return random LotteryNumbers
+	 */
+	public static LotteryNumbers createRandom() {
+		return new LotteryNumbers();
+	}
 
-  /**
-   * @return numbers as comma separated string
-   */
-  public String getNumbersAsString() {
-    List<Integer> list = new ArrayList<>();
-    list.addAll(numbers);
-    StringBuilder builder = new StringBuilder();
-    for (int i = 0; i < NUM_NUMBERS; i++) {
-      builder.append(list.get(i));
-      if (i < NUM_NUMBERS - 1) {
-        builder.append(",");
-      }
-    }
-    return builder.toString();
-  }
-  
-  /**
-   * Generates 4 unique random numbers between 1-20 into numbers set.
-   */
-  private void generateRandomNumbers() {
-    numbers.clear();
-    RandomNumberGenerator generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
-    while (numbers.size() < NUM_NUMBERS) {
-      int num = generator.nextInt();
-      if (!numbers.contains(num)) {
-        numbers.add(num);
-      }
-    }
-  }
+	/**
+	 * @return given LotteryNumbers
+	 */
+	public static LotteryNumbers create(Set<Integer> givenNumbers) {
+		return new LotteryNumbers(givenNumbers);
+	}
 
-  @Override
-  public String toString() {
-    return "LotteryNumbers{" + "numbers=" + numbers + '}';
-  }
+	/**
+	 * @return lottery numbers
+	 */
+	public Set<Integer> getNumbers() {
+		return Collections.unmodifiableSet(numbers);
+	}
 
-  /**
-   * 
-   * Helper class for generating random numbers.
-   *
-   */
-  private static class RandomNumberGenerator {
+	/**
+	 * @return numbers as comma separated string
+	 */
+	public String getNumbersAsString() {
+		List<Integer> list = new ArrayList<>();
+		list.addAll(numbers);
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < NUM_NUMBERS; i++) {
+			builder.append(list.get(i));
+			if (i < NUM_NUMBERS - 1) {
+				builder.append(",");
+			}
+		}
+		return builder.toString();
+	}
 
-    private PrimitiveIterator.OfInt randomIterator;
+	/**
+	 * Generates 4 unique random numbers between 1-20 into numbers set.
+	 */
+	private void generateRandomNumbers() {
+		numbers.clear();
+		RandomNumberGenerator generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
+		while (numbers.size() < NUM_NUMBERS) {
+			int num = generator.nextInt();
+			if (!numbers.contains(num)) {
+				numbers.add(num);
+			}
+		}
+	}
 
-    /**
-     * Initialize a new random number generator that generates random numbers in the range [min, max]
-     * 
-     * @param min the min value (inclusive)
-     * @param max the max value (inclusive)
-     */
-    public RandomNumberGenerator(int min, int max) {
-      randomIterator = new Random().ints(min, max + 1).iterator();
-    }
+	@Override
+	public String toString() {
+		return "LotteryNumbers{" + "numbers=" + numbers + '}';
+	}
 
-    /**
-     * @return a random number in the range (min, max)
-     */
-    public int nextInt() {
-      return randomIterator.nextInt();
-    }
-  }
-  
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((numbers == null) ? 0 : numbers.hashCode());
-    return result;
-  }
+	/**
+	 *
+	 * Helper class for generating random numbers.
+	 *
+	 */
+	private static class RandomNumberGenerator {
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    LotteryNumbers other = (LotteryNumbers) obj;
-    if (numbers == null) {
-      if (other.numbers != null) {
-        return false;
-      }
-    } else if (!numbers.equals(other.numbers)) {
-      return false;
-    }
-    return true;
-  }  
+		private PrimitiveIterator.OfInt randomIterator;
+
+		/**
+		 * Initialize a new random number generator that generates random numbers in the range [min, max]
+		 *
+		 * @param min the min value (inclusive)
+		 * @param max the max value (inclusive)
+		 */
+		public RandomNumberGenerator(int min, int max) {
+			randomIterator = new Random().ints(min, max + 1).iterator();
+		}
+
+		/**
+		 * @return a random number in the range (min, max)
+		 */
+		public int nextInt() {
+			return randomIterator.nextInt();
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((numbers == null) ? 0 : numbers.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		LotteryNumbers other = (LotteryNumbers) obj;
+		if (numbers == null) {
+			if (other.numbers != null) {
+				return false;
+			}
+		} else if (!numbers.equals(other.numbers)) {
+			return false;
+		}
+		return true;
+	}
 }

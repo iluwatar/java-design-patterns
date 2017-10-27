@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,46 +34,46 @@ import static org.junit.Assert.assertEquals;
  */
 public class CallbackTest {
 
-  private Integer callingCount = 0;
+	private Integer callingCount = 0;
 
-  @Test
-  public void test() {
-    Callback callback = new Callback() {
-      @Override
-      public void call() {
-        callingCount++;
-      }
-    };
+	@Test
+	public void test() {
+		Callback callback = new Callback() {
+			@Override
+			public void call() {
+				callingCount++;
+			}
+		};
 
-    Task task = new SimpleTask();
+		Task task = new SimpleTask();
 
-    assertEquals("Initial calling count of 0", new Integer(0), callingCount);
+		assertEquals("Initial calling count of 0", new Integer(0), callingCount);
 
-    task.executeWith(callback);
+		task.executeWith(callback);
 
-    assertEquals("Callback called once", new Integer(1), callingCount);
+		assertEquals("Callback called once", new Integer(1), callingCount);
 
-    task.executeWith(callback);
+		task.executeWith(callback);
 
-    assertEquals("Callback called twice", new Integer(2), callingCount);
+		assertEquals("Callback called twice", new Integer(2), callingCount);
 
-  }
+	}
 
-  @Test
-  public void testWithLambdasExample() {
-    Callback callback = () -> callingCount++;
+	@Test
+	public void testWithLambdasExample() {
+		Callback callback = () -> callingCount++;
 
-    Task task = new SimpleTask();
+		Task task = new SimpleTask();
 
-    assertEquals("Initial calling count of 0", new Integer(0), callingCount);
+		assertEquals("Initial calling count of 0", new Integer(0), callingCount);
 
-    task.executeWith(callback);
+		task.executeWith(callback);
 
-    assertEquals("Callback called once", new Integer(1), callingCount);
+		assertEquals("Callback called once", new Integer(1), callingCount);
 
-    task.executeWith(callback);
+		task.executeWith(callback);
 
-    assertEquals("Callback called twice", new Integer(2), callingCount);
+		assertEquals("Callback called twice", new Integer(2), callingCount);
 
-  }
+	}
 }

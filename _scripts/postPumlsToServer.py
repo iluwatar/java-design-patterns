@@ -21,7 +21,10 @@
 # THE SOFTWARE.
 #
 
-import requests, glob, re, os
+import glob
+import re
+import requests
+
 
 # taken from here: http://stackoverflow.com/a/13641746
 def replace(file, pattern, subst):
@@ -39,6 +42,7 @@ def replace(file, pattern, subst):
     file_handle.write(file_string)
     file_handle.close()
 
+
 # list of all puml files
 fileList = glob.glob('*/etc/*.puml')
 for puml in fileList:
@@ -55,13 +59,13 @@ for puml in fileList:
     }
     r = requests.post('http://plantuml.com/plantuml/uml', data=data)
     pumlId = r.url.replace("http://plantuml.com/plantuml/uml/", "")
-    
+
     # the only thing needed to get a png/svg/ascii from the server back
     print "Puml Server ID: " + pumlId
-    
+
     # add the id so jekyll/liquid can use it
     if (parent == artifact):
         replace("./" + parent + "/README.md", "categories:", "pumlid: {}\\ncategories:".format(pumlId))
     else:
-        print "I dont want to program this, just add the following lines to the README.md file that corresponds to this puml file '" + puml + "'\npumlid: {}".format(pumlId)
-
+        print "I dont want to program this, just add the following lines to the README.md file that corresponds to this puml file '" + puml + "'\npumlid: {}".format(
+            pumlId)

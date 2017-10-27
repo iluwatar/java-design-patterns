@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,34 +23,34 @@
 package com.iluwatar.front.controller;
 
 /**
- * 
+ *
  * FrontController is the handler class that takes in all the requests and renders the correct
  * response.
  *
  */
 public class FrontController {
 
-  public void handleRequest(String request) {
-    Command command = getCommand(request);
-    command.process();
-  }
+	public void handleRequest(String request) {
+		Command command = getCommand(request);
+		command.process();
+	}
 
-  private Command getCommand(String request) {
-    Class commandClass = getCommandClass(request);
-    try {
-      return (Command) commandClass.newInstance();
-    } catch (Exception e) {
-      throw new ApplicationException(e);
-    }
-  }
+	private Command getCommand(String request) {
+		Class commandClass = getCommandClass(request);
+		try {
+			return (Command) commandClass.newInstance();
+		} catch (Exception e) {
+			throw new ApplicationException(e);
+		}
+	}
 
-  private static Class getCommandClass(String request) {
-    Class result;
-    try {
-      result = Class.forName("com.iluwatar.front.controller." + request + "Command");
-    } catch (ClassNotFoundException e) {
-      result = UnknownCommand.class;
-    }
-    return result;
-  }
+	private static Class getCommandClass(String request) {
+		Class result;
+		try {
+			result = Class.forName("com.iluwatar.front.controller." + request + "Command");
+		} catch (ClassNotFoundException e) {
+			result = UnknownCommand.class;
+		}
+		return result;
+	}
 }

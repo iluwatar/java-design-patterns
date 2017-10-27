@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,7 +23,7 @@
 package com.iluwatar.intercepting.filter;
 
 /**
- * 
+ *
  * When a request enters a Web application, it often must pass several entrance tests prior to the
  * main processing stage. For example, - Has the client been authenticated? - Does the client have a
  * valid session? - Is the client's IP address from a trusted network? - Does the request path
@@ -44,26 +44,26 @@ package com.iluwatar.intercepting.filter;
  * In this example we check whether the order request is valid through pre-processing done via
  * {@link Filter}. Each field has its own corresponding {@link Filter}
  * <p>
- * 
+ *
  * @author joshzambales
  *
  */
 public class App {
 
-  /**
-   * Program entry point
-   * 
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    FilterManager filterManager = new FilterManager();
-    filterManager.addFilter(new NameFilter());
-    filterManager.addFilter(new ContactFilter());
-    filterManager.addFilter(new AddressFilter());
-    filterManager.addFilter(new DepositFilter());
-    filterManager.addFilter(new OrderFilter());
+	/**
+	 * Program entry point
+	 *
+	 * @param args command line args
+	 */
+	public static void main(String[] args) {
+		FilterManager filterManager = new FilterManager();
+		filterManager.addFilter(new NameFilter());
+		filterManager.addFilter(new ContactFilter());
+		filterManager.addFilter(new AddressFilter());
+		filterManager.addFilter(new DepositFilter());
+		filterManager.addFilter(new OrderFilter());
 
-    Client client = new Client();
-    client.setFilterManager(filterManager);
-  }
+		Client client = new Client();
+		client.setFilterManager(filterManager);
+	}
 }

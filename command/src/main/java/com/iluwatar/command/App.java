@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,7 +23,7 @@
 package com.iluwatar.command;
 
 /**
- * 
+ *
  * The Command pattern is a behavioral design pattern in which an object is used to encapsulate all
  * information needed to perform an action or trigger an event at a later time. This information
  * includes the method name, the object that owns the method and values for the method parameters.
@@ -40,38 +40,38 @@ package com.iluwatar.command;
  * In other words, in this example the wizard casts spells on the goblin. The wizard keeps track of
  * the previous spells cast, so it is easy to undo them. In addition, the wizard keeps track of the
  * spells undone, so they can be redone.
- * 
- * 
+ *
+ *
  */
 public class App {
 
-  /**
-   * Program entry point
-   * 
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    Wizard wizard = new Wizard();
-    Goblin goblin = new Goblin();
+	/**
+	 * Program entry point
+	 *
+	 * @param args command line args
+	 */
+	public static void main(String[] args) {
+		Wizard wizard = new Wizard();
+		Goblin goblin = new Goblin();
 
-    goblin.printStatus();
+		goblin.printStatus();
 
-    wizard.castSpell(new ShrinkSpell(), goblin);
-    goblin.printStatus();
+		wizard.castSpell(new ShrinkSpell(), goblin);
+		goblin.printStatus();
 
-    wizard.castSpell(new InvisibilitySpell(), goblin);
-    goblin.printStatus();
+		wizard.castSpell(new InvisibilitySpell(), goblin);
+		goblin.printStatus();
 
-    wizard.undoLastSpell();
-    goblin.printStatus();
+		wizard.undoLastSpell();
+		goblin.printStatus();
 
-    wizard.undoLastSpell();
-    goblin.printStatus();
+		wizard.undoLastSpell();
+		goblin.printStatus();
 
-    wizard.redoLastSpell();
-    goblin.printStatus();
+		wizard.redoLastSpell();
+		goblin.printStatus();
 
-    wizard.redoLastSpell();
-    goblin.printStatus();
-  }
+		wizard.redoLastSpell();
+		goblin.printStatus();
+	}
 }

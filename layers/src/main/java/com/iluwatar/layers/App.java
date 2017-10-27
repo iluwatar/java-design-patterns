@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,7 +25,7 @@ package com.iluwatar.layers;
 import java.util.Arrays;
 
 /**
- * 
+ *
  * Layers is an architectural style where software responsibilities are divided among the different layers of the
  * application.
  * <p>
@@ -66,53 +66,53 @@ import java.util.Arrays;
  */
 public class App {
 
-  private static CakeBakingService cakeBakingService = new CakeBakingServiceImpl();
+	private static CakeBakingService cakeBakingService = new CakeBakingServiceImpl();
 
-  /**
-   * Application entry point
-   * 
-   * @param args Command line parameters
-   */
-  public static void main(String[] args) {
+	/**
+	 * Application entry point
+	 *
+	 * @param args Command line parameters
+	 */
+	public static void main(String[] args) {
 
-    // initialize example data
-    initializeData(cakeBakingService);
+		// initialize example data
+		initializeData(cakeBakingService);
 
-    // create view and render it
-    CakeViewImpl cakeView = new CakeViewImpl(cakeBakingService);
-    cakeView.render();
-  }
+		// create view and render it
+		CakeViewImpl cakeView = new CakeViewImpl(cakeBakingService);
+		cakeView.render();
+	}
 
-  /**
-   * Initializes the example data
-   */
-  private static void initializeData(CakeBakingService cakeBakingService) {
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("chocolate", 1200));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("banana", 900));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("strawberry", 950));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("lemon", 950));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("vanilla", 950));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("strawberry", 950));
+	/**
+	 * Initializes the example data
+	 */
+	private static void initializeData(CakeBakingService cakeBakingService) {
+		cakeBakingService.saveNewLayer(new CakeLayerInfo("chocolate", 1200));
+		cakeBakingService.saveNewLayer(new CakeLayerInfo("banana", 900));
+		cakeBakingService.saveNewLayer(new CakeLayerInfo("strawberry", 950));
+		cakeBakingService.saveNewLayer(new CakeLayerInfo("lemon", 950));
+		cakeBakingService.saveNewLayer(new CakeLayerInfo("vanilla", 950));
+		cakeBakingService.saveNewLayer(new CakeLayerInfo("strawberry", 950));
 
-    cakeBakingService.saveNewTopping(new CakeToppingInfo("candies", 350));
-    cakeBakingService.saveNewTopping(new CakeToppingInfo("cherry", 350));
+		cakeBakingService.saveNewTopping(new CakeToppingInfo("candies", 350));
+		cakeBakingService.saveNewTopping(new CakeToppingInfo("cherry", 350));
 
-    CakeInfo cake1 =
-        new CakeInfo(new CakeToppingInfo("candies", 0), Arrays.asList(new CakeLayerInfo(
-            "chocolate", 0), new CakeLayerInfo("banana", 0), new CakeLayerInfo("strawberry", 0)));
-    try {
-      cakeBakingService.bakeNewCake(cake1);
-    } catch (CakeBakingException e) {
-      e.printStackTrace();
-    }
-    CakeInfo cake2 =
-        new CakeInfo(new CakeToppingInfo("cherry", 0), Arrays.asList(
-            new CakeLayerInfo("vanilla", 0), new CakeLayerInfo("lemon", 0), new CakeLayerInfo(
-                "strawberry", 0)));
-    try {
-      cakeBakingService.bakeNewCake(cake2);
-    } catch (CakeBakingException e) {
-      e.printStackTrace();
-    }
-  }
+		CakeInfo cake1 =
+				new CakeInfo(new CakeToppingInfo("candies", 0), Arrays.asList(new CakeLayerInfo(
+						"chocolate", 0), new CakeLayerInfo("banana", 0), new CakeLayerInfo("strawberry", 0)));
+		try {
+			cakeBakingService.bakeNewCake(cake1);
+		} catch (CakeBakingException e) {
+			e.printStackTrace();
+		}
+		CakeInfo cake2 =
+				new CakeInfo(new CakeToppingInfo("cherry", 0), Arrays.asList(
+						new CakeLayerInfo("vanilla", 0), new CakeLayerInfo("lemon", 0), new CakeLayerInfo(
+								"strawberry", 0)));
+		try {
+			cakeBakingService.bakeNewCake(cake2);
+		} catch (CakeBakingException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -34,63 +34,63 @@ import java.util.List;
  */
 public class AlbumListPage extends Page {
 
-  private static final String ALBUM_LIST_HTML_FILE = "album-list.html";
-  private static final String PAGE_URL = "file:" + AUT_PATH + ALBUM_LIST_HTML_FILE;
+	private static final String ALBUM_LIST_HTML_FILE = "album-list.html";
+	private static final String PAGE_URL = "file:" + AUT_PATH + ALBUM_LIST_HTML_FILE;
 
-  private HtmlPage page;
-
-
-  /**
-   * Constructor
-   */
-  public AlbumListPage(WebClient webClient) {
-    super(webClient);
-  }
+	private HtmlPage page;
 
 
-  /**
-   * Navigates to the Album List Page
-   *
-   * @return {@link AlbumListPage}
-   */
-  public AlbumListPage navigateToPage() {
-    try {
-      page = this.webClient.getPage(PAGE_URL);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return this;
-  }
+	/**
+	 * Constructor
+	 */
+	public AlbumListPage(WebClient webClient) {
+		super(webClient);
+	}
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public boolean isAt() {
-    return "Album List".equals(page.getTitleText());
-  }
 
-  /**
-   * Selects an album by the given album title
-   *
-   * @param albumTitle the title of the album to click
-   * @return the album page
-   */
-  public AlbumPage selectAlbum(String albumTitle) {
-    // uses XPath to find list of html anchor tags with the class album in it
-    List<HtmlAnchor> albumLinks = (List<HtmlAnchor>) page.getByXPath("//tr[@class='album']//a");
-    for (HtmlAnchor anchor : albumLinks) {
-      if (anchor.getTextContent().equals(albumTitle)) {
-        try {
-          anchor.click();
-          return new AlbumPage(webClient);
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-    }
-    throw new IllegalArgumentException("No links with the album title: " + albumTitle);
-  }
+	/**
+	 * Navigates to the Album List Page
+	 *
+	 * @return {@link AlbumListPage}
+	 */
+	public AlbumListPage navigateToPage() {
+		try {
+			page = this.webClient.getPage(PAGE_URL);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return this;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isAt() {
+		return "Album List".equals(page.getTitleText());
+	}
+
+	/**
+	 * Selects an album by the given album title
+	 *
+	 * @param albumTitle the title of the album to click
+	 * @return the album page
+	 */
+	public AlbumPage selectAlbum(String albumTitle) {
+		// uses XPath to find list of html anchor tags with the class album in it
+		List<HtmlAnchor> albumLinks = (List<HtmlAnchor>) page.getByXPath("//tr[@class='album']//a");
+		for (HtmlAnchor anchor : albumLinks) {
+			if (anchor.getTextContent().equals(albumTitle)) {
+				try {
+					anchor.click();
+					return new AlbumPage(webClient);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		throw new IllegalArgumentException("No links with the album title: " + albumTitle);
+	}
 
 
 }

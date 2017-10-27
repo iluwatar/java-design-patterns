@@ -32,14 +32,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class InventoryController {
 
-  /**
-   * Endpoint to retrieve a product's inventories.
-   *
-   * @return product inventory.
-   */
-  @RequestMapping(value = "/inventories", method = RequestMethod.GET)
-  public int getProductInventories() {
-    return 5;
-  }
+	/**
+	 * Endpoint to retrieve a product's inventories.
+	 *
+	 * @return product inventory.
+	 */
+	@RequestMapping(value = "/inventories", method = RequestMethod.GET)
+	public int getProductInventories() {
+		return 5;
+	}
 
 }

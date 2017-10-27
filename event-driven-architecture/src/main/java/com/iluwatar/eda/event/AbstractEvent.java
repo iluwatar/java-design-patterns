@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,8 +22,8 @@
  */
 package com.iluwatar.eda.event;
 
-import com.iluwatar.eda.framework.EventDispatcher;
 import com.iluwatar.eda.framework.Event;
+import com.iluwatar.eda.framework.EventDispatcher;
 
 /**
  * The {@link AbstractEvent} class serves as a base class for defining custom events happening with your
@@ -36,14 +36,14 @@ import com.iluwatar.eda.framework.Event;
  */
 public abstract class AbstractEvent implements Event {
 
-  /**
-   * Returns the event type as a {@link Class} object
-   * In this example, this method is used by the {@link EventDispatcher} to
-   * dispatch events depending on their type.
-   *
-   * @return the AbstractEvent type as a {@link Class}.
-   */
-  public Class<? extends Event> getType() {
-    return getClass();
-  }
+	/**
+	 * Returns the event type as a {@link Class} object
+	 * In this example, this method is used by the {@link EventDispatcher} to
+	 * dispatch events depending on their type.
+	 *
+	 * @return the AbstractEvent type as a {@link Class}.
+	 */
+	public Class<? extends Event> getType() {
+		return getClass();
+	}
 }

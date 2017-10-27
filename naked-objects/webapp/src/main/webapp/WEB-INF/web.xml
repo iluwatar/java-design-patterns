@@ -18,8 +18,8 @@
   under the License.
 -->
 <web-app id="WebApp_ID" version="2.4"
-    xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+         xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
     <display-name>Simple app</display-name>
 
@@ -41,7 +41,6 @@
         <filter-name>ShiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
 
 
     <!-- which configuration directory to read overloaded property files from -->
@@ -76,8 +75,7 @@
     </context-param>
 
 
-
-    <!-- 
+    <!--
     for diagnostics
     -->
     <filter>
@@ -92,7 +90,6 @@
         <filter-name>IsisLogOnExceptionFilter</filter-name>
         <url-pattern>/restful/*</url-pattern>
     </filter-mapping>
-
 
 
     <!-- cache static resources for 1 day -->
@@ -132,7 +129,7 @@
         <filter-name>ResourceCachingFilter</filter-name>
         <url-pattern>*.swf</url-pattern>
     </filter-mapping>
-    
+
     <servlet>
         <servlet-name>Resource</servlet-name>
         <servlet-class>org.apache.isis.core.webapp.content.ResourceServlet</servlet-class>
@@ -165,7 +162,6 @@
         <servlet-name>Resource</servlet-name>
         <url-pattern>*.swf</url-pattern>
     </servlet-mapping>
-    
 
 
     <!--
@@ -194,8 +190,8 @@
          -->
         <param-value>development</param-value>
     </context-param>
-    
-   
+
+
     <!--
     -
     - config specific to the restfulobjects-viewer
@@ -219,8 +215,8 @@
         <param-name>isis.viewers</param-name>
         <param-value>restfulobjects</param-value>
     </context-param>    
-    -->    
-    
+    -->
+
     <!-- bootstrap the RestEasy framework -->
     <listener>
         <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
@@ -231,12 +227,12 @@
         <param-name>javax.ws.rs.Application</param-name>
         <param-value>org.apache.isis.viewer.restfulobjects.server.RestfulObjectsApplication</param-value>
     </context-param>
-    
+
     <context-param>
         <param-name>resteasy.servlet.mapping.prefix</param-name>
         <param-value>/restful/</param-value>
     </context-param>
-    
+
 
     <!-- authenticate user, set up an Isis session -->
     <filter>
@@ -245,7 +241,8 @@
         <!-- authentication required for REST -->
         <init-param>
             <param-name>authenticationSessionStrategy</param-name>
-            <param-value>org.apache.isis.viewer.restfulobjects.server.authentication.AuthenticationSessionStrategyBasicAuth</param-value>
+            <param-value>org.apache.isis.viewer.restfulobjects.server.authentication.AuthenticationSessionStrategyBasicAuth
+            </param-value>
         </init-param>
         <init-param>
             <!-- what to do if no session was found; we indicate to issue a 401 basic authentication challenge -->
@@ -284,14 +281,14 @@
     uncomment to use container-managed datasource;
     for both container-managed (JTA) and non-container-managed transactions
      -->
-     <!-- 
-    <resource-ref>
-        <description>db</description>
-        <res-ref-name>jdbc/quickstart</res-ref-name>
-        <res-type>javax.sql.DataSource</res-type>
-        <res-auth>Container</res-auth>
-    </resource-ref>
-      -->
+    <!--
+   <resource-ref>
+       <description>db</description>
+       <res-ref-name>jdbc/quickstart</res-ref-name>
+       <res-type>javax.sql.DataSource</res-type>
+       <res-auth>Container</res-auth>
+   </resource-ref>
+     -->
 
     <!--
     uncomment to use container-managed datasource

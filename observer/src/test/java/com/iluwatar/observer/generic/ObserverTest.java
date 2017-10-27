@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,14 +22,15 @@
  */
 package com.iluwatar.observer.generic;
 
-import static org.junit.Assert.assertEquals;
-
 import com.iluwatar.observer.WeatherType;
 import com.iluwatar.observer.utils.InMemoryAppender;
-import java.util.function.Supplier;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.function.Supplier;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Date: 12/27/15 - 11:44 AM
@@ -39,57 +40,57 @@ import org.junit.Test;
  */
 public abstract class ObserverTest<O extends Observer> {
 
-  private InMemoryAppender appender;
+	private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
-    appender = new InMemoryAppender();
-  }
+	@Before
+	public void setUp() {
+		appender = new InMemoryAppender();
+	}
 
-  @After
-  public void tearDown() {
-    appender.stop();
-  }
+	@After
+	public void tearDown() {
+		appender.stop();
+	}
 
-  /**
-   * The observer instance factory
-   */
-  private final Supplier<O> factory;
+	/**
+	 * The observer instance factory
+	 */
+	private final Supplier<O> factory;
 
-  /**
-   * The weather type currently tested
-   */
-  private final WeatherType weather;
+	/**
+	 * The weather type currently tested
+	 */
+	private final WeatherType weather;
 
-  /**
-   * The expected response from the observer
-   */
-  private final String response;
+	/**
+	 * The expected response from the observer
+	 */
+	private final String response;
 
-  /**
-   * Create a new test instance using the given parameters
-   *
-   * @param weather  The weather currently being tested
-   * @param response The expected response from the observer
-   * @param factory  The factory, used to create an instance of the tested observer
-   */
-  ObserverTest(final WeatherType weather, final String response, final Supplier<O> factory) {
-    this.weather = weather;
-    this.response = response;
-    this.factory = factory;
-  }
+	/**
+	 * Create a new test instance using the given parameters
+	 *
+	 * @param weather  The weather currently being tested
+	 * @param response The expected response from the observer
+	 * @param factory  The factory, used to create an instance of the tested observer
+	 */
+	ObserverTest(final WeatherType weather, final String response, final Supplier<O> factory) {
+		this.weather = weather;
+		this.response = response;
+		this.factory = factory;
+	}
 
-  /**
-   * Verify if the weather has the expected influence on the observer
-   */
-  @Test
-  public void testObserver() {
-    final O observer = this.factory.get();
-    assertEquals(0, appender.getLogSize());
+	/**
+	 * Verify if the weather has the expected influence on the observer
+	 */
+	@Test
+	public void testObserver() {
+		final O observer = this.factory.get();
+		assertEquals(0, appender.getLogSize());
 
-    observer.update(null, this.weather);
-    assertEquals(this.response, appender.getLastMessage());
-    assertEquals(1, appender.getLogSize());
-  }
+		observer.update(null, this.weather);
+		assertEquals(this.response, appender.getLastMessage());
+		assertEquals(1, appender.getLogSize());
+	}
 
 }

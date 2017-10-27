@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,7 +31,11 @@ import org.junit.Test;
 import org.mockito.InOrder;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 /**
  * Date: 12/27/15 - 11:08 AM
@@ -40,59 +44,59 @@ import static org.mockito.Mockito.*;
  */
 public class GWeatherTest {
 
-  private InMemoryAppender appender;
+	private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
-    appender = new InMemoryAppender(GWeather.class);
-  }
+	@Before
+	public void setUp() {
+		appender = new InMemoryAppender(GWeather.class);
+	}
 
-  @After
-  public void tearDown() {
-    appender.stop();
-  }
+	@After
+	public void tearDown() {
+		appender.stop();
+	}
 
-  /**
-   * Add a {@link WeatherObserver}, verify if it gets notified of a weather change, remove the
-   * observer again and verify that there are no more notifications.
-   */
-  @Test
-  public void testAddRemoveObserver() {
-    final Race observer = mock(Race.class);
+	/**
+	 * Add a {@link WeatherObserver}, verify if it gets notified of a weather change, remove the
+	 * observer again and verify that there are no more notifications.
+	 */
+	@Test
+	public void testAddRemoveObserver() {
+		final Race observer = mock(Race.class);
 
-    final GWeather weather = new GWeather();
-    weather.addObserver(observer);
-    verifyZeroInteractions(observer);
+		final GWeather weather = new GWeather();
+		weather.addObserver(observer);
+		verifyZeroInteractions(observer);
 
-    weather.timePasses();
-    assertEquals("The weather changed to rainy.", appender.getLastMessage());
-    verify(observer).update(weather, WeatherType.RAINY);
+		weather.timePasses();
+		assertEquals("The weather changed to rainy.", appender.getLastMessage());
+		verify(observer).update(weather, WeatherType.RAINY);
 
-    weather.removeObserver(observer);
-    weather.timePasses();
-    assertEquals("The weather changed to windy.", appender.getLastMessage());
+		weather.removeObserver(observer);
+		weather.timePasses();
+		assertEquals("The weather changed to windy.", appender.getLastMessage());
 
-    verifyNoMoreInteractions(observer);
-    assertEquals(2, appender.getLogSize());
-  }
+		verifyNoMoreInteractions(observer);
+		assertEquals(2, appender.getLogSize());
+	}
 
-  /**
-   * Verify if the weather passes in the order of the {@link WeatherType}s
-   */
-  @Test
-  public void testTimePasses() {
-    final Race observer = mock(Race.class);
-    final GWeather weather = new GWeather();
-    weather.addObserver(observer);
+	/**
+	 * Verify if the weather passes in the order of the {@link WeatherType}s
+	 */
+	@Test
+	public void testTimePasses() {
+		final Race observer = mock(Race.class);
+		final GWeather weather = new GWeather();
+		weather.addObserver(observer);
 
-    final InOrder inOrder = inOrder(observer);
-    final WeatherType[] weatherTypes = WeatherType.values();
-    for (int i = 1; i < 20; i++) {
-      weather.timePasses();
-      inOrder.verify(observer).update(weather, weatherTypes[i % weatherTypes.length]);
-    }
+		final InOrder inOrder = inOrder(observer);
+		final WeatherType[] weatherTypes = WeatherType.values();
+		for (int i = 1; i < 20; i++) {
+			weather.timePasses();
+			inOrder.verify(observer).update(weather, weatherTypes[i % weatherTypes.length]);
+		}
 
-    verifyNoMoreInteractions(observer);
-  }
+		verifyNoMoreInteractions(observer);
+	}
 
 }

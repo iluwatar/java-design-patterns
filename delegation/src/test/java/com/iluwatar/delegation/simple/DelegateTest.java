@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,88 +22,89 @@
  */
 package com.iluwatar.delegation.simple;
 
-import static org.junit.Assert.assertEquals;
-
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import com.iluwatar.delegation.simple.printers.CanonPrinter;
 import com.iluwatar.delegation.simple.printers.EpsonPrinter;
 import com.iluwatar.delegation.simple.printers.HpPrinter;
-import java.util.LinkedList;
-import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test for Delegation Pattern
  */
 public class DelegateTest {
 
-  private InMemoryAppender appender;
+	private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
-    appender = new InMemoryAppender();
-  }
+	@Before
+	public void setUp() {
+		appender = new InMemoryAppender();
+	}
 
-  @After
-  public void tearDown() {
-    appender.stop();
-  }
+	@After
+	public void tearDown() {
+		appender.stop();
+	}
 
-  private static final String MESSAGE = "Test Message Printed";
+	private static final String MESSAGE = "Test Message Printed";
 
-  @Test
-  public void testCanonPrinter() throws Exception {
-    PrinterController printerController = new PrinterController(new CanonPrinter());
-    printerController.print(MESSAGE);
+	@Test
+	public void testCanonPrinter() throws Exception {
+		PrinterController printerController = new PrinterController(new CanonPrinter());
+		printerController.print(MESSAGE);
 
-    assertEquals("Canon Printer : Test Message Printed", appender.getLastMessage());
-  }
+		assertEquals("Canon Printer : Test Message Printed", appender.getLastMessage());
+	}
 
-  @Test
-  public void testHpPrinter() throws Exception {
-    PrinterController printerController = new PrinterController(new HpPrinter());
-    printerController.print(MESSAGE);
+	@Test
+	public void testHpPrinter() throws Exception {
+		PrinterController printerController = new PrinterController(new HpPrinter());
+		printerController.print(MESSAGE);
 
-    assertEquals("HP Printer : Test Message Printed", appender.getLastMessage());
-  }
+		assertEquals("HP Printer : Test Message Printed", appender.getLastMessage());
+	}
 
-  @Test
-  public void testEpsonPrinter() throws Exception {
-    PrinterController printerController = new PrinterController(new EpsonPrinter());
-    printerController.print(MESSAGE);
+	@Test
+	public void testEpsonPrinter() throws Exception {
+		PrinterController printerController = new PrinterController(new EpsonPrinter());
+		printerController.print(MESSAGE);
 
-    assertEquals("Epson Printer : Test Message Printed", appender.getLastMessage());
-  }
+		assertEquals("Epson Printer : Test Message Printed", appender.getLastMessage());
+	}
 
-  /**
-   * Logging Appender
-   */
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+	/**
+	 * Logging Appender
+	 */
+	private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
-    private List<ILoggingEvent> log = new LinkedList<>();
+		private List<ILoggingEvent> log = new LinkedList<>();
 
-    public InMemoryAppender() {
-      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
-      start();
-    }
+		public InMemoryAppender() {
+			((Logger) LoggerFactory.getLogger("root")).addAppender(this);
+			start();
+		}
 
-    @Override
-    protected void append(ILoggingEvent eventObject) {
-      log.add(eventObject);
-    }
+		@Override
+		protected void append(ILoggingEvent eventObject) {
+			log.add(eventObject);
+		}
 
-    public String getLastMessage() {
-      return log.get(log.size() - 1).getFormattedMessage();
-    }
+		public String getLastMessage() {
+			return log.get(log.size() - 1).getFormattedMessage();
+		}
 
-    public int getLogSize() {
-      return log.size();
-    }
-  }
+		public int getLogSize() {
+			return log.size();
+		}
+	}
 
 }

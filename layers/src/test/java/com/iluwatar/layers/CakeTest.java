@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,81 +39,81 @@ import static org.junit.Assert.assertTrue;
  */
 public class CakeTest {
 
-  @Test
-  public void testSetId() {
-    final Cake cake = new Cake();
-    assertNull(cake.getId());
+	@Test
+	public void testSetId() {
+		final Cake cake = new Cake();
+		assertNull(cake.getId());
 
-    final Long expectedId = Long.valueOf(1234L);
-    cake.setId(expectedId);
-    assertEquals(expectedId, cake.getId());
-  }
+		final Long expectedId = Long.valueOf(1234L);
+		cake.setId(expectedId);
+		assertEquals(expectedId, cake.getId());
+	}
 
-  @Test
-  public void testSetTopping() {
-    final Cake cake = new Cake();
-    assertNull(cake.getTopping());
+	@Test
+	public void testSetTopping() {
+		final Cake cake = new Cake();
+		assertNull(cake.getTopping());
 
-    final CakeTopping expectedTopping = new CakeTopping("DummyTopping", 1000);
-    cake.setTopping(expectedTopping);
-    assertEquals(expectedTopping, cake.getTopping());
-  }
+		final CakeTopping expectedTopping = new CakeTopping("DummyTopping", 1000);
+		cake.setTopping(expectedTopping);
+		assertEquals(expectedTopping, cake.getTopping());
+	}
 
-  @Test
-  public void testSetLayers() {
-    final Cake cake = new Cake();
-    assertNotNull(cake.getLayers());
-    assertTrue(cake.getLayers().isEmpty());
+	@Test
+	public void testSetLayers() {
+		final Cake cake = new Cake();
+		assertNotNull(cake.getLayers());
+		assertTrue(cake.getLayers().isEmpty());
 
-    final Set<CakeLayer> expectedLayers = new HashSet<>();
-    expectedLayers.add(new CakeLayer("layer1", 1000));
-    expectedLayers.add(new CakeLayer("layer2", 2000));
-    expectedLayers.add(new CakeLayer("layer3", 3000));
+		final Set<CakeLayer> expectedLayers = new HashSet<>();
+		expectedLayers.add(new CakeLayer("layer1", 1000));
+		expectedLayers.add(new CakeLayer("layer2", 2000));
+		expectedLayers.add(new CakeLayer("layer3", 3000));
 
-    cake.setLayers(expectedLayers);
-    assertEquals(expectedLayers, cake.getLayers());
-  }
+		cake.setLayers(expectedLayers);
+		assertEquals(expectedLayers, cake.getLayers());
+	}
 
-  @Test
-  public void testAddLayer() {
-    final Cake cake = new Cake();
-    assertNotNull(cake.getLayers());
-    assertTrue(cake.getLayers().isEmpty());
+	@Test
+	public void testAddLayer() {
+		final Cake cake = new Cake();
+		assertNotNull(cake.getLayers());
+		assertTrue(cake.getLayers().isEmpty());
 
-    final Set<CakeLayer> initialLayers = new HashSet<>();
-    initialLayers.add(new CakeLayer("layer1", 1000));
-    initialLayers.add(new CakeLayer("layer2", 2000));
+		final Set<CakeLayer> initialLayers = new HashSet<>();
+		initialLayers.add(new CakeLayer("layer1", 1000));
+		initialLayers.add(new CakeLayer("layer2", 2000));
 
-    cake.setLayers(initialLayers);
-    assertEquals(initialLayers, cake.getLayers());
+		cake.setLayers(initialLayers);
+		assertEquals(initialLayers, cake.getLayers());
 
-    final CakeLayer newLayer = new CakeLayer("layer3", 3000);
-    cake.addLayer(newLayer);
+		final CakeLayer newLayer = new CakeLayer("layer3", 3000);
+		cake.addLayer(newLayer);
 
-    final Set<CakeLayer> expectedLayers = new HashSet<>();
-    expectedLayers.addAll(initialLayers);
-    expectedLayers.addAll(initialLayers);
-    expectedLayers.add(newLayer);
-    assertEquals(expectedLayers, cake.getLayers());
-  }
+		final Set<CakeLayer> expectedLayers = new HashSet<>();
+		expectedLayers.addAll(initialLayers);
+		expectedLayers.addAll(initialLayers);
+		expectedLayers.add(newLayer);
+		assertEquals(expectedLayers, cake.getLayers());
+	}
 
-  @Test
-  public void testToString() {
-    final CakeTopping topping = new CakeTopping("topping", 20);
-    topping.setId(2345L);
+	@Test
+	public void testToString() {
+		final CakeTopping topping = new CakeTopping("topping", 20);
+		topping.setId(2345L);
 
-    final CakeLayer layer = new CakeLayer("layer", 100);
-    layer.setId(3456L);
+		final CakeLayer layer = new CakeLayer("layer", 100);
+		layer.setId(3456L);
 
-    final Cake cake = new Cake();
-    cake.setId(1234L);
-    cake.setTopping(topping);
-    cake.addLayer(layer);
+		final Cake cake = new Cake();
+		cake.setId(1234L);
+		cake.setTopping(topping);
+		cake.addLayer(layer);
 
-    final String expected = "id=1234 topping=id=2345 name=topping calories=20 " 
-            + "layers=[id=3456 name=layer calories=100]";
-    assertEquals(expected, cake.toString());
+		final String expected = "id=1234 topping=id=2345 name=topping calories=20 "
+				+ "layers=[id=3456 name=layer calories=100]";
+		assertEquals(expected, cake.toString());
 
-  }
+	}
 
 }

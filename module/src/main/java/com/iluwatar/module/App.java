@@ -1,15 +1,15 @@
 /**
  * The MIT License Copyright (c) 2014 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
  * including without limitation the rights to use, copy, modify, merge, publish, distribute,
  * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in all copies or
  * substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
  * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -29,64 +29,65 @@ import java.io.FileNotFoundException;
  * <p>
  * The below example demonstrates a use case for testing two different modules: File Logger and
  * Console Logger
- * 
+ *
  */
 public final class App {
 
-  public static FileLoggerModule fileLoggerModule;
-  public static ConsoleLoggerModule consoleLoggerModule;
+	public static FileLoggerModule fileLoggerModule;
+	public static ConsoleLoggerModule consoleLoggerModule;
 
-  /**
-   * Following method performs the initialization
-   * 
-   * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *         error.txt)
-   */
-  public static void prepare() throws FileNotFoundException {
+	/**
+	 * Following method performs the initialization
+	 *
+	 * @throws FileNotFoundException if program is not able to find log files (output.txt and
+	 *         error.txt)
+	 */
+	public static void prepare() throws FileNotFoundException {
 
     /* Create new singleton objects and prepare their modules */
-    fileLoggerModule = FileLoggerModule.getSingleton().prepare();
-    consoleLoggerModule = ConsoleLoggerModule.getSingleton().prepare();
-  }
+		fileLoggerModule = FileLoggerModule.getSingleton().prepare();
+		consoleLoggerModule = ConsoleLoggerModule.getSingleton().prepare();
+	}
 
-  /**
-   * Following method performs the finalization
-   */
-  public static void unprepare() {
+	/**
+	 * Following method performs the finalization
+	 */
+	public static void unprepare() {
 
     /* Close all resources */
-    fileLoggerModule.unprepare();
-    consoleLoggerModule.unprepare();
-  }
+		fileLoggerModule.unprepare();
+		consoleLoggerModule.unprepare();
+	}
 
-  /**
-   * Following method is main executor
-   * 
-   * @param args for providing default program arguments
-   */
-  public static void execute(final String... args) {
+	/**
+	 * Following method is main executor
+	 *
+	 * @param args for providing default program arguments
+	 */
+	public static void execute(final String... args) {
 
     /* Send logs on file system */
-    fileLoggerModule.printString("Message");
-    fileLoggerModule.printErrorString("Error");
+		fileLoggerModule.printString("Message");
+		fileLoggerModule.printErrorString("Error");
 
     /* Send logs on console */
-    consoleLoggerModule.printString("Message");
-    consoleLoggerModule.printErrorString("Error");
-  }
+		consoleLoggerModule.printString("Message");
+		consoleLoggerModule.printErrorString("Error");
+	}
 
-  /**
-   * Program entry point.
-   * 
-   * @param args command line args.
-   * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *         error.txt)
-   */
-  public static void main(final String... args) throws FileNotFoundException {
-    prepare();
-    execute(args);
-    unprepare();
-  }
+	/**
+	 * Program entry point.
+	 *
+	 * @param args command line args.
+	 * @throws FileNotFoundException if program is not able to find log files (output.txt and
+	 *         error.txt)
+	 */
+	public static void main(final String... args) throws FileNotFoundException {
+		prepare();
+		execute(args);
+		unprepare();
+	}
 
-  private App() {}
+	private App() {
+	}
 }

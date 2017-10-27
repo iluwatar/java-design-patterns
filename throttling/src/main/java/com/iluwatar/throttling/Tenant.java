@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,29 +29,29 @@ import java.security.InvalidParameterException;
  */
 public class Tenant {
 
-  private String name;
-  private int allowedCallsPerSecond;
+	private String name;
+	private int allowedCallsPerSecond;
 
-  /**
-   *
-   * @param name Name of the tenant
-   * @param allowedCallsPerSecond The number of calls allowed for a particular tenant.
-   * @throws InvalidParameterException If number of calls is less than 0, throws exception.
-   */
-  public Tenant(String name, int allowedCallsPerSecond) {
-    if (allowedCallsPerSecond < 0) {
-      throw new InvalidParameterException("Number of calls less than 0 not allowed");
-    }
-    this.name = name;
-    this.allowedCallsPerSecond = allowedCallsPerSecond;
-    CallsCount.addTenant(name);
-  }
+	/**
+	 *
+	 * @param name Name of the tenant
+	 * @param allowedCallsPerSecond The number of calls allowed for a particular tenant.
+	 * @throws InvalidParameterException If number of calls is less than 0, throws exception.
+	 */
+	public Tenant(String name, int allowedCallsPerSecond) {
+		if (allowedCallsPerSecond < 0) {
+			throw new InvalidParameterException("Number of calls less than 0 not allowed");
+		}
+		this.name = name;
+		this.allowedCallsPerSecond = allowedCallsPerSecond;
+		CallsCount.addTenant(name);
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public int getAllowedCallsPerSecond() {
-    return allowedCallsPerSecond;
-  }
+	public int getAllowedCallsPerSecond() {
+		return allowedCallsPerSecond;
+	}
 }

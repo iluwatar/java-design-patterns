@@ -37,40 +37,40 @@ import static org.junit.Assert.assertEquals;
 
 public class AdvancedSorceressTest {
 
-  private InMemoryAppender appender;
+	private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
-    appender = new InMemoryAppender(Tobacco.class);
-  }
+	@Before
+	public void setUp() {
+		appender = new InMemoryAppender(Tobacco.class);
+	}
 
-  @After
-  public void tearDown() {
-    appender.stop();
-  }
+	@After
+	public void tearDown() {
+		appender.stop();
+	}
 
-  /**
-   * Test if the {@link AdvancedSorceress} smokes whatever instance of {@link Tobacco} is passed to her
-   * through the setter's parameter
-   */
-  @Test
-  public void testSmokeEveryThing() throws Exception {
+	/**
+	 * Test if the {@link AdvancedSorceress} smokes whatever instance of {@link Tobacco} is passed to her
+	 * through the setter's parameter
+	 */
+	@Test
+	public void testSmokeEveryThing() throws Exception {
 
-    final Tobacco[] tobaccos = {
-        new OldTobyTobacco(), new RivendellTobacco(), new SecondBreakfastTobacco()
-    };
+		final Tobacco[] tobaccos = {
+				new OldTobyTobacco(), new RivendellTobacco(), new SecondBreakfastTobacco()
+		};
 
-    for (final Tobacco tobacco : tobaccos) {
-      final AdvancedSorceress advancedSorceress = new AdvancedSorceress();
-      advancedSorceress.setTobacco(tobacco);
-      advancedSorceress.smoke();
-      // Verify if the sorceress is smoking the correct tobacco ...
-      assertEquals("AdvancedSorceress smoking " + tobacco.getClass().getSimpleName(), appender.getLastMessage());
+		for (final Tobacco tobacco : tobaccos) {
+			final AdvancedSorceress advancedSorceress = new AdvancedSorceress();
+			advancedSorceress.setTobacco(tobacco);
+			advancedSorceress.smoke();
+			// Verify if the sorceress is smoking the correct tobacco ...
+			assertEquals("AdvancedSorceress smoking " + tobacco.getClass().getSimpleName(), appender.getLastMessage());
 
-    }
+		}
 
-    // ... and nothing else is happening.
-    assertEquals(tobaccos.length, appender.getLogSize());
+		// ... and nothing else is happening.
+		assertEquals(tobaccos.length, appender.getLogSize());
 
-  }
+	}
 }

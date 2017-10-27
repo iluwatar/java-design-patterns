@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,49 +31,49 @@ import java.util.Iterator;
  */
 public abstract class DecoratingIterator<E> implements Iterator<E> {
 
-  protected final Iterator<E> fromIterator;
+	protected final Iterator<E> fromIterator;
 
-  private E next;
+	private E next;
 
-  /**
-   * Creates an iterator that decorates the given iterator.
-   */
-  public DecoratingIterator(Iterator<E> fromIterator) {
-    this.fromIterator = fromIterator;
-  }
+	/**
+	 * Creates an iterator that decorates the given iterator.
+	 */
+	public DecoratingIterator(Iterator<E> fromIterator) {
+		this.fromIterator = fromIterator;
+	}
 
-  /**
-   * Precomputes and saves the next element of the Iterable. null is considered as end of data.
-   *
-   * @return true if a next element is available
-   */
-  @Override
-  public final boolean hasNext() {
-    next = computeNext();
-    return next != null;
-  }
+	/**
+	 * Precomputes and saves the next element of the Iterable. null is considered as end of data.
+	 *
+	 * @return true if a next element is available
+	 */
+	@Override
+	public final boolean hasNext() {
+		next = computeNext();
+		return next != null;
+	}
 
-  /**
-   * Returns the next element of the Iterable.
-   *
-   * @return the next element of the Iterable, or null if not present.
-   */
-  @Override
-  public final E next() {
-    if (next == null) {
-      return fromIterator.next();
-    } else {
-      final E result = next;
-      next = null;
-      return result;
-    }
-  }
+	/**
+	 * Returns the next element of the Iterable.
+	 *
+	 * @return the next element of the Iterable, or null if not present.
+	 */
+	@Override
+	public final E next() {
+		if (next == null) {
+			return fromIterator.next();
+		} else {
+			final E result = next;
+			next = null;
+			return result;
+		}
+	}
 
-  /**
-   * Computes the next object of the Iterable. Can be implemented to realize custom behaviour for an
-   * iteration process. null is considered as end of data.
-   *
-   * @return the next element of the Iterable.
-   */
-  public abstract E computeNext();
+	/**
+	 * Computes the next object of the Iterable. Can be implemented to realize custom behaviour for an
+	 * iteration process. null is considered as end of data.
+	 *
+	 * @return the next element of the Iterable.
+	 */
+	public abstract E computeNext();
 }

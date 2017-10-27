@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -45,150 +45,150 @@ import java.util.concurrent.TimeUnit;
  */
 public class AppClient {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(AppClient.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AppClient.class);
 
-  private final ExecutorService service = Executors.newFixedThreadPool(4);
+	private final ExecutorService service = Executors.newFixedThreadPool(4);
 
-  /**
-   * App client entry.
-   * 
-   * @throws IOException if any I/O error occurs.
-   */
-  public static void main(String[] args) throws IOException {
-    AppClient appClient = new AppClient();
-    appClient.start();
-  }
+	/**
+	 * App client entry.
+	 *
+	 * @throws IOException if any I/O error occurs.
+	 */
+	public static void main(String[] args) throws IOException {
+		AppClient appClient = new AppClient();
+		appClient.start();
+	}
 
-  /**
-   * Starts the logging clients.
-   * 
-   * @throws IOException if any I/O error occurs.
-   */
-  public void start() throws IOException {
-    LOGGER.info("Starting logging clients");
-    service.execute(new TcpLoggingClient("Client 1", 6666));
-    service.execute(new TcpLoggingClient("Client 2", 6667));
-    service.execute(new UdpLoggingClient("Client 3", 6668));
-    service.execute(new UdpLoggingClient("Client 4", 6668));
-  }
+	/**
+	 * Starts the logging clients.
+	 *
+	 * @throws IOException if any I/O error occurs.
+	 */
+	public void start() throws IOException {
+		LOGGER.info("Starting logging clients");
+		service.execute(new TcpLoggingClient("Client 1", 6666));
+		service.execute(new TcpLoggingClient("Client 2", 6667));
+		service.execute(new UdpLoggingClient("Client 3", 6668));
+		service.execute(new UdpLoggingClient("Client 4", 6668));
+	}
 
-  /**
-   * Stops logging clients. This is a blocking call.
-   */
-  public void stop() {
-    service.shutdown();
-    if (!service.isTerminated()) {
-      service.shutdownNow();
-      try {
-        service.awaitTermination(1000, TimeUnit.SECONDS);
-      } catch (InterruptedException e) {
-        LOGGER.error("exception awaiting termination", e);
-      }
-    }
-    LOGGER.info("Logging clients stopped");
-  }
+	/**
+	 * Stops logging clients. This is a blocking call.
+	 */
+	public void stop() {
+		service.shutdown();
+		if (!service.isTerminated()) {
+			service.shutdownNow();
+			try {
+				service.awaitTermination(1000, TimeUnit.SECONDS);
+			} catch (InterruptedException e) {
+				LOGGER.error("exception awaiting termination", e);
+			}
+		}
+		LOGGER.info("Logging clients stopped");
+	}
 
-  private static void artificialDelayOf(long millis) {
-    try {
-      Thread.sleep(millis);
-    } catch (InterruptedException e) {
-      LOGGER.error("sleep interrupted", e);
-    }
-  }
+	private static void artificialDelayOf(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			LOGGER.error("sleep interrupted", e);
+		}
+	}
 
-  /**
-   * A logging client that sends requests to Reactor on TCP socket.
-   */
-  static class TcpLoggingClient implements Runnable {
+	/**
+	 * A logging client that sends requests to Reactor on TCP socket.
+	 */
+	static class TcpLoggingClient implements Runnable {
 
-    private final int serverPort;
-    private final String clientName;
+		private final int serverPort;
+		private final String clientName;
 
-    /**
-     * Creates a new TCP logging client.
-     * 
-     * @param clientName the name of the client to be sent in logging requests.
-     * @param port the port on which client will send logging requests.
-     */
-    public TcpLoggingClient(String clientName, int serverPort) {
-      this.clientName = clientName;
-      this.serverPort = serverPort;
-    }
+		/**
+		 * Creates a new TCP logging client.
+		 *
+		 * @param clientName the name of the client to be sent in logging requests.
+		 * @param port the port on which client will send logging requests.
+		 */
+		public TcpLoggingClient(String clientName, int serverPort) {
+			this.clientName = clientName;
+			this.serverPort = serverPort;
+		}
 
-    public void run() {
-      try (Socket socket = new Socket(InetAddress.getLocalHost(), serverPort)) {
-        OutputStream outputStream = socket.getOutputStream();
-        PrintWriter writer = new PrintWriter(outputStream);
-        sendLogRequests(writer, socket.getInputStream());
-      } catch (IOException e) {
-        LOGGER.error("error sending requests", e);
-        throw new RuntimeException(e);
-      }
-    }
+		public void run() {
+			try (Socket socket = new Socket(InetAddress.getLocalHost(), serverPort)) {
+				OutputStream outputStream = socket.getOutputStream();
+				PrintWriter writer = new PrintWriter(outputStream);
+				sendLogRequests(writer, socket.getInputStream());
+			} catch (IOException e) {
+				LOGGER.error("error sending requests", e);
+				throw new RuntimeException(e);
+			}
+		}
 
-    private void sendLogRequests(PrintWriter writer, InputStream inputStream) throws IOException {
-      for (int i = 0; i < 4; i++) {
-        writer.println(clientName + " - Log request: " + i);
-        writer.flush();
+		private void sendLogRequests(PrintWriter writer, InputStream inputStream) throws IOException {
+			for (int i = 0; i < 4; i++) {
+				writer.println(clientName + " - Log request: " + i);
+				writer.flush();
 
-        byte[] data = new byte[1024];
-        int read = inputStream.read(data, 0, data.length);
-        if (read == 0) {
-          LOGGER.info("Read zero bytes");
-        } else {
-          LOGGER.info(new String(data, 0, read));
-        }
+				byte[] data = new byte[1024];
+				int read = inputStream.read(data, 0, data.length);
+				if (read == 0) {
+					LOGGER.info("Read zero bytes");
+				} else {
+					LOGGER.info(new String(data, 0, read));
+				}
 
-        artificialDelayOf(100);
-      }
-    }
+				artificialDelayOf(100);
+			}
+		}
 
-  }
+	}
 
-  /**
-   * A logging client that sends requests to Reactor on UDP socket.
-   */
-  static class UdpLoggingClient implements Runnable {
-    private final String clientName;
-    private final InetSocketAddress remoteAddress;
+	/**
+	 * A logging client that sends requests to Reactor on UDP socket.
+	 */
+	static class UdpLoggingClient implements Runnable {
+		private final String clientName;
+		private final InetSocketAddress remoteAddress;
 
-    /**
-     * Creates a new UDP logging client.
-     * 
-     * @param clientName the name of the client to be sent in logging requests.
-     * @param port the port on which client will send logging requests.
-     * @throws UnknownHostException if localhost is unknown
-     */
-    public UdpLoggingClient(String clientName, int port) throws UnknownHostException {
-      this.clientName = clientName;
-      this.remoteAddress = new InetSocketAddress(InetAddress.getLocalHost(), port);
-    }
+		/**
+		 * Creates a new UDP logging client.
+		 *
+		 * @param clientName the name of the client to be sent in logging requests.
+		 * @param port the port on which client will send logging requests.
+		 * @throws UnknownHostException if localhost is unknown
+		 */
+		public UdpLoggingClient(String clientName, int port) throws UnknownHostException {
+			this.clientName = clientName;
+			this.remoteAddress = new InetSocketAddress(InetAddress.getLocalHost(), port);
+		}
 
-    @Override
-    public void run() {
-      try (DatagramSocket socket = new DatagramSocket()) {
-        for (int i = 0; i < 4; i++) {
+		@Override
+		public void run() {
+			try (DatagramSocket socket = new DatagramSocket()) {
+				for (int i = 0; i < 4; i++) {
 
-          String message = clientName + " - Log request: " + i;
-          DatagramPacket request =
-              new DatagramPacket(message.getBytes(), message.getBytes().length, remoteAddress);
+					String message = clientName + " - Log request: " + i;
+					DatagramPacket request =
+							new DatagramPacket(message.getBytes(), message.getBytes().length, remoteAddress);
 
-          socket.send(request);
+					socket.send(request);
 
-          byte[] data = new byte[1024];
-          DatagramPacket reply = new DatagramPacket(data, data.length);
-          socket.receive(reply);
-          if (reply.getLength() == 0) {
-            LOGGER.info("Read zero bytes");
-          } else {
-            LOGGER.info(new String(reply.getData(), 0, reply.getLength()));
-          }
+					byte[] data = new byte[1024];
+					DatagramPacket reply = new DatagramPacket(data, data.length);
+					socket.receive(reply);
+					if (reply.getLength() == 0) {
+						LOGGER.info("Read zero bytes");
+					} else {
+						LOGGER.info(new String(reply.getData(), 0, reply.getLength()));
+					}
 
-          artificialDelayOf(100);
-        }
-      } catch (IOException e1) {
-        LOGGER.error("error sending packets", e1);
-      }
-    }
-  }
+					artificialDelayOf(100);
+				}
+			} catch (IOException e1) {
+				LOGGER.error("error sending packets", e1);
+			}
+		}
+	}
 }

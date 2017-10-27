@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,6 +23,7 @@
 package com.iluwatar.event.sourcing.state;
 
 import com.iluwatar.event.sourcing.domain.Account;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,38 +35,38 @@ import java.util.Map;
  */
 public class AccountAggregate {
 
-  private static Map<Integer, Account> accounts = new HashMap<>();
+	private static Map<Integer, Account> accounts = new HashMap<>();
 
-  private AccountAggregate() {
-  }
+	private AccountAggregate() {
+	}
 
-  /**
-   * Put account.
-   *
-   * @param account the account
-   */
-  public static void putAccount(Account account) {
-    accounts.put(account.getAccountNo(), account);
-  }
+	/**
+	 * Put account.
+	 *
+	 * @param account the account
+	 */
+	public static void putAccount(Account account) {
+		accounts.put(account.getAccountNo(), account);
+	}
 
-  /**
-   * Gets account.
-   *
-   * @param accountNo the account no
-   * @return the copy of the account or null if not found
-   */
-  public static Account getAccount(int accountNo) {
-    Account account = accounts.get(accountNo);
-    if (account == null) {
-      return null;
-    }
-    return account.copy();
-  }
+	/**
+	 * Gets account.
+	 *
+	 * @param accountNo the account no
+	 * @return the copy of the account or null if not found
+	 */
+	public static Account getAccount(int accountNo) {
+		Account account = accounts.get(accountNo);
+		if (account == null) {
+			return null;
+		}
+		return account.copy();
+	}
 
-  /**
-   * Reset state.
-   */
-  public static void resetState() {
-    accounts = new HashMap<>();
-  }
+	/**
+	 * Reset state.
+	 */
+	public static void resetState() {
+		accounts = new HashMap<>();
+	}
 }

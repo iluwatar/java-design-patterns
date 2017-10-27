@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,34 +34,34 @@ import org.slf4j.LoggerFactory;
  */
 public class ServiceImpl implements Service {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
 
-  private final String serviceName;
-  private final int id;
+	private final String serviceName;
+	private final int id;
 
-  /**
-   * Constructor
-   */
-  public ServiceImpl(String serviceName) {
-    // set the service name
-    this.serviceName = serviceName;
+	/**
+	 * Constructor
+	 */
+	public ServiceImpl(String serviceName) {
+		// set the service name
+		this.serviceName = serviceName;
 
-    // Generate a random id to this service object
-    this.id = (int) Math.floor(Math.random() * 1000) + 1;
-  }
+		// Generate a random id to this service object
+		this.id = (int) Math.floor(Math.random() * 1000) + 1;
+	}
 
-  @Override
-  public String getName() {
-    return serviceName;
-  }
+	@Override
+	public String getName() {
+		return serviceName;
+	}
 
-  @Override
-  public int getId() {
-    return id;
-  }
+	@Override
+	public int getId() {
+		return id;
+	}
 
-  @Override
-  public void execute() {
-    LOGGER.info("Service {} is now executing with id {}", getName(), getId());
-  }
+	@Override
+	public void execute() {
+		LOGGER.info("Service {} is now executing with id {}", getName(), getId());
+	}
 }

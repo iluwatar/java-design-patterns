@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,22 +27,23 @@ package com.iluwatar.singleton;
  */
 public final class IvoryTower {
 
-  /**
-   * Private constructor so nobody can instantiate the class.
-   */
-  private IvoryTower() {}
+	/**
+	 * Private constructor so nobody can instantiate the class.
+	 */
+	private IvoryTower() {
+	}
 
-  /**
-   * Static to class instance of the class.
-   */
-  private static final IvoryTower INSTANCE = new IvoryTower();
+	/**
+	 * Static to class instance of the class.
+	 */
+	private static final IvoryTower INSTANCE = new IvoryTower();
 
-  /**
-   * To be called by user to obtain instance of the class.
-   *
-   * @return instance of the singleton.
-   */
-  public static IvoryTower getInstance() {
-    return INSTANCE;
-  }
+	/**
+	 * To be called by user to obtain instance of the class.
+	 *
+	 * @return instance of the singleton.
+	 */
+	public static IvoryTower getInstance() {
+		return INSTANCE;
+	}
 }

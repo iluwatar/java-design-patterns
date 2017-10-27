@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,39 +29,39 @@ package com.iluwatar.mutex;
  */
 public class Jar {
 
-  /**
-   * The lock which must be acquired to access the beans resource.
-   */
-  private final Lock lock;
+	/**
+	 * The lock which must be acquired to access the beans resource.
+	 */
+	private final Lock lock;
 
-  /**
-   * The resource within the jar.
-   */
-  private int beans;
+	/**
+	 * The resource within the jar.
+	 */
+	private int beans;
 
-  public Jar(int beans, Lock lock) {
-    this.beans = beans;
-    this.lock = lock;
-  }
+	public Jar(int beans, Lock lock) {
+		this.beans = beans;
+		this.lock = lock;
+	}
 
-  /**
-   * Method for a thief to take a bean.
-   */
-  public boolean takeBean() {
-    boolean success = false;
-    try {
-      lock.acquire();
-      success = beans > 0;
-      if (success) {
-        beans = beans - 1;
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      lock.release();
-    }
+	/**
+	 * Method for a thief to take a bean.
+	 */
+	public boolean takeBean() {
+		boolean success = false;
+		try {
+			lock.acquire();
+			success = beans > 0;
+			if (success) {
+				beans = beans - 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			lock.release();
+		}
 
-    return success;
-  }
+		return success;
+	}
 
 }

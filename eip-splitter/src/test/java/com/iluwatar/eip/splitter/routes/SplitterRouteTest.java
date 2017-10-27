@@ -1,7 +1,6 @@
 package com.iluwatar.eip.splitter.routes;
 
 import org.apache.camel.EndpointInject;
-import org.apache.camel.Message;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.Test;
@@ -12,8 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Test class for <i>SplitterRoute</i>.
@@ -29,25 +26,26 @@ import static org.junit.Assert.assertEquals;
 @ComponentScan
 public class SplitterRouteTest {
 
-  @EndpointInject(uri = "{{entry}}")
-  private ProducerTemplate entry;
+	@EndpointInject(uri = "{{entry}}")
+	private ProducerTemplate entry;
 
-  @EndpointInject(uri = "{{endpoint}}")
-  private MockEndpoint endpoint;
+	@EndpointInject(uri = "{{endpoint}}")
+	private MockEndpoint endpoint;
 
-  /**
-   * Test if endpoint receives three separate messages.
-   * @throws Exception in case of en exception during the test
-   */
-  @Test
-  @DirtiesContext
-  public void testSplitter() throws Exception {
+	/**
+	 * Test if endpoint receives three separate messages.
+	 *
+	 * @throws Exception in case of en exception during the test
+	 */
+	@Test
+	@DirtiesContext
+	public void testSplitter() throws Exception {
 
-    // Three items in one entry message
-    entry.sendBody(new String[] {"TEST1", "TEST2", "TEST3"});
+		// Three items in one entry message
+		entry.sendBody(new String[]{"TEST1", "TEST2", "TEST3"});
 
-    // Endpoint should have three different messages in the end order of the messages is not important
-    endpoint.expectedMessageCount(3);
-    endpoint.assertIsSatisfied();
-  }
+		// Endpoint should have three different messages in the end order of the messages is not important
+		endpoint.expectedMessageCount(3);
+		endpoint.assertIsSatisfied();
+	}
 }

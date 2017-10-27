@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,41 +27,41 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
+ *
  *  ServiceExecuotr class.
  *  This class will pick up Messages one by one from 
  *  the Blocking Queue and process them.
  */
 public class ServiceExecutor implements Runnable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  private final MessageQueue msgQueue;
+	private final MessageQueue msgQueue;
 
-  public ServiceExecutor(MessageQueue msgQueue) {
-    this.msgQueue = msgQueue;
-  }
+	public ServiceExecutor(MessageQueue msgQueue) {
+		this.msgQueue = msgQueue;
+	}
 
-  /**
-   * The ServiceExecutor thread will retrieve each message and process it.
-   */
-  public void run() {
-    try {
-      while (!Thread.currentThread().isInterrupted()) {
-        Message msg = msgQueue.retrieveMsg();
+	/**
+	 * The ServiceExecutor thread will retrieve each message and process it.
+	 */
+	public void run() {
+		try {
+			while (!Thread.currentThread().isInterrupted()) {
+				Message msg = msgQueue.retrieveMsg();
 
-        if (null != msg) {
-          LOGGER.info(msg.toString() + " is served.");
-        } else {
-          LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
-        }
+				if (null != msg) {
+					LOGGER.info(msg.toString() + " is served.");
+				} else {
+					LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
+				}
 
-        Thread.sleep(1000);
-      }
-    } catch (InterruptedException ie) {
-      LOGGER.error(ie.getMessage());
-    } catch (Exception e) {
-      LOGGER.error(e.getMessage());
-    }
-  }
+				Thread.sleep(1000);
+			}
+		} catch (InterruptedException ie) {
+			LOGGER.error(ie.getMessage());
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+		}
+	}
 }

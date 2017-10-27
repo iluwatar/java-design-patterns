@@ -1,17 +1,17 @@
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,7 +34,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * This represents the <i>Handle</i> of Reactor pattern. These are resources managed by OS which can
  * be submitted to {@link NioReactor}.
- * 
+ *
  * <p>
  * This class serves has the responsibility of reading the data when a read event occurs and writing
  * the data back when the channel is writable. It leaves the reading and writing of data on the
@@ -44,132 +44,132 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public abstract class AbstractNioChannel {
 
-  private final SelectableChannel channel;
-  private final ChannelHandler handler;
-  private final Map<SelectableChannel, Queue<Object>> channelToPendingWrites =
-      new ConcurrentHashMap<>();
-  private NioReactor reactor;
+	private final SelectableChannel channel;
+	private final ChannelHandler handler;
+	private final Map<SelectableChannel, Queue<Object>> channelToPendingWrites =
+			new ConcurrentHashMap<>();
+	private NioReactor reactor;
 
-  /**
-   * Creates a new channel.
-   * 
-   * @param handler which will handle events occurring on this channel.
-   * @param channel a NIO channel to be wrapped.
-   */
-  public AbstractNioChannel(ChannelHandler handler, SelectableChannel channel) {
-    this.handler = handler;
-    this.channel = channel;
-  }
+	/**
+	 * Creates a new channel.
+	 *
+	 * @param handler which will handle events occurring on this channel.
+	 * @param channel a NIO channel to be wrapped.
+	 */
+	public AbstractNioChannel(ChannelHandler handler, SelectableChannel channel) {
+		this.handler = handler;
+		this.channel = channel;
+	}
 
-  /**
-   * Injects the reactor in this channel.
-   */
-  void setReactor(NioReactor reactor) {
-    this.reactor = reactor;
-  }
+	/**
+	 * Injects the reactor in this channel.
+	 */
+	void setReactor(NioReactor reactor) {
+		this.reactor = reactor;
+	}
 
-  /**
-   * @return the wrapped NIO channel.
-   */
-  public SelectableChannel getJavaChannel() {
-    return channel;
-  }
+	/**
+	 * @return the wrapped NIO channel.
+	 */
+	public SelectableChannel getJavaChannel() {
+		return channel;
+	}
 
-  /**
-   * The operation in which the channel is interested, this operation is provided to
-   * {@link Selector}.
-   * 
-   * @return interested operation.
-   * @see SelectionKey
-   */
-  public abstract int getInterestedOps();
+	/**
+	 * The operation in which the channel is interested, this operation is provided to
+	 * {@link Selector}.
+	 *
+	 * @return interested operation.
+	 * @see SelectionKey
+	 */
+	public abstract int getInterestedOps();
 
-  /**
-   * Binds the channel on provided port.
-   * 
-   * @throws IOException if any I/O error occurs.
-   */
-  public abstract void bind() throws IOException;
+	/**
+	 * Binds the channel on provided port.
+	 *
+	 * @throws IOException if any I/O error occurs.
+	 */
+	public abstract void bind() throws IOException;
 
-  /**
-   * Reads the data using the key and returns the read data. The underlying channel should be
-   * fetched using {@link SelectionKey#channel()}.
-   * 
-   * @param key the key on which read event occurred.
-   * @return data read.
-   * @throws IOException if any I/O error occurs.
-   */
-  public abstract Object read(SelectionKey key) throws IOException;
+	/**
+	 * Reads the data using the key and returns the read data. The underlying channel should be
+	 * fetched using {@link SelectionKey#channel()}.
+	 *
+	 * @param key the key on which read event occurred.
+	 * @return data read.
+	 * @throws IOException if any I/O error occurs.
+	 */
+	public abstract Object read(SelectionKey key) throws IOException;
 
-  /**
-   * @return the handler associated with this channel.
-   */
-  public ChannelHandler getHandler() {
-    return handler;
-  }
+	/**
+	 * @return the handler associated with this channel.
+	 */
+	public ChannelHandler getHandler() {
+		return handler;
+	}
 
-  /*
-   * Called from the context of reactor thread when the key becomes writable. The channel writes the
-   * whole pending block of data at once.
-   */
-  void flush(SelectionKey key) throws IOException {
-    Queue<Object> pendingWrites = channelToPendingWrites.get(key.channel());
-    while (true) {
-      Object pendingWrite = pendingWrites.poll();
-      if (pendingWrite == null) {
-        // We don't have anything more to write so channel is interested in reading more data
-        reactor.changeOps(key, SelectionKey.OP_READ);
-        break;
-      }
+	/*
+	 * Called from the context of reactor thread when the key becomes writable. The channel writes the
+	 * whole pending block of data at once.
+	 */
+	void flush(SelectionKey key) throws IOException {
+		Queue<Object> pendingWrites = channelToPendingWrites.get(key.channel());
+		while (true) {
+			Object pendingWrite = pendingWrites.poll();
+			if (pendingWrite == null) {
+				// We don't have anything more to write so channel is interested in reading more data
+				reactor.changeOps(key, SelectionKey.OP_READ);
+				break;
+			}
 
-      // ask the concrete channel to make sense of data and write it to java channel
-      doWrite(pendingWrite, key);
-    }
-  }
+			// ask the concrete channel to make sense of data and write it to java channel
+			doWrite(pendingWrite, key);
+		}
+	}
 
-  /**
-   * Writes the data to the channel.
-   * 
-   * @param pendingWrite the data to be written on channel.
-   * @param key the key which is writable.
-   * @throws IOException if any I/O error occurs.
-   */
-  protected abstract void doWrite(Object pendingWrite, SelectionKey key) throws IOException;
+	/**
+	 * Writes the data to the channel.
+	 *
+	 * @param pendingWrite the data to be written on channel.
+	 * @param key the key which is writable.
+	 * @throws IOException if any I/O error occurs.
+	 */
+	protected abstract void doWrite(Object pendingWrite, SelectionKey key) throws IOException;
 
-  /**
-   * Queues the data for writing. The data is not guaranteed to be written on underlying channel
-   * when this method returns. It will be written when the channel is flushed.
-   * 
-   * <p>
-   * This method is used by the {@link ChannelHandler} to send reply back to the client. <br/>
-   * Example:
-   * 
-   * <pre>
-   * <code>
-   * {@literal @}Override
-   * public void handleChannelRead(AbstractNioChannel channel, Object readObject, SelectionKey key) {
-   *   byte[] data = ((ByteBuffer)readObject).array();
-   *   ByteBuffer buffer = ByteBuffer.wrap("Server reply".getBytes());
-   *   channel.write(buffer, key);
-   * }
-   * </code>
-   * </pre>
-   * 
-   * @param data the data to be written on underlying channel.
-   * @param key the key which is writable.
-   */
-  public void write(Object data, SelectionKey key) {
-    Queue<Object> pendingWrites = this.channelToPendingWrites.get(key.channel());
-    if (pendingWrites == null) {
-      synchronized (this.channelToPendingWrites) {
-        pendingWrites = this.channelToPendingWrites.get(key.channel());
-        if (pendingWrites == null) {
-          pendingWrites = new ConcurrentLinkedQueue<>();
-          this.channelToPendingWrites.put(key.channel(), pendingWrites);
-        }
-      }
-    }
-    pendingWrites.add(data);
-    reactor.changeOps(key, SelectionKey.OP_WRITE);
-  }
+	/**
+	 * Queues the data for writing. The data is not guaranteed to be written on underlying channel
+	 * when this method returns. It will be written when the channel is flushed.
+	 *
+	 * <p>
+	 * This method is used by the {@link ChannelHandler} to send reply back to the client. <br/>
+	 * Example:
+	 *
+	 * <pre>
+	 * <code>
+	 * {@literal @}Override
+	 * public void handleChannelRead(AbstractNioChannel channel, Object readObject, SelectionKey key) {
+	 *   byte[] data = ((ByteBuffer)readObject).array();
+	 *   ByteBuffer buffer = ByteBuffer.wrap("Server reply".getBytes());
+	 *   channel.write(buffer, key);
+	 * }
+	 * </code>
+	 * </pre>
+	 *
+	 * @param data the data to be written on underlying channel.
+	 * @param key the key which is writable.
+	 */
+	public void write(Object data, SelectionKey key) {
+		Queue<Object> pendingWrites = this.channelToPendingWrites.get(key.channel());
+		if (pendingWrites == null) {
+			synchronized (this.channelToPendingWrites) {
+				pendingWrites = this.channelToPendingWrites.get(key.channel());
+				if (pendingWrites == null) {
+					pendingWrites = new ConcurrentLinkedQueue<>();
+					this.channelToPendingWrites.put(key.channel(), pendingWrites);
+				}
+			}
+		}
+		pendingWrites.add(data);
+		reactor.changeOps(key, SelectionKey.OP_WRITE);
+	}
 }

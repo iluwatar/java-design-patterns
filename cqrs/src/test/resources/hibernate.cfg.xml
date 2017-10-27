@@ -24,7 +24,7 @@
 
 -->
 <!DOCTYPE hibernate-configuration SYSTEM
-"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
     <session-factory>
@@ -33,7 +33,7 @@
         <property name="connection.url">jdbc:h2:mem:test</property>
         <property name="connection.username">sa</property>
         <property name="hbm2ddl.auto">create</property>
-        <mapping class="com.iluwatar.cqrs.domain.model.Author" />
-        <mapping class="com.iluwatar.cqrs.domain.model.Book" />
+        <mapping class="com.iluwatar.cqrs.domain.model.Author"/>
+        <mapping class="com.iluwatar.cqrs.domain.model.Book"/>
     </session-factory>
 </hibernate-configuration>

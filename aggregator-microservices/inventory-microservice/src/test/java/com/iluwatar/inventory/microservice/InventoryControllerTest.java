@@ -29,12 +29,12 @@ import org.junit.Test;
  * Test Inventory Rest Controller
  */
 public class InventoryControllerTest {
-  @Test
-  public void testGetProductInventories() throws Exception {
-    InventoryController inventoryController = new InventoryController();
+	@Test
+	public void testGetProductInventories() throws Exception {
+		InventoryController inventoryController = new InventoryController();
 
-    int numberOfInventories = inventoryController.getProductInventories();
+		int numberOfInventories = inventoryController.getProductInventories();
 
-    Assert.assertEquals(5, numberOfInventories);
-  }
+		Assert.assertEquals(5, numberOfInventories);
+	}
 }

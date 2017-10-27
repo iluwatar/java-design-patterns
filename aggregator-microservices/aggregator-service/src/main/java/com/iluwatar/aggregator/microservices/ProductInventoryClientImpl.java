@@ -39,19 +39,19 @@ import java.io.IOException;
 @Component
 public class ProductInventoryClientImpl implements ProductInventoryClient {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ProductInventoryClientImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductInventoryClientImpl.class);
 
-  @Override
-  public int getProductInventories() {
-    String response = "0";
-    try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-      HttpGet httpGet = new HttpGet("http://localhost:51516/inventories");
-      try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
-        response = EntityUtils.toString(httpResponse.getEntity());
-      }
-    } catch (IOException e) {
-      LOGGER.error("Exception caught.", e);
-    }
-    return Integer.parseInt(response);
-  }
+	@Override
+	public int getProductInventories() {
+		String response = "0";
+		try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+			HttpGet httpGet = new HttpGet("http://localhost:51516/inventories");
+			try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
+				response = EntityUtils.toString(httpResponse.getEntity());
+			}
+		} catch (IOException e) {
+			LOGGER.error("Exception caught.", e);
+		}
+		return Integer.parseInt(response);
+	}
 }

@@ -30,13 +30,13 @@ import org.junit.Test;
  */
 public class InformationControllerTest {
 
-  @Test
-  public void shouldGetProductTitle() {
-    InformationController infoController = new InformationController();
+	@Test
+	public void shouldGetProductTitle() {
+		InformationController infoController = new InformationController();
 
-    String title = infoController.getProductTitle();
+		String title = infoController.getProductTitle();
 
-    Assert.assertEquals("The Product Title.", title);
-  }
+		Assert.assertEquals("The Product Title.", title);
+	}
 
 }
