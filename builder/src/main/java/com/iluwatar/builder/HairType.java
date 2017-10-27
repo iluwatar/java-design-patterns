@@ -23,9 +23,7 @@
 package com.iluwatar.builder;
 
 /**
- *
  * HairType enumeration
- *
  */
 public enum HairType {
 

@@ -29,10 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * Weather can be observed by implementing {@link WeatherObserver} interface and registering as
  * listener.
- *
  */
 public class Weather {
 

@@ -23,7 +23,6 @@
 package com.iluwatar.model.view.presenter;
 
 /**
- *
  * The Model-View-Presenter(MVP) architectural pattern, helps us achieve what is called
  * "The separation of concerns" principle. This is accomplished by separating the application's
  * logic (Model), GUIs (View), and finally the way that the user's actions update the application's
@@ -35,7 +34,6 @@ package com.iluwatar.model.view.presenter;
  * <p>
  * Finally, please notice the wiring between the Presenter and the View and between the Presenter
  * and the Model.
- *
  */
 public class App {
 

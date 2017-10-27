@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Implementation for binary tree's normal nodes.
- *
  */
 public class NodeImpl implements Node {
 

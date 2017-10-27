@@ -24,7 +24,6 @@ package com.iluwatar.cqrs.commandes;
 
 /**
  * This interface represents the commands of the CQRS pattern
- *
  */
 public interface ICommandService {
 

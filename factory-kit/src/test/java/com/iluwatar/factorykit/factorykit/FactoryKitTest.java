@@ -34,7 +34,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 /**
- *  Test Factory Kit Pattern
+ * Test Factory Kit Pattern
  */
 public class FactoryKitTest {
 

@@ -30,9 +30,7 @@ import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
 import java.util.Map;
 
 /**
- *
  * Lottery administration implementation
- *
  */
 public class LotteryAdministration {
 

@@ -31,13 +31,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * Data structure/implementation of the application's cache. The data structure consists of a hash
  * table attached with a doubly linked-list. The linked-list helps in capturing and maintaining the
  * LRU data in the cache. When a data is queried (from the cache), added (to the cache), or updated,
  * the data is moved to the front of the list to depict itself as the most-recently-used data. The
  * LRU data is always at the end of the list.
- *
  */
 public class LruCache {
 

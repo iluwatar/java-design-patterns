@@ -25,9 +25,7 @@ package com.iluwatar.iterator;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

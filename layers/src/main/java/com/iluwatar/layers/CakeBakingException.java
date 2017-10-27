@@ -23,9 +23,7 @@
 package com.iluwatar.layers;
 
 /**
- *
  * Custom exception used in cake baking
- *
  */
 public class CakeBakingException extends Exception {
 

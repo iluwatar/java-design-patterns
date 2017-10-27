@@ -28,13 +28,13 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- *
  * Implementation of async executor that creates a new thread for every task.
- *
  */
 public class ThreadAsyncExecutor implements AsyncExecutor {
 
-	/** Index for thread naming */
+	/**
+	 * Index for thread naming
+	 */
 	private final AtomicInteger idx = new AtomicInteger(0);
 
 	@Override
@@ -92,8 +92,7 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 		 * Sets the value from successful execution and executes callback if available. Notifies any thread waiting for
 		 * completion.
 		 *
-		 * @param value
-		 *          value of the evaluated task
+		 * @param value value of the evaluated task
 		 */
 		void setValue(T value) {
 			this.value = value;
@@ -108,8 +107,7 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 		 * Sets the exception from failed execution and executes callback if available. Notifies any thread waiting for
 		 * completion.
 		 *
-		 * @param exception
-		 *          exception of the failed task
+		 * @param exception exception of the failed task
 		 */
 		void setException(Exception exception) {
 			this.exception = exception;

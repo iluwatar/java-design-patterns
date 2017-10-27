@@ -27,8 +27,8 @@ import javax.sound.sampled.AudioInputStream;
 
 /**
  * The Event Queue's queue will store the instances of this class.
- * @author mkuprivecz
  *
+ * @author mkuprivecz
  */
 public class PlayMessage {
 

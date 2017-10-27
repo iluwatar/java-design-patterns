@@ -60,6 +60,7 @@ public class Queen implements Royalty {
 
 	/**
 	 * Method which is called when the king is flirting to a queen.
+	 *
 	 * @param king King who initialized the flirt.
 	 * @return A value which describes if the flirt was successful or not.
 	 */

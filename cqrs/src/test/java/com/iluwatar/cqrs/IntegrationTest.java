@@ -39,7 +39,6 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Integration test of IQueryService and ICommandService with h2 data
- *
  */
 public class IntegrationTest {
 

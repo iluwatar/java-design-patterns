@@ -46,7 +46,7 @@ import java.util.List;
  * This is the implementation of event journal.
  * This implementation serialize/deserialize the events with JSON
  * and writes/reads them on a Journal.json file at the working directory.
- *
+ * <p>
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class JsonFileJournal {

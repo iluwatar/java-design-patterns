@@ -23,7 +23,6 @@
 package com.iluwatar.model.view.controller;
 
 /**
- *
  * Model-View-Controller is a pattern for implementing user interfaces. It divides the application
  * into three interconnected parts namely the model, the view and the controller.
  * <p>
@@ -37,7 +36,6 @@ package com.iluwatar.model.view.controller;
  * nourishment. {@link GiantView} can display the giant with its current status.
  * {@link GiantController} receives input affecting the model and delegates redrawing the giant to
  * the view.
- *
  */
 public class App {
 

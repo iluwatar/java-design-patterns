@@ -59,7 +59,7 @@ public class DwarvenGoldmineFacadeTest {
 	 * Test a complete day cycle in the gold mine by executing all three different steps: {@link
 	 * DwarvenGoldmineFacade#startNewDay()}, {@link DwarvenGoldmineFacade#digOutGold()} and {@link
 	 * DwarvenGoldmineFacade#endDay()}.
-	 *
+	 * <p>
 	 * See if the workers are doing what's expected from them on each step.
 	 */
 	@Test

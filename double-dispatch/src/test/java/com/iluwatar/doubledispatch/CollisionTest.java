@@ -29,6 +29,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Date: 12/10/15 - 8:37 PM
  * Test for Collision
+ *
  * @param <O> Type of GameObject
  * @author Jeroen Meulemeester
  */

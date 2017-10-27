@@ -28,9 +28,7 @@ import com.iluwatar.specification.property.Movement;
 import java.util.function.Predicate;
 
 /**
- *
  * Movement selector.
- *
  */
 public class MovementSelector implements Predicate<Creature> {
 

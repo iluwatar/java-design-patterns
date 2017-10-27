@@ -34,7 +34,6 @@ public abstract class WeaponTest {
 	/**
 	 * Invoke the basic actions of the given weapon, and test if the underlying enchantment implementation
 	 * is invoked
-	 *
 	 */
 	protected final void testBasicWeaponActions(final Weapon weapon) {
 		assertNotNull(weapon);

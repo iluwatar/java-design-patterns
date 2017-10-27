@@ -23,9 +23,7 @@
 package com.iluwatar.doubledispatch;
 
 /**
- *
  * Space station ISS game object
- *
  */
 public class SpaceStationIss extends SpaceStationMir {
 

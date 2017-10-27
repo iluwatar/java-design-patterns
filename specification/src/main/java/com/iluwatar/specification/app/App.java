@@ -41,7 +41,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- *
  * The central idea of the Specification pattern is to separate the statement of how to match a
  * candidate, from the candidate object that it is matched against. As well as its usefulness in
  * selection, it is also valuable for validation and for building to order.
@@ -51,7 +50,6 @@ import java.util.stream.Collectors;
  * only the creatures that match the selection criteria.
  * <p>
  * http://martinfowler.com/apsupp/spec.pdf
- *
  */
 public class App {
 

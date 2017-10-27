@@ -25,9 +25,7 @@ package com.iluwatar.chain;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

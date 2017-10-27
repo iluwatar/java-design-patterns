@@ -37,7 +37,6 @@ import com.iluwatar.eda.model.User;
  * example below uses an {@link EventDispatcher} to link/register {@link Event} objects to their
  * respective handlers once an {@link Event} is dispatched, it's respective handler is invoked and
  * the {@link Event} is handled accordingly.
- *
  */
 public class App {
 
@@ -48,7 +47,6 @@ public class App {
 	 * {@link UserUpdatedEventHandler}. The dispatcher can now be called to dispatch specific events.
 	 * When a user is saved, the {@link UserCreatedEvent} can be dispatched.
 	 * On the other hand, when a user is updated, {@link UserUpdatedEvent} can be dispatched.
-	 *
 	 */
 	public static void main(String[] args) {
 

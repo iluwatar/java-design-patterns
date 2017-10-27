@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Composition over inheritance. The Bridge pattern can also be thought of as two layers of abstraction.
  * With Bridge, you can decouple an abstraction from its implementation so that the two can vary independently.
  * <p>
@@ -36,7 +35,6 @@ import org.slf4j.LoggerFactory;
  * <p>
  * In this example we have two class hierarchies. One of weapons and another one of enchantments. We can easily
  * combine any weapon with any enchantment using composition instead of creating deep class hierarchy.
- *
  */
 public class App {
 

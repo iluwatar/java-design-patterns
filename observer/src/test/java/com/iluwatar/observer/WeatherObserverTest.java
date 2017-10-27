@@ -34,6 +34,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Date: 12/27/15 - 11:44 AM
  * Weather Observer Tests
+ *
  * @param <O> Type of WeatherObserver
  * @author Jeroen Meulemeester
  */

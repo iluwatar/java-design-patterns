@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * The Prototype pattern is a creational design pattern in software development. It is used when the
  * type of objects to create is determined by a prototypical instance, which is cloned to produce
  * new objects. This pattern is used to: - avoid subclasses of an object creator in the client
@@ -35,7 +34,6 @@ import org.slf4j.LoggerFactory;
  * <p>
  * In this example we have a factory class ({@link HeroFactoryImpl}) producing objects by cloning
  * the existing ones. The factory's prototype objects are given as constructor parameters.
- *
  */
 public class App {
 

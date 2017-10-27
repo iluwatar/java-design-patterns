@@ -23,9 +23,7 @@
 package com.iluwatar.interpreter;
 
 /**
- *
  * NumberExpression
- *
  */
 public class NumberExpression extends Expression {
 

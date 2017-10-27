@@ -23,9 +23,7 @@
 package com.iluwatar.privateclassdata;
 
 /**
- *
  * Stew ingredients
- *
  */
 public class StewData {
 

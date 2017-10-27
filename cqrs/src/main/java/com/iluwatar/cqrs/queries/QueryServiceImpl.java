@@ -36,7 +36,6 @@ import java.util.List;
 /**
  * This class is an implementation of {@link IQueryService}. It uses Hibernate native queries to return DTOs from the
  * database.
- *
  */
 public class QueryServiceImpl implements IQueryService {
 

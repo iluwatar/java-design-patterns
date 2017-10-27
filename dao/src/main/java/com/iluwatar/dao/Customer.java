@@ -25,7 +25,6 @@ package com.iluwatar.dao;
 
 /**
  * A customer POJO that represents the data that will be read from the data source.
- *
  */
 public class Customer {
 

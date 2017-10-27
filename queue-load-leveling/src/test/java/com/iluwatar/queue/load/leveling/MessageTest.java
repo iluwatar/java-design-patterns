@@ -27,9 +27,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- *
  * Test case for creating and checking the Message.
- *
  */
 public class MessageTest {
 

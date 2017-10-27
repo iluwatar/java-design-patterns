@@ -23,7 +23,6 @@
 package com.iluwatar.intercepting.filter;
 
 /**
- *
  * When a request enters a Web application, it often must pass several entrance tests prior to the
  * main processing stage. For example, - Has the client been authenticated? - Does the client have a
  * valid session? - Is the client's IP address from a trusted network? - Does the request path
@@ -46,7 +45,6 @@ package com.iluwatar.intercepting.filter;
  * <p>
  *
  * @author joshzambales
- *
  */
 public class App {
 

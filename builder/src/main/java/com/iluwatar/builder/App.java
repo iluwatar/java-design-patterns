@@ -27,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * The intention of the Builder pattern is to find a solution to the telescoping constructor
  * anti-pattern. The telescoping constructor anti-pattern occurs when the increase of object
  * constructor parameter combination leads to an exponential list of constructors. Instead of using
@@ -48,7 +47,6 @@ import org.slf4j.LoggerFactory;
  * additional configuration for the {@link Hero} object can be done using the fluent
  * {@link Builder} interface. When configuration is ready the build method is called to receive
  * the final {@link Hero} object.
- *
  */
 public class App {
 

@@ -25,9 +25,7 @@ package com.iluwatar.publish.subscribe;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

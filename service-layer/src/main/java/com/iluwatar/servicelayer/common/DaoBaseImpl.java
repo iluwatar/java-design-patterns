@@ -33,11 +33,9 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
- *
  * Base class for Dao implementations.
  *
  * @param <E>
- *
  */
 public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 

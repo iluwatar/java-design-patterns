@@ -23,9 +23,7 @@
 package com.iluwatar.hexagonal.banking;
 
 /**
- *
  * Interface to bank accounts.
- *
  */
 public interface WireTransfers {
 

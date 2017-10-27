@@ -28,7 +28,6 @@ package com.iluwatar.intercepting.filter;
  * digits)
  *
  * @author joshzambales
- *
  */
 public class ContactFilter extends AbstractFilter {
 

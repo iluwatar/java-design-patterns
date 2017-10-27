@@ -27,7 +27,6 @@ import org.junit.Test;
 
 /**
  * Tests that Mute idiom example runs without errors.
- *
  */
 public class AppTest {
 

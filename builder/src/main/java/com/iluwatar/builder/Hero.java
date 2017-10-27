@@ -23,9 +23,7 @@
 package com.iluwatar.builder;
 
 /**
- *
  * Hero, the class with many parameters.
- *
  */
 public final class Hero {
 
@@ -98,9 +96,7 @@ public final class Hero {
 	}
 
 	/**
-	 *
 	 * The builder class.
-	 *
 	 */
 	public static class Builder {
 

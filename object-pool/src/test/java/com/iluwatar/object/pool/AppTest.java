@@ -25,9 +25,7 @@ package com.iluwatar.object.pool;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

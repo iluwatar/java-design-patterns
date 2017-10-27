@@ -36,9 +36,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
  * Wizard entity.
- *
  */
 @Entity
 @Table(name = "WIZARD")

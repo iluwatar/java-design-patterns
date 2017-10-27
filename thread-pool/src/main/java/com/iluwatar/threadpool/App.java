@@ -31,7 +31,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- *
  * Thread Pool pattern is where a number of threads are created to perform a number of tasks, which
  * are usually organized in a queue. The results from the tasks being executed might also be placed
  * in a queue, or the tasks might return no result. Typically, there are many more tasks than
@@ -43,7 +42,6 @@ import java.util.concurrent.Executors;
  * into a {@link Worker} object that implements {@link Runnable}. We create an
  * {@link ExecutorService} with fixed number of threads (Thread Pool) and use them to execute the
  * {@link Worker}s.
- *
  */
 public class App {
 

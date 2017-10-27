@@ -29,9 +29,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 /**
- *
  * This interface represents the query methods of the CQRS pattern
- *
  */
 public interface IQueryService {
 

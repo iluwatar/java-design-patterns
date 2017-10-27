@@ -26,10 +26,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * The Server class. Each Server sits behind a LoadBalancer which delegates the call to the servers
  * in a simplistic Round Robin fashion.
- *
  */
 public class Server {
 

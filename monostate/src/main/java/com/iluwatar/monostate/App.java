@@ -24,10 +24,9 @@ package com.iluwatar.monostate;
 
 
 /**
- *
  * The MonoState pattern ensures that all instances of the class will have the same state. This can
  * be used a direct replacement of the Singleton pattern.
- *
+ * <p>
  * <p>
  * In the following example, The {@link LoadBalancer} class represents the app's logic. It contains
  * a series of Servers, which can handle requests of type {@link Request}. Two instances of
@@ -38,7 +37,6 @@ package com.iluwatar.monostate;
  * the second load balancer has already selected the second server.
  * <p>
  * .
- *
  */
 public class App {
 	/**

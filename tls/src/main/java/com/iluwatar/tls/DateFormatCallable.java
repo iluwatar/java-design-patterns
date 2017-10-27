@@ -33,12 +33,12 @@ import java.util.concurrent.Callable;
  * Callable by the constructor. The constructor creates a instance of
  * SimpleDateFormat and stores it in a ThreadLocal class variable. For the
  * complete description of the example see {@link App}
- *
- * You can comment out the code marked with //TLTL and comment in the 
+ * <p>
+ * You can comment out the code marked with //TLTL and comment in the
  * code marked //NTLNTL. Then you can see what will happen if you do not
  * use the ThreadLocal. For details see the description of {@link App}
  *
- * @author Thomas Bauer, 2017 
+ * @author Thomas Bauer, 2017
  */
 public class DateFormatCallable implements Callable<Result> {
 	// class variables (members)
@@ -51,10 +51,8 @@ public class DateFormatCallable implements Callable<Result> {
 	/**
 	 * The date format and the date value are passed to the constructor
 	 *
-	 * @param inDateFormat
-	 *          string date format string, e.g. "dd/MM/yyyy"
-	 * @param inDateValue
-	 *          string date value, e.g. "21/06/2016"
+	 * @param inDateFormat string date format string, e.g. "dd/MM/yyyy"
+	 * @param inDateValue  string date value, e.g. "21/06/2016"
 	 */
 	public DateFormatCallable(String inDateFormat, String inDateValue) {
 		final String idf = inDateFormat;                 //TLTL

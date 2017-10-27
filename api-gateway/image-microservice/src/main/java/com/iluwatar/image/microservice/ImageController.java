@@ -34,6 +34,7 @@ public class ImageController {
 
 	/**
 	 * An endpoint for a user to retrieve an image path
+	 *
 	 * @return An image path
 	 */
 	@RequestMapping(value = "/image-path", method = RequestMethod.GET)

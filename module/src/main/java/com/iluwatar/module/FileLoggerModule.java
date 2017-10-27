@@ -63,7 +63,7 @@ public final class FileLoggerModule {
 	 * Following method performs the initialization
 	 *
 	 * @throws FileNotFoundException if program is not able to find log files (output.txt and
-	 *         error.txt)
+	 *                               error.txt)
 	 */
 	public FileLoggerModule prepare() throws FileNotFoundException {
 

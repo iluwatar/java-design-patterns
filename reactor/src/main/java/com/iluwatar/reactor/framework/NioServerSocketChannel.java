@@ -50,7 +50,7 @@ public class NioServerSocketChannel extends AbstractNioChannel {
 	 * Note the constructor does not bind the socket, {@link #bind()} method should be called for
 	 * binding the socket.
 	 *
-	 * @param port the port on which channel will be bound to accept incoming connection requests.
+	 * @param port    the port on which channel will be bound to accept incoming connection requests.
 	 * @param handler the handler that will handle incoming requests on this channel.
 	 * @throws IOException if any I/O error occurs.
 	 */

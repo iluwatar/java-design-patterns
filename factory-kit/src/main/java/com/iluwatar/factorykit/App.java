@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
  * Factory-kit is a creational pattern which defines a factory of immutable content
  * with separated builder and factory interfaces to deal with the problem of
  * creating one of the objects specified directly in the factory-kit instance.
- *
+ * <p>
  * <p>
  * In the given example {@link WeaponFactory} represents the factory-kit, that contains
  * four {@link Builder}s for creating new objects of

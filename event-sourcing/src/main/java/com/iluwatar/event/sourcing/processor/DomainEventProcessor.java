@@ -28,7 +28,7 @@ import com.iluwatar.event.sourcing.event.DomainEvent;
  * This is the implementation of event processor.
  * All events are processed by this class.
  * This processor uses processorJournal to persist and recover events.
- *
+ * <p>
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class DomainEventProcessor {

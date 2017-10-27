@@ -84,7 +84,6 @@ public class MongoEventLog implements LotteryEventLog {
 	}
 
 	/**
-	 *
 	 * @return mongo database
 	 */
 	public MongoDatabase getMongoDatabase() {
@@ -92,7 +91,6 @@ public class MongoEventLog implements LotteryEventLog {
 	}
 
 	/**
-	 *
 	 * @return accounts collection
 	 */
 	public MongoCollection<Document> getEventsCollection() {

@@ -33,8 +33,8 @@ import static org.junit.Assert.assertTrue;
  * This is done by creating objects via calling a factory method either specified in an interface
  * and implemented by child classes, or implemented in a base class and optionally overridden by
  * derived classes—rather than by calling a constructor.
- *
- * <p>Factory produces the object of its liking. 
+ * <p>
+ * <p>Factory produces the object of its liking.
  * The weapon {@link Weapon} manufactured by the
  * blacksmith depends on the kind of factory implementation it is referring to.
  * </p>
@@ -54,7 +54,7 @@ public class FactoryMethodTest {
 
 	/**
 	 * Testing {@link OrcBlacksmith} to produce a AXE asserting that the Weapon is an instance
-	 *  of {@link OrcWeapon}.
+	 * of {@link OrcWeapon}.
 	 */
 	@Test
 	public void testOrcBlacksmithWithAxe() {
@@ -89,9 +89,9 @@ public class FactoryMethodTest {
 	 * This method asserts that the weapon object that is passed is an instance of the clazz and the
 	 * weapon is of type expectedWeaponType.
 	 *
-	 * @param weapon weapon object which is to be verified
+	 * @param weapon             weapon object which is to be verified
 	 * @param expectedWeaponType expected WeaponType of the weapon
-	 * @param clazz expected class of the weapon
+	 * @param clazz              expected class of the weapon
 	 */
 	private void verifyWeapon(Weapon weapon, WeaponType expectedWeaponType, Class<?> clazz) {
 		assertTrue("Weapon must be an object of: " + clazz.getName(), clazz.isInstance(weapon));

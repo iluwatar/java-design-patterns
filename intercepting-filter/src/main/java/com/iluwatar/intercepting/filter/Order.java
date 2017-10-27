@@ -24,7 +24,6 @@ package com.iluwatar.intercepting.filter;
 
 /**
  * Order class carries the order data.
- *
  */
 public class Order {
 

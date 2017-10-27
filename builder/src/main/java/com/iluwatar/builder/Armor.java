@@ -23,9 +23,7 @@
 package com.iluwatar.builder;
 
 /**
- *
  * Armor enumeration
- *
  */
 public enum Armor {
 

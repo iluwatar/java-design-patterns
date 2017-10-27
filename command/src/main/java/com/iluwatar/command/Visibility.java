@@ -23,9 +23,7 @@
 package com.iluwatar.command;
 
 /**
- *
  * Enumeration for target visibility.
- *
  */
 public enum Visibility {
 

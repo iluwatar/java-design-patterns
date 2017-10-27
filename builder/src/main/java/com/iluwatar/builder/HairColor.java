@@ -23,9 +23,7 @@
 package com.iluwatar.builder;
 
 /**
- *
  * HairColor enumeration
- *
  */
 public enum HairColor {
 

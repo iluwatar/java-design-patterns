@@ -23,9 +23,7 @@
 package com.iluwatar.mediator;
 
 /**
- *
  * Hunter party member.
- *
  */
 public class Hunter extends PartyMemberBase {
 

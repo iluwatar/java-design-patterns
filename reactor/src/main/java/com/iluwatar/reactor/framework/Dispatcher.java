@@ -31,7 +31,7 @@ import java.nio.channels.SelectionKey;
  * I/O processing from application specific processing. <br/>
  * Dispatcher should call the {@link ChannelHandler} associated with the channel on which event
  * occurred.
- *
+ * <p>
  * <p>
  * The application can customize the way in which event is dispatched such as using the reactor
  * thread to dispatch event to channels or use a worker pool to do the non I/O processing.
@@ -44,13 +44,13 @@ public interface Dispatcher {
 	 * This hook method is called when read event occurs on particular channel. The data read is
 	 * provided in <code>readObject</code>. The implementation should dispatch this read event to the
 	 * associated {@link ChannelHandler} of <code>channel</code>.
-	 *
+	 * <p>
 	 * <p>
 	 * The type of <code>readObject</code> depends on the channel on which data was received.
 	 *
-	 * @param channel on which read event occurred
+	 * @param channel    on which read event occurred
 	 * @param readObject object read by channel
-	 * @param key on which event occurred
+	 * @param key        on which event occurred
 	 */
 	void onChannelReadEvent(AbstractNioChannel channel, Object readObject, SelectionKey key);
 

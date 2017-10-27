@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Simple implementation of the lazy loading idiom. However, this is not thread safe.
- *
  */
 public class HolderNaive {
 

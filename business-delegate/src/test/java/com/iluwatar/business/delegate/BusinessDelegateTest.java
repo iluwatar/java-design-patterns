@@ -34,7 +34,7 @@ import static org.mockito.Mockito.verify;
  * tiers. By using the pattern we gain loose coupling between the tiers. The Business Delegate
  * encapsulates knowledge about how to locate, connect to, and interact with the business objects
  * that make up the application.
- *
+ * <p>
  * <p>Some of the services the Business Delegate uses are instantiated directly, and some can be
  * retrieved through service lookups. The Business Delegate itself may contain business logic too
  * potentially tying together multiple service calls, exception handling, retrying etc.

@@ -23,9 +23,7 @@
 package com.iluwatar.hexagonal.domain;
 
 /**
- *
  * Lottery domain constants
- *
  */
 public class LotteryConstants {
 

@@ -33,7 +33,6 @@ import static org.mockito.Mockito.verify;
 
 /**
  * Test class
- *
  */
 public class AdapterPatternTest {
 

@@ -30,9 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- *
  * Mock database for lottery tickets.
- *
  */
 public class InMemoryTicketRepository implements LotteryTicketRepository {
 

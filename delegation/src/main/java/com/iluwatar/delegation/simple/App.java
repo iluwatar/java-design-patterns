@@ -32,7 +32,7 @@ import com.iluwatar.delegation.simple.printers.HpPrinter;
  * but is actually delegated to a helper class either {@link CanonPrinter}, {@link EpsonPrinter} or {@link HpPrinter}.
  * The consumer does not have or require knowledge of the actual class carrying out the action, only the
  * container on which they are calling.
- *
+ * <p>
  * In this example the delegates are {@link EpsonPrinter}, {@link HpPrinter} and {@link CanonPrinter} they all implement
  * {@link Printer}. The {@link PrinterController} class also implements {@link Printer}. However neither provide the
  * functionality of {@link Printer} by printing to the screen, they actually call upon the instance of {@link Printer}

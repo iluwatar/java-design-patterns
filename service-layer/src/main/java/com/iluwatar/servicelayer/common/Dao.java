@@ -25,11 +25,9 @@ package com.iluwatar.servicelayer.common;
 import java.util.List;
 
 /**
- *
  * Dao interface.
  *
  * @param <E>
- *
  */
 public interface Dao<E extends BaseEntity> {
 

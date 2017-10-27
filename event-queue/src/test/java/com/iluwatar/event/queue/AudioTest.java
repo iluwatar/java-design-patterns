@@ -33,16 +33,17 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Testing the Audio service of the Queue
- * @author mkuprivecz
  *
+ * @author mkuprivecz
  */
 public class AudioTest {
 
 	/**
 	 * Test here that the playSound method works correctly
+	 *
 	 * @throws UnsupportedAudioFileException when the audio file is not supported
-	 * @throws IOException when the file is not readable
-	 * @throws InterruptedException when the test is interrupted externally
+	 * @throws IOException                   when the file is not readable
+	 * @throws InterruptedException          when the test is interrupted externally
 	 */
 	@Test
 	public void testPlaySound() throws UnsupportedAudioFileException, IOException, InterruptedException {
@@ -57,9 +58,10 @@ public class AudioTest {
 
 	/**
 	 * Test here that the Queue
+	 *
 	 * @throws UnsupportedAudioFileException when the audio file is not supported
-	 * @throws IOException when the file is not readable
-	 * @throws InterruptedException when the test is interrupted externally
+	 * @throws IOException                   when the file is not readable
+	 * @throws InterruptedException          when the test is interrupted externally
 	 */
 	@Test
 	public void testQueue() throws UnsupportedAudioFileException, IOException, InterruptedException {

@@ -23,9 +23,7 @@
 package com.iluwatar.memento;
 
 /**
- *
  * Star uses "mementos" to store and restore state.
- *
  */
 public class Star {
 
@@ -95,9 +93,7 @@ public class Star {
 	}
 
 	/**
-	 *
 	 * StarMemento implementation
-	 *
 	 */
 	private static class StarMementoInternal implements StarMemento {
 

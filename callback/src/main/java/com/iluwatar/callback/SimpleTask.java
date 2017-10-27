@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Implementation of task that need to be executed
- *
  */
 public class SimpleTask extends Task {
 

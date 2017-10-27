@@ -23,10 +23,8 @@
 package com.iluwatar.front.controller;
 
 /**
- *
  * FrontController is the handler class that takes in all the requests and renders the correct
  * response.
- *
  */
 public class FrontController {
 

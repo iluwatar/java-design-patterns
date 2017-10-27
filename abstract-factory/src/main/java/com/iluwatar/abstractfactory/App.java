@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * The Abstract Factory pattern provides a way to encapsulate a group of individual factories that have a common theme
  * without specifying their concrete classes. In normal usage, the client software creates a concrete implementation of
  * the abstract factory and then uses the generic interface of the factory to create the concrete objects that are part
@@ -38,7 +37,6 @@ import org.slf4j.LoggerFactory;
  * The essence of the Abstract Factory pattern is a factory interface ({@link KingdomFactory}) and its implementations (
  * {@link ElfKingdomFactory}, {@link OrcKingdomFactory}). The example uses both concrete implementations to create a
  * king, a castle and an army.
- *
  */
 public class App {
 
@@ -96,8 +94,7 @@ public class App {
 	/**
 	 * Program entry point
 	 *
-	 * @param args
-	 *          command line args
+	 * @param args command line args
 	 */
 	public static void main(String[] args) {
 

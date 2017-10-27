@@ -23,9 +23,7 @@
 package com.iluwatar.servant;
 
 /**
- *
  * Queen
- *
  */
 public class Queen implements Royalty {
 

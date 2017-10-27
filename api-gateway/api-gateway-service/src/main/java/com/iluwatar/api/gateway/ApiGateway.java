@@ -41,6 +41,7 @@ public class ApiGateway {
 
 	/**
 	 * Retrieves product information that desktop clients need
+	 *
 	 * @return Product information for clients on a desktop
 	 */
 	@RequestMapping("/desktop")
@@ -53,6 +54,7 @@ public class ApiGateway {
 
 	/**
 	 * Retrieves product information that mobile clients need
+	 *
 	 * @return Product information for clients on a mobile device
 	 */
 	@RequestMapping("/mobile")

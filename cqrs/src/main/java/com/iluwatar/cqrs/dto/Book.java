@@ -25,9 +25,7 @@ package com.iluwatar.cqrs.dto;
 import java.util.Objects;
 
 /**
- *
  * This is a DTO (Data Transfer Object) book, contains only useful information to be returned
- *
  */
 public class Book {
 
@@ -35,11 +33,8 @@ public class Book {
 	private double price;
 
 	/**
-	 *
-	 * @param title
-	 *          title of the book
-	 * @param price
-	 *          price of the book
+	 * @param title title of the book
+	 * @param price price of the book
 	 */
 	public Book(String title, double price) {
 		super();

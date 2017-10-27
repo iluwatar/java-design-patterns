@@ -33,8 +33,7 @@ public class Tenant {
 	private int allowedCallsPerSecond;
 
 	/**
-	 *
-	 * @param name Name of the tenant
+	 * @param name                  Name of the tenant
 	 * @param allowedCallsPerSecond The number of calls allowed for a particular tenant.
 	 * @throws InvalidParameterException If number of calls is less than 0, throws exception.
 	 */

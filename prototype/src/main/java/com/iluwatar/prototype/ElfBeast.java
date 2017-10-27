@@ -23,9 +23,7 @@
 package com.iluwatar.prototype;
 
 /**
- *
  * ElfBeast
- *
  */
 public class ElfBeast extends Beast {
 

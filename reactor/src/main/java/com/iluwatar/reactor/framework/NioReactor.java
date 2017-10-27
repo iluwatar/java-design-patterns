@@ -44,11 +44,11 @@ import java.util.concurrent.TimeUnit;
  * Whenever an event occurs on any of the registered handles, it synchronously de-multiplexes the event which can be any
  * of read, write or accept, and dispatches the event to the appropriate {@link ChannelHandler} using the
  * {@link Dispatcher}.
- *
+ * <p>
  * <p>
  * Implementation: A NIO reactor runs in its own thread when it is started using {@link #start()} method.
  * {@link NioReactor} uses {@link Selector} for realizing Synchronous Event De-multiplexing.
- *
+ * <p>
  * <p>
  * NOTE: This is one of the ways to implement NIO reactor and it does not take care of all possible edge cases which are
  * required in a real application. This implementation is meant to demonstrate the fundamental concepts that lie behind
@@ -72,10 +72,8 @@ public class NioReactor {
 	 * Creates a reactor which will use provided {@code dispatcher} to dispatch events. The application can provide
 	 * various implementations of dispatcher which suits its needs.
 	 *
-	 * @param dispatcher
-	 *          a non-null dispatcher used to dispatch events on registered channels.
-	 * @throws IOException
-	 *           if any I/O error occurs.
+	 * @param dispatcher a non-null dispatcher used to dispatch events on registered channels.
+	 * @throws IOException if any I/O error occurs.
 	 */
 	public NioReactor(Dispatcher dispatcher) throws IOException {
 		this.dispatcher = dispatcher;
@@ -85,8 +83,7 @@ public class NioReactor {
 	/**
 	 * Starts the reactor event loop in a new thread.
 	 *
-	 * @throws IOException
-	 *           if any I/O error occurs.
+	 * @throws IOException if any I/O error occurs.
 	 */
 	public void start() throws IOException {
 		reactorMain.execute(() -> {
@@ -102,10 +99,8 @@ public class NioReactor {
 	/**
 	 * Stops the reactor and related resources such as dispatcher.
 	 *
-	 * @throws InterruptedException
-	 *           if interrupted while stopping the reactor.
-	 * @throws IOException
-	 *           if any I/O error occurs.
+	 * @throws InterruptedException if interrupted while stopping the reactor.
+	 * @throws IOException          if any I/O error occurs.
 	 */
 	public void stop() throws InterruptedException, IOException {
 		reactorMain.shutdownNow();
@@ -120,11 +115,9 @@ public class NioReactor {
 	 * notify of any events. While registering the channel the reactor uses {@link AbstractNioChannel#getInterestedOps()}
 	 * to know about the interested operation of this channel.
 	 *
-	 * @param channel
-	 *          a new channel on which reactor will wait for events. The channel must be bound prior to being registered.
+	 * @param channel a new channel on which reactor will wait for events. The channel must be bound prior to being registered.
 	 * @return this
-	 * @throws IOException
-	 *           if any I/O error occurs.
+	 * @throws IOException if any I/O error occurs.
 	 */
 	public NioReactor registerChannel(AbstractNioChannel channel) throws IOException {
 		SelectionKey key = channel.getJavaChannel().register(selector, channel.getInterestedOps());
@@ -233,10 +226,8 @@ public class NioReactor {
 	 * <p>
 	 * This is a non-blocking method and does not guarantee that the operations have changed when this method returns.
 	 *
-	 * @param key
-	 *          the key for which operations have to be changed.
-	 * @param interestedOps
-	 *          the new interest operations.
+	 * @param key           the key for which operations have to be changed.
+	 * @param interestedOps the new interest operations.
 	 */
 	public void changeOps(SelectionKey key, int interestedOps) {
 		pendingCommands.add(new ChangeKeyOpsCommand(key, interestedOps));

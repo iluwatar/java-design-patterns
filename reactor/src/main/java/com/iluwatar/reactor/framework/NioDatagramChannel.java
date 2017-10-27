@@ -49,7 +49,7 @@ public class NioDatagramChannel extends AbstractNioChannel {
 	 * Note the constructor does not bind the socket, {@link #bind()} method should be called for
 	 * binding the socket.
 	 *
-	 * @param port the port to be bound to listen for incoming datagram requests.
+	 * @param port    the port to be bound to listen for incoming datagram requests.
 	 * @param handler the handler to be used for handling incoming requests on this channel.
 	 * @throws IOException if any I/O error occurs.
 	 */
@@ -61,7 +61,7 @@ public class NioDatagramChannel extends AbstractNioChannel {
 	@Override
 	public int getInterestedOps() {
 	/*
-     * there is no need to accept connections in UDP, so the channel shows interest in reading data.
+	 * there is no need to accept connections in UDP, so the channel shows interest in reading data.
      */
 		return SelectionKey.OP_READ;
 	}

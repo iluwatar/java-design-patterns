@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * When it is necessary to work with a large number of objects that are particularly expensive to
  * instantiate and each object is only needed for a short period of time, the performance of an
  * entire application may be adversely affected. An object pool design pattern may be deemed
@@ -43,7 +42,6 @@ import org.slf4j.LoggerFactory;
  * In this example we have created {@link OliphauntPool} inheriting from generic {@link ObjectPool}.
  * {@link Oliphaunt}s can be checked out from the pool and later returned to it. The pool tracks
  * created instances and their status (available, inUse).
- *
  */
 public class App {
 

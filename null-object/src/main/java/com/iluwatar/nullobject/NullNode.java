@@ -23,11 +23,9 @@
 package com.iluwatar.nullobject;
 
 /**
- *
  * Null Object implementation for binary tree node.
  * <p>
  * Implemented as Singleton, since all the NullNodes are the same.
- *
  */
 public final class NullNode implements Node {
 

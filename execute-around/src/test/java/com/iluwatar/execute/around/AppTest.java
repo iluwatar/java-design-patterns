@@ -30,9 +30,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- *
  * Tests execute-around example.
- *
  */
 public class AppTest {
 

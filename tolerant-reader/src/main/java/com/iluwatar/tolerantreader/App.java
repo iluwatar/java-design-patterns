@@ -28,7 +28,6 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- *
  * Tolerant Reader is an integration pattern that helps creating robust communication systems. The
  * idea is to be as tolerant as possible when reading data from another service. This way, when the
  * communication schema changes, the readers must not break.
@@ -40,7 +39,6 @@ import java.io.IOException;
  * does not know about the new format and still reads with the method designed for V1 schema.
  * Fortunately the reading method has been designed with the Tolerant Reader pattern and does not
  * break even though {@link RainbowFishV2} has new fields that are serialized.
- *
  */
 public class App {
 

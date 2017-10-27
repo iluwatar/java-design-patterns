@@ -37,12 +37,13 @@ import static org.junit.Assert.assertSame;
 
 /**
  * This class provides several test case that test singleton construction.
- *
+ * <p>
  * The first proves that multiple calls to the singleton getInstance object are the same when called
  * in the SAME thread. The second proves that multiple calls to the singleton getInstance object are
  * the same when called in the DIFFERENT thread.
- *
+ * <p>
  * Date: 12/29/15 - 19:25 PM
+ *
  * @param <S> Supplier method generating singletons
  * @author Jeroen Meulemeester
  * @author Richard Jones

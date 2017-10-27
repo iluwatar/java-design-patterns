@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * The Factory Method is a creational design pattern which uses factory methods to deal with the
  * problem of creating objects without specifying the exact class of object that will be created.
  * This is done by creating objects via calling a factory method either specified in an interface
@@ -37,7 +36,6 @@ import org.slf4j.LoggerFactory;
  * creating objects ({@link Blacksmith#manufactureWeapon}). The concrete subclasses (
  * {@link OrcBlacksmith}, {@link ElfBlacksmith}) then override the method to produce objects of
  * their liking.
- *
  */
 public class App {
 
@@ -51,6 +49,7 @@ public class App {
 	 * <code>App</code> is unaware which concrete implementation of {@link Blacksmith} it is using.
 	 * The decision of which blacksmith implementation to use may depend on configuration, or
 	 * the type of rival in war.
+	 *
 	 * @param blacksmith a non-null implementation of blacksmith
 	 */
 	public App(Blacksmith blacksmith) {

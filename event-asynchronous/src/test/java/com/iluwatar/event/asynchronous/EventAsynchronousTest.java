@@ -24,9 +24,7 @@ import org.slf4j.LoggerFactory;
 import static org.junit.Assert.assertTrue;
 
 /**
- *
  * Application test
- *
  */
 public class EventAsynchronousTest {
 	App app;

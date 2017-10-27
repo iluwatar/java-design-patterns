@@ -27,9 +27,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- *
  * Person repository
- *
  */
 @Repository
 public interface PersonRepository

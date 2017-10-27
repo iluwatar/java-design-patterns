@@ -35,7 +35,6 @@ import java.util.List;
  * service, while objects for which the servant does something, are taken as parameters.
  * <p>
  * In this example {@link Servant} is serving {@link King} and {@link Queen}.
- *
  */
 public class App {
 

@@ -28,12 +28,11 @@ import java.awt.*;
 /**
  * The Client class is responsible for handling the input and running them through filters inside the
  * {@link FilterManager}.
- *
+ * <p>
  * This is where {@link Filter}s come to play as the client pre-processes the request before being displayed in the
  * {@link Target}.
  *
  * @author joshzambales
- *
  */
 public class Client extends JFrame { // NOSONAR
 

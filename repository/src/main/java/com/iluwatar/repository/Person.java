@@ -27,9 +27,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- *
  * Person entity
- *
  */
 @Entity
 public class Person {

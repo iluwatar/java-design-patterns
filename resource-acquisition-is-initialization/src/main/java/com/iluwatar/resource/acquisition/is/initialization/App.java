@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Resource Acquisition Is Initialization pattern was developed for exception safe resource
  * management by C++ creator Bjarne Stroustrup.
  * <p>
@@ -37,13 +36,12 @@ import org.slf4j.LoggerFactory;
  * {@link AutoCloseable}. The try-with-resources statement ensures that each resource is closed at
  * the end of the statement. Any object that implements {@link java.lang.AutoCloseable}, which
  * includes all objects which implement {@link java.io.Closeable}, can be used as a resource.
- *
+ * <p>
  * In this example, {@link SlidingDoor} implements {@link AutoCloseable} and {@link TreasureChest}
  * implements {@link Closeable}. Running the example, we can observe that both resources are
  * automatically closed.
  * <p>
  * http://docs.oracle.com/javase/7/docs/technotes/guides/language/try-with-resources.html
- *
  */
 public class App {
 

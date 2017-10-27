@@ -34,7 +34,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * This represents the <i>Handle</i> of Reactor pattern. These are resources managed by OS which can
  * be submitted to {@link NioReactor}.
- *
+ * <p>
  * <p>
  * This class serves has the responsibility of reading the data when a read event occurs and writing
  * the data back when the channel is writable. It leaves the reading and writing of data on the
@@ -131,7 +131,7 @@ public abstract class AbstractNioChannel {
 	 * Writes the data to the channel.
 	 *
 	 * @param pendingWrite the data to be written on channel.
-	 * @param key the key which is writable.
+	 * @param key          the key which is writable.
 	 * @throws IOException if any I/O error occurs.
 	 */
 	protected abstract void doWrite(Object pendingWrite, SelectionKey key) throws IOException;
@@ -139,11 +139,11 @@ public abstract class AbstractNioChannel {
 	/**
 	 * Queues the data for writing. The data is not guaranteed to be written on underlying channel
 	 * when this method returns. It will be written when the channel is flushed.
-	 *
+	 * <p>
 	 * <p>
 	 * This method is used by the {@link ChannelHandler} to send reply back to the client. <br/>
 	 * Example:
-	 *
+	 * <p>
 	 * <pre>
 	 * <code>
 	 * {@literal @}Override
@@ -156,7 +156,7 @@ public abstract class AbstractNioChannel {
 	 * </pre>
 	 *
 	 * @param data the data to be written on underlying channel.
-	 * @param key the key which is writable.
+	 * @param key  the key which is writable.
 	 */
 	public void write(Object data, SelectionKey key) {
 		Queue<Object> pendingWrites = this.channelToPendingWrites.get(key.channel());

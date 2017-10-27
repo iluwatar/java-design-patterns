@@ -30,9 +30,7 @@ import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
 import java.util.Optional;
 
 /**
- *
  * Implementation for lottery service
- *
  */
 public class LotteryService {
 

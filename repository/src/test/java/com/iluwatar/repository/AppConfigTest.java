@@ -39,7 +39,6 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * This case is Just for test the Annotation Based configuration
- *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class}, loader = AnnotationConfigContextLoader.class)

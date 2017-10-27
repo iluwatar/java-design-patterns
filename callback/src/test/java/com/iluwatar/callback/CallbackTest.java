@@ -29,7 +29,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Add a field as a counter. Every time the callback method is called increment this field. Unit
  * test checks that the field is being incremented.
- *
+ * <p>
  * Could be done with mock objects as well where the call method call is verified.
  */
 public class CallbackTest {

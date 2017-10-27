@@ -25,19 +25,18 @@ import java.util.Properties;
 import java.util.Scanner;
 
 /**
- *
  * This application demonstrates the <b>Event-based Asynchronous</b> pattern. Essentially, users (of the pattern) may
  * choose to run events in an Asynchronous or Synchronous mode. There can be multiple Asynchronous events running at
  * once but only one Synchronous event can run at a time. Asynchronous events are synonymous to multi-threads. The key
  * point here is that the threads run in the background and the user is free to carry on with other processes. Once an
  * event is complete, the appropriate listener/callback method will be called. The listener then proceeds to carry out
  * further processing depending on the needs of the user.
- *
+ * <p>
  * The {@link EventManager} manages the events/threads that the user creates. Currently, the supported event operations
  * are: <code>start</code>, <code>stop</code>, <code>getStatus</code>. For Synchronous events, the user is unable to
  * start another (Synchronous) event if one is already running at the time. The running event would have to either be
  * stopped or completed before a new event can be started.
- *
+ * <p>
  * The Event-based Asynchronous Pattern makes available the advantages of multithreaded applications while hiding many
  * of the complex issues inherent in multithreaded design. Using a class that supports this pattern can allow you to:-
  * (1) Perform time-consuming tasks, such as downloads and database operations, "in the background," without
@@ -47,7 +46,6 @@ import java.util.Scanner;
  *
  * @see EventManager
  * @see Event
- *
  */
 public class App {
 

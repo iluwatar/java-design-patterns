@@ -29,7 +29,6 @@ import java.io.FileNotFoundException;
  * <p>
  * The below example demonstrates a use case for testing two different modules: File Logger and
  * Console Logger
- *
  */
 public final class App {
 
@@ -40,7 +39,7 @@ public final class App {
 	 * Following method performs the initialization
 	 *
 	 * @throws FileNotFoundException if program is not able to find log files (output.txt and
-	 *         error.txt)
+	 *                               error.txt)
 	 */
 	public static void prepare() throws FileNotFoundException {
 
@@ -80,7 +79,7 @@ public final class App {
 	 *
 	 * @param args command line args.
 	 * @throws FileNotFoundException if program is not able to find log files (output.txt and
-	 *         error.txt)
+	 *                               error.txt)
 	 */
 	public static void main(final String... args) throws FileNotFoundException {
 		prepare();

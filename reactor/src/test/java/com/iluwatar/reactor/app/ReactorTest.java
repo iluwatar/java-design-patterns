@@ -31,7 +31,6 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- *
  * This class tests the Distributed Logging service by starting a Reactor and then sending it
  * concurrent logging requests using multiple clients.
  */
@@ -42,7 +41,7 @@ public class ReactorTest {
 	/**
 	 * Test the application using pooled thread dispatcher.
 	 *
-	 * @throws IOException if any I/O error occurs.
+	 * @throws IOException          if any I/O error occurs.
 	 * @throws InterruptedException if interrupted while stopping the application.
 	 */
 	@Test
@@ -70,7 +69,7 @@ public class ReactorTest {
 	/**
 	 * Test the application using same thread dispatcher.
 	 *
-	 * @throws IOException if any I/O error occurs.
+	 * @throws IOException          if any I/O error occurs.
 	 * @throws InterruptedException if interrupted while stopping the application.
 	 */
 	@Test

@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * SlidingDoor resource
- *
  */
 public class SlidingDoor implements AutoCloseable {
 

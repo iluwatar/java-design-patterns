@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory;
  * TaskGenerator class.
  * Each TaskGenerator thread will be a Worker which submit's messages to the queue.
  * We need to mention the message count for each of the TaskGenerator threads.
- *
  */
 public class TaskGenerator implements Task, Runnable {
 

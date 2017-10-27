@@ -30,9 +30,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
  * AlchemistShop holds potions on its shelves. It uses PotionFactory to provide the potions.
- *
  */
 public class AlchemistShop {
 

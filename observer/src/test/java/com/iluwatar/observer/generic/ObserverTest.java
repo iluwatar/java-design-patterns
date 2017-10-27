@@ -35,6 +35,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Date: 12/27/15 - 11:44 AM
  * Test for Observers
+ *
  * @param <O> Type of Observer
  * @author Jeroen Meulemeester
  */

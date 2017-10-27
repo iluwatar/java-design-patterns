@@ -31,7 +31,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class simply returns one instance of {@link SessionFactory} initialized when the application is started
- *
  */
 public class HibernateUtil {
 

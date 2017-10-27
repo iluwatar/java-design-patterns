@@ -33,22 +33,21 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- *
- *  The Promise object is used for asynchronous computations. A Promise represents an operation
- *  that hasn't completed yet, but is expected in the future.
- *
+ * The Promise object is used for asynchronous computations. A Promise represents an operation
+ * that hasn't completed yet, but is expected in the future.
+ * <p>
  * <p>A Promise represents a proxy for a value not necessarily known when the promise is created. It
  * allows you to associate dependent promises to an asynchronous action's eventual success value or
- * failure reason. This lets asynchronous methods return values like synchronous methods: instead 
- * of the final value, the asynchronous method returns a promise of having a value at some point 
+ * failure reason. This lets asynchronous methods return values like synchronous methods: instead
+ * of the final value, the asynchronous method returns a promise of having a value at some point
  * in the future.
- *
+ * <p>
  * <p>Promises provide a few advantages over callback objects:
  * <ul>
  * <li> Functional composition and error handling
  * <li> Prevents callback hell and provides callback aggregation
  * </ul>
- *
+ * <p>
  * <p>
  * In this application the usage of promise is demonstrated with two examples:
  * <ul>
@@ -77,9 +76,10 @@ public class App {
 
 	/**
 	 * Program entry point
+	 *
 	 * @param args arguments
 	 * @throws InterruptedException if main thread is interrupted.
-	 * @throws ExecutionException if an execution error occurs.
+	 * @throws ExecutionException   if an execution error occurs.
 	 */
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		App app = new App();

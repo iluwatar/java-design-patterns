@@ -27,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * The Property pattern is also known as Prototype inheritance.
  * <p>
  * In prototype inheritance instead of classes, as opposite to Java class inheritance, objects are
@@ -37,7 +36,6 @@ import org.slf4j.LoggerFactory;
  * affected as result.
  * <p>
  * In this example we demonstrate {@link Character} instantiation using the Property pattern.
- *
  */
 public class App {
 

@@ -41,6 +41,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Date: 12/30/15 - 18:22 PM
  * Test for Tasks using a Thread Pool
+ *
  * @param <T> Type of Task
  * @author Jeroen Meulemeester
  */

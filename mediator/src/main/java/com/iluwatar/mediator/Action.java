@@ -23,9 +23,7 @@
 package com.iluwatar.mediator;
 
 /**
- *
  * Action enumeration.
- *
  */
 public enum Action {
 

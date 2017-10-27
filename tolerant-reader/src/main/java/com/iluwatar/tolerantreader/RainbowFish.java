@@ -25,9 +25,7 @@ package com.iluwatar.tolerantreader;
 import java.io.Serializable;
 
 /**
- *
  * RainbowFish is the initial schema
- *
  */
 public class RainbowFish implements Serializable {
 

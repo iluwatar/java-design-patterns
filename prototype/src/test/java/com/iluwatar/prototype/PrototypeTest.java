@@ -36,6 +36,7 @@ import static org.junit.Assert.assertSame;
 
 /**
  * Date: 12/28/15 - 8:45 PM
+ *
  * @param <P> Prototype
  * @author Jeroen Meulemeester
  */

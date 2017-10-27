@@ -27,12 +27,10 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- *
  * DwarvenGoldmineFacade provides a single interface through which users can operate the subsystems.
- *
+ * <p>
  * This makes the goldmine easier to operate and cuts the dependencies from the goldmine user to the
  * subsystems.
- *
  */
 public class DwarvenGoldmineFacade {
 

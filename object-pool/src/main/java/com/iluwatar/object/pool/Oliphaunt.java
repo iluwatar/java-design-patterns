@@ -23,9 +23,7 @@
 package com.iluwatar.object.pool;
 
 /**
- *
  * Oliphaunts are expensive to create
- *
  */
 public class Oliphaunt {
 

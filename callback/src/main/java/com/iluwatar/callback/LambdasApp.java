@@ -26,10 +26,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * This example generates the exact same output as {@link App} however the callback has been
  * defined as a Lambdas expression.
- *
  */
 public class LambdasApp {
 

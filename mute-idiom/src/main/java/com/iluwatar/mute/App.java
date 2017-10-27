@@ -31,11 +31,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Mute pattern is utilized when we need to suppress an exception due to an API flaw or in 
- * situation when all we can do to handle the exception is to log it. 
- * This pattern should not be used everywhere. It is very important to logically handle the 
- * exceptions in a system, but some situations like the ones described above require this pattern, 
- * so that we don't need to repeat 
+ * Mute pattern is utilized when we need to suppress an exception due to an API flaw or in
+ * situation when all we can do to handle the exception is to log it.
+ * This pattern should not be used everywhere. It is very important to logically handle the
+ * exceptions in a system, but some situations like the ones described above require this pattern,
+ * so that we don't need to repeat
  * <pre>
  * <code>
  *   try {
@@ -45,7 +45,6 @@ import java.sql.SQLException;
  *   }
  * </code>
  * </pre> every time we need to ignore an exception.
- *
  */
 public class App {
 

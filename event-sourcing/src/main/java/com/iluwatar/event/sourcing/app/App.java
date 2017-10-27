@@ -41,13 +41,13 @@ import java.util.Date;
  * while improving performance, scalability, and responsiveness. It can also provide consistency for
  * transactional data, and maintain full audit trails and history that can enable compensating
  * actions.
- *
+ * <p>
  * This App class is an example usage of Event Sourcing pattern. As an example, two bank account is
  * created, then some money deposit and transfer actions are taken so a new state of accounts is
  * created. At that point, state is cleared in order to represent a system shot down. After the shot
  * down, system state is recovered by re-creating the past events from event journal. Then state is
  * printed so a user can view the last state is same with the state before system shot down.
- *
+ * <p>
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class App {

@@ -29,9 +29,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- *
  * Interface for accessing lottery tickets in database.
- *
  */
 public interface LotteryTicketRepository {
 

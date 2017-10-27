@@ -34,9 +34,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *
  * Spell entity.
- *
  */
 @Entity
 @Table(name = "SPELL")

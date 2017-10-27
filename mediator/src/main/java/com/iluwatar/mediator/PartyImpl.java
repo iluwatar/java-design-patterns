@@ -26,9 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * Party implementation.
- *
  */
 public class PartyImpl implements Party {
 

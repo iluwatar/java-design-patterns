@@ -27,7 +27,6 @@ package com.iluwatar.intercepting.filter;
  * case, before the request is handled by the target, the request undergoes through each Filter
  *
  * @author joshzambales
- *
  */
 public interface Filter {
 

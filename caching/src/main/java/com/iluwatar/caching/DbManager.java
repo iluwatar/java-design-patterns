@@ -33,15 +33,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * <p>DBManager handles the communication with the underlying data store i.e. Database. It contains the
  * implemented methods for querying, inserting, and updating data. MongoDB was used as the database
  * for the application.</p>
- *
+ * <p>
  * <p>Developer/Tester is able to choose whether the application should use MongoDB as its underlying
  * data storage (connect()) or a simple Java data structure to (temporarily) store the data/objects
  * during runtime (createVirtualDB()).</p>
- *
  */
 public final class DbManager {
 
@@ -139,7 +137,6 @@ public final class DbManager {
 	}
 
 	/**
-	 *
 	 * Insert data into DB if it does not exist. Else, update it.
 	 */
 	public static void upsertDb(UserAccount userAccount) {

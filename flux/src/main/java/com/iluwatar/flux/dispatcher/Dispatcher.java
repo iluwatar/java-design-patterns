@@ -33,9 +33,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
  * Dispatcher sends Actions to registered Stores.
- *
  */
 public final class Dispatcher {
 

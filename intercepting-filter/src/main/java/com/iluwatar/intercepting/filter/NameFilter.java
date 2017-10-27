@@ -27,7 +27,6 @@ package com.iluwatar.intercepting.filter;
  * (alphanumeric)
  *
  * @author joshzambales
- *
  */
 public class NameFilter extends AbstractFilter {
 

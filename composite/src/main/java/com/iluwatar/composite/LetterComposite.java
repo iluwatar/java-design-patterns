@@ -26,9 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * Composite interface.
- *
  */
 public abstract class LetterComposite {
 

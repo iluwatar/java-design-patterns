@@ -39,7 +39,7 @@ import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_JON;
 
 /**
  * Intergartion Test for Event Sourcing state recovery
- *
+ * <p>
  * Created by Serdar Hamzaogullari on 19.08.2017.
  */
 public class IntegrationTest {

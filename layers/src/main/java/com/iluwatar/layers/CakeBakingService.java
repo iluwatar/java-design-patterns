@@ -25,9 +25,7 @@ package com.iluwatar.layers;
 import java.util.List;
 
 /**
- *
  * Service for cake baking operations
- *
  */
 public interface CakeBakingService {
 

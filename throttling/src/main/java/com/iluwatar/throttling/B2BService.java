@@ -40,7 +40,6 @@ class B2BService {
 	}
 
 	/**
-	 *
 	 * @return customer id which is randomly generated
 	 */
 	public int dummyCustomerApi(Tenant tenant) {

@@ -23,9 +23,7 @@
 package com.iluwatar.prototype;
 
 /**
- *
  * Beast
- *
  */
 public abstract class Beast extends Prototype {
 

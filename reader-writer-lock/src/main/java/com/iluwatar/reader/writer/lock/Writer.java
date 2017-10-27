@@ -43,7 +43,7 @@ public class Writer implements Runnable {
 	/**
 	 * Create new Writer who writes for 250ms
 	 *
-	 * @param name - Name of the thread owning the writer
+	 * @param name      - Name of the thread owning the writer
 	 * @param writeLock - Lock for this writer
 	 */
 	public Writer(String name, Lock writeLock) {
@@ -53,8 +53,8 @@ public class Writer implements Runnable {
 	/**
 	 * Create new Writer
 	 *
-	 * @param name - Name of the thread owning the writer
-	 * @param writeLock - Lock for this writer
+	 * @param name        - Name of the thread owning the writer
+	 * @param writeLock   - Lock for this writer
 	 * @param writingTime - amount of time (in milliseconds) for this reader to engage writing
 	 */
 	public Writer(String name, Lock writeLock, long writingTime) {

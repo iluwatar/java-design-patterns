@@ -23,9 +23,7 @@
 package com.iluwatar.hexagonal.domain;
 
 /**
- *
  * Represents lottery ticket check result.
- *
  */
 public class LotteryTicketCheckResult {
 

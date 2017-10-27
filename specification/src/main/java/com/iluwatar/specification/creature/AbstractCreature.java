@@ -27,9 +27,7 @@ import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
 /**
- *
  * Base class for concrete creatures.
- *
  */
 public abstract class AbstractCreature implements Creature {
 

@@ -38,6 +38,7 @@ import java.io.IOException;
 public class ImageClientImpl implements ImageClient {
 	/**
 	 * Makes a simple HTTP Get request to the Image microservice
+	 *
 	 * @return The path to the image
 	 */
 	@Override

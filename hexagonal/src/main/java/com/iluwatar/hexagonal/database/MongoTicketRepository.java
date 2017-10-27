@@ -118,7 +118,6 @@ public class MongoTicketRepository implements LotteryTicketRepository {
 	}
 
 	/**
-	 *
 	 * @return mongo database
 	 */
 	public MongoDatabase getMongoDatabase() {
@@ -126,7 +125,6 @@ public class MongoTicketRepository implements LotteryTicketRepository {
 	}
 
 	/**
-	 *
 	 * @return tickets collection
 	 */
 	public MongoCollection<Document> getTicketsCollection() {
@@ -134,7 +132,6 @@ public class MongoTicketRepository implements LotteryTicketRepository {
 	}
 
 	/**
-	 *
 	 * @return counters collection
 	 */
 	public MongoCollection<Document> getCountersCollection() {

@@ -60,7 +60,7 @@ public class TreeTest {
 	/**
 	 * During the tests, the same tree structure will be used, shown below. End points will be
 	 * terminated with the {@link NullNode} instance.
-	 *
+	 * <p>
 	 * <pre>
 	 * root
 	 * ├── level1_a

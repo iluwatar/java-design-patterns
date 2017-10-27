@@ -25,9 +25,7 @@ package com.iluwatar.cqrs.dto;
 import java.util.Objects;
 
 /**
- *
  * This is a DTO (Data Transfer Object) author, contains only useful information to be returned
- *
  */
 public class Author {
 
@@ -36,13 +34,9 @@ public class Author {
 	private String username;
 
 	/**
-	 *
-	 * @param name
-	 *          name of the author
-	 * @param email
-	 *          email of the author
-	 * @param username
-	 *          username of the author
+	 * @param name     name of the author
+	 * @param email    email of the author
+	 * @param username username of the author
 	 */
 	public Author(String name, String email, String username) {
 		super();

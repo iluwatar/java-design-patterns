@@ -23,9 +23,7 @@
 package com.iluwatar.model.view.controller;
 
 /**
- *
  * GiantModel contains the giant data
- *
  */
 public class GiantModel {
 

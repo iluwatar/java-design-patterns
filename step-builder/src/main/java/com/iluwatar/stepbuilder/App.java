@@ -27,27 +27,27 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Step Builder Pattern
- *
+ * <p>
  * <p>
  * <b>Intent</b> <br/>
  * An extension of the Builder pattern that fully guides the user through the creation of the object
  * with no chances of confusion. <br/>
  * The user experience will be much more improved by the fact that he will only see the next step
  * methods available, NO build method until is the right time to build the object.
- *
+ * <p>
  * <p>
  * <b>Implementation</b>
  * <ul>
  * The concept is simple:
- *
+ * <p>
  * <li>Write creational steps inner classes or interfaces where each method knows what can be
  * displayed next.</li>
- *
+ * <p>
  * <li>Implement all your steps interfaces in an inner static class.</li>
- *
+ * <p>
  * <li>Last step is the BuildStep, in charge of creating the object you need to build.</li>
  * </ul>
- *
+ * <p>
  * <p>
  * <b>Applicability</b> <br/>
  * Use the Step Builder pattern when the algorithm for creating a complex object should be

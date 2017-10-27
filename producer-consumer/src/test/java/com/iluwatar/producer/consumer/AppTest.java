@@ -25,9 +25,7 @@ package com.iluwatar.producer.consumer;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

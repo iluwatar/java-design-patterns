@@ -23,9 +23,7 @@
 package com.iluwatar.command;
 
 /**
- *
  * InvisibilitySpell is a concrete command
- *
  */
 public class InvisibilitySpell extends Command {
 

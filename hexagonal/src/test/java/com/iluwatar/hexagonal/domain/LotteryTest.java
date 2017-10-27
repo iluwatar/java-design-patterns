@@ -41,9 +41,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- *
  * Test the lottery system
- *
  */
 public class LotteryTest {
 

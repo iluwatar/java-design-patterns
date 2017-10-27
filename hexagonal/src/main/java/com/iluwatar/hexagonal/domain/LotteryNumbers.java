@@ -31,10 +31,8 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- *
  * Value object representing lottery numbers. This lottery uses sets of 4 numbers. The numbers must be unique and
  * between 1 and 20.
- *
  */
 public class LotteryNumbers {
 
@@ -117,9 +115,7 @@ public class LotteryNumbers {
 	}
 
 	/**
-	 *
 	 * Helper class for generating random numbers.
-	 *
 	 */
 	private static class RandomNumberGenerator {
 

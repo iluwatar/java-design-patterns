@@ -26,9 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class CachingTest {
 	App app;

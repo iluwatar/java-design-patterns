@@ -30,9 +30,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
  * WizardDao implementation.
- *
  */
 public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 

@@ -47,7 +47,7 @@ public class LoggingHandler implements ChannelHandler {
 	@Override
 	public void handleChannelRead(AbstractNioChannel channel, Object readObject, SelectionKey key) {
 	/*
-     * As this handler is attached with both TCP and UDP channels we need to check whether the data
+	 * As this handler is attached with both TCP and UDP channels we need to check whether the data
      * received is a ByteBuffer (from TCP channel) or a DatagramPacket (from UDP channel).
      */
 		if (readObject instanceof ByteBuffer) {

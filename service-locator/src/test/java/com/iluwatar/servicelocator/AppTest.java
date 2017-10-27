@@ -25,9 +25,7 @@ package com.iluwatar.servicelocator;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

@@ -23,9 +23,7 @@
 package com.iluwatar.threadpool;
 
 /**
- *
  * CoffeeMakingTask is a concrete task
- *
  */
 public class CoffeeMakingTask extends Task {
 

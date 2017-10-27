@@ -23,9 +23,7 @@
 package com.iluwatar.hexagonal.domain;
 
 /**
- *
  * Immutable value object containing lottery player details.
- *
  */
 public class PlayerDetails {
 

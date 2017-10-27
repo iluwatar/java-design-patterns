@@ -26,14 +26,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A FruitBowl contains Fruit. 
+ * A FruitBowl contains Fruit.
  */
 public class FruitBowl {
 
 	private List<Fruit> fruit = new ArrayList<>();
 
 	/**
-	 *
 	 * @return The amount of Fruit left in the bowl.
 	 */
 	public int countFruit() {
@@ -51,6 +50,7 @@ public class FruitBowl {
 
 	/**
 	 * Take an item of Fruit out of the bowl.
+	 *
 	 * @return The Fruit taken out of the bowl, or null if empty.
 	 */
 	public Fruit take() {

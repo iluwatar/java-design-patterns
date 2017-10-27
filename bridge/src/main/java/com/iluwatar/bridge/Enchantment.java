@@ -23,9 +23,7 @@
 package com.iluwatar.bridge;
 
 /**
- *
  * Enchantment
- *
  */
 public interface Enchantment {
 

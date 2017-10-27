@@ -23,9 +23,7 @@
 package com.iluwatar.flux.action;
 
 /**
- *
  * Menu items.
- *
  */
 public enum MenuItem {
 

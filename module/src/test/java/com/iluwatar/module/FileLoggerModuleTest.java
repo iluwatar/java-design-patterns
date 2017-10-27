@@ -98,7 +98,7 @@ public final class FileLoggerModuleTest {
 	 * This test verify that 'ERROR' is perfectly printed in error file
 	 *
 	 * @throws FileNotFoundException if program is not able to find log files (output.txt and
-	 *         error.txt)
+	 *                               error.txt)
 	 */
 	@Test
 	public void testFileErrorMessage() throws FileNotFoundException {
@@ -123,7 +123,7 @@ public final class FileLoggerModuleTest {
 	 * This test verify that nothing is printed in error file
 	 *
 	 * @throws FileNotFoundException if program is not able to find log files (output.txt and
-	 *         error.txt)
+	 *                               error.txt)
 	 */
 	@Test
 	public void testNoFileErrorMessage() throws FileNotFoundException {

@@ -34,8 +34,9 @@ import static org.junit.Assert.assertNotNull;
 
 /**
  * Date: 12/14/15 - 11:48 AM
- *
+ * <p>
  * Test Case for Expressions
+ *
  * @param <E> Type of Expression
  * @author Jeroen Meulemeester
  */

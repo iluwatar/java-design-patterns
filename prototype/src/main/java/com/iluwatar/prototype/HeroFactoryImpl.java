@@ -23,9 +23,7 @@
 package com.iluwatar.prototype;
 
 /**
- *
  * Concrete factory class.
- *
  */
 public class HeroFactoryImpl implements HeroFactory {
 

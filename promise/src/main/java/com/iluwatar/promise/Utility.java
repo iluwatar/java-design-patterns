@@ -48,6 +48,7 @@ public class Utility {
 
 	/**
 	 * Calculates character frequency of the file provided.
+	 *
 	 * @param fileLocation location of the file.
 	 * @return a map of character to its frequency, an empty map if file does not exist.
 	 */
@@ -109,6 +110,7 @@ public class Utility {
 
 	/**
 	 * Downloads the contents from the given urlString, and stores it in a temporary directory.
+	 *
 	 * @return the absolute path of the file downloaded.
 	 */
 	public static String downloadFile(String urlString) throws IOException {

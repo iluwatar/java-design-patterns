@@ -23,9 +23,7 @@
 package com.iluwatar.flux.action;
 
 /**
- *
  * Types of actions.
- *
  */
 public enum ActionType {
 

@@ -32,8 +32,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * A class to keep track of the counter of different Tenants
- * @author drastogi
  *
+ * @author drastogi
  */
 public final class CallsCount {
 
@@ -42,6 +42,7 @@ public final class CallsCount {
 
 	/**
 	 * Add a new tenant to the map.
+	 *
 	 * @param tenantName name of the tenant.
 	 */
 	public static void addTenant(String tenantName) {
@@ -50,6 +51,7 @@ public final class CallsCount {
 
 	/**
 	 * Increment the count of the specified tenant.
+	 *
 	 * @param tenantName name of the tenant.
 	 */
 	public static void incrementCount(String tenantName) {
@@ -57,7 +59,6 @@ public final class CallsCount {
 	}
 
 	/**
-	 *
 	 * @param tenantName name of the tenant.
 	 * @return the count of the tenant.
 	 */

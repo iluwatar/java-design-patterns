@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Space station Mir game object
- *
  */
 public class SpaceStationMir extends GameObject {
 

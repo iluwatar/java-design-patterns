@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * GWeather
- *
  */
 public class GWeather extends Observable<GWeather, Race, WeatherType> {
 

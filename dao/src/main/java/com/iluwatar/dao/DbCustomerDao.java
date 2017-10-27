@@ -39,7 +39,6 @@ import java.util.stream.StreamSupport;
 
 /**
  * An implementation of {@link CustomerDao} that persists customers in RDBMS.
- *
  */
 public class DbCustomerDao implements CustomerDao {
 
@@ -59,8 +58,8 @@ public class DbCustomerDao implements CustomerDao {
 
 	/**
 	 * @return a lazily populated stream of customers. Note the stream returned must be closed to
-	 *     free all the acquired resources. The stream keeps an open connection to the database till
-	 *     it is complete or is closed manually.
+	 * free all the acquired resources. The stream keeps an open connection to the database till
+	 * it is complete or is closed manually.
 	 */
 	@Override
 	public Stream<Customer> getAll() throws Exception {

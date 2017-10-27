@@ -31,7 +31,6 @@ import org.hibernate.SessionFactory;
 
 /**
  * This class is an implementation of {@link ICommandService} interface. It uses Hibernate as an api for persistence.
- *
  */
 public class CommandServiceImpl implements ICommandService {
 

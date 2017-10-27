@@ -26,10 +26,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Same as HolderNaive but with added synchronization. This implementation is thread safe, but each
  * {@link #getHeavy()} call costs additional synchronization overhead.
- *
  */
 public class HolderThreadSafe {
 

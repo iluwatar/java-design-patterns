@@ -30,9 +30,7 @@ import java.util.List;
 
 
 /**
- *
  * Service interface.
- *
  */
 public interface MagicService {
 

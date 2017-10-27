@@ -24,7 +24,7 @@ package com.iluwatar.value.object;
 
 /**
  * HeroStat is a value object
- *
+ * <p>
  * {@link http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html}
  */
 public class HeroStat {

@@ -23,9 +23,7 @@
 package com.iluwatar.iterator;
 
 /**
- *
  * ItemType enumeration
- *
  */
 public enum ItemType {
 

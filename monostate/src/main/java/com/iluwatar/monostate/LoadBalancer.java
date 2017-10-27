@@ -30,7 +30,6 @@ import java.util.List;
  * receiving a new Request, it delegates the call to the servers in a Round Robin Fashion. Since all
  * instances of the class share the same state, all instances will delegate to the same server on
  * receiving a new Request.
- *
  */
 
 public class LoadBalancer {

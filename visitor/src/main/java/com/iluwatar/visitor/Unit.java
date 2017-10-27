@@ -23,9 +23,7 @@
 package com.iluwatar.visitor;
 
 /**
- *
  * Interface for the nodes in hierarchy.
- *
  */
 public abstract class Unit {
 

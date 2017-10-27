@@ -23,9 +23,7 @@
 package com.iluwatar.chain;
 
 /**
- *
  * OrcSoldier
- *
  */
 public class OrcSoldier extends RequestHandler {
 

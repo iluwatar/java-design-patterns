@@ -29,9 +29,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 /**
- *
  * Wizard is the invoker of the commands
- *
  */
 public class Wizard {
 

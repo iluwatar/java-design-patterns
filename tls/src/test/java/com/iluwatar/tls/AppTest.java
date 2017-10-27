@@ -29,7 +29,6 @@ import org.junit.Test;
  * Tests that thread local storage example runs without errors.
  *
  * @author Thomas Bauer, January 2017
- *
  */
 public class AppTest {
 	@Test

@@ -29,7 +29,6 @@ import javax.persistence.Id;
 
 /**
  * This is an Author entity. It is used by Hibernate for persistence.
- *
  */
 @Entity
 public class Author {
@@ -41,13 +40,9 @@ public class Author {
 	private String email;
 
 	/**
-	 *
-	 * @param username
-	 *          username of the author
-	 * @param name
-	 *          name of the author
-	 * @param email
-	 *          email of the author
+	 * @param username username of the author
+	 * @param name     name of the author
+	 * @param email    email of the author
 	 */
 	public Author(String username, String name, String email) {
 		super();

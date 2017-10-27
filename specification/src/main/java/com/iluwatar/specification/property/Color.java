@@ -23,9 +23,7 @@
 package com.iluwatar.specification.property;
 
 /**
- *
  * Color property.
- *
  */
 public enum Color {
 

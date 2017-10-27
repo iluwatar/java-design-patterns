@@ -31,8 +31,8 @@ import java.util.function.Function;
 /**
  * A Promise represents a proxy for a value not necessarily known when the promise is created. It
  * allows you to associate dependent promises to an asynchronous action's eventual success value or
- * failure reason. This lets asynchronous methods return values like synchronous methods: instead 
- * of the final value, the asynchronous method returns a promise of having a value at some point 
+ * failure reason. This lets asynchronous methods return values like synchronous methods: instead
+ * of the final value, the asynchronous method returns a promise of having a value at some point
  * in the future.
  *
  * @param <T> type of result.
@@ -50,6 +50,7 @@ public class Promise<T> extends PromiseSupport<T> {
 
 	/**
 	 * Fulfills the promise with the provided value.
+	 *
 	 * @param value the fulfilled value that can be accessed using {@link #get()}.
 	 */
 	@Override
@@ -60,8 +61,9 @@ public class Promise<T> extends PromiseSupport<T> {
 
 	/**
 	 * Fulfills the promise with exception due to error in execution.
+	 *
 	 * @param exception the exception will be wrapped in {@link ExecutionException}
-	 *        when accessing the value using {@link #get()}.
+	 *                  when accessing the value using {@link #get()}.
 	 */
 	@Override
 	public void fulfillExceptionally(Exception exception) {
@@ -88,7 +90,7 @@ public class Promise<T> extends PromiseSupport<T> {
 	 * Executes the task using the executor in other thread and fulfills the promise returned
 	 * once the task completes either successfully or with an exception.
 	 *
-	 * @param task the task that will provide the value to fulfill the promise.
+	 * @param task     the task that will provide the value to fulfill the promise.
 	 * @param executor the executor in which the task should be run.
 	 * @return a promise that represents the result of running the task provided.
 	 */
@@ -106,6 +108,7 @@ public class Promise<T> extends PromiseSupport<T> {
 	/**
 	 * Returns a new promise that, when this promise is fulfilled normally, is fulfilled with
 	 * result of this promise as argument to the action provided.
+	 *
 	 * @param action action to be executed.
 	 * @return a new promise.
 	 */
@@ -117,8 +120,9 @@ public class Promise<T> extends PromiseSupport<T> {
 
 	/**
 	 * Set the exception handler on this promise.
+	 *
 	 * @param exceptionHandler a consumer that will handle the exception occurred while fulfilling
-	 *            the promise.
+	 *                         the promise.
 	 * @return this
 	 */
 	public Promise<T> onError(Consumer<? super Throwable> exceptionHandler) {
@@ -129,6 +133,7 @@ public class Promise<T> extends PromiseSupport<T> {
 	/**
 	 * Returns a new promise that, when this promise is fulfilled normally, is fulfilled with
 	 * result of this promise as argument to the function provided.
+	 *
 	 * @param func function to be executed.
 	 * @return a new promise.
 	 */

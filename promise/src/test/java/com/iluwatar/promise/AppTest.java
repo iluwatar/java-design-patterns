@@ -27,7 +27,6 @@ import org.junit.Test;
 import java.util.concurrent.ExecutionException;
 
 /**
- *
  * Application test.
  */
 public class AppTest {

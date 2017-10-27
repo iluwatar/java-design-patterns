@@ -26,9 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * TreasureChest, the collection class.
- *
  */
 public class TreasureChest {
 

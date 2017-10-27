@@ -23,9 +23,7 @@
 package com.iluwatar.doubledispatch;
 
 /**
- *
  * Flaming asteroid game object
- *
  */
 public class FlamingAsteroid extends Meteoroid {
 

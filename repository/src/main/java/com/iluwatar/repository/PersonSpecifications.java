@@ -59,7 +59,6 @@ public class PersonSpecifications {
 
 	/**
 	 * Name specification
-	 *
 	 */
 	public static class NameEqualSpec implements Specification<Person> {
 

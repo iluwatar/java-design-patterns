@@ -27,7 +27,6 @@ package com.iluwatar.intercepting.filter;
  * the address field.
  *
  * @author joshzambales
- *
  */
 public class AddressFilter extends AbstractFilter {
 

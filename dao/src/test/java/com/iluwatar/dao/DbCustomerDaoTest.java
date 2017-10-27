@@ -59,6 +59,7 @@ public class DbCustomerDaoTest {
 
 	/**
 	 * Creates customers schema.
+	 *
 	 * @throws SQLException if there is any error while creating schema.
 	 */
 	@Before
@@ -76,6 +77,7 @@ public class DbCustomerDaoTest {
 
 		/**
 		 * Setup for connection success scenario.
+		 *
 		 * @throws Exception if any error occurs.
 		 */
 		@Before
@@ -136,7 +138,6 @@ public class DbCustomerDaoTest {
 		/**
 		 * Represents a scenario where DAO operations are being performed on an already existing
 		 * customer.
-		 *
 		 */
 		public class ExistingCustomer {
 
@@ -179,7 +180,6 @@ public class DbCustomerDaoTest {
 	/**
 	 * Represents a scenario where DB connectivity is not present due to network issue, or
 	 * DB service unavailable.
-	 *
 	 */
 	public class ConnectivityIssue {
 
@@ -189,6 +189,7 @@ public class DbCustomerDaoTest {
 
 		/**
 		 * setup a connection failure scenario.
+		 *
 		 * @throws SQLException if any error occurs.
 		 */
 		@Before
@@ -239,6 +240,7 @@ public class DbCustomerDaoTest {
 
 	/**
 	 * Delete customer schema for fresh setup per test.
+	 *
 	 * @throws SQLException if any error occurs.
 	 */
 	@After

@@ -25,9 +25,7 @@ package com.iluwatar.poison.pill;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

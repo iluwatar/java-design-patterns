@@ -36,7 +36,6 @@ import java.util.concurrent.TimeUnit;
  * In producer consumer design pattern a shared queue is used to control the flow and this separation allows you to code
  * producer and consumer separately. It also addresses the issue of different timing require to produce item or
  * consuming item. by using producer consumer pattern both Producer and Consumer Thread can work with different speed.
- *
  */
 public class App {
 
@@ -45,8 +44,7 @@ public class App {
 	/**
 	 * Program entry point
 	 *
-	 * @param args
-	 *          command line args
+	 * @param args command line args
 	 */
 	public static void main(String[] args) {
 

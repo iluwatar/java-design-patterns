@@ -29,7 +29,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * The Observer pattern is a software design pattern in which an object, called the subject,
  * maintains a list of its dependents, called observers, and notifies them automatically of any
  * state changes, usually by calling one of their methods. It is mainly used to implement
@@ -39,7 +38,6 @@ import org.slf4j.LoggerFactory;
  * <p>
  * In this example {@link Weather} has a state that can be observed. The {@link Orcs} and
  * {@link Hobbits} register as observers and receive notifications when the {@link Weather} changes.
- *
  */
 public class App {
 

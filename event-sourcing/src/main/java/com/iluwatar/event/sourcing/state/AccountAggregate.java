@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * This is the static accounts map holder class.
  * This class holds the state of the accounts.
- *
+ * <p>
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class AccountAggregate {

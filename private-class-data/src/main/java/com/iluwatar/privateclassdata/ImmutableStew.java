@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Immutable stew class, protected with Private Class Data pattern
- *
  */
 public class ImmutableStew {
 

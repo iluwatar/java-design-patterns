@@ -23,9 +23,7 @@
 package com.iluwatar.abstractfactory;
 
 /**
- *
  * ElfCastle
- *
  */
 public class ElfCastle implements Castle {
 

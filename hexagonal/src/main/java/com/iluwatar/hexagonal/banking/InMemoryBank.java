@@ -28,9 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * Banking implementation
- *
  */
 public class InMemoryBank implements WireTransfers {
 

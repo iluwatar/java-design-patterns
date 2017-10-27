@@ -27,9 +27,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- *
  * Test case for submitting and retrieving messages from Blocking Queue.
- *
  */
 public class MessageQueueTest {
 

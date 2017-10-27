@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Base class for spell targets.
- *
  */
 public abstract class Target {
 

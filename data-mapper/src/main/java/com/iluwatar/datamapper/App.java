@@ -31,7 +31,6 @@ import java.util.Optional;
  * Data Mapper itself is even unknown to the domain layer.
  * <p>
  * The below example demonstrates basic CRUD operations: Create, Read, Update, and Delete.
- *
  */
 public final class App {
 

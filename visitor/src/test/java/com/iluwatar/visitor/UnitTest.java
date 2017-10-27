@@ -35,6 +35,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 /**
  * Date: 12/30/15 - 18:59 PM
  * Test related to Units
+ *
  * @param <U> Type of Unit
  * @author Jeroen Meulemeester
  */

@@ -55,7 +55,6 @@ import java.util.List;
  * {@link MagicService}). The service is implemented with 3-layer architecture (entity, dao,
  * service). For persistence the example uses in-memory H2 database which is populated on each
  * application startup.
- *
  */
 public class App {
 

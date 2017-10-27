@@ -85,7 +85,6 @@ public class MongoBank implements WireTransfers {
 	}
 
 	/**
-	 *
 	 * @return mongo database
 	 */
 	public MongoDatabase getMongoDatabase() {
@@ -93,7 +92,6 @@ public class MongoBank implements WireTransfers {
 	}
 
 	/**
-	 *
 	 * @return accounts collection
 	 */
 	public MongoCollection<Document> getAccountsCollection() {

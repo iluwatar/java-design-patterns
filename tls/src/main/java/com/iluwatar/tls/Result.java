@@ -34,7 +34,7 @@ import java.util.List;
  * Result object that will be returned by the Callable {@link DateFormatCallable}
  * used in {@link App}
  *
- * @author Thomas Bauer, 2017 
+ * @author Thomas Bauer, 2017
  */
 public class Result {
 	// A list to collect the date values created in one thread
@@ -45,7 +45,6 @@ public class Result {
 	private List<String> exceptionList = new ArrayList<String>();
 
 	/**
-	 *
 	 * @return List of date values collected within an thread execution
 	 */
 	public List<Date> getDateList() {
@@ -53,7 +52,6 @@ public class Result {
 	}
 
 	/**
-	 *
 	 * @return List of exceptions thrown within an thread execution
 	 */
 	public List<String> getExceptionList() {

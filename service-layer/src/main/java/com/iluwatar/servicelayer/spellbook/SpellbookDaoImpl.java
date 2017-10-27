@@ -29,9 +29,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
  * SpellbookDao implementation.
- *
  */
 public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements SpellbookDao {
 

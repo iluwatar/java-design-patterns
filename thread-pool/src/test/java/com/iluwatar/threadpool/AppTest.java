@@ -28,7 +28,6 @@ import org.junit.Test;
  * Application test
  *
  * @author ilkka
- *
  */
 public class AppTest {
 

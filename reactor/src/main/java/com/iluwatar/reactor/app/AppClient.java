@@ -108,7 +108,7 @@ public class AppClient {
 		 * Creates a new TCP logging client.
 		 *
 		 * @param clientName the name of the client to be sent in logging requests.
-		 * @param port the port on which client will send logging requests.
+		 * @param port       the port on which client will send logging requests.
 		 */
 		public TcpLoggingClient(String clientName, int serverPort) {
 			this.clientName = clientName;
@@ -156,7 +156,7 @@ public class AppClient {
 		 * Creates a new UDP logging client.
 		 *
 		 * @param clientName the name of the client to be sent in logging requests.
-		 * @param port the port on which client will send logging requests.
+		 * @param port       the port on which client will send logging requests.
 		 * @throws UnknownHostException if localhost is unknown
 		 */
 		public UdpLoggingClient(String clientName, int port) throws UnknownHostException {

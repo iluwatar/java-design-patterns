@@ -34,7 +34,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 
 /**
  * Class responsible for control the access for reader or writer
- *
+ * <p>
  * Allows multiple readers to hold the lock at same time, but if any writer holds the lock then readers wait. If reader
  * holds the lock then writer waits. This lock is not fair.
  */
@@ -81,7 +81,6 @@ public class ReaderWriterLock implements ReadWriteLock {
 
 	/**
 	 * Nobody get the lock when globalMutex contains nothing
-	 *
 	 */
 	private boolean isLockFree() {
 		return globalMutex.isEmpty();

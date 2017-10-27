@@ -23,9 +23,7 @@
 package com.iluwatar.iterator;
 
 /**
- *
  * Item
- *
  */
 public class Item {
 

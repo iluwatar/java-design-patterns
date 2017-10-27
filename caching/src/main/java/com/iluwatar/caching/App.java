@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * The Caching pattern describes how to avoid expensive re-acquisition of resources by not releasing
  * the resources immediately after their use. The resources retain their identity, are kept in some
  * fast-access storage, and are re-used to avoid having to acquire them again. There are four main
@@ -52,14 +51,13 @@ import org.slf4j.LoggerFactory;
  * whether the data is coming from the cache or the DB (i.e. separation of concern). The AppManager
  * ({@link AppManager}) handles the transaction of data to-and-from the underlying data store
  * (depending on the preferred caching policy/strategy).
- *
+ * <p>
  * <i>App --> AppManager --> CacheStore/LRUCache/CachingPolicy --> DBManager</i>
  * </p>
  *
- * @see CacheStore
  * @See LRUCache
+ * @see CacheStore
  * @see CachingPolicy
- *
  */
 public class App {
 

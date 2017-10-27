@@ -29,9 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
  * Store is a data model.
- *
  */
 public abstract class Store {
 

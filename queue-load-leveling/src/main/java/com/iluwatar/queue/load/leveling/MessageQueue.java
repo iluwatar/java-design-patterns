@@ -29,9 +29,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
- *
  * MessageQueue class.
- * In this class we will create a Blocking Queue and 
+ * In this class we will create a Blocking Queue and
  * submit/retrieve all the messages from it.
  */
 public class MessageQueue {

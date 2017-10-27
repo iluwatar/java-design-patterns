@@ -33,9 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * Service implementation.
- *
  */
 public class MagicServiceImpl implements MagicService {
 

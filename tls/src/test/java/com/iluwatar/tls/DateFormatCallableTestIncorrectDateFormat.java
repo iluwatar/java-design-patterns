@@ -37,24 +37,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
- *
  * Test of the Callable
- *
+ * <p>
  * In this test {@link DateFormatCallable} is tested with only one thread (i.e. without concurrency situation)
  * <p>
  * An incorrect formatted date is passed to the Callable
- * After a successful run 0 date values and 5 exceptions should be in the result object. 
+ * After a successful run 0 date values and 5 exceptions should be in the result object.
  *
  * @author Thomas Bauer, January 2017
- *
  */
 public class DateFormatCallableTestIncorrectDateFormat {
 
 	// Class variables used in setup() have to be static because setup() has to be static
 	/**
 	 * Result object given back by DateFormatCallable
-	 *   -- Array with converted date values
-	 *   -- Array with thrown exceptions
+	 * -- Array with converted date values
+	 * -- Array with thrown exceptions
 	 */
 	static Result result;
 

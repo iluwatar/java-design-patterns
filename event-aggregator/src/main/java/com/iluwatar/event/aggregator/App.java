@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * A system with lots of objects can lead to complexities when a client wants to subscribe to
  * events. The client has to find and register for each object individually, if each object has
  * multiple events then each event requires a separate subscription.
@@ -37,7 +36,6 @@ import java.util.List;
  * In the example {@link LordBaelish}, {@link LordVarys} and {@link Scout} deliver events to
  * {@link KingsHand}. {@link KingsHand}, the event aggregator, then delivers the events to
  * {@link KingJoffrey}.
- *
  */
 public class App {
 

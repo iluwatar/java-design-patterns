@@ -38,6 +38,7 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 /**
  * Date: 12/12/15 - 10:58 PM
  * Tests for Event Emitter
+ *
  * @param <E> Type of Event Emitter
  * @author Jeroen Meulemeester
  */

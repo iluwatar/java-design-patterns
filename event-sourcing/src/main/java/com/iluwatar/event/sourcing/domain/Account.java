@@ -35,7 +35,7 @@ import java.math.BigDecimal;
  * This is the Account class that holds the account info, the account number,
  * account owner name and money of the account. Account class also have the business logic of events
  * that effects this account.
- *
+ * <p>
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class Account {
@@ -50,7 +50,7 @@ public class Account {
 	 * Instantiates a new Account.
 	 *
 	 * @param accountNo the account no
-	 * @param owner the owner
+	 * @param owner     the owner
 	 */
 	public Account(int accountNo, String owner) {
 		this.accountNo = accountNo;

@@ -48,7 +48,6 @@ import static java.lang.String.valueOf;
  * applications. The {@link LazyFluentIterable} is evaluated on termination. Their usage is
  * demonstrated with a simple number list that is filtered, transformed and collected. The result is
  * printed afterwards.
- *
  */
 public class App {
 

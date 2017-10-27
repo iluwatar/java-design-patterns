@@ -27,7 +27,6 @@ package com.iluwatar.servicelocator;
  * services will have a <li>service name</li> <li>unique id</li> <li>execution work flow</li>
  *
  * @author saifasif
- *
  */
 public interface Service {
 

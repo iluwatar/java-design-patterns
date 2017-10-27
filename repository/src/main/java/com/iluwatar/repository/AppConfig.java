@@ -38,9 +38,8 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * This is the same example as in {@link App} but with annotations based 
+ * This is the same example as in {@link App} but with annotations based
  * configuration for Spring.
- *
  */
 @EnableJpaRepositories
 public class AppConfig {
@@ -99,8 +98,7 @@ public class AppConfig {
 	/**
 	 * Program entry point
 	 *
-	 * @param args
-	 *          command line args
+	 * @param args command line args
 	 */
 	public static void main(String[] args) {
 

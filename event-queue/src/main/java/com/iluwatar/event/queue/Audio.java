@@ -33,8 +33,8 @@ import java.io.IOException;
 
 /**
  * This class implements the Event Queue pattern.
- * @author mkuprivecz
  *
+ * @author mkuprivecz
  */
 public class Audio {
 
@@ -59,6 +59,7 @@ public class Audio {
 
 	/**
 	 * This method stops the Update Method's thread.
+	 *
 	 * @return boolean
 	 */
 	public static synchronized boolean isServiceRunning() {
@@ -95,6 +96,7 @@ public class Audio {
 
 	/**
 	 * This method adds a new audio into the queue.
+	 *
 	 * @param stream is the AudioInputStream for the method
 	 * @param volume is the level of the audio's volume
 	 */
@@ -143,10 +145,11 @@ public class Audio {
 
 	/**
 	 * Returns the AudioInputStream of a file
+	 *
 	 * @param filePath is the path of the audio file
 	 * @return AudioInputStream
 	 * @throws UnsupportedAudioFileException when the audio file is not supported
-	 * @throws IOException when the file is not readable
+	 * @throws IOException                   when the file is not readable
 	 */
 	public static AudioInputStream getAudioStream(String filePath)
 			throws UnsupportedAudioFileException, IOException {
@@ -155,6 +158,7 @@ public class Audio {
 
 	/**
 	 * Returns with the message array of the queue
+	 *
 	 * @return PlayMessage[]
 	 */
 	public static PlayMessage[] getPendingAudio() {

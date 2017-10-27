@@ -23,9 +23,7 @@
 package com.iluwatar.event.aggregator;
 
 /**
- *
  * LordVarys produces events.
- *
  */
 public class LordVarys extends EventEmitter {
 

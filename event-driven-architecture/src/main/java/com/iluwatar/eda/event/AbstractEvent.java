@@ -29,8 +29,8 @@ import com.iluwatar.eda.framework.EventDispatcher;
  * The {@link AbstractEvent} class serves as a base class for defining custom events happening with your
  * system. In this example we have two types of events defined.
  * <ul>
- *   <li>{@link UserCreatedEvent} - used when a user is created</li>
- *   <li>{@link UserUpdatedEvent} - used when a user is updated</li>
+ * <li>{@link UserCreatedEvent} - used when a user is created</li>
+ * <li>{@link UserUpdatedEvent} - used when a user is updated</li>
  * </ul>
  * Events can be distinguished using the {@link #getType() getType} method.
  */

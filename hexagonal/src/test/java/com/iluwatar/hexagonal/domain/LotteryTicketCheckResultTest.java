@@ -29,9 +29,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 /**
- *
  * Unit tests for {@link LotteryTicketCheckResult}
- *
  */
 public class LotteryTicketCheckResultTest {
 

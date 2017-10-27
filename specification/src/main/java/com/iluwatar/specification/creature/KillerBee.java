@@ -27,9 +27,7 @@ import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
 /**
- *
  * KillerBee creature.
- *
  */
 public class KillerBee extends AbstractCreature {
 

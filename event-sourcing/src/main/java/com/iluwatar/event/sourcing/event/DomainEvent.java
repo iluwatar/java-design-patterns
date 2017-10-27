@@ -26,7 +26,7 @@ import java.io.Serializable;
 
 /**
  * This is the base class for domain events. All events must extend this class.
- *
+ * <p>
  * Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public abstract class DomainEvent implements Serializable {
@@ -39,8 +39,8 @@ public abstract class DomainEvent implements Serializable {
 	/**
 	 * Instantiates a new Domain event.
 	 *
-	 * @param sequenceId the sequence id
-	 * @param createdTime the created time
+	 * @param sequenceId     the sequence id
+	 * @param createdTime    the created time
 	 * @param eventClassName the event class name
 	 */
 	public DomainEvent(long sequenceId, long createdTime, String eventClassName) {

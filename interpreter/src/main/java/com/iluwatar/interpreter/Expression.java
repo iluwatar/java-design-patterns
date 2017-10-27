@@ -23,9 +23,7 @@
 package com.iluwatar.interpreter;
 
 /**
- *
  * Expression
- *
  */
 public abstract class Expression {
 

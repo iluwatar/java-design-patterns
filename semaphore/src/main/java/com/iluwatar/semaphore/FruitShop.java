@@ -64,7 +64,6 @@ public class FruitShop {
 	}
 
 	/**
-	 *
 	 * @return The amount of Fruit left in the shop.
 	 */
 	public synchronized int countFruit() {

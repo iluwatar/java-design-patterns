@@ -39,28 +39,26 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
- *
  * Test of the Callable
- *
+ * <p>
  * In this test {@link DateFormatCallable} is used by 4 threads in parallel
  * <p>
- * After a successful run 5 date values should be in the result object of each thread. All dates 
+ * After a successful run 5 date values should be in the result object of each thread. All dates
  * should have the same value (15.11.2015). To avoid problems with time zone not the date instances
  * themselves are compared by the test. For the test the dates are converted into string format DD.MM.YYY
  * <p>
  * Additionally the number of list entries are tested for both the list with the date values
- * and the list with the exceptions 
+ * and the list with the exceptions
  *
  * @author Thomas Bauer, January 2017
- *
  */
 public class DateFormatCallableTestMultiThread {
 
 	// Class variables used in setup() have to be static because setup() has to be static
 	/**
 	 * Result object given back by DateFormatCallable, one for each thread
-	 *   -- Array with converted date values
-	 *   -- Array with thrown exceptions
+	 * -- Array with converted date values
+	 * -- Array with thrown exceptions
 	 */
 	static Result[] result = new Result[4];
 

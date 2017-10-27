@@ -25,9 +25,7 @@ package com.iluwatar.servant;
 import java.util.List;
 
 /**
- *
  * Servant
- *
  */
 public class Servant {
 

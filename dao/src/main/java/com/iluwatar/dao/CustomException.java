@@ -23,9 +23,7 @@
 package com.iluwatar.dao;
 
 /**
- *
  * Custom exception
- *
  */
 public class CustomException extends Exception {
 

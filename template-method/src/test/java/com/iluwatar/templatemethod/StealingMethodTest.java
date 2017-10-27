@@ -38,6 +38,7 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Date: 12/30/15 - 18:12 PM
+ *
  * @param <M> Type of StealingMethod
  * @author Jeroen Meulemeester
  */

@@ -28,22 +28,21 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- *
  * This application demonstrates Half-Sync/Half-Async pattern. Key parts of the pattern are
  * {@link AsyncTask} and {@link AsynchronousService}.
- *
+ * <p>
  * <p>
  * <i>PROBLEM</i> <br/>
  * A concurrent system have a mixture of short duration, mid duration and long duration tasks. Mid
  * or long duration tasks should be performed asynchronously to meet quality of service
  * requirements.
- *
+ * <p>
  * <p>
  * <i>INTENT</i> <br/>
  * The intent of this pattern is to separate the the synchronous and asynchronous processing in the
  * concurrent application by introducing two intercommunicating layers - one for sync and one for
  * async. This simplifies the programming without unduly affecting the performance.
- *
+ * <p>
  * <p>
  * <i>APPLICABILITY</i> <br/>
  * UNIX network subsystems - In operating systems network operations are carried out
@@ -55,7 +54,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * Android AsyncTask framework - Framework provides a way to execute long running blocking
  * calls, such as downloading a file, in background threads so that the UI thread remains free to
  * respond to user inputs.<br/>
- *
+ * <p>
  * <p>
  * <i>IMPLEMENTATION</i> <br/>
  * The main method creates an asynchronous service which does not block the main thread while the
@@ -65,7 +64,6 @@ import java.util.concurrent.LinkedBlockingQueue;
  * between both layers. Such as Priority Queue can be used as queuing layer to prioritize the way
  * tasks are executed. Our implementation is just one simple way of implementing this pattern, there
  * are many variants possible as described in its applications.
- *
  */
 public class App {
 
@@ -79,7 +77,7 @@ public class App {
 	public static void main(String[] args) {
 		AsynchronousService service = new AsynchronousService(new LinkedBlockingQueue<>());
 	/*
-     * A new task to calculate sum is received but as this is main thread, it should not block. So
+	 * A new task to calculate sum is received but as this is main thread, it should not block. So
      * it passes it to the asynchronous task layer to compute and proceeds with handling other
      * incoming requests. This is particularly useful when main thread is waiting on Socket to
      * receive new incoming requests and does not wait for particular request to be completed before
@@ -97,9 +95,7 @@ public class App {
 	}
 
 	/**
-	 *
 	 * ArithmeticSumTask
-	 *
 	 */
 	static class ArithmeticSumTask implements AsyncTask<Long> {
 		private long n;

@@ -30,7 +30,6 @@ import com.iluwatar.flux.view.ContentView;
 import com.iluwatar.flux.view.MenuView;
 
 /**
- *
  * Flux is the application architecture that Facebook uses for building client-side web
  * applications. Flux eschews MVC in favor of a unidirectional data flow. When a user interacts with
  * a React view, the view propagates an action through a central dispatcher, to the various stores
@@ -43,7 +42,6 @@ import com.iluwatar.flux.view.MenuView;
  * views that they should rerender themselves.
  * <p>
  * http://facebook.github.io/flux/docs/overview.html
- *
  */
 public class App {
 

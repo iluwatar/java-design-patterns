@@ -25,9 +25,7 @@ package com.iluwatar.resource.acquisition.is.initialization;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

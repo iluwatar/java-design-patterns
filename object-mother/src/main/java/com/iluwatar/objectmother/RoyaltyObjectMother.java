@@ -29,6 +29,7 @@ public final class RoyaltyObjectMother {
 
 	/**
 	 * Method to create a sober and unhappy king. The standard paramters are set.
+	 *
 	 * @return An instance of {@link com.iluwatar.objectmother.King} with the standard properties.
 	 */
 	public static King createSoberUnhappyKing() {
@@ -37,6 +38,7 @@ public final class RoyaltyObjectMother {
 
 	/**
 	 * Method of the object mother to create a drunk king.
+	 *
 	 * @return A drunk {@link com.iluwatar.objectmother.King}.
 	 */
 	public static King createDrunkKing() {
@@ -47,6 +49,7 @@ public final class RoyaltyObjectMother {
 
 	/**
 	 * Method to create a happy king.
+	 *
 	 * @return A happy {@link com.iluwatar.objectmother.King}.
 	 */
 	public static King createHappyKing() {
@@ -57,6 +60,7 @@ public final class RoyaltyObjectMother {
 
 	/**
 	 * Method to create a happy and drunk king.
+	 *
 	 * @return A drunk and happy {@link com.iluwatar.objectmother.King}.
 	 */
 	public static King createHappyDrunkKing() {
@@ -68,6 +72,7 @@ public final class RoyaltyObjectMother {
 
 	/**
 	 * Method to create a flirty queen.
+	 *
 	 * @return A flirty {@link com.iluwatar.objectmother.Queen}.
 	 */
 	public static Queen createFlirtyQueen() {
@@ -78,6 +83,7 @@ public final class RoyaltyObjectMother {
 
 	/**
 	 * Method to create a not flirty queen.
+	 *
 	 * @return A not flirty {@link com.iluwatar.objectmother.Queen}.
 	 */
 	public static Queen createNotFlirtyQueen() {

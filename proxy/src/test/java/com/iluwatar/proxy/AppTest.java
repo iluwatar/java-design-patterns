@@ -25,9 +25,7 @@ package com.iluwatar.proxy;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

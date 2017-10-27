@@ -25,9 +25,7 @@ package com.iluwatar.hexagonal.eventlog;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 
 /**
- *
  * Event log for lottery events
- *
  */
 public interface LotteryEventLog {
 

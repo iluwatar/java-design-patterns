@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * A really simplified implementation of future that allows completing it successfully with a value 
+ * A really simplified implementation of future that allows completing it successfully with a value
  * or exceptionally with an exception.
  */
 class PromiseSupport<T> implements Future<T> {

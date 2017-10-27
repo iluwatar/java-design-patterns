@@ -25,7 +25,6 @@ package com.iluwatar.layers;
 import java.util.Arrays;
 
 /**
- *
  * Layers is an architectural style where software responsibilities are divided among the different layers of the
  * application.
  * <p>
@@ -62,7 +61,6 @@ import java.util.Arrays;
  * @see CakeInfo
  * @see CakeToppingInfo
  * @see CakeLayerInfo
- *
  */
 public class App {
 

@@ -33,9 +33,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
  * Cake entity
- *
  */
 @Entity
 public class Cake {

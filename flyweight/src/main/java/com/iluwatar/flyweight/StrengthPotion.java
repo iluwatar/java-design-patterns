@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * StrengthPotion
- *
  */
 public class StrengthPotion implements Potion {
 

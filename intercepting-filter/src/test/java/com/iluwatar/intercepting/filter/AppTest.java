@@ -25,9 +25,7 @@ package com.iluwatar.intercepting.filter;
 import org.junit.Test;
 
 /**
- *
  * Application test.
- *
  */
 public class AppTest {
 

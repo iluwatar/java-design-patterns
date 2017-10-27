@@ -26,9 +26,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- *
  * DTO for cakes
- *
  */
 public class CakeInfo {
 

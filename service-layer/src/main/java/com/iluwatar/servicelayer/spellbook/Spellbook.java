@@ -39,9 +39,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
  * Spellbook entity.
- *
  */
 @Entity
 @Table(name = "SPELLBOOK")

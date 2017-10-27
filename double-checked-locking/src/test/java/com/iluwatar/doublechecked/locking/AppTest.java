@@ -25,9 +25,7 @@ package com.iluwatar.doublechecked.locking;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

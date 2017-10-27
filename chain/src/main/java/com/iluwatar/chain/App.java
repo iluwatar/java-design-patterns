@@ -23,7 +23,6 @@
 package com.iluwatar.chain;
 
 /**
- *
  * The Chain of Responsibility pattern is a design pattern consisting of command objects and a
  * series of processing objects. Each processing object contains logic that defines the types of
  * command objects that it can handle; the rest are passed to the next processing object in the
@@ -33,7 +32,6 @@ package com.iluwatar.chain;
  * handler has a chance to act on the request on its turn. Here the king ({@link OrcKing}) makes
  * requests and the military orcs ({@link OrcCommander}, {@link OrcOfficer}, {@link OrcSoldier})
  * form the handler chain.
- *
  */
 public class App {
 

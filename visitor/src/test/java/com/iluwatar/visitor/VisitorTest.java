@@ -39,6 +39,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Date: 12/30/15 - 18:59 PM
  * Test case for Visitor Pattern
+ *
  * @param <V> Type of UnitVisitor
  * @author Jeroen Meulemeester
  */

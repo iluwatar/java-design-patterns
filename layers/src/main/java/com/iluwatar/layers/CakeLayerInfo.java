@@ -25,9 +25,7 @@ package com.iluwatar.layers;
 import java.util.Optional;
 
 /**
- *
  * DTO for cake layers
- *
  */
 public class CakeLayerInfo {
 

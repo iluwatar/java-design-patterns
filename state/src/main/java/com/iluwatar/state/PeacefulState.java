@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Peaceful state.
- *
  */
 public class PeacefulState implements State {
 

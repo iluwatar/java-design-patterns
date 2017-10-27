@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * View for archers.
- *
  */
 public class ArcherView implements View {
 

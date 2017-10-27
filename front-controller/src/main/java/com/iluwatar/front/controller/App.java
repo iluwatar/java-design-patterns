@@ -23,7 +23,6 @@
 package com.iluwatar.front.controller;
 
 /**
- *
  * The Front Controller is a presentation tier pattern. Essentially it defines a controller that
  * handles all requests for a web site.
  * <p>
@@ -38,15 +37,13 @@ package com.iluwatar.front.controller;
  * are displayed by sending correct request to the {@link FrontController} object. For example, the
  * {@link ArcherView} gets displayed when {@link FrontController} receives request "Archer". When
  * the request is unknown, we display the error view ({@link ErrorView}).
- *
  */
 public class App {
 
 	/**
 	 * Program entry point
 	 *
-	 * @param args
-	 *          command line args
+	 * @param args command line args
 	 */
 	public static void main(String[] args) {
 		FrontController controller = new FrontController();

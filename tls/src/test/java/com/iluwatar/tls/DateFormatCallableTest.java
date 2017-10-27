@@ -39,9 +39,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
- *
  * Test of the Callable
- *
+ * <p>
  * In this test {@link DateFormatCallable} is tested with only one thread (i.e. without concurrency situation)
  * <p>
  * After a successful run 5 date values should be in the result object. All dates should have
@@ -49,18 +48,17 @@ import static org.junit.Assert.fail;
  * are compared by the test. For the test the dates are converted into string format DD.MM.YYY
  * <p>
  * Additionally the number of list entries are tested for both the list with the date values
- * and the list with the exceptions 
+ * and the list with the exceptions
  *
  * @author Thomas Bauer, January 2017
- *
  */
 public class DateFormatCallableTest {
 
 	// Class variables used in setup() have to be static because setup() has to be static
 	/**
 	 * Result object given back by DateFormatCallable
-	 *   -- Array with converted date values
-	 *   -- Array with thrown exceptions
+	 * -- Array with converted date values
+	 * -- Array with thrown exceptions
 	 */
 	static Result result;
 

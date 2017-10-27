@@ -26,9 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Service EJB implementation
- *
  */
 public class EjbService implements BusinessService {
 

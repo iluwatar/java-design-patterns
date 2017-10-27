@@ -25,9 +25,7 @@ package com.iluwatar.event.aggregator;
 import org.junit.Test;
 
 /**
- *
  * Application test
- *
  */
 public class AppTest {
 

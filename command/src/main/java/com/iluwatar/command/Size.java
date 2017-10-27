@@ -23,9 +23,7 @@
 package com.iluwatar.command;
 
 /**
- *
  * Enumeration for target size.
- *
  */
 public enum Size {
 

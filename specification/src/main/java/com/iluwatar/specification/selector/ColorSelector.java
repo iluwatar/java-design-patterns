@@ -28,9 +28,7 @@ import com.iluwatar.specification.property.Color;
 import java.util.function.Predicate;
 
 /**
- *
  * Color selector.
- *
  */
 public class ColorSelector implements Predicate<Creature> {
 

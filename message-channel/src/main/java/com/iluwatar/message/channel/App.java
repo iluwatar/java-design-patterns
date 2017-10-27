@@ -29,7 +29,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * When two applications communicate with each other using a messaging system they first need to
  * establish a communication channel that will carry the data. Message Channel decouples Message
  * producers and consumers.
@@ -48,7 +47,6 @@ import org.slf4j.LoggerFactory;
  * reads from standard input and delivers messages to Direct endpoint. The second Message Channel is
  * established from the Direct component to console output. No actual messages are sent, only the
  * established routes are printed to standard output.
- *
  */
 public class App {
 

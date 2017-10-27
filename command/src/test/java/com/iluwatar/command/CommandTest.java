@@ -30,13 +30,13 @@ import static org.junit.Assert.assertEquals;
  * The Command pattern is a behavioral design pattern in which an object is used to encapsulate all
  * information needed to perform an action or trigger an event at a later time. This information
  * includes the method name, the object that owns the method and values for the method parameters.
- *
- * <p>Four terms always associated with the command pattern are command, receiver, invoker and 
- * client. A command object (spell) knows about the receiver (target) and invokes a method of 
+ * <p>
+ * <p>Four terms always associated with the command pattern are command, receiver, invoker and
+ * client. A command object (spell) knows about the receiver (target) and invokes a method of
  * the receiver.Values for parameters of the receiver method are stored in the command. The receiver
- * then does the work. An invoker object (wizard) knows how to execute a command, and optionally 
- * does bookkeeping about the command execution. The invoker does not know anything about a 
- * concrete command, it knows only about command interface. Both an invoker object and several 
+ * then does the work. An invoker object (wizard) knows how to execute a command, and optionally
+ * does bookkeeping about the command execution. The invoker does not know anything about a
+ * concrete command, it knows only about command interface. Both an invoker object and several
  * command objects are held by a client object (app). The client decides which commands to execute
  * at which points. To execute a command, it passes the command object to the invoker object.
  */
@@ -78,9 +78,9 @@ public class CommandTest {
 	 * This method asserts that the passed goblin object has the name as expectedName, size as
 	 * expectedSize and visibility as expectedVisibility.
 	 *
-	 * @param goblin a goblin object whose state is to be verified against other parameters
-	 * @param expectedName expectedName of the goblin
-	 * @param expectedSize expected size of the goblin
+	 * @param goblin            a goblin object whose state is to be verified against other parameters
+	 * @param expectedName      expectedName of the goblin
+	 * @param expectedSize      expected size of the goblin
 	 * @param expectedVisibilty exepcted visibility of the goblin
 	 */
 	private void verifyGoblin(Goblin goblin, String expectedName, Size expectedSize,

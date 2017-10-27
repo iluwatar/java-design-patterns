@@ -55,6 +55,7 @@ public class King implements Royalty {
 
 	/**
 	 * Method to flirt to a queen.
+	 *
 	 * @param queen Queen which should be flirted.
 	 */
 	public void flirt(Queen queen) {

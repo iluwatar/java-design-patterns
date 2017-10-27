@@ -23,9 +23,7 @@
 package com.iluwatar.templatemethod;
 
 /**
- *
  * Halfling thief uses {@link StealingMethod} to steal.
- *
  */
 public class HalflingThief {
 

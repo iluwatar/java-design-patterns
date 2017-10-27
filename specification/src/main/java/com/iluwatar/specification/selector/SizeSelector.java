@@ -28,9 +28,7 @@ import com.iluwatar.specification.property.Size;
 import java.util.function.Predicate;
 
 /**
- *
  * Size selector.
- *
  */
 public class SizeSelector implements Predicate<Creature> {
 

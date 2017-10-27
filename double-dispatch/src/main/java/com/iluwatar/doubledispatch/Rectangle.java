@@ -23,9 +23,7 @@
 package com.iluwatar.doubledispatch;
 
 /**
- *
  * Rectangle has coordinates and can be checked for overlap against other Rectangles.
- *
  */
 public class Rectangle {
 

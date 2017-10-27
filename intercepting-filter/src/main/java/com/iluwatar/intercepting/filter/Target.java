@@ -32,7 +32,6 @@ import java.awt.event.ActionListener;
  * This is where the requests are displayed after being validated by filters.
  *
  * @author mjoshzambales
- *
  */
 public class Target extends JFrame { //NOSONAR
 

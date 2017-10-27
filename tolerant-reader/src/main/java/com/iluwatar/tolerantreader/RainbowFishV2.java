@@ -23,9 +23,7 @@
 package com.iluwatar.tolerantreader;
 
 /**
- *
  * RainbowFishV2 is the evolved schema
- *
  */
 public class RainbowFishV2 extends RainbowFish {
 
