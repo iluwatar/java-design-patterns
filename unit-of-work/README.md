@@ -13,7 +13,7 @@ tags:
 ---
 
 ## Intent
-When a business transaction is completed all the these updates are sent as one 
+When a business transaction is completed, all the these updates are sent as one 
   big unit of work to be persisted in a database in one go so as to minimize database trips. 
 
 ![alt text](etc/unit-of-work.urm.png "unit-of-work")
