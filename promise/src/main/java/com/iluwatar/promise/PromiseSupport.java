@@ -27,11 +27,16 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * A really simplified implementation of future that allows completing it successfully with a value 
  * or exceptionally with an exception.
  */
 class PromiseSupport<T> implements Future<T> {
+  
+  private static final Logger LOGGER = LoggerFactory.getLogger(PromiseSupport.class);
 
   private static final int RUNNING = 1;
   private static final int FAILED = 2;
@@ -80,40 +85,34 @@ class PromiseSupport<T> implements Future<T> {
 
   @Override
   public T get() throws InterruptedException, ExecutionException {
-    if (state == COMPLETED) {
-      return value;
-    } else if (state == FAILED) {
-      throw new ExecutionException(exception);
-    } else {
-      synchronized (lock) {
+    synchronized (lock) {
+      while (state == RUNNING) {
         lock.wait();
-        if (state == COMPLETED) {
-          return value;
-        } else {
-          throw new ExecutionException(exception);
-        }
       }
     }
+    if (state == COMPLETED) {
+      return value;
+    } 
+    throw new ExecutionException(exception);
   }
 
   @Override
   public T get(long timeout, TimeUnit unit)
-      throws InterruptedException, ExecutionException, TimeoutException {
-    if (state == COMPLETED) {
-      return value;
-    } else if (state == FAILED) {
-      throw new ExecutionException(exception);
-    } else {
-      synchronized (lock) {
-        lock.wait(unit.toMillis(timeout));
-        if (state == COMPLETED) {
-          return value;
-        } else if (state == FAILED) {
-          throw new ExecutionException(exception);
-        } else {
-          throw new TimeoutException();
+      throws  ExecutionException, TimeoutException {
+    synchronized (lock) {
+      while (state == RUNNING) {
+        try {
+          lock.wait(unit.toMillis(timeout));
+        } catch (InterruptedException e) {
+          LOGGER.warn("Interrupted!", e);
+          Thread.currentThread().interrupt();
         }
       }
     }
+    
+    if (state == COMPLETED) {
+      return value;
+    } 
+    throw new ExecutionException(exception);
   }
 }

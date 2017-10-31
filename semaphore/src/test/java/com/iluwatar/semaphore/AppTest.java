@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * Application Test Entrypoint
  */
-public class AppTest{
+public class AppTest {
   @Test
   public void test() throws IOException {
     String[] args = {};

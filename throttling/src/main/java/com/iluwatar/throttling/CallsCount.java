@@ -22,9 +22,13 @@
  */
 package com.iluwatar.throttling;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * A class to keep track of the counter of different Tenants
@@ -32,16 +36,16 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  */
 public final class CallsCount {
-  private static Map<String, Integer> tenantCallsCount = new ConcurrentHashMap<>();
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(CallsCount.class);
+  private static Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
 
   /**
    * Add a new tenant to the map.
    * @param tenantName name of the tenant.
    */
   public static void addTenant(String tenantName) {
-    if (!tenantCallsCount.containsKey(tenantName)) {
-      tenantCallsCount.put(tenantName, 0);
-    }
+    tenantCallsCount.putIfAbsent(tenantName, new AtomicLong(0));
   }
   
   /**
@@ -49,7 +53,7 @@ public final class CallsCount {
    * @param tenantName name of the tenant.
    */
   public static void incrementCount(String tenantName) {
-    tenantCallsCount.put(tenantName, tenantCallsCount.get(tenantName) + 1);
+    tenantCallsCount.get(tenantName).incrementAndGet();
   }
   
   /**
@@ -57,16 +61,17 @@ public final class CallsCount {
    * @param tenantName name of the tenant.
    * @return the count of the tenant.
    */
-  public static int getCount(String tenantName) {
-    return tenantCallsCount.get(tenantName);
+  public static long getCount(String tenantName) {
+    return tenantCallsCount.get(tenantName).get();
   }
   
   /**
    * Resets the count of all the tenants in the map.
    */
   public static void reset() {
-    for (Entry<String, Integer> e : tenantCallsCount.entrySet()) {
-      tenantCallsCount.put(e.getKey(), 0);
+    LOGGER.debug("Resetting the map.");
+    for (Entry<String, AtomicLong> e : tenantCallsCount.entrySet()) {
+      tenantCallsCount.put(e.getKey(), new AtomicLong(0));
     }
   }
 }
