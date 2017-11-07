@@ -32,6 +32,8 @@ public class AggregatorRoute extends RouteBuilder {
   @Override
   public void configure() throws Exception {
     // Main route
-    from("{{entry}}").aggregate(constant(true), aggregator).completionSize(3).completionInterval(2000).to("{{endpoint}}");
+    from("{{entry}}").aggregate(constant(true), aggregator)
+        .completionSize(3).completionInterval(2000)
+        .to("{{endpoint}}");
   }
 }
