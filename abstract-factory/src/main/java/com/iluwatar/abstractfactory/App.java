@@ -95,33 +95,32 @@ public class App {
     this.army = army;
   }
 
-  /**
-   * The factory of kingdom factories.
-   */
   public static class FactoryMaker {
-	    
-	private FactoryMaker() {}
-	
-	public enum KingdomType {
-	  ELF,
-	  ORC
-	}
-	  
-	public static KingdomFactory makeFactory(KingdomType type) {
 
-	  switch (type) {
-		case ELF:
-		  return new ElfKingdomFactory();
-		case ORC:
-		  return new OrcKingdomFactory();
-		default:
-		  throw new IllegalArgumentException("KingdomType not supported.");
-	  }
-	}
+    private FactoryMaker() {
+    }
+
+    public enum KingdomType {
+      ELF, ORC
+    }
+
+    /**
+     * The factory of kingdom factories.
+     */
+    public static KingdomFactory makeFactory(KingdomType type) {
+      switch (type) {
+        case ELF:
+          return new ElfKingdomFactory();
+        case ORC:
+          return new OrcKingdomFactory();
+        default:
+          throw new IllegalArgumentException("KingdomType not supported.");
+      }
+    }
   }
-  
+
   /**
-   * Program entry point
+   * Program entry point.
    * 
    * @param args
    *          command line args

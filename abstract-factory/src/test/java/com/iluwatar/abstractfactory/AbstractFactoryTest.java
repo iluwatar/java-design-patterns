@@ -25,11 +25,11 @@ package com.iluwatar.abstractfactory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import com.iluwatar.abstractfactory.App.FactoryMaker;
 import com.iluwatar.abstractfactory.App.FactoryMaker.KingdomType;
+
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Test for abstract factory
