@@ -95,17 +95,20 @@ public class App {
     this.army = army;
   }
 
+  /**
+   * The factory of kingdom factories.
+   */
   public static class FactoryMaker {
 
-    private FactoryMaker() {
-    }
-
+    /**
+     * Enumeration for the different types of Kingdoms.
+     */
     public enum KingdomType {
       ELF, ORC
     }
 
     /**
-     * The factory of kingdom factories.
+     * The factory method to create KingdomFactory concrete objects.
      */
     public static KingdomFactory makeFactory(KingdomType type) {
       switch (type) {
