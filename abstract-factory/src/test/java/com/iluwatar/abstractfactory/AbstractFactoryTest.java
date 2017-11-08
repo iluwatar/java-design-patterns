@@ -28,6 +28,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.iluwatar.abstractfactory.App.FactoryMaker;
+import com.iluwatar.abstractfactory.App.FactoryMaker.KingdomType;
+
 /**
  * Test for abstract factory
  */
@@ -39,8 +42,8 @@ public class AbstractFactoryTest {
 
   @Before
   public void setUp() {
-    elfFactory = new ElfKingdomFactory();
-    orcFactory = new OrcKingdomFactory();
+    elfFactory = FactoryMaker.makeFactory(KingdomType.ELF);
+    orcFactory = FactoryMaker.makeFactory(KingdomType.ORC);
   }
 
   @Test
