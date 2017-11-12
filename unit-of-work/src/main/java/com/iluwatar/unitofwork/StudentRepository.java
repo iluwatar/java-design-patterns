@@ -78,6 +78,9 @@ public class StudentRepository implements IUnitOfWork<Student> {
     context.put(operation, studentsToOperate);
   }
 
+  /**
+   * All UnitOfWork operations are batched and executed together on commit only.
+   */
   @Override
   public void commit() {
     if (context == null || context.size() == 0) {
