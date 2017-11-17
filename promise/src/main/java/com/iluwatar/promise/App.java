@@ -65,7 +65,7 @@ public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  private static final String DEFAULT_URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/Promise/promise/README.md";
+  private static final String DEFAULT_URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/promise/README.md";
   private final ExecutorService executor;
   private final CountDownLatch stopLatch;
 

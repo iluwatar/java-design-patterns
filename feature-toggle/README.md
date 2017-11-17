@@ -22,7 +22,7 @@ going to phase out is never removed, causing redundant code smells and increased
 ![alt text](./etc/feature-toggle.png "Feature Toggle")
 
 ## Applicability
-Use the Feature Toogle pattern when
+Use the Feature Toggle pattern when
 
 * Giving different features to different users.
 * Rolling out a new feature incrementally.

@@ -42,9 +42,9 @@ public abstract class LetterComposite {
     return children.size();
   }
 
-  protected abstract void printThisBefore();
+  protected void printThisBefore() {}
 
-  protected abstract void printThisAfter();
+  protected void printThisAfter() {}
 
   /**
    * Print

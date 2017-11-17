@@ -29,4 +29,4 @@ Use the Naked Objects pattern when
 
 ## Credits
 
-* [Richard Pawson - Naked Objects](https://isis.apache.org/resources/thesis/Pawson-Naked-Objects-thesis.pdf)
+* [Richard Pawson - Naked Objects](http://downloads.nakedobjects.net/resources/Pawson%20thesis.pdf)

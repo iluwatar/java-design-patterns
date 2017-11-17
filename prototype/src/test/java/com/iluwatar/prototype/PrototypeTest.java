@@ -56,7 +56,7 @@ public class PrototypeTest<P extends Prototype> {
   /**
    * The tested prototype instance
    */
-  private final Prototype testedPrototype;
+  private final P testedPrototype;
 
   /**
    * The expected {@link Prototype#toString()} value
@@ -69,7 +69,7 @@ public class PrototypeTest<P extends Prototype> {
    * @param testedPrototype  The tested prototype instance
    * @param expectedToString The expected {@link Prototype#toString()} value
    */
-  public PrototypeTest(final Prototype testedPrototype, final String expectedToString) {
+  public PrototypeTest(final P testedPrototype, final String expectedToString) {
     this.expectedToString = expectedToString;
     this.testedPrototype = testedPrototype;
   }

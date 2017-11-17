@@ -36,7 +36,7 @@ In Java, it can be easily done by implementing `Cloneable` and overriding `clone
 
 ```
 class Sheep implements Cloneable {
-  privage String name;
+  private String name;
   public Sheep(String name) { this.name = name; }
   public void setName(String name) { this.name = name; }
   public String getName() { return name; }
