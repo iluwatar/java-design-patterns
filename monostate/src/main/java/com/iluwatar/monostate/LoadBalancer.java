@@ -35,10 +35,10 @@ import java.util.List;
 
 public class LoadBalancer {
   private static List<Server> servers = new ArrayList<>();
-  private static int id;
   private static int lastServedId;
 
   static {
+    int id = 0;
     servers.add(new Server("localhost", 8081, ++id));
     servers.add(new Server("localhost", 8080, ++id));
     servers.add(new Server("localhost", 8082, ++id));
@@ -67,14 +67,12 @@ public class LoadBalancer {
   /**
    * Handle request
    */
-  public void serverRequest(Request request) {
+  public synchronized void serverRequest(Request request) {
     if (lastServedId >= servers.size()) {
       lastServedId = 0;
     }
     Server server = servers.get(lastServedId++);
     server.serve(request);
   }
-
-
-
+  
 }
