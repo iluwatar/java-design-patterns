@@ -120,6 +120,45 @@ king.getDescription(); // Output: This is the Elven king!
 army.getDescription(); // Output: This is the Elven Army!
 ```
 
+Now, we can design a factory for our different kingdom factories. In this example, we created FactoryMaker, responsible for returning an instance of either ElfKingdomFactory or OrcKingdomFactory.  
+The client can use FactoryMaker to create the desired concrete factory which, in turn, will produce different concrete objects (Army, King, Castle).  
+In this example, we also used an enum to parameterize which type of kingdom factory the client will ask for.
+
+```
+public static class FactoryMaker {
+
+  public enum KingdomType {
+    ELF, ORC
+  }
+
+  public static KingdomFactory makeFactory(KingdomType type) {
+    switch (type) {
+      case ELF:
+        return new ElfKingdomFactory();
+      case ORC:
+        return new OrcKingdomFactory();
+      default:
+        throw new IllegalArgumentException("KingdomType not supported.");
+    }
+  }
+}
+
+public static void main(String[] args) {
+  App app = new App();
+
+  LOGGER.info("Elf Kingdom");
+  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
+  LOGGER.info(app.getArmy().getDescription());
+  LOGGER.info(app.getCastle().getDescription());
+  LOGGER.info(app.getKing().getDescription());
+
+  LOGGER.info("Orc Kingdom");
+  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
+  -- similar use of the orc factory
+}
+```
+
+
 ## Applicability
 Use the Abstract Factory pattern when
 
