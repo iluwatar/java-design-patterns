@@ -29,7 +29,7 @@ package com.iluwatar.command;
  */
 public enum Size {
 
-  SMALL("small"), NORMAL("normal"), LARGE("large"), UNDEFINED("");
+  SMALL("small"), NORMAL("normal");
 
   private String title;
 

@@ -52,6 +52,6 @@ public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
   }
 
   public boolean logContains(String message) {
-    return log.stream().anyMatch(event -> event.getFormattedMessage().equals(message));
+    return log.stream().anyMatch(event -> event.getFormattedMessage().contains(message));
   }
 }

@@ -21,7 +21,7 @@ Layers is an architectural style where software responsibilities are
 ## Applicability
 Use the Layers architecture when
 
-* you want clearly divide software responsibilities into differents parts of the program
+* you want clearly divide software responsibilities into different parts of the program
 * you want to prevent a change from propagating throughout the application
 * you want to make your application more maintainable and testable
 

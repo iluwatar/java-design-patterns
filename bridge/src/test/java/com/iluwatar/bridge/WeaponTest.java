@@ -44,15 +44,15 @@ public abstract class WeaponTest {
     assertNotNull(weapon.getEnchantment());
 
     weapon.swing();
-    verify(enchantment, times(1)).apply();
+    verify(enchantment).apply();
     verifyNoMoreInteractions(enchantment);
 
     weapon.wield();
-    verify(enchantment, times(1)).onActivate();
+    verify(enchantment).onActivate();
     verifyNoMoreInteractions(enchantment);
 
     weapon.unwield();
-    verify(enchantment, times(1)).onDeactivate();
+    verify(enchantment).onDeactivate();
     verifyNoMoreInteractions(enchantment);
 
   }

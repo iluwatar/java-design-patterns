@@ -68,7 +68,7 @@ public class Converter<T, U> {
   /**
    * @param dtoUsers collection of DTO entities
    * @return List of domain representation of provided entities retrieved by
-   *        mapping each of them with the convertion function
+   *        mapping each of them with the conversion function
    */
   public final List<U> createFromDtos(final Collection<T> dtoUsers) {
     return dtoUsers.stream().map(this::convertFromDto).collect(Collectors.toList());
@@ -77,7 +77,7 @@ public class Converter<T, U> {
   /**
    * @param users collection of domain entities
    * @return List of domain representation of provided entities retrieved by
-   *        mapping each of them with the convertion function
+   *        mapping each of them with the conversion function
    */
   public final List<T> createFromEntities(final Collection<U> users) {
     return users.stream().map(this::convertFromEntity).collect(Collectors.toList());
