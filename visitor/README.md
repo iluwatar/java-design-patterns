@@ -3,7 +3,6 @@ layout: pattern
 title: Visitor
 folder: visitor
 permalink: /patterns/visitor/
-pumlid: DSR14OGm20NGLhG0mtsxmSWeJa8oyD7sTo_xJczLgoqFIM_B1Spu43c_vLHSkMU8rs4GGwcZaxPy6UnqyyFR8Q6dRPC1SGlg7B_Gew4OJeBwVqdlPMPlNm00
 categories: Behavioral
 tags:
  - Java

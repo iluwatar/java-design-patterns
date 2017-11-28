@@ -3,7 +3,6 @@ layout: pattern
 title: Guarded Suspension
 folder: guarded-suspension
 permalink: /patterns/guarded-suspension/
-pumlid: ROux3W8n30LxJW47IDnJxLLCOcMD4YVoXxq-eQTwev56UeSvgiVejmTBwL4fjDzFzsLF0CKhD_OpNc6aPOgJU2vp0FUuSAVmnW-cIiPDqa9tKZ4OQ1kW1MgbcYniaHXF0VBoH-VGaTVlnK5Iztu1
 categories: Concurrency
 tags:
  - Java

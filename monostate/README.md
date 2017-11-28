@@ -3,7 +3,6 @@ layout: pattern
 title: MonoState
 folder: monostate
 permalink: /patterns/monostate/
-pumlid: HSV14OGm20NGLjO23FVj1YEZsGaa0nzjVxrvUszfLdlkaju_9p3ZI-HybwFXp2r3l0w364eTIgtdpM2d7r-yxXBji7Ko86v1ol60TDW8C8G4zLr9rp9J-ny0
 categories: Creational
 tags:
  - Java

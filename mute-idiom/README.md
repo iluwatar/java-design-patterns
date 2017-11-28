@@ -3,7 +3,6 @@ layout: pattern
 title: Mute Idiom
 folder: mute-idiom
 permalink: /patterns/mute-idiom/
-pumlid: JSf13iCm20NHgxG7iDdtDjH62PKX5luarq-MtSsJvgtUHdR96AyTcEj357pLJR7dDvT4EnpYgEqmqf4NWuD-V7BfidJpCXcGy4N6wmcoX1Jj-lo2ziUQONMcZHi0
 categories: Other
 tags: 
  - Java

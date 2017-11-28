@@ -3,7 +3,6 @@ layout: pattern
 title: Step Builder
 folder: step-builder
 permalink: /patterns/step-builder/
-pumlid: LOZ93SCm3C1MQGQmzUysYYqaAcJ5q96i7t_x8KXkh4soKvfypeZfNm33fnuSP-xfPEtI88tQhW4i-M2WmGzlB9sS3oqJ8yZKOQ0lWOLPzcJfAoZQtwXfeyuSyW80
 categories: Creational
 tags:
  - Java

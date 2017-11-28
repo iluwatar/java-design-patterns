@@ -3,7 +3,6 @@ layout: pattern
 title: Hexagonal Architecture
 folder: hexagonal
 permalink: /patterns/hexagonal/
-pumlid: HSTB4W8X30N0g-W1XkozpPD90LO8L3wEnzUTk-xxq2fvSfhSUiJs1v7XAcr4psSwMrqQh57gcZGaBmICNdZZEDb7qsCZWasT9lm7wln1MmeXZlfVIPjbvvGl
 pumlformat: svg
 categories: Architectural
 tags:

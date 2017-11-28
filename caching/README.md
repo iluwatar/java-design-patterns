@@ -3,7 +3,6 @@ layout: pattern
 title: Caching
 folder: caching
 permalink: /patterns/caching/
-pumlid: DSRB4OKm2030LhG0m_rrWyWaE0bc-6ZxpujxsbMKUXwSrfSMCVq7OFYKAj5oJsUZIuCr2bq3fEU3WGOdthWTx59rcnZ1fWu3_GqGKXEjm47VIzeeCqV_0m00
 categories: Other
 tags:
  - Java

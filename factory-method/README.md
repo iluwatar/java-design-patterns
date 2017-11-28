@@ -3,7 +3,6 @@ layout: pattern
 title: Factory Method
 folder: factory-method
 permalink: /patterns/factory-method/
-pumlid: NSZB3G8n30N0Lg20n7UwCOxPP9MVx6TMT0zdRgEvjoazYeRrMmMsFuYChtmqr7Y6gycQq8aiQr3hSJ7OwEGtfwBUZfas0shJQR3_G2yMBFkaeQYha4B-AeUDl6FqBm00
 categories: Creational
 tags:
  - Java

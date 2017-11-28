@@ -3,7 +3,6 @@ layout: pattern
 title: Interpreter
 folder: interpreter
 permalink: /patterns/interpreter/
-pumlid: JSf13eCm30NHgz034E-vZGaM62Kcih_BzQ6xxjv8yr6hBJT9RzC1Z5Y8dE-oAuvSCyJhPH13gLSdRNapsEdaBy-RXEus3mR4BQXpl21zVnykFmlgVvVqNaRszW00
 categories: Behavioral
 tags:
  - Java

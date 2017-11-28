@@ -3,7 +3,6 @@ layout: pattern
 title: Repository
 folder: repository
 permalink: /patterns/repository/
-pumlid: JSV13OCm30NGLM00udktCS42eyI9xE-YRjyUUtjlLQij3qblomNCU14vF-LKNBbdYDTX44EfevEsV1ZiTFERjqD2Jzic0-8Mr3b-89SvGZ7yGuBwrvBUoypUlW00
 categories: Persistence Tier
 tags:
  - Java
