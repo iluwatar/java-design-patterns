@@ -16,11 +16,6 @@ layout: default
             </header>
             <hr>
 
-            {% if site.reviewmode and page.pumlid %}
-                <h2 id="class-diagram">Class Diagram</h2>
-                {% include pumlImg.html id=page.pumlid format=page.pumlformat %}
-            {% endif %}
-
             <article>
                 {{ content }}
             </article>
