@@ -42,7 +42,6 @@
         <hierarchical-junit-runner-version>4.12.1</hierarchical-junit-runner-version>
         <apache-httpcomponents.version>4.5.2</apache-httpcomponents.version>
         <htmlunit.version>2.22</htmlunit.version>
-        <urm.version>1.4.4</urm.version>
         <guice.version>4.0</guice.version>
         <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
         <slf4j.version>1.7.21</slf4j.version>
@@ -312,25 +311,6 @@
                                         <ignore/>
                                     </action>
                                 </pluginExecution>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>
-                                            com.github.markusmo3.urm
-                                        </groupId>
-                                        <artifactId>
-                                            urm-maven-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [1.4.1,)
-                                        </versionRange>
-                                        <goals>
-                                            <goal>map</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore/>
-                                    </action>
-                                </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>
@@ -444,43 +424,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.github.markusmo3.urm</groupId>
-                <artifactId>urm-maven-plugin</artifactId>
-                <version>${urm.version}</version>
-                <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>map</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <outputDirectory>${project.basedir}/etc</outputDirectory>
-                    <packages>
-                        <param>com.iluwatar</param>
-                    </packages>
-                    <skipForProjects>
-                        <!-- skip for parent project -->
-                        <param>java-design-patterns</param>
-                        <param>singleton</param>
-                        <param>factory-method</param>
-                        <param>abstract-factory</param>
-                        <param>builder</param>
-                        <param>prototype</param>
-                        <param>adapter</param>
-                        <param>bridge</param>
-                        <param>composite</param>
-                        <param>decorator</param>
-                        <param>facade</param>
-                        <param>flyweight</param>
-                        <param>proxy</param>
-                        <param>chain</param>
-                    </skipForProjects>
-                </configuration>
             </plugin>
         </plugins>
     </build>
