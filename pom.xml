@@ -145,6 +145,8 @@
         <module>event-sourcing</module>
         <module>data-transfer-object</module>
         <module>throttling</module>
+
+        <module>unit-of-work</module>
         <module>partial-response</module>
         <module>eip-wire-tap</module>
         <module>eip-splitter</module>
