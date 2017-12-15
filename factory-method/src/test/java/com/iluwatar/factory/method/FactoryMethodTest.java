@@ -53,7 +53,7 @@ public class FactoryMethodTest {
   }
 
   /**
-   * Testing {@link OrcBlacksmith} to produce a AXE asserting that the Weapon is an instance
+   * Testing {@link OrcBlacksmith} to produce an AXE asserting that the Weapon is an instance
    *  of {@link OrcWeapon}.
    */
   @Test
