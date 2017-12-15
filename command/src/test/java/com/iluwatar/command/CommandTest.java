@@ -81,13 +81,13 @@ public class CommandTest {
    * @param goblin a goblin object whose state is to be verified against other parameters
    * @param expectedName expectedName of the goblin
    * @param expectedSize expected size of the goblin
-   * @param expectedVisibilty exepcted visibility of the goblin
+   * @param expectedVisibility expected visibility of the goblin
    */
   private void verifyGoblin(Goblin goblin, String expectedName, Size expectedSize,
-      Visibility expectedVisibilty) {
+      Visibility expectedVisibility) {
     assertEquals("Goblin's name must be same as expectedName", expectedName, goblin.toString());
     assertEquals("Goblin's size must be same as expectedSize", expectedSize, goblin.getSize());
-    assertEquals("Goblin's visibility must be same as expectedVisibility", expectedVisibilty,
+    assertEquals("Goblin's visibility must be same as expectedVisibility", expectedVisibility,
         goblin.getVisibility());
   }
 }
