@@ -3,7 +3,6 @@ layout: pattern
 title: Event Aggregator
 folder: event-aggregator
 permalink: /patterns/event-aggregator/
-pumlid: PSf13iCW30NHgxG70Ezx6uTOX0eCih-JwvTzTwEdUJSjFKu9wwyBMFuXCdvoRRZY21ShKo6ANEQWrkDXiD6NRqwdUAkQ5WDYwZJOTv3SUqzSgqbbp0qeVvZ3Hbun-Wy0
 categories: Structural
 tags:
  - Java

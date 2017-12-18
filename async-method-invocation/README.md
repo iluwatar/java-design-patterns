@@ -3,7 +3,6 @@ layout: pattern
 title: Async Method Invocation
 folder: async-method-invocation
 permalink: /patterns/async-method-invocation/
-pumlid: TSdB3SCW303GLTe1mFTkunWhk0A3_4dKxTi5UdlIUuhIoCPfuz4Zjhy03EzwIlGyqjbeQR16fJL1HjuOQF362qjZbrFBnWWsTPZeFm3wHwbCZhvQ4RqMOSXIuA1_LzDctJd75m00
 categories: Concurrency
 tags:
  - Java

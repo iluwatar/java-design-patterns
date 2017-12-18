@@ -3,7 +3,6 @@ layout: pattern
 title: Iterator
 folder: iterator
 permalink: /patterns/iterator/
-pumlid: FSV13OGm30NHLg00uljsOu85HeaJsTzB-yjfBwCtgrfjUKXwMovWneV8-IcduiezGxmEWnXA7PsqvSDWfvk_l1qIUjes6H2teCxnWlGDOpW9wdzAUYypU_i1
 categories: Behavioral
 tags:
  - Java

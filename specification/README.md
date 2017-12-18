@@ -3,7 +3,6 @@ layout: pattern
 title: Specification
 folder: specification
 permalink: /patterns/specification/
-pumlid: LSX14i8m20NGg-W16lRU1YcsE0d9mCTUNxVkthoxkVJQjQBVJc3bWoZuQeVXh6UbXao7EfhCGTRhOd3Gcp-yxPfs-BOOqF2amVa3vLAnbmd3ffD2_gTLZBPgz2y0
 categories: Behavioral
 tags:
  - Java

@@ -3,7 +3,6 @@ layout: pattern
 title: Command
 folder: command
 permalink: /patterns/command/
-pumlid: DSgn4OCm30NGLM00h3xR25i7vYpXaxx2-g59zugtTgiZcwIFvGHcV8YSdt9qdBbdYDVR88PIRwK-yc6mqyLVtff4FsoR38XRa7Aye3SgMoD1_RkaQvcfumS0
 categories: Behavioral
 tags:
  - Java
@@ -36,6 +35,10 @@ Use the Command pattern when you want to
 * to keep a history of requests
 * implement callback functionality
 * implement the undo functionality
+
+## Presentations
+
+* [Command Pattern](etc/presentation.html) 
 
 ## Real world examples
 

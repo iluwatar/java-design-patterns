@@ -3,7 +3,6 @@ layout: pattern
 title: Dependency Injection
 folder: dependency-injection
 permalink: /patterns/dependency-injection/
-pumlid: RSdB3SCW303GLPe1mFTkunWhSGG6-PEesxS3zFQajubIpyPf_NL6B7y363xra3XpJsUZgS4QbUO0wVbWeC65DvR6BeUMXH5iwZ3GVu36YxMnqgU8NamXKu63_aPD6tNbw5y0
 categories: Behavioral
 tags:
  - Java

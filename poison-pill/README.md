@@ -3,7 +3,6 @@ layout: pattern
 title: Poison Pill
 folder: poison-pill
 permalink: /patterns/poison-pill/
-pumlid: JSZ14SCm20NHLf82BExfXiYCJGOX3NpYzkDZRllsgTwjTgcmnmciV145N-rGdFMkbEZJ8OxMvo2rkXWSzE4lRxka7huj1YGyQN3UGMjgpdkh6Gdwlrl5QAk6_G00
 categories: Other
 tags:
  - Java

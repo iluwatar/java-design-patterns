@@ -3,7 +3,6 @@ layout: pattern
 title: Proxy
 folder: proxy
 permalink: /patterns/proxy/
-pumlid: 9SR13OCm30NGLM00udktCS62eCI9x6yesrEfx_Jcehd69c5rEe3X7oBZE-q5HwpXOhahH95oRrHgt0msEldYPHClkow30J5rQko_qB3-VKYG_qjXBOrezGK0
 categories: Structural
 tags:
  - Java

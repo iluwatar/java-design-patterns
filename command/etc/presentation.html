@@ -1,0 +1,243 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2017 Rodolfo Forte
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Design Patterns - Command Presentation</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+	  
+	  blockquote {
+		border-left: 0.3em solid rgba(0,0,0,0.5);
+		padding: 0 15px;
+		font-style: italic;
+	  }
+	  
+	  img {
+		max-width:100%;
+	  }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Command
+
+---
+
+# Also known as
+
+* Action, Transaction
+
+---
+
+# Intent
+
+* Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
+
+---
+
+# Explanation
+
+* [Wikipedia](https://en.wikipedia.org/wiki/Command_pattern) says:
+  > In object-oriented programming, the command pattern is a behavioral design pattern in which an object is used to encapsulate all information needed to perform an action or trigger an event at a later time. This information includes the method name, the object that owns the method and values for the method parameters.
+
+<br />
+
+* In plain words:
+
+  * Enable the construction of components that are able to delegate, sequence or execute method calls at a time of their choosing;
+  
+---
+
+# Explanation
+
+Four terms always associated with the pattern: 
+
+  * Command
+	* Object that knows about the receiver and invokes a method of the receiver;
+  
+  * Receiver
+	* Object that does the work;
+  
+  * Invoker
+	* Knows how to execute a command, and optionally does the bookkeeping about the command execution;
+  
+  * Client 
+	* Decides which commands to execute at which points, passing the command object to the invoker object;
+  
+---
+
+# Example
+
+In our example, a Wizard can cast spells on targets.
+
+  * Spell will be the command (implements the Command interface);
+  * Goblin (a Target object) will be the receiver;
+  * Wizard will be the invoker;
+  * App will be the client;
+
+``` 
+
+	//App.java
+	public static void main(String[] args) {
+		Wizard wizard = new Wizard();
+		Goblin goblin = new Goblin();
+		goblin.printStatus(); 		//Goblin, [size=normal] [visibility=visible]
+
+		wizard.castSpell(new ShrinkSpell(), goblin);
+		wizard.castSpell(new InvisibilitySpell(), goblin);
+
+		goblin.printStatus(); 		//Goblin, [size=small] [visibility=invisible]
+
+		wizard.undoLastSpell();
+
+		goblin.printStatus(); 		//Goblin, [size=small] [visibility=visible]
+
+		wizard.redoLastSpell();
+		goblin.printStatus(); 		//Goblin, [size=small] [visibility=invisible]
+	}
+```
+
+---
+
+# Diagram
+
+.center[![Diagram](diagram.png)]
+
+
+---
+
+# Applicability
+
+Use the Command pattern when you want to:
+
+* Parameterize objects by an action to perform; 
+  * You can express such parameterization in a procedural language with a callback function, that is, a function that's registered somewhere to be called at a later point;
+  
+  * Commands are an object-oriented replacement for callbacks;
+
+  <br />
+  
+* Specify, queue, and execute requests at different times; 
+  * A Command object can have a lifetime independent of the original request;
+  
+  * If the receiver of a request can be represented in an address space-independent way, then you can transfer a command object for the request to a different process and fulfill the request there;
+
+---
+
+# Applicability
+
+Use the Command pattern when you want to:
+
+* Support undo; 
+  * The Command's execute() operation can store state for reversing its effects in the command itself;
+  
+  * The Command interface must have an added unexecute() operation that reverses the effects of a previous call to execute;
+  
+  * Executed commands are stored in a history list;
+  
+  * Unlimited-level undo and redo is achieved by traversing this list backwards and forwards calling unexecute() and execute(), respectively;
+
+---
+
+# Applicability
+  
+Use the Command pattern when you want to:
+  
+* Support logging changes so that they can be reapplied in case of a system crash;
+  * By augmenting the Command interface with load() and store() operations, you can keep a persistent log of changes;
+  
+  * Recovering from a crash involves reloading logged commands from disk and re-executing them with the execute operation;
+
+---
+
+# Applicability
+
+Use the Command pattern when you want to:
+
+* Structure a system around high-level operations build on primitive operations;
+  * Such a structure is common in information systems that support transactions;
+  
+  * A transaction encapsulates a set of changes to data;
+  
+  * The Command pattern offers a way to model transactions; 
+  
+  * Commands have a common interface, letting you invoke all transactions the same way;
+  
+  * The pattern also makes it easy to extend the system with new transactions
+
+---
+
+# Use Cases
+
+* To keep a history of requests;
+
+* Implement callback functionality;
+
+* Implement the undo functionality;
+
+---
+
+# Real world examples
+
+[java.lang.Runnable](http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html)
+
+[Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki)
+
+[javax.swing.Action](http://docs.oracle.com/javase/8/docs/api/javax/swing/Action.html)
+
+---
+
+# Credits
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
+
+---
+
+# Tutorials
+
+* Source code http://java-design-patterns.com/patterns/command/
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>

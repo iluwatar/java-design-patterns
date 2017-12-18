@@ -3,7 +3,6 @@ layout: pattern
 title: Builder
 folder: builder
 permalink: /patterns/builder/
-pumlid: DSR94O0m2030LhG0mzzkC64KXs26GzlNZw_TcRLADagJwOWOlW8OFcNdE79B9wkN1ccKUdLWoGS33KwySMdalEioC89C7Jhw5zYIfNrIrFybhPUHNLu0
 categories: Creational
 tags:
  - Java

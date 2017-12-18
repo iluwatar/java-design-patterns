@@ -3,7 +3,6 @@ layout: pattern
 title: Null Object
 folder: null-object
 permalink: /patterns/null-object/
-pumlid: JSV14SCm20J0Lk829Fxf1cF6bWSX3JhYzfDdVhjRSx4yDCDU5p3NcoZugMV3bNik3HaETLGPdPhbm-2WcpzS3btjz38PqF15dTSFv6bMndwhW1Jo_vhHwynkNm00
 categories: Behavioral
 tags:
  - Java
