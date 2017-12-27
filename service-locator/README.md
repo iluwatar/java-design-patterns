@@ -3,7 +3,6 @@ layout: pattern
 title: Service Locator
 folder: service-locator
 permalink: /patterns/service-locator/
-pumlid: NSjB3iCm203HgxG7iDdtDeIWX0fZYqzo_MRTtUX9ynOZhPtBzNLchlW0EDxza3nhgs2dQScMdUO0qRenqU6B5xQTGmvh2pFPBM1WF07FSmbnqqcOqu6J_gsNZxvgw0y0
 categories: Structural
 tags:
  - Java

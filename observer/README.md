@@ -3,7 +3,6 @@ layout: pattern
 title: Observer
 folder: observer
 permalink: /patterns/observer/
-pumlid: FSkn4OGm30NHLg00hFow4KO3PcpP8tr1-pYwx6smQz5Suv2mkbp0y1-HyPlEWYlsSB7S5Q98kJSgDLu66ztyy7Q8brEtmO2OEZNs2Uhxl9u9GVv72cjfHAiV
 categories: Behavioral
 tags:
  - Java

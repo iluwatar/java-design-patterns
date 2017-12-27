@@ -30,7 +30,7 @@ import java.io.Serializable;
  * <p>
  * It is responsible for reacting to the user's actions and update the View component.
  */
-public class FileSelectorPresenter implements Serializable{
+public class FileSelectorPresenter implements Serializable {
 
   /**
    * Generated serial version UID

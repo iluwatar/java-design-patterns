@@ -15,7 +15,7 @@
 	<parent>
 		<artifactId>java-design-patterns</artifactId>
 		<groupId>com.iluwatar</groupId>
-		<version>1.17.0-SNAPSHOT</version>
+		<version>1.18.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>naked-objects</artifactId>
@@ -317,23 +317,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 			</plugin>
-            <plugin>
-                <groupId>com.github.markusmo3.urm</groupId>
-                <artifactId>urm-maven-plugin</artifactId>
-                <version>${urm.version}</version>
-                <configuration combine.self="override">
-                    <outputDirectory>${project.basedir}/../etc</outputDirectory>
-                    <packages>
-                        <param>com.iluwatar</param>
-                        <param>domainapp</param>
-                    </packages>
-                    <skipForProjects>
-                        <!-- skip for parent project -->
-                        <param>naked-objects</param>
-                        <param>naked-objects-webapp</param>
-                    </skipForProjects>
-                </configuration>
-            </plugin>
 		</plugins>
 	</build>
 
@@ -367,17 +350,17 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-dom</artifactId>
-				<version>1.17.0-SNAPSHOT</version>
+				<version>1.18.0-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-fixture</artifactId>
-				<version>1.17.0-SNAPSHOT</version>
+				<version>1.18.0-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-webapp</artifactId>
-				<version>1.17.0-SNAPSHOT</version>
+				<version>1.18.0-SNAPSHOT</version>
 			</dependency>
 
 		</dependencies>

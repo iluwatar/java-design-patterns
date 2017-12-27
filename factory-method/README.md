@@ -3,7 +3,6 @@ layout: pattern
 title: Factory Method
 folder: factory-method
 permalink: /patterns/factory-method/
-pumlid: NSZB3G8n30N0Lg20n7UwCOxPP9MVx6TMT0zdRgEvjoazYeRrMmMsFuYChtmqr7Y6gycQq8aiQr3hSJ7OwEGtfwBUZfas0shJQR3_G2yMBFkaeQYha4B-AeUDl6FqBm00
 categories: Creational
 tags:
  - Java
@@ -70,7 +69,11 @@ Use the Factory Method pattern when
 * a class wants its subclasses to specify the objects it creates
 * classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
 
-## Known uses
+## Presentations
+
+* [Factory Method Pattern](etc/presentation.html) 
+
+## Real world examples
 
 * [java.util.Calendar](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
 * [java.util.ResourceBundle](http://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)

@@ -3,7 +3,6 @@ layout: pattern
 title: Delegation
 folder: delegation
 permalink: /patterns/delegation/
-pumlid: JSV14GCX20NGLf82LkxfXbN69OFeu2VRVdBCxRsdUhLiac6F2rZxHHHybwwuyimjKQT37ANEGMfvCpZepHy-ccpjVYm697pJuFq3DJ7f39rEWlhNaZ7Aoc5V
 categories: Behavioral
 tags:
  - Java

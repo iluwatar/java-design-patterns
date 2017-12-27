@@ -3,7 +3,6 @@ layout: pattern
 title: Value Object
 folder: value-object
 permalink: /patterns/value-object/
-pumlid: LSZ13SCm20NGLTe1RExTXX2KECBOmfza_VRQszDxDnVBNJFiTG9pVOY2dteqdBdbqf3XK4ULqQbPFWmEklZcikjgXvV9W8Olwhn-e9ijjOpjKW4fv2zgHgypktq1
 categories: Creational
 tags:
  - Java

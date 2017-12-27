@@ -3,7 +3,7 @@ layout: pattern
 title: Converter
 folder: converter
 permalink: /patterns/converter/
-categories:
+categories: Business Tier
 tags:
  - Java
  - Difficulty-Beginner

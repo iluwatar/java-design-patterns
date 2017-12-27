@@ -3,7 +3,6 @@ layout: pattern
 title: Lazy Loading
 folder: lazy-loading
 permalink: /patterns/lazy-loading/
-pumlid: LSXB3W8X303Gg-W1e7jlqu66gIc5zED4JwzRTo_lpjeaEwN9xOpO_W0mlEhWEFD89sjBWpHgMnDOyi90WoU-i7Ho7besHf2fmqJ_0GG_xo8BE-i0YlONDMtMdLE-
 categories: Other
 tags:
  - Java

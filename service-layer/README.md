@@ -3,7 +3,6 @@ layout: pattern
 title: Service Layer
 folder: service-layer
 permalink: /patterns/service-layer/
-pumlid: LOl93SCm3C1MQGUmzUysgY8aAcJ5q96WszVV_aW2V8gHriRb-ZWoPxm07E--Inxrhc2dqv8jEvq3HEl6H8SFNjWs3jcjJSnaju21iG3MSmbnK_mkuwJ_qij7dpNq1m00
 categories: Architectural
 tags:
  - Java

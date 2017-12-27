@@ -3,7 +3,6 @@ layout: pattern
 title: Flux
 folder: flux
 permalink: /patterns/flux/
-pumlid: 7SP14eCm20NGg-W13FlU1YFLE0GpyAazVZk-rPkRLSrDqdKwW14l8kUxx0r7hXdYzJA8eTIhKzEy6UnqyeUNJQBjjWm6n2seS_n3Ryql2UgJajxBoAu_
 categories: Presentation Tier
 tags:
  - Java

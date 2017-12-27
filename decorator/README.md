@@ -3,7 +3,6 @@ layout: pattern
 title: Decorator
 folder: decorator
 permalink: /patterns/decorator/
-pumlid: HSV14SCm20J0Lk82BFxf1YF6LaP26ZZizfDVVhjRC-bPDRs_Bc35cyZvAMV3bKU6kao36ehCGQtdms2d3z-yLursshuOKBUWmV43LPNfZEcaaFzA-YWhH_y2
 categories: Structural
 tags:
  - Java
@@ -35,7 +34,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Lets take the troll example. First of all we have a simple troll implementing the troll interface
+Let's take the troll example. First of all we have a simple troll implementing the troll interface
 
 ```
 public interface Troll {
@@ -105,9 +104,9 @@ troll.attack(); // The troll tries to grab you!
 troll.fleeBattle(); // The troll shrieks in horror and runs away!
 
 // change the behavior of the simple troll by adding a decorator
-Troll clubbed = new ClubbedTroll(troll);
-clubbed.attack(); // The troll tries to grab you! The troll swings at you with a club!
-clubbed.fleeBattle(); // The troll shrieks in horror and runs away!
+troll = new ClubbedTroll(troll);
+troll.attack(); // The troll tries to grab you! The troll swings at you with a club!
+troll.fleeBattle(); // The troll shrieks in horror and runs away!
 ```
 
 ## Applicability

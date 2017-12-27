@@ -53,7 +53,7 @@ public class FactoryMethodTest {
   }
 
   /**
-   * Testing {@link OrcBlacksmith} to produce a AXE asserting that the Weapon is an instance
+   * Testing {@link OrcBlacksmith} to produce an AXE asserting that the Weapon is an instance
    *  of {@link OrcWeapon}.
    */
   @Test
@@ -95,7 +95,7 @@ public class FactoryMethodTest {
    */
   private void verifyWeapon(Weapon weapon, WeaponType expectedWeaponType, Class<?> clazz) {
     assertTrue("Weapon must be an object of: " + clazz.getName(), clazz.isInstance(weapon));
-    assertEquals("Weapon must be of weaponType: " + clazz.getName(), expectedWeaponType,
+    assertEquals("Weapon must be of weaponType: " + expectedWeaponType, expectedWeaponType,
         weapon.getWeaponType());
   }
 }

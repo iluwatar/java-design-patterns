@@ -3,7 +3,6 @@ layout: pattern
 title: Singleton
 folder: singleton
 permalink: /patterns/singleton/
-pumlid: HSV14SCm20J0Lk82BFxf1ikCh0n26ZZizfDVVhjRjwfvIhg-Bc35cyZvAQtZoYD3l4w364gTWxhcms2d3z-ydnAzsRuO4BUWmV43HRUcWcaagF-Lz55M3lq2
 categories: Creational
 tags:
  - Java

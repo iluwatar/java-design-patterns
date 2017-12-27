@@ -3,7 +3,6 @@ layout: pattern
 title: Abstract Document
 folder: abstract-document
 permalink: /patterns/abstract-document/
-pumlid: PSjB3eCm34NHhPG599vtDyQn85L-ifzX-p3lxEf8Twj3MXGDQvyJMFubChxpKN767gucSq07iinEjSNDOACVNvoAUZr6MWoe3QVE_WRnxZ0Mf38b-hkIGlurX_MyehS7
 categories: Structural
 tags: 
  - Java

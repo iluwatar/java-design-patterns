@@ -3,7 +3,6 @@ layout: pattern
 title: Promise
 folder: promise
 permalink: /patterns/promise/
-pumlid: DOqv4i8m301xNW4FYDLJvIl2rYHYBDcZWtmVKr3jDZkxUw15IhyzM6lFHcdzVaPCVm8ONkNWEFELJbQ71ccKEWIuvuKhXJT-S6laVEWsCO9C7GHz2KmRmav0KVzUqgJCtsydROjV
 categories: Concurrency
 tags:
  - Java

@@ -3,7 +3,6 @@ layout: pattern
 title: Property
 folder: property
 permalink: /patterns/property/
-pumlid: FSV13OCm30NGLTe1YEziumOBKYMEPN-3s9wUUdlltRJst2Izlmx0OYLolihUSEGdGxnEXIXAdODQpul1Jby-UTaasgwBCI2kGOFZ1pAV9ewR1FMVaZwAvUWF
 categories: Creational
 tags:
  - Java
