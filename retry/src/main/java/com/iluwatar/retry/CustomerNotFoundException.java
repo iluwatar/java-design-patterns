@@ -31,7 +31,7 @@ package com.iluwatar.retry;
  * by an input from some end user, or were the search parameters pulled from your database?
  *
  * @author George Aristy (george.aristy@gmail.com)
- * @since 1.17.0
+ * @since 1.18.0
  */
 public final class CustomerNotFoundException extends BusinessException {
   private static final long serialVersionUID = -6972888602621778664L;
@@ -40,7 +40,7 @@ public final class CustomerNotFoundException extends BusinessException {
    * Ctor.
    * 
    * @param message the error message
-   * @since 1.17.0
+   * @since 1.18.0
    */
   public CustomerNotFoundException(String message) {
     super(message);

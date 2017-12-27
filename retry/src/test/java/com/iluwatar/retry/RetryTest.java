@@ -33,13 +33,13 @@ import static org.junit.Assert.*;
  * Unit tests for {@link Retry}.
  *
  * @author George Aristy (george.aristy@gmail.com)
- * @since 1.17.0
+ * @since 1.18.0
  */
 public class RetryTest {
   /**
    * Should contain all errors thrown.
    * 
-   * @since 1.17.0
+   * @since 1.18.0
    */
   @Test
   public void errors() throws Exception {
@@ -65,7 +65,7 @@ public class RetryTest {
    * No exceptions will be ignored, hence final number of attempts should be 1 even if we're asking
    * it to attempt twice.
    * 
-   * @since 1.17.0
+   * @since 1.18.0
    */
   @Test
   public void attempts() {
@@ -91,7 +91,7 @@ public class RetryTest {
    * Final number of attempts should be equal to the number of attempts asked because we are 
    * asking it to ignore the exception that will be thrown.
    * 
-   * @since 1.17.0
+   * @since 1.18.0
    */
   @Test
   public void ignore() throws Exception {

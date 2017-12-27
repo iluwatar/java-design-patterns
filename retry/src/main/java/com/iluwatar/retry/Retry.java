@@ -36,7 +36,7 @@ import java.util.function.Predicate;
  *
  * @author George Aristy (george.aristy@gmail.com)
  * @param <T> the remote op's return type
- * @since 1.17.0
+ * @since 1.18.0
  */
 public final class Retry<T> implements BusinessOperation<T> {
   private final BusinessOperation<T> op;
@@ -54,7 +54,7 @@ public final class Retry<T> implements BusinessOperation<T> {
    * @param delay delay (in milliseconds) between attempts
    * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
    *     will be ignored if no tests are given
-   * @since 1.17.0
+   * @since 1.18.0
    */
   @SafeVarargs
   public Retry(
@@ -75,7 +75,7 @@ public final class Retry<T> implements BusinessOperation<T> {
    * The errors encountered while retrying, in the encounter order.
    * 
    * @return the errors encountered while retrying
-   * @since 1.17.0
+   * @since 1.18.0
    */
   public List<Exception> errors() {
     return Collections.unmodifiableList(this.errors);
@@ -85,7 +85,7 @@ public final class Retry<T> implements BusinessOperation<T> {
    * The number of retries performed.
    * 
    * @return the number of retries performed
-   * @since 1.17.0
+   * @since 1.18.0
    */
   public int attempts() {
     return this.attempts.intValue();

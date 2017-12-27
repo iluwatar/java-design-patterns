@@ -56,7 +56,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author George Aristy (george.aristy@gmail.com)
  * @see <a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/retry">Retry pattern (Microsoft Azure Docs)</a>
- * @since 1.17.0
+ * @since 1.18.0
  */
 public final class App {
   private static final Logger LOG = LoggerFactory.getLogger(App.class);
@@ -67,7 +67,7 @@ public final class App {
    * 
    * @param args not used
    * @throws Exception not expected
-   * @since 1.17.0
+   * @since 1.18.0
    */
   public static void main(String[] args) throws Exception {
     noErrors();

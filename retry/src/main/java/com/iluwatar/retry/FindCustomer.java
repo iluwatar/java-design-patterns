@@ -36,7 +36,7 @@ import java.util.Deque;
  * purposes of this example it fails in a programmed way depending on the constructor parameters.
  *
  * @author George Aristy (george.aristy@gmail.com)
- * @since 1.17.0
+ * @since 1.18.0
  */
 public final class FindCustomer implements BusinessOperation<String> {
   private final String customerId;
@@ -47,7 +47,7 @@ public final class FindCustomer implements BusinessOperation<String> {
    * 
    * @param customerId the final result of the remote operation
    * @param errors the errors to throw before returning {@code customerId}
-   * @since 1.17.0
+   * @since 1.18.0
    */
   public FindCustomer(String customerId, BusinessException... errors) {
     this.customerId = customerId;

@@ -28,7 +28,7 @@ package com.iluwatar.retry;
  * Catastrophic error indicating that we have lost connection to our database.
  *
  * @author George Aristy (george.aristy@gmail.com)
- * @since 1.17.0
+ * @since 1.18.0
  */
 public final class DatabaseNotAvailableException extends BusinessException {
   private static final long serialVersionUID = -3750769625095997799L;
@@ -37,7 +37,7 @@ public final class DatabaseNotAvailableException extends BusinessException {
    * Ctor.
    * 
    * @param message the error message
-   * @since 1.17.0
+   * @since 1.18.0
    */
   public DatabaseNotAvailableException(String message) {
     super(message);
