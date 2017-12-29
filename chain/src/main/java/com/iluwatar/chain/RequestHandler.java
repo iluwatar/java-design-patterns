@@ -44,12 +44,15 @@ public abstract class RequestHandler {
    * Request handler
    */
   public void handleRequest(Request req) {
+    if (!req.isHandled()) {
+      handleHook(req);
+    }
     if (next != null) {
       next.handleRequest(req);
     }
   }
 
-  protected void printHandling(Request req) {
+  protected void handleHook(Request req) {
     LOGGER.info("{} handling request \"{}\"", this, req);
   }
 

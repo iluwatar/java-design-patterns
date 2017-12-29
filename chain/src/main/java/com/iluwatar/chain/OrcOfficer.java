@@ -36,7 +36,7 @@ public class OrcOfficer extends RequestHandler {
   @Override
   public void handleRequest(Request req) {
     if (req.getRequestType().equals(RequestType.TORTURE_PRISONER)) {
-      printHandling(req);
+      handleHook(req);
       req.markHandled();
     } else {
       super.handleRequest(req);
