@@ -31,7 +31,6 @@ package com.iluwatar.retry;
  * be able to handle this error and should be reported to the maintainers immediately.
  *
  * @author George Aristy (george.aristy@gmail.com)
- * @since 1.18.0
  */
 public class BusinessException extends Exception {
   private static final long serialVersionUID = 6235833142062144336L;
@@ -40,7 +39,6 @@ public class BusinessException extends Exception {
    * Ctor
    * 
    * @param message the error message
-   * @since 1.18.0
    */
   public BusinessException(String message) {
     super(message);

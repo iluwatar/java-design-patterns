@@ -32,13 +32,10 @@ import org.junit.Test;
  * Unit tests for {@link FindCustomer}.
  *
  * @author George Aristy (george.aristy@gmail.com)
- * @since 1.18.0
  */
 public class FindCustomerTest {
   /**
    * Returns the given result with no exceptions.
-   * 
-   * @since 1.18.0
    */
   @Test
   public void noExceptions() throws Exception {
@@ -52,7 +49,6 @@ public class FindCustomerTest {
    * Throws the given exception.
    * 
    * @throws Exception the expected exception
-   * @since 1.18.0
    */
   @Test(expected = BusinessException.class)
   public void oneException() throws Exception {
@@ -63,7 +59,6 @@ public class FindCustomerTest {
    * Should first throw the given exceptions, then return the given result.
    * 
    * @throws Exception not an expected exception
-   * @since 1.18.0
    */
   @Test
   public void resultAfterExceptions() throws Exception {

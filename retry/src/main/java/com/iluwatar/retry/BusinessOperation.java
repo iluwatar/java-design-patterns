@@ -29,7 +29,6 @@ package com.iluwatar.retry;
  *
  * @author George Aristy (george.aristy@gmail.com)
  * @param <T> the return type
- * @since 1.18.0
  */
 @FunctionalInterface
 public interface BusinessOperation<T> {
@@ -40,7 +39,6 @@ public interface BusinessOperation<T> {
    * @return the return value
    * @throws BusinessException if the operation fails. Implementations are allowed to throw more
    *     specific subtypes depending on the error conditions
-   * @since 1.18.0
    */
   T perform() throws BusinessException;
 }
