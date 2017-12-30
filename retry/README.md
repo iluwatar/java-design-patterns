@@ -3,11 +3,11 @@ layout: pattern
 title: Retry
 folder: retry
 permalink: /patterns/retry/
-categories: other
+categories: Other
 tags:
-  - java
-  - difficulty-expert
-  - performance
+  - Java
+  - Difficulty-Expert
+  - Performance
 ---
 
 ## Retry / resiliency
