@@ -35,8 +35,11 @@ public abstract class RequestHandler {
   private static final Logger LOGGER = LoggerFactory.getLogger(RequestHandler.class);
 
   private RequestHandler next;
+  
+  protected RequestType requestType;
 
-  public RequestHandler(RequestHandler next) {
+  public RequestHandler(RequestType requestType, RequestHandler next) {
+    this.requestType = requestType;
     this.next = next;
   }
 
@@ -53,7 +56,10 @@ public abstract class RequestHandler {
   }
 
   protected void handleHook(Request req) {
-    LOGGER.info("{} handling request \"{}\"", this, req);
+    if (requestType.equals(req.getRequestType())) {
+      LOGGER.info("{} handling request \"{}\"", this, req);
+      req.markHandled();
+    }
   }
 
   @Override

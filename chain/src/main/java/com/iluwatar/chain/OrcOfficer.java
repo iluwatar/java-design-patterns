@@ -29,18 +29,8 @@ package com.iluwatar.chain;
  */
 public class OrcOfficer extends RequestHandler {
 
-  public OrcOfficer(RequestHandler handler) {
-    super(handler);
-  }
-
-  @Override
-  public void handleRequest(Request req) {
-    if (req.getRequestType().equals(RequestType.TORTURE_PRISONER)) {
-      handleHook(req);
-      req.markHandled();
-    } else {
-      super.handleRequest(req);
-    }
+  public OrcOfficer(RequestType requestType, RequestHandler handler) {
+    super(requestType, handler);
   }
 
   @Override
