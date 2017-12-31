@@ -22,14 +22,14 @@
  */
 package com.iluwatar.featuretoggle.pattern.tieredversion;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import com.iluwatar.featuretoggle.pattern.Service;
 import com.iluwatar.featuretoggle.user.User;
 import com.iluwatar.featuretoggle.user.UserGroup;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test Tiered Feature Toggle
@@ -40,7 +40,7 @@ public class TieredFeatureToggleVersionTest {
   final User freeUser = new User("Alan Defect");
   final Service service = new TieredFeatureToggleVersion();
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     UserGroup.addUserToPaidGroup(paidUser);
     UserGroup.addUserToFreeGroup(freeUser);

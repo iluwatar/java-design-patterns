@@ -22,15 +22,13 @@
  */
 package com.iluwatar.reactor.app;
 
-import java.io.IOException;
-
-import com.iluwatar.reactor.framework.NioReactor;
-import org.junit.Test;
-
 import com.iluwatar.reactor.framework.SameThreadDispatcher;
 import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * 

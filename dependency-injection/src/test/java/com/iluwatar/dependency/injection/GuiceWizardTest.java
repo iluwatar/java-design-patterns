@@ -26,11 +26,11 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.iluwatar.dependency.injection.utils.InMemoryAppender;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/10/15 - 8:57 PM
@@ -41,12 +41,12 @@ public class GuiceWizardTest {
 
   private InMemoryAppender appender;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     appender = new InMemoryAppender(Tobacco.class);
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     appender.stop();
   }

@@ -18,11 +18,9 @@
  */
 package com.iluwatar.module;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.FileNotFoundException;
-
-import com.iluwatar.module.App;
-
-import org.junit.Test;
 
 /**
  * Tests that Module example runs without errors.

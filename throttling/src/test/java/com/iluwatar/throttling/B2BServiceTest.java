@@ -22,11 +22,11 @@
  */
 package com.iluwatar.throttling;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import com.iluwatar.throttling.timer.ThrottleTimerImpl;
 import com.iluwatar.throttling.timer.Throttler;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * B2BServiceTest class to test the B2BService
@@ -43,6 +43,6 @@ public class B2BServiceTest {
       service.dummyCustomerApi(tenant);
     }
     long counter = CallsCount.getCount(tenant.getName());
-    Assert.assertTrue("Counter limit must be reached", counter == 2);
+    assertTrue(counter == 2, "Counter limit must be reached");
   }
 }

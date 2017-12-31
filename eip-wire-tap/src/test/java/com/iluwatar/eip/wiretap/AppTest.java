@@ -22,7 +22,7 @@
  */
 package com.iluwatar.eip.wiretap;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for App class

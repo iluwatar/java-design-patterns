@@ -25,11 +25,10 @@ package com.iluwatar.strategy;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
@@ -37,21 +36,19 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/29/15 - 10:58 PM
  *
  * @author Jeroen Meulemeester
  */
-@RunWith(Parameterized.class)
 public class DragonSlayingStrategyTest {
 
   /**
    * @return The test parameters for each cycle
    */
-  @Parameterized.Parameters
-  public static Collection<Object[]> data() {
+  static Collection<Object[]> dataProvider() {
     return Arrays.asList(
         new Object[]{
             new MeleeStrategy(),
@@ -68,47 +65,27 @@ public class DragonSlayingStrategyTest {
     );
   }
 
-  /**
-   * The tested strategy
-   */
-  private final DragonSlayingStrategy strategy;
-
-  /**
-   * The expected action in the log
-   */
-  private final String expectedResult;
-
   private InMemoryAppender appender;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     appender = new InMemoryAppender();
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     appender.stop();
   }
 
 
   /**
-   * Create a new test instance for the given strategy
-   *
-   * @param strategy       The tested strategy
-   * @param expectedResult The expected result
-   */
-  public DragonSlayingStrategyTest(final DragonSlayingStrategy strategy, final String expectedResult) {
-    this.strategy = strategy;
-    this.expectedResult = expectedResult;
-  }
-
-  /**
    * Test if executing the strategy gives the correct response
    */
-  @Test
-  public void testExecute() {
-    this.strategy.execute();
-    assertEquals(this.expectedResult, appender.getLastMessage());
+  @ParameterizedTest
+  @MethodSource("dataProvider")
+  public void testExecute(DragonSlayingStrategy strategy, String expectedResult) {
+    strategy.execute();
+    assertEquals(expectedResult, appender.getLastMessage());
     assertEquals(1, appender.getLogSize());
   }
 

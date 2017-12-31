@@ -22,13 +22,13 @@
  */
 package com.iluwatar.pageobject;
 
-import static org.junit.Assert.assertTrue;
-
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.iluwatar.pageobject.pages.AlbumListPage;
 import com.iluwatar.pageobject.pages.AlbumPage;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test Album Page Operations
@@ -37,7 +37,7 @@ public class AlbumPageTest {
 
   private AlbumPage albumPage = new AlbumPage(new WebClient());
 
-  @Before
+  @BeforeEach
   public void setUp() {
     albumPage.navigateToPage();
   }

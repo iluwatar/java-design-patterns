@@ -22,12 +22,11 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-
-import org.junit.Test;
-
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * 

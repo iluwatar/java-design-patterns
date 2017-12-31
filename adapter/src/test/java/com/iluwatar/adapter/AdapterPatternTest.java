@@ -22,8 +22,8 @@
  */
 package com.iluwatar.adapter;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class AdapterPatternTest {
   /**
    * This method runs before the test execution and sets the bean objects in the beans Map.
    */
-  @Before
+  @BeforeEach
   public void setup() {
     beans = new HashMap<>();
 

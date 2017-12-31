@@ -29,8 +29,8 @@ import com.iluwatar.flux.action.ContentAction;
 import com.iluwatar.flux.action.MenuAction;
 import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.store.Store;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 import java.lang.reflect.Constructor;
@@ -38,9 +38,9 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -58,7 +58,7 @@ public class DispatcherTest {
    * Replace the instance with a fresh one before each test to make sure test cases have no
    * influence on each other.
    */
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     final Constructor<Dispatcher> constructor;
     constructor = Dispatcher.class.getDeclaredConstructor();

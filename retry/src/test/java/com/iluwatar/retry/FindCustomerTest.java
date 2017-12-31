@@ -24,9 +24,11 @@
 
 package com.iluwatar.retry;
 
+import org.junit.jupiter.api.Test;
+
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit tests for {@link FindCustomer}.
@@ -50,9 +52,11 @@ public class FindCustomerTest {
    * 
    * @throws Exception the expected exception
    */
-  @Test(expected = BusinessException.class)
+  @Test
   public void oneException() throws Exception {
-    new FindCustomer("123", new BusinessException("test")).perform();
+    assertThrows(BusinessException.class, () -> {
+      new FindCustomer("123", new BusinessException("test")).perform();
+    });
   }
 
   /**
