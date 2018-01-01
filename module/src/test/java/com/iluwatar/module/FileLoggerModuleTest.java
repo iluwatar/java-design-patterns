@@ -18,15 +18,15 @@
  */
 package com.iluwatar.module;
 
-import static org.junit.Assert.assertEquals;
+import org.apache.log4j.Logger;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * The Module pattern can be considered a Creational pattern and a Structural pattern. It manages

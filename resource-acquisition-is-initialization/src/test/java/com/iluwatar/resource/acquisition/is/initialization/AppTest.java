@@ -22,7 +22,7 @@
  */
 package com.iluwatar.resource.acquisition.is.initialization;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 

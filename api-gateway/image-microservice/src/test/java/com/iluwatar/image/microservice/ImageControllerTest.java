@@ -22,8 +22,9 @@
  */
 package com.iluwatar.image.microservice;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Image Rest Controller
@@ -35,6 +36,6 @@ public class ImageControllerTest {
 
     String imagePath = imageController.getImagePath();
 
-    Assert.assertEquals("/product-image.png", imagePath);
+    assertEquals("/product-image.png", imagePath);
   }
 }

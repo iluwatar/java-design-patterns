@@ -22,8 +22,7 @@
  */
 package com.iluwatar.threadpool;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +32,13 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.function.Function;
 import java.util.function.IntFunction;
-import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
-import org.junit.Test;
+
+import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 /**
  * Date: 12/30/15 - 18:22 PM
@@ -82,30 +83,31 @@ public abstract class TaskTest<T extends Task> {
    * Verify if the generated id is unique for each task, even if the tasks are created in separate
    * threads
    */
-  @Test(timeout = 10000)
+  @Test
   public void testIdGeneration() throws Exception {
-    final ExecutorService service = Executors.newFixedThreadPool(THREAD_COUNT);
+    assertTimeout(ofMillis(10000), () -> {
+      final ExecutorService service = Executors.newFixedThreadPool(THREAD_COUNT);
 
-    final List<Callable<Integer>> tasks = new ArrayList<>();
-    for (int i = 0; i < TASK_COUNT; i++) {
-      tasks.add(() -> factory.apply(1).getId());
-    }
+      final List<Callable<Integer>> tasks = new ArrayList<>();
+      for (int i = 0; i < TASK_COUNT; i++) {
+        tasks.add(() -> factory.apply(1).getId());
+      }
 
-    final List<Integer> ids = service.invokeAll(tasks)
-        .stream()
-        .map(TaskTest::get)
-        .filter(Objects::nonNull)
-        .collect(Collectors.toList());
+      final List<Integer> ids = service.invokeAll(tasks)
+          .stream()
+          .map(TaskTest::get)
+          .filter(Objects::nonNull)
+          .collect(Collectors.toList());
 
-    service.shutdownNow();
+      service.shutdownNow();
 
-    final long uniqueIdCount = ids.stream()
-        .distinct()
-        .count();
+      final long uniqueIdCount = ids.stream()
+          .distinct()
+          .count();
 
-    assertEquals(TASK_COUNT, ids.size());
-    assertEquals(TASK_COUNT, uniqueIdCount);
-
+      assertEquals(TASK_COUNT, ids.size());
+      assertEquals(TASK_COUNT, uniqueIdCount);
+    });
   }
 
   /**

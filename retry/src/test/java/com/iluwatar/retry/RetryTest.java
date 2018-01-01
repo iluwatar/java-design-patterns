@@ -24,10 +24,11 @@
 
 package com.iluwatar.retry;
 
+import org.junit.jupiter.api.Test;
+
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Unit tests for {@link Retry}.

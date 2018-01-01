@@ -22,7 +22,7 @@
  */
 package com.iluwatar.proxy;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 

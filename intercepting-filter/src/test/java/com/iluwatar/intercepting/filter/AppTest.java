@@ -22,7 +22,7 @@
  */
 package com.iluwatar.intercepting.filter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 

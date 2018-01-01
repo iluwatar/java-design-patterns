@@ -22,7 +22,7 @@
  */
 package com.iluwatar.converter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * App running test

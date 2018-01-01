@@ -22,14 +22,15 @@
  */
 package com.iluwatar.poison.pill;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Date: 12/27/15 - 10:25 PM
@@ -51,11 +52,13 @@ public class SimpleMessageTest {
     assertEquals(senderName, message.getHeaders().get(Message.Headers.SENDER));
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void testUnModifiableHeaders() {
     final SimpleMessage message = new SimpleMessage();
     final Map<Message.Headers, String> headers = message.getHeaders();
-    headers.put(Message.Headers.SENDER, "test");
+    assertThrows(UnsupportedOperationException.class, () -> {
+      headers.put(Message.Headers.SENDER, "test");
+    });
   }
 
 

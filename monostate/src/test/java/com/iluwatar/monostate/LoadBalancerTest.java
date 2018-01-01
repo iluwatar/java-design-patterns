@@ -22,11 +22,17 @@
  */
 package com.iluwatar.monostate;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
 
 /**
  * Date: 12/21/15 - 12:26 PM
@@ -41,9 +47,9 @@ public class LoadBalancerTest {
     final LoadBalancer secondBalancer = new LoadBalancer();
     firstBalancer.addServer(new Server("localhost", 8085, 6));
     // Both should have the same number of servers.
-    Assert.assertTrue(firstBalancer.getNoOfServers() == secondBalancer.getNoOfServers());
+    assertTrue(firstBalancer.getNoOfServers() == secondBalancer.getNoOfServers());
     // Both Should have the same LastServedId
-    Assert.assertTrue(firstBalancer.getLastServedId() == secondBalancer.getLastServedId());
+    assertTrue(firstBalancer.getLastServedId() == secondBalancer.getLastServedId());
   }
 
   @Test

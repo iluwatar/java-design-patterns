@@ -36,8 +36,13 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -48,10 +53,6 @@
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
       </dependency>
-    <dependency>
-      <groupId>de.bechte.junit</groupId>
-      <artifactId>junit-hierarchicalcontextrunner</artifactId>
-    </dependency>
     <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>

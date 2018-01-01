@@ -22,14 +22,15 @@
  */
 package com.iluwatar.visitor;
 
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.function.Function;
+
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-
-import java.util.Arrays;
-import java.util.function.Function;
-import org.junit.Test;
 
 /**
  * Date: 12/30/15 - 18:59 PM
