@@ -22,18 +22,19 @@
  */
 package com.iluwatar.visitor;
 
-import static org.junit.Assert.assertEquals;
-
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/30/15 - 18:59 PM
@@ -45,12 +46,12 @@ public abstract class VisitorTest<V extends UnitVisitor> {
 
   private InMemoryAppender appender;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     appender = new InMemoryAppender();
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     appender.stop();
   }

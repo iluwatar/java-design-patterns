@@ -22,17 +22,16 @@
  */
 package com.iluwatar.hexagonal.database;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.util.Optional;
-
-import org.junit.Before;
-import org.junit.Test;
 
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.test.LotteryTestUtils;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * 
@@ -43,7 +42,7 @@ public class InMemoryTicketRepositoryTest {
 
   private final LotteryTicketRepository repository = new InMemoryTicketRepository();
   
-  @Before
+  @BeforeEach
   public void clear() {
     repository.deleteAll();
   }

@@ -3,11 +3,11 @@ layout: pattern
 title: EIP Wire Tap
 folder: eip-wire-tap
 permalink: /patterns/eip-wire-tap/
-categories: Enterprise integration
+categories: Integration
 tags:
  - Java
  - Difficulty-Intermittent
- - Enterprise integration
+ - EIP
 ---
 
 ## Intent

@@ -27,7 +27,7 @@ import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.dispatcher.Dispatcher;
 import com.iluwatar.flux.store.MenuStore;
 import com.iluwatar.flux.store.Store;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;

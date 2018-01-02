@@ -22,24 +22,25 @@
  */
 package com.iluwatar.factorykit.factorykit;
 
-import static org.junit.Assert.assertTrue;
-
 import com.iluwatar.factorykit.Axe;
 import com.iluwatar.factorykit.Spear;
 import com.iluwatar.factorykit.Sword;
 import com.iluwatar.factorykit.Weapon;
 import com.iluwatar.factorykit.WeaponFactory;
 import com.iluwatar.factorykit.WeaponType;
-import org.junit.Before;
-import org.junit.Test;
-/**
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+  /**
  *  Test Factory Kit Pattern
  */
 public class FactoryKitTest {
 
   private WeaponFactory factory;
 
-  @Before
+  @BeforeEach
   public void init() {
     factory = WeaponFactory.factory(builder -> {
       builder.add(WeaponType.SPEAR, Spear::new);
@@ -83,6 +84,6 @@ public class FactoryKitTest {
    * @param clazz  expected class of the weapon
    */
   private void verifyWeapon(Weapon weapon, Class clazz) {
-    assertTrue("Weapon must be an object of: " + clazz.getName(), clazz.isInstance(weapon));
+    assertTrue(clazz.isInstance(weapon), "Weapon must be an object of: " + clazz.getName());
   }
 }

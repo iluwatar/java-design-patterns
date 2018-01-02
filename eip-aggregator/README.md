@@ -3,11 +3,11 @@ layout: pattern
 title: EIP Aggregator
 folder: eip-aggregator
 permalink: /patterns/eip-aggregator/
-categories: Enterprise integration
+categories: Integration
 tags:
  - Java
  - Difficulty-Intermittent
- - Enterprise integration
+ - EIP
 ---
 
 ## Intent

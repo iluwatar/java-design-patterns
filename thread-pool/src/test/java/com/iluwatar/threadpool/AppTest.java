@@ -22,7 +22,7 @@
  */
 package com.iluwatar.threadpool;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Application test

@@ -25,12 +25,12 @@ package com.iluwatar.observer.generic;
 import com.iluwatar.observer.WeatherObserver;
 import com.iluwatar.observer.WeatherType;
 import com.iluwatar.observer.utils.InMemoryAppender;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
@@ -42,12 +42,12 @@ public class GWeatherTest {
 
   private InMemoryAppender appender;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     appender = new InMemoryAppender(GWeather.class);
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     appender.stop();
   }

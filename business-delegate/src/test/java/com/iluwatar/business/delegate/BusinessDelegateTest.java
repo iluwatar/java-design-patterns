@@ -22,12 +22,12 @@
  */
 package com.iluwatar.business.delegate;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * The Business Delegate pattern adds an abstraction layer between the presentation and business
@@ -53,7 +53,7 @@ public class BusinessDelegateTest {
    * This method sets up the instance variables of this test class. It is executed before the
    * execution of every test.
    */
-  @Before
+  @BeforeEach
   public void setup() {
     ejbService = spy(new EjbService());
     jmsService = spy(new JmsService());

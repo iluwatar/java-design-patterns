@@ -179,7 +179,7 @@
             <property name="allowMissingThrowsTags" value="true"/>
             <property name="allowMissingReturnTag" value="true"/>
             <property name="minLineCount" value="2"/>
-            <property name="allowedAnnotations" value="Override, Test, Before, After, Parameters, Given, When, BeforeClass, AfterClass, Parameterized"/>
+            <property name="allowedAnnotations" value="Override, Test, Before, After, Parameters, Given, When, BeforeClass, AfterClass, Parameterized, ParameterizedTest, BeforeAll, BeforeEach"/>
             <property name="allowThrowsTagsForSubclasses" value="true"/>
         </module>
         <module name="JavadocType">

@@ -22,8 +22,8 @@
  */
 package com.iluwatar.caching;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -36,7 +36,7 @@ public class CachingTest {
   /**
    * Setup of application test includes: initializing DB connection and cache size/capacity.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     AppManager.initDb(false); // VirtualDB (instead of MongoDB) was used in running the JUnit tests
                               // to avoid Maven compilation errors. Set flag to true to run the

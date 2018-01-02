@@ -20,7 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Application test

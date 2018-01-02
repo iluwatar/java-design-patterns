@@ -22,7 +22,7 @@
  */
 package concreteextensions;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import units.SoldierUnit;
 
 /**

@@ -22,7 +22,7 @@
  */
 package com.iluwatar.doublechecked.locking;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 

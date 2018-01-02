@@ -22,9 +22,9 @@
  */
 package com.iluwatar.model.view.controller;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/20/15 - 2:10 PM

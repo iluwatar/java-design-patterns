@@ -22,10 +22,11 @@
  */
 package com.iluwatar.bridge;
 
-import static org.junit.Assert.assertNotNull;
+import org.junit.jupiter.api.Disabled;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
  * Base class for weapon tests

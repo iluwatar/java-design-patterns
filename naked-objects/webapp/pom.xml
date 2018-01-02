@@ -16,7 +16,7 @@
 	<parent>
 		<groupId>com.iluwatar</groupId>
 		<artifactId>naked-objects</artifactId>
-		<version>1.18.0-SNAPSHOT</version>
+		<version>1.19.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>naked-objects-webapp</artifactId>
@@ -221,6 +221,18 @@
 			</exclusions>
 		</dependency>
 
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<profiles>

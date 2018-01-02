@@ -22,9 +22,9 @@
  */
 package com.iluwatar.queue.load.leveling;
 
-import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import java.io.IOException;
 
 /**
  * Application Test

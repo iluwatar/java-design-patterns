@@ -23,19 +23,16 @@
 package com.iluwatar.eip.splitter.routes;
 
 import org.apache.camel.EndpointInject;
-import org.apache.camel.Message;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.Assert.assertEquals;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * Test class for <i>SplitterRoute</i>.
@@ -44,7 +41,7 @@ import static org.junit.Assert.assertEquals;
  * original endpoint names to mocks.
  * </p>
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringApplicationConfiguration(classes = SplitterRouteTest.class)
 @ActiveProfiles("test")
 @EnableAutoConfiguration
