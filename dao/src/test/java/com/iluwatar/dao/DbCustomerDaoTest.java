@@ -185,8 +185,7 @@ public class DbCustomerDaoTest {
   public class ConnectivityIssue {
     
     private static final String EXCEPTION_CAUSE = "Connection not available";
-    //@Rule public ExpectedException exception = ExpectedException.none();
-    
+
     /**
      * setup a connection failure scenario.
      * @throws SQLException if any error occurs.
@@ -194,8 +193,6 @@ public class DbCustomerDaoTest {
     @BeforeEach
     public void setUp() throws SQLException {
       dao = new DbCustomerDao(mockedDatasource());
-      //exception.expect(Exception.class);
-     //exception.expectMessage(EXCEPTION_CAUSE);
     }
     
     private DataSource mockedDatasource() throws SQLException {
