@@ -37,7 +37,6 @@ public class HeroStat {
 
   // All constructors must be private.
   private HeroStat(int strength, int intelligence, int luck) {
-    super();
     this.strength = strength;
     this.intelligence = intelligence;
     this.luck = luck;

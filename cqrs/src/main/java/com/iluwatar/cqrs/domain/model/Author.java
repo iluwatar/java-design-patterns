@@ -50,7 +50,6 @@ public class Author {
    *          email of the author
    */
   public Author(String username, String name, String email) {
-    super();
     this.username = username;
     this.name = name;
     this.email = email;
