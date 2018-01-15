@@ -56,7 +56,6 @@ public class Author {
   }
 
   protected Author() {
-    super();
   }
 
   public long getId() {

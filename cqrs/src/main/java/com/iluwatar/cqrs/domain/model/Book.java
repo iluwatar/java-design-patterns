@@ -58,7 +58,6 @@ public class Book {
   }
 
   protected Book() {
-    super();
   }
 
   public long getId() {

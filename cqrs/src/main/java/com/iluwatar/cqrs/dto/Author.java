@@ -51,7 +51,6 @@ public class Author {
   }
 
   public Author() {
-    super();
   }
 
   public String getName() {
