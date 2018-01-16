@@ -47,7 +47,6 @@ public class Book {
   }
 
   public Book() {
-    super();
   }
 
   public String getTitle() {
