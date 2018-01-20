@@ -31,6 +31,7 @@
         <groupId>com.iluwatar</groupId>
         <artifactId>java-design-patterns</artifactId>
         <version>1.19.0-SNAPSHOT</version>
+
     </parent>
     <artifactId>trampoline</artifactId>
     <dependencies>
@@ -40,6 +41,18 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
