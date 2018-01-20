@@ -2,13 +2,13 @@ package com.iluwatar.trampoline;
 
 import java.util.stream.Stream;
 
-/**When get is called on the returned Trampoline, internally it will iterate calling ‘jump’
- on the returned Trampoline as long as the concrete instance returned is More,
- stopping once the returned instance is Done. Essential we convert looping via recursion into iteration,
- the key enabling mechanism is the fact that Trampoline.more is a lazy operation.
- Trampoline in cyclops-react extends java.util.Supplier. Calling Trampoline.more we are basically creating
- a Supplier that defers the actual recursive call, and having defered the call we can move it outside of the recursive loop.
- This means we can define algorithms recursively in Java but execute them iteratively.*/
+/**<p>Trampoline pattern allows to define recursive algorithms by iterative loop </p>
+ * <p>When get is called on the returned Trampoline, internally it will iterate calling ‘jump’
+ on the returned Trampoline as long as the concrete instance returned is {@link #more(Trampoline)},
+ stopping once the returned instance is {@link #done(Object)}.</p>
+ <p>Essential we convert looping via recursion into iteration,
+ the key enabling mechanism is the fact that {@link #more(Trampoline)} is a lazy operation.</p>
+*/
 
 public interface Trampoline<T>  {
     T get();
