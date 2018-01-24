@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,17 @@
  */
 package com.iluwatar.threadpool;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Worker implements {@link Runnable} and thus can be executed by {@link ExecutorService}
  *
  */
 public class Worker implements Runnable {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
   private final Task task;
 
@@ -37,8 +42,7 @@ public class Worker implements Runnable {
 
   @Override
   public void run() {
-    System.out.println(String.format("%s processing %s", Thread.currentThread().getName(),
-        task.toString()));
+    LOGGER.info("{} processing {}", Thread.currentThread().getName(), task.toString());
     try {
       Thread.sleep(task.getTimeMs());
     } catch (InterruptedException e) {

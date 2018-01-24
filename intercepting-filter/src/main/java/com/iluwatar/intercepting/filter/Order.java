@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@ public class Order {
   private String contactNumber;
   private String address;
   private String depositNumber;
-  private String order;
+  private String orderItem;
 
   public Order() {}
 
@@ -44,7 +44,7 @@ public class Order {
     this.contactNumber = contactNumber;
     this.address = address;
     this.depositNumber = depositNumber;
-    this.order = order;
+    this.orderItem = order;
   }
 
   public String getName() {
@@ -79,11 +79,11 @@ public class Order {
     this.depositNumber = depositNumber;
   }
 
-  public String getOrder() {
-    return order;
+  public String getOrderItem() {
+    return orderItem;
   }
 
-  public void setOrder(String order) {
-    this.order = order;
+  public void setOrderItem(String order) {
+    this.orderItem = order;
   }
 }

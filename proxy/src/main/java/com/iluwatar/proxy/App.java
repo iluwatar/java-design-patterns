@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ package com.iluwatar.proxy;
  * functionality to the object of interest without changing the object's code.
  * <p>
  * In this example the proxy ({@link WizardTowerProxy}) controls access to the actual object (
- * {@link WizardTower}).
+ * {@link IvoryTower}).
  * 
  */
 public class App {
@@ -45,12 +45,12 @@ public class App {
    */
   public static void main(String[] args) {
 
-    WizardTowerProxy tower = new WizardTowerProxy();
-    tower.enter(new Wizard("Red wizard"));
-    tower.enter(new Wizard("White wizard"));
-    tower.enter(new Wizard("Black wizard"));
-    tower.enter(new Wizard("Green wizard"));
-    tower.enter(new Wizard("Brown wizard"));
+    WizardTowerProxy proxy = new WizardTowerProxy(new IvoryTower());
+    proxy.enter(new Wizard("Red wizard"));
+    proxy.enter(new Wizard("White wizard"));
+    proxy.enter(new Wizard("Black wizard"));
+    proxy.enter(new Wizard("Green wizard"));
+    proxy.enter(new Wizard("Brown wizard"));
 
   }
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.observer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Hobbits
@@ -29,20 +32,22 @@ package com.iluwatar.observer;
  */
 public class Hobbits implements WeatherObserver {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(Hobbits.class);
+
   @Override
   public void update(WeatherType currentWeather) {
     switch (currentWeather) {
       case COLD:
-        System.out.println("The hobbits are shivering in the cold weather.");
+        LOGGER.info("The hobbits are shivering in the cold weather.");
         break;
       case RAINY:
-        System.out.println("The hobbits look for cover from the rain.");
+        LOGGER.info("The hobbits look for cover from the rain.");
         break;
       case SUNNY:
-        System.out.println("The happy hobbits bade in the warm sun.");
+        LOGGER.info("The happy hobbits bade in the warm sun.");
         break;
       case WINDY:
-        System.out.println("The hobbits hold their hats tightly in the windy weather.");
+        LOGGER.info("The hobbits hold their hats tightly in the windy weather.");
         break;
       default:
         break;

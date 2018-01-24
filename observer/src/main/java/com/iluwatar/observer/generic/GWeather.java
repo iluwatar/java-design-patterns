@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,8 @@
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -30,6 +32,8 @@ import com.iluwatar.observer.WeatherType;
  *
  */
 public class GWeather extends Observable<GWeather, Race, WeatherType> {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(GWeather.class);
 
   private WeatherType currentWeather;
 
@@ -43,7 +47,7 @@ public class GWeather extends Observable<GWeather, Race, WeatherType> {
   public void timePasses() {
     WeatherType[] enumValues = WeatherType.values();
     currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
-    System.out.println("The weather changed to " + currentWeather + ".");
+    LOGGER.info("The weather changed to {}.", currentWeather);
     notifyObservers(currentWeather);
   }
 }

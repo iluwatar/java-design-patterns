@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@ package com.iluwatar.eda.framework;
 /**
  * This interface can be implemented to handle different types of messages.
  * Every handler is responsible for a single of type message
+ * @param <E> Handler can handle events of type E
  */
 public interface Handler<E extends Event> {
 

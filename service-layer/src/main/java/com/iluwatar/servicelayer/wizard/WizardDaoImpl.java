@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 
   @Override
   public Wizard findByName(String name) {
-    Session session = getSession();
+    Session session = getSessionFactory().openSession();
     Transaction tx = null;
     Wizard result = null;
     try {

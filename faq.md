@@ -3,7 +3,7 @@ layout: page
 title: FAQ
 permalink: /faq/
 icon: fa-question
-page-index: 1
+page-index: 5
 ---
 
 ### Q1: What is the difference between State and Strategy patterns? {#Q1}
@@ -65,3 +65,11 @@ Flyweight.
 ### Q7: What are the differences between FluentInterface and Builder patterns? {#Q7}
 
 Fluent interfaces are sometimes confused with the Builder pattern, because they share method chaining and a fluent usage. However, fluent interfaces are not primarily used to create shared (mutable) objects, but to configure complex objects without having to respecify the target object on every property change. 
+
+### Q8: What is the difference between java.io.Serialization and Memento pattern? {#Q8}
+
+Memento is typically used to implement rollback/save-point support. Example we might want to mark the state of an object at a point in time, do some work and then decide to rollback to the previous state. 
+
+On the other hand serialization may be used as a tool to save the state of an object into byte[] and preserving the contents in memory or disk. When someone invokes the memento to revert object's previous state then we can deserialize the information stored and recreate previous state. 
+
+So Memento is a pattern and serialization is a tool that can be used to implement this pattern. Other ways to implement the pattern can be to clone the contents of the object and keep track of those clones.

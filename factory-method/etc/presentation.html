@@ -1,0 +1,185 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2017 Rodolfo Forte
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Design Patterns - Factory Method Presentation</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+	  
+	  blockquote {
+		border-left: 0.3em solid rgba(0,0,0,0.5);
+		padding: 0 15px;
+		font-style: italic;
+	  }
+	  
+	  img {
+		max-width:100%;
+	  }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Factory Method
+
+---
+
+# Also known as
+
+* Virtual Constructor
+
+---
+
+# Intent
+
+* Define an interface for creating an object, but let subclasses decide which class to instantiate;
+* Factory Method lets a class defer instantiation to subclasses;
+
+---
+
+# Explanation
+
+* [Wikipedia](https://en.wikipedia.org/wiki/Factory_method_pattern) says:
+  > "In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory method (either specified in an interface and implemented by child classes, or implemented in a base class and optionally overridden by derived classes) rather than by calling a constructor."
+
+* In plain words:
+  * It provides a way to delegate the instantiation logic to child classes; 
+
+---
+
+# Example
+
+* Blacksmith manufactures weapons;
+
+* Elves require Elvish weapons and Orcs require Orcish weapons;
+
+* Depending on the customer at hand, the right type of blacksmith is summoned and, consequently, the right type of weapon;
+
+---
+
+# Programmatic Example
+
+Considering the blacksmith example, we have a blacksmith interface and some implementations for it:
+
+<br />
+
+```
+public interface Blacksmith {
+  Weapon manufactureWeapon(WeaponType weaponType);
+}
+
+public class ElfBlacksmith implements Blacksmith {
+  public Weapon manufactureWeapon(WeaponType weaponType) {
+	return new ElfWeapon(weaponType);
+  }
+}
+
+public class OrcBlacksmith implements Blacksmith {
+  public Weapon manufactureWeapon(WeaponType weaponType) {
+	return new OrcWeapon(weaponType);
+  }
+}
+```
+
+---
+
+# Programmatic Example
+
+Now, as the customers come, the correct type of blacksmith is summoned and weapons are instantiated via the factory method `manufactureWeapon()`:
+
+<br />
+
+```
+Blacksmith blacksmith = new ElfBlacksmith();
+blacksmith.manufactureWeapon(WeaponType.SPEAR);
+blacksmith.manufactureWeapon(WeaponType.AXE);
+// Elvish weapons are created
+```
+
+---
+
+# Diagram
+
+* The diagram below showcases the example:
+
+.center[![Diagram](diagram1.png)]
+
+---
+
+# Applicability
+
+Use the Factory Method pattern when:
+
+* A class can't anticipate the class of objects it must create;
+
+* A class wants its subclasses to specify the objects it creates;
+
+* Classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate;
+
+---
+
+# Real world examples
+
+* [java.util.Calendar](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
+* [java.util.ResourceBundle](http://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
+* [java.text.NumberFormat](http://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html#getInstance--)
+* [java.nio.charset.Charset](http://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html#forName-java.lang.String-)
+* [java.net.URLStreamHandlerFactory](http://docs.oracle.com/javase/8/docs/api/java/net/URLStreamHandlerFactory.html#createURLStreamHandler-java.lang.String-)
+* [java.util.EnumSet](https://docs.oracle.com/javase/8/docs/api/java/util/EnumSet.html#of-E-)
+* [javax.xml.bind.JAXBContext](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/JAXBContext.html#createMarshaller--)
+
+---
+
+# Credits
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
+
+---
+
+# Tutorials
+
+* Source code http://java-design-patterns.com/patterns/factory-method/
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
