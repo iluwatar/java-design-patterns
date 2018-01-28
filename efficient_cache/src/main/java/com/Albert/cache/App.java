@@ -17,7 +17,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package main.java.com.Albert.cache;
+package com.Albert.cache;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;

@@ -1,7 +1,5 @@
-package test.java.com.Albert.cache;
+package com.Albert.cache;
 
-import main.java.com.Albert.cache.BlockHardlyCacheResult;
-import main.java.com.Albert.cache.CacheResult;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.Function;
