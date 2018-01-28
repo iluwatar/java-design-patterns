@@ -3,7 +3,6 @@ layout: pattern
 title: Callback
 folder: callback
 permalink: /patterns/callback/
-pumlid: FSVB4S8m30N0Lg20M7UwUL4qYOciUFGXxSE9s-wp6sjjKgwF8tF6YyXnjxtdKMk5E5-MOjdu6jIrRYIStlXWsIJwRij4fhW53SGFn51TmIT9yZ-jVBHPGxy0
 categories: Other
 tags:
  - Java

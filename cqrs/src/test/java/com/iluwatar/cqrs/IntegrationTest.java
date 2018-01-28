@@ -22,14 +22,8 @@
  */
 package com.iluwatar.cqrs;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.math.BigInteger;
 import java.util.List;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 import com.iluwatar.cqrs.commandes.CommandServiceImpl;
 import com.iluwatar.cqrs.commandes.ICommandService;
@@ -37,6 +31,11 @@ import com.iluwatar.cqrs.dto.Author;
 import com.iluwatar.cqrs.dto.Book;
 import com.iluwatar.cqrs.queries.IQueryService;
 import com.iluwatar.cqrs.queries.QueryServiceImpl;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Integration test of IQueryService and ICommandService with h2 data
@@ -47,14 +46,11 @@ public class IntegrationTest {
   private static IQueryService queryService;
   private static ICommandService commandService;
 
-  @BeforeClass
-  public static void initialize() {
+  @BeforeAll
+  public static void initializeAndPopulateDatabase() {
     commandService = new CommandServiceImpl();
     queryService = new QueryServiceImpl();
-  }
 
-  @BeforeClass
-  public static void populateDatabase() {
     // create first author1
     commandService.authorCreated("username1", "name1", "email1");
 
@@ -94,7 +90,7 @@ public class IntegrationTest {
   public void testGetBook() {
     Book book = queryService.getBook("title1");
     assertEquals("title1", book.getTitle());
-    assertEquals(10, book.getPrice(), 0);
+    assertEquals(10, book.getPrice(), 0.01);
   }
 
   @Test

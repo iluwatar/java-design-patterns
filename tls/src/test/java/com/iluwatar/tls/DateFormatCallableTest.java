@@ -32,10 +32,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * 
@@ -86,7 +87,7 @@ public class DateFormatCallableTest {
   /**
    * Run Callable and prepare results for usage in the test methods
    */
-  @BeforeClass
+  @BeforeAll
   public static void setup() {
     // Create a callable
     DateFormatCallable callableDf = new DateFormatCallable("dd/MM/yyyy", "15/12/2015");

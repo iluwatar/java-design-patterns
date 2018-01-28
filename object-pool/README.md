@@ -3,7 +3,6 @@ layout: pattern
 title: Object Pool
 folder: object-pool
 permalink: /patterns/object-pool/
-pumlid: JSV94SCm2030Lk829Fxf1cF6bWU1XYDkFtdcjxiD9Qc3o-LrPQvu0pW-_HnvrLx1JgR9cfrimf1wCD7XnW-sWsESsXPcicl0nFW1RB-PiYqp0KxwVo-VVTMKBm00
 categories: Creational
 tags:
  - Java

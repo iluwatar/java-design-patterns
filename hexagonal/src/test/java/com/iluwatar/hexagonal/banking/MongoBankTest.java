@@ -24,16 +24,16 @@ package com.iluwatar.hexagonal.banking;
 
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.mongodb.MongoClient;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for Mongo banking adapter
  */
-@Ignore
+@Disabled
 public class MongoBankTest {
 
   private static final String TEST_DB = "lotteryDBTest";
@@ -41,7 +41,7 @@ public class MongoBankTest {
 
   private MongoBank mongoBank;
 
-  @Before
+  @BeforeEach
   public void init() {
     MongoConnectionPropertiesLoader.load();
     MongoClient mongoClient = new MongoClient(System.getProperty("mongo-host"),

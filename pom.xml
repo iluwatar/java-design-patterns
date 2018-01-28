@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.17.0-SNAPSHOT</version>
+    <version>1.19.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2014</inceptionYear>
     <properties>
@@ -32,17 +32,18 @@
         <spring-data.version>1.9.2.RELEASE</spring-data.version>
         <h2.version>1.4.190</h2.version>
         <junit.version>4.12</junit.version>
+        <junit-jupiter.version>5.0.2</junit-jupiter.version>
+        <junit-vintage.version>${junit.version}.2</junit-vintage.version>
+        <junit-platform.version>1.0.2</junit-platform.version>
+        <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
         <compiler.version>3.0</compiler.version>
         <jacoco.version>0.7.2.201409121644</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.16.1</camel.version>
         <guava.version>19.0</guava.version>
-        <systemrules.version>1.15.1</systemrules.version>
         <mockito.version>1.10.19</mockito.version>
-        <hierarchical-junit-runner-version>4.12.1</hierarchical-junit-runner-version>
         <apache-httpcomponents.version>4.5.2</apache-httpcomponents.version>
         <htmlunit.version>2.22</htmlunit.version>
-        <urm.version>1.4.4</urm.version>
         <guice.version>4.0</guice.version>
         <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
         <slf4j.version>1.7.21</slf4j.version>
@@ -145,9 +146,22 @@
         <module>cqrs</module>
         <module>event-sourcing</module>
         <module>data-transfer-object</module>
-    <module>throttling</module>
+        <module>throttling</module>
+
+        <module>unit-of-work</module>
         <module>partial-response</module>
+        <module>eip-wire-tap</module>
+        <module>eip-splitter</module>
+        <module>eip-aggregator</module>
+        <module>retry</module>
     </modules>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -160,11 +174,6 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -214,9 +223,45 @@
                 <version>${camel.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-migrationsupport</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
+                <version>${junit-vintage.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.sbrannen</groupId>
+                <artifactId>spring-test-junit5</artifactId>
+                <version>${sping-test-junit5.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -229,18 +274,6 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.stefanbirkner</groupId>
-                <artifactId>system-rules</artifactId>
-                <version>${systemrules.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>de.bechte.junit</groupId>
-                <artifactId>junit-hierarchicalcontextrunner</artifactId>
-                <version>${hierarchical-junit-runner-version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>net.sourceforge.htmlunit</groupId>
@@ -309,25 +342,6 @@
                                         <ignore/>
                                     </action>
                                 </pluginExecution>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>
-                                            com.github.markusmo3.urm
-                                        </groupId>
-                                        <artifactId>
-                                            urm-maven-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [1.4.1,)
-                                        </versionRange>
-                                        <goals>
-                                            <goal>map</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore/>
-                                    </action>
-                                </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>
@@ -388,12 +402,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>2.19.1</version>
                 <dependencies>
                     <dependency>
-                        <groupId>org.apache.maven.surefire</groupId>
-                        <artifactId>surefire-junit47</artifactId>
-                        <version>2.18.1</version>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>${junit-platform.version}</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -441,43 +455,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.github.markusmo3.urm</groupId>
-                <artifactId>urm-maven-plugin</artifactId>
-                <version>${urm.version}</version>
-                <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>map</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <outputDirectory>${project.basedir}/etc</outputDirectory>
-                    <packages>
-                        <param>com.iluwatar</param>
-                    </packages>
-                    <skipForProjects>
-                        <!-- skip for parent project -->
-                        <param>java-design-patterns</param>
-                        <param>singleton</param>
-                        <param>factory-method</param>
-                        <param>abstract-factory</param>
-                        <param>builder</param>
-                        <param>prototype</param>
-                        <param>adapter</param>
-                        <param>bridge</param>
-                        <param>composite</param>
-                        <param>decorator</param>
-                        <param>facade</param>
-                        <param>flyweight</param>
-                        <param>proxy</param>
-                        <param>chain</param>
-                    </skipForProjects>
-                </configuration>
             </plugin>
         </plugins>
     </build>

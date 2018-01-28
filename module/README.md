@@ -3,7 +3,6 @@ layout: pattern
 title: Module
 folder: module
 permalink: /patterns/module/
-pumlid: JShB3OGm303HLg20nFVjnYGM1CN6ycTfVtFSsnjfzY5jPgUqkLqHwXy0mxUU8wuyqidQ8q4IjJqCO-QBWGOtVh5qyd5AKOmW4mT6Nu2-ZiAekapH_hkcSTNa-GC0
 categories: Creational Pattern
 tags:
  - Java

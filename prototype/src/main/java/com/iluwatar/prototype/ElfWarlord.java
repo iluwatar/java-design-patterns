@@ -29,16 +29,24 @@ package com.iluwatar.prototype;
  */
 public class ElfWarlord extends Warlord {
 
-  public ElfWarlord() {}
+  private String helpType;
+  
+  public ElfWarlord(String helpType) {
+    this.helpType = helpType;
+  }
+
+  public ElfWarlord(ElfWarlord elfWarlord) {
+    this.helpType = elfWarlord.helpType;
+  }
 
   @Override
-  public Warlord clone() throws CloneNotSupportedException {
-    return new ElfWarlord();
+  public ElfWarlord copy() throws CloneNotSupportedException {
+    return new ElfWarlord(this);
   }
 
   @Override
   public String toString() {
-    return "Elven warlord";
+    return "Elven warlord helps in " + helpType;
   }
 
 }

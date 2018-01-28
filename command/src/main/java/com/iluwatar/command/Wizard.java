@@ -40,7 +40,9 @@ public class Wizard {
   private Deque<Command> undoStack = new LinkedList<>();
   private Deque<Command> redoStack = new LinkedList<>();
 
-  public Wizard() {}
+  public Wizard() {
+    // comment to ignore sonar issue: LEVEL critical
+  }
 
   /**
    * Cast spell

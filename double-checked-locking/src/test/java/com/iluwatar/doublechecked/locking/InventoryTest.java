@@ -25,9 +25,9 @@ package com.iluwatar.doublechecked.locking;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
@@ -36,9 +36,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Date: 12/10/15 - 9:34 PM
@@ -49,12 +51,12 @@ public class InventoryTest {
 
   private InMemoryAppender appender;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     appender = new InMemoryAppender(Inventory.class);
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     appender.stop();
   }
@@ -76,32 +78,34 @@ public class InventoryTest {
    * of order, it means that the locking is not ok, increasing the risk of going over the inventory
    * item limit.
    */
-  @Test(timeout = 10000)
+  @Test
   public void testAddItem() throws Exception {
-    // Create a new inventory with a limit of 1000 items and put some load on the add method
-    final Inventory inventory = new Inventory(INVENTORY_SIZE);
-    final ExecutorService executorService = Executors.newFixedThreadPool(THREAD_COUNT);
-    for (int i = 0; i < THREAD_COUNT; i++) {
-      executorService.execute(() -> {
-        while (inventory.addItem(new Item())) {};
-      });
-    }
+    assertTimeout(ofMillis(10000), () -> {
+      // Create a new inventory with a limit of 1000 items and put some load on the add method
+      final Inventory inventory = new Inventory(INVENTORY_SIZE);
+      final ExecutorService executorService = Executors.newFixedThreadPool(THREAD_COUNT);
+      for (int i = 0; i < THREAD_COUNT; i++) {
+        executorService.execute(() -> {
+          while (inventory.addItem(new Item())) {};
+        });
+      }
 
-    // Wait until all threads have finished
-    executorService.shutdown();
-    executorService.awaitTermination(5, TimeUnit.SECONDS);
+      // Wait until all threads have finished
+      executorService.shutdown();
+      executorService.awaitTermination(5, TimeUnit.SECONDS);
 
-    // Check the number of items in the inventory. It should not have exceeded the allowed maximum
-    final List<Item> items = inventory.getItems();
-    assertNotNull(items);
-    assertEquals(INVENTORY_SIZE, items.size());
+      // Check the number of items in the inventory. It should not have exceeded the allowed maximum
+      final List<Item> items = inventory.getItems();
+      assertNotNull(items);
+      assertEquals(INVENTORY_SIZE, items.size());
 
-    assertEquals(INVENTORY_SIZE, appender.getLogSize());
+      assertEquals(INVENTORY_SIZE, appender.getLogSize());
 
-    // ... and check if the inventory size is increasing continuously
-    for (int i = 0; i < items.size(); i++) {
-      assertTrue(appender.log.get(i).getFormattedMessage().contains("items.size()=" + (i + 1)));
-    }
+      // ... and check if the inventory size is increasing continuously
+      for (int i = 0; i < items.size(); i++) {
+        assertTrue(appender.log.get(i).getFormattedMessage().contains("items.size()=" + (i + 1)));
+      }
+    });
   }
 
 

@@ -22,15 +22,15 @@
  */
 package com.iluwatar.composite;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Date: 12/11/15 - 8:12 PM
@@ -52,7 +52,7 @@ public class MessengerTest {
   /**
    * Inject the mocked std-out {@link PrintStream} into the {@link System} class before each test
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     this.stdOutBuffer = new ByteArrayOutputStream();
     System.setOut(new PrintStream(stdOutBuffer));
@@ -61,7 +61,7 @@ public class MessengerTest {
   /**
    * Removed the mocked std-out {@link PrintStream} again from the {@link System} class
    */
-  @After
+  @AfterEach
   public void tearDown() {
     System.setOut(realStdOut);
   }

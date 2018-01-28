@@ -22,10 +22,11 @@
  */
 package com.iluwatar.bridge;
 
-import static org.junit.Assert.assertNotNull;
+import org.junit.jupiter.api.Disabled;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 /**
  * Base class for weapon tests
@@ -44,15 +45,15 @@ public abstract class WeaponTest {
     assertNotNull(weapon.getEnchantment());
 
     weapon.swing();
-    verify(enchantment, times(1)).apply();
+    verify(enchantment).apply();
     verifyNoMoreInteractions(enchantment);
 
     weapon.wield();
-    verify(enchantment, times(1)).onActivate();
+    verify(enchantment).onActivate();
     verifyNoMoreInteractions(enchantment);
 
     weapon.unwield();
-    verify(enchantment, times(1)).onDeactivate();
+    verify(enchantment).onDeactivate();
     verifyNoMoreInteractions(enchantment);
 
   }

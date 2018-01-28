@@ -22,13 +22,13 @@
  */
 package com.iluwatar.pageobject;
 
-import static org.junit.Assert.assertTrue;
-
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.iluwatar.pageobject.pages.AlbumListPage;
 import com.iluwatar.pageobject.pages.LoginPage;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test Login Page Object
@@ -37,7 +37,7 @@ public class LoginPageTest {
 
   private LoginPage loginPage = new LoginPage(new WebClient());
 
-  @Before
+  @BeforeEach
   public void setUp() {
     loginPage.navigateToPage();
   }

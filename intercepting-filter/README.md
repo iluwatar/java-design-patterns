@@ -3,7 +3,6 @@ layout: pattern
 title: Intercepting Filter
 folder: intercepting-filter
 permalink: /patterns/intercepting-filter/
-pumlid: RSfB3i8m303Hgy014k-vZN5DQkIuaJ_q-fGzkz7JtCL8Q-DolUsPAnu0ZcSVadizAzZfi6JBJiS4qJenqU6D7smRXmnh2pFPBM1YN05o_KwyKcoqb-ZFEEcVz_BPLqtz0W00
 categories: Behavioral
 tags:
  - Java

@@ -3,7 +3,6 @@ layout: pattern
 title: Decorator
 folder: decorator
 permalink: /patterns/decorator/
-pumlid: HSV14SCm20J0Lk82BFxf1YF6LaP26ZZizfDVVhjRC-bPDRs_Bc35cyZvAMV3bKU6kao36ehCGQtdms2d3z-yLursshuOKBUWmV43LPNfZEcaaFzA-YWhH_y2
 categories: Structural
 tags:
  - Java
@@ -35,7 +34,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Lets take the troll example. First of all we have a simple troll implementing the troll interface
+Let's take the troll example. First of all we have a simple troll implementing the troll interface
 
 ```
 public interface Troll {

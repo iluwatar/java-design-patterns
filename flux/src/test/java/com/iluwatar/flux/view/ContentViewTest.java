@@ -24,7 +24,7 @@ package com.iluwatar.flux.view;
 
 import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.store.ContentStore;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;

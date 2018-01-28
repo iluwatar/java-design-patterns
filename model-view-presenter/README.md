@@ -3,7 +3,6 @@ layout: pattern
 title: Model-View-Presenter
 folder: model-view-presenter
 permalink: /patterns/model-view-presenter/
-pumlid: ROlR3SGW3C1MkGu0-RzjKeXQJWcWFChwPO3xispvQBrmL0hbp-q-xGkWkFBL_8upZBICxjGzbo7GE1OwAlpmmLJ9sjNJH7VIRY1e6q169KvFevMcakrtI_BoD-HGoJE4Nm00
 categories: Presentation Tier
 tags:
  - Java

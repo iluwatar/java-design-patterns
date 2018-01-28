@@ -30,7 +30,6 @@ package com.iluwatar.event.aggregator;
 public class LordBaelish extends EventEmitter {
 
   public LordBaelish() {
-    super();
   }
 
   public LordBaelish(EventObserver obs) {

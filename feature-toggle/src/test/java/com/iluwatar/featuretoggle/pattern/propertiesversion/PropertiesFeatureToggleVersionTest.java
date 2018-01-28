@@ -23,30 +23,36 @@
 
 package com.iluwatar.featuretoggle.pattern.propertiesversion;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import com.iluwatar.featuretoggle.pattern.Service;
 import com.iluwatar.featuretoggle.user.User;
+import org.junit.jupiter.api.Test;
+
 import java.util.Properties;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test Properties Toggle
  */
 public class PropertiesFeatureToggleVersionTest {
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testNullPropertiesPassed() throws Exception {
-    new PropertiesFeatureToggleVersion(null);
+    assertThrows(IllegalArgumentException.class, () -> {
+      new PropertiesFeatureToggleVersion(null);
+    });
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testNonBooleanProperty() throws Exception {
-    final Properties properties = new Properties();
-    properties.setProperty("enhancedWelcome", "Something");
-    new PropertiesFeatureToggleVersion(properties);
+    assertThrows(IllegalArgumentException.class, () -> {
+      final Properties properties = new Properties();
+      properties.setProperty("enhancedWelcome", "Something");
+      new PropertiesFeatureToggleVersion(properties);
+    });
   }
 
   @Test

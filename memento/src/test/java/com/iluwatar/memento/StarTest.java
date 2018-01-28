@@ -22,9 +22,9 @@
  */
 package com.iluwatar.memento;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/20/15 - 10:08 AM

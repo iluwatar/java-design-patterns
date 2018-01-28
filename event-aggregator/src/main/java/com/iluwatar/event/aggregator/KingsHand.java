@@ -30,7 +30,6 @@ package com.iluwatar.event.aggregator;
 public class KingsHand extends EventEmitter implements EventObserver {
 
   public KingsHand() {
-    super();
   }
 
   public KingsHand(EventObserver obs) {

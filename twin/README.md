@@ -3,7 +3,6 @@ layout: pattern
 title: Twin
 folder: twin
 permalink: /patterns/twin/
-pumlid: 7SR13OCm30NGLUW0n7UsCS42eyH4zdUpFbNVwNtKQij3qjjo0ICs8kTPJiMLUuPuVGnYAFNff2qdWvrk_l9wIEXfws10t88wno-4gKQ2-az9xsLaRoy0
 categories: Creational
 tags:
  - Java

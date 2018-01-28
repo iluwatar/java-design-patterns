@@ -29,7 +29,7 @@ package com.iluwatar.command;
  */
 public enum Visibility {
 
-  VISIBLE("visible"), INVISIBLE("invisible"), UNDEFINED("");
+  VISIBLE("visible"), INVISIBLE("invisible");
 
   private String title;
 

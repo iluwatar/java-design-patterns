@@ -22,7 +22,8 @@
  */
 package com.iluwatar.fluentinterface.app;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 /**
  * Application Test Entry
  */

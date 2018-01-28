@@ -41,10 +41,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    Converter<UserDto, User> userConverter = new Converter<>(
-        userDto -> new User(userDto.getFirstName(), userDto.getLastName(), userDto.isActive(),
-          userDto.getEmail()),
-        user -> new UserDto(user.getFirstName(), user.getLastName(), user.isActive(), user.getUserId()));
+    Converter<UserDto, User> userConverter = new UserConverter();
 
     UserDto dtoUser = new UserDto("John", "Doe", true, "whatever[at]wherever.com");
     User user = userConverter.convertFromDto(dtoUser);
