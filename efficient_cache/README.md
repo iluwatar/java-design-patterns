@@ -14,14 +14,14 @@ when need a result, the result is taken immediately if it has already been calcu
 - You do not want to lock when saving results
 
 ## Tutorials
-First you should new a entity class of CacheResult.
+First you should new a entity class of Compute.
 ```` java
 //java 1.8
-CacheResult<Long, Long> cacheResult = BlockHardlyCacheResult.<Long, Long>createNeedComputeFunction(key -> key += 1);
+Compute<Long, Long> compute = EfficientCacheCompute.<Long, Long>createNeedComputeFunction(key -> key += 1);
 ````
 ```` java
 //java 1.7
-CacheResult<Long, Long> cacheResult = BlockHardlyCacheResult.<Long, Long>createNeedComputeFunction(new Function<Long, Long>() {
+Compute<Long, Long> compute = EfficientCacheCompute.<Long, Long>createNeedComputeFunction(new Function<Long, Long>() {
     @Override
     public Long apply(Long key) {
         key += 1;
@@ -32,6 +32,6 @@ CacheResult<Long, Long> cacheResult = BlockHardlyCacheResult.<Long, Long>createN
 Second, each call to the compute method begins
 ```` java
 long key = 12;
-long result = cacheResult.compute(key);
+long result = compute.compute(key);
 ````
 You can also specify any type of object as KeyT and ResultT to make sure your algorithm is more flexible.

@@ -19,9 +19,6 @@
  */
 package com.Albert.cache;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.function.Function;
 
 /**
@@ -30,22 +27,14 @@ import java.util.function.Function;
  */
 public class App {
     public static void main(String[] args) {
+        Compute<Long, Long> compute = EfficientCacheCompute.<Long, Long>createNeedComputeFunction(get_A_TestComputeMethod());
+        System.out.println("--------start the first task of many compute--------");
+        long firstCostTime = getComputeTime(compute);
+        System.out.println("This is not use cache time: " + firstCostTime + " ns");
 
-        CacheResult<Long, Long> cacheResult = BlockHardlyCacheResult.<Long, Long>createNeedComputeFunction(get_A_TestComputeMethod());
-
-        final CountDownLatch firstComputesStartControl = new CountDownLatch(1);
-        final CountDownLatch firstComputesEndMark = new CountDownLatch(1);
-        final CountDownLatch secondComputesStartControl = new CountDownLatch(1);
-        final CountDownLatch secondComputesEndMark = new CountDownLatch(1);
-
-        final long computeFromOneUntilThisValue = 100000L;
-        final ExecutorService executor = Executors.newFixedThreadPool(1);
-        executor.execute(runManyComputeAndStartTimeIsControlled(cacheResult, firstComputesStartControl, firstComputesEndMark, computeFromOneUntilThisValue));
-        getFirstExecuteTime(firstComputesStartControl, firstComputesEndMark);
-
-        executor.execute(runManyComputeAndStartTimeIsControlled(cacheResult, secondComputesStartControl, secondComputesEndMark, computeFromOneUntilThisValue));
-        getSecondExecuteTime(secondComputesStartControl, secondComputesEndMark);
-        executor.shutdown();
+        System.out.println("--------start the second task of many compute--------");
+        long secondCostTime = getComputeTime(compute);
+        System.out.println("This is use cache time: " + secondCostTime + " ns");
     }
 
     private static Function<Long, Long> get_A_TestComputeMethod() {
@@ -58,46 +47,17 @@ public class App {
         };
     }
 
-    private static void getSecondExecuteTime(CountDownLatch startGate2, CountDownLatch endGate2) {
-        long startTime2 = System.nanoTime();
-        startGate2.countDown();
-        try {
-            endGate2.await();
-        } catch (InterruptedException e) {
-            System.out.println("error........");
-            e.printStackTrace();
-        } finally {
-            long endTime2 = System.nanoTime();
-            System.out.println("This is use cache time: " + (endTime2 - startTime2) + " ns");
-        }
-    }
-
-    private static void getFirstExecuteTime(CountDownLatch startGate1, CountDownLatch endGate1) {
+    private static long getComputeTime(Compute compute) {
         long startTime = System.nanoTime();
-        startGate1.countDown();
-        try {
-            endGate1.await();
-        } catch (InterruptedException e) {
-            System.out.println("error........");
-            e.printStackTrace();
-        } finally {
-            long endTime = System.nanoTime();
-            System.out.println("This is not use cache time: " + (endTime - startTime) + " ns");
-        }
+        App.toComputeVeryMuch(compute);
+        long endTime = System.nanoTime();
+        return endTime - startTime;
     }
 
-    private static Runnable runManyComputeAndStartTimeIsControlled(CacheResult<Long, Long> cacheResult, CountDownLatch startGate2, CountDownLatch endGate2, long computeFromOneUntilThis) {
-        return () -> {
-            try {
-                startGate2.await();
-                for(long i = 1; i <= computeFromOneUntilThis; i++) {
-                    cacheResult.compute(i);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                endGate2.countDown();
-            }
-        };
+    private static void toComputeVeryMuch(Compute compute) {
+        long computeFromOneUntilThis = 100000L;
+        for(long i = 1; i <= computeFromOneUntilThis; i++) {
+            compute.compute(i);
+        }
     }
 }

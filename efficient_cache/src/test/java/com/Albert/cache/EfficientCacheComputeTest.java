@@ -6,14 +6,14 @@ import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BlockHardlyCacheResultTest {
+class EfficientCacheComputeTest {
 
     @Test
     public void testSuccessfulCompute() {
-        CacheResult<Integer, Integer> cacheResult = BlockHardlyCacheResult.<Integer, Integer>createNeedComputeFunction(get_A_TestComputeMethod());
+        Compute<Integer, Integer> compute = EfficientCacheCompute.<Integer, Integer>createNeedComputeFunction(get_A_TestComputeMethod());
         final int key = 1;
         final int realityValue = 2;
-        int assertValue = cacheResult.compute(1);
+        int assertValue = compute.compute(1);
         assertEquals(assertValue, realityValue);
     }
 
