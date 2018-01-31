@@ -57,21 +57,9 @@ public class EfficientCacheCompute<ResultT, KeyT> implements Compute<ResultT, Ke
     }
 
     private Future<ResultT> tryPutFutureToCacheAndRunCompute(KeyT keyT) {
-        Message message_of_putToCacheResult;
-        message_of_putToCacheResult = tryPutFutureToCache(keyT);
-        return getFutureFromCacheAndRunComputeIfNecessary(message_of_putToCacheResult);
-    }
-
-    private ResultT getResultT(Future<ResultT> resultTFuture) {
-        ResultT resultT = null;
-        try {
-            resultT = resultTFuture.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        return resultT;
+        Message resultMessage_of_putToCache;
+        resultMessage_of_putToCache = tryPutFutureToCache(keyT);
+        return getFutureFromCacheAndRunComputeIfNecessary(resultMessage_of_putToCache);
     }
 
     private Message tryPutFutureToCache(KeyT keyT) {
@@ -92,6 +80,18 @@ public class EfficientCacheCompute<ResultT, KeyT> implements Compute<ResultT, Ke
 
     private boolean isPutSuccess(Message message) {
         return message.putResult == null;
+    }
+
+    private ResultT getResultT(Future<ResultT> resultTFuture) {
+        ResultT resultT = null;
+        try {
+            resultT = resultTFuture.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return resultT;
     }
 
     private class Message {
