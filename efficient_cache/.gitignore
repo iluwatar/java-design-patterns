@@ -1,0 +1,20 @@
+target
+.metadata
+.settings
+.classpath
+.project
+*.class
+# Package Files #
+*.jar
+*.war
+*.ear
+.idea
+*.iml
+*.swp
+datanucleus.log
+/bin/
+/bin/
+/bin/
+*.log
+data-mapper/src/main/resources/log4j.xml
+event-sourcing/Journal.json
