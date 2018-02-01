@@ -41,12 +41,12 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 public class PrototypeTest<P extends Prototype> {
   static Collection<Object[]> dataProvider() {
     return Arrays.asList(
-            new Object[]{new OrcBeast(), "Orcish wolf"},
-            new Object[]{new OrcMage(), "Orcish mage"},
-            new Object[]{new OrcWarlord(), "Orcish warlord"},
-            new Object[]{new ElfBeast(), "Elven eagle"},
-            new Object[]{new ElfMage(), "Elven mage"},
-            new Object[]{new ElfWarlord(), "Elven warlord"}
+            new Object[]{new OrcBeast("axe"), "Orcish wolf attacks with axe"},
+            new Object[]{new OrcMage("sword"), "Orcish mage attacks with sword"},
+            new Object[]{new OrcWarlord("laser"), "Orcish warlord attacks with laser"},
+            new Object[]{new ElfBeast("cooking"), "Elven eagle helps in cooking"},
+            new Object[]{new ElfMage("cleaning"), "Elven mage helps in cleaning"},
+            new Object[]{new ElfWarlord("protecting"), "Elven warlord helps in protecting"}
     );
   }
 
@@ -55,7 +55,7 @@ public class PrototypeTest<P extends Prototype> {
   public void testPrototype(P testedPrototype, String expectedToString) throws Exception {
     assertEquals(expectedToString, testedPrototype.toString());
 
-    final Object clone = testedPrototype.clone();
+    final Object clone = testedPrototype.copy();
     assertNotNull(clone);
     assertNotSame(clone, testedPrototype);
     assertSame(testedPrototype.getClass(), clone.getClass());
