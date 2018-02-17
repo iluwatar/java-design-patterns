@@ -36,7 +36,10 @@ public class OrcKing {
   }
 
   private void buildChain() {
-    chain = new OrcCommander(new OrcOfficer(new OrcSoldier(null)));
+    chain = new OrcCommander(
+              RequestType.DEFEND_CASTLE, 
+              new OrcOfficer(RequestType.TORTURE_PRISONER, new OrcSoldier(RequestType.COLLECT_TAX,null))
+             );
   }
 
   public void makeRequest(Request req) {

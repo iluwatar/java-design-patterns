@@ -31,6 +31,44 @@ import java.util.List;
  * 
  */
 public class TreasureChest {
+    
+  private class TreasureChestItemIterator implements ItemIterator {
+
+    private static final int START_IDX = -1;
+    private int idx;
+    private ItemType type;
+
+    /**
+     * Constructor
+     */
+    TreasureChestItemIterator(ItemType type) {
+      this.type = type;
+      this.idx = START_IDX;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return findNextIdx() != START_IDX;
+    }
+
+    @Override
+    public Item next() {
+      idx = findNextIdx();
+      if (idx != START_IDX) {
+        return items.get(idx);
+      }
+      return null;
+    }
+
+    private int findNextIdx() {
+      for (int tempIdx = idx; ++tempIdx < items.size();) {
+        if (type == items.get(tempIdx).getType()) {
+          return tempIdx;
+        }
+      }
+      return START_IDX;
+    }
+  }
 
   private List<Item> items;
 
@@ -52,7 +90,7 @@ public class TreasureChest {
   }
 
   ItemIterator iterator(ItemType itemType) {
-    return new TreasureChestItemIterator(this, itemType);
+    return new TreasureChestItemIterator(itemType);
   }
 
   /**

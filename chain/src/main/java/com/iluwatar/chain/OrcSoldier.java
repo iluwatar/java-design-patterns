@@ -29,18 +29,8 @@ package com.iluwatar.chain;
  */
 public class OrcSoldier extends RequestHandler {
 
-  public OrcSoldier(RequestHandler handler) {
-    super(handler);
-  }
-
-  @Override
-  public void handleRequest(Request req) {
-    if (req.getRequestType().equals(RequestType.COLLECT_TAX)) {
-      printHandling(req);
-      req.markHandled();
-    } else {
-      super.handleRequest(req);
-    }
+  public OrcSoldier(RequestType requestType, RequestHandler handler) {
+    super(requestType, handler);
   }
 
   @Override
