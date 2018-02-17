@@ -125,9 +125,9 @@ public class AppConfig {
 
     // Print all records
     List<Person> persons = (List<Person>) repository.findAll();
-    for (Person person : persons) {
+    persons.forEach(person -> {
       LOGGER.info(person.toString());
-    }
+    });
 
     // Update Person
     nasta.setName("Barbora");
@@ -150,12 +150,11 @@ public class AppConfig {
     persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));
 
     LOGGER.info("Find Person with age between 20,40: ");
-    for (Person person : persons) {
+    persons.forEach(person -> {
       LOGGER.info(person.toString());
-    }
+    });
 
     context.close();
 
   }
-
 }

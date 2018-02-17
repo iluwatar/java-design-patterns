@@ -169,10 +169,11 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   public Map<LotteryTicketId, LotteryTicket> findAll() {
     Map<LotteryTicketId, LotteryTicket> map = new HashMap<>();
     List<Document> docs = ticketsCollection.find(new Document()).into(new ArrayList<Document>());
-    for (Document doc: docs) {
-      LotteryTicket lotteryTicket = docToTicket(doc);
+    docs.stream()
+    .map(lotteryTicket -> docToTicket(doc))
+    .forEach(lotteryTicket -> {
       map.put(lotteryTicket.getId(), lotteryTicket);
-    }
+    });
     return map;
   }
 

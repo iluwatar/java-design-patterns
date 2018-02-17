@@ -45,12 +45,11 @@ public class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
   public void testFindByName() throws Exception {
     final SpellDaoImpl dao = getDao();
     final List<Spell> allSpells = dao.findAll();
-    for (final Spell spell : allSpells) {
+    allSpells.forEach(spell -> {
       final Spell spellByName = dao.findByName(spell.getName());
       assertNotNull(spellByName);
       assertEquals(spell.getId(), spellByName.getId());
       assertEquals(spell.getName(), spellByName.getName());
-    }
+    });
   }
-
 }

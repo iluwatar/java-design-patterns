@@ -45,12 +45,11 @@ public class SpellbookDaoImplTest extends BaseDaoTest<Spellbook, SpellbookDaoImp
   public void testFindByName() throws Exception {
     final SpellbookDaoImpl dao = getDao();
     final List<Spellbook> allBooks = dao.findAll();
-    for (final Spellbook book : allBooks) {
+    allBooks.forEach(book -> {
       final Spellbook spellByName = dao.findByName(book.getName());
       assertNotNull(spellByName);
       assertEquals(book.getId(), spellByName.getId());
       assertEquals(book.getName(), spellByName.getName());
-    }
+    });
   }
-
 }

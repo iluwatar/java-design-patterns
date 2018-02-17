@@ -48,9 +48,9 @@ public abstract class EventEmitter {
   }
 
   protected void notifyObservers(Event e) {
-    for (EventObserver obs : observers) {
+    observers.forEach(obs -> {
       obs.onEvent(e);
-    }
+    });
   }
 
   public abstract void timePasses(Weekday day);

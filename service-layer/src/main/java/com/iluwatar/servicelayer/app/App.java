@@ -203,8 +203,8 @@ public class App {
     }
     LOGGER.info("Find wizards with spell 'Fireball'");
     List<Wizard> wizardsWithSpell = service.findWizardsWithSpell("Fireball");
-    for (Wizard w : wizardsWithSpell) {
+    wizardsWithSpell.forEach(w -> {
       LOGGER.info("{} has 'Fireball'", w.getName());
-    }
+    });
   }
 }

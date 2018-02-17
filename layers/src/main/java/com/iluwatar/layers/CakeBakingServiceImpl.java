@@ -81,10 +81,12 @@ public class CakeBakingServiceImpl implements CakeBakingService {
     topping.setCake(cake);
     toppingBean.save(topping);
     CakeLayerDao layerBean = context.getBean(CakeLayerDao.class);
-    for (CakeLayer layer : foundLayers) {
+    foundLayers.stream().map(layer -> {
       layer.setCake(cake);
+      return layer;
+    }).forEach(layer -> {
       layerBean.save(layer);
-    }
+    });
   }
 
   @Override

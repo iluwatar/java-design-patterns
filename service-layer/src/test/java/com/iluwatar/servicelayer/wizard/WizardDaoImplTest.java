@@ -45,12 +45,11 @@ public class WizardDaoImplTest extends BaseDaoTest<Wizard, WizardDaoImpl> {
   public void testFindByName() throws Exception {
     final WizardDaoImpl dao = getDao();
     final List<Wizard> allWizards = dao.findAll();
-    for (final Wizard spell : allWizards) {
+    allWizards.forEach(spell -> {
       final Wizard byName = dao.findByName(spell.getName());
       assertNotNull(byName);
       assertEquals(spell.getId(), byName.getId());
       assertEquals(spell.getName(), byName.getName());
-    }
+    });
   }
-
 }
