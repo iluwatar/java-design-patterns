@@ -154,7 +154,8 @@
         <module>eip-splitter</module>
         <module>eip-aggregator</module>
         <module>retry</module>
-    </modules>
+    	<module>dirty-flag</module>
+  </modules>
 
     <repositories>
         <repository>
