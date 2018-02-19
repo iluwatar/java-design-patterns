@@ -28,7 +28,7 @@ import java.nio.channels.SelectionKey;
  * Represents the event dispatching strategy. When {@link NioReactor} senses any event on the
  * registered {@link AbstractNioChannel}s then it de-multiplexes the event type, read or write or
  * connect, and then calls the {@link Dispatcher} to dispatch the read events. This decouples the
- * I/O processing from application specific processing. <br/>
+ * I/O processing from application specific processing. <br>
  * Dispatcher should call the {@link ChannelHandler} associated with the channel on which event
  * occurred.
  * 

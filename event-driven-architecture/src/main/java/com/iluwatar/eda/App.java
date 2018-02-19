@@ -33,7 +33,7 @@ import com.iluwatar.eda.model.User;
 /**
  * An event-driven architecture (EDA) is a framework that orchestrates behavior around the
  * production, detection and consumption of events as well as the responses they evoke. An event is
- * any identifiable occurrence that has significance for system hardware or software. <p/> The
+ * any identifiable occurrence that has significance for system hardware or software. <p> The
  * example below uses an {@link EventDispatcher} to link/register {@link Event} objects to their
  * respective handlers once an {@link Event} is dispatched, it's respective handler is invoked and
  * the {@link Event} is handled accordingly.

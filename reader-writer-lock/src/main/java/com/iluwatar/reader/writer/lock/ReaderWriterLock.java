@@ -50,9 +50,9 @@ public class ReaderWriterLock implements ReadWriteLock {
   /**
    * Global mutex is used to indicate that whether reader or writer gets the lock in the moment.
    * <p>
-   * 1. When it contains the reference of {@link readerLock}, it means that the lock is acquired by the reader, another
+   * 1. When it contains the reference of {@link #readerLock}, it means that the lock is acquired by the reader, another
    * reader can also do the read operation concurrently. <br>
-   * 2. When it contains the reference of reference of {@link writerLock}, it means that the lock is acquired by the
+   * 2. When it contains the reference of reference of {@link #writerLock}, it means that the lock is acquired by the
    * writer exclusively, no more reader or writer can get the lock.
    * <p>
    * This is the most important field in this class to control the access for reader/writer.

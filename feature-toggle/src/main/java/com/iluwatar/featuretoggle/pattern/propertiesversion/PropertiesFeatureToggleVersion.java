@@ -91,7 +91,7 @@ public class PropertiesFeatureToggleVersion implements Service {
    * see the value of the boolean that was set in the constructor
    * {@link PropertiesFeatureToggleVersion#PropertiesFeatureToggleVersion(Properties)}
    *
-   * @return Boolean value {@value true} if enhanced.
+   * @return Boolean value {@code true} if enhanced.
    */
   @Override
   public boolean isEnhanced() {

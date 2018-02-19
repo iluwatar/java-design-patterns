@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Generic observer inspired by Java Generics and Collection by Naftalin & Wadler
+ * Generic observer inspired by Java Generics and Collection by {@literal Naftalin & Wadler}
  *
  * @param <S> Subject
  * @param <O> Observer
