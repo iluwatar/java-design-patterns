@@ -27,9 +27,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  *
  * This application demonstrates the <b>Dirty Flag</b> pattern. The dirty flag behavioral pattern allows you to avoid
@@ -51,9 +48,6 @@ import org.slf4j.LoggerFactory;
  * when needed. {@link World} mainly serves the data to the front-end.
  */
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
   /**
    * Program execution point
    */
