@@ -24,7 +24,7 @@ package org.dirty.flag;
 
 import java.io.IOException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.iluwatar.dirtyflag.App;
 

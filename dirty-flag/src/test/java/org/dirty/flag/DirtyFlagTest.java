@@ -22,13 +22,13 @@
  */
 package org.dirty.flag;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Field;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.iluwatar.dirtyflag.DataFetcher;
 
@@ -39,7 +39,7 @@ import com.iluwatar.dirtyflag.DataFetcher;
  */
 public class DirtyFlagTest {
 
-  @Before
+  @BeforeEach
   public void reset() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
     Field instance = DataFetcher.class.getDeclaredField("df");
     instance.setAccessible(true);
