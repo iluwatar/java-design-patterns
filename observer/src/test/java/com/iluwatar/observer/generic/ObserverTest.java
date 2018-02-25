@@ -26,9 +26,11 @@ import com.iluwatar.observer.WeatherType;
 import com.iluwatar.observer.utils.InMemoryAppender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Collection;
 import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,6 +41,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @param <O> Type of Observer
  * @author Jeroen Meulemeester
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class ObserverTest<O extends Observer> {
 
   private InMemoryAppender appender;
@@ -66,6 +69,8 @@ public abstract class ObserverTest<O extends Observer> {
   ObserverTest(final Supplier<O> factory) {
     this.factory = factory;
   }
+
+  public abstract Collection<Object[]> dataProvider();
 
   /**
    * Verify if the weather has the expected influence on the observer
