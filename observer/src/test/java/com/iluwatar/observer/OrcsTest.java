@@ -33,7 +33,8 @@ import java.util.List;
  */
 public class OrcsTest extends WeatherObserverTest<Orcs> {
 
-  static Collection<Object[]> dataProvider() {
+  @Override
+  public Collection<Object[]> dataProvider() {
     final List<Object[]> testData = new ArrayList<>();
     testData.add(new Object[]{WeatherType.SUNNY, "The sun hurts the orcs' eyes."});
     testData.add(new Object[]{WeatherType.RAINY, "The orcs are dripping wet."});

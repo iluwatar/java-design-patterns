@@ -188,6 +188,9 @@ Use the Bridge pattern when
 * you have a proliferation of classes. Such a class hierarchy indicates the need for splitting an object into two parts. Rumbaugh uses the term "nested generalizations" to refer to such class hierarchies
 * you want to share an implementation among multiple objects (perhaps using reference counting), and this fact should be hidden from the client. A simple example is Coplien's String class, in which multiple objects can share the same string representation.
 
+## Tutorial
+* [Bridge Pattern Tutorial](https://www.journaldev.com/1491/bridge-design-pattern-java)
+
 ## Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)

@@ -23,6 +23,7 @@
 package com.iluwatar.interpreter;
 
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -43,6 +44,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * @param <E> Type of Expression
  * @author Jeroen Meulemeester
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class ExpressionTest<E extends Expression> {
 
   /**
@@ -87,6 +89,13 @@ public abstract class ExpressionTest<E extends Expression> {
     this.expectedToString = expectedToString;
     this.factory = factory;
   }
+
+  /**
+   * Create a new set of test entries with the expected result
+   *
+   * @return The list of parameters used during this test
+   */
+  public abstract Stream<Arguments> expressionProvider();
 
   /**
    * Verify if the expression calculates the correct result when calling {@link E#interpret()}
