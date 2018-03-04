@@ -179,9 +179,14 @@ Use the Abstract Factory pattern when
 
 *	Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
 
+
+## Tutorial
+* [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
+
 ## Presentations
 
 * [Abstract Factory Pattern](etc/presentation.html) 
+
 
 ## Real world examples
 

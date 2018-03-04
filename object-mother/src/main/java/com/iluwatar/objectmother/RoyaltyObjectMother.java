@@ -28,7 +28,7 @@ package com.iluwatar.objectmother;
 public final class RoyaltyObjectMother {
 
   /**
-   * Method to create a sober and unhappy king. The standard paramters are set.
+   * Method to create a sober and unhappy king. The standard parameters are set.
    * @return An instance of {@link com.iluwatar.objectmother.King} with the standard properties.
    */
   public static King createSoberUnhappyKing() {

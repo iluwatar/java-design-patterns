@@ -147,15 +147,15 @@
         <module>event-sourcing</module>
         <module>data-transfer-object</module>
         <module>throttling</module>
-
         <module>unit-of-work</module>
         <module>partial-response</module>
         <module>eip-wire-tap</module>
         <module>eip-splitter</module>
         <module>eip-aggregator</module>
         <module>retry</module>
-    	<module>dirty-flag</module>
-  </modules>
+    	  <module>dirty-flag</module>
+		    <module>trampoline</module>
+    </modules>
 
     <repositories>
         <repository>

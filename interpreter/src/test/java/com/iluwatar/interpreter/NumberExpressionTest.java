@@ -42,7 +42,8 @@ public class NumberExpressionTest extends ExpressionTest<NumberExpression> {
    *
    * @return The list of parameters used during this test
    */
-  public static Stream<Arguments> expressionProvider() {
+  @Override
+  public Stream<Arguments> expressionProvider() {
     return prepareParameters((f, s) -> f);
   }
 
