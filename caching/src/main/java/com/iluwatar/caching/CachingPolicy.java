@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,11 +24,11 @@ package com.iluwatar.caching;
 
 /**
  *
- * Enum class containing the three caching strategies implemented in the pattern.
+ * Enum class containing the four caching strategies implemented in the pattern.
  *
  */
 public enum CachingPolicy {
-  THROUGH("through"), AROUND("around"), BEHIND("behind");
+  THROUGH("through"), AROUND("around"), BEHIND("behind"), ASIDE("aside");
 
   private String policy;
 

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,8 @@ import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.dispatcher.Dispatcher;
 import com.iluwatar.flux.store.MenuStore;
 import com.iluwatar.flux.store.Store;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -33,6 +35,8 @@ import com.iluwatar.flux.store.Store;
  *
  */
 public class MenuView implements View {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(MenuView.class);
 
   private MenuItem selected = MenuItem.HOME;
 
@@ -47,9 +51,9 @@ public class MenuView implements View {
   public void render() {
     for (MenuItem item : MenuItem.values()) {
       if (selected.equals(item)) {
-        System.out.println(String.format("* %s", item.toString()));
+        LOGGER.info("* {}", item);
       } else {
-        System.out.println(item.toString());
+        LOGGER.info(item.toString());
       }
     }
   }

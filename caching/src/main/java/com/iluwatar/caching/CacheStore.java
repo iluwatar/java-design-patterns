@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.caching;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 /**
@@ -30,6 +33,8 @@ import java.util.List;
  *
  */
 public class CacheStore {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(CacheStore.class);
 
   static LruCache cache;
 
@@ -40,7 +45,7 @@ public class CacheStore {
    * Init cache capacity
    */
   public static void initCapacity(int capacity) {
-    if (null == cache) {
+    if (cache == null) {
       cache = new LruCache(capacity);
     } else {
       cache.setCapacity(capacity);
@@ -52,10 +57,10 @@ public class CacheStore {
    */
   public static UserAccount readThrough(String userId) {
     if (cache.contains(userId)) {
-      System.out.println("# Cache Hit!");
+      LOGGER.info("# Cache Hit!");
       return cache.get(userId);
     }
-    System.out.println("# Cache Miss!");
+    LOGGER.info("# Cache Miss!");
     UserAccount userAccount = DbManager.readFromDb(userId);
     cache.set(userId, userAccount);
     return userAccount;
@@ -91,13 +96,13 @@ public class CacheStore {
    */
   public static UserAccount readThroughWithWriteBackPolicy(String userId) {
     if (cache.contains(userId)) {
-      System.out.println("# Cache Hit!");
+      LOGGER.info("# Cache Hit!");
       return cache.get(userId);
     }
-    System.out.println("# Cache Miss!");
+    LOGGER.info("# Cache Miss!");
     UserAccount userAccount = DbManager.readFromDb(userId);
     if (cache.isFull()) {
-      System.out.println("# Cache is FULL! Writing LRU data to DB...");
+      LOGGER.info("# Cache is FULL! Writing LRU data to DB...");
       UserAccount toBeWrittenToDb = cache.getLruData();
       DbManager.upsertDb(toBeWrittenToDb);
     }
@@ -110,7 +115,7 @@ public class CacheStore {
    */
   public static void writeBehind(UserAccount userAccount) {
     if (cache.isFull() && !cache.contains(userAccount.getUserId())) {
-      System.out.println("# Cache is FULL! Writing LRU data to DB...");
+      LOGGER.info("# Cache is FULL! Writing LRU data to DB...");
       UserAccount toBeWrittenToDb = cache.getLruData();
       DbManager.upsertDb(toBeWrittenToDb);
     }
@@ -121,7 +126,7 @@ public class CacheStore {
    * Clears cache
    */
   public static void clearCache() {
-    if (null != cache) {
+    if (cache != null) {
       cache.clear();
     }
   }
@@ -130,7 +135,7 @@ public class CacheStore {
    * Writes remaining content in the cache into the DB.
    */
   public static void flushCache() {
-    System.out.println("# flushCache...");
+    LOGGER.info("# flushCache...");
     if (null == cache) {
       return;
     }
@@ -152,5 +157,26 @@ public class CacheStore {
     }
     sb.append("----\n");
     return sb.toString();
+  }
+
+  /**
+   * Delegate to backing cache store
+   */
+  public static UserAccount get(String userId) {
+    return cache.get(userId);
+  }
+
+  /**
+   * Delegate to backing cache store
+   */
+  public static void set(String userId, UserAccount userAccount) {
+    cache.set(userId, userAccount);
+  }
+
+  /**
+   * Delegate to backing cache store
+   */
+  public static void invalidate(String userId) {
+    cache.invalidate(userId);
   }
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,9 @@ import org.springframework.data.jpa.domain.Specification;
  */
 public class PersonSpecifications {
 
+  /**
+   * Specifications stating the Between (From - To) Age Specification
+   */
   public static class AgeBetweenSpec implements Specification<Person> {
 
     private int from;

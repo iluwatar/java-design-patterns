@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.flyweight;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * InvisibilityPotion
@@ -29,8 +32,10 @@ package com.iluwatar.flyweight;
  */
 public class InvisibilityPotion implements Potion {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(InvisibilityPotion.class);
+
   @Override
   public void drink() {
-    System.out.println("You become invisible. (Potion=" + System.identityHashCode(this) + ")");
+    LOGGER.info("You become invisible. (Potion={})", System.identityHashCode(this));
   }
 }

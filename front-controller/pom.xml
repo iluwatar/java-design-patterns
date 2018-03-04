@@ -2,7 +2,7 @@
 <!--
 
     The MIT License
-    Copyright (c) 2014 Ilkka Seppälä
+    Copyright (c) 2014-2016 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -30,13 +30,23 @@
 	<parent>
 		<groupId>com.iluwatar</groupId>
 		<artifactId>java-design-patterns</artifactId>
-		<version>1.13.0-SNAPSHOT</version>
+		<version>1.19.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>front-controller</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

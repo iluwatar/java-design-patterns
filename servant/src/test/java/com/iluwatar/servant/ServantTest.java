@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,12 @@
  */
 package com.iluwatar.servant;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -74,12 +75,12 @@ public class ServantTest {
     final Royalty badMoodRoyalty = mock(Royalty.class);
     when(badMoodRoyalty.getMood()).thenReturn(true);
 
-    final ArrayList<Royalty> goodCompany = new ArrayList<>();
+    final List<Royalty> goodCompany = new ArrayList<>();
     goodCompany.add(goodMoodRoyalty);
     goodCompany.add(goodMoodRoyalty);
     goodCompany.add(goodMoodRoyalty);
 
-    final ArrayList<Royalty> badCompany = new ArrayList<>();
+    final List<Royalty> badCompany = new ArrayList<>();
     goodCompany.add(goodMoodRoyalty);
     goodCompany.add(goodMoodRoyalty);
     goodCompany.add(badMoodRoyalty);

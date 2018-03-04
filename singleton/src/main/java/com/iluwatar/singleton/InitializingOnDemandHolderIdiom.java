@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@ package com.iluwatar.singleton;
  * The Initialize-on-demand-holder idiom is a secure way of creating a lazy initialized singleton
  * object in Java.
  * <p>
- * The technique is is as lazy as possible and works in all known versions of Java. It takes advantage
+ * The technique is as lazy as possible and works in all known versions of Java. It takes advantage
  * of language guarantees about class initialization, and will therefore work correctly in all
  * Java-compliant compilers and virtual machines.
  * <p>
@@ -53,7 +53,7 @@ public final class InitializingOnDemandHolderIdiom {
    * Provides the lazy-loaded Singleton instance.
    */
   private static class HelperHolder {
-    public static final InitializingOnDemandHolderIdiom INSTANCE =
+    private static final InitializingOnDemandHolderIdiom INSTANCE =
         new InitializingOnDemandHolderIdiom();
   }
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,11 +52,10 @@ public final class RainbowFishSerializer {
     map.put("age", String.format("%d", rainbowFish.getAge()));
     map.put("lengthMeters", String.format("%d", rainbowFish.getLengthMeters()));
     map.put("weightTons", String.format("%d", rainbowFish.getWeightTons()));
-    FileOutputStream fileOut = new FileOutputStream(filename);
-    ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
-    objOut.writeObject(map);
-    objOut.close();
-    fileOut.close();
+    try (FileOutputStream fileOut = new FileOutputStream(filename);
+        ObjectOutputStream objOut = new ObjectOutputStream(fileOut)) {
+      objOut.writeObject(map);
+    }
   }
 
   /**
@@ -71,23 +70,24 @@ public final class RainbowFishSerializer {
     map.put("angry", Boolean.toString(rainbowFish.getAngry()));
     map.put("hungry", Boolean.toString(rainbowFish.getHungry()));
     map.put("sleeping", Boolean.toString(rainbowFish.getSleeping()));
-    FileOutputStream fileOut = new FileOutputStream(filename);
-    ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
-    objOut.writeObject(map);
-    objOut.close();
-    fileOut.close();
+    try (FileOutputStream fileOut = new FileOutputStream(filename);
+        ObjectOutputStream objOut = new ObjectOutputStream(fileOut)) {
+      objOut.writeObject(map);
+    }
   }
 
   /**
    * Read V1 RainbowFish from file
    */
   public static RainbowFish readV1(String filename) throws IOException, ClassNotFoundException {
-    FileInputStream fileIn = new FileInputStream(filename);
-    ObjectInputStream objIn = new ObjectInputStream(fileIn);
-    Map<String, String> map = (Map<String, String>) objIn.readObject();
-    objIn.close();
-    fileIn.close();
-    return new RainbowFish(map.get("name"), Integer.parseInt(map.get("age")), Integer.parseInt(map
-        .get("lengthMeters")), Integer.parseInt(map.get("weightTons")));
+    Map<String, String> map = null;
+
+    try (FileInputStream fileIn = new FileInputStream(filename);
+        ObjectInputStream objIn = new ObjectInputStream(fileIn)) {
+      map = (Map<String, String>) objIn.readObject();
+    }
+
+    return new RainbowFish(map.get("name"), Integer.parseInt(map.get("age")), Integer.parseInt(map.get("lengthMeters")),
+        Integer.parseInt(map.get("weightTons")));
   }
 }

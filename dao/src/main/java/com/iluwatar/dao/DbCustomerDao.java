@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,11 +36,15 @@ import java.util.stream.StreamSupport;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
+
 /**
- * An implementation of {@link CustomerDao} that persists customers in RDBMS. 
+ * An implementation of {@link CustomerDao} that persists customers in RDBMS.
  *
  */
 public class DbCustomerDao implements CustomerDao {
+
+  private static final Logger LOGGER = Logger.getLogger(DbCustomerDao.class);
 
   private final DataSource dataSource;
 
@@ -65,8 +69,8 @@ public class DbCustomerDao implements CustomerDao {
     Connection connection;
     try {
       connection = getConnection();
-      PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMERS");
-      ResultSet resultSet = statement.executeQuery();
+      PreparedStatement statement = connection.prepareStatement("SELECT * FROM CUSTOMERS"); // NOSONAR
+      ResultSet resultSet = statement.executeQuery(); // NOSONAR
       return StreamSupport.stream(new Spliterators.AbstractSpliterator<Customer>(Long.MAX_VALUE, 
           Spliterator.ORDERED) {
 
@@ -79,12 +83,12 @@ public class DbCustomerDao implements CustomerDao {
             action.accept(createCustomer(resultSet));
             return true;
           } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); // NOSONAR
           }
         }
-      }, false).onClose(() -> mutedClose(connection));
+      }, false).onClose(() -> mutedClose(connection, statement, resultSet));
     } catch (SQLException e) {
-      throw new Exception(e.getMessage(), e);
+      throw new CustomException(e.getMessage(), e);
     }
   }
 
@@ -92,11 +96,13 @@ public class DbCustomerDao implements CustomerDao {
     return dataSource.getConnection();
   }
 
-  private void mutedClose(Connection connection) {
+  private void mutedClose(Connection connection, PreparedStatement statement, ResultSet resultSet) {
     try {
+      resultSet.close();
+      statement.close();
       connection.close();
     } catch (SQLException e) {
-      e.printStackTrace();
+      LOGGER.info("Exception thrown " + e.getMessage());
     }
   }
 
@@ -111,19 +117,26 @@ public class DbCustomerDao implements CustomerDao {
    */
   @Override
   public Optional<Customer> getById(int id) throws Exception {
+
+    ResultSet resultSet = null;
+
     try (Connection connection = getConnection();
         PreparedStatement statement = 
             connection.prepareStatement("SELECT * FROM CUSTOMERS WHERE ID = ?")) {
 
       statement.setInt(1, id);
-      ResultSet resultSet = statement.executeQuery();
+      resultSet = statement.executeQuery();
       if (resultSet.next()) {
         return Optional.of(createCustomer(resultSet));
       } else {
         return Optional.empty();
       }
     } catch (SQLException ex) {
-      throw new Exception(ex.getMessage(), ex);
+      throw new CustomException(ex.getMessage(), ex);
+    } finally {
+      if (resultSet != null) {
+        resultSet.close();
+      }
     }
   }
 
@@ -145,7 +158,7 @@ public class DbCustomerDao implements CustomerDao {
       statement.execute();
       return true;
     } catch (SQLException ex) {
-      throw new Exception(ex.getMessage(), ex);
+      throw new CustomException(ex.getMessage(), ex);
     }
   }
 
@@ -162,7 +175,7 @@ public class DbCustomerDao implements CustomerDao {
       statement.setInt(3, customer.getId());
       return statement.executeUpdate() > 0;
     } catch (SQLException ex) {
-      throw new Exception(ex.getMessage(), ex);
+      throw new CustomException(ex.getMessage(), ex);
     }
   }
 
@@ -177,7 +190,7 @@ public class DbCustomerDao implements CustomerDao {
       statement.setInt(1, customer.getId());
       return statement.executeUpdate() > 0;
     } catch (SQLException ex) {
-      throw new Exception(ex.getMessage(), ex);
+      throw new CustomException(ex.getMessage(), ex);
     }
   }
 }

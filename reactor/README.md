@@ -3,8 +3,9 @@ layout: pattern
 title: Reactor
 folder: reactor
 permalink: /patterns/reactor/
+pumlformat: svg
 categories: Concurrency
-tags: 
+tags:
  - Java
  - Difficulty-Expert
  - I/O

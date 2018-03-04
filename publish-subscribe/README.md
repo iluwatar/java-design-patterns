@@ -4,7 +4,7 @@ title: Publish Subscribe
 folder: publish-subscribe
 permalink: /patterns/publish-subscribe/
 categories: Integration
-tags: 
+tags:
  - Java
  - EIP
  - Apache Camel™

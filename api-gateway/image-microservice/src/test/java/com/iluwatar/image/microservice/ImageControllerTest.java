@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,13 @@
  */
 package com.iluwatar.image.microservice;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/**
+ * Test for Image Rest Controller
+ */
 public class ImageControllerTest {
   @Test
   public void testGetImagePath() {
@@ -32,6 +36,6 @@ public class ImageControllerTest {
 
     String imagePath = imageController.getImagePath();
 
-    Assert.assertEquals("/product-image.png", imagePath);
+    assertEquals("/product-image.png", imagePath);
   }
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,14 +22,15 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * 
@@ -49,11 +50,13 @@ public class LotteryNumbersTest {
     assertTrue(numbers.getNumbers().contains(4));
   }
   
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void testNumbersCantBeModified() {
     LotteryNumbers numbers = LotteryNumbers.create(
             new HashSet<>(Arrays.asList(1, 2, 3, 4)));
-    numbers.getNumbers().add(5);
+    assertThrows(UnsupportedOperationException.class, () -> {
+      numbers.getNumbers().add(5);
+    });
   }
   
   @Test

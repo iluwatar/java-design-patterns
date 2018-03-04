@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,9 @@
  */
 package com.iluwatar.intercepting.filter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/13/15 - 2:57 PM
@@ -66,8 +66,8 @@ public class OrderTest {
   @Test
   public void testSetOrder() throws Exception {
     final Order order = new Order();
-    order.setOrder(EXPECTED_VALUE);
-    assertEquals(EXPECTED_VALUE, order.getOrder());
+    order.setOrderItem(EXPECTED_VALUE);
+    assertEquals(EXPECTED_VALUE, order.getOrderItem());
   }
 
 }

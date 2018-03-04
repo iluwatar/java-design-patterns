@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,19 +22,40 @@
  */
 package com.iluwatar.layers;
 
-import org.junit.Test;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Date: 12/15/15 - 10:04 PM
  *
  * @author Jeroen Meulemeester
  */
-public class CakeViewImplTest extends StdOutTest {
+public class CakeViewImplTest {
+
+  private InMemoryAppender appender;
+
+  @BeforeEach
+  public void setUp() {
+    appender = new InMemoryAppender(CakeViewImpl.class);
+  }
+
+  @AfterEach
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * Verify if the cake view renders the expected result
@@ -56,11 +77,34 @@ public class CakeViewImplTest extends StdOutTest {
 
     final CakeViewImpl cakeView = new CakeViewImpl(bakingService);
 
-    verifyZeroInteractions(getStdOutMock());
+    assertEquals(0, appender.getLogSize());
 
     cakeView.render();
-    verify(getStdOutMock(), times(1)).println(cake);
+    assertEquals(cake.toString(), appender.getLastMessage());
 
+  }
+
+  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+
+    private List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender(Class clazz) {
+      ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public String getLastMessage() {
+      return log.get(log.size() - 1).getFormattedMessage();
+    }
+
+    public int getLogSize() {
+      return log.size();
+    }
   }
 
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,9 @@ package com.iluwatar.hexagonal.domain;
  *
  */
 public class LotteryConstants {
+
+  private LotteryConstants() {
+  }
 
   public static final int PRIZE_AMOUNT = 100000;
   public static final String SERVICE_BANK_ACCOUNT = "123-123";

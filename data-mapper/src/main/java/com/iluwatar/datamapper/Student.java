@@ -21,6 +21,9 @@ package com.iluwatar.datamapper;
 
 import java.io.Serializable;
 
+/**
+ * Class defining Student
+ */
 public final class Student implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -32,21 +35,19 @@ public final class Student implements Serializable {
 
   /**
    * Use this constructor to create a Student with all details
-   * 
+   *
    * @param studentId as unique student id
    * @param name as student name
    * @param grade as respective grade of student
    */
   public Student(final int studentId, final String name, final char grade) {
-    super();
-
     this.studentId = studentId;
     this.name = name;
     this.grade = grade;
   }
 
   /**
-   * 
+   *
    * @return the student id
    */
   public int getStudentId() {
@@ -54,7 +55,7 @@ public final class Student implements Serializable {
   }
 
   /**
-   * 
+   *
    * @param studentId as unique student id
    */
   public void setStudentId(final int studentId) {
@@ -62,7 +63,7 @@ public final class Student implements Serializable {
   }
 
   /**
-   * 
+   *
    * @return name of student
    */
   public String getName() {
@@ -70,7 +71,7 @@ public final class Student implements Serializable {
   }
 
   /**
-   * 
+   *
    * @param name as 'name' of student
    */
   public void setName(final String name) {
@@ -78,7 +79,7 @@ public final class Student implements Serializable {
   }
 
   /**
-   * 
+   *
    * @return grade of student
    */
   public char getGrade() {
@@ -86,7 +87,7 @@ public final class Student implements Serializable {
   }
 
   /**
-   * 
+   *
    * @param grade as 'grade of student'
    */
   public void setGrade(final char grade) {
@@ -94,7 +95,7 @@ public final class Student implements Serializable {
   }
 
   /**
- * 
+ *
  */
   @Override
   public boolean equals(final Object inputObject) {
@@ -120,7 +121,7 @@ public final class Student implements Serializable {
   }
 
   /**
- * 
+ *
  */
   @Override
   public int hashCode() {
@@ -130,7 +131,7 @@ public final class Student implements Serializable {
   }
 
   /**
- * 
+ *
  */
   @Override
   public String toString() {

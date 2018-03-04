@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,17 @@
  */
 package com.iluwatar.command;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Base class for spell targets.
  *
  */
 public abstract class Target {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Target.class);
 
   private Size size;
 
@@ -56,8 +61,6 @@ public abstract class Target {
    * Print status
    */
   public void printStatus() {
-    System.out.println(String.format("%s, [size=%s] [visibility=%s]", this, getSize(),
-        getVisibility()));
-    System.out.println();
+    LOGGER.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
   }
 }

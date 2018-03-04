@@ -4,7 +4,7 @@ title: Iterator
 folder: iterator
 permalink: /patterns/iterator/
 categories: Behavioral
-tags: 
+tags:
  - Java
  - Difficulty-Beginner
  - Gang Of Four
@@ -29,6 +29,7 @@ Use the Iterator pattern
 ## Real world examples
 
 * [java.util.Iterator](http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)
+* [java.util.Enumeration](http://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html)
 
 ## Credits
 
