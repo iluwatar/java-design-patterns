@@ -14,6 +14,26 @@ tags:
 Serverless eliminates the need to plan for infrastructure and let's you focus on your 
 application. 
 
+Following are optimization katas you should be aware of while building a serverless 
+applications
+
+* The Lean function
+    * Concise logic
+    * Efficient/single purpose code
+    * ephemeral environment
+* Eventful Invocations
+    * Succinct payloads
+    * resilient routing
+    * concurrent execution
+* Coordinated calls
+    * Decoupled via APIs
+    * scale-matched downstream
+    * secured
+* Serviceful operations
+    * Automated operations
+    * monitored applications
+    * Innovation mindset
+
 ## Intent
 
 Whether to reduce your infrastructure costs, shrink the time you spend on ops tasks, 
@@ -58,6 +78,10 @@ an Event. Most of the Serverless Cloud Providers support following Events
 AWS supports processing event generated from AWS Services (S3/Cloudwatch/etc) and 
 using aws as a compute engine is our first choice.
 
+## (Backend as a Service or "BaaS")
+This example creates a backend for ‘persons’ collection which uses DynamoDB NoSQL 
+database service also provided by Amazon. 
+
 ## AWS lambda function implementation
 
 AWS lambda SDK provides pre-defined interface `com.amazonaws.services.lambda.runtime
@@ -97,16 +121,23 @@ dependencies of the function.
 * `mvn clean package`
 * `serverless deploy --stage=dev --verbose`
 
-Based on the configuration in `serverless.yml` serverless framework creates a
-cloud formation stack for S3 (ServerlessDeploymentBucket), IAM Role 
-(IamRoleLambdaExecution), cloud watch (log groups), API Gateway (ApiGatewayRestApi) 
-and the Lambda function. 
+Based on the configuration in `serverless.yml` serverless framework creates following 
+resources
+* cloud formation stack for S3 (ServerlessDeploymentBucket)
+* IAM Role (IamRoleLambdaExecution)
+* cloud watch (log groups)
+* API Gateway (ApiGatewayRestApi) 
+* Lambda function
+* DynamoDB collection
 
 The command will print out Stack Outputs which looks something like this
 
 ```yaml
 endpoints:
   GET - https://xxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/info
+  POST - https://xxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/api/person
+  GET - https://xxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/api/person/{id}
+  
 ```
 
 ```yaml
@@ -115,6 +146,38 @@ ServiceEndpoint: https://xxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev
 ServerlessDeploymentBucketName: lambda-info-http-endpoin-serverlessdeploymentbuck-2u8uz2i7cap2
 ```
 access the endpoint to invoke the function.
+
+Use the following cURL commands to test the endpoints
+
+```cURL
+curl -X GET \
+  https://xxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/info \
+  -H 'cache-control: no-cache'
+```
+
+```cURL
+curl -X POST \
+  https://xxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/api/person \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -d '{
+	"firstName": "Thor",
+	"lastName": "Odinson",
+	"address": {
+		"addressLineOne": "1 Odin ln",
+		"addressLineTwo": "100",
+		"city": "Asgard",
+		"state": "country of the Gods",
+		"zipCode": "00001"
+	}
+}'
+```
+
+```cURL
+curl -X GET \
+  https://xxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/api/person/{id} \
+  -H 'cache-control: no-cache'
+```
 
 ## Credits
 
