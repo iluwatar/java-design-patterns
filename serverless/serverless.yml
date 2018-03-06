@@ -58,7 +58,7 @@ functions:
           integration: lambda-proxy
 
   getPerson:
-    handler: com.iluwatar.serverless.baas.api.FindPersonApiHandlerr
+    handler: com.iluwatar.serverless.baas.api.FindPersonApiHandler
     events:
       - http:
           path: api/person/{id}
