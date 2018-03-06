@@ -21,7 +21,7 @@
 # THE SOFTWARE.
 #
 
-service: lambda-info-http-endpoint
+service: serverless-services
 
 frameworkVersion: ">=1.2.0 <2.0.0"
 
@@ -41,9 +41,62 @@ package:
   artifact: target/serverless.jar
 
 functions:
-  currentTime:
-    handler: com.iluwatar.serverless.api.LambdaInfoApiHandler
+  lambdaInfoApi:
+    handler: com.iluwatar.serverless.faas.api.LambdaInfoApiHandler
     events:
       - http:
           path: info
           method: get
+
+  savePerson:
+    handler: com.iluwatar.serverless.baas.api.SavePersonApiHandler
+    events:
+      - http:
+          path: api/person
+          method: post
+          cors: true
+          integration: lambda-proxy
+
+  getPerson:
+    handler: com.iluwatar.serverless.baas.api.FindPersonApiHandlerr
+    events:
+      - http:
+          path: api/person/{id}
+          method: get
+          cors: true
+          integration: lambda-proxy
+
+resources:
+  Resources:
+    DynamoDbTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: persons
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    DynamoDBIamPolicy:
+      Type: AWS::IAM::Policy
+      DependsOn: DynamoDbTable
+      Properties:
+        PolicyName: lambda-dynamodb
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+                - dynamodb:DeleteItem
+                - dynamodb:Query
+                - dynamodb:Scan
+              Resource: arn:aws:dynamodb:*:*:table/persons
+        Roles:
+          - Ref: IamRoleLambdaExecution

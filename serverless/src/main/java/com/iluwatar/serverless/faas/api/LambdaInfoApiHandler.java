@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.serverless.api;
+package com.iluwatar.serverless.faas.api;
 
-import com.iluwatar.serverless.ApiGatewayResponse;
+import com.iluwatar.serverless.faas.ApiGatewayResponse;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.iluwatar.serverless.LambdaInfo;
+import com.iluwatar.serverless.faas.LambdaInfo;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
