@@ -183,3 +183,4 @@ curl -X GET \
 
 * [serverless docs](https://serverless.com/framework/docs/)
 * [Serverless Architectures](https://martinfowler.com/articles/serverless.html)
+* [Serverless Black Belt](https://youtu.be/oQFORsso2go)
