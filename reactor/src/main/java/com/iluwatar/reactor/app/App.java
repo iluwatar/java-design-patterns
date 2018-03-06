@@ -66,7 +66,8 @@ import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
  * </li>
  * <li>Initiation Dispatcher
  * <p>
- *     {@link NioReactor} plays this role as the application specific {@link ChannelHandler}s are registered to the reactor.
+ *     {@link NioReactor} plays this role as the application specific {@link ChannelHandler}s
+ * are registered to the reactor.
  * </p>
  * </li>
  * <li>Handle

@@ -110,7 +110,7 @@ public class PartyMemberTest {
   }
 
   /**
-   * Verify if {@link PartyMember#toString()} generate the expected output
+   * Verify if {@link PartyMemberBase#toString()} generate the expected output
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
