@@ -40,7 +40,6 @@ public class Captain {
     this.rowingBoat = rowingBoat;
   }
 
-  @Override
   public void row() {
     rowingBoat.row();
   }
