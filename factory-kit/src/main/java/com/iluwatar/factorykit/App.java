@@ -45,7 +45,7 @@ public class App {
   /**
    * Program entry point.
    *
-   * @param args @param args command line args
+   * @param args command line args
    */
   public static void main(String[] args) {
     WeaponFactory factory = WeaponFactory.factory(builder -> {
