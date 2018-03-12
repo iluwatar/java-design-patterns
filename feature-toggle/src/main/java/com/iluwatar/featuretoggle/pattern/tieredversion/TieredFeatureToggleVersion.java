@@ -65,7 +65,7 @@ public class TieredFeatureToggleVersion implements Service {
    * is driven by the user group. This method is a little redundant. However can be used to show that there is an
    * enhanced version available.
    *
-   * @return Boolean value {@value true} if enhanced.
+   * @return Boolean value {@code true} if enhanced.
    */
   @Override
   public boolean isEnhanced() {

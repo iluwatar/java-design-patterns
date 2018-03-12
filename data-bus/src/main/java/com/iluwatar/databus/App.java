@@ -34,8 +34,7 @@ import java.time.LocalDateTime;
 /**
  * The Data Bus pattern
  * <p>
- * <p>{@see http://wiki.c2.com/?DataBusPattern}</p>
- * <p>
+ * @see <a href="http://wiki.c2.com/?DataBusPattern">http://wiki.c2.com/?DataBusPattern</a>
  * <p>The Data-Bus pattern provides a method where different parts of an application may
  * pass messages between each other without needing to be aware of the other's existence.</p>
  * <p>Similar to the {@code ObserverPattern}, members register themselves with the {@link DataBus}

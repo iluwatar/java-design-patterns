@@ -47,7 +47,7 @@ public class ThreadPoolDispatcher implements Dispatcher {
 
   /**
    * Submits the work of dispatching the read event to worker pool, where it gets picked up by
-   * worker threads. <br/>
+   * worker threads. <br>
    * Note that this is a non-blocking call and returns immediately. It is not guaranteed that the
    * event has been handled by associated handler.
    */

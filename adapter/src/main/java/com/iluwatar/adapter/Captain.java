@@ -26,7 +26,7 @@ package com.iluwatar.adapter;
  * The Captain uses {@link RowingBoat} to sail. <br>
  * This is the client in the pattern.
  */
-public class Captain implements RowingBoat {
+public class Captain {
 
   private RowingBoat rowingBoat;
 
@@ -40,7 +40,6 @@ public class Captain implements RowingBoat {
     this.rowingBoat = rowingBoat;
   }
 
-  @Override
   public void row() {
     rowingBoat.row();
   }

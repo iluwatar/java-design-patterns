@@ -141,7 +141,7 @@ public abstract class AbstractNioChannel {
    * when this method returns. It will be written when the channel is flushed.
    * 
    * <p>
-   * This method is used by the {@link ChannelHandler} to send reply back to the client. <br/>
+   * This method is used by the {@link ChannelHandler} to send reply back to the client. <br>
    * Example:
    * 
    * <pre>
