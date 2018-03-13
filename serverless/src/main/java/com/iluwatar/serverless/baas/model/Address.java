@@ -6,7 +6,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 import java.io.Serializable;
 
 /**
- * Address Object
+ * Address class
  * Created by dheeraj.mummarareddy on 3/4/18.
  */
 @DynamoDBDocument

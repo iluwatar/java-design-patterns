@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 /**
- * Person Request
+ * Person class
  * Created by dheeraj.mummarareddy on 3/4/18.
  */
 @DynamoDBTable(tableName = "persons")
