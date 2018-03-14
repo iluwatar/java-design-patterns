@@ -96,7 +96,7 @@ database service also provided by Amazon.
 
 ## AWS lambda function implementation
 
-[https://aws.amazon.com/sdk-for-java/](AWS Lambda SDK) provides pre-defined interface 
+[AWS Lambda SDK](https://aws.amazon.com/sdk-for-java/) provides pre-defined interface 
 `com.amazonaws.services.lambda.runtime
 .RequestHandler` to implement our lambda function. 
 
