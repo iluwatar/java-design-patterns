@@ -50,7 +50,7 @@ public class App {
   /**
    * Program entry point.
    *
-   * @param args @param args command line args
+   * @param args command line args
    */
   public static void main(String[] args) {
     User user = new User("user", 24, Sex.FEMALE, "foobar.com");
