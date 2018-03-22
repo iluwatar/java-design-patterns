@@ -20,28 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.adapter;
+package com.iluwatar.multiton;
 
 /**
- * The Captain uses {@link RowingBoat} to sail. <br>
- * This is the client in the pattern.
+ * enum based multiton implementation
+ *
  */
-public class Captain {
-
-  private RowingBoat rowingBoat;
-
-  public Captain() {}
-
-  public Captain(RowingBoat rowingBoat) {
-    this.rowingBoat = rowingBoat;
-  }
-
-  public void setRowingBoat(RowingBoat rowingBoat) {
-    this.rowingBoat = rowingBoat;
-  }
-
-  public void row() {
-    rowingBoat.row();
-  }
+public enum NazgulEnum {
+  
+  KHAMUL, MURAZOR, DWAR, JI_INDUR, AKHORAHIL, HOARMURATH, ADUNAPHEL, REN, UVATHA;
 
 }

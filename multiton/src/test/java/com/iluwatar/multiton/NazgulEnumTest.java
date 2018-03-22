@@ -20,28 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.adapter;
+package com.iluwatar.multiton;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 /**
- * The Captain uses {@link RowingBoat} to sail. <br>
- * This is the client in the pattern.
+ * @author anthony
+ *
  */
-public class Captain {
+class NazgulEnumTest {
 
-  private RowingBoat rowingBoat;
-
-  public Captain() {}
-
-  public Captain(RowingBoat rowingBoat) {
-    this.rowingBoat = rowingBoat;
+  /**
+   * Check that multiple calls to any one of the instances in the multiton returns 
+   * only that one particular instance, and do that for all instances in multiton
+   */
+  @Test
+  public void testTheSameObjectIsReturnedWithMultipleCalls() {
+    for (int i = 0; i < NazgulEnum.values().length; i++) {
+      NazgulEnum instance1 = NazgulEnum.values()[i];
+      NazgulEnum instance2 = NazgulEnum.values()[i];
+      NazgulEnum instance3 = NazgulEnum.values()[i];
+      assertSame(instance1, instance2);
+      assertSame(instance1, instance3);
+      assertSame(instance2, instance3);
+    }
   }
-
-  public void setRowingBoat(RowingBoat rowingBoat) {
-    this.rowingBoat = rowingBoat;
-  }
-
-  public void row() {
-    rowingBoat.row();
-  }
-
 }
