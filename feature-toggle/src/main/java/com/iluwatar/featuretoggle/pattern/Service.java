@@ -47,7 +47,7 @@ public interface Service {
   /**
    * Returns if the welcome message to be displayed will be the enhanced version.
    *
-   * @return Boolean {@value true} if enhanced.
+   * @return Boolean {@code true} if enhanced.
    */
   boolean isEnhanced();
 

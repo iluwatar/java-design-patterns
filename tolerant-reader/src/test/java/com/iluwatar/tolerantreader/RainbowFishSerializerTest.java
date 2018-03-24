@@ -23,19 +23,21 @@
 package com.iluwatar.tolerantreader;
 
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 /**
  * Date: 12/30/15 - 18:39 PM
  *
  * @author Jeroen Meulemeester
  */
+@EnableRuleMigrationSupport
 public class RainbowFishSerializerTest {
 
   /**

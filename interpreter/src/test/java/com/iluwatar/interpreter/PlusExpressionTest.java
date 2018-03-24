@@ -22,18 +22,15 @@
  */
 package com.iluwatar.interpreter;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.provider.Arguments;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Date: 12/14/15 - 12:08 PM
  *
  * @author Jeroen Meulemeester
  */
-@RunWith(Parameterized.class)
 public class PlusExpressionTest extends ExpressionTest<PlusExpression> {
 
   /**
@@ -41,20 +38,16 @@ public class PlusExpressionTest extends ExpressionTest<PlusExpression> {
    *
    * @return The list of parameters used during this test
    */
-  @Parameters
-  public static List<Object[]> data() {
+  @Override
+  public Stream<Arguments> expressionProvider() {
     return prepareParameters((f, s) -> f + s);
   }
 
   /**
    * Create a new test instance using the given test parameters and expected result
-   *
-   * @param first  The first expression parameter
-   * @param second The second expression parameter
-   * @param result The expected result
    */
-  public PlusExpressionTest(final NumberExpression first, final NumberExpression second, final int result) {
-    super(first, second, result, "+", PlusExpression::new);
+  public PlusExpressionTest() {
+    super("+", PlusExpression::new);
   }
 
 }

@@ -28,15 +28,14 @@ import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.spellbook.SpellbookDao;
 import com.iluwatar.servicelayer.wizard.Wizard;
 import com.iluwatar.servicelayer.wizard.WizardDao;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

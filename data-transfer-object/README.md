@@ -3,7 +3,6 @@ layout: pattern
 title: Data Transfer Object
 folder: data-transfer-object
 permalink: /patterns/data-transfer-object/
-pumlid: RSh14SCW30NHLk82GFTq8uDYum71I5zn-t41kUtCswrfwL4bhBzEOFcRoFZEHyCPUxXOcGfHv387jHutWuqk_dAguktGj1WGKwV1_WJLvqWmLl-8fRbVKa22yXTosCWhHly1
 categories: Architectural
 tags:
  - Java

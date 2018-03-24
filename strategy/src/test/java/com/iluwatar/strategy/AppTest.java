@@ -22,7 +22,7 @@
  */
 package com.iluwatar.strategy;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 

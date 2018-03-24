@@ -3,7 +3,6 @@ layout: pattern
 title: Layers
 folder: layers
 permalink: /patterns/layers/
-pumlid: BSR13OCm30NGLSe0n7UsCS62L8w9x6yGszD3t-bDpQhc9kdwEO0H2v7pNVQ68zSCyNeQn53gsQbftWns-lB5yoRHTfi70-8Mr3b-8UL7F4XG_otflOpi-W80
 pumlformat: svg
 categories: Architectural
 tags:

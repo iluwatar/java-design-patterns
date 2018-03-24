@@ -67,7 +67,7 @@ public class App {
    *  @see UserGroup
    *  @see Service
    *  @see PropertiesFeatureToggleVersion
-   *  @see com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion;
+   *  @see com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion
    */
   public static void main(String[] args) {
 

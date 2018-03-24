@@ -43,7 +43,7 @@ public class Book {
   private Author author;
 
   /**
-   * 
+   *
    * @param title
    *          title of the book
    * @param price
@@ -52,14 +52,12 @@ public class Book {
    *          author of the book
    */
   public Book(String title, double price, Author author) {
-    super();
     this.title = title;
     this.price = price;
     this.author = author;
   }
 
   protected Book() {
-    super();
   }
 
   public long getId() {

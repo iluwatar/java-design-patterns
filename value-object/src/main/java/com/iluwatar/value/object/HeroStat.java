@@ -25,7 +25,9 @@ package com.iluwatar.value.object;
 /**
  * HeroStat is a value object
  * 
- * {@link http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html}
+ * @see <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html">
+ * http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html
+ * </a>
  */
 public class HeroStat {
 
@@ -37,7 +39,6 @@ public class HeroStat {
 
   // All constructors must be private.
   private HeroStat(int strength, int intelligence, int luck) {
-    super();
     this.strength = strength;
     this.intelligence = intelligence;
     this.luck = luck;

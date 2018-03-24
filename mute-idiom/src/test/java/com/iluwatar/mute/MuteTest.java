@@ -23,17 +23,16 @@
 
 package com.iluwatar.mute;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for the mute-idiom pattern
@@ -44,8 +43,6 @@ public class MuteTest {
 
   private static final String MESSAGE = "should not occur";
 
-  @Rule public ExpectedException exception = ExpectedException.none();
-
   @Test
   public void muteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
     Mute.mute(() -> methodNotThrowingAnyException());
@@ -53,10 +50,9 @@ public class MuteTest {
 
   @Test
   public void muteShouldRethrowUnexpectedExceptionAsAssertionError() throws Exception {
-    exception.expect(AssertionError.class);
-    exception.expectMessage(MESSAGE);
-
-    Mute.mute(() -> methodThrowingException());
+    assertThrows(AssertionError.class, () -> {
+      Mute.mute(() -> methodThrowingException());
+    });
   }
 
   @Test

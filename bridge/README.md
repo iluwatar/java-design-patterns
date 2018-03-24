@@ -3,7 +3,6 @@ layout: pattern
 title: Bridge
 folder: bridge
 permalink: /patterns/bridge/
-pumlid: BSR14SCm20J0Lf82BFxf1akCJ4R26ZZYzkE7zxLljJgoIVfu7S2A3v7pLRhYo3r3l9u6CPHwJjAH5uETllpZhKbejsqn86v1a-CExQwj2mdgqv8-oyev_W00
 categories: Structural
 tags:
  - Java
@@ -188,6 +187,9 @@ Use the Bridge pattern when
 * changes in the implementation of an abstraction should have no impact on clients; that is, their code should not have to be recompiled.
 * you have a proliferation of classes. Such a class hierarchy indicates the need for splitting an object into two parts. Rumbaugh uses the term "nested generalizations" to refer to such class hierarchies
 * you want to share an implementation among multiple objects (perhaps using reference counting), and this fact should be hidden from the client. A simple example is Coplien's String class, in which multiple objects can share the same string representation.
+
+## Tutorial
+* [Bridge Pattern Tutorial](https://www.journaldev.com/1491/bridge-design-pattern-java)
 
 ## Credits
 

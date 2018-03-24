@@ -18,13 +18,9 @@
  */
 package com.iluwatar.datamapper;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import com.iluwatar.datamapper.Student;
-import com.iluwatar.datamapper.StudentDataMapper;
-import com.iluwatar.datamapper.StudentDataMapperImpl;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the

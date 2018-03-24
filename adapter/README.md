@@ -3,7 +3,6 @@ layout: pattern
 title: Adapter
 folder: adapter
 permalink: /patterns/adapter/
-pumlid: DSR14S8m30J0Lg20M7-wEMnDOiPMFDA9j0yyUEtUkzMHJTF7xI1NF4GSLzaxZtncgDVJgCPIpobzv0N2vOKtjgRHTziMI7KBcOXl10thfxB-Nz9dMJd71m00
 categories: Structural
 tags:
  - Java

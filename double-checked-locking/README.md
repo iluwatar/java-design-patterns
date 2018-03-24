@@ -3,7 +3,6 @@ layout: pattern
 title: Double Checked Locking
 folder: double-checked-locking
 permalink: /patterns/double-checked-locking/
-pumlid: TSdH4SCW203GLTe1bFzkGv1J6qGFeLc_MI1_x-wzkv94uJ1vDVUrFm26LwxTMnonsMYgitgcEQ1BNEXeyCKVfiAxLqqBtTbqmy1z0ygCGpXHOpgv99bqTgt0JW-LmqPUCUGF
 categories: Concurrency
 tags:
  - Java

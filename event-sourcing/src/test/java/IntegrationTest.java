@@ -21,20 +21,21 @@
  * THE SOFTWARE.
  */
 
-import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_DAENERYS;
-import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_JON;
-
 import com.iluwatar.event.sourcing.domain.Account;
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
 import com.iluwatar.event.sourcing.processor.DomainEventProcessor;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.math.BigDecimal;
 import java.util.Date;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
+import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_DAENERYS;
+import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_JON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Intergartion Test for Event Sourcing state recovery
@@ -51,7 +52,7 @@ public class IntegrationTest {
   /**
    * Initialize.
    */
-  @Before
+  @BeforeEach
   public void initialize() {
     eventProcessor = new DomainEventProcessor();
   }
@@ -90,10 +91,9 @@ public class IntegrationTest {
     Account accountOfDaenerysAfterShotDown = AccountAggregate.getAccount(ACCOUNT_OF_DAENERYS);
     Account accountOfJonAfterShotDown = AccountAggregate.getAccount(ACCOUNT_OF_JON);
 
-    Assert.assertEquals(accountOfDaenerysBeforeShotDown.getMoney(),
+    assertEquals(accountOfDaenerysBeforeShotDown.getMoney(),
         accountOfDaenerysAfterShotDown.getMoney());
-    Assert
-        .assertEquals(accountOfJonBeforeShotDown.getMoney(), accountOfJonAfterShotDown.getMoney());
+    assertEquals(accountOfJonBeforeShotDown.getMoney(), accountOfJonAfterShotDown.getMoney());
   }
 
 }

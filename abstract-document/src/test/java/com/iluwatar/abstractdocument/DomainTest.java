@@ -28,13 +28,13 @@ import com.iluwatar.abstractdocument.domain.HasParts;
 import com.iluwatar.abstractdocument.domain.HasPrice;
 import com.iluwatar.abstractdocument.domain.HasType;
 import com.iluwatar.abstractdocument.domain.Part;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Part and Car

@@ -3,7 +3,6 @@ layout: pattern
 title: Mediator
 folder: mediator
 permalink: /patterns/mediator/
-pumlid: FSV14SCm20J0Lk82BFxf1akCJKOW3JhizfDNVhkRUktP9AE_Bc2kDr7mKqx5bKSkYJeSuYXr66dFXy517xvvRxBqz7qo8E6BZDSFPDAKCO84zP-IOMMczIy0
 categories: Behavioral
 tags:
  - Java

@@ -22,9 +22,6 @@
  */
 package com.iluwatar.observer;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -34,11 +31,10 @@ import java.util.List;
  *
  * @author Jeroen Meulemeester
  */
-@RunWith(Parameterized.class)
 public class HobbitsTest extends WeatherObserverTest<Hobbits> {
 
-  @Parameterized.Parameters
-  public static Collection<Object[]> data() {
+  @Override
+  public Collection<Object[]> dataProvider() {
     final List<Object[]> testData = new ArrayList<>();
     testData.add(new Object[]{WeatherType.SUNNY, "The happy hobbits bade in the warm sun."});
     testData.add(new Object[]{WeatherType.RAINY, "The hobbits look for cover from the rain."});
@@ -49,12 +45,9 @@ public class HobbitsTest extends WeatherObserverTest<Hobbits> {
 
   /**
    * Create a new test with the given weather and expected response
-   *
-   * @param weather  The weather that should be unleashed on the observer
-   * @param response The expected response from the observer
    */
-  public HobbitsTest(final WeatherType weather, final String response) {
-    super(weather, response, Hobbits::new);
+  public HobbitsTest() {
+    super(Hobbits::new);
   }
 
 }

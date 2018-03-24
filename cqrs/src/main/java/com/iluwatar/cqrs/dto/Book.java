@@ -42,13 +42,11 @@ public class Book {
    *          price of the book
    */
   public Book(String title, double price) {
-    super();
     this.title = title;
     this.price = price;
   }
 
   public Book() {
-    super();
   }
 
   public String getTitle() {

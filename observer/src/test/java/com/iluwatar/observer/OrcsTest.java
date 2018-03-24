@@ -22,9 +22,6 @@
  */
 package com.iluwatar.observer;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -34,11 +31,10 @@ import java.util.List;
  *
  * @author Jeroen Meulemeester
  */
-@RunWith(Parameterized.class)
 public class OrcsTest extends WeatherObserverTest<Orcs> {
 
-  @Parameterized.Parameters
-  public static Collection<Object[]> data() {
+  @Override
+  public Collection<Object[]> dataProvider() {
     final List<Object[]> testData = new ArrayList<>();
     testData.add(new Object[]{WeatherType.SUNNY, "The sun hurts the orcs' eyes."});
     testData.add(new Object[]{WeatherType.RAINY, "The orcs are dripping wet."});
@@ -49,12 +45,9 @@ public class OrcsTest extends WeatherObserverTest<Orcs> {
 
   /**
    * Create a new test with the given weather and expected response
-   *
-   * @param weather  The weather that should be unleashed on the observer
-   * @param response The expected response from the observer
    */
-  public OrcsTest(final WeatherType weather, final String response) {
-    super(weather, response, Orcs::new);
+  public OrcsTest() {
+    super(Orcs::new);
   }
 
 }

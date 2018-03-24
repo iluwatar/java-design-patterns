@@ -3,7 +3,6 @@ layout: pattern
 title: Monad
 folder: monad
 permalink: /patterns/monad/
-pumlid: 9SR13SCm20NGLPe1OkxTXjWeSMMm1Pza_LRgExsjMntP97syBc35cyZvAMV7bKU6U9q6CPGwbVh8Xy5E7xvvRnBzj7qn86v1ol4BwJHk9AZ_bNGjAtLy0G00
 categories: Other
 tags:
  - Java

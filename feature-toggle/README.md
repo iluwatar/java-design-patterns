@@ -3,7 +3,6 @@ layout: pattern
 title: Feature Toggle
 folder: feature-toggle
 permalink: /patterns/feature-toggle/
-pumlid: NSZ14G8X30NGLhG0oDrk8XjPd12OvCTjNy_UthpxiAPvIBhUJc37WyZvgdtWp6U6U5i6CTIs9WtDYy5ER_vmEIH6jx8P4BUWoV43lOIHBWMhTnKIjB-gwRFkdFe5
 categories: Behavioral
 tags:
  - Java

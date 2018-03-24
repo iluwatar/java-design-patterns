@@ -30,7 +30,6 @@ package com.iluwatar.event.aggregator;
 public class LordVarys extends EventEmitter {
 
   public LordVarys() {
-    super();
   }
 
   public LordVarys(EventObserver obs) {

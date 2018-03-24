@@ -45,14 +45,12 @@ public class Author {
    *          username of the author
    */
   public Author(String name, String email, String username) {
-    super();
     this.name = name;
     this.email = email;
     this.username = username;
   }
 
   public Author() {
-    super();
   }
 
   public String getName() {

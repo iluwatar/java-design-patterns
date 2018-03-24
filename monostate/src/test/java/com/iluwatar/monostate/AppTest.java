@@ -22,7 +22,7 @@
  */
 package com.iluwatar.monostate;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Application Test Entry

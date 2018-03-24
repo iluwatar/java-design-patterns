@@ -3,7 +3,6 @@ layout: pattern
 title: Resource Acquisition Is Initialization
 folder: resource-acquisition-is-initialization
 permalink: /patterns/resource-acquisition-is-initialization/
-pumlid: ZShR3S8m343HLUW0YV_PnhXMQvGumOzMOdhA1lqxkhgBABLSEQqzzeZfJm33isuIUxxIsMXei4QbqK5QdXXeyCO3oyekcvQ94MpgqD4lWB6FDEA2z4bn2HbQn8leHMponNy13hgvrhHUP_Rs0m00
 categories: Other
 tags:
  - Java

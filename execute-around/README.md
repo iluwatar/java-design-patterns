@@ -3,7 +3,6 @@ layout: pattern
 title: Execute Around
 folder: execute-around
 permalink: /patterns/execute-around/
-pumlid: NSZ14G8n20NGLhI0XBlT865suoGa0n_NylNixSsxTvEHJTF7xGHsF8YShtfqdFdCK9TbK4ELDQcFl1ZizE8tbwRH3okR0NKBcXm_a7vK4bhOLreZXVnLJPzrvnnV
 categories: Other
 tags:
  - Java

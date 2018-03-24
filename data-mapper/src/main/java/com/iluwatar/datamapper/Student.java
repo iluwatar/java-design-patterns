@@ -41,8 +41,6 @@ public final class Student implements Serializable {
    * @param grade as respective grade of student
    */
   public Student(final int studentId, final String name, final char grade) {
-    super();
-
     this.studentId = studentId;
     this.name = name;
     this.grade = grade;

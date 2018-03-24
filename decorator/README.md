@@ -3,7 +3,6 @@ layout: pattern
 title: Decorator
 folder: decorator
 permalink: /patterns/decorator/
-pumlid: HSV14SCm20J0Lk82BFxf1YF6LaP26ZZizfDVVhjRC-bPDRs_Bc35cyZvAMV3bKU6kao36ehCGQtdms2d3z-yLursshuOKBUWmV43LPNfZEcaaFzA-YWhH_y2
 categories: Structural
 tags:
  - Java
@@ -35,7 +34,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Lets take the troll example. First of all we have a simple troll implementing the troll interface
+Let's take the troll example. First of all we have a simple troll implementing the troll interface
 
 ```
 public interface Troll {
@@ -105,9 +104,9 @@ troll.attack(); // The troll tries to grab you!
 troll.fleeBattle(); // The troll shrieks in horror and runs away!
 
 // change the behavior of the simple troll by adding a decorator
-Troll clubbed = new ClubbedTroll(troll);
-clubbed.attack(); // The troll tries to grab you! The troll swings at you with a club!
-clubbed.fleeBattle(); // The troll shrieks in horror and runs away!
+troll = new ClubbedTroll(troll);
+troll.attack(); // The troll tries to grab you! The troll swings at you with a club!
+troll.fleeBattle(); // The troll shrieks in horror and runs away!
 ```
 
 ## Applicability
@@ -116,6 +115,9 @@ Use Decorator
 * To add responsibilities to individual objects dynamically and transparently, that is, without affecting other objects
 * For responsibilities that can be withdrawn
 * When extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of subclasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
+
+## Tutorial
+* [Decorator Pattern Tutorial](https://www.journaldev.com/1540/decorator-design-pattern-in-java-example)
 
 ## Real world examples
  * [java.io.InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html), [java.io.OutputStream](http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html),

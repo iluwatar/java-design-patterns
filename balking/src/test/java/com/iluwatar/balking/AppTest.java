@@ -23,7 +23,7 @@
 
 package com.iluwatar.balking;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Application test

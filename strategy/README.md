@@ -3,7 +3,6 @@ layout: pattern
 title: Strategy
 folder: strategy
 permalink: /patterns/strategy/
-pumlid: FSV13OCm30NGLM00udktCS4AGOaJsTz5tRwSkBstLiqj3WbhombC_n0PtwbKdB67Y-MX44NAerDjSJFOwE8lRuTuBRfD1iJKgRC_88SnfFn8aD-ai9vczFO7
 categories: Behavioral
 tags:
  - Java
@@ -28,6 +27,9 @@ Use the Strategy pattern when
 * you need different variants of an algorithm. for example, you might define algorithms reflecting different space/time trade-offs. Strategies can be used when these variants are implemented as a class hierarchy of algorithms
 * an algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex, algorithm-specific data structures
 * a class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move related conditional branches into their own Strategy class
+
+## Tutorial 
+* [Strategy Pattern Tutorial](https://www.journaldev.com/1754/strategy-design-pattern-in-java-example-tutorial)
 
 ## Credits
 

@@ -3,7 +3,6 @@ layout: pattern
 title: Private Class Data
 folder: private-class-data
 permalink: /patterns/private-class-data/
-pumlid: RShR3SCm243HLTe1RFwx3S4eeSB4uf6itmpGlwkZ-nOZhS7b-ZeoLtm07E--InwrLR3JQScMdSu9edLZeiCNBso3GtPh2pFPBM1YF07BvSBaHeeHRJm_SD8VxkMphvhw0m00
 categories: Other
 tags:
  - Java

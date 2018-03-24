@@ -22,6 +22,8 @@
  */
 package com.iluwatar.event.aggregator;
 
+import org.junit.jupiter.api.Test;
+
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -32,7 +34,6 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import org.junit.Test;
 
 /**
  * Date: 12/12/15 - 10:58 PM
