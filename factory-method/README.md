@@ -35,7 +35,7 @@ Wikipedia says
 
 Taking our blacksmith example above. First of all we have a blacksmith interface and some implementations for it
 
-```
+```java
 public interface Blacksmith {
   Weapon manufactureWeapon(WeaponType weaponType);
 }
@@ -55,7 +55,7 @@ public class OrcBlacksmith implements Blacksmith {
 
 Now as the customers come the correct type of blacksmith is summoned and requested weapons are manufactured
 
-```
+```java
 Blacksmith blacksmith = new ElfBlacksmith();
 blacksmith.manufactureWeapon(WeaponType.SPEAR);
 blacksmith.manufactureWeapon(WeaponType.AXE);

@@ -32,7 +32,7 @@ Wikipedia says
 
 Translating our alchemist shop example from above. First of all we have different potion types
 
-```
+```java
 public interface Potion {
   void drink();
 }
@@ -64,7 +64,7 @@ public class InvisibilityPotion implements Potion {
 
 Then the actual Flyweight object which is the factory for creating potions
 
-```
+```java
 public class PotionFactory {
 
   private final Map<PotionType, Potion> potions;
@@ -100,7 +100,7 @@ public class PotionFactory {
 
 And it can be used as below
 
-```
+```java
 PotionFactory factory = new PotionFactory();
 factory.createPotion(PotionType.INVISIBILITY).drink(); // You become invisible. (Potion=6566818)
 factory.createPotion(PotionType.HEALING).drink(); // You feel healed. (Potion=648129364)
