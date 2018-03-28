@@ -18,6 +18,7 @@ permalink: /blog/:title/
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 
 gems:
   - jekyll-sitemap
