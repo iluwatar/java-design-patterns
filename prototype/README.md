@@ -33,7 +33,7 @@ In short, it allows you to create a copy of an existing object and modify it to 
 
 In Java, it can be easily done by implementing `Cloneable` and overriding `clone` from `Object`
 
-```
+```java
 class Sheep implements Cloneable {
   private String name;
   public Sheep(String name) { this.name = name; }
@@ -48,7 +48,7 @@ class Sheep implements Cloneable {
 
 Then it can be cloned like below
 
-```
+```java
 Sheep original = new Sheep("Jolly");
 System.out.println(original.getName()); // Jolly
 

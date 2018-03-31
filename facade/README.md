@@ -32,7 +32,7 @@ Wikipedia says
 
 Taking our goldmine example from above. Here we have the dwarven mine worker hierarchy
 
-```
+```java
 public abstract class DwarvenMineWorker {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenMineWorker.class);
@@ -140,7 +140,7 @@ public class DwarvenCartOperator extends DwarvenMineWorker {
 
 To operate all these goldmine workers we have the facade
 
-```
+```java
 public class DwarvenGoldmineFacade {
 
   private final List<DwarvenMineWorker> workers;
@@ -175,7 +175,7 @@ public class DwarvenGoldmineFacade {
 
 Now to use the facade
 
-```
+```java
 DwarvenGoldmineFacade facade = new DwarvenGoldmineFacade();
 facade.startNewDay();
 // Dwarf gold digger wakes up.

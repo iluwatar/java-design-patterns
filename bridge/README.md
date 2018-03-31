@@ -34,7 +34,7 @@ Wikipedia says
 
 Translating our weapon example from above. Here we have the `Weapon` hierarchy
 
-```
+```java
 public interface Weapon {
   void wield();
   void swing();
@@ -109,7 +109,7 @@ public class Hammer implements Weapon {
 
 And the separate enchantment hierarchy
 
-```
+```java
 public interface Enchantment {
   void onActivate();
   void apply();
@@ -155,7 +155,7 @@ public class SoulEatingEnchantment implements Enchantment {
 
 And both the hierarchies in action
 
-```
+```java
 Sword enchantedSword = new Sword(new SoulEatingEnchantment());
 enchantedSword.wield();
 enchantedSword.swing();
