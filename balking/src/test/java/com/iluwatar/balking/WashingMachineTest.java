@@ -22,6 +22,7 @@
  */
 package com.iluwatar.balking;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.ExecutorService;
@@ -37,6 +38,7 @@ public class WashingMachineTest {
 
   private volatile WashingMachineState machineStateGlobal;
 
+  @Disabled
   @Test
   public void wash() throws Exception {
     WashingMachine washingMachine = new WashingMachine();
