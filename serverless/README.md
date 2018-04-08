@@ -6,7 +6,7 @@ permalink: /patterns/serverless/
 categories: Architectural
 tags:
  - Java
- - Difficulty-Intermittent
+ - Difficulty-Intermediate
 ---
 
 ## Serverless
