@@ -24,6 +24,7 @@ package com.iluwatar.throttling;
 
 import com.iluwatar.throttling.timer.ThrottleTimerImpl;
 import com.iluwatar.throttling.timer.Throttler;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,7 +33,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * B2BServiceTest class to test the B2BService
  */
 public class B2BServiceTest {
-  
+
+  @Disabled
   @Test
   public void dummyCustomerApiTest() {
     Tenant tenant = new Tenant("testTenant", 2);

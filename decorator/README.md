@@ -36,7 +36,7 @@ Wikipedia says
 
 Let's take the troll example. First of all we have a simple troll implementing the troll interface
 
-```
+```java
 public interface Troll {
   void attack();
   int getAttackPower();
@@ -66,7 +66,7 @@ public class SimpleTroll implements Troll {
 
 Next we want to add club for the troll. We can do it dynamically by using a decorator
 
-```
+```java
 public class ClubbedTroll implements Troll {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);
@@ -97,7 +97,7 @@ public class ClubbedTroll implements Troll {
 
 Here's the troll in action
 
-```
+```java
 // simple troll
 Troll troll = new SimpleTroll();
 troll.attack(); // The troll tries to grab you!
