@@ -15,6 +15,7 @@ tags:
 Kit
 
 ## Intent
+//为相关的类或者family提供接口而不是指定特定的类
 Provide an interface for creating families of related or dependent
 objects without specifying their concrete classes.
 
