@@ -1,8 +1,11 @@
 ---
 layout: pattern
-title: Abstract Factory
+title: Abstract Factory 抽象工厂
+
 folder: abstract-factory
+
 permalink: /patterns/abstract-factory/
+
 pumlid: PSZB3OD034NHLa81Czwd6sCC39gVxEUWT1_ssLmTtQLqgR5fM7sTmFGtaV6TZu8prd0r6HtQaMKqAZLk1XjT_E6qgPUZfyc0MdTgx0-8LuUn8ErFXdr98NypXxKyezKV
 categories: Creational
 tags:
