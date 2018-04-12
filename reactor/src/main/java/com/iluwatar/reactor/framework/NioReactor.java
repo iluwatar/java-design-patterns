@@ -84,11 +84,8 @@ public class NioReactor {
 
   /**
    * Starts the reactor event loop in a new thread.
-   * 
-   * @throws IOException
-   *           if any I/O error occurs.
    */
-  public void start() throws IOException {
+  public void start() {
     reactorMain.execute(() -> {
       try {
         LOGGER.info("Reactor started, waiting for events...");
