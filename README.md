@@ -10,7 +10,7 @@
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.iluwatar%3Ajava-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard/index/com.iluwatar%3Ajava-design-patterns)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1503/badge)](https://bestpractices.coreinfrastructure.org/projects/1503)
 
-# Introduction
+# Introductionsd
 
 Design patterns are formalized best practices that the programmer can use to
 solve common problems when designing an application or system.
