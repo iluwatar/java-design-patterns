@@ -49,6 +49,6 @@ public class DirtyFlagTest {
     DataFetcher df = new DataFetcher();
     df.fetch();
     List<String> countries = df.fetch();
-    assertTrue(countries == null);
+    assertTrue(countries.isEmpty());
   }
 }
