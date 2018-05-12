@@ -12,22 +12,12 @@ import java.util.List;
  */
 public class World {
 
-  private static World world;
-  private static List<String> countries = new ArrayList<String>();
+  private List<String> countries;
+  private DataFetcher df;
 
-  private World() {
-  }
-
-  /**
-   * Init.
-   * 
-   * @return World instance
-   */
-  public static World getInstance() {
-    if (world == null) {
-      world = new World();
-    }
-    return world;
+  public World() {
+    this.countries = new ArrayList<String>();
+    this.df = new DataFetcher();
   }
 
   /**
@@ -37,10 +27,9 @@ public class World {
    * @return List of strings
    */
   public List<String> fetch() {
-    DataFetcher df = DataFetcher.getInstance();
     List<String> data = df.fetch();
 
-    countries = data == null ? countries : data;
+    countries = data.isEmpty() ? countries : data;
 
     return countries;
   }

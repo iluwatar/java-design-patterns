@@ -57,7 +57,7 @@ public class App {
     executorService.scheduleAtFixedRate(new Runnable() {
       @Override
       public void run() {
-        World world = World.getInstance();
+        World world = new World();
         List<String> countries = world.fetch();
         System.out.println("Our world currently has the following countries:-");
         for (String country : countries) {

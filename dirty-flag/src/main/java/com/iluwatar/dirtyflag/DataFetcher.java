@@ -15,23 +15,11 @@ import java.util.List;
  */
 public class DataFetcher {
 
-  private static DataFetcher df;
   private final String filename = "world.txt";
-  private long lastFetched = -1;
+  private long lastFetched;
 
-  private DataFetcher() {
-  }
-
-  /**
-   * Init.
-   * 
-   * @return DataFetcher instance
-   */
-  public static DataFetcher getInstance() {
-    if (df == null) {
-      df = new DataFetcher();
-    }
-    return df;
+  public DataFetcher() {
+    this.lastFetched = -1;
   }
 
   private boolean isDirty(long fileLastModified) {
@@ -66,6 +54,6 @@ public class DataFetcher {
       return data;
     }
 
-    return null;
+    return new ArrayList<String>();
   }
 }
