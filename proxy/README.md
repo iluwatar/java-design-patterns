@@ -34,7 +34,7 @@ Wikipedia says
 
 Taking our wizard tower example from above. Firstly we have the wizard tower interface and the ivory tower class
 
-```
+```java
 public interface WizardTower {
 
   void enter(Wizard wizard);
@@ -53,7 +53,7 @@ public class IvoryTower implements WizardTower {
 
 Then a simple wizard class
 
-```
+```java
 public class Wizard {
 
   private final String name;
@@ -71,7 +71,7 @@ public class Wizard {
 
 Then we have the proxy to add access control to wizard tower
 
-```
+```java
 public class WizardTowerProxy implements WizardTower {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(WizardTowerProxy.class);
@@ -100,7 +100,7 @@ public class WizardTowerProxy implements WizardTower {
 
 And here is tower entering scenario
 
-```
+```java
 WizardTowerProxy proxy = new WizardTowerProxy(new IvoryTower());
 proxy.enter(new Wizard("Red wizard")); // Red wizard enters the tower.
 proxy.enter(new Wizard("White wizard")); // White wizard enters the tower.

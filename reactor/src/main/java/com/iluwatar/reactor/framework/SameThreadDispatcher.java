@@ -37,7 +37,7 @@ import java.nio.channels.SelectionKey;
 public class SameThreadDispatcher implements Dispatcher {
 
   /**
-   * Dispatches the read event in the context of caller thread. <br/>
+   * Dispatches the read event in the context of caller thread. <br>
    * Note this is a blocking call. It returns only after the associated handler has handled the read
    * event.
    */

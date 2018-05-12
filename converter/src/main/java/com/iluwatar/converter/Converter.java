@@ -50,37 +50,37 @@ public class Converter<T, U> {
   }
 
   /**
-   * @param userDto DTO entity
+   * @param dto DTO entity
    * @return The domain representation - the result of the converting function application on dto entity.
    */
-  public final U convertFromDto(final T userDto) {
-    return fromDto.apply(userDto);
+  public final U convertFromDto(final T dto) {
+    return fromDto.apply(dto);
   }
 
   /**
-   * @param user domain entity
+   * @param entity domain entity
    * @return The DTO representation - the result of the converting function application on domain entity.
    */
-  public final T convertFromEntity(final U user) {
-    return fromEntity.apply(user);
+  public final T convertFromEntity(final U entity) {
+    return fromEntity.apply(entity);
   }
 
   /**
-   * @param dtoUsers collection of DTO entities
+   * @param dtos collection of DTO entities
    * @return List of domain representation of provided entities retrieved by
    *        mapping each of them with the conversion function
    */
-  public final List<U> createFromDtos(final Collection<T> dtoUsers) {
-    return dtoUsers.stream().map(this::convertFromDto).collect(Collectors.toList());
+  public final List<U> createFromDtos(final Collection<T> dtos) {
+    return dtos.stream().map(this::convertFromDto).collect(Collectors.toList());
   }
 
   /**
-   * @param users collection of domain entities
+   * @param entities collection of domain entities
    * @return List of domain representation of provided entities retrieved by
    *        mapping each of them with the conversion function
    */
-  public final List<T> createFromEntities(final Collection<U> users) {
-    return users.stream().map(this::convertFromEntity).collect(Collectors.toList());
+  public final List<T> createFromEntities(final Collection<U> entities) {
+    return entities.stream().map(this::convertFromEntity).collect(Collectors.toList());
   }
 
 }

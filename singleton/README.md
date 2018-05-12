@@ -34,7 +34,7 @@ Joshua Bloch, Effective Java 2nd Edition p.18
 
 > A single-element enum type is the best way to implement a singleton
 
-```
+```java
 public enum EnumIvoryTower {
   INSTANCE;
 }
@@ -42,7 +42,7 @@ public enum EnumIvoryTower {
 
 Then in order to use
 
-```
+```java
 EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.INSTANCE;
 EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
 assertEquals(enumIvoryTower1, enumIvoryTower2); // true

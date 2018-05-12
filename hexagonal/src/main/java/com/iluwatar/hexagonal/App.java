@@ -50,13 +50,13 @@ import com.iluwatar.hexagonal.sampledata.SampleData;
  * from the services it uses.<p>
  * 
  * The primary ports for the application are console interfaces
- * {@link ConsoleAdministration} through which the lottery round is
- * initiated and run and {@link ConsoleLottery} that allows players to
+ * {@link com.iluwatar.hexagonal.administration.ConsoleAdministration} through which the lottery round is
+ * initiated and run and {@link com.iluwatar.hexagonal.service.ConsoleLottery} that allows players to
  * submit lottery tickets for the draw.<p>
  * 
- * The secondary ports that application core uses are {@link WireTransfers}
- * which is a banking service, {@link LotteryEventLog} that delivers
- * eventlog as lottery events occur and {@link LotteryTicketRepository}
+ * The secondary ports that application core uses are {@link com.iluwatar.hexagonal.banking.WireTransfers}
+ * which is a banking service, {@link com.iluwatar.hexagonal.eventlog.LotteryEventLog} that delivers
+ * eventlog as lottery events occur and {@link com.iluwatar.hexagonal.database.LotteryTicketRepository}
  * that is the storage for the lottery tickets.
  *
  */

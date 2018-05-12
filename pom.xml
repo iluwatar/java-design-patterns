@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.19.0-SNAPSHOT</version>
+    <version>1.20.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2014</inceptionYear>
     <properties>
@@ -48,6 +48,11 @@
         <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
         <slf4j.version>1.7.21</slf4j.version>
         <logback.version>1.1.7</logback.version>
+        <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
+        <aws-java-sdk-dynamodb.version>1.11.289</aws-java-sdk-dynamodb.version>
+        <aws-lambda-log4j.version>1.0.0</aws-lambda-log4j.version>
+        <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
+        <jackson.version>2.8.5</jackson.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -112,11 +117,11 @@
         <module>business-delegate</module>
         <module>half-sync-half-async</module>
         <module>layers</module>
-        <module>message-channel</module>
+        <module>eip-message-channel</module>
         <module>fluentinterface</module>
         <module>reactor</module>
         <module>caching</module>
-        <module>publish-subscribe</module>
+        <module>eip-publish-subscribe</module>
         <module>delegation</module>
         <module>event-driven-architecture</module>
         <module>api-gateway</module>
@@ -153,8 +158,9 @@
         <module>eip-splitter</module>
         <module>eip-aggregator</module>
         <module>retry</module>
-    	  <module>dirty-flag</module>
-		    <module>trampoline</module>
+        <module>dirty-flag</module>
+        <module>trampoline</module>
+        <module>serverless</module>
     </modules>
 
     <repositories>

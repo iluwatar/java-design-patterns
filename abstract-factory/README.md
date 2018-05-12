@@ -34,7 +34,7 @@ Wikipedia says
 
 Translating the kingdom example above. First of all we have some interfaces and implementation for the objects in the kingdom
 
-```
+```java
 public interface Castle {
   String getDescription();
 }
@@ -74,7 +74,7 @@ public class ElfArmy implements Army {
 
 Then we have the abstraction and implementations for the kingdom factory
 
-```
+```java
 public interface KingdomFactory {
   Castle createCastle();
   King createKing();
@@ -108,7 +108,7 @@ public class OrcKingdomFactory implements KingdomFactory {
 
 Now we have our abstract factory that lets us make family of related objects i.e. Elven kingdom factory creates Elven castle, king and army etc.
 
-```
+```java
 KingdomFactory factory = new ElfKingdomFactory();
 Castle castle = factory.createCastle();
 King king = factory.createKing();
@@ -123,7 +123,7 @@ Now, we can design a factory for our different kingdom factories. In this exampl
 The client can use FactoryMaker to create the desired concrete factory which, in turn, will produce different concrete objects (Army, King, Castle).  
 In this example, we also used an enum to parameterize which type of kingdom factory the client will ask for.
 
-```
+```java
 public static class FactoryMaker {
 
   public enum KingdomType {
