@@ -6,7 +6,7 @@ permalink: /patterns/dirty-flag/
 categories: Other
 tags:
  - Java
- - Difficulty-Easy
+ - Difficulty-Beginner
  - Performance
 ---
 
