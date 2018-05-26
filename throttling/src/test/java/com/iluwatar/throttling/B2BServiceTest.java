@@ -36,7 +36,7 @@ public class B2BServiceTest {
   public void dummyCustomerApiTest() {
     Tenant tenant = new Tenant("testTenant", 2);
     // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
-    Throttler timer = () -> {};
+    Throttler timer = () -> { };
     B2BService service = new B2BService(timer);
 
     for (int i = 0; i < 5; i++) {
