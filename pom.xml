@@ -161,6 +161,7 @@
         <module>dirty-flag</module>
         <module>trampoline</module>
         <module>serverless</module>
+		<module>acyclic-visitor</module>
     </modules>
 
     <repositories>
