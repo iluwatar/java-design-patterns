@@ -25,7 +25,6 @@ package com.iluwatar.acyclicvisitor;
 /**
  * ZoomVisitor interface
  */
-
 public interface ZoomVisitor {
   void visit(Zoom zoom);
 }

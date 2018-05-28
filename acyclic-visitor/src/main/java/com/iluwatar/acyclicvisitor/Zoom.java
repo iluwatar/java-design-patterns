@@ -26,10 +26,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Zoom class implements its
- * accept method
+ * Zoom class implements its accept method
  */
-
 public class Zoom extends Modem {
   
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);

@@ -25,7 +25,6 @@ package com.iluwatar.acyclicvisitor;
 /**
  * ZoomVisitor interface
  */
-
 public interface ModemVisitor {
   // Visitor is a degenerate base class for all visitors.
 }

@@ -23,28 +23,17 @@
 package com.iluwatar.acyclicvisitor;
 
 /**
- * The Acyclic Visitor pattern allows new 
- * functions to be added to existing class 
- * hierarchies without affecting those 
- * hierarchies, and without creating the 
- * dependency cycles that are inherent to 
- * the GoF Visitor pattern, by making the 
- * Visitor base class degenerate
+ * The Acyclic Visitor pattern allows new functions to be added to existing class 
+ * hierarchies without affecting those hierarchies, and without creating the dependency 
+ * cycles that are inherent to the GoF Visitor pattern, by making the Visitor base class 
+ * degenerate
  * <p>
- * In this example the visitor base
- * class is {@link ModemVisitor}. 
- * The base class of the visited 
- * hierarchy is {@link Modem} and 
- * has two children {@link Hayes} 
- * and {@link Zoom} each one having
- * its own visitor interface {@link Hayes}
- * and {@link ZoomVisitor} respectively.
- * {@link ConfigureForUnixVisitor} and 
- * {@link ConfigureForDosVisitor} implement
- * each derivative's visit method
- * only if it is required 
+ * In this example the visitor base class is {@link ModemVisitor}. The base class of the 
+ * visited hierarchy is {@link Modem} and has two children {@link Hayes} and {@link Zoom} 
+ * each one having its own visitor interface {@link Hayes} and {@link ZoomVisitor} 
+ * respectively. {@link ConfigureForUnixVisitor} and {@link ConfigureForDosVisitor} 
+ * implement each derivative's visit method only if it is required 
  */
-
 public class App {
   
   /**

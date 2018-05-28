@@ -26,10 +26,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Hayes class implements its
- * accept method
+ * Hayes class implements its accept method
  */
-
 public class Hayes extends Modem {
   
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);

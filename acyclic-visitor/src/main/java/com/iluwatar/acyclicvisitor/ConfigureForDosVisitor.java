@@ -26,12 +26,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * CongigureForDosVisitor class
- * implements both zoom's and 
- * hayes' visit method for Dos 
- * manufacturer
+ * CongigureForDosVisitor class implements both zoom's and  hayes' visit method 
+ * for Dos manufacturer
  */
-
 public class ConfigureForDosVisitor implements ModemVisitor, HayesVisitor, ZoomVisitor {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);
