@@ -22,20 +22,15 @@
  */
 package com.iluwatar.ambassador;
 
+import org.junit.jupiter.api.Test;
+
 /**
- * A simple Client
+ * Application test
  */
-public class Client {
+public class AppTest {
 
-    private ServiceAmbassador serviceAmbassador;
-
-    Client() {
-        serviceAmbassador = new ServiceAmbassador();
-    }
-
-    long useService(int value) {
-        long result = serviceAmbassador.doRemoteFunction(value);
-        System.out.println(result);
-        return result;
+    @Test
+    public void test() {
+        App.main(new String[]{});
     }
 }
