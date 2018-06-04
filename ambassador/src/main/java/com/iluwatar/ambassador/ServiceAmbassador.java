@@ -36,53 +36,53 @@ import static java.lang.Thread.sleep;
  */
 public class ServiceAmbassador implements RemoteServiceInterface {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceAmbassador.class);
-    private static final int RETRIES = 3;
-    private static final int DELAY_MS = 3000;
+  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceAmbassador.class);
+  private static final int RETRIES = 3;
+  private static final int DELAY_MS = 3000;
 
-    ServiceAmbassador() {
+  ServiceAmbassador() {
 
-    }
+  }
 
-    @Override
-    public long doRemoteFunction(int value) {
+  @Override
+  public long doRemoteFunction(int value) {
 
-        return safeCall(value);
-    }
+    return safeCall(value);
+  }
 
-    private long checkLatency(int value) {
-        RemoteService service = RemoteService.getRemoteService();
-        long startTime = System.currentTimeMillis();
-        long result = service.doRemoteFunction(value);
-        long timeTaken = System.currentTimeMillis() - startTime;
+  private long checkLatency(int value) {
+    RemoteService service = RemoteService.getRemoteService();
+    long startTime = System.currentTimeMillis();
+    long result = service.doRemoteFunction(value);
+    long timeTaken = System.currentTimeMillis() - startTime;
 
-        LOGGER.info("Time taken (ms): " + timeTaken);
-        return result;
-    }
+    LOGGER.info("Time taken (ms): " + timeTaken);
+    return result;
+  }
 
-    private long safeCall(int value) {
+  private long safeCall(int value) {
 
-        int retries = 0;
-        long result = -1;
+    int retries = 0;
+    long result = -1;
 
-        for (int i = 0; i < RETRIES; i++) {
+    for (int i = 0; i < RETRIES; i++) {
 
-            if (retries >= RETRIES) {
-                return -1;
-            }
+      if (retries >= RETRIES) {
+        return -1;
+      }
 
-            if ((result = checkLatency(value)) == -1) {
-                LOGGER.info("Failed to reach remote: (" + (i + 1) + ")");
-                retries++;
-                try {
-                    sleep(DELAY_MS);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                break;
-            }
+      if ((result = checkLatency(value)) == -1) {
+        LOGGER.info("Failed to reach remote: (" + (i + 1) + ")");
+        retries++;
+        try {
+          sleep(DELAY_MS);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
         }
-        return result;
+      } else {
+        break;
+      }
     }
+    return result;
+  }
 }

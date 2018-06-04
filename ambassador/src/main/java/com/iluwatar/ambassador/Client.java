@@ -27,15 +27,15 @@ package com.iluwatar.ambassador;
  */
 public class Client {
 
-    private ServiceAmbassador serviceAmbassador;
+  private ServiceAmbassador serviceAmbassador;
 
-    Client() {
-        serviceAmbassador = new ServiceAmbassador();
-    }
+  Client() {
+    serviceAmbassador = new ServiceAmbassador();
+  }
 
-    long useService(int value) {
-        long result = serviceAmbassador.doRemoteFunction(value);
-        System.out.println(result);
-        return result;
-    }
+  long useService(int value) {
+    long result = serviceAmbassador.doRemoteFunction(value);
+    System.out.println(result);
+    return result;
+  }
 }

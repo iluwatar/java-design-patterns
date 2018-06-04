@@ -29,35 +29,35 @@ import static java.lang.Thread.sleep;
  */
 public class RemoteService implements RemoteServiceInterface {
 
-    private static RemoteService service = null;
+  private static RemoteService service = null;
 
-    static synchronized RemoteService getRemoteService() {
-        if (service == null) {
-            service = new RemoteService();
-        }
-        return service;
+  static synchronized RemoteService getRemoteService() {
+    if (service == null) {
+      service = new RemoteService();
     }
+    return service;
+  }
 
-    private RemoteService() {
+  private RemoteService() {
 
+  }
+
+  /**
+   * Remote function takes a value and multiplies it by 10 taking a random amount of time.
+   * Will sometimes return -1. This immitates connectivity issues a client might have to account for.
+   * @param value integer value to be multiplied.
+   * @return if waitTime is more than 200ms, it returns value * 10, otherwise -1.
+   */
+  @Override
+  public long doRemoteFunction(int value) {
+
+    long waitTime = (long) Math.floor(Math.random() * 1000);
+
+    try {
+      sleep(waitTime);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
-
-    /**
-     * Remote function takes a value and multiplies it by 10 taking a random amount of time.
-     * Will sometimes return -1. This immitates connectivity issues a client might have to account for.
-     * @param value integer value to be multiplied.
-     * @return if waitTime is more than 200ms, it returns value * 10, otherwise -1.
-     */
-    @Override
-    public long doRemoteFunction(int value) {
-
-        long waitTime = (long) Math.floor(Math.random() * 1000);
-
-        try {
-            sleep(waitTime);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return waitTime >= 200 ? value * 10 : -1;
-    }
+    return waitTime >= 200 ? value * 10 : -1;
+  }
 }
