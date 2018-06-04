@@ -27,6 +27,13 @@ import org.slf4j.LoggerFactory;
 
 import static java.lang.Thread.sleep;
 
+/**
+ *
+ * ServiceAmbassador provides an interface for a ({@link Client}) to access ({@link RemoteService}).
+ * The interface adds logging, latency testing and usage of the service in a safe way that will not
+ * add stress to the remote service when connectivity issues occur.
+ *
+ */
 public class ServiceAmbassador implements RemoteServiceInterface {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceAmbassador.class);
@@ -41,10 +48,6 @@ public class ServiceAmbassador implements RemoteServiceInterface {
     public long doRemoteFunction(int value) {
 
         return safeCall(value);
-    }
-
-    long doAddedFunction(int value) {
-        return safeCall(value) * 5;
     }
 
     private long checkLatency(int value) {

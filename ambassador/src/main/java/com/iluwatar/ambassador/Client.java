@@ -22,6 +22,9 @@
  */
 package com.iluwatar.ambassador;
 
+/**
+ * A simple Client
+ */
 public class Client {
 
     private ServiceAmbassador serviceAmbassador;
@@ -32,11 +35,6 @@ public class Client {
 
     void useService(int value) {
         long result = serviceAmbassador.doRemoteFunction(value);
-        System.out.println(result);
-    }
-
-    void useNewService(int value) {
-        long result = serviceAmbassador.doAddedFunction(value);
         System.out.println(result);
     }
 }

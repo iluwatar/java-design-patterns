@@ -24,6 +24,9 @@ package com.iluwatar.ambassador;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * A remote legacy application represented by a Singleton implementation.
+ */
 public class RemoteService implements RemoteServiceInterface {
 
     private static RemoteService service = null;
@@ -39,6 +42,12 @@ public class RemoteService implements RemoteServiceInterface {
 
     }
 
+    /**
+     * Remote function takes a value and multiplies it by 10 taking a random amount of time.
+     * Will sometimes return -1. This immitates connectivity issues a client might have to account for.
+     * @param value integer value to be multiplied.
+     * @return if waitTime is more than 200ms, it returns value * 10, otherwise -1.
+     */
     @Override
     public long doRemoteFunction(int value) {
 
