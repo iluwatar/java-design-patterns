@@ -24,12 +24,15 @@ package com.iluwatar.ambassador;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test for {@link ServiceAmbassador}
+ */
 public class ServiceAmbassadorTest {
 
-    @Test
-    public void test() {
-        ServiceAmbassador ambassador = new ServiceAmbassador();
-        long result = ambassador.doRemoteFunction(10);
-        assert result == 100 || result == -1;
-    }
+  @Test
+  public void test() {
+    ServiceAmbassador ambassador = new ServiceAmbassador();
+    long result = ambassador.doRemoteFunction(10);
+    assert result == 100 || result == -1;
+  }
 }
