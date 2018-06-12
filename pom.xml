@@ -162,6 +162,7 @@
         <module>trampoline</module>
         <module>serverless</module>
 	    <module>component-object</module>
+	    <module>monitor-object</module>
     </modules>
 
     <repositories>
