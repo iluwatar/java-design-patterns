@@ -1,0 +1,1 @@
+package com.iluwatar.monitor;/** * An assertion that is always true. */public class TrueAssertion extends Assertion {  public boolean isTrue() {    return true;  }  public static final TrueAssertion singleton = new TrueAssertion();}
