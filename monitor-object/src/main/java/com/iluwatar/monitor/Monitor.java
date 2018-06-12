@@ -1,3 +1,25 @@
+/**
+ * The MIT License
+ * Copyright (c) 2014 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.monitor;
 
 /**
@@ -9,7 +31,7 @@ public final class Monitor extends AbstractMonitor {
   private Assertion invariant;
 
   public Monitor() {
-    this(TrueAssertion.singleton);
+    this(TrueAssertion.SINGLETON);
   }
 
   public Monitor(Assertion invariant) {
@@ -17,7 +39,7 @@ public final class Monitor extends AbstractMonitor {
   }
 
   public Monitor(String name) {
-    this(name, TrueAssertion.singleton);
+    this(name, TrueAssertion.SINGLETON);
   }
 
   public Monitor(String name, Assertion invariant) {
@@ -28,50 +50,5 @@ public final class Monitor extends AbstractMonitor {
   @Override
   public boolean invariant() {
     return invariant.isTrue();
-  }
-
-  @Override
-  public void enter() {
-    super.enter();
-  }
-
-  @Override
-  public void leave() {
-    super.leave();
-  }
-
-  @Override
-  public <T> T leave(T result) {
-    return super.leave(result);
-  }
-
-  @Override
-  public void doWithin(Runnable runnable) {
-    super.doWithin(runnable);
-  }
-
-  @Override
-  public <T> T doWithin(RunnableWithResult<T> runnable) {
-    return super.doWithin(runnable);
-  }
-
-  @Override
-  public Condition makeCondition() {
-    return super.makeCondition();
-  }
-
-  @Override
-  public Condition makeCondition(Assertion assertion) {
-    return super.makeCondition(assertion);
-  }
-
-  @Override
-  public Condition makeCondition(String name) {
-    return super.makeCondition(name);
-  }
-
-  @Override
-  public Condition makeCondition(String name, Assertion assertion) {
-    return super.makeCondition(name, assertion);
   }
 }
