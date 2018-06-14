@@ -62,14 +62,4 @@ public class ConfigureForUnixVisitorTest {
     assertThat(logger.getLoggingEvents()).extracting("level", "message").contains(
         tuple(INFO, zoom + " used with Unix configurator."));
   }
-  
-  @Test
-  public void testVisitForHayes() {
-    ConfigureForUnixVisitor conUnix = new ConfigureForUnixVisitor();
-    Hayes hayes = mock(Hayes.class);
-    
-    Assertions.assertThrows(ClassCastException.class, () -> {
-      ((HayesVisitor)conUnix).visit(hayes);
-    });    
-  }
 }
