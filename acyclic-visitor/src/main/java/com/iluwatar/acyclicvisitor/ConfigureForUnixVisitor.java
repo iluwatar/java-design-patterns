@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * CongigureForDosVisitor class implements both zoom's visit method for Unix 
+ * ConfigureForUnixVisitor class implements zoom's visit method for Unix 
  * manufacturer
  */
 public class ConfigureForUnixVisitor implements ModemVisitor, ZoomVisitor {
