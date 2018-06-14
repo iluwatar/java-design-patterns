@@ -33,7 +33,7 @@ public class Hayes extends Modem {
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);
 
   /**
-   * Accept visitor
+   * Accepts all visitors but honors only HayesVisitor
    */
   @Override
   public void accept(ModemVisitor modemVisitor) {

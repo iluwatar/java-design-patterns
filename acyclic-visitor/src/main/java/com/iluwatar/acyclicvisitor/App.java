@@ -30,7 +30,7 @@ package com.iluwatar.acyclicvisitor;
  * <p>
  * In this example the visitor base class is {@link ModemVisitor}. The base class of the 
  * visited hierarchy is {@link Modem} and has two children {@link Hayes} and {@link Zoom} 
- * each one having its own visitor interface {@link Hayes} and {@link ZoomVisitor} 
+ * each one having its own visitor interface {@link HayesVisitor} and {@link ZoomVisitor} 
  * respectively. {@link ConfigureForUnixVisitor} and {@link ConfigureForDosVisitor} 
  * implement each derivative's visit method only if it is required 
  */

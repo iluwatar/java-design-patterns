@@ -33,7 +33,7 @@ public class Zoom extends Modem {
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);
 
   /**
-   * Accept visitor
+   * Accepts all visitors but honors only ZoomVisitor
    */
   @Override
   public void accept(ModemVisitor modemVisitor) {

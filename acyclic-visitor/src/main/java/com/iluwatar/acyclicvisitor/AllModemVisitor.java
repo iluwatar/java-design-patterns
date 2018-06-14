@@ -22,6 +22,9 @@
  */
 package com.iluwatar.acyclicvisitor;
 
+/**
+ * All ModemVisitor interface extends all visitor interfaces
+ */
 public interface AllModemVisitor extends ModemVisitor, ZoomVisitor, HayesVisitor{
 
 }
