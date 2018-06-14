@@ -32,10 +32,6 @@ public class Hayes extends Modem {
   
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);
 
-  public Hayes() {
-
-  }
-
   /**
    * Accept visitor
    */

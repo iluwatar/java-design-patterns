@@ -32,10 +32,6 @@ public class Zoom extends Modem {
   
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);
 
-  public Zoom() {
-    
-  }
-
   /**
    * Accept visitor
    */
