@@ -49,9 +49,9 @@ public class ConfigureForDosVisitorTest {
   @Test
   public void testVisitForZoom() {    
     ConfigureForDosVisitor conDos = new ConfigureForDosVisitor();
-    Zoom zoom = mock(Zoom.class);
+    Zoom zoom = new Zoom();
     
-    ((ZoomVisitor)conDos).visit(zoom);
+    conDos.visit(zoom);
     
     assertThat(logger.getLoggingEvents()).extracting("level", "message").contains(
         tuple(INFO, zoom + " used with Dos configurator."));
@@ -60,9 +60,9 @@ public class ConfigureForDosVisitorTest {
   @Test
   public void testVisitForHayes() {
     ConfigureForDosVisitor conDos = new ConfigureForDosVisitor();
-    Hayes hayes = mock(Hayes.class);
+    Hayes hayes = new Hayes();
     
-    ((HayesVisitor)conDos).visit(hayes);
+    conDos.visit(hayes);
     
     assertThat(logger.getLoggingEvents()).extracting("level", "message").contains(
         tuple(INFO, hayes + " used with Dos configurator."));

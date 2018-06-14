@@ -55,9 +55,9 @@ public class ConfigureForUnixVisitorTest {
   @Test
   public void testVisitForZoom() {
     ConfigureForUnixVisitor conUnix = new ConfigureForUnixVisitor();
-    Zoom zoom = mock(Zoom.class);
+    Zoom zoom = new Zoom();
     
-    ((ZoomVisitor)conUnix).visit(zoom);
+    conUnix.visit(zoom);
     
     assertThat(logger.getLoggingEvents()).extracting("level", "message").contains(
         tuple(INFO, zoom + " used with Unix configurator."));
