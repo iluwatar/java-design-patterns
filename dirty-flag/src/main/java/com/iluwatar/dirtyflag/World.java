@@ -20,31 +20,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.throttling;
+package com.iluwatar.dirtyflag;
 
-import com.iluwatar.throttling.timer.Throttler;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * B2BServiceTest class to test the B2BService
+ * 
+ * A middle-layer app that calls/passes along data from the back-end.
+ * 
+ * @author swaisuan
+ *
  */
-public class B2BServiceTest {
+public class World {
 
-  @Disabled
-  @Test
-  public void dummyCustomerApiTest() {
-    Tenant tenant = new Tenant("testTenant", 2);
-    // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
-    Throttler timer = () -> { };
-    B2BService service = new B2BService(timer);
+  private List<String> countries;
+  private DataFetcher df;
 
-    for (int i = 0; i < 5; i++) {
-      service.dummyCustomerApi(tenant);
-    }
-    long counter = CallsCount.getCount(tenant.getName());
-    assertEquals(2, counter, "Counter limit must be reached");
+  public World() {
+    this.countries = new ArrayList<String>();
+    this.df = new DataFetcher();
+  }
+
+  /**
+   * 
+   * Calls {@link DataFetcher} to fetch data from back-end.
+   * 
+   * @return List of strings
+   */
+  public List<String> fetch() {
+    List<String> data = df.fetch();
+
+    countries = data.isEmpty() ? countries : data;
+
+    return countries;
   }
 }

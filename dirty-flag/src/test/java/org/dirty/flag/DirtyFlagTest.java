@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,31 +20,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.throttling;
+package org.dirty.flag;
 
-import com.iluwatar.throttling.timer.Throttler;
-import org.junit.jupiter.api.Disabled;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.iluwatar.dirtyflag.DataFetcher;
 
 /**
- * B2BServiceTest class to test the B2BService
+ *
+ * Application test
+ *
  */
-public class B2BServiceTest {
+public class DirtyFlagTest {
 
-  @Disabled
   @Test
-  public void dummyCustomerApiTest() {
-    Tenant tenant = new Tenant("testTenant", 2);
-    // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
-    Throttler timer = () -> { };
-    B2BService service = new B2BService(timer);
+  public void testIsDirty() {
+    DataFetcher df = new DataFetcher();
+    List<String> countries = df.fetch();
+    assertTrue(!countries.isEmpty());
+  }
 
-    for (int i = 0; i < 5; i++) {
-      service.dummyCustomerApi(tenant);
-    }
-    long counter = CallsCount.getCount(tenant.getName());
-    assertEquals(2, counter, "Counter limit must be reached");
+  @Test
+  public void testIsNotDirty() {
+    DataFetcher df = new DataFetcher();
+    df.fetch();
+    List<String> countries = df.fetch();
+    assertTrue(countries.isEmpty());
   }
 }
