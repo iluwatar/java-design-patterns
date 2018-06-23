@@ -22,6 +22,9 @@
  */
 package com.iluwatar.ambassador;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static java.lang.Thread.sleep;
 
 /**
@@ -29,6 +32,7 @@ import static java.lang.Thread.sleep;
  */
 public class RemoteService implements RemoteServiceInterface {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(RemoteService.class);
   private static RemoteService service = null;
 
   static synchronized RemoteService getRemoteService() {
@@ -38,13 +42,11 @@ public class RemoteService implements RemoteServiceInterface {
     return service;
   }
 
-  private RemoteService() {
-
-  }
+  private RemoteService() {}
 
   /**
    * Remote function takes a value and multiplies it by 10 taking a random amount of time.
-   * Will sometimes return -1. This immitates connectivity issues a client might have to account for.
+   * Will sometimes return -1. This imitates connectivity issues a client might have to account for.
    * @param value integer value to be multiplied.
    * @return if waitTime is more than 200ms, it returns value * 10, otherwise -1.
    */
@@ -56,7 +58,7 @@ public class RemoteService implements RemoteServiceInterface {
     try {
       sleep(waitTime);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error("Thread sleep state interrupted", e);
     }
     return waitTime >= 200 ? value * 10 : -1;
   }

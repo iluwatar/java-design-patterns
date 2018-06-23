@@ -40,20 +40,16 @@ public class ServiceAmbassador implements RemoteServiceInterface {
   private static final int RETRIES = 3;
   private static final int DELAY_MS = 3000;
 
-  ServiceAmbassador() {
-
-  }
+  ServiceAmbassador() {}
 
   @Override
   public long doRemoteFunction(int value) {
-
     return safeCall(value);
   }
 
   private long checkLatency(int value) {
-    RemoteService service = RemoteService.getRemoteService();
     long startTime = System.currentTimeMillis();
-    long result = service.doRemoteFunction(value);
+    long result = RemoteService.getRemoteService().doRemoteFunction(value);
     long timeTaken = System.currentTimeMillis() - startTime;
 
     LOGGER.info("Time taken (ms): " + timeTaken);
@@ -77,7 +73,7 @@ public class ServiceAmbassador implements RemoteServiceInterface {
         try {
           sleep(DELAY_MS);
         } catch (InterruptedException e) {
-          e.printStackTrace();
+          LOGGER.error("Thread sleep state interrupted", e);
         }
       } else {
         break;

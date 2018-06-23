@@ -22,20 +22,21 @@
  */
 package com.iluwatar.ambassador;
 
+import org.slf4j.LoggerFactory;
+
+import org.slf4j.Logger;
+
 /**
  * A simple Client
  */
 public class Client {
 
-  private ServiceAmbassador serviceAmbassador;
-
-  Client() {
-    serviceAmbassador = new ServiceAmbassador();
-  }
+  private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
+  private final ServiceAmbassador serviceAmbassador = new ServiceAmbassador();
 
   long useService(int value) {
     long result = serviceAmbassador.doRemoteFunction(value);
-    System.out.println(result);
+    LOGGER.info("Service result: " + result);
     return result;
   }
 }
