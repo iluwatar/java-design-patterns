@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,31 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.throttling;
+package com.iluwatar.acyclicvisitor;
 
-import com.iluwatar.throttling.timer.Throttler;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * B2BServiceTest class to test the B2BService
+ * Zoom class implements its accept method
  */
-public class B2BServiceTest {
+public class Zoom extends Modem {
+  
+  private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);
 
-  @Disabled
-  @Test
-  public void dummyCustomerApiTest() {
-    Tenant tenant = new Tenant("testTenant", 2);
-    // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
-    Throttler timer = () -> { };
-    B2BService service = new B2BService(timer);
-
-    for (int i = 0; i < 5; i++) {
-      service.dummyCustomerApi(tenant);
+  /**
+   * Accepts all visitors but honors only ZoomVisitor
+   */
+  @Override
+  public void accept(ModemVisitor modemVisitor) {
+    try {
+      ((ZoomVisitor) modemVisitor).visit(this);
+    } catch (ClassCastException e) {
+      LOGGER.error("Unable to cast to ZoomVisitor");
     }
-    long counter = CallsCount.getCount(tenant.getName());
-    assertEquals(2, counter, "Counter limit must be reached");
+  }
+  
+  /**
+   * Zoom modem's toString
+   * method
+   */
+  @Override
+  public String toString() {
+    return "Zoom modem";
   }
 }

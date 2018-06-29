@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,31 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.throttling;
-
-import com.iluwatar.throttling.timer.Throttler;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+package com.iluwatar.acyclicvisitor;
 
 /**
- * B2BServiceTest class to test the B2BService
+ * All ModemVisitor interface extends all visitor interfaces
  */
-public class B2BServiceTest {
+public interface AllModemVisitor extends ModemVisitor, ZoomVisitor, HayesVisitor{
 
-  @Disabled
-  @Test
-  public void dummyCustomerApiTest() {
-    Tenant tenant = new Tenant("testTenant", 2);
-    // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
-    Throttler timer = () -> { };
-    B2BService service = new B2BService(timer);
-
-    for (int i = 0; i < 5; i++) {
-      service.dummyCustomerApi(tenant);
-    }
-    long counter = CallsCount.getCount(tenant.getName());
-    assertEquals(2, counter, "Counter limit must be reached");
-  }
 }

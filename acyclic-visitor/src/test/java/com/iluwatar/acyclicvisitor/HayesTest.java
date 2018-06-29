@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,31 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.throttling;
+package com.iluwatar.acyclicvisitor;
 
-import com.iluwatar.throttling.timer.Throttler;
-import org.junit.jupiter.api.Disabled;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.iluwatar.acyclicvisitor.ConfigureForDosVisitor;
+import com.iluwatar.acyclicvisitor.ConfigureForUnixVisitor;
+import com.iluwatar.acyclicvisitor.Hayes;
+import com.iluwatar.acyclicvisitor.HayesVisitor;
 
 /**
- * B2BServiceTest class to test the B2BService
+ * Hayes test class
  */
-public class B2BServiceTest {
+public class HayesTest {
 
-  @Disabled
   @Test
-  public void dummyCustomerApiTest() {
-    Tenant tenant = new Tenant("testTenant", 2);
-    // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
-    Throttler timer = () -> { };
-    B2BService service = new B2BService(timer);
-
-    for (int i = 0; i < 5; i++) {
-      service.dummyCustomerApi(tenant);
-    }
-    long counter = CallsCount.getCount(tenant.getName());
-    assertEquals(2, counter, "Counter limit must be reached");
+  public void testAcceptForDos() {  
+    Hayes hayes = new Hayes();
+    ConfigureForDosVisitor mockVisitor = mock(ConfigureForDosVisitor.class);
+    
+    hayes.accept(mockVisitor);
+    verify((HayesVisitor)mockVisitor).visit(eq(hayes));
+  }
+  
+  @Test
+  public void testAcceptForUnix() {    
+    Hayes hayes = new Hayes();
+    ConfigureForUnixVisitor mockVisitor = mock(ConfigureForUnixVisitor.class);
+    
+    hayes.accept(mockVisitor);
+    
+    verifyZeroInteractions(mockVisitor);
   }
 }
