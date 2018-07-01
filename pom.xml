@@ -163,6 +163,7 @@
         <module>serverless</module>
 	    <module>component-object</module>
 	    <module>monitor-object</module>
+	    <module>collection-pipeline</module>
     </modules>
 
     <repositories>
