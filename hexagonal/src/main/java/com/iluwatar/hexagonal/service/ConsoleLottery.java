@@ -25,6 +25,7 @@ package com.iluwatar.hexagonal.service;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.iluwatar.hexagonal.banking.WireTransfers;
+import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import org.slf4j.Logger;
@@ -45,22 +46,22 @@ public class ConsoleLottery {
   public static void main(String[] args) {
     MongoConnectionPropertiesLoader.load();
     Injector injector = Guice.createInjector(new LotteryModule());
-    com.iluwatar.hexagonal.domain.LotteryService service = injector.getInstance( com.iluwatar.hexagonal.domain.LotteryService.class);
+    LotteryService service = injector.getInstance( LotteryService.class);
     WireTransfers bank = injector.getInstance(WireTransfers.class);
     try (final Scanner scanner = new Scanner(System.in)) {
       boolean exit = false;
       while (!exit) {
         printMainMenu();
         String cmd = readString(scanner);
-        LotteryService lotteryService = new LotteryServiceImpl(LOGGER);
+        LotteryConsoleService lotteryConsoleService = new LotteryConsoleServiceImpl(LOGGER);
         if ("1".equals(cmd)) {
-          lotteryService.queryLotteryAccountFunds(bank, scanner);
+          lotteryConsoleService.queryLotteryAccountFunds(bank, scanner);
         } else if ("2".equals(cmd)) {
-          lotteryService.addFundsToLotteryAccount(bank, scanner);
+          lotteryConsoleService.addFundsToLotteryAccount(bank, scanner);
         } else if ("3".equals(cmd)) {
-          lotteryService.submitTicket(service, scanner);
+          lotteryConsoleService.submitTicket(service, scanner);
         } else if ("4".equals(cmd)) {
-          lotteryService.checkTicket(service, scanner);
+          lotteryConsoleService.checkTicket(service, scanner);
         } else if ("5".equals(cmd)) {
           exit = true;
         } else {
