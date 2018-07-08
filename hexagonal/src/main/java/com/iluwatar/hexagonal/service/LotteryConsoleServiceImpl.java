@@ -1,6 +1,5 @@
 package com.iluwatar.hexagonal.service;
 
-import com.google.inject.Inject;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.domain.*;
 import org.slf4j.Logger;
