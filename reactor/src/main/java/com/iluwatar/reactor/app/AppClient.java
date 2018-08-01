@@ -51,7 +51,7 @@ public class AppClient {
 
   /**
    * App client entry.
-   * 
+   *
    * @throws IOException if any I/O error occurs.
    */
   public static void main(String[] args) throws IOException {
@@ -61,7 +61,7 @@ public class AppClient {
 
   /**
    * Starts the logging clients.
-   * 
+   *
    * @throws IOException if any I/O error occurs.
    */
   public void start() throws IOException {
@@ -106,7 +106,7 @@ public class AppClient {
 
     /**
      * Creates a new TCP logging client.
-     * 
+     *
      * @param clientName the name of the client to be sent in logging requests.
      * @param serverPort the port on which client will send logging requests.
      */
@@ -115,6 +115,7 @@ public class AppClient {
       this.serverPort = serverPort;
     }
 
+    @Override
     public void run() {
       try (Socket socket = new Socket(InetAddress.getLocalHost(), serverPort)) {
         OutputStream outputStream = socket.getOutputStream();
@@ -154,7 +155,7 @@ public class AppClient {
 
     /**
      * Creates a new UDP logging client.
-     * 
+     *
      * @param clientName the name of the client to be sent in logging requests.
      * @param port the port on which client will send logging requests.
      * @throws UnknownHostException if localhost is unknown
