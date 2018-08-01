@@ -9,7 +9,7 @@ public final class Monitor extends AbstractMonitor {
   private Assertion invariant;
 
   public Monitor() {
-    this(TrueAssertion.singleton);
+    this(TrueAssertion.SINGLETON);
   }
 
   public Monitor(Assertion invariant) {
@@ -17,7 +17,7 @@ public final class Monitor extends AbstractMonitor {
   }
 
   public Monitor(String name) {
-    this(name, TrueAssertion.singleton);
+    this(name, TrueAssertion.SINGLETON);
   }
 
   public Monitor(String name, Assertion invariant) {

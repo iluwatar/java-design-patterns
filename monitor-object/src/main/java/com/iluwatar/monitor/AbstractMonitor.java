@@ -135,7 +135,7 @@ public abstract class AbstractMonitor {
    * Create a condition queue with no associated checked Assertion.
    */
   protected Condition makeCondition() {
-    return makeCondition(null, TrueAssertion.singleton);
+    return makeCondition(null, TrueAssertion.SINGLETON);
   }
 
   /**
@@ -150,7 +150,7 @@ public abstract class AbstractMonitor {
    * Create a condition queue with no associated checked Assertion.
    */
   protected Condition makeCondition(String name) {
-    return makeCondition(name, TrueAssertion.singleton);
+    return makeCondition(name, TrueAssertion.SINGLETON);
   }
 
   /** Register a listener. */

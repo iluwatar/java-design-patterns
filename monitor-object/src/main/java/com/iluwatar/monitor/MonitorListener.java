@@ -1,5 +1,8 @@
 package com.iluwatar.monitor;
 
+/**
+ * Interface for listener to be registered and notified by the Monitor. 
+ */
 public interface MonitorListener {
 
   void nameThisThread(String name);
