@@ -16,18 +16,15 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.iluwatar.iterator;
-
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.platform.suite.api.SelectPackages;
-import org.junit.platform.suite.api.SuiteDisplayName;
-import org.junit.runner.RunWith;
+package com.iluwatar.iterator.interfaces;
 
 /**
- * Runs a test suite containing all tests within the com.iluwatar.iterator package
+ * Iterator interface to be implemented by iterators over various data structures
+ * @param <T> generically typed for various objects
  */
-@RunWith(JUnitPlatform.class)
-@SuiteDisplayName("Iterator Test Suite")
-@SelectPackages("com.iluwatar.iterator")
-public class AppTest {
+public interface Iterator<T> {
+
+  boolean hasNext();
+
+  T next();
 }

@@ -20,8 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.iterator;
+package com.iluwatar.iterator.list;
 
+import com.iluwatar.iterator.interfaces.Iterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +31,7 @@ import org.slf4j.LoggerFactory;
  * The Iterator pattern is a design pattern in which an iterator is used to traverse a container and
  * access the container's elements. The Iterator pattern decouples algorithms from containers.
  * <p>
- * In this example the Iterator ({@link ItemIterator}) adds abstraction layer on top of a collection
+ * In this example the Iterator ({@link Iterator}) adds abstraction layer on top of a collection
  * ({@link TreasureChest}). This way the collection can change its internal implementation without
  * affecting its clients.
  * 

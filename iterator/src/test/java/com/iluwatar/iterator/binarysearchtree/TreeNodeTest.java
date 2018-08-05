@@ -16,18 +16,40 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.iluwatar.iterator;
+package com.iluwatar.iterator.binarysearchtree;
 
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.platform.suite.api.SelectPackages;
-import org.junit.platform.suite.api.SuiteDisplayName;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 
 /**
- * Runs a test suite containing all tests within the com.iluwatar.iterator package
+ * Comprehensive tests for TreeNode POJO
+ * @param <T> generically typed for TreeNode
  */
-@RunWith(JUnitPlatform.class)
-@SuiteDisplayName("Iterator Test Suite")
-@SelectPackages("com.iluwatar.iterator")
-public class AppTest {
+public class TreeNodeTest<T> {
+
+  @Test
+  void treeNodeGetters() {
+    TreeNode<T> node = new TreeNode(1);
+    assertEquals(node.getVal(), 1);
+    assertNull(node.getLeft(), "Left child should be initialized as null.");
+    assertNull(node.getRight(), "Right child should be initialized as null.");
+  }
+
+  @Test
+  void treeNodeSetters() {
+    TreeNode<T> node = new TreeNode(3);
+    node.setLeft(new TreeNode(1));
+    assertEquals(node.getLeft().getVal(), 1, "Left node has a value of 1.");
+    node.setRight(new TreeNode(5));
+    assertEquals(node.getRight().getVal(), 5, "Right node has a value of 5");
+  }
+
+  @Test
+  void treeNodeToString() {
+    TreeNode<T> node = new TreeNode(3);
+    assertEquals(node.toString(), "3", "node.toString() should return string value.");
+  }
+
 }

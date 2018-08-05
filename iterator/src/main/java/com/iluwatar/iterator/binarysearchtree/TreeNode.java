@@ -16,18 +16,51 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.iluwatar.iterator;
-
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.platform.suite.api.SelectPackages;
-import org.junit.platform.suite.api.SuiteDisplayName;
-import org.junit.runner.RunWith;
+package com.iluwatar.iterator.binarysearchtree;
 
 /**
- * Runs a test suite containing all tests within the com.iluwatar.iterator package
+ * This TreeNode class allows for a generically typed value.
+ * @param <T> generically typed to accept various data types for the val property
  */
-@RunWith(JUnitPlatform.class)
-@SuiteDisplayName("Iterator Test Suite")
-@SelectPackages("com.iluwatar.iterator")
-public class AppTest {
+public class TreeNode<T> {
+
+  private T val;
+  private TreeNode<T> left;
+  private TreeNode<T> right;
+
+  /**
+   * Creates a TreeNode with a given value, and null children
+   * @param val The value of the given node
+   */
+  public TreeNode(T val) {
+    this.val = val;
+    this.left = null;
+    this.right = null;
+  }
+
+  T getVal() {
+    return val;
+  }
+
+  TreeNode<T> getLeft() {
+    return left;
+  }
+
+  void setLeft(TreeNode<T> left) {
+    this.left = left;
+  }
+
+  TreeNode<T> getRight() {
+    return right;
+  }
+
+  void setRight(TreeNode<T> right) {
+    this.right = right;
+  }
+
+  @Override
+  public String toString() {
+    return val.toString();
+  }
+
 }

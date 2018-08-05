@@ -20,15 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.iterator;
+package com.iluwatar.iterator.list;
 
 /**
  * 
- * ItemType enumeration
- *
+ * ItemIterator interface.
+ * 
  */
-public enum ItemType {
+public interface ItemIterator {
 
-  ANY, WEAPON, RING, POTION
+  boolean hasNext();
 
+  Item next();
 }

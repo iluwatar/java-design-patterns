@@ -20,8 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.iterator;
+package com.iluwatar.iterator.list;
 
+import com.iluwatar.iterator.list.Item;
+import com.iluwatar.iterator.list.ItemIterator;
+import com.iluwatar.iterator.list.ItemType;
+import com.iluwatar.iterator.list.TreasureChest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
