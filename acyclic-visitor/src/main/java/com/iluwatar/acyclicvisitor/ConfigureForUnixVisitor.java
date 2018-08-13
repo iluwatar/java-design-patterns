@@ -26,13 +26,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * ConfigureForUnixVisitor class implements zoom's visit method for Unix 
+ * ConfigureForUnixVisitor class implements zoom's and hayes' visit method for Unix 
  * manufacturer
  */
-public class ConfigureForUnixVisitor implements ModemVisitor, ZoomVisitor {
+public class ConfigureForUnixVisitor implements AllModemVisitor  {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForUnixVisitor.class);
 
+  public void visit(Hayes hayes) {
+    LOGGER.info(hayes + " used with Unix configurator.");
+  }
+  
   public void visit(Zoom zoom) {
     LOGGER.info(zoom + " used with Unix configurator.");
   }
