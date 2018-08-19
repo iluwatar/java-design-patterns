@@ -43,7 +43,7 @@ public class InMemoryCustomerDao implements CustomerDao {
    */
   @Override
   public Stream<Customer> getAll() {
-    return idToCustomer.values().stream();
+    return idToCustomer.values().parallelStream();
   }
 
   @Override

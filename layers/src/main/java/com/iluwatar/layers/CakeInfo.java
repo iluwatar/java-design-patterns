@@ -59,7 +59,7 @@ public class CakeInfo {
    */
   public int calculateTotalCalories() {
     int total = cakeToppingInfo != null ? cakeToppingInfo.calories : 0;
-    total += cakeLayerInfos.stream().mapToInt(c -> c.calories).sum();
+    total += cakeLayerInfos.parallelStream().mapToInt(c -> c.calories).sum();
     return total;
   }
 

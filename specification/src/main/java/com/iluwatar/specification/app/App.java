@@ -68,13 +68,13 @@ public class App {
     // find all walking creatures
     LOGGER.info("Find all walking creatures");
     List<Creature> walkingCreatures =
-        creatures.stream().filter(new MovementSelector(Movement.WALKING))
+        creatures.parallelStream().filter(new MovementSelector(Movement.WALKING))
             .collect(Collectors.toList());
     walkingCreatures.stream().forEach(c -> LOGGER.info(c.toString()));
     // find all dark creatures
     LOGGER.info("Find all dark creatures");
     List<Creature> darkCreatures =
-        creatures.stream().filter(new ColorSelector(Color.DARK)).collect(Collectors.toList());
+        creatures.parallelStream().filter(new ColorSelector(Color.DARK)).collect(Collectors.toList());
     darkCreatures.stream().forEach(c -> LOGGER.info(c.toString()));
     // find all red and flying creatures
     LOGGER.info("Find all red and flying creatures");

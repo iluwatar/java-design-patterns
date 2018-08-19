@@ -94,14 +94,15 @@ public abstract class TaskTest<T extends Task> {
       }
 
       final List<Integer> ids = service.invokeAll(tasks)
-          .stream()
+          .parallelStream()
           .map(TaskTest::get)
           .filter(Objects::nonNull)
           .collect(Collectors.toList());
 
       service.shutdownNow();
 
-      final long uniqueIdCount = ids.stream()
+      final long uniqueIdCount = ids.parallelStream()
+          .unordered()
           .distinct()
           .count();
 

@@ -86,7 +86,7 @@ public class DbCustomerDao implements CustomerDao {
             throw new RuntimeException(e); // NOSONAR
           }
         }
-      }, false).onClose(() -> mutedClose(connection, statement, resultSet));
+      }, false).parallel().onClose(() -> mutedClose(connection, statement, resultSet));
     } catch (SQLException e) {
       throw new CustomException(e.getMessage(), e);
     }
