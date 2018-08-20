@@ -63,7 +63,7 @@ public class App {
     objects.add(new SpaceStationMir(1, 1, 2, 2));
     objects.add(new Meteoroid(10, 10, 15, 15));
     objects.add(new SpaceStationIss(12, 12, 14, 14));
-    objects.parallelStream().forEach(o -> LOGGER.info(o.toString()));
+    objects.stream().forEach(o -> LOGGER.info(o.toString()));
     LOGGER.info("");
 
     // collision check
@@ -75,7 +75,7 @@ public class App {
     LOGGER.info("");
 
     // output eventual object statuses
-    objects.parallelStream().forEach(o -> LOGGER.info(o.toString()));
+    objects.stream().forEach(o -> LOGGER.info(o.toString()));
     LOGGER.info("");
   }
 }
