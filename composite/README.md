@@ -33,7 +33,7 @@ Wikipedia says
 
 Taking our sentence example from above. Here we have the base class and different printable types
 
-```
+```java
 public abstract class LetterComposite {
   private List<LetterComposite> children = new ArrayList<>();
   public void add(LetterComposite letter) {
@@ -91,7 +91,7 @@ public class Sentence extends LetterComposite {
 
 Then we have a messenger to carry messages
 
-```
+```java
 public class Messenger {
   LetterComposite messageFromOrcs() {
     List<Word> words = new ArrayList<>();
@@ -122,7 +122,7 @@ public class Messenger {
 
 And then it can be used as
 
-```
+```java
 LetterComposite orcMessage = new Messenger().messageFromOrcs();
 orcMessage.print(); // Where there is a whip there is a way.
 LetterComposite elfMessage = new Messenger().messageFromElves();
