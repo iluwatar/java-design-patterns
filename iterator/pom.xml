@@ -48,11 +48,5 @@
       <artifactId>junit-jupiter-params</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-runner</artifactId>
-      <version>1.2.0</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 </project>

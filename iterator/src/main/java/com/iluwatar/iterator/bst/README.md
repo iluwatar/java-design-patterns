@@ -9,7 +9,7 @@ this iterator will return nodes according to "In Order" binary tree traversal.
 This means that given a binary search tree like the following, the iterator would 
 return values in order: 1, 3, 4, 6, 7, 8, 10, 13, 14. 
 
-![BST](../../../../../../../etc/bst.png "Binary Search Tree")  
+![BST](../../../../../../../etc/bst.jpg "Binary Search Tree")  
 
 ### How It's Done
 **The trivial solution** to a binary search tree iterator would be to construct a List (or similar 

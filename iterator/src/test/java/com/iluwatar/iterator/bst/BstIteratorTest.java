@@ -16,82 +16,83 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.iluwatar.iterator.binarysearchtree;
+package com.iluwatar.iterator.bst;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.iluwatar.iterator.AppTest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
-@TestInstance(Lifecycle.PER_CLASS)
-class BstIteratorTest<T> extends AppTest {
+import java.util.NoSuchElementException;
 
-  private TreeNode<T> nonEmptyRoot;
-  private TreeNode<T> emptyRoot;
+@TestInstance(Lifecycle.PER_CLASS)
+class BstIteratorTest {
+
+  private TreeNode<Integer> nonEmptyRoot;
+  private TreeNode<Integer> emptyRoot;
 
   @BeforeAll
   void createTrees() {
-    nonEmptyRoot = new TreeNode(Integer.valueOf(5));
-    nonEmptyRoot.setLeft(new TreeNode(3));
-    nonEmptyRoot.setRight(new TreeNode(7));
-    nonEmptyRoot.getLeft().setLeft(new TreeNode(1));
-    nonEmptyRoot.getLeft().setRight(new TreeNode(4));
-    nonEmptyRoot.getRight().setLeft(new TreeNode(6));
+    nonEmptyRoot = new TreeNode<>(5);
+    nonEmptyRoot.insert(3);
+    nonEmptyRoot.insert(7);
+    nonEmptyRoot.insert(1);
+    nonEmptyRoot.insert(4);
+    nonEmptyRoot.insert(6);
 
     emptyRoot = null;
   }
 
   @Test
-  void nextWithEmptyTree() {
-    BstIterator iter = new BstIterator(emptyRoot);
-    assertThrows(IllegalStateException.class, iter::next,
+  void nextForEmptyTree() {
+    BstIterator iter = new BstIterator<>(emptyRoot);
+    assertThrows(NoSuchElementException.class, iter::next,
         "next() should throw an IllegalStateException if hasNext() is false.");
   }
 
   @Test
-  void nextWithPopulatedTree() {
-    BstIterator iter = new BstIterator(nonEmptyRoot);
-    assertEquals(iter.next().getVal(), 1, "First Node is 1.");
-    assertEquals(iter.next().getVal(), 3, "Second Node is 3.");
-    assertEquals(iter.next().getVal(), 4, "Third Node is 4.");
-    assertEquals(iter.next().getVal(), 5, "Fourth Node is 5.");
-    assertEquals(iter.next().getVal(), 6, "Fifth Node is 6.");
-    assertEquals(iter.next().getVal(), 7, "Sixth Node is 7.");
+  void nextOverEntirePopulatedTree() {
+    BstIterator iter = new BstIterator<>(nonEmptyRoot);
+    assertEquals(1, iter.next().getVal(), "First Node is 1.");
+    assertEquals(3, iter.next().getVal(), "Second Node is 3.");
+    assertEquals(4, iter.next().getVal(), "Third Node is 4.");
+    assertEquals(5, iter.next().getVal(), "Fourth Node is 5.");
+    assertEquals(6, iter.next().getVal(), "Fifth Node is 6.");
+    assertEquals(7, iter.next().getVal(), "Sixth Node is 7.");
   }
 
   @Test
-  void hasNextWithEmptyTree() {
-    BstIterator iter = new BstIterator(emptyRoot);
+  void hasNextForEmptyTree() {
+    BstIterator iter = new BstIterator<>(emptyRoot);
     assertFalse(iter.hasNext(), "hasNext() should return false for empty tree.");
   }
 
   @Test
-  void hasNextWithPopulatedTree() {
-    BstIterator iter = new BstIterator(nonEmptyRoot);
+  void hasNextForPopulatedTree() {
+    BstIterator iter = new BstIterator<>(nonEmptyRoot);
     assertTrue(iter.hasNext(), "hasNext() should return true for populated tree.");
   }
 
   @Test
-  void nextAndHasNextAcrossEntirePopulatedTree() {
-    BstIterator iter = new BstIterator(nonEmptyRoot);
+  void nextAndHasNextOverEntirePopulatedTree() {
+    BstIterator iter = new BstIterator<>(nonEmptyRoot);
     assertTrue(iter.hasNext(), "Iterator hasNext() should be true.");
-    assertEquals(iter.next().getVal(), 1, "First Node is 1.");
+    assertEquals(1, iter.next().getVal(), "First Node is 1.");
     assertTrue(iter.hasNext(), "Iterator hasNext() should be true.");
-    assertEquals(iter.next().getVal(), 3, "Second Node is 3.");
+    assertEquals(3, iter.next().getVal(), "Second Node is 3.");
     assertTrue(iter.hasNext(), "Iterator hasNext() should be true.");
-    assertEquals(iter.next().getVal(), 4, "Third Node is 4.");
+    assertEquals(4, iter.next().getVal(), "Third Node is 4.");
     assertTrue(iter.hasNext(), "Iterator hasNext() should be true.");
-    assertEquals(iter.next().getVal(), 5, "Fourth Node is 5.");
+    assertEquals(5, iter.next().getVal(), "Fourth Node is 5.");
     assertTrue(iter.hasNext(), "Iterator hasNext() should be true.");
-    assertEquals(iter.next().getVal(), 6, "Fifth Node is 6.");
+    assertEquals(6, iter.next().getVal(), "Fifth Node is 6.");
     assertTrue(iter.hasNext(), "Iterator hasNext() should be true.");
-    assertEquals(iter.next().getVal(), 7, "Sixth Node is 7.");
+    assertEquals(7, iter.next().getVal(), "Sixth Node is 7.");
     assertFalse(iter.hasNext(), "Iterator hasNext() should be false, end of tree.");
   }
 
