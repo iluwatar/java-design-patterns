@@ -29,17 +29,19 @@ public class Car {
   private String make;
   private String model;
   private int year;
+  private String category;
 
   /**
    * Constructor to create an instance of car.
-   * @param theMake the make of the car
-   * @param theModel the model of the car
+   * @param make the make of the car
+   * @param model the model of the car
    * @param yearOfMake the year of built of the car
    */
-  public Car(String theMake, String theModel, int yearOfMake) {
-    make = theMake;
-    model = theModel;
-    year = yearOfMake;
+  public Car(String make, String model, int yearOfMake, String category) {
+    this.make = make;
+    this.model = model;
+    this.year = yearOfMake;
+    this.category = category;
   }
 
   public String getMake() {
@@ -52,5 +54,9 @@ public class Car {
 
   public int getYear() {
     return year;
+  }
+  
+  public String getCategory() {
+    return category;
   }
 }

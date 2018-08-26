@@ -28,8 +28,8 @@ import java.util.List;
 /**
  * A factory class to create a collection of {@link Car} instances.
  */
-public class Iterating {
-  private Iterating() {
+public class CarFactory {
+  private CarFactory() {
   }
 
   /**
@@ -37,10 +37,10 @@ public class Iterating {
    * @return {@link List} of {@link Car}
    */
   public static List<Car> createCars() {
-    return Arrays.asList(new Car("Jeep", "Wrangler", 2011), new Car("Jeep", "Comanche", 1990),
-        new Car("Dodge", "Avenger", 2010),
-        new Car("Buick", "Cascada", 2016),
-        new Car("Ford", "Focus", 2012),
-        new Car("Chevrolet", "Geo Metro", 1992));
+    return Arrays.asList(new Car("Jeep", "Wrangler", 2011, "Jeep"), new Car("Jeep", "Comanche", 1990, "Jeep"),
+        new Car("Dodge", "Avenger", 2010, "Sedan"),
+        new Car("Buick", "Cascada", 2016, "Convertible"),
+        new Car("Ford", "Focus", 2012, "Sedan"),
+        new Car("Chevrolet", "Geo Metro", 1992, "Convertible"));
   }
 }

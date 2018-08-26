@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,17 +35,32 @@ import org.junit.jupiter.api.Test;
  */
 public class AppTest {
   
-  private List<Car> cars = Iterating.createCars();
+  private List<Car> cars = CarFactory.createCars();
   
   @Test
   public void testGetModelsAfter2000UsingFor() {
-    List<String> models = ImperativeProgramming.getModelsAfter2000UsingFor(cars);
+    List<String> models = ImperativeProgramming.getModelsAfter2000(cars);
     assertEquals(models, Arrays.asList("Avenger", "Wrangler", "Focus", "Cascada"));
   }
   
   @Test
   public void testGetModelsAfter2000UsingPipeline() {
-    List<String> models = FunctionalProgramming.getModelsAfter2000UsingPipeline(cars);
+    List<String> models = FunctionalProgramming.getModelsAfter2000(cars);
     assertEquals(models, Arrays.asList("Avenger", "Wrangler", "Focus", "Cascada"));
+  }
+  
+  @Test
+  public void testGetGroupingOfCarsByCategory() {
+    Map<String, List<Car>> modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
+    Map<String, List<Car>> modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
+    assertEquals(modelsFunctional, modelsImperative);
+  }
+  
+  @Test
+  public void testGetSedanCarsOwnedSortedByDate() {
+    Person john = new Person(cars);
+    List<Car> modelsFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(Arrays.asList(john));
+    List<Car> modelsImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(Arrays.asList(john));
+    assertEquals(modelsFunctional, modelsImperative);
   }
 }
