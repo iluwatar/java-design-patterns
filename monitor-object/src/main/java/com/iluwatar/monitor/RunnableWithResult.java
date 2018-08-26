@@ -6,5 +6,5 @@ package com.iluwatar.monitor;
  * @param <T> Parameter to specify the return type
  */
 public interface RunnableWithResult<T> {
-  public T run();
+  T run();
 }

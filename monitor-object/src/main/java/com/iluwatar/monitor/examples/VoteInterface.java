@@ -5,5 +5,5 @@ package com.iluwatar.monitor.examples;
  */
 
 public interface VoteInterface {
-  public boolean castVoteAndWaitForResult(boolean vote);
+  boolean castVoteAndWaitForResult(boolean vote);
 }
