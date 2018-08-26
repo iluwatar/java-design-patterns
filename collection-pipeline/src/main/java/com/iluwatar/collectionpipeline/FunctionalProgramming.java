@@ -64,8 +64,7 @@ public class FunctionalProgramming {
    * Method to group cars by category using groupingBy
    * 
    * @param cars {@link List} of {@link Car} to be used for grouping
-   * @return {@link Map} of {@link String} and {@link List} of {@link Car} with category
-   * as key and cars belonging to that category as value
+   * @return {@link Map} with category as key and cars belonging to that category as value
    */
   public static Map<String, List<Car>> getGroupingOfCarsByCategory(List<Car> cars) {
     return cars.stream().collect(Collectors.groupingBy(Car::getCategory));
