@@ -18,6 +18,7 @@
  */
 package com.iluwatar.iterator.list;
 
+import com.iluwatar.iterator.Iterator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class TreasureChest {
     items.add(new Item(ItemType.WEAPON, "Dagger of poison"));
   }
 
-  public TreasureChestItemIterator iterator(ItemType itemType) {
+  public Iterator iterator(ItemType itemType) {
     return new TreasureChestItemIterator(this, itemType);
   }
 

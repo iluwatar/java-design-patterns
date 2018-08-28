@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import com.iluwatar.iterator.Iterator;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -62,11 +63,11 @@ public class TreasureChestTest {
   @MethodSource("dataProvider")
   public void testIterator(Item expectedItem) {
     final TreasureChest chest = new TreasureChest();
-    final TreasureChestItemIterator iterator = chest.iterator(expectedItem.getType());
+    final Iterator iterator = chest.iterator(expectedItem.getType());
     assertNotNull(iterator);
 
     while (iterator.hasNext()) {
-      final Item item = iterator.next();
+      final Item item = (Item) iterator.next();
       assertNotNull(item);
       assertEquals(expectedItem.getType(), item.getType());
 
