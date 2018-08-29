@@ -23,21 +23,22 @@
 package com.iluwatar.collectionpipeline;
 
 /**
- * A Car class that has the properties of make, model, and year.
+ * A Car class that has the properties of make, model, year and category.
  */
 public class Car {
   private String make;
   private String model;
   private int year;
-  private String category;
+  private Category category;
 
   /**
    * Constructor to create an instance of car.
    * @param make the make of the car
    * @param model the model of the car
    * @param yearOfMake the year of built of the car
+   * @param category the {@link Category} of the car
    */
-  public Car(String make, String model, int yearOfMake, String category) {
+  public Car(String make, String model, int yearOfMake, Category category) {
     this.make = make;
     this.model = model;
     this.year = yearOfMake;
@@ -56,7 +57,7 @@ public class Car {
     return year;
   }
   
-  public String getCategory() {
+  public Category getCategory() {
     return category;
   }
 }

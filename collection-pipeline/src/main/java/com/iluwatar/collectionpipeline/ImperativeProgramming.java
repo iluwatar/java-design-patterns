@@ -86,8 +86,8 @@ public class ImperativeProgramming {
    * @param cars {@link List} of {@link Car} to be used for grouping
    * @return {@link Map} with category as key and cars belonging to that category as value
    */
-  public static Map<String, List<Car>> getGroupingOfCarsByCategory(List<Car> cars) {
-    Map<String, List<Car>> groupingByCategory = new HashMap<>();
+  public static Map<Category, List<Car>> getGroupingOfCarsByCategory(List<Car> cars) {
+    Map<Category, List<Car>> groupingByCategory = new HashMap<>();
     for (Car car: cars) {
       if (groupingByCategory.containsKey(car.getCategory())) {
         groupingByCategory.get(car.getCategory()).add(car);
@@ -114,7 +114,7 @@ public class ImperativeProgramming {
   
     List<Car> sedanCars = new ArrayList<>();
     for (Car car: cars) {
-      if ("Sedan".equals(car.getCategory())) {
+      if (Category.SEDAN.equals(car.getCategory())) {
         sedanCars.add(car);
       }
     }

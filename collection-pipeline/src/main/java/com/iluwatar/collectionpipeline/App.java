@@ -59,10 +59,10 @@ public class App {
     List<String> modelsFunctional = FunctionalProgramming.getModelsAfter2000(cars);
     LOGGER.info(modelsFunctional.toString());
     
-    Map<String, List<Car>> groupingByCategoryImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
+    Map<Category, List<Car>> groupingByCategoryImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
     LOGGER.info(groupingByCategoryImperative.toString());
 
-    Map<String, List<Car>> groupingByCategoryFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
+    Map<Category, List<Car>> groupingByCategoryFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
     LOGGER.info(groupingByCategoryFunctional.toString());
     
     Person john = new Person(cars);

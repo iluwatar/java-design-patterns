@@ -51,8 +51,8 @@ public class AppTest {
   
   @Test
   public void testGetGroupingOfCarsByCategory() {
-    Map<String, List<Car>> modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
-    Map<String, List<Car>> modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
+    Map<Category, List<Car>> modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
+    Map<Category, List<Car>> modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
     assertEquals(modelsFunctional, modelsImperative);
   }
   

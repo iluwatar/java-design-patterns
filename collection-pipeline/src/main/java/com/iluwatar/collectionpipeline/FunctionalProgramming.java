@@ -66,7 +66,7 @@ public class FunctionalProgramming {
    * @param cars {@link List} of {@link Car} to be used for grouping
    * @return {@link Map} with category as key and cars belonging to that category as value
    */
-  public static Map<String, List<Car>> getGroupingOfCarsByCategory(List<Car> cars) {
+  public static Map<Category, List<Car>> getGroupingOfCarsByCategory(List<Car> cars) {
     return cars.stream().collect(Collectors.groupingBy(Car::getCategory));
   }
   
@@ -78,7 +78,7 @@ public class FunctionalProgramming {
    */
   public static List<Car> getSedanCarsOwnedSortedByDate(List<Person> persons) {
     return persons.stream().map(Person::getCars).flatMap(List::stream)
-      .filter(car -> "Sedan".equals(car.getCategory()))
+      .filter(car -> Category.SEDAN.equals(car.getCategory()))
       .sorted(Comparator.comparing(Car::getYear)).collect(Collectors.toList());
   }
 }
