@@ -25,6 +25,7 @@ import static com.iluwatar.iterator.list.ItemType.WEAPON;
 
 import com.iluwatar.iterator.bst.BstIterator;
 import com.iluwatar.iterator.bst.TreeNode;
+import com.iluwatar.iterator.list.Item;
 import com.iluwatar.iterator.list.ItemType;
 import com.iluwatar.iterator.list.TreasureChest;
 import org.slf4j.Logger;
@@ -47,7 +48,7 @@ public class App {
   private static void demonstrateTreasureChestIteratorForType(ItemType itemType) {
     LOGGER.info("------------------------");
     LOGGER.info("Item Iterator for ItemType " + itemType + ": ");
-    Iterator itemIterator = TREASURE_CHEST.iterator(itemType);
+    Iterator<Item> itemIterator = TREASURE_CHEST.iterator(itemType);
     while (itemIterator.hasNext()) {
       LOGGER.info(itemIterator.next().toString());
     }

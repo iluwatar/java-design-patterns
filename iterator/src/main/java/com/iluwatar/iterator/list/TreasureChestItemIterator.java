@@ -26,7 +26,7 @@ import java.util.List;
  * TreasureChestItemIterator
  *
  */
-public class TreasureChestItemIterator implements Iterator {
+public class TreasureChestItemIterator implements Iterator<Item> {
 
   private TreasureChest chest;
   private int idx;

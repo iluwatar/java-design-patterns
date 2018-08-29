@@ -63,11 +63,11 @@ public class TreasureChestTest {
   @MethodSource("dataProvider")
   public void testIterator(Item expectedItem) {
     final TreasureChest chest = new TreasureChest();
-    final Iterator iterator = chest.iterator(expectedItem.getType());
+    final Iterator<Item> iterator = chest.iterator(expectedItem.getType());
     assertNotNull(iterator);
 
     while (iterator.hasNext()) {
-      final Item item = (Item) iterator.next();
+      final Item item = iterator.next();
       assertNotNull(item);
       assertEquals(expectedItem.getType(), item.getType());
 
