@@ -20,16 +20,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.iterator;
+package com.iluwatar.iterator.list;
 
 /**
  * 
- * ItemIterator interface.
- * 
+ * Item
+ *
  */
-public interface ItemIterator {
+public class Item {
 
-  boolean hasNext();
+  private ItemType type;
+  private String name;
 
-  Item next();
+  public Item(ItemType type, String name) {
+    this.setType(type);
+    this.name = name;
+  }
+
+  @Override
+  public String toString() {
+    return name;
+  }
+
+  public ItemType getType() {
+    return type;
+  }
+
+  public final void setType(ItemType type) {
+    this.type = type;
+  }
 }
