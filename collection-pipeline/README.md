@@ -27,4 +27,4 @@ Use the Collection Pipeline pattern when
 
 * [Function composition and the Collection Pipeline pattern](https://www.ibm.com/developerworks/library/j-java8idioms2/index.html)
 * [Martin Fowler](https://martinfowler.com/articles/collection-pipeline/)
-* [Java8 Streams] (https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)
+* [Java8 Streams](https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)
