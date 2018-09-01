@@ -43,6 +43,20 @@ import java.util.Map;
  * In Abstract Document pattern,({@link AbstractDocument}) fully implements
  * {@link Document}) interface. Traits are then defined to enable access to
  * properties in usual, static way.
+ *
+ * 抽象文档模式：
+ * 0、Document接口作为所有对象最基础的抽象，定义 get put children(子文档列表）
+ * 1、对象的所有属性 由key value的集合定义，具体属性 由继承 Document 的表示属性的 接口来表示
+ * 2、 AbstractDocument 实现 Document 的方法，对象只需要通过实现相关属性的接口来 表达属性
+ *
+ *  Document 抽象出 属性 get put 和 子文档列表，属性接口 继承 Document 并且定义 属性 key 和 默认获取 属性的方法
+ *  AbstractDocument 实现 get put 和 子文档列表 具体操作
+ *
+ *  实现类 AbstractDocument ， implements 具体的 属性接口 来 表达属性
+ *
+ *
+ *
+ *
  */
 public class App {
 
