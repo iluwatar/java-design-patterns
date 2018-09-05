@@ -42,8 +42,8 @@ import com.iluwatar.abstractfactory.App.FactoryMaker.KingdomType;
  * king, a castle and an army.
  *
  * 抽象工厂模式：
- * 抽象工厂封装了一组特定工厂和对象接口的抽象实现，在创建对象和操作对象时，通过操作 工厂接口 和 对象接口来完成
- * 这个模式隔离了 工厂 和 对象方法的具体实现
+ * 抽象工厂封装了创建一组特定对象的抽象，接口方法定义的返回也是被创建对象的抽象接口
+ * 简单工厂创建单一对象，抽象工厂可以创建一组对象
  *
  * 
  */

@@ -16,6 +16,7 @@ Kit
 ## Intent
 Provide an interface for creating families of related or dependent
 objects without specifying their concrete classes.
+提供接口创建一组没有指定具体类型的关联或依赖的对象
 
 ## Explanation
 Real world example
