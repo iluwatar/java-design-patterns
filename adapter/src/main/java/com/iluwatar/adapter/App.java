@@ -30,7 +30,7 @@ package com.iluwatar.adapter;
  *
  * <p>
  * There are two variations of the Adapter pattern: The class adapter implements the adaptee's
- * interface whereas the object adapter uses composition to contain the adaptee in the adapter
+ * interface whereas the object adapter uses composition to contain the adapter in the adapter
  * object. This example uses the object adapter approach.
  *
  * <p>
@@ -43,6 +43,13 @@ package com.iluwatar.adapter;
  * captain. We have no time to make up a new ship! we need to reuse this {@link FishingBoat}. The
  * captain needs a rowing boat which he can operate. The spec is in {@link RowingBoat}. We will
  * use the Adapter pattern to reuse {@link FishingBoat}.
+ *
+ * 适配器模式：
+ * 1、适配器用于 组装不兼容的类型， 类似与装饰器模式，但是适配器用于不兼容的类型
+ * 2、FishingBoatAdapter 适配器实现了 RowingBoat 接口，但是实现方法中使用的时 适配对象来执行方法。
+ *  有 类适配器和对象适配器 两种，例子为 对象适配器，适配器初始化了对象，作为对象来使用
+ *
+ *
  *
  */
 public class App {

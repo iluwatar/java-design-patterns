@@ -32,7 +32,22 @@ package com.iluwatar.acyclicvisitor;
  * visited hierarchy is {@link Modem} and has two children {@link Hayes} and {@link Zoom} 
  * each one having its own visitor interface {@link HayesVisitor} and {@link ZoomVisitor} 
  * respectively. {@link ConfigureForUnixVisitor} and {@link ConfigureForDosVisitor} 
- * implement each derivative's visit method only if it is required 
+ * implement each derivative's visit method only if it is required
+ *
+ * 非循环访问者模式：
+ *
+ * 1、所有访问者的基类 ModemVisitor
+ * 2、existing class hierarchies 的抽象类 Modem， 定义了接受访问者的方法 accept
+ * 3、existing class hierarchies 的实现类 Hayes/Zoom 继承Modem,实现 accept,执行 访问者的visit(this) （× 传入自己，访问自己，实现了访问者模式的核心目的，
+ * 在不改变existing class hierarchies 的情况下，增强）
+ *
+ * 在 Acyclic Visitor 中，Element 只接受自己匹配的 visitor
+ *
+ * 4、通过接口多继承，AllModemVisitor接口汇总所有的访问者方法，ConfigureForDosVisitor ,具体访问者只实现需要的访问方法
+ *
+ *
+ *
+ *
  */
 public class App {
   
