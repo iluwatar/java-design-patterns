@@ -5,7 +5,7 @@ import java.awt.*;
 public class CappedAnimation extends BallAnimation {
 
     public CappedAnimation() {
-        super(Loop.CAPPED_FPS);
+        super();
     }
 
     public void gameLoop() {

@@ -1,11 +1,9 @@
 package com.iluwatar.gameloop;
 
-import java.awt.*;
-
 public class IndependentAnimation extends BallAnimation {
 
     public IndependentAnimation() {
-        super(Loop.INDEPENDENT);
+        super(new InterpolatedGamePanel());
     }
 
     public void gameLoop() {
@@ -28,15 +26,23 @@ public class IndependentAnimation extends BallAnimation {
             interpolation =
                     (System.currentTimeMillis() + skipTicks - nextUpdateTick)
                             / (float) skipTicks;
-//            updateView(interpolation); // TODO: SEPERATE EXAMPLE W/ INTERPOLATION
-            updateView();
-            Toolkit.getDefaultToolkit().sync();
+            updateView(interpolation);
         }
 
     }
 
+    @Override
+    public void updateState() {
+        gPanel.update();
+    }
+
+    public void updateView(float interpolation) {
+        gPanel.setInterpolation(interpolation);
+        gPanel.repaint();
+    }
+
     public static void main(String[] args) {
-        BallAnimation ballAnimation = new IndependentAnimation(); // TODO: Finish independent
+        IndependentAnimation ballAnimation = new IndependentAnimation();
         ballAnimation.setVisible(true);
         ballAnimation.run();
     }

@@ -5,7 +5,7 @@ import java.awt.*;
 public class BasicAnimation extends BallAnimation {
 
     public BasicAnimation() {
-        super(Loop.BASIC);
+        super();
     }
 
     public void gameLoop() {

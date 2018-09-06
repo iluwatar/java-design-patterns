@@ -7,7 +7,7 @@ import static java.lang.Thread.sleep;
 public class LockedAnimation extends BallAnimation {
 
     public LockedAnimation() {
-        super(Loop.LOCKED);
+        super();
     }
 
     public void gameLoop() {
@@ -38,7 +38,7 @@ public class LockedAnimation extends BallAnimation {
     }
 
     public static void main(String[] args) {
-        BallAnimation ballAnimation = new BallAnimation(Loop.LOCKED);
+        BallAnimation ballAnimation = new LockedAnimation();
         ballAnimation.setVisible(true);
         ballAnimation.run();
     }

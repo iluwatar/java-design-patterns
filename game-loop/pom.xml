@@ -33,7 +33,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>balking</artifactId>
+    <artifactId>game-loop</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -46,6 +46,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
 </project>
