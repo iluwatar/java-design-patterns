@@ -1,7 +1,5 @@
 package com.iluwatar.gameloop;
 
-import java.awt.*;
-
 public class BasicAnimation extends BallAnimation {
 
     public BasicAnimation() {
@@ -12,7 +10,6 @@ public class BasicAnimation extends BallAnimation {
         while (true) {
             updateState();
             updateView();
-            Toolkit.getDefaultToolkit().sync();
         }
     }
 

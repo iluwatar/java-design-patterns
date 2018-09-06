@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.iluwatar.gameloop</OriginalElement>
+  <nodes>
+    <node x="0.0" y="189.0">com.iluwatar.gameloop.LockedAnimation</node>
+    <node x="203.99999999999997" y="189.0">com.iluwatar.gameloop.CappedAnimation</node>
+    <node x="0.0" y="329.0">com.iluwatar.gameloop.BasicGamePanel</node>
+    <node x="408.0" y="167.0">com.iluwatar.gameloop.IndependentAnimation</node>
+    <node x="312.5" y="0.0">com.iluwatar.gameloop.BallAnimation</node>
+    <node x="0.0" y="475.0">com.iluwatar.gameloop.InterpolatedGamePanel</node>
+    <node x="636.0" y="189.0">com.iluwatar.gameloop.BasicAnimation</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.iluwatar.gameloop.BasicAnimation" target="com.iluwatar.gameloop.BallAnimation">
+      <point x="0.0" y="-36.5" />
+      <point x="728.0" y="137.0" />
+      <point x="472.625" y="137.0" />
+      <point x="68.625" y="58.5" />
+    </edge>
+    <edge source="com.iluwatar.gameloop.InterpolatedGamePanel" target="com.iluwatar.gameloop.BasicGamePanel">
+      <point x="0.0" y="-37.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="com.iluwatar.gameloop.LockedAnimation" target="com.iluwatar.gameloop.BallAnimation">
+      <point x="0.0" y="-36.5" />
+      <point x="92.0" y="137.0" />
+      <point x="335.375" y="137.0" />
+      <point x="-68.625" y="58.5" />
+    </edge>
+    <edge source="com.iluwatar.gameloop.IndependentAnimation" target="com.iluwatar.gameloop.BallAnimation">
+      <point x="0.0" y="-58.5" />
+      <point x="512.0" y="147.0" />
+      <point x="426.875" y="147.0" />
+      <point x="22.875" y="58.5" />
+    </edge>
+    <edge source="com.iluwatar.gameloop.CappedAnimation" target="com.iluwatar.gameloop.BallAnimation">
+      <point x="0.0" y="-36.5" />
+      <point x="296.0" y="147.0" />
+      <point x="381.125" y="147.0" />
+      <point x="-22.875" y="58.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.987217477589889" x="403.0641808941271" y="241.54175722747914" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>Production</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -11,6 +11,10 @@ public class InterpolatedGamePanel extends BasicGamePanel {
         this.interpolation = interpolation;
     }
 
+    float getInterpolation() {
+        return interpolation;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
 

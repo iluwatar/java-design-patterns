@@ -1,7 +1,5 @@
 package com.iluwatar.gameloop;
 
-import java.awt.*;
-
 public class CappedAnimation extends BallAnimation {
 
     public CappedAnimation() {
@@ -25,7 +23,6 @@ public class CappedAnimation extends BallAnimation {
                 loops++;
             }
             updateView();
-            Toolkit.getDefaultToolkit().sync();
         }
     }
 

@@ -1,7 +1,5 @@
 package com.iluwatar.gameloop;
 
-import java.awt.*;
-
 import static java.lang.Thread.sleep;
 
 public class LockedAnimation extends BallAnimation {
@@ -22,7 +20,6 @@ public class LockedAnimation extends BallAnimation {
 
             updateState();
             updateView();
-            Toolkit.getDefaultToolkit().sync();
 
             nextUpdateTick += skipTicks;
             sleepPeriod = nextUpdateTick - System.currentTimeMillis();
