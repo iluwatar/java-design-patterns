@@ -23,10 +23,14 @@
 package com.iluwatar.gameloop;
 
 /**
- * The most simple loop.
+ * A simple loop.
  * Updates to state and view are locked to each other and run as fast as the hardware
  * can handle. The downside is that game state will be updated at a different speed on
  * different hardware.
+ *
+ * On fast hardware, the ball will appear stationary in a corner. This is because the state
+ * has already updated enough times for the ball to hit a corner precisely and get stuck.
+ * This loop demonstrates why putting thought into a game loop algorithm is important.
  */
 public class BasicAnimation extends BallAnimation {
 
