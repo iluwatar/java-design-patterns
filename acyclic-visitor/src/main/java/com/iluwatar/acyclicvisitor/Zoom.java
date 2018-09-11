@@ -37,10 +37,10 @@ public class Zoom extends Modem {
    */
   @Override
   public void accept(ModemVisitor modemVisitor) {
-    try {
-      ((ZoomVisitor) modemVisitor).visit(this);
-    } catch (ClassCastException e) {
-      LOGGER.error("Unable to cast to ZoomVisitor");
+    if (modemVisitor instanceof  ZoomVisitor) {
+        ((ZoomVisitor) modemVisitor).visit(this);
+    } else {
+      LOGGER.info("Only ZoomVisitor is allowed to visit Zoom modem");
     }
   }
   
