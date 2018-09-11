@@ -38,7 +38,7 @@ public class Zoom extends Modem {
   @Override
   public void accept(ModemVisitor modemVisitor) {
     if (modemVisitor instanceof  ZoomVisitor) {
-        ((ZoomVisitor) modemVisitor).visit(this);
+      ((ZoomVisitor) modemVisitor).visit(this);
     } else {
       LOGGER.info("Only ZoomVisitor is allowed to visit Zoom modem");
     }

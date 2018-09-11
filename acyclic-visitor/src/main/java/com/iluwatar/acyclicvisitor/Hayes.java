@@ -38,9 +38,9 @@ public class Hayes extends Modem {
   @Override
   public void accept(ModemVisitor modemVisitor) {
     if (modemVisitor instanceof HayesVisitor) {
-        ((HayesVisitor) modemVisitor).visit(this);
+      ((HayesVisitor) modemVisitor).visit(this);
     } else {
-        LOGGER.info("Only HayesVisitor is allowed to visit Hayes modem");
+      LOGGER.info("Only HayesVisitor is allowed to visit Hayes modem");
     }
 
   }
