@@ -27,9 +27,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * ConfigureForUnixVisitor class implements zoom's visit method for Unix 
- * manufacturer
+ * manufacturer, unlike traditional visitor pattern, this class may selectively implement
+ * visit for other modems.
  */
-public class ConfigureForUnixVisitor implements ModemVisitor, ZoomVisitor {
+public class ConfigureForUnixVisitor implements ZoomVisitor {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForUnixVisitor.class);
 
