@@ -71,6 +71,7 @@ public final class App {
     noErrors();
     errorNoRetry();
     errorWithRetry();
+    errorWithRetryExponentialBackoff();
   }
 
   private static void noErrors() throws Exception {
@@ -103,7 +104,7 @@ public final class App {
     ));
   }
   
-  private static void errorWithRetryWithExponentialBackoff() throws Exception {
+  private static void errorWithRetryExponentialBackoff() throws Exception {
         final Retry<String> retry = new Retry<>(
                 new FindCustomer("123", new CustomerNotFoundException("not found")),
                 6,  //6 attempts
