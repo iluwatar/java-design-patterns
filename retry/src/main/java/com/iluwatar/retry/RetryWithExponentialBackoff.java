@@ -39,9 +39,10 @@ import java.util.Random;
  * @author George Aristy (george.aristy@gmail.com)
  * @param <T> the remote op's return type
  */
+
 public final class RetryWithExponentialBackoff<T> implements BusinessOperation<T> {
     private final BusinessOperation<T> op;
-  //  private final int maxAttempts;
+    private final int maxAttempts;
     private final long delay;
     private final long maxDelay;
     private final AtomicInteger attempts;
