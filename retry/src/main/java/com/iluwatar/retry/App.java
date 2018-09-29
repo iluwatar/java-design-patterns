@@ -105,7 +105,7 @@ public final class App {
   }
   
   private static void errorWithRetryExponentialBackoff() throws Exception {
-        final Retry<String> retry = new Retry<>(
+        final RetryWithExponentialBackoff<String> retry = new RetryWithExponentialBackoff<>(
                 new FindCustomer("123", new CustomerNotFoundException("not found")),
                 6,  //6 attempts
                 30000, //30 s max delay between attempts
