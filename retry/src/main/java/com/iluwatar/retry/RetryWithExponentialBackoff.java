@@ -41,7 +41,7 @@ import java.util.Random;
  */
 public final class RetryWithExponentialBackoff<T> implements BusinessOperation<T> {
     private final BusinessOperation<T> op;
-  //  private final int maxAttempts;
+    private final int maxAttempts;
     private final long delay;
     private final long maxDelay;
     private final AtomicInteger attempts;
