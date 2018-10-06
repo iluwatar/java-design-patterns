@@ -2,12 +2,12 @@
 
 <h2>Intent</h2>
 
-As said <a href = "http://gameprogrammingpatterns.com/spatial-partition.html">here</a>, to <emp>"efficiently locate objects by storing them in a data structure organized by their positions"</emp>.
+As said <a href = "http://gameprogrammingpatterns.com/spatial-partition.html">here</a>, to <em>"efficiently locate objects by storing them in a data structure organized by their positions"</em>.
 
 <h2>Explanation and Applications</h2>
 
 <p>
- The idea behind the <emp>Spatial Partition</emp> design pattern is to enable quick location of objects using a data structure (like a quadtree) that is organised by their positions. This is especially useful in the <emp>gaming world</emp>, where one may need to look up all the objects within a certain boundary, or near a certain other object frequently, and an efficient way to do it would significantly <emp>improve the gaming experience</emp>. The data structure can be used to store moving and static objects, though in order to keep track of the moving objects, their positions will have to be reset each time they move. This would mean having to create a new instance of the data structure each time an object moves, which would use up additional memory, and so this pattern should only be used if the number of objects to keep track of is large and one does not mind trading memory for speed. The common data structures used for this design pattern are:</p>
+ The idea behind the <em>Spatial Partition</em> design pattern is to enable quick location of objects using a data structure (like a quadtree) that is organised by their positions. This is especially useful in the <em>gaming world</em>, where one may need to look up all the objects within a certain boundary, or near a certain other object frequently, and an efficient way to do it would significantly <em>improve the gaming experience</em>. The data structure can be used to store moving and static objects, though in order to keep track of the moving objects, their positions will have to be reset each time they move. This would mean having to create a new instance of the data structure each time an object moves, which would use up additional memory, and so this pattern should only be used if the number of objects to keep track of is large and one does not mind trading memory for speed. The common data structures used for this design pattern are:</p>
  <p><ul>
   <li>Grid</li>
   <li>Quad tree</li>
