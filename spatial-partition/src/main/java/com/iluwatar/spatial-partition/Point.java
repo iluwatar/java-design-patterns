@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
@@ -39,3 +40,17 @@ public abstract class Point<T> {
     abstract boolean touches(T obj);
     abstract void handleCollision(ArrayList<Point> pointsToCheck, Hashtable<Integer, T> allPoints);
 }
+=======
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+public abstract class Point<T> {
+
+    public int x; public int y; //coordinates
+    public int id; //to keep track in hashtable
+
+    abstract void move();
+    abstract boolean touches(T obj);
+    abstract void handleCollision(ArrayList<Point> pointsToCheck, Hashtable<Integer, T> allPoints);
+}
+>>>>>>> dffb48db7858bce3d4032672fccd0eeaa4fb5d77

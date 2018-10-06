@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
@@ -37,3 +38,14 @@ public abstract class SpatialPartitionGeneric<T> {
 
     abstract void handleCollisionsUsingQT(T obj);
 }
+=======
+import java.util.Hashtable;
+
+public abstract class SpatialPartitionGeneric<T> {
+
+    Hashtable<Integer, T> playerPositions;
+    QuadTree qTree;
+
+    abstract void handleCollisionsFor(T obj);
+}
+>>>>>>> dffb48db7858bce3d4032672fccd0eeaa4fb5d77
