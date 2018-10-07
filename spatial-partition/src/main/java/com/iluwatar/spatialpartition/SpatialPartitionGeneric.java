@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
@@ -22,30 +21,20 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatial-partition;
+package com.iluwatar.spatialpartition;
+
+import java.util.Hashtable;
 
 /**
  * This abstract class has 2 fields, one of which is a hashtable containing all objects
  * that currently exist on the field and a quadtree which keeps track of locations.
+ * @param <T> T will be type of object (that extends Point)
  */
 
-import java.util.Hashtable;
-
 public abstract class SpatialPartitionGeneric<T> {
 
-    Hashtable<Integer, T> playerPositions;
-    QuadTree qTree;
+  Hashtable<Integer, T> playerPositions;
+  QuadTree qTree;
 
-    abstract void handleCollisionsUsingQT(T obj);
+  abstract void handleCollisionsUsingQt(T obj);
 }
-=======
-import java.util.Hashtable;
-
-public abstract class SpatialPartitionGeneric<T> {
-
-    Hashtable<Integer, T> playerPositions;
-    QuadTree qTree;
-
-    abstract void handleCollisionsFor(T obj);
-}
->>>>>>> dffb48db7858bce3d4032672fccd0eeaa4fb5d77

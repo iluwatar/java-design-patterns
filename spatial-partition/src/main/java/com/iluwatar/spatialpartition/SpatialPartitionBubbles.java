@@ -21,36 +21,32 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatial-partition;
+package com.iluwatar.spatialpartition;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
- * Testing Rect class.
+ * This class extends the generic SpatialPartition abstract class and is used in
+ * our example to keep track of all the bubbles that collide, pop and stay un-popped.
  */
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
 
-class RectTest {
+  Hashtable<Integer, Bubble> bubbles;
+  QuadTree qTree;
 
-    @Test
-    void test() {
-        containsTest();
-        intersectsTest();
-    }
+  SpatialPartitionBubbles(Hashtable<Integer, Bubble> bubbles, QuadTree qTree) {
+    this.bubbles = bubbles;
+    this.qTree = qTree;
+  }
 
-    void containsTest() {
-        Rect r = new Rect(10,10,20,20);
-        Bubble b1 = new Bubble(2,2,1,1);
-        Bubble b2 = new Bubble(30,30,2,1);
-        //r contains b1 and not b2
-        assertTrue(r.contains(b1) && !r.contains(b2));
-    }
-
-    void intersectsTest() {
-        Rect r1 = new Rect(10,10,20,20);
-        Rect r2 = new Rect(15,15,20,20);
-        Rect r3 = new Rect(50,50,20,20);
-        //r1 intersects r2 and not r3
-        assertTrue(r1.intersects(r2) && !r1.intersects(r3));
-    }
+  void handleCollisionsUsingQt(Bubble b) {
+    //finding points within area of a square drawn with centre same as centre of bubble and length = radius of bubble
+    Rect rect = new Rect(b.x, b.y, 2 * b.radius, 2 * b.radius);
+    ArrayList<Point> quadTreeQueryResult = new ArrayList<Point>();
+    this.qTree.query(rect, quadTreeQueryResult);
+    //handling these collisions
+    b.handleCollision(quadTreeQueryResult, this.bubbles);
+  }
 }

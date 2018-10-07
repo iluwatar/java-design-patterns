@@ -21,37 +21,24 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatial-partition;
+package com.iluwatar.spatialpartition;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
- * Testing SpatialPartition_Bubbles class.
+ * The abstract Point class which will be extended by any object in the field
+ * whose location has to be kept track of.
+ * @param <T> T will be type subclass
  */
 
-import static org.junit.jupiter.api.Assertions.*;
-import java.util.Hashtable;
-import org.junit.jupiter.api.Test;
+public abstract class Point<T> {
 
-class SpatialPartition_BubblesTest {
+  public int x; 
+  public int y; 
+  public int id;
 
-    @Test
-    void test() {
-        handleCollisionsUsingQTTest();
-    }
-
-    void handleCollisionsUsingQTTest() {
-        Bubble b1 = new Bubble(10,10,1,3);
-        Bubble b2 = new Bubble(5,5,2,1);
-        Bubble b3 = new Bubble(9,9,3,1);
-        Bubble b4 = new Bubble(8,8,4,2);
-        Hashtable<Integer, Bubble> bubbles = new Hashtable<Integer, Bubble>();
-        bubbles.put(1, b1); bubbles.put(2, b2); bubbles.put(3, b3); bubbles.put(4, b4);
-        Rect r = new Rect(10,10,20,20);
-        QuadTree qt = new QuadTree(r,4);
-        qt.insert(b1); qt.insert(b2); qt.insert(b3); qt.insert(b4);
-        SpatialPartition_Bubbles sp = new SpatialPartition_Bubbles(bubbles, qt);
-        sp.handleCollisionsUsingQT(b1);
-        //b1 touches b3 and b4 but not b2 - so b1,b3,b4 get popped
-        assertTrue(bubbles.get(1)==null && bubbles.get(2)!=null && bubbles.get(3)==null && bubbles.get(4)==null);
-    }
-
+  abstract void move();
+  abstract boolean touches(T obj);
+  abstract void handleCollision(ArrayList<Point> pointsToCheck, Hashtable<Integer, T> allPoints);
 }

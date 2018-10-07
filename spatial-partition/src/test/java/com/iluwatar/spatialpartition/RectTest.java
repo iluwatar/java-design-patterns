@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
@@ -22,35 +21,36 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatial-partition;
+package com.iluwatar.spatialpartition;
 
 /**
- * The abstract Point class which will be extended by any object in the field
- * whose location has to be kept track of.
+ * Testing Rect class.
  */
 
-import java.util.ArrayList;
-import java.util.Hashtable;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-public abstract class Point<T> {
+class RectTest {
 
-    public int x; public int y; public int id;
+  @Test
+  void test() {
+    containsTest();
+    intersectsTest();
+  }
 
-    abstract void move();
-    abstract boolean touches(T obj);
-    abstract void handleCollision(ArrayList<Point> pointsToCheck, Hashtable<Integer, T> allPoints);
+  void containsTest() {
+    Rect r = new Rect(10,10,20,20);
+    Bubble b1 = new Bubble(2,2,1,1);
+    Bubble b2 = new Bubble(30,30,2,1);
+    //r contains b1 and not b2
+    assertTrue(r.contains(b1) && !r.contains(b2));
+  }
+
+  void intersectsTest() {
+    Rect r1 = new Rect(10,10,20,20);
+    Rect r2 = new Rect(15,15,20,20);
+    Rect r3 = new Rect(50,50,20,20);
+    //r1 intersects r2 and not r3
+    assertTrue(r1.intersects(r2) && !r1.intersects(r3));
+  }
 }
-=======
-import java.util.ArrayList;
-import java.util.Hashtable;
-
-public abstract class Point<T> {
-
-    public int x; public int y; //coordinates
-    public int id; //to keep track in hashtable
-
-    abstract void move();
-    abstract boolean touches(T obj);
-    abstract void handleCollision(ArrayList<Point> pointsToCheck, Hashtable<Integer, T> allPoints);
-}
->>>>>>> dffb48db7858bce3d4032672fccd0eeaa4fb5d77
