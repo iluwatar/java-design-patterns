@@ -112,8 +112,4 @@ public final class RetryWithExponentialBackoff<T> implements BusinessOperation<T
     }
     while (true);
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 7127af0208d51ddb3b8cfe47ce77eda8996340df
