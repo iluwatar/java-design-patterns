@@ -118,4 +118,8 @@ public final class App {
                         + "the result %s after a number of attempts %s", customerId, retry.attempts()
         ));
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7127af0208d51ddb3b8cfe47ce77eda8996340df
