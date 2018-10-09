@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka SeppÃ¤lÃ¤
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
-import java.lang.Math;
-import java.util.Random;
 
 /**
  * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
@@ -40,77 +39,77 @@ import java.util.Random;
  * @param <T> the remote op's return type
  */
 public final class RetryWithExponentialBackoff<T> implements BusinessOperation<T> {
-    private final BusinessOperation<T> op;
-    private final int maxAttempts;
-    private final long delay;
-    private final long maxDelay;
-    private final AtomicInteger attempts;
-    private final Predicate<Exception> test;
-    private final List<Exception> errors;
+  private final BusinessOperation<T> op;
+  private final int maxAttempts;
+  private final long delay;
+  private final long maxDelay;
+  private final AtomicInteger attempts;
+  private final Predicate<Exception> test;
+  private final List<Exception> errors;
 
     /**
      * Ctor.
      *
      * @param op the {@link BusinessOperation} to retry
      * @param maxAttempts number of times to retry
-     * @param delay delay (in milliseconds) between attempts
      * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
      *     will be ignored if no tests are given
      */
-    @SafeVarargs
-    public RetryWithExponentialBackoff(
+  @SafeVarargs
+  public RetryWithExponentialBackoff(
             BusinessOperation<T> op,
             int maxAttempts,
             long maxDelay,
             Predicate<Exception>... ignoreTests
-    ) {
-        this.op = op;
-        this.maxAttempts = maxAttempts;
-        this.maxDelay = maxDelay;
-        this.attempts = new AtomicInteger();
-        this.test = Arrays.stream(ignoreTests).reduce(Predicate::or).orElse(e -> false);
-        this.errors = new ArrayList<>();
-    }
+  ) {
+    this.op = op;
+    this.maxAttempts = maxAttempts;
+    this.maxDelay = maxDelay;
+    this.attempts = new AtomicInteger();
+    this.test = Arrays.stream(ignoreTests).reduce(Predicate::or).orElse(e -> false);
+    this.errors = new ArrayList<>();
+  }
 
     /**
      * The errors encountered while retrying, in the encounter order.
      *
      * @return the errors encountered while retrying
      */
-    public List<Exception> errors() {
-        return Collections.unmodifiableList(this.errors);
-    }
+  public List<Exception> errors() {
+    return Collections.unmodifiableList(this.errors);
+  }
 
     /**
      * The number of retries performed.
      *
      * @return the number of retries performed
      */
-    public int attempts() {
-        return this.attempts.intValue();
-    }
+  public int attempts() {
+    return this.attempts.intValue();
+  }
 
-    @Override
-    public T perform() throws BusinessException {
-        do {
-            try {
-                return this.op.perform();
-            } catch (BusinessException e) {
-                this.errors.add(e);
+  @Override
+  public T perform() throws BusinessException {
+    do {
+      try {
+        return this.op.perform();
+      } catch (BusinessException e) {
+        this.errors.add(e);
 
-                if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
-                    throw e;
-                }
-
-                try {
-                    long testDelay = Math.pow(2, this.attempts)*1000 + Math.round(Math.random()*1000);
-                    long delay = (testDelay<this.maxDelay) ? testDelay : maxDelay;
-                    Thread.sleep(delay);
-                } catch (InterruptedException f) {
-                    //ignore
-                }
-            }
+        if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
+          throw e;
         }
-        while (true);
+
+        try {
+          Random rand = new Random();
+          long testDelay = (long) Math.pow(2, this.attempts.intValue()) * 1000 + rand.nextInt(1000);
+          long delay = (testDelay < this.maxDelay) ? testDelay : maxDelay;
+          Thread.sleep(delay);
+        } catch (InterruptedException f) {
+          //ignore
+        }
+      }
     }
+    while (true);
+  }
 }
