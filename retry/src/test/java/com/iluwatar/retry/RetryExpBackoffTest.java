@@ -43,9 +43,10 @@ public class RetryExpBackoffTest {
     final BusinessException e = new BusinessException("unhandled");
     final RetryWithExponentialBackoff<String> retry = new RetryWithExponentialBackoff<>(
         () -> { 
-          throw e; },
-          2,
-          0
+          throw e; 
+        },
+        2,
+        0
     );
     try {
       retry.perform();
@@ -68,7 +69,8 @@ public class RetryExpBackoffTest {
     final BusinessException e = new BusinessException("unhandled");
     final RetryWithExponentialBackoff<String> retry = new RetryWithExponentialBackoff<>(
         () -> { 
-          throw e; },
+          throw e; 
+        },
         2,
         0
     );
@@ -93,7 +95,8 @@ public class RetryExpBackoffTest {
     final BusinessException e = new CustomerNotFoundException("customer not found");
     final RetryWithExponentialBackoff<String> retry = new RetryWithExponentialBackoff<>(
         () -> { 
-          throw e; },
+          throw e; 
+        },
         2,
         0,
         ex -> CustomerNotFoundException.class.isAssignableFrom(ex.getClass())
