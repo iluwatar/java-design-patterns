@@ -102,7 +102,7 @@ public final class RetryWithExponentialBackoff<T> implements BusinessOperation<T
         try {
           Random rand = new Random();
           long testDelay = (long) Math.pow(2, this.attempts.intValue()) * 1000 + rand.nextInt(1000);
-          long delay = (testDelay < this.maxDelay) ? testDelay : maxDelay;
+          long delay = testDelay < this.maxDelay ? testDelay : maxDelay;
           Thread.sleep(delay);
         } catch (InterruptedException f) {
           //ignore
