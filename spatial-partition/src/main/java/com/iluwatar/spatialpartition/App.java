@@ -55,7 +55,7 @@ import java.util.Random;
 
 public class App {
 
-  static Hashtable<Integer, Bubble> noSpatialPartition(int height, int width, 
+  static void noSpatialPartition(int height, int width, 
         int numOfMovements, Hashtable<Integer, Bubble> bubbles) {
     ArrayList<Point> bubblesToCheck = new ArrayList<Point>();
     for (Enumeration<Integer> e = bubbles.keys(); e.hasMoreElements();) {
@@ -77,10 +77,9 @@ public class App {
       //bubbles not popped
       System.out.println("Bubble " + key + " not popped");
     }
-    return bubbles;
   }
 
-  static Hashtable<Integer, Bubble> withSpatialPartition(int height, int width, 
+  static void withSpatialPartition(int height, int width, 
         int numOfMovements, Hashtable<Integer, Bubble> bubbles) {
     //creating quadtree
     Rect rect = new Rect(width / 2,height / 2,width,height);
@@ -106,7 +105,6 @@ public class App {
       //bubbles not popped
       System.out.println("Bubble " + key + " not popped");
     }
-    return bubbles;
   }
   
   /**
@@ -129,8 +127,6 @@ public class App {
     long start1 = System.currentTimeMillis();
     App.noSpatialPartition(300,300,20,bubbles1);
     long end1 = System.currentTimeMillis();
-    System.out.println("a");
-    System.out.println("a");
     long start2 = System.currentTimeMillis();
     App.withSpatialPartition(300,300,20,bubbles2);
     long end2 = System.currentTimeMillis();
