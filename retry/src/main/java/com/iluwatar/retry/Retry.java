@@ -105,6 +105,7 @@ public final class Retry<T> implements BusinessOperation<T> {
           //ignore
         }
       }
-    } while (true);
+    }
+    while (true);
   }
 }

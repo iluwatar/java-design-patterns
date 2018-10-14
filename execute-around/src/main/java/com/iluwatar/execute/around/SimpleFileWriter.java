@@ -37,11 +37,8 @@ public class SimpleFileWriter {
    * Constructor
    */
   public SimpleFileWriter(String filename, FileWriterAction action) throws IOException {
-    FileWriter writer = new FileWriter(filename);
-    try {
+    try (FileWriter writer = new FileWriter(filename)) {
       action.writeFile(writer);
-    } finally {
-      writer.close();
     }
   }
 }

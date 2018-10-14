@@ -20,59 +20,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.iterator;
-
-import java.util.List;
+package com.iluwatar.iterator.list;
 
 /**
  * 
- * TreasureChestItemIterator
+ * Item
  *
  */
-public class TreasureChestItemIterator implements ItemIterator {
+public class Item {
 
-  private TreasureChest chest;
-  private int idx;
   private ItemType type;
+  private String name;
 
-  /**
-   * Constructor
-   */
-  public TreasureChestItemIterator(TreasureChest chest, ItemType type) {
-    this.chest = chest;
+  public Item(ItemType type, String name) {
+    this.setType(type);
+    this.name = name;
+  }
+
+  @Override
+  public String toString() {
+    return name;
+  }
+
+  public ItemType getType() {
+    return type;
+  }
+
+  public final void setType(ItemType type) {
     this.type = type;
-    this.idx = -1;
-  }
-
-  @Override
-  public boolean hasNext() {
-    return findNextIdx() != -1;
-  }
-
-  @Override
-  public Item next() {
-    idx = findNextIdx();
-    if (idx != -1) {
-      return chest.getItems().get(idx);
-    }
-    return null;
-  }
-
-  private int findNextIdx() {
-
-    List<Item> items = chest.getItems();
-    boolean found = false;
-    int tempIdx = idx;
-    while (!found) {
-      tempIdx++;
-      if (tempIdx >= items.size()) {
-        tempIdx = -1;
-        break;
-      }
-      if (type.equals(ItemType.ANY) || items.get(tempIdx).getType().equals(type)) {
-        break;
-      }
-    }
-    return tempIdx;
   }
 }
