@@ -23,7 +23,6 @@
 package com.iluwatar.hexagonal.domain;
 
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.LongAdder;
 
 /**
  * Lottery ticked id
