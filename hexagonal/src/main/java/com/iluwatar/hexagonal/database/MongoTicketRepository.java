@@ -111,21 +111,6 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   }
 
   /**
-   * @return mongo client
-   */
-  public MongoClient getMongoClient() {
-    return mongoClient;
-  }
-
-  /**
-   *
-   * @return mongo database
-   */
-  public MongoDatabase getMongoDatabase() {
-    return database;
-  }
-
-  /**
    *
    * @return tickets collection
    */
