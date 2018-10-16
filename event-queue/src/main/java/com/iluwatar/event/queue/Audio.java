@@ -41,46 +41,51 @@ public class Audio {
 
   private static final int MAX_PENDING = 16;
 
-  private static int headIndex;
+  private int headIndex;
 
-  private static int tailIndex;
+  private int tailIndex;
 
-  private static Thread updateThread = null;
+  private volatile Thread updateThread = null;
 
-  private static PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
+  private PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
+
+  // Visible only for testing purposes
+  Audio() {
+
+  }
+
+  public static Audio getInstance() {
+    return SingletonHolder.getAudioInstance();
+  }
 
   /**
-   * This method stops the Update Method's thread. 
+   * This method stops the Update Method's thread and waits till service stops.
    */
-  public static synchronized void stopService() {
+  public synchronized void stopService() throws InterruptedException {
     if (updateThread != null) {
       updateThread.interrupt();
     }
+    updateThread.join();
+    updateThread = null;
   }
   
   /**
    * This method check the Update Method's thread is started.
    * @return boolean
    */
-  public static synchronized boolean isServiceRunning() {
-    if (updateThread != null && updateThread.isAlive() ) {
-      return true;
-    } else {
-      return false;
-    }
+  public synchronized boolean isServiceRunning() {
+    return updateThread != null && updateThread.isAlive();
   }
 
   /**
    * Starts the thread for the Update Method pattern if it was not started previously.
    * Also when the thread is is ready initializes the indexes of the queue 
    */
-  public static void init() {
+  public void init() {
     if (updateThread == null) {
-      updateThread = new Thread(new Runnable() {
-        public void run() {
-          while (!Thread.currentThread().isInterrupted()) {
-            Audio.update();
-          }
+      updateThread = new Thread(() -> {
+        while (!Thread.currentThread().isInterrupted()) {
+          update();
         }
       });
     }
@@ -90,7 +95,7 @@ public class Audio {
   /**
    * This is a synchronized thread starter
    */
-  public static synchronized void startThread() {
+  private synchronized void startThread() {
     if (!updateThread.isAlive()) {
       updateThread.start();
       headIndex = 0;
@@ -103,7 +108,7 @@ public class Audio {
    * @param stream is the AudioInputStream for the method
    * @param volume is the level of the audio's volume 
    */
-  public static void playSound(AudioInputStream stream, float volume) {
+  public void playSound(AudioInputStream stream, float volume) {
     init();
     // Walk the pending requests.
     for (int i = headIndex; i != tailIndex; i = (i + 1) % MAX_PENDING) {
@@ -123,7 +128,7 @@ public class Audio {
    * This method uses the Update Method pattern.
    * It takes the audio from the queue and plays it
    */
-  public static void update() {
+  private void update() {
     // If there are no pending requests, do nothing.
     if (headIndex == tailIndex) {
       return;
@@ -143,6 +148,7 @@ public class Audio {
       e.printStackTrace();
     } catch (IllegalArgumentException e) {
       System.err.println("The system doesn't support the sound: " + e.getMessage());
+      e.printStackTrace();
     }
   }
 
@@ -153,7 +159,7 @@ public class Audio {
    * @throws UnsupportedAudioFileException when the audio file is not supported 
    * @throws IOException when the file is not readable
    */
-  public static AudioInputStream getAudioStream(String filePath) 
+  public AudioInputStream getAudioStream(String filePath)
       throws UnsupportedAudioFileException, IOException {
     return AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
   }
@@ -162,8 +168,15 @@ public class Audio {
    * Returns with the message array of the queue 
    * @return PlayMessage[]
    */
-  public static PlayMessage[] getPendingAudio() {
+  public PlayMessage[] getPendingAudio() {
     return pendingAudio;
   }
 
+  private static class SingletonHolder {
+    private static final Audio INSTANCE = new Audio();
+
+    static Audio getAudioInstance() {
+      return INSTANCE;
+    }
+  }
 }
