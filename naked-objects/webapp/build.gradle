@@ -1,0 +1,22 @@
+
+apply plugin: 'war'
+
+description = ''
+dependencies {
+  compile project(':naked-objects:naked-objects-dom')
+  compile project(':naked-objects:naked-objects-fixture')
+    compile group: 'org.apache.isis.viewer', name: 'isis-viewer-wicket-impl', version:'1.9.0'
+    compile group: 'org.apache.isis.core', name: 'isis-core-viewer-restfulobjects-server', version:'1.9.0'
+    compile group: 'org.apache.isis.core', name: 'isis-core-security-shiro', version:'1.9.0'
+    compile group: 'org.apache.isis.core', name: 'isis-core-runtime', version:'1.9.0'
+    compile group: 'org.apache.isis.core', name: 'isis-core-wrapper', version:'1.9.0'
+    compile group: 'org.apache.isis.core', name: 'isis-core-security', version:'1.9.0'
+    compile group: 'org.apache.geronimo.specs', name: 'geronimo-servlet_3.0_spec', version:'1.0'
+    compile group: 'org.hsqldb', name: 'hsqldb', version:'2.3.1'
+    compile(group: 'org.lazyluke', name: 'log4jdbc-remix', version:'0.2.7') {
+exclude(module: 'slf4j-api')
+    }
+    runtime group: 'org.apache.isis.core', name: 'isis-core-webserver', version:'1.9.0'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version:'4.12.2'
+}

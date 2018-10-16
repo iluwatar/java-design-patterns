@@ -1,0 +1,14 @@
+
+description = ''
+dependencies {
+  compile project(':naked-objects:naked-objects-fixture')
+    compile group: 'org.apache.isis.core', name: 'isis-core-unittestsupport', version:'1.9.0'
+    compile group: 'org.apache.isis.core', name: 'isis-core-integtestsupport', version:'1.9.0'
+    compile group: 'org.apache.isis.core', name: 'isis-core-specsupport', version:'1.9.0'
+    compile group: 'org.hamcrest', name: 'hamcrest-library', version:'1.3'
+    compile group: 'org.apache.isis.core', name: 'isis-core-wrapper', version:'1.9.0'
+    compile group: 'org.apache.isis.core', name: 'isis-core-runtime', version:'1.9.0'
+    compile group: 'org.hsqldb', name: 'hsqldb', version:'2.3.1'
+    testCompile group: 'org.assertj', name: 'assertj-core', version:'2.0.0'
+    testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version:'4.12.2'
+}

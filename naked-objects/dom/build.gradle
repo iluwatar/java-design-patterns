@@ -1,0 +1,12 @@
+
+description = ''
+dependencies {
+    compile group: 'org.apache.isis.core', name: 'isis-core-applib', version:'1.9.0'
+    compile group: 'org.datanucleus', name: 'datanucleus-core', version:'4.1.2'
+    compile group: 'org.datanucleus', name: 'datanucleus-jodatime', version:'4.1.0-release'
+    compile group: 'org.datanucleus', name: 'datanucleus-api-jdo', version:'4.1.0-release'
+    testCompile group: 'org.apache.isis.core', name: 'isis-core-unittestsupport', version:'1.9.0'
+    testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version:'4.12.2'
+    testCompile group: 'org.objenesis', name: 'objenesis', version:'1.4'
+    testCompile group: 'org.assertj', name: 'assertj-core', version:'2.0.0'
+}

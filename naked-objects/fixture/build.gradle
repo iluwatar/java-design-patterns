@@ -1,0 +1,5 @@
+
+description = ''
+dependencies {
+  compile project(':naked-objects:naked-objects-dom')
+}

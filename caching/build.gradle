@@ -1,0 +1,9 @@
+
+description = ''
+dependencies {
+    compile group: 'org.mongodb', name: 'mongodb-driver', version:'3.0.4'
+    compile group: 'org.mongodb', name: 'mongodb-driver-core', version:'3.0.4'
+    compile group: 'org.mongodb', name: 'bson', version:'3.0.4'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+}

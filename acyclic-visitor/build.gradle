@@ -1,0 +1,9 @@
+
+description = ''
+dependencies {
+    testCompile group: 'org.assertj', name: 'assertj-core', version:'3.9.1'
+    testCompile group: 'uk.org.lidalia', name: 'slf4j-test', version:'1.0.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+    testCompile group: 'org.mockito', name: 'mockito-all', version:'1.9.5'
+}

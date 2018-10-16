@@ -1,0 +1,14 @@
+
+description = ''
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.3.3.RELEASE'
+    compile group: 'org.apache.camel', name: 'camel-core', version:'2.16.1'
+    compile group: 'org.apache.camel', name: 'camel-spring-boot', version:'2.16.1'
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.3.3.RELEASE') {
+exclude(module: 'commons-logging')
+    }
+    compile group: 'org.apache.camel', name: 'camel-test-spring', version:'2.16.1'
+    testCompile group: 'com.github.sbrannen', name: 'spring-test-junit5', version:'1.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+}

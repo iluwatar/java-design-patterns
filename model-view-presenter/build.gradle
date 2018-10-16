@@ -1,0 +1,7 @@
+
+description = 'model-view-presenter'
+dependencies {
+    compile group: 'net.java.dev.swing-layout', name: 'swing-layout', version:'1.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+}

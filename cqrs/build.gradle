@@ -1,0 +1,8 @@
+
+description = ''
+dependencies {
+    compile group: 'com.h2database', name: 'h2', version:'1.4.190'
+    compile group: 'org.hibernate', name: 'hibernate-core', version:'5.0.1.Final'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+}

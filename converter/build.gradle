@@ -1,0 +1,7 @@
+
+description = ''
+dependencies {
+    compile group: 'com.google.guava', name: 'guava', version:'19.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+}

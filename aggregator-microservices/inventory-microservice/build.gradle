@@ -1,0 +1,8 @@
+
+description = ''
+dependencies {
+    compile group: 'org.springframework', name: 'spring-webmvc', version:'4.2.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.3.3.RELEASE'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+}

@@ -1,0 +1,240 @@
+rootProject.name = 'java-design-patterns'
+include ':abstract-factory'
+include ':tls'
+include ':builder'
+include ':factory-method'
+include ':prototype'
+include ':singleton'
+include ':adapter'
+include ':bridge'
+include ':composite'
+include ':dao'
+include ':data-mapper'
+include ':decorator'
+include ':facade'
+include ':flyweight'
+include ':proxy'
+include ':chain'
+include ':command'
+include ':interpreter'
+include ':iterator'
+include ':mediator'
+include ':memento'
+include ':model-view-presenter'
+include ':observer'
+include ':state'
+include ':strategy'
+include ':template-method'
+include ':visitor'
+include ':double-checked-locking'
+include ':servant'
+include ':service-locator'
+include ':null-object'
+include ':event-aggregator'
+include ':callback'
+include ':execute-around'
+include ':property'
+include ':intercepting-filter'
+include ':producer-consumer'
+include ':poison-pill'
+include ':reader-writer-lock'
+include ':lazy-loading'
+include ':service-layer'
+include ':specification'
+include ':tolerant-reader'
+include ':model-view-controller'
+include ':flux'
+include ':double-dispatch'
+include ':multiton'
+include ':resource-acquisition-is-initialization'
+include ':thread-pool'
+include ':twin'
+include ':private-class-data'
+include ':object-pool'
+include ':dependency-injection'
+include ':naked-objects:naked-objects-dom'
+include ':naked-objects:naked-objects-fixture'
+include ':naked-objects:naked-objects-integtests'
+include ':naked-objects:naked-objects-webapp'
+include ':naked-objects'
+include ':front-controller'
+include ':repository'
+include ':async-method-invocation'
+include ':monostate'
+include ':step-builder'
+include ':business-delegate'
+include ':half-sync-half-async'
+include ':layers'
+include ':eip-message-channel'
+include ':fluentinterface'
+include ':reactor'
+include ':caching'
+include ':eip-publish-subscribe'
+include ':delegation'
+include ':event-driven-architecture'
+include ':api-gateway:image-microservice'
+include ':api-gateway:price-microservice'
+include ':api-gateway:api-gateway-service'
+include ':api-gateway'
+include ':factory-kit'
+include ':feature-toggle'
+include ':value-object'
+include ':module'
+include ':monad'
+include ':mute-idiom'
+include ':mutex'
+include ':semaphore'
+include ':hexagonal'
+include ':abstract-document'
+include ':aggregator-microservices:information-microservice'
+include ':aggregator-microservices:aggregator-service'
+include ':aggregator-microservices:inventory-microservice'
+include ':aggregator-microservices'
+include ':promise'
+include ':page-object'
+include ':event-asynchronous'
+include ':event-queue'
+include ':queue-load-leveling'
+include ':object-mother'
+include ':data-bus'
+include ':converter'
+include ':guarded-suspension'
+include ':balking'
+include ':extension-objects'
+include ':marker'
+include ':cqrs'
+include ':event-sourcing'
+include ':data-transfer-object'
+include ':throttling'
+include ':unit-of-work'
+include ':partial-response'
+include ':eip-wire-tap'
+include ':eip-splitter'
+include ':eip-aggregator'
+include ':retry'
+include ':dirty-flag'
+include ':trampoline'
+include ':serverless'
+include ':ambassador'
+include ':acyclic-visitor'
+include ':collection-pipeline'
+
+project(':abstract-factory').projectDir = "$rootDir/abstract-factory" as File
+project(':tls').projectDir = "$rootDir/tls" as File
+project(':builder').projectDir = "$rootDir/builder" as File
+project(':factory-method').projectDir = "$rootDir/factory-method" as File
+project(':prototype').projectDir = "$rootDir/prototype" as File
+project(':singleton').projectDir = "$rootDir/singleton" as File
+project(':adapter').projectDir = "$rootDir/adapter" as File
+project(':bridge').projectDir = "$rootDir/bridge" as File
+project(':composite').projectDir = "$rootDir/composite" as File
+project(':dao').projectDir = "$rootDir/dao" as File
+project(':data-mapper').projectDir = "$rootDir/data-mapper" as File
+project(':decorator').projectDir = "$rootDir/decorator" as File
+project(':facade').projectDir = "$rootDir/facade" as File
+project(':flyweight').projectDir = "$rootDir/flyweight" as File
+project(':proxy').projectDir = "$rootDir/proxy" as File
+project(':chain').projectDir = "$rootDir/chain" as File
+project(':command').projectDir = "$rootDir/command" as File
+project(':interpreter').projectDir = "$rootDir/interpreter" as File
+project(':iterator').projectDir = "$rootDir/iterator" as File
+project(':mediator').projectDir = "$rootDir/mediator" as File
+project(':memento').projectDir = "$rootDir/memento" as File
+project(':model-view-presenter').projectDir = "$rootDir/model-view-presenter" as File
+project(':observer').projectDir = "$rootDir/observer" as File
+project(':state').projectDir = "$rootDir/state" as File
+project(':strategy').projectDir = "$rootDir/strategy" as File
+project(':template-method').projectDir = "$rootDir/template-method" as File
+project(':visitor').projectDir = "$rootDir/visitor" as File
+project(':double-checked-locking').projectDir = "$rootDir/double-checked-locking" as File
+project(':servant').projectDir = "$rootDir/servant" as File
+project(':service-locator').projectDir = "$rootDir/service-locator" as File
+project(':null-object').projectDir = "$rootDir/null-object" as File
+project(':event-aggregator').projectDir = "$rootDir/event-aggregator" as File
+project(':callback').projectDir = "$rootDir/callback" as File
+project(':execute-around').projectDir = "$rootDir/execute-around" as File
+project(':property').projectDir = "$rootDir/property" as File
+project(':intercepting-filter').projectDir = "$rootDir/intercepting-filter" as File
+project(':producer-consumer').projectDir = "$rootDir/producer-consumer" as File
+project(':poison-pill').projectDir = "$rootDir/poison-pill" as File
+project(':reader-writer-lock').projectDir = "$rootDir/reader-writer-lock" as File
+project(':lazy-loading').projectDir = "$rootDir/lazy-loading" as File
+project(':service-layer').projectDir = "$rootDir/service-layer" as File
+project(':specification').projectDir = "$rootDir/specification" as File
+project(':tolerant-reader').projectDir = "$rootDir/tolerant-reader" as File
+project(':model-view-controller').projectDir = "$rootDir/model-view-controller" as File
+project(':flux').projectDir = "$rootDir/flux" as File
+project(':double-dispatch').projectDir = "$rootDir/double-dispatch" as File
+project(':multiton').projectDir = "$rootDir/multiton" as File
+project(':resource-acquisition-is-initialization').projectDir = "$rootDir/resource-acquisition-is-initialization" as File
+project(':thread-pool').projectDir = "$rootDir/thread-pool" as File
+project(':twin').projectDir = "$rootDir/twin" as File
+project(':private-class-data').projectDir = "$rootDir/private-class-data" as File
+project(':object-pool').projectDir = "$rootDir/object-pool" as File
+project(':dependency-injection').projectDir = "$rootDir/dependency-injection" as File
+project(':naked-objects:naked-objects-dom').projectDir = "$rootDir/naked-objects/dom" as File
+project(':naked-objects:naked-objects-fixture').projectDir = "$rootDir/naked-objects/fixture" as File
+project(':naked-objects:naked-objects-integtests').projectDir = "$rootDir/naked-objects/integtests" as File
+project(':naked-objects:naked-objects-webapp').projectDir = "$rootDir/naked-objects/webapp" as File
+project(':naked-objects').projectDir = "$rootDir/naked-objects" as File
+project(':front-controller').projectDir = "$rootDir/front-controller" as File
+project(':repository').projectDir = "$rootDir/repository" as File
+project(':async-method-invocation').projectDir = "$rootDir/async-method-invocation" as File
+project(':monostate').projectDir = "$rootDir/monostate" as File
+project(':step-builder').projectDir = "$rootDir/step-builder" as File
+project(':business-delegate').projectDir = "$rootDir/business-delegate" as File
+project(':half-sync-half-async').projectDir = "$rootDir/half-sync-half-async" as File
+project(':layers').projectDir = "$rootDir/layers" as File
+project(':eip-message-channel').projectDir = "$rootDir/eip-message-channel" as File
+project(':fluentinterface').projectDir = "$rootDir/fluentinterface" as File
+project(':reactor').projectDir = "$rootDir/reactor" as File
+project(':caching').projectDir = "$rootDir/caching" as File
+project(':eip-publish-subscribe').projectDir = "$rootDir/eip-publish-subscribe" as File
+project(':delegation').projectDir = "$rootDir/delegation" as File
+project(':event-driven-architecture').projectDir = "$rootDir/event-driven-architecture" as File
+project(':api-gateway:image-microservice').projectDir = "$rootDir/api-gateway/image-microservice" as File
+project(':api-gateway:price-microservice').projectDir = "$rootDir/api-gateway/price-microservice" as File
+project(':api-gateway:api-gateway-service').projectDir = "$rootDir/api-gateway/api-gateway-service" as File
+project(':api-gateway').projectDir = "$rootDir/api-gateway" as File
+project(':factory-kit').projectDir = "$rootDir/factory-kit" as File
+project(':feature-toggle').projectDir = "$rootDir/feature-toggle" as File
+project(':value-object').projectDir = "$rootDir/value-object" as File
+project(':module').projectDir = "$rootDir/module" as File
+project(':monad').projectDir = "$rootDir/monad" as File
+project(':mute-idiom').projectDir = "$rootDir/mute-idiom" as File
+project(':mutex').projectDir = "$rootDir/mutex" as File
+project(':semaphore').projectDir = "$rootDir/semaphore" as File
+project(':hexagonal').projectDir = "$rootDir/hexagonal" as File
+project(':abstract-document').projectDir = "$rootDir/abstract-document" as File
+project(':aggregator-microservices:information-microservice').projectDir = "$rootDir/aggregator-microservices/information-microservice" as File
+project(':aggregator-microservices:aggregator-service').projectDir = "$rootDir/aggregator-microservices/aggregator-service" as File
+project(':aggregator-microservices:inventory-microservice').projectDir = "$rootDir/aggregator-microservices/inventory-microservice" as File
+project(':aggregator-microservices').projectDir = "$rootDir/aggregator-microservices" as File
+project(':promise').projectDir = "$rootDir/promise" as File
+project(':page-object').projectDir = "$rootDir/page-object" as File
+project(':event-asynchronous').projectDir = "$rootDir/event-asynchronous" as File
+project(':event-queue').projectDir = "$rootDir/event-queue" as File
+project(':queue-load-leveling').projectDir = "$rootDir/queue-load-leveling" as File
+project(':object-mother').projectDir = "$rootDir/object-mother" as File
+project(':data-bus').projectDir = "$rootDir/data-bus" as File
+project(':converter').projectDir = "$rootDir/converter" as File
+project(':guarded-suspension').projectDir = "$rootDir/guarded-suspension" as File
+project(':balking').projectDir = "$rootDir/balking" as File
+project(':extension-objects').projectDir = "$rootDir/extension-objects" as File
+project(':marker').projectDir = "$rootDir/marker" as File
+project(':cqrs').projectDir = "$rootDir/cqrs" as File
+project(':event-sourcing').projectDir = "$rootDir/event-sourcing" as File
+project(':data-transfer-object').projectDir = "$rootDir/data-transfer-object" as File
+project(':throttling').projectDir = "$rootDir/throttling" as File
+project(':unit-of-work').projectDir = "$rootDir/unit-of-work" as File
+project(':partial-response').projectDir = "$rootDir/partial-response" as File
+project(':eip-wire-tap').projectDir = "$rootDir/eip-wire-tap" as File
+project(':eip-splitter').projectDir = "$rootDir/eip-splitter" as File
+project(':eip-aggregator').projectDir = "$rootDir/eip-aggregator" as File
+project(':retry').projectDir = "$rootDir/retry" as File
+project(':dirty-flag').projectDir = "$rootDir/dirty-flag" as File
+project(':trampoline').projectDir = "$rootDir/trampoline" as File
+project(':serverless').projectDir = "$rootDir/serverless" as File
+project(':ambassador').projectDir = "$rootDir/ambassador" as File
+project(':acyclic-visitor').projectDir = "$rootDir/acyclic-visitor" as File
+project(':collection-pipeline').projectDir = "$rootDir/collection-pipeline" as File

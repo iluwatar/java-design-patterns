@@ -1,0 +1,7 @@
+
+description = ''
+dependencies {
+    compile group: 'log4j', name: 'log4j', version:'1.2.17'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+}

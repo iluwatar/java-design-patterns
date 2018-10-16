@@ -1,0 +1,8 @@
+
+description = ''
+dependencies {
+    compile group: 'org.apache.camel', name: 'camel-core', version:'2.16.1'
+    compile group: 'org.apache.camel', name: 'camel-stream', version:'2.16.1'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+}

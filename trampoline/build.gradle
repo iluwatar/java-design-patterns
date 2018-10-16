@@ -1,0 +1,8 @@
+
+description = ''
+dependencies {
+    compile group: 'org.projectlombok', name: 'lombok', version:'1.16.18'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+}

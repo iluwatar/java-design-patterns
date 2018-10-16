@@ -1,0 +1,8 @@
+
+description = ''
+dependencies {
+    compile group: 'com.google.inject', name: 'guice', version:'4.0'
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version:'3.3.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+}

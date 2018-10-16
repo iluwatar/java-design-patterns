@@ -1,0 +1,11 @@
+group = 'com.iluwatar.layers'
+description = ''
+dependencies {
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version:'1.9.2.RELEASE'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version:'5.0.1.Final'
+    compile group: 'commons-dbcp', name: 'commons-dbcp', version:'1.4'
+    compile group: 'com.h2database', name: 'h2', version:'1.4.190'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.0.2'
+    testCompile group: 'org.mockito', name: 'mockito-core', version:'1.10.19'
+}
