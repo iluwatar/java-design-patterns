@@ -23,6 +23,9 @@
 
 package com.iluwatar.event.queue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -38,6 +41,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  */
 public class Audio {
+  private static final Logger LOGGER = LoggerFactory.getLogger(Audio.class);
+  private static final Audio INSTANCE = new Audio();
 
   private static final int MAX_PENDING = 16;
 
@@ -55,7 +60,7 @@ public class Audio {
   }
 
   public static Audio getInstance() {
-    return SingletonHolder.getAudioInstance();
+    return INSTANCE;
   }
 
   /**
@@ -141,14 +146,11 @@ public class Audio {
       clip.open(audioStream);
       clip.start();
     } catch (LineUnavailableException e) {
-      System.err.println("Error occoured while loading the audio: The line is unavailable");
-      e.printStackTrace();
+      LOGGER.trace("Error occoured while loading the audio: The line is unavailable", e);
     } catch (IOException e) {
-      System.err.println("Input/Output error while loading the audio");
-      e.printStackTrace();
+      LOGGER.trace("Input/Output error while loading the audio", e);
     } catch (IllegalArgumentException e) {
-      System.err.println("The system doesn't support the sound: " + e.getMessage());
-      e.printStackTrace();
+      LOGGER.trace("The system doesn't support the sound: " + e.getMessage(), e);
     }
   }
 
@@ -172,11 +174,4 @@ public class Audio {
     return pendingAudio;
   }
 
-  private static class SingletonHolder {
-    private static final Audio INSTANCE = new Audio();
-
-    static Audio getAudioInstance() {
-      return INSTANCE;
-    }
-  }
 }
