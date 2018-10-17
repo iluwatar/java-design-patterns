@@ -45,7 +45,7 @@ import org.junit.jupiter.api.Assertions;
  */
 public class ConfigureForUnixVisitorTest {
   
-  TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForUnixVisitor.class);
+  private TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForUnixVisitor.class);
   
   @AfterEach
   public void clearLoggers() {

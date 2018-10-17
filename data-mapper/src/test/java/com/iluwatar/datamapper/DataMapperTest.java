@@ -21,6 +21,7 @@ package com.iluwatar.datamapper;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
@@ -58,12 +59,12 @@ public class DataMapperTest {
     mapper.update(student);
 
     /* Check if student is updated in db */
-    assertEquals(mapper.find(student.getStudentId()).get().getName(), "AdamUpdated");
+    assertEquals("AdamUpdated", mapper.find(student.getStudentId()).get().getName());
 
     /* Delete student in db */
     mapper.delete(student);
 
     /* Result should be false */
-    assertEquals(false, mapper.find(student.getStudentId()).isPresent());
+    assertFalse(mapper.find(student.getStudentId()).isPresent());
   }
 }

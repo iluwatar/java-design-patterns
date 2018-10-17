@@ -26,10 +26,10 @@ package com.iluwatar.collectionpipeline;
  * A Car class that has the properties of make, model, year and category.
  */
 public class Car {
-  private String make;
-  private String model;
-  private int year;
-  private Category category;
+  private final String make;
+  private final String model;
+  private final int year;
+  private final Category category;
 
   /**
    * Constructor to create an instance of car.
