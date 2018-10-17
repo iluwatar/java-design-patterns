@@ -15,6 +15,7 @@ before_install:
 # default install command is just "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
 install:
 - gradle build -x test
+- gradle test -x :serverless:test -x :naked-objects:naked-objects-integtests:test
 
 after_success:
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
