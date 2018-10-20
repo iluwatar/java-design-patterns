@@ -43,13 +43,13 @@ public class WashingMachineTest {
     ExecutorService executorService = Executors.newFixedThreadPool(2);
     executorService.execute(() -> {
       washingMachine.wash();
-      if(machineStateGlobal==null) {
+      if (machineStateGlobal == null) {
         machineStateGlobal = washingMachine.getWashingMachineState();
       }
     });
     executorService.execute(() -> {
       washingMachine.wash();
-      if(machineStateGlobal==null) {
+      if (machineStateGlobal == null) {
         machineStateGlobal = washingMachine.getWashingMachineState();
       }
     });
