@@ -51,7 +51,7 @@ import static org.mockito.Mockito.when;
 public class MagicServiceImplTest {
 
   @Test
-  public void testFindAllWizards() throws Exception {
+  public void testFindAllWizards() {
     final WizardDao wizardDao = mock(WizardDao.class);
     final SpellbookDao spellbookDao = mock(SpellbookDao.class);
     final SpellDao spellDao = mock(SpellDao.class);

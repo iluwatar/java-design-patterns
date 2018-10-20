@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 public class ApplicationExceptionTest {
 
   @Test
-  public void testCause() throws Exception {
+  public void testCause() {
     final Exception cause = new Exception();
     assertSame(cause, new ApplicationException(cause).getCause());
   }

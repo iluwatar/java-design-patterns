@@ -42,7 +42,7 @@ public class SpellbookDaoImplTest extends BaseDaoTest<Spellbook, SpellbookDaoImp
   }
 
   @Test
-  public void testFindByName() throws Exception {
+  public void testFindByName() {
     final SpellbookDaoImpl dao = getDao();
     final List<Spellbook> allBooks = dao.findAll();
     for (final Spellbook book : allBooks) {

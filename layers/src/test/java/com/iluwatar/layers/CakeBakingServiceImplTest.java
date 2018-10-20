@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CakeBakingServiceImplTest {
 
   @Test
-  public void testLayers() throws CakeBakingException {
+  public void testLayers() {
     final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
 
     final List<CakeLayerInfo> initialLayers = service.getAvailableLayers();
@@ -65,7 +65,7 @@ public class CakeBakingServiceImplTest {
   }
 
   @Test
-  public void testToppings() throws CakeBakingException {
+  public void testToppings() {
     final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
 
     final List<CakeToppingInfo> initialToppings = service.getAvailableToppings();
@@ -125,7 +125,7 @@ public class CakeBakingServiceImplTest {
   }
 
   @Test
-  public void testBakeCakeMissingTopping() throws CakeBakingException {
+  public void testBakeCakeMissingTopping() {
     final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
 
     final CakeLayerInfo layer1 = new CakeLayerInfo("Layer1", 1000);
@@ -140,7 +140,7 @@ public class CakeBakingServiceImplTest {
   }
 
   @Test
-  public void testBakeCakeMissingLayer() throws CakeBakingException {
+  public void testBakeCakeMissingLayer() {
     final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
 
     final List<CakeInfo> initialCakes = service.getAllCakes();

@@ -111,7 +111,7 @@ public class Utility {
    * Downloads the contents from the given urlString, and stores it in a temporary directory.
    * @return the absolute path of the file downloaded.
    */
-  public static String downloadFile(String urlString) throws MalformedURLException, IOException {
+  public static String downloadFile(String urlString) throws IOException {
     LOGGER.info("Downloading contents from url: {}", urlString);
     URL url = new URL(urlString);
     File file = File.createTempFile("promise_pattern", null);

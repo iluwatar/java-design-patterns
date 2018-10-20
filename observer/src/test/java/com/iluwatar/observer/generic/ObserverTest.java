@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Jeroen Meulemeester
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public abstract class ObserverTest<O extends Observer> {
+public abstract class ObserverTest<O extends Observer<?, ?, WeatherType>> {
 
   private InMemoryAppender appender;
 
