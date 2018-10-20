@@ -30,24 +30,18 @@ public class SimpleObjectTest {
   public void setUp() throws Exception {
     simpleObject = new SimpleObject();
   }
+  
+  @Test
+  public void testName() throws Exception {
+    // given
+    String name = "Foobar";
+    assertThat(simpleObject.getName()).isNull();
 
-  /**
-   * Test for Names for SimpleObjects
-   */
-  public static class Name extends SimpleObjectTest {
+    // when
+    simpleObject.setName(name);
 
-    @Test
-    public void happyCase() throws Exception {
-      // given
-      String name = "Foobar";
-      assertThat(simpleObject.getName()).isNull();
-
-      // when
-      simpleObject.setName(name);
-
-      // then
-      assertThat(simpleObject.getName()).isEqualTo(name);
-    }
+    // then
+    assertThat(simpleObject.getName()).isEqualTo(name);
   }
 
 }

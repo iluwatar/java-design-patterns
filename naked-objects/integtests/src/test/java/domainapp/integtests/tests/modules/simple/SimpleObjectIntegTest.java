@@ -38,6 +38,8 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
 
   @Inject
   FixtureScripts fixtureScripts;
+  @Inject
+  DomainObjectContainer container;
 
   RecreateSimpleObjects fs;
   SimpleObject simpleObjectPojo;
@@ -54,77 +56,56 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
     assertThat(simpleObjectPojo).isNotNull();
     simpleObjectWrapped = wrap(simpleObjectPojo);
   }
-
-  /**
-   * Test Object Name accessibility
-   */
-  public static class Name extends SimpleObjectIntegTest {
-
-    @Test
-    public void accessible() throws Exception {
-      // when
-      final String name = simpleObjectWrapped.getName();
-      // then
-      assertThat(name).isEqualTo(fs.names.get(0));
-    }
-
-    @Test
-    public void cannotBeUpdatedDirectly() throws Exception {
-
-      // expect
-      expectedExceptions.expect(DisabledException.class);
-
-      // when
-      simpleObjectWrapped.setName("new name");
-    }
+  
+  @Test
+  public void testNameAccessible() throws Exception {
+    // when
+    final String name = simpleObjectWrapped.getName();
+    // then
+    assertThat(name).isEqualTo(fs.names.get(0));
   }
+  
+  @Test
+  public void testNameCannotBeUpdatedDirectly() throws Exception {
 
-  /**
-   * Test Validation of SimpleObject Names
-   */
-  public static class UpdateName extends SimpleObjectIntegTest {
+    // expect
+    expectedExceptions.expect(DisabledException.class);
 
-    @Test
-    public void happyCase() throws Exception {
-
-      // when
-      simpleObjectWrapped.updateName("new name");
-
-      // then
-      assertThat(simpleObjectWrapped.getName()).isEqualTo("new name");
-    }
-
-    @Test
-    public void failsValidation() throws Exception {
-
-      // expect
-      expectedExceptions.expect(InvalidException.class);
-      expectedExceptions.expectMessage("Exclamation mark is not allowed");
-
-      // when
-      simpleObjectWrapped.updateName("new name!");
-    }
+    // when
+    simpleObjectWrapped.setName("new name");
   }
+  
+  @Test
+  public void testUpdateName() throws Exception {
 
-  /**
-   * Test ContainerTitle generation based on SimpleObject Name
-   */
-  public static class Title extends SimpleObjectIntegTest {
+    // when
+    simpleObjectWrapped.updateName("new name");
 
-    @Inject
-    DomainObjectContainer container;
+    // then
+    assertThat(simpleObjectWrapped.getName()).isEqualTo("new name");
+  }
+  
+  @Test
+  public void testUpdateNameFailsValidation() throws Exception {
 
-    @Test
-    public void interpolatesName() throws Exception {
+    // expect
+    expectedExceptions.expect(InvalidException.class);
+    expectedExceptions.expectMessage("Exclamation mark is not allowed");
 
-      // given
-      final String name = simpleObjectWrapped.getName();
+    // when
+    simpleObjectWrapped.updateName("new name!");
+  }
+  
+  @Test
+  public void testInterpolatesName() throws Exception {
 
-      // when
-      final String title = container.titleOf(simpleObjectWrapped);
+    // given
+    final String name = simpleObjectWrapped.getName();
 
-      // then
-      assertThat(title).isEqualTo("Object: " + name);
-    }
+    // when
+    final String title = container.titleOf(simpleObjectWrapped);
+
+    // then
+    assertThat(title).isEqualTo("Object: " + name);
   }
 }

@@ -46,63 +46,51 @@ public class SimpleObjectsTest {
     simpleObjects = new SimpleObjects();
     simpleObjects.container = mockContainer;
   }
+  
+  @Test
+  public void testCreate() throws Exception {
 
-  /**
-   * Test Creation of Simple Objects
-   */
-  public static class Create extends SimpleObjectsTest {
+    // given
+    final SimpleObject simpleObject = new SimpleObject();
 
-    @Test
-    public void happyCase() throws Exception {
+    final Sequence seq = context.sequence("create");
+    context.checking(new Expectations() {
+      {
+        oneOf(mockContainer).newTransientInstance(SimpleObject.class);
+        inSequence(seq);
+        will(returnValue(simpleObject));
 
-      // given
-      final SimpleObject simpleObject = new SimpleObject();
+        oneOf(mockContainer).persistIfNotAlready(simpleObject);
+        inSequence(seq);
+      }
+    });
 
-      final Sequence seq = context.sequence("create");
-      context.checking(new Expectations() {
-        {
-          oneOf(mockContainer).newTransientInstance(SimpleObject.class);
-          inSequence(seq);
-          will(returnValue(simpleObject));
+    // when
+    final SimpleObject obj = simpleObjects.create("Foobar");
 
-          oneOf(mockContainer).persistIfNotAlready(simpleObject);
-          inSequence(seq);
-        }
-      });
+    // then
+    assertThat(obj).isEqualTo(simpleObject);
+    assertThat(obj.getName()).isEqualTo("Foobar");
+  }
+  
+  @Test
+  public void testListAll() throws Exception {
 
-      // when
-      final SimpleObject obj = simpleObjects.create("Foobar");
+    // given
+    final List<SimpleObject> all = Lists.newArrayList();
 
-      // then
-      assertThat(obj).isEqualTo(simpleObject);
-      assertThat(obj.getName()).isEqualTo("Foobar");
-    }
+    context.checking(new Expectations() {
+      {
+        oneOf(mockContainer).allInstances(SimpleObject.class);
+        will(returnValue(all));
+      }
+    });
 
+    // when
+    final List<SimpleObject> list = simpleObjects.listAll();
+
+    // then
+    assertThat(list).isEqualTo(all);
   }
 
-  /**
-   * Test Listing of Simple Objects
-   */
-  public static class ListAll extends SimpleObjectsTest {
-
-    @Test
-    public void happyCase() throws Exception {
-
-      // given
-      final List<SimpleObject> all = Lists.newArrayList();
-
-      context.checking(new Expectations() {
-        {
-          oneOf(mockContainer).allInstances(SimpleObject.class);
-          will(returnValue(all));
-        }
-      });
-
-      // when
-      final List<SimpleObject> list = simpleObjects.listAll();
-
-      // then
-      assertThat(list).isEqualTo(all);
-    }
-  }
 }
