@@ -42,9 +42,9 @@ public class WashingMachineTest {
     WashingMachine washingMachine = new WashingMachine();
     ExecutorService executorService = Executors.newFixedThreadPool(2);
     executorService.execute(() -> {
-        washingMachine.wash();
-        machineStateGlobal = washingMachine.getWashingMachineState();
-      });
+      washingMachine.wash();
+      machineStateGlobal = washingMachine.getWashingMachineState();
+    });
     executorService.execute(() -> {
       washingMachine.wash();
       machineStateGlobal = washingMachine.getWashingMachineState();
