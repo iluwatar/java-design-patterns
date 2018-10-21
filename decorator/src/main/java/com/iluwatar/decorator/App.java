@@ -57,9 +57,9 @@ public class App {
 
     // change the behavior of the simple troll by adding a decorator
     LOGGER.info("A troll with huge club surprises you.");
-    troll = new ClubbedTroll(troll);
-    troll.attack();
-    troll.fleeBattle();
-    LOGGER.info("Clubbed troll power {}.\n", troll.getAttackPower());
+    Troll clubbedTroll = new ClubbedTroll(troll);
+    clubbedTroll.attack();
+    clubbedTroll.fleeBattle();
+    LOGGER.info("Clubbed troll power {}.\n", clubbedTroll.getAttackPower());
   }
 }

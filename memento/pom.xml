@@ -29,7 +29,7 @@
   <parent>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.20.0-SNAPSHOT</version>
+    <version>1.21.0-SNAPSHOT</version>
   </parent>
   <artifactId>memento</artifactId>
   <dependencies>
