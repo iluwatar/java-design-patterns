@@ -45,7 +45,7 @@ public class DataMapperTest {
 
     /* Create new student */
     int studentId = 1;
-	Student student = new Student(studentId, "Adam", 'A');
+    Student student = new Student(studentId, "Adam", 'A');
 
     /* Add student in respectibe db */
     mapper.insert(student);
@@ -55,7 +55,7 @@ public class DataMapperTest {
 
     /* Update existing student object */
     String updatedName = "AdamUpdated";
-	student = new Student(student.getStudentId(), updatedName, 'A');
+    student = new Student(student.getStudentId(), updatedName, 'A');
 
     /* Update student in respectibe db */
     mapper.update(student);
