@@ -39,11 +39,9 @@ public class LoadBalancer {
 
   static {
     int id = 0;
-    SERVERS.add(new Server("localhost", 8081, ++id));
-    SERVERS.add(new Server("localhost", 8080, ++id));
-    SERVERS.add(new Server("localhost", 8082, ++id));
-    SERVERS.add(new Server("localhost", 8083, ++id));
-    SERVERS.add(new Server("localhost", 8084, ++id));
+    for (int port : new int[] {8080, 8081, 8082, 8083, 8084}) {
+      SERVERS.add(new Server("localhost", port, ++id));
+    }
   }
 
   /**
