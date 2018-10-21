@@ -37,22 +37,18 @@ import java.awt.*;
  * updateState and updateView are used throughout the examples except for {{@link IndependentAnimation}}
  * which requires additional tuning for the view/render functionality.
  */
-public class BallAnimation extends JFrame {
+public abstract class BallAnimation<T extends BasicGamePanel> extends JFrame {
 
-  BasicGamePanel gPanel;
-
-  public BallAnimation() {
-    this(new BasicGamePanel());
-  }
+  T gPanel;
 
   /**
    * Ball Animation constructor in which a game panel is passed.
    */
-  public BallAnimation(BasicGamePanel gamePanel) {
+  public BallAnimation(T gPanel) {
 
     super("Ball Animation");
 
-    this.gPanel = gamePanel;
+    this.gPanel = gPanel;
 
     Container cp = getContentPane();
     cp.setLayout(new BorderLayout());

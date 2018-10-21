@@ -34,10 +34,10 @@ import static java.lang.Thread.sleep;
  * the game state will update at different speeds depending on the speed of the hardware
  * and cause inconsistency.
  */
-public class LockedAnimation extends BallAnimation {
+public class LockedAnimation extends BallAnimation<BasicGamePanel> {
 
   public LockedAnimation() {
-    super();
+    super(new BasicGamePanel());
   }
 
   /**

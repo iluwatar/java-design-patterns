@@ -34,7 +34,7 @@ public class BallAnimationTest {
 
   @Test
   void hasBasicGamePanel() {
-    BallAnimation animation = new BallAnimation();
+    BasicAnimation animation = new BasicAnimation();
     assertThat(animation.gPanel, instanceOf(BasicGamePanel.class));
   }
 }

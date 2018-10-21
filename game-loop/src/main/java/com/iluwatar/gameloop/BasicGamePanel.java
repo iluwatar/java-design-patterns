@@ -45,8 +45,6 @@ public class BasicGamePanel extends JPanel {
   int lastDrawX;
   int lastDrawY;
 
-  public void setInterpolation(float interpolation) {}
-
   BasicGamePanel() {
 
     ballX = lastBallX = 100;

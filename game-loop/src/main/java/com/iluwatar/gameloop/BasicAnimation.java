@@ -32,10 +32,10 @@ package com.iluwatar.gameloop;
  * has already updated enough times for the ball to hit a corner precisely and get stuck.
  * This loop demonstrates why putting thought into a game loop algorithm is important.
  */
-public class BasicAnimation extends BallAnimation {
+public class BasicAnimation extends BallAnimation<BasicGamePanel> {
 
   public BasicAnimation() {
-    super();
+    super(new BasicGamePanel());
   }
 
   /**

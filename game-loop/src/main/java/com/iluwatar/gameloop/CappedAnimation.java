@@ -30,10 +30,10 @@ package com.iluwatar.gameloop;
  * number of times the game state is set to update per second. This means performance
  * potential is wasted when running on faster hardware.
  */
-public class CappedAnimation extends BallAnimation {
+public class CappedAnimation extends BallAnimation<BasicGamePanel> {
 
   public CappedAnimation() {
-    super();
+    super(new BasicGamePanel());
   }
 
   /**

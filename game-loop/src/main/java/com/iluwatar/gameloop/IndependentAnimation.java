@@ -30,7 +30,7 @@ package com.iluwatar.gameloop;
  * The loop achieves this by calculating an interpolation value which is used to
  * estimate positioning in between game state updates.
  */
-public class IndependentAnimation extends BallAnimation {
+public class IndependentAnimation extends BallAnimation<InterpolatedGamePanel> {
 
   public IndependentAnimation() {
     super(new InterpolatedGamePanel());

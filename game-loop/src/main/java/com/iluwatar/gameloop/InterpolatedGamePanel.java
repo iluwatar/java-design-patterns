@@ -32,8 +32,7 @@ public class InterpolatedGamePanel extends BasicGamePanel {
 
   private float interpolation;
 
-  @Override
-  public void setInterpolation(float interpolation) {
+  void setInterpolation(float interpolation) {
     this.interpolation = interpolation;
   }
 
