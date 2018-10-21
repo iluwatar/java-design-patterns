@@ -18,18 +18,21 @@
  */
 package domainapp.integtests.tests.modules.simple;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import domainapp.dom.modules.simple.SimpleObject;
-import domainapp.fixture.scenarios.RecreateSimpleObjects;
-import domainapp.integtests.tests.SimpleAppIntegTest;
 import javax.inject.Inject;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.apache.isis.applib.services.wrapper.DisabledException;
 import org.apache.isis.applib.services.wrapper.InvalidException;
 import org.junit.Before;
 import org.junit.Test;
+
+import domainapp.dom.modules.simple.SimpleObject;
+import domainapp.fixture.scenarios.RecreateSimpleObjects;
+import domainapp.integtests.tests.SimpleAppIntegTest;
 
 /**
  * Test Fixtures with Simple Objects
@@ -44,6 +47,8 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
   RecreateSimpleObjects fs;
   SimpleObject simpleObjectPojo;
   SimpleObject simpleObjectWrapped;
+  
+  private static final String NEW_NAME = "new name";
 
   @Before
   public void setUp() throws Exception {
@@ -53,7 +58,7 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
 
     simpleObjectPojo = fs.getSimpleObjects().get(0);
 
-    assertThat(simpleObjectPojo).isNotNull();
+    assertNotNull(simpleObjectPojo);
     simpleObjectWrapped = wrap(simpleObjectPojo);
   }
   
@@ -62,7 +67,7 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
     // when
     final String name = simpleObjectWrapped.getName();
     // then
-    assertThat(name).isEqualTo(fs.names.get(0));
+    assertEquals(fs.names.get(0), name);
   }
   
   @Test
@@ -72,17 +77,17 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
     expectedExceptions.expect(DisabledException.class);
 
     // when
-    simpleObjectWrapped.setName("new name");
+    simpleObjectWrapped.setName(NEW_NAME);
   }
   
   @Test
   public void testUpdateName() throws Exception {
 
     // when
-    simpleObjectWrapped.updateName("new name");
+    simpleObjectWrapped.updateName(NEW_NAME);
 
     // then
-    assertThat(simpleObjectWrapped.getName()).isEqualTo("new name");
+    assertEquals(NEW_NAME, simpleObjectWrapped.getName());
   }
   
   @Test
@@ -93,7 +98,7 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
     expectedExceptions.expectMessage("Exclamation mark is not allowed");
 
     // when
-    simpleObjectWrapped.updateName("new name!");
+    simpleObjectWrapped.updateName(NEW_NAME + "!");
   }
   
   @Test
@@ -106,6 +111,6 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
     final String title = container.titleOf(simpleObjectWrapped);
 
     // then
-    assertThat(title).isEqualTo("Object: " + name);
+    assertEquals("Object: " + name, title);
   }
 }

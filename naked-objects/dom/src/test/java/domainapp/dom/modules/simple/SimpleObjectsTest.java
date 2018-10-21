@@ -14,9 +14,10 @@
  */
 package domainapp.dom.modules.simple;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.google.common.collect.Lists;
+
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
@@ -66,11 +67,12 @@ public class SimpleObjectsTest {
     });
 
     // when
-    final SimpleObject obj = simpleObjects.create("Foobar");
+    String objectName = "Foobar";
+    final SimpleObject obj = simpleObjects.create(objectName);
 
     // then
-    assertThat(obj).isEqualTo(simpleObject);
-    assertThat(obj.getName()).isEqualTo("Foobar");
+    assertEquals(simpleObject, obj);
+    assertEquals(objectName, obj.getName());
   }
   
   @Test
@@ -90,7 +92,7 @@ public class SimpleObjectsTest {
     final List<SimpleObject> list = simpleObjects.listAll();
 
     // then
-    assertThat(list).isEqualTo(all);
+    assertEquals(all, list);
   }
 
 }

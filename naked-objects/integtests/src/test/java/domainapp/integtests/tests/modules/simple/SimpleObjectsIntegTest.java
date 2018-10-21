@@ -18,23 +18,27 @@
  */
 package domainapp.integtests.tests.modules.simple;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
-import com.google.common.base.Throwables;
-import domainapp.dom.modules.simple.SimpleObject;
-import domainapp.dom.modules.simple.SimpleObjects;
-import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
-import domainapp.fixture.scenarios.RecreateSimpleObjects;
-import domainapp.integtests.tests.SimpleAppIntegTest;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Test;
+
+import com.google.common.base.Throwables;
+
+import domainapp.dom.modules.simple.SimpleObject;
+import domainapp.dom.modules.simple.SimpleObjects;
+import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
+import domainapp.fixture.scenarios.RecreateSimpleObjects;
+import domainapp.integtests.tests.SimpleAppIntegTest;
 
 /**
  * Fixture Pattern Integration Test
@@ -58,10 +62,10 @@ public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
     final List<SimpleObject> all = wrap(simpleObjects).listAll();
 
     // then
-    assertThat(all).hasSize(fs.getSimpleObjects().size());
+    assertEquals(fs.getSimpleObjects().size(), all.size());
 
     SimpleObject simpleObject = wrap(all.get(0));
-    assertThat(simpleObject.getName()).isEqualTo(fs.getSimpleObjects().get(0).getName());
+    assertEquals(fs.getSimpleObjects().get(0).getName(), simpleObject.getName());
   }
   
   @Test
@@ -76,7 +80,7 @@ public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
     final List<SimpleObject> all = wrap(simpleObjects).listAll();
 
     // then
-    assertThat(all).hasSize(0);
+    assertEquals(0, all.size());
   }
   
   @Test
@@ -92,7 +96,7 @@ public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
 
     // then
     final List<SimpleObject> all = wrap(simpleObjects).listAll();
-    assertThat(all).hasSize(1);
+    assertEquals(1, all.size());
   }
   
   @Test
