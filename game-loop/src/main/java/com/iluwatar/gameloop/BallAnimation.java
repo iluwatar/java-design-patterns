@@ -36,6 +36,7 @@ import java.awt.*;
  * <p>
  * updateState and updateView are used throughout the examples except for {{@link IndependentAnimation}}
  * which requires additional tuning for the view/render functionality.
+ * @param <T> Game panel to be used for animation.
  */
 public abstract class BallAnimation<T extends BasicGamePanel> extends JFrame {
 

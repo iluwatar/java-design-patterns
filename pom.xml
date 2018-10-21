@@ -162,8 +162,8 @@
         <module>trampoline</module>
         <module>serverless</module>
         <module>ambassador</module>
-	    <module>acyclic-visitor</module>
-	    <module>collection-pipeline</module>
+        <module>acyclic-visitor</module>
+        <module>collection-pipeline</module>
         <module>game-loop</module>
     </modules>
 
