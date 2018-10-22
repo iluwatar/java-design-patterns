@@ -26,6 +26,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Page Object pattern wraps an UI component with an application specific API allowing you to
  * manipulate the UI elements without having to dig around with the underlying UI technology used. This is
@@ -50,6 +53,7 @@ import java.io.IOException;
  */
 public final class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   private App() {
   }
 
@@ -82,7 +86,7 @@ public final class App {
       }
 
     } catch (IOException ex) {
-      ex.printStackTrace();
+      LOGGER.error("An error occured.", ex);
     }
 
   }
