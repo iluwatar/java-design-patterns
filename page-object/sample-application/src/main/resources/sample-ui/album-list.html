@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <!--
 
     The MIT License
@@ -23,18 +22,39 @@
     THE SOFTWARE.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.iluwatar</groupId>
-        <artifactId>java-design-patterns</artifactId>
-        <version>1.21.0-SNAPSHOT</version>
-    </parent>
-    <artifactId>page-object</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>sample-application</module>
-        <module>test-automation</module>
-    </modules>
-</project>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album List</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/album-list.css">
+</head>
+<body>
+    <header>
+    	<h1>My Album Viewer</h1>
+    </header>
+
+    <section>
+    	<div>
+    		<table>
+    			<tr>
+                    <th>Album Title</th>
+                    <th>Album Year</th>
+                    <th>Album Rating</th>
+                    <th>Number of Songs</th>
+                    <th>Artist</th>
+                </tr>
+    			<tr class="album">
+    				<td><a href="album-page.html">21</a></td>
+                    <td>2011</td>
+                    <td>A</td>
+                    <td>11</td>
+                    <td>Adele</td>
+    			</tr>
+    		</table>
+    	</div>
+    </section>
+
+</body>
+</html>
