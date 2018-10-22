@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Tests for Mongo banking adapter
  */
 @Disabled
-public class MongoBankTest {
+class MongoBankTest {
 
   private static final String TEST_DB = "lotteryDBTest";
   private static final String TEST_ACCOUNTS_COLLECTION = "testAccounts";
@@ -42,7 +42,7 @@ public class MongoBankTest {
   private MongoBank mongoBank;
 
   @BeforeEach
-  public void init() {
+  void init() {
     MongoConnectionPropertiesLoader.load();
     MongoClient mongoClient = new MongoClient(System.getProperty("mongo-host"),
         Integer.parseInt(System.getProperty("mongo-port")));
@@ -52,12 +52,12 @@ public class MongoBankTest {
   }
 
   @Test
-  public void testSetup() {
+  void testSetup() {
     assertEquals(0, mongoBank.getAccountsCollection().count());
   }
 
   @Test
-  public void testFundTransfers() {
+  void testFundTransfers() {
     assertEquals(0, mongoBank.getFunds("000-000"));
     mongoBank.setFunds("000-000", 10);
     assertEquals(10, mongoBank.getFunds("000-000"));

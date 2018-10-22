@@ -24,6 +24,8 @@ package com.iluwatar.ambassador;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  * Test for {@link Client}
  */
@@ -35,6 +37,6 @@ public class ClientTest {
     Client client = new Client();
     long result = client.useService(10);
 
-    assert result == 100 || result == -1;
+    assertTrue(result == 100 || result == RemoteService.FAILURE);
   }
 }
