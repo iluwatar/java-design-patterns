@@ -25,7 +25,7 @@ package com.iluwatar.gameloop;
 
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -39,5 +39,35 @@ public class BasicGamePanelTest {
   void isPanel() {
     BasicGamePanel panel = new BasicGamePanel();
     assertThat(panel, instanceOf(JPanel.class));
+  }
+
+  @Test
+  void testValuesUpdated() {
+    BasicGamePanel panel = new BasicGamePanel();
+    int ballX = panel.ballX;
+    int ballY = panel.ballY;
+    float ballXVel = panel.ballXVel;
+    float ballYVel = panel.ballYVel;
+
+    panel.update();
+
+    assertThat("Check ball X was updated", panel.ballX == ballX + ballXVel);
+    assertThat("Check ball Y was updated", panel.ballY == ballY + ballYVel);
+  }
+
+  @Test
+  void testDraw() {
+
+    BasicGamePanel panel = new BasicGamePanel();
+    int ballX = panel.ballX;
+    int ballY = panel.ballY;
+
+    panel.update();
+
+    int lastDrawX = panel.lastDrawX;
+    int lastDrawY = panel.lastDrawY;
+
+    assertThat("Check X was drawn", lastDrawX == ballX);
+    assertThat("Check Y was drawn", lastDrawY == ballY);
   }
 }

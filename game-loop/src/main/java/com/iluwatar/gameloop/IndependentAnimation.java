@@ -33,7 +33,7 @@ package com.iluwatar.gameloop;
 public class IndependentAnimation extends BallAnimation<InterpolatedGamePanel> {
 
   public IndependentAnimation() {
-    super(new InterpolatedGamePanel());
+    super(new InterpolatedGamePanel(), "Independent Animation");
   }
 
   /**

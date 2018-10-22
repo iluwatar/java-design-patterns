@@ -45,9 +45,9 @@ public abstract class BallAnimation<T extends BasicGamePanel> extends JFrame {
   /**
    * Ball Animation constructor in which a game panel is passed.
    */
-  public BallAnimation(T gPanel) {
+  public BallAnimation(T gPanel, String name) {
 
-    super("Ball Animation");
+    super(name);
 
     this.gPanel = gPanel;
 

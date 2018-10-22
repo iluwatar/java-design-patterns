@@ -23,40 +23,37 @@
 package com.iluwatar.gameloop;
 
 /**
- * A simple loop.
- * Updates to state and view are locked to each other and run as fast as the hardware
- * can handle. The downside is that game state will be updated at a different speed on
- * different hardware.
- *
- * On fast hardware, the ball will appear stationary in a corner. This is because the state
- * has already updated enough times for the ball to hit a corner precisely and get stuck.
- * This loop demonstrates why putting thought into a game loop algorithm is important.
+ * Application entry point.
  */
-public class BasicAnimation extends BallAnimation<BasicGamePanel> {
-
-  public BasicAnimation() {
-    super(new BasicGamePanel(), "Basic Animation");
-  }
-
-  /**
-   * Simple Game Loop
-   */
-  @Override
-  public void gameLoop() {
-
-    while (true) {
-
-      updateState();
-      updateView();
-    }
-  }
+public class App {
 
   /**
    * Entry point
    */
   public static void main(String[] args) {
-    BallAnimation ballAnimation = new BasicAnimation();
-    ballAnimation.setVisible(true);
-    ballAnimation.run();
+
+    BallAnimation[] animations = {
+        new BasicAnimation(),
+        new LockedAnimation(),
+        new CappedAnimation(),
+        new IndependentAnimation()
+    };
+
+    for (BallAnimation animation: animations) {
+
+      animation.setVisible(true);
+      animation.run();
+
+      try {
+        Thread.sleep(5000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+
+      animation.setVisible(false);
+      animation.dispose();
+    }
+
+    System.exit(0);
   }
 }

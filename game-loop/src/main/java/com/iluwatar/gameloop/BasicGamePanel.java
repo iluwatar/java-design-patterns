@@ -38,8 +38,8 @@ public class BasicGamePanel extends JPanel {
   int lastBallY;
   int ballWidth;
   int ballHeight;
-  private float ballXVel;
-  private float ballYVel;
+  float ballXVel;
+  float ballYVel;
   private double bounceDepreciation = 1;
 
   int lastDrawX;

@@ -33,7 +33,7 @@ package com.iluwatar.gameloop;
 public class CappedAnimation extends BallAnimation<BasicGamePanel> {
 
   public CappedAnimation() {
-    super(new BasicGamePanel());
+    super(new BasicGamePanel(), "Capped Animation");
   }
 
   /**

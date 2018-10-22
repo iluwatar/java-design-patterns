@@ -37,7 +37,7 @@ import static java.lang.Thread.sleep;
 public class LockedAnimation extends BallAnimation<BasicGamePanel> {
 
   public LockedAnimation() {
-    super(new BasicGamePanel());
+    super(new BasicGamePanel(), "Locked Animation");
   }
 
   /**
