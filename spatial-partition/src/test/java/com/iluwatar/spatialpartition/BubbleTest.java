@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp√§l√§
+ * Copyright (c) 2014-2016 Ilkka Sepp‰l‰
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +23,18 @@
 
 package com.iluwatar.spatialpartition;
 
-/**
-* Testing methods in Bubble class.
-*/
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import org.junit.jupiter.api.Test;
 
+/**
+* Testing methods in Bubble class.
+*/
+
 class BubbleTest {
 
   @Test
-  void test() {
-    moveTest();
-    touchesTest();
-    popTest();
-    handleCollisionTest();
-  }
-
   void moveTest() {
     Bubble b = new Bubble(10,10,1,2);
     int initialX = b.x;
@@ -51,6 +44,7 @@ class BubbleTest {
     assertTrue((b.x - initialX < 2 && b.x - initialX > -2) && (b.y - initialY < 2 && b.y - initialY > -2));
   }
 
+  @Test
   void touchesTest() {
     Bubble b1 = new Bubble(0,0,1,2);
     Bubble b2 = new Bubble(1,1,2,1);
@@ -59,6 +53,7 @@ class BubbleTest {
     assertTrue(b1.touches(b2) && !b1.touches(b3));
   }
 
+  @Test
   void popTest() {
     Bubble b1 = new Bubble(10,10,1,2);
     Bubble b2 = new Bubble(0,0,2,2);
@@ -70,6 +65,7 @@ class BubbleTest {
     assertTrue(bubbles.get(1) == null && bubbles.get(2) != null);
   }
 
+  @Test
   void handleCollisionTest() {
     Bubble b1 = new Bubble(0,0,1,2);
     Bubble b2 = new Bubble(1,1,2,1);

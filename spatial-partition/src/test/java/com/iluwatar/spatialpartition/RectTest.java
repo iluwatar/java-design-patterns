@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp√§l√§
+ * Copyright (c) 2014-2016 Ilkka Sepp‰l‰
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,16 @@
 
 package com.iluwatar.spatialpartition;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
 /**
  * Testing Rect class.
  */
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
-
 class RectTest {
 
   @Test
-  void test() {
-    containsTest();
-    intersectsTest();
-  }
-
   void containsTest() {
     Rect r = new Rect(10,10,20,20);
     Bubble b1 = new Bubble(2,2,1,1);
@@ -46,6 +41,7 @@ class RectTest {
     assertTrue(r.contains(b1) && !r.contains(b2));
   }
 
+  @Test
   void intersectsTest() {
     Rect r1 = new Rect(10,10,20,20);
     Rect r2 = new Rect(15,15,20,20);

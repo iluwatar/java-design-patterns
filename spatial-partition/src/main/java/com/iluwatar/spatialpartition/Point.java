@@ -37,7 +37,13 @@ public abstract class Point<T> {
 
   public int x; 
   public int y; 
-  public int id;
+  public final int id;
+  
+  Point(int x, int y, int id) {
+    this.x = x;
+    this.y = y;
+    this.id = id;
+  }
 
   /**
    * defines how the object moves

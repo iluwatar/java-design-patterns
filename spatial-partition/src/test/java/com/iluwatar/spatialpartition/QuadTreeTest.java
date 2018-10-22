@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Sepp�l�
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,20 @@
 
 package com.iluwatar.spatialpartition;
 
-/**
- * Testing QuadTree class.
- */
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Testing QuadTree class.
+ */
+
 class QuadTreeTest {
 
   @Test
-  void test() {
+  void queryTest() {
     ArrayList<Point> points = new ArrayList<Point>();
     Random rand = new Random();
     for (int i = 0; i < 20; i++) {
