@@ -34,12 +34,10 @@ import java.util.Random;
 
 public class Bubble extends Point<Bubble> {
 
-  int radius;
+  final int radius;
 
   Bubble(int x, int y, int id, int radius) {
-    this.x = x;
-    this.y = y;
-    this.id = id;
+    super(x,y,id);
     this.radius = radius;
   }
 
