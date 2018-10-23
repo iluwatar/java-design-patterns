@@ -22,10 +22,10 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-import java.util.ArrayList;
+import com.google.common.base.Joiner;
+
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.PrimitiveIterator;
 import java.util.Random;
 import java.util.Set;
@@ -85,16 +85,7 @@ public class LotteryNumbers {
    * @return numbers as comma separated string
    */
   public String getNumbersAsString() {
-    List<Integer> list = new ArrayList<>();
-    list.addAll(numbers);
-    StringBuilder builder = new StringBuilder();
-    for (int i = 0; i < NUM_NUMBERS; i++) {
-      builder.append(list.get(i));
-      if (i < NUM_NUMBERS - 1) {
-        builder.append(",");
-      }
-    }
-    return builder.toString();
+    return Joiner.on(',').join(numbers);
   }
   
   /**

@@ -36,7 +36,7 @@ public class TenantTest {
   @Test
   public void constructorTest() {
     assertThrows(InvalidParameterException.class, () -> {
-      Tenant tenant = new Tenant("FailTenant", -1);
+      Tenant tenant = new Tenant("FailTenant", -1, new CallsCount());
     });
   }
 }
