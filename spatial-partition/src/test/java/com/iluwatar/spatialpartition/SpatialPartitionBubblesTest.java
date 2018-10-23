@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp√§l√§
+ * Copyright (c) 2014-2016 Ilkka Sepp‰l‰
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,17 @@
 
 package com.iluwatar.spatialpartition;
 
-/**
- * Testing SpatialPartition_Bubbles class.
- */
-
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Hashtable;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Testing SpatialPartition_Bubbles class.
+ */
+
 class SpatialPartitionBubblesTest {
 
   @Test
-  void test() {
-    handleCollisionsUsingQtTest();
-  }
-
   void handleCollisionsUsingQtTest() {
     Bubble b1 = new Bubble(10,10,1,3);
     Bubble b2 = new Bubble(5,5,2,1);
