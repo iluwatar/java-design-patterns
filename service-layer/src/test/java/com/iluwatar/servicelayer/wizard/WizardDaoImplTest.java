@@ -42,7 +42,7 @@ public class WizardDaoImplTest extends BaseDaoTest<Wizard, WizardDaoImpl> {
   }
 
   @Test
-  public void testFindByName() throws Exception {
+  public void testFindByName() {
     final WizardDaoImpl dao = getDao();
     final List<Wizard> allWizards = dao.findAll();
     for (final Wizard spell : allWizards) {

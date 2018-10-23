@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class WeekdayTest {
 
   @Test
-  public void testToString() throws Exception {
+  public void testToString() {
     for (final Weekday weekday : Weekday.values()) {
       final String toString = weekday.toString();
       assertNotNull(toString);

@@ -37,7 +37,7 @@ public class Java8Holder {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Java8Holder.class);
 
-  private Supplier<Heavy> heavy = () -> createAndCacheHeavy();
+  private Supplier<Heavy> heavy = this::createAndCacheHeavy;
 
   public Java8Holder() {
     LOGGER.info("Java8Holder created");

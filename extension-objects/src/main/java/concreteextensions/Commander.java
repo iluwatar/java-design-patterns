@@ -32,16 +32,16 @@ import units.CommanderUnit;
  */
 public class Commander implements CommanderExtension {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(Commander.class);
+
   private CommanderUnit unit;
 
   public Commander(CommanderUnit commanderUnit) {
     this.unit = commanderUnit;
   }
 
-  final Logger logger = LoggerFactory.getLogger(Commander.class);
-
   @Override
   public void commanderReady() {
-    logger.info("[Commander] " + unit.getName() + " is ready!");
+    LOGGER.info("[Commander] " + unit.getName() + " is ready!");
   }
 }

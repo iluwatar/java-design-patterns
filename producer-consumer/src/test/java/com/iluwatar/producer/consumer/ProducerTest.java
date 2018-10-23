@@ -39,7 +39,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 public class ProducerTest {
 
   @Test
-  public void testProduce() throws Exception {
+  public void testProduce() {
     assertTimeout(ofMillis(6000), () -> {
       final ItemQueue queue = mock(ItemQueue.class);
       final Producer producer = new Producer("producer", queue);

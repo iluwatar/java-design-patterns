@@ -36,35 +36,35 @@ public class OrderTest {
   private static final String EXPECTED_VALUE = "test";
 
   @Test
-  public void testSetName() throws Exception {
+  public void testSetName() {
     final Order order = new Order();
     order.setName(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getName());
   }
 
   @Test
-  public void testSetContactNumber() throws Exception {
+  public void testSetContactNumber() {
     final Order order = new Order();
     order.setContactNumber(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getContactNumber());
   }
 
   @Test
-  public void testSetAddress() throws Exception {
+  public void testSetAddress() {
     final Order order = new Order();
     order.setAddress(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getAddress());
   }
 
   @Test
-  public void testSetDepositNumber() throws Exception {
+  public void testSetDepositNumber() {
     final Order order = new Order();
     order.setDepositNumber(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getDepositNumber());
   }
 
   @Test
-  public void testSetOrder() throws Exception {
+  public void testSetOrder() {
     final Order order = new Order();
     order.setOrderItem(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getOrderItem());
