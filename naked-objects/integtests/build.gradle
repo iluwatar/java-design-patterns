@@ -1,3 +1,4 @@
+apply plugin: "java"
 
 description = ''
 dependencies {
@@ -12,3 +13,61 @@ dependencies {
     testCompile group: 'org.assertj', name: 'assertj-core', version:'2.0.0'
     testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version:'4.12.2'
 }
+
+test {
+    useJUnitPlatform()
+    // exclude 'domainapp/**'
+
+}
+
+
+sourceSets {
+  test {
+      java {
+        srcDirs = ["../dom/src/test/java/"]
+      }
+      resources {
+        srcDirs =  ["src/test/java", "src/test/resources/"]
+        // exclude("**/*.java")
+      }
+  }
+
+}
+
+
+task datanucleusEnhance {
+    description "Enhance JPA model classes using DataNucleus Enhancer"
+    dependsOn compileJava
+
+    doLast {
+        // define the entity classes
+        def entityFiles = fileTree(sourceSets.test.output.classesDir).matching {
+            include 'domainapp/dom/**/*.class' 
+            }
+
+        println "Enhancing with DataNucleus the following files"
+        entityFiles.getFiles().each {
+            println it
+        }
+
+        // define Ant task for DataNucleus Enhancer
+        ant.taskdef(
+            name : 'datanucleusenhancer',
+            classpath : sourceSets.test.runtimeClasspath.asPath,
+            classname : 'org.datanucleus.enhancer.EnhancerTask'
+            // the below is for DataNucleus Enhancer 3.1.1
+            // classname : 'org.datanucleus.enhancer.tools.EnhancerTask'
+        )
+
+        // run the DataNucleus Enhancer as an Ant task
+        ant.datanucleusenhancer(
+            classpath: sourceSets.test.runtimeClasspath.asPath,
+            verbose: true,
+            api: "JPA") {
+            entityFiles.addToAntBuilder(ant, 'fileset', FileCollection.AntType.FileSet)
+        }
+    }
+}
+
+// test.dependsOn(processResources)
+test.dependsOn(datanucleusEnhance)

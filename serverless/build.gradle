@@ -1,10 +1,11 @@
 
 description = ''
+apply plugin: 'java' 
 dependencies {
     compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version:'1.1.0'
     compile(group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version:'1.11.289') {
-exclude(module: 'aws-java-sdk-s3')
-exclude(module: 'aws-java-sdk-kms')
+      exclude(module: 'aws-java-sdk-s3')
+      exclude(module: 'aws-java-sdk-kms')
     }
     compile group: 'com.amazonaws', name: 'aws-lambda-java-events', version:'2.0.1'
     compile group: 'com.amazonaws', name: 'aws-lambda-java-log4j', version:'1.0.0'
@@ -16,3 +17,8 @@ exclude(module: 'aws-java-sdk-kms')
     testCompile group: 'org.mockito', name: 'mockito-core', version:'1.10.19'
     testCompile group: 'junit', name: 'junit', version:'4.12'
 }
+
+test {
+    useJUnitPlatform()
+}
+
