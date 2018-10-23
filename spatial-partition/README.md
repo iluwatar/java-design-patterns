@@ -50,6 +50,4 @@ In our implementation, we use the Quadtree data structure which will reduce the 
 
 ## Credits
 * [Game Programming Patterns/Spatial Partition](http://gameprogrammingpatterns.com/spatial-partition.html) by Bob Nystrom
-* [Quadtree tutorial Part 1](https://www.youtube.com/watch?v=OJxEcs0w_kE) by Daniel Schiffman
-* [Quadtree tutorial Part 2](https://www.youtube.com/watch?v=QQx_NmCIuCY) by Daniel Schiffman
-* [Quadtree tutorial Part 3](https://www.youtube.com/watch?v=z0YFFg_nBjw) by Daniel Schiffman
+* [Quadtree tutorial](https://www.youtube.com/watch?v=OJxEcs0w_kE) by Daniel Schiffman
