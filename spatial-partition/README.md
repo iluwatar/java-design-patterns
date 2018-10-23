@@ -40,16 +40,16 @@ public void handleMeLee(Unit units[], int numUnits) {
 This will include a lot of unnecessary checks between players which are too far apart to have any influence on each other. The nested loops gives this operation an O(n^2) complexity, which has to be performed every frame since many of the objects on the field may be moving each frame.
 The idea behind the Spatial Partition design pattern is to enable quick location of objects using a data structure that is organised by their positions, so when performing an operation like the one above, every object's position need not be checked against all other objects' positions. The data structure can be used to store moving and static objects, though in order to keep track of the moving objects, their positions will have to be reset each time they move. This would mean having to create a new instance of the data structure each time an object moves, which would use up additional memory. The common data structures used for this design pattern are:
 
-*Grid
-*Quad tree
-*k-d tree
-*BSP
-*Boundary volume hierarchy
+* Grid
+* Quad tree
+* k-d tree
+* BSP
+* Boundary volume hierarchy
 
 In our implementation, we use the Quadtree data structure which will reduce the time complexity of finding the objects within a certain range from O(n^2) to O(nlogn), decreasing the computations required significantly in case of large number of objects.
 
 ## Credits
-*[Spatial Partition](http://gameprogrammingpatterns.com/spatial-partition.html)
-*[Quadtree tutorial Part 1](https://www.youtube.com/watch?v=OJxEcs0w_kE) by Daniel Schiffman
-*[Quadtree tutorial Part 2](https://www.youtube.com/watch?v=QQx_NmCIuCY) by Daniel Schiffman
-*[Quadtree tutorial Part 3](https://www.youtube.com/watch?v=z0YFFg_nBjw) by Daniel Schiffman
+* [Spatial Partition](http://gameprogrammingpatterns.com/spatial-partition.html)
+* [Quadtree tutorial Part 1](https://www.youtube.com/watch?v=OJxEcs0w_kE) by Daniel Schiffman
+* [Quadtree tutorial Part 2](https://www.youtube.com/watch?v=QQx_NmCIuCY) by Daniel Schiffman
+* [Quadtree tutorial Part 3](https://www.youtube.com/watch?v=z0YFFg_nBjw) by Daniel Schiffman
