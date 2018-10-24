@@ -101,7 +101,7 @@ class LotteryTest {
       assertNotEquals(CheckResult.TICKET_NOT_SUBMITTED, checkResult.getResult());
       if (checkResult.getResult().equals(CheckResult.WIN_PRIZE)) {
         assertTrue(checkResult.getPrizeAmount() > 0);
-      } else if (checkResult.getResult().equals(CheckResult.WIN_PRIZE)) {
+      } else {
         assertEquals(0, checkResult.getPrizeAmount());
       }
     }
