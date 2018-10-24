@@ -96,9 +96,7 @@ public class LotteryNumbers {
     RandomNumberGenerator generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
     while (numbers.size() < NUM_NUMBERS) {
       int num = generator.nextInt();
-      if (!numbers.contains(num)) {
-        numbers.add(num);
-      }
+      numbers.add(num);
     }
   }
 
@@ -162,5 +160,5 @@ public class LotteryNumbers {
       return false;
     }
     return true;
-  }  
+  }
 }
