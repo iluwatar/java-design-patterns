@@ -289,7 +289,6 @@
                 <groupId>net.sourceforge.htmlunit</groupId>
                 <artifactId>htmlunit</artifactId>
                 <version>${htmlunit.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.google.inject</groupId>
