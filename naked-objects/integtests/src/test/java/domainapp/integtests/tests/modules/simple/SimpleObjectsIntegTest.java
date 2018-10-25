@@ -18,23 +18,27 @@
  */
 package domainapp.integtests.tests.modules.simple;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
-import com.google.common.base.Throwables;
-import domainapp.dom.modules.simple.SimpleObject;
-import domainapp.dom.modules.simple.SimpleObjects;
-import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
-import domainapp.fixture.scenarios.RecreateSimpleObjects;
-import domainapp.integtests.tests.SimpleAppIntegTest;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Test;
+
+import com.google.common.base.Throwables;
+
+import domainapp.dom.modules.simple.SimpleObject;
+import domainapp.dom.modules.simple.SimpleObjects;
+import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
+import domainapp.fixture.scenarios.RecreateSimpleObjects;
+import domainapp.integtests.tests.SimpleAppIntegTest;
 
 /**
  * Fixture Pattern Integration Test
@@ -46,104 +50,90 @@ public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
   @Inject
   SimpleObjects simpleObjects;
 
-  /**
-   * Test Listing of All Simple Objects
-   */
-  public static class ListAll extends SimpleObjectsIntegTest {
+  @Test
+  public void testListAll() throws Exception {
 
-    @Test
-    public void happyCase() throws Exception {
+    // given
+    RecreateSimpleObjects fs = new RecreateSimpleObjects();
+    fixtureScripts.runFixtureScript(fs, null);
+    nextTransaction();
 
-      // given
-      RecreateSimpleObjects fs = new RecreateSimpleObjects();
-      fixtureScripts.runFixtureScript(fs, null);
-      nextTransaction();
+    // when
+    final List<SimpleObject> all = wrap(simpleObjects).listAll();
 
-      // when
-      final List<SimpleObject> all = wrap(simpleObjects).listAll();
+    // then
+    assertEquals(fs.getSimpleObjects().size(), all.size());
 
-      // then
-      assertThat(all).hasSize(fs.getSimpleObjects().size());
-
-      SimpleObject simpleObject = wrap(all.get(0));
-      assertThat(simpleObject.getName()).isEqualTo(fs.getSimpleObjects().get(0).getName());
-    }
-
-    @Test
-    public void whenNone() throws Exception {
-
-      // given
-      FixtureScript fs = new SimpleObjectsTearDown();
-      fixtureScripts.runFixtureScript(fs, null);
-      nextTransaction();
-
-      // when
-      final List<SimpleObject> all = wrap(simpleObjects).listAll();
-
-      // then
-      assertThat(all).hasSize(0);
-    }
+    SimpleObject simpleObject = wrap(all.get(0));
+    assertEquals(fs.getSimpleObjects().get(0).getName(), simpleObject.getName());
   }
+  
+  @Test
+  public void testListAllWhenNone() throws Exception {
 
+    // given
+    FixtureScript fs = new SimpleObjectsTearDown();
+    fixtureScripts.runFixtureScript(fs, null);
+    nextTransaction();
 
-  /**
-   * Test Creation of Simple Objects
-   */
-  public static class Create extends SimpleObjectsIntegTest {
+    // when
+    final List<SimpleObject> all = wrap(simpleObjects).listAll();
 
-    @Test
-    public void happyCase() throws Exception {
+    // then
+    assertEquals(0, all.size());
+  }
+  
+  @Test
+  public void testCreate() throws Exception {
 
-      // given
-      FixtureScript fs = new SimpleObjectsTearDown();
-      fixtureScripts.runFixtureScript(fs, null);
-      nextTransaction();
+    // given
+    FixtureScript fs = new SimpleObjectsTearDown();
+    fixtureScripts.runFixtureScript(fs, null);
+    nextTransaction();
 
-      // when
-      wrap(simpleObjects).create("Faz");
+    // when
+    wrap(simpleObjects).create("Faz");
 
-      // then
-      final List<SimpleObject> all = wrap(simpleObjects).listAll();
-      assertThat(all).hasSize(1);
-    }
+    // then
+    final List<SimpleObject> all = wrap(simpleObjects).listAll();
+    assertEquals(1, all.size());
+  }
+  
+  @Test
+  public void testCreateWhenAlreadyExists() throws Exception {
 
-    @Test
-    public void whenAlreadyExists() throws Exception {
+    // given
+    FixtureScript fs = new SimpleObjectsTearDown();
+    fixtureScripts.runFixtureScript(fs, null);
+    nextTransaction();
+    wrap(simpleObjects).create("Faz");
+    nextTransaction();
 
-      // given
-      FixtureScript fs = new SimpleObjectsTearDown();
-      fixtureScripts.runFixtureScript(fs, null);
-      nextTransaction();
-      wrap(simpleObjects).create("Faz");
-      nextTransaction();
+    // then
+    expectedExceptions.expectCause(causalChainContains(SQLIntegrityConstraintViolationException.class));
 
-      // then
-      expectedExceptions.expectCause(causalChainContains(SQLIntegrityConstraintViolationException.class));
-
-      // when
-      wrap(simpleObjects).create("Faz");
-      nextTransaction();
-    }
-
-    private static Matcher<? extends Throwable> causalChainContains(final Class<?> cls) {
-      return new TypeSafeMatcher<Throwable>() {
-        @Override
-        protected boolean matchesSafely(Throwable item) {
-          final List<Throwable> causalChain = Throwables.getCausalChain(item);
-          for (Throwable throwable : causalChain) {
-            if (cls.isAssignableFrom(throwable.getClass())) {
-              return true;
-            }
+    // when
+    wrap(simpleObjects).create("Faz");
+    nextTransaction();
+  }
+  
+  private static Matcher<? extends Throwable> causalChainContains(final Class<?> cls) {
+    return new TypeSafeMatcher<Throwable>() {
+      @Override
+      protected boolean matchesSafely(Throwable item) {
+        final List<Throwable> causalChain = Throwables.getCausalChain(item);
+        for (Throwable throwable : causalChain) {
+          if (cls.isAssignableFrom(throwable.getClass())) {
+            return true;
           }
-          return false;
         }
+        return false;
+      }
 
-        @Override
-        public void describeTo(Description description) {
-          description.appendText("exception with causal chain containing " + cls.getSimpleName());
-        }
-      };
-    }
+      @Override
+      public void describeTo(Description description) {
+        description.appendText("exception with causal chain containing " + cls.getSimpleName());
+      }
+    };
   }
-
 }
