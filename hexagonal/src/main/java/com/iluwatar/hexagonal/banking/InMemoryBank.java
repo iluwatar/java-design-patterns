@@ -37,7 +37,7 @@ public class InMemoryBank implements WireTransfers {
   private static Map<String, Integer> accounts = new HashMap<>();
   
   static {
-    accounts.put(LotteryConstants.SERVICE_BANK_ACCOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT_SALDO);
+    accounts.put(LotteryConstants.SERVICE_BANK_ACCOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT_BALANCE);
   }
   
   @Override

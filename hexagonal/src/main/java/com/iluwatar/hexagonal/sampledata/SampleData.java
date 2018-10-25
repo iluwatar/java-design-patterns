@@ -86,7 +86,7 @@ public class SampleData {
     Random random = new Random();
     for (PlayerDetails player : PLAYERS) {
       wireTransfers.setFunds(player.getBankAccount(),
-          random.nextInt(LotteryConstants.PLAYER_MAX_SALDO));
+          random.nextInt(LotteryConstants.PLAYER_MAX_BALANCE));
     }
   }
 
