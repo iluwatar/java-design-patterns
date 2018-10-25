@@ -156,7 +156,7 @@ public class InMemoryCustomerDaoTest {
   
   private void assertCustomerCountIs(int count) throws Exception {
     try (Stream<Customer> allCustomers = dao.getAll()) {
-      assertTrue(allCustomers.count() == count);
+      assertEquals(count, allCustomers.count());
     }
   }
 }

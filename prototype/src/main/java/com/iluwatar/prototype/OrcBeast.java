@@ -40,7 +40,7 @@ public class OrcBeast extends Beast {
   }
 
   @Override
-  public Beast copy() throws CloneNotSupportedException {
+  public Beast copy() {
     return new OrcBeast(this);
   }
 

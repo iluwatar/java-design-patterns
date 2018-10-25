@@ -110,8 +110,6 @@ public class App {
         LOGGER.info("Executor was shut down and Exiting.");
         executor.shutdownNow();
       }
-    } catch (InterruptedException ie) {
-      LOGGER.error(ie.getMessage());
     } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }

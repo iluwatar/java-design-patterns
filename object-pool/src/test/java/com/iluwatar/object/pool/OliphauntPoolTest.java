@@ -49,23 +49,23 @@ public class OliphauntPoolTest {
   public void testSubsequentCheckinCheckout() {
     assertTimeout(ofMillis(5000), () -> {
       final OliphauntPool pool = new OliphauntPool();
-      assertEquals(pool.toString(), "Pool available=0 inUse=0");
+      assertEquals("Pool available=0 inUse=0", pool.toString());
 
       final Oliphaunt expectedOliphaunt = pool.checkOut();
-      assertEquals(pool.toString(), "Pool available=0 inUse=1");
+      assertEquals("Pool available=0 inUse=1", pool.toString());
 
       pool.checkIn(expectedOliphaunt);
-      assertEquals(pool.toString(), "Pool available=1 inUse=0");
+      assertEquals("Pool available=1 inUse=0", pool.toString());
 
       for (int i = 0; i < 100; i++) {
         final Oliphaunt oliphaunt = pool.checkOut();
-        assertEquals(pool.toString(), "Pool available=0 inUse=1");
+        assertEquals("Pool available=0 inUse=1", pool.toString());
         assertSame(expectedOliphaunt, oliphaunt);
         assertEquals(expectedOliphaunt.getId(), oliphaunt.getId());
         assertEquals(expectedOliphaunt.toString(), oliphaunt.toString());
 
         pool.checkIn(oliphaunt);
-        assertEquals(pool.toString(), "Pool available=1 inUse=0");
+        assertEquals("Pool available=1 inUse=0", pool.toString());
       }
     });
   }

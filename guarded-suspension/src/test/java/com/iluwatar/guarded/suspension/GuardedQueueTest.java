@@ -41,7 +41,7 @@ public class GuardedQueueTest {
     GuardedQueue g = new GuardedQueue();
     ExecutorService executorService = Executors.newFixedThreadPool(2);
     executorService.submit(() -> value = g.get());
-    executorService.submit(() -> g.put(Integer.valueOf(10)));
+    executorService.submit(() -> g.put(10));
     executorService.shutdown();
     try {
       executorService.awaitTermination(30, TimeUnit.SECONDS);

@@ -59,7 +59,7 @@ public class King implements Royalty {
    */
   public void flirt(Queen queen) {
     boolean flirtStatus = queen.getFlirted(this);
-    if (flirtStatus == false) {
+    if (!flirtStatus) {
       this.makeUnhappy();
     } else {
       this.makeHappy();

@@ -25,27 +25,19 @@ package com.iluwatar.acyclicvisitor;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.groups.Tuple.tuple;
 import static uk.org.lidalia.slf4jext.Level.INFO;
-import static org.mockito.Mockito.mock;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import uk.org.lidalia.slf4jtest.TestLogger;
 import uk.org.lidalia.slf4jtest.TestLoggerFactory;
-import org.junit.jupiter.api.Test;
-
-import com.iluwatar.acyclicvisitor.ConfigureForUnixVisitor;
-import com.iluwatar.acyclicvisitor.Hayes;
-import com.iluwatar.acyclicvisitor.HayesVisitor;
-import com.iluwatar.acyclicvisitor.Zoom;
-import com.iluwatar.acyclicvisitor.ZoomVisitor;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 
 /**
  * ConfigureForUnixVisitor test class
  */
 public class ConfigureForUnixVisitorTest {
   
-  TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForUnixVisitor.class);
+  private static final TestLogger LOGGER = TestLoggerFactory.getTestLogger(ConfigureForUnixVisitor.class);
   
   @AfterEach
   public void clearLoggers() {
@@ -59,7 +51,7 @@ public class ConfigureForUnixVisitorTest {
     
     conUnix.visit(zoom);
     
-    assertThat(logger.getLoggingEvents()).extracting("level", "message").contains(
+    assertThat(LOGGER.getLoggingEvents()).extracting("level", "message").contains(
         tuple(INFO, zoom + " used with Unix configurator."));
   }
 }
