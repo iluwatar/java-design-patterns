@@ -54,9 +54,7 @@ class LotteryNumbersTest {
   void testNumbersCantBeModified() {
     LotteryNumbers numbers = LotteryNumbers.create(
             new HashSet<>(Arrays.asList(1, 2, 3, 4)));
-    assertThrows(UnsupportedOperationException.class, () -> {
-      numbers.getNumbers().add(5);
-    });
+    assertThrows(UnsupportedOperationException.class, () -> numbers.getNumbers().add(5));
   }
   
   @Test

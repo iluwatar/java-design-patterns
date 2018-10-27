@@ -70,14 +70,14 @@ public class App {
     Injector injector = Guice.createInjector(new LotteryTestingModule());
 
     // start new lottery round
-    LotteryAdministration administartion = injector.getInstance(LotteryAdministration.class);
-    administartion.resetLottery();
+    LotteryAdministration administration = injector.getInstance(LotteryAdministration.class);
+    administration.resetLottery();
     
     // submit some lottery tickets
     LotteryService service = injector.getInstance(LotteryService.class);
     SampleData.submitTickets(service, 20);
     
     // perform lottery
-    administartion.performLottery();
+    administration.performLottery();
   }
 }

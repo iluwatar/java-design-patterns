@@ -84,9 +84,9 @@ public class SampleData {
     PLAYERS.add(new PlayerDetails("harriet@google.com", "842-404", "+131243252"));
     InMemoryBank wireTransfers = new InMemoryBank();
     Random random = new Random();
-    for (int i = 0; i < PLAYERS.size(); i++) {
-      wireTransfers.setFunds(PLAYERS.get(i).getBankAccount(),
-          random.nextInt(LotteryConstants.PLAYER_MAX_SALDO));
+    for (PlayerDetails player : PLAYERS) {
+      wireTransfers.setFunds(player.getBankAccount(),
+          random.nextInt(LotteryConstants.PLAYER_MAX_BALANCE));
     }
   }
 
