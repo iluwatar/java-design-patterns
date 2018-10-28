@@ -23,65 +23,50 @@
 
 package com.iluwatar.masterworker;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /**
- *Class ArrayInput extends abstract class Input and contains data
- *of type int[][].
+ *Class ArrayEquality has method matricesSame to compare values of 2
+ *matrices (int[][]).
  */
 
-public class ArrayInput extends Input<int[][]> {
+public class ArrayEquality {
+ 
+  /**
+   * Method matricesSame compares 2 matrices @param m1 and @param m2
+   * and @return whether their values are equal (boolean).
+   */
 
-  public ArrayInput(int[][] data) {
-    super(data);
-  }
-  
-  static int[] makeDivisions(int[][] data, int num) {
-    int initialDivision = data.length / num; //equally dividing
-    int[] divisions = new int[num];
-    Arrays.fill(divisions, initialDivision);
-    if (initialDivision * num != data.length) {
-      int extra = data.length - initialDivision * num;
-      int l = 0;
-      //equally dividing extra among all parts
-      while (extra > 0) {
-        divisions[l] = divisions[l] + 1;
-        extra--;
-        if (l == num - 1) {
-          l = 0;
-        } else {
-          l++;
-        }
-      }
-    }
-    return divisions;
-  }
-
-  @Override
-  public ArrayList<Input> divideData(int num) {
-    if (this.data == null) {
-      return null;
+  public static boolean matricesSame(int[][] m1, int[][] m2) {
+    if (m1.length != m2.length) {
+      return false;
     } else {
-      int[] divisions = makeDivisions(this.data, num);
-      ArrayList<Input> result = new ArrayList<Input>(num);
-      int rowsDone = 0; //number of rows divided so far
-      for (int i = 0; i < num; i++) {
-        int rows = divisions[i];
-        if (rows != 0) {
-          int[][] divided = new int[rows][this.data[0].length];
-          for (int j = 0; j < rows; j++) {
-            divided[j] = this.data[rowsDone + j];
-          }
-          rowsDone += rows;
-          ArrayInput dividedInput = new ArrayInput(divided);
-          result.add(dividedInput);
+      boolean answer = false;
+      for (int i = 0; i < m1.length; i++) {
+        if (arraysSame(m1[i], m2[i])) {
+          answer = true;
         } else {
-          break; //rest of divisions will also be 0
+          answer = false;
+          break;
         }
       }
-      return result;
-    }    
+      return answer;
+    }
   }
-  
+
+  static boolean arraysSame(int[] a1, int[] a2) {
+    //compares if 2 arrays have the same value
+    if (a1.length != a2.length) {
+      return false;
+    } else {
+      boolean answer = false;
+      for (int i = 0; i < a1.length; i++) {
+        if (a1[i] == a2[i]) {
+          answer = true;
+        } else {
+          answer = false;
+          break;
+        }
+      }
+      return answer;
+    }
+  }
 }
