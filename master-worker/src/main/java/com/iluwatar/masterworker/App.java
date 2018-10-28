@@ -76,8 +76,8 @@ public class App {
 
   public static void main(String[] args) {
     ArrayTransposeMasterWorker mw = new ArrayTransposeMasterWorker();
-    int rows = 0;
-    int columns = 0;
+    int rows = 10;
+    int columns = 20;
     int[][] inputMatrix = new int[rows][columns];
     Random rand = new Random();
     for (int i = 0; i < rows; i++) {
