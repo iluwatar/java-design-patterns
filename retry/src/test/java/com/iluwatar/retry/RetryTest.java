@@ -40,7 +40,7 @@ public class RetryTest {
    * Should contain all errors thrown.
    */
   @Test
-  public void errors() throws Exception {
+  public void errors() {
     final BusinessException e = new BusinessException("unhandled");
     final Retry<String> retry = new Retry<>(
         () -> { throw e; },

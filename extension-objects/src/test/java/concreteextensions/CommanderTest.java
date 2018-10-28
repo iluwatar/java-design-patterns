@@ -30,7 +30,7 @@ import units.CommanderUnit;
  */
 public class CommanderTest {
   @Test
-  public void commanderReady() throws Exception {
+  public void commanderReady() {
     final Commander commander = new Commander(new CommanderUnit("CommanderUnitTest"));
 
     commander.commanderReady();

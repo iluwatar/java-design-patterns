@@ -83,7 +83,7 @@ public class FactoryKitTest {
    * @param weapon weapon object which is to be verified
    * @param clazz  expected class of the weapon
    */
-  private void verifyWeapon(Weapon weapon, Class clazz) {
+  private void verifyWeapon(Weapon weapon, Class<?> clazz) {
     assertTrue(clazz.isInstance(weapon), "Weapon must be an object of: " + clazz.getName());
   }
 }

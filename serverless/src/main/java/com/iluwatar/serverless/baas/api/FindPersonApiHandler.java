@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
  * find person from persons collection
  * Created by dheeraj.mummar on 3/5/18.
  */
-public class FindPersonApiHandler extends AbstractDynamoDbHandler
+public class FindPersonApiHandler extends AbstractDynamoDbHandler<Person>
     implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
   private static final Logger LOG = Logger.getLogger(FindPersonApiHandler.class);

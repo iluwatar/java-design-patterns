@@ -36,38 +36,34 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class PoisonMessageTest {
 
   @Test
-  public void testAddHeader() throws Exception {
+  public void testAddHeader() {
     assertThrows(UnsupportedOperationException.class, () -> {
       POISON_PILL.addHeader(Headers.SENDER, "sender");
     });
   }
 
   @Test
-  public void testGetHeader() throws Exception {
+  public void testGetHeader() {
     assertThrows(UnsupportedOperationException.class, () -> {
       POISON_PILL.getHeader(Headers.SENDER);
     });
   }
 
   @Test
-  public void testGetHeaders() throws Exception {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.getHeaders();
-    });
+  public void testGetHeaders() {
+    assertThrows(UnsupportedOperationException.class, POISON_PILL::getHeaders);
   }
 
   @Test
-  public void testSetBody() throws Exception {
+  public void testSetBody() {
     assertThrows(UnsupportedOperationException.class, () -> {
       POISON_PILL.setBody("Test message.");
     });
   }
 
   @Test
-  public void testGetBody() throws Exception {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.getBody();
-    });
+  public void testGetBody() {
+    assertThrows(UnsupportedOperationException.class, POISON_PILL::getBody);
   }
 
 }

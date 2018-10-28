@@ -171,11 +171,11 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
   /**
    * @return a FluentIterable from a given iterable. Calls the SimpleFluentIterable constructor.
    */
-  public static final <E> FluentIterable<E> from(Iterable<E> iterable) {
+  public static <E> FluentIterable<E> from(Iterable<E> iterable) {
     return new SimpleFluentIterable<>(iterable);
   }
 
-  public static final <E> FluentIterable<E> fromCopyOf(Iterable<E> iterable) {
+  public static <E> FluentIterable<E> fromCopyOf(Iterable<E> iterable) {
     List<E> copy = FluentIterable.copyToList(iterable);
     return new SimpleFluentIterable<>(copy);
   }

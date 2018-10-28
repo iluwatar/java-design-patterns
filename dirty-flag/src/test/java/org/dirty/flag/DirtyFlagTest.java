@@ -22,6 +22,7 @@
  */
 package org.dirty.flag;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class DirtyFlagTest {
   public void testIsDirty() {
     DataFetcher df = new DataFetcher();
     List<String> countries = df.fetch();
-    assertTrue(!countries.isEmpty());
+    assertFalse(countries.isEmpty());
   }
 
   @Test

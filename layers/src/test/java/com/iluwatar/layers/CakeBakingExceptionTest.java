@@ -35,14 +35,14 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class CakeBakingExceptionTest {
 
   @Test
-  public void testConstructor() throws Exception {
+  public void testConstructor() {
     final CakeBakingException exception = new CakeBakingException();
     assertNull(exception.getMessage());
     assertNull(exception.getCause());
   }
 
   @Test
-  public void testConstructorWithMessage() throws Exception {
+  public void testConstructorWithMessage() {
     final String expectedMessage = "message";
     final CakeBakingException exception = new CakeBakingException(expectedMessage);
     assertEquals(expectedMessage, exception.getMessage());

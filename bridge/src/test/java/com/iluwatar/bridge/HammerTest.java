@@ -37,7 +37,7 @@ public class HammerTest extends WeaponTest {
    * underlying weapon implementation.
    */
   @Test
-  public void testHammer() throws Exception {
+  public void testHammer() {
     final Hammer hammer = spy(new Hammer(mock(FlyingEnchantment.class)));
     testBasicWeaponActions(hammer);
   }

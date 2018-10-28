@@ -45,27 +45,27 @@ public class MuteTest {
 
   @Test
   public void muteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
-    Mute.mute(() -> methodNotThrowingAnyException());
+    Mute.mute(this::methodNotThrowingAnyException);
   }
 
   @Test
-  public void muteShouldRethrowUnexpectedExceptionAsAssertionError() throws Exception {
+  public void muteShouldRethrowUnexpectedExceptionAsAssertionError() {
     assertThrows(AssertionError.class, () -> {
-      Mute.mute(() -> methodThrowingException());
+      Mute.mute(this::methodThrowingException);
     });
   }
 
   @Test
   public void loggedMuteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
-    Mute.loggedMute(() -> methodNotThrowingAnyException());
+    Mute.loggedMute(this::methodNotThrowingAnyException);
   }
 
   @Test
-  public void loggedMuteShouldLogExceptionTraceBeforeSwallowingIt() throws IOException {
+  public void loggedMuteShouldLogExceptionTraceBeforeSwallowingIt() {
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
     System.setErr(new PrintStream(stream));
 
-    Mute.loggedMute(() -> methodThrowingException());
+    Mute.loggedMute(this::methodThrowingException);
 
     assertTrue(new String(stream.toByteArray()).contains(MESSAGE));
   }

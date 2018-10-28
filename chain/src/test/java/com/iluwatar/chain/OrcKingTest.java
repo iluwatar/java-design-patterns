@@ -43,7 +43,7 @@ public class OrcKingTest {
   };
 
   @Test
-  public void testMakeRequest() throws Exception {
+  public void testMakeRequest() {
     final OrcKing king = new OrcKing();
 
     for (final Request request : REQUESTS) {
