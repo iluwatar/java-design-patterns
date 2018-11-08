@@ -71,7 +71,7 @@ public class ConverterTest {
         user.getFirstName().toLowerCase() + user.getLastName().toLowerCase() + "@whatever.com"));
     User u1 = new User("John", "Doe", false, "12324");
     UserDto userDto = converter.convertFromEntity(u1);
-    assertEquals(userDto.getEmail(), "johndoe@whatever.com");
+    assertEquals("johndoe@whatever.com", userDto.getEmail());
   }
 
   /**
@@ -83,6 +83,6 @@ public class ConverterTest {
     ArrayList<User> users = Lists.newArrayList(new User("Camile", "Tough", false, "124sad"),
         new User("Marti", "Luther", true, "42309fd"), new User("Kate", "Smith", true, "if0243"));
     List<User> fromDtos = userConverter.createFromDtos(userConverter.createFromEntities(users));
-    assertEquals(fromDtos, users);
+    assertEquals(users, fromDtos);
   }
 }

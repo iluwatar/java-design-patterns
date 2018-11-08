@@ -88,13 +88,7 @@ public class CustomerTest {
 
   @Test
   public void testToString() {
-    final StringBuffer buffer = new StringBuffer();
-    buffer.append("Customer{id=")
-            .append("" + customer.getId())
-            .append(", firstName='")
-            .append(customer.getFirstName())
-            .append("\', lastName='")
-            .append(customer.getLastName() + "\'}");
-    assertEquals(buffer.toString(), customer.toString());
+    assertEquals(String.format("Customer{id=%s, firstName='%s', lastName='%s'}",
+        customer.getId(), customer.getFirstName(), customer.getLastName()), customer.toString());
   }
 }

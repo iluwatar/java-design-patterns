@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class InventoryControllerTest {
   @Test
-  public void testGetProductInventories() throws Exception {
+  public void testGetProductInventories() {
     InventoryController inventoryController = new InventoryController();
 
     int numberOfInventories = inventoryController.getProductInventories();

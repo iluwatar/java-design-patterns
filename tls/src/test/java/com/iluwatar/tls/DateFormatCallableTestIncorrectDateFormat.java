@@ -105,7 +105,7 @@ public class DateFormatCallableTestIncorrectDateFormat {
    * same exception
    */
   @Test
-  public void testExecptions() {
+  public void testExceptions() {
     assertEquals(expectedExceptions, result.getExceptionList());
   }
 

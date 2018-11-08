@@ -65,7 +65,7 @@ public class App {
     });
     ProducerTemplate template = context.createProducerTemplate();
     context.start();
-    context.getRoutes().stream().forEach(r -> LOGGER.info(r.toString()));
+    context.getRoutes().forEach(r -> LOGGER.info(r.toString()));
     template.sendBody("direct:origin", "Hello from origin");
     context.stop();
   }

@@ -36,7 +36,7 @@ public class TrampolineAppTest {
 
 
   @Test
-  public void testTrampolineWithFactorialFunction() throws IOException {
+  public void testTrampolineWithFactorialFunction() {
     int result = TrampolineApp.loop(10, 1).result();
     assertEquals("Be equal", 3628800, result);
   }

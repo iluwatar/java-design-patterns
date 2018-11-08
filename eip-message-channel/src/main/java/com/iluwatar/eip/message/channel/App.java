@@ -70,7 +70,7 @@ public class App {
     });
 
     context.start();
-    context.getRoutes().stream().forEach(r -> LOGGER.info(r.toString()));
+    context.getRoutes().forEach(r -> LOGGER.info(r.toString()));
     context.stop();
   }
 }

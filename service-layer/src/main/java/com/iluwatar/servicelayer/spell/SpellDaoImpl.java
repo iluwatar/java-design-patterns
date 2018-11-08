@@ -38,10 +38,9 @@ public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
 
   @Override
   public Spell findByName(String name) {
-    Session session = getSessionFactory().openSession();
     Transaction tx = null;
     Spell result = null;
-    try {
+    try (Session session = getSessionFactory().openSession()) {
       tx = session.beginTransaction();
       Criteria criteria = session.createCriteria(persistentClass);
       criteria.add(Restrictions.eq("name", name));
@@ -52,8 +51,6 @@ public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
         tx.rollback();
       }
       throw e;
-    } finally {
-      session.close();
     }
     return result;
   }

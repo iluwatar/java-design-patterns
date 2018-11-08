@@ -37,10 +37,10 @@ public class Hayes extends Modem {
    */
   @Override
   public void accept(ModemVisitor modemVisitor) {
-    try {
+    if (modemVisitor instanceof HayesVisitor) {
       ((HayesVisitor) modemVisitor).visit(this);
-    } catch (ClassCastException e) {
-      LOGGER.error("Unable to cast to HayesVisitor");
+    } else {
+      LOGGER.info("Only HayesVisitor is allowed to visit Hayes modem");
     }
 
   }

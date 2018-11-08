@@ -24,22 +24,22 @@ package com.iluwatar.hexagonal.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * Tests for lottery ticket id
  */
-public class LotteryTicketIdTest {
+class LotteryTicketIdTest {
 
   @Test
-  public void testEquals() {
+  void testEquals() {
     LotteryTicketId ticketId1 = new LotteryTicketId();
     LotteryTicketId ticketId2 = new LotteryTicketId();
     LotteryTicketId ticketId3 = new LotteryTicketId();
-    assertFalse(ticketId1.equals(ticketId2));
-    assertFalse(ticketId2.equals(ticketId3));
+    assertNotEquals(ticketId1, ticketId2);
+    assertNotEquals(ticketId2, ticketId3);
     LotteryTicketId ticketId4 = new LotteryTicketId(ticketId1.getId());
-    assertTrue(ticketId1.equals(ticketId4));
+    assertEquals(ticketId1, ticketId4);
   }
 }

@@ -34,11 +34,11 @@ import org.bson.Document;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Mongo lottery ticket database
@@ -111,21 +111,6 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   }
 
   /**
-   * @return mongo client
-   */
-  public MongoClient getMongoClient() {
-    return mongoClient;
-  }
-
-  /**
-   *
-   * @return mongo database
-   */
-  public MongoDatabase getMongoDatabase() {
-    return database;
-  }
-
-  /**
    *
    * @return tickets collection
    */
@@ -144,7 +129,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   @Override
   public Optional<LotteryTicket> findById(LotteryTicketId id) {
     Document find = new Document("ticketId", id.getId());
-    List<Document> results = ticketsCollection.find(find).limit(1).into(new ArrayList<Document>());
+    List<Document> results = ticketsCollection.find(find).limit(1).into(new ArrayList<>());
     if (results.size() > 0) {
       LotteryTicket lotteryTicket = docToTicket(results.get(0));
       return Optional.of(lotteryTicket);
@@ -168,7 +153,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   @Override
   public Map<LotteryTicketId, LotteryTicket> findAll() {
     Map<LotteryTicketId, LotteryTicket> map = new HashMap<>();
-    List<Document> docs = ticketsCollection.find(new Document()).into(new ArrayList<Document>());
+    List<Document> docs = ticketsCollection.find(new Document()).into(new ArrayList<>());
     for (Document doc: docs) {
       LotteryTicket lotteryTicket = docToTicket(doc);
       map.put(lotteryTicket.getId(), lotteryTicket);
@@ -184,11 +169,9 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   private LotteryTicket docToTicket(Document doc) {
     PlayerDetails playerDetails = new PlayerDetails(doc.getString("email"), doc.getString("bank"),
         doc.getString("phone"));
-    int[] numArray = Arrays.asList(doc.getString("numbers").split(",")).stream().mapToInt(Integer::parseInt).toArray();
-    Set<Integer> numbers = new HashSet<>();
-    for (int num: numArray) {
-      numbers.add(num);
-    }
+    Set<Integer> numbers = Arrays.stream(doc.getString("numbers").split(","))
+        .map(Integer::parseInt)
+        .collect(Collectors.toSet());
     LotteryNumbers lotteryNumbers = LotteryNumbers.create(numbers);
     return new LotteryTicket(new LotteryTicketId(doc.getInteger("ticketId")), playerDetails, lotteryNumbers);
   }

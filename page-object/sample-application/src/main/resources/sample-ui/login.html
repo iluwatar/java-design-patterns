@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <!--
 
     The MIT License
@@ -23,28 +22,27 @@
     THE SOFTWARE.
 
 -->
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.iluwatar</groupId>
-    <artifactId>java-design-patterns</artifactId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
-  <artifactId>dao</artifactId>
-  <dependencies>
-	<dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-core</artifactId>
-	</dependency>
-	<dependency>
-		<groupId>com.h2database</groupId>
-		<artifactId>h2</artifactId>
-	</dependency>  
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-</project>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <h1>Login</h1>
+</header>
+
+<section>
+    <form method="post" action="album-list.html">
+        <table>
+            <tr><td>Username:</td><td><input type="text" id="username"></td></tr>
+            <tr><td>Password:</td><td><input type="password" id="password"></td></tr>
+            <tr><td><input type="submit" id="loginButton" value="Login"></td></tr>
+        </table>
+
+    </form>
+</section>
+</body>
+</html>

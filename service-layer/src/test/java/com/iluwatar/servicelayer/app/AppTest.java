@@ -40,7 +40,7 @@ public class AppTest {
   }
 
   @AfterEach
-  public void tearDown() throws Exception {
+  public void tearDown() {
     HibernateUtil.dropSession();
   }
 

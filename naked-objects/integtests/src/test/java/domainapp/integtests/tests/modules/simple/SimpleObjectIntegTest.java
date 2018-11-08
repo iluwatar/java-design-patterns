@@ -18,18 +18,21 @@
  */
 package domainapp.integtests.tests.modules.simple;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import domainapp.dom.modules.simple.SimpleObject;
-import domainapp.fixture.scenarios.RecreateSimpleObjects;
-import domainapp.integtests.tests.SimpleAppIntegTest;
 import javax.inject.Inject;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.apache.isis.applib.services.wrapper.DisabledException;
 import org.apache.isis.applib.services.wrapper.InvalidException;
 import org.junit.Before;
 import org.junit.Test;
+
+import domainapp.dom.modules.simple.SimpleObject;
+import domainapp.fixture.scenarios.RecreateSimpleObjects;
+import domainapp.integtests.tests.SimpleAppIntegTest;
 
 /**
  * Test Fixtures with Simple Objects
@@ -38,10 +41,14 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
 
   @Inject
   FixtureScripts fixtureScripts;
+  @Inject
+  DomainObjectContainer container;
 
   RecreateSimpleObjects fs;
   SimpleObject simpleObjectPojo;
   SimpleObject simpleObjectWrapped;
+  
+  private static final String NEW_NAME = "new name";
 
   @Before
   public void setUp() throws Exception {
@@ -51,80 +58,59 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
 
     simpleObjectPojo = fs.getSimpleObjects().get(0);
 
-    assertThat(simpleObjectPojo).isNotNull();
+    assertNotNull(simpleObjectPojo);
     simpleObjectWrapped = wrap(simpleObjectPojo);
   }
-
-  /**
-   * Test Object Name accessibility
-   */
-  public static class Name extends SimpleObjectIntegTest {
-
-    @Test
-    public void accessible() throws Exception {
-      // when
-      final String name = simpleObjectWrapped.getName();
-      // then
-      assertThat(name).isEqualTo(fs.names.get(0));
-    }
-
-    @Test
-    public void cannotBeUpdatedDirectly() throws Exception {
-
-      // expect
-      expectedExceptions.expect(DisabledException.class);
-
-      // when
-      simpleObjectWrapped.setName("new name");
-    }
+  
+  @Test
+  public void testNameAccessible() throws Exception {
+    // when
+    final String name = simpleObjectWrapped.getName();
+    // then
+    assertEquals(fs.names.get(0), name);
   }
+  
+  @Test
+  public void testNameCannotBeUpdatedDirectly() throws Exception {
 
-  /**
-   * Test Validation of SimpleObject Names
-   */
-  public static class UpdateName extends SimpleObjectIntegTest {
+    // expect
+    expectedExceptions.expect(DisabledException.class);
 
-    @Test
-    public void happyCase() throws Exception {
-
-      // when
-      simpleObjectWrapped.updateName("new name");
-
-      // then
-      assertThat(simpleObjectWrapped.getName()).isEqualTo("new name");
-    }
-
-    @Test
-    public void failsValidation() throws Exception {
-
-      // expect
-      expectedExceptions.expect(InvalidException.class);
-      expectedExceptions.expectMessage("Exclamation mark is not allowed");
-
-      // when
-      simpleObjectWrapped.updateName("new name!");
-    }
+    // when
+    simpleObjectWrapped.setName(NEW_NAME);
   }
+  
+  @Test
+  public void testUpdateName() throws Exception {
 
-  /**
-   * Test ContainerTitle generation based on SimpleObject Name
-   */
-  public static class Title extends SimpleObjectIntegTest {
+    // when
+    simpleObjectWrapped.updateName(NEW_NAME);
 
-    @Inject
-    DomainObjectContainer container;
+    // then
+    assertEquals(NEW_NAME, simpleObjectWrapped.getName());
+  }
+  
+  @Test
+  public void testUpdateNameFailsValidation() throws Exception {
 
-    @Test
-    public void interpolatesName() throws Exception {
+    // expect
+    expectedExceptions.expect(InvalidException.class);
+    expectedExceptions.expectMessage("Exclamation mark is not allowed");
 
-      // given
-      final String name = simpleObjectWrapped.getName();
+    // when
+    simpleObjectWrapped.updateName(NEW_NAME + "!");
+  }
+  
+  @Test
+  public void testInterpolatesName() throws Exception {
 
-      // when
-      final String title = container.titleOf(simpleObjectWrapped);
+    // given
+    final String name = simpleObjectWrapped.getName();
 
-      // then
-      assertThat(title).isEqualTo("Object: " + name);
-    }
+    // when
+    final String title = container.titleOf(simpleObjectWrapped);
+
+    // then
+    assertEquals("Object: " + name, title);
   }
 }
