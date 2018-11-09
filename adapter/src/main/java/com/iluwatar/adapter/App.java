@@ -56,5 +56,9 @@ public class App {
     // The captain can only operate rowing boats but with adapter he is able to use fishing boats as well
     Captain captain = new Captain(new FishingBoatAdapter());
     captain.row();
+
+    // The captain now can operate a warship to fire at the enemy
+    captain = new Captain(new WarshipAdapter());
+    captain.row();
   }
 }
