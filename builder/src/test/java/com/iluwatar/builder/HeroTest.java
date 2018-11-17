@@ -22,11 +22,19 @@
  */
 package com.iluwatar.builder;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import com.iluwatar.builder.Armor;
+import com.iluwatar.builder.HairColor;
+import com.iluwatar.builder.HairType;
+import com.iluwatar.builder.Hero;
+import com.iluwatar.builder.HeroOtherForm;
+import com.iluwatar.builder.Profession;
+import com.iluwatar.builder.Weapon;
 
 /**
  * Date: 12/6/15 - 11:01 PM
@@ -64,6 +72,32 @@ public class HeroTest {
         .withHairType(HairType.LONG_CURLY)
         .withHairColor(HairColor.BLOND)
         .build();
+
+    assertNotNull(hero);
+    assertNotNull(hero.toString());
+    assertEquals(Profession.WARRIOR, hero.getProfession());
+    assertEquals(heroName, hero.getName());
+    assertEquals(Armor.CHAIN_MAIL, hero.getArmor());
+    assertEquals(Weapon.SWORD, hero.getWeapon());
+    assertEquals(HairType.LONG_CURLY, hero.getHairType());
+    assertEquals(HairColor.BLOND, hero.getHairColor());
+
+  }
+
+  /**
+   * Test if the hero build by the other builder form of the design pattern
+   * Builder has the correct attributes, as requested
+   */
+  @Test
+  public void testBuildHeroOtherForm() throws Exception {
+    final String heroName = "Sir Lancelot";
+    
+    final HeroOtherForm hero = HeroOtherForm.build(Profession.WARRIOR, 
+        heroName,
+        HairType.LONG_CURLY,
+        HairColor.BLOND,
+        Armor.CHAIN_MAIL,
+        Weapon.SWORD);
 
     assertNotNull(hero);
     assertNotNull(hero.toString());
