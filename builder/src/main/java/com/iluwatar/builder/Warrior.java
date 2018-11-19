@@ -23,11 +23,13 @@
 package com.iluwatar.builder;
 
 /**
- * 
- * HeroOtherForm, the class with many parameters.
- * 
+ * Warrior, the class with many parameters.
+ * Date: 18/11/2018 - 23:00 PM
+ *
+ * @author Jeroen Meulemeester
+ * @author Evaldo Junior
  */
-public final class HeroOtherForm {
+public final class Warrior {
 
   private Profession profession;
   private String name;
@@ -115,10 +117,10 @@ public final class HeroOtherForm {
    * The builder class method.
    * 
    */
-  public static HeroOtherForm build(final Profession profession, final String name,
+  public static Warrior build(final Profession profession, final String name,
       final HairType hairType, final HairColor hairColor, final Armor armor, final Weapon weapon) {
 
-    HeroOtherForm result = new HeroOtherForm();
+    Warrior result = new Warrior();
 
     if (profession == null || name == null) {
       result = null;
