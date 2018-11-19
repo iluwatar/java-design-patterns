@@ -32,7 +32,6 @@ import com.iluwatar.builder.Armor;
 import com.iluwatar.builder.HairColor;
 import com.iluwatar.builder.HairType;
 import com.iluwatar.builder.Warrior;
-import com.iluwatar.builder.HeroOtherForm;
 import com.iluwatar.builder.Profession;
 import com.iluwatar.builder.Weapon;
 
