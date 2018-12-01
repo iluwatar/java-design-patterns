@@ -50,8 +50,8 @@ public class Bubble extends Point<Bubble> {
 
   boolean touches(Bubble b) {
     //distance between them is greater than sum of radii (both sides of equation squared)
-    return ((this.x - b.x) * (this.x - b.x) + (this.y - b.y) * (this.y - b.y)
-                <= (this.radius + b.radius) * (this.radius + b.radius));
+    return (this.x - b.x) * (this.x - b.x) + (this.y - b.y) * (this.y - b.y)
+                <= (this.radius + b.radius) * (this.radius + b.radius);
   }
 
   void pop(Hashtable<Integer, Bubble> allBubbles) {
