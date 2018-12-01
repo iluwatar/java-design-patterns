@@ -21,38 +21,52 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatialpartition;
+package com.iluwatar.masterworker;
 
 /**
- * The Rect class helps in defining the boundary of the quadtree and is also used to
- * define the range within which objects need to be found in our example.
+ *Class ArrayEquality has method matricesSame to compare values of 2
+ *matrices (int[][]).
  */
 
-public class Rect {
-  int x; 
-  int y; 
-  int width;
-  int height;
+public class ArrayEquality {
+ 
+  /**
+   * Method matricesSame compares 2 matrices @param m1 and @param m2
+   * and @return whether their values are equal (boolean).
+   */
 
-  //(x,y) - centre of rectangle
-
-  Rect(int x, int y, int width, int height) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
+  public static boolean matricesSame(int[][] m1, int[][] m2) {
+    if (m1.length != m2.length) {
+      return false;
+    } else {
+      boolean answer = false;
+      for (int i = 0; i < m1.length; i++) {
+        if (arraysSame(m1[i], m2[i])) {
+          answer = true;
+        } else {
+          answer = false;
+          break;
+        }
+      }
+      return answer;
+    }
   }
 
-  boolean contains(Point p) {
-    return (p.x >= this.x - this.width / 2 && p.x <= this.x + this.width / 2
-        && p.y >= this.y - this.height / 2 && p.y <= this.y + this.height / 2);
-  }
-
-  boolean intersects(Rect other) {
-    return !(this.x + this.width / 2 <= other.x - other.width / 2 
-          || this.x - this.width / 2 >= other.x + other.width / 2 
-          || this.y + this.height / 2 <= other.y - other.height / 2 
-          || this.y - this.height / 2 >= other.y + other.height / 2);
+  static boolean arraysSame(int[] a1, int[] a2) {
+    //compares if 2 arrays have the same value
+    if (a1.length != a2.length) {
+      return false;
+    } else {
+      boolean answer = false;
+      for (int i = 0; i < a1.length; i++) {
+        if (a1[i] == a2[i]) {
+          answer = true;
+        } else {
+          answer = false;
+          break;
+        }
+      }
+      return answer;
+    }
   }
 }
-

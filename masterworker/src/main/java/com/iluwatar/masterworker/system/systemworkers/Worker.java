@@ -21,32 +21,50 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatialpartition;
+package com.iluwatar.masterworker.system.systemworkers;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
+import com.iluwatar.masterworker.Input;
+import com.iluwatar.masterworker.Result;
+import com.iluwatar.masterworker.system.systemmaster.Master;
 
 /**
- * This class extends the generic SpatialPartition abstract class and is used in
- * our example to keep track of all the bubbles that collide, pop and stay un-popped.
+ *The abstract Worker class which extends Thread class to enable parallel
+ *processing. Contains fields master(holding reference to Master), workerId
+ *(unique id) and receivedData(from master).
  */
 
-public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
+public abstract class Worker extends Thread {
+  private Master master;
+  private final int workerId;
+  private Input receivedData;
 
-  Hashtable<Integer, Bubble> bubbles;
-  QuadTree qTree;
-
-  SpatialPartitionBubbles(Hashtable<Integer, Bubble> bubbles, QuadTree qTree) {
-    this.bubbles = bubbles;
-    this.qTree = qTree;
+  Worker(Master master, int id) {
+    this.master = master;
+    this.workerId = id;
+    this.receivedData = null;
   }
 
-  void handleCollisionsUsingQt(Bubble b) {
-    //finding points within area of a square drawn with centre same as centre of bubble and length = radius of bubble
-    Rect rect = new Rect(b.x, b.y, 2 * b.radius, 2 * b.radius);
-    ArrayList<Point> quadTreeQueryResult = new ArrayList<Point>();
-    this.qTree.query(rect, quadTreeQueryResult);
-    //handling these collisions
-    b.handleCollision(quadTreeQueryResult, this.bubbles);
+  public int getWorkerId() {
+    return this.workerId;
+  }
+
+  Input getReceivedData() {
+    return this.receivedData;
+  }
+
+  public void setReceivedData(Master m, Input i) {
+    //check if ready to receive..if yes:
+    this.receivedData = i;
+  }
+
+  abstract Result executeOperation();
+
+  private void sendToMaster(Result data) {
+    this.master.receiveData(data, this);
+  } 
+
+  public void run() { //from Thread class
+    Result work = executeOperation();
+    sendToMaster(work);
   }
 }

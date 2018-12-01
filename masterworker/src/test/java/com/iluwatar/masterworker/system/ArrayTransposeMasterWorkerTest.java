@@ -21,24 +21,29 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatialpartition;
+package com.iluwatar.masterworker.system;
 
-import java.util.Hashtable;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import com.iluwatar.masterworker.ArrayEquality;
+import com.iluwatar.masterworker.ArrayInput;
+import com.iluwatar.masterworker.ArrayResult;
 
 /**
- * This abstract class has 2 fields, one of which is a hashtable containing all objects
- * that currently exist on the field and a quadtree which keeps track of locations.
- * @param <T> T will be type of object (that extends Point)
- */
+* Testing getResult method in ArrayTransposeMasterWorker class.
+*/
 
-public abstract class SpatialPartitionGeneric<T> {
+class ArrayTransposeMasterWorkerTest {
 
-  Hashtable<Integer, T> playerPositions;
-  QuadTree qTree;
-
-  /**
-   * handles collisions for object obj using quadtree
-   * @param obj is the object for which collisions need to be checked
-   */
-  abstract void handleCollisionsUsingQt(T obj);
+  @Test
+  void getResultTest() {
+    ArrayTransposeMasterWorker atmw = new ArrayTransposeMasterWorker();
+    int[][] matrix = new int[][] {{1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}};
+    int[][] matrixTranspose = new int[][] {{1,1,1,1,1}, {2,2,2,2,2}, {3,3,3,3,3}, {4,4,4,4,4}, {5,5,5,5,5}};
+    ArrayInput i = new ArrayInput(matrix);
+    ArrayResult r = (ArrayResult) atmw.getResult(i);
+    assertTrue(ArrayEquality.matricesSame(r.data, matrixTranspose));
+  }
+  
 }

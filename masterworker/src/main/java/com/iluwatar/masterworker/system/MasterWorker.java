@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp�l�
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,32 +21,28 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatialpartition;
+package com.iluwatar.masterworker.system;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+import com.iluwatar.masterworker.Input;
+import com.iluwatar.masterworker.Result;
+import com.iluwatar.masterworker.system.systemmaster.Master;
 
 /**
- * Testing Rect class.
+ *The abstract MasterWorker class which contains reference to master.
  */
 
-class RectTest {
+public abstract class MasterWorker {
+  private Master master;
 
-  @Test
-  void containsTest() {
-    Rect r = new Rect(10,10,20,20);
-    Bubble b1 = new Bubble(2,2,1,1);
-    Bubble b2 = new Bubble(30,30,2,1);
-    //r contains b1 and not b2
-    assertTrue(r.contains(b1) && !r.contains(b2));
+  public MasterWorker(int numOfWorkers) {
+    this.master = setMaster(numOfWorkers);
   }
 
-  @Test
-  void intersectsTest() {
-    Rect r1 = new Rect(10,10,20,20);
-    Rect r2 = new Rect(15,15,20,20);
-    Rect r3 = new Rect(50,50,20,20);
-    //r1 intersects r2 and not r3
-    assertTrue(r1.intersects(r2) && !r1.intersects(r3));
+  abstract Master setMaster(int numOfWorkers);
+
+  public Result getResult(Input input) {
+    this.master.doWork(input);
+    return master.getFinalResult();
   }
 }
+
