@@ -44,8 +44,8 @@ public class Rect {
   }
 
   boolean contains(Point p) {
-    return (p.x >= this.x - this.width / 2 && p.x <= this.x + this.width / 2
-        && p.y >= this.y - this.height / 2 && p.y <= this.y + this.height / 2);
+    return p.x >= this.x - this.width / 2 && p.x <= this.x + this.width / 2
+        && p.y >= this.y - this.height / 2 && p.y <= this.y + this.height / 2;
   }
 
   boolean intersects(Rect other) {
