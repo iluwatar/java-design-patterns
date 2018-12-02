@@ -54,7 +54,7 @@ import com.iluwatar.masterworker.system.ArrayTransposeMasterWorker;
  * These 3 classes define the system which computes the result. We also have 2 abstract classes {@link Input} and {@link
  * Result}, both of which have a generic field data. These classes contain the input data and result data respectively.
  * The Input class also has an abstract method divideData which defines how the data is to be divided into segments.
- * These classes are extended by {@link ArrayInput} and {@ArrayResult}.</p>
+ * These classes are extended by {@link ArrayInput} and {@link ArrayResult}.</p>
  */
 
 public class App {
