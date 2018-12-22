@@ -164,6 +164,7 @@
         <module>ambassador</module>
 	<module>acyclic-visitor</module>
 	<module>collection-pipeline</module>
+	<module>spatial-partition</module>
     </modules>
 
     <repositories>
