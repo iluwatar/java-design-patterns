@@ -14,7 +14,7 @@ public class Student {
 
     // 构造器尽量缩小范围
     private Student(Student origin) {
-        // 拷贝一份
+        // 拷贝一份实体
          this.id = origin.id;
         this.name = origin.name;
         this.passwd = origin.passwd;
