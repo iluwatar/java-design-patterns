@@ -40,7 +40,7 @@ import com.iluwatar.delegation.simple.printers.HpPrinter;
  */
 public class App {
 
-  public static final String MESSAGE_TO_PRINT = "hello world";
+  private static final String MESSAGE_TO_PRINT = "hello world";
 
   /**
    * Program entry point

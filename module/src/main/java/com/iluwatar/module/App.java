@@ -31,7 +31,7 @@ import java.io.FileNotFoundException;
  * Console Logger
  * 
  */
-public final class App {
+public class App {
 
   public static FileLoggerModule fileLoggerModule;
   public static ConsoleLoggerModule consoleLoggerModule;
@@ -87,6 +87,4 @@ public final class App {
     execute(args);
     unprepare();
   }
-
-  private App() {}
 }

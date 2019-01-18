@@ -41,6 +41,6 @@ public class CakeViewImpl implements View {
   }
 
   public void render() {
-    cakeBakingService.getAllCakes().stream().forEach(cake -> LOGGER.info(cake.toString()));
+    cakeBakingService.getAllCakes().forEach(cake -> LOGGER.info(cake.toString()));
   }
 }

@@ -36,7 +36,7 @@ public class FrontController {
   }
 
   private Command getCommand(String request) {
-    Class commandClass = getCommandClass(request);
+    Class<?> commandClass = getCommandClass(request);
     try {
       return (Command) commandClass.newInstance();
     } catch (Exception e) {
@@ -44,8 +44,8 @@ public class FrontController {
     }
   }
 
-  private static Class getCommandClass(String request) {
-    Class result;
+  private static Class<?> getCommandClass(String request) {
+    Class<?> result;
     try {
       result = Class.forName("com.iluwatar.front.controller." + request + "Command");
     } catch (ClassNotFoundException e) {

@@ -22,11 +22,6 @@
  */
 package com.iluwatar.intercepting.filter;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -34,7 +29,12 @@ import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * This is where the requests are displayed after being validated by filters.
@@ -47,7 +47,6 @@ public class Target extends JFrame { //NOSONAR
   private static final long serialVersionUID = 1L;
 
   private JTable jt;
-  private JScrollPane jsp;
   private DefaultTableModel dtm;
   private JButton del;
 
@@ -56,7 +55,7 @@ public class Target extends JFrame { //NOSONAR
    */
   public Target() {
     super("Order System");
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setSize(640, 480);
     dtm =
         new DefaultTableModel(new Object[] {"Name", "Contact Number", "Address", "Deposit Number",
@@ -73,7 +72,7 @@ public class Target extends JFrame { //NOSONAR
     bot.setLayout(new BorderLayout());
     bot.add(del, BorderLayout.EAST);
     add(bot, BorderLayout.SOUTH);
-    jsp = new JScrollPane(jt);
+    JScrollPane jsp = new JScrollPane(jt);
     jsp.setPreferredSize(new Dimension(500, 250));
     add(jsp, BorderLayout.CENTER);
 

@@ -37,7 +37,7 @@ public class SwordTest extends WeaponTest {
    * underlying weapon implementation.
    */
   @Test
-  public void testSword() throws Exception {
+  public void testSword() {
     final Sword sword = spy(new Sword(mock(FlyingEnchantment.class)));
     testBasicWeaponActions(sword);
   }

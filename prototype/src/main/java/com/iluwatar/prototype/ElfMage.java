@@ -41,7 +41,7 @@ public class ElfMage extends Mage {
   }
 
   @Override
-  public ElfMage copy() throws CloneNotSupportedException {
+  public ElfMage copy() {
     return new ElfMage(this);
   }
 

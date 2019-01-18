@@ -59,15 +59,15 @@ public class ServiceAmbassador implements RemoteServiceInterface {
   private long safeCall(int value) {
 
     int retries = 0;
-    long result = -1;
+    long result = FAILURE;
 
     for (int i = 0; i < RETRIES; i++) {
 
       if (retries >= RETRIES) {
-        return -1;
+        return FAILURE;
       }
 
-      if ((result = checkLatency(value)) == -1) {
+      if ((result = checkLatency(value)) == FAILURE) {
         LOGGER.info("Failed to reach remote: (" + (i + 1) + ")");
         retries++;
         try {

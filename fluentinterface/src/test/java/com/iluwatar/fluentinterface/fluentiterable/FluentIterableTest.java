@@ -179,15 +179,15 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testForEach() throws Exception {
+  public void testForEach() {
     final List<Integer> integers = Arrays.asList(1, 2, 3);
 
     final Consumer<Integer> consumer = mock(Consumer.class);
     createFluentIterable(integers).forEach(consumer);
 
-    verify(consumer, times(1)).accept(Integer.valueOf(1));
-    verify(consumer, times(1)).accept(Integer.valueOf(2));
-    verify(consumer, times(1)).accept(Integer.valueOf(3));
+    verify(consumer, times(1)).accept(1);
+    verify(consumer, times(1)).accept(2);
+    verify(consumer, times(1)).accept(3);
     verifyNoMoreInteractions(consumer);
 
   }

@@ -35,7 +35,7 @@ import java.io.IOException;
  * save person into persons collection
  * Created by dheeraj.mummar on 3/4/18.
  */
-public class SavePersonApiHandler extends AbstractDynamoDbHandler
+public class SavePersonApiHandler extends AbstractDynamoDbHandler<Person>
     implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
   private static final Logger LOG = Logger.getLogger(SavePersonApiHandler.class);

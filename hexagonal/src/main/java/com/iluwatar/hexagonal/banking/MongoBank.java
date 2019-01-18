@@ -111,7 +111,7 @@ public class MongoBank implements WireTransfers {
   @Override
   public int getFunds(String bankAccount) {
     Document search = new Document("_id", bankAccount);
-    List<Document> results = accountsCollection.find(search).limit(1).into(new ArrayList<Document>());
+    List<Document> results = accountsCollection.find(search).limit(1).into(new ArrayList<>());
     if (results.size() > 0) {
       return results.get(0).getInteger("funds");
     } else {

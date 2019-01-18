@@ -41,27 +41,27 @@ public class TieredFeatureToggleVersionTest {
   final Service service = new TieredFeatureToggleVersion();
 
   @BeforeEach
-  public void setUp() throws Exception {
+  public void setUp() {
     UserGroup.addUserToPaidGroup(paidUser);
     UserGroup.addUserToFreeGroup(freeUser);
   }
 
   @Test
-  public void testGetWelcomeMessageForPaidUser() throws Exception {
+  public void testGetWelcomeMessageForPaidUser() {
     final String welcomeMessage = service.getWelcomeMessage(paidUser);
     final String expected = "You're amazing Jamie Coder. Thanks for paying for this awesome software.";
     assertEquals(expected, welcomeMessage);
   }
 
   @Test
-  public void testGetWelcomeMessageForFreeUser() throws Exception {
+  public void testGetWelcomeMessageForFreeUser() {
     final String welcomeMessage = service.getWelcomeMessage(freeUser);
     final String expected = "I suppose you can use this software.";
     assertEquals(expected, welcomeMessage);
   }
 
   @Test
-  public void testIsEnhancedAlwaysTrueAsTiered() throws Exception {
+  public void testIsEnhancedAlwaysTrueAsTiered() {
     assertTrue(service.isEnhanced());
   }
 }
