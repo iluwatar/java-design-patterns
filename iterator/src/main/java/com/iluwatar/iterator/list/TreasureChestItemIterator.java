@@ -57,9 +57,8 @@ public class TreasureChestItemIterator implements Iterator<Item> {
 
   private int findNextIdx() {
     List<Item> items = chest.getItems();
-    boolean found = false;
     int tempIdx = idx;
-    while (!found) {
+    do {
       tempIdx++;
       if (tempIdx >= items.size()) {
         tempIdx = -1;
@@ -68,7 +67,7 @@ public class TreasureChestItemIterator implements Iterator<Item> {
       if (type.equals(ItemType.ANY) || items.get(tempIdx).getType().equals(type)) {
         break;
       }
-    }
+    } while(true);
     return tempIdx;
   }
 }
