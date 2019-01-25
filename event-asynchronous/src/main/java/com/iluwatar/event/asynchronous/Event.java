@@ -77,7 +77,7 @@ public class Event implements IEvent, Runnable {
   @Override
   public void run() {
     long currentTime = System.currentTimeMillis();
-    long endTime = currentTime + (eventTime * 1000);
+    long endTime = currentTime + (eventTime * 1000L);
     while (System.currentTimeMillis() < endTime) {
       try {
         Thread.sleep(1000); // Sleep for 1 second.
