@@ -117,9 +117,8 @@ public class AppClient {
 
     @Override
     public void run() {
-      try (Socket socket = new Socket(InetAddress.getLocalHost(), serverPort)) {
-        OutputStream outputStream = socket.getOutputStream();
-        PrintWriter writer = new PrintWriter(outputStream);
+      try (Socket socket = new Socket(InetAddress.getLocalHost(), serverPort);
+           PrintWriter writer = new PrintWriter(socket.getOutputStream())) {
         sendLogRequests(writer, socket.getInputStream());
       } catch (IOException e) {
         LOGGER.error("error sending requests", e);

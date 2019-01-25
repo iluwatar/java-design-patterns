@@ -60,8 +60,9 @@ public class JsonFileJournal {
   public JsonFileJournal() {
     aFile = new File("Journal.json");
     if (aFile.exists()) {
-      try (BufferedReader input = new BufferedReader(
-          new InputStreamReader(new FileInputStream(aFile), "UTF-8"))) {
+      try (FileInputStream fileInputStream = new FileInputStream(aFile);
+           BufferedReader input
+             = new BufferedReader(new InputStreamReader(fileInputStream, "UTF-8"))) {
         String line;
         while ((line = input.readLine()) != null) {
           events.add(line);
@@ -93,8 +94,8 @@ public class JsonFileJournal {
       throw new RuntimeException("Journal Event not recegnized");
     }
 
-    try (Writer output = new BufferedWriter(
-        new OutputStreamWriter(new FileOutputStream(aFile, true), "UTF-8"))) {
+    try (FileOutputStream fileOutputStream = new FileOutputStream(aFile, true);
+         Writer output = new BufferedWriter(new OutputStreamWriter(fileOutputStream, "UTF-8"))) {
       String eventString = jsonElement.toString();
       output.write(eventString + "\r\n");
     } catch (IOException e) {
