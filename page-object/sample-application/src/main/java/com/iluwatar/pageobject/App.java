@@ -82,7 +82,7 @@ public final class App {
 
       } else {
         // java Desktop not supported - above unlikely to work for Windows so try following instead...
-        Runtime.getRuntime().exec("cmd.exe start " + applicationFile);
+        Runtime.getRuntime().exec(new String[] { "cmd.exe", "start", applicationFile.toString() });
       }
 
     } catch (IOException ex) {
