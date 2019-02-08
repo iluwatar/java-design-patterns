@@ -29,7 +29,7 @@ import java.util.Random;
 import org.junit.jupiter.api.Test;
 
 /**
-* Testing divideData method in ArrayInput class.
+* Testing divideData method in {@link ArrayInput} class.
 */
 
 class ArrayInputTest {
@@ -51,10 +51,10 @@ class ArrayInputTest {
     int[][] division2 = new int[][] {inputMatrix[3], inputMatrix[4], inputMatrix[5]};
     int[][] division3 = new int[][] {inputMatrix[6], inputMatrix[7]};
     int[][] division4 = new int[][] {inputMatrix[8], inputMatrix[9]};
-    assertTrue(ArrayEquality.matricesSame((int[][]) table.get(0).data, division1) 
-            && ArrayEquality.matricesSame((int[][]) table.get(1).data, division2)
-            && ArrayEquality.matricesSame((int[][]) table.get(2).data, division3) 
-            && ArrayEquality.matricesSame((int[][]) table.get(3).data, division4));
+    assertTrue(ArrayUtilityMethods.matricesSame((int[][]) table.get(0).data, division1) 
+            && ArrayUtilityMethods.matricesSame((int[][]) table.get(1).data, division2)
+            && ArrayUtilityMethods.matricesSame((int[][]) table.get(2).data, division3) 
+            && ArrayUtilityMethods.matricesSame((int[][]) table.get(3).data, division4));
   }
 
 }

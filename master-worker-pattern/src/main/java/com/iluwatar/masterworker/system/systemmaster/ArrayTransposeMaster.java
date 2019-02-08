@@ -30,7 +30,7 @@ import com.iluwatar.masterworker.system.systemworkers.ArrayTransposeWorker;
 import com.iluwatar.masterworker.system.systemworkers.Worker;
 
 /**
- *Class ArrayTransposeMaster extends abstract class Master and contains
+ *Class ArrayTransposeMaster extends abstract class {@link Master} and contains
  *definition of aggregateData, which will obtain final result from all
  *data obtained and for setWorkers.
  */
@@ -71,8 +71,7 @@ public class ArrayTransposeMaster extends Master {
       }
       columnsDone += work[0].length;
     }
-    ArrayResult result = new ArrayResult(resultData);
-    return result;
+    return new ArrayResult(resultData);
   }
   
 }

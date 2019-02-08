@@ -28,7 +28,7 @@ import com.iluwatar.masterworker.ArrayResult;
 import com.iluwatar.masterworker.system.systemmaster.Master;
 
 /**
- *Class ArrayTransposeWorker extends abstract class Worker and defines method
+ *Class ArrayTransposeWorker extends abstract class {@link Worker} and defines method
  *executeOperation(), to be performed on data received from master.
  */
 
@@ -49,7 +49,6 @@ public class ArrayTransposeWorker extends Worker {
         resultData[j][i] = ((ArrayInput) this.getReceivedData()).data[i][j]; 
       }
     }
-    ArrayResult result = new ArrayResult(resultData);
-    return result;
+    return new ArrayResult(resultData);
   }
 }

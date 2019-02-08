@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *Class ArrayInput extends abstract class Input and contains data
+ *Class ArrayInput extends abstract class {@link Input} and contains data
  *of type int[][].
  */
 

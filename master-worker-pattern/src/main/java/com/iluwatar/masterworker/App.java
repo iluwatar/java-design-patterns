@@ -23,7 +23,6 @@
 
 package com.iluwatar.masterworker;
 
-import java.util.Random;
 import com.iluwatar.masterworker.system.ArrayTransposeMasterWorker;
 
 /**
@@ -36,38 +35,17 @@ import com.iluwatar.masterworker.system.ArrayTransposeMasterWorker;
  * <p>In our example, we have generic abstract classes {@link MasterWorker}, {@link Master} and {@link Worker} which
  * have to be extended by the classes which will perform the specific job at hand (in this case finding transpose of
  * matrix, done by {@link ArrayTransposeMasterWorker}, {@link ArrayTransposeMaster} and {@link ArrayTransposeWorker}).
- * The Master class has private fields numOfWorkers (int, number of workers), workers (ArrayList, containing the 
- * references to workers), expectedNumResults (int, number of divisions of input data, same as number of expected 
- * results) allResultData (Hashtable, containing all the results obtained so far from the workers) and finalResult
- * (type Result, aggregated result from allResultData when results from all workers has been received). Master class 
- * also contains private methods divideWork and collectResult, which divide work into segments for workers and collect 
- * result from worker and store in allResultData respectively, accessible to MasterWorker class through public methods 
- * doWork and to Worker class through receiveData respectively. It also has getters for numOfWorkers, workers,
- * expectedNumResults, allReceivedData and finalResult, and abstract methods aggregateData (defining how all the
- * received data is to be aggregated to get final result) and setter method for workers field. The Worker class extends
- * the Thread class to enable parallel processing, and has private fields master (type Master, reference to master from
- * which it takes work), workerId (int, its unique id) and receivedData(type Input, the data received from Master, to
- * be operated on). It defines private method sendToMaster (sending result to master) and the Thread.run() method which
- * calls the abstract method executeOperation(), which defines what operation is to be performed on data. It also
- * defines getter methods for workerId and receivedData fields and a setter method for receivedData. The MasterWorker
- * has a private master field and defines a public getResult method and an abstract setter method for the master field.
- * These 3 classes define the system which computes the result. We also have 2 abstract classes {@link Input} and {@link
- * Result}, both of which have a generic field data. These classes contain the input data and result data respectively.
- * The Input class also has an abstract method divideData which defines how the data is to be divided into segments.
- * These classes are extended by {@link ArrayInput} and {@link ArrayResult}.</p>
+ * The Master class divides the work into parts to be given to the workers, collects the results from the workers and
+ * aggregates it when all workers have responded before returning the solution. The Worker class extends the Thread
+ * class to enable parallel processing, and does the work once the data has been received from the Master. The
+ * MasterWorker contains a reference to the Master class, gets the input from the App and passes it on to the Master.
+ * These 3 classes define the system which computes the result. We also have 2 abstract classes {@link Input} and
+ * {@link Result}, which contain the input data and result data respectively. The Input class also has an abstract
+ * method divideData which defines how the data is to be divided into segments. These classes are extended by
+ * {@link ArrayInput} and {@link ArrayResult}.</p>
  */
 
 public class App {
-
-  static void printMatrix(int[][] matrix) {
-    //prints out int[][]
-    for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix[0].length; j++) {
-        System.out.print(matrix[i][j] + " ");
-      }
-      System.out.println("");
-    }
-  }
   
   /**
    * Program entry point.
@@ -78,22 +56,16 @@ public class App {
     ArrayTransposeMasterWorker mw = new ArrayTransposeMasterWorker();
     int rows = 10;
     int columns = 20;
-    int[][] inputMatrix = new int[rows][columns];
-    Random rand = new Random();
-    for (int i = 0; i < rows; i++) {
-      for (int j = 0; j < columns; j++) {
-        //filling cells in matrix
-        inputMatrix[i][j] = rand.nextInt(10);
-      }
-    }    
+    int[][] inputMatrix = ArrayUtilityMethods.createRandomIntMatrix(rows,columns);    
     ArrayInput input = new ArrayInput(inputMatrix);
     ArrayResult result = (ArrayResult) mw.getResult(input);    
     if (result != null) {
-      App.printMatrix(inputMatrix);
+      ArrayUtilityMethods.printMatrix(inputMatrix);
       System.out.println("");
-      App.printMatrix(result.data);
+      ArrayUtilityMethods.printMatrix(result.data);
     } else {
       System.out.println("Please enter non-zero input");
     }
   }
+
 }

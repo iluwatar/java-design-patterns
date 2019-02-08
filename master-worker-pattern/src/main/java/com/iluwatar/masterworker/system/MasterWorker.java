@@ -32,7 +32,7 @@ import com.iluwatar.masterworker.system.systemmaster.Master;
  */
 
 public abstract class MasterWorker {
-  private Master master;
+  private final Master master;
 
   public MasterWorker(int numOfWorkers) {
     this.master = setMaster(numOfWorkers);
@@ -42,7 +42,7 @@ public abstract class MasterWorker {
 
   public Result getResult(Input input) {
     this.master.doWork(input);
-    return master.getFinalResult();
+    return this.master.getFinalResult();
   }
 }
 

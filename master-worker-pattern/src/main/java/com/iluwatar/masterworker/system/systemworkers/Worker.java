@@ -29,12 +29,12 @@ import com.iluwatar.masterworker.system.systemmaster.Master;
 
 /**
  *The abstract Worker class which extends Thread class to enable parallel
- *processing. Contains fields master(holding reference to Master), workerId
+ *processing. Contains fields master(holding reference to master), workerId
  *(unique id) and receivedData(from master).
  */
 
 public abstract class Worker extends Thread {
-  private Master master;
+  private final Master master;
   private final int workerId;
   private Input receivedData;
 

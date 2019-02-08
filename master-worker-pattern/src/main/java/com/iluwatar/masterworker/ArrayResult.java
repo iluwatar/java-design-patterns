@@ -24,7 +24,7 @@
 package com.iluwatar.masterworker;
 
 /**
- *Class ArrayResult extends abstract class Result and contains data
+ *Class ArrayResult extends abstract class {@link Result} and contains data
  *of type int[][].
  */
 

@@ -25,12 +25,12 @@ package com.iluwatar.masterworker.system;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import com.iluwatar.masterworker.ArrayEquality;
+import com.iluwatar.masterworker.ArrayUtilityMethods;
 import com.iluwatar.masterworker.ArrayInput;
 import com.iluwatar.masterworker.ArrayResult;
 
 /**
-* Testing getResult method in ArrayTransposeMasterWorker class.
+* Testing getResult method in {@link ArrayTransposeMasterWorker} class.
 */
 
 class ArrayTransposeMasterWorkerTest {
@@ -42,6 +42,6 @@ class ArrayTransposeMasterWorkerTest {
     int[][] matrixTranspose = new int[][] {{1,1,1,1,1}, {2,2,2,2,2}, {3,3,3,3,3}, {4,4,4,4,4}, {5,5,5,5,5}};
     ArrayInput i = new ArrayInput(matrix);
     ArrayResult r = (ArrayResult) atmw.getResult(i);
-    assertTrue(ArrayEquality.matricesSame(r.data, matrixTranspose));
+    assertTrue(ArrayUtilityMethods.matricesSame(r.data, matrixTranspose));
   } 
 }

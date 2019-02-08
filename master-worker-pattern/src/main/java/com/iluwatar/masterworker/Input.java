@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public abstract class Input<T> {
   
-  public T data;
+  public final T data;
   
   public Input(T data) {
     this.data = data;
