@@ -25,9 +25,6 @@ package com.iluwatar.typeobject;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import org.json.simple.parser.ParseException;
 import com.iluwatar.typeobject.Candy.Type;
 
 /**
@@ -37,7 +34,7 @@ import com.iluwatar.typeobject.Candy.Type;
 class CellTest {
 
   @Test
-  void interactTest() throws FileNotFoundException, IOException, ParseException {
+  void interactTest() {
     Candy c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
     Candy c2 = new Candy("green apple", "apple", Type.rewardFruit, 10);
     Cell[][] matrix = new Cell[4][4];
@@ -52,7 +49,7 @@ class CellTest {
   }
 
   @Test
-  void crushTest() throws FileNotFoundException, IOException, ParseException {
+  void crushTest() {
     Candy c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
     Candy c2 = new Candy("purple candy", "candy", Type.crushableCandy, 5);
     Cell[][] matrix = new Cell[4][4];

@@ -25,10 +25,7 @@ package com.iluwatar.typeobject;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Hashtable;
-import org.json.simple.parser.ParseException;
 
 /**
  * The CellPoolTest class tests the methods in the {@link CellPool} class.
@@ -37,7 +34,7 @@ import org.json.simple.parser.ParseException;
 class CellPoolTest {
 
   @Test
-  void assignRandomCandyTypesTest() throws FileNotFoundException, IOException, ParseException {
+  void assignRandomCandyTypesTest() {
     CellPool cp = new CellPool(10);
     Hashtable<String, Boolean> ht = new Hashtable<String, Boolean>();
     int parentTypes = 0;
