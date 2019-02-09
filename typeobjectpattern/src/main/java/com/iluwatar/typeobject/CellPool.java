@@ -28,8 +28,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Random;
-
 import org.json.simple.parser.ParseException;
+import com.iluwatar.typeobject.Candy.Type;
 
 /**
  * The CellPool class allows the reuse of crushed cells instead of creation of new
@@ -43,23 +43,25 @@ public class CellPool {
   Candy[] randomCode;
   
   CellPool(int num) {
-    this.pool = new ArrayList<Cell>(num);
-    
+    this.pool = new ArrayList<Cell>(num);    
     try {
       this.randomCode = assignRandomCandytypes();
-      for (int i = 0; i < num; i++) {
-        Cell c = new Cell();
-        Random rand = new Random();
-        c.candy = randomCode[rand.nextInt(randomCode.length)];
-        this.pool.add(c);
-      }
     } catch (Exception e) {
       e.printStackTrace();
-      for (int i = 0; i < num; i++) {
-        Cell c = new Cell();
-        this.pool.add(c);
-      }
-    }    
+      //manually initialising this.randomCode
+      this.randomCode = new Candy[5];
+      randomCode[0] = new Candy("cherry", "fruit", Type.rewardFruit, 20);
+      randomCode[1] = new Candy("mango", "fruit", Type.rewardFruit, 20);
+      randomCode[2] = new Candy("purple popsicle", "candy", Type.crushableCandy, 10);
+      randomCode[3] = new Candy("green jellybean", "candy", Type.crushableCandy, 10);
+      randomCode[4] = new Candy("orange gum", "candy", Type.crushableCandy, 10);
+    }
+    for (int i = 0; i < num; i++) {
+      Cell c = new Cell();
+      Random rand = new Random();
+      c.candy = randomCode[rand.nextInt(randomCode.length)];
+      this.pool.add(c);
+    }
     this.pointer = num - 1;
   }
   
