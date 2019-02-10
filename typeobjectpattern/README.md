@@ -1,8 +1,8 @@
 ---
 layout: pattern
 title: Type-object
-folder: type-object
-permalink: /patterns/type-object/
+folder: typeobjectpattern
+permalink: /patterns/typeobjectpattern/
 categories: Game Programming Patterns/Behavioral Patterns
 tags:
  - Java
