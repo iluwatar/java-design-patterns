@@ -25,5 +25,5 @@ Say, we are working on a game which has a hero and many monsters which are going
 Using the type-object pattern, instead of creating many classes inheriting from a base class, we have 1 class with a field which represents the 'type' of object. This makes the code cleaner and object instantiation also becomes as easy as parsing a json file with the object properties.
  
 ## Credits
-* [http://gameprogrammingpatterns.com/type-object.html] Game Programming Patterns by Robert Nystrom
+* [Game Programming Patterns/Type Object](http://gameprogrammingpatterns.com/type-object.html) by Robert Nystrom
 * [http://www.cs.sjsu.edu/~pearce/modules/patterns/analysis/top.htm]
