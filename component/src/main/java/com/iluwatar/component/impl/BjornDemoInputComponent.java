@@ -3,6 +3,11 @@ package com.iluwatar.component.impl;
 import com.iluwatar.component.InputComponent;
 import com.iluwatar.component.objects.GameObject;
 
+/**
+ * 
+ * Component to update input
+ *
+ */
 public class BjornDemoInputComponent implements InputComponent {
 
 	private static int WALK_ACCELERATION = 1;

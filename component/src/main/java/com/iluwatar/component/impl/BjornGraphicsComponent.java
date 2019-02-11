@@ -5,6 +5,11 @@ import com.iluwatar.component.objects.GameObject;
 import com.iluwatar.component.objects.Graphics;
 import com.iluwatar.component.objects.Sprite;
 
+/**
+ * 
+ * Component to draw graphics
+ *
+ */
 public class BjornGraphicsComponent implements GraphicsComponent {
 	Sprite sprite;
 	Graphics graphics;
