@@ -25,7 +25,7 @@ package com.iluwatar.abstractdocument.domain;
 import java.util.stream.Stream;
 
 import com.iluwatar.abstractdocument.Document;
-import com.iluwatar.abstractdocument.domain.enums.PROPERTY;
+import com.iluwatar.abstractdocument.domain.enums.Property;
 
 /**
  * HasParts trait for static access to 'parts' property
@@ -34,7 +34,7 @@ public interface HasParts extends Document {
 
 
   default Stream<Part> getParts() {
-    return children(PROPERTY.parts.toString(), Part::new);
+    return children(Property.PARTS.toString(), Part::new);
   }
 
 }

@@ -22,10 +22,10 @@
  */
 package com.iluwatar.abstractdocument.domain;
 
-import com.iluwatar.abstractdocument.Document;
-import com.iluwatar.abstractdocument.domain.enums.PROPERTY;
-
 import java.util.Optional;
+
+import com.iluwatar.abstractdocument.Document;
+import com.iluwatar.abstractdocument.domain.enums.Property;
 
 /**
  * HasType trait for static access to 'type' property
@@ -33,8 +33,8 @@ import java.util.Optional;
 public interface HasType extends Document {
 
 
-	default Optional<String> getType() {
-		return Optional.ofNullable((String) get(PROPERTY.type.toString()));
-	}
+  default Optional<String> getType() {
+    return Optional.ofNullable((String) get(Property.TYPE.toString()));
+  }
 
 }
