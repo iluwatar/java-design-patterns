@@ -36,7 +36,7 @@ import org.apache.log4j.Logger;
 public final class App {
 
   private static Logger log = Logger.getLogger(App.class);
-  private static String STUDENT_STRING="App.main(), student : ";
+  private static final String STUDENT_STRING = "App.main(), student : ";
   
 
   /**
