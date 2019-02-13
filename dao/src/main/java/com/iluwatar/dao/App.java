@@ -52,7 +52,7 @@ import org.h2.jdbcx.JdbcDataSource;
 public class App {
   private static final String DB_URL = "jdbc:h2:~/dao";
   private static Logger log = Logger.getLogger(App.class);
-  private static String ALL_CUSTOMERS="customerDao.getAllCustomers(): ";
+  private static final String ALL_CUSTOMERS = "customerDao.getAllCustomers(): ";
   
   /**
    * Program entry point.
