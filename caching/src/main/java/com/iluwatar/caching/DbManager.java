@@ -136,8 +136,8 @@ public final class DbManager {
     }
     db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
         new Document(CachingConstants.USER_ID, userAccount.getUserId()),
-        new Document("$set", new Document(CachingConstants.USER_NAME, userAccount.getUserName()).append(
-        		CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())));
+        new Document("$set", new Document(CachingConstants.USER_NAME, userAccount.getUserName())
+            .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())));
   }
 
   /**
@@ -158,8 +158,10 @@ public final class DbManager {
     }
     db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
         new Document(CachingConstants.USER_ID, userAccount.getUserId()),
-        new Document("$set", new Document(CachingConstants.USER_ID, userAccount.getUserId()).append(CachingConstants.USER_NAME,
-            userAccount.getUserName()).append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())),
+        new Document("$set",
+            new Document(CachingConstants.USER_ID, userAccount.getUserId())
+                .append(CachingConstants.USER_NAME, userAccount.getUserName()).append(CachingConstants.ADD_INFO,
+                    userAccount.getAdditionalInfo())),
         new UpdateOptions().upsert(true));
   }
 }
