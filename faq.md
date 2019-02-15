@@ -73,3 +73,14 @@ Memento is typically used to implement rollback/save-point support. Example we m
 On the other hand serialization may be used as a tool to save the state of an object into byte[] and preserving the contents in memory or disk. When someone invokes the memento to revert object's previous state then we can deserialize the information stored and recreate previous state. 
 
 So Memento is a pattern and serialization is a tool that can be used to implement this pattern. Other ways to implement the pattern can be to clone the contents of the object and keep track of those clones.
+
+
+### Q9: What's the difference between “API Gateway” and “Aggregator Microservices”? Isn't it the same? {#Q9}
+
+The API Gateway : Aggregate calls to microservices in a single location. The user makes a single call to the API Gateway, and the API Gateway then calls each relevant microservice.
+Use the API Gateway pattern when you're also using the Microservices pattern and need a single point of aggregation for your microservice calls.
+
+Aggregator Microservices : The user makes a single call to the Aggregator, and the aggregator then calls each relevant microservice and collects the data, apply business logic to it, and further publish is as a REST Endpoint.Use the Aggregator Microservices pattern when you need a unified API for various microservices, regardless the client device.
+
+
+
