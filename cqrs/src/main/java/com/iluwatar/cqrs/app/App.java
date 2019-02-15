@@ -61,27 +61,27 @@ public class App {
     ICommandService commands = new CommandServiceImpl();
 
     // Create Authors and Books using CommandService
-    commands.authorCreated(AppConstants.E_Evans, "Eric Evans", "eEvans@email.com");
-    commands.authorCreated(AppConstants.J_Bloch, "Joshua Bloch", "jBloch@email.com");
-    commands.authorCreated(AppConstants.M_Fowler, "Martin Fowler", "mFowler@email.com");
+    commands.authorCreated(AppConstants.E_EVANS, "Eric Evans", "eEvans@email.com");
+    commands.authorCreated(AppConstants.J_BLOCH, "Joshua Bloch", "jBloch@email.com");
+    commands.authorCreated(AppConstants.M_FOWLER, "Martin Fowler", "mFowler@email.com");
 
-    commands.bookAddedToAuthor("Domain-Driven Design", 60.08, AppConstants.E_Evans);
-    commands.bookAddedToAuthor("Effective Java", 40.54, AppConstants.J_Bloch);
-    commands.bookAddedToAuthor("Java Puzzlers", 39.99, AppConstants.J_Bloch);
-    commands.bookAddedToAuthor("Java Concurrency in Practice", 29.40, AppConstants.J_Bloch);
-    commands.bookAddedToAuthor("Patterns of Enterprise Application Architecture", 54.01, AppConstants.M_Fowler);
-    commands.bookAddedToAuthor("Domain Specific Languages", 48.89, AppConstants.M_Fowler);
-    commands.authorNameUpdated(AppConstants.E_Evans, "Eric J. Evans");
+    commands.bookAddedToAuthor("Domain-Driven Design", 60.08, AppConstants.E_EVANS);
+    commands.bookAddedToAuthor("Effective Java", 40.54, AppConstants.J_BLOCH);
+    commands.bookAddedToAuthor("Java Puzzlers", 39.99, AppConstants.J_BLOCH);
+    commands.bookAddedToAuthor("Java Concurrency in Practice", 29.40, AppConstants.J_BLOCH);
+    commands.bookAddedToAuthor("Patterns of Enterprise Application Architecture", 54.01, AppConstants.M_FOWLER);
+    commands.bookAddedToAuthor("Domain Specific Languages", 48.89, AppConstants.M_FOWLER);
+    commands.authorNameUpdated(AppConstants.E_EVANS, "Eric J. Evans");
 
     IQueryService queries = new QueryServiceImpl();
 
     // Query the database using QueryService
     Author nullAuthor = queries.getAuthorByUsername("username");
-    Author eEvans = queries.getAuthorByUsername(AppConstants.E_Evans);
-    BigInteger jBlochBooksCount = queries.getAuthorBooksCount(AppConstants.J_Bloch);
+    Author eEvans = queries.getAuthorByUsername(AppConstants.E_EVANS);
+    BigInteger jBlochBooksCount = queries.getAuthorBooksCount(AppConstants.J_BLOCH);
     BigInteger authorsCount = queries.getAuthorsCount();
     Book dddBook = queries.getBook("Domain-Driven Design");
-    List<Book> jBlochBooks = queries.getAuthorBooks(AppConstants.J_Bloch);
+    List<Book> jBlochBooks = queries.getAuthorBooks(AppConstants.J_BLOCH);
 
     LOGGER.info("Author username : {}", nullAuthor);
     LOGGER.info("Author eEvans : {}", eEvans);
