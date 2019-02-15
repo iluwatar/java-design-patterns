@@ -44,6 +44,8 @@ public class Account {
   private final int accountNo;
   private final String owner;
   private BigDecimal money;
+  
+  private static final String MSG = "Some external api for only realtime execution could be called here.";
 
   /**
    * Instantiates a new Account.
@@ -126,7 +128,7 @@ public class Account {
     depositMoney(money);
     AccountAggregate.putAccount(this);
     if (realTime) {
-      LOGGER.info("Some external api for only realtime execution could be called here.");
+      LOGGER.info(MSG);
     }
   }
 
@@ -138,7 +140,7 @@ public class Account {
     withdrawMoney(money);
     AccountAggregate.putAccount(this);
     if (realTime) {
-      LOGGER.info("Some external api for only realtime execution could be called here.");
+      LOGGER.info(MSG);
     }
   }
 
@@ -160,7 +162,7 @@ public class Account {
   public void handleEvent(AccountCreateEvent accountCreateEvent) {
     AccountAggregate.putAccount(this);
     if (accountCreateEvent.isRealTime()) {
-      LOGGER.info("Some external api for only realtime execution could be called here.");
+      LOGGER.info(MSG);
     }
   }
 
