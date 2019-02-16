@@ -129,7 +129,8 @@ public class Commander {
       System.out.println("Order has been placed and will be shipped to you. Please wait while we make your"
           + " payment... "); 
       sendPaymentRequest(order);       
-      return; };
+      return; 
+    };
     Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
       if (ShippingNotPossibleException.class.isAssignableFrom(err.getClass())) {
         System.out.println("Shipping is currently not possible to your address. We are working on the problem "
@@ -149,7 +150,8 @@ public class Commander {
         LOG.error("Order " + order.id + ": Shipping service unavailable, order not placed..");
         finalSiteMsgShown = true;
       }
-      return; };
+      return; 
+    };
     Retry<Order> r = new Retry<Order>(op, handleError, numOfRetries, retryDuration,
         e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
     r.perform(list, order);
@@ -295,9 +297,11 @@ public class Commander {
             throw list.remove(0); 
           }
           doTasksInQueue();
-          return; };
+          return; 
+        };
         Retry.HandleErrorIssue<QueueTask> handleError = (o,err) -> {
-          return; };
+          return; 
+        };
         Retry<QueueTask> r = new Retry<QueueTask>(op, handleError, numOfRetries, retryDuration,
             e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
         try {
@@ -325,7 +329,8 @@ public class Commander {
           return;
         };
         Retry.HandleErrorIssue<QueueTask> handleError = (o,err) -> {
-          return; };
+          return; 
+        };
         Retry<QueueTask> r = new Retry<QueueTask>(op, handleError, numOfRetries, retryDuration,
             e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
         try {
@@ -363,7 +368,8 @@ public class Commander {
             order.messageSent = MessageSent.PaymentSuccessful;
             LOG.info("Order " + order.id + ": Payment Success message sent, request Id: " + requestId);
           } 
-          return; };
+          return; 
+        };
         Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
           try {
             if ((o.messageSent.equals(MessageSent.NoneSent) || o.messageSent.equals(MessageSent.PaymentTrying)) 
@@ -416,7 +422,8 @@ public class Commander {
             order.messageSent = MessageSent.PaymentFail;
             LOG.info("Order " + order.id + ": Payment Failure message sent successfully, request Id: " + requestId);
           } 
-          return; };
+          return; 
+        };
         Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
           if ((o.messageSent.equals(MessageSent.NoneSent) || o.messageSent.equals(MessageSent.PaymentTrying))
               && System.currentTimeMillis() - o.createdTime < messageTime) {
@@ -468,7 +475,8 @@ public class Commander {
             order.messageSent = MessageSent.PaymentTrying; 
             LOG.info("Order " + order.id + ": Payment Error message sent successfully, request Id: " + requestId);
           } 
-          return; };
+          return; 
+        };
         Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
           try {
             if (o.messageSent.equals(MessageSent.NoneSent) && order.paid.equals(PaymentStatus.Trying)
@@ -515,7 +523,8 @@ public class Commander {
             order.addedToEmployeeHandle = true;
             LOG.info("Order " + order.id + ": Added order to employee database");
           }
-          return; };
+          return; 
+        };
         Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
           try {
             if (!o.addedToEmployeeHandle && System.currentTimeMillis() - order.createdTime < employeeTime) {
