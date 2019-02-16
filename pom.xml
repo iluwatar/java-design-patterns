@@ -165,6 +165,7 @@
 	<module>acyclic-visitor</module>
 	<module>collection-pipeline</module>
 	<module>spatial-partition</module>
+	<module>commander</module>
     </modules>
 
     <repositories>
