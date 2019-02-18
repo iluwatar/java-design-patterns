@@ -28,7 +28,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
- * 
+ * Added tests for:
+ *    objects with null as email address
+ *    objects with different emails
+ *
  * Unit tests for {@link PlayerDetails}
  *
  */
@@ -41,5 +44,29 @@ class PlayerDetailsTest {
     assertEquals(details1, details2);
     PlayerDetails details3 = new PlayerDetails("john@foo.bar", "16412-123439", "+34323432");
     assertNotEquals(details1, details3);
-  }  
+  }
+
+  /**
+   * Test null check for email address in equals method.
+   * Verify that:
+   *    object with null as email address can be compared with itself.
+   *    object with valid email and other object with null as email is treated as different objects.
+   */
+  @Test
+  void testNullEmailAddress() {
+    PlayerDetails details1 = new PlayerDetails(null, "11212-123434", "+12323425");
+    PlayerDetails details2 = new PlayerDetails("tom@foo.bar", "11212-123434", "+12323425");
+    assertEquals(details1, details1);
+    assertNotEquals(details1, details2);
+  }
+
+  /**
+   * Test that objects with different email addresses are not treated as identical when comparing.
+   */
+  @Test
+  void testDifferentEmailAddress() {
+    PlayerDetails details1 = new PlayerDetails("tom@foo.bar", "11212-123434", "+12323425");
+    PlayerDetails details2 = new PlayerDetails("john@foo.bar", "11212-123434", "+12323425");
+    assertNotEquals(details1, details2);
+  }
 }
