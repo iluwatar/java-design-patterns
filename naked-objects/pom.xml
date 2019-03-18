@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	you under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>java-design-patterns</artifactId>
+		<groupId>com.iluwatar</groupId>
+		<version>1.21.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>naked-objects</artifactId>
+
+	<packaging>pom</packaging>
+
+	<prerequisites>
+		<maven>3.0.4</maven>
+	</prerequisites>
+
+	<properties>
+		<isis.version>1.9.0</isis.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<assertj-core.version>2.0.0</assertj-core.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>apache.snapshots</id>
+			<name>Apache Snapshots</name>
+			<url>https://repository.apache.org/content/repositories/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>Cloudbees snapshots</id>
+			<url>http://repository-estatio.forge.cloudbees.com/snapshot/</url>
+			<snapshots>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>1.3.1</version>
+					<configuration>
+						<rules>
+							<requireMavenVersion>
+								<version>[3.2.1,)</version>
+							</requireMavenVersion>
+							<requireJavaVersion>
+								<version>[1.8.0,)</version>
+							</requireJavaVersion>
+							<requirePluginVersions>
+								<message>All plugin versions must be
+									defined!</message>
+								<banLatest>true</banLatest>
+								<banRelease>true</banRelease>
+							</requirePluginVersions>
+							<DependencyConvergence />
+						</rules>
+					</configuration>
+					<executions>
+						<execution>
+							<id>validate-enforce</id>
+							<phase>validate</phase>
+							<goals>
+								<goal>enforce</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<compilerArgument>-parameters</compilerArgument>
+					</configuration>
+					<executions>
+						<execution>
+							<id>source</id>
+							<phase>compile</phase>
+						</execution>
+						<execution>
+							<id>test</id>
+							<phase>test-compile</phase>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.16</version>
+					<configuration>
+						<includes>
+							<include>**/*Test.java</include>
+							<include>**/*Test$*.java</include>
+							<include>**/*Test_*.java</include>
+							<include>**/*Spec*.java</include>
+						</includes>
+						<excludes>
+							<exclude>**/Test*.java</exclude>
+							<exclude>**/*ForTesting.java</exclude>
+							<exclude>**/*Abstract*.java</exclude>
+						</excludes>
+						<useFile>true</useFile>
+						<printSummary>true</printSummary>
+						<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-report-plugin</artifactId>
+					<version>2.16</version>
+					<configuration>
+						<showSuccess>false</showSuccess>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>test</phase>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.5</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.5.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.3</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>maven-jetty-plugin</artifactId>
+					<version>6.1.26</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.7</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>run</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- http://simplericity.com/2009/11/10/1257880778509.html -->
+				<plugin>
+					<groupId>org.simplericity.jettyconsole</groupId>
+					<artifactId>jetty-console-maven-plugin</artifactId>
+					<version>1.56</version>
+				</plugin>
+
+				<!-- Apache Release Audit Tool -->
+				<plugin>
+					<groupId>org.apache.rat</groupId>
+					<artifactId>apache-rat-plugin</artifactId>
+					<version>0.10</version>
+					<configuration>
+						<addDefaultLicenseMatchers>true</addDefaultLicenseMatchers>
+						<excludeSubProjects>true</excludeSubProjects>
+						<excludes>
+							<exclude>**/target/**</exclude>
+							<exclude>**/target-ide/**</exclude>
+
+							<exclude>**/*.project</exclude>
+							<exclude>**/.classpath</exclude>
+							<exclude>**/.settings/**</exclude>
+							<exclude>**/*.launch</exclude>
+							<exclude>**/ide/eclipse/launch/**</exclude>
+							<exclude>**/ide/intellij/launch/**</exclude>
+							<exclude>src/site/resources/ide/eclipse/**</exclude>
+
+							<exclude>**/rebel.xml</exclude>
+							<exclude>**/*.gitignore</exclude>
+							<exclude>**/*.log</exclude>
+							<exclude>**/*.pdn</exclude>
+							<exclude>**/*.svg</exclude>
+							<exclude>**/*.json</exclude>
+							<exclude>**/*.min.js</exclude>
+							<exclude>**/*.js</exclude>
+
+							<exclude>**/translations.pot</exclude>
+							<exclude>**/translations*.po</exclude>
+						</excludes>
+						<licenses>
+                            <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                                <licenseFamilyCategory>AL2</licenseFamilyCategory>
+                                <licenseFamilyName>Apache License 2.0</licenseFamilyName>
+                                <notes/>
+                                <patterns>
+                                    <pattern>Licensed to the Apache Software Foundation (ASF) under one</pattern>
+                                </patterns>
+                            </license>
+                            <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                                <licenseFamilyCategory>JQRY</licenseFamilyCategory>
+                                <licenseFamilyName>MIT</licenseFamilyName>
+                                <notes/>
+                                <patterns>
+                                    <pattern>Dual licensed under the MIT or GPL Version 2 licenses.</pattern>
+                                </patterns>
+                            </license>
+                            <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                                <licenseFamilyCategory>JMOCK</licenseFamilyCategory>
+                                <licenseFamilyName>JMock</licenseFamilyName>
+                                <notes/>
+                                <patterns>
+                                    <pattern>Copyright (c) 2000-2007, jMock.org</pattern>
+                                </patterns>
+                            </license>
+                            <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                                <licenseFamilyCategory>DOCBK</licenseFamilyCategory>
+                                <licenseFamilyName>DocBook 4.5</licenseFamilyName>
+                                <notes/>
+                                <patterns>
+                                    <pattern>Permission to copy in any form is granted for use</pattern>
+                                    <pattern>Permission to use, copy, modify and distribute the DocBook DTD</pattern>
+                                    <pattern>is hereby granted in perpetuity, provided that the above copyright</pattern>
+                                    <pattern>This is the catalog data file for DocBook XML V4.5. It is provided as</pattern>
+                                    <pattern>XML Catalog data for DocBook XML V4.5</pattern>
+                                    <pattern>DocBook additional general entities V4.5</pattern>
+                                    <pattern>XML EXCHANGE TABLE MODEL DECLARATION MODULE</pattern>
+                                </patterns>
+                            </license>
+                            <license implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
+                                <licenseFamilyCategory>W3C</licenseFamilyCategory>
+                                <licenseFamilyName>XHTML</licenseFamilyName>
+                                <notes/>
+                                <patterns>
+                                    <pattern>Copyright (c) 1998-2002 W3C (MIT, INRIA, Keio),</pattern>
+                                </patterns>
+                            </license>
+						</licenses>
+						<licenseFamilies>
+							<licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
+								<familyName>Apache License 2.0</familyName>
+							</licenseFamily>
+							<licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
+								<familyName>MIT</familyName>
+							</licenseFamily>
+							<licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
+								<familyName>JMock</familyName>
+							</licenseFamily>
+							<licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
+								<familyName>DocBook 4.5</familyName>
+							</licenseFamily>
+							<licenseFamily implementation="org.apache.rat.license.SimpleLicenseFamily">
+								<familyName>XHTML</familyName>
+							</licenseFamily>
+						</licenseFamilies>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>org.apache.isis.core</groupId>
+				<artifactId>isis</artifactId>
+				<version>${isis.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.isis.viewer</groupId>
+				<artifactId>isis-viewer-wicket</artifactId>
+				<version>${isis.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<version>${assertj-core.version}</version>
+			</dependency>
+
+
+			<!-- this project's own modules -->
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>naked-objects-dom</artifactId>
+				<version>1.21.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>naked-objects-fixture</artifactId>
+				<version>1.21.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>naked-objects-webapp</artifactId>
+				<version>1.21.0-SNAPSHOT</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+
+	<profiles>
+		<profile>
+			<id>m2e</id>
+			<activation>
+				<property>
+					<name>m2e.version</name>
+				</property>
+			</activation>
+			<build>
+				<directory>target-ide</directory>
+			</build>
+		</profile>
+	</profiles>
+
+	<modules>
+		<module>dom</module>
+		<module>fixture</module>
+		<module>integtests</module>
+		<module>webapp</module>
+	</modules>
+</project>

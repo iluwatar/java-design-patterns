@@ -1,0 +1,126 @@
+<!--
+
+    The MIT License
+    Copyright (c) 2014-2016 Ilkka Seppälä
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+  
+         http://www.apache.org/licenses/LICENSE-2.0
+         
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>Apache Isis&trade; SimpleApp</title>
+        
+        <style type="text/css">
+body {
+    background-color: #1A467B;
+    font-family: Verdana, Helvetica, Arial;
+    font-size: 90%;
+}
+
+li {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px;
+    border-style: solid;
+    border-color: lightgray;
+}
+th, td {
+    padding: 10px;
+}
+#wrapper {
+    background-color: #ffffff;
+    width: 900px;
+    margin: 8px auto;
+    padding: 12px;
+}
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <img alt="Isis Logo" src="about/images/isis-logo.png" />
+             
+            <p>
+                This app has been generated using Apache Isis'
+                <a href="http://isis.apache.org/intro/getting-started/simple%61pp-archetype.html" target="_blank">SimpleApp</a> archetype,
+                to create a purposefully minimal application that nevertheless includes fixture data, integration tests and BDD specs.
+                <br/>
+                <br/>
+                The app itself consists of a single domain class, <a href="https://github.com/apache/isis/blob/master/example/application/simple%61pp/dom/src/main/java/dom/simple/SimpleObject.java"  target="_blank"><tt>SimpleObject</tt></a>,
+                along with an equally simple (factory/repository) domain service, <a href="https://github.com/apache/isis/blob/master/example/application/simple%61pp/dom/src/main/java/dom/simple/SimpleObjects.java"  target="_blank"><tt>SimpleObjects</tt></a>.
+            </p>
+
+            <p>To access the app:</p>
+            <ul>
+                <li>
+                    <p>
+                        <b><a href="wicket/">wicket/</a></b>
+                    </p>
+                    <p>
+                        provides accesses to a generic UI for end-users,
+                        Isis' <a href="http://isis.apache.org/components/viewers/wicket/about.html" target="_blank">Wicket Viewer</a>.
+                        As its name suggests, this viewer is built on top of <a href="http://wicket.apache.org" target="_blank">Apache Wicket</a>&trade;.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>
+                            <a href="restful/">restful/</a>
+                        </b>
+                    </p>
+                    <p>
+                        provides access to a RESTful API conformant with the
+                        <a href="http://restfulobjects.org">Restful Objects</a> spec</td>.  This is part of Apache Isis Core.  The
+                        implementation technology is JBoss RestEasy.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+            The default user/password is <b><i>sven/pass</i></b> (as configured in the
+            <a href="https://github.com/apache/isis/blob/master/example/application/simple%61pp/webapp/src/main/webapp/WEB-INF/shiro.ini" target="_blank">shiro.ini</a> file).
+            </p>
+            
+        </div>
+    </body>
+</html>
