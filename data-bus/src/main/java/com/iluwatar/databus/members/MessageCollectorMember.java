@@ -57,7 +57,7 @@ public class MessageCollectorMember implements Member {
   }
 
   private void handleEvent(MessageData data) {
-    LOGGER.info(String.format("%s sees message %s", name, data.getMessage()));
+    LOGGER.finer(String.format("%s sees message %s", name, data.getMessage()));
     messages.add(data.getMessage());
   }
 

@@ -62,13 +62,13 @@ public class StatusMember implements Member {
 
   private void handleEvent(StartingData data) {
     started = data.getWhen();
-    LOGGER.info(String.format("Receiver #%d sees application started at %s", id, started));
+    LOGGER.severe(String.format("Receiver #%d sees application started at %s", id, started));
   }
 
   private void handleEvent(StoppingData data) {
     stopped = data.getWhen();
-    LOGGER.info(String.format("Receiver #%d sees application stopping at %s", id, stopped));
-    LOGGER.info(String.format("Receiver #%d sending goodbye message", id));
+    LOGGER.severe(String.format("Receiver #%d sees application stopping at %s", id, stopped));
+    LOGGER.severe(String.format("Receiver #%d sending goodbye message", id));
     data.getDataBus().publish(MessageData.of(String.format("Goodbye cruel world from #%d!", id)));
   }
 
