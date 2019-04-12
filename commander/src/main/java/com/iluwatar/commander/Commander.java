@@ -552,7 +552,8 @@ public class Commander {
 
   private void doTasksInQueue() throws Exception {
     if (queueItems != 0) {
-      QueueTask qt = queue.peek(); //this is why we have retry for doTasksInQueue
+      QueueTask qt = queue.peek(); //this should probably be cloned here
+      //this is why we have retry for doTasksInQueue
       LOG.trace("Order " + qt.order.id + ": Started doing task of type " + qt.getType());
       if (qt.firstAttemptTime == -1) {
         qt.firstAttemptTime = System.currentTimeMillis();
