@@ -3,7 +3,6 @@ layout: pattern
 title: Caching
 folder: caching
 permalink: /patterns/caching/
-pumlid: DSRB4OKm2030LhG0m_rrWyWaE0bc-6ZxpujxsbMKUXwSrfSMCVq7OFYKAj5oJsUZIuCr2bq3fEU3WGOdthWTx59rcnZ1fWu3_GqGKXEjm47VIzeeCqV_0m00
 categories: Other
 tags:
  - Java
@@ -27,3 +26,4 @@ Use the Caching pattern(s) when
 
 * [Write-through, write-around, write-back: Cache explained](http://www.computerweekly.com/feature/Write-through-write-around-write-back-Cache-explained)
 * [Read-Through, Write-Through, Write-Behind, and Refresh-Ahead Caching](https://docs.oracle.com/cd/E15357_01/coh.360/e15723/cache_rtwtwbra.htm#COHDG5177)
+* [Cache-Aside](https://msdn.microsoft.com/en-us/library/dn589799.aspx)

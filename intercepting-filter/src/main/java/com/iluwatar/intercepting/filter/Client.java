@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,6 @@
  */
 package com.iluwatar.intercepting.filter;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,22 +30,25 @@ import javax.swing.JRootPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 /**
- * The Client class is responsible for handling the input and running them through filters inside
- * the {@link FilterManager}.
+ * The Client class is responsible for handling the input and running them through filters inside the
+ * {@link FilterManager}.
  *
- * This is where {@link Filter}s come to play as the client pre-processes the request before being
- * displayed in the {@link Target}.
+ * This is where {@link Filter}s come to play as the client pre-processes the request before being displayed in the
+ * {@link Target}.
  * 
  * @author joshzambales
  *
  */
-public class Client extends JFrame {
+public class Client extends JFrame { // NOSONAR
 
   private static final long serialVersionUID = 1L;
 
-  private FilterManager filterManager;
+  private transient FilterManager filterManager;
   private JLabel jl;
   private JTextField[] jtFields;
   private JTextArea[] jtAreas;
@@ -62,7 +60,7 @@ public class Client extends JFrame {
    */
   public Client() {
     super("Client System");
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setSize(300, 300);
     jl = new JLabel("RUNNING...");
     jtFields = new JTextField[3];
@@ -98,26 +96,19 @@ public class Client extends JFrame {
     panel.add(clearButton);
     panel.add(processButton);
 
-    clearButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        for (JTextArea i : jtAreas) {
-          i.setText("");
-        }
-        for (JTextField i : jtFields) {
-          i.setText("");
-        }
+    clearButton.addActionListener(e -> {
+      for (JTextArea i : jtAreas) {
+        i.setText("");
+      }
+      for (JTextField i : jtFields) {
+        i.setText("");
       }
     });
 
-    processButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        Order order =
-            new Order(jtFields[0].getText(), jtFields[1].getText(), jtAreas[0].getText(),
-                jtFields[2].getText(), jtAreas[1].getText());
-        jl.setText(sendRequest(order));
-      }
+    processButton.addActionListener(e -> {
+      Order order = new Order(jtFields[0].getText(), jtFields[1].getText(), jtAreas[0].getText(), jtFields[2].getText(),
+          jtAreas[1].getText());
+      jl.setText(sendRequest(order));
     });
 
     JRootPane rootPane = SwingUtilities.getRootPane(processButton);

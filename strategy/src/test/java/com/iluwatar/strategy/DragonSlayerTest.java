@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
  */
 package com.iluwatar.strategy;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -52,7 +52,7 @@ public class DragonSlayerTest {
    * Verify if the dragon slayer uses the new strategy during battle after a change of strategy
    */
   @Test
-  public void testChangeStrategy() throws Exception {
+  public void testChangeStrategy() {
     final DragonSlayingStrategy initialStrategy = mock(DragonSlayingStrategy.class);
     final DragonSlayer dragonSlayer = new DragonSlayer(initialStrategy);
 

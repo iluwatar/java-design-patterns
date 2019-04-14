@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,16 +29,24 @@ package com.iluwatar.prototype;
  */
 public class OrcWarlord extends Warlord {
 
-  public OrcWarlord() {}
+  private String weapon;
+
+  public OrcWarlord(String weapon) {
+    this.weapon = weapon;
+  }
+  
+  public OrcWarlord(OrcWarlord orcWarlord) {
+    this.weapon = orcWarlord.weapon;
+  }
 
   @Override
-  public Warlord clone() throws CloneNotSupportedException {
-    return new OrcWarlord();
+  public OrcWarlord copy() {
+    return new OrcWarlord(this);
   }
 
   @Override
   public String toString() {
-    return "Orcish warlord";
+    return "Orcish warlord attacks with " + weapon;
   }
 
 }

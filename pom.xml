@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     The MIT License
-    Copyright (c) 2014 Ilkka Seppälä
+    Copyright (c) 2014-2016 Ilkka Seppälä
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
@@ -17,13 +17,11 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.13.0-SNAPSHOT</version>
+    <version>1.21.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2014</inceptionYear>
     <properties>
@@ -34,23 +32,31 @@
         <spring-data.version>1.9.2.RELEASE</spring-data.version>
         <h2.version>1.4.190</h2.version>
         <junit.version>4.12</junit.version>
+        <junit-jupiter.version>5.0.2</junit-jupiter.version>
+        <junit-vintage.version>${junit.version}.2</junit-vintage.version>
+        <junit-platform.version>1.0.2</junit-platform.version>
+        <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
         <compiler.version>3.0</compiler.version>
-        <coveralls.version>4.0.0</coveralls.version>
         <jacoco.version>0.7.2.201409121644</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.16.1</camel.version>
-        <log4j.version>1.2.17</log4j.version>
         <guava.version>19.0</guava.version>
-        <systemrules.version>1.15.1</systemrules.version>
         <mockito.version>1.10.19</mockito.version>
-        <hierarchical-junit-runner-version>4.12.1</hierarchical-junit-runner-version>
         <apache-httpcomponents.version>4.5.2</apache-httpcomponents.version>
         <htmlunit.version>2.22</htmlunit.version>
-        <urm.version>1.4.1</urm.version>
         <guice.version>4.0</guice.version>
+        <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <logback.version>1.1.7</logback.version>
+        <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
+        <aws-java-sdk-dynamodb.version>1.11.289</aws-java-sdk-dynamodb.version>
+        <aws-lambda-log4j.version>1.0.0</aws-lambda-log4j.version>
+        <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
+        <jackson.version>2.8.5</jackson.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
+        <module>tls</module>
         <module>builder</module>
         <module>factory-method</module>
         <module>prototype</module>
@@ -111,17 +117,18 @@
         <module>business-delegate</module>
         <module>half-sync-half-async</module>
         <module>layers</module>
-        <module>message-channel</module>
+        <module>eip-message-channel</module>
         <module>fluentinterface</module>
         <module>reactor</module>
         <module>caching</module>
-        <module>publish-subscribe</module>
+        <module>eip-publish-subscribe</module>
         <module>delegation</module>
         <module>event-driven-architecture</module>
         <module>api-gateway</module>
         <module>factory-kit</module>
         <module>feature-toggle</module>
         <module>value-object</module>
+        <module>module</module>
         <module>monad</module>
         <module>mute-idiom</module>
         <module>mutex</module>
@@ -131,7 +138,42 @@
         <module>aggregator-microservices</module>
         <module>promise</module>
         <module>page-object</module>
+        <module>event-asynchronous</module>
+        <module>event-queue</module>
+        <module>queue-load-leveling</module>
+        <module>object-mother</module>
+        <module>data-bus</module>
+        <module>converter</module>
+        <module>guarded-suspension</module>
+        <module>balking</module>
+        <module>extension-objects</module>
+        <module>marker</module>
+        <module>cqrs</module>
+        <module>event-sourcing</module>
+        <module>data-transfer-object</module>
+        <module>throttling</module>
+        <module>unit-of-work</module>
+        <module>partial-response</module>
+        <module>eip-wire-tap</module>
+        <module>eip-splitter</module>
+        <module>eip-aggregator</module>
+        <module>retry</module>
+        <module>dirty-flag</module>
+        <module>trampoline</module>
+        <module>serverless</module>
+        <module>ambassador</module>
+	<module>acyclic-visitor</module>
+	<module>collection-pipeline</module>
+	<module>master-worker-pattern</module>
+	<module>spatial-partition</module>
     </modules>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -144,11 +186,6 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -198,9 +235,45 @@
                 <version>${camel.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-migrationsupport</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
+                <version>${junit-vintage.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.sbrannen</groupId>
+                <artifactId>spring-test-junit5</artifactId>
+                <version>${sping-test-junit5.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -210,41 +283,45 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.stefanbirkner</groupId>
-                <artifactId>system-rules</artifactId>
-                <version>${systemrules.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>de.bechte.junit</groupId>
-                <artifactId>junit-hierarchicalcontextrunner</artifactId>
-                <version>${hierarchical-junit-runner-version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>net.sourceforge.htmlunit</groupId>
                 <artifactId>htmlunit</artifactId>
                 <version>${htmlunit.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
                 <version>${guice.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>${mongo-java-driver.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>
@@ -295,28 +372,9 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>${coveralls.version}</version>
-                <configuration>
-                    <repoToken>jb6wYzxkVvjolD6qOWpzWdcWBzYk2fAmF</repoToken>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
-                <!-- The following exclude configuration was added because error occurred
-                    when executing "mvn clean test jacoco:report coveralls:report" -->
-                <!-- [ERROR] Failed to execute goal org.eluder.coveralls:coveralls-maven-plugin:3.1.0:report
-                    (default-cli) on project java-design-patterns: I/O operation failed: No source
-                    found for domainapp/dom/modules/simple/QSimpleObject.java -> [Help 1] -->
-                <configuration>
-                    <excludes>
-                        <exclude>domainapp/dom/modules/simple/QSimpleObject.class</exclude>
-                        <exclude>**com.steadystate*</exclude>
-                    </excludes>
-                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -352,35 +410,15 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.5.201505241946</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>2.19.1</version>
                 <dependencies>
                     <dependency>
-                        <groupId>org.apache.maven.surefire</groupId>
-                        <artifactId>surefire-junit47</artifactId>
-                        <version>2.18.1</version>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>${junit-platform.version}</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -428,30 +466,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.github.markusmo3.urm</groupId>
-                <artifactId>urm-maven-plugin</artifactId>
-                <version>${urm.version}</version>
-                <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>map</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <outputDirectory>${project.basedir}/etc</outputDirectory>
-                    <packages>
-                        <param>com.iluwatar</param>
-                    </packages>
-                    <skipForProjects>
-                        <!-- skip for parent project -->
-                        <param>java-design-patterns</param>
-                    </skipForProjects>
-                </configuration>
             </plugin>
         </plugins>
     </build>

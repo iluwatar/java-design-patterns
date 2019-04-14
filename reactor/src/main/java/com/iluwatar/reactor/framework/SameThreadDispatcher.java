@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ import java.nio.channels.SelectionKey;
 public class SameThreadDispatcher implements Dispatcher {
 
   /**
-   * Dispatches the read event in the context of caller thread. <br/>
+   * Dispatches the read event in the context of caller thread. <br>
    * Note this is a blocking call. It returns only after the associated handler has handled the read
    * event.
    */

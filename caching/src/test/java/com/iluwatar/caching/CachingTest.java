@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,8 @@
  */
 package com.iluwatar.caching;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -36,7 +36,7 @@ public class CachingTest {
   /**
    * Setup of application test includes: initializing DB connection and cache size/capacity.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     AppManager.initDb(false); // VirtualDB (instead of MongoDB) was used in running the JUnit tests
                               // to avoid Maven compilation errors. Set flag to true to run the
@@ -59,5 +59,10 @@ public class CachingTest {
   @Test
   public void testReadThroughAndWriteBehindStrategy() {
     app.useReadThroughAndWriteBehindStrategy();
+  }
+
+  @Test
+  public void testCacheAsideStrategy() {
+    app.useCacheAsideStategy();
   }
 }

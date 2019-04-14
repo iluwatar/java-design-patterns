@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,12 @@ package com.iluwatar.reader.writer.lock;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -48,6 +52,8 @@ import java.util.stream.IntStream;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
@@ -57,21 +63,42 @@ public class App {
 
     ExecutorService executeService = Executors.newFixedThreadPool(10);
     ReaderWriterLock lock = new ReaderWriterLock();
-
-    // Start 5 readers
+    
+    // Start writers
     IntStream.range(0, 5)
-        .forEach(i -> executeService.submit(new Reader("Reader " + i, lock.readLock())));
+        .forEach(i -> executeService.submit(new Writer("Writer " + i, lock.writeLock(), 
+            ThreadLocalRandom.current().nextLong(5000))));
+    LOGGER.info("Writers added...");
 
-    // Start 5 writers
+    // Start readers
     IntStream.range(0, 5)
-        .forEach(i -> executeService.submit(new Writer("Writer " + i, lock.writeLock())));
+        .forEach(i -> executeService.submit(new Reader("Reader " + i, lock.readLock(), 
+            ThreadLocalRandom.current().nextLong(10))));
+    LOGGER.info("Readers added...");
+    
+    try {
+      Thread.sleep(5000L);
+    } catch (InterruptedException e) {
+      LOGGER.error("Error sleeping before adding more readers", e);
+      Thread.currentThread().interrupt();
+    }
+
+    // Start readers
+    IntStream.range(6, 10)
+        .forEach(i -> executeService.submit(new Reader("Reader " + i, lock.readLock(), 
+            ThreadLocalRandom.current().nextLong(10))));
+    LOGGER.info("More readers added...");
+    
+    
+
     // In the system console, it can see that the read operations are executed concurrently while
     // write operations are exclusive.
     executeService.shutdown();
     try {
       executeService.awaitTermination(5, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      System.out.println("Error waiting for ExecutorService shutdown");
+      LOGGER.error("Error waiting for ExecutorService shutdown", e);
+      Thread.currentThread().interrupt();
     }
 
   }

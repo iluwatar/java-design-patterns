@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,12 @@
  */
 package com.iluwatar.servant;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -40,7 +41,7 @@ import static org.mockito.Mockito.when;
 public class ServantTest {
 
   @Test
-  public void testFeed() throws Exception {
+  public void testFeed() {
     final Royalty royalty = mock(Royalty.class);
     final Servant servant = new Servant("test");
     servant.feed(royalty);
@@ -49,7 +50,7 @@ public class ServantTest {
   }
 
   @Test
-  public void testGiveWine() throws Exception {
+  public void testGiveWine() {
     final Royalty royalty = mock(Royalty.class);
     final Servant servant = new Servant("test");
     servant.giveWine(royalty);
@@ -58,7 +59,7 @@ public class ServantTest {
   }
 
   @Test
-  public void testGiveCompliments() throws Exception {
+  public void testGiveCompliments() {
     final Royalty royalty = mock(Royalty.class);
     final Servant servant = new Servant("test");
     servant.giveCompliments(royalty);
@@ -67,19 +68,19 @@ public class ServantTest {
   }
 
   @Test
-  public void testCheckIfYouWillBeHanged() throws Exception {
+  public void testCheckIfYouWillBeHanged() {
     final Royalty goodMoodRoyalty = mock(Royalty.class);
     when(goodMoodRoyalty.getMood()).thenReturn(true);
 
     final Royalty badMoodRoyalty = mock(Royalty.class);
     when(badMoodRoyalty.getMood()).thenReturn(true);
 
-    final ArrayList<Royalty> goodCompany = new ArrayList<>();
+    final List<Royalty> goodCompany = new ArrayList<>();
     goodCompany.add(goodMoodRoyalty);
     goodCompany.add(goodMoodRoyalty);
     goodCompany.add(goodMoodRoyalty);
 
-    final ArrayList<Royalty> badCompany = new ArrayList<>();
+    final List<Royalty> badCompany = new ArrayList<>();
     goodCompany.add(goodMoodRoyalty);
     goodCompany.add(goodMoodRoyalty);
     goodCompany.add(badMoodRoyalty);

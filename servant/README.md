@@ -3,7 +3,6 @@ layout: pattern
 title: Servant
 folder: servant
 permalink: /patterns/servant/
-pumlid: DSkn4O0m20NGLNG0G-ys63cDbv0SV7HzRUnUy-QYkSOkONKwWU4haV6JZe8pjd2nt1MYIBatAZKU1XjTVFEoYvT3by60c3erzW_qdPiL9CY_KrXB8rfz0G00
 categories: Structural
 tags:
  - Java

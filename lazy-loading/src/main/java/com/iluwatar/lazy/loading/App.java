@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.lazy.loading;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Lazy loading idiom defers object creation until needed.
@@ -33,6 +36,9 @@ package com.iluwatar.lazy.loading;
  *
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    * Program entry point
    * 
@@ -43,16 +49,16 @@ public class App {
     // Simple lazy loader - not thread safe
     HolderNaive holderNaive = new HolderNaive();
     Heavy heavy = holderNaive.getHeavy();
-    System.out.println("heavy=" + heavy);
+    LOGGER.info("heavy={}", heavy);
 
     // Thread safe lazy loader, but with heavy synchronization on each access
     HolderThreadSafe holderThreadSafe = new HolderThreadSafe();
     Heavy another = holderThreadSafe.getHeavy();
-    System.out.println("another=" + another);
+    LOGGER.info("another={}", another);
 
     // The most efficient lazy loader utilizing Java 8 features
     Java8Holder java8Holder = new Java8Holder();
     Heavy next = java8Holder.getHeavy();
-    System.out.println("next=" + next);
+    LOGGER.info("next={}", next);
   }
 }

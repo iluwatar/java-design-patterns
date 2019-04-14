@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,10 +38,9 @@ public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
 
   @Override
   public Spell findByName(String name) {
-    Session session = getSession();
     Transaction tx = null;
     Spell result = null;
-    try {
+    try (Session session = getSessionFactory().openSession()) {
       tx = session.beginTransaction();
       Criteria criteria = session.createCriteria(persistentClass);
       criteria.add(Restrictions.eq("name", name));
@@ -52,8 +51,6 @@ public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
         tx.rollback();
       }
       throw e;
-    } finally {
-      session.close();
     }
     return result;
   }

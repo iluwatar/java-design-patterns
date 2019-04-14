@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,13 +22,8 @@
  */
 package com.iluwatar.promise;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -39,10 +34,14 @@ import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 /**
  * Tests Promise class.
  */
@@ -50,9 +49,8 @@ public class PromiseTest {
 
   private Executor executor;
   private Promise<Integer> promise;
-  @Rule public ExpectedException exception = ExpectedException.none();
 
-  @Before
+  @BeforeEach
   public void setUp() {
     executor = Executors.newSingleThreadExecutor();
     promise = new Promise<>();
@@ -78,12 +76,8 @@ public class PromiseTest {
   private void testWaitingForeverForPromiseToBeFulfilled() 
       throws InterruptedException, TimeoutException {
     Promise<Integer> promise = new Promise<>();
-    promise.fulfillInAsync(new Callable<Integer>() {
-
-      @Override
-      public Integer call() throws Exception {
-        throw new RuntimeException("Barf!");
-      }
+    promise.fulfillInAsync(() -> {
+      throw new RuntimeException("Barf!");
     }, executor);
     
     try {
@@ -106,12 +100,8 @@ public class PromiseTest {
   private void testWaitingSomeTimeForPromiseToBeFulfilled() 
       throws InterruptedException, TimeoutException {
     Promise<Integer> promise = new Promise<>();
-    promise.fulfillInAsync(new Callable<Integer>() {
-
-      @Override
-      public Integer call() throws Exception {
-        throw new RuntimeException("Barf!");
-      }
+    promise.fulfillInAsync(() -> {
+      throw new RuntimeException("Barf!");
     }, executor);
     
     try {
@@ -152,12 +142,8 @@ public class PromiseTest {
       throws InterruptedException, ExecutionException, TimeoutException {
     Promise<Void> dependentPromise = promise
         .fulfillInAsync(new NumberCrunchingTask(), executor)
-        .thenAccept(new Consumer<Integer>() {
-
-          @Override
-          public void accept(Integer value) {
-            throw new RuntimeException("Barf!");
-          }
+        .thenAccept(value -> {
+          throw new RuntimeException("Barf!");
         });
 
     try {
@@ -200,12 +186,8 @@ public class PromiseTest {
       throws InterruptedException, ExecutionException, TimeoutException {
     Promise<String> dependentPromise = promise
         .fulfillInAsync(new NumberCrunchingTask(), executor)
-        .thenApply(new Function<Integer, String>() {
-
-          @Override
-          public String apply(Integer value) {
-            throw new RuntimeException("Barf!");
-          }
+        .thenApply(value -> {
+          throw new RuntimeException("Barf!");
         });
 
     try {

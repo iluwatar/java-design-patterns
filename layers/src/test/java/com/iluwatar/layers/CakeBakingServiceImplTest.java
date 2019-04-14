@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,16 +22,17 @@
  */
 package com.iluwatar.layers;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Date: 12/15/15 - 9:55 PM
@@ -41,7 +42,7 @@ import static org.junit.Assert.assertTrue;
 public class CakeBakingServiceImplTest {
 
   @Test
-  public void testLayers() throws CakeBakingException {
+  public void testLayers() {
     final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
 
     final List<CakeLayerInfo> initialLayers = service.getAvailableLayers();
@@ -64,7 +65,7 @@ public class CakeBakingServiceImplTest {
   }
 
   @Test
-  public void testToppings() throws CakeBakingException {
+  public void testToppings() {
     final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
 
     final List<CakeToppingInfo> initialToppings = service.getAvailableToppings();
@@ -123,8 +124,8 @@ public class CakeBakingServiceImplTest {
 
   }
 
-  @Test(expected = CakeBakingException.class)
-  public void testBakeCakeMissingTopping() throws CakeBakingException {
+  @Test
+  public void testBakeCakeMissingTopping() {
     final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
 
     final CakeLayerInfo layer1 = new CakeLayerInfo("Layer1", 1000);
@@ -133,11 +134,13 @@ public class CakeBakingServiceImplTest {
     service.saveNewLayer(layer2);
 
     final CakeToppingInfo missingTopping = new CakeToppingInfo("Topping1", 1000);
-    service.bakeNewCake(new CakeInfo(missingTopping, Arrays.asList(layer1, layer2)));
+    assertThrows(CakeBakingException.class, () -> {
+      service.bakeNewCake(new CakeInfo(missingTopping, Arrays.asList(layer1, layer2)));
+    });
   }
 
-  @Test(expected = CakeBakingException.class)
-  public void testBakeCakeMissingLayer() throws CakeBakingException {
+  @Test
+  public void testBakeCakeMissingLayer() {
     final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
 
     final List<CakeInfo> initialCakes = service.getAllCakes();
@@ -151,11 +154,12 @@ public class CakeBakingServiceImplTest {
     service.saveNewLayer(layer1);
 
     final CakeLayerInfo missingLayer = new CakeLayerInfo("Layer2", 2000);
-    service.bakeNewCake(new CakeInfo(topping1, Arrays.asList(layer1, missingLayer)));
-
+    assertThrows(CakeBakingException.class, () -> {
+      service.bakeNewCake(new CakeInfo(topping1, Arrays.asList(layer1, missingLayer)));
+    });
   }
 
-  @Test(expected = CakeBakingException.class)
+  @Test
   public void testBakeCakesUsedLayer() throws CakeBakingException {
     final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
 
@@ -174,8 +178,9 @@ public class CakeBakingServiceImplTest {
     service.saveNewLayer(layer2);
 
     service.bakeNewCake(new CakeInfo(topping1, Arrays.asList(layer1, layer2)));
-    service.bakeNewCake(new CakeInfo(topping2, Collections.singletonList(layer2)));
-
+    assertThrows(CakeBakingException.class, () -> {
+      service.bakeNewCake(new CakeInfo(topping2, Collections.singletonList(layer2)));
+    });
   }
 
 }

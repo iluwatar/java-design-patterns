@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p/>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -37,6 +39,8 @@ import java.io.IOException;
 @Component
 public class ProductInformationClientImpl implements ProductInformationClient {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(ProductInformationClientImpl.class);
+
   @Override
   public String getProductTitle() {
     String response = null;
@@ -46,7 +50,7 @@ public class ProductInformationClientImpl implements ProductInformationClient {
         response = EntityUtils.toString(httpResponse.getEntity());
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      LOGGER.error("Exception caught.", e);
     }
     return response;
   }

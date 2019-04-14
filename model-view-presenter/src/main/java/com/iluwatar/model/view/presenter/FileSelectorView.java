@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,13 @@
  */
 package com.iluwatar.model.view.presenter;
 
+import java.io.Serializable;
+
 /**
  * This interface represents the View component in the Model-View-Presenter pattern. It can be
  * implemented by either the GUI components, or by the Stub.
  */
-public interface FileSelectorView {
+public interface FileSelectorView extends Serializable {
 
   /**
    * Opens the view.

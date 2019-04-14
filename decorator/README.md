@@ -3,7 +3,6 @@ layout: pattern
 title: Decorator
 folder: decorator
 permalink: /patterns/decorator/
-pumlid: HSV14SCm20J0Lk82BFxf1YF6LaP26ZZizfDVVhjRC-bPDRs_Bc35cyZvAMV3bKU6kao36ehCGQtdms2d3z-yLursshuOKBUWmV43LPNfZEcaaFzA-YWhH_y2
 categories: Structural
 tags:
  - Java
@@ -19,14 +18,106 @@ Attach additional responsibilities to an object dynamically.
 Decorators provide a flexible alternative to subclassing for extending
 functionality.
 
-![alt text](./etc/decorator.png "Decorator")
+## Explanation
+
+Real world example
+
+> There is an angry troll living in the nearby hills. Usually it goes bare handed but sometimes it has a weapon. To arm the troll it's not necessary to create a new troll but to decorate it dynamically with a suitable weapon.
+
+In plain words
+
+> Decorator pattern lets you dynamically change the behavior of an object at run time by wrapping them in an object of a decorator class.
+
+Wikipedia says
+
+> In object-oriented programming, the decorator pattern is a design pattern that allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class. The decorator pattern is often useful for adhering to the Single Responsibility Principle, as it allows functionality to be divided between classes with unique areas of concern.
+
+**Programmatic Example**
+
+Let's take the troll example. First of all we have a simple troll implementing the troll interface
+
+```java
+public interface Troll {
+  void attack();
+  int getAttackPower();
+  void fleeBattle();
+}
+
+public class SimpleTroll implements Troll {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(SimpleTroll.class);
+
+  @Override
+  public void attack() {
+    LOGGER.info("The troll tries to grab you!");
+  }
+
+  @Override
+  public int getAttackPower() {
+    return 10;
+  }
+
+  @Override
+  public void fleeBattle() {
+    LOGGER.info("The troll shrieks in horror and runs away!");
+  }
+}
+```
+
+Next we want to add club for the troll. We can do it dynamically by using a decorator
+
+```java
+public class ClubbedTroll implements Troll {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);
+
+  private Troll decorated;
+
+  public ClubbedTroll(Troll decorated) {
+    this.decorated = decorated;
+  }
+
+  @Override
+  public void attack() {
+    decorated.attack();
+    LOGGER.info("The troll swings at you with a club!");
+  }
+
+  @Override
+  public int getAttackPower() {
+    return decorated.getAttackPower() + 10;
+  }
+
+  @Override
+  public void fleeBattle() {
+    decorated.fleeBattle();
+  }
+}
+```
+
+Here's the troll in action
+
+```java
+// simple troll
+Troll troll = new SimpleTroll();
+troll.attack(); // The troll tries to grab you!
+troll.fleeBattle(); // The troll shrieks in horror and runs away!
+
+// change the behavior of the simple troll by adding a decorator
+Troll clubbedTroll = new ClubbedTroll(troll);
+clubbedTroll.attack(); // The troll tries to grab you! The troll swings at you with a club!
+clubbedTroll.fleeBattle(); // The troll shrieks in horror and runs away!
+```
 
 ## Applicability
 Use Decorator
 
-* to add responsibilities to individual objects dynamically and transparently, that is, without affecting other objects
-* for responsibilities that can be withdrawn
-* when extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of subclasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
+* To add responsibilities to individual objects dynamically and transparently, that is, without affecting other objects
+* For responsibilities that can be withdrawn
+* When extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of subclasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing
+
+## Tutorial
+* [Decorator Pattern Tutorial](https://www.journaldev.com/1540/decorator-design-pattern-in-java-example)
 
 ## Real world examples
  * [java.io.InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html), [java.io.OutputStream](http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html),

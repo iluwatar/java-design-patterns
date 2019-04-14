@@ -3,7 +3,6 @@ layout: pattern
 title: Naked Objects
 folder: naked-objects
 permalink: /patterns/naked-objects/
-pumlid: LSX15i8W30N0g-W187jlaq9igH1uoO_r-BfrDs_kJKkFAc7zTW3B7qJ6LzuRZjZ2nSfKY2ANEQZrk1XiTFARKnLlkwR5W9Ww3VOVIFabDStjb08dGVcVz6mVX4aE6td5w5y0
 categories: Architectural
 tags:
  - Java
@@ -30,4 +29,4 @@ Use the Naked Objects pattern when
 
 ## Credits
 
-* [Richard Pawson - Naked Objects](https://isis.apache.org/resources/thesis/Pawson-Naked-Objects-thesis.pdf)
+* [Richard Pawson - Naked Objects](http://downloads.nakedobjects.net/resources/Pawson%20thesis.pdf)

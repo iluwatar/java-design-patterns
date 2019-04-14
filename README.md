@@ -5,19 +5,19 @@
 # Design patterns implemented in Java
 
 [![Build status](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)](https://travis-ci.org/iluwatar/java-design-patterns)
-[![Coverage Status](https://coveralls.io/repos/iluwatar/java-design-patterns/badge.svg?branch=master)](https://coveralls.io/r/iluwatar/java-design-patterns?branch=master)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.iluwatar%3Ajava-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard/index/com.iluwatar%3Ajava-design-patterns)
 
 # Introduction
 
-Design patterns are formalized best practices that the programmer can use to
+Design patterns are the best formalized practices a programmer can use to
 solve common problems when designing an application or system.
 
 Design patterns can speed up the development process by providing tested, proven
 development paradigms.
 
-Reusing design patterns helps to prevent subtle issues that can cause major
+Reusing design patterns help prevent subtle issues which cause major
 problems, and it also improves code readability for coders and architects who
 are familiar with the patterns.
 

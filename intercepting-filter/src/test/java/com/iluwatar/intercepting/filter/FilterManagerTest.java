@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,9 @@
  */
 package com.iluwatar.intercepting.filter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -40,7 +40,7 @@ import static org.mockito.Mockito.when;
 public class FilterManagerTest {
 
   @Test
-  public void testFilterRequest() throws Exception {
+  public void testFilterRequest() {
     final Target target = mock(Target.class);
     final FilterManager filterManager = new FilterManager();
     assertEquals("RUNNING...", filterManager.filterRequest(mock(Order.class)));
@@ -48,7 +48,7 @@ public class FilterManagerTest {
   }
 
   @Test
-  public void testAddFilter() throws Exception {
+  public void testAddFilter() {
     final Target target = mock(Target.class);
     final FilterManager filterManager = new FilterManager();
 

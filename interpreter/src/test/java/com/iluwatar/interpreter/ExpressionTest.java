@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,56 +22,50 @@
  */
 package com.iluwatar.interpreter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.IntBinaryOperator;
+import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Date: 12/14/15 - 11:48 AM
  *
+ * Test Case for Expressions
+ * @param <E> Type of Expression
  * @author Jeroen Meulemeester
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class ExpressionTest<E extends Expression> {
 
   /**
    * Generate inputs ranging from -10 to 10 for both input params and calculate the expected result
    *
    * @param resultCalc The function used to calculate the expected result
-   * @return A data set with test entries
+   * @return A stream with test entries
    */
-  static List<Object[]> prepareParameters(final BiFunction<Integer, Integer, Integer> resultCalc) {
-    final List<Object[]> testData = new ArrayList<>();
+  static Stream<Arguments> prepareParameters(final IntBinaryOperator resultCalc) {
+    final List<Arguments> testData = new ArrayList<>();
     for (int i = -10; i < 10; i++) {
       for (int j = -10; j < 10; j++) {
-        testData.add(new Object[]{
-            new NumberExpression(i),
-            new NumberExpression(j),
-            resultCalc.apply(i, j)
-        });
+        testData.add(Arguments.of(
+                new NumberExpression(i),
+                new NumberExpression(j),
+                resultCalc.applyAsInt(i, j)
+        ));
       }
     }
-    return testData;
+    return testData.stream();
   }
-
-  /**
-   * The input used as first parameter during the test
-   */
-  private final NumberExpression first;
-
-  /**
-   * The input used as second parameter during the test
-   */
-  private final NumberExpression second;
-
-  /**
-   * The expected result of the calculation, taking the first and second parameter in account
-   */
-  private final int result;
 
   /**
    * The expected {@link E#toString()} response
@@ -86,47 +80,41 @@ public abstract class ExpressionTest<E extends Expression> {
   /**
    * Create a new test instance with the given parameters and expected results
    *
-   * @param first            The input used as first parameter during the test
-   * @param second           The input used as second parameter during the test
-   * @param result           The expected result of the tested expression
    * @param expectedToString The expected {@link E#toString()} response
    * @param factory          Factory, used to create a new test object instance
    */
-  ExpressionTest(final NumberExpression first, final NumberExpression second, final int result,
-                 final String expectedToString, final BiFunction<NumberExpression, NumberExpression, E> factory) {
-
-    this.first = first;
-    this.second = second;
-    this.result = result;
+  ExpressionTest(final String expectedToString,
+                 final BiFunction<NumberExpression, NumberExpression, E> factory
+  ) {
     this.expectedToString = expectedToString;
     this.factory = factory;
   }
 
   /**
-   * Get the first parameter
+   * Create a new set of test entries with the expected result
    *
-   * @return The first parameter
+   * @return The list of parameters used during this test
    */
-  final NumberExpression getFirst() {
-    return this.first;
-  }
+  public abstract Stream<Arguments> expressionProvider();
 
   /**
    * Verify if the expression calculates the correct result when calling {@link E#interpret()}
    */
-  @Test
-  public void testInterpret() {
-    final E expression = this.factory.apply(this.first, this.second);
+  @ParameterizedTest
+  @MethodSource("expressionProvider")
+  public void testInterpret(NumberExpression first, NumberExpression second, int result) {
+    final E expression = factory.apply(first, second);
     assertNotNull(expression);
-    assertEquals(this.result, expression.interpret());
+    assertEquals(result, expression.interpret());
   }
 
   /**
    * Verify if the expression has the expected {@link E#toString()} value
    */
-  @Test
-  public void testToString() {
-    final E expression = this.factory.apply(this.first, this.second);
+  @ParameterizedTest
+  @MethodSource("expressionProvider")
+  public void testToString(NumberExpression first, NumberExpression second) {
+    final E expression = factory.apply(first, second);
     assertNotNull(expression);
     assertEquals(expectedToString, expression.toString());
   }

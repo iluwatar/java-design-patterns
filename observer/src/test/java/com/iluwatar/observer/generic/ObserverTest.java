@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,23 +22,39 @@
  */
 package com.iluwatar.observer.generic;
 
-import com.iluwatar.observer.StdOutTest;
 import com.iluwatar.observer.WeatherType;
+import com.iluwatar.observer.utils.InMemoryAppender;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import org.junit.Test;
-
+import java.util.Collection;
 import java.util.function.Supplier;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/27/15 - 11:44 AM
- *
+ * Test for Observers
+ * @param <O> Type of Observer
  * @author Jeroen Meulemeester
  */
-public abstract class ObserverTest<O extends Observer> extends StdOutTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public abstract class ObserverTest<O extends Observer<?, ?, WeatherType>> {
+
+  private InMemoryAppender appender;
+
+  @BeforeEach
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @AfterEach
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * The observer instance factory
@@ -46,39 +62,28 @@ public abstract class ObserverTest<O extends Observer> extends StdOutTest {
   private final Supplier<O> factory;
 
   /**
-   * The weather type currently tested
-   */
-  private final WeatherType weather;
-
-  /**
-   * The expected response from the observer
-   */
-  private final String response;
-
-  /**
    * Create a new test instance using the given parameters
    *
-   * @param weather  The weather currently being tested
-   * @param response The expected response from the observer
    * @param factory  The factory, used to create an instance of the tested observer
    */
-  ObserverTest(final WeatherType weather, final String response, final Supplier<O> factory) {
-    this.weather = weather;
-    this.response = response;
+  ObserverTest(final Supplier<O> factory) {
     this.factory = factory;
   }
+
+  public abstract Collection<Object[]> dataProvider();
 
   /**
    * Verify if the weather has the expected influence on the observer
    */
-  @Test
-  public void testObserver() {
+  @ParameterizedTest
+  @MethodSource("dataProvider")
+  public void testObserver(WeatherType weather, String response) {
     final O observer = this.factory.get();
-    verifyZeroInteractions(getStdOutMock());
+    assertEquals(0, appender.getLogSize());
 
-    observer.update(null, this.weather);
-    verify(getStdOutMock()).println(this.response);
-    verifyNoMoreInteractions(getStdOutMock());
+    observer.update(null, weather);
+    assertEquals(response, appender.getLastMessage());
+    assertEquals(1, appender.getLogSize());
   }
 
 }

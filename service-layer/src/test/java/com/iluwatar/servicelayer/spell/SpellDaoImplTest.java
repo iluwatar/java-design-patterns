@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,12 @@
 package com.iluwatar.servicelayer.spell;
 
 import com.iluwatar.servicelayer.common.BaseDaoTest;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Date: 12/28/15 - 11:02 PM
@@ -43,7 +42,7 @@ public class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
   }
 
   @Test
-  public void testFindByName() throws Exception {
+  public void testFindByName() {
     final SpellDaoImpl dao = getDao();
     final List<Spell> allSpells = dao.findAll();
     for (final Spell spell : allSpells) {

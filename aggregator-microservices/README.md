@@ -3,7 +3,6 @@ layout: pattern
 title: Aggregator Microservices
 folder: aggregator-microservices
 permalink: /patterns/aggregator-microservices/
-pumlid: JOov3SCm301NIGQGs7iRXYPa1g8ayB7NjuiKwGvtmBrbKC-Tq_hhY5Y-0HXUjKaS-Kbdepc2HrIQ2jBpma23BvvOTdPfeooCO1iEYlu0O6l63MDQKI6Rp-CKOWSE-ey_NzEqhjH-0m00
 categories: Architectural
 tags:
 - Java

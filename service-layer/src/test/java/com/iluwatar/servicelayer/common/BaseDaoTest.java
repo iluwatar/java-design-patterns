@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,22 +23,23 @@
 package com.iluwatar.servicelayer.common;
 
 import com.iluwatar.servicelayer.hibernate.HibernateUtil;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Date: 12/28/15 - 10:53 PM
- *
+ * Test for Base Data Access Objects
+ * @param <E> Type of Base Entity
+ * @param <D> Type of Dao Base Implementation
  * @author Jeroen Meulemeester
  */
 public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>> {
@@ -74,8 +75,8 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
     this.dao = dao;
   }
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  public void setUp() {
     for (int i = 0; i < INITIAL_COUNT; i++) {
       final String className = dao.persistentClass.getSimpleName();
       final String entityName = String.format("%s%d", className, ID_GENERATOR.incrementAndGet());
@@ -83,8 +84,8 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
     }
   }
 
-  @After
-  public void tearDown() throws Exception {
+  @AfterEach
+  public void tearDown() {
     HibernateUtil.dropSession();
   }
 
@@ -93,7 +94,7 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
   }
 
   @Test
-  public void testFind() throws Exception {
+  public void testFind() {
     final List<E> all = this.dao.findAll();
     for (final E entity : all) {
       final E byId = this.dao.find(entity.getId());
@@ -103,7 +104,7 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
   }
 
   @Test
-  public void testDelete() throws Exception {
+  public void testDelete() {
     final List<E> originalEntities = this.dao.findAll();
     this.dao.delete(originalEntities.get(1));
     this.dao.delete(originalEntities.get(2));
@@ -114,24 +115,24 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
   }
 
   @Test
-  public void testFindAll() throws Exception {
+  public void testFindAll() {
     final List<E> all = this.dao.findAll();
     assertNotNull(all);
     assertEquals(INITIAL_COUNT, all.size());
   }
 
   @Test
-  public void testSetId() throws Exception {
+  public void testSetId() {
     final E entity = this.factory.apply("name");
     assertNull(entity.getId());
 
-    final Long expectedId = Long.valueOf(1);
+    final Long expectedId = 1L;
     entity.setId(expectedId);
     assertEquals(expectedId, entity.getId());
   }
 
   @Test
-  public void testSetName() throws Exception {
+  public void testSetName() {
     final E entity = this.factory.apply("name");
     assertEquals("name", entity.getName());
     assertEquals("name", entity.toString());

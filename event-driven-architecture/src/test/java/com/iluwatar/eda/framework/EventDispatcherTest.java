@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,7 @@ import com.iluwatar.eda.event.UserUpdatedEvent;
 import com.iluwatar.eda.handler.UserCreatedEventHandler;
 import com.iluwatar.eda.handler.UserUpdatedEventHandler;
 import com.iluwatar.eda.model.User;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;

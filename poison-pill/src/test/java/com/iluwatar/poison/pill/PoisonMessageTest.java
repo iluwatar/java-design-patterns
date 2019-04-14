@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,10 +22,11 @@
  */
 package com.iluwatar.poison.pill;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.iluwatar.poison.pill.Message.Headers;
 import static com.iluwatar.poison.pill.Message.POISON_PILL;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Date: 12/27/15 - 10:30 PM
@@ -34,29 +35,35 @@ import static com.iluwatar.poison.pill.Message.POISON_PILL;
  */
 public class PoisonMessageTest {
 
-  @Test(expected = UnsupportedOperationException.class)
-  public void testAddHeader() throws Exception {
-    POISON_PILL.addHeader(Headers.SENDER, "sender");
+  @Test
+  public void testAddHeader() {
+    assertThrows(UnsupportedOperationException.class, () -> {
+      POISON_PILL.addHeader(Headers.SENDER, "sender");
+    });
   }
 
-  @Test(expected = UnsupportedOperationException.class)
-  public void testGetHeader() throws Exception {
-    POISON_PILL.getHeader(Headers.SENDER);
+  @Test
+  public void testGetHeader() {
+    assertThrows(UnsupportedOperationException.class, () -> {
+      POISON_PILL.getHeader(Headers.SENDER);
+    });
   }
 
-  @Test(expected = UnsupportedOperationException.class)
-  public void testGetHeaders() throws Exception {
-    POISON_PILL.getHeaders();
+  @Test
+  public void testGetHeaders() {
+    assertThrows(UnsupportedOperationException.class, POISON_PILL::getHeaders);
   }
 
-  @Test(expected = UnsupportedOperationException.class)
-  public void testSetBody() throws Exception {
-    POISON_PILL.setBody("Test message.");
+  @Test
+  public void testSetBody() {
+    assertThrows(UnsupportedOperationException.class, () -> {
+      POISON_PILL.setBody("Test message.");
+    });
   }
 
-  @Test(expected = UnsupportedOperationException.class)
-  public void testGetBody() throws Exception {
-    POISON_PILL.getBody();
+  @Test
+  public void testGetBody() {
+    assertThrows(UnsupportedOperationException.class, POISON_PILL::getBody);
   }
 
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,9 @@
  */
 package com.iluwatar.chain;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Date: 12/6/15 - 9:29 PM
@@ -43,14 +43,14 @@ public class OrcKingTest {
   };
 
   @Test
-  public void testMakeRequest() throws Exception {
+  public void testMakeRequest() {
     final OrcKing king = new OrcKing();
 
     for (final Request request : REQUESTS) {
       king.makeRequest(request);
       assertTrue(
-          "Expected all requests from King to be handled, but [" + request + "] was not!",
-          request.isHandled()
+          request.isHandled(),
+          "Expected all requests from King to be handled, but [" + request + "] was not!"
       );
     }
 

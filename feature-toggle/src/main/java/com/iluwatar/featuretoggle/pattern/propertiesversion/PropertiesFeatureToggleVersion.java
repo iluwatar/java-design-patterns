@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -91,7 +91,7 @@ public class PropertiesFeatureToggleVersion implements Service {
    * see the value of the boolean that was set in the constructor
    * {@link PropertiesFeatureToggleVersion#PropertiesFeatureToggleVersion(Properties)}
    *
-   * @return Boolean value {@value true} if enhanced.
+   * @return Boolean value {@code true} if enhanced.
    */
   @Override
   public boolean isEnhanced() {

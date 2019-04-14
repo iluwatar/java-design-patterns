@@ -3,7 +3,6 @@ layout: pattern
 title: Tolerant Reader
 folder: tolerant-reader
 permalink: /patterns/tolerant-reader/
-pumlid: NSZ14SCm20NHLf829ExfXaYChGn26lZ4xSVdtFRjSrZJx9AkZnFOyI9olkenSEOxGxmjWnXgMvE6viLWfmz_kNI9SLZP38XRqEIuWx1Kd0t5XVjjGVj_DNtMdLD_
 categories: Integration
 tags:
  - Java

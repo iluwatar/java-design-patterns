@@ -3,7 +3,6 @@ layout: pattern
 title: Model-View-Controller
 folder: model-view-controller
 permalink: /patterns/model-view-controller/
-pumlid: ROl13SCm201NQGUm-NSRQgE42h258Lw_wR-_qvtkoTOaEwNBuuoOwmNWkEl1SUOx5taR5cHHsr1WoOs13X-yi7HQV5YP645k2nJN3Q2ZavIBQPVVwqFajXJjVwdfMcUgV040
 categories: Presentation Tier
 tags:
  - Java

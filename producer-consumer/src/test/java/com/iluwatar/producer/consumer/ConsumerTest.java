@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,19 +22,19 @@
  */
 package com.iluwatar.producer.consumer;
 
-import org.junit.Test;
-import org.mockito.InOrder;
+import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * Date: 12/27/15 - 11:01 PM
  *
  * @author Jeroen Meulemeester
  */
-public class ConsumerTest extends StdOutTest {
+public class ConsumerTest {
 
   private static final int ITEM_COUNT = 5;
 
@@ -48,14 +48,11 @@ public class ConsumerTest extends StdOutTest {
     reset(queue); // Don't count the preparation above as interactions with the queue
     final Consumer consumer = new Consumer("consumer", queue);
 
-    final InOrder inOrder = inOrder(getStdOutMock());
     for (int id = 0; id < ITEM_COUNT; id++) {
       consumer.consume();
-      inOrder.verify(getStdOutMock())
-          .println("Consumer [consumer] consume item [" + id + "] produced by [producer]");
     }
 
-    inOrder.verifyNoMoreInteractions();
+    verify(queue, times(ITEM_COUNT)).take();
   }
 
 }

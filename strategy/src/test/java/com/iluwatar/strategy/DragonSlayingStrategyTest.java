@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,33 @@
  */
 package com.iluwatar.strategy;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.slf4j.LoggerFactory;
 
-import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/29/15 - 10:58 PM
  *
  * @author Jeroen Meulemeester
  */
-@RunWith(Parameterized.class)
 public class DragonSlayingStrategyTest {
 
   /**
    * @return The test parameters for each cycle
    */
-  @Parameterized.Parameters
-  public static Collection<Object[]> data() {
+  static Collection<Object[]> dataProvider() {
     return Arrays.asList(
         new Object[]{
             new MeleeStrategy(),
@@ -65,62 +65,49 @@ public class DragonSlayingStrategyTest {
     );
   }
 
-  /**
-   * The tested strategy
-   */
-  private final DragonSlayingStrategy strategy;
+  private InMemoryAppender appender;
 
-  /**
-   * The expected action on the std-out
-   */
-  private final String expectedResult;
-
-  /**
-   * The mocked standard out {@link PrintStream}, required since some actions don't have any
-   * influence on accessible objects, except for writing to std-out using {@link System#out}
-   */
-  private final PrintStream stdOutMock = mock(PrintStream.class);
-
-  /**
-   * Keep the original std-out so it can be restored after the test
-   */
-  private final PrintStream stdOutOrig = System.out;
-
-  /**
-   * Create a new test instance for the given strategy
-   *
-   * @param strategy       The tested strategy
-   * @param expectedResult The expected result
-   */
-  public DragonSlayingStrategyTest(final DragonSlayingStrategy strategy, final String expectedResult) {
-    this.strategy = strategy;
-    this.expectedResult = expectedResult;
-  }
-
-  /**
-   * Inject the mocked std-out {@link PrintStream} into the {@link System} class before each test
-   */
-  @Before
+  @BeforeEach
   public void setUp() {
-    System.setOut(this.stdOutMock);
+    appender = new InMemoryAppender();
   }
 
-  /**
-   * Removed the mocked std-out {@link PrintStream} again from the {@link System} class
-   */
-  @After
+  @AfterEach
   public void tearDown() {
-    System.setOut(this.stdOutOrig);
+    appender.stop();
   }
+
 
   /**
    * Test if executing the strategy gives the correct response
    */
-  @Test
-  public void testExecute() {
-    this.strategy.execute();
-    verify(this.stdOutMock).println(this.expectedResult);
-    verifyNoMoreInteractions(this.stdOutMock);
+  @ParameterizedTest
+  @MethodSource("dataProvider")
+  public void testExecute(DragonSlayingStrategy strategy, String expectedResult) {
+    strategy.execute();
+    assertEquals(expectedResult, appender.getLastMessage());
+    assertEquals(1, appender.getLogSize());
   }
 
+  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender() {
+      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public int getLogSize() {
+      return log.size();
+    }
+
+    public String getLastMessage() {
+      return log.get(log.size() - 1).getFormattedMessage();
+    }
+  }
 }

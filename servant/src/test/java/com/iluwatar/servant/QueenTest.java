@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,11 @@
  */
 package com.iluwatar.servant;
 
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Date: 12/28/15 - 9:52 PM
@@ -34,7 +36,7 @@ import static org.junit.Assert.*;
 public class QueenTest {
 
   @Test
-  public void testNotFlirtyUncomplemented() throws Exception {
+  public void testNotFlirtyUncomplemented() {
     final Queen queen = new Queen();
     queen.setFlirtiness(false);
     queen.changeMood();
@@ -42,7 +44,7 @@ public class QueenTest {
   }
   
   @Test
-  public void testNotFlirtyComplemented() throws Exception {
+  public void testNotFlirtyComplemented() {
     final Queen queen = new Queen();
     queen.setFlirtiness(false);
     queen.receiveCompliments();
@@ -51,14 +53,14 @@ public class QueenTest {
   }
   
   @Test
-  public void testFlirtyUncomplemented() throws Exception {
+  public void testFlirtyUncomplemented() {
     final Queen queen = new Queen();
     queen.changeMood();
     assertFalse(queen.getMood());
   }
   
   @Test
-  public void testFlirtyComplemented() throws Exception {
+  public void testFlirtyComplemented() {
     final Queen queen = new Queen();
     queen.receiveCompliments();
     queen.changeMood();

@@ -3,7 +3,6 @@ layout: pattern
 title: State
 folder: state
 permalink: /patterns/state/
-pumlid: 9SRH3O0m20N0LNG0ox_RO2LQqz867hg-9jxNpKLpZLt2wdG2mrSYuoST1MTiuMAvAqIHSczKQZmCDhhuvcKNBuSkWm4nTMhiNyZ141BaVocifH6jlW00
 categories: Behavioral
 tags:
  - Java

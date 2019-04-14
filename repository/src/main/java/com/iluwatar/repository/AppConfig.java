@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,8 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -43,6 +45,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
  */
 @EnableJpaRepositories
 public class AppConfig {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
 
   /**
    * Creation of H2 db
@@ -117,12 +121,12 @@ public class AppConfig {
     repository.save(terry);
 
     // Count Person records
-    System.out.println("Count Person records: " + repository.count());
+    LOGGER.info("Count Person records: {}", repository.count());
 
     // Print all records
     List<Person> persons = (List<Person>) repository.findAll();
     for (Person person : persons) {
-      System.out.println(person);
+      LOGGER.info(person.toString());
     }
 
     // Update Person
@@ -130,24 +134,24 @@ public class AppConfig {
     nasta.setSurname("Spotakova");
     repository.save(nasta);
 
-    System.out.println("Find by id 2: " + repository.findOne(2L));
+    LOGGER.info("Find by id 2: {}", repository.findOne(2L));
 
     // Remove record from Person
     repository.delete(2L);
 
     // count records
-    System.out.println("Count Person records: " + repository.count());
+    LOGGER.info("Count Person records: {}", repository.count());
 
     // find by name
     Person p = repository.findOne(new PersonSpecifications.NameEqualSpec("John"));
-    System.out.println("Find by John is " + p);
+    LOGGER.info("Find by John is {}", p);
 
     // find by age
     persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));
 
-    System.out.println("Find Person with age between 20,40: ");
+    LOGGER.info("Find Person with age between 20,40: ");
     for (Person person : persons) {
-      System.out.println(person);
+      LOGGER.info(person.toString());
     }
 
     context.close();

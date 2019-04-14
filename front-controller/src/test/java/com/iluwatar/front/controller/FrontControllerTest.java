@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,28 +22,37 @@
  */
 package com.iluwatar.front.controller;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import com.iluwatar.front.controller.utils.InMemoryAppender;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/13/15 - 1:39 PM
  *
  * @author Jeroen Meulemeester
  */
-@RunWith(Parameterized.class)
-public class FrontControllerTest extends StdOutTest {
+public class FrontControllerTest {
 
-  @Parameters
-  public static List<Object[]> data() {
+  private InMemoryAppender appender;
+
+  @BeforeEach
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @AfterEach
+  public void tearDown() {
+    appender.stop();
+  }
+
+  static List<Object[]> dataProvider() {
     final List<Object[]> parameters = new ArrayList<>();
     parameters.add(new Object[]{new ArcherCommand(), "Displaying archers"});
     parameters.add(new Object[]{new CatapultCommand(), "Displaying catapults"});
@@ -52,32 +61,16 @@ public class FrontControllerTest extends StdOutTest {
   }
 
   /**
-   * The view that's been tested
-   */
-  private final Command command;
-
-  /**
-   * The expected display message
-   */
-  private final String displayMessage;
-
-  /**
-   * Create a new instance of the {@link FrontControllerTest} with the given view and expected message
-   *
    * @param command        The command that's been tested
    * @param displayMessage The expected display message
    */
-  public FrontControllerTest(final Command command, final String displayMessage) {
-    this.displayMessage = displayMessage;
-    this.command = command;
-  }
-
-  @Test
-  public void testDisplay() {
-    verifyZeroInteractions(getStdOutMock());
-    this.command.process();
-    verify(getStdOutMock()).println(displayMessage);
-    verifyNoMoreInteractions(getStdOutMock());
+  @ParameterizedTest
+  @MethodSource("dataProvider")
+  public void testDisplay(Command command, String displayMessage) {
+    assertEquals(0, appender.getLogSize());
+    command.process();
+    assertEquals(displayMessage, appender.getLastMessage());
+    assertEquals(1, appender.getLogSize());
   }
 
 }

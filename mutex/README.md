@@ -3,7 +3,6 @@ layout: pattern
 title: Mutex
 folder: mutex
 permalink: /patterns/mutex/
-pumlid: 9SR13OCm30NGLSe0n7UsCS62LB69x6zWV2hrdTxKhFRS9Br_3c34GkHybxtXo3L3l9u6CPHwAhMUDuETldpnl4cqtUR1WBW5ASSlf0bvI53_A-bQHcf_0G00
 categories: Concurrency
 tags: 
  - Java

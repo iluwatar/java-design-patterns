@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,11 @@ package com.iluwatar.featuretoggle;
 
 import com.iluwatar.featuretoggle.pattern.Service;
 import com.iluwatar.featuretoggle.pattern.propertiesversion.PropertiesFeatureToggleVersion;
+import com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion;
 import com.iluwatar.featuretoggle.user.User;
 import com.iluwatar.featuretoggle.user.UserGroup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
@@ -45,6 +48,8 @@ import java.util.Properties;
  */
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
    *  Block 1 shows the {@link PropertiesFeatureToggleVersion} being run with {@link Properties} setting the feature
    *  toggle to enabled.
@@ -62,7 +67,7 @@ public class App {
    *  @see UserGroup
    *  @see Service
    *  @see PropertiesFeatureToggleVersion
-   *  @see com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion;
+   *  @see com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion
    */
   public static void main(String[] args) {
 
@@ -70,7 +75,7 @@ public class App {
     properties.put("enhancedWelcome", true);
     Service service = new PropertiesFeatureToggleVersion(properties);
     final String welcomeMessage = service.getWelcomeMessage(new User("Jamie No Code"));
-    System.out.println(welcomeMessage);
+    LOGGER.info(welcomeMessage);
 
     // ---------------------------------------------
 
@@ -78,9 +83,11 @@ public class App {
     turnedOff.put("enhancedWelcome", false);
     Service turnedOffService = new PropertiesFeatureToggleVersion(turnedOff);
     final String welcomeMessageturnedOff = turnedOffService.getWelcomeMessage(new User("Jamie No Code"));
-    System.out.println(welcomeMessageturnedOff);
+    LOGGER.info(welcomeMessageturnedOff);
 
     // --------------------------------------------
+    
+    Service service2 = new TieredFeatureToggleVersion();
 
     final User paidUser = new User("Jamie Coder");
     final User freeUser = new User("Alan Defect");
@@ -88,9 +95,9 @@ public class App {
     UserGroup.addUserToPaidGroup(paidUser);
     UserGroup.addUserToFreeGroup(freeUser);
 
-    final String welcomeMessagePaidUser = service.getWelcomeMessage(paidUser);
-    final String welcomeMessageFreeUser = service.getWelcomeMessage(freeUser);
-    System.out.println(welcomeMessageFreeUser);
-    System.out.println(welcomeMessagePaidUser);
+    final String welcomeMessagePaidUser = service2.getWelcomeMessage(paidUser);
+    final String welcomeMessageFreeUser = service2.getWelcomeMessage(freeUser);
+    LOGGER.info(welcomeMessageFreeUser);
+    LOGGER.info(welcomeMessagePaidUser);
   }
 }

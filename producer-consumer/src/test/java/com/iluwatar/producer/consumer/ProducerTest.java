@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,10 @@
  */
 package com.iluwatar.producer.consumer;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
+import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -36,15 +38,17 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  */
 public class ProducerTest {
 
-  @Test(timeout = 6000)
-  public void testProduce() throws Exception {
-    final ItemQueue queue = mock(ItemQueue.class);
-    final Producer producer = new Producer("producer", queue);
+  @Test
+  public void testProduce() {
+    assertTimeout(ofMillis(6000), () -> {
+      final ItemQueue queue = mock(ItemQueue.class);
+      final Producer producer = new Producer("producer", queue);
 
-    producer.produce();
-    verify(queue).put(any(Item.class));
+      producer.produce();
+      verify(queue).put(any(Item.class));
 
-    verifyNoMoreInteractions(queue);
+      verifyNoMoreInteractions(queue);
+    });
   }
 
 }

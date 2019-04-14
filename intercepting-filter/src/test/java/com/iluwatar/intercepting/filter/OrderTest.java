@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,9 @@
  */
 package com.iluwatar.intercepting.filter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/13/15 - 2:57 PM
@@ -36,38 +36,38 @@ public class OrderTest {
   private static final String EXPECTED_VALUE = "test";
 
   @Test
-  public void testSetName() throws Exception {
+  public void testSetName() {
     final Order order = new Order();
     order.setName(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getName());
   }
 
   @Test
-  public void testSetContactNumber() throws Exception {
+  public void testSetContactNumber() {
     final Order order = new Order();
     order.setContactNumber(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getContactNumber());
   }
 
   @Test
-  public void testSetAddress() throws Exception {
+  public void testSetAddress() {
     final Order order = new Order();
     order.setAddress(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getAddress());
   }
 
   @Test
-  public void testSetDepositNumber() throws Exception {
+  public void testSetDepositNumber() {
     final Order order = new Order();
     order.setDepositNumber(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getDepositNumber());
   }
 
   @Test
-  public void testSetOrder() throws Exception {
+  public void testSetOrder() {
     final Order order = new Order();
-    order.setOrder(EXPECTED_VALUE);
-    assertEquals(EXPECTED_VALUE, order.getOrder());
+    order.setOrderItem(EXPECTED_VALUE);
+    assertEquals(EXPECTED_VALUE, order.getOrderItem());
   }
 
 }

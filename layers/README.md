@@ -3,7 +3,7 @@ layout: pattern
 title: Layers
 folder: layers
 permalink: /patterns/layers/
-pumlid: BSR13OCm30NGLSe0n7UsCS62L8w9x6yGszD3t-bDpQhc9kdwEO0H2v7pNVQ68zSCyNeQn53gsQbftWns-lB5yoRHTfi70-8Mr3b-8UL7F4XG_otflOpi-W80
+pumlformat: svg
 categories: Architectural
 tags:
  - Java
@@ -20,7 +20,7 @@ Layers is an architectural style where software responsibilities are
 ## Applicability
 Use the Layers architecture when
 
-* you want clearly divide software responsibilities into differents parts of the program
+* you want clearly divide software responsibilities into different parts of the program
 * you want to prevent a change from propagating throughout the application
 * you want to make your application more maintainable and testable
 

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,13 +22,23 @@
  */
 package com.iluwatar.fluentinterface.fluentiterable;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.Spliterator;
 import java.util.function.Consumer;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * Date: 12/12/15 - 7:00 PM
@@ -56,7 +66,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testFirstEmptyCollection() throws Exception {
-    final List<Integer> integers = Collections.<Integer>emptyList();
+    final List<Integer> integers = Collections.emptyList();
     final Optional<Integer> first = createFluentIterable(integers).first();
     assertNotNull(first);
     assertFalse(first.isPresent());
@@ -169,15 +179,15 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testForEach() throws Exception {
+  public void testForEach() {
     final List<Integer> integers = Arrays.asList(1, 2, 3);
 
     final Consumer<Integer> consumer = mock(Consumer.class);
     createFluentIterable(integers).forEach(consumer);
 
-    verify(consumer, times(1)).accept(Integer.valueOf(1));
-    verify(consumer, times(1)).accept(Integer.valueOf(2));
-    verify(consumer, times(1)).accept(Integer.valueOf(3));
+    verify(consumer, times(1)).accept(1);
+    verify(consumer, times(1)).accept(2);
+    verify(consumer, times(1)).accept(3);
     verifyNoMoreInteractions(consumer);
 
   }

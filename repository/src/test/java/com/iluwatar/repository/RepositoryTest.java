@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,21 +22,21 @@
  */
 package com.iluwatar.repository;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.google.common.collect.Lists;
 
@@ -44,7 +44,7 @@ import com.google.common.collect.Lists;
  * Test case to test the functions of {@link PersonRepository}, beside the CRUD functions, the query
  * by {@link org.springframework.data.jpa.domain.Specification} are also test.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
 public class RepositoryTest {
 
@@ -61,7 +61,7 @@ public class RepositoryTest {
   /**
    * Prepare data for test
    */
-  @Before
+  @BeforeEach
   public void setup() {
 
     repository.save(persons);
@@ -109,9 +109,7 @@ public class RepositoryTest {
     List<Person> persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));
 
     assertEquals(3, persons.size());
-    assertTrue(persons.stream().allMatch((item) -> {
-      return item.getAge() > 20 && item.getAge() < 40;
-    }));
+    assertTrue(persons.stream().allMatch(item -> item.getAge() > 20 && item.getAge() < 40));
   }
 
   @Test
@@ -121,7 +119,7 @@ public class RepositoryTest {
     assertEquals(terry, actual);
   }
 
-  @After
+  @AfterEach
   public void cleanup() {
 
     repository.deleteAll();

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,15 +28,14 @@ import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.spellbook.SpellbookDao;
 import com.iluwatar.servicelayer.wizard.Wizard;
 import com.iluwatar.servicelayer.wizard.WizardDao;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -52,7 +51,7 @@ import static org.mockito.Mockito.when;
 public class MagicServiceImplTest {
 
   @Test
-  public void testFindAllWizards() throws Exception {
+  public void testFindAllWizards() {
     final WizardDao wizardDao = mock(WizardDao.class);
     final SpellbookDao spellbookDao = mock(SpellbookDao.class);
     final SpellDao spellDao = mock(SpellDao.class);

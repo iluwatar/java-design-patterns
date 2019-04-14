@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,9 @@ package com.iluwatar.singleton;
 
 /**
  * Enum based singleton implementation. Effective Java 2nd Edition (Joshua Bloch) p. 18
+ *
+ * This implementation is thread safe, however adding any other method and its thread safety
+ * is developers responsibility.
  */
 public enum EnumIvoryTower {
 

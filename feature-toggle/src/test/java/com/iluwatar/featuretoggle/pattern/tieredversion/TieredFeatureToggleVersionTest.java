@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,40 +25,43 @@ package com.iluwatar.featuretoggle.pattern.tieredversion;
 import com.iluwatar.featuretoggle.pattern.Service;
 import com.iluwatar.featuretoggle.user.User;
 import com.iluwatar.featuretoggle.user.UserGroup;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Test Tiered Feature Toggle
+ */
 public class TieredFeatureToggleVersionTest {
 
   final User paidUser = new User("Jamie Coder");
   final User freeUser = new User("Alan Defect");
   final Service service = new TieredFeatureToggleVersion();
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  public void setUp() {
     UserGroup.addUserToPaidGroup(paidUser);
     UserGroup.addUserToFreeGroup(freeUser);
   }
 
   @Test
-  public void testGetWelcomeMessageForPaidUser() throws Exception {
+  public void testGetWelcomeMessageForPaidUser() {
     final String welcomeMessage = service.getWelcomeMessage(paidUser);
     final String expected = "You're amazing Jamie Coder. Thanks for paying for this awesome software.";
     assertEquals(expected, welcomeMessage);
   }
 
   @Test
-  public void testGetWelcomeMessageForFreeUser() throws Exception {
+  public void testGetWelcomeMessageForFreeUser() {
     final String welcomeMessage = service.getWelcomeMessage(freeUser);
     final String expected = "I suppose you can use this software.";
     assertEquals(expected, welcomeMessage);
   }
 
   @Test
-  public void testIsEnhancedAlwaysTrueAsTiered() throws Exception {
+  public void testIsEnhancedAlwaysTrueAsTiered() {
     assertTrue(service.isEnhanced());
   }
 }

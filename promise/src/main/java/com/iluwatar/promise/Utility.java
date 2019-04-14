@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.promise;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -29,14 +32,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * Utility to perform various operations
+ */
 public class Utility {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Utility.class);
 
   /**
    * Calculates character frequency of the file provided.
@@ -103,8 +110,8 @@ public class Utility {
    * Downloads the contents from the given urlString, and stores it in a temporary directory.
    * @return the absolute path of the file downloaded.
    */
-  public static String downloadFile(String urlString) throws MalformedURLException, IOException {
-    System.out.println("Downloading contents from url: " + urlString);
+  public static String downloadFile(String urlString) throws IOException {
+    LOGGER.info("Downloading contents from url: {}", urlString);
     URL url = new URL(urlString);
     File file = File.createTempFile("promise_pattern", null);
     try (Reader reader = new InputStreamReader(url.openStream());
@@ -114,7 +121,7 @@ public class Utility {
         writer.write(line);
         writer.write("\n");
       }
-      System.out.println("File downloaded at: " + file.getAbsolutePath());
+      LOGGER.info("File downloaded at: {}", file.getAbsolutePath());
       return file.getAbsolutePath();
     } catch (IOException ex) {
       throw ex;

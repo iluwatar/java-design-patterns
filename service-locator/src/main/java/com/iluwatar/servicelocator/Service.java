@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@ package com.iluwatar.servicelocator;
 
 /**
  * This is going to be the parent service interface which we will use to create our services. All
- * services will have a <li>service name</li> <li>unique id</li> <li>execution work flow</li>
+ * services will have a <ul><li>service name</li> <li>unique id</li> <li>execution work flow</li></ul>
  * 
  * @author saifasif
  *

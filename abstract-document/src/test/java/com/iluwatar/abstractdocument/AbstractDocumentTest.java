@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
  */
 package com.iluwatar.abstractdocument;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,8 +30,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * AbstractDocument test class
@@ -81,8 +82,8 @@ public class AbstractDocumentTest {
     Map<String, Object> props = new HashMap<>();
     props.put(KEY, VALUE);
     DocumentImplementation document = new DocumentImplementation(props);
-    assertNotNull(document.toString().contains(KEY));
-    assertNotNull(document.toString().contains(VALUE));
+    assertTrue(document.toString().contains(KEY));
+    assertTrue(document.toString().contains(VALUE));
   }
 
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,34 @@
  */
 package com.iluwatar.monad;
 
-
-import junit.framework.Assert;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
 
-public class MonadTest {
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-  @Rule
-  public ExpectedException thrown = ExpectedException.none();
+/**
+ * Test for Monad Pattern
+ */
+public class MonadTest {
 
   @Test
   public void testForInvalidName() {
-    thrown.expect(IllegalStateException.class);
     User tom = new User(null, 21, Sex.MALE, "tom@foo.bar");
-    Validator.of(tom).validate(User::getName, Objects::nonNull, "name cannot be null").get();
+    assertThrows(IllegalStateException.class, () -> {
+      Validator.of(tom).validate(User::getName, Objects::nonNull, "name cannot be null").get();
+    });
   }
 
   @Test
   public void testForInvalidAge() {
-    thrown.expect(IllegalStateException.class);
     User john = new User("John", 17, Sex.MALE, "john@qwe.bar");
-    Validator.of(john).validate(User::getName, Objects::nonNull, "name cannot be null")
-        .validate(User::getAge, age -> age > 21, "user is underaged")
-        .get();
+    assertThrows(IllegalStateException.class, () -> {
+      Validator.of(john).validate(User::getName, Objects::nonNull, "name cannot be null")
+              .validate(User::getAge, age -> age > 21, "user is underaged")
+              .get();
+    });
   }
 
   @Test
@@ -59,6 +60,6 @@ public class MonadTest {
         .validate(User::getSex, sex -> sex == Sex.FEMALE, "user is not female")
         .validate(User::getEmail, email -> email.contains("@"), "email does not contain @ sign")
         .get();
-    Assert.assertSame(validated, sarah);
+    assertSame(validated, sarah);
   }
 }

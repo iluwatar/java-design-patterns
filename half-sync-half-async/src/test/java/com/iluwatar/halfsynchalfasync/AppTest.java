@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +22,9 @@
  */
 package com.iluwatar.halfsynchalfasync;
 
-import java.util.concurrent.ExecutionException;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import java.util.concurrent.ExecutionException;
 
 /**
  * 
@@ -34,7 +34,7 @@ import org.junit.Test;
 public class AppTest {
 
   @Test
-  public void test() throws InterruptedException, ExecutionException {
+  public void test() {
     App.main(null);
   }
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,33 @@
  */
 package com.iluwatar.mediator;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.slf4j.LoggerFactory;
 
-import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.function.Supplier;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 /**
  * Date: 12/19/15 - 10:13 PM
  *
  * @author Jeroen Meulemeester
  */
-@RunWith(Parameterized.class)
 public class PartyMemberTest {
 
-  @Parameterized.Parameters
-  public static Collection<Supplier<PartyMember>[]> data() {
+  static Collection<Supplier<PartyMember>[]> dataProvider() {
     return Arrays.asList(
             new Supplier[]{Hobbit::new},
             new Supplier[]{Hunter::new},
@@ -57,94 +57,90 @@ public class PartyMemberTest {
     );
   }
 
-  /**
-   * The mocked standard out {@link PrintStream}, required since some actions on a {@link
-   * PartyMember} have any influence on any other accessible objects, except for writing to std-out
-   * using {@link System#out}
-   */
-  private final PrintStream stdOutMock = mock(PrintStream.class);
+  private InMemoryAppender appender;
 
-  /**
-   * Keep the original std-out so it can be restored after the test
-   */
-  private final PrintStream stdOutOrig = System.out;
-
-  /**
-   * Inject the mocked std-out {@link PrintStream} into the {@link System} class before each test
-   */
-  @Before
+  @BeforeEach
   public void setUp() {
-    System.setOut(this.stdOutMock);
+    appender = new InMemoryAppender(PartyMemberBase.class);
   }
 
-  /**
-   * Removed the mocked std-out {@link PrintStream} again from the {@link System} class
-   */
-  @After
+  @AfterEach
   public void tearDown() {
-    System.setOut(this.stdOutOrig);
-  }
-
-  /**
-   * The factory, used to create a new instance of the tested party member
-   */
-  private final Supplier<PartyMember> memberSupplier;
-
-  /**
-   * Create a new test instance, using the given {@link PartyMember} factory
-   *
-   * @param memberSupplier The party member factory
-   */
-  public PartyMemberTest(final Supplier<PartyMember> memberSupplier) {
-    this.memberSupplier = memberSupplier;
+    appender.stop();
   }
 
   /**
    * Verify if a party action triggers the correct output to the std-Out
    */
-  @Test
-  public void testPartyAction() {
-    final PartyMember member = this.memberSupplier.get();
+  @ParameterizedTest
+  @MethodSource("dataProvider")
+  public void testPartyAction(Supplier<PartyMember> memberSupplier) {
+    final PartyMember member = memberSupplier.get();
 
     for (final Action action : Action.values()) {
       member.partyAction(action);
-      verify(this.stdOutMock).println(member.toString() + " " + action.getDescription());
+      assertEquals(member.toString() + " " + action.getDescription(), appender.getLastMessage());
     }
 
-    verifyNoMoreInteractions(this.stdOutMock);
+    assertEquals(Action.values().length, appender.getLogSize());
   }
 
   /**
    * Verify if a member action triggers the expected interactions with the party class
    */
-  @Test
-  public void testAct() {
-    final PartyMember member = this.memberSupplier.get();
+  @ParameterizedTest
+  @MethodSource("dataProvider")
+  public void testAct(Supplier<PartyMember> memberSupplier) {
+    final PartyMember member = memberSupplier.get();
 
     member.act(Action.GOLD);
-    verifyZeroInteractions(this.stdOutMock);
+    assertEquals(0, appender.getLogSize());
 
     final Party party = mock(Party.class);
     member.joinedParty(party);
-    verify(this.stdOutMock).println(member.toString() + " joins the party");
+    assertEquals(member.toString() + " joins the party", appender.getLastMessage());
 
     for (final Action action : Action.values()) {
       member.act(action);
-      verify(this.stdOutMock).println(member.toString() + " " + action.toString());
+      assertEquals(member.toString() + " " + action.toString(), appender.getLastMessage());
       verify(party).act(member, action);
     }
 
-    verifyNoMoreInteractions(party, this.stdOutMock);
+    assertEquals(Action.values().length + 1, appender.getLogSize());
   }
 
   /**
-   * Verify if {@link PartyMember#toString()} generate the expected output
+   * Verify if {@link PartyMemberBase#toString()} generate the expected output
    */
-  @Test
-  public void testToString() throws Exception {
-    final PartyMember member = this.memberSupplier.get();
+  @ParameterizedTest
+  @MethodSource("dataProvider")
+  public void testToString(Supplier<PartyMember> memberSupplier) throws Exception {
+    final PartyMember member = memberSupplier.get();
     final Class<? extends PartyMember> memberClass = member.getClass();
     assertEquals(memberClass.getSimpleName(), member.toString());
   }
+
+  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender(Class clazz) {
+      ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public int getLogSize() {
+      return log.size();
+    }
+
+    public String getLastMessage() {
+      return log.get(log.size() - 1).getFormattedMessage();
+    }
+  }
+
 
 }

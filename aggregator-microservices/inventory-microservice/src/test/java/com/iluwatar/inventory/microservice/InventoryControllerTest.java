@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  * <p/>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,20 @@
  */
 package com.iluwatar.inventory.microservice;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/**
+ * Test Inventory Rest Controller
+ */
 public class InventoryControllerTest {
-
   @Test
-  public void testGetProductInventories() throws Exception {
+  public void testGetProductInventories() {
     InventoryController inventoryController = new InventoryController();
 
     int numberOfInventories = inventoryController.getProductInventories();
 
-    Assert.assertEquals(5, numberOfInventories);
+    assertEquals(5, numberOfInventories);
   }
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ import java.util.stream.Stream;
 /**
  * An in memory implementation of {@link CustomerDao}, which stores the customers in JVM memory
  * and data is lost when the application exits.
- * <br/>
+ * <br>
  * This implementation is useful as temporary database or for testing.
  */
 public class InMemoryCustomerDao implements CustomerDao {

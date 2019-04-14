@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright (c) 2014-2016 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,8 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.hexagonal.domain;
+
+import com.google.common.base.Joiner;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -78,6 +80,13 @@ public class LotteryNumbers {
   public Set<Integer> getNumbers() {
     return Collections.unmodifiableSet(numbers);
   }
+
+  /**
+   * @return numbers as comma separated string
+   */
+  public String getNumbersAsString() {
+    return Joiner.on(',').join(numbers);
+  }
   
   /**
    * Generates 4 unique random numbers between 1-20 into numbers set.
@@ -87,12 +96,15 @@ public class LotteryNumbers {
     RandomNumberGenerator generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
     while (numbers.size() < NUM_NUMBERS) {
       int num = generator.nextInt();
-      if (!numbers.contains(num)) {
-        numbers.add(num);
-      }
+      numbers.add(num);
     }
   }
-  
+
+  @Override
+  public String toString() {
+    return "LotteryNumbers{" + "numbers=" + numbers + '}';
+  }
+
   /**
    * 
    * Helper class for generating random numbers.
@@ -148,5 +160,5 @@ public class LotteryNumbers {
       return false;
     }
     return true;
-  }  
+  }
 }
