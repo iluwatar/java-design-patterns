@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
-  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+<class-diagram version="1.2.3" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.iluwatar.observer.Hobbits" project="observer" 
     file="/observer/src/main/java/com/iluwatar/observer/Hobbits.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="175" x="193" y="288"/>    
+    <position height="-1" width="-1" x="723" y="333"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <interface id="2" language="java" name="com.iluwatar.observer.WeatherObserver" project="observer" 
     file="/observer/src/main/java/com/iluwatar/observer/WeatherObserver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="88" width="175" x="408" y="488"/>    
+    <position height="-1" width="-1" x="454" y="330"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </interface>  
   <class id="3" language="java" name="com.iluwatar.observer.Orcs" project="observer" 
     file="/observer/src/main/java/com/iluwatar/observer/Orcs.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="175" x="408" y="288"/>    
+    <position height="-1" width="-1" x="454" y="468"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.iluwatar.observer.Weather" project="observer" 
     file="/observer/src/main/java/com/iluwatar/observer/Weather.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="252" x="623" y="288"/>    
+    <position height="-1" width="-1" x="454" y="129"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <enumeration id="5" language="java" name="com.iluwatar.observer.WeatherType" project="observer" 
     file="/observer/src/main/java/com/iluwatar/observer/WeatherType.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="178" width="154" x="623" y="488"/>    
+    <position height="-1" width="-1" x="791" y="129"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,28 +48,36 @@
   </enumeration>  
   <association id="6">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="7" name="observers"/>      
-      <multiplicity id="8" minimum="0" maximum="2147483647"/>    
+      <attribute id="7" name="observers">        
+        <position height="0" width="0" x="-41" y="-202"/>      
+      </attribute>      
+      <multiplicity id="8" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-41" y="-202"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="9">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="10">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <association id="10">    
+  <association id="11">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="11" name="currentWeather"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+      <attribute id="12" name="currentWeather">        
+        <position height="0" width="0" x="91" y="-448"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="1" maximum="1">        
+        <position height="0" width="0" x="91" y="-448"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="13">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
