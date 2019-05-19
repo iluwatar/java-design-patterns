@@ -21,4 +21,4 @@ Handling distributed transactions can be tricky, but if we choose to not handle 
 We need a mechanism in place which can handle these kinds of situations. In this example, either one of the services has to accept the order and then add the order into the database of the other service. If currently unable to do it, there should be a queue where this request can be queued, and there has to be a mechanism which allows for a failure in the queueing as well. All this needs to be done by constant retries while ensuring idempotence (even if the request is made several times, the change should only be applied once) by a commander class, to reach a state of 'eventual consistency'.
 
 ## Credits
-* [https://docs.gigaspaces.com/sbp/master-worker-pattern.html]
+* [https://www.grahamlea.com/2016/08/distributed-transactions-microservices-icebergs/]
