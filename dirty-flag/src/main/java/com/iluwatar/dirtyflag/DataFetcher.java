@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class DataFetcher {
 
-  private final String filename = "world.txt";
+  private final String filename = "./dirty-flag/src/main/resources/world.txt";
   private long lastFetched;
 
   public DataFetcher() {
@@ -58,8 +58,7 @@ public class DataFetcher {
    * @return List of strings
    */
   public List<String> fetch() {
-    ClassLoader classLoader = getClass().getClassLoader();
-    File file = new File(classLoader.getResource(filename).getFile());
+    File file = new File(filename);
 
     if (isDirty(file.lastModified())) {
       System.out.println(filename + " is dirty! Re-fetching file content...");

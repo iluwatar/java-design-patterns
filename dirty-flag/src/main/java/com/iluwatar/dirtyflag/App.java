@@ -48,6 +48,13 @@ import java.util.concurrent.TimeUnit;
  * when needed. {@link World} mainly serves the data to the front-end.
  */
 public class App {
+
+  private final World world;
+
+  public App(World world) {
+    this.world = world;
+  }
+
   /**
    * Program execution point
    */
@@ -57,7 +64,6 @@ public class App {
     executorService.scheduleAtFixedRate(new Runnable() {
       @Override
       public void run() {
-        World world = new World();
         List<String> countries = world.fetch();
         System.out.println("Our world currently has the following countries:-");
         for (String country : countries) {
@@ -74,7 +80,7 @@ public class App {
    *          command line args
    */
   public static void main(String[] args) {
-    App app = new App();
+    App app = new App(new World());
 
     app.run();
   }
