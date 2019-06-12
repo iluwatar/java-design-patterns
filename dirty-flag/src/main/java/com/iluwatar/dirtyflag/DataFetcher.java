@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class DataFetcher {
 
-  private final String filename = "./dirty-flag/src/main/resources/world.txt";
+  private final String filename = "./src/main/resources/world.txt";
   private long lastFetched;
 
   public DataFetcher() {
