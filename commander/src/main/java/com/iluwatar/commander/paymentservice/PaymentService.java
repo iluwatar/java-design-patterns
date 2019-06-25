@@ -27,8 +27,7 @@ import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 /**
- * We have a simplified payment system in the example, where we assume one single service
- * provider. The PaymentService class receives request from the {@link Commander} and adds
+ * The PaymentService class receives request from the {@link Commander} and adds
  * to the {@link PaymentDatabase}.
  */
 
