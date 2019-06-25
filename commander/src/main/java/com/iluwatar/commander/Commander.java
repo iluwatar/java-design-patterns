@@ -61,8 +61,8 @@ import com.iluwatar.commander.shippingservice.ShippingService;
  * <p>We have abstract classes {@link Database} and {@link Service} which are extended
  * by all the databases and services. Each service has a database to be updated, and 
  * receives request from an outside user (the {@link Commander} class here). There are
- * 4 services - {@link ShippingService}, {@link PaymentService}, {@link MessagingService},
- * {@link EmployeeHandle} - and a {@link QueueDatabase}. We use retries to execute any
+ * 5 microservices - {@link ShippingService}, {@link PaymentService}, {@link MessagingService},
+ * {@link EmployeeHandle} and a {@link QueueDatabase}. We use retries to execute any
  * instruction using {@link Retry} class, and idempotence is ensured by going through some
  * checks before making requests to services and making change in {@link Order} class fields
  * if request succeeds or definitively fails. There are 5 classes - 
