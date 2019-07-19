@@ -47,7 +47,7 @@ public class App {
     Zoom zoom = new Zoom();
     Hayes hayes = new Hayes();
     
-    hayes.accept(conDos); // Hayes modem with Unix configurator
+    hayes.accept(conDos); // Hayes modem with Dos configurator
     zoom.accept(conDos); // Zoom modem with Dos configurator
     hayes.accept(conUnix); // Hayes modem with Unix configurator
     zoom.accept(conUnix); // Zoom modem with Unix configurator   
