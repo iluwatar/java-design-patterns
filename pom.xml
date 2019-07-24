@@ -166,6 +166,7 @@
 	<module>collection-pipeline</module>
 	<module>master-worker-pattern</module>
 	<module>spatial-partition</module>
+	<module>typeobjectpattern</module>
     </modules>
 
     <repositories>
