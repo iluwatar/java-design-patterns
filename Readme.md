@@ -58,7 +58,7 @@ code analysing
 --------------------
 interface Fruit
 
-```
+```java
 public interface Fruit {
     void whatIm();
 }
