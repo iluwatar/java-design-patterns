@@ -185,15 +185,13 @@ Model application
 
 
 
-:
-
-
-
+```java
 Public final static DateFormat getDateInstance ();
 
 Public final static DateFormat getDateInstance (int style);
 
 Public final static DateFormat getDateInstance (int style, Locale)
+```
 
 Locale;
 
