@@ -59,7 +59,6 @@ code analysing
 interface Fruit
 
 ::
-
 public interface Fruit {
     void whatIm();
 }
@@ -67,7 +66,6 @@ public interface Fruit {
 class Apple 
 
 ::
-
 public class Apple implements Fruit {
     @Override
     public void whatIm() {
@@ -78,7 +76,6 @@ public class Apple implements Fruit {
 class Pear
 
 ::
-
 public class Pear implements Fruit {
     @Override
     public void whatIm() {
@@ -89,7 +86,6 @@ public class Pear implements Fruit {
 class FruitFactory
 
 ::
-
 public class FruitFactory {
 
     public Fruit createFruit(String type) {
@@ -107,7 +103,6 @@ public class FruitFactory {
 product use
 
 ::
-
  FruitFactory mFactory = new FruitFactory();
  Apple apple = (Apple) mFactory.createFruit("apple");//get apple
  Pear pear = (Pear) mFactory.createFruit("pear");//get pear
