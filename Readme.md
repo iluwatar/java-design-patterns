@@ -1,9 +1,8 @@
-... _simple_factory:
+#simple_factory
 
 
 
 Simple Factory Pattern
-
 ========================================
 
 
@@ -13,8 +12,7 @@ Contents:: Catalogue
 
 
 Model Motivation
-
------------------------------------------
+--------------------
 
 Considering a simple software application scenario, a software system can provide multiple buttons with different appearance (such as circular button, rectangular button, diamond button, etc.).
 
@@ -23,8 +21,7 @@ These buttons all originate from the same base class, but after inheriting the b
 
 
 Schema Definition
-
------------------------------------------
+--------------------
 
 Simple Factory Pattern: Also known as Static Factory Method, it belongs to the class creation pattern. In simple factory mode, instances of different classes can be returned according to different parameters. The Simple Factory pattern specifically defines a class to create instances of other classes, which usually have a common parent class.
 
@@ -32,8 +29,7 @@ Simple Factory Pattern: Also known as Static Factory Method, it belongs to the c
 
 
 Model structure
-
------------------------------------------
+--------------------
 
 The simple factory model includes the following roles:
 
@@ -120,8 +116,7 @@ Linenos:
 
 
 pattern analysis
-
------------------------------------------
+--------------------
 
 
 
@@ -136,17 +131,14 @@ pattern analysis
 
 
 Example
-
------------------------------------------
-
+--------------------
 (Brief)
 
 
 
 
 Advantages of Simple Factory Model
-
------------------------------------------
+--------------------
 
 
 
@@ -159,8 +151,7 @@ Advantages of Simple Factory Model
 
 
 Disadvantages of Simple Factory Model
-
------------------------------------------
+--------------------
 
 
 
@@ -189,8 +180,7 @@ Simple factory mode can be used in the following cases:
 
 
 Model application
-
------------------------------------------
+--------------------
 
 1. Simple factory patterns are widely used in JDK class libraries, such as the tool class java. text. DateFormat, which is used to format a local date or time.
 
@@ -231,8 +221,7 @@ Cipher CP = Cipher. getInstance ("DESede");
 
 
 summary
-
------------------------------------------
+--------------------
 
 
 
