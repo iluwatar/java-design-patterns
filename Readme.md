@@ -57,6 +57,7 @@ A specific product role is to create a goal, and all created objects act as inst
 code analysing
 --------------------
 interface Fruit
+
 ::
 
 public interface Fruit {
@@ -64,6 +65,7 @@ public interface Fruit {
 }
 
 class Apple 
+
 ::
 
 public class Apple implements Fruit {
@@ -74,6 +76,7 @@ public class Apple implements Fruit {
 }
 
 class Pear
+
 ::
 
 public class Pear implements Fruit {
@@ -84,6 +87,7 @@ public class Pear implements Fruit {
 }
 
 class FruitFactory
+
 ::
 
 public class FruitFactory {
@@ -101,6 +105,7 @@ public class FruitFactory {
 }
 
 product use
+
 ::
 
  FruitFactory mFactory = new FruitFactory();
