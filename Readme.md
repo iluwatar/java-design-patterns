@@ -49,7 +49,7 @@ A specific product role is to create a goal, and all created objects act as inst
 
 
 
-code analysing
+Code analysing
 --------------------
 interface Fruit
 
