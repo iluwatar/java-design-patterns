@@ -66,7 +66,7 @@ public interface Fruit {
 
 class Apple 
 
-```
+```java
 public class Apple implements Fruit {
     @Override
     public void whatIm() {
@@ -77,7 +77,7 @@ public class Apple implements Fruit {
 
 class Pear
 
-```
+```java
 public class Pear implements Fruit {
     @Override
     public void whatIm() {
@@ -87,7 +87,7 @@ public class Pear implements Fruit {
 ```
 class FruitFactory
 
-```
+```java
 public class FruitFactory {
 
     public Fruit createFruit(String type) {
@@ -105,7 +105,7 @@ public class FruitFactory {
 
 product use
 
-```
+```java
  FruitFactory mFactory = new FruitFactory();
  Apple apple = (Apple) mFactory.createFruit("apple");//get apple
  Pear pear = (Pear) mFactory.createFruit("pear");//get pear
