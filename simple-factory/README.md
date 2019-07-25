@@ -7,9 +7,9 @@ Simple Factory Pattern
 |---|---|---|---|---|---|
 |pattern|Simple Factory|simple-factory|/patterns/simple-factory/|Structural|java|
 
-##Intent
-[alt text](./etc/SimpleFactory.ipg "Simple-Factory")
-[alt text](./etc/seq_SimpleFactory.ipg "Sequence Simple-Factory")
+## Intent
+[alt text] (./etc/SimpleFactory.jpg "Simple-Factory")
+[alt text] (./etc/seq_SimpleFactory.jpg "Sequence Simple-Factory")
 
 
 Model Motivation
