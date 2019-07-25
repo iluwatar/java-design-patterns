@@ -58,11 +58,11 @@ code analysing
 --------------------
 interface Fruit
 
-::
+'''
 public interface Fruit {
     void whatIm();
 }
-
+'''
 class Apple 
 
 ::
