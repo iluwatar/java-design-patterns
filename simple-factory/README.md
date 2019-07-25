@@ -78,7 +78,7 @@ class Pear
 public class Pear implements Fruit {
     @Override
     public void whatIm() {
-        //梨
+        //pear
     }
 }
 ```
