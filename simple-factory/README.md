@@ -8,8 +8,8 @@ Simple Factory Pattern
 |pattern|Simple Factory|simple-factory|/patterns/simple-factory/|Structural|java|
 
 ## Intent
-![alt text](simple-factory/etc/SimpleFactory.jpg "Simple-Factory")
-![alt text](simple-factory/etc/seq_SimpleFactory.jpg "Sequence Simple-Factory")
+![alt text](./etc/SimpleFactory.jpg "Simple-Factory")
+![alt text](./etc/seq_SimpleFactory.jpg "Sequence Simple-Factory")
 
 
 Model Motivation
