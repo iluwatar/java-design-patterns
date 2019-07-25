@@ -3,9 +3,13 @@
 
 Simple Factory Pattern
 ========================================
+|layout|title|folder|permalink|categories|tags|
+|---|---|---|---|---|---|
+|pattern|Simple Factory|simple-factory|/patterns/simple-factory/|Structural|java|
 
-
-
+##Intent
+[alt text](./etc/SimpleFactory.ipg "Simple-Factory")
+[alt text](./etc/seq_SimpleFactory.ipg "Sequence Simple-Factory")
 
 
 Model Motivation
