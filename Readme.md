@@ -201,18 +201,18 @@ Locale;
 
 
 
-Get the key generator of different encryption algorithms
+Get the key generator of different encryption algorithms:
 
 
 ```java
 KeyGenerator keyGen = KeyGenerator. getInstance ("DESede");
+```
 
 
-
-Create a password::
-
+Create a password:
 
 
+```java
 Cipher CP = Cipher. getInstance ("DESede");
 ```
 
