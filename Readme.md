@@ -1,4 +1,3 @@
-#simple_factory
 
 
 
