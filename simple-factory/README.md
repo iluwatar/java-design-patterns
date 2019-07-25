@@ -7,6 +7,16 @@ Simple Factory Pattern
 
 
 
+---
+layout: pattern
+title: Simple Factory
+folder: simple-factory
+permalink: /patterns/simple-factory/
+categories: Structural
+tags:
+ - Java
+ - Difficulty-Beginner
+---
 
 
 Model Motivation
