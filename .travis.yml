@@ -1,4 +1,5 @@
 language: java
+dist: trusty   # Xenial build environment won't allow installation of Java 8
 jdk:
 - oraclejdk8
 
