@@ -28,6 +28,7 @@ import java.util.Map;
 
 import org.bson.Document;
 
+import com.iluwatar.caching.constants.CachingConstants;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
@@ -90,12 +91,12 @@ public final class DbManager {
       }
     }
     FindIterable<Document> iterable =
-        db.getCollection("user_accounts").find(new Document("userID", userId));
+        db.getCollection(CachingConstants.USER_ACCOUNT).find(new Document(CachingConstants.USER_ID, userId));
     if (iterable == null) {
       return null;
     }
     Document doc = iterable.first();
-    return new UserAccount(userId, doc.getString("userName"), doc.getString("additionalInfo"));
+    return new UserAccount(userId, doc.getString(CachingConstants.USER_NAME), doc.getString(CachingConstants.ADD_INFO));
   }
 
   /**
@@ -113,9 +114,9 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    db.getCollection("user_accounts").insertOne(
-        new Document("userID", userAccount.getUserId()).append("userName",
-            userAccount.getUserName()).append("additionalInfo", userAccount.getAdditionalInfo()));
+    db.getCollection(CachingConstants.USER_ACCOUNT).insertOne(
+        new Document(CachingConstants.USER_ID ,userAccount.getUserId()).append(CachingConstants.USER_NAME,
+            userAccount.getUserName()).append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo()));
   }
 
   /**
@@ -133,10 +134,10 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    db.getCollection("user_accounts").updateOne(
-        new Document("userID", userAccount.getUserId()),
-        new Document("$set", new Document("userName", userAccount.getUserName()).append(
-            "additionalInfo", userAccount.getAdditionalInfo())));
+    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
+        new Document(CachingConstants.USER_ID, userAccount.getUserId()),
+        new Document("$set", new Document(CachingConstants.USER_NAME, userAccount.getUserName())
+            .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())));
   }
 
   /**
@@ -155,10 +156,12 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    db.getCollection("user_accounts").updateOne(
-        new Document("userID", userAccount.getUserId()),
-        new Document("$set", new Document("userID", userAccount.getUserId()).append("userName",
-            userAccount.getUserName()).append("additionalInfo", userAccount.getAdditionalInfo())),
+    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
+        new Document(CachingConstants.USER_ID, userAccount.getUserId()),
+        new Document("$set",
+            new Document(CachingConstants.USER_ID, userAccount.getUserId())
+                .append(CachingConstants.USER_NAME, userAccount.getUserName()).append(CachingConstants.ADD_INFO,
+                    userAccount.getAdditionalInfo())),
         new UpdateOptions().upsert(true));
   }
 }
