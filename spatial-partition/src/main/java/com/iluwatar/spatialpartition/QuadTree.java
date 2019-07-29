@@ -55,16 +55,13 @@ public class QuadTree {
   }
 
   void insert(Point p) {
-    if (!this.boundary.contains(p)) {
-      return;
-    } else {
+    if (this.boundary.contains(p)) {
       if (this.points.size() < this.capacity) {
         points.put(p.id, p);
       } else {
         if (!this.divided) {
           this.divide();
         }
-
         if (this.northwest.boundary.contains(p)) {
           this.northwest.insert(p);
         } else if (this.northeast.boundary.contains(p)) {
