@@ -1,3 +1,4 @@
+dist: trusty   # Xenial build environment won't allow installation of Java 8
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
@@ -7,8 +8,16 @@ env:
 language: ruby
 rvm:
   - 2.2.0
+jdk:
+- oraclejdk8
 
 install: bundle install --jobs=3 --retry=3
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+      
 script: bash cibuild.sh
 after_script: if [ "$TRAVIS_BRANCH" == "gh-pages" ]; then travis_retry bundle exec s3_website push; fi
 
