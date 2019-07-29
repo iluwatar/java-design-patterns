@@ -11,6 +11,10 @@ rvm:
 jdk:
 - oraclejdk8
 
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install -y curl
+    
 install: bundle install --jobs=3 --retry=3
 
 addons:
