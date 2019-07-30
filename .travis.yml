@@ -1,4 +1,4 @@
-dist: trusty   # Xenial build environment won't allow installation of Java 8
+dist: bionic   # Xenial build environment won't allow installation of Java 8
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
