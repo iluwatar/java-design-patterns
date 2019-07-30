@@ -1,4 +1,4 @@
-dist: bionic   # Xenial build environment won't allow installation of Java 8
+dist: trusty   # Xenial build environment won't allow installation of Java 8
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
@@ -13,7 +13,7 @@ jdk:
 
 before_install:
     - sudo apt-get update
-    - sudo apt-get install -y curl
+    - sudo apt-get install -y curl libcurl4-openssl-dev
     
 install: bundle install --jobs=3 --retry=3
 
