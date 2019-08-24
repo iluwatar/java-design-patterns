@@ -25,6 +25,8 @@ package com.iluwatar.doubledispatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.iluwatar.doubledispatch.constants.AppConstants;
+
 /**
  * 
  * Meteoroid game object
@@ -45,21 +47,21 @@ public class Meteoroid extends GameObject {
 
   @Override
   public void collisionResolve(FlamingAsteroid asteroid) {
-    LOGGER.info("{} hits {}.", asteroid.getClass().getSimpleName(), this.getClass().getSimpleName());
+    LOGGER.info(AppConstants.HITS, asteroid.getClass().getSimpleName(), this.getClass().getSimpleName());
   }
 
   @Override
   public void collisionResolve(Meteoroid meteoroid) {
-    LOGGER.info("{} hits {}.", meteoroid.getClass().getSimpleName(), this.getClass().getSimpleName());
+    LOGGER.info(AppConstants.HITS, meteoroid.getClass().getSimpleName(), this.getClass().getSimpleName());
   }
 
   @Override
   public void collisionResolve(SpaceStationMir mir) {
-    LOGGER.info("{} hits {}.", mir.getClass().getSimpleName(), this.getClass().getSimpleName());
+    LOGGER.info(AppConstants.HITS, mir.getClass().getSimpleName(), this.getClass().getSimpleName());
   }
 
   @Override
   public void collisionResolve(SpaceStationIss iss) {
-    LOGGER.info("{} hits {}.", iss.getClass().getSimpleName(), this.getClass().getSimpleName());
+    LOGGER.info(AppConstants.HITS, iss.getClass().getSimpleName(), this.getClass().getSimpleName());
   }
 }
