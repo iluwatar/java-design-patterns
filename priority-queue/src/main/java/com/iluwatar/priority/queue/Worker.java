@@ -22,10 +22,15 @@
  */
 package com.iluwatar.priority.queue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Message Worker
  */
 public class Worker {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
   private final QueueManager queueManager;
 
@@ -40,7 +45,7 @@ public class Worker {
     while (true) {
       Message message = queueManager.receiveMessage();
       if (message == null) {
-        System.out.println("No Message ... waiting");
+        LOGGER.info("No Message ... waiting");
         Thread.sleep(200);
       } else {
         processMessage(message);
@@ -52,7 +57,7 @@ public class Worker {
    * Process message
    */
   private void processMessage(Message message) {
-    System.out.println(message);
+    LOGGER.info(message.toString());
   }
 
 }

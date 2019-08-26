@@ -23,11 +23,11 @@
 package com.iluwatar.priority.queue;
 
 /**
- * Simple Bean
+ * Message bean
  */
 public class Message implements Comparable<Message> {
-  private String message;
-  private int priority; // define message priority in queue
+  private final String message;
+  private final int priority; // define message priority in queue
 
 
   public Message(String message, int priority) {
