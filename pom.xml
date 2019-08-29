@@ -166,7 +166,10 @@
 	<module>collection-pipeline</module>
 	<module>master-worker-pattern</module>
 	<module>spatial-partition</module>
-        <module>bytecode</module>
+  <module>bytecode</module>
+	<module>commander</module>
+	<module>typeobjectpattern</module>
+
     </modules>
 
     <repositories>
@@ -234,12 +237,6 @@
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-stream</artifactId>
                 <version>${camel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit-jupiter.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>

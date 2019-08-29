@@ -30,6 +30,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 
+import com.iluwatar.cqrs.constants.AppConstants;
 import com.iluwatar.cqrs.dto.Author;
 import com.iluwatar.cqrs.dto.Book;
 import com.iluwatar.cqrs.util.HibernateUtil;
@@ -50,7 +51,7 @@ public class QueryServiceImpl implements IQueryService {
       SQLQuery sqlQuery = session
           .createSQLQuery("SELECT a.username as \"username\", a.name as \"name\", a.email as \"email\""
               + "FROM Author a where a.username=:username");
-      sqlQuery.setParameter("username", username);
+      sqlQuery.setParameter(AppConstants.USER_NAME, username);
       authorDTo = (Author) sqlQuery.setResultTransformer(Transformers.aliasToBean(Author.class)).uniqueResult();
     }
     return authorDTo;
@@ -74,7 +75,7 @@ public class QueryServiceImpl implements IQueryService {
     try (Session session = sessionFactory.openSession()) {
       SQLQuery sqlQuery = session.createSQLQuery("SELECT b.title as \"title\", b.price as \"price\""
           + " FROM Author a , Book b where b.author_id = a.id and a.username=:username");
-      sqlQuery.setParameter("username", username);
+      sqlQuery.setParameter(AppConstants.USER_NAME, username);
       bookDTos = sqlQuery.setResultTransformer(Transformers.aliasToBean(Book.class)).list();
     }
     return bookDTos;
@@ -86,7 +87,7 @@ public class QueryServiceImpl implements IQueryService {
     try (Session session = sessionFactory.openSession()) {
       SQLQuery sqlQuery = session.createSQLQuery(
           "SELECT count(b.title)" + " FROM  Book b, Author a where b.author_id = a.id and a.username=:username");
-      sqlQuery.setParameter("username", username);
+      sqlQuery.setParameter(AppConstants.USER_NAME, username);
       bookcount = (BigInteger) sqlQuery.uniqueResult();
     }
     return bookcount;

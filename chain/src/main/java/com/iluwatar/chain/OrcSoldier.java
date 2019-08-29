@@ -35,7 +35,7 @@ public class OrcSoldier extends RequestHandler {
 
   @Override
   public void handleRequest(Request req) {
-    if (req.getRequestType().equals(RequestType.COLLECT_TAX)) {
+    if (RequestType.COLLECT_TAX == req.getRequestType()) {
       printHandling(req);
       req.markHandled();
     } else {

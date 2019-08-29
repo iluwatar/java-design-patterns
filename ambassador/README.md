@@ -43,7 +43,7 @@ A remote services represented as a singleton.
 public class RemoteService implements RemoteServiceInterface {
 
 		private static final Logger LOGGER = LoggerFactory.getLogger(RemoteService.class);
-    private static RemoteService service = null;2
+    private static RemoteService service = null;
 
     static synchronized RemoteService getRemoteService() {
         if (service == null) {
