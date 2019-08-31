@@ -17,7 +17,9 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
@@ -162,12 +164,13 @@
         <module>trampoline</module>
         <module>serverless</module>
         <module>ambassador</module>
-	<module>acyclic-visitor</module>
-	<module>collection-pipeline</module>
-	<module>master-worker-pattern</module>
-	<module>spatial-partition</module>
-	<module>commander</module>
-	<module>typeobjectpattern</module>
+        <module>acyclic-visitor</module>
+        <module>collection-pipeline</module>
+        <module>master-worker-pattern</module>
+        <module>spatial-partition</module>
+        <module>priority-queue</module>
+	    <module>commander</module>
+	    <module>typeobjectpattern</module>
     </modules>
 
     <repositories>
