@@ -171,6 +171,7 @@
         <module>priority-queue</module>
 	    <module>commander</module>
 	    <module>typeobjectpattern</module>
+        <module>bytecode</module>
     </modules>
 
     <repositories>
