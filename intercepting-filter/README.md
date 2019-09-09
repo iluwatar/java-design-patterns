@@ -30,9 +30,8 @@ Use the Intercepting Filter pattern when
 ## Real world examples
 
 * [javax.servlet.FilterChain](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/FilterChain.html) and [javax.servlet.Filter](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/Filter.html)
-* [Struts 2 - Interceptors](https://struts.apache.org/docs/interceptors.html)
+* [Struts 2 - Interceptors](https://struts.apache.org/core-developers/interceptors.html)
 
 ## Credits
 
 * [TutorialsPoint - Intercepting Filter](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
-* [Presentation Tier Patterns](http://www.javagyan.com/tutorials/corej2eepatterns/presentation-tier-patterns)
