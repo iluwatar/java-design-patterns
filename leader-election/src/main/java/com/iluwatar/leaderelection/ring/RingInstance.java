@@ -6,11 +6,16 @@ import com.iluwatar.leaderelection.MessageManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RingInstance implements Instance {
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+public class RingInstance implements Instance, Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RingInstance.class);
 
     private MessageManager messageManager;
+
+    private Queue<Message> messageQueue;
 
     private final int localID;
 
@@ -18,27 +23,42 @@ public class RingInstance implements Instance {
 
     private boolean alive;
 
-    public RingInstance(MessageManager messageManager, int localID, int leaderID, boolean alive) {
+    public RingInstance(MessageManager messageManager, int localID, int leaderID) {
         this.messageManager = messageManager;
+        this.messageQueue = new PriorityQueue<>();
         this.localID = localID;
         this.leaderID = leaderID;
-        this.alive = alive;
+        this.alive = true;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            if (!messageQueue.isEmpty()) {
+                this.processMessage(messageQueue.poll());
+            }
+        }
     }
 
     @Override
     public void onMessage(Message message) {
+        messageQueue.offer(message);
+    }
+
+    private void processMessage(Message message) {
         if (message instanceof RingMessage) {
             switch (((RingMessage) message).getType()) {
-                case Election:
-                    LOGGER.info("Instance " + localID + ": Election Message Received");
+                case ELECTION:
+                    LOGGER.info("Instance " + localID + ": Election Message handling...");
                     this.handleElectionMessage();
                     break;
-                case Leader:
-                    LOGGER.info("Instance " + localID + ": Leader Message Received");
+                case LEADER
+                        :
+                    LOGGER.info("Instance " + localID + ": Leader Message handling...");
                     this.handleLeaderMessage();
                     break;
-                case Heartbeat:
-                    LOGGER.info("Instance " + localID + ": Heartbeat Message Received");
+                case HEARTBEAT_INVOKE:
+                    LOGGER.info("Instance " + localID + ": Heartbeat Message handling...");
                     this.handleHeartbeatMessage();
                     break;
             }
@@ -46,11 +66,11 @@ public class RingInstance implements Instance {
     }
 
     private void handleHeartbeatMessage() {
-        boolean isLeaderAlive = messageManager.sendHeartbeatMessageToLeader(this.leaderID);
+        boolean isLeaderAlive = messageManager.sendHeartbeatMessage(this.leaderID);
         if (isLeaderAlive) {
-
+            messageManager.sendHeartbeatInvokeMessage(this.localID);
         } else {
-
+            messageManager.sendElectionMessage(this.localID, String.valueOf(localID));
         }
     }
 
@@ -62,15 +82,12 @@ public class RingInstance implements Instance {
 
     }
 
-    private boolean isLeader() {
-        return localID == leaderID;
-    }
-
     @Override
     public boolean isAlive() {
         return alive;
     }
 
+    @Override
     public void setAlive(boolean alive) {
         this.alive = alive;
     }

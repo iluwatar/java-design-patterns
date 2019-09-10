@@ -2,8 +2,10 @@ package com.iluwatar.leaderelection.ring;
 
 public enum RingMessageType {
 
-    Election,
-    Leader,
-    Heartbeat
+    ELECTION,
+    LEADER,
+    HEARTBEAT,
+    HEARTBEAT_INVOKE
 
 }
+

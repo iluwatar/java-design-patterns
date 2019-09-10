@@ -16,16 +16,28 @@ public class RingMessageManager implements MessageManager {
 
     private Map<Integer, Instance> instanceMap;
 
-    public boolean sendHeartbeatMessageToLeader(int leaderID) {
+    @Override
+    public boolean sendHeartbeatMessage(int leaderID) {
         Instance leaderInstance = instanceMap.get(leaderID);
         boolean alive = leaderInstance.isAlive();
         return alive;
     }
 
-    public void invokeNextHeartbeatCheck(int currentID) {
+    @Override
+    public void sendElectionMessage(int currentID, String content) {
+        
+    }
+
+    @Override
+    public void sendLeaderMessage(int currentID, int leaderID) {
+
+    }
+
+    @Override
+    public void sendHeartbeatInvokeMessage(int currentID) {
         Instance nextHeartbeatInstance = this.findNextInstance(currentID);
-        Message heartbeatMessage = new RingMessage(RingMessageType.Heartbeat, "");
-        nextHeartbeatInstance.onMessage(heartbeatMessage);
+        Message heartbeatInvokeMessage = new RingMessage(RingMessageType.HEARTBEAT_INVOKE, "");
+        nextHeartbeatInstance.onMessage(heartbeatInvokeMessage);
     }
 
     private Instance findNextInstance(int currentID) {
@@ -49,13 +61,5 @@ public class RingMessageManager implements MessageManager {
             result = instanceMap.get(index);
         }
         return result;
-    }
-
-    public Map<Integer, Instance> getInstanceMap() {
-        return instanceMap;
-    }
-
-    public void setInstanceMap(Map<Integer, Instance> instanceMap) {
-        this.instanceMap = instanceMap;
     }
 }
