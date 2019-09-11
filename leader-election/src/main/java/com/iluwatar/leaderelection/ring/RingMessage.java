@@ -1,25 +1,26 @@
 package com.iluwatar.leaderelection.ring;
 
 import com.iluwatar.leaderelection.Message;
+import com.iluwatar.leaderelection.MessageType;
 
 public class RingMessage implements Message {
 
-    private RingMessageType type;
+    private MessageType type;
 
     private String content;
 
     public RingMessage() {}
 
-    public RingMessage(RingMessageType type, String content) {
+    public RingMessage(MessageType type, String content) {
         this.type = type;
         this.content = content;
     }
 
-    public RingMessageType getType() {
+    public MessageType getType() {
         return type;
     }
 
-    public void setType(RingMessageType type) {
+    public void setType(MessageType type) {
         this.type = type;
     }
 

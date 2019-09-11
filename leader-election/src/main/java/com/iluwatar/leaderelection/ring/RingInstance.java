@@ -6,8 +6,8 @@ import com.iluwatar.leaderelection.MessageManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class RingInstance implements Instance, Runnable {
 
@@ -46,39 +46,49 @@ public class RingInstance implements Instance, Runnable {
     }
 
     private void processMessage(Message message) {
-        if (message instanceof RingMessage) {
-            switch (((RingMessage) message).getType()) {
-                case ELECTION:
-                    LOGGER.info("Instance " + localID + ": Election Message handling...");
-                    this.handleElectionMessage();
-                    break;
-                case LEADER
-                        :
-                    LOGGER.info("Instance " + localID + ": Leader Message handling...");
-                    this.handleLeaderMessage();
-                    break;
-                case HEARTBEAT_INVOKE:
-                    LOGGER.info("Instance " + localID + ": Heartbeat Message handling...");
-                    this.handleHeartbeatMessage();
-                    break;
-            }
+        switch (message.getType()) {
+            case ELECTION:
+                LOGGER.info("Instance " + localID + ": Election Message handling...");
+                this.handleElectionMessage(message);
+                break;
+            case LEADER:
+                LOGGER.info("Instance " + localID + ": Leader Message handling...");
+                this.handleLeaderMessage(message);
+                break;
+            case HEARTBEAT_INVOKE:
+                LOGGER.info("Instance " + localID + ": Heartbeat Message handling...");
+                this.handleHeartbeatMessage(message);
+                break;
         }
     }
 
-    private void handleHeartbeatMessage() {
+    private void handleHeartbeatMessage(Message message) {
         boolean isLeaderAlive = messageManager.sendHeartbeatMessage(this.leaderID);
         if (isLeaderAlive) {
+            LOGGER.info("Instance " + localID + ": Leader is alive.");
             messageManager.sendHeartbeatInvokeMessage(this.localID);
         } else {
+            LOGGER.info("Instance " + localID + ": Leader is not alive. Start election.");
             messageManager.sendElectionMessage(this.localID, String.valueOf(localID));
         }
     }
 
-    private void handleElectionMessage() {
-
+    private void handleElectionMessage(Message message) {
+        String content = message.getContent();
+        List<Integer> candidateList =
+                Arrays.stream(content.trim().split(","))
+                        .map(Integer::valueOf)
+                        .sorted()
+                        .collect(Collectors.toList());
+        if (candidateList.contains(this.localID)) {
+            messageManager.sendLeaderMessage(this.localID, candidateList.get(0));
+        } else {
+            content += "," + localID;
+            messageManager.sendElectionMessage(this.localID, content);
+        }
     }
 
-    private void handleLeaderMessage() {
+    private void handleLeaderMessage(Message message) {
 
     }
 

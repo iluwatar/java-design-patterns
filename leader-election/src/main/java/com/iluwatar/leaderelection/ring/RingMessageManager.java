@@ -3,6 +3,7 @@ package com.iluwatar.leaderelection.ring;
 import com.iluwatar.leaderelection.Instance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
+import com.iluwatar.leaderelection.MessageType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +26,9 @@ public class RingMessageManager implements MessageManager {
 
     @Override
     public void sendElectionMessage(int currentID, String content) {
-        
+        Instance nextInstance = this.findNextInstance(currentID);
+        Message electionMessage = new RingMessage(MessageType.ELECTION, content);
+        nextInstance.onMessage(electionMessage);
     }
 
     @Override
@@ -35,9 +38,9 @@ public class RingMessageManager implements MessageManager {
 
     @Override
     public void sendHeartbeatInvokeMessage(int currentID) {
-        Instance nextHeartbeatInstance = this.findNextInstance(currentID);
-        Message heartbeatInvokeMessage = new RingMessage(RingMessageType.HEARTBEAT_INVOKE, "");
-        nextHeartbeatInstance.onMessage(heartbeatInvokeMessage);
+        Instance nextInstance = this.findNextInstance(currentID);
+        Message heartbeatInvokeMessage = new RingMessage(MessageType.HEARTBEAT_INVOKE, "");
+        nextInstance.onMessage(heartbeatInvokeMessage);
     }
 
     private Instance findNextInstance(int currentID) {
