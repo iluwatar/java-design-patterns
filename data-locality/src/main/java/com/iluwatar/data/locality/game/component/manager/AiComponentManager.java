@@ -24,36 +24,41 @@ package com.iluwatar.data.locality.game.component.manager;
 
 import com.iluwatar.data.locality.game.component.AiComponent;
 import com.iluwatar.data.locality.game.component.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Component Manager for AI
+ * AI component manager for Game
  */
 public class AiComponentManager {
 
-  private static final int MAX_ENTITES = 10000;
+  private static final Logger LOGGER = LoggerFactory.getLogger(AiComponentManager.class);
+
+  private static final int MAX_ENTITIES = 10000;
 
   private final int numEntities;
 
-  public static final Component[] AI_COMPONENTS = new AiComponent[MAX_ENTITES];
+  private static final Component[] AI_COMPONENTS = new AiComponent[MAX_ENTITIES];
 
   public AiComponentManager(int numEntities) {
     this.numEntities = numEntities;
   }
 
   /**
-   * start AI component
+   * start AI component of Game
    */
   public void start() {
+    LOGGER.info("Start AI Game Component");
     for (int i = 0; i < numEntities; i++) {
       AI_COMPONENTS[i] = new AiComponent();
     }
   }
 
   /**
-   * Update AI component
+   * Update AI component of Game
    */
   public void update() {
-    // Process AI.
+    LOGGER.info("Update AI Game Component");
     for (int i = 0; i < numEntities; i++) {
       if (AI_COMPONENTS.length > i && AI_COMPONENTS[i] != null) {
         AI_COMPONENTS[i].update();

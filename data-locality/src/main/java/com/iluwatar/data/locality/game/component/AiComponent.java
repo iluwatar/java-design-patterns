@@ -22,16 +22,26 @@
  */
 package com.iluwatar.data.locality.game.component;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- * AI component
+ * Implementation of AI component for Game
  */
 public class AiComponent implements Component {
+  
+  private static final Logger LOGGER = LoggerFactory.getLogger(AiComponent.class);
 
   /**
    * Update ai component
    */
   @Override
   public void update() {
-    System.out.println("update :" + this.getClass().getSimpleName());
+    LOGGER.info("update AI component");
+  }
+
+  @Override
+  public void render() {
+
   }
 }

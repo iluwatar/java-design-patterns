@@ -23,14 +23,11 @@
 package com.iluwatar.data.locality.game.component;
 
 /**
- * Component
+ * Implement different Game component update and render process
  */
 public interface Component {
-  default void update() {
-    System.out.println("Default update");
-  }
 
-  default void render() {
-    System.out.println("Default render");
-  }
+  void update();
+
+  void render();
 }
