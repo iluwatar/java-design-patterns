@@ -14,13 +14,9 @@ public class RingInstance implements Instance, Runnable {
     private static final Logger LOGGER = LoggerFactory.getLogger(RingInstance.class);
 
     private MessageManager messageManager;
-
     private Queue<Message> messageQueue;
-
     private final int localID;
-
     private int leaderID;
-
     private boolean alive;
 
     public RingInstance(MessageManager messageManager, int localID, int leaderID) {
@@ -89,7 +85,13 @@ public class RingInstance implements Instance, Runnable {
     }
 
     private void handleLeaderMessage(Message message) {
-
+        int newLeaderID = Integer.valueOf(message.getContent());
+        if (this.leaderID != newLeaderID) {
+            this.leaderID = newLeaderID;
+            messageManager.sendLeaderMessage(this.localID, newLeaderID);
+        } else {
+            messageManager.sendHeartbeatInvokeMessage(this.localID);
+        }
     }
 
     @Override

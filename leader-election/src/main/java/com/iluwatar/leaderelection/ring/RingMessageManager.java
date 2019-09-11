@@ -17,6 +17,12 @@ public class RingMessageManager implements MessageManager {
 
     private Map<Integer, Instance> instanceMap;
 
+    public RingMessageManager() {}
+
+    public RingMessageManager(Map<Integer, Instance> instanceMap) {
+        this.instanceMap = instanceMap;
+    }
+
     @Override
     public boolean sendHeartbeatMessage(int leaderID) {
         Instance leaderInstance = instanceMap.get(leaderID);
@@ -33,7 +39,9 @@ public class RingMessageManager implements MessageManager {
 
     @Override
     public void sendLeaderMessage(int currentID, int leaderID) {
-
+        Instance nextInstance = this.findNextInstance(currentID);
+        Message leaderMessage = new RingMessage(MessageType.LEADER, String.valueOf(leaderID));
+        nextInstance.onMessage(leaderMessage);
     }
 
     @Override

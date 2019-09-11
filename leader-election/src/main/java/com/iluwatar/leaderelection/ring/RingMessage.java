@@ -6,7 +6,6 @@ import com.iluwatar.leaderelection.MessageType;
 public class RingMessage implements Message {
 
     private MessageType type;
-
     private String content;
 
     public RingMessage() {}
