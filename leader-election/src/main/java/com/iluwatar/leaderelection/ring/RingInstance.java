@@ -3,15 +3,14 @@ package com.iluwatar.leaderelection.ring;
 import com.iluwatar.leaderelection.Instance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
 public class RingInstance implements Instance, Runnable {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(RingInstance.class);
 
     private MessageManager messageManager;
     private Queue<Message> messageQueue;
@@ -21,7 +20,7 @@ public class RingInstance implements Instance, Runnable {
 
     public RingInstance(MessageManager messageManager, int localID, int leaderID) {
         this.messageManager = messageManager;
-        this.messageQueue = new PriorityQueue<>();
+        this.messageQueue = new ConcurrentLinkedQueue<>();
         this.localID = localID;
         this.leaderID = leaderID;
         this.alive = true;
@@ -31,8 +30,9 @@ public class RingInstance implements Instance, Runnable {
     public void run() {
         while (true) {
             if (!messageQueue.isEmpty()) {
-                this.processMessage(messageQueue.poll());
+                this.processMessage(messageQueue.remove());
             }
+            System.out.flush();
         }
     }
 
@@ -44,15 +44,15 @@ public class RingInstance implements Instance, Runnable {
     private void processMessage(Message message) {
         switch (message.getType()) {
             case ELECTION:
-                LOGGER.info("Instance " + localID + ": Election Message handling...");
+                System.out.println("Instance " + localID + " - Election Message handling...");
                 this.handleElectionMessage(message);
                 break;
             case LEADER:
-                LOGGER.info("Instance " + localID + ": Leader Message handling...");
+                System.out.println("Instance " + localID + " - Leader Message handling...");
                 this.handleLeaderMessage(message);
                 break;
             case HEARTBEAT_INVOKE:
-                LOGGER.info("Instance " + localID + ": Heartbeat Message handling...");
+                System.out.println("Instance " + localID + " - Heartbeat Message handling...");
                 this.handleHeartbeatMessage(message);
                 break;
         }
@@ -61,22 +61,24 @@ public class RingInstance implements Instance, Runnable {
     private void handleHeartbeatMessage(Message message) {
         boolean isLeaderAlive = messageManager.sendHeartbeatMessage(this.leaderID);
         if (isLeaderAlive) {
-            LOGGER.info("Instance " + localID + ": Leader is alive.");
+            System.out.println("Instance " + localID + "- Leader is alive.");
             messageManager.sendHeartbeatInvokeMessage(this.localID);
         } else {
-            LOGGER.info("Instance " + localID + ": Leader is not alive. Start election.");
+            System.out.println("Instance " + localID + "- Leader is not alive. Start election.");
             messageManager.sendElectionMessage(this.localID, String.valueOf(localID));
         }
     }
 
     private void handleElectionMessage(Message message) {
         String content = message.getContent();
+        System.out.println("Instance " + localID + " - Election Message: " + content);
         List<Integer> candidateList =
                 Arrays.stream(content.trim().split(","))
                         .map(Integer::valueOf)
                         .sorted()
                         .collect(Collectors.toList());
         if (candidateList.contains(this.localID)) {
+            System.out.println("Instance " + localID + " - New leader should be " + candidateList.get(0) + ". Start leader notification.");
             messageManager.sendLeaderMessage(this.localID, candidateList.get(0));
         } else {
             content += "," + localID;
@@ -87,9 +89,11 @@ public class RingInstance implements Instance, Runnable {
     private void handleLeaderMessage(Message message) {
         int newLeaderID = Integer.valueOf(message.getContent());
         if (this.leaderID != newLeaderID) {
+            System.out.println("Instance " + localID + " - Update leaderID");
             this.leaderID = newLeaderID;
             messageManager.sendLeaderMessage(this.localID, newLeaderID);
         } else {
+            System.out.println("Instance " + localID + " - Leader update done. Start heartbeat.");
             messageManager.sendHeartbeatInvokeMessage(this.localID);
         }
     }

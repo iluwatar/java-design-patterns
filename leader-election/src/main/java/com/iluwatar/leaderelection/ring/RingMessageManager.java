@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 
 public class RingMessageManager implements MessageManager {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RingMessageManager.class);
-
     private Map<Integer, Instance> instanceMap;
 
     public RingMessageManager() {}
