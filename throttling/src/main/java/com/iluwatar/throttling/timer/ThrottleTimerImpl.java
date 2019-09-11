@@ -49,6 +49,7 @@ public class ThrottleTimerImpl implements Throttler {
    * A timer is initiated with this method. The timer runs every second and resets the
    * counter.
    */
+  @Override
   public void start() {
     new Timer(true).schedule(new TimerTask() {
       @Override
