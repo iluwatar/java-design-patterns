@@ -28,12 +28,12 @@ package com.iluwatar.leaderelection;
  */
 public interface MessageManager {
 
-    boolean sendHeartbeatMessage(int leaderID);
+  boolean sendHeartbeatMessage(int leaderId);
 
-    void sendElectionMessage(int currentID, String content);
+  void sendElectionMessage(int currentId, String content);
 
-    void sendLeaderMessage(int currentID, int leaderID);
+  void sendLeaderMessage(int currentId, int leaderId);
 
-    void sendHeartbeatInvokeMessage(int currentID);
+  void sendHeartbeatInvokeMessage(int currentId);
 
 }

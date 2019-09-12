@@ -46,130 +46,132 @@ import java.util.stream.Collectors;
  */
 public class RingInstance implements Instance, Runnable {
 
-    private MessageManager messageManager;
-    private Queue<Message> messageQueue;
-    private final int localID;
-    private int leaderID;
-    private boolean alive;
+  private MessageManager messageManager;
+  private Queue<Message> messageQueue;
+  private final int localId;
+  private int leaderId;
+  private boolean alive;
 
-    /**
-     * Constructor of RingInstance.
-     */
-    public RingInstance(MessageManager messageManager, int localID, int leaderID) {
-        this.messageManager = messageManager;
-        this.messageQueue = new ConcurrentLinkedQueue<>();
-        this.localID = localID;
-        this.leaderID = leaderID;
-        this.alive = true;
-    }
+  /**
+   * Constructor of RingInstance.
+   */
+  public RingInstance(MessageManager messageManager, int localId, int leaderId) {
+    this.messageManager = messageManager;
+    this.messageQueue = new ConcurrentLinkedQueue<>();
+    this.localId = localId;
+    this.leaderId = leaderId;
+    this.alive = true;
+  }
 
-    /**
-     * The instance will execute the message in its message queue periodically once it is alive.
-     */
-    @Override
-    public void run() {
-        while (true) {
-            if (!messageQueue.isEmpty()) {
-                this.processMessage(messageQueue.remove());
-            }
-            System.out.flush();
-        }
+  /**
+   * The instance will execute the message in its message queue periodically once it is alive.
+   */
+  @Override
+  public void run() {
+    while (true) {
+      if (!messageQueue.isEmpty()) {
+        this.processMessage(messageQueue.remove());
+      }
+      System.out.flush();
     }
+  }
 
-    /**
-     * Message listening method of the instance.
-     * @param message
-     */
-    @Override
-    public void onMessage(Message message) {
-        messageQueue.offer(message);
-    }
+  /**
+   * Message listening method of the instance.
+   */
+  @Override
+  public void onMessage(Message message) {
+    messageQueue.offer(message);
+  }
 
-    private void processMessage(Message message) {
-        switch (message.getType()) {
-            case ELECTION:
-                System.out.println("Instance " + localID + " - Election Message handling...");
-                this.handleElectionMessage(message);
-                break;
-            case LEADER:
-                System.out.println("Instance " + localID + " - Leader Message handling...");
-                this.handleLeaderMessage(message);
-                break;
-            case HEARTBEAT_INVOKE:
-                System.out.println("Instance " + localID + " - Heartbeat Message handling...");
-                this.handleHeartbeatMessage(message);
-                break;
-        }
+  private void processMessage(Message message) {
+    switch (message.getType()) {
+      case ELECTION:
+        System.out.println("Instance " + localId + " - Election Message handling...");
+        this.handleElectionMessage(message);
+        break;
+      case LEADER:
+        System.out.println("Instance " + localId + " - Leader Message handling...");
+        this.handleLeaderMessage(message);
+        break;
+      case HEARTBEAT_INVOKE:
+        System.out.println("Instance " + localId + " - Heartbeat Message handling...");
+        this.handleHeartbeatMessage(message);
+        break;
+      default:
+        break;
     }
+  }
 
-    /**
-     * Process the heartbeat invoke message. After receiving the message, the instance will send a heartbeat
-     * to leader to check its health. If alive, it will inform the next instance to do the heartbeat. If not,
-     * it will start the election process.
-     */
-    private void handleHeartbeatMessage(Message message) {
-        boolean isLeaderAlive = messageManager.sendHeartbeatMessage(this.leaderID);
-        if (isLeaderAlive) {
-            System.out.println("Instance " + localID + "- Leader is alive.");
-            messageManager.sendHeartbeatInvokeMessage(this.localID);
-        } else {
-            System.out.println("Instance " + localID + "- Leader is not alive. Start election.");
-            messageManager.sendElectionMessage(this.localID, String.valueOf(localID));
-        }
+  /**
+   * Process the heartbeat invoke message. After receiving the message, the instance will send a heartbeat
+   * to leader to check its health. If alive, it will inform the next instance to do the heartbeat. If not,
+   * it will start the election process.
+   */
+  private void handleHeartbeatMessage(Message message) {
+    boolean isLeaderAlive = messageManager.sendHeartbeatMessage(this.leaderId);
+    if (isLeaderAlive) {
+      System.out.println("Instance " + localId + "- Leader is alive.");
+      messageManager.sendHeartbeatInvokeMessage(this.localId);
+    } else {
+      System.out.println("Instance " + localId + "- Leader is not alive. Start election.");
+      messageManager.sendElectionMessage(this.localId, String.valueOf(localId));
     }
+  }
 
-    /**
-     * Process election message. If the local ID is contained in the ID list, the instance will select the
-     * alive instance with smallest ID to be the new leader, and send the leader inform message. If not,
-     * it will add its local ID to the list and send the message to the next instance in the ring.
-     */
-    private void handleElectionMessage(Message message) {
-        String content = message.getContent();
-        System.out.println("Instance " + localID + " - Election Message: " + content);
-        List<Integer> candidateList =
-                Arrays.stream(content.trim().split(","))
-                        .map(Integer::valueOf)
-                        .sorted()
-                        .collect(Collectors.toList());
-        if (candidateList.contains(this.localID)) {
-            System.out.println("Instance " + localID + " - New leader should be " + candidateList.get(0) + ". Start leader notification.");
-            messageManager.sendLeaderMessage(this.localID, candidateList.get(0));
-        } else {
-            content += "," + localID;
-            messageManager.sendElectionMessage(this.localID, content);
-        }
+  /**
+   * Process election message. If the local ID is contained in the ID list, the instance will select the
+   * alive instance with smallest ID to be the new leader, and send the leader inform message. If not,
+   * it will add its local ID to the list and send the message to the next instance in the ring.
+   */
+  private void handleElectionMessage(Message message) {
+    String content = message.getContent();
+    System.out.println("Instance " + localId + " - Election Message: " + content);
+    List<Integer> candidateList =
+        Arrays.stream(content.trim().split(","))
+                 .map(Integer::valueOf)
+                 .sorted()
+                 .collect(Collectors.toList());
+    if (candidateList.contains(this.localId)) {
+      int newLeaderId = candidateList.get(0);
+      System.out.println("Instance " + localId + " - New leader should be " + newLeaderId + ".");
+      messageManager.sendLeaderMessage(this.localId, newLeaderId);
+    } else {
+      content += "," + localId;
+      messageManager.sendElectionMessage(this.localId, content);
     }
+  }
 
-    /**
-     * Process leader Message. The instance will set the leader ID to be the new one and send the message to
-     * the next instance until all the alive instance in the ring is informed.
-     */
-    private void handleLeaderMessage(Message message) {
-        int newLeaderID = Integer.valueOf(message.getContent());
-        if (this.leaderID != newLeaderID) {
-            System.out.println("Instance " + localID + " - Update leaderID");
-            this.leaderID = newLeaderID;
-            messageManager.sendLeaderMessage(this.localID, newLeaderID);
-        } else {
-            System.out.println("Instance " + localID + " - Leader update done. Start heartbeat.");
-            messageManager.sendHeartbeatInvokeMessage(this.localID);
-        }
+  /**
+   * Process leader Message. The instance will set the leader ID to be the new one and send the message to
+   * the next instance until all the alive instance in the ring is informed.
+   */
+  private void handleLeaderMessage(Message message) {
+    int newLeaderId = Integer.valueOf(message.getContent());
+    if (this.leaderId != newLeaderId) {
+      System.out.println("Instance " + localId + " - Update leaderID");
+      this.leaderId = newLeaderId;
+      messageManager.sendLeaderMessage(this.localId, newLeaderId);
+    } else {
+      System.out.println("Instance " + localId + " - Leader update done. Start heartbeat.");
+      messageManager.sendHeartbeatInvokeMessage(this.localId);
     }
+  }
 
-    /**
-     * Check whether the certain instnace is alive or not.
-     * @return {@code true} if the instance is alive
-     */
-    @Override
-    public boolean isAlive() {
-        return alive;
-    }
+  /**
+   * Check whether the certain instnace is alive or not.
+   * @return {@code true} if the instance is alive
+   */
+  @Override
+  public boolean isAlive() {
+    return alive;
+  }
 
-    /**
-     * Set the status of instance.
-     */
-    @Override
-    public void setAlive(boolean alive) {
-        this.alive = alive;
-    }
+  /**
+   * Set the status of instance.
+   */
+  @Override
+  public void setAlive(boolean alive) {
+    this.alive = alive;
+  }
 }

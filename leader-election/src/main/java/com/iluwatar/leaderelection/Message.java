@@ -28,8 +28,8 @@ package com.iluwatar.leaderelection;
  */
 public interface Message {
 
-    MessageType getType();
+  MessageType getType();
 
-    String getContent();
+  String getContent();
 
 }

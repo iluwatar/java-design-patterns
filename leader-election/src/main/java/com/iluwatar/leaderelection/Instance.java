@@ -28,10 +28,10 @@ package com.iluwatar.leaderelection;
  */
 public interface Instance {
 
-    boolean isAlive();
+  boolean isAlive();
 
-    void setAlive(boolean alive);
+  void setAlive(boolean alive);
 
-    void onMessage(Message message);
+  void onMessage(Message message);
 
 }
