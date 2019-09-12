@@ -71,6 +71,7 @@ public final class App {
     noErrors();
     errorNoRetry();
     errorWithRetry();
+    errorWithRetryExponentialBackoff();
   }
 
   private static void noErrors() throws Exception {
@@ -101,5 +102,20 @@ public final class App {
         "However, retrying the operation while ignoring a recoverable error will eventually yield "
         + "the result %s after a number of attempts %s", customerId, retry.attempts()
     ));
+  }
+  
+  private static void errorWithRetryExponentialBackoff() throws Exception {
+    final RetryExponentialBackoff<String> retry = new RetryExponentialBackoff<>(
+        new FindCustomer("123", new CustomerNotFoundException("not found")),
+        6,  //6 attempts
+        30000, //30 s max delay between attempts
+        e -> CustomerNotFoundException.class.isAssignableFrom(e.getClass())
+        );
+    op = retry;
+    final String customerId = op.perform();
+    LOG.info(String.format(
+                "However, retrying the operation while ignoring a recoverable error will eventually yield "
+                        + "the result %s after a number of attempts %s", customerId, retry.attempts()
+        ));
   }
 }

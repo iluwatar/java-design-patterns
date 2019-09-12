@@ -40,7 +40,7 @@ public class OrcMage extends Mage {
   }
 
   @Override
-  public OrcMage copy() throws CloneNotSupportedException {
+  public OrcMage copy() {
     return new OrcMage(this);
   }
 

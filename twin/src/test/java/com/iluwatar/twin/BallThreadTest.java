@@ -30,11 +30,7 @@ import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.timeout;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/30/15 - 18:55 PM
@@ -55,9 +51,9 @@ public class BallThreadTest {
       ballThread.setTwin(ballItem);
 
       ballThread.start();
-
-      verify(ballItem, timeout(2000).atLeastOnce()).draw();
-      verify(ballItem, timeout(2000).atLeastOnce()).move();
+      sleep(200);
+      verify(ballItem, atLeastOnce()).draw();
+      verify(ballItem, atLeastOnce()).move();
       ballThread.suspendMe();
 
       sleep(1000);
@@ -73,7 +69,7 @@ public class BallThreadTest {
    * Verify if the {@link BallThread} can be resumed
    */
   @Test
-  public void testResume() throws Exception {
+  public void testResume() {
     assertTimeout(ofMillis(5000), () -> {
       final BallThread ballThread = new BallThread();
 
@@ -88,8 +84,9 @@ public class BallThreadTest {
       verifyZeroInteractions(ballItem);
 
       ballThread.resumeMe();
-      verify(ballItem, timeout(2000).atLeastOnce()).draw();
-      verify(ballItem, timeout(2000).atLeastOnce()).move();
+      sleep(200);
+      verify(ballItem, atLeastOnce()).draw();
+      verify(ballItem, atLeastOnce()).move();
 
       ballThread.stopMe();
       ballThread.join();
@@ -102,7 +99,7 @@ public class BallThreadTest {
    * Verify if the {@link BallThread} is interruptible
    */
   @Test
-  public void testInterrupt() throws Exception {
+  public void testInterrupt() {
     assertTimeout(ofMillis(5000), () -> {
       final BallThread ballThread = new BallThread();
       final UncaughtExceptionHandler exceptionHandler = mock(UncaughtExceptionHandler.class);

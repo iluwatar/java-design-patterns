@@ -52,6 +52,7 @@ import org.h2.jdbcx.JdbcDataSource;
 public class App {
   private static final String DB_URL = "jdbc:h2:~/dao";
   private static Logger log = Logger.getLogger(App.class);
+  private static final String ALL_CUSTOMERS = "customerDao.getAllCustomers(): ";
   
   /**
    * Program entry point.
@@ -92,23 +93,23 @@ public class App {
 
   private static void performOperationsUsing(final CustomerDao customerDao) throws Exception {
     addCustomers(customerDao);
-    log.info("customerDao.getAllCustomers(): ");
+    log.info(ALL_CUSTOMERS);
     try (Stream<Customer> customerStream = customerDao.getAll()) {
       customerStream.forEach((customer) -> log.info(customer));
     }
     log.info("customerDao.getCustomerById(2): " + customerDao.getById(2));
     final Customer customer = new Customer(4, "Dan", "Danson");
     customerDao.add(customer);
-    log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
+    log.info(ALL_CUSTOMERS + customerDao.getAll());
     customer.setFirstName("Daniel");
     customer.setLastName("Danielson");
     customerDao.update(customer);
-    log.info("customerDao.getAllCustomers(): ");
+    log.info(ALL_CUSTOMERS);
     try (Stream<Customer> customerStream = customerDao.getAll()) {
       customerStream.forEach((cust) -> log.info(cust));
     }
     customerDao.delete(customer);
-    log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
+    log.info(ALL_CUSTOMERS + customerDao.getAll());
   }
 
   private static void addCustomers(CustomerDao customerDao) throws Exception {

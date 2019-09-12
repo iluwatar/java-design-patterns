@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -37,10 +37,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Unit tests for {@link LotteryNumbers}
  *
  */
-public class LotteryNumbersTest {
+class LotteryNumbersTest {
   
   @Test
-  public void testGivenNumbers() {
+  void testGivenNumbers() {
     LotteryNumbers numbers = LotteryNumbers.create(
             new HashSet<>(Arrays.asList(1, 2, 3, 4)));
     assertEquals(numbers.getNumbers().size(), 4);
@@ -51,29 +51,27 @@ public class LotteryNumbersTest {
   }
   
   @Test
-  public void testNumbersCantBeModified() {
+  void testNumbersCantBeModified() {
     LotteryNumbers numbers = LotteryNumbers.create(
             new HashSet<>(Arrays.asList(1, 2, 3, 4)));
-    assertThrows(UnsupportedOperationException.class, () -> {
-      numbers.getNumbers().add(5);
-    });
+    assertThrows(UnsupportedOperationException.class, () -> numbers.getNumbers().add(5));
   }
   
   @Test
-  public void testRandomNumbers() {
+  void testRandomNumbers() {
     LotteryNumbers numbers = LotteryNumbers.createRandom();
     assertEquals(numbers.getNumbers().size(), LotteryNumbers.NUM_NUMBERS);
   }
   
   @Test
-  public void testEquals() {
+  void testEquals() {
     LotteryNumbers numbers1 = LotteryNumbers.create(
             new HashSet<>(Arrays.asList(1, 2, 3, 4)));
     LotteryNumbers numbers2 = LotteryNumbers.create(
             new HashSet<>(Arrays.asList(1, 2, 3, 4)));
-    assertTrue(numbers1.equals(numbers2));
+    assertEquals(numbers1, numbers2);
     LotteryNumbers numbers3 = LotteryNumbers.create(
             new HashSet<>(Arrays.asList(11, 12, 13, 14)));
-    assertFalse(numbers1.equals(numbers3));
+    assertNotEquals(numbers1, numbers3);
   }
 }

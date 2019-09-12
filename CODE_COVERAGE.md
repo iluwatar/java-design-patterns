@@ -8,6 +8,6 @@ This will generate code coverage report in each of the modules. In order to view
 
 Please note that the above folder is created under each of the modules. For example:
 * adapter/target/site/jacoco/index.html 
-* busniess-delegate/target/site/jacoco/index.html 
+* business-delegate/target/site/jacoco/index.html 
 
 

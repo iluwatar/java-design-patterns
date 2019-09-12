@@ -44,7 +44,7 @@ public class CakeTest {
     final Cake cake = new Cake();
     assertNull(cake.getId());
 
-    final Long expectedId = Long.valueOf(1234L);
+    final Long expectedId = 1234L;
     cake.setId(expectedId);
     assertEquals(expectedId, cake.getId());
   }

@@ -40,7 +40,7 @@ public class ElfBeast extends Beast {
   }
 
   @Override
-  public Beast copy() throws CloneNotSupportedException {
+  public Beast copy() {
     return new ElfBeast(this);
   }
 

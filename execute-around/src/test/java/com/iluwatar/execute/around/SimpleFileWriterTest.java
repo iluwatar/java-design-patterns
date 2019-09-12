@@ -44,26 +44,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @EnableRuleMigrationSupport
 public class SimpleFileWriterTest {
 
-  /**
-   * Create a temporary folder, used to generate files in during this test
-   */
   @Rule
   public final TemporaryFolder testFolder = new TemporaryFolder();
 
-  /**
-   * Verify if the given writer is not 'null'
-   */
   @Test
   public void testWriterNotNull() throws Exception {
     final File temporaryFile = this.testFolder.newFile();
     new SimpleFileWriter(temporaryFile.getPath(), Assertions::assertNotNull);
   }
 
-  /**
-   * Test if the {@link SimpleFileWriter} creates a file if it doesn't exist
-   */
   @Test
-  public void testNonExistentFile() throws Exception {
+  public void testCreatesNonExistentFile() throws Exception {
     final File nonExistingFile = new File(this.testFolder.getRoot(), "non-existing-file");
     assertFalse(nonExistingFile.exists());
 
@@ -71,11 +62,8 @@ public class SimpleFileWriterTest {
     assertTrue(nonExistingFile.exists());
   }
 
-  /**
-   * Test if the data written to the file writer actually gets in the file
-   */
   @Test
-  public void testActualWrite() throws Exception {
+  public void testContentsAreWrittenToFile() throws Exception {
     final String testMessage = "Test message";
 
     final File temporaryFile = this.testFolder.newFile();
@@ -85,17 +73,15 @@ public class SimpleFileWriterTest {
     assertTrue(Files.lines(temporaryFile.toPath()).allMatch(testMessage::equals));
   }
 
-  /**
-   * Verify if an {@link IOException} during the write ripples through
-   */
   @Test
-  public void testIoException() throws Exception {
+  public void testRipplesIoExceptionOccurredWhileWriting() {
+    String message = "Some error";
     assertThrows(IOException.class, () -> {
       final File temporaryFile = this.testFolder.newFile();
       new SimpleFileWriter(temporaryFile.getPath(), writer -> {
-        throw new IOException("");
+        throw new IOException(message);
       });
-    });
+    }, message);
   }
 
 }

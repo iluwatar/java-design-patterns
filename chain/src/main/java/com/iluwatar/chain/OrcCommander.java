@@ -35,7 +35,7 @@ public class OrcCommander extends RequestHandler {
 
   @Override
   public void handleRequest(Request req) {
-    if (req.getRequestType().equals(RequestType.DEFEND_CASTLE)) {
+    if (RequestType.DEFEND_CASTLE == req.getRequestType()) {
       printHandling(req);
       req.markHandled();
     } else {

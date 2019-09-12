@@ -38,6 +38,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -45,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Test the lottery system
  *
  */
-public class LotteryTest {
+class LotteryTest {
 
   private Injector injector;
   @Inject
@@ -55,22 +56,22 @@ public class LotteryTest {
   @Inject
   private WireTransfers wireTransfers;
 
-  public LotteryTest() {
+  LotteryTest() {
     this.injector = Guice.createInjector(new LotteryTestingModule());
   }
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     injector.injectMembers(this);
     // add funds to the test player's bank account
     wireTransfers.setFunds("123-12312", 100);
   }
   
   @Test
-  public void testLottery() {
+  void testLottery() {
     // admin resets the lottery
     administration.resetLottery();
-    assertEquals(administration.getAllSubmittedTickets().size(), 0);
+    assertEquals(0, administration.getAllSubmittedTickets().size());
     
     // players submit the lottery tickets
     Optional<LotteryTicketId> ticket1 = service.submitTicket(LotteryTestUtils.createLotteryTicket("cvt@bbb.com",
@@ -82,7 +83,7 @@ public class LotteryTest {
     Optional<LotteryTicketId> ticket3 = service.submitTicket(LotteryTestUtils.createLotteryTicket("arg@boo.com",
         "123-12312", "+32421255", new HashSet<>(Arrays.asList(6, 8, 13, 19))));
     assertTrue(ticket3.isPresent());
-    assertEquals(administration.getAllSubmittedTickets().size(), 3);
+    assertEquals(3, administration.getAllSubmittedTickets().size());
     
     // perform lottery
     LotteryNumbers winningNumbers = administration.performLottery();
@@ -91,23 +92,23 @@ public class LotteryTest {
     Optional<LotteryTicketId> ticket4 = service.submitTicket(LotteryTestUtils.createLotteryTicket("lucky@orb.com",
         "123-12312", "+12421255", winningNumbers.getNumbers()));
     assertTrue(ticket4.isPresent());
-    assertEquals(administration.getAllSubmittedTickets().size(), 4);
+    assertEquals(4, administration.getAllSubmittedTickets().size());
     
     // check winners
     Map<LotteryTicketId, LotteryTicket> tickets = administration.getAllSubmittedTickets();
     for (LotteryTicketId id: tickets.keySet()) {
       LotteryTicketCheckResult checkResult = service.checkTicketForPrize(id, winningNumbers);
-      assertTrue(checkResult.getResult() != CheckResult.TICKET_NOT_SUBMITTED);
+      assertNotEquals(CheckResult.TICKET_NOT_SUBMITTED, checkResult.getResult());
       if (checkResult.getResult().equals(CheckResult.WIN_PRIZE)) {
         assertTrue(checkResult.getPrizeAmount() > 0);
-      } else if (checkResult.getResult().equals(CheckResult.WIN_PRIZE)) {
-        assertEquals(checkResult.getPrizeAmount(), 0);
+      } else {
+        assertEquals(0, checkResult.getPrizeAmount());
       }
     }
     
     // check another ticket that has not been submitted
     LotteryTicketCheckResult checkResult = service.checkTicketForPrize(new LotteryTicketId(), winningNumbers);
-    assertTrue(checkResult.getResult() == CheckResult.TICKET_NOT_SUBMITTED);
-    assertEquals(checkResult.getPrizeAmount(), 0);
+    assertEquals(CheckResult.TICKET_NOT_SUBMITTED, checkResult.getResult());
+    assertEquals(0, checkResult.getPrizeAmount());
   }
 }

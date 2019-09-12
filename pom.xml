@@ -17,11 +17,13 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.20.0-SNAPSHOT</version>
+    <version>1.22.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2014</inceptionYear>
     <properties>
@@ -161,6 +163,15 @@
         <module>dirty-flag</module>
         <module>trampoline</module>
         <module>serverless</module>
+        <module>ambassador</module>
+        <module>acyclic-visitor</module>
+        <module>collection-pipeline</module>
+        <module>master-worker-pattern</module>
+        <module>spatial-partition</module>
+        <module>priority-queue</module>
+	    <module>commander</module>
+	    <module>typeobjectpattern</module>
+        <module>bytecode</module>
     </modules>
 
     <repositories>
@@ -230,12 +241,6 @@
                 <version>${camel.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit-jupiter.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
@@ -286,7 +291,6 @@
                 <groupId>net.sourceforge.htmlunit</groupId>
                 <artifactId>htmlunit</artifactId>
                 <version>${htmlunit.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.google.inject</groupId>

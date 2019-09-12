@@ -22,9 +22,6 @@
  */
 package com.iluwatar.intercepting.filter;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,6 +30,9 @@ import javax.swing.JRootPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 /**
  * The Client class is responsible for handling the input and running them through filters inside the
@@ -60,7 +60,7 @@ public class Client extends JFrame { // NOSONAR
    */
   public Client() {
     super("Client System");
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setSize(300, 300);
     jl = new JLabel("RUNNING...");
     jtFields = new JTextField[3];

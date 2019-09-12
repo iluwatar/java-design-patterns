@@ -36,7 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class QueenTest {
 
   @Test
-  public void testNotFlirtyUncomplemented() throws Exception {
+  public void testNotFlirtyUncomplemented() {
     final Queen queen = new Queen();
     queen.setFlirtiness(false);
     queen.changeMood();
@@ -44,7 +44,7 @@ public class QueenTest {
   }
   
   @Test
-  public void testNotFlirtyComplemented() throws Exception {
+  public void testNotFlirtyComplemented() {
     final Queen queen = new Queen();
     queen.setFlirtiness(false);
     queen.receiveCompliments();
@@ -53,14 +53,14 @@ public class QueenTest {
   }
   
   @Test
-  public void testFlirtyUncomplemented() throws Exception {
+  public void testFlirtyUncomplemented() {
     final Queen queen = new Queen();
     queen.changeMood();
     assertFalse(queen.getMood());
   }
   
   @Test
-  public void testFlirtyComplemented() throws Exception {
+  public void testFlirtyComplemented() {
     final Queen queen = new Queen();
     queen.receiveCompliments();
     queen.changeMood();
