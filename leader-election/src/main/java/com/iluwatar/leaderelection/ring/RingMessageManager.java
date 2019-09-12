@@ -64,20 +64,22 @@ public class RingMessageManager implements MessageManager {
    * @param content list contains all the IDs of instances which have received this election message.
    */
   @Override
-  public void sendElectionMessage(int currentId, String content) {
+  public boolean sendElectionMessage(int currentId, String content) {
     Instance nextInstance = this.findNextInstance(currentId);
     Message electionMessage = new RingMessage(MessageType.ELECTION, content);
     nextInstance.onMessage(electionMessage);
+    return true;
   }
 
   /**
    * Send leader message to the next instance.
    */
   @Override
-  public void sendLeaderMessage(int currentId, int leaderId) {
+  public boolean sendLeaderMessage(int currentId, int leaderId) {
     Instance nextInstance = this.findNextInstance(currentId);
     Message leaderMessage = new RingMessage(MessageType.LEADER, String.valueOf(leaderId));
     nextInstance.onMessage(leaderMessage);
+    return true;
   }
 
   /**
