@@ -96,7 +96,7 @@ public class RingInstance implements Instance, Runnable {
         break;
       case HEARTBEAT_INVOKE:
         System.out.println("Instance " + localId + " - Heartbeat Message handling...");
-        this.handleHeartbeatMessage(message);
+        this.handleHeartbeatInvodeMessage();
         break;
       default:
         break;
@@ -108,7 +108,7 @@ public class RingInstance implements Instance, Runnable {
    * to leader to check its health. If alive, it will inform the next instance to do the heartbeat. If not,
    * it will start the election process.
    */
-  private void handleHeartbeatMessage(Message message) {
+  private void handleHeartbeatInvodeMessage() {
     boolean isLeaderAlive = messageManager.sendHeartbeatMessage(this.leaderId);
     if (isLeaderAlive) {
       System.out.println("Instance " + localId + "- Leader is alive.");
