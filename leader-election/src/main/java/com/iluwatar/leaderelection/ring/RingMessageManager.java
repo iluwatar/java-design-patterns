@@ -23,9 +23,9 @@
 
 package com.iluwatar.leaderelection.ring;
 
+import com.iluwatar.leaderelection.AbstractMessageManager;
 import com.iluwatar.leaderelection.Instance;
 import com.iluwatar.leaderelection.Message;
-import com.iluwatar.leaderelection.MessageManager;
 import com.iluwatar.leaderelection.MessageType;
 
 import java.util.List;
@@ -35,15 +35,13 @@ import java.util.stream.Collectors;
 /**
  * Implementation of Ring message manager
  */
-public class RingMessageManager implements MessageManager {
-
-  private Map<Integer, Instance> instanceMap;
+public class RingMessageManager extends AbstractMessageManager {
 
   /**
    * Constructor of RingMessageManager.
    */
   public RingMessageManager(Map<Integer, Instance> instanceMap) {
-    this.instanceMap = instanceMap;
+    super(instanceMap);
   }
 
   /**
@@ -92,31 +90,4 @@ public class RingMessageManager implements MessageManager {
     nextInstance.onMessage(heartbeatInvokeMessage);
   }
 
-  /**
-   * Find the next instance in the ring.
-   * @return The next instance.
-   */
-  private Instance findNextInstance(int currentId) {
-    Instance result = null;
-    List<Integer> candidateSet =
-        instanceMap.keySet()
-                      .stream()
-                      .filter((i) -> i > currentId && instanceMap.get(i).isAlive())
-                      .sorted()
-                      .collect(Collectors.toList());
-    if (candidateSet.isEmpty()) {
-      int index =
-          instanceMap.keySet()
-                        .stream()
-                        .filter((i) -> instanceMap.get(i).isAlive())
-                        .sorted()
-                        .collect(Collectors.toList())
-                        .get(0);
-      result = instanceMap.get(index);
-    } else {
-      int index = candidateSet.get(0);
-      result = instanceMap.get(index);
-    }
-    return result;
-  }
 }

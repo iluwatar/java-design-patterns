@@ -23,10 +23,7 @@
 
 package com.iluwatar.leaderelection.ring;
 
-import com.iluwatar.leaderelection.Instance;
-import com.iluwatar.leaderelection.Message;
-import com.iluwatar.leaderelection.MessageManager;
-import com.iluwatar.leaderelection.MessageType;
+import com.iluwatar.leaderelection.*;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
@@ -64,7 +61,7 @@ public class RingMessageManagerTest {
       String messageContent = "2";
       messageManager.sendElectionMessage(2, messageContent);
       Message ringMessage = new RingMessage(MessageType.ELECTION, messageContent);
-      Class instanceClass = instance3.getClass();
+      Class instanceClass = AbstractInstance.class;
       Field messageQueueField = instanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);
       Message ringMessageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
@@ -90,7 +87,7 @@ public class RingMessageManagerTest {
       String messageContent = "3";
       messageManager.sendLeaderMessage(2, 3);
       Message ringMessage = new RingMessage(MessageType.LEADER, messageContent);
-      Class instanceClass = instance3.getClass();
+      Class instanceClass = AbstractInstance.class;
       Field messageQueueField = instanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);
       Message ringMessageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
@@ -114,7 +111,7 @@ public class RingMessageManagerTest {
       MessageManager messageManager = new RingMessageManager(instanceMap);
       messageManager.sendHeartbeatInvokeMessage(2);
       Message ringMessage = new RingMessage(MessageType.HEARTBEAT_INVOKE, "");
-      Class instanceClass = instance3.getClass();
+      Class instanceClass = AbstractInstance.class;
       Field messageQueueField = instanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);
       Message ringMessageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();

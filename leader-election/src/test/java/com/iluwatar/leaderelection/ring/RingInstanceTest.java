@@ -23,6 +23,7 @@
 
 package com.iluwatar.leaderelection.ring;
 
+import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageType;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,7 @@ public class RingInstanceTest {
       final RingInstance ringInstance = new RingInstance(null, 1, 1);
       RingMessage ringMessage = new RingMessage(MessageType.HEARTBEAT, "");
       ringInstance.onMessage(ringMessage);
-      Class ringInstanceClass = ringInstance.getClass();
+      Class ringInstanceClass = AbstractInstance.class;
       Field messageQueueField = ringInstanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);
       assertEquals(ringMessage, ((Queue<Message>) messageQueueField.get(ringInstance)).poll());
@@ -56,7 +57,7 @@ public class RingInstanceTest {
   public void testIsAlive() {
     try {
       final RingInstance ringInstance = new RingInstance(null, 1, 1);
-      Class ringInstanceClass = ringInstance.getClass();
+      Class ringInstanceClass = AbstractInstance.class;
       Field aliveField = ringInstanceClass.getDeclaredField("alive");
       aliveField.setAccessible(true);
       aliveField.set(ringInstance, false);
