@@ -27,10 +27,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Abstract class of all the message manager classes.
+ */
 public abstract class AbstractMessageManager implements MessageManager {
 
+  /**
+   * Contain all the instances in the system. Key is its ID, and value is the instance itself.
+   */
   protected Map<Integer, Instance> instanceMap;
 
+  /**
+   * Construtor of AbstractMessageManager
+   */
   public AbstractMessageManager(Map<Integer, Instance> instanceMap) {
     this.instanceMap = instanceMap;
   }

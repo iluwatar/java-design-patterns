@@ -42,7 +42,7 @@ public class RingInstanceTest {
   public void testOnMessage() {
     try {
       final RingInstance ringInstance = new RingInstance(null, 1, 1);
-      RingMessage ringMessage = new RingMessage(MessageType.HEARTBEAT, "");
+      Message ringMessage = new Message(MessageType.HEARTBEAT, "");
       ringInstance.onMessage(ringMessage);
       Class ringInstanceClass = AbstractInstance.class;
       Field messageQueueField = ringInstanceClass.getDeclaredField("messageQueue");

@@ -31,7 +31,7 @@ import com.iluwatar.leaderelection.MessageType;
 import java.util.Map;
 
 /**
- * Implementation of Ring message manager
+ * Implementation of RingMessageManager
  */
 public class RingMessageManager extends AbstractMessageManager {
 
@@ -58,6 +58,7 @@ public class RingMessageManager extends AbstractMessageManager {
    * Send election message to the next instance.
    * @param currentId currentID
    * @param content list contains all the IDs of instances which have received this election message.
+   * @return {@code true} if the election message is accepted by the target instance.
    */
   @Override
   public boolean sendElectionMessage(int currentId, String content) {
@@ -69,6 +70,9 @@ public class RingMessageManager extends AbstractMessageManager {
 
   /**
    * Send leader message to the next instance.
+   * @param currentId Instance ID of which sends this message.
+   * @param leaderId Leader message content.
+   * @return {@code true} if the leader message is accepted by the target instance.
    */
   @Override
   public boolean sendLeaderMessage(int currentId, int leaderId) {
@@ -80,6 +84,7 @@ public class RingMessageManager extends AbstractMessageManager {
 
   /**
    * Send heartbeat invoke message to the next instance.
+   * @param currentId Instance ID of which sends this message.
    */
   @Override
   public void sendHeartbeatInvokeMessage(int currentId) {

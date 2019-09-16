@@ -50,9 +50,6 @@ public class BullyInstance extends AbstractInstance {
   }
 
   @Override
-  protected void handleElectionMessage(Message message) {}
-
-  @Override
   protected void handleHeartbeatInvokeMessage() {
     boolean isLeaderAlive = messageManager.sendHeartbeatMessage(leaderId);
     if (isLeaderAlive) {
@@ -85,13 +82,13 @@ public class BullyInstance extends AbstractInstance {
   }
 
   @Override
-  protected void handleLeaderInvokeMessage() {
-
-  }
+  protected void handleLeaderInvokeMessage() {}
 
   @Override
-  protected void handleHeartbeatMessage(Message message) {
+  protected void handleHeartbeatMessage(Message message) {}
 
-  }
+  @Override
+  protected void handleElectionMessage(Message message) {}
+
 
 }

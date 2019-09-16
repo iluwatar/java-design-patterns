@@ -36,26 +36,26 @@ public class RingMessageTest {
 
   @Test
   public void testGetType() {
-    final RingMessage ringMessage = new RingMessage(MessageType.HEARTBEAT, "");
+    final Message ringMessage = new Message(MessageType.HEARTBEAT, "");
     assertEquals(ringMessage.getType(), MessageType.HEARTBEAT);
   }
 
   @Test
   public void testSetType() {
-    final RingMessage ringMessage = new RingMessage(MessageType.HEARTBEAT, "");
+    final Message ringMessage = new Message(MessageType.HEARTBEAT, "");
     ringMessage.setType(MessageType.ELECTION);
     assertEquals(ringMessage.getType(), MessageType.ELECTION);
   }
 
   @Test
   public void testGetContent() {
-    final RingMessage ringMessage = new RingMessage(MessageType.HEARTBEAT, "test");
+    final Message ringMessage = new Message(MessageType.HEARTBEAT, "test");
     assertEquals(ringMessage.getContent(), "test");
   }
 
   @Test
   public void testSetContent() {
-    final RingMessage ringMessage = new RingMessage(MessageType.HEARTBEAT, "");
+    final Message ringMessage = new Message(MessageType.HEARTBEAT, "");
     ringMessage.setContent("test");
     assertEquals(ringMessage.getContent(), "test");
   }

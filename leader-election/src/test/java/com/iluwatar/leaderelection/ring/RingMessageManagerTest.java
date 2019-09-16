@@ -60,7 +60,7 @@ public class RingMessageManagerTest {
       MessageManager messageManager = new RingMessageManager(instanceMap);
       String messageContent = "2";
       messageManager.sendElectionMessage(2, messageContent);
-      Message ringMessage = new RingMessage(MessageType.ELECTION, messageContent);
+      Message ringMessage = new Message(MessageType.ELECTION, messageContent);
       Class instanceClass = AbstractInstance.class;
       Field messageQueueField = instanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);
@@ -86,7 +86,7 @@ public class RingMessageManagerTest {
       MessageManager messageManager = new RingMessageManager(instanceMap);
       String messageContent = "3";
       messageManager.sendLeaderMessage(2, 3);
-      Message ringMessage = new RingMessage(MessageType.LEADER, messageContent);
+      Message ringMessage = new Message(MessageType.LEADER, messageContent);
       Class instanceClass = AbstractInstance.class;
       Field messageQueueField = instanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);
@@ -110,7 +110,7 @@ public class RingMessageManagerTest {
       instanceMap.put(3, instance3);
       MessageManager messageManager = new RingMessageManager(instanceMap);
       messageManager.sendHeartbeatInvokeMessage(2);
-      Message ringMessage = new RingMessage(MessageType.HEARTBEAT_INVOKE, "");
+      Message ringMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");
       Class instanceClass = AbstractInstance.class;
       Field messageQueueField = instanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);

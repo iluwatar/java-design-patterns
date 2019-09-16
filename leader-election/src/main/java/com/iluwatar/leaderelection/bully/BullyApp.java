@@ -23,5 +23,8 @@
 
 package com.iluwatar.leaderelection.bully;
 
+/**
+ *
+ */
 public class BullyApp {
 }

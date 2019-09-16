@@ -29,6 +29,9 @@ import org.slf4j.LoggerFactory;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ * Abstract class of all the instance implementation classes.
+ */
 public abstract class AbstractInstance implements Instance, Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AbstractInstance.class);
@@ -63,7 +66,8 @@ public abstract class AbstractInstance implements Instance, Runnable {
   }
 
   /**
-   * Message listening method of the instance.
+   * Once messages are sent to the certain instance, it will firstly be added to the queue and wait to be executed.
+   * @param message Message sent by other instances
    */
   @Override
   public void onMessage(Message message) {
@@ -71,8 +75,8 @@ public abstract class AbstractInstance implements Instance, Runnable {
   }
 
   /**
-   * Check whether the certain instnace is alive or not.
-   * @return {@code true} if the instance is alive
+   * Check if the instance is alive or not.
+   * @return {@code true} if the instance is alive.
    */
   @Override
   public boolean isAlive() {
@@ -80,13 +84,18 @@ public abstract class AbstractInstance implements Instance, Runnable {
   }
 
   /**
-   * Set the status of instance.
+   * Set the health status of the certain instance.
+   * @param alive {@code true} for alive.
    */
   @Override
   public void setAlive(boolean alive) {
     this.alive = alive;
   }
 
+  /**
+   * Process the message according to its type.
+   * @param message Message polled from queue.
+   */
   private void processMessage(Message message) {
     switch (message.getType()) {
       case ELECTION:
@@ -101,7 +110,7 @@ public abstract class AbstractInstance implements Instance, Runnable {
         LOGGER.info("Instance " + localId + " - Heartbeat Message handling...");
         handleHeartbeatMessage(message);
         break;
-      case ELECTION_INVODE:
+      case ELECTION_INVOKE:
         LOGGER.info("Instance " + localId + " - Election Invoke Message handling...");
         handleElectionInvokeMessage();
         break;
@@ -118,6 +127,10 @@ public abstract class AbstractInstance implements Instance, Runnable {
     }
   }
 
+  /**
+   * Abstract methods to handle different types of message. These methods need to be implemented in concrete instance
+   * class to implement corresponding leader-selection pattern.
+   */
   protected abstract void handleElectionMessage(Message message);
 
   protected abstract void handleElectionInvokeMessage();

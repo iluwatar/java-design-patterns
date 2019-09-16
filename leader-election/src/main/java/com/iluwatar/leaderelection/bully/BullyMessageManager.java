@@ -32,12 +32,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of BullyMessageManager
+ */
 public class BullyMessageManager extends AbstractMessageManager {
 
+  /**
+   * Constructor of BullyMessageManager.
+   */
   public BullyMessageManager(Map<Integer, Instance> instanceMap) {
     super(instanceMap);
   }
 
+  /**
+   * Send heartbeat message to current leader instance to check the health.
+   * @param leaderId leaderID
+   * @return {@code true} if the leader is alive.
+   */
   @Override
   public boolean sendHeartbeatMessage(int leaderId) {
     Instance leaderInstance = instanceMap.get(leaderId);
@@ -45,13 +56,19 @@ public class BullyMessageManager extends AbstractMessageManager {
     return alive;
   }
 
+  /**
+   * Send election message to all the instances with smaller ID.
+   * @param currentId Instance ID of which sends this message.
+   * @param content Election message content.
+   * @return {@code true} if no alive instance has smaller ID, so that the election is accepted.
+   */
   @Override
   public boolean sendElectionMessage(int currentId, String content) {
     List<Integer> candidateList = findElectionCandidateInstanceList(currentId);
     if (candidateList.isEmpty()) {
       return true;
     } else {
-      Message electionMessage = new Message(MessageType.ELECTION_INVODE, "");
+      Message electionMessage = new Message(MessageType.ELECTION_INVOKE, "");
       candidateList.stream()
         .forEach((i) -> instanceMap.get(i).onMessage(electionMessage));
       return false;
@@ -60,12 +77,17 @@ public class BullyMessageManager extends AbstractMessageManager {
 
   @Override
   public boolean sendLeaderMessage(int currentId, int leaderId) {
-    return false;
+    Message leaderMessage = new Message(MessageType.LEADER, String.valueOf(leaderId));
+    instanceMap.keySet()
+      .stream()
+      .forEach((i) -> instanceMap.get(i).onMessage(leaderMessage));
   }
 
   @Override
   public void sendHeartbeatInvokeMessage(int currentId) {
-
+    Instance nextInstance = this.findNextInstance(currentId);
+    Message heartbeatInvokeMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");
+    nextInstance.onMessage(heartbeatInvokeMessage);
   }
 
   private List<Integer> findElectionCandidateInstanceList(int currentId) {
