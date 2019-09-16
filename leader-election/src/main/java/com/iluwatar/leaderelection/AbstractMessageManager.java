@@ -1,9 +1,3 @@
-package com.iluwatar.leaderelection;
-
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
@@ -26,6 +20,13 @@ import java.util.stream.Collectors;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+package com.iluwatar.leaderelection;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public abstract class AbstractMessageManager implements MessageManager {
 
   protected Map<Integer, Instance> instanceMap;

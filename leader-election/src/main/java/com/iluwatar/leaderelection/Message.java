@@ -24,12 +24,34 @@
 package com.iluwatar.leaderelection;
 
 /**
- *  Message interface
+ *  Message used to transport data between instances.
  */
-public interface Message {
+public class Message {
 
-  MessageType getType();
+  private MessageType type;
 
-  String getContent();
+  private String content;
 
+  public Message() {}
+
+  public Message(MessageType type, String content) {
+    this.type = type;
+    this.content = content;
+  }
+
+  public MessageType getType() {
+    return type;
+  }
+
+  public void setType(MessageType type) {
+    this.type = type;
+  }
+
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
 }

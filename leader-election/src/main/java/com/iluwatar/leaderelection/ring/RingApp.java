@@ -24,6 +24,7 @@
 package com.iluwatar.leaderelection.ring;
 
 import com.iluwatar.leaderelection.Instance;
+import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
 import com.iluwatar.leaderelection.MessageType;
 
@@ -57,7 +58,7 @@ public class RingApp {
     instanceMap.put(4, instance4);
     instanceMap.put(5, instance5);
 
-    instance2.onMessage(new RingMessage(MessageType.HEARTBEAT_INVOKE, ""));
+    instance2.onMessage(new Message(MessageType.HEARTBEAT_INVOKE, ""));
 
     Thread thread1 = new Thread(instance1);
     Thread thread2 = new Thread(instance2);

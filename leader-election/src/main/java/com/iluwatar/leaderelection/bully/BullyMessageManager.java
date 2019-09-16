@@ -1,16 +1,3 @@
-package com.iluwatar.leaderelection.bully;
-
-import com.iluwatar.leaderelection.AbstractMessageManager;
-import com.iluwatar.leaderelection.Instance;
-import com.iluwatar.leaderelection.Message;
-import com.iluwatar.leaderelection.MessageType;
-import com.iluwatar.leaderelection.ring.RingMessage;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
@@ -33,6 +20,18 @@ import java.util.stream.Collectors;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+package com.iluwatar.leaderelection.bully;
+
+import com.iluwatar.leaderelection.AbstractMessageManager;
+import com.iluwatar.leaderelection.Instance;
+import com.iluwatar.leaderelection.Message;
+import com.iluwatar.leaderelection.MessageType;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class BullyMessageManager extends AbstractMessageManager {
 
   public BullyMessageManager(Map<Integer, Instance> instanceMap) {
@@ -52,7 +51,7 @@ public class BullyMessageManager extends AbstractMessageManager {
     if (candidateList.isEmpty()) {
       return true;
     } else {
-      Message electionMessage = new RingMessage(MessageType.ELECTION_INVODE, "");
+      Message electionMessage = new Message(MessageType.ELECTION_INVODE, "");
       candidateList.stream()
         .forEach((i) -> instanceMap.get(i).onMessage(electionMessage));
       return false;

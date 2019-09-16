@@ -1,9 +1,3 @@
-package com.iluwatar.leaderelection.bully;
-
-import com.iluwatar.leaderelection.AbstractInstance;
-import com.iluwatar.leaderelection.Message;
-import com.iluwatar.leaderelection.MessageManager;
-
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
@@ -27,6 +21,14 @@ import com.iluwatar.leaderelection.MessageManager;
  * THE SOFTWARE.
  */
 
+package com.iluwatar.leaderelection.bully;
+
+import com.iluwatar.leaderelection.AbstractInstance;
+import com.iluwatar.leaderelection.Message;
+import com.iluwatar.leaderelection.MessageManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Impelemetation with bully algorithm. Each instance should have a sequential id and is able to
  * communicate with other instances in the system. Initially the instance with smallest (or largest)
@@ -35,8 +37,10 @@ import com.iluwatar.leaderelection.MessageManager;
  * to all the instances of which the ID is larger. If the target instance is alive, it will return an
  * alive message (in this sample return true) and then send election message with its ID. If not,
  * the original instance will send leader message to all the other instances.
-  */
+ */
 public class BullyInstance extends AbstractInstance {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(BullyInstance.class);
 
   /**
    * Constructor of BullyInstance.
@@ -52,13 +56,13 @@ public class BullyInstance extends AbstractInstance {
   protected void handleHeartbeatInvokeMessage() {
     boolean isLeaderAlive = messageManager.sendHeartbeatMessage(leaderId);
     if (isLeaderAlive) {
-      System.out.println("Instance " + localId + "- Leader is alive.");
+      LOGGER.info("Instance " + localId + "- Leader is alive.");
       messageManager.sendHeartbeatInvokeMessage(localId);
     } else {
-      System.out.println("Instance " + localId + "- Leader is not alive. Start election.");
+      LOGGER.info("Instance " + localId + "- Leader is not alive. Start election.");
       boolean electionResult = messageManager.sendElectionMessage(localId, String.valueOf(localId));
       if (electionResult) {
-        System.out.println("Instance " + localId + "- Succeed in election. Start leader notification.");
+        LOGGER.info("Instance " + localId + "- Succeed in election. Start leader notification.");
         messageManager.sendLeaderMessage(localId, localId);
       }
     }
@@ -66,10 +70,10 @@ public class BullyInstance extends AbstractInstance {
 
   @Override
   protected void handleElectionInvokeMessage() {
-    System.out.println("Instance " + localId + "- Start election.");
+    LOGGER.info("Instance " + localId + "- Start election.");
     boolean electionResult = messageManager.sendElectionMessage(localId, String.valueOf(localId));
     if (electionResult) {
-      System.out.println("Instance " + localId + "- Succeed in election. Start leader notification.");
+      LOGGER.info("Instance " + localId + "- Succeed in election. Start leader notification.");
       messageManager.sendLeaderMessage(localId, localId);
     }
   }
@@ -77,7 +81,7 @@ public class BullyInstance extends AbstractInstance {
   @Override
   protected void handleLeaderMessage(Message message) {
     leaderId = Integer.valueOf(message.getContent());
-    System.out.println("Instance " + localId + " - Leader update done.");
+    LOGGER.info("Instance " + localId + " - Leader update done.");
   }
 
   @Override

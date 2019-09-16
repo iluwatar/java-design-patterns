@@ -1,5 +1,3 @@
-package com.iluwatar.leaderelection.bully;
-
 /**
  * The MIT License
  * Copyright (c) 2014-2016 Ilkka Seppälä
@@ -22,5 +20,8 @@ package com.iluwatar.leaderelection.bully;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+package com.iluwatar.leaderelection.bully;
+
 public class BullyApp {
 }

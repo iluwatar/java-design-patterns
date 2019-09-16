@@ -26,6 +26,8 @@ package com.iluwatar.leaderelection.ring;
 import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,6 +46,8 @@ import java.util.stream.Collectors;
  */
 public class RingInstance extends AbstractInstance {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(RingInstance.class);
+
   /**
    * Constructor of RingInstance.
    */
@@ -61,15 +65,15 @@ public class RingInstance extends AbstractInstance {
     try {
       boolean isLeaderAlive = messageManager.sendHeartbeatMessage(this.leaderId);
       if (isLeaderAlive) {
-        System.out.println("Instance " + localId + "- Leader is alive. Start next heartbeat in 5 second.");
+        LOGGER.info("Instance " + localId + "- Leader is alive. Start next heartbeat in 5 second.");
         Thread.sleep(5000);
         messageManager.sendHeartbeatInvokeMessage(this.localId);
       } else {
-        System.out.println("Instance " + localId + "- Leader is not alive. Start election.");
+        LOGGER.info("Instance " + localId + "- Leader is not alive. Start election.");
         messageManager.sendElectionMessage(this.localId, String.valueOf(this.localId));
       }
     } catch (InterruptedException e) {
-      System.out.println("Instance " + localId + "- Interrupted.");
+      LOGGER.info("Instance " + localId + "- Interrupted.");
     }
   }
 
@@ -81,7 +85,7 @@ public class RingInstance extends AbstractInstance {
   @Override
   protected void handleElectionMessage(Message message) {
     String content = message.getContent();
-    System.out.println("Instance " + localId + " - Election Message: " + content);
+    LOGGER.info("Instance " + localId + " - Election Message: " + content);
     List<Integer> candidateList =
         Arrays.stream(content.trim().split(","))
                  .map(Integer::valueOf)
@@ -89,7 +93,7 @@ public class RingInstance extends AbstractInstance {
                  .collect(Collectors.toList());
     if (candidateList.contains(localId)) {
       int newLeaderId = candidateList.get(0);
-      System.out.println("Instance " + localId + " - New leader should be " + newLeaderId + ".");
+      LOGGER.info("Instance " + localId + " - New leader should be " + newLeaderId + ".");
       messageManager.sendLeaderMessage(localId, newLeaderId);
     } else {
       content += "," + localId;
@@ -105,11 +109,11 @@ public class RingInstance extends AbstractInstance {
   protected void handleLeaderMessage(Message message) {
     int newLeaderId = Integer.valueOf(message.getContent());
     if (this.leaderId != newLeaderId) {
-      System.out.println("Instance " + localId + " - Update leaderID");
+      LOGGER.info("Instance " + localId + " - Update leaderID");
       this.leaderId = newLeaderId;
       messageManager.sendLeaderMessage(localId, newLeaderId);
     } else {
-      System.out.println("Instance " + localId + " - Leader update done. Start heartbeat.");
+      LOGGER.info("Instance " + localId + " - Leader update done. Start heartbeat.");
       messageManager.sendHeartbeatInvokeMessage(localId);
     }
   }

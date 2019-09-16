@@ -28,9 +28,7 @@ import com.iluwatar.leaderelection.Instance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageType;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Implementation of Ring message manager
@@ -64,7 +62,7 @@ public class RingMessageManager extends AbstractMessageManager {
   @Override
   public boolean sendElectionMessage(int currentId, String content) {
     Instance nextInstance = this.findNextInstance(currentId);
-    Message electionMessage = new RingMessage(MessageType.ELECTION, content);
+    Message electionMessage = new Message(MessageType.ELECTION, content);
     nextInstance.onMessage(electionMessage);
     return true;
   }
@@ -75,7 +73,7 @@ public class RingMessageManager extends AbstractMessageManager {
   @Override
   public boolean sendLeaderMessage(int currentId, int leaderId) {
     Instance nextInstance = this.findNextInstance(currentId);
-    Message leaderMessage = new RingMessage(MessageType.LEADER, String.valueOf(leaderId));
+    Message leaderMessage = new Message(MessageType.LEADER, String.valueOf(leaderId));
     nextInstance.onMessage(leaderMessage);
     return true;
   }
@@ -86,7 +84,7 @@ public class RingMessageManager extends AbstractMessageManager {
   @Override
   public void sendHeartbeatInvokeMessage(int currentId) {
     Instance nextInstance = this.findNextInstance(currentId);
-    Message heartbeatInvokeMessage = new RingMessage(MessageType.HEARTBEAT_INVOKE, "");
+    Message heartbeatInvokeMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");
     nextInstance.onMessage(heartbeatInvokeMessage);
   }
 
