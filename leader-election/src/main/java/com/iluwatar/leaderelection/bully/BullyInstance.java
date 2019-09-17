@@ -49,38 +49,67 @@ public class BullyInstance extends AbstractInstance {
     super(messageManager, localId, leaderId);
   }
 
+  /**
+   * Process the heartbeat invoke message. After receiving the message, the instance will send a heartbeat
+   * to leader to check its health. If alive, it will inform the next instance to do the heartbeat. If not,
+   * it will start the election process.
+   */
   @Override
   protected void handleHeartbeatInvokeMessage() {
-    boolean isLeaderAlive = messageManager.sendHeartbeatMessage(leaderId);
-    if (isLeaderAlive) {
-      LOGGER.info("Instance " + localId + "- Leader is alive.");
-      messageManager.sendHeartbeatInvokeMessage(localId);
-    } else {
-      LOGGER.info("Instance " + localId + "- Leader is not alive. Start election.");
+    try {
+      boolean isLeaderAlive = messageManager.sendHeartbeatMessage(leaderId);
+      if (isLeaderAlive) {
+        LOGGER.info("Instance " + localId + "- Leader is alive.");
+        Thread.sleep(HEARTBEAT_INTERVAL);
+        messageManager.sendHeartbeatInvokeMessage(localId);
+      } else {
+        LOGGER.info("Instance " + localId + "- Leader is not alive. Start election.");
+        boolean electionResult = messageManager.sendElectionMessage(localId, String.valueOf(localId));
+        if (electionResult) {
+          LOGGER.info("Instance " + localId + "- Succeed in election. Start leader notification.");
+          messageManager.sendLeaderMessage(localId, localId);
+        }
+      }
+    } catch (InterruptedException e) {
+      LOGGER.info("Instance " + localId + "- Interrupted.");
+    }
+  }
+
+  /**
+   * Process election invoke message. Send election message to all the instances with smaller ID. If any
+   * one of them is alive, do nothing. If no instance alive, send leader message to all the alive instance
+   * and restart heartbeat.
+   */
+  @Override
+  protected void handleElectionInvokeMessage() {
+    if (!isLeader()) {
+      LOGGER.info("Instance " + localId + "- Start election.");
       boolean electionResult = messageManager.sendElectionMessage(localId, String.valueOf(localId));
       if (electionResult) {
         LOGGER.info("Instance " + localId + "- Succeed in election. Start leader notification.");
+        leaderId = localId;
         messageManager.sendLeaderMessage(localId, localId);
+        messageManager.sendHeartbeatInvokeMessage(localId);
       }
     }
   }
 
-  @Override
-  protected void handleElectionInvokeMessage() {
-    LOGGER.info("Instance " + localId + "- Start election.");
-    boolean electionResult = messageManager.sendElectionMessage(localId, String.valueOf(localId));
-    if (electionResult) {
-      LOGGER.info("Instance " + localId + "- Succeed in election. Start leader notification.");
-      messageManager.sendLeaderMessage(localId, localId);
-    }
-  }
-
+  /**
+   * Process leader message. Update local leader information.
+   */
   @Override
   protected void handleLeaderMessage(Message message) {
     leaderId = Integer.valueOf(message.getContent());
     LOGGER.info("Instance " + localId + " - Leader update done.");
   }
 
+  private boolean isLeader() {
+    return localId == leaderId;
+  }
+
+  /**
+   * Not used in Bully instance.
+   */
   @Override
   protected void handleLeaderInvokeMessage() {}
 
@@ -89,6 +118,4 @@ public class BullyInstance extends AbstractInstance {
 
   @Override
   protected void handleElectionMessage(Message message) {}
-
-
 }

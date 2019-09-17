@@ -23,8 +23,55 @@
 
 package com.iluwatar.leaderelection.bully;
 
+import com.iluwatar.leaderelection.Instance;
+import com.iluwatar.leaderelection.Message;
+import com.iluwatar.leaderelection.MessageManager;
+import com.iluwatar.leaderelection.MessageType;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- *
+ * Example of how to use bully leader election. Initially 5 instances is created in the clould
+ * system, and the instance with ID 1 is set as leader. After the system is started stop the
+ * leader instance, and the new leader will be elected.
  */
 public class BullyApp {
+
+  /**
+   * Program entry point
+   */
+  public static void main(String[] args) {
+
+    Map<Integer, Instance> instanceMap = new HashMap<>();
+    MessageManager messageManager = new BullyMessageManager(instanceMap);
+
+    BullyInstance instance1 = new BullyInstance(messageManager, 1, 1);
+    BullyInstance instance2 = new BullyInstance(messageManager, 2, 1);
+    BullyInstance instance3 = new BullyInstance(messageManager, 3, 1);
+    BullyInstance instance4 = new BullyInstance(messageManager, 4, 1);
+    BullyInstance instance5 = new BullyInstance(messageManager, 5, 1);
+
+    instanceMap.put(1, instance1);
+    instanceMap.put(2, instance2);
+    instanceMap.put(3, instance3);
+    instanceMap.put(4, instance4);
+    instanceMap.put(5, instance5);
+
+    instance4.onMessage(new Message(MessageType.HEARTBEAT_INVOKE, ""));
+
+    Thread thread1 = new Thread(instance1);
+    Thread thread2 = new Thread(instance2);
+    Thread thread3 = new Thread(instance3);
+    Thread thread4 = new Thread(instance4);
+    Thread thread5 = new Thread(instance5);
+
+    thread1.start();
+    thread2.start();
+    thread3.start();
+    thread4.start();
+    thread5.start();
+
+    instance1.setAlive(false);
+  }
 }

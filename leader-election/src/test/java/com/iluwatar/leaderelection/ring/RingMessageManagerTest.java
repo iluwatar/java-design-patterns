@@ -34,7 +34,7 @@ import java.util.Queue;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * RingMessageManager Test
+ * RingMessageManager unit test.
  */
 public class RingMessageManagerTest {
 
@@ -91,8 +91,7 @@ public class RingMessageManagerTest {
       Field messageQueueField = instanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);
       Message ringMessageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
-      assertEquals(ringMessageSent.getType(), ringMessage.getType());
-      assertEquals(ringMessageSent.getContent(), ringMessage.getContent());
+      assertEquals(ringMessageSent, ringMessage);
     } catch (NoSuchFieldException | IllegalAccessException e) {
       fail("Error to access private field.");
     }

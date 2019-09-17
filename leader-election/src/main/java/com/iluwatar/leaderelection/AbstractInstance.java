@@ -36,6 +36,8 @@ public abstract class AbstractInstance implements Instance, Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AbstractInstance.class);
 
+  protected static final int HEARTBEAT_INTERVAL = 5000;
+
   protected MessageManager messageManager;
   protected Queue<Message> messageQueue;
   protected final int localId;

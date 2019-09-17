@@ -66,7 +66,7 @@ public class RingInstance extends AbstractInstance {
       boolean isLeaderAlive = messageManager.sendHeartbeatMessage(this.leaderId);
       if (isLeaderAlive) {
         LOGGER.info("Instance " + localId + "- Leader is alive. Start next heartbeat in 5 second.");
-        Thread.sleep(5000);
+        Thread.sleep(HEARTBEAT_INTERVAL);
         messageManager.sendHeartbeatInvokeMessage(this.localId);
       } else {
         LOGGER.info("Instance " + localId + "- Leader is not alive. Start election.");
@@ -118,6 +118,9 @@ public class RingInstance extends AbstractInstance {
     }
   }
 
+  /**
+   * Not used in Ring instance.
+   */
   @Override
   protected void handleLeaderInvokeMessage() {}
 

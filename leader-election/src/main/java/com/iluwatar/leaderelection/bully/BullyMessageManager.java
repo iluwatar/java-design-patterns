@@ -75,14 +75,26 @@ public class BullyMessageManager extends AbstractMessageManager {
     }
   }
 
+  /**
+   * Send leader message to all the instances to notify the new leader.
+   * @param currentId Instance ID of which sends this message.
+   * @param leaderId Leader message content.
+   * @return {@code true} if the message is accepted.
+   */
   @Override
   public boolean sendLeaderMessage(int currentId, int leaderId) {
     Message leaderMessage = new Message(MessageType.LEADER, String.valueOf(leaderId));
     instanceMap.keySet()
       .stream()
+      .filter((i) -> i != currentId)
       .forEach((i) -> instanceMap.get(i).onMessage(leaderMessage));
+    return false;
   }
 
+  /**
+   * Send heartbeat invoke message to the next instance.
+   * @param currentId Instance ID of which sends this message.
+   */
   @Override
   public void sendHeartbeatInvokeMessage(int currentId) {
     Instance nextInstance = this.findNextInstance(currentId);
@@ -90,6 +102,11 @@ public class BullyMessageManager extends AbstractMessageManager {
     nextInstance.onMessage(heartbeatInvokeMessage);
   }
 
+  /**
+   * Find all the alive instances with smaller ID than current instance.
+   * @param currentId ID of current instance.
+   * @return ID list of all the candidate instance.
+   */
   private List<Integer> findElectionCandidateInstanceList(int currentId) {
     return instanceMap.keySet()
             .stream()

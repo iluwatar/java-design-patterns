@@ -21,42 +21,28 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.leaderelection.ring;
+package com.iluwatar.leaderelection;
 
-import com.iluwatar.leaderelection.Message;
-import com.iluwatar.leaderelection.MessageType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * RingMessage Test
+ * Message test case.
  */
-public class RingMessageTest {
+public class MessageTest {
 
   @Test
   public void testGetType() {
-    final Message ringMessage = new Message(MessageType.HEARTBEAT, "");
-    assertEquals(ringMessage.getType(), MessageType.HEARTBEAT);
-  }
-
-  @Test
-  public void testSetType() {
-    final Message ringMessage = new Message(MessageType.HEARTBEAT, "");
-    ringMessage.setType(MessageType.ELECTION);
-    assertEquals(ringMessage.getType(), MessageType.ELECTION);
+    Message message = new Message(MessageType.HEARTBEAT, "");
+    assertEquals(MessageType.HEARTBEAT, message.getType());
   }
 
   @Test
   public void testGetContent() {
-    final Message ringMessage = new Message(MessageType.HEARTBEAT, "test");
-    assertEquals(ringMessage.getContent(), "test");
+    String content = "test";
+    Message message = new Message(MessageType.HEARTBEAT, content);
+    assertEquals(content, message.getContent());
   }
 
-  @Test
-  public void testSetContent() {
-    final Message ringMessage = new Message(MessageType.HEARTBEAT, "");
-    ringMessage.setContent("test");
-    assertEquals(ringMessage.getContent(), "test");
-  }
 }

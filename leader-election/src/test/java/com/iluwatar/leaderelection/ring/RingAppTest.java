@@ -26,7 +26,7 @@ package com.iluwatar.leaderelection.ring;
 import org.junit.jupiter.api.Test;
 
 /**
- * RingApp Test
+ * RingApp unit test.
  */
 public class RingAppTest {
 
