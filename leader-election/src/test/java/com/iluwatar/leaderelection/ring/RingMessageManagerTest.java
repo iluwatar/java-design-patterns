@@ -70,7 +70,6 @@ public class RingMessageManagerTest {
     } catch (NoSuchFieldException | IllegalAccessException e) {
       fail("Error to access private field.");
     }
-
   }
 
   @Test
