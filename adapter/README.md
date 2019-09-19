@@ -56,15 +56,14 @@ public class FishingBoat {
 And captain expects an implementation of `RowingBoat` interface to be able to move
 
 ```java
-public class Captain implements RowingBoat {
+public class Captain {
 
   private RowingBoat rowingBoat;
-
+  // default constructor and setter for rowingBoat
   public Captain(RowingBoat rowingBoat) {
     this.rowingBoat = rowingBoat;
   }
 
-  @Override
   public void row() {
     rowingBoat.row();
   }
