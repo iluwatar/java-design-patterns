@@ -94,6 +94,8 @@ public class App {
     service.execute(new ArithmeticSumTask(500));
     service.execute(new ArithmeticSumTask(2000));
     service.execute(new ArithmeticSumTask(1));
+
+    service.close();
   }
 
   /**
