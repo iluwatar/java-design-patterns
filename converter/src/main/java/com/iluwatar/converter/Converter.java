@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 /**
  * Generic converter, thanks to Java8 features not only provides a way of generic bidirectional
- * conversion between coresponding types, but also a common way of converting a collection of objects
+ * conversion between corresponding types, but also a common way of converting a collection of objects
  * of the same type, reducing boilerplate code to the absolute minimum.
  * @param <T> DTO representation's type
  * @param <U> Domain representation's type

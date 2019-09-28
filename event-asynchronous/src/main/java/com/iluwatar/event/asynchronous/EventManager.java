@@ -39,6 +39,8 @@ public class EventManager implements ThreadCompleteListener {
   private int currentlyRunningSyncEvent = -1;
   private Random rand;
   private Map<Integer, Event> eventPool;
+  
+  private static final String DOES_NOT_EXIST = " does not exist.";
 
   /**
    * EventManager constructor.
@@ -112,7 +114,7 @@ public class EventManager implements ThreadCompleteListener {
    */
   public void start(int eventId) throws EventDoesNotExistException {
     if (!eventPool.containsKey(eventId)) {
-      throw new EventDoesNotExistException(eventId + " does not exist.");
+      throw new EventDoesNotExistException(eventId + DOES_NOT_EXIST);
     }
 
     eventPool.get(eventId).start();
@@ -126,7 +128,7 @@ public class EventManager implements ThreadCompleteListener {
    */
   public void cancel(int eventId) throws EventDoesNotExistException {
     if (!eventPool.containsKey(eventId)) {
-      throw new EventDoesNotExistException(eventId + " does not exist.");
+      throw new EventDoesNotExistException(eventId + DOES_NOT_EXIST);
     }
 
     if (eventId == currentlyRunningSyncEvent) {
@@ -145,7 +147,7 @@ public class EventManager implements ThreadCompleteListener {
    */
   public void status(int eventId) throws EventDoesNotExistException {
     if (!eventPool.containsKey(eventId)) {
-      throw new EventDoesNotExistException(eventId + " does not exist.");
+      throw new EventDoesNotExistException(eventId + DOES_NOT_EXIST);
     }
 
     eventPool.get(eventId).status();

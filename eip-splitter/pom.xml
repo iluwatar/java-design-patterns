@@ -26,7 +26,7 @@
     <parent>
         <groupId>com.iluwatar</groupId>
         <artifactId>java-design-patterns</artifactId>
-        <version>1.21.0-SNAPSHOT</version>
+        <version>1.22.0-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -51,11 +51,6 @@
         <dependency>
             <groupId>com.github.sbrannen</groupId>
             <artifactId>spring-test-junit5</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
