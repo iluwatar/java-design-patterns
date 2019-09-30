@@ -26,4 +26,3 @@ Use the Partial Response pattern when
 ## Credits
 
 * [Common Design Patterns](https://cloud.google.com/apis/design/design_patterns)
-* [Partial Response in RESTful API Design](http://yaoganglian.com/2013/07/01/partial-response/)
