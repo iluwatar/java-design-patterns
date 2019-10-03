@@ -84,7 +84,7 @@ public class BallThreadTest {
       verifyZeroInteractions(ballItem);
 
       ballThread.resumeMe();
-      sleep(200);
+      sleep(300);
       verify(ballItem, atLeastOnce()).draw();
       verify(ballItem, atLeastOnce()).move();
 

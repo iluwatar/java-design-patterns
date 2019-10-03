@@ -173,6 +173,8 @@
 	    <module>typeobjectpattern</module>
         <module>bytecode</module>
         <module>leader-election</module>
+        <module>data-locality</module>
+
     </modules>
 
     <repositories>
