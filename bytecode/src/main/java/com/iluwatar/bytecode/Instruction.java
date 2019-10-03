@@ -29,7 +29,7 @@ public enum Instruction {
 
   LITERAL(1),
   SET_HEALTH(2),
-  SET_WISDOM (3),
+  SET_WISDOM(3),
   SET_AGILITY(4),
   PLAY_SOUND(5),
   SPAWN_PARTICLES(6),
@@ -37,7 +37,7 @@ public enum Instruction {
   GET_AGILITY(8),
   GET_WISDOM(9),
   ADD(10),
-  DIVIDE (11);
+  DIVIDE(11);
 
   private int value;
 

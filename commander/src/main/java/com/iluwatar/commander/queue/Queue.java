@@ -83,7 +83,7 @@ public class Queue<T> {
       Node temp = front;
       front = front.next;
       size = size - 1;
-      return ((T) temp.value);
+      return (T) temp.value;
     }
   }
   
@@ -91,7 +91,7 @@ public class Queue<T> {
     if (isEmpty()) {
       throw new IsEmptyException();
     } else {
-      return ((T)front.value);
+      return (T)front.value;
     }
   }
 }
