@@ -38,7 +38,7 @@
         <junit-vintage.version>${junit.version}.2</junit-vintage.version>
         <junit-platform.version>1.0.2</junit-platform.version>
         <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
-        <compiler.version>3.0</compiler.version>
+        <compiler.version>3.8.0</compiler.version>
         <jacoco.version>0.7.2.201409121644</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.16.1</camel.version>
@@ -357,15 +357,14 @@
         </pluginManagement>
 
         <plugins>
-            <!-- Tell maven to compile using Java 8 -->
+            <!-- Tell maven to compile using Java 11 -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-compiler-plugin</artifactId>
                 <version>${compiler.version}</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
+			    <configuration>
+			        <release>11</release>
+			    </configuration>            
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
