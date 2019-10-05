@@ -17,23 +17,14 @@
 		<groupId>com.iluwatar</groupId>
 		<version>1.22.0-SNAPSHOT</version>
 	</parent>
-
 	<artifactId>naked-objects</artifactId>
-
 	<packaging>pom</packaging>
-
-	<prerequisites>
-		<maven>3.0.4</maven>
-	</prerequisites>
-
 	<properties>
 		<isis.version>1.9.0</isis.version>
-
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<assertj-core.version>2.0.0</assertj-core.version>
 	</properties>
-
 	<repositories>
 		<repository>
 			<id>apache.snapshots</id>
