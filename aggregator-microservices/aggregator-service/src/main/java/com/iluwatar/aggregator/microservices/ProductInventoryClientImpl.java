@@ -50,11 +50,11 @@ public class ProductInventoryClientImpl implements ProductInventoryClient {
       try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
         response = EntityUtils.toString(httpResponse.getEntity());
       }
-	} catch (ClientProtocolException cpe) {
-		LOGGER.error("ClientProtocolException Occured", cpe);
-	} catch (IOException ioe) {
-		LOGGER.error("IOException Occurred", ioe);
-	}
+    } catch (ClientProtocolException cpe) {
+      LOGGER.error("ClientProtocolException Occured", cpe);
+    } catch (IOException ioe) {
+      LOGGER.error("IOException Occurred", ioe);
+    }
     return Integer.parseInt(response);
   }
 }
