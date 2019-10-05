@@ -32,7 +32,7 @@ public enum CachingPolicy {
 
   private String policy;
 
-  private CachingPolicy(String policy) {
+  CachingPolicy(String policy) {
     this.policy = policy;
   }
 

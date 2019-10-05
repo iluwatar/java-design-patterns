@@ -34,7 +34,7 @@ public enum Content {
 
   private String title;
 
-  private Content(String title) {
+  Content(String title) {
     this.title = title;
   }
 

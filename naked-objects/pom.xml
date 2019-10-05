@@ -92,29 +92,7 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.1</version>
-					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
-						<compilerArgument>-parameters</compilerArgument>
-					</configuration>
-					<executions>
-						<execution>
-							<id>source</id>
-							<phase>compile</phase>
-						</execution>
-						<execution>
-							<id>test</id>
-							<phase>test-compile</phase>
-						</execution>
-					</executions>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.16</version>
 					<configuration>
 						<includes>
 							<include>**/*Test.java</include>

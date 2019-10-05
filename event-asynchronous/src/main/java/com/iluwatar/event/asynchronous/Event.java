@@ -97,7 +97,7 @@ public class Event implements IEvent, Runnable {
     this.eventListener = null;
   }
 
-  private final void completed() {
+  private void completed() {
     if (eventListener != null) {
       eventListener.completedEventHandler(eventId);
     }

@@ -36,10 +36,9 @@
         <junit.version>4.12</junit.version>
         <junit-jupiter.version>5.0.2</junit-jupiter.version>
         <junit-vintage.version>${junit.version}.2</junit-vintage.version>
-        <junit-platform.version>1.0.2</junit-platform.version>
         <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
-        <compiler.version>3.0</compiler.version>
-        <jacoco.version>0.7.2.201409121644</jacoco.version>
+        <compiler.version>3.8.1</compiler.version>
+        <jacoco.version>0.8.4</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.16.1</camel.version>
         <guava.version>19.0</guava.version>
@@ -55,6 +54,7 @@
         <aws-lambda-log4j.version>1.0.0</aws-lambda-log4j.version>
         <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
         <jackson.version>2.8.5</jackson.version>
+        <pmd.version>3.12.0</pmd.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -353,20 +353,27 @@
                         </lifecycleMappingMetadata>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${compiler.version}</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M3</version>
+                    <configuration>
+                        <argLine>-Xmx1024M ${argLine}</argLine>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
 
         <plugins>
-            <!-- Tell maven to compile using Java 8 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${compiler.version}</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -387,7 +394,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -408,23 +415,8 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>${junit-platform.version}</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <argLine>-Xmx1024M ${argLine}</argLine>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.6</version>
+                <version>${pmd.version}</version>
                 <configuration>
                     <failOnViolation>true</failOnViolation>
                     <failurePriority>5</failurePriority>
@@ -445,7 +437,7 @@
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>2.11</version>
+                <version>3.0</version>
                 <configuration>
                     <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
                     <properties>
@@ -471,7 +463,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.6</version>
+                <version>${pmd.version}</version>
             </plugin>
         </plugins>
     </reporting>

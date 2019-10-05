@@ -30,7 +30,7 @@ public class Fruit {
   /**
    * Enumeration of Fruit Types
    */
-  public static enum FruitType {
+  public enum FruitType {
     ORANGE, APPLE, LEMON
   }
 

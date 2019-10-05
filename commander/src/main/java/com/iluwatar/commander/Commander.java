@@ -239,12 +239,12 @@ public class Commander {
       //since payment time is lesser than queuetime it would have already failed..additional check not needed
       LOG.trace("Order " + qt.order.id + ": Queue time for order over, failed..");
       return;
-    } else if ((qt.taskType.equals(TaskType.Payment) && !qt.order.paid.equals(PaymentStatus.Trying))
-        || (qt.taskType.equals(TaskType.Messaging) && ((qt.messageType == 1 
-        && !qt.order.messageSent.equals(MessageSent.NoneSent))
+    } else if (qt.taskType.equals(TaskType.Payment) && !qt.order.paid.equals(PaymentStatus.Trying)
+        || qt.taskType.equals(TaskType.Messaging) && (qt.messageType == 1
+        && !qt.order.messageSent.equals(MessageSent.NoneSent)
         || qt.order.messageSent.equals(MessageSent.PaymentFail) 
-        || qt.order.messageSent.equals(MessageSent.PaymentSuccessful)))
-        || (qt.taskType.equals(TaskType.EmployeeDb) && qt.order.addedToEmployeeHandle)) {
+        || qt.order.messageSent.equals(MessageSent.PaymentSuccessful))
+        || qt.taskType.equals(TaskType.EmployeeDb) && qt.order.addedToEmployeeHandle) {
       LOG.trace("Order " + qt.order.id + ": Not queueing task since task already done..");
       return; 
     }
@@ -576,8 +576,8 @@ public class Commander {
               || qt.order.messageSent.equals(MessageSent.PaymentSuccessful)) {
             tryDequeue();
             LOG.trace("Order " + qt.order.id + ": This messaging task already done, dequeue..");
-          } else if ((qt.messageType == 1 && (!qt.order.messageSent.equals(MessageSent.NoneSent) 
-              || !qt.order.paid.equals(PaymentStatus.Trying)))) {
+          } else if (qt.messageType == 1 && (!qt.order.messageSent.equals(MessageSent.NoneSent)
+              || !qt.order.paid.equals(PaymentStatus.Trying))) {
             tryDequeue();
             LOG.trace("Order " + qt.order.id + ": This messaging task does not need to be done, dequeue..");
           } else if (qt.messageType == 0) {
@@ -606,8 +606,7 @@ public class Commander {
     } else {
       Thread.sleep(queueTaskTime / 3);
       tryDoingTasksInQueue();
-    } 
-    return; 
+    }
   }
 
 }
