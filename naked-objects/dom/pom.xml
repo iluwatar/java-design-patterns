@@ -78,7 +78,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-                <datanucleus-maven-plugin.version>4.0.1</datanucleus-maven-plugin.version>
+                <datanucleus.version>5.2.1</datanucleus.version>
 			</properties>
 			<build>
 				<pluginManagement>
@@ -96,7 +96,7 @@
 											<pluginExecutionFilter>
 												<groupId>org.datanucleus</groupId>
 												<artifactId>datanucleus-maven-plugin</artifactId>
-												<versionRange>[${datanucleus-maven-plugin.version},)</versionRange>
+												<versionRange>[${datanucleus.version},)</versionRange>
 												<goals>
 													<goal>enhance</goal>
 												</goals>
@@ -115,12 +115,13 @@
 					<plugin>
 						<groupId>org.datanucleus</groupId>
 						<artifactId>datanucleus-maven-plugin</artifactId>
-						<version>${datanucleus-maven-plugin.version}</version>
+						<version>${datanucleus.version}</version>
 						<configuration>
+							<log4jConfiguration>log4j.properties</log4jConfiguration>
+							<persistenceUnitName>simple</persistenceUnitName>
+							<api>JDO</api>
 							<fork>false</fork>
-							<log4jConfiguration>${basedir}/log4j.properties</log4jConfiguration>
 							<verbose>true</verbose>
-							<props>${basedir}/datanucleus.properties</props>
 						</configuration>
 						<executions>
 							<execution>
@@ -137,6 +138,7 @@
 				<dependency>
 					<groupId>org.datanucleus</groupId>
 					<artifactId>datanucleus-core</artifactId>
+					<version>${datanucleus.version}</version>
 				</dependency>
 				<dependency>
 					<groupId>org.datanucleus</groupId>
@@ -145,6 +147,7 @@
 				<dependency>
 					<groupId>org.datanucleus</groupId>
 					<artifactId>datanucleus-api-jdo</artifactId>
+					<version>${datanucleus.version}</version>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -157,7 +160,7 @@
 					<plugin>
 						<groupId>org.apache.isis.tool</groupId>
 						<artifactId>isis-maven-plugin</artifactId>
-						<version>1.9.0-SNAPSHOT</version>
+						<version>${isis.version}</version>
 						<configuration>
 							<isisConfigDir>../webapp/src/main/webapp/WEB-INF</isisConfigDir>
 						</configuration>
@@ -165,7 +168,7 @@
 							<dependency>
 								<groupId>org.apache.isis.example.application</groupId>
 								<artifactId>simpleapp-dom</artifactId>
-								<version>1.9.0-SNAPSHOT</version>
+								<version>${isis.version}</version>
 							</dependency>
 							<!-- ... workaround to avoid conflict with plexus-default (not sure 
 								why exclusions in the isis-maven-plugin aren't sufficient, though ... -->
