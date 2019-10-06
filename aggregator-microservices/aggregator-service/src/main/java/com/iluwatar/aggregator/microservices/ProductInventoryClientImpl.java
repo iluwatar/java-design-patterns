@@ -22,6 +22,7 @@
  */
 package com.iluwatar.aggregator.microservices;
 
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -49,8 +50,10 @@ public class ProductInventoryClientImpl implements ProductInventoryClient {
       try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
         response = EntityUtils.toString(httpResponse.getEntity());
       }
-    } catch (IOException e) {
-      LOGGER.error("Exception caught.", e);
+    } catch (ClientProtocolException cpe) {
+      LOGGER.error("ClientProtocolException Occured", cpe);
+    } catch (IOException ioe) {
+      LOGGER.error("IOException Occurred", ioe);
     }
     return Integer.parseInt(response);
   }
