@@ -55,6 +55,8 @@
         <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
         <jackson.version>2.8.5</jackson.version>
         <pmd.version>3.12.0</pmd.version>
+        <jaxb-api.version>2.3.0</jaxb-api.version>
+        <annotation-api.version>1.3.1</annotation-api.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -297,6 +299,16 @@
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongo-java-driver</artifactId>
                 <version>${mongo-java-driver.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>${annotation-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
