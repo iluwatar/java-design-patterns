@@ -137,7 +137,7 @@ public class AppConfig {
     nasta.setSurname("Spotakova");
     repository.save(nasta);
 
-    LOGGER.info("Find by id 2: {}", repository.findById(2L));
+    LOGGER.info("Find by id 2: {}", repository.findById(2L).get());
 
     // Remove record from Person
     repository.deleteById(2L);

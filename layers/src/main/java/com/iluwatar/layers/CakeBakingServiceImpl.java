@@ -86,6 +86,9 @@ public class CakeBakingServiceImpl implements CakeBakingService {
         layer.setCake(cake);
         layerBean.save(layer);
       }
+    } else {
+      throw new CakeBakingException(String.format("Topping %s is not available",
+              cakeInfo.cakeToppingInfo.name));
     }
   }
 
