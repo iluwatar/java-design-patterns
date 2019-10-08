@@ -97,6 +97,7 @@
         <module>property</module>
         <module>intercepting-filter</module>
         <module>producer-consumer</module>
+        <module>pipeline</module>
         <module>poison-pill</module>
         <module>reader-writer-lock</module>
         <module>lazy-loading</module>
