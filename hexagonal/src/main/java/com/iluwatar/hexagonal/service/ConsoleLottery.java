@@ -48,7 +48,7 @@ public class ConsoleLottery {
     Injector injector = Guice.createInjector(new LotteryModule());
     LotteryService service = injector.getInstance( LotteryService.class);
     WireTransfers bank = injector.getInstance(WireTransfers.class);
-    try (final Scanner scanner = new Scanner(System.in)) {
+    try (Scanner scanner = new Scanner(System.in)) {
       boolean exit = false;
       while (!exit) {
         printMainMenu();

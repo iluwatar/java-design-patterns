@@ -55,7 +55,9 @@ public class App {
     ExecutorService executorService = Executors.newFixedThreadPool(3);
     for (int i = 0; i < 3; i++) {
       executorService.execute(() -> {
-        while (inventory.addItem(new Item())) {};
+        while (inventory.addItem(new Item())) {
+          LOGGER.info("Adding another item");
+        }
       });
     }
 

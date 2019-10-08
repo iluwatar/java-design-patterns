@@ -34,15 +34,6 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>api-gateway-service</artifactId>
   <packaging>jar</packaging>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -73,7 +64,6 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring-boot.version}</version>
         <executions>
           <execution>
             <goals>
