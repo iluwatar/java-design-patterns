@@ -24,6 +24,7 @@ package com.iluwatar.repository;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -32,6 +33,7 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -44,6 +46,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
  *
  */
 @EnableJpaRepositories
+@SpringBootConfiguration
 public class AppConfig {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
@@ -60,7 +63,7 @@ public class AppConfig {
     basicDataSource.setUrl("jdbc:h2:~/databases/person");
     basicDataSource.setUsername("sa");
     basicDataSource.setPassword("sa");
-    return (DataSource) basicDataSource;
+    return basicDataSource;
   }
 
   /**
@@ -134,17 +137,17 @@ public class AppConfig {
     nasta.setSurname("Spotakova");
     repository.save(nasta);
 
-    LOGGER.info("Find by id 2: {}", repository.findOne(2L));
+    LOGGER.info("Find by id 2: {}", repository.findById(2L).get());
 
     // Remove record from Person
-    repository.delete(2L);
+    repository.deleteById(2L);
 
     // count records
     LOGGER.info("Count Person records: {}", repository.count());
 
     // find by name
-    Person p = repository.findOne(new PersonSpecifications.NameEqualSpec("John"));
-    LOGGER.info("Find by John is {}", p);
+    Optional<Person> p = repository.findOne(new PersonSpecifications.NameEqualSpec("John"));
+    LOGGER.info("Find by John is {}", p.get());
 
     // find by age
     persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));

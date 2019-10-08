@@ -28,10 +28,10 @@
     <inceptionYear>2014</inceptionYear>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hibernate.version>5.0.1.Final</hibernate.version>
-        <spring.version>4.2.4.RELEASE</spring.version>
-        <spring-boot.version>1.3.3.RELEASE</spring-boot.version>
-        <spring-data.version>1.9.2.RELEASE</spring-data.version>
+        <hibernate.version>5.2.18.Final</hibernate.version>
+        <spring.version>5.0.13.RELEASE</spring.version>
+        <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
+        <spring-data.version>2.0.14.RELEASE</spring-data.version>
         <h2.version>1.4.190</h2.version>
         <junit.version>4.12</junit.version>
         <junit-jupiter.version>5.0.2</junit-jupiter.version>
@@ -40,7 +40,7 @@
         <compiler.version>3.8.1</compiler.version>
         <jacoco.version>0.8.4</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
-        <camel.version>2.16.1</camel.version>
+        <camel.version>2.24.0</camel.version>
         <guava.version>19.0</guava.version>
         <mockito.version>1.10.19</mockito.version>
         <apache-httpcomponents.version>4.5.10</apache-httpcomponents.version>
@@ -55,6 +55,7 @@
         <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
         <jackson.version>2.8.5</jackson.version>
         <pmd.version>3.12.0</pmd.version>
+        <log4j.version>1.2.17</log4j.version>
         <jaxb-api.version>2.3.0</jaxb-api.version>
         <annotation-api.version>1.3.1</annotation-api.version>
     </properties>
@@ -192,11 +193,6 @@
                 <version>${hibernate.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-entitymanager</artifactId>
-                <version>${hibernate.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
@@ -299,6 +295,11 @@
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongo-java-driver</artifactId>
                 <version>${mongo-java-driver.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.xml.bind</groupId>
