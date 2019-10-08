@@ -10,9 +10,6 @@ tags:
  - Difficulty-Intermediate
 ---
 
-## Also known as
-None
-
 ## Intent
 Allows processing of data in a series of stages by giving in an initial input and passing the processed output to be used by the next stages.
 
@@ -21,7 +18,7 @@ Use the Pipeline pattern when you want to
 
 * execute individual stages that yields a final value
 * add readability to complex sequence of operations by providing a fluent builder as an interface
-* improve testability of code since stages will most likely be doing a single thing, complying to the Single Responsibility Principle (SRP)
+* improve testability of code since stages will most likely be doing a single thing, complying to the [Single Responsibility Principle (SRP)](https://java-design-patterns.com/principles/#single-responsibility-principle)
 
 ## Typical Use Case
 
