@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -35,7 +36,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.google.common.collect.Lists;
@@ -45,7 +46,7 @@ import com.google.common.collect.Lists;
  * by {@link org.springframework.data.jpa.domain.Specification} are also test.
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = { "classpath:applicationContext.xml" })
+@SpringBootTest(properties = { "locations=classpath:applicationContext.xml" })
 public class RepositoryTest {
 
   @Resource
@@ -64,7 +65,7 @@ public class RepositoryTest {
   @BeforeEach
   public void setup() {
 
-    repository.save(persons);
+    repository.saveAll(persons);
   }
 
   @Test
@@ -115,8 +116,8 @@ public class RepositoryTest {
   @Test
   public void testFindOneByNameEqualSpec() {
 
-    Person actual = repository.findOne(new PersonSpecifications.NameEqualSpec("Terry"));
-    assertEquals(terry, actual);
+    Optional<Person> actual = repository.findOne(new PersonSpecifications.NameEqualSpec("Terry"));
+    assertEquals(terry, actual.get());
   }
 
   @AfterEach

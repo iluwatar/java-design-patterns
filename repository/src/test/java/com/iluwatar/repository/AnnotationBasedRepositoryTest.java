@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -35,9 +36,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import com.google.common.collect.Lists;
 
@@ -47,7 +47,7 @@ import com.google.common.collect.Lists;
  * 
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { AppConfig.class }, loader = AnnotationConfigContextLoader.class)
+@SpringBootTest(classes = { AppConfig.class })
 public class AnnotationBasedRepositoryTest {
 
   @Resource
@@ -66,7 +66,7 @@ public class AnnotationBasedRepositoryTest {
   @BeforeEach
   public void setup() {
 
-    repository.save(persons);
+    repository.saveAll(persons);
   }
 
   @Test
@@ -119,8 +119,8 @@ public class AnnotationBasedRepositoryTest {
   @Test
   public void testFindOneByNameEqualSpec() {
 
-    Person actual = repository.findOne(new PersonSpecifications.NameEqualSpec("Terry"));
-    assertEquals(terry, actual);
+    Optional<Person> actual = repository.findOne(new PersonSpecifications.NameEqualSpec("Terry"));
+    assertEquals(terry, actual.get());
   }
 
   @AfterEach

@@ -28,7 +28,7 @@ import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
@@ -42,7 +42,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  * </p>
  */
 @ExtendWith(SpringExtension.class)
-@SpringApplicationConfiguration(classes = SplitterRouteTest.class)
+@SpringBootTest(classes = SplitterRouteTest.class)
 @ActiveProfiles("test")
 @EnableAutoConfiguration
 @ComponentScan
