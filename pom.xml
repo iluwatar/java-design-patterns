@@ -178,7 +178,7 @@
         <module>bytecode</module>
         <module>leader-election</module>
         <module>data-locality</module>
-
+        <module>subclass-sandbox</module>
     </modules>
 
     <repositories>
