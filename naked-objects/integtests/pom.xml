@@ -90,6 +90,11 @@
 			<artifactId>hsqldb</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+		</dependency>
+
         <!-- 
         uncomment to enable enhanced cucumber-jvm reporting
         http://www.masterthought.net/section/cucumber-reporting
@@ -122,20 +127,5 @@
         </repository>  
     </repositories>  
      -->
-	<profiles>
-		<profile>
-			<id>jdk11-deps</id>
-			<activation>
-				<jdk>[11,)</jdk>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>javax.annotation</groupId>
-					<artifactId>javax.annotation-api</artifactId>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
-
 
 </project>
