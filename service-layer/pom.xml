@@ -52,4 +52,22 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <profiles>
+      <profile>
+          <id>jdk11-deps</id>
+          <activation>
+              <jdk>[11,)</jdk>
+          </activation>
+          <dependencies>
+              <dependency>
+                  <groupId>com.sun.xml.bind</groupId>
+                  <artifactId>jaxb-impl</artifactId>
+              </dependency>
+              <dependency>
+                  <groupId>javax.xml.bind</groupId>
+                  <artifactId>jaxb-api</artifactId>
+              </dependency>
+          </dependencies>
+      </profile>
+  </profiles>
 </project>

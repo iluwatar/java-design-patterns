@@ -56,7 +56,8 @@
         <jackson.version>2.8.5</jackson.version>
         <pmd.version>3.12.0</pmd.version>
         <log4j.version>1.2.17</log4j.version>
-        <jaxb-api.version>2.3.0</jaxb-api.version>
+        <jaxb-api.version>2.3.1</jaxb-api.version>
+        <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.1</annotation-api.version>
     </properties>
     <modules>
@@ -314,6 +315,11 @@
                 <artifactId>javax.annotation-api</artifactId>
                 <version>${annotation-api.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>${jaxb-impl.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -493,5 +499,28 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <profiles>
+        <profile>
+            <id>jdk11-dep-management</id>
+            <activation>
+                <jdk>[11,)</jdk>
+            </activation>
+            <dependencyManagement>
+	            <dependencies>
+	                <dependency>
+	                    <groupId>org.javassist</groupId>
+	                    <artifactId>javassist</artifactId>
+	                    <version>3.25.0-GA</version>
+	                </dependency>
+	                <dependency>
+	                    <groupId>javax.annotation</groupId>
+	                    <artifactId>javax.annotation-api</artifactId>
+	                    <version>1.3.2</version>
+	                </dependency>
+	            </dependencies>
+            </dependencyManagement>
+        </profile>
+    </profiles>
 
 </project>

@@ -78,7 +78,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-                <datanucleus-maven-plugin.version>4.0.1</datanucleus-maven-plugin.version>
+                <datanucleus-maven-plugin.version>5.2.1</datanucleus-maven-plugin.version>
 			</properties>
 			<build>
 				<pluginManagement>
