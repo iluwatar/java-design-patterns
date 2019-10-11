@@ -1,17 +1,17 @@
 language: java
-dist: trusty   # Xenial build environment won't allow installation of Java 8
+dist: xenial
 jdk:
-- oraclejdk8
+- openjdk8
+- openjdk11
 
 env:
   global:
   - GH_REF: github.com/iluwatar/java-design-patterns.git
   - secure: LxTDuNS/rBWIvKkaEqr79ImZAe48mCdoYCF41coxNXgNoippo4GIBArknqtv+XvdkiuRZ1yGyj6pn8GU33c/yn+krddTUkVCwTbVatbalW5jhQjDbHYym/JcxaK9ZS/3JTeGcWrBgiPqHEEDhCf26vPZsXoMSeVCEORVKTp1BSg=
   - secure: "eoWlW9GyTJY04P8K3pxayXwU9/hmptQg/LfirispQkV9YvmziCfSzXnatnBhNfud98sCzY8BScXnb+OWLTnjLKpId4rtEqb0aJ40Jc32cUKzgzFAUn7cNcDAbUIfyPAGVqyQqfj/11wYSADwWMMOPlW97ExUtoyiH2WenXuRHso="
-  
-before_install:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
+
+services:
+- xvfb
 
 # default install command is just "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
 install:
@@ -20,12 +20,6 @@ install:
 after_success:
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 - bash update-ghpages.sh
-
-# use latest java version available instead of travis default
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
 
 notifications:
   email:
