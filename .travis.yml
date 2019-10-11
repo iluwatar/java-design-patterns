@@ -1,7 +1,8 @@
 language: java
-dist: trusty   # Xenial build environment won't allow installation of Java 8
+dist: xenial
 jdk:
-- oraclejdk8
+- openjdk8
+- openjdk11
 
 env:
   global:
@@ -20,12 +21,6 @@ install:
 after_success:
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 - bash update-ghpages.sh
-
-# use latest java version available instead of travis default
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
 
 notifications:
   email:
