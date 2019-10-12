@@ -45,8 +45,8 @@ public class HeroStatTest {
    */
   @Test
   public void testEquals() {
-    HeroStat heroStatA = HeroStat.valueOf(3, 9, 2);
-    HeroStat heroStatB = HeroStat.valueOf(3, 9, 2);
+    var heroStatA = HeroStat.valueOf(3, 9, 2);
+    var heroStatB = HeroStat.valueOf(3, 9, 2);
     new EqualsTester().addEqualityGroup(heroStatA, heroStatB).testEquals();
   }
 
@@ -56,9 +56,9 @@ public class HeroStatTest {
    */
   @Test
   public void testToString() {
-    HeroStat heroStatA = HeroStat.valueOf(3, 9, 2);
-    HeroStat heroStatB = HeroStat.valueOf(3, 9, 2);
-    HeroStat heroStatC = HeroStat.valueOf(3, 9, 8);
+    var heroStatA = HeroStat.valueOf(3, 9, 2);
+    var heroStatB = HeroStat.valueOf(3, 9, 2);
+    var heroStatC = HeroStat.valueOf(3, 9, 8);
 
     assertThat(heroStatA.toString(), is(heroStatB.toString()));
     assertThat(heroStatA.toString(), is(not(heroStatC.toString())));
