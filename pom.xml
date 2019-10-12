@@ -54,7 +54,6 @@
         <aws-lambda-log4j.version>1.0.0</aws-lambda-log4j.version>
         <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
         <jackson.version>2.8.5</jackson.version>
-        <pmd.version>3.12.0</pmd.version>
         <log4j.version>1.2.17</log4j.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
@@ -445,26 +444,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>${pmd.version}</version>
-                <configuration>
-                    <failOnViolation>true</failOnViolation>
-                    <failurePriority>5</failurePriority>
-                    <printFailingErrors>true</printFailingErrors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <excludeFromFailureFile>exclude-pmd.properties</excludeFromFailureFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
 
             <plugin>
                 <groupId>com.mycila</groupId>
@@ -492,11 +471,6 @@
 
     <reporting>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>${pmd.version}</version>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
