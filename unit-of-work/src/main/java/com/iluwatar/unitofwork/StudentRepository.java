@@ -68,7 +68,7 @@ public class StudentRepository implements IUnitOfWork<Student> {
   }
 
   private void register(Student student, String operation) {
-    List<Student> studentsToOperate = context.get(operation);
+    var studentsToOperate = context.get(operation);
     if (studentsToOperate == null) {
       studentsToOperate = new ArrayList<>();
     }
@@ -99,24 +99,24 @@ public class StudentRepository implements IUnitOfWork<Student> {
   }
 
   private void commitInsert() {
-    List<Student> studentsToBeInserted = context.get(IUnitOfWork.INSERT);
-    for (Student student : studentsToBeInserted) {
+    var studentsToBeInserted = context.get(IUnitOfWork.INSERT);
+    for (var student : studentsToBeInserted) {
       LOGGER.info("Saving {} to database.", student.getName());
       studentDatabase.insert(student);
     }
   }
 
   private void commitModify() {
-    List<Student> modifiedStudents = context.get(IUnitOfWork.MODIFY);
-    for (Student student : modifiedStudents) {
+    var modifiedStudents = context.get(IUnitOfWork.MODIFY);
+    for (var student : modifiedStudents) {
       LOGGER.info("Modifying {} to database.", student.getName());
       studentDatabase.modify(student);
     }
   }
 
   private void commitDelete() {
-    List<Student> deletedStudents = context.get(IUnitOfWork.DELETE);
-    for (Student student : deletedStudents) {
+    var deletedStudents = context.get(IUnitOfWork.DELETE);
+    for (var student : deletedStudents) {
       LOGGER.info("Deleting {} to database.", student.getName());
       studentDatabase.delete(student);
     }
