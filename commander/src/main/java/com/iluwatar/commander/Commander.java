@@ -23,7 +23,6 @@
 package com.iluwatar.commander;
 
 import java.util.ArrayList;
-import org.apache.log4j.Logger;
 import com.iluwatar.commander.employeehandle.EmployeeHandle;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.ItemUnavailableException;
@@ -37,6 +36,8 @@ import com.iluwatar.commander.queue.QueueDatabase;
 import com.iluwatar.commander.queue.QueueTask;
 import com.iluwatar.commander.queue.QueueTask.TaskType;
 import com.iluwatar.commander.shippingservice.ShippingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *<p>Commander pattern is used to handle all issues that can come up while making a
@@ -86,7 +87,7 @@ public class Commander {
   private final long messageTime;
   private final long employeeTime; 
   private boolean finalSiteMsgShown;
-  static final Logger LOG = Logger.getLogger(Commander.class);
+  static final Logger LOG = LoggerFactory.getLogger(Commander.class);
   //we could also have another db where it stores all orders
   
   Commander(EmployeeHandle empDb, PaymentService pService, ShippingService sService,
