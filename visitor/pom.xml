@@ -50,16 +50,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>3.1.1</version>
         <configuration>
           <archive>
             <manifest>
               <mainClass>com.iluwatar.visitor.App</mainClass>
             </manifest>
           </archive>
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
         </configuration>
         <executions>
           <execution>

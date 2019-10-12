@@ -58,6 +58,7 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.2</annotation-api.version>
+        <assembly.version>3.1.1</assembly.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -400,6 +401,16 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${assembly.version}</version>
+                    <configuration>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
