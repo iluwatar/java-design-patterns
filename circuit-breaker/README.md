@@ -35,7 +35,7 @@ With the above example in mind we will imitate the functionality in a simple man
 
 The service architecture is as follows:
 
-![alt text](./etc/ServiceDiagram.png "Service Diagram")
+![alt text](./etc/ServiceDiagram.PNG "Service Diagram")
 
 In terms of code, the End user application is:
 
@@ -155,7 +155,7 @@ public class CircuitBreaker {
 
 How does the above pattern prevent failures? Let's understand via this finite state machine implemented by it.
 
-![alt text](./etc/StateDiagram.png "State Diagram")
+![alt text](./etc/StateDiagram.PNG "State Diagram")
 
 - We initialize the Circuit Breaker object with certain parameters: **timeout**, **failureThreshold** and **retryTimePeriod** which help determine how resilient the API is.
 - Initially, we are in the **closed** state and the remote call to API happens.
