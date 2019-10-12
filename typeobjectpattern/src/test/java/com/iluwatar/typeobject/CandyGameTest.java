@@ -35,33 +35,33 @@ class CandyGameTest {
 
   @Test
   void adjacentCellsTest() {
-    CandyGame cg = new CandyGame(3,new CellPool(9));
-    ArrayList<Cell> arr1 = cg.adjacentCells(0, 0);
-    ArrayList<Cell> arr2 = cg.adjacentCells(1, 2);
-    ArrayList<Cell> arr3 = cg.adjacentCells(1, 1);
+    var cg = new CandyGame(3,new CellPool(9));
+    var arr1 = cg.adjacentCells(0, 0);
+    var arr2 = cg.adjacentCells(1, 2);
+    var arr3 = cg.adjacentCells(1, 1);
     assertTrue(arr1.size() == 2 && arr2.size() == 3 && arr3.size() == 4);
   }
 
   @Test
   void continueRoundTest() {
-    Cell[][] matrix = new Cell[2][2];
-    Candy c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
-    Candy c2 = new Candy("purple jelly", "jelly", Type.crushableCandy, 5);
-    Candy c3 = new Candy("green apple", "apple", Type.rewardFruit, 10);
+    var matrix = new Cell[2][2];
+    var c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
+    var c2 = new Candy("purple jelly", "jelly", Type.crushableCandy, 5);
+    var c3 = new Candy("green apple", "apple", Type.rewardFruit, 10);
     matrix[0][0] = new Cell(c1,0,0);;
     matrix[0][1] = new Cell(c2,1,0);
     matrix[1][0] = new Cell(c3,0,1);
     matrix[1][1] = new Cell(c2,1,1);
-    CellPool p = new CellPool(4);
-    CandyGame cg = new CandyGame(2,p);
+    var p = new CellPool(4);
+    var cg = new CandyGame(2,p);
     cg.cells = matrix;
-    boolean fruitInLastRow = cg.continueRound();
+    var fruitInLastRow = cg.continueRound();
     matrix[1][0].crush(p, matrix);
     matrix[0][0] = new Cell(c3,0,0);
-    boolean matchingCandy = cg.continueRound(); 
+    var matchingCandy = cg.continueRound(); 
     matrix[0][1].crush(p,matrix);
     matrix[0][1] = new Cell(c3,1,0);
-    boolean noneLeft = cg.continueRound();
+    var noneLeft = cg.continueRound();
     assertTrue(fruitInLastRow && matchingCandy && !noneLeft);
   }
 

@@ -34,10 +34,10 @@ class CellPoolTest {
 
   @Test
   void assignRandomCandyTypesTest() {
-    CellPool cp = new CellPool(10);
-    Hashtable<String, Boolean> ht = new Hashtable<String, Boolean>();
-    int parentTypes = 0;
-    for (int i = 0; i < cp.randomCode.length; i++) {
+    var cp = new CellPool(10);
+    var ht = new Hashtable<String, Boolean>();
+    var parentTypes = 0;
+    for (var i = 0; i < cp.randomCode.length; i++) {
       if (ht.get(cp.randomCode[i].name) == null) {
         ht.put(cp.randomCode[i].name, true);
       }
