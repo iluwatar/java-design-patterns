@@ -22,6 +22,9 @@
  */
 package com.iluwatar.spatialpartition;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
@@ -32,6 +35,7 @@ import java.util.Random;
  */
 
 public class Bubble extends Point<Bubble> {
+  private static final Logger LOGGER = LoggerFactory.getLogger(Bubble.class);
 
   final int radius;
 
@@ -54,7 +58,7 @@ public class Bubble extends Point<Bubble> {
   }
 
   void pop(Hashtable<Integer, Bubble> allBubbles) {
-    System.out.println("Bubble " + this.id + " popped at (" + this.x + "," + this.y + ")!");
+    LOGGER.info("Bubble " + this.id + " popped at (" + this.x + "," + this.y + ")!");
     allBubbles.remove(this.id);
   }
 

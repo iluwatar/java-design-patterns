@@ -22,6 +22,9 @@
  */
 package com.iluwatar.masterworker;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Random;
 
 /**
@@ -29,7 +32,8 @@ import java.util.Random;
  */
 
 public class ArrayUtilityMethods {
- 
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ArrayUtilityMethods.class);
   /**
    * Method arraysSame compares 2 arrays @param a1 and @param a2
    * and @return whether their values are equal (boolean).
@@ -100,9 +104,9 @@ public class ArrayUtilityMethods {
     //prints out int[][]
     for (int i = 0; i < matrix.length; i++) {
       for (int j = 0; j < matrix[0].length; j++) {
-        System.out.print(matrix[i][j] + " ");
+        LOGGER.info(matrix[i][j] + " ");
       }
-      System.out.println("");
+      LOGGER.info("");
     }
   }
   

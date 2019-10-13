@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  */
 class RemoveDigitsHandler implements Handler<String, String> {
 
-  private final Logger logger = LoggerFactory.getLogger(RemoveDigitsHandler.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(RemoveDigitsHandler.class);
 
   @Override
   public String process(String input) {
@@ -46,7 +46,7 @@ class RemoveDigitsHandler implements Handler<String, String> {
     }
 
     String inputWithoutDigitsStr = inputWithoutDigits.toString();
-    logger.info(String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
+    LOGGER.info(String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
         RemoveDigitsHandler.class, input, String.class, inputWithoutDigitsStr, String.class));
 
     return inputWithoutDigitsStr;

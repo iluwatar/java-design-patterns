@@ -24,6 +24,8 @@ package com.iluwatar.commander.messagingservice;
 
 import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The MessagingService is used to send messages to user regarding their order and 
@@ -32,6 +34,7 @@ import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
  */
 
 public class MessagingService extends Service {
+  private static final Logger LOGGER = LoggerFactory.getLogger(MessagingService.class);
 
   enum MessageToSend {
     PaymentFail, PaymentTrying, PaymentSuccessful
@@ -74,7 +77,7 @@ public class MessagingService extends Service {
     MessageRequest req = (MessageRequest) parameters[0];
     if (this.database.get(req.reqId) == null) { //idempotence, in case db fails here
       database.add(req); //if successful:
-      System.out.println(sendMessage(req.msg));
+      LOGGER.info(sendMessage(req.msg));
       return req.reqId;
     }
     return null;
