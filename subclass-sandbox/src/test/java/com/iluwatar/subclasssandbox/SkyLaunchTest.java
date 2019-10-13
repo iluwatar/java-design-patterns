@@ -23,8 +23,69 @@
 
 package com.iluwatar.subclasssandbox;
 
+import org.junit.Assert;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.contrib.java.lang.system.SystemOutRule;
+
 /**
  * SkyLaunch unit tests.
  */
 public class SkyLaunchTest {
+
+  @Rule
+  public SystemOutRule log = new SystemOutRule().enableLog();
+
+  @Test
+  public void testMove() {
+    log.clearLog();
+    SkyLaunch skyLaunch = new SkyLaunch();
+    skyLaunch.move(1.0, 1.0, 1.0);
+    String outputLog = getLogContent(log.getLog());
+    String expectedLog = "Move to ( 1.0, 1.0, 1.0 )";
+    Assert.assertEquals(outputLog, expectedLog);
+  }
+
+  @Test
+  public void testPlaySound() {
+    log.clearLog();
+    SkyLaunch skyLaunch = new SkyLaunch();
+    skyLaunch.playSound("SOUND_NAME", 1);
+    String outputLog = getLogContent(log.getLog());
+    String expectedLog = "Play SOUND_NAME with volumn 1";
+    Assert.assertEquals(outputLog, expectedLog);
+  }
+
+  @Test
+  public void testSpawnParticles() {
+    log.clearLog();
+    SkyLaunch skyLaunch = new SkyLaunch();
+    skyLaunch.spawnParticles("PARTICLE_TYPE", 100);
+    String outputLog = getLogContent(log.getLog());
+    String expectedLog = "Spawn 100 particle with type PARTICLE_TYPE";
+    Assert.assertEquals(outputLog, expectedLog);
+  }
+
+  @Test
+  public void testActivate() {
+    log.clearLog();
+    SkyLaunch skyLaunch = new SkyLaunch();
+    skyLaunch.activate();;
+    String[] logs = log.getLog().split("\n");
+    final int expectedSize = 3;
+    final String log1 = getLogContent(logs[0]);
+    final String expectedLog1 = "Move to ( 0.0, 0.0, 20.0 )";
+    final String log2 = getLogContent(logs[1]);
+    final String expectedLog2 = "Play SKYLAUNCH_SOUND with volumn 1";
+    final String log3 = getLogContent(logs[2]);
+    final String expectedLog3 = "Spawn 100 particle with type SKYLAUNCH_PARTICALE";
+    Assert.assertEquals(logs.length, expectedSize);
+    Assert.assertEquals(log1, expectedLog1);
+    Assert.assertEquals(log2, expectedLog2);
+    Assert.assertEquals(log3, expectedLog3);
+  }
+
+  private String getLogContent(String log) {
+    return log.split("-")[1].trim();
+  }
 }
