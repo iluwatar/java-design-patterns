@@ -54,11 +54,11 @@ public class App {
     ArrayList<User> users = Lists.newArrayList(new User("Camile", "Tough", false, "124sad"),
         new User("Marti", "Luther", true, "42309fd"), new User("Kate", "Smith", true, "if0243"));
     LOGGER.info("Domain entities:");
-    users.forEach(System.out::println);
+    users.stream().map(User::toString).forEach(LOGGER::info);
 
     LOGGER.info("DTO entities converted from domain:");
     List<UserDto> dtoEntities = userConverter.createFromEntities(users);
-    dtoEntities.forEach(System.out::println);
+    dtoEntities.stream().map(UserDto::toString).forEach(LOGGER::info);
 
   }
 }
