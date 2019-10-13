@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+
     The MIT License
-    Copyright (c) 2014-2016 Ilkka Seppälä
+    Copyright © 2014-2019 Ilkka Seppälä
+
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
+
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
+
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -17,6 +21,7 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
+
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -25,7 +30,7 @@
     <artifactId>java-design-patterns</artifactId>
     <version>1.22.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <inceptionYear>2014</inceptionYear>
+    <inceptionYear>2014-2019</inceptionYear>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>5.2.18.Final</hibernate.version>
@@ -54,11 +59,10 @@
         <aws-lambda-log4j.version>1.0.0</aws-lambda-log4j.version>
         <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
         <jackson.version>2.8.5</jackson.version>
-        <pmd.version>3.12.0</pmd.version>
         <log4j.version>1.2.17</log4j.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
-        <annotation-api.version>1.3.1</annotation-api.version>
+        <annotation-api.version>1.3.2</annotation-api.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -320,6 +324,11 @@
                 <artifactId>jaxb-impl</artifactId>
                 <version>${jaxb-impl.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.25.0-GA</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -380,8 +389,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${compiler.version}</version>
                     <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
+                        <source>11</source>
+                        <target>11</target>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -440,26 +449,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>${pmd.version}</version>
-                <configuration>
-                    <failOnViolation>true</failOnViolation>
-                    <failurePriority>5</failurePriority>
-                    <printFailingErrors>true</printFailingErrors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <excludeFromFailureFile>exclude-pmd.properties</excludeFromFailureFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
 
             <plugin>
                 <groupId>com.mycila</groupId>
@@ -489,38 +478,10 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>${pmd.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
                 <version>3.0.0</version>
             </plugin>
         </plugins>
     </reporting>
-
-    <profiles>
-        <profile>
-            <id>jdk11-dep-management</id>
-            <activation>
-                <jdk>[11,)</jdk>
-            </activation>
-            <dependencyManagement>
-	            <dependencies>
-	                <dependency>
-	                    <groupId>org.javassist</groupId>
-	                    <artifactId>javassist</artifactId>
-	                    <version>3.25.0-GA</version>
-	                </dependency>
-	                <dependency>
-	                    <groupId>javax.annotation</groupId>
-	                    <artifactId>javax.annotation-api</artifactId>
-	                    <version>1.3.2</version>
-	                </dependency>
-	            </dependencies>
-            </dependencyManagement>
-        </profile>
-    </profiles>
 
 </project>
