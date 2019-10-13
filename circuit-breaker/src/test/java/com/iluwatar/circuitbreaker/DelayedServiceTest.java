@@ -36,7 +36,7 @@ public class DelayedServiceTest {
   //Improves code coverage
   @Test
   public void testDefaultConstructor() {
-    DelayedService obj = new DelayedService();
+    var obj = new DelayedService();
     assertEquals(obj.response(System.nanoTime()), "Delayed service is down");
   }
 }

@@ -36,7 +36,7 @@ public class CircuitBreakerTest {
   //long timeout, int failureThreshold, long retryTimePeriod
   @Test
   public void testSetState() {
-    CircuitBreaker circuitBreaker = new CircuitBreaker(1,1,100);
+    var circuitBreaker = new CircuitBreaker(1,1,100);
     //Right now, failureCount<failureThreshold, so state should be closed
     assertEquals(circuitBreaker.getState(), "CLOSED");
     circuitBreaker.failureCount = 4;
@@ -58,7 +58,7 @@ public class CircuitBreakerTest {
   
   @Test
   public void testSetStateForBypass() {
-    CircuitBreaker circuitBreaker = new CircuitBreaker(1,1,100);
+    var circuitBreaker = new CircuitBreaker(1,1,100);
     //Right now, failureCount<failureThreshold, so state should be closed
     //Bypass it and set it to open
     circuitBreaker.setStateForBypass(State.OPEN);
@@ -67,11 +67,11 @@ public class CircuitBreakerTest {
   
   @Test
   public void testApiResponses() {
-    CircuitBreaker circuitBreaker = new CircuitBreaker(1,1,100);
+    var circuitBreaker = new CircuitBreaker(1,1,100);
     try {
       //Call with the paramater start_time set to huge amount of time in past so that service 
       //replies with "Ok". Also, state is CLOSED in start
-      String response = circuitBreaker.call("delayedService", System.nanoTime() - 60 * 1000 * 1000 * 1000);
+      var response = circuitBreaker.call("delayedService", System.nanoTime() - 60 * 1000 * 1000 * 1000);
       assertEquals(response, "Delayed service is working");
     } catch (Exception e) {
       System.out.println(e.getMessage());

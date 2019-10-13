@@ -68,10 +68,10 @@ public class App {
    */
   public static void main(String[] args) {
     //Create an object of monitoring service which makes both local and remote calls
-    MonitoringService obj = new MonitoringService();
+    var obj = new MonitoringService();
     //Set the circuit Breaker parameters
-    CircuitBreaker circuitBreaker = new CircuitBreaker(3000, 1, 2000 * 1000 * 1000); 
-    long serverStartTime = System.nanoTime();
+    var circuitBreaker = new CircuitBreaker(3000, 1, 2000 * 1000 * 1000); 
+    var serverStartTime = System.nanoTime();
     while (true) {
       LOGGER.info(obj.localResourceResponse());
       LOGGER.info(obj.remoteResourceResponse(circuitBreaker, serverStartTime));

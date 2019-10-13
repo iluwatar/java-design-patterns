@@ -36,18 +36,18 @@ public class MonitoringServiceTest {
   //long timeout, int failureThreshold, long retryTimePeriod
   @Test
   public void testLocalResponse() {
-    MonitoringService monitoringService = new MonitoringService();
-    String response = monitoringService.localResourceResponse();
+    var monitoringService = new MonitoringService();
+    var response = monitoringService.localResourceResponse();
     assertEquals(response, "Local Service is working");
   }
   
   @Test
   public void testRemoteResponse() {
-    MonitoringService monitoringService = new MonitoringService();
-    CircuitBreaker circuitBreaker = new CircuitBreaker(1,1,100);
+    var monitoringService = new MonitoringService();
+    var circuitBreaker = new CircuitBreaker(1,1,100);
     //Set time in past to make the server work
-    long serverStartTime = System.nanoTime() / 10;
-    String response = monitoringService.remoteResourceResponse(circuitBreaker, serverStartTime);
+    var serverStartTime = System.nanoTime() / 10;
+    var response = monitoringService.remoteResourceResponse(circuitBreaker, serverStartTime);
     assertEquals(response, "Delayed service is working");
   }
   

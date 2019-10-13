@@ -27,12 +27,13 @@ package com.iluwatar.circuitbreaker;
  * The circuit breaker class with all configurations
  */
 public class CircuitBreaker {
-  long timeout;
-  long retryTimePeriod;
+  private final long timeout;
+  private final long retryTimePeriod;
   long lastFailureTime;
   int failureCount;
   private final int failureThreshold;
   private State state;
+  private final long futureTime = 1000 * 1000 * 1000 * 1000;
 
   /**
    * Constructor to create an instance of Circuit Breaker
@@ -48,14 +49,14 @@ public class CircuitBreaker {
     this.timeout = timeout;
     this.retryTimePeriod = retryTimePeriod;
     //An absurd amount of time in future which basically indicates the last failure never happened
-    this.lastFailureTime = System.nanoTime() + 1000 * 1000 * 1000 * 1000;
+    this.lastFailureTime = System.nanoTime() + futureTime;
     this.failureCount = 0;
   }
     
   //Reset everything to defaults
   private void reset() {
     this.failureCount = 0;
-    this.lastFailureTime = System.nanoTime() + 1000 * 1000 * 1000 * 1000; 
+    this.lastFailureTime = System.nanoTime() + futureTime; 
     this.state = State.CLOSED;
   }
 
@@ -105,8 +106,8 @@ public class CircuitBreaker {
     } else {
         // Make the API request if the circuit is not OPEN
       if (serviceToCall.equals("delayedService")) {
-        DelayedService delayedService = new DelayedService(20);
-        String response = delayedService.response(serverStartTime);
+        var delayedService = new DelayedService(20);
+        var response = delayedService.response(serverStartTime);
         //In a real application, this would be run in a thread and the timeout
         //parameter of the circuit breaker would be utilized to know if service
         //is working. Here, we simulate that based on server response itself
