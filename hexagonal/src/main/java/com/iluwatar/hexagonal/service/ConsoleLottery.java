@@ -82,7 +82,7 @@ public class ConsoleLottery {
   }
 
   private static String readString(Scanner scanner) {
-    System.out.print("> ");
+    LOGGER.info("> ");
     return scanner.next();
   }
 }

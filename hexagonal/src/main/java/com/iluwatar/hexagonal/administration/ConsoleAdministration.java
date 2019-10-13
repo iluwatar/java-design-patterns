@@ -81,7 +81,7 @@ public class ConsoleAdministration {
   }
 
   private static String readString(Scanner scanner) {
-    System.out.print("> ");
+    LOGGER.info("> ");
     return scanner.next();
   }
 }

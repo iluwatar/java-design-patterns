@@ -24,6 +24,8 @@ package com.iluwatar.converter;
 
 
 import com.google.common.collect.Lists;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,8 @@ import java.util.List;
  * objects between types.
  */
 public class App {
+  
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   /**
    * Program entry point
    *
@@ -45,16 +49,16 @@ public class App {
 
     UserDto dtoUser = new UserDto("John", "Doe", true, "whatever[at]wherever.com");
     User user = userConverter.convertFromDto(dtoUser);
-    System.out.println("Entity converted from DTO:" + user);
+    LOGGER.info("Entity converted from DTO:" + user);
 
     ArrayList<User> users = Lists.newArrayList(new User("Camile", "Tough", false, "124sad"),
         new User("Marti", "Luther", true, "42309fd"), new User("Kate", "Smith", true, "if0243"));
-    System.out.println("Domain entities:");
-    users.forEach(System.out::println);
+    LOGGER.info("Domain entities:");
+    users.stream().map(User::toString).forEach(LOGGER::info);
 
-    System.out.println("DTO entities converted from domain:");
+    LOGGER.info("DTO entities converted from domain:");
     List<UserDto> dtoEntities = userConverter.createFromEntities(users);
-    dtoEntities.forEach(System.out::println);
+    dtoEntities.stream().map(UserDto::toString).forEach(LOGGER::info);
 
   }
 }

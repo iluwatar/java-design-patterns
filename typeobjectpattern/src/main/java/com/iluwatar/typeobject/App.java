@@ -25,6 +25,8 @@ package com.iluwatar.typeobject;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**<p>Type object pattern is the pattern we use when the OOP concept of creating a base class and
  * inheriting from it just doesn't work for the case in hand. This happens when we either don't know 
@@ -45,6 +47,7 @@ import org.json.simple.parser.ParseException;
 
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   /**
    * Program entry point.
    * @param args command line args
@@ -62,9 +65,9 @@ public class App {
       CellPool pool = new CellPool(numOfRows * numOfRows + 5);
       CandyGame cg = new CandyGame(numOfRows, pool);
       if (round > 1) {
-        System.out.println("Refreshing..");
+        LOGGER.info("Refreshing..");
       } else {
-        System.out.println("Starting game..");
+        LOGGER.info("Starting game..");
       }
       cg.printGameStatus();
       end = System.currentTimeMillis();
@@ -72,13 +75,13 @@ public class App {
       pointsWon += cg.totalPoints;
       end = System.currentTimeMillis();
     }
-    System.out.println("Game Over");
+    LOGGER.info("Game Over");
     if (pointsWon >= toWin) {
-      System.out.println(pointsWon);
-      System.out.println("You win!!");
+      LOGGER.info("" + pointsWon);
+      LOGGER.info("You win!!");
     } else {
-      System.out.println(pointsWon);
-      System.out.println("Sorry, you lose!");
+      LOGGER.info("" + pointsWon);
+      LOGGER.info("Sorry, you lose!");
     }
   }
 }

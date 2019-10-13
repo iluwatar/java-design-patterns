@@ -50,6 +50,8 @@ import de.agilecoders.wicket.core.Bootstrap;
 import de.agilecoders.wicket.core.settings.IBootstrapSettings;
 import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchTheme;
 import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchThemeProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -72,6 +74,7 @@ import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchThemeProvid
  */
 public class SimpleApplication extends IsisWicketApplication {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(SimpleApplication.class);
   private static final long serialVersionUID = 1L;
 
   /**
@@ -124,7 +127,7 @@ public class SimpleApplication extends IsisWicketApplication {
         servletRequest.getSession().invalidate();
       }
     } catch (Exception e) {
-      System.out.println(e);
+      LOGGER.error(e.getMessage());
     }
     return super.newWebRequest(servletRequest, filterPath);
   }
