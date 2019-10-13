@@ -56,10 +56,8 @@
         <logback.version>1.2.3</logback.version>
         <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
         <aws-java-sdk-dynamodb.version>1.11.289</aws-java-sdk-dynamodb.version>
-        <aws-lambda-log4j.version>1.0.0</aws-lambda-log4j.version>
         <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
         <jackson.version>2.8.5</jackson.version>
-        <log4j.version>1.2.17</log4j.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.2</annotation-api.version>
@@ -303,11 +301,6 @@
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongo-java-driver</artifactId>
                 <version>${mongo-java-driver.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.xml.bind</groupId>
