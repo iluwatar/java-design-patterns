@@ -22,6 +22,9 @@
  */
 package com.iluwatar.spatialpartition;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -52,6 +55,7 @@ import java.util.Random;
  */
 
 public class App {
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   static void noSpatialPartition(int height, int width, 
         int numOfMovements, Hashtable<Integer, Bubble> bubbles) {
@@ -73,7 +77,7 @@ public class App {
     }
     for (Integer key : bubbles.keySet()) {
       //bubbles not popped
-      System.out.println("Bubble " + key + " not popped");
+      LOGGER.info("Bubble " + key + " not popped");
     }
   }
 
@@ -101,7 +105,7 @@ public class App {
     }
     for (Integer key : bubbles.keySet()) {
       //bubbles not popped
-      System.out.println("Bubble " + key + " not popped");
+      LOGGER.info("Bubble " + key + " not popped");
     }
   }
   
@@ -119,7 +123,7 @@ public class App {
       Bubble b = new Bubble(rand.nextInt(300), rand.nextInt(300), i, rand.nextInt(2) + 1);
       bubbles1.put(i, b);
       bubbles2.put(i, b);
-      System.out.println("Bubble " + i + " with radius " + b.radius + " added at (" + b.x + "," + b.y + ")");
+      LOGGER.info("Bubble " + i + " with radius " + b.radius + " added at (" + b.x + "," + b.y + ")");
     }
 
     long start1 = System.currentTimeMillis();
@@ -128,8 +132,8 @@ public class App {
     long start2 = System.currentTimeMillis();
     App.withSpatialPartition(300,300,20,bubbles2);
     long end2 = System.currentTimeMillis();
-    System.out.println("Without spatial partition takes " + (end1 - start1) + "ms");
-    System.out.println("With spatial partition takes " + (end2 - start2) + "ms");
+    LOGGER.info("Without spatial partition takes " + (end1 - start1) + "ms");
+    LOGGER.info("With spatial partition takes " + (end2 - start2) + "ms");
   }
 }
 

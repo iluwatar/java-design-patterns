@@ -27,7 +27,10 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.iluwatar.serverless.baas.model.Person;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Map;
 
 /**
  * find person from persons collection
@@ -36,13 +39,15 @@ import org.apache.log4j.Logger;
 public class FindPersonApiHandler extends AbstractDynamoDbHandler<Person>
     implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-  private static final Logger LOG = Logger.getLogger(FindPersonApiHandler.class);
+  private static final Logger LOG = LoggerFactory.getLogger(FindPersonApiHandler.class);
   private static final Integer SUCCESS_STATUS_CODE = 200;
 
   @Override
   public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent,
                                                     Context context) {
-    LOG.info(apiGatewayProxyRequestEvent.getPathParameters());
+    Map<String, String> pathParameters = apiGatewayProxyRequestEvent.getPathParameters();
+    pathParameters.keySet().stream().map(key -> key + "=" + pathParameters.get(key)).forEach(LOG::info);
+
     Person person = this.getDynamoDbMapper().load(Person.class, apiGatewayProxyRequestEvent
         .getPathParameters().get("id"));
 

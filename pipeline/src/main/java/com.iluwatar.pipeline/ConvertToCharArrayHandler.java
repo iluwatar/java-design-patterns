@@ -32,12 +32,12 @@ import java.util.Arrays;
  */
 class ConvertToCharArrayHandler implements Handler<String, char[]> {
 
-  private final Logger logger = LoggerFactory.getLogger(ConvertToCharArrayHandler.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ConvertToCharArrayHandler.class);
 
   @Override
   public char[] process(String input) {
     char[] characters = input.toCharArray();
-    logger.info(String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
+    LOGGER.info(String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
         ConvertToCharArrayHandler.class, input, String.class, Arrays.toString(characters), Character[].class));
 
     return characters;

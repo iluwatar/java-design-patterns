@@ -30,12 +30,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests that Collection Pipeline methods work as expected.
  */
 public class AppTest {
-  
+  private static final Logger LOGGER = LoggerFactory.getLogger(AppTest.class);
+
   private List<Car> cars = CarFactory.createCars();
   
   @Test
@@ -61,7 +64,7 @@ public class AppTest {
         new Car("Jeep", "Comanche", 1990, Category.JEEP)));
     Map<Category, List<Car>> modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
     Map<Category, List<Car>> modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
-    System.out.println("Category " + modelsFunctional);
+    LOGGER.info("Category " + modelsFunctional);
     assertEquals(modelsExpected, modelsFunctional);
     assertEquals(modelsExpected, modelsImperative);
   }

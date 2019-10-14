@@ -27,7 +27,8 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.iluwatar.serverless.baas.model.Person;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -38,7 +39,7 @@ import java.io.IOException;
 public class SavePersonApiHandler extends AbstractDynamoDbHandler<Person>
     implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-  private static final Logger LOG = Logger.getLogger(SavePersonApiHandler.class);
+  private static final Logger LOG = LoggerFactory.getLogger(SavePersonApiHandler.class);
   private static final Integer CREATED_STATUS_CODE = 201;
   private static final Integer BAD_REQUEST_STATUS_CODE = 400;
 

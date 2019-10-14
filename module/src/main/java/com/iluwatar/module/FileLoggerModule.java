@@ -22,11 +22,12 @@
  */
 package com.iluwatar.module;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-
-import org.apache.log4j.Logger;
 
 /**
  * The FileLoggerModule is responsible for showing logs on File System
@@ -36,7 +37,7 @@ import org.apache.log4j.Logger;
  */
 public final class FileLoggerModule {
 
-  private static final Logger LOGGER = Logger.getLogger(FileLoggerModule.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(FileLoggerModule.class);
 
   private static FileLoggerModule singleton = null;
 

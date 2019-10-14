@@ -22,9 +22,10 @@
  */
 package com.iluwatar.module;
 
-import java.io.PrintStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.log4j.Logger;
+import java.io.PrintStream;
 
 /**
  * The ConsoleLoggerModule is responsible for showing logs on System Console
@@ -34,7 +35,7 @@ import org.apache.log4j.Logger;
  */
 public final class ConsoleLoggerModule {
 
-  private static final Logger LOGGER = Logger.getLogger(ConsoleLoggerModule.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleLoggerModule.class);
 
   private static ConsoleLoggerModule singleton = null;
 

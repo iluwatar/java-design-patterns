@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!--
 
     The MIT License
-    Copyright © 2014-2019 Ilkka Seppälä
+    Copyright (c) 2014 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +22,19 @@
     THE SOFTWARE.
 
 -->
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration debug="true"
-  xmlns:log4j='http://jakarta.apache.org/log4j/'>
-
-  <appender name="console" class="org.apache.log4j.ConsoleAppender">
-    <layout class="org.apache.log4j.PatternLayout">
-      <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
-    </layout>
-  </appender>
-
-  <root>
-    <level value="INFO" />
-    <appender-ref ref="console" />
-  </root>
-
-</log4j:configuration>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.iluwatar</groupId>
+        <artifactId>java-design-patterns</artifactId>
+        <version>1.22.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>circuit-breaker</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

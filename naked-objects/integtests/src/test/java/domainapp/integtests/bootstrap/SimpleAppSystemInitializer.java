@@ -49,7 +49,6 @@ public final class SimpleAppSystemInitializer {
   private static class SimpleAppSystemBuilder extends IsisSystemForTest.Builder {
 
     public SimpleAppSystemBuilder() {
-      withLoggingAt(org.apache.log4j.Level.INFO);
       with(testConfiguration());
       with(new DataNucleusPersistenceMechanismInstaller());
 
