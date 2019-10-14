@@ -181,6 +181,7 @@
         <module>bytecode</module>
         <module>leader-election</module>
         <module>data-locality</module>
+        <module>circuit-breaker</module>
 
     </modules>
 
