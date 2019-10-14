@@ -45,10 +45,9 @@ public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
     
   public static void main(String[] args) {
-
-    MonitoringService obj = new MonitoringService();
-    CircuitBreaker circuitBreaker = new CircuitBreaker(3000, 1, 2000 * 1000 * 1000); 
-    long serverStartTime = System.nanoTime();
+    var obj = new MonitoringService();
+    var circuitBreaker = new CircuitBreaker(3000, 1, 2000 * 1000 * 1000); 
+    var serverStartTime = System.nanoTime();
     while (true) {
       LOGGER.info(obj.localResourceResponse());
       LOGGER.info(obj.remoteResourceResponse(circuitBreaker, serverStartTime));
@@ -67,9 +66,11 @@ The monitoring service is:
 
 ``` java
 public class MonitoringService {
+
   public String localResourceResponse() {
     return "Local Service is working";
   }
+
   public String remoteResourceResponse(CircuitBreaker circuitBreaker, long serverStartTime) {
     try {
       return circuitBreaker.call("delayedService", serverStartTime);
@@ -83,25 +84,26 @@ As it can be seen, it does the call to get local resources directly, but it wrap
 
 ```java
 public class CircuitBreaker {
-  long timeout;
-  long retryTimePeriod;
+  private final long timeout;
+  private final long retryTimePeriod;
   long lastFailureTime;
   int failureCount;
   private final int failureThreshold;
   private State state;
+  private final long futureTime = 1000 * 1000 * 1000 * 1000;
 
   CircuitBreaker(long timeout, int failureThreshold, long retryTimePeriod) {
     this.state = State.CLOSED;
     this.failureThreshold = failureThreshold;
     this.timeout = timeout;
     this.retryTimePeriod = retryTimePeriod;
-    this.lastFailureTime = System.nanoTime() + 1000 * 1000 * 1000 * 1000;
+    this.lastFailureTime = System.nanoTime() + futureTime;
     this.failureCount = 0;
   }
     
   private void reset() {
     this.failureCount = 0;
-    this.lastFailureTime = System.nanoTime() + 1000 * 1000 * 1000 * 1000; 
+    this.lastFailureTime = System.nanoTime() + futureTime; 
     this.state = State.CLOSED;
   }
 
@@ -136,8 +138,8 @@ public class CircuitBreaker {
       return "This is stale response from API";
     } else {
       if (serviceToCall.equals("delayedService")) {
-        DelayedService delayedService = new DelayedService(20);
-        String response = delayedService.response(serverStartTime);
+        var delayedService = new DelayedService(20);
+        var response = delayedService.response(serverStartTime);
         if (response.split(" ")[3].equals("working")) {
           reset();
           return response;
