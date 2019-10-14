@@ -36,29 +36,28 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class PriceClientImpl implements PriceClient {
-	/**
-	 * Makes a simple HTTP Get request to the Price microservice
-	 * @return The price of the product
-	 */
-	@Override
-	public String getPrice() {
-		
-		String response = null;
+  /**
+   * Makes a simple HTTP Get request to the Price microservice
+   * 
+   * @return The price of the product
+   */
+  @Override
+  public String getPrice() {
 
-		HttpClient httpClient = 
-				HttpClient.newHttpClient();
-		HttpRequest httpGet = 
-				HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50006/price")).build();
+    String response = null;
 
-		try {
-			HttpResponse<String> httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
-			response = httpResponse.body();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		return response;
-	}
+    HttpClient httpClient = HttpClient.newHttpClient();
+    HttpRequest httpGet = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50006/price")).build();
+
+    try {
+      HttpResponse<String> httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
+      response = httpResponse.body();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    return response;
+  }
 }

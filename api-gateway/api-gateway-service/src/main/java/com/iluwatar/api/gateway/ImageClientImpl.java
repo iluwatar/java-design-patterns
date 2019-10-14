@@ -36,28 +36,27 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ImageClientImpl implements ImageClient {
-	/**
-	 * Makes a simple HTTP Get request to the Image microservice
-	 * @return The path to the image
-	 */
-	@Override
-	public String getImagePath() {
-		String response = null;
+  /**
+   * Makes a simple HTTP Get request to the Image microservice
+   * 
+   * @return The path to the image
+   */
+  @Override
+  public String getImagePath() {
+    String response = null;
 
-		HttpClient httpClient = 
-				HttpClient.newHttpClient();
-		HttpRequest httpGet = 
-				HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50005/image-path")).build();
+    HttpClient httpClient = HttpClient.newHttpClient();
+    HttpRequest httpGet = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50005/image-path")).build();
 
-		try {
-			HttpResponse<String> httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
-			response = httpResponse.body();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+    try {
+      HttpResponse<String> httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
+      response = httpResponse.body();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
 
-		return response;
-	}
+    return response;
+  }
 }
