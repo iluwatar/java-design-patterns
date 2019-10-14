@@ -18,8 +18,10 @@ addons:
     token:
       secure: "FpHwMYPMkdWU6CeIB7+O3qIeIM4vJMp47UjkKK53f0w0s6tPZofZZkab+gcL2TqKSil7sFVB/AQXU1cUubflRszwcLbNsc8H2yFehD79o0o0Mqd1Dd5ip/q0KQbHkkln+InFlVLfvrLB4Xd4mlQVxbGhqpULBhXjKzFzQlRFcuU="
 script:
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean verify sonar:sonar -Dsonar.projectKey=iluwatar_java-design-patterns -Dsonar.host.url=https://sonarcloud.io
+  # Because of Travis security restrictions, SonarCloud analysis cannot be run on pull requests originated from forks
+  # See https://docs.travis-ci.com/user/pull-requests/#pull-requests-and-security-restrictions
+  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then mvn clean verify; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then mvn clean verify sonar:sonar -Dsonar.projectKey=iluwatar_java-design-patterns -Dsonar.host.url=https://sonarcloud.io; fi'
 
 after_success:
 - bash update-ghpages.sh
