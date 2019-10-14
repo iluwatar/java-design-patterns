@@ -22,9 +22,10 @@
  */
 package com.iluwatar.datamapper;
 
-import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.log4j.Logger;
+import java.util.Optional;
 
 /**
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
@@ -39,7 +40,7 @@ import org.apache.log4j.Logger;
  */
 public final class App {
 
-  private static Logger log = Logger.getLogger(App.class);
+  private static Logger log = LoggerFactory.getLogger(App.class);
   private static final String STUDENT_STRING = "App.main(), student : ";
   
 

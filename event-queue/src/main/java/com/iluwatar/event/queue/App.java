@@ -22,6 +22,9 @@
  */
 package com.iluwatar.event.queue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,6 +42,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * items from the queue at a later time.
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   /**
    * Program entry point.
    * 
@@ -51,7 +56,7 @@ public class App {
     audio.playSound(audio.getAudioStream("./etc/Bass-Drum-1.wav"), -10.0f);
     audio.playSound(audio.getAudioStream("./etc/Closed-Hi-Hat-1.wav"), -8.0f);
     
-    System.out.println("Press Enter key to stop the program...");
+    LOGGER.info("Press Enter key to stop the program...");
     try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
       br.read();
     }
