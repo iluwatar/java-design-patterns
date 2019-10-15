@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2016 Thomas Bauer
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.tls;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,6 +43,8 @@ import java.util.concurrent.Callable;
  * @author Thomas Bauer, 2017 
  */
 public class DateFormatCallable implements Callable<Result> {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(DateFormatCallable.class);
   // class variables (members)
   private ThreadLocal<DateFormat> df;    //TLTL   
   // private DateFormat df;                 //NTLNTL
@@ -73,7 +77,7 @@ public class DateFormatCallable implements Callable<Result> {
    */
   @Override
   public Result call() {
-    System.out.println(Thread.currentThread() + " started executing...");
+    LOGGER.info(Thread.currentThread() + " started executing...");
     Result result = new Result();
 
     // Convert date value to date 5 times
@@ -91,7 +95,7 @@ public class DateFormatCallable implements Callable<Result> {
 
     }
 
-    System.out.println(Thread.currentThread() + " finished processing part of the thread");
+    LOGGER.info(Thread.currentThread() + " finished processing part of the thread");
 
     return result;
   }

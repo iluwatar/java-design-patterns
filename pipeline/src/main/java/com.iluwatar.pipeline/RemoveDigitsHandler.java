@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  */
 class RemoveDigitsHandler implements Handler<String, String> {
 
-  private final Logger logger = LoggerFactory.getLogger(RemoveDigitsHandler.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(RemoveDigitsHandler.class);
 
   @Override
   public String process(String input) {
@@ -46,7 +46,7 @@ class RemoveDigitsHandler implements Handler<String, String> {
     }
 
     String inputWithoutDigitsStr = inputWithoutDigits.toString();
-    logger.info(String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
+    LOGGER.info(String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
         RemoveDigitsHandler.class, input, String.class, inputWithoutDigitsStr, String.class));
 
     return inputWithoutDigitsStr;

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.masterworker;
 
 import com.iluwatar.masterworker.system.ArrayTransposeMasterWorker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p>The <b><em>Master-Worker</em></b> pattern is used when the problem at hand can be solved by dividing into 
@@ -46,7 +47,8 @@ import com.iluwatar.masterworker.system.ArrayTransposeMasterWorker;
  */
 
 public class App {
-  
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   /**
    * Program entry point.
    * @param args command line args
@@ -61,10 +63,9 @@ public class App {
     ArrayResult result = (ArrayResult) mw.getResult(input);    
     if (result != null) {
       ArrayUtilityMethods.printMatrix(inputMatrix);
-      System.out.println("");
       ArrayUtilityMethods.printMatrix(result.data);
     } else {
-      System.out.println("Please enter non-zero input");
+      LOGGER.info("Please enter non-zero input");
     }
   }
 
