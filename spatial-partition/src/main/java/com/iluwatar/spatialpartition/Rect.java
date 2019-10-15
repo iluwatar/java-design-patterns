@@ -28,14 +28,14 @@ package com.iluwatar.spatialpartition;
  */
 
 public class Rect {
-  int x; 
-  int y; 
-  int width;
-  int height;
+  double x;
+  double y;
+  double width;
+  double height;
 
   //(x,y) - centre of rectangle
 
-  Rect(int x, int y, int width, int height) {
+  Rect(double x, double y, double width, double height) {
     this.x = x;
     this.y = y;
     this.width = width;
