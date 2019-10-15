@@ -22,17 +22,15 @@
  */
 package com.iluwatar.aggregator.microservices;
 
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 /**
  * An adapter to communicate with information micro-service.
@@ -45,15 +43,15 @@ public class ProductInformationClientImpl implements ProductInformationClient {
   @Override
   public String getProductTitle() {
     String response = null;
-    try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-      HttpGet httpGet = new HttpGet("http://localhost:51515/information");
-      try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
-        response = EntityUtils.toString(httpResponse.getEntity());
-      }
-    } catch (ClientProtocolException cpe) {
-      LOGGER.error("ClientProtocolException Occured", cpe);
+    HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:51515/information")).build();
+    HttpClient client = HttpClient.newHttpClient();
+    try {
+      HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
+      response = httpResponse.body();
     } catch (IOException ioe) {
       LOGGER.error("IOException Occurred", ioe);
+    } catch (InterruptedException ie) {
+      LOGGER.error("InterruptedException Occurred", ie);
     }
     return response;
   }

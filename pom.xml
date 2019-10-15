@@ -48,7 +48,6 @@
         <camel.version>2.24.0</camel.version>
         <guava.version>19.0</guava.version>
         <mockito.version>1.10.19</mockito.version>
-        <apache-httpcomponents.version>4.5.10</apache-httpcomponents.version>
         <htmlunit.version>2.22</htmlunit.version>
         <guice.version>4.0</guice.version>
         <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
@@ -215,11 +214,6 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>${apache-httpcomponents.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>

@@ -22,14 +22,14 @@
  */
 package com.iluwatar.api.gateway;
 
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-import org.springframework.stereotype.Component;
-
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
+
+import org.springframework.stereotype.Component;
 
 /**
  * An adapter to communicate with the Image microservice
@@ -38,19 +38,25 @@ import java.io.IOException;
 public class ImageClientImpl implements ImageClient {
   /**
    * Makes a simple HTTP Get request to the Image microservice
+   * 
    * @return The path to the image
    */
   @Override
   public String getImagePath() {
     String response = null;
-    try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-      HttpGet httpGet = new HttpGet("http://localhost:50005/image-path");
-      try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
-        response = EntityUtils.toString(httpResponse.getEntity());
-      }
+
+    HttpClient httpClient = HttpClient.newHttpClient();
+    HttpRequest httpGet = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50005/image-path")).build();
+
+    try {
+      HttpResponse<String> httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
+      response = httpResponse.body();
     } catch (IOException e) {
       e.printStackTrace();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
+
     return response;
   }
 }
