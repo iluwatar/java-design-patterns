@@ -26,7 +26,7 @@ package com.iluwatar.subclasssandbox;
 import org.slf4j.Logger;
 
 /**
- * Superpower abstract class. In this class the basic opertions of all types of
+ * Superpower abstract class. In this class the basic operations of all types of
  * superpowers are provided as protected methods.
  */
 public abstract class Superpower {

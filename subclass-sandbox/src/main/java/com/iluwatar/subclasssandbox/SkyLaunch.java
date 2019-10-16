@@ -39,6 +39,6 @@ public class SkyLaunch extends Superpower {
   protected void activate() {
     move(0, 0, 20);
     playSound("SKYLAUNCH_SOUND", 1);
-    spawnParticles("SKYLAUNCH_PARTICALE", 100);
+    spawnParticles("SKYLAUNCH_PARTICLE", 100);
   }
 }
