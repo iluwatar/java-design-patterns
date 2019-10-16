@@ -267,6 +267,12 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+	            <groupId>org.junit.platform</groupId>
+	            <artifactId>junit-platform-commons</artifactId>
+	            <version>1.5.2</version>
+	            <scope>test</scope>
+	 		</dependency>
+            <dependency>
                 <groupId>com.github.sbrannen</groupId>
                 <artifactId>spring-test-junit5</artifactId>
                 <version>${sping-test-junit5.version}</version>
