@@ -43,10 +43,10 @@ public class App {
    */
   public static void main(String[] args) {
     LOGGER.info("Use superpower: sky launch");
-    Superpower skyLaunch = new SkyLaunch();
+    var skyLaunch = new SkyLaunch();
     skyLaunch.activate();
     LOGGER.info("Use superpower: ground dive");
-    Superpower groundDive = new GroundDive();
+    var groundDive = new GroundDive();
     groundDive.activate();
   }
 
