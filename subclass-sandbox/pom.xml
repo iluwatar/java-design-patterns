@@ -35,10 +35,6 @@
 
     <artifactId>subclass-sandbox</artifactId>
 
-    <properties>
-        <system-rules.version>1.19.0</system-rules.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -47,10 +43,7 @@
         <dependency>
             <groupId>com.github.stefanbirkner</groupId>
             <artifactId>system-rules</artifactId>
-            <version>${system-rules.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
-
 
 </project>

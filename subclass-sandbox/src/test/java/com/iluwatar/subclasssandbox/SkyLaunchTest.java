@@ -78,7 +78,7 @@ public class SkyLaunchTest {
     final String log2 = getLogContent(logs[1]);
     final String expectedLog2 = "Play SKYLAUNCH_SOUND with volumn 1";
     final String log3 = getLogContent(logs[2]);
-    final String expectedLog3 = "Spawn 100 particle with type SKYLAUNCH_PARTICALE";
+    final String expectedLog3 = "Spawn 100 particle with type SKYLAUNCH_PARTICLE";
     Assert.assertEquals(logs.length, expectedSize);
     Assert.assertEquals(log1, expectedLog1);
     Assert.assertEquals(log2, expectedLog2);
