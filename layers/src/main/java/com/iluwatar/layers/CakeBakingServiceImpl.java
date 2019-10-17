@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -72,18 +72,23 @@ public class CakeBakingServiceImpl implements CakeBakingService {
       }
     }
     CakeToppingDao toppingBean = context.getBean(CakeToppingDao.class);
-    CakeTopping topping = toppingBean.findOne(matchingToppings.iterator().next().getId());
+    Optional<CakeTopping> topping = toppingBean.findById(matchingToppings.iterator().next().getId());
     CakeDao cakeBean = context.getBean(CakeDao.class);
-    Cake cake = new Cake();
-    cake.setTopping(topping);
-    cake.setLayers(foundLayers);
-    cakeBean.save(cake);
-    topping.setCake(cake);
-    toppingBean.save(topping);
-    CakeLayerDao layerBean = context.getBean(CakeLayerDao.class);
-    for (CakeLayer layer : foundLayers) {
-      layer.setCake(cake);
-      layerBean.save(layer);
+    if (topping.isPresent()) {
+      Cake cake = new Cake();
+      cake.setTopping(topping.get());
+      cake.setLayers(foundLayers);
+      cakeBean.save(cake);
+      topping.get().setCake(cake);
+      toppingBean.save(topping.get());
+      CakeLayerDao layerBean = context.getBean(CakeLayerDao.class);
+      for (CakeLayer layer : foundLayers) {
+        layer.setCake(cake);
+        layerBean.save(layer);
+      }
+    } else {
+      throw new CakeBakingException(String.format("Topping %s is not available",
+              cakeInfo.cakeToppingInfo.name));
     }
   }
 

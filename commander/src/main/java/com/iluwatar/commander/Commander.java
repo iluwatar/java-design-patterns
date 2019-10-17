@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp�l�
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.commander;
 
 import java.util.ArrayList;
-import org.apache.log4j.Logger;
 import com.iluwatar.commander.employeehandle.EmployeeHandle;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.ItemUnavailableException;
@@ -38,6 +36,8 @@ import com.iluwatar.commander.queue.QueueDatabase;
 import com.iluwatar.commander.queue.QueueTask;
 import com.iluwatar.commander.queue.QueueTask.TaskType;
 import com.iluwatar.commander.shippingservice.ShippingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *<p>Commander pattern is used to handle all issues that can come up while making a
@@ -87,7 +87,7 @@ public class Commander {
   private final long messageTime;
   private final long employeeTime; 
   private boolean finalSiteMsgShown;
-  static final Logger LOG = Logger.getLogger(Commander.class);
+  static final Logger LOG = LoggerFactory.getLogger(Commander.class);
   //we could also have another db where it stores all orders
   
   Commander(EmployeeHandle empDb, PaymentService pService, ShippingService sService,
@@ -126,27 +126,27 @@ public class Commander {
       String transactionId = shippingService.receiveRequest(order.item, order.user.address); 
       //could save this transaction id in a db too
       LOG.info("Order " + order.id + ": Shipping placed successfully, transaction id: " + transactionId);
-      System.out.println("Order has been placed and will be shipped to you. Please wait while we make your"
+      LOG.info("Order has been placed and will be shipped to you. Please wait while we make your"
           + " payment... "); 
       sendPaymentRequest(order);       
       return; 
     };
     Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
       if (ShippingNotPossibleException.class.isAssignableFrom(err.getClass())) {
-        System.out.println("Shipping is currently not possible to your address. We are working on the problem "
+        LOG.info("Shipping is currently not possible to your address. We are working on the problem "
             + "and will get back to you asap.");
         finalSiteMsgShown = true;
         LOG.info("Order " + order.id + ": Shipping not possible to address, trying to add problem to employee db..");
         employeeHandleIssue(o);
       } else if (ItemUnavailableException.class.isAssignableFrom(err.getClass())) {
-        System.out.println("This item is currently unavailable. We will inform you as soon as the item becomes "
+        LOG.info("This item is currently unavailable. We will inform you as soon as the item becomes "
             + "available again.");
         finalSiteMsgShown = true;
         LOG.info("Order " + order.id + ": Item " + order.item + " unavailable, trying to add problem to employee "
             + "handle..");
         employeeHandleIssue(o);
       } else {
-        System.out.println("Sorry, there was a problem in creating your order. Please try later.");
+        LOG.info("Sorry, there was a problem in creating your order. Please try later.");
         LOG.error("Order " + order.id + ": Shipping service unavailable, order not placed..");
         finalSiteMsgShown = true;
       }
@@ -184,7 +184,7 @@ public class Commander {
             order.paid = PaymentStatus.Done; 
             LOG.info("Order " + order.id + ": Payment successful, transaction Id: " + transactionId);
             if (!finalSiteMsgShown) { 
-              System.out.println("Payment made successfully, thank you for shopping with us!!"); 
+              LOG.info("Payment made successfully, thank you for shopping with us!!"); 
               finalSiteMsgShown = true; 
             } 
             sendSuccessMessage(order); 
@@ -194,7 +194,7 @@ public class Commander {
         Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
           if (PaymentDetailsErrorException.class.isAssignableFrom(err.getClass())) {
             if (!finalSiteMsgShown) {
-              System.out.println("There was an error in payment. Your account/card details may have been incorrect. "
+              LOG.info("There was an error in payment. Your account/card details may have been incorrect. "
                   + "Meanwhile, your order has been converted to COD and will be shipped.");
               finalSiteMsgShown = true;
             }
@@ -205,7 +205,7 @@ public class Commander {
             try {
               if (o.messageSent.equals(MessageSent.NoneSent)) {
                 if (!finalSiteMsgShown) {
-                  System.out.println("There was an error in payment. We are on it, and will get back to you "
+                  LOG.info("There was an error in payment. We are on it, and will get back to you "
                       + "asap. Don't worry, your order has been placed and will be shipped.");
                   finalSiteMsgShown = true;
                 }
@@ -239,12 +239,12 @@ public class Commander {
       //since payment time is lesser than queuetime it would have already failed..additional check not needed
       LOG.trace("Order " + qt.order.id + ": Queue time for order over, failed..");
       return;
-    } else if ((qt.taskType.equals(TaskType.Payment) && !qt.order.paid.equals(PaymentStatus.Trying))
-        || (qt.taskType.equals(TaskType.Messaging) && ((qt.messageType == 1 
-        && !qt.order.messageSent.equals(MessageSent.NoneSent))
+    } else if (qt.taskType.equals(TaskType.Payment) && !qt.order.paid.equals(PaymentStatus.Trying)
+        || qt.taskType.equals(TaskType.Messaging) && (qt.messageType == 1
+        && !qt.order.messageSent.equals(MessageSent.NoneSent)
         || qt.order.messageSent.equals(MessageSent.PaymentFail) 
-        || qt.order.messageSent.equals(MessageSent.PaymentSuccessful)))
-        || (qt.taskType.equals(TaskType.EmployeeDb) && qt.order.addedToEmployeeHandle)) {
+        || qt.order.messageSent.equals(MessageSent.PaymentSuccessful))
+        || qt.taskType.equals(TaskType.EmployeeDb) && qt.order.addedToEmployeeHandle) {
       LOG.trace("Order " + qt.order.id + ": Not queueing task since task already done..");
       return; 
     }
@@ -576,8 +576,8 @@ public class Commander {
               || qt.order.messageSent.equals(MessageSent.PaymentSuccessful)) {
             tryDequeue();
             LOG.trace("Order " + qt.order.id + ": This messaging task already done, dequeue..");
-          } else if ((qt.messageType == 1 && (!qt.order.messageSent.equals(MessageSent.NoneSent) 
-              || !qt.order.paid.equals(PaymentStatus.Trying)))) {
+          } else if (qt.messageType == 1 && (!qt.order.messageSent.equals(MessageSent.NoneSent)
+              || !qt.order.paid.equals(PaymentStatus.Trying))) {
             tryDequeue();
             LOG.trace("Order " + qt.order.id + ": This messaging task does not need to be done, dequeue..");
           } else if (qt.messageType == 0) {
@@ -606,8 +606,7 @@ public class Commander {
     } else {
       Thread.sleep(queueTaskTime / 3);
       tryDoingTasksInQueue();
-    } 
-    return; 
+    }
   }
 
 }
