@@ -183,6 +183,7 @@
         <module>data-locality</module>
         <module>subclass-sandbox</module>
         <module>circuit-breaker</module>
+        <module>double-buffer</module>
     </modules>
 
     <repositories>
