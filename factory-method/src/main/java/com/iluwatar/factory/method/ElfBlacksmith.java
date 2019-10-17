@@ -22,6 +22,9 @@
  */
 package com.iluwatar.factory.method;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 
  * Concrete subclass for creating new objects.
@@ -29,9 +32,15 @@ package com.iluwatar.factory.method;
  */
 public class ElfBlacksmith implements Blacksmith {
 
+  private static Map<WeaponType, ElfWeapon> weaponProtoType = new HashMap<>(WeaponType.values().length);
+  {
+    for (WeaponType type : WeaponType.values()) {
+      weaponProtoType.put(type, new ElfWeapon(type));
+    }
+  }
   @Override
   public Weapon manufactureWeapon(WeaponType weaponType) {
-    return new ElfWeapon(weaponType);
+    return weaponProtoType.get(weaponType);
   }
-
+  
 }
