@@ -32,15 +32,15 @@ import java.util.Map;
  */
 public class ElfBlacksmith implements Blacksmith {
 
-  private static Map<WeaponType, ElfWeapon> weaponProtoType = new HashMap<>(WeaponType.values().length);
+  private static Map<WeaponType, ElfWeapon> ELF_ARSENAL = new HashMap<>(WeaponType.values().length);
   {
     for (WeaponType type : WeaponType.values()) {
-      weaponProtoType.put(type, new ElfWeapon(type));
+      ELF_ARSENAL.put(type, new ElfWeapon(type));
     }
   }
   @Override
   public Weapon manufactureWeapon(WeaponType weaponType) {
-    return weaponProtoType.get(weaponType);
+    return ELF_ARSENAL.get(weaponType);
   }
   
 }
