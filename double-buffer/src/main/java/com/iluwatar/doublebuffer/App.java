@@ -57,7 +57,7 @@ public class App {
     drawPixels.add(pixel2);
     drawPixels.add(pixel3);
     scene.draw(drawPixels);
-    Buffer buffer1 = scene.getBuffer();
+    var buffer1 = scene.getBuffer();
     printBlackPixelCoordinate(buffer1);
 
     drawPixels.clear();
@@ -71,12 +71,12 @@ public class App {
   }
 
   private static void printBlackPixelCoordinate(Buffer buffer) {
-    String log = "Black Pixels: ";
+    var log = "Black Pixels: ";
     Pixel[] pixels = buffer.getPixels();
-    for (int i = 0; i < pixels.length; ++i) {
+    for (var i = 0; i < pixels.length; ++i) {
       if (pixels[i] == Pixel.BLACK) {
-        int y = i / FrameBuffer.WIDTH;
-        int x = i % FrameBuffer.WIDTH;
+        var y = i / FrameBuffer.WIDTH;
+        var x = i % FrameBuffer.WIDTH;
         log += " (" + x + ", " + y + ")";
       }
     }
