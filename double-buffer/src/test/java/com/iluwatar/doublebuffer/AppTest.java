@@ -23,48 +23,17 @@
 
 package com.iluwatar.doublebuffer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.Test;
 
 /**
- * FrameBuffer implementation class.
+ * App unit test.
  */
-public class FrameBuffer implements Buffer {
+public class AppTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(FrameBuffer.class);
-
-  public static final int WIDTH = 10;
-  public static final int HEIGHT = 8;
-
-  private Pixel[] pixels = new Pixel[WIDTH * HEIGHT];
-
-  public FrameBuffer() {
-    clearAll();
+  @Test
+  public void testMain() {
+    String[] args = {};
+    App.main(args);
   }
 
-  @Override
-  public void clear(int x, int y) {
-    pixels[getIndex(x, y)] = Pixel.WHITE;
-  }
-
-  @Override
-  public void draw(int x, int y) {
-    pixels[getIndex(x, y)] = Pixel.BLACK;
-  }
-
-  @Override
-  public void clearAll() {
-    for (var i = 0; i < pixels.length; ++i) {
-      pixels[i] = Pixel.WHITE;
-    }
-  }
-
-  @Override
-  public Pixel[] getPixels() {
-    return pixels;
-  }
-
-  private int getIndex(int x, int y) {
-    return x + WIDTH * y;
-  }
 }

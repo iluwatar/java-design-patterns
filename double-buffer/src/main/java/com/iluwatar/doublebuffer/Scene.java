@@ -42,6 +42,9 @@ public class Scene {
 
   private int next;
 
+  /**
+   * Constructor of Scene.
+   */
   public Scene() {
     frameBuffers = new FrameBuffer[2];
     frameBuffers[0] = new FrameBuffer();
@@ -50,6 +53,10 @@ public class Scene {
     next = 1;
   }
 
+  /**
+   * Draw the next frame.
+   * @param coordinateList list of pixels of which the color should be black
+   */
   public void draw(List<Pair<Integer, Integer>> coordinateList) {
     LOGGER.info("Start drawing next frame");
     LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
