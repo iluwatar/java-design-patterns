@@ -23,13 +23,18 @@
 
 package com.iluwatar.doublebuffer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- *
+ * FrameBuffer implementation class.
  */
 public class FrameBuffer implements Buffer {
 
-  private static final int WIDTH = 192;
-  private static final int HEIGHT = 168;
+  private static final Logger LOGGER = LoggerFactory.getLogger(FrameBuffer.class);
+
+  public static final int WIDTH = 10;
+  public static final int HEIGHT = 8;
 
   private Pixel[] pixels = new Pixel[WIDTH * HEIGHT];
 
@@ -62,4 +67,5 @@ public class FrameBuffer implements Buffer {
   private int getIndex(int x, int y) {
     return x + WIDTH * y;
   }
+
 }

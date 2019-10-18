@@ -23,13 +23,18 @@
 
 package com.iluwatar.doublebuffer;
 
+import org.apache.commons.lang3.tuple.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
-import java.util.Map;
 
 /**
- *
+ * Scene class. Render the output frame.
  */
 public class Scene {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Scene.class);
 
   private Buffer[] frameBuffers;
 
@@ -39,18 +44,30 @@ public class Scene {
 
   public Scene() {
     frameBuffers = new FrameBuffer[2];
+    frameBuffers[0] = new FrameBuffer();
+    frameBuffers[1] = new FrameBuffer();
     current = 0;
     next = 1;
   }
 
-  public void draw(List<Map.Entry<Integer, Integer>> coordinateList) {
+  public void draw(List<Pair<Integer, Integer>> coordinateList) {
+    LOGGER.info("Start drawing next frame");
+    LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
     frameBuffers[next].clearAll();
-    for (Map.Entry<Integer, Integer> coordinate : coordinateList) {
-      int x = coordinate.getKey();
-      int y = coordinate.getValue();
+    for (Pair<Integer, Integer> coordinate : coordinateList) {
+      var x = coordinate.getKey();
+      var y = coordinate.getValue();
       frameBuffers[next].draw(x, y);
     }
+    LOGGER.info("Swap current and next buffer");
     swap();
+    LOGGER.info("Finish swapping");
+    LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
+  }
+
+  public Buffer getBuffer() {
+    LOGGER.info("Get current buffer: " + current);
+    return frameBuffers[current];
   }
 
   private void swap() {
