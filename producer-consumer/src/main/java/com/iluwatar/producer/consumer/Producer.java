@@ -29,6 +29,8 @@ import java.util.Random;
  * to queue
  */
 public class Producer {
+  
+  private static final Random RANDOM = new Random();
 
   private final ItemQueue queue;
 
@@ -48,7 +50,6 @@ public class Producer {
 
     Item item = new Item(name, itemId++);
     queue.put(item);
-    Random random = new Random();
-    Thread.sleep(random.nextInt(2000));
+    Thread.sleep(RANDOM.nextInt(2000));
   }
 }

@@ -34,6 +34,8 @@ import java.util.Random;
 public class ArrayUtilityMethods {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ArrayUtilityMethods.class);
+  
+  private static final Random RANDOM = new Random();
   /**
    * Method arraysSame compares 2 arrays @param a1 and @param a2
    * and @return whether their values are equal (boolean).
@@ -86,11 +88,10 @@ public class ArrayUtilityMethods {
   
   public static int[][] createRandomIntMatrix(int rows, int columns) {
     int[][] matrix = new int[rows][columns];
-    Random rand = new Random();
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < columns; j++) {
         //filling cells in matrix
-        matrix[i][j] = rand.nextInt(10);
+        matrix[i][j] = RANDOM.nextInt(10);
       }
     }
     return matrix;

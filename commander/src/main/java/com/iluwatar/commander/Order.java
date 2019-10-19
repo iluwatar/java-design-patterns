@@ -44,6 +44,7 @@ public class Order { //can store all transactions ids also
   public final String id;
   final float price;
   final long createdTime;
+  private static final Random RANDOM = new Random();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<String, Boolean>();
   PaymentStatus paid;
@@ -70,9 +71,8 @@ public class Order { //can store all transactions ids also
 
   String createUniqueId() {
     StringBuilder random = new StringBuilder();
-    Random rand = new Random();
     while (random.length() < 12) { // length of the random string.
-      int index = (int) (rand.nextFloat() * ALL_CHARS.length());
+      int index = (int) (RANDOM.nextFloat() * ALL_CHARS.length());
       random.append(ALL_CHARS.charAt(index));
     }
     return random.toString();
