@@ -58,6 +58,7 @@ public abstract class AbstractInstance implements Instance, Runnable {
    * The instance will execute the message in its message queue periodically once it is alive.
    */
   @Override
+  @SuppressWarnings("squid:S2189")
   public void run() {
     while (true) {
       if (!this.messageQueue.isEmpty()) {

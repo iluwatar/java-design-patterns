@@ -66,6 +66,7 @@ public class App {
    * 
    * @param args command line args
    */
+  @SuppressWarnings("squid:S2189")
   public static void main(String[] args) {
     //Create an object of monitoring service which makes both local and remote calls
     var obj = new MonitoringService();
