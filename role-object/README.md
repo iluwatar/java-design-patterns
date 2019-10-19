@@ -3,13 +3,15 @@ layout: pattern
 title: Role object
 folder: Migration
 permalink: /patterns/role-object/
-categories: Behavioral
+categories: Structural
 tags:
  - Java
- - Easy-to-implement
+ - Difficulty-Medium
+ - Handle Body Pattern
 ---
 
 ## Also known as
+Post pattern, Extension Object pattern
 
 ## Intent
 
