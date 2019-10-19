@@ -71,8 +71,7 @@ public class CellPool {
   }
   
   void addNewCell(Cell c) {
-    Random rand = new Random();
-    c.candy = randomCode[rand.nextInt(randomCode.length)]; //changing candytype to new
+    c.candy = randomCode[RANDOM.nextInt(randomCode.length)]; //changing candytype to new
     this.pool.add(c);
     pointer++;
   }
