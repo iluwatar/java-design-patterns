@@ -42,6 +42,7 @@ public abstract class Service {
   
   protected final Database database;
   public ArrayList<Exception> exceptionsList;
+  private static final Random RANDOM = new Random();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<String, Boolean>();
 
@@ -55,9 +56,8 @@ public abstract class Service {
 
   protected String generateId() {
     StringBuilder random = new StringBuilder();
-    Random rand = new Random();
     while (random.length() < 12) { // length of the random string.
-      int index = (int) (rand.nextFloat() * ALL_CHARS.length());
+      int index = (int) (RANDOM.nextFloat() * ALL_CHARS.length());
       random.append(ALL_CHARS.charAt(index));
     }
     String id = random.toString();

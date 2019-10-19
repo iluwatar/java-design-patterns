@@ -37,6 +37,7 @@ import com.iluwatar.typeobject.Candy.Type;
  */
 
 public class CellPool {
+  private static final Random RANDOM = new Random();
   ArrayList<Cell> pool;
   int pointer;
   Candy[] randomCode;
@@ -57,8 +58,7 @@ public class CellPool {
     }
     for (int i = 0; i < num; i++) {
       Cell c = new Cell();
-      Random rand = new Random();
-      c.candy = randomCode[rand.nextInt(randomCode.length)];
+      c.candy = randomCode[RANDOM.nextInt(randomCode.length)];
       this.pool.add(c);
     }
     this.pointer = num - 1;
