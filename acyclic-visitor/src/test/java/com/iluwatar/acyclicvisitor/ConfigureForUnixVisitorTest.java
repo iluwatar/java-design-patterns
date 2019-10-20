@@ -46,8 +46,8 @@ public class ConfigureForUnixVisitorTest {
   
   @Test
   public void testVisitForZoom() {
-    ConfigureForUnixVisitor conUnix = new ConfigureForUnixVisitor();
-    Zoom zoom = new Zoom();
+    var conUnix = new ConfigureForUnixVisitor();
+    var zoom = new Zoom();
     
     conUnix.visit(zoom);
     

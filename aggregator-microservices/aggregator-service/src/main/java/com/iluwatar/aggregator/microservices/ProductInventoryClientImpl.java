@@ -42,12 +42,12 @@ public class ProductInventoryClientImpl implements ProductInventoryClient {
 
   @Override
   public int getProductInventories() {
-    String response = "0";
+    var response = "0";
 
-    HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:51516/inventories")).build();
-    HttpClient client = HttpClient.newHttpClient();
+    var request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:51516/inventories")).build();
+    var client = HttpClient.newHttpClient();
     try {
-      HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
+      var httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
       response = httpResponse.body();
     } catch (IOException ioe) {
       LOGGER.error("IOException Occurred", ioe);

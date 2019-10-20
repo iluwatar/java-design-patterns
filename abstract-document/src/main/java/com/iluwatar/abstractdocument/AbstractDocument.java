@@ -61,7 +61,7 @@ public abstract class AbstractDocument implements Document {
 
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
+    var builder = new StringBuilder();
     builder.append(getClass().getName()).append("[");
     properties.forEach((key, value) -> builder.append("[").append(key).append(" : ").append(value).append("]"));
     builder.append("]");
