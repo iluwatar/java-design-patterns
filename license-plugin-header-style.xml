@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- This is a license header template used by the com.mycila.license-maven-plugin.
+ This template is based on the SLASHSTAR_STYLE template provided in license-maven-plugin v3.0,
+ but it adds an empty line after the last line, so the package name can be "separated from the previous statement",
+ according to Google's Checkstyle format -->
+<additionalHeaders>
+    <slashstar_custom_style>
+        <firstLine>/*</firstLine>
+        <beforeEachLine> * </beforeEachLine>
+        <endLine> */EOL</endLine><!-- Added EOL here -->
+        <firstLineDetectionPattern>(\\s|\\t)*/\\*.*$</firstLineDetectionPattern>
+        <lastLineDetectionPattern>.*\\*/(\\s|\\t)*$</lastLineDetectionPattern>
+        <allowBlankLines>false</allowBlankLines>
+        <isMultiline>true</isMultiline>
+        <padLines>false</padLines>
+    </slashstar_custom_style>
+</additionalHeaders>
