@@ -36,8 +36,4 @@ public enum Pixel {
   Pixel(int color) {
     this.color = color;
   }
-
-  public int getColor() {
-    return color;
-  }
 }

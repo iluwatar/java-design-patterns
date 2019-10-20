@@ -31,8 +31,6 @@ import org.slf4j.LoggerFactory;
  */
 public class FrameBuffer implements Buffer {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(FrameBuffer.class);
-
   public static final int WIDTH = 10;
   public static final int HEIGHT = 8;
 
