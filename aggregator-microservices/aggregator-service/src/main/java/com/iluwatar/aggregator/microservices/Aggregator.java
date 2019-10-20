@@ -50,7 +50,7 @@ public class Aggregator {
    */
   @RequestMapping(path = "/product", method = RequestMethod.GET)
   public Product getProduct() {
-    Product product = new Product();
+    var product = new Product();
     product.setTitle(informationClient.getProductTitle());
     product.setProductInventories(inventoryClient.getProductInventories());
     return product;
