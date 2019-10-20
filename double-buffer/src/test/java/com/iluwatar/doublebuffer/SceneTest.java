@@ -38,14 +38,14 @@ public class SceneTest {
   public void testGetBuffer() {
     try {
       var scene = new Scene();
-      Field field1 = Scene.class.getDeclaredField("current");
+      var field1 = Scene.class.getDeclaredField("current");
       field1.setAccessible(true);
       field1.set(scene, 0);
       FrameBuffer[] frameBuffers = new FrameBuffer[2];
       FrameBuffer frameBuffer = new FrameBuffer();
       frameBuffer.draw(0, 0);
       frameBuffers[0] = frameBuffer;
-      Field field2 = Scene.class.getDeclaredField("frameBuffers");
+      var field2 = Scene.class.getDeclaredField("frameBuffers");
       field2.setAccessible(true);
       field2.set(scene, frameBuffers);
       Assert.assertEquals(frameBuffer, scene.getBuffer());
@@ -58,8 +58,8 @@ public class SceneTest {
   public void testDraw() {
     try {
       var scene = new Scene();
-      Field field1 = Scene.class.getDeclaredField("current");
-      Field field2 = Scene.class.getDeclaredField("next");
+      var field1 = Scene.class.getDeclaredField("current");
+      var field2 = Scene.class.getDeclaredField("next");
       field1.setAccessible(true);
       field1.set(scene, 0);
       field2.setAccessible(true);
