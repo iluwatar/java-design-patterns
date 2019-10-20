@@ -44,10 +44,10 @@ public class ProductInventoryClientImpl implements ProductInventoryClient {
 
   @Override
   public int getProductInventories() {
-    String response = "0";
-    try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-      HttpGet httpGet = new HttpGet("http://localhost:51516/inventories");
-      try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
+    var response = "0";
+    try (var httpClient = HttpClients.createDefault()) {
+      var httpGet = new HttpGet("http://localhost:51516/inventories");
+      try (var httpResponse = httpClient.execute(httpGet)) {
         response = EntityUtils.toString(httpResponse.getEntity());
       }
     } catch (ClientProtocolException cpe) {

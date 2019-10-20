@@ -48,8 +48,8 @@ public class ConfigureForDosVisitorTest {
   
   @Test
   public void testVisitForZoom() {    
-    ConfigureForDosVisitor conDos = new ConfigureForDosVisitor();
-    Zoom zoom = new Zoom();
+    var conDos = new ConfigureForDosVisitor();
+    var zoom = new Zoom();
     
     conDos.visit(zoom);
     

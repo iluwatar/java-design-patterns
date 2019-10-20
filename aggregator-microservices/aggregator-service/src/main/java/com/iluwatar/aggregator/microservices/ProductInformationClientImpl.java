@@ -45,9 +45,9 @@ public class ProductInformationClientImpl implements ProductInformationClient {
   @Override
   public String getProductTitle() {
     String response = null;
-    try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-      HttpGet httpGet = new HttpGet("http://localhost:51515/information");
-      try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
+    try (var httpClient = HttpClients.createDefault()) {
+      var httpGet = new HttpGet("http://localhost:51515/information");
+      try (var httpResponse = httpClient.execute(httpGet)) {
         response = EntityUtils.toString(httpResponse.getEntity());
       }
     } catch (ClientProtocolException cpe) {

@@ -41,8 +41,8 @@ public class ZoomTest {
   
   @Test
   public void testAcceptForDos() {  
-    Zoom zoom = new Zoom();
-    ConfigureForDosVisitor mockVisitor = mock(ConfigureForDosVisitor.class);
+    var zoom = new Zoom();
+    var mockVisitor = mock(ConfigureForDosVisitor.class);
     
     zoom.accept(mockVisitor);
     verify((ZoomVisitor)mockVisitor).visit(eq(zoom));
@@ -50,8 +50,8 @@ public class ZoomTest {
   
   @Test
   public void testAcceptForUnix() {
-    Zoom zoom = new Zoom();
-    ConfigureForUnixVisitor mockVisitor = mock(ConfigureForUnixVisitor.class);
+    var zoom = new Zoom();
+    var mockVisitor = mock(ConfigureForUnixVisitor.class);
     
     zoom.accept(mockVisitor);
     verify((ZoomVisitor)mockVisitor).visit(eq(zoom));

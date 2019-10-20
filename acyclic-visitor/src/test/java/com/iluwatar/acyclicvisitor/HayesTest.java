@@ -41,8 +41,8 @@ public class HayesTest {
 
   @Test
   public void testAcceptForDos() {  
-    Hayes hayes = new Hayes();
-    ConfigureForDosVisitor mockVisitor = mock(ConfigureForDosVisitor.class);
+    var hayes = new Hayes();
+    var mockVisitor = mock(ConfigureForDosVisitor.class);
     
     hayes.accept(mockVisitor);
     verify((HayesVisitor)mockVisitor).visit(eq(hayes));
@@ -50,8 +50,8 @@ public class HayesTest {
   
   @Test
   public void testAcceptForUnix() {    
-    Hayes hayes = new Hayes();
-    ConfigureForUnixVisitor mockVisitor = mock(ConfigureForUnixVisitor.class);
+    var hayes = new Hayes();
+    var mockVisitor = mock(ConfigureForUnixVisitor.class);
     
     hayes.accept(mockVisitor);
     

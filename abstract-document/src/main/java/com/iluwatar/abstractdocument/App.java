@@ -52,23 +52,23 @@ public class App {
   public App() {
     LOGGER.info("Constructing parts and car");
 
-    Map<String, Object> carProperties = new HashMap<>();
+    var carProperties = new HashMap<String, Object>();
     carProperties.put(Property.MODEL.toString(), "300SL");
     carProperties.put(Property.PRICE.toString(), 10000L);
 
-    Map<String, Object> wheelProperties = new HashMap<>();
+    var wheelProperties = new HashMap<String, Object>();
     wheelProperties.put(Property.TYPE.toString(), "wheel");
     wheelProperties.put(Property.MODEL.toString(), "15C");
     wheelProperties.put(Property.PRICE.toString(), 100L);
 
-    Map<String, Object> doorProperties = new HashMap<>();
+    var doorProperties = new HashMap<String, Object>();
     doorProperties.put(Property.TYPE.toString(), "door");
     doorProperties.put(Property.MODEL.toString(), "Lambo");
     doorProperties.put(Property.PRICE.toString(), 300L);
 
     carProperties.put(Property.PARTS.toString(), Arrays.asList(wheelProperties, doorProperties));
 
-    Car car = new Car(carProperties);
+    var car = new Car(carProperties);
 
     LOGGER.info("Here is our car:");
     LOGGER.info("-> model: {}", car.getModel().get());
