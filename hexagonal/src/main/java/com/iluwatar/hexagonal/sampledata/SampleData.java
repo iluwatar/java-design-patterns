@@ -102,8 +102,7 @@ public class SampleData {
   }
 
   private static PlayerDetails getRandomPlayerDetails() {
-    Random random = new Random();
-    int idx = random.nextInt(PLAYERS.size());
+    int idx = RANDOM.nextInt(PLAYERS.size());
     return PLAYERS.get(idx);
   }
 }
