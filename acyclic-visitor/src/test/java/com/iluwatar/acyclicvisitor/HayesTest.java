@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,11 +29,6 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 
 import org.junit.jupiter.api.Test;
 
-import com.iluwatar.acyclicvisitor.ConfigureForDosVisitor;
-import com.iluwatar.acyclicvisitor.ConfigureForUnixVisitor;
-import com.iluwatar.acyclicvisitor.Hayes;
-import com.iluwatar.acyclicvisitor.HayesVisitor;
-
 /**
  * Hayes test class
  */
@@ -41,8 +36,8 @@ public class HayesTest {
 
   @Test
   public void testAcceptForDos() {  
-    Hayes hayes = new Hayes();
-    ConfigureForDosVisitor mockVisitor = mock(ConfigureForDosVisitor.class);
+    var hayes = new Hayes();
+    var mockVisitor = mock(ConfigureForDosVisitor.class);
     
     hayes.accept(mockVisitor);
     verify((HayesVisitor)mockVisitor).visit(eq(hayes));
@@ -50,8 +45,8 @@ public class HayesTest {
   
   @Test
   public void testAcceptForUnix() {    
-    Hayes hayes = new Hayes();
-    ConfigureForUnixVisitor mockVisitor = mock(ConfigureForUnixVisitor.class);
+    var hayes = new Hayes();
+    var mockVisitor = mock(ConfigureForUnixVisitor.class);
     
     hayes.accept(mockVisitor);
     

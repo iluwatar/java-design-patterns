@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,6 +40,7 @@ import java.util.Random;
 public class SampleData {
 
   private static final List<PlayerDetails> PLAYERS;
+  private static final Random RANDOM = new Random();
 
   static {
     PLAYERS = new ArrayList<>();
@@ -83,10 +84,9 @@ public class SampleData {
     PLAYERS.add(new PlayerDetails("xavier@google.com", "143-947", "+375245"));
     PLAYERS.add(new PlayerDetails("harriet@google.com", "842-404", "+131243252"));
     InMemoryBank wireTransfers = new InMemoryBank();
-    Random random = new Random();
     for (PlayerDetails player : PLAYERS) {
       wireTransfers.setFunds(player.getBankAccount(),
-          random.nextInt(LotteryConstants.PLAYER_MAX_BALANCE));
+          RANDOM.nextInt(LotteryConstants.PLAYER_MAX_BALANCE));
     }
   }
 
@@ -102,8 +102,7 @@ public class SampleData {
   }
 
   private static PlayerDetails getRandomPlayerDetails() {
-    Random random = new Random();
-    int idx = random.nextInt(PLAYERS.size());
+    int idx = RANDOM.nextInt(PLAYERS.size());
     return PLAYERS.get(idx);
   }
 }

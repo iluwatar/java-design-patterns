@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.spatialpartition;
 
 /**
@@ -29,14 +28,14 @@ package com.iluwatar.spatialpartition;
  */
 
 public class Rect {
-  int x; 
-  int y; 
-  int width;
-  int height;
+  double x;
+  double y;
+  double width;
+  double height;
 
   //(x,y) - centre of rectangle
 
-  Rect(int x, int y, int width, int height) {
+  Rect(double x, double y, double width, double height) {
     this.x = x;
     this.y = y;
     this.width = width;

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@ public class AdapterPatternTest {
     FishingBoatAdapter fishingBoatAdapter = spy(new FishingBoatAdapter());
     beans.put(FISHING_BEAN, fishingBoatAdapter);
 
-    Captain captain = new Captain();
+    var captain = new Captain();
     captain.setRowingBoat((FishingBoatAdapter) beans.get(FISHING_BEAN));
     beans.put(ROWING_BEAN, captain);
   }
@@ -66,13 +66,13 @@ public class AdapterPatternTest {
    */
   @Test
   public void testAdapter() {
-    Captain captain = (Captain) beans.get(ROWING_BEAN);
+    var captain = (Captain) beans.get(ROWING_BEAN);
 
     // when captain moves
     captain.row();
 
     // the captain internally calls the battleship object to move
-    RowingBoat adapter = (RowingBoat) beans.get(FISHING_BEAN);
+    var adapter = (RowingBoat) beans.get(FISHING_BEAN);
     verify(adapter).row();
   }
 }

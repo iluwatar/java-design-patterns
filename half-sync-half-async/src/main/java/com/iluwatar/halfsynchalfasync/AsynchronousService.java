@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 package com.iluwatar.halfsynchalfasync;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -38,6 +41,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class AsynchronousService {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(AsynchronousService.class);
   /*
    * This represents the queuing layer as well as synchronous layer of the pattern. The thread pool
    * contains worker threads which execute the tasks in blocking/synchronous manner. Long running
@@ -94,5 +98,17 @@ public class AsynchronousService {
         }
       }
     });
+  }
+
+  /**
+   * Stops the pool of workers. This is a blocking call to wait for all tasks to be completed.
+   */
+  public void close() {
+    service.shutdown();
+    try {
+      service.awaitTermination(10, TimeUnit.SECONDS);
+    } catch (InterruptedException ie) {
+      LOGGER.error("Error waiting for executor service shutdown!");
+    }
   }
 }

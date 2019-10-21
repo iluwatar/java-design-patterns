@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.typeobject;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**<p>Type object pattern is the pattern we use when the OOP concept of creating a base class and
  * inheriting from it just doesn't work for the case in hand. This happens when we either don't know 
@@ -46,26 +47,27 @@ import org.json.simple.parser.ParseException;
 
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   /**
    * Program entry point.
    * @param args command line args
    */
   public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
-    int givenTime = 50; //50ms
-    int toWin = 500; //points
-    int pointsWon = 0;
-    int numOfRows = 3;
-    long start = System.currentTimeMillis();
-    long end = System.currentTimeMillis();
-    int round = 0;
+    var givenTime = 50; //50ms
+    var toWin = 500; //points
+    var pointsWon = 0;
+    var numOfRows = 3;
+    var start = System.currentTimeMillis();
+    var end = System.currentTimeMillis();
+    var round = 0;
     while (pointsWon < toWin && end - start < givenTime) {      
       round++;
-      CellPool pool = new CellPool(numOfRows * numOfRows + 5);
-      CandyGame cg = new CandyGame(numOfRows, pool);
+      var pool = new CellPool(numOfRows * numOfRows + 5);
+      var cg = new CandyGame(numOfRows, pool);
       if (round > 1) {
-        System.out.println("Refreshing..");
+        LOGGER.info("Refreshing..");
       } else {
-        System.out.println("Starting game..");
+        LOGGER.info("Starting game..");
       }
       cg.printGameStatus();
       end = System.currentTimeMillis();
@@ -73,13 +75,13 @@ public class App {
       pointsWon += cg.totalPoints;
       end = System.currentTimeMillis();
     }
-    System.out.println("Game Over");
+    LOGGER.info("Game Over");
     if (pointsWon >= toWin) {
-      System.out.println(pointsWon);
-      System.out.println("You win!!");
+      LOGGER.info("" + pointsWon);
+      LOGGER.info("You win!!");
     } else {
-      System.out.println(pointsWon);
-      System.out.println("Sorry, you lose!");
+      LOGGER.info("" + pointsWon);
+      LOGGER.info("Sorry, you lose!");
     }
   }
 }

@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +54,7 @@ public class App {
    */
   public static void main(String[] args) {
     // The captain can only operate rowing boats but with adapter he is able to use fishing boats as well
-    Captain captain = new Captain(new FishingBoatAdapter());
+    var captain = new Captain(new FishingBoatAdapter());
     captain.row();
   }
 }

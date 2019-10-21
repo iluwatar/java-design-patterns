@@ -1,6 +1,6 @@
 /**
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -76,8 +76,8 @@ public class HeroStat {
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
+    final var prime = 31;
+    var result = 1;
     result = prime * result + intelligence;
     result = prime * result + luck;
     result = prime * result + strength;
@@ -95,7 +95,7 @@ public class HeroStat {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    HeroStat other = (HeroStat) obj;
+    var other = (HeroStat) obj;
     if (intelligence != other.intelligence) {
       return false;
     }
