@@ -53,17 +53,17 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
-    int givenTime = 50; //50ms
-    int toWin = 500; //points
-    int pointsWon = 0;
-    int numOfRows = 3;
-    long start = System.currentTimeMillis();
-    long end = System.currentTimeMillis();
-    int round = 0;
+    var givenTime = 50; //50ms
+    var toWin = 500; //points
+    var pointsWon = 0;
+    var numOfRows = 3;
+    var start = System.currentTimeMillis();
+    var end = System.currentTimeMillis();
+    var round = 0;
     while (pointsWon < toWin && end - start < givenTime) {      
       round++;
-      CellPool pool = new CellPool(numOfRows * numOfRows + 5);
-      CandyGame cg = new CandyGame(numOfRows, pool);
+      var pool = new CellPool(numOfRows * numOfRows + 5);
+      var cg = new CandyGame(numOfRows, pool);
       if (round > 1) {
         LOGGER.info("Refreshing..");
       } else {

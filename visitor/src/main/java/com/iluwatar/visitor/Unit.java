@@ -39,7 +39,7 @@ public abstract class Unit {
    * Accept visitor
    */
   public void accept(UnitVisitor visitor) {
-    for (Unit child : children) {
+    for (var child : children) {
       child.accept(visitor);
     }
   }

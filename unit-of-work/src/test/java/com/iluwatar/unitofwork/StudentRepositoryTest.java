@@ -97,7 +97,7 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotWriteToDbIfContextIsNull() {
-    StudentRepository studentRepository = new StudentRepository(null, studentDatabase);
+    var studentRepository = new StudentRepository(null, studentDatabase);
 
     studentRepository.commit();
 
@@ -106,7 +106,7 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotWriteToDbIfNothingToCommit() {
-    StudentRepository studentRepository = new StudentRepository(new HashMap<>(), studentDatabase);
+    var studentRepository = new StudentRepository(new HashMap<>(), studentDatabase);
 
     studentRepository.commit();
 

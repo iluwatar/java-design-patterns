@@ -57,7 +57,7 @@ public class CellPool {
       randomCode[4] = new Candy("orange gum", "candy", Type.crushableCandy, 10);
     }
     for (int i = 0; i < num; i++) {
-      Cell c = new Cell();
+      var c = new Cell();
       c.candy = randomCode[RANDOM.nextInt(randomCode.length)];
       this.pool.add(c);
     }
@@ -65,7 +65,7 @@ public class CellPool {
   }
   
   Cell getNewCell() {
-    Cell newCell = this.pool.remove(pointer);
+    var newCell = this.pool.remove(pointer);
     pointer--;
     return newCell;
   }
@@ -77,12 +77,12 @@ public class CellPool {
   }
   
   Candy[] assignRandomCandytypes() throws FileNotFoundException, IOException, ParseException {
-    JsonParser jp = new JsonParser();
+    var jp = new JsonParser();
     jp.parse();
-    Candy[] randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
-    int i = 0;
-    for (Enumeration<String> e = jp.candies.keys(); e.hasMoreElements();) {
-      String s = e.nextElement();
+    var randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
+    var i = 0;
+    for (var e = jp.candies.keys(); e.hasMoreElements();) {
+      var s = e.nextElement();
       if (!s.equals("fruit") && !s.equals("candy")) {
         //not generic
         randomCode[i] = jp.candies.get(s);

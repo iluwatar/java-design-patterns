@@ -41,7 +41,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    Commander commander =
+    var commander =
         new Commander(new Sergeant(new Soldier(), new Soldier(), new Soldier()), new Sergeant(
             new Soldier(), new Soldier(), new Soldier()));
     commander.accept(new SoldierVisitor());

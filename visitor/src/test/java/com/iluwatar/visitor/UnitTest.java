@@ -56,15 +56,15 @@ public abstract class UnitTest<U extends Unit> {
 
   @Test
   public void testAccept() {
-    final Unit[] children = new Unit[5];
+    final var children = new Unit[5];
     Arrays.setAll(children, (i) -> mock(Unit.class));
 
-    final U unit = this.factory.apply(children);
-    final UnitVisitor visitor = mock(UnitVisitor.class);
+    final var unit = this.factory.apply(children);
+    final var visitor = mock(UnitVisitor.class);
     unit.accept(visitor);
     verifyVisit(unit, visitor);
 
-    for (final Unit child : children) {
+    for (final var child : children) {
       verify(child).accept(eq(visitor));
     }
 

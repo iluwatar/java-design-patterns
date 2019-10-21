@@ -44,8 +44,8 @@ public class CandyGame {
     this.cells = new Cell[num][num];
     this.pool = pool;
     this.totalPoints = 0;
-    for (int i = 0; i < num; i++) {
-      for (int j = 0; j < num; j++) {
+    for (var i = 0; i < num; i++) {
+      for (var j = 0; j < num; j++) {
         this.cells[i][j] = this.pool.getNewCell();
         this.cells[i][j].xIndex = j;
         this.cells[i][j].yIndex = i;
@@ -55,7 +55,7 @@ public class CandyGame {
   
   static String numOfSpaces(int num) {
     String result = "";
-    for (int i = 0; i < num; i++) {
+    for (var i = 0; i < num; i++) {
       result += " ";
     }
     return result;
@@ -63,11 +63,11 @@ public class CandyGame {
   
   void printGameStatus() {
     LOGGER.info("");
-    for (int i = 0; i < cells.length; i++) {
-      for (int j = 0; j < cells.length; j++) {
-        String candyName = cells[i][j].candy.name;
+    for (var i = 0; i < cells.length; i++) {
+      for (var j = 0; j < cells.length; j++) {
+        var candyName = cells[i][j].candy.name;
         if (candyName.length() < 20) {
-          int totalSpaces = 20 - candyName.length();
+          var totalSpaces = 20 - candyName.length();
           LOGGER.info(numOfSpaces(totalSpaces / 2) + cells[i][j].candy.name
               + numOfSpaces(totalSpaces - totalSpaces / 2) + "|");
         } else {
@@ -105,16 +105,16 @@ public class CandyGame {
   }
    
   boolean continueRound() {
-    for (int i = 0; i < this.cells.length; i++) {
+    for (var i = 0; i < this.cells.length; i++) {
       if (this.cells[cells.length - 1][i].candy.getType().equals(Type.rewardFruit)) {
         return true;
       }
     }
-    for (int i = 0; i < this.cells.length; i++) {
-      for (int j = 0; j < this.cells.length; j++) {
+    for (var i = 0; i < this.cells.length; i++) {
+      for (var j = 0; j < this.cells.length; j++) {
         if (!this.cells[i][j].candy.getType().equals(Type.rewardFruit)) {
-          ArrayList<Cell> adj = adjacentCells(i,j);
-          for (int a = 0; a < adj.size(); a++) {
+          var adj = adjacentCells(i,j);
+          for (var a = 0; a < adj.size(); a++) {
             if (this.cells[i][j].candy.name.equals(adj.get(a).candy.name)) {
               return true;
             }
@@ -132,21 +132,21 @@ public class CandyGame {
   }
   
   void round(int timeSoFar, int totalTime) {
-    long start = System.currentTimeMillis();
-    long end = System.currentTimeMillis();
+    var start = System.currentTimeMillis();
+    var end = System.currentTimeMillis();
     while (end - start + timeSoFar < totalTime && continueRound()) {
-      for (int i = 0; i < this.cells.length; i++) {
-        int points = 0;
-        int j = this.cells.length - 1;
+      for (var i = 0; i < this.cells.length; i++) {
+        var points = 0;
+        var j = this.cells.length - 1;
         while (this.cells[j][i].candy.getType().equals(Type.rewardFruit)) {
           points = this.cells[j][i].candy.getPoints();
           this.cells[j][i].crush(pool, this.cells);
           handleChange(points);
         }
       }
-      for (int i = 0; i < this.cells.length; i++) {
-        int j = cells.length - 1;
-        int points = 0;
+      for (var i = 0; i < this.cells.length; i++) {
+        var j = cells.length - 1;
+        var points = 0;
         while (j > 0) { 
           points = this.cells[j][i].interact(this.cells[j - 1][i], this.pool, this.cells);
           if (points != 0) {  
@@ -156,9 +156,9 @@ public class CandyGame {
           }
         }
       }
-      for (int i = 0; i < this.cells.length; i++) {
-        int j = 0;
-        int points = 0;
+      for (var i = 0; i < this.cells.length; i++) {
+        var j = 0;
+        var points = 0;
         while (j < cells.length - 1) {       
           points = this.cells[i][j].interact(this.cells[i][j + 1], this.pool, this.cells);
           if (points != 0) {

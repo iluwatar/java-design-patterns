@@ -48,9 +48,9 @@ public class App {
    * This practice creates three HeroStats(Value object) and checks equality between those.
    */
   public static void main(String[] args) {
-    HeroStat statA = HeroStat.valueOf(10, 5, 0);
-    HeroStat statB = HeroStat.valueOf(10, 5, 0);
-    HeroStat statC = HeroStat.valueOf(5, 1, 8);
+    var statA = HeroStat.valueOf(10, 5, 0);
+    var statB = HeroStat.valueOf(10, 5, 0);
+    var statC = HeroStat.valueOf(5, 1, 8);
 
     LOGGER.info(statA.toString());
 
