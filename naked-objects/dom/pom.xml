@@ -143,7 +143,6 @@
 						<version>${datanucleus-maven-plugin.version}</version>
 						<configuration>
 							<fork>false</fork>
-							<log4jConfiguration>${basedir}/log4j.properties</log4jConfiguration>
 							<verbose>true</verbose>
 							<props>${basedir}/datanucleus.properties</props>
 						</configuration>

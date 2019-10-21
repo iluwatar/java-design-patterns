@@ -39,7 +39,7 @@
         <spring-data.version>2.0.14.RELEASE</spring-data.version>
         <h2.version>1.4.190</h2.version>
         <junit.version>4.12</junit.version>
-        <junit-jupiter.version>5.0.2</junit-jupiter.version>
+        <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <junit-vintage.version>${junit.version}.2</junit-vintage.version>
         <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
         <compiler.version>3.8.1</compiler.version>
@@ -48,7 +48,6 @@
         <camel.version>2.24.0</camel.version>
         <guava.version>19.0</guava.version>
         <mockito.version>1.10.19</mockito.version>
-        <apache-httpcomponents.version>4.5.10</apache-httpcomponents.version>
         <htmlunit.version>2.22</htmlunit.version>
         <guice.version>4.0</guice.version>
         <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
@@ -56,13 +55,12 @@
         <logback.version>1.2.3</logback.version>
         <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
         <aws-java-sdk-dynamodb.version>1.11.289</aws-java-sdk-dynamodb.version>
-        <aws-lambda-log4j.version>1.0.0</aws-lambda-log4j.version>
         <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
         <jackson.version>2.8.5</jackson.version>
-        <log4j.version>1.2.17</log4j.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.2</annotation-api.version>
+        <system-rules.version>1.19.0</system-rules.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -183,7 +181,9 @@
         <module>bytecode</module>
         <module>leader-election</module>
         <module>data-locality</module>
-
+        <module>subclass-sandbox</module>
+        <module>circuit-breaker</module>
+        <module>double-buffer</module>
     </modules>
 
     <repositories>
@@ -218,11 +218,6 @@
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>${apache-httpcomponents.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
@@ -246,6 +241,12 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit-jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -305,11 +306,6 @@
                 <version>${mongo-java-driver.version}</version>
             </dependency>
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>javax.xml.bind</groupId>
                 <artifactId>jaxb-api</artifactId>
                 <version>${jaxb-api.version}</version>
@@ -328,6 +324,12 @@
                 <groupId>org.javassist</groupId>
                 <artifactId>javassist</artifactId>
                 <version>3.25.0-GA</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.stefanbirkner</groupId>
+                <artifactId>system-rules</artifactId>
+                <version>${system-rules.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -353,37 +355,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <!-- This plugin's configuration is used to store Eclipse m2e settings
-                    only. It has no influence on the Maven build itself. TODO: Remove when the
-                    m2e plugin can correctly bind to Maven lifecycle -->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.jacoco</groupId>
-                                        <artifactId>
-                                            jacoco-maven-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [0.6.2,)
-                                        </versionRange>
-                                        <goals>
-                                            <goal>prepare-agent</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore/>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -410,20 +381,6 @@
         </pluginManagement>
 
         <plugins>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco.version}</version>
-                <executions>
-                    <execution>
-                        <id>prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!--checkstyle plug-in. checking against googles styles
                see config at checkstyle.xml
             -->
@@ -439,11 +396,10 @@
                         </goals>
                         <phase>validate</phase>
                         <configuration>
-                            <configLocation>checkstyle.xml</configLocation>
+                            <configLocation>google_checks.xml</configLocation>
                             <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                             <encoding>UTF-8</encoding>
-                            <consoleOutput>true</consoleOutput>
-                            <failsOnError>true</failsOnError>
+                            <failOnViolation>true</failOnViolation>
                             <includeTestSourceDirectory>true</includeTestSourceDirectory>
                         </configuration>
                     </execution>
@@ -471,6 +427,27 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 

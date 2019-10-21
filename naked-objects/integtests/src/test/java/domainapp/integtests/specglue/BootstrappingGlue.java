@@ -36,7 +36,6 @@ public class BootstrappingGlue extends CukeGlueAbstract {
 
   @Before(value = {"@integration"}, order = 100)
   public void beforeScenarioIntegrationScope() {
-    org.apache.log4j.PropertyConfigurator.configure("logging.properties");
     SimpleAppSystemInitializer.initIsft();
 
     before(ScenarioExecutionScope.INTEGRATION);

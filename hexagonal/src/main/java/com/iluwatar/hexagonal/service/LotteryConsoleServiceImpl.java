@@ -122,7 +122,7 @@ public class LotteryConsoleServiceImpl implements LotteryConsoleService {
   }
 
   private String readString(Scanner scanner) {
-    System.out.print( "> " );
+    logger.info( "> " );
     return scanner.next();
   }
 }

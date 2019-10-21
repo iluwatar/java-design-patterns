@@ -27,8 +27,8 @@ import com.iluwatar.serverless.faas.ApiGatewayResponse;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.iluwatar.serverless.faas.LambdaInfo;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,13 +39,12 @@ import java.util.Map;
  */
 public class LambdaInfoApiHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
 
-  private static final Logger LOG = Logger.getLogger(LambdaInfoApiHandler.class);
+  private static final Logger LOG = LoggerFactory.getLogger(LambdaInfoApiHandler.class);
   private static final Integer SUCCESS_STATUS_CODE = 200;
 
 
   @Override
   public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
-    BasicConfigurator.configure();
     LOG.info("received: " + input);
 
     return new ApiGatewayResponse

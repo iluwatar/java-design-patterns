@@ -22,6 +22,9 @@
  */
 package com.iluwatar.dao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,15 +38,13 @@ import java.util.stream.StreamSupport;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
-
 /**
  * An implementation of {@link CustomerDao} that persists customers in RDBMS.
  *
  */
 public class DbCustomerDao implements CustomerDao {
 
-  private static final Logger LOGGER = Logger.getLogger(DbCustomerDao.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(DbCustomerDao.class);
 
   private final DataSource dataSource;
 

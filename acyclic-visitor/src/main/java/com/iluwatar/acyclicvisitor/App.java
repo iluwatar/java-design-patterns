@@ -41,11 +41,11 @@ public class App {
    */
   
   public static void main(String[] args) {  
-    ConfigureForUnixVisitor conUnix = new ConfigureForUnixVisitor();
-    ConfigureForDosVisitor conDos = new ConfigureForDosVisitor();
+    var conUnix = new ConfigureForUnixVisitor();
+    var conDos = new ConfigureForDosVisitor();
     
-    Zoom zoom = new Zoom();
-    Hayes hayes = new Hayes();
+    var zoom = new Zoom();
+    var hayes = new Hayes();
     
     hayes.accept(conDos); // Hayes modem with Dos configurator
     zoom.accept(conDos); // Zoom modem with Dos configurator

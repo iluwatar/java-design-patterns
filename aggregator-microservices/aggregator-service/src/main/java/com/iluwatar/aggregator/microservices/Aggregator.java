@@ -22,10 +22,11 @@
  */
 package com.iluwatar.aggregator.microservices;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * The aggregator aggregates calls on various micro-services, collects
@@ -47,9 +48,9 @@ public class Aggregator {
    *
    * @return a Product.
    */
-  @RequestMapping("/product")
+  @RequestMapping(path = "/product", method = RequestMethod.GET)
   public Product getProduct() {
-    Product product = new Product();
+    var product = new Product();
     product.setTitle(informationClient.getProductTitle());
     product.setProductInventories(inventoryClient.getProductInventories());
     return product;

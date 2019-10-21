@@ -22,8 +22,9 @@
  */
 package com.iluwatar.module;
 
-import org.apache.log4j.Logger;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -45,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 public final class FileLoggerModuleTest {
 
-  private static final Logger LOGGER = Logger.getLogger(FileLoggerModuleTest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(FileLoggerModuleTest.class);
 
   private static final String OUTPUT_FILE = "output.txt";
   private static final String ERROR_FILE = "error.txt";

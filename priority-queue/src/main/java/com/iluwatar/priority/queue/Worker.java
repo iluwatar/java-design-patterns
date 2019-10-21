@@ -41,6 +41,7 @@ public class Worker {
   /**
    * Keep checking queue for message
    */
+  @SuppressWarnings("squid:S2189")
   public void run() throws Exception {
     while (true) {
       Message message = queueManager.receiveMessage();

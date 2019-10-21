@@ -22,6 +22,9 @@
  */
 package com.iluwatar.dirtyflag;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -48,6 +51,8 @@ import java.util.concurrent.TimeUnit;
  * when needed. {@link World} mainly serves the data to the front-end.
  */
 public class App {
+  
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   /**
    * Program execution point
    */
@@ -59,9 +64,9 @@ public class App {
       @Override
       public void run() {
         List<String> countries = world.fetch();
-        System.out.println("Our world currently has the following countries:-");
+        LOGGER.info("Our world currently has the following countries:-");
         for (String country : countries) {
-          System.out.println("\t" + country);
+          LOGGER.info("\t" + country);
         }
       }
     }, 0, 15, TimeUnit.SECONDS); // Run at every 15 seconds.
