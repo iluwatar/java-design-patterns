@@ -416,6 +416,12 @@
                         <owner>Ilkka Seppälä</owner>
                     </properties>
                     <skipExistingHeaders>true</skipExistingHeaders>
+                    <headerDefinitions>
+                        <headerDefinition>license-plugin-header-style.xml</headerDefinition>
+                    </headerDefinitions>
+                    <mapping>
+                        <java>SLASHSTAR_CUSTOM_STYLE</java>
+                    </mapping>
                 </configuration>
                 <executions>
                     <execution>
