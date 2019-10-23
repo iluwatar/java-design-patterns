@@ -107,7 +107,7 @@ public class Person implements Serializable {
 
   @Override
   public int hashCode() {
-    int result = firstName != null ? firstName.hashCode() : 0;
+    var result = firstName != null ? firstName.hashCode() : 0;
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
     result = 31 * result + (address != null ? address.hashCode() : 0);
     return result;

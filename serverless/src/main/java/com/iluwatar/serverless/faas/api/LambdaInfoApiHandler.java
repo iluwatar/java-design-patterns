@@ -63,7 +63,7 @@ public class LambdaInfoApiHandler implements RequestHandler<Map<String, Object>,
    * @return LambdaInfo
    */
   private LambdaInfo lambdaInfo(Context context) {
-    LambdaInfo lambdaInfo = new LambdaInfo();
+    var lambdaInfo = new LambdaInfo();
     lambdaInfo.setAwsRequestId(context.getAwsRequestId());
     lambdaInfo.setFunctionName(context.getFunctionName());
     lambdaInfo.setFunctionVersion(context.getFunctionVersion());
@@ -75,7 +75,7 @@ public class LambdaInfoApiHandler implements RequestHandler<Map<String, Object>,
   }
 
   private Map<String, String> headers() {
-    Map<String, String> headers = new HashMap<>();
+    var headers = new HashMap<String, String>();
     headers.put("Content-Type", "application/json");
 
     return headers;

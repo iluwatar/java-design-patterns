@@ -130,7 +130,7 @@ public class LambdaInfo implements Serializable {
 
   @Override
   public int hashCode() {
-    int result = awsRequestId != null ? awsRequestId.hashCode() : 0;
+    var result = awsRequestId != null ? awsRequestId.hashCode() : 0;
     result = 31 * result + (logGroupName != null ? logGroupName.hashCode() : 0);
     result = 31 * result + (logStreamName != null ? logStreamName.hashCode() : 0);
     result = 31 * result + (functionName != null ? functionName.hashCode() : 0);
