@@ -151,7 +151,7 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
      * @return ApiGatewayResponse
      */
     public ApiGatewayResponse build() {
-      var strBody = null;
+      String strBody = null;
       if (this.body != null) {
         try {
           strBody = OBJECT_MAPPER.writeValueAsString(body);
