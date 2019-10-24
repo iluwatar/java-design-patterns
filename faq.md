@@ -2,7 +2,7 @@
 layout: page
 link-title: FAQ
 title: FAQ - Java Design Patterns
-description: design patterns java program best practises tutorials design principles development examples coders programmers developers architects paradigms object oriented systems architecture solutions problems
+description: Java Design Pattern FAQ answers the most commonly asked design patterns questions.
 permalink: /faq/
 icon: fa-question
 page-index: 5
