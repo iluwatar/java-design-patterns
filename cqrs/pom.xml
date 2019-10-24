@@ -50,6 +50,7 @@
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
+			<version>2.1.17</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
