@@ -1,19 +1,30 @@
 package com.iluwatar.roleobject;
 
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
+/**
+ * Core class to store different customer roles
+ *
+ * @see CustomerRole
+ * Note: not thread safe
+ */
 public class CustomerCore extends Customer {
 
     private Map<Role, CustomerRole> roles;
 
+    public CustomerCore() {
+        roles = new HashMap<>();
+    }
 
     @Override
     public boolean addRole(Role role) {
-        return role.instance()
-                .map(rI -> roles.put(role, rI))
-                .isPresent();
+        return role
+                .instance()
+                .map(inst -> {
+                    roles.put(role, inst);
+                    return true;
+                })
+                .orElse(false);
     }
 
     @Override
@@ -28,8 +39,15 @@ public class CustomerCore extends Customer {
 
     @Override
     public <T extends Customer> Optional<T> getRole(Role role, Class<T> expectedRole) {
-        return Optional.ofNullable(roles.get(role))
+        return Optional
+                .ofNullable(roles.get(role))
                 .filter(expectedRole::isInstance)
                 .map(expectedRole::cast);
+    }
+
+    @Override
+    public String toString() {
+        String roles = Arrays.toString(this.roles.keySet().toArray());
+        return "Customer{roles=" + roles + "}";
     }
 }

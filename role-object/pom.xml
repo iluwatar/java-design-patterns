@@ -33,6 +33,12 @@
   </parent>
 
   <artifactId>role-object</artifactId>
-  <dependencies/>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 </project>

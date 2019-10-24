@@ -20,14 +20,10 @@ individual objects, different contexts are kept separate and system configuratio
 
 ## Applicability
 Use the Role Object pattern, if:
-- you want to handle a key abstraction in different contexts and you do not want to put the resulting contextspecific interfaces into the same class interface.
-Words: 4895 Page 3 of 11
-- you want to handle the available roles dynamically so that they can be attached and removed on demand, that is
-at runtime, rather than fixing them statically at compile-time.
-- you want to treat the extensions transparently and need to preserve the logical object identity of the resulting
-object conglomerate.
-- you want to keep role/client pairs independent from each other so that changes to a role do not affect clients
-that are not interested in that role.
+- you want to handle a key abstraction in different contexts and you do not want to put the resulting context specific interfaces into the same class interface.
+- you want to handle the available roles dynamically so that they can be attached and removed on demand, that is at runtime, rather than fixing them statically at compile-time.
+- you want to treat the extensions transparently and need to preserve the logical object identity of the resultingobject conglomerate.
+- you want to keep role/client pairs independent from each other so that changes to a role do not affect clients that are not interested in that role.
 
 ## Credits
 - [Hillside - Role object pattern](https://hillside.net/plop/plop97/Proceedings/riehle.pdf)
