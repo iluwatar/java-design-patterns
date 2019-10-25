@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.abstractdocument;
 
 import java.util.List;
@@ -61,7 +62,7 @@ public abstract class AbstractDocument implements Document {
 
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
+    var builder = new StringBuilder();
     builder.append(getClass().getName()).append("[");
     properties.forEach((key, value) -> builder.append("[").append(key).append(" : ").append(value).append("]"));
     builder.append("]");

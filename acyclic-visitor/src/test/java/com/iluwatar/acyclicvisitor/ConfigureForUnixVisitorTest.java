@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.acyclicvisitor;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,8 +47,8 @@ public class ConfigureForUnixVisitorTest {
   
   @Test
   public void testVisitForZoom() {
-    ConfigureForUnixVisitor conUnix = new ConfigureForUnixVisitor();
-    Zoom zoom = new Zoom();
+    var conUnix = new ConfigureForUnixVisitor();
+    var zoom = new Zoom();
     
     conUnix.visit(zoom);
     

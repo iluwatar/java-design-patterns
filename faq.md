@@ -1,6 +1,8 @@
 ---
 layout: page
-title: FAQ
+link-title: FAQ
+title: FAQ - Java Design Patterns
+description: Java Design Pattern FAQ answers the most commonly asked design patterns questions.
 permalink: /faq/
 icon: fa-question
 page-index: 5

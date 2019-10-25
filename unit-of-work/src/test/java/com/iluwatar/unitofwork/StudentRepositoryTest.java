@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.unitofwork;
 
 import org.junit.Before;
@@ -97,7 +98,7 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotWriteToDbIfContextIsNull() {
-    StudentRepository studentRepository = new StudentRepository(null, studentDatabase);
+    var studentRepository = new StudentRepository(null, studentDatabase);
 
     studentRepository.commit();
 
@@ -106,7 +107,7 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotWriteToDbIfNothingToCommit() {
-    StudentRepository studentRepository = new StudentRepository(new HashMap<>(), studentDatabase);
+    var studentRepository = new StudentRepository(new HashMap<>(), studentDatabase);
 
     studentRepository.commit();
 
