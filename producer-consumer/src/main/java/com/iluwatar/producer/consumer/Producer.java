@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.producer.consumer;
 
 import java.util.Random;
@@ -29,6 +30,8 @@ import java.util.Random;
  * to queue
  */
 public class Producer {
+  
+  private static final Random RANDOM = new Random();
 
   private final ItemQueue queue;
 
@@ -48,7 +51,6 @@ public class Producer {
 
     Item item = new Item(name, itemId++);
     queue.put(item);
-    Random random = new Random();
-    Thread.sleep(random.nextInt(2000));
+    Thread.sleep(RANDOM.nextInt(2000));
   }
 }

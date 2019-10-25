@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.aggregator.microservices;
 
 import java.io.IOException;
@@ -43,10 +44,10 @@ public class ProductInformationClientImpl implements ProductInformationClient {
   @Override
   public String getProductTitle() {
     String response = null;
-    HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:51515/information")).build();
-    HttpClient client = HttpClient.newHttpClient();
+    var request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:51515/information")).build();
+    var client = HttpClient.newHttpClient();
     try {
-      HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
+      var httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
       response = httpResponse.body();
     } catch (IOException ioe) {
       LOGGER.error("IOException Occurred", ioe);

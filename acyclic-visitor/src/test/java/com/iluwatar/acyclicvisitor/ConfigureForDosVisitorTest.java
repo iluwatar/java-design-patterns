@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,22 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.acyclicvisitor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.groups.Tuple.tuple;
-import static org.mockito.Mockito.mock;
 import static uk.org.lidalia.slf4jext.Level.INFO;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-
-import com.iluwatar.acyclicvisitor.ConfigureForDosVisitor;
-import com.iluwatar.acyclicvisitor.Hayes;
-import com.iluwatar.acyclicvisitor.HayesVisitor;
-import com.iluwatar.acyclicvisitor.Zoom;
-import com.iluwatar.acyclicvisitor.ZoomVisitor;
-
 import uk.org.lidalia.slf4jtest.TestLogger;
 import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 
@@ -48,8 +41,8 @@ public class ConfigureForDosVisitorTest {
   
   @Test
   public void testVisitForZoom() {    
-    ConfigureForDosVisitor conDos = new ConfigureForDosVisitor();
-    Zoom zoom = new Zoom();
+    var conDos = new ConfigureForDosVisitor();
+    var zoom = new Zoom();
     
     conDos.visit(zoom);
     

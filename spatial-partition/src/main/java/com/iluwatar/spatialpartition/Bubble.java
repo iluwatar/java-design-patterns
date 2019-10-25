@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.spatialpartition;
 
 import org.slf4j.Logger;
@@ -36,6 +37,7 @@ import java.util.Random;
 
 public class Bubble extends Point<Bubble> {
   private static final Logger LOGGER = LoggerFactory.getLogger(Bubble.class);
+  private static final Random RANDOM = new Random();
 
   final int radius;
 
@@ -45,10 +47,9 @@ public class Bubble extends Point<Bubble> {
   }
 
   void move() {
-    Random rand = new Random();
     //moves by 1 unit in either direction
-    this.x += rand.nextInt(3) - 1;
-    this.y += rand.nextInt(3) - 1;
+    this.x += RANDOM.nextInt(3) - 1;
+    this.y += RANDOM.nextInt(3) - 1;
   }
 
   boolean touches(Bubble b) {

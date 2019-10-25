@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.typeobject;
 
 import java.io.FileNotFoundException;
@@ -37,6 +38,7 @@ import com.iluwatar.typeobject.Candy.Type;
  */
 
 public class CellPool {
+  private static final Random RANDOM = new Random();
   ArrayList<Cell> pool;
   int pointer;
   Candy[] randomCode;
@@ -56,34 +58,32 @@ public class CellPool {
       randomCode[4] = new Candy("orange gum", "candy", Type.crushableCandy, 10);
     }
     for (int i = 0; i < num; i++) {
-      Cell c = new Cell();
-      Random rand = new Random();
-      c.candy = randomCode[rand.nextInt(randomCode.length)];
+      var c = new Cell();
+      c.candy = randomCode[RANDOM.nextInt(randomCode.length)];
       this.pool.add(c);
     }
     this.pointer = num - 1;
   }
   
   Cell getNewCell() {
-    Cell newCell = this.pool.remove(pointer);
+    var newCell = this.pool.remove(pointer);
     pointer--;
     return newCell;
   }
   
   void addNewCell(Cell c) {
-    Random rand = new Random();
-    c.candy = randomCode[rand.nextInt(randomCode.length)]; //changing candytype to new
+    c.candy = randomCode[RANDOM.nextInt(randomCode.length)]; //changing candytype to new
     this.pool.add(c);
     pointer++;
   }
   
   Candy[] assignRandomCandytypes() throws FileNotFoundException, IOException, ParseException {
-    JsonParser jp = new JsonParser();
+    var jp = new JsonParser();
     jp.parse();
-    Candy[] randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
-    int i = 0;
-    for (Enumeration<String> e = jp.candies.keys(); e.hasMoreElements();) {
-      String s = e.nextElement();
+    var randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
+    var i = 0;
+    for (var e = jp.candies.keys(); e.hasMoreElements();) {
+      var s = e.nextElement();
       if (!s.equals("fruit") && !s.equals("candy")) {
         //not generic
         randomCode[i] = jp.candies.get(s);

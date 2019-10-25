@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.commander;
 
 import java.util.ArrayList;
@@ -51,6 +52,8 @@ public class Retry<T> {
   public interface HandleErrorIssue<T> {
     void handleIssue(T obj, Exception e);
   }
+  
+  private static final Random RANDOM = new Random();
 
   private final Operation op;
   private final HandleErrorIssue<T> handleError;
@@ -89,8 +92,7 @@ public class Retry<T> {
           return; //return here...dont go further
         }
         try {
-          Random rand = new Random();
-          long testDelay = (long) Math.pow(2, this.attempts.intValue()) * 1000 + rand.nextInt(1000);
+          long testDelay = (long) Math.pow(2, this.attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
           long delay = testDelay < this.maxDelay ? testDelay : maxDelay;
           Thread.sleep(delay);
         } catch (InterruptedException f) {

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.value.object;
 
 /**
@@ -76,8 +77,8 @@ public class HeroStat {
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
+    final var prime = 31;
+    var result = 1;
     result = prime * result + intelligence;
     result = prime * result + luck;
     result = prime * result + strength;
@@ -95,7 +96,7 @@ public class HeroStat {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    HeroStat other = (HeroStat) obj;
+    var other = (HeroStat) obj;
     if (intelligence != other.intelligence) {
       return false;
     }

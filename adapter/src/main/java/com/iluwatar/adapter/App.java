@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.adapter;
 
 /**
@@ -54,7 +55,7 @@ public class App {
    */
   public static void main(String[] args) {
     // The captain can only operate rowing boats but with adapter he is able to use fishing boats as well
-    Captain captain = new Captain(new FishingBoatAdapter());
+    var captain = new Captain(new FishingBoatAdapter());
     captain.row();
   }
 }
