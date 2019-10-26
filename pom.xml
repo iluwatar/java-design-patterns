@@ -406,6 +406,31 @@
                 </executions>
             </plugin>
 
+            <!-- Resolves ${projectRoot} to the project root directory.
+                Used by the license-maven-plugin to find the correct location of
+                license-plugin-header-style.xml when built from a submodule directory. -->
+            <plugin>
+                <groupId>org.commonjava.maven.plugins</groupId>
+                <artifactId>directory-maven-plugin</artifactId>
+                <version>0.3.1</version>
+                <executions>
+                    <execution>
+                        <id>directories</id>
+                        <goals>
+                            <goal>directory-of</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <property>projectRoot</property>
+                            <project>
+                                <groupId>com.iluwatar</groupId>
+                                <artifactId>java-design-patterns</artifactId>
+                            </project>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
@@ -417,7 +442,7 @@
                     </properties>
                     <skipExistingHeaders>true</skipExistingHeaders>
                     <headerDefinitions>
-                        <headerDefinition>license-plugin-header-style.xml</headerDefinition>
+                        <headerDefinition>${projectRoot}${file.separator}license-plugin-header-style.xml</headerDefinition>
                     </headerDefinitions>
                     <mapping>
                         <java>SLASHSTAR_CUSTOM_STYLE</java>
