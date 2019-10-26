@@ -57,7 +57,7 @@ public class App {
         fishV1.getAge(), fishV1.getLengthMeters(), fishV1.getWeightTons());
     RainbowFishSerializer.writeV1(fishV1, "fish1.out");
     // Read V1
-    RainbowFish deserializedRainbowFishV1 = RainbowFishSerializer.readV1("fish1.out");
+    var deserializedRainbowFishV1 = RainbowFishSerializer.readV1("fish1.out");
     LOGGER.info("deserializedFishV1 name={} age={} length={} weight={}",
             deserializedRainbowFishV1.getName(), deserializedRainbowFishV1.getAge(),
             deserializedRainbowFishV1.getLengthMeters(), deserializedRainbowFishV1.getWeightTons());
