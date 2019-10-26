@@ -1,7 +1,7 @@
 ---
 layout: pattern
-title: Role object
-folder: Migration
+title: Role Object
+folder: role-object
 permalink: /patterns/role-object/
 categories: Structural
 tags:
