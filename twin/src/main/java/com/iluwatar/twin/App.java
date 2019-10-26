@@ -41,8 +41,8 @@ public class App {
    */
   public static void main(String[] args) throws Exception {
 
-    BallItem ballItem = new BallItem();
-    BallThread ballThread = new BallThread();
+    var ballItem = new BallItem();
+    var ballThread = new BallThread();
 
     ballItem.setTwin(ballThread);
     ballThread.setTwin(ballItem);
