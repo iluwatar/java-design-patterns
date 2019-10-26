@@ -59,7 +59,7 @@ public final class ThreadSafeDoubleCheckLocking {
     // local variable increases performance by 25 percent
     // Joshua Bloch "Effective Java, Second Edition", p. 283-284
     
-    ThreadSafeDoubleCheckLocking result = instance;
+    var result = instance;
     // Check if singleton instance is initialized. If it is initialized then we can return the instance.
     if (result == null) {
       // It is not initialized but we cannot be sure because some other thread might have initialized it

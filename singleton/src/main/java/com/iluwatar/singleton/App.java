@@ -74,36 +74,36 @@ public class App {
   public static void main(String[] args) {
 
     // eagerly initialized singleton
-    IvoryTower ivoryTower1 = IvoryTower.getInstance();
-    IvoryTower ivoryTower2 = IvoryTower.getInstance();
+    var ivoryTower1 = IvoryTower.getInstance();
+    var ivoryTower2 = IvoryTower.getInstance();
     LOGGER.info("ivoryTower1={}", ivoryTower1);
     LOGGER.info("ivoryTower2={}", ivoryTower2);
 
     // lazily initialized singleton
-    ThreadSafeLazyLoadedIvoryTower threadSafeIvoryTower1 =
+    var threadSafeIvoryTower1 =
         ThreadSafeLazyLoadedIvoryTower.getInstance();
-    ThreadSafeLazyLoadedIvoryTower threadSafeIvoryTower2 =
+    var threadSafeIvoryTower2 =
         ThreadSafeLazyLoadedIvoryTower.getInstance();
     LOGGER.info("threadSafeIvoryTower1={}", threadSafeIvoryTower1);
     LOGGER.info("threadSafeIvoryTower2={}", threadSafeIvoryTower2);
 
     // enum singleton
-    EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.INSTANCE;
-    EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
+    var enumIvoryTower1 = EnumIvoryTower.INSTANCE;
+    var enumIvoryTower2 = EnumIvoryTower.INSTANCE;
     LOGGER.info("enumIvoryTower1={}", enumIvoryTower1);
     LOGGER.info("enumIvoryTower2={}", enumIvoryTower2);
 
     // double checked locking
-    ThreadSafeDoubleCheckLocking dcl1 = ThreadSafeDoubleCheckLocking.getInstance();
+    var dcl1 = ThreadSafeDoubleCheckLocking.getInstance();
     LOGGER.info(dcl1.toString());
-    ThreadSafeDoubleCheckLocking dcl2 = ThreadSafeDoubleCheckLocking.getInstance();
+    var dcl2 = ThreadSafeDoubleCheckLocking.getInstance();
     LOGGER.info(dcl2.toString());
 
     // initialize on demand holder idiom
-    InitializingOnDemandHolderIdiom demandHolderIdiom =
+    var demandHolderIdiom =
         InitializingOnDemandHolderIdiom.getInstance();
     LOGGER.info(demandHolderIdiom.toString());
-    InitializingOnDemandHolderIdiom demandHolderIdiom2 =
+    var demandHolderIdiom2 =
         InitializingOnDemandHolderIdiom.getInstance();
     LOGGER.info(demandHolderIdiom2.toString());
   }
