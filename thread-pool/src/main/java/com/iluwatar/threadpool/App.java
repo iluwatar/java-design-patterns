@@ -59,7 +59,7 @@ public class App {
     LOGGER.info("Program started");
 
     // Create a list of tasks to be executed
-    List<Task> tasks = new ArrayList<>();
+    var tasks = new ArrayList<>();
     tasks.add(new PotatoPeelingTask(3));
     tasks.add(new PotatoPeelingTask(6));
     tasks.add(new CoffeeMakingTask(2));
@@ -86,7 +86,7 @@ public class App {
     // The worker is executed when a thread becomes
     // available in the thread pool
     for (int i = 0; i < tasks.size(); i++) {
-      Runnable worker = new Worker(tasks.get(i));
+      var worker = new Worker(tasks.get(i));
       executor.execute(worker);
     }
     // All tasks were executed, now shutdown
