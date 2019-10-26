@@ -53,11 +53,11 @@ public class App {
    * @param args main arguments
    */
   public static void main(String[] args) {
-    CallsCount callsCount = new CallsCount();
-    Tenant adidas = new Tenant("Adidas", 5, callsCount);
-    Tenant nike = new Tenant("Nike", 6, callsCount);
+    var callsCount = new CallsCount();
+    var adidas = new Tenant("Adidas", 5, callsCount);
+    var nike = new Tenant("Nike", 6, callsCount);
 
-    ExecutorService executorService = Executors.newFixedThreadPool(2);
+    var executorService = Executors.newFixedThreadPool(2);
     
     executorService.execute(() -> makeServiceCalls(adidas, callsCount));
     executorService.execute(() -> makeServiceCalls(nike, callsCount));
@@ -74,8 +74,8 @@ public class App {
    * Make calls to the B2BService dummy API
    */
   private static void makeServiceCalls(Tenant tenant, CallsCount callsCount) {
-    Throttler timer = new ThrottleTimerImpl(10, callsCount);
-    B2BService service = new B2BService(timer, callsCount);
+    var timer = new ThrottleTimerImpl(10, callsCount);
+    var service = new B2BService(timer, callsCount);
     for (int i = 0; i < 20; i++) {
       service.dummyCustomerApi(tenant);
 //    Sleep is introduced to keep the output in check and easy to view and analyze the results.

@@ -48,8 +48,8 @@ class B2BService {
    * @return customer id which is randomly generated
    */
   public int dummyCustomerApi(Tenant tenant) {
-    String tenantName = tenant.getName();
-    long count = callsCount.getCount(tenantName);
+    var tenantName = tenant.getName();
+    var count = callsCount.getCount(tenantName);
     LOGGER.debug("Counter for {} : {} ", tenant.getName(), count);
     if (count >= tenant.getAllowedCallsPerSecond()) {
       LOGGER.error("API access per second limit reached for: {}", tenantName);
