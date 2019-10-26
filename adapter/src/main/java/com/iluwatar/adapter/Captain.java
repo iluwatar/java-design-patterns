@@ -27,21 +27,21 @@ package com.iluwatar.adapter;
  * The Captain uses {@link RowingBoat} to sail. <br>
  * This is the client in the pattern.
  */
-public class Captain {
+public final class Captain {
 
   private RowingBoat rowingBoat;
 
-  public Captain() {}
+  public Captain() { }
 
-  public Captain(RowingBoat rowingBoat) {
-    this.rowingBoat = rowingBoat;
+  public Captain(final RowingBoat boat) {
+    this.rowingBoat = boat;
   }
 
-  public void setRowingBoat(RowingBoat rowingBoat) {
-    this.rowingBoat = rowingBoat;
+  void setRowingBoat(final RowingBoat boat) {
+    this.rowingBoat = boat;
   }
 
-  public void row() {
+  void row() {
     rowingBoat.row();
   }
 
