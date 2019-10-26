@@ -447,6 +447,9 @@
                     <mapping>
                         <java>SLASHSTAR_CUSTOM_STYLE</java>
                     </mapping>
+                    <excludes>
+                        <exclude>.github/FUNDING.yml</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
