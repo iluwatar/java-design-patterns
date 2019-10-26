@@ -59,7 +59,7 @@ public class App {
     LOGGER.info("Program started");
 
     // Create a list of tasks to be executed
-    var tasks = new ArrayList<>();
+    List<Task> tasks = new ArrayList<>();
     tasks.add(new PotatoPeelingTask(3));
     tasks.add(new PotatoPeelingTask(6));
     tasks.add(new CoffeeMakingTask(2));
@@ -80,7 +80,7 @@ public class App {
     // unbounded queue. At any point, at most nThreads threads will be active processing
     // tasks. If additional tasks are submitted when all threads are active, they will wait
     // in the queue until a thread is available.
-    ExecutorService executor = Executors.newFixedThreadPool(3);
+    var executor = Executors.newFixedThreadPool(3);
 
     // Allocate new worker for each task
     // The worker is executed when a thread becomes
