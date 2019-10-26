@@ -39,7 +39,7 @@ public class App {
     var shyam = new Student(2, "Shyam", "Z bridge, Pune");
     var gopi = new Student(3, "Gopi", "Street 10, Mumbai");
 
-    HashMap<String, List<Student>> context = new HashMap<>();
+    var context = new HashMap<String, List<Student>>();
     var studentDatabase = new StudentDatabase();
     var studentRepository = new StudentRepository(context, studentDatabase);
 
