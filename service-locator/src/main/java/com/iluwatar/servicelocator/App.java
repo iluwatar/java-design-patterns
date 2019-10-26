@@ -45,7 +45,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    Service service = ServiceLocator.getService("jndi/serviceA");
+    var service = ServiceLocator.getService("jndi/serviceA");
     service.execute();
     service = ServiceLocator.getService("jndi/serviceB");
     service.execute();
