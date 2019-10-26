@@ -48,11 +48,13 @@ public final class RainbowFishSerializer {
    * Write V1 RainbowFish to file
    */
   public static void writeV1(RainbowFish rainbowFish, String filename) throws IOException {
-    var map = new HashMap<String, String>();
-    map.put("name", rainbowFish.getName());
-    map.put("age", String.format("%d", rainbowFish.getAge()));
-    map.put("lengthMeters", String.format("%d", rainbowFish.getLengthMeters()));
-    map.put("weightTons", String.format("%d", rainbowFish.getWeightTons()));
+    var map = Map.of(
+            "name", rainbowFish.getName(),
+            "age", String.format("%d", rainbowFish.getAge()),
+            "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
+            "weightTons", String.format("%d", rainbowFish.getWeightTons())
+    );
+
     try (var fileOut = new FileOutputStream(filename);
         var objOut = new ObjectOutputStream(fileOut)) {
       objOut.writeObject(map);
@@ -63,14 +65,16 @@ public final class RainbowFishSerializer {
    * Write V2 RainbowFish to file
    */
   public static void writeV2(RainbowFishV2 rainbowFish, String filename) throws IOException {
-    var map = new HashMap<String, String>();
-    map.put("name", rainbowFish.getName());
-    map.put("age", String.format("%d", rainbowFish.getAge()));
-    map.put("lengthMeters", String.format("%d", rainbowFish.getLengthMeters()));
-    map.put("weightTons", String.format("%d", rainbowFish.getWeightTons()));
-    map.put("angry", Boolean.toString(rainbowFish.getAngry()));
-    map.put("hungry", Boolean.toString(rainbowFish.getHungry()));
-    map.put("sleeping", Boolean.toString(rainbowFish.getSleeping()));
+    var map = Map.of(
+            "name", rainbowFish.getName(),
+            "age", String.format("%d", rainbowFish.getAge()),
+            "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
+            "weightTons", String.format("%d", rainbowFish.getWeightTons()),
+            "angry", Boolean.toString(rainbowFish.getAngry()),
+            "hungry", Boolean.toString(rainbowFish.getHungry()),
+            "sleeping", Boolean.toString(rainbowFish.getSleeping())
+    );
+
     try (var fileOut = new FileOutputStream(filename);
         var objOut = new ObjectOutputStream(fileOut)) {
       objOut.writeObject(map);
