@@ -1,19 +1,26 @@
-/**
- * The MIT License Copyright (c) 2014-2016 Ilkka Seppälä
+/*
+ * The MIT License
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
- * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
- * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
- * Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
+
 package com.iluwatar.event.asynchronous;
 
 import org.slf4j.Logger;
@@ -60,7 +67,8 @@ public class App {
   /**
    * Program entry point.
    *
-   * @param args command line args
+   * @param args
+   *          command line args
    */
   public static void main(String[] args) {
     App app = new App();
@@ -150,62 +158,74 @@ public class App {
       option = s.nextInt();
 
       if (option == 1) {
-        s.nextLine();
-        LOGGER.info("Boil multiple eggs at once (A) or boil them one-by-one (S)?: ");
-        String eventType = s.nextLine();
-        LOGGER.info("How long should this egg be boiled for (in seconds)?: ");
-        int eventTime = s.nextInt();
-        if (eventType.equalsIgnoreCase("A")) {
-          try {
-            int eventId = eventManager.createAsync(eventTime);
-            eventManager.start(eventId);
-            LOGGER.info("Egg [{}] is being boiled.", eventId);
-          } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-            LOGGER.error(e.getMessage());
-          }
-        } else if (eventType.equalsIgnoreCase("S")) {
-          try {
-            int eventId = eventManager.create(eventTime);
-            eventManager.start(eventId);
-            LOGGER.info("Egg [{}] is being boiled.", eventId);
-          } catch (MaxNumOfEventsAllowedException | InvalidOperationException | LongRunningEventException
-              | EventDoesNotExistException e) {
-            LOGGER.error(e.getMessage());
-          }
-        } else {
-          LOGGER.info("Unknown event type.");
-        }
+        processOption1(eventManager, s);
       } else if (option == 2) {
-        LOGGER.info("Which egg?: ");
-        int eventId = s.nextInt();
-        try {
-          eventManager.cancel(eventId);
-          LOGGER.info("Egg [{}] is removed from boiler.", eventId);
-        } catch (EventDoesNotExistException e) {
-          LOGGER.error(e.getMessage());
-        }
+        processOption2(eventManager, s);
       } else if (option == 3) {
-        s.nextLine();
-        LOGGER.info("Just one egg (O) OR all of them (A) ?: ");
-        String eggChoice = s.nextLine();
-
-        if (eggChoice.equalsIgnoreCase("O")) {
-          LOGGER.info("Which egg?: ");
-          int eventId = s.nextInt();
-          try {
-            eventManager.status(eventId);
-          } catch (EventDoesNotExistException e) {
-            LOGGER.error(e.getMessage());
-          }
-        } else if (eggChoice.equalsIgnoreCase("A")) {
-          eventManager.statusOfAllEvents();
-        }
+        processOption3(eventManager, s);
       } else if (option == 4) {
         eventManager.shutdown();
       }
     }
 
     s.close();
+  }
+
+  private void processOption3(EventManager eventManager, Scanner s) {
+    s.nextLine();
+    LOGGER.info("Just one egg (O) OR all of them (A) ?: ");
+    String eggChoice = s.nextLine();
+
+    if (eggChoice.equalsIgnoreCase("O")) {
+      LOGGER.info("Which egg?: ");
+      int eventId = s.nextInt();
+      try {
+        eventManager.status(eventId);
+      } catch (EventDoesNotExistException e) {
+        LOGGER.error(e.getMessage());
+      }
+    } else if (eggChoice.equalsIgnoreCase("A")) {
+      eventManager.statusOfAllEvents();
+    }
+  }
+
+  private void processOption2(EventManager eventManager, Scanner s) {
+    LOGGER.info("Which egg?: ");
+    int eventId = s.nextInt();
+    try {
+      eventManager.cancel(eventId);
+      LOGGER.info("Egg [{}] is removed from boiler.", eventId);
+    } catch (EventDoesNotExistException e) {
+      LOGGER.error(e.getMessage());
+    }
+  }
+
+  private void processOption1(EventManager eventManager, Scanner s) {
+    s.nextLine();
+    LOGGER.info("Boil multiple eggs at once (A) or boil them one-by-one (S)?: ");
+    String eventType = s.nextLine();
+    LOGGER.info("How long should this egg be boiled for (in seconds)?: ");
+    int eventTime = s.nextInt();
+    if (eventType.equalsIgnoreCase("A")) {
+      try {
+        int eventId = eventManager.createAsync(eventTime);
+        eventManager.start(eventId);
+        LOGGER.info("Egg [{}] is being boiled.", eventId);
+      } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
+        LOGGER.error(e.getMessage());
+      }
+    } else if (eventType.equalsIgnoreCase("S")) {
+      try {
+        int eventId = eventManager.create(eventTime);
+        eventManager.start(eventId);
+        LOGGER.info("Egg [{}] is being boiled.", eventId);
+      } catch (MaxNumOfEventsAllowedException | InvalidOperationException | LongRunningEventException
+          | EventDoesNotExistException e) {
+        LOGGER.error(e.getMessage());
+      }
+    } else {
+      LOGGER.info("Unknown event type.");
+    }
   }
 
 }

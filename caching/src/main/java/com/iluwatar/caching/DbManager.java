@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.caching;
 
 import java.text.ParseException;
@@ -28,6 +29,7 @@ import java.util.Map;
 
 import org.bson.Document;
 
+import com.iluwatar.caching.constants.CachingConstants;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
@@ -90,12 +92,12 @@ public final class DbManager {
       }
     }
     FindIterable<Document> iterable =
-        db.getCollection("user_accounts").find(new Document("userID", userId));
+        db.getCollection(CachingConstants.USER_ACCOUNT).find(new Document(CachingConstants.USER_ID, userId));
     if (iterable == null) {
       return null;
     }
     Document doc = iterable.first();
-    return new UserAccount(userId, doc.getString("userName"), doc.getString("additionalInfo"));
+    return new UserAccount(userId, doc.getString(CachingConstants.USER_NAME), doc.getString(CachingConstants.ADD_INFO));
   }
 
   /**
@@ -113,9 +115,9 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    db.getCollection("user_accounts").insertOne(
-        new Document("userID", userAccount.getUserId()).append("userName",
-            userAccount.getUserName()).append("additionalInfo", userAccount.getAdditionalInfo()));
+    db.getCollection(CachingConstants.USER_ACCOUNT).insertOne(
+        new Document(CachingConstants.USER_ID ,userAccount.getUserId()).append(CachingConstants.USER_NAME,
+            userAccount.getUserName()).append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo()));
   }
 
   /**
@@ -133,10 +135,10 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    db.getCollection("user_accounts").updateOne(
-        new Document("userID", userAccount.getUserId()),
-        new Document("$set", new Document("userName", userAccount.getUserName()).append(
-            "additionalInfo", userAccount.getAdditionalInfo())));
+    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
+        new Document(CachingConstants.USER_ID, userAccount.getUserId()),
+        new Document("$set", new Document(CachingConstants.USER_NAME, userAccount.getUserName())
+            .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())));
   }
 
   /**
@@ -155,10 +157,12 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    db.getCollection("user_accounts").updateOne(
-        new Document("userID", userAccount.getUserId()),
-        new Document("$set", new Document("userID", userAccount.getUserId()).append("userName",
-            userAccount.getUserName()).append("additionalInfo", userAccount.getAdditionalInfo())),
+    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
+        new Document(CachingConstants.USER_ID, userAccount.getUserId()),
+        new Document("$set",
+            new Document(CachingConstants.USER_ID, userAccount.getUserId())
+                .append(CachingConstants.USER_NAME, userAccount.getUserName()).append(CachingConstants.ADD_INFO,
+                    userAccount.getAdditionalInfo())),
         new UpdateOptions().upsert(true));
   }
 }

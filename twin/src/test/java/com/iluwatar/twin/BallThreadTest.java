@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.twin;
 
 import org.junit.jupiter.api.Test;
@@ -30,11 +31,7 @@ import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.timeout;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/30/15 - 18:55 PM
@@ -55,9 +52,9 @@ public class BallThreadTest {
       ballThread.setTwin(ballItem);
 
       ballThread.start();
-
-      verify(ballItem, timeout(2000).atLeastOnce()).draw();
-      verify(ballItem, timeout(2000).atLeastOnce()).move();
+      sleep(200);
+      verify(ballItem, atLeastOnce()).draw();
+      verify(ballItem, atLeastOnce()).move();
       ballThread.suspendMe();
 
       sleep(1000);
@@ -88,8 +85,9 @@ public class BallThreadTest {
       verifyZeroInteractions(ballItem);
 
       ballThread.resumeMe();
-      verify(ballItem, timeout(2000).atLeastOnce()).draw();
-      verify(ballItem, timeout(2000).atLeastOnce()).move();
+      sleep(300);
+      verify(ballItem, atLeastOnce()).draw();
+      verify(ballItem, atLeastOnce()).move();
 
       ballThread.stopMe();
       ballThread.join();

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.singleton;
+
+import org.junit.Test;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Date: 12/29/15 - 19:26 PM
@@ -34,6 +40,17 @@ public class ThreadSafeDoubleCheckLockingTest extends SingletonTest<ThreadSafeDo
    */
   public ThreadSafeDoubleCheckLockingTest() {
     super(ThreadSafeDoubleCheckLocking::getInstance);
+  }
+
+  /**
+   * Test creating new instance by refection
+   */
+  @Test(expected = InvocationTargetException.class)
+  public void testCreatingNewInstanceByRefection() throws Exception {
+    ThreadSafeDoubleCheckLocking instance1 = ThreadSafeDoubleCheckLocking.getInstance();
+    Constructor constructor = ThreadSafeDoubleCheckLocking.class.getDeclaredConstructor();
+    constructor.setAccessible(true);
+    ThreadSafeDoubleCheckLocking instance2 = (ThreadSafeDoubleCheckLocking) constructor.newInstance(null);
   }
 
 }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelocator;
 
 /**
@@ -44,7 +45,7 @@ public final class ServiceLocator {
    * @return {@link Service}
    */
   public static Service getService(String serviceJndiName) {
-    Service serviceObj = serviceCache.getService(serviceJndiName);
+    var serviceObj = serviceCache.getService(serviceJndiName);
     if (serviceObj != null) {
       return serviceObj;
     } else {
@@ -52,7 +53,7 @@ public final class ServiceLocator {
        * If we are unable to retrive anything from cache, then lookup the service and add it in the
        * cache map
        */
-      InitContext ctx = new InitContext();
+      var ctx = new InitContext();
       serviceObj = (Service) ctx.lookup(serviceJndiName);
       if (serviceObj != null) { // Only cache a service if it actually exists
         serviceCache.addService(serviceObj);

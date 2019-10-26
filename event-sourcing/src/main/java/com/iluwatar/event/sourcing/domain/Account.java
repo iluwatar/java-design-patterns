@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.sourcing.domain;
 
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
@@ -44,6 +45,8 @@ public class Account {
   private final int accountNo;
   private final String owner;
   private BigDecimal money;
+  
+  private static final String MSG = "Some external api for only realtime execution could be called here.";
 
   /**
    * Instantiates a new Account.
@@ -126,7 +129,7 @@ public class Account {
     depositMoney(money);
     AccountAggregate.putAccount(this);
     if (realTime) {
-      LOGGER.info("Some external api for only realtime execution could be called here.");
+      LOGGER.info(MSG);
     }
   }
 
@@ -138,7 +141,7 @@ public class Account {
     withdrawMoney(money);
     AccountAggregate.putAccount(this);
     if (realTime) {
-      LOGGER.info("Some external api for only realtime execution could be called here.");
+      LOGGER.info(MSG);
     }
   }
 
@@ -160,7 +163,7 @@ public class Account {
   public void handleEvent(AccountCreateEvent accountCreateEvent) {
     AccountAggregate.putAccount(this);
     if (accountCreateEvent.isRealTime()) {
-      LOGGER.info("Some external api for only realtime execution could be called here.");
+      LOGGER.info(MSG);
     }
   }
 

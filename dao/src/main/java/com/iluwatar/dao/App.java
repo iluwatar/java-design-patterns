@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,8 +32,9 @@ import java.util.stream.Stream;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
 import org.h2.jdbcx.JdbcDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Data Access Object (DAO) is an object that provides an abstract interface to some type of
@@ -51,7 +52,8 @@ import org.h2.jdbcx.JdbcDataSource;
  */
 public class App {
   private static final String DB_URL = "jdbc:h2:~/dao";
-  private static Logger log = Logger.getLogger(App.class);
+  private static Logger log = LoggerFactory.getLogger(App.class);
+  private static final String ALL_CUSTOMERS = "customerDao.getAllCustomers(): ";
   
   /**
    * Program entry point.
@@ -92,23 +94,23 @@ public class App {
 
   private static void performOperationsUsing(final CustomerDao customerDao) throws Exception {
     addCustomers(customerDao);
-    log.info("customerDao.getAllCustomers(): ");
+    log.info(ALL_CUSTOMERS);
     try (Stream<Customer> customerStream = customerDao.getAll()) {
-      customerStream.forEach((customer) -> log.info(customer));
+      customerStream.forEach((customer) -> log.info(customer.toString()));
     }
     log.info("customerDao.getCustomerById(2): " + customerDao.getById(2));
     final Customer customer = new Customer(4, "Dan", "Danson");
     customerDao.add(customer);
-    log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
+    log.info(ALL_CUSTOMERS + customerDao.getAll());
     customer.setFirstName("Daniel");
     customer.setLastName("Danielson");
     customerDao.update(customer);
-    log.info("customerDao.getAllCustomers(): ");
+    log.info(ALL_CUSTOMERS);
     try (Stream<Customer> customerStream = customerDao.getAll()) {
-      customerStream.forEach((cust) -> log.info(cust));
+      customerStream.forEach((cust) -> log.info(cust.toString()));
     }
     customerDao.delete(customer);
-    log.info("customerDao.getAllCustomers(): " + customerDao.getAll());
+    log.info(ALL_CUSTOMERS + customerDao.getAll());
   }
 
   private static void addCustomers(CustomerDao customerDao) throws Exception {

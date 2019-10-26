@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.collectionpipeline;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,12 +31,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests that Collection Pipeline methods work as expected.
  */
 public class AppTest {
-  
+  private static final Logger LOGGER = LoggerFactory.getLogger(AppTest.class);
+
   private List<Car> cars = CarFactory.createCars();
   
   @Test
@@ -61,7 +65,7 @@ public class AppTest {
         new Car("Jeep", "Comanche", 1990, Category.JEEP)));
     Map<Category, List<Car>> modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
     Map<Category, List<Car>> modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
-    System.out.println("Category " + modelsFunctional);
+    LOGGER.info("Category " + modelsFunctional);
     assertEquals(modelsExpected, modelsFunctional);
     assertEquals(modelsExpected, modelsImperative);
   }
