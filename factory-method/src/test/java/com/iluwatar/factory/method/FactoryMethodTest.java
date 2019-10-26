@@ -95,6 +95,8 @@ public class FactoryMethodTest {
    * @param clazz expected class of the weapon
    */
   private void verifyWeapon(Weapon weapon, WeaponType expectedWeaponType, Class<?> clazz) {
+	System.out.println(clazz);
+	System.out.println(weapon);
     assertTrue(clazz.isInstance(weapon), "Weapon must be an object of: " + clazz.getName());
     assertEquals(expectedWeaponType, weapon.getWeaponType(), "Weapon must be of weaponType: " + expectedWeaponType);
   }
