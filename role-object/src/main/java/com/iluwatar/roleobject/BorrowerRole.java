@@ -34,8 +34,7 @@ public class BorrowerRole extends CustomerRole{
     }
 
     public String borrow(){
-        return String.join(" ",
-                "A borrower",name,"wants to get some money.");
+        return String.format("Borrower %s wants to get some money.",name);
     }
 
 }

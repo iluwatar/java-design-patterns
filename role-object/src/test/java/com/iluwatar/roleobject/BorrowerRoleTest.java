@@ -33,7 +33,7 @@ public class BorrowerRoleTest {
     public void borrowTest() {
         BorrowerRole borrowerRole = new BorrowerRole();
         borrowerRole.setName("test");
-        String res = "A borrower test wants to get some money.";
+        String res = "Borrower test wants to get some money.";
 
         Assert.assertEquals(borrowerRole.borrow(),res);
     }
