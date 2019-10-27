@@ -23,10 +23,8 @@
 
 package com.iluwatar.converter;
 
-import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -81,8 +79,9 @@ public class ConverterTest {
    */
   @Test
   public void testCollectionConversion() {
-    ArrayList<User> users = Lists.newArrayList(new User("Camile", "Tough", false, "124sad"),
-        new User("Marti", "Luther", true, "42309fd"), new User("Kate", "Smith", true, "if0243"));
+    List<User> users = List.of(new User("Camile", "Tough", false, "124sad"),
+            new User("Marti", "Luther", true, "42309fd"),
+            new User("Kate", "Smith", true, "if0243"));
     List<User> fromDtos = userConverter.createFromDtos(userConverter.createFromEntities(users));
     assertEquals(users, fromDtos);
   }
