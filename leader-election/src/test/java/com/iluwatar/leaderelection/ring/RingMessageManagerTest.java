@@ -27,7 +27,6 @@ import com.iluwatar.leaderelection.*;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
 
@@ -41,8 +40,7 @@ public class RingMessageManagerTest {
   @Test
   public void testSendHeartbeatMessage() {
     Instance instance1 = new RingInstance(null, 1, 1);
-    Map<Integer, Instance> instanceMap = new HashMap<>();
-    instanceMap.put(1, instance1);
+    Map<Integer, Instance> instanceMap = Map.of(1, instance1);
     MessageManager messageManager = new RingMessageManager(instanceMap);
     assertTrue(messageManager.sendHeartbeatMessage(1));
   }
@@ -53,10 +51,7 @@ public class RingMessageManagerTest {
       Instance instance1 = new RingInstance(null, 1, 1);
       Instance instance2 = new RingInstance(null, 1, 2);
       Instance instance3 = new RingInstance(null, 1, 3);
-      Map<Integer, Instance> instanceMap = new HashMap<>();
-      instanceMap.put(1, instance1);
-      instanceMap.put(2, instance2);
-      instanceMap.put(3, instance3);
+      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3);
       MessageManager messageManager = new RingMessageManager(instanceMap);
       String messageContent = "2";
       messageManager.sendElectionMessage(2, messageContent);
@@ -78,10 +73,7 @@ public class RingMessageManagerTest {
       Instance instance1 = new RingInstance(null, 1, 1);
       Instance instance2 = new RingInstance(null, 1, 2);
       Instance instance3 = new RingInstance(null, 1, 3);
-      Map<Integer, Instance> instanceMap = new HashMap<>();
-      instanceMap.put(1, instance1);
-      instanceMap.put(2, instance2);
-      instanceMap.put(3, instance3);
+      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3);
       MessageManager messageManager = new RingMessageManager(instanceMap);
       String messageContent = "3";
       messageManager.sendLeaderMessage(2, 3);
@@ -102,10 +94,7 @@ public class RingMessageManagerTest {
       Instance instance1 = new RingInstance(null, 1, 1);
       Instance instance2 = new RingInstance(null, 1, 2);
       Instance instance3 = new RingInstance(null, 1, 3);
-      Map<Integer, Instance> instanceMap = new HashMap<>();
-      instanceMap.put(1, instance1);
-      instanceMap.put(2, instance2);
-      instanceMap.put(3, instance3);
+      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3);
       MessageManager messageManager = new RingMessageManager(instanceMap);
       messageManager.sendHeartbeatInvokeMessage(2);
       Message ringMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");

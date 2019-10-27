@@ -31,7 +31,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -64,14 +63,13 @@ public class CakeViewImplTest {
   @Test
   public void testRender() {
 
-    final List<CakeLayerInfo> layers = new ArrayList<>();
-    layers.add(new CakeLayerInfo("layer1", 1000));
-    layers.add(new CakeLayerInfo("layer2", 2000));
-    layers.add(new CakeLayerInfo("layer3", 3000));
+    final List<CakeLayerInfo> layers = List.of(
+            new CakeLayerInfo("layer1", 1000),
+            new CakeLayerInfo("layer2", 2000),
+            new CakeLayerInfo("layer3", 3000));
 
-    final List<CakeInfo> cakes = new ArrayList<>();
     final CakeInfo cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
-    cakes.add(cake);
+    final List<CakeInfo> cakes = List.of(cake);
 
     final CakeBakingService bakingService = mock(CakeBakingService.class);
     when(bakingService.getAllCakes()).thenReturn(cakes);

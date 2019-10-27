@@ -43,7 +43,7 @@ public class LotteryTestUtils {
    * @return lottery ticket
    */
   public static LotteryTicket createLotteryTicket() {
-    return createLotteryTicket("foo@bar.com", "12231-213132", "+99324554", new HashSet<>(Arrays.asList(1, 2, 3, 4)));
+    return createLotteryTicket("foo@bar.com", "12231-213132", "+99324554", Set.of(1, 2, 3, 4));
   }
   
   /**
