@@ -23,17 +23,16 @@
 
 package com.iluwatar.abstractdocument;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Test;
-
 import com.iluwatar.abstractdocument.domain.Car;
 import com.iluwatar.abstractdocument.domain.Part;
 import com.iluwatar.abstractdocument.domain.enums.Property;
+import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Part and Car
@@ -49,10 +48,10 @@ public class DomainTest {
 
   @Test
   public void shouldConstructPart() {
-    Map<String, Object> partProperties = new HashMap<>();
-    partProperties.put(Property.TYPE.toString(), TEST_PART_TYPE);
-    partProperties.put(Property.MODEL.toString(), TEST_PART_MODEL);
-    partProperties.put(Property.PRICE.toString(), TEST_PART_PRICE);
+    Map<String, Object> partProperties = Map.of(
+            Property.TYPE.toString(), TEST_PART_TYPE,
+            Property.MODEL.toString(), TEST_PART_MODEL,
+            Property.PRICE.toString(), TEST_PART_PRICE);
     Part part = new Part(partProperties);
 
     assertEquals(TEST_PART_TYPE, part.getType().get());
@@ -62,10 +61,10 @@ public class DomainTest {
 
   @Test
   public void shouldConstructCar() {
-    Map<String, Object> carProperties = new HashMap<>();
-    carProperties.put(Property.MODEL.toString(), TEST_CAR_MODEL);
-    carProperties.put(Property.PRICE.toString(), TEST_CAR_PRICE);
-    carProperties.put(Property.PARTS.toString(), Arrays.asList(new HashMap<>(), new HashMap<>()));
+    Map<String, Object> carProperties = Map.of(
+            Property.MODEL.toString(), TEST_CAR_MODEL,
+            Property.PRICE.toString(), TEST_CAR_PRICE,
+            Property.PARTS.toString(), List.of(new HashMap<>(), new HashMap<>()));
     Car car = new Car(carProperties);
 
     assertEquals(TEST_CAR_MODEL, car.getModel().get());

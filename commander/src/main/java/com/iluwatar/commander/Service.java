@@ -23,10 +23,8 @@
 
 package com.iluwatar.commander;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.Random;
+import java.util.*;
+
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 /**
@@ -49,7 +47,7 @@ public abstract class Service {
 
   protected Service(Database db, Exception...exc) {
     this.database = db;
-    this.exceptionsList = new ArrayList<Exception>(Arrays.asList(exc));
+    this.exceptionsList = new ArrayList<>(List.of(exc));
   }
 
   public abstract String receiveRequest(Object...parameters) throws DatabaseUnavailableException;

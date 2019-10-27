@@ -31,9 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * AbstractDocument test class
@@ -60,9 +58,7 @@ public class AbstractDocumentTest {
 
   @Test
   public void shouldRetrieveChildren() {
-    Map<String, Object> child1 = new HashMap<>();
-    Map<String, Object> child2 = new HashMap<>();
-    List<Map<String, Object>> children = Arrays.asList(child1, child2);
+    var children = List.of(Map.of(), Map.of());
 
     document.put(KEY, children);
 
@@ -80,8 +76,7 @@ public class AbstractDocumentTest {
 
   @Test
   public void shouldIncludePropsInToString() {
-    Map<String, Object> props = new HashMap<>();
-    props.put(KEY, VALUE);
+    Map<String, Object> props = Map.of(KEY, VALUE);
     DocumentImplementation document = new DocumentImplementation(props);
     assertTrue(document.toString().contains(KEY));
     assertTrue(document.toString().contains(VALUE));
