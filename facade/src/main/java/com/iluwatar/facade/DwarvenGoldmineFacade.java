@@ -23,7 +23,6 @@
 
 package com.iluwatar.facade;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -43,10 +42,10 @@ public class DwarvenGoldmineFacade {
    * Constructor
    */
   public DwarvenGoldmineFacade() {
-    workers = new ArrayList<>();
-    workers.add(new DwarvenGoldDigger());
-    workers.add(new DwarvenCartOperator());
-    workers.add(new DwarvenTunnelDigger());
+    workers = List.of(
+            new DwarvenGoldDigger(),
+            new DwarvenCartOperator(),
+            new DwarvenTunnelDigger());
   }
 
   public void startNewDay() {

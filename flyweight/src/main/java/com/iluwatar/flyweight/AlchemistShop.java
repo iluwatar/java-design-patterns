@@ -26,7 +26,6 @@ package com.iluwatar.flyweight;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,29 +45,24 @@ public class AlchemistShop {
    * Constructor
    */
   public AlchemistShop() {
-    topShelf = new ArrayList<>();
-    bottomShelf = new ArrayList<>();
-    fillShelves();
-  }
-
-  private void fillShelves() {
-
     PotionFactory factory = new PotionFactory();
-
-    topShelf.add(factory.createPotion(PotionType.INVISIBILITY));
-    topShelf.add(factory.createPotion(PotionType.INVISIBILITY));
-    topShelf.add(factory.createPotion(PotionType.STRENGTH));
-    topShelf.add(factory.createPotion(PotionType.HEALING));
-    topShelf.add(factory.createPotion(PotionType.INVISIBILITY));
-    topShelf.add(factory.createPotion(PotionType.STRENGTH));
-    topShelf.add(factory.createPotion(PotionType.HEALING));
-    topShelf.add(factory.createPotion(PotionType.HEALING));
-
-    bottomShelf.add(factory.createPotion(PotionType.POISON));
-    bottomShelf.add(factory.createPotion(PotionType.POISON));
-    bottomShelf.add(factory.createPotion(PotionType.POISON));
-    bottomShelf.add(factory.createPotion(PotionType.HOLY_WATER));
-    bottomShelf.add(factory.createPotion(PotionType.HOLY_WATER));
+    topShelf = List.of(
+            factory.createPotion(PotionType.INVISIBILITY),
+            factory.createPotion(PotionType.INVISIBILITY),
+            factory.createPotion(PotionType.STRENGTH),
+            factory.createPotion(PotionType.HEALING),
+            factory.createPotion(PotionType.INVISIBILITY),
+            factory.createPotion(PotionType.STRENGTH),
+            factory.createPotion(PotionType.HEALING),
+            factory.createPotion(PotionType.HEALING)
+    );
+    bottomShelf = List.of(
+            factory.createPotion(PotionType.POISON),
+            factory.createPotion(PotionType.POISON),
+            factory.createPotion(PotionType.POISON),
+            factory.createPotion(PotionType.HOLY_WATER),
+            factory.createPotion(PotionType.HOLY_WATER)
+    );
   }
 
   /**
