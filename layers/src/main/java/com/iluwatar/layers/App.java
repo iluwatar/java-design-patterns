@@ -99,8 +99,10 @@ public class App {
     cakeBakingService.saveNewTopping(new CakeToppingInfo("cherry", 350));
 
     CakeInfo cake1 =
-            new CakeInfo(new CakeToppingInfo("candies", 0), List.of(new CakeLayerInfo(
-            "chocolate", 0), new CakeLayerInfo("banana", 0), new CakeLayerInfo("strawberry", 0)));
+            new CakeInfo(new CakeToppingInfo("candies", 0), List.of(
+                    new CakeLayerInfo("chocolate", 0),
+                    new CakeLayerInfo("banana", 0),
+                    new CakeLayerInfo("strawberry", 0)));
     try {
       cakeBakingService.bakeNewCake(cake1);
     } catch (CakeBakingException e) {
@@ -108,7 +110,7 @@ public class App {
     }
     CakeInfo cake2 =
             new CakeInfo(new CakeToppingInfo("cherry", 0), List.of(
-            new CakeLayerInfo("vanilla", 0), new CakeLayerInfo("lemon", 0), new CakeLayerInfo(
+                    new CakeLayerInfo("vanilla", 0), new CakeLayerInfo("lemon", 0), new CakeLayerInfo(
                 "strawberry", 0)));
     try {
       cakeBakingService.bakeNewCake(cake2);

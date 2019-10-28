@@ -57,8 +57,7 @@ public class App {
   public static void main(String[] args) {
     // initialize creatures list
     List<Creature> creatures =
-            List.of(new Goblin(), new Octopus(), new Dragon(), new Shark(), new Troll(),
-            new KillerBee());
+          List.of(new Goblin(), new Octopus(), new Dragon(), new Shark(), new Troll(), new KillerBee());
     // find all walking creatures
     LOGGER.info("Find all walking creatures");
     List<Creature> walkingCreatures =

@@ -27,6 +27,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,7 +38,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class PrototypeTest<P extends Prototype> {
   static Collection<Object[]> dataProvider() {
-      return List.of(
+    return List.of(
             new Object[]{new OrcBeast("axe"), "Orcish wolf attacks with axe"},
             new Object[]{new OrcMage("sword"), "Orcish mage attacks with sword"},
             new Object[]{new OrcWarlord("laser"), "Orcish warlord attacks with laser"},

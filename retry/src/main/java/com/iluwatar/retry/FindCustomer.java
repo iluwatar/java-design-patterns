@@ -48,7 +48,7 @@ public final class FindCustomer implements BusinessOperation<String> {
    */
   public FindCustomer(String customerId, BusinessException... errors) {
     this.customerId = customerId;
-      this.errors = new ArrayDeque<>(List.of(errors));
+    this.errors = new ArrayDeque<>(List.of(errors));
   }
   
   @Override

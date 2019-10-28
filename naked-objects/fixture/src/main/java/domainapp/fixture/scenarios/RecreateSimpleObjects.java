@@ -38,8 +38,8 @@ import java.util.List;
  */
 public class RecreateSimpleObjects extends FixtureScript {
 
-    public final List<String> names = Collections.unmodifiableList(List.of("Foo", "Bar", "Baz",
-      "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
+  public final List<String> names = Collections.unmodifiableList(List.of("Foo", "Bar", "Baz",
+          "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
 
   // region > number (optional input)
   private Integer number;

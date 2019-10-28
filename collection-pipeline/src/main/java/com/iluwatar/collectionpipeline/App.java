@@ -67,10 +67,10 @@ public class App {
     
     Person john = new Person(cars);
 
-      List<Car> sedansOwnedImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+    List<Car> sedansOwnedImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     LOGGER.info(sedansOwnedImperative.toString());
 
-      List<Car> sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+    List<Car> sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     LOGGER.info(sedansOwnedFunctional.toString());
   }
 }

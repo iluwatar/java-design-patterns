@@ -49,7 +49,7 @@ import static org.mockito.Mockito.verify;
 public class PartyMemberTest {
 
   static Collection<Supplier<PartyMember>[]> dataProvider() {
-      return List.of(
+    return List.of(
             new Supplier[]{Hobbit::new},
             new Supplier[]{Hunter::new},
             new Supplier[]{Rogue::new},

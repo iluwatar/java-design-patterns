@@ -110,7 +110,7 @@ public class OliphauntPoolTest {
 
       // The order of the returned instances is not determined, so just put them in a list
       // and verify if both expected instances are in there.
-        final List<Oliphaunt> oliphaunts = List.of(pool.checkOut(), pool.checkOut());
+      final List<Oliphaunt> oliphaunts = List.of(pool.checkOut(), pool.checkOut());
       assertEquals(pool.toString(), "Pool available=0 inUse=2");
       assertTrue(oliphaunts.contains(firstOliphaunt));
       assertTrue(oliphaunts.contains(secondOliphaunt));
