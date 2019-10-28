@@ -29,7 +29,6 @@ import com.iluwatar.specification.property.Size;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,7 +45,7 @@ public class CreatureTest {
    * @return The tested {@link Creature} instance and its expected specs
    */
   public static Collection<Object[]> dataProvider() {
-    return Arrays.asList(
+      return List.of(
             new Object[]{new Dragon(), "Dragon", Size.LARGE, Movement.FLYING, Color.RED},
             new Object[]{new Goblin(), "Goblin", Size.SMALL, Movement.WALKING, Color.GREEN},
             new Object[]{new KillerBee(), "KillerBee", Size.SMALL, Movement.FLYING, Color.LIGHT},

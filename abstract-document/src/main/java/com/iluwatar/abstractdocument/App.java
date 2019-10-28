@@ -23,14 +23,13 @@
 
 package com.iluwatar.abstractdocument;
 
-import java.util.Arrays;
-import java.util.HashMap;
-
+import com.iluwatar.abstractdocument.domain.Car;
+import com.iluwatar.abstractdocument.domain.enums.Property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.iluwatar.abstractdocument.domain.Car;
-import com.iluwatar.abstractdocument.domain.enums.Property;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * The Abstract Document pattern enables handling additional, non-static
@@ -66,7 +65,7 @@ public class App {
     doorProperties.put(Property.MODEL.toString(), "Lambo");
     doorProperties.put(Property.PRICE.toString(), 300L);
 
-    carProperties.put(Property.PARTS.toString(), Arrays.asList(wheelProperties, doorProperties));
+    carProperties.put(Property.PARTS.toString(), List.of(wheelProperties, doorProperties));
 
     var car = new Car(carProperties);
 

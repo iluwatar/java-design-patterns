@@ -23,17 +23,16 @@
 
 package com.iluwatar.abstractdocument;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Test;
-
 import com.iluwatar.abstractdocument.domain.Car;
 import com.iluwatar.abstractdocument.domain.Part;
 import com.iluwatar.abstractdocument.domain.enums.Property;
+import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Part and Car
@@ -65,7 +64,7 @@ public class DomainTest {
     Map<String, Object> carProperties = new HashMap<>();
     carProperties.put(Property.MODEL.toString(), TEST_CAR_MODEL);
     carProperties.put(Property.PRICE.toString(), TEST_CAR_PRICE);
-    carProperties.put(Property.PARTS.toString(), Arrays.asList(new HashMap<>(), new HashMap<>()));
+    carProperties.put(Property.PARTS.toString(), List.of(Map.of(), Map.of()));
     Car car = new Car(carProperties);
 
     assertEquals(TEST_CAR_MODEL, car.getModel().get());

@@ -23,11 +23,12 @@
 
 package com.iluwatar.commander;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.Random;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Service class is an abstract class extended by all services in this example. They
@@ -45,11 +46,11 @@ public abstract class Service {
   public ArrayList<Exception> exceptionsList;
   private static final Random RANDOM = new Random();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-  private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<String, Boolean>();
+  private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<>();
 
   protected Service(Database db, Exception...exc) {
     this.database = db;
-    this.exceptionsList = new ArrayList<Exception>(Arrays.asList(exc));
+    this.exceptionsList = new ArrayList<Exception>(List.of(exc));
   }
 
   public abstract String receiveRequest(Object...parameters) throws DatabaseUnavailableException;

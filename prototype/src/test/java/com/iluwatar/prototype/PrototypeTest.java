@@ -26,13 +26,9 @@ package com.iluwatar.prototype;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Date: 12/28/15 - 8:45 PM
@@ -41,7 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
  */
 public class PrototypeTest<P extends Prototype> {
   static Collection<Object[]> dataProvider() {
-    return Arrays.asList(
+      return List.of(
             new Object[]{new OrcBeast("axe"), "Orcish wolf attacks with axe"},
             new Object[]{new OrcMage("sword"), "Orcish mage attacks with sword"},
             new Object[]{new OrcWarlord("laser"), "Orcish warlord attacks with laser"},

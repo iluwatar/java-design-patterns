@@ -25,15 +25,10 @@ package com.iluwatar.layers;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Date: 12/15/15 - 9:55 PM
@@ -108,7 +103,7 @@ public class CakeBakingServiceImplTest {
     service.saveNewLayer(layer2);
     service.saveNewLayer(layer3);
 
-    service.bakeNewCake(new CakeInfo(topping1, Arrays.asList(layer1, layer2)));
+    service.bakeNewCake(new CakeInfo(topping1, List.of(layer1, layer2)));
     service.bakeNewCake(new CakeInfo(topping2, Collections.singletonList(layer3)));
 
     final List<CakeInfo> allCakes = service.getAllCakes();
@@ -136,7 +131,7 @@ public class CakeBakingServiceImplTest {
 
     final CakeToppingInfo missingTopping = new CakeToppingInfo("Topping1", 1000);
     assertThrows(CakeBakingException.class, () -> {
-      service.bakeNewCake(new CakeInfo(missingTopping, Arrays.asList(layer1, layer2)));
+      service.bakeNewCake(new CakeInfo(missingTopping, List.of(layer1, layer2)));
     });
   }
 
@@ -156,7 +151,7 @@ public class CakeBakingServiceImplTest {
 
     final CakeLayerInfo missingLayer = new CakeLayerInfo("Layer2", 2000);
     assertThrows(CakeBakingException.class, () -> {
-      service.bakeNewCake(new CakeInfo(topping1, Arrays.asList(layer1, missingLayer)));
+      service.bakeNewCake(new CakeInfo(topping1, List.of(layer1, missingLayer)));
     });
   }
 
@@ -178,7 +173,7 @@ public class CakeBakingServiceImplTest {
     service.saveNewLayer(layer1);
     service.saveNewLayer(layer2);
 
-    service.bakeNewCake(new CakeInfo(topping1, Arrays.asList(layer1, layer2)));
+    service.bakeNewCake(new CakeInfo(topping1, List.of(layer1, layer2)));
     assertThrows(CakeBakingException.class, () -> {
       service.bakeNewCake(new CakeInfo(topping2, Collections.singletonList(layer2)));
     });

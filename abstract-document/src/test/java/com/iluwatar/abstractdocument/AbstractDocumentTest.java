@@ -25,15 +25,12 @@ package com.iluwatar.abstractdocument;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * AbstractDocument test class
@@ -60,9 +57,9 @@ public class AbstractDocumentTest {
 
   @Test
   public void shouldRetrieveChildren() {
-    Map<String, Object> child1 = new HashMap<>();
-    Map<String, Object> child2 = new HashMap<>();
-    List<Map<String, Object>> children = Arrays.asList(child1, child2);
+    Map<String, Object> child1 = Map.of();
+    Map<String, Object> child2 = Map.of();
+    List<Map<String, Object>> children = List.of(child1, child2);
 
     document.put(KEY, children);
 

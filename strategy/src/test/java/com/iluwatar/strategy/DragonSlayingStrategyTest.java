@@ -32,7 +32,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,7 +49,7 @@ public class DragonSlayingStrategyTest {
    * @return The test parameters for each cycle
    */
   static Collection<Object[]> dataProvider() {
-    return Arrays.asList(
+      return List.of(
         new Object[]{
             new MeleeStrategy(),
             "With your Excalibur you sever the dragon's head!"
