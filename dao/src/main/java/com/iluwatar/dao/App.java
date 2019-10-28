@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dao;
 
 import java.sql.Connection;
@@ -127,10 +128,6 @@ public class App {
     final Customer customer1 = new Customer(1, "Adam", "Adamson");
     final Customer customer2 = new Customer(2, "Bob", "Bobson");
     final Customer customer3 = new Customer(3, "Carl", "Carlson");
-    final List<Customer> customers = new ArrayList<>();
-    customers.add(customer1);
-    customers.add(customer2);
-    customers.add(customer3);
-    return customers;
+    return List.of(customer1, customer2, customer3);
   }
 }

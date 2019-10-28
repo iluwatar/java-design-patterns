@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,9 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.api.gateway;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -43,7 +45,7 @@ public class ApiGateway {
    * Retrieves product information that desktop clients need
    * @return Product information for clients on a desktop
    */
-  @RequestMapping("/desktop")
+  @RequestMapping(path = "/desktop", method = RequestMethod.GET)
   public DesktopProduct getProductDesktop() {
     DesktopProduct desktopProduct = new DesktopProduct();
     desktopProduct.setImagePath(imageClient.getImagePath());
@@ -55,7 +57,7 @@ public class ApiGateway {
    * Retrieves product information that mobile clients need
    * @return Product information for clients on a mobile device
    */
-  @RequestMapping("/mobile")
+  @RequestMapping(path = "/mobile", method = RequestMethod.GET)
   public MobileProduct getProductMobile() {
     MobileProduct mobileProduct = new MobileProduct();
     mobileProduct.setPrice(priceClient.getPrice());

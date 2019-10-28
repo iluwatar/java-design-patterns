@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.magic;
 
 import java.util.ArrayList;
@@ -69,14 +70,14 @@ public class MagicServiceImpl implements MagicService {
 
   @Override
   public List<Wizard> findWizardsWithSpellbook(String name) {
-    Spellbook spellbook = spellbookDao.findByName(name);
+    var spellbook = spellbookDao.findByName(name);
     return new ArrayList<>(spellbook.getWizards());
   }
 
   @Override
   public List<Wizard> findWizardsWithSpell(String name) {
-    Spell spell = spellDao.findByName(name);
-    Spellbook spellbook = spell.getSpellbook();
+    var spell = spellDao.findByName(name);
+    var spellbook = spell.getSpellbook();
     return new ArrayList<>(spellbook.getWizards());
   }
 }

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.visitor;
 
 import org.junit.jupiter.api.Test;
@@ -56,15 +57,15 @@ public abstract class UnitTest<U extends Unit> {
 
   @Test
   public void testAccept() {
-    final Unit[] children = new Unit[5];
+    final var children = new Unit[5];
     Arrays.setAll(children, (i) -> mock(Unit.class));
 
-    final U unit = this.factory.apply(children);
-    final UnitVisitor visitor = mock(UnitVisitor.class);
+    final var unit = this.factory.apply(children);
+    final var visitor = mock(UnitVisitor.class);
     unit.accept(visitor);
     verifyVisit(unit, visitor);
 
-    for (final Unit child : children) {
+    for (final var child : children) {
       verify(child).accept(eq(visitor));
     }
 

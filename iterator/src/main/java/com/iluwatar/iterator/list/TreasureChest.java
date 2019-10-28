@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.iterator.list;
 
 import com.iluwatar.iterator.Iterator;
@@ -39,17 +40,17 @@ public class TreasureChest {
    * Constructor
    */
   public TreasureChest() {
-    items = new ArrayList<>();
-    items.add(new Item(ItemType.POTION, "Potion of courage"));
-    items.add(new Item(ItemType.RING, "Ring of shadows"));
-    items.add(new Item(ItemType.POTION, "Potion of wisdom"));
-    items.add(new Item(ItemType.POTION, "Potion of blood"));
-    items.add(new Item(ItemType.WEAPON, "Sword of silver +1"));
-    items.add(new Item(ItemType.POTION, "Potion of rust"));
-    items.add(new Item(ItemType.POTION, "Potion of healing"));
-    items.add(new Item(ItemType.RING, "Ring of armor"));
-    items.add(new Item(ItemType.WEAPON, "Steel halberd"));
-    items.add(new Item(ItemType.WEAPON, "Dagger of poison"));
+    items = List.of(
+            new Item(ItemType.POTION, "Potion of courage"),
+            new Item(ItemType.RING, "Ring of shadows"),
+            new Item(ItemType.POTION, "Potion of wisdom"),
+            new Item(ItemType.POTION, "Potion of blood"),
+            new Item(ItemType.WEAPON, "Sword of silver +1"),
+            new Item(ItemType.POTION, "Potion of rust"),
+            new Item(ItemType.POTION, "Potion of healing"),
+            new Item(ItemType.RING, "Ring of armor"),
+            new Item(ItemType.WEAPON, "Steel halberd"),
+            new Item(ItemType.WEAPON, "Dagger of poison"));
   }
 
   public Iterator<Item> iterator(ItemType itemType) {

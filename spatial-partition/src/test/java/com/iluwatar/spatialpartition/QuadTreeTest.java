@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.spatialpartition;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
+
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -50,12 +53,12 @@ class QuadTreeTest {
 
   static Hashtable<Integer, Point> quadTreeTest(ArrayList<Point> points, Rect field, Rect queryRange) {
     //creating quadtree and inserting all points
-    QuadTree qTree = new QuadTree(field, 4);
+    QuadTree qTree = new QuadTree(queryRange, 4);
     for (int i = 0; i < points.size(); i++) {
       qTree.insert(points.get(i));
     }
 
-    ArrayList<Point> queryResult = qTree.query(queryRange, new ArrayList<Point>());
+    ArrayList<Point> queryResult = qTree.query(field, new ArrayList<Point>());
     Hashtable<Integer, Point> result = new Hashtable<Integer, Point>();
     for (int i = 0; i < queryResult.size(); i++) {
       Point p = queryResult.get(i);

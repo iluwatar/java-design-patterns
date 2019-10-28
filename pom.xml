@@ -39,7 +39,7 @@
         <spring-data.version>2.0.14.RELEASE</spring-data.version>
         <h2.version>1.4.190</h2.version>
         <junit.version>4.12</junit.version>
-        <junit-jupiter.version>5.0.2</junit-jupiter.version>
+        <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <junit-vintage.version>${junit.version}.2</junit-vintage.version>
         <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
         <compiler.version>3.8.1</compiler.version>
@@ -48,7 +48,6 @@
         <camel.version>2.24.0</camel.version>
         <guava.version>19.0</guava.version>
         <mockito.version>1.10.19</mockito.version>
-        <apache-httpcomponents.version>4.5.10</apache-httpcomponents.version>
         <htmlunit.version>2.22</htmlunit.version>
         <guice.version>4.0</guice.version>
         <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
@@ -61,6 +60,7 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.2</annotation-api.version>
+        <system-rules.version>1.19.0</system-rules.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -181,8 +181,9 @@
         <module>bytecode</module>
         <module>leader-election</module>
         <module>data-locality</module>
+        <module>subclass-sandbox</module>
         <module>circuit-breaker</module>
-
+        <module>double-buffer</module>
     </modules>
 
     <repositories>
@@ -217,11 +218,6 @@
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>${apache-httpcomponents.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
@@ -245,6 +241,12 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit-jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -323,6 +325,12 @@
                 <artifactId>javassist</artifactId>
                 <version>3.25.0-GA</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.stefanbirkner</groupId>
+                <artifactId>system-rules</artifactId>
+                <version>${system-rules.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -388,12 +396,36 @@
                         </goals>
                         <phase>validate</phase>
                         <configuration>
-                            <configLocation>checkstyle.xml</configLocation>
+                            <configLocation>google_checks.xml</configLocation>
                             <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                             <encoding>UTF-8</encoding>
-                            <consoleOutput>true</consoleOutput>
-                            <failsOnError>true</failsOnError>
+                            <failOnViolation>true</failOnViolation>
                             <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Resolves ${projectRoot} to the project root directory.
+                Used by the license-maven-plugin to find the correct location of
+                license-plugin-header-style.xml when built from a submodule directory. -->
+            <plugin>
+                <groupId>org.commonjava.maven.plugins</groupId>
+                <artifactId>directory-maven-plugin</artifactId>
+                <version>0.3.1</version>
+                <executions>
+                    <execution>
+                        <id>directories</id>
+                        <goals>
+                            <goal>directory-of</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <property>projectRoot</property>
+                            <project>
+                                <groupId>com.iluwatar</groupId>
+                                <artifactId>java-design-patterns</artifactId>
+                            </project>
                         </configuration>
                     </execution>
                 </executions>
@@ -409,6 +441,15 @@
                         <owner>Ilkka Seppälä</owner>
                     </properties>
                     <skipExistingHeaders>true</skipExistingHeaders>
+                    <headerDefinitions>
+                        <headerDefinition>${projectRoot}${file.separator}license-plugin-header-style.xml</headerDefinition>
+                    </headerDefinitions>
+                    <mapping>
+                        <java>SLASHSTAR_CUSTOM_STYLE</java>
+                    </mapping>
+                    <excludes>
+                        <exclude>.github/FUNDING.yml</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
