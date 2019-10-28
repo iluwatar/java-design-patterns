@@ -27,10 +27,9 @@ import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.domain.*;
 import org.slf4j.Logger;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Console implementation for lottery console service
@@ -88,10 +87,7 @@ public class LotteryConsoleServiceImpl implements LotteryConsoleService {
     String numbers = readString( scanner );
     try {
       String[] parts = numbers.split( "," );
-      Set<Integer> chosen = new HashSet<>();
-      for (int i = 0; i < 4; i++) {
-        chosen.add( Integer.parseInt( parts[i] ) );
-      }
+      Set<Integer> chosen = Arrays.stream(parts).map(Integer::parseInt).collect(Collectors.toSet());
       LotteryNumbers lotteryNumbers = LotteryNumbers.create( chosen );
       LotteryTicket lotteryTicket = new LotteryTicket( new LotteryTicketId(), details, lotteryNumbers );
       Optional<LotteryTicketId> id = service.submitTicket( lotteryTicket );
