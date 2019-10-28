@@ -57,9 +57,7 @@ public class AbstractDocumentTest {
 
   @Test
   public void shouldRetrieveChildren() {
-    Map<String, Object> child1 = Map.of();
-    Map<String, Object> child2 = Map.of();
-    List<Map<String, Object>> children = List.of(child1, child2);
+    var children = List.of(Map.of(), Map.of());
 
     document.put(KEY, children);
 
@@ -77,8 +75,7 @@ public class AbstractDocumentTest {
 
   @Test
   public void shouldIncludePropsInToString() {
-    Map<String, Object> props = new HashMap<>();
-    props.put(KEY, VALUE);
+    Map<String, Object> props = Map.of(KEY, VALUE);
     DocumentImplementation document = new DocumentImplementation(props);
     assertTrue(document.toString().contains(KEY));
     assertTrue(document.toString().contains(VALUE));

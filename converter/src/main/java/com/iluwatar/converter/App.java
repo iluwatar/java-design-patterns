@@ -24,11 +24,9 @@
 package com.iluwatar.converter;
 
 
-import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,7 +36,7 @@ import java.util.List;
  * objects between types.
  */
 public class App {
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   /**
    * Program entry point
@@ -52,7 +50,7 @@ public class App {
     User user = userConverter.convertFromDto(dtoUser);
     LOGGER.info("Entity converted from DTO:" + user);
 
-    ArrayList<User> users = Lists.newArrayList(new User("Camile", "Tough", false, "124sad"),
+    var users = List.of(new User("Camile", "Tough", false, "124sad"),
         new User("Marti", "Luther", true, "42309fd"), new User("Kate", "Smith", true, "if0243"));
     LOGGER.info("Domain entities:");
     users.stream().map(User::toString).forEach(LOGGER::info);

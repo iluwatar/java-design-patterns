@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,27 +42,27 @@ public class AppTest {
   
   @Test
   public void testGetModelsAfter2000UsingFor() {
-    List<String> models = ImperativeProgramming.getModelsAfter2000(cars);
+    var models = ImperativeProgramming.getModelsAfter2000(cars);
     assertEquals(List.of("Avenger", "Wrangler", "Focus", "Cascada"), models);
   }
   
   @Test
   public void testGetModelsAfter2000UsingPipeline() {
-    List<String> models = FunctionalProgramming.getModelsAfter2000(cars);
+    var models = FunctionalProgramming.getModelsAfter2000(cars);
     assertEquals(List.of("Avenger", "Wrangler", "Focus", "Cascada"), models);
   }
   
   @Test
   public void testGetGroupingOfCarsByCategory() {
-    Map<Category, List<Car>> modelsExpected = new HashMap<>();
-    modelsExpected.put(Category.CONVERTIBLE, List.of(new Car("Buick", "Cascada", 2016, Category.CONVERTIBLE),
-        new Car("Chevrolet", "Geo Metro", 1992, Category.CONVERTIBLE)));
-    modelsExpected.put(Category.SEDAN, List.of(new Car("Dodge", "Avenger", 2010, Category.SEDAN),
-        new Car("Ford", "Focus", 2012, Category.SEDAN)));
-    modelsExpected.put(Category.JEEP, List.of(new Car("Jeep", "Wrangler", 2011, Category.JEEP),
-        new Car("Jeep", "Comanche", 1990, Category.JEEP)));
-    Map<Category, List<Car>> modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
-    Map<Category, List<Car>> modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
+    var modelsExpected = Map.of(
+            Category.CONVERTIBLE, List.of(new Car("Buick", "Cascada", 2016, Category.CONVERTIBLE),
+                    new Car("Chevrolet", "Geo Metro", 1992, Category.CONVERTIBLE)),
+            Category.SEDAN, List.of(new Car("Dodge", "Avenger", 2010, Category.SEDAN),
+                    new Car("Ford", "Focus", 2012, Category.SEDAN)),
+            Category.JEEP, List.of(new Car("Jeep", "Wrangler", 2011, Category.JEEP),
+                    new Car("Jeep", "Comanche", 1990, Category.JEEP)));
+    var modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
+    var modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
     LOGGER.info("Category " + modelsFunctional);
     assertEquals(modelsExpected, modelsFunctional);
     assertEquals(modelsExpected, modelsImperative);
@@ -71,11 +70,11 @@ public class AppTest {
   
   @Test
   public void testGetSedanCarsOwnedSortedByDate() {
-    Person john = new Person(cars);
-    List<Car> modelsExpected = List.of(new Car("Dodge", "Avenger", 2010, Category.SEDAN),
+    var john = new Person(cars);
+    var modelsExpected = List.of(new Car("Dodge", "Avenger", 2010, Category.SEDAN),
         new Car("Ford", "Focus", 2012, Category.SEDAN));
-    List<Car> modelsFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
-    List<Car> modelsImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+    var modelsFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+    var modelsImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     assertEquals(modelsExpected, modelsFunctional);
     assertEquals(modelsExpected, modelsImperative);
   }

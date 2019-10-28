@@ -28,8 +28,8 @@ import com.iluwatar.abstractdocument.domain.enums.Property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The Abstract Document pattern enables handling additional, non-static
@@ -51,21 +51,20 @@ public class App {
   public App() {
     LOGGER.info("Constructing parts and car");
 
-    var carProperties = new HashMap<String, Object>();
-    carProperties.put(Property.MODEL.toString(), "300SL");
-    carProperties.put(Property.PRICE.toString(), 10000L);
+    var wheelProperties = Map.of(
+            Property.TYPE.toString(), "wheel",
+            Property.MODEL.toString(), "15C",
+            Property.PRICE.toString(), 100L);
 
-    var wheelProperties = new HashMap<String, Object>();
-    wheelProperties.put(Property.TYPE.toString(), "wheel");
-    wheelProperties.put(Property.MODEL.toString(), "15C");
-    wheelProperties.put(Property.PRICE.toString(), 100L);
+    var doorProperties = Map.of(
+            Property.TYPE.toString(), "door",
+            Property.MODEL.toString(), "Lambo",
+            Property.PRICE.toString(), 300L);
 
-    var doorProperties = new HashMap<String, Object>();
-    doorProperties.put(Property.TYPE.toString(), "door");
-    doorProperties.put(Property.MODEL.toString(), "Lambo");
-    doorProperties.put(Property.PRICE.toString(), 300L);
-
-    carProperties.put(Property.PARTS.toString(), List.of(wheelProperties, doorProperties));
+    var carProperties = Map.of(
+            Property.MODEL.toString(), "300SL",
+            Property.PRICE.toString(), 10000L,
+            Property.PARTS.toString(), List.of(wheelProperties, doorProperties));
 
     var car = new Car(carProperties);
 

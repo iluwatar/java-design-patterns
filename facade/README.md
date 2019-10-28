@@ -146,10 +146,10 @@ public class DwarvenGoldmineFacade {
   private final List<DwarvenMineWorker> workers;
 
   public DwarvenGoldmineFacade() {
-    workers = new ArrayList<>();
-    workers.add(new DwarvenGoldDigger());
-    workers.add(new DwarvenCartOperator());
-    workers.add(new DwarvenTunnelDigger());
+      workers = List.of(
+            new DwarvenGoldDigger(),
+            new DwarvenCartOperator(),
+            new DwarvenTunnelDigger());
   }
 
   public void startNewDay() {
