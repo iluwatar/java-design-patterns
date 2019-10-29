@@ -24,8 +24,8 @@
 
 
 # Clone gh-pages
-git clone -b gh-pages "https://${GH_REF}" ghpagesclone
-cd ghpagesclone
+git clone https://github.com/iluwatar/java-design-patterns-web.git
+cd java-design-patterns-web
 
 # Init and update submodule to latest
 git submodule update --init --recursive
@@ -41,5 +41,5 @@ then
   # it should be committed
   git add .
   git commit -m ":sparkles: :up: Automagic Update via Travis-CI"
-  git push --quiet "https://${GH_TOKEN}:x-oauth-basic@${GH_REF}" gh-pages > /dev/null 2>&1
+  git push --quiet "https://${GH_TOKEN}:x-oauth-basic@github.com/iluwatar/java-design-patterns-web.git" gh-pages > /dev/null 2>&1
 fi

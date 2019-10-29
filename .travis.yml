@@ -6,7 +6,6 @@ sudo: required
 
 env:
   global:
-  - GH_REF: github.com/iluwatar/java-design-patterns.git
   - secure: "DCpazS3nkLnter3sguXEAS2fC/1ZWNfM+XLyif9MfNFxlZdpni2vCD/jA0Rdpga8puQWHNVLyAec+RPFH/2qSmJ1c1UTV5MaLv8tPqwUX0VFA+1I6XoSv6oX4ldHTBWHEWqQHkRFOLoil0h0edc0tTOWQwXF8U+DLAB+HkRb4gw="
 
 services:
@@ -24,7 +23,7 @@ script:
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then mvn clean verify sonar:sonar -Dsonar.projectKey=iluwatar_java-design-patterns -Dsonar.host.url=https://sonarcloud.io; fi'
 
 after_success:
-- bash update-ghpages.sh
+- bash update-website.sh
 
 notifications:
   email:
