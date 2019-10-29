@@ -33,9 +33,7 @@ import com.iluwatar.hexagonal.test.LotteryTestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -73,13 +71,13 @@ class LotteryTest {
     
     // players submit the lottery tickets
     Optional<LotteryTicketId> ticket1 = service.submitTicket(LotteryTestUtils.createLotteryTicket("cvt@bbb.com",
-            "123-12312", "+32425255", Set.of(1, 2, 3, 4)));
+        "123-12312", "+32425255", Set.of(1, 2, 3, 4)));
     assertTrue(ticket1.isPresent());
     Optional<LotteryTicketId> ticket2 = service.submitTicket(LotteryTestUtils.createLotteryTicket("ant@bac.com",
-            "123-12312", "+32423455", Set.of(11, 12, 13, 14)));
+        "123-12312", "+32423455", Set.of(11, 12, 13, 14)));
     assertTrue(ticket2.isPresent());
     Optional<LotteryTicketId> ticket3 = service.submitTicket(LotteryTestUtils.createLotteryTicket("arg@boo.com",
-            "123-12312", "+32421255", Set.of(6, 8, 13, 19)));
+        "123-12312", "+32421255", Set.of(6, 8, 13, 19)));
     assertTrue(ticket3.isPresent());
     assertEquals(3, administration.getAllSubmittedTickets().size());
     
