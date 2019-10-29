@@ -34,11 +34,6 @@ git submodule update --init --recursive
 git config user.name "Travis-CI"
 git config user.email "travis@no.reply"
 
-# If there is a new version of the master branch
-if git status | grep patterns > /dev/null 2>&1
-then
-  # it should be committed
-  git add .
-  git commit -m ":sparkles: :up: Automagic Update via Travis-CI"
-  git push --quiet "https://${GH_TOKEN}:x-oauth-basic@github.com/iluwatar/java-design-patterns-web.git" gh-pages > /dev/null 2>&1
-fi
+git add .
+git commit -m ":sparkles: :up: Automagic Update via Travis-CI"
+git push --quiet "https://${GH_TOKEN}:x-oauth-basic@github.com/iluwatar/java-design-patterns-web.git" master > /dev/null 2>&1
