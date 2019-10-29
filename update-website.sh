@@ -29,7 +29,6 @@ cd java-design-patterns-web
 
 # Init and update submodule to latest
 git submodule update --init --recursive
-git submodule update --remote
 
 # Setup Git
 git config user.name "Travis-CI"
