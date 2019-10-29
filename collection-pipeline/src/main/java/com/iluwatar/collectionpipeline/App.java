@@ -23,12 +23,11 @@
 
 package com.iluwatar.collectionpipeline;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * In imperative-style programming, it is common to use for and while loops for
@@ -67,11 +66,11 @@ public class App {
     LOGGER.info(groupingByCategoryFunctional.toString());
     
     Person john = new Person(cars);
-    
-    List<Car> sedansOwnedImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(Arrays.asList(john));
+
+    List<Car> sedansOwnedImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     LOGGER.info(sedansOwnedImperative.toString());
 
-    List<Car> sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(Arrays.asList(john));
+    List<Car> sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     LOGGER.info(sedansOwnedFunctional.toString());
   }
 }

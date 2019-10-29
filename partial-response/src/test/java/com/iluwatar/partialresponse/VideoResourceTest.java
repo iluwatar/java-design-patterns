@@ -29,7 +29,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -49,10 +48,13 @@ public class VideoResourceTest {
 
   @Before
   public void setUp() {
-    Map<Integer, Video> videos = new HashMap<>();
-    videos.put(1, new Video(1, "Avatar", 178, "epic science fiction film", "James Cameron", "English"));
-    videos.put(2, new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|", "Hideaki Anno", "Japanese"));
-    videos.put(3, new Video(3, "Interstellar", 169, "Adventure & Sci-Fi", "Christopher Nolan", "English"));
+    Map<Integer, Video> videos = Map.of(
+            1, new Video(1, "Avatar", 178, "epic science fiction film",
+                    "James Cameron", "English"),
+            2, new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|",
+                    "Hideaki Anno", "Japanese"),
+            3, new Video(3, "Interstellar", 169, "Adventure & Sci-Fi",
+                    "Christopher Nolan", "English"));
     resource = new VideoResource(fieldJsonMapper, videos);
   }
 

@@ -43,7 +43,7 @@ public abstract class Service {
   public ArrayList<Exception> exceptionsList;
   private static final Random RANDOM = new Random();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-  private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<String, Boolean>();
+  private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<>();
 
   protected Service(Database db, Exception...exc) {
     this.database = db;

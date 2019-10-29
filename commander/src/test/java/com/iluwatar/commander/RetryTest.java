@@ -45,9 +45,9 @@ class RetryTest {
     Retry.HandleErrorIssue<Order> handleError = (o,e) -> { 
       return; 
     };
-    Retry<Order> r1 = new Retry<Order>(op, handleError, 3, 30000,
+    Retry<Order> r1 = new Retry<>(op, handleError, 3, 30000,
         e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
-    Retry<Order> r2 = new Retry<Order>(op, handleError, 3, 30000,
+    Retry<Order> r2 = new Retry<>(op, handleError, 3, 30000,
         e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
     User user = new User("Jim", "ABCD");
     Order order = new Order(user, "book", 10f);

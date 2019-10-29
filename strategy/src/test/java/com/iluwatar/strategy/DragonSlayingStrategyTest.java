@@ -32,7 +32,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,19 +49,19 @@ public class DragonSlayingStrategyTest {
    * @return The test parameters for each cycle
    */
   static Collection<Object[]> dataProvider() {
-    return Arrays.asList(
-        new Object[]{
-            new MeleeStrategy(),
-            "With your Excalibur you sever the dragon's head!"
-        },
-        new Object[]{
-            new ProjectileStrategy(),
-            "You shoot the dragon with the magical crossbow and it falls dead on the ground!"
-        },
-        new Object[]{
-            new SpellStrategy(),
-            "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"
-        }
+      return List.of(
+          new Object[]{
+              new MeleeStrategy(),
+              "With your Excalibur you sever the dragon's head!"
+          },
+          new Object[]{
+              new ProjectileStrategy(),
+              "You shoot the dragon with the magical crossbow and it falls dead on the ground!"
+          },
+          new Object[]{
+              new SpellStrategy(),
+              "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"
+          }
     );
   }
 

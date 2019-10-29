@@ -25,7 +25,6 @@ package com.iluwatar.servant;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -76,15 +75,9 @@ public class ServantTest {
     final Royalty badMoodRoyalty = mock(Royalty.class);
     when(badMoodRoyalty.getMood()).thenReturn(true);
 
-    final List<Royalty> goodCompany = new ArrayList<>();
-    goodCompany.add(goodMoodRoyalty);
-    goodCompany.add(goodMoodRoyalty);
-    goodCompany.add(goodMoodRoyalty);
+    final List<Royalty> goodCompany = List.of(goodMoodRoyalty, goodMoodRoyalty, goodMoodRoyalty);
 
-    final List<Royalty> badCompany = new ArrayList<>();
-    goodCompany.add(goodMoodRoyalty);
-    goodCompany.add(goodMoodRoyalty);
-    goodCompany.add(badMoodRoyalty);
+    final List<Royalty> badCompany =  List.of(goodMoodRoyalty, goodMoodRoyalty, badMoodRoyalty);
 
     assertTrue(new Servant("test").checkIfYouWillBeHanged(goodCompany));
     assertTrue(new Servant("test").checkIfYouWillBeHanged(badCompany));

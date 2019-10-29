@@ -25,21 +25,14 @@ package com.iluwatar.fluentinterface.fluentiterable;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 /**
  * Date: 12/12/15 - 7:00 PM
@@ -58,7 +51,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testFirst() throws Exception {
-    final List<Integer> integers = Arrays.asList(1, 2, 3, 10, 9, 8);
+    final List<Integer> integers = List.of(1, 2, 3, 10, 9, 8);
     final Optional<Integer> first = createFluentIterable(integers).first();
     assertNotNull(first);
     assertTrue(first.isPresent());
@@ -75,7 +68,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testFirstCount() throws Exception {
-    final List<Integer> integers = Arrays.asList(1, 2, 3, 10, 9, 8);
+    final List<Integer> integers = List.of(1, 2, 3, 10, 9, 8);
     final List<Integer> first4 = createFluentIterable(integers)
             .first(4)
             .asList();
@@ -91,7 +84,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testFirstCountLessItems() throws Exception {
-    final List<Integer> integers = Arrays.asList(1, 2, 3);
+    final List<Integer> integers = List.of(1, 2, 3);
     final List<Integer> first4 = createFluentIterable(integers)
             .first(4)
             .asList();
@@ -106,7 +99,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testLast() throws Exception {
-    final List<Integer> integers = Arrays.asList(1, 2, 3, 10, 9, 8);
+    final List<Integer> integers = List.of(1, 2, 3, 10, 9, 8);
     final Optional<Integer> last = createFluentIterable(integers).last();
     assertNotNull(last);
     assertTrue(last.isPresent());
@@ -123,7 +116,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testLastCount() throws Exception {
-    final List<Integer> integers = Arrays.asList(1, 2, 3, 10, 9, 8);
+    final List<Integer> integers = List.of(1, 2, 3, 10, 9, 8);
     final List<Integer> last4 = createFluentIterable(integers)
             .last(4)
             .asList();
@@ -138,7 +131,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testLastCountLessItems() throws Exception {
-    final List<Integer> integers = Arrays.asList(1, 2, 3);
+    final List<Integer> integers = List.of(1, 2, 3);
     final List<Integer> last4 = createFluentIterable(integers)
             .last(4)
             .asList();
@@ -153,7 +146,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testFilter() throws Exception {
-    final List<Integer> integers = Arrays.asList(1, 2, 3, 10, 9, 8);
+    final List<Integer> integers = List.of(1, 2, 3, 10, 9, 8);
     final List<Integer> evenItems = createFluentIterable(integers)
             .filter(i -> i % 2 == 0)
             .asList();
@@ -167,7 +160,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testMap() throws Exception {
-    final List<Integer> integers = Arrays.asList(1, 2, 3);
+    final List<Integer> integers = List.of(1, 2, 3);
     final List<Long> longs = createFluentIterable(integers)
             .map(Integer::longValue)
             .asList();
@@ -181,7 +174,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testForEach() {
-    final List<Integer> integers = Arrays.asList(1, 2, 3);
+    final List<Integer> integers = List.of(1, 2, 3);
 
     final Consumer<Integer> consumer = mock(Consumer.class);
     createFluentIterable(integers).forEach(consumer);
@@ -195,7 +188,7 @@ public abstract class FluentIterableTest {
 
   @Test
   public void testSpliterator() throws Exception {
-    final List<Integer> integers = Arrays.asList(1, 2, 3);
+    final List<Integer> integers = List.of(1, 2, 3);
     final Spliterator<Integer> split = createFluentIterable(integers).spliterator();
     assertNotNull(split);
   }

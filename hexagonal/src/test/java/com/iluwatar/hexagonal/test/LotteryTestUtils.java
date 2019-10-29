@@ -23,14 +23,12 @@
 
 package com.iluwatar.hexagonal.test;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
+
+import java.util.Set;
 
 /**
  * 

@@ -28,7 +28,6 @@ import com.iluwatar.abstractdocument.domain.Part;
 import com.iluwatar.abstractdocument.domain.enums.Property;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +63,7 @@ public class DomainTest {
     Map<String, Object> carProperties = Map.of(
             Property.MODEL.toString(), TEST_CAR_MODEL,
             Property.PRICE.toString(), TEST_CAR_PRICE,
-            Property.PARTS.toString(), List.of(new HashMap<>(), new HashMap<>()));
+            Property.PARTS.toString(), List.of(Map.of(), Map.of()));
     Car car = new Car(carProperties);
 
     assertEquals(TEST_CAR_MODEL, car.getModel().get());

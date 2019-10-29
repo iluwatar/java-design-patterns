@@ -23,17 +23,14 @@
 
 package domainapp.fixture.scenarios;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import com.google.common.collect.Lists;
-
-import org.apache.isis.applib.fixturescripts.FixtureScript;
-
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.fixture.modules.simple.SimpleObjectCreate;
 import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
+import org.apache.isis.applib.fixturescripts.FixtureScript;
+
+import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -41,8 +38,8 @@ import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
  */
 public class RecreateSimpleObjects extends FixtureScript {
 
-  public final List<String> names = Collections.unmodifiableList(Arrays.asList("Foo", "Bar", "Baz",
-      "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
+  public final List<String> names = Collections.unmodifiableList(List.of("Foo", "Bar", "Baz",
+          "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
 
   // region > number (optional input)
   private Integer number;
