@@ -29,9 +29,6 @@ Use Hexagonal Architecture pattern when
 ## Tutorials
 * [Build Maintainable Systems With Hexagonal Architecture](http://java-design-patterns.com/blog/build-maintainable-systems-with-hexagonal-architecture/)
 
-## Presentations
-* [Hexagonal Architecture](https://github.com/iluwatar/java-design-patterns/tree/master/hexagonal/etc/presentation.html)
-
 ## Real world examples
 
 * [Apache Isis](https://isis.apache.org/) builds generic UI and REST API directly from the underlying domain objects

@@ -188,10 +188,6 @@ Use the Abstract Factory pattern when
 ## Tutorial
 * [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
 
-## Presentations
-
-* [Abstract Factory Pattern](etc/presentation.html) 
-
 
 ## Real world examples
 

@@ -69,10 +69,6 @@ Use the Factory Method pattern when
 * a class wants its subclasses to specify the objects it creates
 * classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
 
-## Presentations
-
-* [Factory Method Pattern](etc/presentation.html) 
-
 ## Real world examples
 
 * [java.util.Calendar](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
