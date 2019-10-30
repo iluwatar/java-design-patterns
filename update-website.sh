@@ -29,6 +29,13 @@ cd java-design-patterns-web
 
 # Init and update submodule to latest
 git submodule update --init --recursive
+cd 30-seconds-of-java
+git pull origin master
+cd ../patterns
+git pull origin master
+cd ../programming-principles
+git pull origin gh-pages
+cd ..
 
 # Setup Git
 git config user.name "Travis-CI"
