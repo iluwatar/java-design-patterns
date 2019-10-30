@@ -42,13 +42,13 @@ public interface Blacksmith {
 
 public class ElfBlacksmith implements Blacksmith {
   public Weapon manufactureWeapon(WeaponType weaponType) {
-    return ELF_ARSENAL.get(weaponType);
+    return ELFARSENAL.get(weaponType);
   }
 }
 
 public class OrcBlacksmith implements Blacksmith {
   public Weapon manufactureWeapon(WeaponType weaponType) {
-    return ORC_ARSENAL.get(weaponType);
+    return ORCARSENAL.get(weaponType);
   }
 }
 ```
