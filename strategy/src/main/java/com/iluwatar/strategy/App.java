@@ -28,15 +28,15 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * The Strategy pattern (also known as the policy pattern) is a software design pattern that enables
- * an algorithm's behavior to be selected at runtime.
- * <p>
- * Before Java 8 the Strategies needed to be separate classes forcing the developer
+ * <p>The Strategy pattern (also known as the policy pattern) is a software design pattern that
+ * enables an algorithm's behavior to be selected at runtime.</p>
+ *
+ * <p>Before Java 8 the Strategies needed to be separate classes forcing the developer
  * to write lots of boilerplate code. With modern Java it is easy to pass behavior
- * with method references and lambdas making the code shorter and more readable.
- * <p>
- * In this example ({@link DragonSlayingStrategy}) encapsulates an algorithm. The containing object
- * ({@link DragonSlayer}) can alter its behavior by changing its strategy.
+ * with method references and lambdas making the code shorter and more readable.</p>
+ *
+ * <p>In this example ({@link DragonSlayingStrategy}) encapsulates an algorithm. The containing
+ * object ({@link DragonSlayer}) can alter its behavior by changing its strategy.</p>
  * 
  */
 public class App {
@@ -44,7 +44,7 @@ public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   
   /**
-   * Program entry point
+   * Program entry point.
    * 
    * @param args command line args
    */
