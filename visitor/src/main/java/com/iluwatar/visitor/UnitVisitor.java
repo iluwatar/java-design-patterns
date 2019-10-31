@@ -24,9 +24,7 @@
 package com.iluwatar.visitor;
 
 /**
- * 
  * Visitor interface.
- * 
  */
 public interface UnitVisitor {
 

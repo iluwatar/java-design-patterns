@@ -26,9 +26,7 @@ package com.iluwatar.visitor;
 import org.junit.jupiter.api.Test;
 
 /**
- * 
- * Application test
- *
+ * Application test.
  */
 public class AppTest {
 
