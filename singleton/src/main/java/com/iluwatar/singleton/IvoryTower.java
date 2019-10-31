@@ -31,7 +31,8 @@ public final class IvoryTower {
   /**
    * Private constructor so nobody can instantiate the class.
    */
-  private IvoryTower() {}
+  private IvoryTower() {
+  }
 
   /**
    * Static to class instance of the class.

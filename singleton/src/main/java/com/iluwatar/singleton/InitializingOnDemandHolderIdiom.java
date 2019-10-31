@@ -41,7 +41,8 @@ public final class InitializingOnDemandHolderIdiom {
   /**
    * Private constructor.
    */
-  private InitializingOnDemandHolderIdiom() {}
+  private InitializingOnDemandHolderIdiom() {
+  }
 
   /**
    * Sigleton instance.
