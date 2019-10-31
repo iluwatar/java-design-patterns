@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * Spell strategy.
- *
  */
 public class SpellStrategy implements DragonSlayingStrategy {
 

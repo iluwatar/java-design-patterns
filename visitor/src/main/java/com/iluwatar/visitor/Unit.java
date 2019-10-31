@@ -24,9 +24,7 @@
 package com.iluwatar.visitor;
 
 /**
- * 
  * Interface for the nodes in hierarchy.
- * 
  */
 public abstract class Unit {
 
@@ -37,7 +35,7 @@ public abstract class Unit {
   }
 
   /**
-   * Accept visitor
+   * Accept visitor.
    */
   public void accept(UnitVisitor visitor) {
     for (var child : children) {
