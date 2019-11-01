@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.layers;
 
 import org.junit.jupiter.api.Test;
@@ -65,11 +66,10 @@ public class CakeTest {
     assertNotNull(cake.getLayers());
     assertTrue(cake.getLayers().isEmpty());
 
-    final Set<CakeLayer> expectedLayers = new HashSet<>();
-    expectedLayers.add(new CakeLayer("layer1", 1000));
-    expectedLayers.add(new CakeLayer("layer2", 2000));
-    expectedLayers.add(new CakeLayer("layer3", 3000));
-
+    final Set<CakeLayer> expectedLayers = Set.of(
+            new CakeLayer("layer1", 1000),
+            new CakeLayer("layer2", 2000),
+            new CakeLayer("layer3", 3000));
     cake.setLayers(expectedLayers);
     assertEquals(expectedLayers, cake.getLayers());
   }
@@ -110,7 +110,7 @@ public class CakeTest {
     cake.setTopping(topping);
     cake.addLayer(layer);
 
-    final String expected = "id=1234 topping=id=2345 name=topping calories=20 " 
+    final String expected = "id=1234 topping=id=2345 name=topping calories=20 "
             + "layers=[id=3456 name=layer calories=100]";
     assertEquals(expected, cake.toString());
 

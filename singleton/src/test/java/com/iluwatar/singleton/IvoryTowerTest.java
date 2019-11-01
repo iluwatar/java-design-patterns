@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.singleton;
 
 /**
- * Date: 12/29/15 - 19:23 PM
+ * Date: 12/29/15 - 19:23 PM.
  *
  * @author Jeroen Meulemeester
  */
 public class IvoryTowerTest extends SingletonTest<IvoryTower> {
 
   /**
-   * Create a new singleton test instance using the given 'getInstance' method
+   * Create a new singleton test instance using the given 'getInstance' method.
    */
   public IvoryTowerTest() {
     super(IvoryTower::getInstance);

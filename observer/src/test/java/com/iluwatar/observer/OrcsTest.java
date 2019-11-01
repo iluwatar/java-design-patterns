@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.observer;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,12 +35,11 @@ public class OrcsTest extends WeatherObserverTest<Orcs> {
 
   @Override
   public Collection<Object[]> dataProvider() {
-    final List<Object[]> testData = new ArrayList<>();
-    testData.add(new Object[]{WeatherType.SUNNY, "The sun hurts the orcs' eyes."});
-    testData.add(new Object[]{WeatherType.RAINY, "The orcs are dripping wet."});
-    testData.add(new Object[]{WeatherType.WINDY, "The orc smell almost vanishes in the wind."});
-    testData.add(new Object[]{WeatherType.COLD, "The orcs are freezing cold."});
-    return testData;
+    return List.of(
+            new Object[]{WeatherType.SUNNY, "The sun hurts the orcs' eyes."},
+            new Object[]{WeatherType.RAINY, "The orcs are dripping wet."},
+            new Object[]{WeatherType.WINDY, "The orc smell almost vanishes in the wind."},
+            new Object[]{WeatherType.COLD, "The orcs are freezing cold."});
   }
 
   /**

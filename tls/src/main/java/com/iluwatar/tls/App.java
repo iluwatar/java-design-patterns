@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2016 Thomas Bauer
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,9 @@
  */
 
 package com.iluwatar.tls;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -65,6 +68,8 @@ import java.util.concurrent.Future;
  * @author Thomas Bauer, 2017 
  */
 public class App {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   /**
    * Program entry point
    * 
@@ -100,11 +105,11 @@ public class App {
 
       // a correct run should deliver 20 times 15.12.2015
       // and a correct run shouldn't deliver any exception
-      System.out.println("The List dateList contains " + counterDateValues + " date values");
-      System.out.println("The List exceptionList contains " + counterExceptions + " exceptions");
+      LOGGER.info("The List dateList contains " + counterDateValues + " date values");
+      LOGGER.info("The List exceptionList contains " + counterExceptions + " exceptions");
 
     } catch (Exception e) {
-      System.out.println("Abnormal end of program. Program throws exception: " + e); 
+      LOGGER.info("Abnormal end of program. Program throws exception: " + e);
     }
     executor.shutdown();
   }
@@ -122,7 +127,7 @@ public class App {
       Calendar cal = Calendar.getInstance();
       cal.setTime(dt);
       // Formatted output of the date value: DD.MM.YYYY
-      System.out.println(
+      LOGGER.info(
           cal.get(Calendar.DAY_OF_MONTH) + "." + cal.get(Calendar.MONTH) + "." + +cal.get(Calendar.YEAR));
     }
     return counter;
@@ -139,7 +144,7 @@ public class App {
     int counter = 0;
     for (String ex : res.getExceptionList()) {
       counter++;
-      System.out.println(ex);
+      LOGGER.info(ex);
     }
     return counter;
   }

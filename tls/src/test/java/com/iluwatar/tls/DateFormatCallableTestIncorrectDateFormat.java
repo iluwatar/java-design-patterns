@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2016 Thomas Bauer
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,15 +23,14 @@
 
 package com.iluwatar.tls;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -76,7 +75,7 @@ public class DateFormatCallableTestIncorrectDateFormat {
   /**
    * Expected content of the list containing the exceptions created by the run of DateFormatRunnalbe
    */
-  List<String> expectedExceptions = Arrays.asList("class java.text.ParseException: Unparseable date: \"15.12.2015\"",
+  List<String> expectedExceptions = List.of("class java.text.ParseException: Unparseable date: \"15.12.2015\"",
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",

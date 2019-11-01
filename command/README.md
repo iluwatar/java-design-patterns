@@ -36,10 +36,6 @@ Use the Command pattern when you want to
 * implement callback functionality
 * implement the undo functionality
 
-## Presentations
-
-* [Command Pattern](etc/presentation.html) 
-
 ## Real world examples
 
 * [java.lang.Runnable](http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html)

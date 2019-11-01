@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.specification.app;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.creature.Dragon;
-import com.iluwatar.specification.creature.Goblin;
-import com.iluwatar.specification.creature.KillerBee;
-import com.iluwatar.specification.creature.Octopus;
-import com.iluwatar.specification.creature.Shark;
-import com.iluwatar.specification.creature.Troll;
+import com.iluwatar.specification.creature.*;
 import com.iluwatar.specification.property.Color;
 import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.selector.ColorSelector;
 import com.iluwatar.specification.selector.MovementSelector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -63,8 +57,7 @@ public class App {
   public static void main(String[] args) {
     // initialize creatures list
     List<Creature> creatures =
-        Arrays.asList(new Goblin(), new Octopus(), new Dragon(), new Shark(), new Troll(),
-            new KillerBee());
+          List.of(new Goblin(), new Octopus(), new Dragon(), new Shark(), new Troll(), new KillerBee());
     // find all walking creatures
     LOGGER.info("Find all walking creatures");
     List<Creature> walkingCreatures =
