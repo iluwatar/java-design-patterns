@@ -24,9 +24,7 @@
 package com.iluwatar.specification.property;
 
 /**
- * 
  * Movement property.
- *
  */
 public enum Movement {
 

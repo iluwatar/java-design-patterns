@@ -24,9 +24,7 @@
 package com.iluwatar.specification.property;
 
 /**
- *
  * Size property.
- *
  */
 public enum Size {
 

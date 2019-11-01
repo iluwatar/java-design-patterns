@@ -28,9 +28,7 @@ import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
 /**
- * 
  * Base class for concrete creatures.
- *
  */
 public abstract class AbstractCreature implements Creature {
 
@@ -40,7 +38,7 @@ public abstract class AbstractCreature implements Creature {
   private Color color;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public AbstractCreature(String name, Size size, Movement movement, Color color) {
     this.name = name;

@@ -23,26 +23,23 @@
 
 package com.iluwatar.specification.selector;
 
-import java.util.function.Predicate;
-
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Size;
+import java.util.function.Predicate;
 
 /**
- * 
  * Size selector.
- *
  */
 public class SizeSelector implements Predicate<Creature> {
 
-  private final Size s;
+  private final Size size;
 
   public SizeSelector(Size s) {
-    this.s = s;
+    this.size = s;
   }
 
   @Override
   public boolean test(Creature t) {
-    return t.getSize().equals(s);
+    return t.getSize().equals(size);
   }
 }

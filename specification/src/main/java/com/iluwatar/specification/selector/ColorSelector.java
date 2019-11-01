@@ -23,26 +23,23 @@
 
 package com.iluwatar.specification.selector;
 
-import java.util.function.Predicate;
-
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Color;
+import java.util.function.Predicate;
 
 /**
- * 
  * Color selector.
- *
  */
 public class ColorSelector implements Predicate<Creature> {
 
-  private final Color c;
+  private final Color color;
 
   public ColorSelector(Color c) {
-    this.c = c;
+    this.color = c;
   }
 
   @Override
   public boolean test(Creature t) {
-    return t.getColor().equals(c);
+    return t.getColor().equals(color);
   }
 }

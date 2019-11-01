@@ -28,9 +28,7 @@ import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
 /**
- * 
  * Octopus creature.
- *
  */
 public class Octopus extends AbstractCreature {
 
