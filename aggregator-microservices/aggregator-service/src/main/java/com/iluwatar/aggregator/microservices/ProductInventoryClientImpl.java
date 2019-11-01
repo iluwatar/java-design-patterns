@@ -42,7 +42,7 @@ public class ProductInventoryClientImpl implements ProductInventoryClient {
   private static final Logger LOGGER = LoggerFactory.getLogger(ProductInventoryClientImpl.class);
 
   @Override
-  public int getProductInventories() {
+  public Integer getProductInventories() {
     var response = "";
 
     var request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:51516/inventories")).build();
@@ -55,6 +55,10 @@ public class ProductInventoryClientImpl implements ProductInventoryClient {
     } catch (InterruptedException ie) {
       LOGGER.error("InterruptedException Occurred", ie);
     }
-    return Integer.parseInt(response);
+    if("".equalsIgnoreCase(response)) {
+        return null;
+    } else {
+        return Integer.parseInt(response);
+    }
   }
 }
