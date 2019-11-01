@@ -1,17 +1,17 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
- * <p>
+ * Copyright © 2014-2019 Ilkka Seppälä
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * <p>
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * <p>
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,19 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.abstractdocument;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Test;
 
 import com.iluwatar.abstractdocument.domain.Car;
 import com.iluwatar.abstractdocument.domain.Part;
 import com.iluwatar.abstractdocument.domain.enums.Property;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Part and Car
@@ -48,10 +47,10 @@ public class DomainTest {
 
   @Test
   public void shouldConstructPart() {
-    Map<String, Object> partProperties = new HashMap<>();
-    partProperties.put(Property.TYPE.toString(), TEST_PART_TYPE);
-    partProperties.put(Property.MODEL.toString(), TEST_PART_MODEL);
-    partProperties.put(Property.PRICE.toString(), TEST_PART_PRICE);
+    Map<String, Object> partProperties = Map.of(
+            Property.TYPE.toString(), TEST_PART_TYPE,
+            Property.MODEL.toString(), TEST_PART_MODEL,
+            Property.PRICE.toString(), TEST_PART_PRICE);
     Part part = new Part(partProperties);
 
     assertEquals(TEST_PART_TYPE, part.getType().get());
@@ -61,10 +60,10 @@ public class DomainTest {
 
   @Test
   public void shouldConstructCar() {
-    Map<String, Object> carProperties = new HashMap<>();
-    carProperties.put(Property.MODEL.toString(), TEST_CAR_MODEL);
-    carProperties.put(Property.PRICE.toString(), TEST_CAR_PRICE);
-    carProperties.put(Property.PARTS.toString(), Arrays.asList(new HashMap<>(), new HashMap<>()));
+    Map<String, Object> carProperties = Map.of(
+            Property.MODEL.toString(), TEST_CAR_MODEL,
+            Property.PRICE.toString(), TEST_CAR_PRICE,
+            Property.PARTS.toString(), List.of(Map.of(), Map.of()));
     Car car = new Car(carProperties);
 
     assertEquals(TEST_CAR_MODEL, car.getModel().get());

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.singleton;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,19 +36,17 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.function.Supplier;
 
-import static java.time.Duration.ofMillis;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTimeout;
+import org.junit.jupiter.api.Test;
 
 /**
- * This class provides several test case that test singleton construction.
+ * <p>This class provides several test case that test singleton construction.</p>
  *
- * The first proves that multiple calls to the singleton getInstance object are the same when called
- * in the SAME thread. The second proves that multiple calls to the singleton getInstance object are
- * the same when called in the DIFFERENT thread.
+ * <p>The first proves that multiple calls to the singleton getInstance object are the same when
+ * called in the SAME thread. The second proves that multiple calls to the singleton getInstance
+ * object are the same when called in the DIFFERENT thread.</p>
  *
- * Date: 12/29/15 - 19:25 PM
+ * <p>Date: 12/29/15 - 19:25 PM</p>
+ *
  * @param <S> Supplier method generating singletons
  * @author Jeroen Meulemeester
  * @author Richard Jones
@@ -53,12 +54,12 @@ import static org.junit.jupiter.api.Assertions.assertTimeout;
 public abstract class SingletonTest<S> {
 
   /**
-   * The singleton's getInstance method
+   * The singleton's getInstance method.
    */
   private final Supplier<S> singletonInstanceMethod;
 
   /**
-   * Create a new singleton test instance using the given 'getInstance' method
+   * Create a new singleton test instance using the given 'getInstance' method.
    *
    * @param singletonInstanceMethod The singleton's getInstance method
    */
@@ -67,7 +68,7 @@ public abstract class SingletonTest<S> {
   }
 
   /**
-   * Test the singleton in a non-concurrent setting
+   * Test the singleton in a non-concurrent setting.
    */
   @Test
   public void testMultipleCallsReturnTheSameObjectInSameThread() {
@@ -82,7 +83,7 @@ public abstract class SingletonTest<S> {
   }
 
   /**
-   * Test singleton instance in a concurrent setting
+   * Test singleton instance in a concurrent setting.
    */
   @Test
   public void testMultipleCallsReturnTheSameObjectInDifferentThreads() throws Exception {

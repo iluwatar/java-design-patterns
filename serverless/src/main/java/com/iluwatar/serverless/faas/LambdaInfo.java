@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.serverless.faas;
 
 import java.io.Serializable;
@@ -129,7 +130,7 @@ public class LambdaInfo implements Serializable {
 
   @Override
   public int hashCode() {
-    int result = awsRequestId != null ? awsRequestId.hashCode() : 0;
+    var result = awsRequestId != null ? awsRequestId.hashCode() : 0;
     result = 31 * result + (logGroupName != null ? logGroupName.hashCode() : 0);
     result = 31 * result + (logStreamName != null ? logStreamName.hashCode() : 0);
     result = 31 * result + (functionName != null ? functionName.hashCode() : 0);

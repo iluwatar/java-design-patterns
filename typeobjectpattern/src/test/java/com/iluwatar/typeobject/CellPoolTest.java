@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,10 +35,10 @@ class CellPoolTest {
 
   @Test
   void assignRandomCandyTypesTest() {
-    CellPool cp = new CellPool(10);
-    Hashtable<String, Boolean> ht = new Hashtable<String, Boolean>();
-    int parentTypes = 0;
-    for (int i = 0; i < cp.randomCode.length; i++) {
+    var cp = new CellPool(10);
+    var ht = new Hashtable<String, Boolean>();
+    var parentTypes = 0;
+    for (var i = 0; i < cp.randomCode.length; i++) {
       if (ht.get(cp.randomCode[i].name) == null) {
         ht.put(cp.randomCode[i].name, true);
       }

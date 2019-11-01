@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -54,11 +54,11 @@ public class Cell {
   }
   
   void fillThisSpace(CellPool pool, Cell[][] cellMatrix) {
-    for (int y = this.yIndex; y > 0; y--) {
+    for (var y = this.yIndex; y > 0; y--) {
       cellMatrix[y][this.xIndex] = cellMatrix[y - 1][this.xIndex];
       cellMatrix[y][this.xIndex].yIndex = y;
     }
-    Cell newC = pool.getNewCell();
+    var newC = pool.getNewCell();
     cellMatrix[0][this.xIndex] = newC;
     cellMatrix[0][this.xIndex].xIndex = this.xIndex;
     cellMatrix[0][this.xIndex].yIndex = 0;
@@ -79,7 +79,7 @@ public class Cell {
       return 0;
     } else {
       if (this.candy.name.equals(c.candy.name)) {
-        int pointsWon = this.candy.getPoints() + c.candy.getPoints();
+        var pointsWon = this.candy.getPoints() + c.candy.getPoints();
         handleCrush(c,pool,cellMatrix);
         return pointsWon;
       } else {
