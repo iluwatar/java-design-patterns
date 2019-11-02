@@ -25,56 +25,50 @@ package com.iluwatar.saga.orchestration;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Saga representation.
+ * Saca consists of chapters.
+ * Every Chapter is executed a certain service.
+ */
 public class Saga {
 
     private List<Chapter> chapters;
-    private Result result;
 
     public Saga() {
         this.chapters = new ArrayList<>();
-        this.result = Result.INPROCESS;
     }
 
-    public void setResult(Result result) {
-        this.result = result;
-    }
 
-    public boolean isSuccess(){
-        return result == Result.FINISHED;
-    }
 
-    public boolean isFinished(){
-        return result != Result.INPROCESS;
-    }
-
-    public Saga chapter(String name, int timeoutInSec) {
-        this.chapters.add(new Chapter(name, timeoutInSec));
+    public Saga chapter(String name) {
+        this.chapters.add(new Chapter(name));
         return this;
     }
 
+
     public Chapter get(int idx) {
-        if (chapters.size() < idx || idx < 0) {
-            throw new SagaException("idx shoud be less then ch size or more then 0");
-        }
         return chapters.get(idx);
     }
 
+    public boolean isPresent(int idx) {
+        return idx >= 0 && idx < chapters.size();
+    }
 
 
     public static Saga create() {
         return new Saga();
     }
 
-    public enum Result{
-        FINISHED,CANCELED, INPROCESS;
+    public enum Result {
+        FINISHED, ROLLBACK, CRASHED
     }
-    private static class Chapter {
-        String name;
-        int timeoutInSec;
 
-        public Chapter(String name, int timeoutInSec) {
+    public static class Chapter {
+        String name;
+
+        public Chapter(String name) {
             this.name = name;
-            this.timeoutInSec = timeoutInSec;
         }
+
     }
 }

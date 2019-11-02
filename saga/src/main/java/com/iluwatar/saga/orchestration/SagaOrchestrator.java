@@ -1,30 +1,139 @@
+/*
+ * The MIT License
+ * Copyright © 2014-2019 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.saga.orchestration;
 
-import java.util.Objects;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.util.Optional;
+
+import static com.iluwatar.saga.orchestration.Saga.Result.*;
+
+/**
+ * The orchestrator that manages all the transactions and directs
+ * the participant services to execute local transactions based on events.
+ */
 public class SagaOrchestrator {
-
-    private ExecutorService executor;
-    private AtomicBoolean isNormalFlow;
-    private AtomicBoolean isFinished;
-    private AtomicInteger currentState;
+    private static final Logger logger = LoggerFactory.getLogger(SagaOrchestrator.class);
     private final Saga saga;
+    private final ServiceDiscoveryService sd;
+    private final CurrentState state;
 
-    public SagaOrchestrator(Saga saga) {
+
+    public SagaOrchestrator(Saga saga, ServiceDiscoveryService sd) {
         this.saga = saga;
-        this.isNormalFlow = new AtomicBoolean(true);
-        this.isFinished = new AtomicBoolean(false);
-        this.currentState = new AtomicInteger(0);
-        this.executor = Executors.newFixedThreadPool(20);
+        this.sd = sd;
+        this.state = new CurrentState();
     }
 
-    public <K> Saga.Result kickOff(K value) {
+    /**
+     *
+     * @param value incoming value
+     * @param <K> type for incoming value
+     * @return result @see {@link Saga.Result}
+     */
+    @SuppressWarnings("unchecked")
+    public <K> Saga.Result execute(K value) {
+        state.cleanUp();
+        logger.info(" The new saga is about to start");
+        Saga.Result result = FINISHED;
+        K tempVal = value;
+
+        while (true) {
+            int next = state.current();
+            Saga.Chapter ch = saga.get(next);
+            Optional<Chapter> srvOpt = sd.find(ch.name);
+
+            if (!srvOpt.isPresent()) {
+                state.directionToBack();
+                state.back();
+                continue;
+            }
+
+            Chapter srv = srvOpt.get();
+
+            if (state.isForward()) {
+                ChapterResult processRes = srv.process(tempVal);
+                if (processRes.isSuccess()) {
+                    next = state.forward();
+                    tempVal = (K) processRes.getValue();
+                } else {
+                    state.directionToBack();
+                }
+            } else {
+                ChapterResult rlRes = srv.rollback(tempVal);
+                if (rlRes.isSuccess()) {
+                    next = state.back();
+                    tempVal = (K) rlRes.getValue();
+                } else {
+                    result = CRASHED;
+                    next = state.back();
+                }
+            }
+
+
+            if (!saga.isPresent(next)) {
+                return state.isForward() ? FINISHED : result == CRASHED ? CRASHED : ROLLBACK;
+            }
+        }
 
     }
 
+
+    private static class CurrentState {
+        int currentNumber;
+        boolean isForward;
+
+        void cleanUp() {
+            currentNumber = 0;
+            isForward = true;
+        }
+
+        CurrentState() {
+            this.currentNumber = 0;
+            this.isForward = true;
+        }
+
+
+        boolean isForward() {
+            return isForward;
+        }
+
+        void directionToBack() {
+            isForward = false;
+        }
+
+        int forward() {
+            return ++currentNumber;
+        }
+
+        int back() {
+            return --currentNumber;
+        }
+
+        int current() {
+            return currentNumber;
+        }
+    }
 
 }

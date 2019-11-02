@@ -26,10 +26,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * The class representing a service discovery pattern.
+ */
 public class ServiceDiscoveryService {
     private Map<String, Chapter<?>> services;
 
-    public Optional<Chapter<?>> find(String service) {
+    public Optional<Chapter> find(String service) {
         return Optional.ofNullable(services.getOrDefault(service, null));
     }
 
