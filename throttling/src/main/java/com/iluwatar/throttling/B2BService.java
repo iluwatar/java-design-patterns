@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.throttling;
 
 import org.slf4j.Logger;
@@ -47,8 +48,8 @@ class B2BService {
    * @return customer id which is randomly generated
    */
   public int dummyCustomerApi(Tenant tenant) {
-    String tenantName = tenant.getName();
-    long count = callsCount.getCount(tenantName);
+    var tenantName = tenant.getName();
+    var count = callsCount.getCount(tenantName);
     LOGGER.debug("Counter for {} : {} ", tenant.getName(), count);
     if (count >= tenant.getAllowedCallsPerSecond()) {
       LOGGER.error("API access per second limit reached for: {}", tenantName);

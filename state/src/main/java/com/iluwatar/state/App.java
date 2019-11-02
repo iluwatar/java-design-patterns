@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.state;
 
 /**
@@ -40,7 +41,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    Mammoth mammoth = new Mammoth();
+    var mammoth = new Mammoth();
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();

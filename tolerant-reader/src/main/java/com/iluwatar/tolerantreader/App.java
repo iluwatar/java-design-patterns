@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.tolerantreader;
 
 import org.slf4j.Logger;
@@ -51,24 +52,24 @@ public class App {
    */
   public static void main(String[] args) throws IOException, ClassNotFoundException {
     // Write V1
-    RainbowFish fishV1 = new RainbowFish("Zed", 10, 11, 12);
+    var fishV1 = new RainbowFish("Zed", 10, 11, 12);
     LOGGER.info("fishV1 name={} age={} length={} weight={}", fishV1.getName(),
         fishV1.getAge(), fishV1.getLengthMeters(), fishV1.getWeightTons());
     RainbowFishSerializer.writeV1(fishV1, "fish1.out");
     // Read V1
-    RainbowFish deserializedFishV1 = RainbowFishSerializer.readV1("fish1.out");
+    var deserializedRainbowFishV1 = RainbowFishSerializer.readV1("fish1.out");
     LOGGER.info("deserializedFishV1 name={} age={} length={} weight={}",
-        deserializedFishV1.getName(), deserializedFishV1.getAge(),
-        deserializedFishV1.getLengthMeters(), deserializedFishV1.getWeightTons());
+            deserializedRainbowFishV1.getName(), deserializedRainbowFishV1.getAge(),
+            deserializedRainbowFishV1.getLengthMeters(), deserializedRainbowFishV1.getWeightTons());
     // Write V2
-    RainbowFishV2 fishV2 = new RainbowFishV2("Scar", 5, 12, 15, true, true, true);
+    var fishV2 = new RainbowFishV2("Scar", 5, 12, 15, true, true, true);
     LOGGER.info(
         "fishV2 name={} age={} length={} weight={} sleeping={} hungry={} angry={}",
         fishV2.getName(), fishV2.getAge(), fishV2.getLengthMeters(), fishV2.getWeightTons(),
         fishV2.getHungry(), fishV2.getAngry(), fishV2.getSleeping());
     RainbowFishSerializer.writeV2(fishV2, "fish2.out");
     // Read V2 with V1 method
-    RainbowFish deserializedFishV2 = RainbowFishSerializer.readV1("fish2.out");
+    var deserializedFishV2 = RainbowFishSerializer.readV1("fish2.out");
     LOGGER.info("deserializedFishV2 name={} age={} length={} weight={}",
         deserializedFishV2.getName(), deserializedFishV2.getAge(),
         deserializedFishV2.getLengthMeters(), deserializedFishV2.getWeightTons());

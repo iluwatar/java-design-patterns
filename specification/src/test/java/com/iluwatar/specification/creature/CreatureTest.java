@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.specification.creature;
 
 import com.iluwatar.specification.property.Color;
@@ -28,8 +29,8 @@ import com.iluwatar.specification.property.Size;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -45,7 +46,7 @@ public class CreatureTest {
    * @return The tested {@link Creature} instance and its expected specs
    */
   public static Collection<Object[]> dataProvider() {
-    return Arrays.asList(
+    return List.of(
             new Object[]{new Dragon(), "Dragon", Size.LARGE, Movement.FLYING, Color.RED},
             new Object[]{new Goblin(), "Goblin", Size.SMALL, Movement.WALKING, Color.GREEN},
             new Object[]{new KillerBee(), "KillerBee", Size.SMALL, Movement.FLYING, Color.LIGHT},
@@ -75,15 +76,13 @@ public class CreatureTest {
 
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testGetColor(Creature testedCreature, String name, Size size, Movement movement,
-                           Color color) {
+  public void testGetColor(Creature testedCreature, String name, Size size, Movement movement, Color color) {
     assertEquals(color, testedCreature.getColor());
   }
 
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testToString(Creature testedCreature, String name, Size size, Movement movement,
-                           Color color) {
+  public void testToString(Creature testedCreature, String name, Size size, Movement movement, Color color) {
     final String toString = testedCreature.toString();
     assertNotNull(toString);
     assertEquals(

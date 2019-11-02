@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,9 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.layers;
 
-import java.util.Arrays;
+import java.util.List;
 
 /**
  * 
@@ -98,16 +99,18 @@ public class App {
     cakeBakingService.saveNewTopping(new CakeToppingInfo("cherry", 350));
 
     CakeInfo cake1 =
-        new CakeInfo(new CakeToppingInfo("candies", 0), Arrays.asList(new CakeLayerInfo(
-            "chocolate", 0), new CakeLayerInfo("banana", 0), new CakeLayerInfo("strawberry", 0)));
+            new CakeInfo(new CakeToppingInfo("candies", 0), List.of(
+                    new CakeLayerInfo("chocolate", 0),
+                    new CakeLayerInfo("banana", 0),
+                    new CakeLayerInfo("strawberry", 0)));
     try {
       cakeBakingService.bakeNewCake(cake1);
     } catch (CakeBakingException e) {
       e.printStackTrace();
     }
     CakeInfo cake2 =
-        new CakeInfo(new CakeToppingInfo("cherry", 0), Arrays.asList(
-            new CakeLayerInfo("vanilla", 0), new CakeLayerInfo("lemon", 0), new CakeLayerInfo(
+            new CakeInfo(new CakeToppingInfo("cherry", 0), List.of(
+                    new CakeLayerInfo("vanilla", 0), new CakeLayerInfo("lemon", 0), new CakeLayerInfo(
                 "strawberry", 0)));
     try {
       cakeBakingService.bakeNewCake(cake2);

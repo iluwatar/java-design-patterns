@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,13 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.singleton;
 
 /**
- * Enum based singleton implementation. Effective Java 2nd Edition (Joshua Bloch) p. 18
+ * <p>Enum based singleton implementation. Effective Java 2nd Edition (Joshua Bloch) p. 18</p>
  *
- * This implementation is thread safe, however adding any other method and its thread safety
- * is developers responsibility.
+ * <p>This implementation is thread safe, however adding any other method and its thread safety
+ * is developers responsibility.</p>
  */
 public enum EnumIvoryTower {
 

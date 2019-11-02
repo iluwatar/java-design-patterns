@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.magic;
 
 import com.iluwatar.servicelayer.spell.Spell;
@@ -96,11 +97,10 @@ public class MagicServiceImplTest {
   public void testFindWizardsWithSpellbook() throws Exception {
     final String bookname = "bookname";
     final Spellbook spellbook = mock(Spellbook.class);
-    final Set<Wizard> wizards = new HashSet<>();
-    wizards.add(mock(Wizard.class));
-    wizards.add(mock(Wizard.class));
-    wizards.add(mock(Wizard.class));
-
+    final Set<Wizard> wizards = Set.of(
+            mock(Wizard.class),
+            mock(Wizard.class),
+            mock(Wizard.class));
     when(spellbook.getWizards()).thenReturn(wizards);
 
     final SpellbookDao spellbookDao = mock(SpellbookDao.class);
@@ -125,11 +125,10 @@ public class MagicServiceImplTest {
 
   @Test
   public void testFindWizardsWithSpell() throws Exception {
-    final Set<Wizard> wizards = new HashSet<>();
-    wizards.add(mock(Wizard.class));
-    wizards.add(mock(Wizard.class));
-    wizards.add(mock(Wizard.class));
-
+    final Set<Wizard> wizards = Set.of(
+            mock(Wizard.class),
+            mock(Wizard.class),
+            mock(Wizard.class));
     final Spellbook spellbook = mock(Spellbook.class);
     when(spellbook.getWizards()).thenReturn(wizards);
 

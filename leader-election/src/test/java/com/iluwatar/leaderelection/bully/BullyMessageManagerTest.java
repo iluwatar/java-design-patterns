@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.leaderelection.bully;
 
 import com.iluwatar.leaderelection.*;
-import com.iluwatar.leaderelection.ring.RingInstance;
-import com.iluwatar.leaderelection.ring.RingMessageManager;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
 
@@ -42,8 +40,7 @@ public class BullyMessageManagerTest {
   @Test
   public void testSendHeartbeatMessage() {
     Instance instance1 = new BullyInstance(null, 1, 1);
-    Map<Integer, Instance> instanceMap = new HashMap<>();
-    instanceMap.put(1, instance1);
+    Map<Integer, Instance> instanceMap = Map.of(1, instance1);
     MessageManager messageManager = new BullyMessageManager(instanceMap);
     assertTrue(messageManager.sendHeartbeatMessage(1));
   }
@@ -55,11 +52,7 @@ public class BullyMessageManagerTest {
       Instance instance2 = new BullyInstance(null, 1, 2);
       Instance instance3 = new BullyInstance(null, 1, 3);
       Instance instance4 = new BullyInstance(null, 1, 4);
-      Map<Integer, Instance> instanceMap = new HashMap<>();
-      instanceMap.put(1, instance1);
-      instanceMap.put(2, instance2);
-      instanceMap.put(3, instance3);
-      instanceMap.put(4, instance4);
+      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
       instance1.setAlive(false);
       MessageManager messageManager = new BullyMessageManager(instanceMap);
       boolean result = messageManager.sendElectionMessage(3, "3");
@@ -83,11 +76,7 @@ public class BullyMessageManagerTest {
     Instance instance2 = new BullyInstance(null, 1, 2);
     Instance instance3 = new BullyInstance(null, 1, 3);
     Instance instance4 = new BullyInstance(null, 1, 4);
-    Map<Integer, Instance> instanceMap = new HashMap<>();
-    instanceMap.put(1, instance1);
-    instanceMap.put(2, instance2);
-    instanceMap.put(3, instance3);
-    instanceMap.put(4, instance4);
+    Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
     instance1.setAlive(false);
     MessageManager messageManager = new BullyMessageManager(instanceMap);
     boolean result = messageManager.sendElectionMessage(2, "2");
@@ -101,11 +90,7 @@ public class BullyMessageManagerTest {
       Instance instance2 = new BullyInstance(null, 1, 2);
       Instance instance3 = new BullyInstance(null, 1, 3);
       Instance instance4 = new BullyInstance(null, 1, 4);
-      Map<Integer, Instance> instanceMap = new HashMap<>();
-      instanceMap.put(1, instance1);
-      instanceMap.put(2, instance2);
-      instanceMap.put(3, instance3);
-      instanceMap.put(4, instance4);
+      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
       instance1.setAlive(false);
       MessageManager messageManager = new BullyMessageManager(instanceMap);
       messageManager.sendLeaderMessage(2, 2);
@@ -128,10 +113,7 @@ public class BullyMessageManagerTest {
       Instance instance1 = new BullyInstance(null, 1, 1);
       Instance instance2 = new BullyInstance(null, 1, 2);
       Instance instance3 = new BullyInstance(null, 1, 3);
-      Map<Integer, Instance> instanceMap = new HashMap<>();
-      instanceMap.put(1, instance1);
-      instanceMap.put(2, instance2);
-      instanceMap.put(3, instance3);
+      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3);
       MessageManager messageManager = new BullyMessageManager(instanceMap);
       messageManager.sendHeartbeatInvokeMessage(2);
       Message message = new Message(MessageType.HEARTBEAT_INVOKE, "");

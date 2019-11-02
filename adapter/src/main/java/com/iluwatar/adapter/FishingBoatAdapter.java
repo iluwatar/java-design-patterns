@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.adapter;
 
 /**
  *
- * Adapter class. Adapts the interface of the device ({@link FishingBoat}) into {@link RowingBoat}
- * interface expected by the client ({@link Captain}).
+ * Adapter class. Adapts the interface of the device ({@link FishingBoat})
+ * into {@link RowingBoat} interface expected by the client ({@link Captain}).
  *
  */
 public class FishingBoatAdapter implements RowingBoat {
@@ -36,8 +37,7 @@ public class FishingBoatAdapter implements RowingBoat {
     boat = new FishingBoat();
   }
 
-  @Override
-  public void row() {
+  public final void row() {
     boat.sail();
   }
 }

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,9 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.collectionpipeline;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,7 +37,7 @@ public class CarFactory {
    * @return {@link List} of {@link Car}
    */
   public static List<Car> createCars() {
-    return Arrays.asList(new Car("Jeep", "Wrangler", 2011, Category.JEEP),
+    return List.of(new Car("Jeep", "Wrangler", 2011, Category.JEEP),
         new Car("Jeep", "Comanche", 1990, Category.JEEP),
         new Car("Dodge", "Avenger", 2010, Category.SEDAN),
         new Car("Buick", "Cascada", 2016, Category.CONVERTIBLE),

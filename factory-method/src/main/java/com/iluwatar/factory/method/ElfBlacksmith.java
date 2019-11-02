@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,7 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.factory.method;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
@@ -29,9 +33,17 @@ package com.iluwatar.factory.method;
  */
 public class ElfBlacksmith implements Blacksmith {
 
+  private static Map<WeaponType, ElfWeapon> ELFARSENAL;
+  static {
+	ELFARSENAL= new HashMap<>(WeaponType.values().length);
+	for (WeaponType type : WeaponType.values()) {
+		ELFARSENAL.put(type, new ElfWeapon(type));
+	}
+  }
+  
   @Override
   public Weapon manufactureWeapon(WeaponType weaponType) {
-    return new ElfWeapon(weaponType);
+    return ELFARSENAL.get(weaponType);
   }
-
+  
 }
