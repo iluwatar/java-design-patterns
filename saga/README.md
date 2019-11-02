@@ -16,7 +16,8 @@ This pattern has a similar goal with two-phase commit (XA transaction)
 
 ## Intent
 This pattern is used in distributed services to perform a group of operations atomically.
-This is an analog of transaction in a database but in terms of microservices architecture this is performed in a distributed environment
+This is an analog of transaction in a database but in terms of microservices architecture this is executed 
+in a distributed environment
 
 ## Explanation
 A saga is a sequence of local transactions in a certain context. If one transaction fails for some reason, 
