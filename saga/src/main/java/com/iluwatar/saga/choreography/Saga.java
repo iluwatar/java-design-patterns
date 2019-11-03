@@ -20,10 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.saga.orchestration;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.iluwatar.saga.choreography;
 
 /**
  * Saga representation.
@@ -32,46 +29,6 @@ import java.util.List;
  */
 public class Saga {
 
-    private List<Chapter> chapters;
-
-    public Saga() {
-        this.chapters = new ArrayList<>();
-    }
 
 
-
-    public Saga chapter(String name) {
-        this.chapters.add(new Chapter(name));
-        return this;
-    }
-
-
-    public Chapter get(int idx) {
-        return chapters.get(idx);
-    }
-
-    public boolean isPresent(int idx) {
-        return idx >= 0 && idx < chapters.size();
-    }
-
-
-    public static Saga create() {
-        return new Saga();
-    }
-
-    public enum Result {
-        FINISHED, ROLLBACK, CRASHED
-    }
-
-    public static class Chapter {
-        String name;
-
-        public Chapter(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-    }
 }

@@ -20,58 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.saga.orchestration;
+package com.iluwatar.saga.choreography;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.iluwatar.saga.orchestration.ChapterResult;
 
 /**
- * Saga representation.
- * Saga consists of chapters.
- * Every Chapter is executed a certain service.
+ * Chapter is an interface representing a contract for an external service.
+ * @param <K> is type for passing params
  */
-public class Saga {
+public interface Chapter<K> {
 
-    private List<Chapter> chapters;
+    /**
+     * @return service name.
+     */
+    String getName();
 
-    public Saga() {
-        this.chapters = new ArrayList<>();
-    }
+    /**
+     * The operation executed in general case.
+     * @param value incoming value
+     * @return result {@link ChapterResult}
+     */
+    ChapterResult<K> process(K value);
 
-
-
-    public Saga chapter(String name) {
-        this.chapters.add(new Chapter(name));
-        return this;
-    }
-
-
-    public Chapter get(int idx) {
-        return chapters.get(idx);
-    }
-
-    public boolean isPresent(int idx) {
-        return idx >= 0 && idx < chapters.size();
-    }
+    /**
+     * The operation executed in rollback case.
+     * @param value incoming value
+     * @return result {@link ChapterResult}
+     */
+    ChapterResult<K> rollback(K value);
 
 
-    public static Saga create() {
-        return new Saga();
-    }
-
-    public enum Result {
-        FINISHED, ROLLBACK, CRASHED
-    }
-
-    public static class Chapter {
-        String name;
-
-        public Chapter(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-    }
 }
