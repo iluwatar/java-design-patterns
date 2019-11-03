@@ -39,7 +39,7 @@ public class SagaOrchestratorInternallyTest {
                         .discover(new Service4());
     }
 
-    class Service1 extends OrchestrationService<Integer> {
+    class Service1 extends Service<Integer> {
 
         @Override
         public String getName() {
@@ -59,7 +59,7 @@ public class SagaOrchestratorInternallyTest {
         }
     }
 
-    class Service2 extends OrchestrationService<Integer> {
+    class Service2 extends Service<Integer> {
 
         @Override
         public String getName() {
@@ -78,7 +78,7 @@ public class SagaOrchestratorInternallyTest {
         }
     }
 
-    class Service3 extends OrchestrationService<Integer> {
+    class Service3 extends Service<Integer> {
 
         @Override
         public String getName() {
@@ -97,7 +97,7 @@ public class SagaOrchestratorInternallyTest {
         }
     }
 
-    class Service4 extends OrchestrationService<Integer> {
+    class Service4 extends Service<Integer> {
 
         @Override
         public String getName() {

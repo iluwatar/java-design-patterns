@@ -25,7 +25,7 @@ package com.iluwatar.saga.orchestration;
 /**
  * Class representing a service to book a hotel
  */
-public class HotelBookingService extends OrchestrationService<String> {
+public class HotelBookingService extends Service<String> {
     @Override
     public String getName() {
         return "booking a Hotel";

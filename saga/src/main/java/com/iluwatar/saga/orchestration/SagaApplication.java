@@ -41,7 +41,7 @@ import org.slf4j.LoggerFactory;
  *
  * @see Saga
  * @see SagaOrchestrator
- * @see OrchestrationService
+ * @see Service
  */
 public class SagaApplication {
     private static final Logger logger = LoggerFactory.getLogger(SagaApplication.class);
