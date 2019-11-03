@@ -20,14 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.saga.orchestration;
+package com.iluwatar.saga;
+
+import com.iluwatar.saga.orchestration.Chapter;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /**
- * Class representing a service to book a fly
+ * The class representing a service discovery pattern.
  */
-public class FlyBookingService extends OrchestrationService<String> {
-    @Override
-    public String getName() {
-        return "booking a Fly";
+public class ServiceDiscoveryService {
+    private Map<String, Chapter<?>> services;
+
+    public Optional<Chapter> find(String service) {
+        return Optional.ofNullable(services.getOrDefault(service, null));
     }
+
+    public ServiceDiscoveryService discover(Chapter<?> chapterService) {
+        services.put(chapterService.getName(), chapterService);
+        return this;
+    }
+
+    public ServiceDiscoveryService() {
+        this.services = new HashMap<>();
+    }
+
+
 }

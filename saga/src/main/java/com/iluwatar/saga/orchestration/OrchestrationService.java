@@ -30,8 +30,8 @@ import org.slf4j.LoggerFactory;
  * implementing a general contract @see {@link Chapter}
  * @param <K> type of incoming param
  */
-public abstract class Service<K> implements Chapter<K> {
-    protected static final Logger logger = LoggerFactory.getLogger(Service.class);
+public abstract class OrchestrationService<K> implements Chapter<K> {
+    protected static final Logger logger = LoggerFactory.getLogger(OrchestrationService.class);
 
     @Override
     public abstract String getName();

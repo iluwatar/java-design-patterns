@@ -24,6 +24,7 @@
 package com.iluwatar.saga.orchestration;
 
 
+import com.iluwatar.saga.ServiceDiscoveryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +41,7 @@ import org.slf4j.LoggerFactory;
  *
  * @see Saga
  * @see SagaOrchestrator
- * @see Service
+ * @see OrchestrationService
  */
 public class SagaApplication {
     private static final Logger logger = LoggerFactory.getLogger(SagaApplication.class);

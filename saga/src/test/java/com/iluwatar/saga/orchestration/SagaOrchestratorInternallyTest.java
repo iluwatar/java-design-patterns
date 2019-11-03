@@ -1,5 +1,6 @@
 package com.iluwatar.saga.orchestration;
 
+import com.iluwatar.saga.ServiceDiscoveryService;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,7 +39,7 @@ public class SagaOrchestratorInternallyTest {
                         .discover(new Service4());
     }
 
-    class Service1 extends Service<Integer> {
+    class Service1 extends OrchestrationService<Integer> {
 
         @Override
         public String getName() {
@@ -58,7 +59,7 @@ public class SagaOrchestratorInternallyTest {
         }
     }
 
-    class Service2 extends Service<Integer> {
+    class Service2 extends OrchestrationService<Integer> {
 
         @Override
         public String getName() {
@@ -77,7 +78,7 @@ public class SagaOrchestratorInternallyTest {
         }
     }
 
-    class Service3 extends Service<Integer> {
+    class Service3 extends OrchestrationService<Integer> {
 
         @Override
         public String getName() {
@@ -96,7 +97,7 @@ public class SagaOrchestratorInternallyTest {
         }
     }
 
-    class Service4 extends Service<Integer> {
+    class Service4 extends OrchestrationService<Integer> {
 
         @Override
         public String getName() {

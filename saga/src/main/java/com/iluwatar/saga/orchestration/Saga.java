@@ -70,5 +70,8 @@ public class Saga {
             this.name = name;
         }
 
+        public String getName() {
+            return name;
+        }
     }
 }

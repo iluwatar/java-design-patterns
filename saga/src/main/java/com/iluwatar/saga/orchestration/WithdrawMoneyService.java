@@ -25,7 +25,7 @@ package com.iluwatar.saga.orchestration;
 /**
  * Class representing a service to withdraw a money
  */
-public class WithdrawMoneyService extends Service<String> {
+public class WithdrawMoneyService extends OrchestrationService<String> {
     @Override
     public String getName() {
         return "withdrawing Money";

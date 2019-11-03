@@ -20,30 +20,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.saga.orchestration;
+package com.iluwatar.saga.choreography;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import com.iluwatar.saga.orchestration.ChapterResult;
 
 /**
- * The class representing a service discovery pattern.
+ * Chapter is an interface representing a contract for an external service.
+ * @param <K> is type for passing params
  */
-public class ServiceDiscoveryService {
-    private Map<String, Chapter<?>> services;
+public interface Chapter<K> {
 
-    public Optional<Chapter> find(String service) {
-        return Optional.ofNullable(services.getOrDefault(service, null));
-    }
+    /**
+     * @return service name.
+     */
+    String getName();
 
-    public ServiceDiscoveryService discover(Chapter<?> chapterService) {
-        services.put(chapterService.getName(), chapterService);
-        return this;
-    }
+    /**
+     * every chapter is responsible for a part of saga.
+     * @param value incoming value
+     * @return saga result @see {@link RichSaga}
+     */
+    RichSaga<K> execute(K value);
 
-    public ServiceDiscoveryService() {
-        this.services = new HashMap<>();
-    }
+    /**
+     * The operation executed in general case.
+     * @param value incoming value
+     * @return result {@link ChapterResult}
+     */
+    ChapterResult<K> process(K value);
 
+    /**
+     * The operation executed in rollback case.
+     * @param value incoming value
+     * @return result {@link ChapterResult}
+     */
+    ChapterResult<K> rollback(K value);
 
 }
