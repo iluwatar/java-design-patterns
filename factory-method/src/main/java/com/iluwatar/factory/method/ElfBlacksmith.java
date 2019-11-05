@@ -27,18 +27,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 
  * Concrete subclass for creating new objects.
- * 
  */
 public class ElfBlacksmith implements Blacksmith {
 
   private static Map<WeaponType, ElfWeapon> ELFARSENAL;
+
   static {
-	ELFARSENAL= new HashMap<>(WeaponType.values().length);
-	for (WeaponType type : WeaponType.values()) {
-		ELFARSENAL.put(type, new ElfWeapon(type));
-	}
+    ELFARSENAL = new HashMap<>(WeaponType.values().length);
+    for (WeaponType type : WeaponType.values()) {
+      ELFARSENAL.put(type, new ElfWeapon(type));
+    }
   }
   
   @Override
