@@ -21,20 +21,34 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.exception;
 
+import com.iluwatar.layers.exception.CakeBakingException;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 /**
- * 
- * Application test
+ * Date: 12/15/15 - 7:57 PM
  *
+ * @author Jeroen Meulemeester
  */
-public class AppTest {
+public class CakeBakingExceptionTest {
 
   @Test
-  public void test() {
-    String[] args = {};
-    App.main(args);
+  public void testConstructor() {
+    final CakeBakingException exception = new CakeBakingException();
+    assertNull(exception.getMessage());
+    assertNull(exception.getCause());
   }
+
+  @Test
+  public void testConstructorWithMessage() {
+    final String expectedMessage = "message";
+    final CakeBakingException exception = new CakeBakingException(expectedMessage);
+    assertEquals(expectedMessage, exception.getMessage());
+    assertNull(exception.getCause());
+  }
+
 }

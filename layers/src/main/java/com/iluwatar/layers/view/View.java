@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.view;
 
 /**
  * View interface.

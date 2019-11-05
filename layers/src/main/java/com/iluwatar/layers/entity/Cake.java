@@ -21,37 +21,37 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.entity;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
- * CakeTopping entity.
+ * Cake entity.
  */
 @Entity
-public class CakeTopping {
+public class Cake {
 
   @Id
   @GeneratedValue
   private Long id;
 
-  private String name;
+  @OneToOne(cascade = CascadeType.REMOVE)
+  private CakeTopping topping;
 
-  private int calories;
+  @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+  private Set<CakeLayer> layers;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  private Cake cake;
-
-  public CakeTopping() {
-  }
-
-  public CakeTopping(String name, int calories) {
-    this.setName(name);
-    this.setCalories(calories);
+  public Cake() {
+    setLayers(new HashSet<>());
   }
 
   public Long getId() {
@@ -62,32 +62,28 @@ public class CakeTopping {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public CakeTopping getTopping() {
+    return topping;
   }
 
-  public final void setName(String name) {
-    this.name = name;
+  public void setTopping(CakeTopping topping) {
+    this.topping = topping;
   }
 
-  public final int getCalories() {
-    return calories;
+  public Set<CakeLayer> getLayers() {
+    return layers;
   }
 
-  public void setCalories(int calories) {
-    this.calories = calories;
+  public void setLayers(Set<CakeLayer> layers) {
+    this.layers = layers;
+  }
+
+  public void addLayer(CakeLayer layer) {
+    this.layers.add(layer);
   }
 
   @Override
   public String toString() {
-    return String.format("id=%s name=%s calories=%d", id, name, calories);
-  }
-
-  public Cake getCake() {
-    return cake;
-  }
-
-  public void setCake(Cake cake) {
-    this.cake = cake;
+    return String.format("id=%s topping=%s layers=%s", id, topping, layers.toString());
   }
 }

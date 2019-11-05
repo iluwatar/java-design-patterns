@@ -21,50 +21,40 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.dto;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
- * DTO for cakes.
+ * DTO for cake toppings.
  */
-public class CakeInfo {
+public class CakeToppingInfo {
 
   public final Optional<Long> id;
-  public final CakeToppingInfo cakeToppingInfo;
-  public final List<CakeLayerInfo> cakeLayerInfos;
+  public final String name;
+  public final int calories;
 
   /**
    * Constructor.
    */
-  public CakeInfo(Long id, CakeToppingInfo cakeToppingInfo, List<CakeLayerInfo> cakeLayerInfos) {
+  public CakeToppingInfo(Long id, String name, int calories) {
     this.id = Optional.of(id);
-    this.cakeToppingInfo = cakeToppingInfo;
-    this.cakeLayerInfos = cakeLayerInfos;
+    this.name = name;
+    this.calories = calories;
   }
 
   /**
    * Constructor.
    */
-  public CakeInfo(CakeToppingInfo cakeToppingInfo, List<CakeLayerInfo> cakeLayerInfos) {
+  public CakeToppingInfo(String name, int calories) {
     this.id = Optional.empty();
-    this.cakeToppingInfo = cakeToppingInfo;
-    this.cakeLayerInfos = cakeLayerInfos;
-  }
-
-  /**
-   * Calculate calories.
-   */
-  public int calculateTotalCalories() {
-    int total = cakeToppingInfo != null ? cakeToppingInfo.calories : 0;
-    total += cakeLayerInfos.stream().mapToInt(c -> c.calories).sum();
-    return total;
+    this.name = name;
+    this.calories = calories;
   }
 
   @Override
   public String toString() {
-    return String.format("CakeInfo id=%d topping=%s layers=%s totalCalories=%d", id.orElse(-1L),
-        cakeToppingInfo, cakeLayerInfos, calculateTotalCalories());
+    return String.format("CakeToppingInfo id=%d name=%s calories=%d",
+        id.orElse(-1L), name, calories);
   }
 }

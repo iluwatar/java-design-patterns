@@ -21,40 +21,16 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.dao;
 
-import java.util.Optional;
+import com.iluwatar.layers.entity.CakeTopping;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
- * DTO for cake toppings.
+ * CRUD repository cake toppings.
  */
-public class CakeToppingInfo {
+@Repository
+public interface CakeToppingDao extends CrudRepository<CakeTopping, Long> {
 
-  public final Optional<Long> id;
-  public final String name;
-  public final int calories;
-
-  /**
-   * Constructor.
-   */
-  public CakeToppingInfo(Long id, String name, int calories) {
-    this.id = Optional.of(id);
-    this.name = name;
-    this.calories = calories;
-  }
-
-  /**
-   * Constructor.
-   */
-  public CakeToppingInfo(String name, int calories) {
-    this.id = Optional.empty();
-    this.name = name;
-    this.calories = calories;
-  }
-
-  @Override
-  public String toString() {
-    return String.format("CakeToppingInfo id=%d name=%s calories=%d",
-        id.orElse(-1L), name, calories);
-  }
 }

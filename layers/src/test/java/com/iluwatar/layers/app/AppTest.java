@@ -21,42 +21,21 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.app;
 
-import java.util.List;
+import com.iluwatar.layers.app.App;
+import org.junit.jupiter.api.Test;
 
 /**
- * Service for cake baking operations.
+ * 
+ * Application test
+ *
  */
-public interface CakeBakingService {
+public class AppTest {
 
-  /**
-   * Bakes new cake according to parameters.
-   */
-  void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
-
-  /**
-   * Get all cakes.
-   */
-  List<CakeInfo> getAllCakes();
-
-  /**
-   * Store new cake topping.
-   */
-  void saveNewTopping(CakeToppingInfo toppingInfo);
-
-  /**
-   * Get available cake toppings.
-   */
-  List<CakeToppingInfo> getAvailableToppings();
-
-  /**
-   * Add new cake layer.
-   */
-  void saveNewLayer(CakeLayerInfo layerInfo);
-
-  /**
-   * Get available cake layers.
-   */
-  List<CakeLayerInfo> getAvailableLayers();
+  @Test
+  public void test() {
+    String[] args = {};
+    App.main(args);
+  }
 }

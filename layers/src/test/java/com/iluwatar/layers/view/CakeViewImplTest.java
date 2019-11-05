@@ -21,11 +21,16 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.view;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
+import com.iluwatar.layers.dto.CakeInfo;
+import com.iluwatar.layers.dto.CakeLayerInfo;
+import com.iluwatar.layers.dto.CakeToppingInfo;
+import com.iluwatar.layers.service.CakeBakingService;
+import com.iluwatar.layers.view.CakeViewImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

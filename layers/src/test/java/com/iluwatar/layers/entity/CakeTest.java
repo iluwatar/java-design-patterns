@@ -21,8 +21,11 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.entity;
 
+import com.iluwatar.layers.entity.Cake;
+import com.iluwatar.layers.entity.CakeLayer;
+import com.iluwatar.layers.entity.CakeTopping;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;

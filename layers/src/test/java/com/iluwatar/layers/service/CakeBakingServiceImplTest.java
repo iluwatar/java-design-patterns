@@ -21,8 +21,13 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.service;
 
+import com.iluwatar.layers.dto.CakeInfo;
+import com.iluwatar.layers.dto.CakeLayerInfo;
+import com.iluwatar.layers.dto.CakeToppingInfo;
+import com.iluwatar.layers.exception.CakeBakingException;
+import com.iluwatar.layers.service.CakeBakingServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

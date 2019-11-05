@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -66,7 +66,7 @@ public class CakeLayer {
     return name;
   }
 
-  public final void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
@@ -74,7 +74,7 @@ public class CakeLayer {
     return calories;
   }
 
-  public final void setCalories(int calories) {
+  public void setCalories(int calories) {
     this.calories = calories;
   }
 

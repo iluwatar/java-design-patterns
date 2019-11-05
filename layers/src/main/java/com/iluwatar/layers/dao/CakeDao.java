@@ -21,25 +21,16 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.dao;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.iluwatar.layers.entity.Cake;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
- * View implementation for displaying cakes.
+ * CRUD repository for cakes.
  */
-public class CakeViewImpl implements View {
+@Repository
+public interface CakeDao extends CrudRepository<Cake, Long> {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(CakeViewImpl.class);
-
-  private CakeBakingService cakeBakingService;
-
-  public CakeViewImpl(CakeBakingService cakeBakingService) {
-    this.cakeBakingService = cakeBakingService;
-  }
-
-  public void render() {
-    cakeBakingService.getAllCakes().forEach(cake -> LOGGER.info(cake.toString()));
-  }
 }

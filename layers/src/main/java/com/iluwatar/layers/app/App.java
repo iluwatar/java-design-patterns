@@ -21,8 +21,21 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
+package com.iluwatar.layers.app;
 
+import com.iluwatar.layers.dao.CakeDao;
+import com.iluwatar.layers.dao.CakeLayerDao;
+import com.iluwatar.layers.dao.CakeToppingDao;
+import com.iluwatar.layers.dto.CakeInfo;
+import com.iluwatar.layers.dto.CakeLayerInfo;
+import com.iluwatar.layers.dto.CakeToppingInfo;
+import com.iluwatar.layers.entity.Cake;
+import com.iluwatar.layers.entity.CakeLayer;
+import com.iluwatar.layers.entity.CakeTopping;
+import com.iluwatar.layers.exception.CakeBakingException;
+import com.iluwatar.layers.service.CakeBakingService;
+import com.iluwatar.layers.service.CakeBakingServiceImpl;
+import com.iluwatar.layers.view.CakeViewImpl;
 import java.util.List;
 
 /**

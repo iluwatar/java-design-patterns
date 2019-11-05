@@ -21,15 +21,19 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.layers;
-
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+package com.iluwatar.layers.exception;
 
 /**
- * CRUD repository for cake layers.
+ * Custom exception used in cake baking.
  */
-@Repository
-public interface CakeLayerDao extends CrudRepository<CakeLayer, Long> {
+public class CakeBakingException extends Exception {
 
+  private static final long serialVersionUID = 1L;
+
+  public CakeBakingException() {
+  }
+
+  public CakeBakingException(String message) {
+    super(message);
+  }
 }
