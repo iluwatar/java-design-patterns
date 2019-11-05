@@ -30,9 +30,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 /**
- * 
- * CakeTopping entity
- *
+ * CakeTopping entity.
  */
 @Entity
 public class CakeTopping {
@@ -48,7 +46,8 @@ public class CakeTopping {
   @OneToOne(cascade = CascadeType.ALL)
   private Cake cake;
 
-  public CakeTopping() {}
+  public CakeTopping() {
+  }
 
   public CakeTopping(String name, int calories) {
     this.setName(name);

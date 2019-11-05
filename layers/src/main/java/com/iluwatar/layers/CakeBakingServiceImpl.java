@@ -37,9 +37,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 
- * Implementation of CakeBakingService
- *
+ * Implementation of CakeBakingService.
  */
 @Service
 @Transactional
@@ -73,7 +71,8 @@ public class CakeBakingServiceImpl implements CakeBakingService {
       }
     }
     CakeToppingDao toppingBean = context.getBean(CakeToppingDao.class);
-    Optional<CakeTopping> topping = toppingBean.findById(matchingToppings.iterator().next().getId());
+    Optional<CakeTopping> topping = toppingBean.findById(
+        matchingToppings.iterator().next().getId());
     CakeDao cakeBean = context.getBean(CakeDao.class);
     if (topping.isPresent()) {
       Cake cake = new Cake();

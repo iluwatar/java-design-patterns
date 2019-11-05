@@ -26,9 +26,7 @@ package com.iluwatar.layers;
 import java.util.Optional;
 
 /**
- * 
- * DTO for cake layers
- *
+ * DTO for cake layers.
  */
 public class CakeLayerInfo {
 
@@ -37,7 +35,7 @@ public class CakeLayerInfo {
   public final int calories;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public CakeLayerInfo(Long id, String name, int calories) {
     this.id = Optional.of(id);
@@ -46,7 +44,7 @@ public class CakeLayerInfo {
   }
 
   /**
-   * Constructor
+   * Constructor.
    */
   public CakeLayerInfo(String name, int calories) {
     this.id = Optional.empty();

@@ -27,9 +27,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 
- * DTO for cakes
- *
+ * DTO for cakes.
  */
 public class CakeInfo {
 
@@ -38,7 +36,7 @@ public class CakeInfo {
   public final List<CakeLayerInfo> cakeLayerInfos;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public CakeInfo(Long id, CakeToppingInfo cakeToppingInfo, List<CakeLayerInfo> cakeLayerInfos) {
     this.id = Optional.of(id);
@@ -47,7 +45,7 @@ public class CakeInfo {
   }
 
   /**
-   * Constructor
+   * Constructor.
    */
   public CakeInfo(CakeToppingInfo cakeToppingInfo, List<CakeLayerInfo> cakeLayerInfos) {
     this.id = Optional.empty();
@@ -56,7 +54,7 @@ public class CakeInfo {
   }
 
   /**
-   * Calculate calories
+   * Calculate calories.
    */
   public int calculateTotalCalories() {
     int total = cakeToppingInfo != null ? cakeToppingInfo.calories : 0;

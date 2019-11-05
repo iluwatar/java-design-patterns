@@ -24,9 +24,7 @@
 package com.iluwatar.layers;
 
 /**
- * 
- * View interface
- *
+ * View interface.
  */
 public interface View {
 

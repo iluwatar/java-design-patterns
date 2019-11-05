@@ -30,9 +30,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
- * 
- * CakeLayer entity
- *
+ * CakeLayer entity.
  */
 @Entity
 public class CakeLayer {
@@ -48,7 +46,8 @@ public class CakeLayer {
   @ManyToOne(cascade = CascadeType.ALL)
   private Cake cake;
 
-  public CakeLayer() {}
+  public CakeLayer() {
+  }
 
   public CakeLayer(String name, int calories) {
     this.setName(name);

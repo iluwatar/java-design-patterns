@@ -35,9 +35,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
- * 
- * Cake entity
- *
+ * Cake entity.
  */
 @Entity
 public class Cake {
