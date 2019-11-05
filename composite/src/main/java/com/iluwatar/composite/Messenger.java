@@ -26,9 +26,7 @@ package com.iluwatar.composite;
 import java.util.List;
 
 /**
- * 
- * Messenger
- *
+ * Messenger.
  */
 public class Messenger {
 
