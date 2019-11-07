@@ -23,33 +23,43 @@
 
 package com.iluwatar.sharding;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Map;
 
 /**
- * ShardManager with hash strategy. The purpose of this strategy is to reduce the
- * chance of hot-spots in the data. It aims to distribute the data across the shards
- * in a way that achieves a balance between the size of each shard and the average
- * load that each shard will encounter.
+ * Unit tests for LookupShardManager class.
  */
-public class HashShardManager extends ShardManager {
+public class LookupShardManagerTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(HashShardManager.class);
+  private LookupShardManager lookupShardManager;
 
-  @Override
-  public int storeData(Data data) {
-    var shardId = allocateShard(data);
-    var shard = shardMap.get(shardId);
-    shard.storeData(data);
-    LOGGER.info(data.toString() + " is stored in Shard " + shardId);
-    return shardId;
+  @Before
+  public void setup() {
+    lookupShardManager = new LookupShardManager();
+    var shard1 = new Shard(1);
+    var shard2 = new Shard(2);
+    var shard3 = new Shard(3);
+    lookupShardManager.addNewShard(shard1);
+    lookupShardManager.addNewShard(shard2);
+    lookupShardManager.addNewShard(shard3);
   }
 
-  @Override
-  protected int allocateShard(Data data) {
-    var shardCount = shardMap.size();
-    var hash = data.getKey() % shardCount;
-    return hash == 0 ? hash + shardCount : hash;
+  @Test
+  public void testStoreData() {
+    try {
+      var data = new Data(1, "test", Data.DataType.type1);
+      lookupShardManager.storeData(data);
+      var field = LookupShardManager.class.getDeclaredField("lookupMap");
+      field.setAccessible(true);
+      Map<Integer, Integer> lookupMap = (Map<Integer, Integer>) field.get(lookupShardManager);
+      var shardId = lookupMap.get(1);
+      var shard = lookupShardManager.getShardById(shardId);
+      Assert.assertEquals(data, shard.getDataById(1));
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      Assert.fail("Fail to modify field access.");
+    }
   }
-
 }

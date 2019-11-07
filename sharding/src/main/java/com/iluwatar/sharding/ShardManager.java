@@ -23,6 +23,10 @@
 
 package com.iluwatar.sharding;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -30,7 +34,13 @@ import java.util.Map;
  */
 public abstract class ShardManager {
 
-  private Map<Integer, Shard> shardMap;
+  private static final Logger LOGGER = LoggerFactory.getLogger(ShardManager.class);
+
+  protected Map<Integer, Shard> shardMap;
+
+  public ShardManager() {
+    shardMap = new HashMap<>();
+  }
 
   /**
    * Add a provided shard instance to shardMap.
@@ -80,5 +90,13 @@ public abstract class ShardManager {
    * @return id of shard that the data is stored in
    */
   public abstract int storeData(final Data data);
+
+  /**
+   * Allocate proper shard to provided data.
+   *
+   * @param data new data
+   * @return id of shard that the data should be stored
+   */
+  protected abstract int allocateShard(final Data data);
 
 }

@@ -23,14 +23,44 @@
 
 package com.iluwatar.sharding;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 /**
  * ShardManager with lookup strategy. In this strategy the sharding logic implements
  * a map that routes a request for data to the shard that contains that data by using
  * the shard key.
  */
 public class LookupShardManager extends ShardManager {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(LookupShardManager.class);
+
+  private Map<Integer, Integer> lookupMap = new HashMap<>();
+
   @Override
   public int storeData(Data data) {
-    return 0;
+    var shardId = allocateShard(data);
+    lookupMap.put(data.getKey(), shardId);
+    var shard = shardMap.get(shardId);
+    shard.storeData(data);
+    LOGGER.info(data.toString() + " is stored in Shard " + shardId);
+    return shardId;
   }
+
+  @Override
+  protected int allocateShard(Data data) {
+    var key = data.getKey();
+    if (lookupMap.containsKey(key)) {
+      return lookupMap.get(key);
+    } else {
+      var shardCount = shardMap.size();
+      var allocatedShardId = new Random().nextInt(shardCount - 1) + 1;
+      return allocatedShardId;
+    }
+  }
+
 }

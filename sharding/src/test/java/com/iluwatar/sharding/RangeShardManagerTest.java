@@ -23,33 +23,33 @@
 
 package com.iluwatar.sharding;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
- * ShardManager with hash strategy. The purpose of this strategy is to reduce the
- * chance of hot-spots in the data. It aims to distribute the data across the shards
- * in a way that achieves a balance between the size of each shard and the average
- * load that each shard will encounter.
+ * Unit tests for RangeShardManager class.
  */
-public class HashShardManager extends ShardManager {
+public class RangeShardManagerTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(HashShardManager.class);
+  private RangeShardManager rangeShardManager;
 
-  @Override
-  public int storeData(Data data) {
-    var shardId = allocateShard(data);
-    var shard = shardMap.get(shardId);
-    shard.storeData(data);
-    LOGGER.info(data.toString() + " is stored in Shard " + shardId);
-    return shardId;
+  @Before
+  public void setup() {
+    rangeShardManager = new RangeShardManager();
+    var shard1 = new Shard(1);
+    var shard2 = new Shard(2);
+    var shard3 = new Shard(3);
+    rangeShardManager.addNewShard(shard1);
+    rangeShardManager.addNewShard(shard2);
+    rangeShardManager.addNewShard(shard3);
   }
 
-  @Override
-  protected int allocateShard(Data data) {
-    var shardCount = shardMap.size();
-    var hash = data.getKey() % shardCount;
-    return hash == 0 ? hash + shardCount : hash;
+  @Test
+  public void testStoreData() {
+    var data = new Data(1, "test", Data.DataType.type1);
+    rangeShardManager.storeData(data);
+    Assert.assertEquals(data, rangeShardManager.getShardById(1).getDataById(1));
   }
 
 }

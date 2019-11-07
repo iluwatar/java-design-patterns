@@ -23,33 +23,17 @@
 
 package com.iluwatar.sharding;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.Test;
 
 /**
- * ShardManager with hash strategy. The purpose of this strategy is to reduce the
- * chance of hot-spots in the data. It aims to distribute the data across the shards
- * in a way that achieves a balance between the size of each shard and the average
- * load that each shard will encounter.
+ * Unit tests for App class.
  */
-public class HashShardManager extends ShardManager {
+public class AppTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(HashShardManager.class);
-
-  @Override
-  public int storeData(Data data) {
-    var shardId = allocateShard(data);
-    var shard = shardMap.get(shardId);
-    shard.storeData(data);
-    LOGGER.info(data.toString() + " is stored in Shard " + shardId);
-    return shardId;
-  }
-
-  @Override
-  protected int allocateShard(Data data) {
-    var shardCount = shardMap.size();
-    var hash = data.getKey() % shardCount;
-    return hash == 0 ? hash + shardCount : hash;
+  @Test
+  public void testMain() {
+    String[] args = {};
+    App.main(args);
   }
 
 }

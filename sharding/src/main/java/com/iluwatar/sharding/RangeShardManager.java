@@ -23,15 +23,44 @@
 
 package com.iluwatar.sharding;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * ShardManager with range strategy. This strategy groups related items together
- * in the same shard, and orders them by shard key—the shard keys are sequential.
+ * in the same shard, and orders them by shard key.
  */
 public class RangeShardManager extends ShardManager {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(RangeShardManager.class);
+
   @Override
   public int storeData(Data data) {
-    return 0;
+    var shardId = allocateShard(data);
+    var shard = shardMap.get(shardId);
+    shard.storeData(data);
+    LOGGER.info(data.toString() + " is stored in Shard " + shardId);
+    return shardId;
+  }
+
+  @Override
+  protected int allocateShard(Data data) {
+    var type = data.getType();
+    var shardId = -1;
+    switch (type) {
+      case type1:
+        shardId = 1;
+        break;
+      case type2:
+        shardId = 2;
+        break;
+      case type3:
+        shardId = 3;
+        break;
+      default:
+        break;
+    }
+    return shardId;
   }
 
 }

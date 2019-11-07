@@ -40,6 +40,18 @@ public class Shard {
     this.dataStore = new HashMap<>();
   }
 
+  public void storeData(Data data) {
+    dataStore.put(data.getKey(), data);
+  }
+
+  public void clearData() {
+    dataStore.clear();
+  }
+
+  public Data getDataById(final int Id) {
+    return dataStore.get(Id);
+  }
+
   public int getId() {
     return id;
   }

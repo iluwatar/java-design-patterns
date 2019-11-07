@@ -32,9 +32,12 @@ public class Data {
 
   private String value;
 
-  public Data(final int key, final String value) {
+  private DataType type;
+
+  public Data(final int key, final String value, final DataType type) {
     this.key = key;
     this.value = value;
+    this.type = type;
   }
 
   public int getKey() {
@@ -52,4 +55,24 @@ public class Data {
   public void setValue(final String value) {
     this.value = value;
   }
+
+  public DataType getType() {
+    return type;
+  }
+
+  public void setType(DataType type) {
+    this.type = type;
+  }
+
+  enum DataType {
+    type1, type2, type3
+  }
+
+  @Override
+  public String toString() {
+    return "Data {" + "key="
+      + key + ", value='" + value
+      + '\'' + ", type=" + type + '}';
+  }
 }
+
