@@ -79,9 +79,6 @@ public class App {
     shard1.clearData();
     shard2.clearData();
     shard3.clearData();
-
-    return;
-
   }
 
 }
