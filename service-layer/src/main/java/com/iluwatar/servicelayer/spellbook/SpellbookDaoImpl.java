@@ -39,12 +39,12 @@ public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements Spellboo
 
   @Override
   public Spellbook findByName(String name) {
-    Session session = getSessionFactory().openSession();
+    var session = getSessionFactory().openSession();
     Transaction tx = null;
     Spellbook result = null;
     try {
       tx = session.beginTransaction();
-      Criteria criteria = session.createCriteria(persistentClass);
+      var criteria = session.createCriteria(persistentClass);
       criteria.add(Restrictions.eq("name", name));
       result = (Spellbook) criteria.uniqueResult();
       result.getSpells().size();

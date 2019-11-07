@@ -23,21 +23,20 @@
 
 package com.iluwatar.fluentinterface.app;
 
-import static java.lang.String.valueOf;
+import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
+import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
+import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
-import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
-import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.lang.String.valueOf;
 
 /**
  * The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API.
@@ -61,7 +60,7 @@ public class App {
   public static void main(String[] args) {
 
     List<Integer> integerList = new ArrayList<>();
-    integerList.addAll(Arrays.asList(1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2,
+    integerList.addAll(List.of(1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2,
         -68, 45));
 
     prettyPrint("The initial list contains: ", integerList);

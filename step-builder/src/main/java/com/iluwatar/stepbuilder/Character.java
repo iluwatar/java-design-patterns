@@ -91,7 +91,7 @@ public class Character {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
+    var sb = new StringBuilder();
     sb.append("This is a ")
             .append(fighterClass != null ? fighterClass : wizardClass)
             .append(" named ")

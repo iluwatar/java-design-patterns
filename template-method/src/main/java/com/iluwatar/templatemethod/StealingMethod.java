@@ -45,7 +45,7 @@ public abstract class StealingMethod {
    * Steal
    */
   public void steal() {
-    String target = pickTarget();
+    var target = pickTarget();
     LOGGER.info("The target has been chosen as {}.", target);
     confuseTarget(target);
     stealTheItem(target);

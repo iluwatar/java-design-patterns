@@ -41,7 +41,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    Mammoth mammoth = new Mammoth();
+    var mammoth = new Mammoth();
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();

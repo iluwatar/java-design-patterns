@@ -23,26 +23,23 @@
 
 package com.iluwatar.specification.selector;
 
-import java.util.function.Predicate;
-
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Movement;
+import java.util.function.Predicate;
 
 /**
- * 
  * Movement selector.
- *
  */
 public class MovementSelector implements Predicate<Creature> {
 
-  private final Movement m;
+  private final Movement movement;
 
   public MovementSelector(Movement m) {
-    this.m = m;
+    this.movement = m;
   }
 
   @Override
   public boolean test(Creature t) {
-    return t.getMovement().equals(m);
+    return t.getMovement().equals(movement);
   }
 }

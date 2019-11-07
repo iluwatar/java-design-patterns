@@ -28,9 +28,7 @@ import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
 /**
- * 
  * Shark creature.
- *
  */
 public class Shark extends AbstractCreature {
 

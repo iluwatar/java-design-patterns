@@ -26,7 +26,6 @@ package com.iluwatar.doubledispatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,11 +58,11 @@ public class App {
    */
   public static void main(String[] args) {
     // initialize game objects and print their status
-    List<GameObject> objects = new ArrayList<>();
-    objects.add(new FlamingAsteroid(0, 0, 5, 5));
-    objects.add(new SpaceStationMir(1, 1, 2, 2));
-    objects.add(new Meteoroid(10, 10, 15, 15));
-    objects.add(new SpaceStationIss(12, 12, 14, 14));
+    List<GameObject> objects = List.of(
+            new FlamingAsteroid(0, 0, 5, 5),
+            new SpaceStationMir(1, 1, 2, 2),
+            new Meteoroid(10, 10, 15, 15),
+            new SpaceStationIss(12, 12, 14, 14));
     objects.stream().forEach(o -> LOGGER.info(o.toString()));
     LOGGER.info("");
 

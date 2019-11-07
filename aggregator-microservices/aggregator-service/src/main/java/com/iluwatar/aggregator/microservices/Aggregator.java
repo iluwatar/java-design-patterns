@@ -51,9 +51,23 @@ public class Aggregator {
    */
   @RequestMapping(path = "/product", method = RequestMethod.GET)
   public Product getProduct() {
+
     var product = new Product();
-    product.setTitle(informationClient.getProductTitle());
-    product.setProductInventories(inventoryClient.getProductInventories());
+    String productTitle = informationClient.getProductTitle();
+    Integer productInventory = inventoryClient.getProductInventories();
+
+    if (productTitle != null) {
+      product.setTitle(productTitle);
+    } else {
+      product.setTitle("Error: Fetching Product Title Failed"); //Fallback to error message
+    }
+
+    if (productInventory != null) {
+      product.setProductInventories(productInventory);
+    } else {
+      product.setProductInventories(-1); //Fallback to default error inventory
+    }
+
     return product;
   }
 

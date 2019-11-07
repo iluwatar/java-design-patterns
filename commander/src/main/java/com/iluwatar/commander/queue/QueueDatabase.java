@@ -23,11 +23,12 @@
 
 package com.iluwatar.commander.queue;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import com.iluwatar.commander.Database;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.IsEmptyException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * QueueDatabase id where the instructions to be implemented are queued.
@@ -39,8 +40,8 @@ public class QueueDatabase extends Database<QueueTask> {
   public ArrayList<Exception> exceptionsList;
 
   public QueueDatabase(Exception...exc) {
-    this.data = new Queue<QueueTask>();
-    this.exceptionsList = new ArrayList<Exception>(Arrays.asList(exc));
+    this.data = new Queue<>();
+    this.exceptionsList = new ArrayList<>(List.of(exc));
   }
 
   @Override

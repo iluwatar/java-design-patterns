@@ -79,24 +79,24 @@ public class App {
    */
   public static void initData() {
     // spells
-    Spell spell1 = new Spell("Ice dart");
-    Spell spell2 = new Spell("Invisibility");
-    Spell spell3 = new Spell("Stun bolt");
-    Spell spell4 = new Spell("Confusion");
-    Spell spell5 = new Spell("Darkness");
-    Spell spell6 = new Spell("Fireball");
-    Spell spell7 = new Spell("Enchant weapon");
-    Spell spell8 = new Spell("Rock armour");
-    Spell spell9 = new Spell("Light");
-    Spell spell10 = new Spell("Bee swarm");
-    Spell spell11 = new Spell("Haste");
-    Spell spell12 = new Spell("Levitation");
-    Spell spell13 = new Spell("Magic lock");
-    Spell spell14 = new Spell("Summon hell bat");
-    Spell spell15 = new Spell("Water walking");
-    Spell spell16 = new Spell("Magic storm");
-    Spell spell17 = new Spell("Entangle");
-    SpellDao spellDao = new SpellDaoImpl();
+    var spell1 = new Spell("Ice dart");
+    var spell2 = new Spell("Invisibility");
+    var spell3 = new Spell("Stun bolt");
+    var spell4 = new Spell("Confusion");
+    var spell5 = new Spell("Darkness");
+    var spell6 = new Spell("Fireball");
+    var spell7 = new Spell("Enchant weapon");
+    var spell8 = new Spell("Rock armour");
+    var spell9 = new Spell("Light");
+    var spell10 = new Spell("Bee swarm");
+    var spell11 = new Spell("Haste");
+    var spell12 = new Spell("Levitation");
+    var spell13 = new Spell("Magic lock");
+    var spell14 = new Spell("Summon hell bat");
+    var spell15 = new Spell("Water walking");
+    var spell16 = new Spell("Magic storm");
+    var spell17 = new Spell("Entangle");
+    var spellDao = new SpellDaoImpl();
     spellDao.persist(spell1);
     spellDao.persist(spell2);
     spellDao.persist(spell3);
@@ -116,64 +116,64 @@ public class App {
     spellDao.persist(spell17);
 
     // spellbooks
-    SpellbookDao spellbookDao = new SpellbookDaoImpl();
-    Spellbook spellbook1 = new Spellbook("Book of Orgymon");
+    var spellbookDao = new SpellbookDaoImpl();
+    var spellbook1 = new Spellbook("Book of Orgymon");
     spellbookDao.persist(spellbook1);
     spellbook1.addSpell(spell1);
     spellbook1.addSpell(spell2);
     spellbook1.addSpell(spell3);
     spellbook1.addSpell(spell4);
     spellbookDao.merge(spellbook1);
-    Spellbook spellbook2 = new Spellbook("Book of Aras");
+    var spellbook2 = new Spellbook("Book of Aras");
     spellbookDao.persist(spellbook2);
     spellbook2.addSpell(spell5);
     spellbook2.addSpell(spell6);
     spellbookDao.merge(spellbook2);
-    Spellbook spellbook3 = new Spellbook("Book of Kritior");
+    var spellbook3 = new Spellbook("Book of Kritior");
     spellbookDao.persist(spellbook3);
     spellbook3.addSpell(spell7);
     spellbook3.addSpell(spell8);
     spellbook3.addSpell(spell9);
     spellbookDao.merge(spellbook3);
-    Spellbook spellbook4 = new Spellbook("Book of Tamaex");
+    var spellbook4 = new Spellbook("Book of Tamaex");
     spellbookDao.persist(spellbook4);
     spellbook4.addSpell(spell10);
     spellbook4.addSpell(spell11);
     spellbook4.addSpell(spell12);
     spellbookDao.merge(spellbook4);
-    Spellbook spellbook5 = new Spellbook("Book of Idores");
+    var spellbook5 = new Spellbook("Book of Idores");
     spellbookDao.persist(spellbook5);
     spellbook5.addSpell(spell13);
     spellbookDao.merge(spellbook5);
-    Spellbook spellbook6 = new Spellbook("Book of Opaen");
+    var spellbook6 = new Spellbook("Book of Opaen");
     spellbookDao.persist(spellbook6);
     spellbook6.addSpell(spell14);
     spellbook6.addSpell(spell15);
     spellbookDao.merge(spellbook6);
-    Spellbook spellbook7 = new Spellbook("Book of Kihione");
+    var spellbook7 = new Spellbook("Book of Kihione");
     spellbookDao.persist(spellbook7);
     spellbook7.addSpell(spell16);
     spellbook7.addSpell(spell17);
     spellbookDao.merge(spellbook7);
 
     // wizards
-    WizardDao wizardDao = new WizardDaoImpl();
-    Wizard wizard1 = new Wizard("Aderlard Boud");
+    var wizardDao = new WizardDaoImpl();
+    var wizard1 = new Wizard("Aderlard Boud");
     wizardDao.persist(wizard1);
     wizard1.addSpellbook(spellbookDao.findByName("Book of Orgymon"));
     wizard1.addSpellbook(spellbookDao.findByName("Book of Aras"));
     wizardDao.merge(wizard1);
-    Wizard wizard2 = new Wizard("Anaxis Bajraktari");
+    var wizard2 = new Wizard("Anaxis Bajraktari");
     wizardDao.persist(wizard2);
     wizard2.addSpellbook(spellbookDao.findByName("Book of Kritior"));
     wizard2.addSpellbook(spellbookDao.findByName("Book of Tamaex"));
     wizardDao.merge(wizard2);
-    Wizard wizard3 = new Wizard("Xuban Munoa");
+    var wizard3 = new Wizard("Xuban Munoa");
     wizardDao.persist(wizard3);
     wizard3.addSpellbook(spellbookDao.findByName("Book of Idores"));
     wizard3.addSpellbook(spellbookDao.findByName("Book of Opaen"));
     wizardDao.merge(wizard3);
-    Wizard wizard4 = new Wizard("Blasius Dehooge");
+    var wizard4 = new Wizard("Blasius Dehooge");
     wizardDao.persist(wizard4);
     wizard4.addSpellbook(spellbookDao.findByName("Book of Kihione"));
     wizardDao.merge(wizard4);
@@ -183,7 +183,7 @@ public class App {
    * Query the data
    */
   public static void queryData() {
-    MagicService service =
+    var service =
         new MagicServiceImpl(new WizardDaoImpl(), new SpellbookDaoImpl(), new SpellDaoImpl());
     LOGGER.info("Enumerating all wizards");
     for (Wizard w : service.findAllWizards()) {

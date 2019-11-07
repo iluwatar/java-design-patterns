@@ -27,9 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * Composite interface.
- * 
  */
 public abstract class LetterComposite {
 
@@ -43,12 +41,14 @@ public abstract class LetterComposite {
     return children.size();
   }
 
-  protected void printThisBefore() {}
+  protected void printThisBefore() {
+  }
 
-  protected void printThisAfter() {}
+  protected void printThisAfter() {
+  }
 
   /**
-   * Print
+   * Print.
    */
   public void print() {
     printThisBefore();

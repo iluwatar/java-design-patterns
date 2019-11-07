@@ -97,11 +97,10 @@ public class MagicServiceImplTest {
   public void testFindWizardsWithSpellbook() throws Exception {
     final String bookname = "bookname";
     final Spellbook spellbook = mock(Spellbook.class);
-    final Set<Wizard> wizards = new HashSet<>();
-    wizards.add(mock(Wizard.class));
-    wizards.add(mock(Wizard.class));
-    wizards.add(mock(Wizard.class));
-
+    final Set<Wizard> wizards = Set.of(
+            mock(Wizard.class),
+            mock(Wizard.class),
+            mock(Wizard.class));
     when(spellbook.getWizards()).thenReturn(wizards);
 
     final SpellbookDao spellbookDao = mock(SpellbookDao.class);
@@ -126,11 +125,10 @@ public class MagicServiceImplTest {
 
   @Test
   public void testFindWizardsWithSpell() throws Exception {
-    final Set<Wizard> wizards = new HashSet<>();
-    wizards.add(mock(Wizard.class));
-    wizards.add(mock(Wizard.class));
-    wizards.add(mock(Wizard.class));
-
+    final Set<Wizard> wizards = Set.of(
+            mock(Wizard.class),
+            mock(Wizard.class),
+            mock(Wizard.class));
     final Spellbook spellbook = mock(Spellbook.class);
     when(spellbook.getWizards()).thenReturn(wizards);
 
