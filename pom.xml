@@ -184,6 +184,7 @@
         <module>subclass-sandbox</module>
         <module>circuit-breaker</module>
         <module>double-buffer</module>
+        <module>sharding</module>
     </modules>
 
     <repositories>
