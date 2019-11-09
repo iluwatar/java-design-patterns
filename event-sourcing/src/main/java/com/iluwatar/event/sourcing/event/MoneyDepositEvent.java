@@ -28,12 +28,11 @@ import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
 
 /**
- * This is the class that implements money deposit event.
- * Holds the necessary info for a money deposit event.
- * Implements the process function that finds the event related
- * domain objects and calls the related domain object's handle event functions
+ * This is the class that implements money deposit event. Holds the necessary info for a money
+ * deposit event. Implements the process function that finds the event related domain objects and
+ * calls the related domain object's handle event functions
  *
- * Created by Serdar Hamzaogullari on 06.08.2017.
+ * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class MoneyDepositEvent extends DomainEvent {
 
@@ -43,10 +42,10 @@ public class MoneyDepositEvent extends DomainEvent {
   /**
    * Instantiates a new Money deposit event.
    *
-   * @param sequenceId the sequence id
+   * @param sequenceId  the sequence id
    * @param createdTime the created time
-   * @param accountNo the account no
-   * @param money the money
+   * @param accountNo   the account no
+   * @param money       the money
    */
   public MoneyDepositEvent(long sequenceId, long createdTime, int accountNo, BigDecimal money) {
     super(sequenceId, createdTime, "MoneyDepositEvent");
