@@ -24,9 +24,7 @@
 package com.iluwatar.builder;
 
 /**
- * 
- * Profession enumeration
- *
+ * Profession enumeration.
  */
 public enum Profession {
 
