@@ -129,9 +129,6 @@ are several common situations in which the Proxy pattern is applicable
 ## Tutorials
 * [Controlling Access With Proxy Pattern](http://java-design-patterns.com/blog/controlling-access-with-proxy-pattern/)
 
-## Presentations
-* [Proxy](https://github.com/iluwatar/java-design-patterns/tree/master/proxy/etc/presentation.html)
-
 ## Real world examples
 
 * [java.lang.reflect.Proxy](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)

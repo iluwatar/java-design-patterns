@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.spellbook;
 
 import org.hibernate.Criteria;
@@ -38,12 +39,12 @@ public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements Spellboo
 
   @Override
   public Spellbook findByName(String name) {
-    Session session = getSessionFactory().openSession();
+    var session = getSessionFactory().openSession();
     Transaction tx = null;
     Spellbook result = null;
     try {
       tx = session.beginTransaction();
-      Criteria criteria = session.createCriteria(persistentClass);
+      var criteria = session.createCriteria(persistentClass);
       criteria.add(Restrictions.eq("name", name));
       result = (Spellbook) criteria.uniqueResult();
       result.getSpells().size();

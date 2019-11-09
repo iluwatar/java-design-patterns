@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,8 +32,9 @@ import java.util.stream.Stream;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
 import org.h2.jdbcx.JdbcDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Data Access Object (DAO) is an object that provides an abstract interface to some type of
@@ -51,7 +52,7 @@ import org.h2.jdbcx.JdbcDataSource;
  */
 public class App {
   private static final String DB_URL = "jdbc:h2:~/dao";
-  private static Logger log = Logger.getLogger(App.class);
+  private static Logger log = LoggerFactory.getLogger(App.class);
   private static final String ALL_CUSTOMERS = "customerDao.getAllCustomers(): ";
   
   /**
@@ -95,7 +96,7 @@ public class App {
     addCustomers(customerDao);
     log.info(ALL_CUSTOMERS);
     try (Stream<Customer> customerStream = customerDao.getAll()) {
-      customerStream.forEach((customer) -> log.info(customer));
+      customerStream.forEach((customer) -> log.info(customer.toString()));
     }
     log.info("customerDao.getCustomerById(2): " + customerDao.getById(2));
     final Customer customer = new Customer(4, "Dan", "Danson");
@@ -106,7 +107,7 @@ public class App {
     customerDao.update(customer);
     log.info(ALL_CUSTOMERS);
     try (Stream<Customer> customerStream = customerDao.getAll()) {
-      customerStream.forEach((cust) -> log.info(cust));
+      customerStream.forEach((cust) -> log.info(cust.toString()));
     }
     customerDao.delete(customer);
     log.info(ALL_CUSTOMERS + customerDao.getAll());
@@ -127,10 +128,6 @@ public class App {
     final Customer customer1 = new Customer(1, "Adam", "Adamson");
     final Customer customer2 = new Customer(2, "Bob", "Bobson");
     final Customer customer3 = new Customer(3, "Carl", "Carlson");
-    final List<Customer> customers = new ArrayList<>();
-    customers.add(customer1);
-    customers.add(customer2);
-    customers.add(customer3);
-    return customers;
+    return List.of(customer1, customer2, customer3);
   }
 }
