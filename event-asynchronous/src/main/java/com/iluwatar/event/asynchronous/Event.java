@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * Each Event runs as a separate/individual thread.
- *
  */
 public class Event implements IEvent, Runnable {
 
@@ -43,9 +41,10 @@ public class Event implements IEvent, Runnable {
   private ThreadCompleteListener eventListener;
 
   /**
+   * Constructor.
    *
-   * @param eventId event ID
-   * @param eventTime event time
+   * @param eventId       event ID
+   * @param eventTime     event time
    * @param isSynchronous is of synchronous type
    */
   public Event(final int eventId, final int eventTime, final boolean isSynchronous) {

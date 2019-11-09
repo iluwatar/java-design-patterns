@@ -24,7 +24,7 @@
 package com.iluwatar.event.asynchronous;
 
 /**
- * Type of Exception raised when the Operation being invoked is Invalid
+ * Type of Exception raised when the Operation being invoked is Invalid.
  */
 public class InvalidOperationException extends Exception {
 
