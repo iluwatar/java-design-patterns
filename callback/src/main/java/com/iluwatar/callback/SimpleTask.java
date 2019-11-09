@@ -23,14 +23,12 @@
 
 package com.iluwatar.callback;
 
-import org.slf4j.Logger;
-
 import static org.slf4j.LoggerFactory.getLogger;
 
+import org.slf4j.Logger;
+
 /**
- *
- * Implementation of task that need to be executed
- *
+ * Implementation of task that need to be executed.
  */
 public final class SimpleTask extends Task {
 
@@ -39,6 +37,6 @@ public final class SimpleTask extends Task {
   @Override
   public void execute() {
     LOGGER.info("Perform some important activity and after call the"
-            + " callback method.");
+        + " callback method.");
   }
 }

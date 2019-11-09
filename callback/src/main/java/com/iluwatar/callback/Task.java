@@ -24,14 +24,12 @@
 package com.iluwatar.callback;
 
 /**
- *
- * Template-method class for callback hook execution
- *
+ * Template-method class for callback hook execution.
  */
 public abstract class Task {
 
   /**
-   * Execute with callback
+   * Execute with callback.
    */
   final void executeWith(final Callback callback) {
     execute();

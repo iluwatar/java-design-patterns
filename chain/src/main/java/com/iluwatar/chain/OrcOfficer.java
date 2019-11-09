@@ -24,9 +24,7 @@
 package com.iluwatar.chain;
 
 /**
- * 
- * OrcOfficer
- *
+ * OrcOfficer.
  */
 public class OrcOfficer extends RequestHandler {
 

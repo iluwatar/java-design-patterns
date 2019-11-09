@@ -24,8 +24,8 @@
 package com.iluwatar.circuitbreaker;
 
 /**
- * The service class which makes local and remote calls
- * Uses {@link CircuitBreaker} object to ensure remote calls don't use up resources
+ * The service class which makes local and remote calls Uses {@link CircuitBreaker} object to ensure
+ * remote calls don't use up resources.
  */
 public class MonitoringService {
 
@@ -35,9 +35,11 @@ public class MonitoringService {
   }
 
   /**
-   * Try to get result from remote server
-   * @param circuitBreaker The circuitBreaker object with all parameters
-   * @param serverStartTime Time at which actual server was started which makes calls to this service
+   * Try to get result from remote server.
+   *
+   * @param circuitBreaker  The circuitBreaker object with all parameters
+   * @param serverStartTime Time at which actual server was started which makes calls to this
+   *                        service
    * @return result from the remote response or exception raised by it.
    */
   public String remoteResourceResponse(CircuitBreaker circuitBreaker, long serverStartTime) {
