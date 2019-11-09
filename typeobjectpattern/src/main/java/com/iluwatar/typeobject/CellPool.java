@@ -23,18 +23,17 @@
 
 package com.iluwatar.typeobject;
 
+import com.iluwatar.typeobject.Candy.Type;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Random;
 import org.json.simple.parser.ParseException;
-import com.iluwatar.typeobject.Candy.Type;
 
 /**
- * The CellPool class allows the reuse of crushed cells instead of creation of new
- * cells each time. The reused cell is given a new candy to hold using the randomCode
- * field which holds all the candies available.
+ * The CellPool class allows the reuse of crushed cells instead of creation of new cells each time.
+ * The reused cell is given a new candy to hold using the randomCode field which holds all the
+ * candies available.
  */
 
 public class CellPool {
@@ -42,9 +41,9 @@ public class CellPool {
   ArrayList<Cell> pool;
   int pointer;
   Candy[] randomCode;
-  
+
   CellPool(int num) {
-    this.pool = new ArrayList<Cell>(num);    
+    this.pool = new ArrayList<Cell>(num);
     try {
       this.randomCode = assignRandomCandytypes();
     } catch (Exception e) {
@@ -64,25 +63,25 @@ public class CellPool {
     }
     this.pointer = num - 1;
   }
-  
+
   Cell getNewCell() {
     var newCell = this.pool.remove(pointer);
     pointer--;
     return newCell;
   }
-  
+
   void addNewCell(Cell c) {
     c.candy = randomCode[RANDOM.nextInt(randomCode.length)]; //changing candytype to new
     this.pool.add(c);
     pointer++;
   }
-  
+
   Candy[] assignRandomCandytypes() throws FileNotFoundException, IOException, ParseException {
     var jp = new JsonParser();
     jp.parse();
     var randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
     var i = 0;
-    for (var e = jp.candies.keys(); e.hasMoreElements();) {
+    for (var e = jp.candies.keys(); e.hasMoreElements(); ) {
       var s = e.nextElement();
       if (!s.equals("fruit") && !s.equals("candy")) {
         //not generic
