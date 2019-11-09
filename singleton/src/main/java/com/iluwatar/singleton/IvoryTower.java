@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.singleton;
 
 /**
@@ -30,7 +31,8 @@ public final class IvoryTower {
   /**
    * Private constructor so nobody can instantiate the class.
    */
-  private IvoryTower() {}
+  private IvoryTower() {
+  }
 
   /**
    * Static to class instance of the class.

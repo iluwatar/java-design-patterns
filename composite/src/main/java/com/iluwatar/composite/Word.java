@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,19 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.composite;
 
 import java.util.List;
 
 /**
- *
- * Word
- *
+ * Word.
  */
 public class Word extends LetterComposite {
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Word(List<Letter> letters) {
     for (Letter l : letters) {

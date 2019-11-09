@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,23 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.composite;
 
 /**
- *
- * Letter
- *
+ * Letter.
  */
 public class Letter extends LetterComposite {
 
-  private char c;
+  private char character;
 
   public Letter(char c) {
-    this.c = c;
+    this.character = c;
   }
 
   @Override
   protected void printThisBefore() {
-    System.out.print(c);
+    System.out.print(character);
   }
 }

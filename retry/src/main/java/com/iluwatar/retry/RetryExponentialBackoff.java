@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.retry;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import java.util.function.Predicate;
  * @param <T> the remote op's return type
  */
 public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
+  private static final Random RANDOM = new Random();
   private final BusinessOperation<T> op;
   private final int maxAttempts;
   private final long maxDelay;
@@ -98,8 +100,7 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
         }
 
         try {
-          Random rand = new Random();
-          long testDelay = (long) Math.pow(2, this.attempts()) * 1000 + rand.nextInt(1000);
+          long testDelay = (long) Math.pow(2, this.attempts()) * 1000 + RANDOM.nextInt(1000);
           long delay = testDelay < this.maxDelay ? testDelay : maxDelay;
           Thread.sleep(delay);
         } catch (InterruptedException f) {

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.aggregator.microservices;
 
 import javax.annotation.Resource;
@@ -50,9 +51,23 @@ public class Aggregator {
    */
   @RequestMapping(path = "/product", method = RequestMethod.GET)
   public Product getProduct() {
-    Product product = new Product();
-    product.setTitle(informationClient.getProductTitle());
-    product.setProductInventories(inventoryClient.getProductInventories());
+
+    var product = new Product();
+    String productTitle = informationClient.getProductTitle();
+    Integer productInventory = inventoryClient.getProductInventories();
+
+    if (productTitle != null) {
+      product.setTitle(productTitle);
+    } else {
+      product.setTitle("Error: Fetching Product Title Failed"); //Fallback to error message
+    }
+
+    if (productInventory != null) {
+      product.setProductInventories(productInventory);
+    } else {
+      product.setProductInventories(-1); //Fallback to default error inventory
+    }
+
     return product;
   }
 

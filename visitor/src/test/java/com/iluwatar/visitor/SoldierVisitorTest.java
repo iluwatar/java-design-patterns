@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,19 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.visitor;
 
 import java.util.Optional;
 
 /**
- * Date: 12/30/15 - 18:59 PM
+ * Date: 12/30/15 - 18:59 PM.
  *
  * @author Jeroen Meulemeester
  */
 public class SoldierVisitorTest extends VisitorTest<SoldierVisitor> {
 
   /**
-   * Create a new test instance for the given visitor
+   * Create a new test instance for the given visitor.
    */
   public SoldierVisitorTest() {
     super(

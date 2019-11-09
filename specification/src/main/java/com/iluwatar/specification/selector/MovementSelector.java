@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,28 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.specification.selector;
 
-import java.util.function.Predicate;
+package com.iluwatar.specification.selector;
 
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Movement;
+import java.util.function.Predicate;
 
 /**
- * 
  * Movement selector.
- *
  */
 public class MovementSelector implements Predicate<Creature> {
 
-  private final Movement m;
+  private final Movement movement;
 
   public MovementSelector(Movement m) {
-    this.m = m;
+    this.movement = m;
   }
 
   @Override
   public boolean test(Creature t) {
-    return t.getMovement().equals(m);
+    return t.getMovement().equals(movement);
   }
 }

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.spell;
 
 import com.iluwatar.servicelayer.common.DaoBaseImpl;
@@ -40,9 +41,9 @@ public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
   public Spell findByName(String name) {
     Transaction tx = null;
     Spell result = null;
-    try (Session session = getSessionFactory().openSession()) {
+    try (var session = getSessionFactory().openSession()) {
       tx = session.beginTransaction();
-      Criteria criteria = session.createCriteria(persistentClass);
+      var criteria = session.createCriteria(persistentClass);
       criteria.add(Restrictions.eq("name", name));
       result = (Spell) criteria.uniqueResult();
       tx.commit();

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.leaderelection;
 
 import org.slf4j.Logger;
@@ -58,6 +59,7 @@ public abstract class AbstractInstance implements Instance, Runnable {
    * The instance will execute the message in its message queue periodically once it is alive.
    */
   @Override
+  @SuppressWarnings("squid:S2189")
   public void run() {
     while (true) {
       if (!this.messageQueue.isEmpty()) {

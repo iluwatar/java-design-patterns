@@ -185,6 +185,8 @@
         <module>circuit-breaker</module>
         <module>role-object</module>
 		<module>saga</module>
+        <module>double-buffer</module>
+        <module>sharding</module>
     </modules>
 
     <repositories>
@@ -397,12 +399,36 @@
                         </goals>
                         <phase>validate</phase>
                         <configuration>
-                            <configLocation>checkstyle.xml</configLocation>
+                            <configLocation>google_checks.xml</configLocation>
                             <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                             <encoding>UTF-8</encoding>
-                            <consoleOutput>true</consoleOutput>
-                            <failsOnError>true</failsOnError>
+                            <failOnViolation>true</failOnViolation>
                             <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Resolves ${projectRoot} to the project root directory.
+                Used by the license-maven-plugin to find the correct location of
+                license-plugin-header-style.xml when built from a submodule directory. -->
+            <plugin>
+                <groupId>org.commonjava.maven.plugins</groupId>
+                <artifactId>directory-maven-plugin</artifactId>
+                <version>0.3.1</version>
+                <executions>
+                    <execution>
+                        <id>directories</id>
+                        <goals>
+                            <goal>directory-of</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <property>projectRoot</property>
+                            <project>
+                                <groupId>com.iluwatar</groupId>
+                                <artifactId>java-design-patterns</artifactId>
+                            </project>
                         </configuration>
                     </execution>
                 </executions>
@@ -418,6 +444,15 @@
                         <owner>Ilkka Seppälä</owner>
                     </properties>
                     <skipExistingHeaders>true</skipExistingHeaders>
+                    <headerDefinitions>
+                        <headerDefinition>${projectRoot}${file.separator}license-plugin-header-style.xml</headerDefinition>
+                    </headerDefinitions>
+                    <mapping>
+                        <java>SLASHSTAR_CUSTOM_STYLE</java>
+                    </mapping>
+                    <excludes>
+                        <exclude>.github/FUNDING.yml</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

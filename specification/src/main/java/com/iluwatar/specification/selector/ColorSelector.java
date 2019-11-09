@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,28 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.specification.selector;
 
-import java.util.function.Predicate;
+package com.iluwatar.specification.selector;
 
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Color;
+import java.util.function.Predicate;
 
 /**
- * 
  * Color selector.
- *
  */
 public class ColorSelector implements Predicate<Creature> {
 
-  private final Color c;
+  private final Color color;
 
   public ColorSelector(Color c) {
-    this.c = c;
+    this.color = c;
   }
 
   @Override
   public boolean test(Creature t) {
-    return t.getColor().equals(c);
+    return t.getColor().equals(color);
   }
 }

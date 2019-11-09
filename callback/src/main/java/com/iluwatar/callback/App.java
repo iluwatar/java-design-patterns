@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,26 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.callback;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
- * 
- * Callback pattern is more native for functional languages where functions are treated as
- * first-class citizens. Prior to Java 8 callbacks can be simulated using simple (alike command)
- * interfaces.
- * 
+ *
+ * Callback pattern is more native for functional languages where functions are
+ * treated as first-class citizens. Prior to Java 8 callbacks can be simulated
+ * using simple (alike command) interfaces.
+ *
  */
-public class App {
+public final class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  private static final Logger LOGGER = getLogger(App.class);
+
+  private App() {
+  }
 
   /**
    * Program entry point
    */
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     Task task = new SimpleTask();
     Callback callback = () -> LOGGER.info("I'm done now.");
     task.executeWith(callback);

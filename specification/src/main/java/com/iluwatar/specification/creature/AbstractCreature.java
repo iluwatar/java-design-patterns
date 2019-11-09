@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.specification.creature;
 
 import com.iluwatar.specification.property.Color;
@@ -27,9 +28,7 @@ import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
 /**
- * 
  * Base class for concrete creatures.
- *
  */
 public abstract class AbstractCreature implements Creature {
 
@@ -39,7 +38,7 @@ public abstract class AbstractCreature implements Creature {
   private Color color;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public AbstractCreature(String name, Size size, Movement movement, Color color) {
     this.name = name;

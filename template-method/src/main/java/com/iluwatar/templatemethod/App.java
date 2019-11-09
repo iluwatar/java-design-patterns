@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.templatemethod;
 
 /**
@@ -39,7 +40,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    HalflingThief thief = new HalflingThief(new HitAndRunMethod());
+    var thief = new HalflingThief(new HitAndRunMethod());
     thief.steal();
     thief.changeMethod(new SubtleMethod());
     thief.steal();

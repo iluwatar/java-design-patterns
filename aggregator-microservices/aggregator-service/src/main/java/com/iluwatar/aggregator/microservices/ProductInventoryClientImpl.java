@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.aggregator.microservices;
 
 import java.io.IOException;
@@ -41,19 +42,23 @@ public class ProductInventoryClientImpl implements ProductInventoryClient {
   private static final Logger LOGGER = LoggerFactory.getLogger(ProductInventoryClientImpl.class);
 
   @Override
-  public int getProductInventories() {
-    String response = "0";
+  public Integer getProductInventories() {
+    var response = "";
 
-    HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:51516/inventories")).build();
-    HttpClient client = HttpClient.newHttpClient();
+    var request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:51516/inventories")).build();
+    var client = HttpClient.newHttpClient();
     try {
-      HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
+      var httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
       response = httpResponse.body();
     } catch (IOException ioe) {
       LOGGER.error("IOException Occurred", ioe);
     } catch (InterruptedException ie) {
       LOGGER.error("InterruptedException Occurred", ie);
     }
-    return Integer.parseInt(response);
+    if("".equalsIgnoreCase(response)) {
+        return null;
+    } else {
+        return Integer.parseInt(response);
+    }
   }
 }

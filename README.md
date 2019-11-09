@@ -17,7 +17,7 @@ solve common problems when designing an application or system.
 Design patterns can speed up the development process by providing tested, proven
 development paradigms.
 
-Reusing design patterns help prevent subtle issues which cause major
+Reusing design patterns help prevent subtle issues that cause major
 problems, and it also improves code readability for coders and architects who
 are familiar with the patterns.
 
@@ -42,7 +42,7 @@ Once you are familiar with these concepts you can start drilling down into
 patterns by any of the following approaches
 
  - Using difficulty tags, `Difficulty-Beginner`, `Difficulty-Intermediate` & `Difficulty-Expert`.
- - Using pattern categories, `Creational`, `Behavioral` and others.
+ - Using pattern categories, `Creational`, `Behavioral`, and others.
  - Search for a specific pattern. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
 
 Hopefully you find the object oriented solutions presented on this site useful

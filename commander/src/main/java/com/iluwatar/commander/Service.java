@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.commander;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.Random;
+import java.util.*;
+
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 /**
@@ -42,12 +41,13 @@ public abstract class Service {
   
   protected final Database database;
   public ArrayList<Exception> exceptionsList;
+  private static final Random RANDOM = new Random();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-  private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<String, Boolean>();
+  private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<>();
 
   protected Service(Database db, Exception...exc) {
     this.database = db;
-    this.exceptionsList = new ArrayList<Exception>(Arrays.asList(exc));
+    this.exceptionsList = new ArrayList<>(List.of(exc));
   }
 
   public abstract String receiveRequest(Object...parameters) throws DatabaseUnavailableException;
@@ -55,9 +55,8 @@ public abstract class Service {
 
   protected String generateId() {
     StringBuilder random = new StringBuilder();
-    Random rand = new Random();
     while (random.length() < 12) { // length of the random string.
-      int index = (int) (rand.nextFloat() * ALL_CHARS.length());
+      int index = (int) (RANDOM.nextFloat() * ALL_CHARS.length());
       random.append(ALL_CHARS.charAt(index));
     }
     String id = random.toString();

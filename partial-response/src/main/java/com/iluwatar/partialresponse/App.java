@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.partialresponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -46,10 +46,13 @@ public class App {
    * @param args program argument.
    */
   public static void main(String[] args) throws Exception {
-    Map<Integer, Video> videos = new HashMap<>();
-    videos.put(1, new Video(1, "Avatar", 178, "epic science fiction film", "James Cameron", "English"));
-    videos.put(2, new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|", "Hideaki Anno", "Japanese"));
-    videos.put(3, new Video(3, "Interstellar", 169, "Adventure & Sci-Fi", "Christopher Nolan", "English"));
+    Map<Integer, Video> videos = Map.of(
+            1, new Video(1, "Avatar", 178, "epic science fiction film",
+                    "James Cameron", "English"),
+            2, new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|",
+                    "Hideaki Anno", "Japanese"),
+            3, new Video(3, "Interstellar", 169, "Adventure & Sci-Fi",
+                    "Christopher Nolan", "English"));
     VideoResource videoResource = new VideoResource(new FieldJsonMapper(), videos);
 
 

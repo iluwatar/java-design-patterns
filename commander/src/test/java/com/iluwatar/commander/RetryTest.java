@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,20 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.commander;
 
-import static org.junit.jupiter.api.Assertions.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.junit.jupiter.api.Test;
-
-import com.iluwatar.commander.Order;
-import com.iluwatar.commander.Retry;
-import com.iluwatar.commander.User;
-import com.iluwatar.commander.Retry.HandleErrorIssue;
-import com.iluwatar.commander.Retry.Operation;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.ItemUnavailableException;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RetryTest {
 
@@ -48,21 +45,21 @@ class RetryTest {
     Retry.HandleErrorIssue<Order> handleError = (o,e) -> { 
       return; 
     };
-    Retry<Order> r1 = new Retry<Order>(op, handleError, 3, 30000,
+    Retry<Order> r1 = new Retry<>(op, handleError, 3, 30000,
         e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
-    Retry<Order> r2 = new Retry<Order>(op, handleError, 3, 30000,
+    Retry<Order> r2 = new Retry<>(op, handleError, 3, 30000,
         e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
     User user = new User("Jim", "ABCD");
     Order order = new Order(user, "book", 10f);
-    ArrayList<Exception> arr1 = new ArrayList<Exception>(Arrays.asList(new Exception[]
-        {new ItemUnavailableException(), new DatabaseUnavailableException()}));
+    ArrayList<Exception> arr1 = new ArrayList<>(List.of(
+            new ItemUnavailableException(), new DatabaseUnavailableException()));
     try {
       r1.perform(arr1, order);
     } catch (Exception e1) {
       e1.printStackTrace();
     }
-    ArrayList<Exception> arr2 = new ArrayList<Exception>(Arrays.asList(new Exception[]
-        {new DatabaseUnavailableException(), new ItemUnavailableException()}));
+    ArrayList<Exception> arr2 = new ArrayList<>(List.of(
+            new DatabaseUnavailableException(), new ItemUnavailableException()));
     try {
       r2.perform(arr2, order);
     } catch (Exception e1) {

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,25 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.callback;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  *
- * This example generates the exact same output as {@link App} however the callback has been
- * defined as a Lambdas expression.
+ * This example generates the exact same output as {@link App} however the
+ * callback has been defined as a Lambdas expression.
  *
  */
-public class LambdasApp {
+public final class LambdasApp {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(LambdasApp.class);
+  private static final Logger LOGGER = getLogger(LambdasApp.class);
+
+  private LambdasApp() { }
 
   /**
    * Program entry point
    */
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     Task task = new SimpleTask();
     Callback c = () -> LOGGER.info("I'm done now.");
     task.executeWith(c);

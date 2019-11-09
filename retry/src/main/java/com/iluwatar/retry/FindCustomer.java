@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,11 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.retry;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Deque;
+import java.util.List;
 
 /**
  * Finds a customer, returning its ID from our records.
@@ -47,7 +48,7 @@ public final class FindCustomer implements BusinessOperation<String> {
    */
   public FindCustomer(String customerId, BusinessException... errors) {
     this.customerId = customerId;
-    this.errors = new ArrayDeque<>(Arrays.asList(errors));
+    this.errors = new ArrayDeque<>(List.of(errors));
   }
   
   @Override
