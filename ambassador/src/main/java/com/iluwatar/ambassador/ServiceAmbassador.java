@@ -23,17 +23,15 @@
 
 package com.iluwatar.ambassador;
 
+import static java.lang.Thread.sleep;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static java.lang.Thread.sleep;
-
 /**
- *
  * ServiceAmbassador provides an interface for a ({@link Client}) to access ({@link RemoteService}).
  * The interface adds logging, latency testing and usage of the service in a safe way that will not
  * add stress to the remote service when connectivity issues occur.
- *
  */
 public class ServiceAmbassador implements RemoteServiceInterface {
 
@@ -41,7 +39,8 @@ public class ServiceAmbassador implements RemoteServiceInterface {
   private static final int RETRIES = 3;
   private static final int DELAY_MS = 3000;
 
-  ServiceAmbassador() {}
+  ServiceAmbassador() {
+  }
 
   @Override
   public long doRemoteFunction(int value) {
