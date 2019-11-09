@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * StealingMethod defines skeleton for the algorithm.
- * 
  */
 public abstract class StealingMethod {
 
@@ -42,7 +40,7 @@ public abstract class StealingMethod {
   protected abstract void stealTheItem(String target);
 
   /**
-   * Steal
+   * Steal.
    */
   public void steal() {
     var target = pickTarget();
