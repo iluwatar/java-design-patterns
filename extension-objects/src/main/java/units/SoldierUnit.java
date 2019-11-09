@@ -27,7 +27,7 @@ import abstractextensions.UnitExtension;
 import concreteextensions.Soldier;
 
 /**
- * Class defining SoldierUnit
+ * Class defining SoldierUnit.
  */
 public class SoldierUnit extends Unit {
 

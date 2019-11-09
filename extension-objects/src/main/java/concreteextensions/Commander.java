@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 import units.CommanderUnit;
 
 /**
- * Class defining Commander
+ * Class defining Commander.
  */
 public class Commander implements CommanderExtension {
 

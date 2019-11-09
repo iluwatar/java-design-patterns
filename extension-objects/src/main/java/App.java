@@ -24,21 +24,21 @@
 import abstractextensions.CommanderExtension;
 import abstractextensions.SergeantExtension;
 import abstractextensions.SoldierExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import units.CommanderUnit;
 import units.SergeantUnit;
 import units.SoldierUnit;
 import units.Unit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
- * Anticipate that an object’s interface needs to be extended in the future.
- * Additional interfaces are defined by extension objects.
+ * Anticipate that an object’s interface needs to be extended in the future. Additional interfaces
+ * are defined by extension objects.
  */
 public class App {
 
   /**
-   * Program entry point
+   * Program entry point.
    *
    * @param args command line args
    */
@@ -59,9 +59,12 @@ public class App {
   private static void checkExtensionsForUnit(Unit unit) {
     final Logger logger = LoggerFactory.getLogger(App.class);
 
-    SoldierExtension soldierExtension = (SoldierExtension) unit.getUnitExtension("SoldierExtension");
-    SergeantExtension sergeantExtension = (SergeantExtension) unit.getUnitExtension("SergeantExtension");
-    CommanderExtension commanderExtension = (CommanderExtension) unit.getUnitExtension("CommanderExtension");
+    SoldierExtension soldierExtension =
+        (SoldierExtension) unit.getUnitExtension("SoldierExtension");
+    SergeantExtension sergeantExtension =
+        (SergeantExtension) unit.getUnitExtension("SergeantExtension");
+    CommanderExtension commanderExtension =
+        (CommanderExtension) unit.getUnitExtension("CommanderExtension");
 
     //if unit have extension call the method
     if (soldierExtension != null) {
