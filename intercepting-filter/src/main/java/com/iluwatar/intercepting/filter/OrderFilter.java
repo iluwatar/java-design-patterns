@@ -25,9 +25,8 @@ package com.iluwatar.intercepting.filter;
 
 /**
  * Concrete implementation of filter. This checks for the order field.
- * 
- * @author joshzambales
  *
+ * @author joshzambales
  */
 public class OrderFilter extends AbstractFilter {
 

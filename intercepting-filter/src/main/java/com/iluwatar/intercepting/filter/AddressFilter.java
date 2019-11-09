@@ -26,9 +26,8 @@ package com.iluwatar.intercepting.filter;
 /**
  * Concrete implementation of filter This filter is responsible for checking/filtering the input in
  * the address field.
- * 
- * @author joshzambales
  *
+ * @author joshzambales
  */
 public class AddressFilter extends AbstractFilter {
 
