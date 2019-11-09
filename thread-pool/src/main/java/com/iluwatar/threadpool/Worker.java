@@ -27,9 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
- * Worker implements {@link Runnable} and thus can be executed by {@link java.util.concurrent.ExecutorService}
- *
+ * Worker implements {@link Runnable} and thus can be executed by {@link
+ * java.util.concurrent.ExecutorService}.
  */
 public class Worker implements Runnable {
 

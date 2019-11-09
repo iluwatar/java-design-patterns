@@ -23,36 +23,32 @@
 
 package com.iluwatar.threadpool;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * 
  * Thread Pool pattern is where a number of threads are created to perform a number of tasks, which
  * are usually organized in a queue. The results from the tasks being executed might also be placed
  * in a queue, or the tasks might return no result. Typically, there are many more tasks than
  * threads. As soon as a thread completes its task, it will request the next task from the queue
  * until all tasks have been completed. The thread can then terminate, or sleep until there are new
  * tasks available.
- * <p>
- * In this example we create a list of tasks presenting work to be done. Each task is then wrapped
- * into a {@link Worker} object that implements {@link Runnable}. We create an
- * {@link ExecutorService} with fixed number of threads (Thread Pool) and use them to execute the
- * {@link Worker}s.
  *
+ * <p>In this example we create a list of tasks presenting work to be done. Each task is then
+ * wrapped into a {@link Worker} object that implements {@link Runnable}. We create an {@link
+ * ExecutorService} with fixed number of threads (Thread Pool) and use them to execute the {@link
+ * Worker}s.
  */
 public class App {
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
@@ -61,21 +57,21 @@ public class App {
 
     // Create a list of tasks to be executed
     List<Task> tasks = List.of(
-            new PotatoPeelingTask(3),
-            new PotatoPeelingTask(6),
-            new CoffeeMakingTask(2),
-            new CoffeeMakingTask(6),
-            new PotatoPeelingTask(4),
-            new CoffeeMakingTask(2),
-            new PotatoPeelingTask(4),
-            new CoffeeMakingTask(9),
-            new PotatoPeelingTask(3),
-            new CoffeeMakingTask(2),
-            new PotatoPeelingTask(4),
-            new CoffeeMakingTask(2),
-            new CoffeeMakingTask(7),
-            new PotatoPeelingTask(4),
-            new PotatoPeelingTask(5));
+        new PotatoPeelingTask(3),
+        new PotatoPeelingTask(6),
+        new CoffeeMakingTask(2),
+        new CoffeeMakingTask(6),
+        new PotatoPeelingTask(4),
+        new CoffeeMakingTask(2),
+        new PotatoPeelingTask(4),
+        new CoffeeMakingTask(9),
+        new PotatoPeelingTask(3),
+        new CoffeeMakingTask(2),
+        new PotatoPeelingTask(4),
+        new CoffeeMakingTask(2),
+        new CoffeeMakingTask(7),
+        new PotatoPeelingTask(4),
+        new PotatoPeelingTask(5));
 
     // Creates a thread pool that reuses a fixed number of threads operating off a shared
     // unbounded queue. At any point, at most nThreads threads will be active processing
