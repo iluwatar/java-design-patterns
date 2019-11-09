@@ -32,7 +32,7 @@ public class UserAccount {
   private String additionalInfo;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public UserAccount(String userId, String userName, String additionalInfo) {
     this.userId = userId;

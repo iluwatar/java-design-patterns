@@ -24,9 +24,7 @@
 package com.iluwatar.caching.constants;
 
 /**
- * 
- * Constant class for defining constants
- *
+ * Constant class for defining constants.
  */
 public class CachingConstants {
 
