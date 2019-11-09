@@ -33,7 +33,7 @@ public final class DatabaseNotAvailableException extends BusinessException {
 
   /**
    * Ctor.
-   * 
+   *
    * @param message the error message
    */
   public DatabaseNotAvailableException(String message) {

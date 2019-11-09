@@ -33,8 +33,8 @@ import java.util.function.Predicate;
 /**
  * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
  *
- * @author George Aristy (george.aristy@gmail.com)
  * @param <T> the remote op's return type
+ * @author George Aristy (george.aristy@gmail.com)
  */
 public final class Retry<T> implements BusinessOperation<T> {
   private final BusinessOperation<T> op;
@@ -46,18 +46,18 @@ public final class Retry<T> implements BusinessOperation<T> {
 
   /**
    * Ctor.
-   * 
-   * @param op the {@link BusinessOperation} to retry
+   *
+   * @param op          the {@link BusinessOperation} to retry
    * @param maxAttempts number of times to retry
-   * @param delay delay (in milliseconds) between attempts
+   * @param delay       delay (in milliseconds) between attempts
    * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
-   *     will be ignored if no tests are given
+   *                    will be ignored if no tests are given
    */
   @SafeVarargs
   public Retry(
-      BusinessOperation<T> op, 
-      int maxAttempts, 
-      long delay, 
+      BusinessOperation<T> op,
+      int maxAttempts,
+      long delay,
       Predicate<Exception>... ignoreTests
   ) {
     this.op = op;
@@ -70,7 +70,7 @@ public final class Retry<T> implements BusinessOperation<T> {
 
   /**
    * The errors encountered while retrying, in the encounter order.
-   * 
+   *
    * @return the errors encountered while retrying
    */
   public List<Exception> errors() {
@@ -79,7 +79,7 @@ public final class Retry<T> implements BusinessOperation<T> {
 
   /**
    * The number of retries performed.
-   * 
+   *
    * @return the number of retries performed
    */
   public int attempts() {
@@ -93,7 +93,7 @@ public final class Retry<T> implements BusinessOperation<T> {
         return this.op.perform();
       } catch (BusinessException e) {
         this.errors.add(e);
-        
+
         if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
           throw e;
         }
@@ -104,7 +104,6 @@ public final class Retry<T> implements BusinessOperation<T> {
           //ignore
         }
       }
-    }
-    while (true);
+    } while (true);
   }
 }
