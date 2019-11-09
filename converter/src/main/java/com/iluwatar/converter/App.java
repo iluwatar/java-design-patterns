@@ -23,11 +23,9 @@
 
 package com.iluwatar.converter;
 
-
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 /**
  * The Converter pattern is a behavioral design pattern which allows a common way of bidirectional
@@ -38,8 +36,9 @@ import java.util.List;
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
-   * Program entry point
+   * Program entry point.
    *
    * @param args command line args
    */

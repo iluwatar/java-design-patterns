@@ -23,11 +23,10 @@
 
 package com.iluwatar.converter;
 
-
 import java.util.Objects;
 
 /**
- * User DTO class
+ * User DTO class.
  */
 public class UserDto {
 
@@ -37,6 +36,8 @@ public class UserDto {
   private String email;
 
   /**
+   * Constructor.
+   *
    * @param firstName user's first name
    * @param lastName  user's last name
    * @param isActive  flag indicating whether the user is active
@@ -65,7 +66,8 @@ public class UserDto {
     return email;
   }
 
-  @Override public boolean equals(Object o) {
+  @Override
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -74,15 +76,17 @@ public class UserDto {
     }
     UserDto userDto = (UserDto) o;
     return isActive == userDto.isActive && Objects.equals(firstName, userDto.firstName) && Objects
-      .equals(lastName, userDto.lastName) && Objects.equals(email, userDto.email);
+        .equals(lastName, userDto.lastName) && Objects.equals(email, userDto.email);
   }
 
-  @Override public int hashCode() {
+  @Override
+  public int hashCode() {
     return Objects.hash(firstName, lastName, isActive, email);
   }
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return "UserDto{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
-      + ", isActive=" + isActive + ", email='" + email + '\'' + '}';
+        + ", isActive=" + isActive + ", email='" + email + '\'' + '}';
   }
 }
