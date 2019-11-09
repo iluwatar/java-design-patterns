@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * AI component manager for Game
+ * AI component manager for Game.
  */
 public class AiComponentManager {
 
@@ -46,7 +46,7 @@ public class AiComponentManager {
   }
 
   /**
-   * start AI component of Game
+   * start AI component of Game.
    */
   public void start() {
     LOGGER.info("Start AI Game Component");
@@ -56,7 +56,7 @@ public class AiComponentManager {
   }
 
   /**
-   * Update AI component of Game
+   * Update AI component of Game.
    */
   public void update() {
     LOGGER.info("Update AI Game Component");
