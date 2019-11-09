@@ -27,16 +27,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * Heavy objects are expensive to create.
- *
  */
 public class Heavy {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Heavy.class);
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Heavy() {
     LOGGER.info("Creating Heavy ...");

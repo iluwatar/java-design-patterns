@@ -27,22 +27,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * Lazy loading idiom defers object creation until needed.
- * <p>
- * This example shows different implementations of the pattern with increasing sophistication.
- * <p>
- * Additional information and lazy loading flavours are described in
- * http://martinfowler.com/eaaCatalog/lazyLoad.html
  *
+ * <p>This example shows different implementations of the pattern with increasing sophistication.
+ *
+ * <p>Additional information and lazy loading flavours are described in
+ * http://martinfowler.com/eaaCatalog/lazyLoad.html
  */
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
