@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
- * RequestHandler
- *
+ * RequestHandler.
  */
 public abstract class RequestHandler {
 
@@ -42,7 +40,7 @@ public abstract class RequestHandler {
   }
 
   /**
-   * Request handler
+   * Request handler.
    */
   public void handleRequest(Request req) {
     if (next != null) {
