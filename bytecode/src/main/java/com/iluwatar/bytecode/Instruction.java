@@ -24,7 +24,7 @@
 package com.iluwatar.bytecode;
 
 /**
- * Representation of instructions understandable by virtual machine
+ * Representation of instructions understandable by virtual machine.
  */
 public enum Instruction {
 
@@ -51,7 +51,8 @@ public enum Instruction {
   }
 
   /**
-   * Converts integer value to Instruction
+   * Converts integer value to Instruction.
+   *
    * @param value value of instruction
    * @return representation of the instruction
    */

@@ -23,22 +23,19 @@
 
 package com.iluwatar.caching;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- *
  * Data structure/implementation of the application's cache. The data structure consists of a hash
  * table attached with a doubly linked-list. The linked-list helps in capturing and maintaining the
  * LRU data in the cache. When a data is queried (from the cache), added (to the cache), or updated,
  * the data is moved to the front of the list to depict itself as the most-recently-used data. The
  * LRU data is always at the end of the list.
- *
  */
 public class LruCache {
 
@@ -66,7 +63,7 @@ public class LruCache {
   }
 
   /**
-   * Get user account
+   * Get user account.
    */
   public UserAccount get(String userId) {
     if (cache.containsKey(userId)) {
@@ -110,7 +107,7 @@ public class LruCache {
   }
 
   /**
-   * Set user account
+   * Set user account.
    */
   public void set(String userId, UserAccount userAccount) {
     if (cache.containsKey(userId)) {
@@ -137,7 +134,7 @@ public class LruCache {
   }
 
   /**
-   * Invalidate cache for user
+   * Invalidate cache for user.
    */
   public void invalidate(String userId) {
     Node toBeRemoved = cache.remove(userId);
@@ -156,7 +153,7 @@ public class LruCache {
   }
 
   /**
-   * Clear cache
+   * Clear cache.
    */
   public void clear() {
     head = null;
@@ -178,12 +175,12 @@ public class LruCache {
   }
 
   /**
-   * Set cache capacity
+   * Set cache capacity.
    */
   public void setCapacity(int newCapacity) {
     if (capacity > newCapacity) {
       clear(); // Behavior can be modified to accommodate for decrease in cache size. For now, we'll
-               // just clear the cache.
+      // just clear the cache.
     } else {
       this.capacity = newCapacity;
     }

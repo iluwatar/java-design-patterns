@@ -27,7 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class represent game objects which properties can be changed by instructions interpreted by virtual machine
+ * This class represent game objects which properties can be changed by instructions interpreted by
+ * virtual machine.
  */
 public class Wizard {
   private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
