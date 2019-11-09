@@ -25,7 +25,6 @@ package com.iluwatar.repository;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -38,8 +37,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * query construction code is concentrated. This becomes more important when there are a large
  * number of domain classes or heavy querying. In these cases particularly, adding this layer helps
  * minimize duplicate query logic.
- * <p>
- * In this example we utilize Spring Data to automatically generate a repository for us from the
+ *
+ * <p>In this example we utilize Spring Data to automatically generate a repository for us from the
  * {@link Person} domain object. Using the {@link PersonRepository} we perform CRUD operations on
  * the entity, moreover, the query by {@link org.springframework.data.jpa.domain.Specification} are
  * also performed. Underneath we have configured in-memory H2 database for which schema is created
@@ -50,10 +49,9 @@ public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
-   * 
-   * @param args
-   *          command line args
+   * Program entry point.
+   *
+   * @param args command line args
    */
   public static void main(String[] args) {
 
@@ -107,7 +105,7 @@ public class App {
     }
 
     repository.deleteAll();
-    
+
     context.close();
 
   }

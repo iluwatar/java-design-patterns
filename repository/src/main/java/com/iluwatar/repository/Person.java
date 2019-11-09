@@ -28,9 +28,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * 
- * Person entity
- *
+ * Person entity.
  */
 @Entity
 public class Person {
@@ -47,7 +45,7 @@ public class Person {
   }
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Person(String name, String surname, int age) {
     this.name = name;
