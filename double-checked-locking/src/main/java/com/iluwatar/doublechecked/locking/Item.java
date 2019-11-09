@@ -24,9 +24,7 @@
 package com.iluwatar.doublechecked.locking;
 
 /**
- * 
- * Item
- *
+ * Item.
  */
 public class Item {
 }
