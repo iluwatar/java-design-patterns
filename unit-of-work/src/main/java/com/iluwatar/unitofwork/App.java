@@ -31,6 +31,7 @@ import java.util.List;
  */
 public class App {
   /**
+   * Program entry point.
    *
    * @param args no argument sent
    */

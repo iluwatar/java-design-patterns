@@ -23,16 +23,14 @@
 
 package com.iluwatar.unitofwork;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * {@link StudentRepository} Student database repository.
- * supports unit of work for student data.
+ * {@link StudentRepository} Student database repository. supports unit of work for student data.
  */
 public class StudentRepository implements IUnitOfWork<Student> {
   private static final Logger LOGGER = LoggerFactory.getLogger(StudentRepository.class);
@@ -41,6 +39,8 @@ public class StudentRepository implements IUnitOfWork<Student> {
   private StudentDatabase studentDatabase;
 
   /**
+   * Constructor.
+   *
    * @param context         set of operations to be perform during commit.
    * @param studentDatabase Database for student records.
    */
