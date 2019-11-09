@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * Base class for spell targets.
- *
  */
 public abstract class Target {
 
@@ -59,7 +57,7 @@ public abstract class Target {
   public abstract String toString();
 
   /**
-   * Print status
+   * Print status.
    */
   public void printStatus() {
     LOGGER.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());

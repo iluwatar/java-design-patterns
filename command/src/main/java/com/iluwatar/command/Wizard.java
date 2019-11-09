@@ -23,16 +23,13 @@
 
 package com.iluwatar.command;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Deque;
-import java.util.LinkedList;
-
 /**
- * 
- * Wizard is the invoker of the commands
- *
+ * Wizard is the invoker of the commands.
  */
 public class Wizard {
 
@@ -46,7 +43,7 @@ public class Wizard {
   }
 
   /**
-   * Cast spell
+   * Cast spell.
    */
   public void castSpell(Command command, Target target) {
     LOGGER.info("{} casts {} at {}", this, command, target);
@@ -55,7 +52,7 @@ public class Wizard {
   }
 
   /**
-   * Undo last spell
+   * Undo last spell.
    */
   public void undoLastSpell() {
     if (!undoStack.isEmpty()) {
@@ -67,7 +64,7 @@ public class Wizard {
   }
 
   /**
-   * Redo last spell
+   * Redo last spell.
    */
   public void redoLastSpell() {
     if (!redoStack.isEmpty()) {

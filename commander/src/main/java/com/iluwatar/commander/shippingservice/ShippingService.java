@@ -27,8 +27,8 @@ import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 /**
- * ShippingService class receives request from {@link Commander} class and adds it
- * to the {@link ShippingDatabase}.
+ * ShippingService class receives request from {@link Commander} class and adds it to the {@link
+ * ShippingDatabase}.
  */
 
 public class ShippingService extends Service {
@@ -45,21 +45,22 @@ public class ShippingService extends Service {
     }
   }
 
-  public ShippingService(ShippingDatabase db, Exception...exc) {
+  public ShippingService(ShippingDatabase db, Exception... exc) {
     super(db, exc);
   }
 
   /**
    * Public method which will receive request from {@link Commander}.
    */
-  
-  public String receiveRequest(Object...parameters) throws DatabaseUnavailableException {
-    String tId = generateId();
-    ShippingRequest req = new ShippingRequest(tId, (String) parameters[0] /*item*/, (String) parameters[1]/*address*/);
+
+  public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
+    String id = generateId();
+    ShippingRequest req =
+        new ShippingRequest(id, (String) parameters[0] /*item*/, (String) parameters[1]/*address*/);
     return updateDb(req);
   }
 
-  protected String updateDb(Object...parameters) throws DatabaseUnavailableException {
+  protected String updateDb(Object... parameters) throws DatabaseUnavailableException {
     ShippingRequest req = (ShippingRequest) parameters[0];
     if (this.database.get(req.transactionId) == null) {
       database.add(req);

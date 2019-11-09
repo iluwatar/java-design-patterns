@@ -24,8 +24,8 @@
 package com.iluwatar.commander.exceptions;
 
 /**
- * PaymentDetailsErrorException is thrown when the details entered are incorrect or
- * payment cannot be made with the details given.
+ * PaymentDetailsErrorException is thrown when the details entered are incorrect or payment cannot
+ * be made with the details given.
  */
 
 public class PaymentDetailsErrorException extends Exception {

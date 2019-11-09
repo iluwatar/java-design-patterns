@@ -23,53 +23,51 @@
 
 package com.iluwatar.commander;
 
-import java.util.ArrayList;
+import com.iluwatar.commander.Order.MessageSent;
+import com.iluwatar.commander.Order.PaymentStatus;
 import com.iluwatar.commander.employeehandle.EmployeeHandle;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.ItemUnavailableException;
 import com.iluwatar.commander.exceptions.PaymentDetailsErrorException;
 import com.iluwatar.commander.exceptions.ShippingNotPossibleException;
 import com.iluwatar.commander.messagingservice.MessagingService;
-import com.iluwatar.commander.Order.MessageSent;
-import com.iluwatar.commander.Order.PaymentStatus;
 import com.iluwatar.commander.paymentservice.PaymentService;
 import com.iluwatar.commander.queue.QueueDatabase;
 import com.iluwatar.commander.queue.QueueTask;
 import com.iluwatar.commander.queue.QueueTask.TaskType;
 import com.iluwatar.commander.shippingservice.ShippingService;
+import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *<p>Commander pattern is used to handle all issues that can come up while making a
- * distributed transaction. The idea is to have a commander, which coordinates the
- * execution of all instructions and ensures proper completion using retries and
- * taking care of idempotence. By queueing instructions while they haven't been done,
- * we can ensure a state of 'eventual consistency'.</p>
+ * <p>Commander pattern is used to handle all issues that can come up while making a
+ * distributed transaction. The idea is to have a commander, which coordinates the execution of all
+ * instructions and ensures proper completion using retries and taking care of idempotence. By
+ * queueing instructions while they haven't been done, we can ensure a state of 'eventual
+ * consistency'.</p>
  * <p>In our example, we have an e-commerce application. When the user places an order,
- * the shipping service is intimated first. If the service does not respond for some
- * reason, the order is not placed. If response is received, the commander then calls
- * for the payment service to be intimated. If this fails, the shipping still takes
- * place (order converted to COD) and the item is queued. If the queue is also found
- * to be unavailable, the payment is noted to be not done and this is added to an
- * employee database. Three types of messages are sent to the user - one, if payment
- * succeeds; two, if payment fails definitively; and three, if payment fails in the
- * first attempt. If the message is not sent, this is also queued and is added to employee
- * db. We also have a time limit for each instruction to be completed, after which, the
- * instruction is not executed, thereby ensuring that resources are not held for too long.
- * In the rare occasion in which everything fails, an individual would have to step in to
- * figure out how to solve the issue.</p>
+ * the shipping service is intimated first. If the service does not respond for some reason, the
+ * order is not placed. If response is received, the commander then calls for the payment service to
+ * be intimated. If this fails, the shipping still takes place (order converted to COD) and the item
+ * is queued. If the queue is also found to be unavailable, the payment is noted to be not done and
+ * this is added to an employee database. Three types of messages are sent to the user - one, if
+ * payment succeeds; two, if payment fails definitively; and three, if payment fails in the first
+ * attempt. If the message is not sent, this is also queued and is added to employee db. We also
+ * have a time limit for each instruction to be completed, after which, the instruction is not
+ * executed, thereby ensuring that resources are not held for too long. In the rare occasion in
+ * which everything fails, an individual would have to step in to figure out how to solve the
+ * issue.</p>
  * <p>We have abstract classes {@link Database} and {@link Service} which are extended
- * by all the databases and services. Each service has a database to be updated, and 
- * receives request from an outside user (the {@link Commander} class here). There are
- * 5 microservices - {@link ShippingService}, {@link PaymentService}, {@link MessagingService},
- * {@link EmployeeHandle} and a {@link QueueDatabase}. We use retries to execute any
- * instruction using {@link Retry} class, and idempotence is ensured by going through some
- * checks before making requests to services and making change in {@link Order} class fields
- * if request succeeds or definitively fails. There are 5 classes - 
- * {@link AppShippingFailCases}, {@link AppPaymentFailCases}, {@link AppMessagingFailCases}, 
- * {@link AppQueueFailCases} and {@link AppEmployeeDbFailCases}, which look at the different
- * scenarios that may be encountered during the placing of an order.</p>
+ * by all the databases and services. Each service has a database to be updated, and receives
+ * request from an outside user (the {@link Commander} class here). There are 5 microservices -
+ * {@link ShippingService}, {@link PaymentService}, {@link MessagingService}, {@link EmployeeHandle}
+ * and a {@link QueueDatabase}. We use retries to execute any instruction using {@link Retry} class,
+ * and idempotence is ensured by going through some checks before making requests to services and
+ * making change in {@link Order} class fields if request succeeds or definitively fails. There are
+ * 5 classes - {@link AppShippingFailCases}, {@link AppPaymentFailCases}, {@link
+ * AppMessagingFailCases}, {@link AppQueueFailCases} and {@link AppEmployeeDbFailCases}, which look
+ * at the different scenarios that may be encountered during the placing of an order.</p>
  */
 
 public class Commander {
@@ -86,17 +84,18 @@ public class Commander {
   private final long queueTaskTime;
   private final long paymentTime;
   private final long messageTime;
-  private final long employeeTime; 
+  private final long employeeTime;
   private boolean finalSiteMsgShown;
   static final Logger LOG = LoggerFactory.getLogger(Commander.class);
   //we could also have another db where it stores all orders
-  
-  Commander(EmployeeHandle empDb, PaymentService pService, ShippingService sService,
-      MessagingService mService, QueueDatabase qdb, int numOfRetries, long retryDuration,
-      long queueTime, long queueTaskTime, long paymentTime, long messageTime, long employeeTime) {
-    this.paymentService = pService;
-    this.shippingService = sService;
-    this.messagingService = mService;
+
+  Commander(EmployeeHandle empDb, PaymentService paymentService, ShippingService shippingService,
+            MessagingService messagingService, QueueDatabase qdb, int numOfRetries,
+            long retryDuration, long queueTime, long queueTaskTime, long paymentTime,
+            long messageTime, long employeeTime) {
+    this.paymentService = paymentService;
+    this.shippingService = shippingService;
+    this.messagingService = messagingService;
     this.employeeDb = empDb;
     this.queue = qdb;
     this.numOfRetries = numOfRetries;
@@ -106,7 +105,7 @@ public class Commander {
     this.paymentTime = paymentTime;
     this.messageTime = messageTime;
     this.employeeTime = employeeTime;
-    this.finalSiteMsgShown = false;   
+    this.finalSiteMsgShown = false;
   }
 
   void placeOrder(Order order) throws Exception {
@@ -118,40 +117,43 @@ public class Commander {
     Retry.Operation op = (l) -> {
       if (!l.isEmpty()) {
         if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-          LOG.debug("Order " + order.id + ": Error in connecting to shipping service, trying again..");
+          LOG.debug("Order " + order.id + ": Error in connecting to shipping service, "
+              + "trying again..");
         } else {
           LOG.debug("Order " + order.id + ": Error in creating shipping request..");
         }
         throw l.remove(0);
-      } 
-      String transactionId = shippingService.receiveRequest(order.item, order.user.address); 
+      }
+      String transactionId = shippingService.receiveRequest(order.item, order.user.address);
       //could save this transaction id in a db too
-      LOG.info("Order " + order.id + ": Shipping placed successfully, transaction id: " + transactionId);
+      LOG.info("Order " + order.id + ": Shipping placed successfully, transaction id: "
+          + transactionId);
       LOG.info("Order has been placed and will be shipped to you. Please wait while we make your"
-          + " payment... "); 
-      sendPaymentRequest(order);       
-      return; 
+          + " payment... ");
+      sendPaymentRequest(order);
+      return;
     };
-    Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
+    Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
       if (ShippingNotPossibleException.class.isAssignableFrom(err.getClass())) {
-        LOG.info("Shipping is currently not possible to your address. We are working on the problem "
-            + "and will get back to you asap.");
+        LOG.info("Shipping is currently not possible to your address. We are working on the problem"
+            + " and will get back to you asap.");
         finalSiteMsgShown = true;
-        LOG.info("Order " + order.id + ": Shipping not possible to address, trying to add problem to employee db..");
+        LOG.info("Order " + order.id + ": Shipping not possible to address, trying to add problem "
+            + "to employee db..");
         employeeHandleIssue(o);
       } else if (ItemUnavailableException.class.isAssignableFrom(err.getClass())) {
-        LOG.info("This item is currently unavailable. We will inform you as soon as the item becomes "
-            + "available again.");
+        LOG.info("This item is currently unavailable. We will inform you as soon as the item "
+            + "becomes available again.");
         finalSiteMsgShown = true;
-        LOG.info("Order " + order.id + ": Item " + order.item + " unavailable, trying to add problem to employee "
-            + "handle..");
+        LOG.info("Order " + order.id + ": Item " + order.item + " unavailable, trying to add "
+            + "problem to employee handle..");
         employeeHandleIssue(o);
       } else {
         LOG.info("Sorry, there was a problem in creating your order. Please try later.");
         LOG.error("Order " + order.id + ": Shipping service unavailable, order not placed..");
         finalSiteMsgShown = true;
       }
-      return; 
+      return;
     };
     Retry<Order> r = new Retry<Order>(op, handleError, numOfRetries, retryDuration,
         e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -174,28 +176,31 @@ public class Commander {
         Retry.Operation op = (l) -> {
           if (!l.isEmpty()) {
             if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-              LOG.debug("Order " + order.id + ": Error in connecting to payment service, trying again..");
+              LOG.debug("Order " + order.id + ": Error in connecting to payment service,"
+                  + " trying again..");
             } else {
               LOG.debug("Order " + order.id + ": Error in creating payment request..");
             }
-            throw l.remove(0); 
-          } 
+            throw l.remove(0);
+          }
           if (order.paid.equals(PaymentStatus.Trying)) {
             String transactionId = paymentService.receiveRequest(order.price);
-            order.paid = PaymentStatus.Done; 
-            LOG.info("Order " + order.id + ": Payment successful, transaction Id: " + transactionId);
-            if (!finalSiteMsgShown) { 
-              LOG.info("Payment made successfully, thank you for shopping with us!!"); 
-              finalSiteMsgShown = true; 
-            } 
-            sendSuccessMessage(order); 
-            return; 
-          } 
+            order.paid = PaymentStatus.Done;
+            LOG.info("Order " + order.id + ": Payment successful, transaction Id: "
+                + transactionId);
+            if (!finalSiteMsgShown) {
+              LOG.info("Payment made successfully, thank you for shopping with us!!");
+              finalSiteMsgShown = true;
+            }
+            sendSuccessMessage(order);
+            return;
+          }
         };
-        Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
+        Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
           if (PaymentDetailsErrorException.class.isAssignableFrom(err.getClass())) {
             if (!finalSiteMsgShown) {
-              LOG.info("There was an error in payment. Your account/card details may have been incorrect. "
+              LOG.info("There was an error in payment. Your account/card details "
+                  + "may have been incorrect. "
                   + "Meanwhile, your order has been converted to COD and will be shipped.");
               finalSiteMsgShown = true;
             }
@@ -213,15 +218,16 @@ public class Commander {
                 LOG.warn("Order " + order.id + ": Payment error, going to queue..");
                 sendPaymentPossibleErrorMsg(o);
               }
-              if (o.paid.equals(PaymentStatus.Trying) && System.currentTimeMillis() - o.createdTime < paymentTime) {
-                QueueTask qt = new QueueTask(o, TaskType.Payment,-1);
+              if (o.paid.equals(PaymentStatus.Trying) && System
+                  .currentTimeMillis() - o.createdTime < paymentTime) {
+                QueueTask qt = new QueueTask(o, TaskType.Payment, -1);
                 updateQueue(qt);
-              } 
+              }
             } catch (InterruptedException e1) {
               e1.printStackTrace();
-            } 
-          } 
-          return; 
+            }
+          }
+          return;
         };
         Retry<Order> r = new Retry<Order>(op, handleError, numOfRetries, retryDuration,
             e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -229,7 +235,7 @@ public class Commander {
           r.perform(list, order);
         } catch (Exception e1) {
           e1.printStackTrace();
-        } 
+        }
       }
     });
     t.start();
@@ -237,17 +243,18 @@ public class Commander {
 
   private void updateQueue(QueueTask qt) throws InterruptedException {
     if (System.currentTimeMillis() - qt.order.createdTime >= this.queueTime) {
-      //since payment time is lesser than queuetime it would have already failed..additional check not needed
+      // since payment time is lesser than queuetime it would have already failed..
+      // additional check not needed
       LOG.trace("Order " + qt.order.id + ": Queue time for order over, failed..");
       return;
     } else if (qt.taskType.equals(TaskType.Payment) && !qt.order.paid.equals(PaymentStatus.Trying)
         || qt.taskType.equals(TaskType.Messaging) && (qt.messageType == 1
         && !qt.order.messageSent.equals(MessageSent.NoneSent)
-        || qt.order.messageSent.equals(MessageSent.PaymentFail) 
+        || qt.order.messageSent.equals(MessageSent.PaymentFail)
         || qt.order.messageSent.equals(MessageSent.PaymentSuccessful))
         || qt.taskType.equals(TaskType.EmployeeDb) && qt.order.addedToEmployeeHandle) {
       LOG.trace("Order " + qt.order.id + ": Not queueing task since task already done..");
-      return; 
+      return;
     }
     ArrayList<Exception> list = queue.exceptionsList;
     Thread t = new Thread(new Runnable() {
@@ -256,24 +263,25 @@ public class Commander {
         Retry.Operation op = (list) -> {
           if (!list.isEmpty()) {
             LOG.warn("Order " + qt.order.id + ": Error in connecting to queue db, trying again..");
-            throw list.remove(0); 
-          } 
-          queue.add(qt); 
-          queueItems++; 
+            throw list.remove(0);
+          }
+          queue.add(qt);
+          queueItems++;
           LOG.info("Order " + qt.order.id + ": " + qt.getType() + " task enqueued..");
           tryDoingTasksInQueue();
-          return;  
+          return;
         };
-        Retry.HandleErrorIssue<QueueTask> handleError = (qt,err) -> {
+        Retry.HandleErrorIssue<QueueTask> handleError = (qt, err) -> {
           if (qt.taskType.equals(TaskType.Payment)) {
-            qt.order.paid = PaymentStatus.NotDone; 
-            sendPaymentFailureMessage(qt.order); 
-            LOG.error("Order " + qt.order.id + ": Unable to enqueue payment task, payment failed..");
+            qt.order.paid = PaymentStatus.NotDone;
+            sendPaymentFailureMessage(qt.order);
+            LOG.error("Order " + qt.order.id + ": Unable to enqueue payment task,"
+                + " payment failed..");
           }
-          LOG.error("Order " + qt.order.id + ": Unable to enqueue task of type " + qt.getType() 
+          LOG.error("Order " + qt.order.id + ": Unable to enqueue task of type " + qt.getType()
               + ", trying to add to employee handle..");
           employeeHandleIssue(qt.order);
-          return; 
+          return;
         };
         Retry<QueueTask> r = new Retry<QueueTask>(op, handleError, numOfRetries, retryDuration,
             e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -281,8 +289,8 @@ public class Commander {
           r.perform(list, qt);
         } catch (Exception e1) {
           e1.printStackTrace();
-        } 
-      } 
+        }
+      }
     });
     t.start();
   }
@@ -295,13 +303,13 @@ public class Commander {
         Retry.Operation op = (list) -> {
           if (!list.isEmpty()) {
             LOG.warn("Error in accessing queue db to do tasks, trying again..");
-            throw list.remove(0); 
+            throw list.remove(0);
           }
           doTasksInQueue();
-          return; 
+          return;
         };
-        Retry.HandleErrorIssue<QueueTask> handleError = (o,err) -> {
-          return; 
+        Retry.HandleErrorIssue<QueueTask> handleError = (o, err) -> {
+          return;
         };
         Retry<QueueTask> r = new Retry<QueueTask>(op, handleError, numOfRetries, retryDuration,
             e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -309,8 +317,8 @@ public class Commander {
           r.perform(list, null);
         } catch (Exception e1) {
           e1.printStackTrace();
-        } 
-      } 
+        }
+      }
     });
     t2.start();
   }
@@ -323,14 +331,14 @@ public class Commander {
         Retry.Operation op = (list) -> {
           if (!list.isEmpty()) {
             LOG.warn("Error in accessing queue db to dequeue task, trying again..");
-            throw list.remove(0); 
-          } 
-          queue.dequeue(); 
-          queueItems--; 
+            throw list.remove(0);
+          }
+          queue.dequeue();
+          queueItems--;
           return;
         };
-        Retry.HandleErrorIssue<QueueTask> handleError = (o,err) -> {
-          return; 
+        Retry.HandleErrorIssue<QueueTask> handleError = (o, err) -> {
+          return;
         };
         Retry<QueueTask> r = new Retry<QueueTask>(op, handleError, numOfRetries, retryDuration,
             e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -338,12 +346,12 @@ public class Commander {
           r.perform(list, null);
         } catch (Exception e1) {
           e1.printStackTrace();
-        } 
+        }
       }
     });
     t3.start();
   }
-  
+
   private void sendSuccessMessage(Order order) {
     if (System.currentTimeMillis() - order.createdTime >= this.messageTime) {
       LOG.trace("Order " + order.id + ": Message time for order over, returning..");
@@ -359,32 +367,35 @@ public class Commander {
               LOG.debug("Order " + order.id + ": Error in connecting to messaging service "
                   + "(Payment Success msg), trying again..");
             } else {
-              LOG.debug("Order " + order.id + ": Error in creating Payment Success messaging request..");
+              LOG.debug("Order " + order.id + ": Error in creating Payment Success"
+                  + " messaging request..");
             }
-            throw l.remove(0); 
-          } 
-          if (!order.messageSent.equals(MessageSent.PaymentFail) 
+            throw l.remove(0);
+          }
+          if (!order.messageSent.equals(MessageSent.PaymentFail)
               && !order.messageSent.equals(MessageSent.PaymentSuccessful)) {
-            String requestId = messagingService.receiveRequest(2); 
+            String requestId = messagingService.receiveRequest(2);
             order.messageSent = MessageSent.PaymentSuccessful;
-            LOG.info("Order " + order.id + ": Payment Success message sent, request Id: " + requestId);
-          } 
-          return; 
+            LOG.info("Order " + order.id + ": Payment Success message sent,"
+                + " request Id: " + requestId);
+          }
+          return;
         };
-        Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
+        Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
           try {
-            if ((o.messageSent.equals(MessageSent.NoneSent) || o.messageSent.equals(MessageSent.PaymentTrying)) 
+            if ((o.messageSent.equals(MessageSent.NoneSent) || o.messageSent
+                .equals(MessageSent.PaymentTrying))
                 && System.currentTimeMillis() - o.createdTime < messageTime) {
-              QueueTask qt = new QueueTask(order, TaskType.Messaging,2);
+              QueueTask qt = new QueueTask(order, TaskType.Messaging, 2);
               updateQueue(qt);
-              LOG.info("Order " + order.id + ": Error in sending Payment Success message, trying to "
-                  + "queue task and add to employee handle..");
+              LOG.info("Order " + order.id + ": Error in sending Payment Success message, trying to"
+                  + " queue task and add to employee handle..");
               employeeHandleIssue(order);
             }
           } catch (InterruptedException e1) {
             e1.printStackTrace();
-          } 
-          return; 
+          }
+          return;
         };
         Retry<Order> r = new Retry<Order>(op, handleError, numOfRetries, retryDuration,
             e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -392,8 +403,8 @@ public class Commander {
           r.perform(list, order);
         } catch (Exception e1) {
           e1.printStackTrace();
-        } 
-      } 
+        }
+      }
     });
     t.start();
   }
@@ -413,32 +424,35 @@ public class Commander {
               LOG.debug("Order " + order.id + ": Error in connecting to messaging service "
                   + "(Payment Failure msg), trying again..");
             } else {
-              LOG.debug("Order " + order.id + ": Error in creating Payment Failure message request..");
+              LOG.debug("Order " + order.id + ": Error in creating Payment Failure"
+                  + " message request..");
             }
-            throw l.remove(0); 
-          } 
-          if (!order.messageSent.equals(MessageSent.PaymentFail) 
-              && !order.messageSent.equals(MessageSent.PaymentSuccessful)) { 
-            String requestId = messagingService.receiveRequest(0); 
+            throw l.remove(0);
+          }
+          if (!order.messageSent.equals(MessageSent.PaymentFail)
+              && !order.messageSent.equals(MessageSent.PaymentSuccessful)) {
+            String requestId = messagingService.receiveRequest(0);
             order.messageSent = MessageSent.PaymentFail;
-            LOG.info("Order " + order.id + ": Payment Failure message sent successfully, request Id: " + requestId);
-          } 
-          return; 
+            LOG.info("Order " + order.id + ": Payment Failure message sent successfully,"
+                + " request Id: " + requestId);
+          }
+          return;
         };
-        Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
-          if ((o.messageSent.equals(MessageSent.NoneSent) || o.messageSent.equals(MessageSent.PaymentTrying))
+        Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
+          if ((o.messageSent.equals(MessageSent.NoneSent) || o.messageSent
+              .equals(MessageSent.PaymentTrying))
               && System.currentTimeMillis() - o.createdTime < messageTime) {
             try {
-              QueueTask qt = new QueueTask(order, TaskType.Messaging,0);
+              QueueTask qt = new QueueTask(order, TaskType.Messaging, 0);
               updateQueue(qt);
               LOG.warn("Order " + order.id + ": Error in sending Payment Failure message, "
                   + "trying to queue task and add to employee handle..");
               employeeHandleIssue(o);
             } catch (InterruptedException e1) {
               e1.printStackTrace();
-            } 
-            return; 
-          } 
+            }
+            return;
+          }
         };
         Retry<Order> r = new Retry<Order>(op, handleError, numOfRetries, retryDuration,
             e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -446,8 +460,8 @@ public class Commander {
           r.perform(list, order);
         } catch (Exception e1) {
           e1.printStackTrace();
-        } 
-      } 
+        }
+      }
     });
     t.start();
   }
@@ -467,31 +481,35 @@ public class Commander {
               LOG.debug("Order " + order.id + ": Error in connecting to messaging service "
                   + "(Payment Error msg), trying again..");
             } else {
-              LOG.debug("Order " + order.id + ": Error in creating Payment Error messaging request..");
+              LOG.debug("Order " + order.id + ": Error in creating Payment Error"
+                  + " messaging request..");
             }
-            throw l.remove(0); 
+            throw l.remove(0);
           }
-          if (order.paid.equals(PaymentStatus.Trying) && order.messageSent.equals(MessageSent.NoneSent)) {
-            String requestId = messagingService.receiveRequest(1); 
-            order.messageSent = MessageSent.PaymentTrying; 
-            LOG.info("Order " + order.id + ": Payment Error message sent successfully, request Id: " + requestId);
-          } 
-          return; 
+          if (order.paid.equals(PaymentStatus.Trying) && order.messageSent
+              .equals(MessageSent.NoneSent)) {
+            String requestId = messagingService.receiveRequest(1);
+            order.messageSent = MessageSent.PaymentTrying;
+            LOG.info("Order " + order.id + ": Payment Error message sent successfully,"
+                + " request Id: " + requestId);
+          }
+          return;
         };
-        Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
+        Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
           try {
-            if (o.messageSent.equals(MessageSent.NoneSent) && order.paid.equals(PaymentStatus.Trying)
+            if (o.messageSent.equals(MessageSent.NoneSent) && order.paid
+                .equals(PaymentStatus.Trying)
                 && System.currentTimeMillis() - o.createdTime < messageTime) {
-              QueueTask qt = new QueueTask(order,TaskType.Messaging,1);
+              QueueTask qt = new QueueTask(order, TaskType.Messaging, 1);
               updateQueue(qt);
               LOG.warn("Order " + order.id + ": Error in sending Payment Error message, "
                   + "trying to queue task and add to employee handle..");
               employeeHandleIssue(o);
-            } 
+            }
           } catch (InterruptedException e1) {
             e1.printStackTrace();
-          } 
-          return; 
+          }
+          return;
         };
         Retry<Order> r = new Retry<Order>(op, handleError, numOfRetries, retryDuration,
             e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -516,28 +534,31 @@ public class Commander {
       public void run() {
         Retry.Operation op = (l) -> {
           if (!l.isEmpty()) {
-            LOG.warn("Order " + order.id + ": Error in connecting to employee handle, trying again..");
-            throw l.remove(0); 
-          } 
+            LOG.warn("Order " + order.id + ": Error in connecting to employee handle,"
+                + " trying again..");
+            throw l.remove(0);
+          }
           if (!order.addedToEmployeeHandle) {
-            employeeDb.receiveRequest(order); 
+            employeeDb.receiveRequest(order);
             order.addedToEmployeeHandle = true;
             LOG.info("Order " + order.id + ": Added order to employee database");
           }
-          return; 
+          return;
         };
-        Retry.HandleErrorIssue<Order> handleError = (o,err) -> {
+        Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
           try {
-            if (!o.addedToEmployeeHandle && System.currentTimeMillis() - order.createdTime < employeeTime) {
-              QueueTask qt = new QueueTask(order, TaskType.EmployeeDb,-1);
+            if (!o.addedToEmployeeHandle && System
+                .currentTimeMillis() - order.createdTime < employeeTime) {
+              QueueTask qt = new QueueTask(order, TaskType.EmployeeDb, -1);
               updateQueue(qt);
-              LOG.warn("Order " + order.id + ": Error in adding to employee db, trying to queue task..");
+              LOG.warn("Order " + order.id + ": Error in adding to employee db,"
+                  + " trying to queue task..");
               return;
-            } 
+            }
           } catch (InterruptedException e1) {
             e1.printStackTrace();
           }
-          return; 
+          return;
         };
         Retry<Order> r = new Retry<Order>(op, handleError, numOfRetries, retryDuration,
             e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -558,7 +579,7 @@ public class Commander {
       LOG.trace("Order " + qt.order.id + ": Started doing task of type " + qt.getType());
       if (qt.firstAttemptTime == -1) {
         qt.firstAttemptTime = System.currentTimeMillis();
-      } 
+      }
       if (System.currentTimeMillis() - qt.firstAttemptTime >= queueTaskTime) {
         tryDequeue();
         LOG.trace("Order " + qt.order.id + ": This queue task of type " + qt.getType()
@@ -573,14 +594,15 @@ public class Commander {
             LOG.debug("Order " + qt.order.id + ": Trying to connect to payment service..");
           }
         } else if (qt.taskType.equals(TaskType.Messaging)) {
-          if (qt.order.messageSent.equals(MessageSent.PaymentFail) 
+          if (qt.order.messageSent.equals(MessageSent.PaymentFail)
               || qt.order.messageSent.equals(MessageSent.PaymentSuccessful)) {
             tryDequeue();
             LOG.trace("Order " + qt.order.id + ": This messaging task already done, dequeue..");
           } else if (qt.messageType == 1 && (!qt.order.messageSent.equals(MessageSent.NoneSent)
               || !qt.order.paid.equals(PaymentStatus.Trying))) {
             tryDequeue();
-            LOG.trace("Order " + qt.order.id + ": This messaging task does not need to be done, dequeue..");
+            LOG.trace("Order " + qt.order.id + ": This messaging task does not need to be done,"
+                + " dequeue..");
           } else if (qt.messageType == 0) {
             sendPaymentFailureMessage(qt.order);
             LOG.debug("Order " + qt.order.id + ": Trying to connect to messaging service..");
@@ -594,7 +616,8 @@ public class Commander {
         } else if (qt.taskType.equals(TaskType.EmployeeDb)) {
           if (qt.order.addedToEmployeeHandle) {
             tryDequeue();
-            LOG.trace("Order " + qt.order.id + ": This employee handle task already done, dequeue..");
+            LOG.trace("Order " + qt.order.id + ": This employee handle task already done,"
+                + " dequeue..");
           } else {
             employeeHandleIssue(qt.order);
             LOG.debug("Order " + qt.order.id + ": Trying to connect to employee handle..");
