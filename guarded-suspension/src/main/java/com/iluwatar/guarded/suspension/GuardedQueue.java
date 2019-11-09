@@ -23,16 +23,16 @@
 
 package com.iluwatar.guarded.suspension;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 /**
- * Guarded Queue is an implementation for Guarded Suspension Pattern
- * Guarded suspension pattern is used to handle a situation when you want to execute a method
- * on an object which is not in a proper state.
+ * Guarded Queue is an implementation for Guarded Suspension Pattern Guarded suspension pattern is
+ * used to handle a situation when you want to execute a method on an object which is not in a
+ * proper state.
+ *
  * @see <a href="http://java-design-patterns.com/patterns/guarded-suspension/">http://java-design-patterns.com/patterns/guarded-suspension/</a>
  */
 public class GuardedQueue {
@@ -44,6 +44,8 @@ public class GuardedQueue {
   }
 
   /**
+   * Get the last element of the queue is exists.
+   *
    * @return last element of a queue if queue is not empty
    */
   public synchronized Integer get() {
@@ -60,6 +62,8 @@ public class GuardedQueue {
   }
 
   /**
+   * Put a value in the queue.
+   *
    * @param e number which we want to put to our queue
    */
   public synchronized void put(Integer e) {
