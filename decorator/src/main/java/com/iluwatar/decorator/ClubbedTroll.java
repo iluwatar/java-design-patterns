@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Decorator that adds a club for the troll
+ * Decorator that adds a club for the troll.
  */
 public class ClubbedTroll implements Troll {
 
