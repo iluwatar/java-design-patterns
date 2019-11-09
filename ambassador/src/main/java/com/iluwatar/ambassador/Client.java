@@ -23,12 +23,11 @@
 
 package com.iluwatar.ambassador;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.slf4j.Logger;
-
 /**
- * A simple Client
+ * A simple Client.
  */
 public class Client {
 
