@@ -26,7 +26,7 @@ package com.iluwatar.bytecode;
 import java.util.Stack;
 
 /**
- * Implementation of virtual machine
+ * Implementation of virtual machine.
  */
 public class VirtualMachine {
 
@@ -35,7 +35,7 @@ public class VirtualMachine {
   private Wizard[] wizards = new Wizard[2];
 
   /**
-   * Constructor
+   * Constructor.
    */
   public VirtualMachine() {
     for (int i = 0; i < wizards.length; i++) {
@@ -44,7 +44,8 @@ public class VirtualMachine {
   }
 
   /**
-   * Executes provided bytecode
+   * Executes provided bytecode.
+   *
    * @param bytecode to execute
    */
   public void execute(int[] bytecode) {

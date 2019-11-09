@@ -26,11 +26,11 @@ package com.iluwatar.bytecode.util;
 import com.iluwatar.bytecode.Instruction;
 
 /**
- * Utility class used for instruction validation and conversion
+ * Utility class used for instruction validation and conversion.
  */
 public class InstructionConverterUtil {
   /**
-   * Converts instructions represented as String
+   * Converts instructions represented as String.
    *
    * @param instructions to convert
    * @return array of int representing bytecode
@@ -48,7 +48,8 @@ public class InstructionConverterUtil {
       } else if (isValidInt(splitedInstructions[i])) {
         bytecode[i] = Integer.valueOf(splitedInstructions[i]);
       } else {
-        throw new IllegalArgumentException("Invalid instruction or number: " + splitedInstructions[i]);
+        String errorMessage = "Invalid instruction or number: " + splitedInstructions[i];
+        throw new IllegalArgumentException(errorMessage);
       }
     }
 
