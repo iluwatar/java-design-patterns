@@ -28,7 +28,7 @@ package com.iluwatar.api.gateway;
  */
 public class MobileProduct {
   /**
-   * The price of the product
+   * The price of the product.
    */
   private String price;
 
