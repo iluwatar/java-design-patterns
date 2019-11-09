@@ -43,6 +43,6 @@ public class InvestorRole extends CustomerRole {
     }
 
     public String invest() {
-        return String.format("Investor  %s has invested %d dollars", name, amountToInvest);
+        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
     }
 }
