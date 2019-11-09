@@ -20,16 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.saga.orchestration;
+package com.iluwatar.saga.choreography;
 
-import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class SagaApplicationTest {
-
-    @Test
-    public void mainTest() {
-        SagaApplication.main(new String[]{});
+/**
+ * Class representing a service to book a hotel
+ */
+public class HotelBookingService extends Service {
+    public HotelBookingService(ServiceDiscoveryService service) {
+        super(service);
     }
-}
+
+    @Override
+    public String getName() {
+        return "booking a Hotel";
+    }
+
+
+   }

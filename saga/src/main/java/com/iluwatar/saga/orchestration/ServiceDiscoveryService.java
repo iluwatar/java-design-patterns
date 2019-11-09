@@ -22,14 +22,28 @@
  */
 package com.iluwatar.saga.orchestration;
 
-import org.junit.Test;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
-import static org.junit.Assert.*;
+/**
+ * The class representing a service discovery pattern.
+ */
+public class ServiceDiscoveryService {
+    private Map<String, Chapter<?>> services;
 
-public class SagaApplicationTest {
-
-    @Test
-    public void mainTest() {
-        SagaApplication.main(new String[]{});
+    public Optional<Chapter> find(String service) {
+        return Optional.ofNullable(services.getOrDefault(service, null));
     }
+
+    public ServiceDiscoveryService discover(Chapter<?> chapterService) {
+        services.put(chapterService.getName(), chapterService);
+        return this;
+    }
+
+    public ServiceDiscoveryService() {
+        this.services = new HashMap<>();
+    }
+
+
 }

@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Saga representation.
  * Saga consists of chapters.
- * Every Chapter is executed a certain service.
+ * Every Chapter is executed by a certain service.
  */
 public class Saga {
 
@@ -37,7 +37,6 @@ public class Saga {
     public Saga() {
         this.chapters = new ArrayList<>();
     }
-
 
 
     public Saga chapter(String name) {

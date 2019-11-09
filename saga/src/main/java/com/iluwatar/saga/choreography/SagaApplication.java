@@ -20,8 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package com.iluwatar.saga.orchestration;
+package com.iluwatar.saga.choreography;
 
 
 import org.slf4j.Logger;
@@ -31,48 +30,48 @@ import org.slf4j.LoggerFactory;
  * This pattern is used in distributed services to perform a group of operations atomically.
  * This is an analog of transaction in a database but in terms of microservices architecture this is executed
  * in a distributed environment
- *
+ * <p>
  * A saga is a sequence of local transactions in a certain context. If one transaction fails for some reason,
  * the saga executes compensating transactions(rollbacks) to undo the impact of the preceding transactions.
- *
- * In this approach, there is an orchestrator @see {@link SagaOrchestrator} that manages all the transactions and directs
- * the participant services to execute local transactions based on events.
+ * <p>
+ * In this approach, there are no mediators or orchestrators services.
+ * All chapters are handled and moved by services manually.
+ * <p>
  * The major difference with choreography saga is an ability to handle crashed services
  * (otherwise in choreography services very hard to prevent a saga if one of them has been crashed)
  *
- * @see Saga
- * @see SagaOrchestrator
+ * @see com.iluwatar.saga.choreography.Saga
  * @see Service
  */
 public class SagaApplication {
     private static final Logger logger = LoggerFactory.getLogger(SagaApplication.class);
 
     public static void main(String[] args) {
-        SagaOrchestrator sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
+        ServiceDiscoveryService sd = serviceDiscovery();
+        Chapter service = sd.findAny();
+        Saga goodOrderSaga = service.execute(newSaga("good_order"));
+        Saga badOrderSaga = service.execute(newSaga("bad_order"));
+        logger.info("orders: goodOrder is {}, badOrder is {}",
+                goodOrderSaga.getResult(), badOrderSaga.getResult());
 
-        Saga.Result goodOrder = sagaOrchestrator.execute("good_order");
-        Saga.Result badOrder = sagaOrchestrator.execute("bad_order");
-        Saga.Result crashedOrder = sagaOrchestrator.execute("crashed_order");
-
-        logger.info("orders: goodOrder is {}, badOrder is {},crashedOrder is {}",goodOrder,badOrder,crashedOrder);
     }
 
 
-    private static Saga newSaga() {
+    private static Saga newSaga(Object value) {
         return Saga
                 .create()
-                .chapter("init an order")
+                .chapter("init an order").setInValue(value)
                 .chapter("booking a Fly")
                 .chapter("booking a Hotel")
                 .chapter("withdrawing Money");
     }
 
     private static ServiceDiscoveryService serviceDiscovery() {
-        return
-                new ServiceDiscoveryService()
-                        .discover(new OrderService())
-                        .discover(new FlyBookingService())
-                        .discover(new HotelBookingService())
-                        .discover(new WithdrawMoneyService());
+        ServiceDiscoveryService sd = new ServiceDiscoveryService();
+        return sd
+                .discover(new OrderService(sd))
+                .discover(new FlyBookingService(sd))
+                .discover(new HotelBookingService(sd))
+                .discover(new WithdrawMoneyService(sd));
     }
 }

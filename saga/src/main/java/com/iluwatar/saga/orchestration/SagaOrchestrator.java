@@ -22,7 +22,6 @@
  */
 package com.iluwatar.saga.orchestration;
 
-import com.iluwatar.saga.ServiceDiscoveryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,6 +47,7 @@ public class SagaOrchestrator {
     }
 
     /**
+     * pipeline to execute saga process/story
      *
      * @param value incoming value
      * @param <K> type for incoming value

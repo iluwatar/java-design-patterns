@@ -20,16 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.saga.orchestration;
+package com.iluwatar.saga.choreography;
 
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+/**
+ * Class representing a service to withdraw a money
+ */
+public class WithdrawMoneyService extends Service {
 
-public class SagaApplicationTest {
+    public WithdrawMoneyService(ServiceDiscoveryService service) {
+        super(service);
+    }
 
-    @Test
-    public void mainTest() {
-        SagaApplication.main(new String[]{});
+    @Override
+    public String getName() {
+        return "withdrawing Money";
+    }
+
+    @Override
+    public Saga process(Saga saga) {
+        Object inValue = saga.getCurrentValue();
+
+        if (inValue.equals("bad_order") ) {
+            logger.info("The chapter '{}' has been started. But the exception has been raised." +
+                            "The rollback is about to start",
+                    getName(), inValue);
+            saga.setCurrentStatus(Saga.ChapterResult.ROLLBACK);
+            return saga;
+        }
+        return super.process(saga);
     }
 }

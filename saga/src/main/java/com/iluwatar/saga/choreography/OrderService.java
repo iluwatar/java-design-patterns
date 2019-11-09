@@ -20,16 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.saga.orchestration;
+package com.iluwatar.saga.choreography;
 
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+/**
+ * Class representing a service to init a new order.
+ */
+public class OrderService extends Service{
 
-public class SagaApplicationTest {
+    public OrderService(ServiceDiscoveryService service) {
+        super(service);
+    }
 
-    @Test
-    public void mainTest() {
-        SagaApplication.main(new String[]{});
+    @Override
+    public String getName() {
+        return "init an order";
     }
 }

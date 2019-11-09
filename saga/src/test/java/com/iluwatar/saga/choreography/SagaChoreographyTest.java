@@ -22,39 +22,38 @@
  */
 package com.iluwatar.saga.choreography;
 
+import org.junit.Assert;
+import org.junit.Test;
 
-/**
- * Chapter is an interface representing a contract for an external service.
- * In that case, a service needs to make a decision what to do further
- * hence the server needs to get all context representing {@link Saga}
- * */
-public interface Chapter {
-
-    /**
-     * In that case, every method is responsible to make a decision on what to do then
-     * @param saga incoming saga
-     * @return saga result
-     */
-    Saga execute(Saga saga);
-
-    /**
-     * @return service name.
-     */
-    String getName();
-
-    /**
-     * The operation executed in general case.
-     * @param saga incoming saga
-     * @return result {@link Saga}
-     */
-    Saga process(Saga saga);
-
-    /**
-     * The operation executed in rollback case.
-     * @param saga incoming saga
-     * @return result {@link Saga}
-     */
-    Saga rollback(Saga saga);
+public class SagaChoreographyTest {
 
 
+    @Test
+    public void executeTest() {
+        ServiceDiscoveryService sd = serviceDiscovery();
+        Chapter service = sd.findAny();
+        Saga badOrderSaga = service.execute(newSaga("bad_order"));
+        Saga goodOrderSaga = service.execute(newSaga("good_order"));
+
+        Assert.assertEquals(badOrderSaga.getResult(), Saga.SagaResult.ROLLBACKED);
+        Assert.assertEquals(goodOrderSaga.getResult(), Saga.SagaResult.FINISHED);
+    }
+
+    private static Saga newSaga(Object value) {
+        return Saga
+                .create()
+                .chapter("init an order").setInValue(value)
+                .chapter("booking a Fly")
+                .chapter("booking a Hotel")
+                .chapter("withdrawing Money");
+    }
+
+    private static ServiceDiscoveryService serviceDiscovery() {
+        ServiceDiscoveryService sd = new ServiceDiscoveryService();
+        return sd
+                .discover(new OrderService(sd))
+                .discover(new FlyBookingService(sd))
+                .discover(new HotelBookingService(sd))
+                .discover(new WithdrawMoneyService(sd));
+    }
 }
