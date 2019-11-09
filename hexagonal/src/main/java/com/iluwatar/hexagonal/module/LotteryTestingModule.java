@@ -32,7 +32,7 @@ import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
 import com.iluwatar.hexagonal.eventlog.StdOutEventLog;
 
 /**
- * Guice module for testing dependencies
+ * Guice module for testing dependencies.
  */
 public class LotteryTestingModule extends AbstractModule {
   @Override

@@ -29,25 +29,24 @@ import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
+import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Scanner;
-
 /**
- * Console interface for lottery players
+ * Console interface for lottery players.
  */
 public class ConsoleLottery {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleLottery.class);
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(String[] args) {
     MongoConnectionPropertiesLoader.load();
     Injector injector = Guice.createInjector(new LotteryModule());
-    LotteryService service = injector.getInstance( LotteryService.class);
+    LotteryService service = injector.getInstance(LotteryService.class);
     WireTransfers bank = injector.getInstance(WireTransfers.class);
     try (Scanner scanner = new Scanner(System.in)) {
       boolean exit = false;
