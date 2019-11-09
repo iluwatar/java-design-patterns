@@ -26,7 +26,6 @@ package com.iluwatar.commander.queue;
 import com.iluwatar.commander.Database;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.IsEmptyException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class QueueDatabase extends Database<QueueTask> {
   private Queue<QueueTask> data;
   public ArrayList<Exception> exceptionsList;
 
-  public QueueDatabase(Exception...exc) {
+  public QueueDatabase(Exception... exc) {
     this.data = new Queue<>();
     this.exceptionsList = new ArrayList<>(List.of(exc));
   }
@@ -52,31 +51,33 @@ public class QueueDatabase extends Database<QueueTask> {
   }
 
   /**
-   * peek method returns object at front without removing it from queue
+   * peek method returns object at front without removing it from queue.
+   *
    * @return object at front of queue
-   * @throws IsEmptyException if queue is empty
+   * @throws IsEmptyException             if queue is empty
    * @throws DatabaseUnavailableException if queue db is unavailable
    */
-  
+
   public QueueTask peek() throws IsEmptyException, DatabaseUnavailableException {
     QueueTask qt = this.data.peek();
     return qt;
   }
 
   /**
-   * dequeue method removes the object at front and returns it
+   * dequeue method removes the object at front and returns it.
+   *
    * @return object at front of queue
-   * @throws IsEmptyException if queue is empty
+   * @throws IsEmptyException             if queue is empty
    * @throws DatabaseUnavailableException if queue db is unavailable
    */
-  
+
   public QueueTask dequeue() throws IsEmptyException, DatabaseUnavailableException {
     QueueTask qt = this.data.dequeue();
     return qt;
   }
 
   @Override
-  public QueueTask get(String tId) throws DatabaseUnavailableException {
+  public QueueTask get(String taskId) throws DatabaseUnavailableException {
     return null;
   }
 

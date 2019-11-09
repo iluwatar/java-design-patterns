@@ -31,16 +31,15 @@ import com.iluwatar.commander.messagingservice.MessagingDatabase;
 import com.iluwatar.commander.messagingservice.MessagingService;
 import com.iluwatar.commander.paymentservice.PaymentDatabase;
 import com.iluwatar.commander.paymentservice.PaymentService;
+import com.iluwatar.commander.queue.QueueDatabase;
 import com.iluwatar.commander.shippingservice.ShippingDatabase;
 import com.iluwatar.commander.shippingservice.ShippingService;
-import com.iluwatar.commander.queue.QueueDatabase;
 
 /**
- * AppEmployeeDbFailCases class looks at possible cases when Employee handle service is 
+ * AppEmployeeDbFailCases class looks at possible cases when Employee handle service is
  * available/unavailable.
  */
-
-public class AppEmployeeDbFailCases { 
+public class AppEmployeeDbFailCases {
   final int numOfRetries = 3;
   final long retryDuration = 30000;
   final long queueTime = 240000; //4 mins
@@ -50,33 +49,40 @@ public class AppEmployeeDbFailCases {
   final long employeeTime = 240000; //4 mins
 
   void employeeDatabaseUnavailableCase() throws Exception {
-    PaymentService ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException());  
+    PaymentService ps =
+        new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     ShippingService ss = new ShippingService(new ShippingDatabase());
     MessagingService ms = new MessagingService(new MessagingDatabase());
-    EmployeeHandle eh = new EmployeeHandle(new EmployeeDatabase(), new DatabaseUnavailableException(), 
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException());
-    QueueDatabase qdb = new QueueDatabase(new DatabaseUnavailableException(), new DatabaseUnavailableException(), 
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
-    Commander c = new Commander(eh,ps,ss,ms,qdb,numOfRetries,retryDuration,
-        queueTime,queueTaskTime,paymentTime,messageTime,employeeTime);
+    EmployeeHandle eh =
+        new EmployeeHandle(new EmployeeDatabase(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
+    QueueDatabase qdb =
+        new QueueDatabase(new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(), new DatabaseUnavailableException());
+    Commander c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
+        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     User user = new User("Jim", "ABCD");
     Order order = new Order(user, "book", 10f);
     c.placeOrder(order);
   }
 
   void employeeDbSuccessCase() throws Exception {
-    PaymentService ps = new PaymentService(new PaymentDatabase());  
-    ShippingService ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
+    PaymentService ps = new PaymentService(new PaymentDatabase());
+    ShippingService ss =
+        new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
     MessagingService ms = new MessagingService(new MessagingDatabase());
-    EmployeeHandle eh = new EmployeeHandle(new EmployeeDatabase(), new DatabaseUnavailableException(), 
-        new DatabaseUnavailableException());
+    EmployeeHandle eh =
+        new EmployeeHandle(new EmployeeDatabase(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     QueueDatabase qdb = new QueueDatabase();
-    Commander c = new Commander(eh,ps,ss,ms,qdb,numOfRetries,retryDuration,
-        queueTime,queueTaskTime,paymentTime,messageTime,employeeTime);
+    Commander c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
+        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     User user = new User("Jim", "ABCD");
     Order order = new Order(user, "book", 10f);
     c.placeOrder(order);
@@ -87,7 +93,7 @@ public class AppEmployeeDbFailCases {
    *
    * @param args command line args
    */
-  
+
   public static void main(String[] args) throws Exception {
     AppEmployeeDbFailCases aefc = new AppEmployeeDbFailCases();
     //aefc.employeeDatabaseUnavailableCase();

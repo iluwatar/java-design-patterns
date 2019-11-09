@@ -32,12 +32,12 @@ import com.iluwatar.commander.messagingservice.MessagingDatabase;
 import com.iluwatar.commander.messagingservice.MessagingService;
 import com.iluwatar.commander.paymentservice.PaymentDatabase;
 import com.iluwatar.commander.paymentservice.PaymentService;
+import com.iluwatar.commander.queue.QueueDatabase;
 import com.iluwatar.commander.shippingservice.ShippingDatabase;
 import com.iluwatar.commander.shippingservice.ShippingService;
-import com.iluwatar.commander.queue.QueueDatabase;
 
 /**
- * AppShippingFailCases class looks at possible cases when Shipping service is 
+ * AppShippingFailCases class looks at possible cases when Shipping service is
  * available/unavailable.
  */
 
@@ -51,26 +51,28 @@ public class AppShippingFailCases {
   final long employeeTime = 240000; //4 mins
 
   void itemUnavailableCase() throws Exception {
-    PaymentService ps = new PaymentService(new PaymentDatabase());  
-    ShippingService ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
+    PaymentService ps = new PaymentService(new PaymentDatabase());
+    ShippingService ss =
+        new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
     MessagingService ms = new MessagingService(new MessagingDatabase());
     EmployeeHandle eh = new EmployeeHandle(new EmployeeDatabase());
     QueueDatabase qdb = new QueueDatabase();
-    Commander c = new Commander(eh,ps,ss,ms,qdb,numOfRetries,retryDuration,
-        queueTime,queueTaskTime,paymentTime,messageTime,employeeTime);
+    Commander c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
+        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     User user = new User("Jim", "ABCD");
     Order order = new Order(user, "book", 10f);
     c.placeOrder(order);
   }
 
   void shippingNotPossibleCase() throws Exception {
-    PaymentService ps = new PaymentService(new PaymentDatabase());  
-    ShippingService ss = new ShippingService(new ShippingDatabase(), new ShippingNotPossibleException());
+    PaymentService ps = new PaymentService(new PaymentDatabase());
+    ShippingService ss =
+        new ShippingService(new ShippingDatabase(), new ShippingNotPossibleException());
     MessagingService ms = new MessagingService(new MessagingDatabase());
     EmployeeHandle eh = new EmployeeHandle(new EmployeeDatabase());
     QueueDatabase qdb = new QueueDatabase();
-    Commander c = new Commander(eh,ps,ss,ms,qdb,numOfRetries,retryDuration,
-        queueTime,queueTaskTime,paymentTime,messageTime,employeeTime);
+    Commander c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
+        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     User user = new User("Jim", "ABCD");
     Order order = new Order(user, "book", 10f);
     c.placeOrder(order);
@@ -78,15 +80,17 @@ public class AppShippingFailCases {
 
   void shippingDatabaseUnavailableCase() throws Exception {
     //rest is successful
-    PaymentService ps = new PaymentService(new PaymentDatabase());  
-    ShippingService ss = new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException());
+    PaymentService ps = new PaymentService(new PaymentDatabase());
+    ShippingService ss =
+        new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     MessagingService ms = new MessagingService(new MessagingDatabase());
     EmployeeHandle eh = new EmployeeHandle(new EmployeeDatabase());
     QueueDatabase qdb = new QueueDatabase();
-    Commander c = new Commander(eh,ps,ss,ms,qdb,numOfRetries,retryDuration,
-        queueTime,queueTaskTime,paymentTime,messageTime,employeeTime);
+    Commander c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
+        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     User user = new User("Jim", "ABCD");
     Order order = new Order(user, "book", 10f);
     c.placeOrder(order);
@@ -94,25 +98,28 @@ public class AppShippingFailCases {
 
   void shippingSuccessCase() throws Exception {
     //goes to payment after 2 retries maybe - rest is successful for now
-    PaymentService ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException());  
-    ShippingService ss = new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
-    MessagingService ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
+    PaymentService ps =
+        new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException());
+    ShippingService ss =
+        new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
+    MessagingService ms =
+        new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
     EmployeeHandle eh = new EmployeeHandle(new EmployeeDatabase());
     QueueDatabase qdb = new QueueDatabase();
-    Commander c = new Commander(eh,ps,ss,ms,qdb,numOfRetries,retryDuration,
-        queueTime,queueTaskTime,paymentTime,messageTime,employeeTime);
+    Commander c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
+        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     User user = new User("Jim", "ABCD");
     Order order = new Order(user, "book", 10f);
     c.placeOrder(order);
   }
- 
+
   /**
    * Program entry point.
    *
    * @param args command line args
    */
-  
+
   public static void main(String[] args) throws Exception {
     AppShippingFailCases asfc = new AppShippingFailCases();
     //asfc.itemUnavailableCase();
