@@ -23,24 +23,23 @@
 
 package com.iluwatar.callback;
 
-import org.slf4j.Logger;
-
 import static org.slf4j.LoggerFactory.getLogger;
 
+import org.slf4j.Logger;
+
 /**
- *
- * This example generates the exact same output as {@link App} however the
- * callback has been defined as a Lambdas expression.
- *
+ * This example generates the exact same output as {@link App} however the callback has been defined
+ * as a Lambdas expression.
  */
 public final class LambdasApp {
 
   private static final Logger LOGGER = getLogger(LambdasApp.class);
 
-  private LambdasApp() { }
+  private LambdasApp() {
+  }
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(final String[] args) {
     Task task = new SimpleTask();
