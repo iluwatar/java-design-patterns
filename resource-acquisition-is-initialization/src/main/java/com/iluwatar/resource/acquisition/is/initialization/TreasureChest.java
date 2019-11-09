@@ -23,16 +23,13 @@
 
 package com.iluwatar.resource.acquisition.is.initialization;
 
+import java.io.Closeable;
+import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.Closeable;
-import java.io.IOException;
-
 /**
- * 
- * TreasureChest resource
- *
+ * TreasureChest resource.
  */
 public class TreasureChest implements Closeable {
 
