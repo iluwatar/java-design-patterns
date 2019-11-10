@@ -32,6 +32,8 @@ public class Student {
   private final String address;
 
   /**
+   * Constructor.
+   *
    * @param id      student unique id
    * @param name    name of student
    * @param address address of student

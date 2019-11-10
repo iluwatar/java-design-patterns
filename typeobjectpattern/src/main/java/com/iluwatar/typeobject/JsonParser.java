@@ -23,6 +23,7 @@
 
 package com.iluwatar.typeobject;
 
+import com.iluwatar.typeobject.Candy.Type;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -33,16 +34,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import com.iluwatar.typeobject.Candy.Type;
 
 /**
- * The JsonParser class helps parse the json file candy.json to get all the
- * different candies.
+ * The JsonParser class helps parse the json file candy.json to get all the different candies.
  */
 
 public class JsonParser {
   Hashtable<String, Candy> candies;
-  
+
   JsonParser() {
     this.candies = new Hashtable<String, Candy>();
   }
@@ -69,9 +68,9 @@ public class JsonParser {
     }
     setParentAndPoints();
   }
-  
+
   void setParentAndPoints() {
-    for (Enumeration<String> e = this.candies.keys(); e.hasMoreElements();) {
+    for (Enumeration<String> e = this.candies.keys(); e.hasMoreElements(); ) {
       var c = this.candies.get(e.nextElement());
       if (c.parentName == null) {
         c.parent = null;
