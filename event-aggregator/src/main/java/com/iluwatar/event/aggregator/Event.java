@@ -24,9 +24,7 @@
 package com.iluwatar.event.aggregator;
 
 /**
- * 
  * Event enumeration.
- *
  */
 public enum Event {
 

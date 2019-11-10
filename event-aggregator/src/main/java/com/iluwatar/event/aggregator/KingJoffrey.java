@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * KingJoffrey observes events from {@link KingsHand}.
- *
  */
 public class KingJoffrey implements EventObserver {
 

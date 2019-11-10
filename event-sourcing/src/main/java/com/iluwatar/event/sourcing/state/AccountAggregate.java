@@ -28,10 +28,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This is the static accounts map holder class.
- * This class holds the state of the accounts.
+ * This is the static accounts map holder class. This class holds the state of the accounts.
  *
- * Created by Serdar Hamzaogullari on 06.08.2017.
+ * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class AccountAggregate {
 

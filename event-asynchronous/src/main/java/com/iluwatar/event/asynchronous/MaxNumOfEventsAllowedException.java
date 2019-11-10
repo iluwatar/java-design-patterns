@@ -24,7 +24,7 @@
 package com.iluwatar.event.asynchronous;
 
 /**
- * Type of Exception raised when the max number of allowed events is exceeded
+ * Type of Exception raised when the max number of allowed events is exceeded.
  */
 public class MaxNumOfEventsAllowedException extends Exception {
 

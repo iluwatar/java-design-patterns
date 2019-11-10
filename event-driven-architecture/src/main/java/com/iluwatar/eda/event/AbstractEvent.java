@@ -23,12 +23,12 @@
 
 package com.iluwatar.eda.event;
 
-import com.iluwatar.eda.framework.EventDispatcher;
 import com.iluwatar.eda.framework.Event;
+import com.iluwatar.eda.framework.EventDispatcher;
 
 /**
- * The {@link AbstractEvent} class serves as a base class for defining custom events happening with your
- * system. In this example we have two types of events defined.
+ * The {@link AbstractEvent} class serves as a base class for defining custom events happening with
+ * your system. In this example we have two types of events defined.
  * <ul>
  *   <li>{@link UserCreatedEvent} - used when a user is created</li>
  *   <li>{@link UserUpdatedEvent} - used when a user is updated</li>
@@ -38,9 +38,8 @@ import com.iluwatar.eda.framework.Event;
 public abstract class AbstractEvent implements Event {
 
   /**
-   * Returns the event type as a {@link Class} object
-   * In this example, this method is used by the {@link EventDispatcher} to
-   * dispatch events depending on their type.
+   * Returns the event type as a {@link Class} object In this example, this method is used by the
+   * {@link EventDispatcher} to dispatch events depending on their type.
    *
    * @return the AbstractEvent type as a {@link Class}.
    */

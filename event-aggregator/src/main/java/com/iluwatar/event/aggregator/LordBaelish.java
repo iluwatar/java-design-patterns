@@ -24,9 +24,7 @@
 package com.iluwatar.event.aggregator;
 
 /**
- * 
  * LordBaelish produces events.
- *
  */
 public class LordBaelish extends EventEmitter {
 
