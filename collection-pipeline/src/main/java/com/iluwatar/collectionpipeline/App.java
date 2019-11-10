@@ -24,7 +24,6 @@
 package com.iluwatar.collectionpipeline;
 
 import java.util.List;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,31 +45,26 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+    var cars = CarFactory.createCars();
 
-    List<Car> cars = CarFactory.createCars();
-
-    List<String> modelsImperative = ImperativeProgramming.getModelsAfter2000(cars);
+    var modelsImperative = ImperativeProgramming.getModelsAfter2000(cars);
     LOGGER.info(modelsImperative.toString());
 
-    List<String> modelsFunctional = FunctionalProgramming.getModelsAfter2000(cars);
+    var modelsFunctional = FunctionalProgramming.getModelsAfter2000(cars);
     LOGGER.info(modelsFunctional.toString());
 
-    Map<Category, List<Car>> groupingByCategoryImperative =
-        ImperativeProgramming.getGroupingOfCarsByCategory(cars);
+    var groupingByCategoryImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
     LOGGER.info(groupingByCategoryImperative.toString());
 
-    Map<Category, List<Car>> groupingByCategoryFunctional =
-        FunctionalProgramming.getGroupingOfCarsByCategory(cars);
+    var groupingByCategoryFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
     LOGGER.info(groupingByCategoryFunctional.toString());
 
-    Person john = new Person(cars);
+    var john = new Person(cars);
 
-    List<Car> sedansOwnedImperative =
-        ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+    var sedansOwnedImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     LOGGER.info(sedansOwnedImperative.toString());
 
-    List<Car> sedansOwnedFunctional =
-        FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+    var sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     LOGGER.info(sedansOwnedFunctional.toString());
   }
 }
