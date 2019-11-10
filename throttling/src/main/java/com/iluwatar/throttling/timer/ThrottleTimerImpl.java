@@ -21,15 +21,11 @@
  * THE SOFTWARE.
  */
 
-/**
- * 
- */
 package com.iluwatar.throttling.timer;
 
+import com.iluwatar.throttling.CallsCount;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import com.iluwatar.throttling.CallsCount;
 
 /**
  * Implementation of throttler interface. This class resets the counter every second.
@@ -45,7 +41,7 @@ public class ThrottleTimerImpl implements Throttler {
     this.throttlePeriod = throttlePeriod;
     this.callsCount = callsCount;
   }
-  
+
   /**
    * A timer is initiated with this method. The timer runs every second and resets the
    * counter.

@@ -26,9 +26,7 @@ package com.iluwatar.tolerantreader;
 import java.io.Serializable;
 
 /**
- * 
- * RainbowFish is the initial schema
- *
+ * RainbowFish is the initial schema.
  */
 public class RainbowFish implements Serializable {
 
@@ -40,7 +38,7 @@ public class RainbowFish implements Serializable {
   private int weightTons;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public RainbowFish(String name, int age, int lengthMeters, int weightTons) {
     this.name = name;

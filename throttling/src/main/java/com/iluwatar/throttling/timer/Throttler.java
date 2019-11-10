@@ -21,9 +21,6 @@
  * THE SOFTWARE.
  */
 
-/**
- * 
- */
 package com.iluwatar.throttling.timer;
 
 /**
@@ -32,6 +29,6 @@ package com.iluwatar.throttling.timer;
  *
  */
 public interface Throttler {
-  
+
   void start();
 }

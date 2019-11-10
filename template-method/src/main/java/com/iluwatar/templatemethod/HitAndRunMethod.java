@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * HitAndRunMethod implementation of {@link StealingMethod}.
- *
  */
 public class HitAndRunMethod extends StealingMethod {
 
