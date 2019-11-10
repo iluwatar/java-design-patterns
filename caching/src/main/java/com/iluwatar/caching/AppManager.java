@@ -24,6 +24,7 @@
 package com.iluwatar.caching;
 
 import java.text.ParseException;
+import java.util.Optional;
 
 /**
  * AppManager helps to bridge the gap in communication between the main class and the application's
@@ -116,16 +117,12 @@ public final class AppManager {
    * Cache-Aside find user account helper.
    */
   private static UserAccount findAside(String userId) {
-    UserAccount userAccount = CacheStore.get(userId);
-    if (userAccount != null) {
-      return userAccount;
-    }
-
-    userAccount = DbManager.readFromDb(userId);
-    if (userAccount != null) {
-      CacheStore.set(userId, userAccount);
-    }
-
-    return userAccount;
+    return Optional.ofNullable(CacheStore.get(userId))
+        .or(() -> {
+          Optional<UserAccount> userAccount = Optional.ofNullable(DbManager.readFromDb(userId));
+          userAccount.ifPresent(account -> CacheStore.set(userId, account));
+          return userAccount;
+        })
+        .orElse(null);
   }
 }

@@ -76,7 +76,7 @@ public class App {
     // true to run the tests with MongoDB (provided that MongoDB is
     // installed and socket connection is open).
     AppManager.initCacheCapacity(3);
-    App app = new App();
+    var app = new App();
     app.useReadAndWriteThroughStrategy();
     app.useReadThroughAndWriteAroundStrategy();
     app.useReadThroughAndWriteBehindStrategy();
@@ -90,7 +90,7 @@ public class App {
     LOGGER.info("# CachingPolicy.THROUGH");
     AppManager.initCachingPolicy(CachingPolicy.THROUGH);
 
-    UserAccount userAccount1 = new UserAccount("001", "John", "He is a boy.");
+    var userAccount1 = new UserAccount("001", "John", "He is a boy.");
 
     AppManager.save(userAccount1);
     LOGGER.info(AppManager.printCacheContent());
@@ -105,7 +105,7 @@ public class App {
     LOGGER.info("# CachingPolicy.AROUND");
     AppManager.initCachingPolicy(CachingPolicy.AROUND);
 
-    UserAccount userAccount2 = new UserAccount("002", "Jane", "She is a girl.");
+    var userAccount2 = new UserAccount("002", "Jane", "She is a girl.");
 
     AppManager.save(userAccount2);
     LOGGER.info(AppManager.printCacheContent());
@@ -127,9 +127,9 @@ public class App {
     LOGGER.info("# CachingPolicy.BEHIND");
     AppManager.initCachingPolicy(CachingPolicy.BEHIND);
 
-    UserAccount userAccount3 = new UserAccount("003", "Adam", "He likes food.");
-    UserAccount userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
-    UserAccount userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
+    var userAccount3 = new UserAccount("003", "Adam", "He likes food.");
+    var userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
+    var userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
 
     AppManager.save(userAccount3);
     AppManager.save(userAccount4);
@@ -152,9 +152,9 @@ public class App {
     AppManager.initCachingPolicy(CachingPolicy.ASIDE);
     LOGGER.info(AppManager.printCacheContent());
 
-    UserAccount userAccount3 = new UserAccount("003", "Adam", "He likes food.");
-    UserAccount userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
-    UserAccount userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
+    var userAccount3 = new UserAccount("003", "Adam", "He likes food.");
+    var userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
+    var userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
     AppManager.save(userAccount3);
     AppManager.save(userAccount4);
     AppManager.save(userAccount5);

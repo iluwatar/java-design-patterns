@@ -67,7 +67,7 @@ public class LruCache {
    */
   public UserAccount get(String userId) {
     if (cache.containsKey(userId)) {
-      Node node = cache.get(userId);
+      var node = cache.get(userId);
       remove(node);
       setHead(node);
       return node.userAccount;
@@ -111,12 +111,12 @@ public class LruCache {
    */
   public void set(String userId, UserAccount userAccount) {
     if (cache.containsKey(userId)) {
-      Node old = cache.get(userId);
+      var old = cache.get(userId);
       old.userAccount = userAccount;
       remove(old);
       setHead(old);
     } else {
-      Node newNode = new Node(userId, userAccount);
+      var newNode = new Node(userId, userAccount);
       if (cache.size() >= capacity) {
         LOGGER.info("# Cache is FULL! Removing {} from cache...", end.userId);
         cache.remove(end.userId); // remove LRU data from cache.
@@ -137,7 +137,7 @@ public class LruCache {
    * Invalidate cache for user.
    */
   public void invalidate(String userId) {
-    Node toBeRemoved = cache.remove(userId);
+    var toBeRemoved = cache.remove(userId);
     if (toBeRemoved != null) {
       LOGGER.info("# {} has been updated! Removing older version from cache...", userId);
       remove(toBeRemoved);
@@ -165,8 +165,8 @@ public class LruCache {
    * Returns cache data in list form.
    */
   public List<UserAccount> getCacheDataInListForm() {
-    List<UserAccount> listOfCacheData = new ArrayList<>();
-    Node temp = head;
+    var listOfCacheData = new ArrayList<UserAccount>();
+    var temp = head;
     while (temp != null) {
       listOfCacheData.add(temp.userAccount);
       temp = temp.next;

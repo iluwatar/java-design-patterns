@@ -32,8 +32,7 @@ import java.io.IOException;
  */
 public class AppTest {
   @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+  public void test() {
+    App.main(new String[]{});
   }
 }

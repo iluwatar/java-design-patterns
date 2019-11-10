@@ -25,7 +25,6 @@ package com.iluwatar.caching;
 
 import com.iluwatar.caching.constants.CachingConstants;
 import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
 import java.text.ParseException;
@@ -87,7 +86,7 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    FindIterable<Document> iterable = db
+    var iterable = db
         .getCollection(CachingConstants.USER_ACCOUNT)
         .find(new Document(CachingConstants.USER_ID, userId));
     if (iterable == null) {
