@@ -50,13 +50,13 @@ public class App {
    */
   public static void main(String[] args) {
     LOGGER.info("The knight receives an enchanted sword.");
-    Sword enchantedSword = new Sword(new SoulEatingEnchantment());
+    var enchantedSword = new Sword(new SoulEatingEnchantment());
     enchantedSword.wield();
     enchantedSword.swing();
     enchantedSword.unwield();
 
     LOGGER.info("The valkyrie receives an enchanted hammer.");
-    Hammer hammer = new Hammer(new FlyingEnchantment());
+    var hammer = new Hammer(new FlyingEnchantment());
     hammer.wield();
     hammer.swing();
     hammer.unwield();
