@@ -32,7 +32,7 @@ import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
 import com.iluwatar.hexagonal.eventlog.MongoEventLog;
 
 /**
- * Guice module for binding production dependencies
+ * Guice module for binding production dependencies.
  */
 public class LotteryModule extends AbstractModule {
   @Override

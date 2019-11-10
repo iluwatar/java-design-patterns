@@ -28,14 +28,14 @@ import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import org.slf4j.Logger;
 
 /**
- * Console implementation for lottery administration
+ * Console implementation for lottery administration.
  */
 public class ConsoleAdministrationSrvImpl implements ConsoleAdministrationSrv {
   private final LotteryAdministration administration;
   private final Logger logger;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public ConsoleAdministrationSrvImpl(LotteryAdministration administration, Logger logger) {
     this.administration = administration;
@@ -44,7 +44,8 @@ public class ConsoleAdministrationSrvImpl implements ConsoleAdministrationSrv {
 
   @Override
   public void getAllSubmittedTickets() {
-    administration.getAllSubmittedTickets().forEach((k, v) -> logger.info("Key: {}, Value: {}", k, v));
+    administration.getAllSubmittedTickets()
+        .forEach((k, v) -> logger.info("Key: {}, Value: {}", k, v));
   }
 
   @Override

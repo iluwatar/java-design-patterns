@@ -28,7 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Standard output event log
+ * Standard output event log.
  */
 public class StdOutEventLog implements LotteryEventLog {
 
@@ -42,24 +42,27 @@ public class StdOutEventLog implements LotteryEventLog {
 
   @Override
   public void ticketDidNotWin(PlayerDetails details) {
-    LOGGER.info("Lottery ticket for {} was checked and unfortunately did not win this time.", details.getEmail());
+    LOGGER
+        .info("Lottery ticket for {} was checked and unfortunately did not win this time.", details
+            .getEmail());
   }
 
   @Override
   public void ticketWon(PlayerDetails details, int prizeAmount) {
     LOGGER.info("Lottery ticket for {} has won! The bank account {} was deposited with {} credits.",
-            details.getEmail(), details.getBankAccount(), prizeAmount);
+        details.getEmail(), details.getBankAccount(), prizeAmount);
   }
 
   @Override
   public void prizeError(PlayerDetails details, int prizeAmount) {
-    LOGGER.error("Lottery ticket for {} has won! Unfortunately the bank credit transfer of {} failed.",
-            details.getEmail(), prizeAmount);
+    LOGGER
+        .error("Lottery ticket for {} has won! Unfortunately the bank credit transfer of"
+            + " {} failed.", details.getEmail(), prizeAmount);
   }
 
   @Override
   public void ticketSubmitError(PlayerDetails details) {
-    LOGGER.error("Lottery ticket for {} could not be submitted because the credit transfer of 3 credits failed.",
-            details.getEmail());
+    LOGGER.error("Lottery ticket for {} could not be submitted because the credit transfer"
+        + " of 3 credits failed.", details.getEmail());
   }
 }
