@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 import units.SergeantUnit;
 
 /**
- * Class defining Sergeant
+ * Class defining Sergeant.
  */
 public class Sergeant implements SergeantExtension {
 

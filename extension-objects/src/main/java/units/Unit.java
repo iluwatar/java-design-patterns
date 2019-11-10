@@ -26,7 +26,7 @@ package units;
 import abstractextensions.UnitExtension;
 
 /**
- * Class defining Unit, other units will extend this class
+ * Class defining Unit, other units will extend this class.
  */
 public class Unit {
 

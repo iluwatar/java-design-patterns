@@ -27,7 +27,7 @@ import abstractextensions.UnitExtension;
 import concreteextensions.Commander;
 
 /**
- * Class defining CommanderUnit
+ * Class defining CommanderUnit.
  */
 public class CommanderUnit extends Unit {
 
