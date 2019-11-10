@@ -48,21 +48,19 @@ public class ServiceAmbassador implements RemoteServiceInterface {
   }
 
   private long checkLatency(int value) {
-    long startTime = System.currentTimeMillis();
-    long result = RemoteService.getRemoteService().doRemoteFunction(value);
-    long timeTaken = System.currentTimeMillis() - startTime;
+    var startTime = System.currentTimeMillis();
+    var result = RemoteService.getRemoteService().doRemoteFunction(value);
+    var timeTaken = System.currentTimeMillis() - startTime;
 
     LOGGER.info("Time taken (ms): " + timeTaken);
     return result;
   }
 
   private long safeCall(int value) {
-
-    int retries = 0;
-    long result = FAILURE;
+    var retries = 0;
+    var result = (long) FAILURE;
 
     for (int i = 0; i < RETRIES; i++) {
-
       if (retries >= RETRIES) {
         return FAILURE;
       }
