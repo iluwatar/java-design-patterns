@@ -23,9 +23,6 @@
 
 package com.iluwatar.reactor.app;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -39,6 +36,8 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Represents the clients of Reactor pattern. Multiple clients are run concurrently and send logging
@@ -158,7 +157,7 @@ public class AppClient {
      * Creates a new UDP logging client.
      *
      * @param clientName the name of the client to be sent in logging requests.
-     * @param port the port on which client will send logging requests.
+     * @param port       the port on which client will send logging requests.
      * @throws UnknownHostException if localhost is unknown
      */
     public UdpLoggingClient(String clientName, int port) throws UnknownHostException {

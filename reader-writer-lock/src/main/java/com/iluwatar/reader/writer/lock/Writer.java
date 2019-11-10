@@ -24,12 +24,11 @@
 package com.iluwatar.reader.writer.lock;
 
 import java.util.concurrent.locks.Lock;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Writer class, write when it acquired the write lock
+ * Writer class, write when it acquired the write lock.
  */
 public class Writer implements Runnable {
 
@@ -38,24 +37,24 @@ public class Writer implements Runnable {
   private Lock writeLock;
 
   private String name;
-  
+
   private long writingTime;
 
   /**
-   * Create new Writer who writes for 250ms
-   * 
-   * @param name - Name of the thread owning the writer
+   * Create new Writer who writes for 250ms.
+   *
+   * @param name      - Name of the thread owning the writer
    * @param writeLock - Lock for this writer
    */
   public Writer(String name, Lock writeLock) {
     this(name, writeLock, 250L);
   }
-  
+
   /**
-   * Create new Writer
-   * 
-   * @param name - Name of the thread owning the writer
-   * @param writeLock - Lock for this writer
+   * Create new Writer.
+   *
+   * @param name        - Name of the thread owning the writer
+   * @param writeLock   - Lock for this writer
    * @param writingTime - amount of time (in milliseconds) for this reader to engage writing
    */
   public Writer(String name, Lock writeLock, long writingTime) {
@@ -77,9 +76,9 @@ public class Writer implements Runnable {
       writeLock.unlock();
     }
   }
-  
+
   /**
-   * Simulate the write operation
+   * Simulate the write operation.
    */
   public void write() throws InterruptedException {
     LOGGER.info("{} begin", name);
