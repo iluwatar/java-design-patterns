@@ -27,19 +27,18 @@ import com.iluwatar.leaderelection.Instance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
 import com.iluwatar.leaderelection.MessageType;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Example of how to use bully leader election. Initially 5 instances is created in the clould
- * system, and the instance with ID 1 is set as leader. After the system is started stop the
- * leader instance, and the new leader will be elected.
+ * system, and the instance with ID 1 is set as leader. After the system is started stop the leader
+ * instance, and the new leader will be elected.
  */
 public class BullyApp {
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(String[] args) {
 
@@ -60,11 +59,11 @@ public class BullyApp {
 
     instance4.onMessage(new Message(MessageType.HEARTBEAT_INVOKE, ""));
 
-    Thread thread1 = new Thread(instance1);
-    Thread thread2 = new Thread(instance2);
-    Thread thread3 = new Thread(instance3);
-    Thread thread4 = new Thread(instance4);
-    Thread thread5 = new Thread(instance5);
+    final Thread thread1 = new Thread(instance1);
+    final Thread thread2 = new Thread(instance2);
+    final Thread thread3 = new Thread(instance3);
+    final Thread thread4 = new Thread(instance4);
+    final Thread thread5 = new Thread(instance5);
 
     thread1.start();
     thread2.start();

@@ -29,17 +29,16 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-
 import org.springframework.stereotype.Component;
 
 /**
- * An adapter to communicate with the Price microservice
+ * An adapter to communicate with the Price microservice.
  */
 @Component
 public class PriceClientImpl implements PriceClient {
   /**
-   * Makes a simple HTTP Get request to the Price microservice
-   * 
+   * Makes a simple HTTP Get request to the Price microservice.
+   *
    * @return The price of the product
    */
   @Override
@@ -48,7 +47,8 @@ public class PriceClientImpl implements PriceClient {
     String response = null;
 
     HttpClient httpClient = HttpClient.newHttpClient();
-    HttpRequest httpGet = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50006/price")).build();
+    HttpRequest httpGet =
+        HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50006/price")).build();
 
     try {
       HttpResponse<String> httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
