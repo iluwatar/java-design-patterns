@@ -68,7 +68,7 @@ public class WashingMachine {
    */
   public void wash() {
     synchronized (this) {
-      WashingMachineState machineState = getWashingMachineState();
+      var machineState = getWashingMachineState();
       LOGGER.info("{}: Actual machine state: {}", Thread.currentThread().getName(), machineState);
       if (this.washingMachineState == WashingMachineState.WASHING) {
         LOGGER.error("ERROR: Cannot wash if the machine has been already washing!");
