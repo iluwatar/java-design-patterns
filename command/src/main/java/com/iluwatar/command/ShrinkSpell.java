@@ -41,7 +41,7 @@ public class ShrinkSpell extends Command {
   @Override
   public void undo() {
     if (oldSize != null && target != null) {
-      Size temp = target.getSize();
+      var temp = target.getSize();
       target.setSize(oldSize);
       oldSize = temp;
     }
