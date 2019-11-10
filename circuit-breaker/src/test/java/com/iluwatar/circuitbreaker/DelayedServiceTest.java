@@ -24,12 +24,11 @@
 package com.iluwatar.circuitbreaker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 /**
- * 
  * Monitoring Service test
- *
  */
 public class DelayedServiceTest {
 
