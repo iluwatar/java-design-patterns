@@ -36,16 +36,16 @@ public class MessagingDatabase extends Database<MessageRequest> {
   private Hashtable<String, MessageRequest> data;
 
   public MessagingDatabase() {
-    this.data = new Hashtable<String, MessageRequest>();
+    this.data = new Hashtable<>();
   }
 
   @Override
-  public MessageRequest add(MessageRequest r) throws DatabaseUnavailableException {
+  public MessageRequest add(MessageRequest r) {
     return data.put(r.reqId, r);
   }
 
   @Override
-  public MessageRequest get(String requestId) throws DatabaseUnavailableException {
+  public MessageRequest get(String requestId) {
     return data.get(requestId);
   }
 

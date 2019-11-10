@@ -36,7 +36,7 @@ public class EmployeeDatabase extends Database<Order> {
   private Hashtable<String, Order> data;
 
   public EmployeeDatabase() {
-    this.data = new Hashtable<String, Order>();
+    this.data = new Hashtable<>();
   }
 
   @Override

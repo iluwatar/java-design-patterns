@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 /**
  * The MessagingService is used to send messages to user regarding their order and payment status.
  * In case an error is encountered in payment and this service is found to be unavailable, the order
- * is added to the {@link EmployeeDatabase}.
+ * is added to the {@link com.iluwatar.commander.employeehandle.EmployeeDatabase}.
  */
 
 public class MessagingService extends Service {
@@ -40,8 +40,6 @@ public class MessagingService extends Service {
   enum MessageToSend {
     PaymentFail, PaymentTrying, PaymentSuccessful
   }
-
-  ;
 
   class MessageRequest {
     String reqId;
@@ -58,12 +56,12 @@ public class MessagingService extends Service {
   }
 
   /**
-   * Public method which will receive request from {@link Commander}.
+   * Public method which will receive request from {@link com.iluwatar.commander.Commander}.
    */
   public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
-    int messageToSend = (int) parameters[0];
-    String id = generateId();
-    MessageToSend msg = null;
+    var messageToSend = (int) parameters[0];
+    var id = generateId();
+    MessageToSend msg;
     if (messageToSend == 0) {
       msg = MessageToSend.PaymentFail;
     } else if (messageToSend == 1) {
@@ -71,12 +69,12 @@ public class MessagingService extends Service {
     } else { //messageToSend == 2
       msg = MessageToSend.PaymentSuccessful;
     }
-    MessageRequest req = new MessageRequest(id, msg);
+    var req = new MessageRequest(id, msg);
     return updateDb(req);
   }
 
   protected String updateDb(Object... parameters) throws DatabaseUnavailableException {
-    MessageRequest req = (MessageRequest) parameters[0];
+    var req = (MessageRequest) parameters[0];
     if (this.database.get(req.reqId) == null) { //idempotence, in case db fails here
       database.add(req); //if successful:
       LOGGER.info(sendMessage(req.msg));

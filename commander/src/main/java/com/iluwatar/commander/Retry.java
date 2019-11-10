@@ -25,6 +25,7 @@ package com.iluwatar.commander;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
@@ -42,7 +43,7 @@ public class Retry<T> {
    */
 
   public interface Operation {
-    void operation(ArrayList<Exception> list) throws Exception;
+    void operation(List<Exception> list) throws Exception;
   }
 
   /**
@@ -63,9 +64,9 @@ public class Retry<T> {
   private final long maxDelay;
   private final AtomicInteger attempts;
   private final Predicate<Exception> test;
-  private final ArrayList<Exception> errors;
+  private final List<Exception> errors;
 
-  Retry(Operation op, HandleErrorIssue handleError, int maxAttempts,
+  Retry(Operation op, HandleErrorIssue<T> handleError, int maxAttempts,
         long maxDelay, Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.handleError = handleError;
@@ -83,7 +84,7 @@ public class Retry<T> {
    * @param obj  is the parameter to be passed into handleIsuue method
    */
 
-  public void perform(ArrayList<Exception> list, T obj) throws Exception {
+  public void perform(List<Exception> list, T obj) {
     do {
       try {
         op.operation(list);
@@ -97,7 +98,7 @@ public class Retry<T> {
         try {
           long testDelay =
               (long) Math.pow(2, this.attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
-          long delay = testDelay < this.maxDelay ? testDelay : maxDelay;
+          long delay = Math.min(testDelay, this.maxDelay);
           Thread.sleep(delay);
         } catch (InterruptedException f) {
           //ignore

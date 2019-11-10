@@ -33,15 +33,15 @@ import com.iluwatar.commander.exceptions.IsEmptyException;
 
 public class Queue<T> {
 
-  Node<T> front;
-  Node<T> rear;
-  public int size = 0;
+  private Node<T> front;
+  private Node<T> rear;
+  private int size;
 
-  class Node<T> {
-    T value;
-    Node<T> next;
+  static class Node<V> {
+    V value;
+    Node<V> next;
 
-    Node(T obj, Node<T> b) {
+    Node(V obj, Node<V> b) {
       value = obj;
       next = b;
     }
@@ -57,19 +57,15 @@ public class Queue<T> {
   }
 
   boolean isEmpty() {
-    if (size == 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return size == 0;
   }
 
   void enqueue(T obj) {
     if (front == null) {
-      front = new Node(obj, null);
+      front = new Node<>(obj, null);
       rear = front;
     } else {
-      Node temp = new Node(obj, null);
+      var temp = new Node<>(obj, null);
       rear.next = temp;
       rear = temp;
     }
@@ -80,10 +76,10 @@ public class Queue<T> {
     if (isEmpty()) {
       throw new IsEmptyException();
     } else {
-      Node temp = front;
+      var temp = front;
       front = front.next;
       size = size - 1;
-      return (T) temp.value;
+      return temp.value;
     }
   }
 
@@ -91,7 +87,7 @@ public class Queue<T> {
     if (isEmpty()) {
       throw new IsEmptyException();
     } else {
-      return (T) front.value;
+      return front.value;
     }
   }
 }

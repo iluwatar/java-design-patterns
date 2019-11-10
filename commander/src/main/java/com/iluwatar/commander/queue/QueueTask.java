@@ -39,8 +39,6 @@ public class QueueTask {
     Messaging, Payment, EmployeeDb
   }
 
-  ;
-
   public Order order;
   public TaskType taskType;
   public int messageType; //0-fail, 1-error, 2-success
@@ -69,7 +67,6 @@ public class QueueTask {
    *
    * @return String representing type of task
    */
-
   public String getType() {
     if (!this.taskType.equals(TaskType.Messaging)) {
       return this.taskType.toString();
