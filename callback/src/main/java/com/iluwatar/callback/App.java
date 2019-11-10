@@ -43,8 +43,7 @@ public final class App {
    * Program entry point.
    */
   public static void main(final String[] args) {
-    Task task = new SimpleTask();
-    Callback callback = () -> LOGGER.info("I'm done now.");
-    task.executeWith(callback);
+    var task = new SimpleTask();
+    task.executeWith(() -> LOGGER.info("I'm done now."));
   }
 }

@@ -42,8 +42,7 @@ public final class LambdasApp {
    * Program entry point.
    */
   public static void main(final String[] args) {
-    Task task = new SimpleTask();
-    Callback c = () -> LOGGER.info("I'm done now.");
-    task.executeWith(c);
+    var task = new SimpleTask();
+    task.executeWith(() -> LOGGER.info("I'm done now."));
   }
 }
