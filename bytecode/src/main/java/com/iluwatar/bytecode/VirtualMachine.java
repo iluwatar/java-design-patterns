@@ -30,7 +30,7 @@ import java.util.Stack;
  */
 public class VirtualMachine {
 
-  private Stack<Integer> stack = new Stack();
+  private Stack<Integer> stack = new Stack<>();
 
   private Wizard[] wizards = new Wizard[2];
 
@@ -38,7 +38,7 @@ public class VirtualMachine {
    * Constructor.
    */
   public VirtualMachine() {
-    for (int i = 0; i < wizards.length; i++) {
+    for (var i = 0; i < wizards.length; i++) {
       wizards[i] = new Wizard();
     }
   }
@@ -49,10 +49,8 @@ public class VirtualMachine {
    * @param bytecode to execute
    */
   public void execute(int[] bytecode) {
-    for (int i = 0; i < bytecode.length; i++) {
+    for (var i = 0; i < bytecode.length; i++) {
       Instruction instruction = Instruction.getInstruction(bytecode[i]);
-      int wizard;
-      int amount;
       switch (instruction) {
         case LITERAL:
           // Read the next byte from the bytecode.
@@ -60,8 +58,8 @@ public class VirtualMachine {
           stack.push(value);
           break;
         case SET_AGILITY:
-          amount = stack.pop();
-          wizard = stack.pop();
+          var amount = stack.pop();
+          var wizard = stack.pop();
           setAgility(wizard, amount);
           break;
         case SET_WISDOM:
@@ -87,8 +85,8 @@ public class VirtualMachine {
           stack.push(getWisdom(wizard));
           break;
         case ADD:
-          int a = stack.pop();
-          int b = stack.pop();
+          var a = stack.pop();
+          var b = stack.pop();
           stack.push(a + b);
           break;
         case DIVIDE:
