@@ -23,22 +23,19 @@
 
 package com.iluwatar.dirtyflag;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A mock database manager -- Fetches data from a raw file.
- * 
- * @author swaisuan
  *
+ * @author swaisuan
  */
 public class DataFetcher {
 
@@ -61,7 +58,7 @@ public class DataFetcher {
 
   /**
    * Fetches data/content from raw file.
-   * 
+   *
    * @return List of strings
    */
   public List<String> fetch() {

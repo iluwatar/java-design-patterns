@@ -24,9 +24,7 @@
 package com.iluwatar.doubledispatch;
 
 /**
- * 
  * Rectangle has coordinates and can be checked for overlap against other Rectangles.
- *
  */
 public class Rectangle {
 
@@ -36,7 +34,7 @@ public class Rectangle {
   private int bottom;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Rectangle(int left, int top, int right, int bottom) {
     this.left = left;
