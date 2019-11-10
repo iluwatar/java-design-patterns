@@ -49,12 +49,12 @@ public class App {
   public static void main(String[] args) {
     LOGGER.info("Message from the orcs: ");
 
-    LetterComposite orcMessage = new Messenger().messageFromOrcs();
+    var orcMessage = new Messenger().messageFromOrcs();
     orcMessage.print();
 
     LOGGER.info("\nMessage from the elves: ");
 
-    LetterComposite elfMessage = new Messenger().messageFromElves();
+    var elfMessage = new Messenger().messageFromElves();
     elfMessage.print();
   }
 }
