@@ -28,7 +28,7 @@ package com.iluwatar.chain;
  */
 public class OrcKing {
 
-  RequestHandler chain;
+  private RequestHandler chain;
 
   public OrcKing() {
     buildChain();
