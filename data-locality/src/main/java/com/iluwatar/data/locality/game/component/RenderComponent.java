@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Implementation of Render Component of Game
+ * Implementation of Render Component of Game.
  */
 public class RenderComponent implements Component {
 
@@ -39,7 +39,7 @@ public class RenderComponent implements Component {
   }
 
   /**
-   * render
+   * render.
    */
   @Override
   public void render() {

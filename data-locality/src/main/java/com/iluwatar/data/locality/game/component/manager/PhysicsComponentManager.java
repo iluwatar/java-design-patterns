@@ -46,7 +46,7 @@ public class PhysicsComponentManager {
   }
 
   /**
-   * Start physics component of Game
+   * Start physics component of Game.
    */
   public void start() {
     LOGGER.info("Start Physics Game Component ");
@@ -57,7 +57,7 @@ public class PhysicsComponentManager {
 
 
   /**
-   * Update physics component of Game
+   * Update physics component of Game.
    */
   public void update() {
     LOGGER.info("Update Physics Game Component ");

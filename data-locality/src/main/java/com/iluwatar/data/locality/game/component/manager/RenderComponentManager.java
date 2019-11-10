@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *  Render component manager for Game
+ * Render component manager for Game.
  */
 public class RenderComponentManager {
 
@@ -46,7 +46,7 @@ public class RenderComponentManager {
   }
 
   /**
-   * Start render component
+   * Start render component.
    */
   public void start() {
     LOGGER.info("Start Render Game Component ");
@@ -57,7 +57,7 @@ public class RenderComponentManager {
 
 
   /**
-   * render component
+   * render component.
    */
   public void render() {
     LOGGER.info("Update Render Game Component ");

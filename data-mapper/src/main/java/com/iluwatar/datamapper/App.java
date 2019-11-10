@@ -23,10 +23,9 @@
 
 package com.iluwatar.datamapper;
 
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Optional;
 
 /**
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
@@ -35,19 +34,18 @@ import java.util.Optional;
  * present; they need no SQL interface code, and certainly no knowledge of the database schema. (The
  * database schema is always ignorant of the objects that use it.) Since it's a form of Mapper ,
  * Data Mapper itself is even unknown to the domain layer.
- * <p>
- * The below example demonstrates basic CRUD operations: Create, Read, Update, and Delete.
- * 
+ *
+ * <p>The below example demonstrates basic CRUD operations: Create, Read, Update, and Delete.
  */
 public final class App {
 
   private static Logger log = LoggerFactory.getLogger(App.class);
   private static final String STUDENT_STRING = "App.main(), student : ";
-  
+
 
   /**
    * Program entry point.
-   * 
+   *
    * @param args command line args.
    */
   public static void main(final String... args) {
@@ -81,5 +79,6 @@ public final class App {
     mapper.delete(student);
   }
 
-  private App() {}
+  private App() {
+  }
 }
