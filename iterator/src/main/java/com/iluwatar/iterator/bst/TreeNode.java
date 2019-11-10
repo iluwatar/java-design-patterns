@@ -36,7 +36,7 @@ public class TreeNode<T extends Comparable<T>> {
   private TreeNode<T> right;
 
   /**
-   * Creates a TreeNode with a given value, and null children
+   * Creates a TreeNode with a given value, and null children.
    *
    * @param val The value of the given node
    */
@@ -67,7 +67,7 @@ public class TreeNode<T extends Comparable<T>> {
   }
 
   /**
-   * Inserts new TreeNode based on a given value into the subtree represented by self
+   * Inserts new TreeNode based on a given value into the subtree represented by self.
    *
    * @param valToInsert The value to insert as a new TreeNode
    */

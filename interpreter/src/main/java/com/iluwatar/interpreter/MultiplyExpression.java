@@ -24,9 +24,7 @@
 package com.iluwatar.interpreter;
 
 /**
- * 
- * MultiplyExpression
- *
+ * MultiplyExpression.
  */
 public class MultiplyExpression extends Expression {
 

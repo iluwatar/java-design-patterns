@@ -24,9 +24,7 @@
 package com.iluwatar.interpreter;
 
 /**
- * 
- * MinusExpression
- *
+ * MinusExpression.
  */
 public class MinusExpression extends Expression {
 
