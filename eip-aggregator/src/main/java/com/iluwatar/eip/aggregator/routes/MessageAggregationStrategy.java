@@ -28,8 +28,8 @@ import org.apache.camel.processor.aggregate.AggregationStrategy;
 import org.springframework.stereotype.Component;
 
 /**
- * Aggregation strategy joining bodies of messages. If message is first one <i>oldMessage</i> is null. All changes are
- * made on IN messages.
+ * Aggregation strategy joining bodies of messages. If message is first one <i>oldMessage</i> is
+ * null. All changes are made on IN messages.
  */
 @Component
 public class MessageAggregationStrategy implements AggregationStrategy {
