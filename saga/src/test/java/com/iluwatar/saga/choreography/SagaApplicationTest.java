@@ -25,11 +25,13 @@ package com.iluwatar.saga.choreography;
 import com.iluwatar.saga.orchestration.SagaApplication;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
+/***
+ * empty test
+ */
 public class SagaApplicationTest {
-    @Test
-    public void mainTest() {
-        SagaApplication.main(new String[]{});
-    }
+  @Test
+  public void mainTest() {
+    SagaApplication.main(new String[]{});
+  }
 }

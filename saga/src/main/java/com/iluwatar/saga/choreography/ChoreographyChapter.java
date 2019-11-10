@@ -20,31 +20,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.saga.orchestration;
+package com.iluwatar.saga.choreography;
+
 
 /**
- * Chapter is an interface representing a contract for an external service.
- * @param <K> is type for passing params
+ * ChoreographyChapter is an interface representing a contract for an external service.
+ * In that case, a service needs to make a decision what to do further
+ * hence the server needs to get all context representing {@link Saga}
  */
-public interface Chapter<K> {
+public interface ChoreographyChapter {
 
-    /**
-     * @return service name.
-     */
-    String getName();
+  /**
+   * In that case, every method is responsible to make a decision on what to do then
+   *
+   * @param saga incoming saga
+   * @return saga result
+   */
+  Saga execute(Saga saga);
 
-    /**
-     * The operation executed in general case.
-     * @param value incoming value
-     * @return result {@link ChapterResult}
-     */
-    ChapterResult<K> process(K value);
+  /**
+   * @return service name.
+   */
+  String getName();
 
-    /**
-     * The operation executed in rollback case.
-     * @param value incoming value
-     * @return result {@link ChapterResult}
-     */
-    ChapterResult<K> rollback(K value);
+  /**
+   * The operation executed in general case.
+   *
+   * @param saga incoming saga
+   * @return result {@link Saga}
+   */
+  Saga process(Saga saga);
+
+  /**
+   * The operation executed in rollback case.
+   *
+   * @param saga incoming saga
+   * @return result {@link Saga}
+   */
+  Saga rollback(Saga saga);
+
 
 }

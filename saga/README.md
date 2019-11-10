@@ -1,7 +1,7 @@
 ---
 layout: pattern
 title: Saga
-folder: Communication
+folder: saga
 permalink: /patterns/saga/
 categories: Behavioral
 tags:
@@ -43,4 +43,4 @@ Use the Saga pattern, if:
 - you can not use 2PC(two phase commit)
 
 ## Credits
-- [pattern description](https://microservices.io/patterns/data/saga.html)
+- [Pattern: Saga](https://microservices.io/patterns/data/saga.html)

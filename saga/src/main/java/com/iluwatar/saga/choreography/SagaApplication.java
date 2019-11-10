@@ -44,34 +44,37 @@ import org.slf4j.LoggerFactory;
  * @see Service
  */
 public class SagaApplication {
-    private static final Logger logger = LoggerFactory.getLogger(SagaApplication.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(SagaApplication.class);
 
-    public static void main(String[] args) {
-        ServiceDiscoveryService sd = serviceDiscovery();
-        Chapter service = sd.findAny();
-        Saga goodOrderSaga = service.execute(newSaga("good_order"));
-        Saga badOrderSaga = service.execute(newSaga("bad_order"));
-        logger.info("orders: goodOrder is {}, badOrder is {}",
-                goodOrderSaga.getResult(), badOrderSaga.getResult());
+  /**
+   * main method
+   */
+  public static void main(String[] args) {
+    ServiceDiscoveryService sd = serviceDiscovery();
+    ChoreographyChapter service = sd.findAny();
+    Saga goodOrderSaga = service.execute(newSaga("good_order"));
+    Saga badOrderSaga = service.execute(newSaga("bad_order"));
+    LOGGER.info("orders: goodOrder is {}, badOrder is {}",
+        goodOrderSaga.getResult(), badOrderSaga.getResult());
 
-    }
+  }
 
 
-    private static Saga newSaga(Object value) {
-        return Saga
-                .create()
-                .chapter("init an order").setInValue(value)
-                .chapter("booking a Fly")
-                .chapter("booking a Hotel")
-                .chapter("withdrawing Money");
-    }
+  private static Saga newSaga(Object value) {
+    return Saga
+        .create()
+        .chapter("init an order").setInValue(value)
+        .chapter("booking a Fly")
+        .chapter("booking a Hotel")
+        .chapter("withdrawing Money");
+  }
 
-    private static ServiceDiscoveryService serviceDiscovery() {
-        ServiceDiscoveryService sd = new ServiceDiscoveryService();
-        return sd
-                .discover(new OrderService(sd))
-                .discover(new FlyBookingService(sd))
-                .discover(new HotelBookingService(sd))
-                .discover(new WithdrawMoneyService(sd));
-    }
+  private static ServiceDiscoveryService serviceDiscovery() {
+    ServiceDiscoveryService sd = new ServiceDiscoveryService();
+    return sd
+        .discover(new OrderService(sd))
+        .discover(new FlyBookingService(sd))
+        .discover(new HotelBookingService(sd))
+        .discover(new WithdrawMoneyService(sd));
+  }
 }

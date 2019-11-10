@@ -32,29 +32,30 @@ import java.util.Optional;
  * The class representing a service discovery pattern.
  */
 public class ServiceDiscoveryService {
-    private Map<String, Chapter> services;
+  private Map<String, ChoreographyChapter> services;
 
-    /**
-     * find any service
-     * @return any service
-     * @throws NoSuchElementException if no elements further
-     */
-    public Chapter findAny(){
-       return services.values().iterator().next();
-    }
+  /**
+   * find any service
+   *
+   * @return any service
+   * @throws NoSuchElementException if no elements further
+   */
+  public ChoreographyChapter findAny() {
+    return services.values().iterator().next();
+  }
 
-    public Optional<Chapter> find(String service) {
-        return Optional.ofNullable(services.getOrDefault(service, null));
-    }
+  public Optional<ChoreographyChapter> find(String service) {
+    return Optional.ofNullable(services.getOrDefault(service, null));
+  }
 
-    public ServiceDiscoveryService discover(Chapter chapterService) {
-        services.put(chapterService.getName(), chapterService);
-        return this;
-    }
+  public ServiceDiscoveryService discover(ChoreographyChapter chapterService) {
+    services.put(chapterService.getName(), chapterService);
+    return this;
+  }
 
-    public ServiceDiscoveryService() {
-        this.services = new HashMap<>();
-    }
+  public ServiceDiscoveryService() {
+    this.services = new HashMap<>();
+  }
 
 
 }

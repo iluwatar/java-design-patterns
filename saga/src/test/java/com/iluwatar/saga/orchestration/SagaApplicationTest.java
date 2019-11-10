@@ -26,10 +26,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * empty test
+ */
 public class SagaApplicationTest {
 
-    @Test
-    public void mainTest() {
-        SagaApplication.main(new String[]{});
-    }
+  @Test
+  public void mainTest() {
+    SagaApplication.main(new String[]{});
+  }
 }

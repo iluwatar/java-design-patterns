@@ -30,20 +30,20 @@ import java.util.Optional;
  * The class representing a service discovery pattern.
  */
 public class ServiceDiscoveryService {
-    private Map<String, Chapter<?>> services;
+  private Map<String, OrchestrationChapter<?>> services;
 
-    public Optional<Chapter> find(String service) {
-        return Optional.ofNullable(services.getOrDefault(service, null));
-    }
+  public Optional<OrchestrationChapter> find(String service) {
+    return Optional.ofNullable(services.getOrDefault(service, null));
+  }
 
-    public ServiceDiscoveryService discover(Chapter<?> chapterService) {
-        services.put(chapterService.getName(), chapterService);
-        return this;
-    }
+  public ServiceDiscoveryService discover(OrchestrationChapter<?> orchestrationChapterService) {
+    services.put(orchestrationChapterService.getName(), orchestrationChapterService);
+    return this;
+  }
 
-    public ServiceDiscoveryService() {
-        this.services = new HashMap<>();
-    }
+  public ServiceDiscoveryService() {
+    this.services = new HashMap<>();
+  }
 
 
 }
