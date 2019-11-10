@@ -45,7 +45,7 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 
   @Override
   public <T> AsyncResult<T> startProcess(Callable<T> task, AsyncCallback<T> callback) {
-    CompletableResult<T> result = new CompletableResult<>(callback);
+    var result = new CompletableResult<>(callback);
     new Thread(() -> {
       try {
         result.setValue(task.call());

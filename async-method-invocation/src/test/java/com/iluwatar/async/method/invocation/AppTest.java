@@ -28,11 +28,9 @@ import org.junit.jupiter.api.Test;
 /**
  * Application test
  */
-public class AppTest {
-
+class AppTest {
   @Test
-  public void test() throws Exception {
-    String[] args = {};
-    App.main(args);
+  void test() throws Exception {
+    App.main(new String[]{});
   }
 }
