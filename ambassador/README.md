@@ -74,53 +74,50 @@ A service ambassador adding additional features such as logging, latency checks
 ```java
 public class ServiceAmbassador implements RemoteServiceInterface {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceAmbassador.class);
-    private static final int RETRIES = 3;
-    private static final int DELAY_MS = 3000;
+  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceAmbassador.class);
+  private static final int RETRIES = 3;
+  private static final int DELAY_MS = 3000;
 
-    ServiceAmbassador() {}
+  ServiceAmbassador() {
+  }
 
-    @Override
-    public long doRemoteFunction(int value) {
+  @Override
+  public long doRemoteFunction(int value) {
+    return safeCall(value);
+  }
 
-        return safeCall(value);
-    }
+  private long checkLatency(int value) {
+    var startTime = System.currentTimeMillis();
+    var result = RemoteService.getRemoteService().doRemoteFunction(value);
+    var timeTaken = System.currentTimeMillis() - startTime;
 
-    private long checkLatency(int value) {
-        RemoteService service = RemoteService.getRemoteService();
-        long startTime = System.currentTimeMillis();
-        long result = service.doRemoteFunction(value);
-        long timeTaken = System.currentTimeMillis() - startTime;
+    LOGGER.info("Time taken (ms): " + timeTaken);
+    return result;
+  }
 
-        LOGGER.info("Time taken (ms): " + timeTaken);
-        return result;
-    }
+  private long safeCall(int value) {
+    var retries = 0;
+    var result = (long) FAILURE;
 
-    private long safeCall(int value) {
+    for (int i = 0; i < RETRIES; i++) {
+      if (retries >= RETRIES) {
+        return FAILURE;
+      }
 
-        int retries = 0;
-        long result = -1;
-
-        for (int i = 0; i < RETRIES; i++) {
-
-            if (retries >= RETRIES) {
-                return -1;
-            }
-
-            if ((result = checkLatency(value)) == -1) {
-                LOGGER.info("Failed to reach remote: (" + (i + 1) + ")");
-                retries++;
-                try {
-                    sleep(DELAY_MS);
-                } catch (InterruptedException e) {
-                    LOGGER.error("Thread sleep state interrupted", e);
-                }
-            } else {
-                break;
-            }
+      if ((result = checkLatency(value)) == FAILURE) {
+        LOGGER.info("Failed to reach remote: (" + (i + 1) + ")");
+        retries++;
+        try {
+          sleep(DELAY_MS);
+        } catch (InterruptedException e) {
+          LOGGER.error("Thread sleep state interrupted", e);
         }
-        return result;
+      } else {
+        break;
+      }
     }
+    return result;
+  }
 }
 ```
 
@@ -129,17 +126,14 @@ A client has a local service ambassador used to interact with the remote service
 ```java
 public class Client {
 
-    private ServiceAmbassador serviceAmbassador;
+  private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
+  private final ServiceAmbassador serviceAmbassador = new ServiceAmbassador();
 
-    Client() {
-        serviceAmbassador = new ServiceAmbassador();
-    }
-
-    long useService(int value) {
-        long result = serviceAmbassador.doRemoteFunction(value);
-        LOGGER.info("Service result: " + result);
-        return result;
-    }
+  long useService(int value) {
+    var result = serviceAmbassador.doRemoteFunction(value);
+    LOGGER.info("Service result: " + result);
+    return result;
+  }
 }
 ```
 
@@ -148,8 +142,8 @@ And here are two clients using the service.
 ```java
 public class App {
   public static void main(String[] args) {
-    Client host1 = new Client();
-    Client host2 = new Client();
+    var host1 = new Client();
+    var host2 = new Client();
     host1.useService(12);
     host2.useService(73);
   }
