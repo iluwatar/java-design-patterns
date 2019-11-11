@@ -23,19 +23,15 @@
 
 package com.iluwatar.servicelayer.app;
 
-import java.util.List;
-
 import com.iluwatar.servicelayer.magic.MagicService;
 import com.iluwatar.servicelayer.magic.MagicServiceImpl;
 import com.iluwatar.servicelayer.spell.Spell;
-import com.iluwatar.servicelayer.spell.SpellDao;
 import com.iluwatar.servicelayer.spell.SpellDaoImpl;
 import com.iluwatar.servicelayer.spellbook.Spellbook;
-import com.iluwatar.servicelayer.spellbook.SpellbookDao;
 import com.iluwatar.servicelayer.spellbook.SpellbookDaoImpl;
 import com.iluwatar.servicelayer.wizard.Wizard;
-import com.iluwatar.servicelayer.wizard.WizardDao;
 import com.iluwatar.servicelayer.wizard.WizardDaoImpl;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,28 +39,27 @@ import org.slf4j.LoggerFactory;
 /**
  * Service layer defines an application's boundary with a layer of services that establishes a set
  * of available operations and coordinates the application's response in each operation.
- * <p>
- * Enterprise applications typically require different kinds of interfaces to the data they store
- * and the logic they implement: data loaders, user interfaces, integration gateways, and others.
- * Despite their different purposes, these interfaces often need common interactions with the
- * application to access and manipulate its data and invoke its business logic. The interactions may
- * be complex, involving transactions across multiple resources and the coordination of several
+ *
+ * <p>Enterprise applications typically require different kinds of interfaces to the data they
+ * store and the logic they implement: data loaders, user interfaces, integration gateways, and
+ * others. Despite their different purposes, these interfaces often need common interactions with
+ * the application to access and manipulate its data and invoke its business logic. The interactions
+ * may be complex, involving transactions across multiple resources and the coordination of several
  * responses to an action. Encoding the logic of the interactions separately in each interface
  * causes a lot of duplication.
- * <p>
- * The example application demonstrates interactions between a client ({@link App}) and a service (
- * {@link MagicService}). The service is implemented with 3-layer architecture (entity, dao,
- * service). For persistence the example uses in-memory H2 database which is populated on each
- * application startup.
  *
+ * <p>The example application demonstrates interactions between a client ({@link App}) and a
+ * service ({@link MagicService}). The service is implemented with 3-layer architecture (entity,
+ * dao, service). For persistence the example uses in-memory H2 database which is populated on each
+ * application startup.
  */
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
@@ -75,7 +70,7 @@ public class App {
   }
 
   /**
-   * Initialize data
+   * Initialize data.
    */
   public static void initData() {
     // spells
@@ -180,7 +175,7 @@ public class App {
   }
 
   /**
-   * Query the data
+   * Query the data.
    */
   public static void queryData() {
     var service =

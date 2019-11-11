@@ -29,7 +29,7 @@ package com.iluwatar.semaphore;
 public class Fruit {
 
   /**
-   * Enumeration of Fruit Types
+   * Enumeration of Fruit Types.
    */
   public enum FruitType {
     ORANGE, APPLE, LEMON
@@ -46,7 +46,7 @@ public class Fruit {
   }
 
   /**
-   * toString method
+   * toString method.
    */
   public String toString() {
     switch (type) {
