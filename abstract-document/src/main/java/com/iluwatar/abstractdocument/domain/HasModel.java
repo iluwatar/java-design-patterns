@@ -23,13 +23,12 @@
 
 package com.iluwatar.abstractdocument.domain;
 
-import java.util.Optional;
-
 import com.iluwatar.abstractdocument.Document;
 import com.iluwatar.abstractdocument.domain.enums.Property;
+import java.util.Optional;
 
 /**
- * HasModel trait for static access to 'model' property
+ * HasModel trait for static access to 'model' property.
  */
 public interface HasModel extends Document {
 

@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Controller providing endpoints to retrieve product inventories
+ * Controller providing endpoints to retrieve product inventories.
  */
 @RestController
 public class InventoryController {

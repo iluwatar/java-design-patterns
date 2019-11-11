@@ -24,14 +24,13 @@
 package com.iluwatar.aggregator.microservices;
 
 import javax.annotation.Resource;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The aggregator aggregates calls on various micro-services, collects
- * data and further publishes them under a REST endpoint.
+ * The aggregator aggregates calls on various micro-services, collects data and further publishes
+ * them under a REST endpoint.
  */
 @RestController
 public class Aggregator {
