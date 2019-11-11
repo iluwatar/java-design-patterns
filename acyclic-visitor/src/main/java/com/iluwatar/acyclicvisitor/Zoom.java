@@ -27,27 +27,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Zoom class implements its accept method
+ * Zoom class implements its accept method.
  */
 public class Zoom extends Modem {
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);
 
   /**
-   * Accepts all visitors but honors only ZoomVisitor
+   * Accepts all visitors but honors only ZoomVisitor.
    */
   @Override
   public void accept(ModemVisitor modemVisitor) {
-    if (modemVisitor instanceof  ZoomVisitor) {
+    if (modemVisitor instanceof ZoomVisitor) {
       ((ZoomVisitor) modemVisitor).visit(this);
     } else {
       LOGGER.info("Only ZoomVisitor is allowed to visit Zoom modem");
     }
   }
-  
+
   /**
-   * Zoom modem's toString
-   * method
+   * Zoom modem's toString method.
    */
   @Override
   public String toString() {
