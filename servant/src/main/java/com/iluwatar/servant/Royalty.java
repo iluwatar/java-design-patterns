@@ -24,9 +24,7 @@
 package com.iluwatar.servant;
 
 /**
- * 
- * Royalty
- *
+ * Royalty.
  */
 interface Royalty {
 
