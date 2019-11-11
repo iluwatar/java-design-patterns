@@ -23,20 +23,26 @@
 
 package com.iluwatar.gameloop;
 
+import java.util.Random;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- * Abstract class for GameLoop implemention class.
+ * Abstract class for GameLoop implementation class.
  */
 public abstract class GameLoop {
 
-  /**
-   * {@code true} if the game is running. {@code false} if not.
-   */
+  protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+
   protected GameStatus status;
+
+  protected GameController controller;
 
   /**
    * Initialize game status to be stopped.
    */
   public GameLoop() {
+    controller = new GameController();
     status = GameStatus.STOPPED;
   }
 
@@ -60,8 +66,22 @@ public abstract class GameLoop {
    *
    * @return {@code true} if the game is running.
    */
-  public boolean isRunning() {
+  public boolean isGameRunning() {
     return status == GameStatus.RUNNING ? true : false;
+  }
+
+  /**
+   * Handle any user input that has happened since the last call. In order to
+   * simulate the situation in real-life game, here we add a random time lag.
+   * The time lag ranges from 50 ms to 250 ms.
+   */
+  protected void processInput() {
+    try {
+      int lag = new Random().nextInt(200) + 50;
+      Thread.sleep(lag);
+    } catch (InterruptedException e) {
+      logger.error(e.getMessage());
+    }
   }
 
   /**

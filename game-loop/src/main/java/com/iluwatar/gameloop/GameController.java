@@ -27,36 +27,40 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * A game loop runs continuously during gameplay. Each turn of the loop, it processes
- * user input without blocking, updates the game state, and renders the game. It tracks
- * the passage of time to control the rate of gameplay.
+ * Update and render objects in the game. Here we add a Bullet object to the
+ * game system to show how the game loop works.
  */
-public class App {
+public class GameController {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(GameController.class);
 
-  /**
-   * Each type of game loop will run for 2 seconds.
-   */
-  private static final int GAME_LOOP_DURATION_TIME = 2000;
+  private Bullet bullet;
 
   /**
-   * Program entry point.
-   * @param args runtime arguments
+   * Initialize Bullet instance.
    */
-  public static void main(String[] args) {
+  public GameController() {
+    bullet = new Bullet();
+  }
 
-    try {
-      LOGGER.info("Start frame-based game loop:");
-      GameLoop gameLoop = new FrameBasedGameLoop();
-      gameLoop.run();
-      Thread.sleep(GAME_LOOP_DURATION_TIME);
-      gameLoop.stop();
-      LOGGER.info("Stop frame-based game loop.");
+  /**
+   * Move bullet position by the provided offset.
+   *
+   * @param offset moving offset
+   */
+  public void moveBullet(float offset) {
+    var currentPosition = bullet.getPosition();
+    bullet.setPosition(currentPosition + offset);
+  }
 
-    } catch (InterruptedException e) {
-      LOGGER.error(e.getMessage());
-    }
+  /**
+   * Get current position of the bullet.
+   *
+   * @return position of bullet
+   */
+  public float getBulletPosition() {
+    return bullet.getPosition();
   }
 
 }
+
