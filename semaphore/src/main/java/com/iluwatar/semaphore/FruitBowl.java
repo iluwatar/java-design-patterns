@@ -23,19 +23,20 @@
 
 package com.iluwatar.semaphore;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * A FruitBowl contains Fruit. 
+ * A FruitBowl contains Fruit.
  */
 public class FruitBowl {
-    
+
   private List<Fruit> fruit = new ArrayList<>();
 
   /**
-   * 
-   * @return The amount of Fruit left in the bowl. 
+   * Returns the amount of fruits left in bowl.
+   *
+   * @return The amount of Fruit left in the bowl.
    */
   public int countFruit() {
     return fruit.size();
@@ -43,15 +44,16 @@ public class FruitBowl {
 
   /**
    * Put an item of Fruit into the bowl.
-   * 
+   *
    * @param f fruit
    */
   public void put(Fruit f) {
     fruit.add(f);
   }
-  
+
   /**
    * Take an item of Fruit out of the bowl.
+   *
    * @return The Fruit taken out of the bowl, or null if empty.
    */
   public Fruit take() {
@@ -61,15 +63,15 @@ public class FruitBowl {
       return fruit.remove(0);
     }
   }
-  
+
   /**
-   * toString method
-   */   
+   * toString method.
+   */
   public String toString() {
     int apples = 0;
     int oranges = 0;
     int lemons = 0;
-        
+
     for (Fruit f : fruit) {
       switch (f.getType()) {
         case APPLE:
@@ -84,7 +86,7 @@ public class FruitBowl {
         default:
       }
     }
-        
+
     return apples + " Apples, " + oranges + " Oranges, and " + lemons + " Lemons";
   }
 }
