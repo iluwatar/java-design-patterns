@@ -27,25 +27,26 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
- * This class extends the generic SpatialPartition abstract class and is used in
- * our example to keep track of all the bubbles that collide, pop and stay un-popped.
+ * This class extends the generic SpatialPartition abstract class and is used in our example to keep
+ * track of all the bubbles that collide, pop and stay un-popped.
  */
 
 public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
 
-  Hashtable<Integer, Bubble> bubbles;
-  QuadTree qTree;
+  final Hashtable<Integer, Bubble> bubbles;
+  final QuadTree quadTree;
 
-  SpatialPartitionBubbles(Hashtable<Integer, Bubble> bubbles, QuadTree qTree) {
+  SpatialPartitionBubbles(Hashtable<Integer, Bubble> bubbles, QuadTree quadTree) {
     this.bubbles = bubbles;
-    this.qTree = qTree;
+    this.quadTree = quadTree;
   }
 
   void handleCollisionsUsingQt(Bubble b) {
-    //finding points within area of a square drawn with centre same as centre of bubble and length = radius of bubble
-    Rect rect = new Rect(b.x, b.y, 2 * b.radius, 2 * b.radius);
+    // finding points within area of a square drawn with centre same as
+    // centre of bubble and length = radius of bubble
+    Rect rect = new Rect(b.coordinateX, b.coordinateY, 2 * b.radius, 2 * b.radius);
     ArrayList<Point> quadTreeQueryResult = new ArrayList<Point>();
-    this.qTree.query(rect, quadTreeQueryResult);
+    this.quadTree.query(rect, quadTreeQueryResult);
     //handling these collisions
     b.handleCollision(quadTreeQueryResult, this.bubbles);
   }
