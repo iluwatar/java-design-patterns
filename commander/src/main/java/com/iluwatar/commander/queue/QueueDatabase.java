@@ -26,6 +26,7 @@ package com.iluwatar.commander.queue;
 import com.iluwatar.commander.Database;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.IsEmptyException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class QueueDatabase extends Database<QueueTask> {
 
   public QueueDatabase(Exception... exc) {
     this.data = new Queue<>();
-    this.exceptionsList = List.of(exc);
+    this.exceptionsList = new ArrayList<>(List.of(exc));
   }
 
   @Override

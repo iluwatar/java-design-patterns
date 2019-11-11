@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.ItemUnavailableException;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -47,13 +48,13 @@ class RetryTest {
         e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
-    var arr1 = List.of(new ItemUnavailableException(), new DatabaseUnavailableException());
+    var arr1 = new ArrayList<>(List.of(new ItemUnavailableException(), new DatabaseUnavailableException()));
     try {
       r1.perform(arr1, order);
     } catch (Exception e1) {
       e1.printStackTrace();
     }
-    var arr2 = List.of(new DatabaseUnavailableException(), new ItemUnavailableException());
+    var arr2 = new ArrayList<>(List.of(new DatabaseUnavailableException(), new ItemUnavailableException()));
     try {
       r2.perform(arr2, order);
     } catch (Exception e1) {
