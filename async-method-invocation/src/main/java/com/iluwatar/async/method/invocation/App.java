@@ -64,15 +64,14 @@ public class App {
    */
   public static void main(String[] args) throws Exception {
     // construct a new executor that will run async tasks
-    AsyncExecutor executor = new ThreadAsyncExecutor();
+    var executor = new ThreadAsyncExecutor();
 
     // start few async tasks with varying processing times, two last with callback handlers
-    final AsyncResult<Integer> asyncResult1 = executor.startProcess(lazyval(10, 500));
-    final AsyncResult<String> asyncResult2 = executor.startProcess(lazyval("test", 300));
-    final AsyncResult<Long> asyncResult3 = executor.startProcess(lazyval(50L, 700));
-    final AsyncResult<Integer> asyncResult4 =
-        executor.startProcess(lazyval(20, 400), callback("Callback result 4"));
-    final AsyncResult<String> asyncResult5 =
+    final var asyncResult1 = executor.startProcess(lazyval(10, 500));
+    final var asyncResult2 = executor.startProcess(lazyval("test", 300));
+    final var asyncResult3 = executor.startProcess(lazyval(50L, 700));
+    final var asyncResult4 = executor.startProcess(lazyval(20, 400), callback("Callback result 4"));
+    final var asyncResult5 =
         executor.startProcess(lazyval("callback", 600), callback("Callback result 5"));
 
     // emulate processing in the current thread while async tasks are running in their own threads
@@ -80,9 +79,9 @@ public class App {
     log("Some hard work done");
 
     // wait for completion of the tasks
-    final Integer result1 = executor.endProcess(asyncResult1);
-    final String result2 = executor.endProcess(asyncResult2);
-    final Long result3 = executor.endProcess(asyncResult3);
+    final var result1 = executor.endProcess(asyncResult1);
+    final var result2 = executor.endProcess(asyncResult2);
+    final var result3 = executor.endProcess(asyncResult3);
     asyncResult4.await();
     asyncResult5.await();
 

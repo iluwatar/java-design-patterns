@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  * A remote legacy application represented by a Singleton implementation.
  */
 public class RemoteService implements RemoteServiceInterface {
-  static final int THRESHOLD = 200;
+  private static final int THRESHOLD = 200;
   private static final Logger LOGGER = LoggerFactory.getLogger(RemoteService.class);
   private static RemoteService service = null;
   private final RandomProvider randomProvider;
@@ -50,7 +50,7 @@ public class RemoteService implements RemoteServiceInterface {
   }
 
   /**
-   * This constuctor is used for testing purposes only.
+   * This constructor is used for testing purposes only.
    */
   RemoteService(RandomProvider randomProvider) {
     this.randomProvider = randomProvider;

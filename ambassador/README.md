@@ -42,7 +42,7 @@ A remote services represented as a singleton.
 ```java
 public class RemoteService implements RemoteServiceInterface {
 
-		private static final Logger LOGGER = LoggerFactory.getLogger(RemoteService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RemoteService.class);
     private static RemoteService service = null;
 
     static synchronized RemoteService getRemoteService() {
@@ -56,14 +56,14 @@ public class RemoteService implements RemoteServiceInterface {
 
     @Override
     public long doRemoteFunction(int value) {
-
         long waitTime = (long) Math.floor(Math.random() * 1000);
 
         try {
             sleep(waitTime);
         } catch (InterruptedException e) {
-            LOGGER.error("Thread sleep interrupted", e)
+            LOGGER.error("Thread sleep interrupted", e);
         }
+
         return waitTime >= 200 ? value * 10 : -1;
     }
 }
@@ -137,7 +137,7 @@ public class Client {
 
     long useService(int value) {
         long result = serviceAmbassador.doRemoteFunction(value);
-        LOGGER.info("Service result: " + result)
+        LOGGER.info("Service result: " + result);
         return result;
     }
 }
@@ -146,10 +146,14 @@ public class Client {
 And here are two clients using the service.
 
 ```java
-Client host1 = new Client();
-Client host2 = new Client();
-host1.useService(12);
-host2.useService(73);
+public class App {
+  public static void main(String[] args) {
+    Client host1 = new Client();
+    Client host2 = new Client();
+    host1.useService(12);
+    host2.useService(73);
+  }
+}
 ```
 
 ## Applicability

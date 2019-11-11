@@ -51,8 +51,8 @@ public class App {
    * @param args the command line arguments - not used
    */
   public static void main(String... args) {
-    final WashingMachine washingMachine = new WashingMachine();
-    ExecutorService executorService = Executors.newFixedThreadPool(3);
+    final var washingMachine = new WashingMachine();
+    var executorService = Executors.newFixedThreadPool(3);
     for (int i = 0; i < 3; i++) {
       executorService.execute(washingMachine::wash);
     }

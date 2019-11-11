@@ -31,7 +31,7 @@ public enum HairType {
   BALD("bald"), SHORT("short"), CURLY("curly"), LONG_STRAIGHT("long straight"), LONG_CURLY(
       "long curly");
 
-  private String title;
+  private final String title;
 
   HairType(String title) {
     this.title = title;
