@@ -24,7 +24,8 @@
 package com.iluwatar.observer.generic;
 
 /**
- * Observer
+ * Observer.
+ *
  * @param <S> Observable
  * @param <O> Observer
  * @param <A> Action
