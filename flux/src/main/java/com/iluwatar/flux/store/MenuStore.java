@@ -29,9 +29,7 @@ import com.iluwatar.flux.action.MenuAction;
 import com.iluwatar.flux.action.MenuItem;
 
 /**
- * 
  * MenuStore is a concrete store.
- *
  */
 public class MenuStore extends Store {
 

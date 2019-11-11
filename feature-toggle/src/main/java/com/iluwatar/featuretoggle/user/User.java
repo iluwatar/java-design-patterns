@@ -24,7 +24,8 @@
 package com.iluwatar.featuretoggle.user;
 
 /**
- * Used to demonstrate the purpose of the feature toggle. This class actually has nothing to do with the pattern.
+ * Used to demonstrate the purpose of the feature toggle. This class actually has nothing to do with
+ * the pattern.
  */
 public class User {
 
@@ -41,7 +42,9 @@ public class User {
 
   /**
    * {@inheritDoc}
-   * @return The {@link String} representation of the User, in this case just return the name of the user.
+   *
+   * @return The {@link String} representation of the User, in this case just return the name of the
+   *     user.
    */
   @Override
   public String toString() {

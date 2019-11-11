@@ -23,16 +23,13 @@
 
 package com.iluwatar.flyweight;
 
+import java.util.Collections;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
-import java.util.List;
-
 /**
- * 
  * AlchemistShop holds potions on its shelves. It uses PotionFactory to provide the potions.
- * 
  */
 public class AlchemistShop {
 
@@ -42,31 +39,31 @@ public class AlchemistShop {
   private List<Potion> bottomShelf;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public AlchemistShop() {
     PotionFactory factory = new PotionFactory();
     topShelf = List.of(
-            factory.createPotion(PotionType.INVISIBILITY),
-            factory.createPotion(PotionType.INVISIBILITY),
-            factory.createPotion(PotionType.STRENGTH),
-            factory.createPotion(PotionType.HEALING),
-            factory.createPotion(PotionType.INVISIBILITY),
-            factory.createPotion(PotionType.STRENGTH),
-            factory.createPotion(PotionType.HEALING),
-            factory.createPotion(PotionType.HEALING)
+        factory.createPotion(PotionType.INVISIBILITY),
+        factory.createPotion(PotionType.INVISIBILITY),
+        factory.createPotion(PotionType.STRENGTH),
+        factory.createPotion(PotionType.HEALING),
+        factory.createPotion(PotionType.INVISIBILITY),
+        factory.createPotion(PotionType.STRENGTH),
+        factory.createPotion(PotionType.HEALING),
+        factory.createPotion(PotionType.HEALING)
     );
     bottomShelf = List.of(
-            factory.createPotion(PotionType.POISON),
-            factory.createPotion(PotionType.POISON),
-            factory.createPotion(PotionType.POISON),
-            factory.createPotion(PotionType.HOLY_WATER),
-            factory.createPotion(PotionType.HOLY_WATER)
+        factory.createPotion(PotionType.POISON),
+        factory.createPotion(PotionType.POISON),
+        factory.createPotion(PotionType.POISON),
+        factory.createPotion(PotionType.HOLY_WATER),
+        factory.createPotion(PotionType.HOLY_WATER)
     );
   }
 
   /**
-   * Get a read-only list of all the items on the top shelf
+   * Get a read-only list of all the items on the top shelf.
    *
    * @return The top shelf potions
    */
@@ -75,7 +72,7 @@ public class AlchemistShop {
   }
 
   /**
-   * Get a read-only list of all the items on the bottom shelf
+   * Get a read-only list of all the items on the bottom shelf.
    *
    * @return The bottom shelf potions
    */
@@ -84,7 +81,7 @@ public class AlchemistShop {
   }
 
   /**
-   * Enumerate potions
+   * Enumerate potions.
    */
   public void enumerate() {
 

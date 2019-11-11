@@ -23,39 +23,37 @@
 
 package com.iluwatar.fluentinterface.app;
 
+import static java.lang.String.valueOf;
+
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.function.Function;
 import java.util.function.Predicate;
-
-import static java.lang.String.valueOf;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API.
  * Those interfaces tend to mimic domain specific languages, so they can nearly be read as human
  * languages.
- * <p>
- * In this example two implementations of a {@link FluentIterable} interface are given. The
+ *
+ * <p>In this example two implementations of a {@link FluentIterable} interface are given. The
  * {@link SimpleFluentIterable} evaluates eagerly and would be too costly for real world
  * applications. The {@link LazyFluentIterable} is evaluated on termination. Their usage is
  * demonstrated with a simple number list that is filtered, transformed and collected. The result is
  * printed afterwards.
- * 
  */
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(String[] args) {
 
@@ -90,16 +88,16 @@ public class App {
     List<String> lastTwoOfFirstFourStringMapped =
         LazyFluentIterable.from(integerList).filter(positives()).first(4).last(2)
             .map(number -> "String[" + valueOf(number) + "]").asList();
-    prettyPrint(
-        "The lazy list contains the last two of the first four positive numbers mapped to Strings: ",
-        lastTwoOfFirstFourStringMapped);
+    prettyPrint("The lazy list contains the last two of the first four positive numbers "
+        + "mapped to Strings: ", lastTwoOfFirstFourStringMapped);
 
     LazyFluentIterable
         .from(integerList)
         .filter(negatives())
         .first(2)
         .last()
-        .ifPresent(lastOfFirstTwo -> LOGGER.info("The last of the first two negatives is: {}", lastOfFirstTwo));
+        .ifPresent(lastOfFirstTwo -> LOGGER
+            .info("The last of the first two negatives is: {}", lastOfFirstTwo));
   }
 
   private static Function<Integer, String> transformToString() {
@@ -119,7 +117,7 @@ public class App {
   }
 
   private static <E> void prettyPrint(String delimiter, String prefix,
-                                         Iterable<E> iterable) {
+                                      Iterable<E> iterable) {
     StringJoiner joiner = new StringJoiner(delimiter, prefix, ".");
     Iterator<E> iterator = iterable.iterator();
     while (iterator.hasNext()) {

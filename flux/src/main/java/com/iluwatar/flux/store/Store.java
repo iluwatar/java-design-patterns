@@ -23,16 +23,13 @@
 
 package com.iluwatar.flux.store;
 
+import com.iluwatar.flux.action.Action;
+import com.iluwatar.flux.view.View;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.iluwatar.flux.action.Action;
-import com.iluwatar.flux.view.View;
-
 /**
- * 
  * Store is a data model.
- *
  */
 public abstract class Store {
 

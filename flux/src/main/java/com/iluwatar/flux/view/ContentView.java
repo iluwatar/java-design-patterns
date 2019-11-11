@@ -30,9 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * ContentView is a concrete view.
- *
  */
 public class ContentView implements View {
 
