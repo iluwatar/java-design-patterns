@@ -23,17 +23,14 @@
 
 package com.iluwatar.servicelayer.magic;
 
-import java.util.List;
-
 import com.iluwatar.servicelayer.spell.Spell;
 import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.wizard.Wizard;
+import java.util.List;
 
 
 /**
- * 
  * Service interface.
- *
  */
 public interface MagicService {
 
