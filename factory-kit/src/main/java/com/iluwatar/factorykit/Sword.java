@@ -22,8 +22,9 @@
  */
 
 package com.iluwatar.factorykit;
+
 /**
- * Class representing Swords
+ * Class representing Swords.
  */
 public class Sword implements Weapon {
   @Override

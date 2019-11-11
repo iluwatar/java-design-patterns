@@ -24,9 +24,7 @@
 package com.iluwatar.state;
 
 /**
- * 
  * Mammoth has internal state that defines its behavior.
- * 
  */
 public class Mammoth {
 
@@ -37,7 +35,7 @@ public class Mammoth {
   }
 
   /**
-   * Makes time pass for the mammoth
+   * Makes time pass for the mammoth.
    */
   public void timePasses() {
     if (state.getClass().equals(PeacefulState.class)) {

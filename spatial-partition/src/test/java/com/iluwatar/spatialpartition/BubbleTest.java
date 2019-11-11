@@ -37,11 +37,11 @@ class BubbleTest {
   @Test
   void moveTest() {
     Bubble b = new Bubble(10,10,1,2);
-    int initialX = b.x;
-    int initialY = b.y;
+    int initialX = b.coordinateX;
+    int initialY = b.coordinateY;
     b.move();
     //change in x and y < |2|
-    assertTrue((b.x - initialX < 2 && b.x - initialX > -2) && (b.y - initialY < 2 && b.y - initialY > -2));
+    assertTrue((b.coordinateX - initialX < 2 && b.coordinateX - initialX > -2) && (b.coordinateY - initialY < 2 && b.coordinateY - initialY > -2));
   }
 
   @Test

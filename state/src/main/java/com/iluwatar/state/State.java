@@ -24,9 +24,7 @@
 package com.iluwatar.state;
 
 /**
- * 
  * State interface.
- * 
  */
 public interface State {
 

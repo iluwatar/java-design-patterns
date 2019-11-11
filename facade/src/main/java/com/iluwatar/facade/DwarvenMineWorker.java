@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * DwarvenMineWorker is one of the goldmine subsystems.
- *
  */
 public abstract class DwarvenMineWorker {
 
@@ -75,7 +73,7 @@ public abstract class DwarvenMineWorker {
   }
 
   /**
-   * Perform actions
+   * Perform actions.
    */
   public void action(Action... actions) {
     for (Action action : actions) {

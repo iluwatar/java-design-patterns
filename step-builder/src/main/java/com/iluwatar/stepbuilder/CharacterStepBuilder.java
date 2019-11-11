@@ -31,7 +31,8 @@ import java.util.List;
  */
 public final class CharacterStepBuilder {
 
-  private CharacterStepBuilder() {}
+  private CharacterStepBuilder() {
+  }
 
   public static NameStep newBuilder() {
     return new CharacterSteps();

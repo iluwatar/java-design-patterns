@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * DwarvenTunnelDigger is one of the goldmine subsystems.
- *
  */
 public class DwarvenTunnelDigger extends DwarvenMineWorker {
 
