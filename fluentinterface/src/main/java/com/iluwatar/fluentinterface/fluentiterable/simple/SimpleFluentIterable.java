@@ -23,6 +23,7 @@
 
 package com.iluwatar.fluentinterface.fluentiterable.simple;
 
+import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -32,12 +33,10 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
-
 /**
  * This is a simple implementation of the FluentIterable interface. It evaluates all chained
  * operations eagerly. This implementation would be costly to be utilized in real applications.
- * 
+ *
  * @param <E> the type of the objects the iteration is about
  */
 public class SimpleFluentIterable<E> implements FluentIterable<E> {
@@ -46,7 +45,7 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
 
   /**
    * This constructor creates a copy of a given iterable's contents.
-   * 
+   *
    * @param iterable the iterable this interface copies to work on.
    */
   protected SimpleFluentIterable(Iterable<E> iterable) {
@@ -56,9 +55,9 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
   /**
    * Filters the contents of Iterable using the given predicate, leaving only the ones which satisfy
    * the predicate.
-   * 
+   *
    * @param predicate the condition to test with for the filtering. If the test is negative, the
-   *        tested object is removed by the iterator.
+   *                  tested object is removed by the iterator.
    * @return the same FluentIterable with a filtered collection
    */
   @Override
@@ -75,7 +74,7 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
 
   /**
    * Can be used to collect objects from the Iterable. Is a terminating operation.
-   * 
+   *
    * @return an option of the first object of the Iterable
    */
   @Override
@@ -86,10 +85,10 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
 
   /**
    * Can be used to collect objects from the Iterable. Is a terminating operation.
-   * 
+   *
    * @param count defines the number of objects to return
    * @return the same FluentIterable with a collection decimated to a maximum of 'count' first
-   *         objects.
+   *     objects.
    */
   @Override
   public final FluentIterable<E> first(int count) {
@@ -107,7 +106,7 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
 
   /**
    * Can be used to collect objects from the Iterable. Is a terminating operation.
-   * 
+   *
    * @return an option of the last object of the Iterable
    */
   @Override
@@ -121,10 +120,10 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
 
   /**
    * Can be used to collect objects from the Iterable. Is a terminating operation.
-   * 
+   *
    * @param count defines the number of objects to return
    * @return the same FluentIterable with a collection decimated to a maximum of 'count' last
-   *         objects
+   *     objects
    */
   @Override
   public final FluentIterable<E> last(int count) {
@@ -144,9 +143,9 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
 
   /**
    * Transforms this FluentIterable into a new one containing objects of the type T.
-   * 
+   *
    * @param function a function that transforms an instance of E into an instance of T
-   * @param <T> the target type of the transformation
+   * @param <T>      the target type of the transformation
    * @return a new FluentIterable of the new type
    */
   @Override
@@ -161,7 +160,7 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
 
   /**
    * Collects all remaining objects of this Iterable into a list.
-   * 
+   *
    * @return a list with all remaining objects of this Iterable
    */
   @Override
@@ -170,6 +169,8 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
   }
 
   /**
+   * Constructs FluentIterable from iterable.
+   *
    * @return a FluentIterable from a given iterable. Calls the SimpleFluentIterable constructor.
    */
   public static <E> FluentIterable<E> from(Iterable<E> iterable) {
@@ -198,6 +199,8 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
   }
 
   /**
+   * Find the count of remaining objects of current iterable.
+   *
    * @return the count of remaining objects of the current Iterable
    */
   public final int getRemainingElementsCount() {
@@ -212,7 +215,7 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
 
   /**
    * Collects the remaining objects of the given iterator into a List.
-   * 
+   *
    * @return a new List with the remaining objects.
    */
   public static <E> List<E> toList(Iterator<E> iterator) {
