@@ -23,22 +23,20 @@
 
 package com.iluwatar.serverless.faas.api;
 
-import com.iluwatar.serverless.faas.ApiGatewayResponse;
-
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.iluwatar.serverless.faas.ApiGatewayResponse;
 import com.iluwatar.serverless.faas.LambdaInfo;
+import java.util.HashMap;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * LambdaInfoApiHandler - simple api to get lambda context
- * Created by dheeraj.mummar on 2/5/18.
+ * LambdaInfoApiHandler - simple api to get lambda context Created by dheeraj.mummar on 2/5/18.
  */
-public class LambdaInfoApiHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
+public class LambdaInfoApiHandler
+    implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
 
   private static final Logger LOG = LoggerFactory.getLogger(LambdaInfoApiHandler.class);
   private static final Integer SUCCESS_STATUS_CODE = 200;
@@ -49,16 +47,17 @@ public class LambdaInfoApiHandler implements RequestHandler<Map<String, Object>,
     LOG.info("received: " + input);
 
     return new ApiGatewayResponse
-            .ApiGatewayResponseBuilder<LambdaInfo>()
-            .headers(headers())
-            .statusCode(SUCCESS_STATUS_CODE)
-            .body(lambdaInfo(context))
-            .build();
+        .ApiGatewayResponseBuilder<LambdaInfo>()
+        .headers(headers())
+        .statusCode(SUCCESS_STATUS_CODE)
+        .body(lambdaInfo(context))
+        .build();
 
   }
 
   /**
-   * lambdaInfo
+   * lambdaInfo.
+   *
    * @param context - Lambda context
    * @return LambdaInfo
    */
