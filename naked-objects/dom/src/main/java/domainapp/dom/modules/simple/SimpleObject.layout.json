@@ -15,42 +15,42 @@
  *  limitations under the License.
  */
 {
-    "columns": [
-        {
-            "span": 6,
-            "memberGroups": {
-                "General": {
-                    "members": {
-                        "name": {
-                            "actions": {
-                                "updateName": {
-                                    "actionLayout": {
-                                        "position": "BOTTOM"
-                                    }
-                                }
-                            }
-                        },
-                        "versionSequence": {
-                            "propertyLayout": {
-                                "name": "version"
-                            }
-                        }
-                    }
+  "columns": [
+    {
+      "span": 6,
+      "memberGroups": {
+        "General": {
+          "members": {
+            "name": {
+              "actions": {
+                "updateName": {
+                  "actionLayout": {
+                    "position": "BOTTOM"
+                  }
                 }
+              }
+            },
+            "versionSequence": {
+              "propertyLayout": {
+                "name": "version"
+              }
             }
-        },
-        {
-            "span": 0,
-            "memberGroups": {}
-        },
-        {
-            "span": 0,
-            "memberGroups": {}
-        },
-        {
-            "span": 6,
-            "collections": {}
+          }
         }
-    ],
-    "actions": {}
+      }
+    },
+    {
+      "span": 0,
+      "memberGroups": {}
+    },
+    {
+      "span": 0,
+      "memberGroups": {}
+    },
+    {
+      "span": 6,
+      "collections": {}
+    }
+  ],
+  "actions": {}
 }

@@ -26,7 +26,6 @@ package domainapp.dom.modules.simple;
 import javax.jdo.JDOHelper;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
-
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.Identifier;
 import org.apache.isis.applib.annotation.Action;
@@ -43,7 +42,7 @@ import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.apache.isis.applib.util.ObjectContracts;
 
 /**
- * Definition of a Simple Object
+ * Definition of a Simple Object.
  */
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE, schema = "simple",
     table = "SimpleObject")
@@ -87,11 +86,11 @@ public class SimpleObject implements Comparable<SimpleObject> {
   // region > updateName (action)
 
   /**
-   * Event used to update the Name in the Domain
+   * Event used to update the Name in the Domain.
    */
   public static class UpdateNameDomainEvent extends ActionDomainEvent<SimpleObject> {
     public UpdateNameDomainEvent(final SimpleObject source, final Identifier identifier,
-        final Object... arguments) {
+                                 final Object... arguments) {
       super(source, identifier, arguments);
     }
   }

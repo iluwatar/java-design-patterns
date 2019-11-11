@@ -23,16 +23,14 @@
 
 package domainapp.dom.app.homepage;
 
-import java.util.List;
-
-import org.apache.isis.applib.annotation.ViewModel;
-
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.dom.modules.simple.SimpleObjects;
+import java.util.List;
+import org.apache.isis.applib.annotation.ViewModel;
 
 /**
- * Model linked to the HomePage
- * The underlying layout is specified by json
+ * Model linked to the HomePage The underlying layout is specified by json.
+ *
  * @see HomePageService - Service Linked to the HomePage
  */
 @ViewModel

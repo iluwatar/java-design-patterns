@@ -27,7 +27,7 @@ import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
 
 /**
- * TearDown/Cleanup for SimpleObjects
+ * TearDown/Cleanup for SimpleObjects.
  */
 public class SimpleObjectsTearDown extends FixtureScript {
 
