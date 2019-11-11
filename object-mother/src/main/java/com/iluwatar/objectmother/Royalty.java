@@ -24,7 +24,7 @@
 package com.iluwatar.objectmother;
 
 /**
- * Interface contracting Royalty Behaviour
+ * Interface contracting Royalty Behaviour.
  */
 public interface Royalty {
   void makeDrunk();
