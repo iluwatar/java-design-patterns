@@ -31,7 +31,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
- * Abstract implementation of Document interface
+ * Abstract implementation of Document interface.
  */
 public abstract class AbstractDocument implements Document {
 
@@ -64,7 +64,8 @@ public abstract class AbstractDocument implements Document {
   public String toString() {
     var builder = new StringBuilder();
     builder.append(getClass().getName()).append("[");
-    properties.forEach((key, value) -> builder.append("[").append(key).append(" : ").append(value).append("]"));
+    properties.forEach((key, value) -> builder.append("[").append(key).append(" : ").append(value)
+        .append("]"));
     builder.append("]");
     return builder.toString();
   }
