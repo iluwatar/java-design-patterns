@@ -24,9 +24,7 @@
 package com.iluwatar.flux.action;
 
 /**
- * 
  * Action is the data payload dispatched to the stores when something happens.
- *
  */
 public abstract class Action {
 

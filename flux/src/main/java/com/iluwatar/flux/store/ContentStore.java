@@ -29,9 +29,7 @@ import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.action.ContentAction;
 
 /**
- * 
  * ContentStore is a concrete store.
- *
  */
 public class ContentStore extends Store {
 
