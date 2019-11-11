@@ -23,37 +23,19 @@
 
 package com.iluwatar.gameloop;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+public class Bullet {
 
-/**
- * A game loop runs continuously during gameplay. Each turn of the loop, it processes
- * user input without blocking, updates the game state, and renders the game. It tracks
- * the passage of time to control the rate of gameplay.
- */
-public class App {
+  private float position;
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
-  private static final int GAME_LOOP_DURATION_TIME = 2000;
-
-  /**
-   * Program entry point.
-   * @param args runtime arguments
-   */
-  public static void main(String[] args) {
-
-    try {
-      LOGGER.info("Start frame-based game loop:");
-      GameLoop gameLoop = new FrameBasedGameLoop();
-      gameLoop.run();
-      Thread.sleep(GAME_LOOP_DURATION_TIME);
-      gameLoop.stop();
-      LOGGER.info("Stop frame-based game loop.");
-
-    } catch (InterruptedException e) {
-      LOGGER.error(e.getMessage());
-    }
+  public Bullet() {
+    position = 0.0f;
   }
 
+  public float getPosition() {
+    return position;
+  }
+
+  public void setPosition(float position) {
+    this.position = position;
+  }
 }
