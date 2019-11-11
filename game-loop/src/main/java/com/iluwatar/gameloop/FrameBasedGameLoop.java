@@ -23,10 +23,6 @@
 
 package com.iluwatar.gameloop;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b5856c80e7b2fb913eaa74d0f90d579189fb9f26
 public class FrameBasedGameLoop extends GameLoop {
 
   @Override
