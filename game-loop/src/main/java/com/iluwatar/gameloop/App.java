@@ -61,6 +61,13 @@ public class App {
       gameLoop.stop();
       LOGGER.info("Stop variable-step game loop.");
 
+      LOGGER.info("Start fixed-step game loop:");
+      gameLoop = new FixedStepGameLoop();
+      gameLoop.run();
+      Thread.sleep(GAME_LOOP_DURATION_TIME);
+      gameLoop.stop();
+      LOGGER.info("Stop variable-step game loop.");
+
     } catch (InterruptedException e) {
       LOGGER.error(e.getMessage());
     }

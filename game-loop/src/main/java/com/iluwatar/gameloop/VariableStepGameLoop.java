@@ -48,8 +48,4 @@ public class VariableStepGameLoop extends GameLoop {
     controller.moveBullet(0.5f * elapsedTime / 1000);
   }
 
-  private void render() {
-    var position = controller.getBulletPosition();
-    logger.info("Current bullet position: " + position);
-  }
 }

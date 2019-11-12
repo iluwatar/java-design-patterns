@@ -50,8 +50,4 @@ public class FrameBasedGameLoop extends GameLoop {
     controller.moveBullet(0.5f);
   }
 
-  private void render() {
-    var position = controller.getBulletPosition();
-    logger.info("Current bullet position: " + position);
-  }
 }

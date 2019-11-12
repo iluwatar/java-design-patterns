@@ -88,6 +88,15 @@ public abstract class GameLoop {
   }
 
   /**
+   * Render game frames to screen. Here we print bullet position to simulate
+   * this process.
+   */
+  protected void render() {
+    var position = controller.getBulletPosition();
+    logger.info("Current bullet position: " + position);
+  }
+
+  /**
    * execute game loop logic.
    */
   protected abstract void processGameLoop();
