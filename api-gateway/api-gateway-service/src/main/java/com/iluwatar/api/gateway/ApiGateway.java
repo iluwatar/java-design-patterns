@@ -47,7 +47,7 @@ public class ApiGateway {
    */
   @RequestMapping(path = "/desktop", method = RequestMethod.GET)
   public DesktopProduct getProductDesktop() {
-    DesktopProduct desktopProduct = new DesktopProduct();
+    var desktopProduct = new DesktopProduct();
     desktopProduct.setImagePath(imageClient.getImagePath());
     desktopProduct.setPrice(priceClient.getPrice());
     return desktopProduct;
@@ -60,7 +60,7 @@ public class ApiGateway {
    */
   @RequestMapping(path = "/mobile", method = RequestMethod.GET)
   public MobileProduct getProductMobile() {
-    MobileProduct mobileProduct = new MobileProduct();
+    var mobileProduct = new MobileProduct();
     mobileProduct.setPrice(priceClient.getPrice());
     return mobileProduct;
   }
