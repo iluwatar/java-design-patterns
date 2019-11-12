@@ -82,15 +82,18 @@ public final class RainbowFishSerializer {
    * Read V1 RainbowFish from file.
    */
   public static RainbowFish readV1(String filename) throws IOException, ClassNotFoundException {
-    Map<String, String> map = null;
+    Map<String, String> map;
 
     try (var fileIn = new FileInputStream(filename);
          var objIn = new ObjectInputStream(fileIn)) {
       map = (Map<String, String>) objIn.readObject();
     }
 
-    return new RainbowFish(map.get("name"), Integer.parseInt(map.get("age")), Integer
-        .parseInt(map.get("lengthMeters")),
-        Integer.parseInt(map.get("weightTons")));
+    return new RainbowFish(
+        map.get("name"),
+        Integer.parseInt(map.get("age")),
+        Integer.parseInt(map.get("lengthMeters")),
+        Integer.parseInt(map.get("weightTons"))
+    );
   }
 }
