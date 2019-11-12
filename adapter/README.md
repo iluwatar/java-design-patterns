@@ -93,7 +93,7 @@ public class FishingBoatAdapter implements RowingBoat {
 And now the `Captain` can use the `FishingBoat` to escape the pirates.
 
 ```java
-Captain captain = new Captain(new FishingBoatAdapter());
+var captain = new Captain(new FishingBoatAdapter());
 captain.row();
 ```
 
