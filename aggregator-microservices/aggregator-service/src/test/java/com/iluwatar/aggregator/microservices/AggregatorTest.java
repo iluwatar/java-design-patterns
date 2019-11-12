@@ -56,13 +56,13 @@ public class AggregatorTest {
    */
   @Test
   public void testGetProduct() {
-    String title = "The Product Title.";
-    int inventories = 5;
+    var title = "The Product Title.";
+    var inventories = 5;
 
     when(informationClient.getProductTitle()).thenReturn(title);
     when(inventoryClient.getProductInventories()).thenReturn(inventories);
 
-    Product testProduct = aggregator.getProduct();
+    var testProduct = aggregator.getProduct();
 
     assertEquals(title, testProduct.getTitle());
     assertEquals(inventories, testProduct.getProductInventories());

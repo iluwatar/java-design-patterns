@@ -42,19 +42,19 @@ public class ProductInformationClientImpl implements ProductInformationClient {
 
   @Override
   public String getProductTitle() {
-    String response = null;
-    var request =
-        HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:51515/information"))
-            .build();
+    var request = HttpRequest.newBuilder()
+        .GET()
+        .uri(URI.create("http://localhost:51515/information"))
+        .build();
     var client = HttpClient.newHttpClient();
     try {
       var httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
-      response = httpResponse.body();
+      return httpResponse.body();
     } catch (IOException ioe) {
       LOGGER.error("IOException Occurred", ioe);
     } catch (InterruptedException ie) {
       LOGGER.error("InterruptedException Occurred", ie);
     }
-    return response;
+    return null;
   }
 }

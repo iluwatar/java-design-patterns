@@ -33,10 +33,8 @@ import org.junit.jupiter.api.Test;
 public class InventoryControllerTest {
   @Test
   public void testGetProductInventories() {
-    InventoryController inventoryController = new InventoryController();
-
-    int numberOfInventories = inventoryController.getProductInventories();
-
+    var inventoryController = new InventoryController();
+    var numberOfInventories = inventoryController.getProductInventories();
     assertEquals(5, numberOfInventories);
   }
 }
