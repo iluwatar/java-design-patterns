@@ -56,7 +56,7 @@ public class App {
     LOGGER.info("Program started");
 
     // Create a list of tasks to be executed
-    List<Task> tasks = List.of(
+    var tasks = List.of(
         new PotatoPeelingTask(3),
         new PotatoPeelingTask(6),
         new CoffeeMakingTask(2),
@@ -82,10 +82,7 @@ public class App {
     // Allocate new worker for each task
     // The worker is executed when a thread becomes
     // available in the thread pool
-    for (int i = 0; i < tasks.size(); i++) {
-      var worker = new Worker(tasks.get(i));
-      executor.execute(worker);
-    }
+    tasks.stream().map(Worker::new).forEach(executor::execute);
     // All tasks were executed, now shutdown
     executor.shutdown();
     while (!executor.isTerminated()) {
