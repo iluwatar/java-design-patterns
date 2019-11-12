@@ -99,13 +99,11 @@ public interface Trampoline<T> {
       }
 
       T trampoline(final Trampoline<T> trampoline) {
-
         return Stream.iterate(trampoline, Trampoline::jump)
             .filter(Trampoline::complete)
             .findFirst()
-            .get()
-            .result();
-
+            .map(Trampoline::result)
+            .orElseThrow();
       }
     };
   }
