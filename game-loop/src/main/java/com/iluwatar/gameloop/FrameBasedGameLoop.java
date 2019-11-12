@@ -35,7 +35,7 @@ public class FrameBasedGameLoop extends GameLoop {
 
   @Override
   protected void processGameLoop() {
-    Thread thread = new Thread(() -> {
+    var thread = new Thread(() -> {
       while (isGameRunning()) {
         processInput();
         update();
@@ -53,9 +53,8 @@ public class FrameBasedGameLoop extends GameLoop {
     controller.moveBullet(0.5f);
   }
 
-
   private void render() {
-    float position = controller.getBulletPosition();
+    var position = controller.getBulletPosition();
     logger.info("Current bullet position: " + position);
   }
 }

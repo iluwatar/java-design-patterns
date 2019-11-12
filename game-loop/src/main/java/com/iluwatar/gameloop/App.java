@@ -54,6 +54,13 @@ public class App {
       gameLoop.stop();
       LOGGER.info("Stop frame-based game loop.");
 
+      LOGGER.info("Start variable-step game loop:");
+      gameLoop = new VariableStepGameLoop();
+      gameLoop.run();
+      Thread.sleep(GAME_LOOP_DURATION_TIME);
+      gameLoop.stop();
+      LOGGER.info("Stop variable-step game loop.");
+
     } catch (InterruptedException e) {
       LOGGER.error(e.getMessage());
     }

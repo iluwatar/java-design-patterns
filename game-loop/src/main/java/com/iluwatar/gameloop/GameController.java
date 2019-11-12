@@ -23,16 +23,11 @@
 
 package com.iluwatar.gameloop;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Update and render objects in the game. Here we add a Bullet object to the
  * game system to show how the game loop works.
  */
 public class GameController {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(GameController.class);
 
   private Bullet bullet;
 
