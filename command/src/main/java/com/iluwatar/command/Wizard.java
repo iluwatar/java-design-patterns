@@ -56,7 +56,7 @@ public class Wizard {
    */
   public void undoLastSpell() {
     if (!undoStack.isEmpty()) {
-      Command previousSpell = undoStack.pollLast();
+      var previousSpell = undoStack.pollLast();
       redoStack.offerLast(previousSpell);
       LOGGER.info("{} undoes {}", this, previousSpell);
       previousSpell.undo();
@@ -68,7 +68,7 @@ public class Wizard {
    */
   public void redoLastSpell() {
     if (!redoStack.isEmpty()) {
-      Command previousSpell = redoStack.pollLast();
+      var previousSpell = redoStack.pollLast();
       undoStack.offerLast(previousSpell);
       LOGGER.info("{} redoes {}", this, previousSpell);
       previousSpell.redo();

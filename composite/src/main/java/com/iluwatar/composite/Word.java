@@ -34,8 +34,12 @@ public class Word extends LetterComposite {
    * Constructor.
    */
   public Word(List<Letter> letters) {
-    for (Letter l : letters) {
-      this.add(l);
+    letters.forEach(this::add);
+  }
+
+  public Word(char... letters) {
+    for (char letter : letters) {
+      this.add(new Letter(letter));
     }
   }
 

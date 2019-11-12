@@ -40,15 +40,15 @@ public class InstructionConverterUtil {
       return new int[0];
     }
 
-    String[] splitedInstructions = instructions.trim().split(" ");
-    int[] bytecode = new int[splitedInstructions.length];
-    for (int i = 0; i < splitedInstructions.length; i++) {
+    var splitedInstructions = instructions.trim().split(" ");
+    var bytecode = new int[splitedInstructions.length];
+    for (var i = 0; i < splitedInstructions.length; i++) {
       if (isValidInstruction(splitedInstructions[i])) {
         bytecode[i] = Instruction.valueOf(splitedInstructions[i]).getIntValue();
       } else if (isValidInt(splitedInstructions[i])) {
-        bytecode[i] = Integer.valueOf(splitedInstructions[i]);
+        bytecode[i] = Integer.parseInt(splitedInstructions[i]);
       } else {
-        String errorMessage = "Invalid instruction or number: " + splitedInstructions[i];
+        var errorMessage = "Invalid instruction or number: " + splitedInstructions[i];
         throw new IllegalArgumentException(errorMessage);
       }
     }

@@ -49,8 +49,8 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    Wizard wizard = new Wizard();
-    Goblin goblin = new Goblin();
+    var wizard = new Wizard();
+    var goblin = new Goblin();
 
     goblin.printStatus();
 

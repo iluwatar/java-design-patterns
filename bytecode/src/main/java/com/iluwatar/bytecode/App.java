@@ -24,7 +24,6 @@
 package com.iluwatar.bytecode;
 
 import com.iluwatar.bytecode.util.InstructionConverterUtil;
-import java.util.Stack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,12 +50,12 @@ public class App {
    */
   public static void main(String[] args) {
 
-    Wizard wizard = new Wizard();
+    var wizard = new Wizard();
     wizard.setHealth(45);
     wizard.setAgility(7);
     wizard.setWisdom(11);
 
-    VirtualMachine vm = new VirtualMachine();
+    var vm = new VirtualMachine();
     vm.getWizards()[0] = wizard;
 
     interpretInstruction("LITERAL 0", vm);
@@ -74,9 +73,8 @@ public class App {
   }
 
   private static void interpretInstruction(String instruction, VirtualMachine vm) {
-    InstructionConverterUtil converter = new InstructionConverterUtil();
-    vm.execute(converter.convertToByteCode(instruction));
-    Stack<Integer> stack = vm.getStack();
+    vm.execute(InstructionConverterUtil.convertToByteCode(instruction));
+    var stack = vm.getStack();
     LOGGER.info(instruction + String.format("%" + (12 - instruction.length()) + "s", "") + stack);
   }
 }

@@ -37,17 +37,17 @@ public class PaymentDatabase extends Database<PaymentRequest> {
   private Hashtable<String, PaymentRequest> data;
 
   public PaymentDatabase() {
-    this.data = new Hashtable<String, PaymentRequest>();
+    this.data = new Hashtable<>();
     //0-fail, 1-error, 2-success
   }
 
   @Override
-  public PaymentRequest add(PaymentRequest r) throws DatabaseUnavailableException {
+  public PaymentRequest add(PaymentRequest r) {
     return data.put(r.transactionId, r);
   }
 
   @Override
-  public PaymentRequest get(String requestId) throws DatabaseUnavailableException {
+  public PaymentRequest get(String requestId) {
     return data.get(requestId);
   }
 

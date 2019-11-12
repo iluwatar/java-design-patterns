@@ -54,12 +54,18 @@ public class AppTest {
   @Test
   public void testGetGroupingOfCarsByCategory() {
     var modelsExpected = Map.of(
-        Category.CONVERTIBLE, List.of(new Car("Buick", "Cascada", 2016, Category.CONVERTIBLE),
-            new Car("Chevrolet", "Geo Metro", 1992, Category.CONVERTIBLE)),
-        Category.SEDAN, List.of(new Car("Dodge", "Avenger", 2010, Category.SEDAN),
-            new Car("Ford", "Focus", 2012, Category.SEDAN)),
-        Category.JEEP, List.of(new Car("Jeep", "Wrangler", 2011, Category.JEEP),
-            new Car("Jeep", "Comanche", 1990, Category.JEEP)));
+        Category.CONVERTIBLE, List.of(
+            new Car("Buick", "Cascada", 2016, Category.CONVERTIBLE),
+            new Car("Chevrolet", "Geo Metro", 1992, Category.CONVERTIBLE)
+        ),
+        Category.SEDAN, List.of(
+            new Car("Dodge", "Avenger", 2010, Category.SEDAN),
+            new Car("Ford", "Focus", 2012, Category.SEDAN)
+        ),
+        Category.JEEP, List.of(
+            new Car("Jeep", "Wrangler", 2011, Category.JEEP),
+            new Car("Jeep", "Comanche", 1990, Category.JEEP))
+    );
     var modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
     var modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
     LOGGER.info("Category " + modelsFunctional);
@@ -70,8 +76,10 @@ public class AppTest {
   @Test
   public void testGetSedanCarsOwnedSortedByDate() {
     var john = new Person(cars);
-    var modelsExpected = List.of(new Car("Dodge", "Avenger", 2010, Category.SEDAN),
-        new Car("Ford", "Focus", 2012, Category.SEDAN));
+    var modelsExpected = List.of(
+        new Car("Dodge", "Avenger", 2010, Category.SEDAN),
+        new Car("Ford", "Focus", 2012, Category.SEDAN)
+    );
     var modelsFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     var modelsImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     assertEquals(modelsExpected, modelsFunctional);

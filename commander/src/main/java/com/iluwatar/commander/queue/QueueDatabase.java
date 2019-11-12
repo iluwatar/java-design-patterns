@@ -36,7 +36,7 @@ import java.util.List;
 public class QueueDatabase extends Database<QueueTask> {
 
   private Queue<QueueTask> data;
-  public ArrayList<Exception> exceptionsList;
+  public List<Exception> exceptionsList;
 
   public QueueDatabase(Exception... exc) {
     this.data = new Queue<>();
@@ -44,7 +44,7 @@ public class QueueDatabase extends Database<QueueTask> {
   }
 
   @Override
-  public QueueTask add(QueueTask t) throws DatabaseUnavailableException {
+  public QueueTask add(QueueTask t) {
     data.enqueue(t);
     return t;
     //even if same thing queued twice, it is taken care of in other dbs
@@ -55,12 +55,10 @@ public class QueueDatabase extends Database<QueueTask> {
    *
    * @return object at front of queue
    * @throws IsEmptyException             if queue is empty
-   * @throws DatabaseUnavailableException if queue db is unavailable
    */
 
-  public QueueTask peek() throws IsEmptyException, DatabaseUnavailableException {
-    QueueTask qt = this.data.peek();
-    return qt;
+  public QueueTask peek() throws IsEmptyException {
+    return this.data.peek();
   }
 
   /**
@@ -68,16 +66,14 @@ public class QueueDatabase extends Database<QueueTask> {
    *
    * @return object at front of queue
    * @throws IsEmptyException             if queue is empty
-   * @throws DatabaseUnavailableException if queue db is unavailable
    */
 
-  public QueueTask dequeue() throws IsEmptyException, DatabaseUnavailableException {
-    QueueTask qt = this.data.dequeue();
-    return qt;
+  public QueueTask dequeue() throws IsEmptyException {
+    return this.data.dequeue();
   }
 
   @Override
-  public QueueTask get(String taskId) throws DatabaseUnavailableException {
+  public QueueTask get(String taskId) {
     return null;
   }
 

@@ -23,6 +23,8 @@
 
 package com.iluwatar.callback;
 
+import java.util.Optional;
+
 /**
  * Template-method class for callback hook execution.
  */
@@ -33,9 +35,7 @@ public abstract class Task {
    */
   final void executeWith(final Callback callback) {
     execute();
-    if (callback != null) {
-      callback.call();
-    }
+    Optional.ofNullable(callback).ifPresent(Callback::call);
   }
 
   public abstract void execute();

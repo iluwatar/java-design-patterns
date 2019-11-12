@@ -24,6 +24,8 @@
 package com.iluwatar.caching;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +36,7 @@ public class CacheStore {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(CacheStore.class);
 
-  static LruCache cache;
+  private static LruCache cache;
 
   private CacheStore() {
   }
@@ -134,27 +136,22 @@ public class CacheStore {
    */
   public static void flushCache() {
     LOGGER.info("# flushCache...");
-    if (null == cache) {
-      return;
-    }
-    List<UserAccount> listOfUserAccounts = cache.getCacheDataInListForm();
-    for (UserAccount userAccount : listOfUserAccounts) {
-      DbManager.upsertDb(userAccount);
-    }
+    Optional.ofNullable(cache)
+        .map(LruCache::getCacheDataInListForm)
+        .orElse(List.of())
+        .forEach(DbManager::updateDb);
   }
 
   /**
    * Print user accounts.
    */
   public static String print() {
-    List<UserAccount> listOfUserAccounts = cache.getCacheDataInListForm();
-    StringBuilder sb = new StringBuilder();
-    sb.append("\n--CACHE CONTENT--\n");
-    for (UserAccount userAccount : listOfUserAccounts) {
-      sb.append(userAccount.toString() + "\n");
-    }
-    sb.append("----\n");
-    return sb.toString();
+    return Optional.ofNullable(cache)
+        .map(LruCache::getCacheDataInListForm)
+        .orElse(List.of())
+        .stream()
+        .map(userAccount -> userAccount.toString() + "\n")
+        .collect(Collectors.joining("", "\n--CACHE CONTENT--\n", "----\n"));
   }
 
   /**

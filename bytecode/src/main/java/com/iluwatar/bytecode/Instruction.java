@@ -40,7 +40,7 @@ public enum Instruction {
   ADD(10),
   DIVIDE(11);
 
-  private int value;
+  private final int value;
 
   Instruction(int value) {
     this.value = value;
@@ -57,7 +57,7 @@ public enum Instruction {
    * @return representation of the instruction
    */
   public static Instruction getInstruction(int value) {
-    for (int i = 0; i < Instruction.values().length; i++) {
+    for (var i = 0; i < Instruction.values().length; i++) {
       if (Instruction.values()[i].getIntValue() == value) {
         return Instruction.values()[i];
       }

@@ -37,15 +37,15 @@ public class ShippingDatabase extends Database<ShippingRequest> {
   private Hashtable<String, ShippingRequest> data;
 
   public ShippingDatabase() {
-    this.data = new Hashtable<String, ShippingRequest>();
+    this.data = new Hashtable<>();
   }
 
   @Override
-  public ShippingRequest add(ShippingRequest r) throws DatabaseUnavailableException {
+  public ShippingRequest add(ShippingRequest r) {
     return data.put(r.transactionId, r);
   }
 
-  public ShippingRequest get(String trasnactionId) throws DatabaseUnavailableException {
+  public ShippingRequest get(String trasnactionId) {
     return data.get(trasnactionId);
   }
 

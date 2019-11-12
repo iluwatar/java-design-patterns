@@ -76,7 +76,7 @@ public class BusinessDelegateTest {
   public void testBusinessDelegate() {
 
     // setup a client object
-    Client client = new Client(businessDelegate);
+    var client = new Client(businessDelegate);
 
     // set the service type
     businessDelegate.setServiceType(ServiceType.EJB);

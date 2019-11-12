@@ -34,19 +34,19 @@ import org.junit.jupiter.api.Test;
 public class InstructionConverterUtilTest {
   @Test
   public void testEmptyInstruction() {
-    String instruction = "";
+    var instruction = "";
 
-    int[] bytecode = InstructionConverterUtil.convertToByteCode(instruction);
+    var bytecode = InstructionConverterUtil.convertToByteCode(instruction);
 
     Assertions.assertEquals(0, bytecode.length);
   }
 
   @Test
   public void testInstructions() {
-    String instructions =
-        "LITERAL 35 SET_HEALTH SET_WISDOM SET_AGILITY PLAY_SOUND SPAWN_PARTICLES GET_HEALTH ADD DIVIDE";
+    var instructions = "LITERAL 35 SET_HEALTH SET_WISDOM SET_AGILITY PLAY_SOUND"
+        + " SPAWN_PARTICLES GET_HEALTH ADD DIVIDE";
 
-    int[] bytecode = InstructionConverterUtil.convertToByteCode(instructions);
+    var bytecode = InstructionConverterUtil.convertToByteCode(instructions);
 
     Assertions.assertEquals(10, bytecode.length);
     Assertions.assertEquals(Instruction.LITERAL.getIntValue(), bytecode[0]);
