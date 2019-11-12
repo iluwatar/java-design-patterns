@@ -38,6 +38,8 @@ public abstract class GameLoop {
 
   protected GameController controller;
 
+  private Thread gameThread;
+
   /**
    * Initialize game status to be stopped.
    */
@@ -51,7 +53,8 @@ public abstract class GameLoop {
    */
   public void run() {
     status = GameStatus.RUNNING;
-    processGameLoop();
+    gameThread = new Thread(() -> processGameLoop());
+    gameThread.start();
   }
 
   /**

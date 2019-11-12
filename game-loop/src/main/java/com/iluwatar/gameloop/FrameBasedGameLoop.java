@@ -35,14 +35,11 @@ public class FrameBasedGameLoop extends GameLoop {
 
   @Override
   protected void processGameLoop() {
-    var thread = new Thread(() -> {
-      while (isGameRunning()) {
-        processInput();
-        update();
-        render();
-      }
-    });
-    thread.start();
+    while (isGameRunning()) {
+      processInput();
+      update();
+      render();
+    }
   }
 
   /**
