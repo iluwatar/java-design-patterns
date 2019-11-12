@@ -23,40 +23,49 @@
 
 package com.iluwatar.gameloop;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 /**
- * For fixed-step game loop, a certain amount of real time has elapsed since the
- * last turn of the game loop. This is how much game time need to be simulated for
- * the game’s “now” to catch up with the player’s.
+ * Bullet unit test class.
  */
-public class FixedStepGameLoop extends GameLoop {
+public class BulletTest {
 
-  /**
-   * 20 ms per frame = 50 FPS
-   */
-  private static final long MS_PER_FRAME = 20;
+  private Bullet bullet;
 
-  @Override
-  protected void processGameLoop() {
-    var previousTime = System.currentTimeMillis();
-    var lag = 0L;
-    while (isGameRunning()) {
-      var currentTime = System.currentTimeMillis();
-      var elapsedTime = currentTime - previousTime;
-      previousTime = currentTime;
-      lag += elapsedTime;
+  @Before
+  public void setup() {
+    bullet = new Bullet();
+  }
 
-      processInput();
+  @After
+  public void teardown() {
+    bullet = null;
+  }
 
-      while (lag >= MS_PER_FRAME) {
-        update();
-        lag -= MS_PER_FRAME;
-      }
-
-      render();
+  @Test
+  public void testGetPosition() {
+    try {
+      var field = Bullet.class.getDeclaredField("position");
+      field.setAccessible(true);
+      field.set(bullet, 1.5f);
+      Assert.assertEquals(1.5f, bullet.getPosition(), 0);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      Assert.fail("Fail to modify field access.");
     }
   }
 
-  private void update() {
-    controller.moveBullet(0.5f * MS_PER_FRAME / 1000);
+  @Test
+  public void testSetPosition() {
+    try {
+      bullet.setPosition(1.5f);
+      var field = Bullet.class.getDeclaredField("position");
+      field.setAccessible(true);
+      Assert.assertEquals(1.5f, (Float) field.get(bullet), 0);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      Assert.fail("Fail to modify field access.");
+    }
   }
 }
