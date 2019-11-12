@@ -30,12 +30,11 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import java.util.Arrays;
 import java.util.function.Function;
-
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/30/15 - 18:59 PM.
- * Test related to Units
+ * Date: 12/30/15 - 18:59 PM. Test related to Units
+ *
  * @param <U> Type of Unit
  * @author Jeroen Meulemeester
  */
@@ -65,9 +64,7 @@ public abstract class UnitTest<U extends Unit> {
     unit.accept(visitor);
     verifyVisit(unit, visitor);
 
-    for (final var child : children) {
-      verify(child).accept(eq(visitor));
-    }
+    Arrays.stream(children).forEach(child -> verify(child).accept(eq(visitor)));
 
     verifyNoMoreInteractions(children);
     verifyNoMoreInteractions(visitor);
