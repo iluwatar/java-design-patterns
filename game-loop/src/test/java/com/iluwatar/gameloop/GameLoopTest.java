@@ -35,6 +35,9 @@ public class GameLoopTest {
 
   private GameLoop gameLoop;
 
+  /**
+   * Create mock implementation of GameLoop.
+   */
   @Before
   public void setup() {
     gameLoop = new GameLoop() {

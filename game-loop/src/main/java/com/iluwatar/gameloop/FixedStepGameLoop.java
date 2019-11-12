@@ -31,7 +31,7 @@ package com.iluwatar.gameloop;
 public class FixedStepGameLoop extends GameLoop {
 
   /**
-   * 20 ms per frame = 50 FPS
+   * 20 ms per frame = 50 FPS.
    */
   private static final long MS_PER_FRAME = 20;
 

@@ -23,12 +23,11 @@
 
 package com.iluwatar.gameloop;
 
+import java.lang.reflect.InvocationTargetException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * VariableStepGameLoop unit test class.
@@ -52,7 +51,8 @@ public class VariableStepGameLoopTest {
     try {
       var method = VariableStepGameLoop.class.getDeclaredMethod("update", Long.class);
       method.setAccessible(true);
-      method.invoke(gameLoop);
+      method.invoke(gameLoop, 20L);
+
       Assert.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
       Assert.fail("Fail to modify field access.");
