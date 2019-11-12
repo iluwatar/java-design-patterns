@@ -73,8 +73,6 @@ public final class CallsCount {
    */
   public void reset() {
     LOGGER.debug("Resetting the map.");
-    for (Entry<String, AtomicLong> e : tenantCallsCount.entrySet()) {
-      tenantCallsCount.put(e.getKey(), new AtomicLong(0));
-    }
+    tenantCallsCount.replaceAll((k, v) -> new AtomicLong(0));
   }
 }

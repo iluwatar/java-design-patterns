@@ -26,6 +26,7 @@ package com.iluwatar.throttling;
 import com.iluwatar.throttling.timer.ThrottleTimerImpl;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,14 +74,14 @@ public class App {
   private static void makeServiceCalls(Tenant tenant, CallsCount callsCount) {
     var timer = new ThrottleTimerImpl(10, callsCount);
     var service = new B2BService(timer, callsCount);
-    for (int i = 0; i < 20; i++) {
+    // Sleep is introduced to keep the output in check and easy to view and analyze the results.
+    IntStream.range(0, 20).forEach(i -> {
       service.dummyCustomerApi(tenant);
-      // Sleep is introduced to keep the output in check and easy to view and analyze the results.
       try {
         Thread.sleep(1);
       } catch (InterruptedException e) {
         LOGGER.error("Thread interrupted: {}", e.getMessage());
       }
-    }
+    });
   }
 }
