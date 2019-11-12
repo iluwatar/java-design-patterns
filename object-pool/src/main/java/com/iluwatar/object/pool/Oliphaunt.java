@@ -26,9 +26,7 @@ package com.iluwatar.object.pool;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 
- * Oliphaunts are expensive to create
- *
+ * Oliphaunts are expensive to create.
  */
 public class Oliphaunt {
 
@@ -37,7 +35,7 @@ public class Oliphaunt {
   private final int id;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Oliphaunt() {
     id = counter.incrementAndGet();

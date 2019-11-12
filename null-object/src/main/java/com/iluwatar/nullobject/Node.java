@@ -24,9 +24,7 @@
 package com.iluwatar.nullobject;
 
 /**
- * 
  * Interface for binary tree node.
- *
  */
 public interface Node {
 

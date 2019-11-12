@@ -24,9 +24,7 @@
 package com.iluwatar.observer;
 
 /**
- * 
  * Observer interface.
- * 
  */
 public interface WeatherObserver {
 
