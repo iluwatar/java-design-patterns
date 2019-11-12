@@ -66,11 +66,14 @@ public class App {
     var car = new Car(carProperties);
 
     LOGGER.info("Here is our car:");
-    LOGGER.info("-> model: {}", car.getModel().get());
-    LOGGER.info("-> price: {}", car.getPrice().get());
+    LOGGER.info("-> model: {}", car.getModel().orElseThrow());
+    LOGGER.info("-> price: {}", car.getPrice().orElseThrow());
     LOGGER.info("-> parts: ");
-    car.getParts().forEach(p -> LOGGER
-        .info("\t{}/{}/{}", p.getType().get(), p.getModel().get(), p.getPrice().get()));
+    car.getParts().forEach(p -> LOGGER.info("\t{}/{}/{}",
+        p.getType().orElse(null),
+        p.getModel().orElse(null),
+        p.getPrice().orElse(null))
+    );
   }
 
   /**
