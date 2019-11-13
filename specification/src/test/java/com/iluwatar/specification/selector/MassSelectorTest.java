@@ -21,23 +21,30 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.specification.creature;
+package com.iluwatar.specification.selector;
 
-import com.iluwatar.specification.property.Color;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Mass;
-import com.iluwatar.specification.property.Movement;
-import com.iluwatar.specification.property.Size;
+import org.junit.jupiter.api.Test;
 
-/**
- * KillerBee creature.
- */
-public class KillerBee extends AbstractCreature {
+public class MassSelectorTest {
 
-  public KillerBee() {
-    this(new Mass(6.7));
-  }
+  /** Verify if the mass selector gives the correct results */
+  @Test
+  public void testMass() {
+    final Creature lightCreature = mock(Creature.class);
+    when(lightCreature.getMass()).thenReturn(new Mass(50.0));
 
-  public KillerBee(Mass mass) {
-    super("KillerBee", Size.SMALL, Movement.FLYING, Color.LIGHT, mass);
+    final Creature heavyCreature = mock(Creature.class);
+    when(heavyCreature.getMass()).thenReturn(new Mass(2500.0));
+
+    final MassSmallerThanOrEqSelector lightSelector = new MassSmallerThanOrEqSelector(500.0);
+    assertTrue(lightSelector.test(lightCreature));
+    assertFalse(lightSelector.test(heavyCreature));
   }
 }

@@ -117,7 +117,16 @@
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </class>  
+  </class>
+  <class id="40" language="java" name="com.iluwatar.property.Mass" project="specification"
+    file="/specification/src/main/java/com/iluwatar/property/Mass.java" binary="false" corner="BOTTOM_RIGHT">
+    <position height="-1" width="-1" x="1700" y="450"/>
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true"
+      sort-features="false" accessors="true" visibility="true">
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>
+      <operations public="true" package="true" protected="true" private="true" static="true"/>
+    </display>
+  </class>
   <enumeration id="14" language="java" name="com.iluwatar.property.Color" project="specification" 
     file="/specification/src/main/java/com/iluwatar/property/Color.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1416" y="223"/>    
@@ -126,7 +135,7 @@
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </enumeration>  
+  </enumeration>
   <generalization id="15">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="8"/>  
@@ -202,7 +211,16 @@
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
-  </association>  
+  </association>
+  <class id="40" language="java" name="com.iluwatar.property.Mass" project="specification"
+    file="/specification/src/main/java/com/iluwatar/property/Mass.java" binary="false" corner="BOTTOM_RIGHT">
+    <position height="-1" width="-1" x="1700" y="450"/>
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true"
+      sort-features="false" accessors="true" visibility="true">
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>
+      <operations public="true" package="true" protected="true" private="true" static="true"/>
+    </display>
+  </class>
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

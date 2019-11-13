@@ -21,23 +21,24 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.specification.creature;
+package com.iluwatar.specification.selector;
 
-import com.iluwatar.specification.property.Color;
+import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Mass;
-import com.iluwatar.specification.property.Movement;
-import com.iluwatar.specification.property.Size;
+import java.util.function.Predicate;
 
-/**
- * KillerBee creature.
- */
-public class KillerBee extends AbstractCreature {
+/** Mass selector for values smaller or equal to the parameter. */
+public class MassSmallerThanOrEqSelector implements Predicate<Creature> {
 
-  public KillerBee() {
-    this(new Mass(6.7));
+  private final Mass mass;
+
+  /** The use of a double as a parameter will spare some typing when instantiating this class. */
+  public MassSmallerThanOrEqSelector(double mass) {
+    this.mass = new Mass(mass);
   }
 
-  public KillerBee(Mass mass) {
-    super("KillerBee", Size.SMALL, Movement.FLYING, Color.LIGHT, mass);
+  @Override
+  public boolean test(Creature t) {
+    return t.getMass().smallerThanOrEq(mass);
   }
 }

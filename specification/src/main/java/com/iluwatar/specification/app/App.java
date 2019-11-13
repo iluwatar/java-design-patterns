@@ -31,8 +31,11 @@ import com.iluwatar.specification.creature.Octopus;
 import com.iluwatar.specification.creature.Shark;
 import com.iluwatar.specification.creature.Troll;
 import com.iluwatar.specification.property.Color;
+import com.iluwatar.specification.property.Mass;
 import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.selector.ColorSelector;
+import com.iluwatar.specification.selector.MassGreaterThanSelector;
+import com.iluwatar.specification.selector.MassSmallerThanOrEqSelector;
 import com.iluwatar.specification.selector.MovementSelector;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,7 +54,7 @@ import org.slf4j.LoggerFactory;
  * <p>http://martinfowler.com/apsupp/spec.pdf</p>
  */
 public class App {
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
@@ -61,6 +64,8 @@ public class App {
     // initialize creatures list
     List<Creature> creatures = List.of(new Goblin(), new Octopus(), new Dragon(), new Shark(),
         new Troll(), new KillerBee());
+    // so-called "hard-coded" specification
+    LOGGER.info("Demonstrating hard-coded specification :");
     // find all walking creatures
     LOGGER.info("Find all walking creatures");
     List<Creature> walkingCreatures =
@@ -79,5 +84,19 @@ public class App {
             .filter(new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING)))
             .collect(Collectors.toList());
     redAndFlyingCreatures.forEach(c -> LOGGER.info(c.toString()));
+    // so-called "parameterized" specification
+    LOGGER.info("Demonstrating parameterized specification :");
+    // find all creatures heavier than 500kg
+    LOGGER.info("Find all creatures heavier than 600kg");
+    List<Creature> heavyCreatures =
+        creatures.stream().filter(new MassGreaterThanSelector(600.0))
+            .collect(Collectors.toList());
+    heavyCreatures.forEach(c -> LOGGER.info(c.toString()));
+    // find all creatures heavier than 500kg
+    LOGGER.info("Find all creatures lighter than or weighing exactly 500kg");
+    List<Creature> lightCreatures =
+        creatures.stream().filter(new MassSmallerThanOrEqSelector(500.0))
+            .collect(Collectors.toList());
+    lightCreatures.forEach(c -> LOGGER.info(c.toString()));
   }
 }
