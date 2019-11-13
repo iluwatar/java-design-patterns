@@ -20,8 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.saga.choreography;
 
+package com.iluwatar.saga.choreography;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +35,7 @@ public class ServiceDiscoveryService {
   private Map<String, ChoreographyChapter> services;
 
   /**
-   * find any service
+   * find any service.
    *
    * @return any service
    * @throws NoSuchElementException if no elements further

@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.orchestration;
 
 /**
- * Class representing a service to book a hotel
+ * Class representing a service to book a hotel.
  */
 public class HotelBookingService extends Service<String> {
   @Override
@@ -42,7 +43,8 @@ public class HotelBookingService extends Service<String> {
       return ChapterResult.failure(value);
     }
 
-    LOGGER.info("The Rollback for a chapter '{}' has been started. The data {} has been rollbacked successfully",
+    LOGGER.info("The Rollback for a chapter '{}' has been started. "
+            + "The data {} has been rollbacked successfully",
         getName(), value);
 
     return super.rollback(value);

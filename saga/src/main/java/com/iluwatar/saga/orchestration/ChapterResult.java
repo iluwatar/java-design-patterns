@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.orchestration;
 
 /**
- * Executing result for chapter
+ * Executing result for chapter.
  *
  * @param <K> incoming value
  */
@@ -53,7 +54,7 @@ public class ChapterResult<K> {
   }
 
   /**
-   * state for chapter
+   * state for chapter.
    */
   public enum State {
     SUCCESS, FAILURE

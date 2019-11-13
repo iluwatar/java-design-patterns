@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.choreography;
 
 
@@ -31,7 +32,7 @@ package com.iluwatar.saga.choreography;
 public interface ChoreographyChapter {
 
   /**
-   * In that case, every method is responsible to make a decision on what to do then
+   * In that case, every method is responsible to make a decision on what to do then.
    *
    * @param saga incoming saga
    * @return saga result
@@ -39,6 +40,7 @@ public interface ChoreographyChapter {
   Saga execute(Saga saga);
 
   /**
+   * get name method.
    * @return service name.
    */
   String getName();

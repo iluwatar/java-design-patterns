@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.orchestration;
 
 /**
@@ -30,6 +31,7 @@ package com.iluwatar.saga.orchestration;
 public interface OrchestrationChapter<K> {
 
   /**
+   * method get name.
    * @return service name.
    */
   String getName();

@@ -20,11 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.choreography;
 
 
 /**
- * Class representing a service to book a hotel
+ * Class representing a service to book a hotel.
  */
 public class HotelBookingService extends Service {
   public HotelBookingService(ServiceDiscoveryService service) {

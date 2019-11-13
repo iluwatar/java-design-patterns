@@ -20,15 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.choreography;
 
+import java.util.function.Supplier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.function.Supplier;
 
 /**
- * Common abstraction class representing services
+ * Common abstraction class representing services.
  * implementing a general contract @see {@link ChoreographyChapter}
  */
 public abstract class Service implements ChoreographyChapter {
@@ -73,13 +74,15 @@ public abstract class Service implements ChoreographyChapter {
   }
 
   private Supplier<RuntimeException> serviceNotFoundException(String chServiceName) {
-    return () -> new RuntimeException(String.format("the service %s has not been found", chServiceName));
+    return () -> new RuntimeException(
+        String.format("the service %s has not been found", chServiceName));
   }
 
   @Override
   public Saga process(Saga saga) {
     Object inValue = saga.getCurrentValue();
-    LOGGER.info("The chapter '{}' has been started. The data {} has been stored or calculated successfully",
+    LOGGER.info("The chapter '{}' has been started. "
+            + "The data {} has been stored or calculated successfully",
         getName(), inValue);
     saga.setCurrentStatus(Saga.ChapterResult.SUCCESS);
     saga.setCurrentValue(inValue);
@@ -89,7 +92,8 @@ public abstract class Service implements ChoreographyChapter {
   @Override
   public Saga rollback(Saga saga) {
     Object inValue = saga.getCurrentValue();
-    LOGGER.info("The Rollback for a chapter '{}' has been started. The data {} has been rollbacked successfully",
+    LOGGER.info("The Rollback for a chapter '{}' has been started. "
+            + "The data {} has been rollbacked successfully",
         getName(), inValue);
 
     saga.setCurrentStatus(Saga.ChapterResult.ROLLBACK);

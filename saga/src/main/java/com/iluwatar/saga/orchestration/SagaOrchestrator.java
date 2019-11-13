@@ -20,14 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.orchestration;
 
+import static com.iluwatar.saga.orchestration.Saga.Result.CRASHED;
+import static com.iluwatar.saga.orchestration.Saga.Result.FINISHED;
+import static com.iluwatar.saga.orchestration.Saga.Result.ROLLBACK;
+
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Optional;
-
-import static com.iluwatar.saga.orchestration.Saga.Result.*;
 
 /**
  * The orchestrator that manages all the transactions and directs
@@ -41,7 +44,7 @@ public class SagaOrchestrator {
 
 
   /**
-   * Create a new service to orchetrate sagas
+   * Create a new service to orchetrate sagas.
    * @param saga saga to process
    * @param sd service discovery @see {@link ServiceDiscoveryService}
    */
@@ -52,7 +55,7 @@ public class SagaOrchestrator {
   }
 
   /**
-   * pipeline to execute saga process/story
+   * pipeline to execute saga process/story.
    *
    * @param value incoming value
    * @param <K>   type for incoming value

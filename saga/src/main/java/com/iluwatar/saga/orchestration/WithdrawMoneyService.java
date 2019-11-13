@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.orchestration;
 
 /**
- * Class representing a service to withdraw a money
+ * Class representing a service to withdraw a money.
  */
 public class WithdrawMoneyService extends Service<String> {
   @Override

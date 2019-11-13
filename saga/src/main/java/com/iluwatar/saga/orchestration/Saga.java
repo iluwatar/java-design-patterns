@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.orchestration;
 
 import java.util.ArrayList;
@@ -60,14 +61,14 @@ public class Saga {
   }
 
   /**
-   * result for saga
+   * result for saga.
    */
   public enum Result {
     FINISHED, ROLLBACK, CRASHED
   }
 
   /**
-   * class represents chapter name
+   * class represents chapter name.
    */
   public static class Chapter {
     String name;
