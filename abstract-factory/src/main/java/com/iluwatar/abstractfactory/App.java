@@ -128,7 +128,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    App app = new App();
+    var app = new App();
 
     LOGGER.info("Elf Kingdom");
     app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));

@@ -34,10 +34,8 @@ public class InformationControllerTest {
 
   @Test
   public void shouldGetProductTitle() {
-    InformationController infoController = new InformationController();
-
-    String title = infoController.getProductTitle();
-
+    var infoController = new InformationController();
+    var title = infoController.getProductTitle();
     assertEquals("The Product Title.", title);
   }
 

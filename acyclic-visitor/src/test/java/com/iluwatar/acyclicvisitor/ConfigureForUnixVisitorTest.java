@@ -52,7 +52,8 @@ public class ConfigureForUnixVisitorTest {
     
     conUnix.visit(zoom);
     
-    assertThat(LOGGER.getLoggingEvents()).extracting("level", "message").contains(
-        tuple(INFO, zoom + " used with Unix configurator."));
+    assertThat(LOGGER.getLoggingEvents())
+        .extracting("level", "message")
+        .contains(tuple(INFO, zoom + " used with Unix configurator."));
   }
 }

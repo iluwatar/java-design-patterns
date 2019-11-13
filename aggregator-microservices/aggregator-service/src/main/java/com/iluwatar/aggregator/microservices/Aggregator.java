@@ -23,6 +23,8 @@
 
 package com.iluwatar.aggregator.microservices;
 
+import static java.util.Objects.requireNonNullElse;
+
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,20 +54,14 @@ public class Aggregator {
   public Product getProduct() {
 
     var product = new Product();
-    String productTitle = informationClient.getProductTitle();
-    Integer productInventory = inventoryClient.getProductInventories();
+    var productTitle = informationClient.getProductTitle();
+    var productInventory = inventoryClient.getProductInventories();
 
-    if (productTitle != null) {
-      product.setTitle(productTitle);
-    } else {
-      product.setTitle("Error: Fetching Product Title Failed"); //Fallback to error message
-    }
+    //Fallback to error message
+    product.setTitle(requireNonNullElse(productTitle, "Error: Fetching Product Title Failed"));
 
-    if (productInventory != null) {
-      product.setProductInventories(productInventory);
-    } else {
-      product.setProductInventories(-1); //Fallback to default error inventory
-    }
+    //Fallback to default error inventory
+    product.setProductInventories(requireNonNullElse(productInventory, -1));
 
     return product;
   }

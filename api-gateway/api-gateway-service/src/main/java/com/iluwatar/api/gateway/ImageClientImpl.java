@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import org.springframework.stereotype.Component;
 
@@ -43,21 +42,19 @@ public class ImageClientImpl implements ImageClient {
    */
   @Override
   public String getImagePath() {
-    String response = null;
-
-    HttpClient httpClient = HttpClient.newHttpClient();
-    HttpRequest httpGet =
-        HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50005/image-path")).build();
+    var httpClient = HttpClient.newHttpClient();
+    var httpGet = HttpRequest.newBuilder()
+        .GET()
+        .uri(URI.create("http://localhost:50005/image-path"))
+        .build();
 
     try {
-      HttpResponse<String> httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
-      response = httpResponse.body();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (InterruptedException e) {
+      var httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
+      return httpResponse.body();
+    } catch (IOException | InterruptedException e) {
       e.printStackTrace();
     }
 
-    return response;
+    return null;
   }
 }
