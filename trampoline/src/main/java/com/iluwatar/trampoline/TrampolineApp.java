@@ -40,7 +40,7 @@ public class TrampolineApp {
    */
   public static void main(String[] args) {
     log.info("start pattern");
-    Integer result = loop(10, 1).result();
+    var result = loop(10, 1).result();
     log.info("result {}", result);
 
   }

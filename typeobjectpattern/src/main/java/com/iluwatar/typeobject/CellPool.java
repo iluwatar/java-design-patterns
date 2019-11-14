@@ -27,6 +27,7 @@ import com.iluwatar.typeobject.Candy.Type;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import org.json.simple.parser.ParseException;
 
@@ -38,12 +39,12 @@ import org.json.simple.parser.ParseException;
 
 public class CellPool {
   private static final Random RANDOM = new Random();
-  ArrayList<Cell> pool;
+  List<Cell> pool;
   int pointer;
   Candy[] randomCode;
 
   CellPool(int num) {
-    this.pool = new ArrayList<Cell>(num);
+    this.pool = new ArrayList<>(num);
     try {
       this.randomCode = assignRandomCandytypes();
     } catch (Exception e) {

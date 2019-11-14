@@ -23,12 +23,12 @@
 
 package com.iluwatar.threadpool;
 
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/30/15 - 18:21 PM
@@ -42,8 +42,8 @@ public class WorkerTest {
    */
   @Test
   public void testRun() {
-    final Task task = mock(Task.class);
-    final Worker worker = new Worker(task);
+    final var task = mock(Task.class);
+    final var worker = new Worker(task);
     verifyZeroInteractions(task);
 
     worker.run();
