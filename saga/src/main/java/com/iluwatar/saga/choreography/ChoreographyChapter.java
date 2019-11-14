@@ -20,29 +20,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
 
-public class InvestorRole extends CustomerRole {
-    private String name;
-    private long amountToInvest;
+package com.iluwatar.saga.choreography;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+/**
+ * ChoreographyChapter is an interface representing a contract for an external service.
+ * In that case, a service needs to make a decision what to do further
+ * hence the server needs to get all context representing {@link Saga}
+ */
+public interface ChoreographyChapter {
 
-    public long getAmountToInvest() {
-        return amountToInvest;
-    }
+  /**
+   * In that case, every method is responsible to make a decision on what to do then.
+   *
+   * @param saga incoming saga
+   * @return saga result
+   */
+  Saga execute(Saga saga);
 
-    public void setAmountToInvest(long amountToInvest) {
-        this.amountToInvest = amountToInvest;
-    }
+  /**
+   * get name method.
+   * @return service name.
+   */
+  String getName();
 
-    public String invest() {
-        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
-    }
+  /**
+   * The operation executed in general case.
+   *
+   * @param saga incoming saga
+   * @return result {@link Saga}
+   */
+  Saga process(Saga saga);
+
+  /**
+   * The operation executed in rollback case.
+   *
+   * @param saga incoming saga
+   * @return result {@link Saga}
+   */
+  Saga rollback(Saga saga);
+
+
 }

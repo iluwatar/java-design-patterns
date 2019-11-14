@@ -20,29 +20,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
 
-public class InvestorRole extends CustomerRole {
-    private String name;
-    private long amountToInvest;
+package com.iluwatar.saga.orchestration;
 
-    public String getName() {
-        return name;
+/**
+ * Class representing a service to book a hotel.
+ */
+public class HotelBookingService extends Service<String> {
+  @Override
+  public String getName() {
+    return "booking a Hotel";
+  }
+
+
+  @Override
+  public ChapterResult<String> rollback(String value) {
+    if (value.equals("crashed_order")) {
+      LOGGER.info("The Rollback for a chapter '{}' has been started. "
+              + "The data {} has been failed.The saga has been crashed.",
+          getName(), value);
+
+      return ChapterResult.failure(value);
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    LOGGER.info("The Rollback for a chapter '{}' has been started. "
+            + "The data {} has been rollbacked successfully",
+        getName(), value);
 
-    public long getAmountToInvest() {
-        return amountToInvest;
-    }
-
-    public void setAmountToInvest(long amountToInvest) {
-        this.amountToInvest = amountToInvest;
-    }
-
-    public String invest() {
-        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
-    }
+    return super.rollback(value);
+  }
 }

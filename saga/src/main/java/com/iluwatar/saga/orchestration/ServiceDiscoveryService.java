@@ -20,29 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
 
-public class InvestorRole extends CustomerRole {
-    private String name;
-    private long amountToInvest;
+package com.iluwatar.saga.orchestration;
 
-    public String getName() {
-        return name;
-    }
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+/**
+ * The class representing a service discovery pattern.
+ */
+public class ServiceDiscoveryService {
+  private Map<String, OrchestrationChapter<?>> services;
 
-    public long getAmountToInvest() {
-        return amountToInvest;
-    }
+  public Optional<OrchestrationChapter> find(String service) {
+    return Optional.ofNullable(services.getOrDefault(service, null));
+  }
 
-    public void setAmountToInvest(long amountToInvest) {
-        this.amountToInvest = amountToInvest;
-    }
+  public ServiceDiscoveryService discover(OrchestrationChapter<?> orchestrationChapterService) {
+    services.put(orchestrationChapterService.getName(), orchestrationChapterService);
+    return this;
+  }
 
-    public String invest() {
-        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
-    }
+  public ServiceDiscoveryService() {
+    this.services = new HashMap<>();
+  }
+
+
 }

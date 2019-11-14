@@ -20,29 +20,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
 
-public class InvestorRole extends CustomerRole {
-    private String name;
-    private long amountToInvest;
+package com.iluwatar.saga.orchestration;
 
-    public String getName() {
-        return name;
-    }
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+/**
+ * Common abstraction class representing services.
+ * implementing a general contract @see {@link OrchestrationChapter}
+ *
+ * @param <K> type of incoming param
+ */
+public abstract class Service<K> implements OrchestrationChapter<K> {
+  protected static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
 
-    public long getAmountToInvest() {
-        return amountToInvest;
-    }
+  @Override
+  public abstract String getName();
 
-    public void setAmountToInvest(long amountToInvest) {
-        this.amountToInvest = amountToInvest;
-    }
 
-    public String invest() {
-        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
-    }
+  @Override
+  public ChapterResult<K> process(K value) {
+    LOGGER.info("The chapter '{}' has been started. "
+            + "The data {} has been stored or calculated successfully",
+        getName(), value);
+    return ChapterResult.success(value);
+  }
+
+  @Override
+  public ChapterResult<K> rollback(K value) {
+    LOGGER.info("The Rollback for a chapter '{}' has been started. "
+            + "The data {} has been rollbacked successfully",
+        getName(), value);
+    return ChapterResult.success(value);
+  }
+
+
 }

@@ -20,29 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
+package com.iluwatar.saga.orchestration;
 
-public class InvestorRole extends CustomerRole {
-    private String name;
-    private long amountToInvest;
+import org.junit.Test;
 
-    public String getName() {
-        return name;
-    }
+import static org.junit.Assert.*;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+/**
+ * empty test
+ */
+public class SagaApplicationTest {
 
-    public long getAmountToInvest() {
-        return amountToInvest;
-    }
-
-    public void setAmountToInvest(long amountToInvest) {
-        this.amountToInvest = amountToInvest;
-    }
-
-    public String invest() {
-        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
-    }
+  @Test
+  public void mainTest() {
+    SagaApplication.main(new String[]{});
+  }
 }

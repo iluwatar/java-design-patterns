@@ -20,29 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
 
-public class InvestorRole extends CustomerRole {
-    private String name;
-    private long amountToInvest;
+package com.iluwatar.saga.choreography;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+/**
+ * Class representing a service to init a new order.
+ */
+public class OrderService extends Service {
 
-    public long getAmountToInvest() {
-        return amountToInvest;
-    }
+  public OrderService(ServiceDiscoveryService service) {
+    super(service);
+  }
 
-    public void setAmountToInvest(long amountToInvest) {
-        this.amountToInvest = amountToInvest;
-    }
-
-    public String invest() {
-        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
-    }
+  @Override
+  public String getName() {
+    return "init an order";
+  }
 }
