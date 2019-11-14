@@ -20,29 +20,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
 
-public class InvestorRole extends CustomerRole {
-    private String name;
-    private long amountToInvest;
+package com.iluwatar.saga.choreography;
 
-    public String getName() {
-        return name;
-    }
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+/**
+ * The class representing a service discovery pattern.
+ */
+public class ServiceDiscoveryService {
+  private Map<String, ChoreographyChapter> services;
 
-    public long getAmountToInvest() {
-        return amountToInvest;
-    }
+  /**
+   * find any service.
+   *
+   * @return any service
+   * @throws NoSuchElementException if no elements further
+   */
+  public ChoreographyChapter findAny() {
+    return services.values().iterator().next();
+  }
 
-    public void setAmountToInvest(long amountToInvest) {
-        this.amountToInvest = amountToInvest;
-    }
+  public Optional<ChoreographyChapter> find(String service) {
+    return Optional.ofNullable(services.getOrDefault(service, null));
+  }
 
-    public String invest() {
-        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
-    }
+  public ServiceDiscoveryService discover(ChoreographyChapter chapterService) {
+    services.put(chapterService.getName(), chapterService);
+    return this;
+  }
+
+  public ServiceDiscoveryService() {
+    this.services = new HashMap<>();
+  }
+
+
 }

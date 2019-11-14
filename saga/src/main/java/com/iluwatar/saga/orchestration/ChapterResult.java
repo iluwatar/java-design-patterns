@@ -20,29 +20,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
 
-public class InvestorRole extends CustomerRole {
-    private String name;
-    private long amountToInvest;
+package com.iluwatar.saga.orchestration;
 
-    public String getName() {
-        return name;
-    }
+/**
+ * Executing result for chapter.
+ *
+ * @param <K> incoming value
+ */
+public class ChapterResult<K> {
+  private K value;
+  private State state;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public K getValue() {
+    return value;
+  }
 
-    public long getAmountToInvest() {
-        return amountToInvest;
-    }
+  ChapterResult(K value, State state) {
+    this.value = value;
+    this.state = state;
+  }
 
-    public void setAmountToInvest(long amountToInvest) {
-        this.amountToInvest = amountToInvest;
-    }
+  public boolean isSuccess() {
+    return state == State.SUCCESS;
+  }
 
-    public String invest() {
-        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
-    }
+  public static <K> ChapterResult<K> success(K val) {
+    return new ChapterResult<>(val, State.SUCCESS);
+  }
+
+  public static <K> ChapterResult<K> failure(K val) {
+    return new ChapterResult<>(val, State.FAILURE);
+  }
+
+  /**
+   * state for chapter.
+   */
+  public enum State {
+    SUCCESS, FAILURE
+  }
 }

@@ -20,29 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
 
-public class InvestorRole extends CustomerRole {
-    private String name;
-    private long amountToInvest;
+package com.iluwatar.saga.orchestration;
 
-    public String getName() {
-        return name;
-    }
+/**
+ * ChoreographyChapter is an interface representing a contract for an external service.
+ *
+ * @param <K> is type for passing params
+ */
+public interface OrchestrationChapter<K> {
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  /**
+   * method get name.
+   * @return service name.
+   */
+  String getName();
 
-    public long getAmountToInvest() {
-        return amountToInvest;
-    }
+  /**
+   * The operation executed in general case.
+   *
+   * @param value incoming value
+   * @return result {@link ChapterResult}
+   */
+  ChapterResult<K> process(K value);
 
-    public void setAmountToInvest(long amountToInvest) {
-        this.amountToInvest = amountToInvest;
-    }
+  /**
+   * The operation executed in rollback case.
+   *
+   * @param value incoming value
+   * @return result {@link ChapterResult}
+   */
+  ChapterResult<K> rollback(K value);
 
-    public String invest() {
-        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
-    }
 }

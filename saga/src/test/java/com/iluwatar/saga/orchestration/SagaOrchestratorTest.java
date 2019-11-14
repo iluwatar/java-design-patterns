@@ -20,29 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
+package com.iluwatar.saga.orchestration;
 
-public class InvestorRole extends CustomerRole {
-    private String name;
-    private long amountToInvest;
+import org.junit.Assert;
+import org.junit.Test;
 
-    public String getName() {
-        return name;
-    }
+/**
+ * test to check general logic
+ */
+public class SagaOrchestratorTest {
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  @Test
+  public void execute() {
+    SagaOrchestrator sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
+    Saga.Result badOrder = sagaOrchestrator.execute("bad_order");
+    Saga.Result crashedOrder = sagaOrchestrator.execute("crashed_order");
 
-    public long getAmountToInvest() {
-        return amountToInvest;
-    }
+    Assert.assertEquals(badOrder, Saga.Result.ROLLBACK);
+    Assert.assertEquals(crashedOrder, Saga.Result.CRASHED);
+  }
 
-    public void setAmountToInvest(long amountToInvest) {
-        this.amountToInvest = amountToInvest;
-    }
+  private static Saga newSaga() {
+    return Saga
+        .create()
+        .chapter("init an order")
+        .chapter("booking a Fly")
+        .chapter("booking a Hotel")
+        .chapter("withdrawing Money");
+  }
 
-    public String invest() {
-        return String.format("Investor %s has invested %d dollars", name, amountToInvest);
-    }
+  private static ServiceDiscoveryService serviceDiscovery() {
+    return
+        new ServiceDiscoveryService()
+            .discover(new OrderService())
+            .discover(new FlyBookingService())
+            .discover(new HotelBookingService())
+            .discover(new WithdrawMoneyService());
+  }
 }
