@@ -26,6 +26,7 @@ package com.iluwatar.tls;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.Callable;
+import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,13 +59,10 @@ public class DateFormatCallable implements Callable<Result> {
    * @param inDateValue  string date value, e.g. "21/06/2016"
    */
   public DateFormatCallable(String inDateFormat, String inDateValue) {
-    final String idf = inDateFormat;                 //TLTL
-    this.df = new ThreadLocal<DateFormat>() {        //TLTL
-      @Override                                      //TLTL
-      protected DateFormat initialValue() {          //TLTL
-        return new SimpleDateFormat(idf);            //TLTL
-      }                                              //TLTL
-    };                                               //TLTL
+    final var idf = inDateFormat;                 //TLTL
+    this.df = ThreadLocal.withInitial(() -> {          //TLTL
+      return new SimpleDateFormat(idf);            //TLTL
+    });                                               //TLTL
     // this.df = new SimpleDateFormat(inDateFormat);    //NTLNTL
     this.dateValue = inDateValue;
   }
@@ -72,10 +70,10 @@ public class DateFormatCallable implements Callable<Result> {
   @Override
   public Result call() {
     LOGGER.info(Thread.currentThread() + " started executing...");
-    Result result = new Result();
+    var result = new Result();
 
     // Convert date value to date 5 times
-    for (int i = 1; i <= 5; i++) {
+    IntStream.rangeClosed(1, 5).forEach(i -> {
       try {
         // this is the statement where it is important to have the
         // instance of SimpleDateFormat locally
@@ -86,8 +84,7 @@ public class DateFormatCallable implements Callable<Result> {
         // write the Exception to a list and continue work
         result.getExceptionList().add(e.getClass() + ": " + e.getMessage());
       }
-
-    }
+    });
 
     LOGGER.info(Thread.currentThread() + " finished processing part of the thread");
 

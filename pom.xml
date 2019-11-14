@@ -183,6 +183,8 @@
         <module>data-locality</module>
         <module>subclass-sandbox</module>
         <module>circuit-breaker</module>
+        <module>role-object</module>
+		<module>saga</module>
         <module>double-buffer</module>
         <module>sharding</module>
     </modules>

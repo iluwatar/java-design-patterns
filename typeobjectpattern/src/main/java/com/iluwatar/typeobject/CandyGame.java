@@ -25,6 +25,7 @@ package com.iluwatar.typeobject;
 
 import com.iluwatar.typeobject.Candy.Type;
 import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,21 +56,17 @@ public class CandyGame {
   }
 
   static String numOfSpaces(int num) {
-    String result = "";
-    for (var i = 0; i < num; i++) {
-      result += " ";
-    }
-    return result;
+    return " ".repeat(Math.max(0, num));
   }
 
   void printGameStatus() {
     LOGGER.info("");
-    for (var i = 0; i < cells.length; i++) {
+    for (Cell[] cell : cells) {
       for (var j = 0; j < cells.length; j++) {
-        var candyName = cells[i][j].candy.name;
+        var candyName = cell[j].candy.name;
         if (candyName.length() < 20) {
           var totalSpaces = 20 - candyName.length();
-          LOGGER.info(numOfSpaces(totalSpaces / 2) + cells[i][j].candy.name
+          LOGGER.info(numOfSpaces(totalSpaces / 2) + cell[j].candy.name
               + numOfSpaces(totalSpaces - totalSpaces / 2) + "|");
         } else {
           LOGGER.info(candyName + "|");
@@ -80,8 +77,8 @@ public class CandyGame {
     LOGGER.info("");
   }
 
-  ArrayList<Cell> adjacentCells(int y, int x) {
-    ArrayList<Cell> adjacent = new ArrayList<Cell>();
+  List<Cell> adjacentCells(int y, int x) {
+    var adjacent = new ArrayList<Cell>();
     if (y == 0) {
       adjacent.add(this.cells[1][x]);
     }
@@ -115,8 +112,8 @@ public class CandyGame {
       for (var j = 0; j < this.cells.length; j++) {
         if (!this.cells[i][j].candy.getType().equals(Type.rewardFruit)) {
           var adj = adjacentCells(i, j);
-          for (var a = 0; a < adj.size(); a++) {
-            if (this.cells[i][j].candy.name.equals(adj.get(a).candy.name)) {
+          for (Cell cell : adj) {
+            if (this.cells[i][j].candy.name.equals(cell.candy.name)) {
               return true;
             }
           }
@@ -157,11 +154,11 @@ public class CandyGame {
           }
         }
       }
-      for (var i = 0; i < this.cells.length; i++) {
+      for (Cell[] cell : this.cells) {
         var j = 0;
         var points = 0;
         while (j < cells.length - 1) {
-          points = this.cells[i][j].interact(this.cells[i][j + 1], this.pool, this.cells);
+          points = cell[j].interact(cell[j + 1], this.pool, this.cells);
           if (points != 0) {
             handleChange(points);
           } else {

@@ -25,15 +25,12 @@ package com.iluwatar.unitofwork;
 
 import org.junit.Test;
 
-import java.io.IOException;
-
 /**
  * AppTest
  */
 public class AppTest {
   @Test
   public void test() {
-    String[] args = {};
-    App.main(args);
+    App.main(new String[]{});
   }
 }
