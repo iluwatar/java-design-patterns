@@ -29,7 +29,7 @@ package com.iluwatar.gameloop;
  */
 public class GameController {
 
-  private Bullet bullet;
+  private final Bullet bullet;
 
   /**
    * Initialize Bullet instance.
