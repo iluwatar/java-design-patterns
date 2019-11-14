@@ -48,24 +48,24 @@ public class App {
 
     try {
       LOGGER.info("Start frame-based game loop:");
-      GameLoop gameLoop = new FrameBasedGameLoop();
-      gameLoop.run();
+      var frameBasedGameLoop = new FrameBasedGameLoop();
+      frameBasedGameLoop.run();
       Thread.sleep(GAME_LOOP_DURATION_TIME);
-      gameLoop.stop();
+      frameBasedGameLoop.stop();
       LOGGER.info("Stop frame-based game loop.");
 
       LOGGER.info("Start variable-step game loop:");
-      gameLoop = new VariableStepGameLoop();
-      gameLoop.run();
+      var variableStepGameLoop = new VariableStepGameLoop();
+      variableStepGameLoop.run();
       Thread.sleep(GAME_LOOP_DURATION_TIME);
-      gameLoop.stop();
+      variableStepGameLoop.stop();
       LOGGER.info("Stop variable-step game loop.");
 
       LOGGER.info("Start fixed-step game loop:");
-      gameLoop = new FixedStepGameLoop();
-      gameLoop.run();
+      var fixedStepGameLoop = new FixedStepGameLoop();
+      fixedStepGameLoop.run();
       Thread.sleep(GAME_LOOP_DURATION_TIME);
-      gameLoop.stop();
+      fixedStepGameLoop.stop();
       LOGGER.info("Stop variable-step game loop.");
 
     } catch (InterruptedException e) {

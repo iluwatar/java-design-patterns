@@ -34,7 +34,7 @@ public abstract class GameLoop {
 
   protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-  protected GameStatus status;
+  protected volatile GameStatus status;
 
   protected GameController controller;
 

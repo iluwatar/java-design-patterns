@@ -23,7 +23,6 @@
 
 package com.iluwatar.gameloop;
 
-import java.lang.reflect.InvocationTargetException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -34,7 +33,7 @@ import org.junit.Test;
  */
 public class FixedStepGameLoopTest {
 
-  private GameLoop gameLoop;
+  private FixedStepGameLoop gameLoop;
 
   @Before
   public void setup() {
@@ -48,14 +47,8 @@ public class FixedStepGameLoopTest {
 
   @Test
   public void testUpdate() {
-    try {
-      var method = FixedStepGameLoop.class.getDeclaredMethod("update");
-      method.setAccessible(true);
-      method.invoke(gameLoop);
-      Assert.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
-    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-      Assert.fail("Fail to modify field access.");
-    }
+    gameLoop.update();
+    Assert.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
   }
 
 }

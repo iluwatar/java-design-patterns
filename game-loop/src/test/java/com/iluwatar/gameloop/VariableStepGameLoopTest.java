@@ -34,7 +34,7 @@ import org.junit.Test;
  */
 public class VariableStepGameLoopTest {
 
-  private GameLoop gameLoop;
+  private VariableStepGameLoop gameLoop;
 
   @Before
   public void setup() {
@@ -48,14 +48,7 @@ public class VariableStepGameLoopTest {
 
   @Test
   public void testUpdate() {
-    try {
-      var method = VariableStepGameLoop.class.getDeclaredMethod("update", Long.class);
-      method.setAccessible(true);
-      method.invoke(gameLoop, 20L);
-
-      Assert.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
-    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-      Assert.fail("Fail to modify field access.");
-    }
+    gameLoop.update(20L);
+    Assert.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
   }
 }

@@ -46,7 +46,7 @@ public class FrameBasedGameLoop extends GameLoop {
    * Each time when update() is invoked, a new frame is created, and the bullet will be
    * moved 0.5f away from the current position.
    */
-  private void update() {
+  protected void update() {
     controller.moveBullet(0.5f);
   }
 

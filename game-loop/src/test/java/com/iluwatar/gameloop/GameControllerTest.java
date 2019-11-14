@@ -44,27 +44,13 @@ public class GameControllerTest {
 
   @Test
   public void testMoveBullet() {
-    try {
-      controller.moveBullet(1.5f);
-      var field = GameController.class.getDeclaredField("bullet");
-      field.setAccessible(true);
-      var bullet = (Bullet) field.get(controller);
-      Assert.assertEquals(1.5f, bullet.getPosition(), 0);
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-      Assert.fail("Fail to modify field access.");
-    }
+    controller.moveBullet(1.5f);
+    Assert.assertEquals(1.5f, controller.bullet.getPosition(), 0);
   }
 
   @Test
   public void testGetBulletPosition() {
-    try {
-      var field = GameController.class.getDeclaredField("bullet");
-      field.setAccessible(true);
-      var bullet = (Bullet) field.get(controller);
-      Assert.assertEquals(bullet.getPosition(), controller.getBulletPosition(), 0);
-    } catch (IllegalAccessException | NoSuchFieldException e) {
-      Assert.fail("Fail to modify field access.");
-    }
+    Assert.assertEquals(controller.bullet.getPosition(), controller.getBulletPosition(), 0);
   }
 
 }

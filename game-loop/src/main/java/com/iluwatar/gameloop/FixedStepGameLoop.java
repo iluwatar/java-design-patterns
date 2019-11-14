@@ -56,7 +56,7 @@ public class FixedStepGameLoop extends GameLoop {
     }
   }
 
-  private void update() {
+  protected void update() {
     controller.moveBullet(0.5f * MS_PER_FRAME / 1000);
   }
 }

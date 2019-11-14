@@ -44,7 +44,7 @@ public class VariableStepGameLoop extends GameLoop {
     }
   }
 
-  private void update(Long elapsedTime) {
+  protected void update(Long elapsedTime) {
     controller.moveBullet(0.5f * elapsedTime / 1000);
   }
 
