@@ -24,9 +24,7 @@
 package com.iluwatar.prototype;
 
 /**
- * 
- * OrcMage
- *
+ * OrcMage.
  */
 public class OrcMage extends Mage {
 
@@ -35,7 +33,7 @@ public class OrcMage extends Mage {
   public OrcMage(String weapon) {
     this.weapon = weapon;
   }
-  
+
   public OrcMage(OrcMage orcMage) {
     this.weapon = orcMage.weapon;
   }

@@ -24,9 +24,7 @@
 package com.iluwatar.prototype;
 
 /**
- * 
- * OrcWarlord
- *
+ * OrcWarlord.
  */
 public class OrcWarlord extends Warlord {
 
@@ -35,7 +33,7 @@ public class OrcWarlord extends Warlord {
   public OrcWarlord(String weapon) {
     this.weapon = weapon;
   }
-  
+
   public OrcWarlord(OrcWarlord orcWarlord) {
     this.weapon = orcWarlord.weapon;
   }
