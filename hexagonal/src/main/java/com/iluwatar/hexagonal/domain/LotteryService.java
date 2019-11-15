@@ -27,13 +27,10 @@ import com.google.inject.Inject;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
-
 import java.util.Optional;
 
 /**
- * 
- * Implementation for lottery service
- *
+ * Implementation for lottery service.
  */
 public class LotteryService {
 
@@ -42,7 +39,7 @@ public class LotteryService {
   private final WireTransfers wireTransfers;
 
   /**
-   * Constructor
+   * Constructor.
    */
   @Inject
   public LotteryService(LotteryTicketRepository repository, LotteryEventLog notifications,
@@ -53,7 +50,7 @@ public class LotteryService {
   }
 
   /**
-   * Submit lottery ticket to participate in the lottery
+   * Submit lottery ticket to participate in the lottery.
    */
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
     boolean result = wireTransfers.transferFunds(LotteryConstants.TICKET_PRIZE,
@@ -70,9 +67,12 @@ public class LotteryService {
   }
 
   /**
-   * Check if lottery ticket has won
+   * Check if lottery ticket has won.
    */
-  public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
+  public LotteryTicketCheckResult checkTicketForPrize(
+      LotteryTicketId id,
+      LotteryNumbers winningNumbers
+  ) {
     return LotteryUtils.checkTicketForPrize(repository, id, winningNumbers);
   }
 }

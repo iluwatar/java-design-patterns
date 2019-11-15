@@ -27,8 +27,8 @@ import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 /**
- * The PaymentService class receives request from the {@link Commander} and adds
- * to the {@link PaymentDatabase}.
+ * The PaymentService class receives request from the {@link com.iluwatar.commander.Commander} and
+ * adds to the {@link PaymentDatabase}.
  */
 
 public class PaymentService extends Service {
@@ -45,23 +45,23 @@ public class PaymentService extends Service {
     }
   }
 
-  public PaymentService(PaymentDatabase db, Exception...exc) {
+  public PaymentService(PaymentDatabase db, Exception... exc) {
     super(db, exc);
   }
 
   /**
-   * Public method which will receive request from {@link Commander}.
+   * Public method which will receive request from {@link com.iluwatar.commander.Commander}.
    */
-  
-  public String receiveRequest(Object...parameters) throws DatabaseUnavailableException {
+
+  public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
     //it could also be sending a userid, payment details here or something, not added here
-    String tId = generateId();
-    PaymentRequest req = new PaymentRequest(tId, (float)parameters[0]);
+    var id = generateId();
+    var req = new PaymentRequest(id, (float) parameters[0]);
     return updateDb(req);
   }
 
-  protected String updateDb(Object...parameters) throws DatabaseUnavailableException {
-    PaymentRequest req = (PaymentRequest) parameters[0];
+  protected String updateDb(Object... parameters) throws DatabaseUnavailableException {
+    var req = (PaymentRequest) parameters[0];
     if (database.get(req.transactionId) == null || !req.paid) {
       database.add(req);
       req.paid = true;

@@ -24,8 +24,8 @@
 package com.iluwatar.commander.exceptions;
 
 /**
- * ShippingNotPossibleException is thrown when the address entered cannot be shipped to
- * by service currently for some reason.
+ * ShippingNotPossibleException is thrown when the address entered cannot be shipped to by service
+ * currently for some reason.
  */
 
 public class ShippingNotPossibleException extends Exception {

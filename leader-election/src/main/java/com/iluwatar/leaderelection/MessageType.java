@@ -24,7 +24,7 @@
 package com.iluwatar.leaderelection;
 
 /**
- *  Message Type enum
+ * Message Type enum.
  */
 public enum MessageType {
 

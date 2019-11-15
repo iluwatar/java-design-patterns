@@ -31,15 +31,14 @@ import ch.qos.logback.core.AppenderBase;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/30/15 - 18:59 PM.
- * Test case for Visitor Pattern
+ * Date: 12/30/15 - 18:59 PM. Test case for Visitor Pattern
+ *
  * @param <V> Type of UnitVisitor
  * @author Jeroen Meulemeester
  */
@@ -84,11 +83,12 @@ public abstract class VisitorTest<V extends UnitVisitor> {
    * @param sergeantResponse  The optional expected response when being visited by a sergeant
    * @param soldierResponse   The optional expected response when being visited by a soldier
    */
-  public VisitorTest(final V visitor,
-                     final Optional<String> commanderResponse,
-                     final Optional<String> sergeantResponse,
-                     final Optional<String> soldierResponse) {
-
+  public VisitorTest(
+      final V visitor,
+      final Optional<String> commanderResponse,
+      final Optional<String> sergeantResponse,
+      final Optional<String> soldierResponse
+  ) {
     this.visitor = visitor;
     this.commanderResponse = commanderResponse;
     this.sergeantResponse = sergeantResponse;

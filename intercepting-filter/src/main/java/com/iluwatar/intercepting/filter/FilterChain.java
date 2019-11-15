@@ -26,7 +26,7 @@ package com.iluwatar.intercepting.filter;
 
 /**
  * Filter Chain carries multiple filters and help to execute them in defined order on target.
- * 
+ *
  * @author joshzambales
  */
 public class FilterChain {
@@ -35,7 +35,7 @@ public class FilterChain {
 
 
   /**
-   * Adds filter
+   * Adds filter.
    */
   public void addFilter(Filter filter) {
     if (chain == null) {
@@ -46,7 +46,7 @@ public class FilterChain {
   }
 
   /**
-   * Execute filter chain
+   * Execute filter chain.
    */
   public String execute(Order order) {
     if (chain != null) {

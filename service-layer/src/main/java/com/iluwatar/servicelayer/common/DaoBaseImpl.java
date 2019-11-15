@@ -23,23 +23,18 @@
 
 package com.iluwatar.servicelayer.common;
 
+import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.iluwatar.servicelayer.hibernate.HibernateUtil;
-
 /**
- * 
  * Base class for Dao implementations.
  *
- * @param <E>
- * 
+ * @param <E> Type of Entity
  */
 public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 

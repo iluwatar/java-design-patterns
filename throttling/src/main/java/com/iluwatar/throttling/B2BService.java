@@ -23,15 +23,14 @@
 
 package com.iluwatar.throttling;
 
+import com.iluwatar.throttling.timer.Throttler;
+import java.util.concurrent.ThreadLocalRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.iluwatar.throttling.timer.Throttler;
-
-import java.util.concurrent.ThreadLocalRandom;
-
 /**
- * A service which accepts a tenant and throttles the resource based on the time given to the tenant.
+ * A service which accepts a tenant and throttles the resource based on the time given to the
+ * tenant.
  */
 class B2BService {
 
@@ -44,6 +43,7 @@ class B2BService {
   }
 
   /**
+   * Calls dummy customer api.
    *
    * @return customer id which is randomly generated
    */

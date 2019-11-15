@@ -24,13 +24,11 @@
 package com.iluwatar.chain;
 
 /**
- * 
  * OrcKing makes requests that are handled by the chain.
- * 
  */
 public class OrcKing {
 
-  RequestHandler chain;
+  private RequestHandler chain;
 
   public OrcKing() {
     buildChain();

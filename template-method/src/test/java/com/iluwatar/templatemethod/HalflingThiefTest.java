@@ -23,11 +23,11 @@
 
 package com.iluwatar.templatemethod;
 
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 18:15 PM
@@ -41,8 +41,8 @@ public class HalflingThiefTest {
    */
   @Test
   public void testSteal() {
-    final StealingMethod method = mock(StealingMethod.class);
-    final HalflingThief thief = new HalflingThief(method);
+    final var method = mock(StealingMethod.class);
+    final var thief = new HalflingThief(method);
 
     thief.steal();
     verify(method).steal();
@@ -55,13 +55,13 @@ public class HalflingThiefTest {
    */
   @Test
   public void testChangeMethod() {
-    final StealingMethod initialMethod = mock(StealingMethod.class);
-    final HalflingThief thief = new HalflingThief(initialMethod);
+    final var initialMethod = mock(StealingMethod.class);
+    final var thief = new HalflingThief(initialMethod);
 
     thief.steal();
     verify(initialMethod).steal();
 
-    final StealingMethod newMethod = mock(StealingMethod.class);
+    final var newMethod = mock(StealingMethod.class);
     thief.changeMethod(newMethod);
 
     thief.steal();

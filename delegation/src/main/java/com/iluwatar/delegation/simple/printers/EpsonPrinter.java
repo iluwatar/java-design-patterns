@@ -28,8 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Specialised Implementation of {@link Printer} for a Epson Printer, in
- * this case the message to be printed is appended to "Epson Printer : "
+ * Specialised Implementation of {@link Printer} for a Epson Printer, in this case the message to be
+ * printed is appended to "Epson Printer : ".
  *
  * @see Printer
  */

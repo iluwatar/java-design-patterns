@@ -24,9 +24,7 @@
 package com.iluwatar.cqrs.constants;
 
 /**
- * 
- * Class to define the constants
- *
+ * Class to define the constants.
  */
 public class AppConstants {
 

@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Generic observer inspired by Java Generics and Collection by {@literal Naftalin & Wadler}
+ * Generic observer inspired by Java Generics and Collection by {@literal Naftalin & Wadler}.
  *
  * @param <S> Subject
  * @param <O> Observer
@@ -50,7 +50,7 @@ public abstract class Observable<S extends Observable<S, O, A>, O extends Observ
   }
 
   /**
-   * Notify observers
+   * Notify observers.
    */
   @SuppressWarnings("unchecked")
   public void notifyObservers(A argument) {

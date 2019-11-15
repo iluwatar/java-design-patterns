@@ -25,12 +25,10 @@ package com.iluwatar.serverless.baas.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
-
 import java.io.Serializable;
 
 /**
- * Address class
- * Created by dheeraj.mummarareddy on 3/4/18.
+ * Address class Created by dheeraj.mummarareddy on 3/4/18.
  */
 @DynamoDBDocument
 public class Address implements Serializable {

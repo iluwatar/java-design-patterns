@@ -32,7 +32,7 @@ import java.util.NoSuchElementException;
  * expect to retrieve TreeNodes according to the Integer's natural ordering (1, 2, 3...)
  *
  * @param <T> This Iterator has been implemented with generic typing to allow for TreeNodes of
- *     different value types
+ *            different value types
  */
 public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T>> {
 
@@ -46,7 +46,7 @@ public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T
   /**
    * This BstIterator manages to use O(h) extra space, where h is the height of the tree It achieves
    * this by maintaining a stack of the nodes to handle (pushing all left nodes first), before
-   * handling self or right node
+   * handling self or right node.
    *
    * @param node TreeNode that acts as root of the subtree we're interested in.
    */
@@ -58,6 +58,8 @@ public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T
   }
 
   /**
+   * Checks if there exists next element.
+   *
    * @return true if this iterator has a "next" element
    */
   @Override
@@ -66,6 +68,8 @@ public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T
   }
 
   /**
+   * Gets the next element.
+   *
    * @return TreeNode next. The next element according to our in-order traversal of the given BST
    * @throws NoSuchElementException if this iterator does not have a next element
    */

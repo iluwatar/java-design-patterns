@@ -52,9 +52,7 @@ public abstract class LetterComposite {
    */
   public void print() {
     printThisBefore();
-    for (LetterComposite letter : children) {
-      letter.print();
-    }
+    children.forEach(LetterComposite::print);
     printThisAfter();
   }
 }

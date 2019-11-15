@@ -24,9 +24,7 @@
 package com.iluwatar.front.controller;
 
 /**
- * 
- * Custom exception type
- *
+ * Custom exception type.
  */
 public class ApplicationException extends RuntimeException {
 

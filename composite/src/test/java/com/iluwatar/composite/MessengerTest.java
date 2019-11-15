@@ -72,7 +72,7 @@ public class MessengerTest {
    */
   @Test
   public void testMessageFromOrcs() {
-    final Messenger messenger = new Messenger();
+    final var messenger = new Messenger();
     testMessage(
         messenger.messageFromOrcs(),
         "Where there is a whip there is a way."
@@ -84,7 +84,7 @@ public class MessengerTest {
    */
   @Test
   public void testMessageFromElves() {
-    final Messenger messenger = new Messenger();
+    final var messenger = new Messenger();
     testMessage(
         messenger.messageFromElves(),
         "Much wind pours from your mouth."
@@ -99,7 +99,7 @@ public class MessengerTest {
    */
   private void testMessage(final LetterComposite composedMessage, final String message) {
     // Test is the composed message has the correct number of words
-    final String[] words = message.split(" ");
+    final var words = message.split(" ");
     assertNotNull(composedMessage);
     assertEquals(words.length, composedMessage.count());
 

@@ -23,12 +23,11 @@
 
 package com.iluwatar.abstractdocument.domain;
 
+import com.iluwatar.abstractdocument.AbstractDocument;
 import java.util.Map;
 
-import com.iluwatar.abstractdocument.AbstractDocument;
-
 /**
- * Car entity
+ * Car entity.
  */
 public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts {
 

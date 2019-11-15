@@ -23,15 +23,13 @@
 
 package com.iluwatar.adapter;
 
-import org.slf4j.Logger;
-
 import static org.slf4j.LoggerFactory.getLogger;
 
+import org.slf4j.Logger;
+
 /**
- *
- * Device class (adaptee in the pattern). We want to reuse this class.
- * Fishing boat moves by sailing.
- *
+ * Device class (adaptee in the pattern). We want to reuse this class. Fishing boat moves by
+ * sailing.
  */
 final class FishingBoat {
 

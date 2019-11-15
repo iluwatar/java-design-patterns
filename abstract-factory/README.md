@@ -109,10 +109,10 @@ public class OrcKingdomFactory implements KingdomFactory {
 Now we have our abstract factory that lets us make family of related objects i.e. Elven kingdom factory creates Elven castle, king and army etc.
 
 ```java
-KingdomFactory factory = new ElfKingdomFactory();
-Castle castle = factory.createCastle();
-King king = factory.createKing();
-Army army = factory.createArmy();
+var factory = new ElfKingdomFactory();
+var castle = factory.createCastle();
+var king = factory.createKing();
+var army = factory.createArmy();
 
 castle.getDescription();  // Output: This is the Elven castle!
 king.getDescription(); // Output: This is the Elven king!
@@ -143,7 +143,7 @@ public static class FactoryMaker {
 }
 
 public static void main(String[] args) {
-  App app = new App();
+  var app = new App();
 
   LOGGER.info("Elf Kingdom");
   app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));

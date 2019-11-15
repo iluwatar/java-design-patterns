@@ -30,7 +30,7 @@ import java.util.concurrent.Callable;
  * typically done is background threads and the result is posted back in form of callback. The
  * callback does not implement {@code isComplete}, {@code cancel} as it is out of scope of this
  * pattern.
- * 
+ *
  * @param <O> type of result
  */
 public interface AsyncTask<O> extends Callable<O> {
@@ -53,7 +53,7 @@ public interface AsyncTask<O> extends Callable<O> {
   /**
    * A callback called if computing the task resulted in some exception. This method is called when
    * either of {@link #call()} or {@link #onPreCall()} throw any exception.
-   * 
+   *
    * @param throwable error cause
    */
   void onError(Throwable throwable);

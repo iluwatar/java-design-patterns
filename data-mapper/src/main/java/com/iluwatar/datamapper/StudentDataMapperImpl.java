@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Implementation of Actions on Students Data
+ * Implementation of Actions on Students Data.
  */
 public final class StudentDataMapperImpl implements StudentDataMapper {
 
@@ -84,7 +84,8 @@ public final class StudentDataMapperImpl implements StudentDataMapper {
     } else {
 
       /* Throw user error after wrapping in a runtime exception */
-      throw new DataMapperException("Student already [" + studentToBeInserted.getName() + "] exists");
+      throw new DataMapperException("Student already [" + studentToBeInserted
+          .getName() + "] exists");
     }
   }
 

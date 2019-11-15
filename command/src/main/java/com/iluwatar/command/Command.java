@@ -24,9 +24,7 @@
 package com.iluwatar.command;
 
 /**
- * 
  * Interface for Commands.
- * 
  */
 public abstract class Command {
 

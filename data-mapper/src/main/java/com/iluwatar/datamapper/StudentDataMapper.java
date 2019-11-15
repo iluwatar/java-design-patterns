@@ -26,7 +26,7 @@ package com.iluwatar.datamapper;
 import java.util.Optional;
 
 /**
- * Interface lists out the possible behaviour for all possible student mappers
+ * Interface lists out the possible behaviour for all possible student mappers.
  */
 public interface StudentDataMapper {
 

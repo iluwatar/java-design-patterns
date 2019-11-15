@@ -30,14 +30,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The game Entity maintains a big array of pointers .
- * Each spin of the game loop, we need to run the following:
+ * The game Entity maintains a big array of pointers . Each spin of the game loop, we need to run
+ * the following:
  *
- *     Update the AI components .
+ * <p>Update the AI components.
  *
- *     Update the physics components for them.
+ * <p>Update the physics components for them.
  *
- *     Render them using their render components.
+ * <p>Render them using their render components.
  */
 public class GameEntity {
   private static final Logger LOGGER = LoggerFactory.getLogger(GameEntity.class);
@@ -47,7 +47,7 @@ public class GameEntity {
   private final RenderComponentManager renderComponentManager;
 
   /**
-   * Init components
+   * Init components.
    */
   public GameEntity(int numEntities) {
     LOGGER.info("Init Game with #Entity : {}", numEntities);
@@ -57,7 +57,7 @@ public class GameEntity {
   }
 
   /**
-   * start all component
+   * start all component.
    */
   public void start() {
     LOGGER.info("Start Game");
@@ -67,7 +67,7 @@ public class GameEntity {
   }
 
   /**
-   * update all component
+   * update all component.
    */
   public void update() {
     LOGGER.info("Update Game Component");
@@ -80,5 +80,5 @@ public class GameEntity {
     // Draw to screen.
     renderComponentManager.render();
   }
-  
+
 }

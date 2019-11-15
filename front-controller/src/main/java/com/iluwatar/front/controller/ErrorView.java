@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * View for errors.
- *
  */
 public class ErrorView implements View {
 

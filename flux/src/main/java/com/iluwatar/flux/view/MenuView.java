@@ -31,9 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * MenuView is a concrete view.
- *
  */
 public class MenuView implements View {
 

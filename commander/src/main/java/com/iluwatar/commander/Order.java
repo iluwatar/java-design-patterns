@@ -34,11 +34,11 @@ public class Order { //can store all transactions ids also
 
   enum PaymentStatus {
     NotDone, Trying, Done
-  };
-  
+  }
+
   enum MessageSent {
     NoneSent, PaymentFail, PaymentTrying, PaymentSuccessful
-  };
+  }
 
   final User user;
   final String item;
@@ -70,7 +70,7 @@ public class Order { //can store all transactions ids also
     this.addedToEmployeeHandle = false;
   }
 
-  String createUniqueId() {
+  private String createUniqueId() {
     StringBuilder random = new StringBuilder();
     while (random.length() < 12) { // length of the random string.
       int index = (int) (RANDOM.nextFloat() * ALL_CHARS.length());
@@ -78,5 +78,5 @@ public class Order { //can store all transactions ids also
     }
     return random.toString();
   }
-  
+
 }

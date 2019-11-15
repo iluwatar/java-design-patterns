@@ -33,6 +33,8 @@ public class BusinessLookup {
   private JmsService jmsService;
 
   /**
+   * Gets service instance based on service type.
+   *
    * @param serviceType Type of service instance to be returned.
    * @return Service instance.
    */

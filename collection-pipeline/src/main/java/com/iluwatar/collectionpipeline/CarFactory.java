@@ -34,6 +34,7 @@ public class CarFactory {
 
   /**
    * Factory method to create a {@link List} of {@link Car} instances.
+   *
    * @return {@link List} of {@link Car}
    */
   public static List<Car> createCars() {

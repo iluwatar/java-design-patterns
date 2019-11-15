@@ -27,8 +27,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Handles the routing of {@link Event} messages to associated handlers.
- * A {@link HashMap} is used to store the association between events and their respective handlers.
+ * Handles the routing of {@link Event} messages to associated handlers. A {@link HashMap} is used
+ * to store the association between events and their respective handlers.
  */
 public class EventDispatcher {
 

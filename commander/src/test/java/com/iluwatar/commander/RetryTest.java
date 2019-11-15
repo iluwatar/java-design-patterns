@@ -23,43 +23,38 @@
 
 package com.iluwatar.commander;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.ItemUnavailableException;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 class RetryTest {
 
   @Test
   void performTest() {
-    Retry.Operation op = (l) -> { 
+    Retry.Operation op = (l) -> {
       if (!l.isEmpty()) {
         throw l.remove(0);
       }
-      return; 
     };
-    Retry.HandleErrorIssue<Order> handleError = (o,e) -> { 
-      return; 
+    Retry.HandleErrorIssue<Order> handleError = (o, e) -> {
     };
-    Retry<Order> r1 = new Retry<>(op, handleError, 3, 30000,
+    var r1 = new Retry<>(op, handleError, 3, 30000,
         e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
-    Retry<Order> r2 = new Retry<>(op, handleError, 3, 30000,
+    var r2 = new Retry<>(op, handleError, 3, 30000,
         e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
-    User user = new User("Jim", "ABCD");
-    Order order = new Order(user, "book", 10f);
-    ArrayList<Exception> arr1 = new ArrayList<>(List.of(
-            new ItemUnavailableException(), new DatabaseUnavailableException()));
+    var user = new User("Jim", "ABCD");
+    var order = new Order(user, "book", 10f);
+    var arr1 = new ArrayList<>(List.of(new ItemUnavailableException(), new DatabaseUnavailableException()));
     try {
       r1.perform(arr1, order);
     } catch (Exception e1) {
       e1.printStackTrace();
     }
-    ArrayList<Exception> arr2 = new ArrayList<>(List.of(
-            new DatabaseUnavailableException(), new ItemUnavailableException()));
+    var arr2 = new ArrayList<>(List.of(new DatabaseUnavailableException(), new ItemUnavailableException()));
     try {
       r2.perform(arr2, order);
     } catch (Exception e1) {

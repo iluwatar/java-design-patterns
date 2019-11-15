@@ -33,30 +33,29 @@ public class Semaphore implements Lock {
    * The number of concurrent resource accesses which are allowed.
    */
   private int counter;
-    
+
   public Semaphore(int licenses) {
     this.licenses = licenses;
-    this.counter = licenses;    
+    this.counter = licenses;
   }
-  
+
   /**
-   * Returns the number of licenses managed by the Semaphore
+   * Returns the number of licenses managed by the Semaphore.
    */
   public int getNumLicenses() {
     return licenses;
   }
-  
+
   /**
-   * Returns the number of available licenses
+   * Returns the number of available licenses.
    */
   public int getAvailableLicenses() {
-    return counter; 
+    return counter;
   }
-  
+
   /**
-   * Method called by a thread to acquire the lock. If there are no resources
-   * available this will wait until the lock has been released to re-attempt
-   * the acquire.
+   * Method called by a thread to acquire the lock. If there are no resources available this will
+   * wait until the lock has been released to re-attempt the acquire.
    */
   public synchronized void acquire() throws InterruptedException {
     while (counter == 0) {
@@ -64,7 +63,7 @@ public class Semaphore implements Lock {
     }
     counter = counter - 1;
   }
-  
+
   /**
    * Method called by a thread to release the lock.
    */

@@ -41,7 +41,7 @@ public class ServiceImpl implements Service {
   private final int id;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public ServiceImpl(String serviceName) {
     // set the service name

@@ -23,32 +23,29 @@
 
 package com.iluwatar.tolerantreader;
 
+import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 /**
- * 
  * Tolerant Reader is an integration pattern that helps creating robust communication systems. The
  * idea is to be as tolerant as possible when reading data from another service. This way, when the
  * communication schema changes, the readers must not break.
- * <p>
- * In this example we use Java serialization to write representations of {@link RainbowFish} objects
- * to file. {@link RainbowFish} is the initial version which we can easily read and write using
- * {@link RainbowFishSerializer} methods. {@link RainbowFish} then evolves to {@link RainbowFishV2}
- * and we again write it to file with a method designed to do just that. However, the reader client
- * does not know about the new format and still reads with the method designed for V1 schema.
- * Fortunately the reading method has been designed with the Tolerant Reader pattern and does not
- * break even though {@link RainbowFishV2} has new fields that are serialized.
  *
+ * <p>In this example we use Java serialization to write representations of {@link RainbowFish}
+ * objects to file. {@link RainbowFish} is the initial version which we can easily read and write
+ * using {@link RainbowFishSerializer} methods. {@link RainbowFish} then evolves to {@link
+ * RainbowFishV2} and we again write it to file with a method designed to do just that. However, the
+ * reader client does not know about the new format and still reads with the method designed for V1
+ * schema. Fortunately the reading method has been designed with the Tolerant Reader pattern and
+ * does not break even though {@link RainbowFishV2} has new fields that are serialized.
  */
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(String[] args) throws IOException, ClassNotFoundException {
     // Write V1
@@ -59,8 +56,8 @@ public class App {
     // Read V1
     var deserializedRainbowFishV1 = RainbowFishSerializer.readV1("fish1.out");
     LOGGER.info("deserializedFishV1 name={} age={} length={} weight={}",
-            deserializedRainbowFishV1.getName(), deserializedRainbowFishV1.getAge(),
-            deserializedRainbowFishV1.getLengthMeters(), deserializedRainbowFishV1.getWeightTons());
+        deserializedRainbowFishV1.getName(), deserializedRainbowFishV1.getAge(),
+        deserializedRainbowFishV1.getLengthMeters(), deserializedRainbowFishV1.getWeightTons());
     // Write V2
     var fishV2 = new RainbowFishV2("Scar", 5, 12, 15, true, true, true);
     LOGGER.info(

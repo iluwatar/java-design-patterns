@@ -24,9 +24,7 @@
 package com.iluwatar.threadpool;
 
 /**
- * 
- * PotatoPeelingTask is a concrete task
- *
+ * PotatoPeelingTask is a concrete task.
  */
 public class PotatoPeelingTask extends Task {
 

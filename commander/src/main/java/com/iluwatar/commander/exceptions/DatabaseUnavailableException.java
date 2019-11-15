@@ -24,8 +24,8 @@
 package com.iluwatar.commander.exceptions;
 
 /**
- * DatabaseUnavailableException is thrown when database is unavailable and nothing
- * can be added or retrieved.
+ * DatabaseUnavailableException is thrown when database is unavailable and nothing can be added or
+ * retrieved.
  */
 
 public class DatabaseUnavailableException extends Exception {

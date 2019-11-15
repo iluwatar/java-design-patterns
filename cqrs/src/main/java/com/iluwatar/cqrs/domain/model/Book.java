@@ -30,8 +30,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
- * This is a Book entity. It is used by Hibernate for persistence. Many books can be written by one {@link Author}
- *
+ * This is a Book entity. It is used by Hibernate for persistence. Many books can be written by one
+ * {@link Author}
  */
 @Entity
 public class Book {
@@ -44,13 +44,11 @@ public class Book {
   private Author author;
 
   /**
+   * Constructor.
    *
-   * @param title
-   *          title of the book
-   * @param price
-   *          price of the book
-   * @param author
-   *          author of the book
+   * @param title  title of the book
+   * @param price  price of the book
+   * @param author author of the book
    */
   public Book(String title, double price, Author author) {
     this.title = title;

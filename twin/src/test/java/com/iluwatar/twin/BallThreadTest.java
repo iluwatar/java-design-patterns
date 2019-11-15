@@ -23,15 +23,19 @@
 
 package com.iluwatar.twin;
 
-import org.junit.jupiter.api.Test;
-
 import static java.lang.Thread.UncaughtExceptionHandler;
 import static java.lang.Thread.sleep;
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/30/15 - 18:55 PM
@@ -44,11 +48,11 @@ public class BallThreadTest {
    * Verify if the {@link BallThread} can be resumed
    */
   @Test
-  public void testSuspend() throws Exception {
+  public void testSuspend() {
     assertTimeout(ofMillis(5000), () -> {
-      final BallThread ballThread = new BallThread();
+      final var ballThread = new BallThread();
 
-      final BallItem ballItem = mock(BallItem.class);
+      final var ballItem = mock(BallItem.class);
       ballThread.setTwin(ballItem);
 
       ballThread.start();
@@ -72,9 +76,9 @@ public class BallThreadTest {
   @Test
   public void testResume() {
     assertTimeout(ofMillis(5000), () -> {
-      final BallThread ballThread = new BallThread();
+      final var ballThread = new BallThread();
 
-      final BallItem ballItem = mock(BallItem.class);
+      final var ballItem = mock(BallItem.class);
       ballThread.setTwin(ballItem);
 
       ballThread.suspendMe();
@@ -102,8 +106,8 @@ public class BallThreadTest {
   @Test
   public void testInterrupt() {
     assertTimeout(ofMillis(5000), () -> {
-      final BallThread ballThread = new BallThread();
-      final UncaughtExceptionHandler exceptionHandler = mock(UncaughtExceptionHandler.class);
+      final var ballThread = new BallThread();
+      final var exceptionHandler = mock(UncaughtExceptionHandler.class);
       ballThread.setUncaughtExceptionHandler(exceptionHandler);
       ballThread.setTwin(mock(BallItem.class));
       ballThread.start();

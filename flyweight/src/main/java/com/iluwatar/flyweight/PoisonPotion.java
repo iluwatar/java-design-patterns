@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
- * PoisonPotion
- *
+ * PoisonPotion.
  */
 public class PoisonPotion implements Potion {
 

@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * SubtleMethod implementation of {@link StealingMethod}.
- *
  */
 public class SubtleMethod extends StealingMethod {
 

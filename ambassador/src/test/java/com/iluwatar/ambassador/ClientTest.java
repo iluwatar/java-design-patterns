@@ -30,13 +30,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Test for {@link Client}
  */
-public class ClientTest {
+class ClientTest {
 
   @Test
-  public void test() {
-
+  void test() {
     Client client = new Client();
-    long result = client.useService(10);
+    var result = client.useService(10);
 
     assertTrue(result == 100 || result == RemoteService.FAILURE);
   }

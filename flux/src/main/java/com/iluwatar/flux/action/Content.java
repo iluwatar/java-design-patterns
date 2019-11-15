@@ -24,9 +24,7 @@
 package com.iluwatar.flux.action;
 
 /**
- * 
  * Content items.
- *
  */
 public enum Content {
 

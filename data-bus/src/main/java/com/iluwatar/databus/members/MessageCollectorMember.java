@@ -26,7 +26,6 @@ package com.iluwatar.databus.members;
 import com.iluwatar.databus.DataType;
 import com.iluwatar.databus.Member;
 import com.iluwatar.databus.data.MessageData;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * Implementation for binary tree's normal nodes.
- *
  */
 public class NodeImpl implements Node {
 
@@ -40,7 +38,7 @@ public class NodeImpl implements Node {
   private final Node right;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public NodeImpl(String name, Node left, Node right) {
     this.name = name;

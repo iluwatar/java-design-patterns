@@ -27,9 +27,7 @@ import com.iluwatar.iterator.Iterator;
 import java.util.List;
 
 /**
- *
- * TreasureChestItemIterator
- *
+ * TreasureChestItemIterator.
  */
 public class TreasureChestItemIterator implements Iterator<Item> {
 
@@ -38,7 +36,7 @@ public class TreasureChestItemIterator implements Iterator<Item> {
   private ItemType type;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public TreasureChestItemIterator(TreasureChest chest, ItemType type) {
     this.chest = chest;

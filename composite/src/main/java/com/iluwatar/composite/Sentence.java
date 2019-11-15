@@ -34,9 +34,7 @@ public class Sentence extends LetterComposite {
    * Constructor.
    */
   public Sentence(List<Word> words) {
-    for (Word w : words) {
-      this.add(w);
-    }
+    words.forEach(this::add);
   }
 
   @Override

@@ -23,13 +23,6 @@
 
 package domainapp.webapp;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.google.common.base.Joiner;
 import com.google.common.io.Resources;
 import com.google.inject.AbstractModule;
@@ -37,30 +30,31 @@ import com.google.inject.Module;
 import com.google.inject.name.Names;
 import com.google.inject.util.Modules;
 import com.google.inject.util.Providers;
-
+import de.agilecoders.wicket.core.Bootstrap;
+import de.agilecoders.wicket.core.settings.IBootstrapSettings;
+import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchTheme;
+import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchThemeProvider;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.isis.viewer.wicket.viewer.IsisWicketApplication;
+import org.apache.isis.viewer.wicket.viewer.integration.wicket.AuthenticatedWebSessionForIsis;
 import org.apache.wicket.Session;
 import org.apache.wicket.request.IRequestParameters;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.request.http.WebRequest;
-
-import org.apache.isis.viewer.wicket.viewer.IsisWicketApplication;
-import org.apache.isis.viewer.wicket.viewer.integration.wicket.AuthenticatedWebSessionForIsis;
-
-import de.agilecoders.wicket.core.Bootstrap;
-import de.agilecoders.wicket.core.settings.IBootstrapSettings;
-import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchTheme;
-import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchThemeProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 /**
  * As specified in <tt>web.xml</tt>.
- * 
- * <p>
- * See:
- * 
+ *
+ * <p>See:
+ *
  * <pre>
  * &lt;filter&gt;
  *   &lt;filter-name&gt;wicket&lt;/filter-name&gt;
@@ -71,7 +65,6 @@ import org.slf4j.LoggerFactory;
  *    &lt;/init-param&gt;
  * &lt;/filter&gt;
  * </pre>
- * 
  */
 public class SimpleApplication extends IsisWicketApplication {
 
@@ -80,11 +73,10 @@ public class SimpleApplication extends IsisWicketApplication {
 
   /**
    * uncomment for a (slightly hacky) way of allowing logins using query args, eg:
-   * 
+   *
    * <tt>{@code ?user=sven&pass=pass}</tt>
-   * 
-   * <p>
-   * for demos only, obvious.
+   *
+   * <p>for demos only, obvious.
    */
   private static final boolean DEMO_MODE_USING_CREDENTIALS_AS_QUERYARGS = false;
 

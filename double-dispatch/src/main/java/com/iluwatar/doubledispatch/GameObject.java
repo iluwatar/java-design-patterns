@@ -24,9 +24,7 @@
 package com.iluwatar.doubledispatch;
 
 /**
- * 
  * Game objects have coordinates and some other status information.
- *
  */
 public abstract class GameObject extends Rectangle {
 

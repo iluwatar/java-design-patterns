@@ -27,16 +27,15 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.springframework.data.jpa.domain.Specification;
 
 /**
- * Helper class, includes vary Specification as the abstraction of sql query criteria
+ * Helper class, includes vary Specification as the abstraction of sql query criteria.
  */
 public class PersonSpecifications {
 
   /**
-   * Specifications stating the Between (From - To) Age Specification
+   * Specifications stating the Between (From - To) Age Specification.
    */
   public static class AgeBetweenSpec implements Specification<Person> {
 
@@ -59,8 +58,7 @@ public class PersonSpecifications {
   }
 
   /**
-   * Name specification
-   *
+   * Name specification.
    */
   public static class NameEqualSpec implements Specification<Person> {
 
@@ -71,7 +69,7 @@ public class PersonSpecifications {
     }
 
     /**
-     * Get predicate
+     * Get predicate.
      */
     public Predicate toPredicate(Root<Person> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 

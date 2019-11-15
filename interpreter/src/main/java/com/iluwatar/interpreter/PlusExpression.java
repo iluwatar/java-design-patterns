@@ -24,9 +24,7 @@
 package com.iluwatar.interpreter;
 
 /**
- * 
- * PlusExpression
- *
+ * PlusExpression.
  */
 public class PlusExpression extends Expression {
 

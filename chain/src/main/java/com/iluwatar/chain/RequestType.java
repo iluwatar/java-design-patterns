@@ -24,9 +24,7 @@
 package com.iluwatar.chain;
 
 /**
- * 
- * RequestType enumeration
- *
+ * RequestType enumeration.
  */
 public enum RequestType {
 

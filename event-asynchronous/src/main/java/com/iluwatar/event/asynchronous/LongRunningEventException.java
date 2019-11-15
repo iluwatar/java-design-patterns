@@ -24,7 +24,7 @@
 package com.iluwatar.event.asynchronous;
 
 /**
- * Type of Exception raised when the Operation being invoked is Long Running
+ * Type of Exception raised when the Operation being invoked is Long Running.
  */
 public class LongRunningEventException extends Exception {
 

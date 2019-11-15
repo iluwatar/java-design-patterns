@@ -27,19 +27,18 @@ import com.google.common.collect.Lists;
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.fixture.modules.simple.SimpleObjectCreate;
 import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
-import org.apache.isis.applib.fixturescripts.FixtureScript;
-
 import java.util.Collections;
 import java.util.List;
+import org.apache.isis.applib.fixturescripts.FixtureScript;
 
 
 /**
- * Create a bunch of simple Objects
+ * Create a bunch of simple Objects.
  */
 public class RecreateSimpleObjects extends FixtureScript {
 
   public final List<String> names = Collections.unmodifiableList(List.of("Foo", "Bar", "Baz",
-          "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
+      "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
 
   // region > number (optional input)
   private Integer number;

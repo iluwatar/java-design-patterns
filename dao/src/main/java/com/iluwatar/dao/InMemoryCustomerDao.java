@@ -29,8 +29,8 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * An in memory implementation of {@link CustomerDao}, which stores the customers in JVM memory
- * and data is lost when the application exits.
+ * An in memory implementation of {@link CustomerDao}, which stores the customers in JVM memory and
+ * data is lost when the application exits.
  * <br>
  * This implementation is useful as temporary database or for testing.
  */
@@ -56,7 +56,7 @@ public class InMemoryCustomerDao implements CustomerDao {
     if (getById(customer.getId()).isPresent()) {
       return false;
     }
-    
+
     idToCustomer.put(customer.getId(), customer);
     return true;
   }

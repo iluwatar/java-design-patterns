@@ -34,7 +34,7 @@ public abstract class GameItem {
   private static final Logger LOGGER = LoggerFactory.getLogger(GameItem.class);
 
   /**
-   * Template method, do some common logic before draw
+   * Template method, do some common logic before draw.
    */
   public void draw() {
     LOGGER.info("draw");

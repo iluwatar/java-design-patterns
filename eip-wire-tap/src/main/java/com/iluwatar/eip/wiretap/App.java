@@ -30,21 +30,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
- * In most integration cases there is a need to monitor the messages flowing through the system. It is usually achieved
- * by intercepting the message and redirecting it to a different location like console, filesystem or the database.
- * It is important that such functionality should not modify the original message and influence the processing path.
+ * In most integration cases there is a need to monitor the messages flowing through the system. It
+ * is usually achieved by intercepting the message and redirecting it to a different location like
+ * console, filesystem or the database. It is important that such functionality should not modify
+ * the original message and influence the processing path.
  *
  * <p>
- * Wire Tap allows you to route messages to a separate location while they are being forwarded to the ultimate
- * destination. It basically consumes messages of the input channel and publishes the unmodified message to both
- * output channels.
+ * Wire Tap allows you to route messages to a separate location while they are being forwarded to
+ * the ultimate destination. It basically consumes messages of the input channel and publishes the
+ * unmodified message to both output channels.
  * </p>
  */
 @SpringBootApplication
 public class App {
 
   /**
-   * Program entry point. It starts Spring Boot application and using Apache Camel it auto-configures routes.
+   * Program entry point. It starts Spring Boot application and using Apache Camel it
+   * auto-configures routes.
    *
    * @param args command line args
    */

@@ -31,7 +31,8 @@ import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
 /**
- * HomePage Domain Service
+ * HomePage Domain Service.
+ *
  * @see HomePageViewModel linked view to HomePage
  */
 @DomainService(nature = NatureOfService.VIEW_CONTRIBUTIONS_ONLY)

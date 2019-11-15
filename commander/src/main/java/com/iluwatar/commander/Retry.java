@@ -25,34 +25,37 @@ package com.iluwatar.commander;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 /**
- * Retry pattern 
+ * Retry pattern.
+ *
  * @param <T> is the type of object passed into HandleErrorIssue as a parameter.
  */
 
 public class Retry<T> {
 
- /**
-  * Operation Interface will define method to be implemented. 
-  */
+  /**
+   * Operation Interface will define method to be implemented.
+   */
 
   public interface Operation {
-    void operation(ArrayList<Exception> list) throws Exception; 
+    void operation(List<Exception> list) throws Exception;
   }
 
- /**
-  * HandleErrorIssue defines how to handle errors.
-  * @param <T> is the type of object to be passed into the method as parameter.
-  */
-  
+  /**
+   * HandleErrorIssue defines how to handle errors.
+   *
+   * @param <T> is the type of object to be passed into the method as parameter.
+   */
+
   public interface HandleErrorIssue<T> {
     void handleIssue(T obj, Exception e);
   }
-  
+
   private static final Random RANDOM = new Random();
 
   private final Operation op;
@@ -61,10 +64,10 @@ public class Retry<T> {
   private final long maxDelay;
   private final AtomicInteger attempts;
   private final Predicate<Exception> test;
-  private final ArrayList<Exception> errors;
+  private final List<Exception> errors;
 
-  Retry(Operation op, HandleErrorIssue handleError, int maxAttempts,
-      long maxDelay, Predicate<Exception>... ignoreTests) {
+  Retry(Operation op, HandleErrorIssue<T> handleError, int maxAttempts,
+        long maxDelay, Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.handleError = handleError;
     this.maxAttempts = maxAttempts;
@@ -76,11 +79,12 @@ public class Retry<T> {
 
   /**
    * Performing the operation with retries.
+   *
    * @param list is the exception list
-   * @param obj is the parameter to be passed into handleIsuue method
+   * @param obj  is the parameter to be passed into handleIsuue method
    */
-  
-  public void perform(ArrayList<Exception> list, T obj) throws Exception {
+
+  public void perform(List<Exception> list, T obj) {
     do {
       try {
         op.operation(list);
@@ -92,15 +96,15 @@ public class Retry<T> {
           return; //return here...dont go further
         }
         try {
-          long testDelay = (long) Math.pow(2, this.attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
-          long delay = testDelay < this.maxDelay ? testDelay : maxDelay;
+          long testDelay =
+              (long) Math.pow(2, this.attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
+          long delay = Math.min(testDelay, this.maxDelay);
           Thread.sleep(delay);
         } catch (InterruptedException f) {
           //ignore
         }
       }
-    }
-    while (true);
+    } while (true);
   }
 
 }

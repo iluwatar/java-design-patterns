@@ -23,17 +23,16 @@
 
 package com.iluwatar.cqrs.commandes;
 
+import com.iluwatar.cqrs.domain.model.Author;
+import com.iluwatar.cqrs.domain.model.Book;
+import com.iluwatar.cqrs.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.iluwatar.cqrs.domain.model.Author;
-import com.iluwatar.cqrs.domain.model.Book;
-import com.iluwatar.cqrs.util.HibernateUtil;
-
 /**
- * This class is an implementation of {@link ICommandService} interface. It uses Hibernate as an api for persistence.
- *
+ * This class is an implementation of {@link ICommandService} interface. It uses Hibernate as an api
+ * for persistence.
  */
 public class CommandServiceImpl implements ICommandService {
 

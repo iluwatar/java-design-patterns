@@ -24,7 +24,6 @@
 package com.iluwatar.hexagonal.domain;
 
 import com.google.common.base.Joiner;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.PrimitiveIterator;
@@ -32,15 +31,13 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- *
- * Value object representing lottery numbers. This lottery uses sets of 4 numbers. The numbers must be unique and
- * between 1 and 20.
- *
+ * Value object representing lottery numbers. This lottery uses sets of 4 numbers. The numbers must
+ * be unique and between 1 and 20.
  */
 public class LotteryNumbers {
 
   private final Set<Integer> numbers;
-  
+
   public static final int MIN_NUMBER = 1;
   public static final int MAX_NUMBER = 20;
   public static final int NUM_NUMBERS = 4;
@@ -62,6 +59,8 @@ public class LotteryNumbers {
   }
 
   /**
+   * Creates a random lottery number.
+   *
    * @return random LotteryNumbers
    */
   public static LotteryNumbers createRandom() {
@@ -69,13 +68,17 @@ public class LotteryNumbers {
   }
 
   /**
+   * Creates lottery number from given set of numbers.
+   *
    * @return given LotteryNumbers
    */
   public static LotteryNumbers create(Set<Integer> givenNumbers) {
     return new LotteryNumbers(givenNumbers);
   }
-  
+
   /**
+   * Get numbers.
+   *
    * @return lottery numbers
    */
   public Set<Integer> getNumbers() {
@@ -83,12 +86,14 @@ public class LotteryNumbers {
   }
 
   /**
+   * Get numbers as string.
+   *
    * @return numbers as comma separated string
    */
   public String getNumbersAsString() {
     return Joiner.on(',').join(numbers);
   }
-  
+
   /**
    * Generates 4 unique random numbers between 1-20 into numbers set.
    */
@@ -107,17 +112,16 @@ public class LotteryNumbers {
   }
 
   /**
-   * 
    * Helper class for generating random numbers.
-   *
    */
   private static class RandomNumberGenerator {
 
     private PrimitiveIterator.OfInt randomIterator;
 
     /**
-     * Initialize a new random number generator that generates random numbers in the range [min, max]
-     * 
+     * Initialize a new random number generator that generates random numbers in the range [min,
+     * max].
+     *
      * @param min the min value (inclusive)
      * @param max the max value (inclusive)
      */
@@ -126,13 +130,15 @@ public class LotteryNumbers {
     }
 
     /**
+     * Gets next random integer in [min, max] range.
+     *
      * @return a random number in the range (min, max)
      */
     public int nextInt() {
       return randomIterator.nextInt();
     }
   }
-  
+
   @Override
   public int hashCode() {
     final int prime = 31;

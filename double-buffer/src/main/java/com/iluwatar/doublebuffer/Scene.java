@@ -23,11 +23,10 @@
 
 package com.iluwatar.doublebuffer;
 
+import java.util.List;
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 /**
  * Scene class. Render the output frame.
@@ -55,6 +54,7 @@ public class Scene {
 
   /**
    * Draw the next frame.
+   *
    * @param coordinateList list of pixels of which the color should be black
    */
   public void draw(List<Pair<Integer, Integer>> coordinateList) {

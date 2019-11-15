@@ -23,14 +23,14 @@
 
 package com.iluwatar.callback;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Add a field as a counter. Every time the callback method is called increment this field. Unit
  * test checks that the field is being incremented.
- *
+ * <p>
  * Could be done with mock objects as well where the call method call is verified.
  */
 public class CallbackTest {
@@ -41,17 +41,17 @@ public class CallbackTest {
   public void test() {
     Callback callback = () -> callingCount++;
 
-    Task task = new SimpleTask();
+    var task = new SimpleTask();
 
-    assertEquals(new Integer(0), callingCount, "Initial calling count of 0");
-
-    task.executeWith(callback);
-
-    assertEquals(new Integer(1), callingCount, "Callback called once");
+    assertEquals(Integer.valueOf(0), callingCount, "Initial calling count of 0");
 
     task.executeWith(callback);
 
-    assertEquals(new Integer(2), callingCount, "Callback called twice");
+    assertEquals(Integer.valueOf(1), callingCount, "Callback called once");
+
+    task.executeWith(callback);
+
+    assertEquals(Integer.valueOf(2), callingCount, "Callback called twice");
 
   }
 }

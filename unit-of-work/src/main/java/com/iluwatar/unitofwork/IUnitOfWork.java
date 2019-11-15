@@ -24,6 +24,8 @@
 package com.iluwatar.unitofwork;
 
 /**
+ * UnitOfWork interface.
+ *
  * @param <T> Any generic entity
  */
 public interface IUnitOfWork<T> {
@@ -46,7 +48,7 @@ public interface IUnitOfWork<T> {
    */
   void registerDeleted(T entity);
 
-  /***
+  /**
    * All UnitOfWork operations batched together executed in commit only.
    */
   void commit();

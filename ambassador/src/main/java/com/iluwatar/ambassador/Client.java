@@ -23,12 +23,11 @@
 
 package com.iluwatar.ambassador;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.slf4j.Logger;
-
 /**
- * A simple Client
+ * A simple Client.
  */
 public class Client {
 
@@ -36,7 +35,7 @@ public class Client {
   private final ServiceAmbassador serviceAmbassador = new ServiceAmbassador();
 
   long useService(int value) {
-    long result = serviceAmbassador.doRemoteFunction(value);
+    var result = serviceAmbassador.doRemoteFunction(value);
     LOGGER.info("Service result: " + result);
     return result;
   }

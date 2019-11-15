@@ -23,21 +23,17 @@
 
 package com.iluwatar.collectionpipeline;
 
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-import java.util.Map;
-
 /**
- * In imperative-style programming, it is common to use for and while loops for
- * most kinds of data processing. Function composition is a simple technique
- * that lets you sequence modular functions to create more complex operations.
- * When you run data through the sequence, you have a collection pipeline.
- * Together, the Function Composition and Collection Pipeline patterns enable
- * you to create sophisticated programs where data flow from upstream to
- * downstream and is passed through a series of transformations.
- *
+ * In imperative-style programming, it is common to use for and while loops for most kinds of data
+ * processing. Function composition is a simple technique that lets you sequence modular functions
+ * to create more complex operations. When you run data through the sequence, you have a collection
+ * pipeline. Together, the Function Composition and Collection Pipeline patterns enable you to
+ * create sophisticated programs where data flow from upstream to downstream and is passed through a
+ * series of transformations.
  */
 public class App {
 
@@ -45,32 +41,30 @@ public class App {
 
   /**
    * Program entry point.
-   * 
-   * @param args
-   *            command line args
+   *
+   * @param args command line args
    */
   public static void main(String[] args) {
+    var cars = CarFactory.createCars();
 
-    List<Car> cars = CarFactory.createCars();
-    
-    List<String> modelsImperative = ImperativeProgramming.getModelsAfter2000(cars);
+    var modelsImperative = ImperativeProgramming.getModelsAfter2000(cars);
     LOGGER.info(modelsImperative.toString());
 
-    List<String> modelsFunctional = FunctionalProgramming.getModelsAfter2000(cars);
+    var modelsFunctional = FunctionalProgramming.getModelsAfter2000(cars);
     LOGGER.info(modelsFunctional.toString());
-    
-    Map<Category, List<Car>> groupingByCategoryImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
+
+    var groupingByCategoryImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
     LOGGER.info(groupingByCategoryImperative.toString());
 
-    Map<Category, List<Car>> groupingByCategoryFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
+    var groupingByCategoryFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
     LOGGER.info(groupingByCategoryFunctional.toString());
-    
-    Person john = new Person(cars);
 
-    List<Car> sedansOwnedImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+    var john = new Person(cars);
+
+    var sedansOwnedImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     LOGGER.info(sedansOwnedImperative.toString());
 
-    List<Car> sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
+    var sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
     LOGGER.info(sedansOwnedFunctional.toString());
   }
 }

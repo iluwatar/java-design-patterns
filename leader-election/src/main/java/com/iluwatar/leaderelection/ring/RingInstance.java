@@ -26,23 +26,22 @@ package com.iluwatar.leaderelection.ring;
 import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementation with token ring algorithm. The instances in the system are organized as a ring.
  * Each instance should have a sequential id and the instance with smallest (or largest) id should
- * be the initial leader. All the other instances send heartbeat message to leader periodically
- * to check its health. If one certain instance finds the server done, it will send an election
- * message to the next alive instance in the ring, which contains its own ID. Then the next instance
- * add its ID into the message and pass it to the next. After all the alive instances' ID are add
- * to the message, the message is send back to the first instance and it will choose the instance
- * with smallest ID to be the new leader, and then send a leader message to other instances to
- * inform the result.
+ * be the initial leader. All the other instances send heartbeat message to leader periodically to
+ * check its health. If one certain instance finds the server done, it will send an election message
+ * to the next alive instance in the ring, which contains its own ID. Then the next instance add its
+ * ID into the message and pass it to the next. After all the alive instances' ID are add to the
+ * message, the message is send back to the first instance and it will choose the instance with
+ * smallest ID to be the new leader, and then send a leader message to other instances to inform the
+ * result.
  */
 public class RingInstance extends AbstractInstance {
 
@@ -56,9 +55,9 @@ public class RingInstance extends AbstractInstance {
   }
 
   /**
-   * Process the heartbeat invoke message. After receiving the message, the instance will send a heartbeat
-   * to leader to check its health. If alive, it will inform the next instance to do the heartbeat. If not,
-   * it will start the election process.
+   * Process the heartbeat invoke message. After receiving the message, the instance will send a
+   * heartbeat to leader to check its health. If alive, it will inform the next instance to do the
+   * heartbeat. If not, it will start the election process.
    */
   @Override
   protected void handleHeartbeatInvokeMessage() {
@@ -78,9 +77,10 @@ public class RingInstance extends AbstractInstance {
   }
 
   /**
-   * Process election message. If the local ID is contained in the ID list, the instance will select the
-   * alive instance with smallest ID to be the new leader, and send the leader inform message. If not,
-   * it will add its local ID to the list and send the message to the next instance in the ring.
+   * Process election message. If the local ID is contained in the ID list, the instance will select
+   * the alive instance with smallest ID to be the new leader, and send the leader inform message.
+   * If not, it will add its local ID to the list and send the message to the next instance in the
+   * ring.
    */
   @Override
   protected void handleElectionMessage(Message message) {
@@ -88,9 +88,9 @@ public class RingInstance extends AbstractInstance {
     LOGGER.info("Instance " + localId + " - Election Message: " + content);
     List<Integer> candidateList =
         Arrays.stream(content.trim().split(","))
-                 .map(Integer::valueOf)
-                 .sorted()
-                 .collect(Collectors.toList());
+            .map(Integer::valueOf)
+            .sorted()
+            .collect(Collectors.toList());
     if (candidateList.contains(localId)) {
       int newLeaderId = candidateList.get(0);
       LOGGER.info("Instance " + localId + " - New leader should be " + newLeaderId + ".");
@@ -102,8 +102,8 @@ public class RingInstance extends AbstractInstance {
   }
 
   /**
-   * Process leader Message. The instance will set the leader ID to be the new one and send the message to
-   * the next instance until all the alive instance in the ring is informed.
+   * Process leader Message. The instance will set the leader ID to be the new one and send the
+   * message to the next instance until all the alive instance in the ring is informed.
    */
   @Override
   protected void handleLeaderMessage(Message message) {
@@ -122,12 +122,15 @@ public class RingInstance extends AbstractInstance {
    * Not used in Ring instance.
    */
   @Override
-  protected void handleLeaderInvokeMessage() {}
+  protected void handleLeaderInvokeMessage() {
+  }
 
   @Override
-  protected void handleHeartbeatMessage(Message message) {}
+  protected void handleHeartbeatMessage(Message message) {
+  }
 
   @Override
-  protected void handleElectionInvokeMessage() {}
+  protected void handleElectionInvokeMessage() {
+  }
 
 }

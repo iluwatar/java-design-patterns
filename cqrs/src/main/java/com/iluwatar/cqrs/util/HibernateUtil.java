@@ -31,8 +31,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class simply returns one instance of {@link SessionFactory} initialized when the application is started
- *
+ * This class simply returns one instance of {@link SessionFactory} initialized when the application
+ * is started.
  */
 public class HibernateUtil {
 
@@ -42,7 +42,8 @@ public class HibernateUtil {
   private static SessionFactory buildSessionFactory() {
 
     // configures settings from hibernate.cfg.xml
-    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+    final StandardServiceRegistry registry =
+        new StandardServiceRegistryBuilder().configure().build();
     try {
       return new MetadataSources(registry).buildMetadata().buildSessionFactory();
     } catch (Exception ex) {

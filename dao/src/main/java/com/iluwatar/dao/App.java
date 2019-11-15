@@ -26,12 +26,9 @@ package com.iluwatar.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-
 import javax.sql.DataSource;
-
 import org.h2.jdbcx.JdbcDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,27 +41,25 @@ import org.slf4j.LoggerFactory;
  * application needs, in terms of domain-specific objects and data types (the public interface of
  * the DAO), from how these needs can be satisfied with a specific DBMS.
  *
- * <p>With the DAO pattern, we can use various method calls to retrieve/add/delete/update data 
- * without directly interacting with the data source. The below example demonstrates basic CRUD 
+ * <p>With the DAO pattern, we can use various method calls to retrieve/add/delete/update data
+ * without directly interacting with the data source. The below example demonstrates basic CRUD
  * operations: select, add, update, and delete.
- * 
- * 
  */
 public class App {
   private static final String DB_URL = "jdbc:h2:~/dao";
   private static Logger log = LoggerFactory.getLogger(App.class);
   private static final String ALL_CUSTOMERS = "customerDao.getAllCustomers(): ";
-  
+
   /**
    * Program entry point.
-   * 
+   *
    * @param args command line args.
-   * @throws Exception if any error occurs. 
+   * @throws Exception if any error occurs.
    */
   public static void main(final String[] args) throws Exception {
     final CustomerDao inMemoryDao = new InMemoryCustomerDao();
     performOperationsUsing(inMemoryDao);
-    
+
     final DataSource dataSource = createDataSource();
     createSchema(dataSource);
     final CustomerDao dbDao = new DbCustomerDao(dataSource);
@@ -74,14 +69,14 @@ public class App {
 
   private static void deleteSchema(DataSource dataSource) throws SQLException {
     try (Connection connection = dataSource.getConnection();
-        Statement statement = connection.createStatement()) {
+         Statement statement = connection.createStatement()) {
       statement.execute(CustomerSchemaSql.DELETE_SCHEMA_SQL);
     }
   }
 
   private static void createSchema(DataSource dataSource) throws SQLException {
     try (Connection connection = dataSource.getConnection();
-        Statement statement = connection.createStatement()) {
+         Statement statement = connection.createStatement()) {
       statement.execute(CustomerSchemaSql.CREATE_SCHEMA_SQL);
     }
   }
@@ -121,7 +116,7 @@ public class App {
 
   /**
    * Generate customers.
-   * 
+   *
    * @return list of customers.
    */
   public static List<Customer> generateSampleCustomers() {

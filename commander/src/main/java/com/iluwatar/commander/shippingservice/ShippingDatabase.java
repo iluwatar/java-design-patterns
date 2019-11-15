@@ -23,30 +23,30 @@
 
 package com.iluwatar.commander.shippingservice;
 
-import java.util.Hashtable;
 import com.iluwatar.commander.Database;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.shippingservice.ShippingService.ShippingRequest;
+import java.util.Hashtable;
 
 /**
  * ShippingDatabase is where the ShippingRequest objects are added.
  */
 
 public class ShippingDatabase extends Database<ShippingRequest> {
-  
+
   private Hashtable<String, ShippingRequest> data;
 
   public ShippingDatabase() {
-    this.data = new Hashtable<String, ShippingRequest>();
+    this.data = new Hashtable<>();
   }
 
   @Override
-  public ShippingRequest add(ShippingRequest r) throws DatabaseUnavailableException {
+  public ShippingRequest add(ShippingRequest r) {
     return data.put(r.transactionId, r);
   }
 
-  public ShippingRequest get(String transactionId) throws DatabaseUnavailableException {
-    return data.get(transactionId);
+  public ShippingRequest get(String trasnactionId) {
+    return data.get(trasnactionId);
   }
 
 }

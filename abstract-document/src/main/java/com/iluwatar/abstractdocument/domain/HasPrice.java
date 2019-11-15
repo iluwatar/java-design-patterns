@@ -23,13 +23,12 @@
 
 package com.iluwatar.abstractdocument.domain;
 
-import java.util.Optional;
-
 import com.iluwatar.abstractdocument.Document;
 import com.iluwatar.abstractdocument.domain.enums.Property;
+import java.util.Optional;
 
 /**
- * HasPrice trait for static access to 'price' property
+ * HasPrice trait for static access to 'price' property.
  */
 public interface HasPrice extends Document {
 

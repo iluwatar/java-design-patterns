@@ -24,7 +24,6 @@
 package domainapp.dom.modules.simple;
 
 import java.util.List;
-
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.Identifier;
 import org.apache.isis.applib.annotation.Action;
@@ -40,7 +39,7 @@ import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 /**
- * Domain Service for Simple Objects
+ * Domain Service for Simple Objects.
  */
 @DomainService(repositoryFor = SimpleObject.class)
 @DomainServiceLayout(menuOrder = "10")
@@ -82,18 +81,18 @@ public class SimpleObjects {
   // endregion
 
   /**
-   * Create Domain Event on SimpleObjects
+   * Create Domain Event on SimpleObjects.
    */
   // region > create (action)
   public static class CreateDomainEvent extends ActionDomainEvent<SimpleObjects> {
     public CreateDomainEvent(final SimpleObjects source, final Identifier identifier,
-        final Object... arguments) {
+                             final Object... arguments) {
       super(source, identifier, arguments);
     }
   }
 
   /**
-   * Create simple object
+   * Create simple object.
    */
   @Action(domainEvent = CreateDomainEvent.class)
   @MemberOrder(sequence = "3")

@@ -25,7 +25,6 @@ package com.iluwatar.databus.data;
 
 import com.iluwatar.databus.AbstractDataType;
 import com.iluwatar.databus.DataType;
-
 import java.time.LocalDateTime;
 
 /**

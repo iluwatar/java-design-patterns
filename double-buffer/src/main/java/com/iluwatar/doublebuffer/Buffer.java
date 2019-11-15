@@ -30,6 +30,7 @@ public interface Buffer {
 
   /**
    * Clear the pixel in (x, y).
+   *
    * @param x X coordinate
    * @param y Y coordinate
    */
@@ -37,6 +38,7 @@ public interface Buffer {
 
   /**
    * Draw the pixel in (x, y).
+   *
    * @param x X coordinate
    * @param y Y coordinate
    */
@@ -49,6 +51,7 @@ public interface Buffer {
 
   /**
    * Get all the pixels.
+   *
    * @return pixel list
    */
   Pixel[] getPixels();

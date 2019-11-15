@@ -24,12 +24,11 @@
 package com.iluwatar.queue.load.leveling;
 
 /**
- *  Message class with only one parameter.
- *
-*/
+ * Message class with only one parameter.
+ */
 public class Message {
   private final String msg;
- 
+
   // Parameter constructor.
   public Message(String msg) {
     this.msg = msg;
@@ -39,7 +38,7 @@ public class Message {
   public String getMsg() {
     return msg;
   }
-  
+
   @Override
   public String toString() {
     return msg;

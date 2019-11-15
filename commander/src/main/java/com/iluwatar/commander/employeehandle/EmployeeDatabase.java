@@ -23,10 +23,10 @@
 
 package com.iluwatar.commander.employeehandle;
 
-import java.util.Hashtable;
 import com.iluwatar.commander.Database;
 import com.iluwatar.commander.Order;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
+import java.util.Hashtable;
 
 /**
  * The Employee Database is where orders which have encountered some issue(s) are added.
@@ -36,16 +36,16 @@ public class EmployeeDatabase extends Database<Order> {
   private Hashtable<String, Order> data;
 
   public EmployeeDatabase() {
-    this.data = new Hashtable<String, Order>();
+    this.data = new Hashtable<>();
   }
 
   @Override
   public Order add(Order o) throws DatabaseUnavailableException {
-    return data.put(o.id,o);
+    return data.put(o.id, o);
   }
 
   @Override
-  public Order get(String oId) throws DatabaseUnavailableException {
-    return data.get(oId);
+  public Order get(String orderId) throws DatabaseUnavailableException {
+    return data.get(orderId);
   }
 }
