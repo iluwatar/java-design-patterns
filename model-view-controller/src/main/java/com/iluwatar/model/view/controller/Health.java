@@ -24,9 +24,7 @@
 package com.iluwatar.model.view.controller;
 
 /**
- * 
- * Health enumeration
- *
+ * Health enumeration.
  */
 public enum Health {
 
