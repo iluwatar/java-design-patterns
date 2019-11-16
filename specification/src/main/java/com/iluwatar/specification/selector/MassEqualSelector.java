@@ -23,30 +23,21 @@
 
 package com.iluwatar.specification.selector;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Mass;
-import org.junit.jupiter.api.Test;
 
-public class MassSelectorTest {
+/** Mass selector for values exactly equal than the parameter. */
+public class MassEqualSelector extends AbstractSelector<Creature> {
 
-  /**
-   * Verify if the mass selector gives the correct results.
-   * */
-  @Test
-  public void testMass() {
-    final Creature lightCreature = mock(Creature.class);
-    when(lightCreature.getMass()).thenReturn(new Mass(50.0));
+  private final Mass mass;
 
-    final Creature heavyCreature = mock(Creature.class);
-    when(heavyCreature.getMass()).thenReturn(new Mass(2500.0));
+  /** The use of a double as a parameter will spare some typing when instantiating this class. */
+  public MassEqualSelector(double mass) {
+    this.mass = new Mass(mass);
+  }
 
-    final MassSmallerThanOrEqSelector lightSelector = new MassSmallerThanOrEqSelector(500.0);
-    assertTrue(lightSelector.test(lightCreature));
-    assertFalse(lightSelector.test(heavyCreature));
+  @Override
+  public boolean test(Creature t) {
+    return t.getMass().equals(mass);
   }
 }

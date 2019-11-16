@@ -25,10 +25,9 @@ package com.iluwatar.specification.selector;
 
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Mass;
-import java.util.function.Predicate;
 
 /** Mass selector for values greater than the parameter. */
-public class MassGreaterThanSelector implements Predicate<Creature> {
+public class MassGreaterThanSelector extends AbstractSelector<Creature> {
 
   private final Mass mass;
 

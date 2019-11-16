@@ -40,7 +40,7 @@ import static org.mockito.Mockito.when;
 public class MovementSelectorTest {
 
   /**
-   * Verify if the movement selector gives the correct results
+   * Verify if the movement selector gives the correct results.
    */
   @Test
   public void testMovement() {
