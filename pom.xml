@@ -187,6 +187,7 @@
 		<module>saga</module>
         <module>double-buffer</module>
         <module>sharding</module>
+        <module>game-loop</module>
     </modules>
 
     <repositories>
