@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
- * Mutable stew class
- *
+ * Mutable stew class.
  */
 public class Stew {
 
@@ -41,7 +39,7 @@ public class Stew {
   private int numPeppers;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Stew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     this.numPotatoes = numPotatoes;
@@ -51,7 +49,7 @@ public class Stew {
   }
 
   /**
-   * Mix the stew
+   * Mix the stew.
    */
   public void mix() {
     LOGGER.info("Mixing the stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
@@ -59,7 +57,7 @@ public class Stew {
   }
 
   /**
-   * Taste the stew
+   * Taste the stew.
    */
   public void taste() {
     LOGGER.info("Tasting the stew");

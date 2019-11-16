@@ -23,18 +23,16 @@
 
 package com.iluwatar.partialresponse;
 
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
-
 /**
- * The Partial response pattern is a design pattern in which client specifies fields to fetch to serve.
- * Here {@link App} is playing as client for {@link VideoResource} server.
- * Client ask for specific fields information in video to server.
- * <p>
- * <p>
- * {@link VideoResource} act as server to serve video information.
+ * The Partial response pattern is a design pattern in which client specifies fields to fetch to
+ * serve. Here {@link App} is playing as client for {@link VideoResource} server. Client ask for
+ * specific fields information in video to server.
+ *
+ * <p>{@link VideoResource} act as server to serve video information.
  */
 
 public class App {
@@ -47,12 +45,12 @@ public class App {
    */
   public static void main(String[] args) throws Exception {
     Map<Integer, Video> videos = Map.of(
-            1, new Video(1, "Avatar", 178, "epic science fiction film",
-                    "James Cameron", "English"),
-            2, new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|",
-                    "Hideaki Anno", "Japanese"),
-            3, new Video(3, "Interstellar", 169, "Adventure & Sci-Fi",
-                    "Christopher Nolan", "English"));
+        1, new Video(1, "Avatar", 178, "epic science fiction film",
+            "James Cameron", "English"),
+        2, new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|",
+            "Hideaki Anno", "Japanese"),
+        3, new Video(3, "Interstellar", 169, "Adventure & Sci-Fi",
+            "Christopher Nolan", "English"));
     VideoResource videoResource = new VideoResource(new FieldJsonMapper(), videos);
 
 

@@ -24,14 +24,12 @@
 package com.iluwatar.prototype;
 
 /**
- * 
- * ElfWarlord
- *
+ * ElfWarlord.
  */
 public class ElfWarlord extends Warlord {
 
   private String helpType;
-  
+
   public ElfWarlord(String helpType) {
     this.helpType = helpType;
   }
