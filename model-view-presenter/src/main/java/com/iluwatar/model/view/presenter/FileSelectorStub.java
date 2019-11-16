@@ -26,12 +26,12 @@ package com.iluwatar.model.view.presenter;
 /**
  * Every instance of this class represents the Stub component in the Model-View-Presenter
  * architectural pattern.
- * <p>
- * The stub implements the View interface and it is useful when we want the test the reaction to
+ *
+ * <p>The stub implements the View interface and it is useful when we want the test the reaction to
  * user events, such as mouse clicks.
- * <p>
- * Since we can not test the GUI directly, the MVP pattern provides this functionality through the
- * View's dummy implementation, the Stub.
+ *
+ * <p>Since we can not test the GUI directly, the MVP pattern provides this functionality through
+ * the View's dummy implementation, the Stub.
  */
 public class FileSelectorStub implements FileSelectorView {
 
@@ -61,7 +61,7 @@ public class FileSelectorStub implements FileSelectorView {
   private boolean dataDisplayed;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public FileSelectorStub() {
     this.opened = false;
@@ -124,6 +124,8 @@ public class FileSelectorStub implements FileSelectorView {
   }
 
   /**
+   * Returns true, if the data were displayed.
+   *
    * @return True if the data where displayed, false otherwise.
    */
   public boolean dataDisplayed() {

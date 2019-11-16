@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Class defining Guard
+ * Class defining Guard.
  */
 public class Guard implements Permission {
 
