@@ -24,15 +24,13 @@
 package com.iluwatar.prototype;
 
 /**
- * 
- * ElfMage
- *
+ * ElfMage.
  */
 public class ElfMage extends Mage {
 
-  
+
   private String helpType;
-  
+
   public ElfMage(String helpType) {
     this.helpType = helpType;
   }
