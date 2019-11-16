@@ -24,12 +24,10 @@
 package com.iluwatar.prototype;
 
 /**
- * 
- * ElfBeast
- *
+ * ElfBeast.
  */
 public class ElfBeast extends Beast {
-  
+
   private String helpType;
 
   public ElfBeast(String helpType) {

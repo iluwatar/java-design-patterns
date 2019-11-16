@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * {@link Message} basic implementation
+ * {@link Message} basic implementation.
  */
 public class SimpleMessage implements Message {
 

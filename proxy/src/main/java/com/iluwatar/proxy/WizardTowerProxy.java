@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * The proxy controlling access to the {@link IvoryTower}.
- * 
  */
 public class WizardTowerProxy implements WizardTower {
 

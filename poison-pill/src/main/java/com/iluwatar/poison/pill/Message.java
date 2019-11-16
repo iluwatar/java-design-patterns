@@ -65,7 +65,7 @@ public interface Message {
   };
 
   /**
-   * Enumeration of Type of Headers
+   * Enumeration of Type of Headers.
    */
   enum Headers {
     DATE, SENDER

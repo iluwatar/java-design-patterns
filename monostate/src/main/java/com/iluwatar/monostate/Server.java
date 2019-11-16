@@ -27,10 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * The Server class. Each Server sits behind a LoadBalancer which delegates the call to the servers
  * in a simplistic Round Robin fashion.
- *
  */
 public class Server {
 
@@ -41,7 +39,7 @@ public class Server {
   public final int id;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Server(String host, int port, int id) {
     this.host = host;
@@ -59,6 +57,6 @@ public class Server {
 
   public void serve(Request request) {
     LOGGER.info("Server ID {} associated to host : {} and port {}. Processed request with value {}",
-            id, host, port, request.value);
+        id, host, port, request.value);
   }
 }

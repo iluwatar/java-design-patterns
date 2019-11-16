@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * Abstract base class for party members.
- *
  */
 public abstract class PartyMemberBase implements PartyMember {
 

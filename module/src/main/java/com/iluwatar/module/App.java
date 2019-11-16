@@ -31,10 +31,9 @@ import java.io.FileNotFoundException;
  * An object that applies this pattern can provide the equivalent of a namespace, providing the
  * initialization and finalization process of a static class or a class with static members with
  * cleaner, more concise syntax and semantics.
- * <p>
- * The below example demonstrates a use case for testing two different modules: File Logger and
+ *
+ * <p>The below example demonstrates a use case for testing two different modules: File Logger and
  * Console Logger
- * 
  */
 public class App {
 
@@ -42,10 +41,10 @@ public class App {
   public static ConsoleLoggerModule consoleLoggerModule;
 
   /**
-   * Following method performs the initialization
-   * 
+   * Following method performs the initialization.
+   *
    * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *         error.txt)
+   *                               error.txt)
    */
   public static void prepare() throws FileNotFoundException {
 
@@ -55,7 +54,7 @@ public class App {
   }
 
   /**
-   * Following method performs the finalization
+   * Following method performs the finalization.
    */
   public static void unprepare() {
 
@@ -65,8 +64,8 @@ public class App {
   }
 
   /**
-   * Following method is main executor
-   * 
+   * Following method is main executor.
+   *
    * @param args for providing default program arguments
    */
   public static void execute(final String... args) {
@@ -82,10 +81,10 @@ public class App {
 
   /**
    * Program entry point.
-   * 
+   *
    * @param args command line args.
    * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *         error.txt)
+   *                               error.txt)
    */
   public static void main(final String... args) throws FileNotFoundException {
     prepare();

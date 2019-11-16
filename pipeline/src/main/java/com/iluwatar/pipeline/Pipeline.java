@@ -24,8 +24,9 @@
 package com.iluwatar.pipeline;
 
 /**
- * Main Pipeline class that initially sets the current handler. Processed output
- * of the initial handler is then passed as the input to the next stage handlers.
+ * Main Pipeline class that initially sets the current handler. Processed output of the initial
+ * handler is then passed as the input to the next stage handlers.
+ *
  * @param <I> the type of the input for the first stage handler
  * @param <O> the final stage handler's output type
  */

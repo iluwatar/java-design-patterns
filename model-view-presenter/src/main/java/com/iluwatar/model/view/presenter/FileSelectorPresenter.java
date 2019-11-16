@@ -28,13 +28,13 @@ import java.io.Serializable;
 /**
  * Every instance of this class represents the Presenter component in the Model-View-Presenter
  * architectural pattern.
- * <p>
- * It is responsible for reacting to the user's actions and update the View component.
+ *
+ * <p>It is responsible for reacting to the user's actions and update the View component.
  */
 public class FileSelectorPresenter implements Serializable {
 
   /**
-   * Generated serial version UID
+   * Generated serial version UID.
    */
   private static final long serialVersionUID = 1210314339075855074L;
 
@@ -49,8 +49,8 @@ public class FileSelectorPresenter implements Serializable {
   private FileLoader loader;
 
   /**
-   * Constructor
-   * 
+   * Constructor.
+   *
    * @param view The view component that the presenter will interact with.
    */
   public FileSelectorPresenter(FileSelectorView view) {
@@ -59,7 +59,7 @@ public class FileSelectorPresenter implements Serializable {
 
   /**
    * Sets the {@link FileLoader} object, to the value given as parameter.
-   * 
+   *
    * @param loader The new {@link FileLoader} object(the Model component).
    */
   public void setLoader(FileLoader loader) {
@@ -82,7 +82,7 @@ public class FileSelectorPresenter implements Serializable {
   }
 
   /**
-   * Ok button handler
+   * Ok button handler.
    */
   public void confirmed() {
     if (loader.getFileName() == null || loader.getFileName().equals("")) {

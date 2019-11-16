@@ -32,7 +32,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test for abstract factory
+ * Test for abstract factory.
  */
 public class AbstractFactoryTest {
 

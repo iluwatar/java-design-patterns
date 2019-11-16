@@ -24,9 +24,7 @@
 package com.iluwatar.prototype;
 
 /**
- * 
- * Mage
- *
+ * Mage.
  */
 public abstract class Mage extends Prototype {
 
