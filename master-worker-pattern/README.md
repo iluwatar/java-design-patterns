@@ -3,7 +3,7 @@ layout: pattern
 title: Master-Worker
 folder: master-worker-pattern
 permalink: /patterns/master-worker-pattern/
-categories: Centralised Parallel Processing
+categories: Other
 tags:
  - Java
  - Difficulty-Intermediate

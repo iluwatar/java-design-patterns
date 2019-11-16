@@ -1,6 +1,6 @@
 ---
 layout: pattern
-title: CircuitBreaker
+title: Circuit Breaker
 folder: circuit-breaker
 permalink: /patterns/circuit-breaker/
 categories: Other

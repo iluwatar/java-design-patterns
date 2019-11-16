@@ -3,7 +3,7 @@ layout: pattern
 title: Spatial Partition
 folder: spatial-partition
 permalink: /patterns/spatial-partition/
-categories: Game Programming pattern/Optimisation pattern
+categories: Other
 tags:
  - Java
  - Difficulty-Intermediate
