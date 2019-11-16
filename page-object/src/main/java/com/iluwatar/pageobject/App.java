@@ -70,12 +70,13 @@ public final class App {
       File applicationFile =
           new File(App.class.getClassLoader().getResource("sample-ui/login.html").getPath());
 
-      // should work for unix like OS (mac, unix etc...)
+      // Should work for unix like OS (mac, unix etc...)
       if (Desktop.isDesktopSupported()) {
         Desktop.getDesktop().open(applicationFile);
 
       } else {
-        // java Desktop not supported - above unlikely to work for Windows so try following instead...
+        // Java Desktop not supported - above unlikely to work for Windows so try the
+        // following instead...
         Runtime.getRuntime().exec("cmd.exe start " + applicationFile);
       }
 

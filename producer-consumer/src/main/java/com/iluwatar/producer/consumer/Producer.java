@@ -27,7 +27,7 @@ import java.util.Random;
 
 /**
  * Class responsible for producing unit of work that can be expressed as {@link Item} and submitted
- * to queue
+ * to queue.
  */
 public class Producer {
   
@@ -45,7 +45,7 @@ public class Producer {
   }
 
   /**
-   * Put item in the queue
+   * Put item in the queue.
    */
   public void produce() throws InterruptedException {
 

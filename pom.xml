@@ -384,9 +384,6 @@
         </pluginManagement>
 
         <plugins>
-            <!--checkstyle plug-in. checking against googles styles
-               see config at checkstyle.xml
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -403,7 +400,8 @@
                             <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                             <encoding>UTF-8</encoding>
                             <failOnViolation>true</failOnViolation>
-                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            <violationSeverity>warning</violationSeverity>
+                            <includeTestSourceDirectory>false</includeTestSourceDirectory>
                         </configuration>
                     </execution>
                 </executions>
