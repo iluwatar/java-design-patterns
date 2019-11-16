@@ -24,6 +24,7 @@
 package com.iluwatar.specification.creature;
 
 import com.iluwatar.specification.property.Color;
+import com.iluwatar.specification.property.Mass;
 import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
@@ -33,6 +34,10 @@ import com.iluwatar.specification.property.Size;
 public class Troll extends AbstractCreature {
 
   public Troll() {
-    super("Troll", Size.LARGE, Movement.WALKING, Color.DARK);
+    this(new Mass(4000.0));
+  }
+
+  public Troll(Mass mass) {
+    super("Troll", Size.LARGE, Movement.WALKING, Color.DARK, mass);
   }
 }
