@@ -48,7 +48,8 @@ public class CompositeSelectorsTest {
     when(swimmingLightCreature.getMovement()).thenReturn(Movement.SWIMMING);
     when(swimmingLightCreature.getMass()).thenReturn(new Mass(25.0));
 
-    final AbstractSelector<Creature> lightAndSwimmingSelector = new MassSmallerThanOrEqSelector(50.0).and(new MovementSelector(Movement.SWIMMING));
+    final AbstractSelector<Creature> lightAndSwimmingSelector = new MassSmallerThanOrEqSelector(
+        50.0).and(new MovementSelector(Movement.SWIMMING));
     assertFalse(lightAndSwimmingSelector.test(swimmingHeavyCreature));
     assertTrue(lightAndSwimmingSelector.test(swimmingLightCreature));
   }
@@ -66,7 +67,8 @@ public class CompositeSelectorsTest {
     when(swimmingLightCreature.getMovement()).thenReturn(Movement.SWIMMING);
     when(swimmingLightCreature.getMass()).thenReturn(new Mass(25.0));
 
-    final AbstractSelector<Creature> lightOrSwimmingSelector = new MassSmallerThanOrEqSelector(50.0).or(new MovementSelector(Movement.SWIMMING));
+    final AbstractSelector<Creature> lightOrSwimmingSelector = new MassSmallerThanOrEqSelector(50.0)
+        .or(new MovementSelector(Movement.SWIMMING));
     assertTrue(lightOrSwimmingSelector.test(swimmingHeavyCreature));
     assertTrue(lightOrSwimmingSelector.test(swimmingLightCreature));
   }
