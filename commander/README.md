@@ -3,7 +3,7 @@ layout: pattern
 title: Commander
 folder: commander
 permalink: /patterns/commander/
-categories: 
+categories: Other
 tags:
  - Java
  - Difficulty-Intermediate

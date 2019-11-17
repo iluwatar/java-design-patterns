@@ -1,4 +1,3 @@
-
 ---  
 layout: pattern  
 title: Game Loop 
