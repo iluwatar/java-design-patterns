@@ -44,11 +44,12 @@ Wikipedia says
 
 **Programmatic Example**
 
-If we look at our creature pool example from above, we have a set of creatures with certain properties.\
+If we look at our creature pool example from above, we have a set of creatures with certain properties.
 Those properties can be part of a pre-defined, limited set (represented here by the enums Size, Movement and Color); but they can also be continuous values (e.g. the mass of a Creature).
 In this case, it is more appropriate to use what we call "parameterized specification", where the property value can be given as an argument when the Creature is instantiated, allowing for more flexibility.
-A third option is to combine pre-defined and/or parameterized properties using boolean logic, allowing for near-endless selection possibilities (this is called Composite Specification, see below).
+A third option is to combine pre-defined and/or parameterized properties using boolean logic, allowing for near-endless selection possibilities (this is called "composite specification", see below).
 The pros and cons of each approach are detailed in the table at the end of this document.
+
 ```java
 public interface Creature {
   String getName();
@@ -60,6 +61,7 @@ public interface Creature {
 ```
 
 And ``Dragon`` implementation looks like this.
+
 ```java
 public class Dragon extends AbstractCreature {
 
@@ -70,6 +72,7 @@ public class Dragon extends AbstractCreature {
 ```
 
 Now that we want to select some subset of them, we use selectors. To select creatures that fly, we should use ``MovementSelector``.
+
 ```java
 public class MovementSelector extends AbstractSelector<Creature> {
 
@@ -87,6 +90,7 @@ public class MovementSelector extends AbstractSelector<Creature> {
 ```
 
 On the other hand, when selecting creatures heavier than a chosen amount, we use ``MassGreaterThanSelector``.
+
 ```java
 public class MassGreaterThanSelector extends AbstractSelector<Creature> {
 
@@ -103,19 +107,22 @@ public class MassGreaterThanSelector extends AbstractSelector<Creature> {
 }
 ```
 
-With these building blocks in place, we can perform a search for red creatures as follows :
+With these building blocks in place, we can perform a search for red creatures as follows:
+
 ```java
     List<Creature> redCreatures = creatures.stream().filter(new ColorSelector(Color.RED))
       .collect(Collectors.toList());
 ```
 
-But we could also use our parameterized selector like this :
+But we could also use our parameterized selector like this:
+
 ```java
     List<Creature> heavyCreatures = creatures.stream().filter(new MassGreaterThanSelector(500.0)
       .collect(Collectors.toList());
 ```
 
-Our third option is to combine multiple selectors together. Performing a search for special creatures (defined as red, flying, and not small) could be done as follows :
+Our third option is to combine multiple selectors together. Performing a search for special creatures (defined as red, flying, and not small) could be done as follows:
+
 ```java
     AbstractSelector specialCreaturesSelector = 
       new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING)).and(new SizeSelector(Size.SMALL).not());
@@ -128,6 +135,7 @@ Our third option is to combine multiple selectors together. Performing a search 
 
 In Composite Specification, we will create custom instances of ``AbstractSelector`` by combining other selectors (called "leaves") using the three basic logical operators.
 These are implemented in ``ConjunctionSelector``, ``DisjunctionSelector`` and ``NegationSelector``.
+
 ```java
 public abstract class AbstractSelector<T> implements Predicate<T> {
 
@@ -144,6 +152,7 @@ public abstract class AbstractSelector<T> implements Predicate<T> {
   }
 }
 ```
+
 ```java
 public class ConjunctionSelector<T> extends AbstractSelector<T> {
 
