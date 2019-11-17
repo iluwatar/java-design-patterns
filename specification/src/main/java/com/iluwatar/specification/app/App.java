@@ -31,9 +31,10 @@ import com.iluwatar.specification.creature.Octopus;
 import com.iluwatar.specification.creature.Shark;
 import com.iluwatar.specification.creature.Troll;
 import com.iluwatar.specification.property.Color;
-import com.iluwatar.specification.property.Mass;
 import com.iluwatar.specification.property.Movement;
+import com.iluwatar.specification.selector.AbstractSelector;
 import com.iluwatar.specification.selector.ColorSelector;
+import com.iluwatar.specification.selector.MassEqualSelector;
 import com.iluwatar.specification.selector.MassGreaterThanSelector;
 import com.iluwatar.specification.selector.MassSmallerThanOrEqSelector;
 import com.iluwatar.specification.selector.MovementSelector;
@@ -77,13 +78,8 @@ public class App {
     List<Creature> darkCreatures =
         creatures.stream().filter(new ColorSelector(Color.DARK)).collect(Collectors.toList());
     darkCreatures.forEach(c -> LOGGER.info(c.toString()));
-    // find all red and flying creatures
-    LOGGER.info("Find all red and flying creatures");
-    List<Creature> redAndFlyingCreatures =
-        creatures.stream()
-            .filter(new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING)))
-            .collect(Collectors.toList());
-    redAndFlyingCreatures.forEach(c -> LOGGER.info(c.toString()));
+
+    LOGGER.info("\n");
     // so-called "parameterized" specification
     LOGGER.info("Demonstrating parameterized specification :");
     // find all creatures heavier than 500kg
@@ -98,5 +94,26 @@ public class App {
         creatures.stream().filter(new MassSmallerThanOrEqSelector(500.0))
             .collect(Collectors.toList());
     lightCreatures.forEach(c -> LOGGER.info(c.toString()));
+
+    LOGGER.info("\n");
+    // so-called "composite" specification
+    LOGGER.info("Demonstrating composite specification :");
+    // find all red and flying creatures
+    LOGGER.info("Find all red and flying creatures");
+    List<Creature> redAndFlyingCreatures =
+        creatures.stream()
+            .filter(new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING)))
+            .collect(Collectors.toList());
+    redAndFlyingCreatures.forEach(c -> LOGGER.info(c.toString()));
+    // find all creatures dark or red, non-swimming, and heavier than or equal to 400kg
+    LOGGER.info("Find all scary creatures");
+    AbstractSelector<Creature> scaryCreaturesSelector = new ColorSelector(Color.DARK)
+        .or(new ColorSelector(Color.RED)).and(new MovementSelector(Movement.SWIMMING).not())
+        .and(new MassGreaterThanSelector(400.0).or(new MassEqualSelector(400.0)));
+    List<Creature> scaryCreatures =
+        creatures.stream()
+            .filter(scaryCreaturesSelector)
+            .collect(Collectors.toList());
+    scaryCreatures.forEach(c -> LOGGER.info(c.toString()));
   }
 }

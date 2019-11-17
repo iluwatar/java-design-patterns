@@ -23,30 +23,25 @@
 
 package com.iluwatar.specification.selector;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import java.util.List;
 
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Mass;
-import org.junit.jupiter.api.Test;
+/**
+ * A Selector defined as the conjunction (AND) of other (leaf) selectors.
+ */
+public class ConjunctionSelector<T> extends AbstractSelector<T> {
 
-public class MassSelectorTest {
+  private List<AbstractSelector<T>> leafComponents;
+
+  @SafeVarargs
+  ConjunctionSelector(AbstractSelector<T>... selectors) {
+    this.leafComponents = List.of(selectors);
+  }
 
   /**
-   * Verify if the mass selector gives the correct results.
+   * Tests if *all* selectors pass the test.
    */
-  @Test
-  public void testMass() {
-    final Creature lightCreature = mock(Creature.class);
-    when(lightCreature.getMass()).thenReturn(new Mass(50.0));
-
-    final Creature heavyCreature = mock(Creature.class);
-    when(heavyCreature.getMass()).thenReturn(new Mass(2500.0));
-
-    final MassSmallerThanOrEqSelector lightSelector = new MassSmallerThanOrEqSelector(500.0);
-    assertTrue(lightSelector.test(lightCreature));
-    assertFalse(lightSelector.test(heavyCreature));
+  @Override
+  public boolean test(T t) {
+    return leafComponents.stream().allMatch(comp -> (comp.test(t)));
   }
 }

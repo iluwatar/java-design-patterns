@@ -23,30 +23,22 @@
 
 package com.iluwatar.specification.selector;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import java.util.function.Predicate;
 
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Mass;
-import org.junit.jupiter.api.Test;
+/**
+ * Base class for selectors.
+ */
+public abstract class AbstractSelector<T> implements Predicate<T> {
 
-public class MassSelectorTest {
+  public AbstractSelector<T> and(AbstractSelector<T> other) {
+    return new ConjunctionSelector<>(this, other);
+  }
 
-  /**
-   * Verify if the mass selector gives the correct results.
-   */
-  @Test
-  public void testMass() {
-    final Creature lightCreature = mock(Creature.class);
-    when(lightCreature.getMass()).thenReturn(new Mass(50.0));
+  public AbstractSelector<T> or(AbstractSelector<T> other) {
+    return new DisjunctionSelector<>(this, other);
+  }
 
-    final Creature heavyCreature = mock(Creature.class);
-    when(heavyCreature.getMass()).thenReturn(new Mass(2500.0));
-
-    final MassSmallerThanOrEqSelector lightSelector = new MassSmallerThanOrEqSelector(500.0);
-    assertTrue(lightSelector.test(lightCreature));
-    assertFalse(lightSelector.test(heavyCreature));
+  public AbstractSelector<T> not() {
+    return new NegationSelector<>(this);
   }
 }

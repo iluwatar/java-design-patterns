@@ -23,30 +23,24 @@
 
 package com.iluwatar.specification.selector;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Mass;
-import org.junit.jupiter.api.Test;
+/**
+ * A Selector defined as the negation (NOT) of a (leaf) selectors. This is of course only useful
+ * when used in combination with other composite selectors.
+ */
+public class NegationSelector<T> extends AbstractSelector<T> {
 
-public class MassSelectorTest {
+  private AbstractSelector<T> component;
+
+  NegationSelector(AbstractSelector<T> selector) {
+    this.component = selector;
+  }
 
   /**
-   * Verify if the mass selector gives the correct results.
+   * Tests if the selector fails the test (yes).
    */
-  @Test
-  public void testMass() {
-    final Creature lightCreature = mock(Creature.class);
-    when(lightCreature.getMass()).thenReturn(new Mass(50.0));
-
-    final Creature heavyCreature = mock(Creature.class);
-    when(heavyCreature.getMass()).thenReturn(new Mass(2500.0));
-
-    final MassSmallerThanOrEqSelector lightSelector = new MassSmallerThanOrEqSelector(500.0);
-    assertTrue(lightSelector.test(lightCreature));
-    assertFalse(lightSelector.test(heavyCreature));
+  @Override
+  public boolean test(T t) {
+    return !(component.test(t));
   }
 }

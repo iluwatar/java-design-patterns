@@ -23,7 +23,9 @@
 
 package com.iluwatar.specification.property;
 
-/** Mass property. */
+/**
+ * Mass property.
+ */
 public class Mass {
 
   private double value;

@@ -25,14 +25,17 @@ package com.iluwatar.specification.selector;
 
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Mass;
-import java.util.function.Predicate;
 
-/** Mass selector for values smaller or equal to the parameter. */
-public class MassSmallerThanOrEqSelector implements Predicate<Creature> {
+/**
+ * Mass selector for values smaller or equal to the parameter.
+ */
+public class MassSmallerThanOrEqSelector extends AbstractSelector<Creature> {
 
   private final Mass mass;
 
-  /** The use of a double as a parameter will spare some typing when instantiating this class. */
+  /**
+   * The use of a double as a parameter will spare some typing when instantiating this class.
+   */
   public MassSmallerThanOrEqSelector(double mass) {
     this.mass = new Mass(mass);
   }

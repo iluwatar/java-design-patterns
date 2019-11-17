@@ -23,18 +23,17 @@
 
 package com.iluwatar.specification.creature;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import com.iluwatar.specification.property.Color;
 import com.iluwatar.specification.property.Mass;
 import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
 import java.util.Collection;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Date: 12/29/15 - 7:47 PM
@@ -48,12 +47,18 @@ public class CreatureTest {
    */
   public static Collection<Object[]> dataProvider() {
     return List.of(
-            new Object[]{new Dragon(), "Dragon", Size.LARGE, Movement.FLYING, Color.RED, new Mass(39300.0)},
-            new Object[]{new Goblin(), "Goblin", Size.SMALL, Movement.WALKING, Color.GREEN, new Mass(30.0)},
-            new Object[]{new KillerBee(), "KillerBee", Size.SMALL, Movement.FLYING, Color.LIGHT, new Mass(6.7)},
-            new Object[]{new Octopus(), "Octopus", Size.NORMAL, Movement.SWIMMING, Color.DARK, new Mass(12.0)},
-            new Object[]{new Shark(), "Shark", Size.NORMAL, Movement.SWIMMING, Color.LIGHT, new Mass(500.0)},
-            new Object[]{new Troll(), "Troll", Size.LARGE, Movement.WALKING, Color.DARK, new Mass(4000.0)}
+        new Object[]{new Dragon(), "Dragon", Size.LARGE, Movement.FLYING, Color.RED,
+            new Mass(39300.0)},
+        new Object[]{new Goblin(), "Goblin", Size.SMALL, Movement.WALKING, Color.GREEN,
+            new Mass(30.0)},
+        new Object[]{new KillerBee(), "KillerBee", Size.SMALL, Movement.FLYING, Color.LIGHT,
+            new Mass(6.7)},
+        new Object[]{new Octopus(), "Octopus", Size.NORMAL, Movement.SWIMMING, Color.DARK,
+            new Mass(12.0)},
+        new Object[]{new Shark(), "Shark", Size.NORMAL, Movement.SWIMMING, Color.LIGHT,
+            new Mass(500.0)},
+        new Object[]{new Troll(), "Troll", Size.LARGE, Movement.WALKING, Color.DARK,
+            new Mass(4000.0)}
     );
   }
 
@@ -77,24 +82,28 @@ public class CreatureTest {
 
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testGetColor(Creature testedCreature, String name, Size size, Movement movement, Color color) {
+  public void testGetColor(Creature testedCreature, String name, Size size, Movement movement,
+      Color color) {
     assertEquals(color, testedCreature.getColor());
   }
 
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testGetMass(Creature testedCreature, String name, Size size, Movement movement, Color color, Mass mass) {
+  public void testGetMass(Creature testedCreature, String name, Size size, Movement movement,
+      Color color, Mass mass) {
     assertEquals(mass, testedCreature.getMass());
   }
 
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testToString(Creature testedCreature, String name, Size size, Movement movement, Color color, Mass mass) {
+  public void testToString(Creature testedCreature, String name, Size size, Movement movement,
+      Color color, Mass mass) {
     final String toString = testedCreature.toString();
     assertNotNull(toString);
     assertEquals(
-            String.format("%s [size=%s, movement=%s, color=%s, mass=%s]", name, size, movement, color, mass),
-            toString
+        String.format("%s [size=%s, movement=%s, color=%s, mass=%s]", name, size, movement, color,
+            mass),
+        toString
     );
   }
 }
