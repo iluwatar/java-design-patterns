@@ -37,8 +37,12 @@ public abstract class Warlord implements Prototype {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) { return true; }
-    if (obj == null) { return false; }
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
     return getClass() == obj.getClass();
   }
 

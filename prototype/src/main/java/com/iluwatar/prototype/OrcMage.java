@@ -51,12 +51,20 @@ public class OrcMage extends Mage {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) { return true; }
-    if (!super.equals(obj)) { return false; }
-    if (getClass() != obj.getClass()) { return false; }
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
     OrcMage other = (OrcMage) obj;
     if (weapon == null) {
-      if (other.weapon != null) { return false; }
+      if (other.weapon != null) {
+        return false;
+      }
     } else if (!weapon.equals(other.weapon)) {
       return false;
     }
