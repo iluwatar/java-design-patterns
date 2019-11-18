@@ -47,7 +47,8 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.24.0</camel.version>
         <guava.version>19.0</guava.version>
-        <mockito.version>1.10.19</mockito.version>
+        <mockito.version>3.1.0</mockito.version>
+        <bytebuddy.version>1.10.3</bytebuddy.version>
         <htmlunit.version>2.22</htmlunit.version>
         <guice.version>4.0</guice.version>
         <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
@@ -287,6 +288,12 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>${bytebuddy.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
