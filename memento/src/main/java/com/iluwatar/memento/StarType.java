@@ -24,9 +24,7 @@
 package com.iluwatar.memento;
 
 /**
- * 
- * StarType enumeration
- *
+ * StarType enumeration.
  */
 public enum StarType {
 

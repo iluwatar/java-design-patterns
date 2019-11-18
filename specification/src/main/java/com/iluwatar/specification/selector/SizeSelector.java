@@ -25,12 +25,11 @@ package com.iluwatar.specification.selector;
 
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Size;
-import java.util.function.Predicate;
 
 /**
  * Size selector.
  */
-public class SizeSelector implements Predicate<Creature> {
+public class SizeSelector extends AbstractSelector<Creature> {
 
   private final Size size;
 

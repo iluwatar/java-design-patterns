@@ -28,10 +28,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Class responsible for receiving and handling submitted to the queue messages
+ * Class responsible for receiving and handling submitted to the queue messages.
  */
 public class Consumer {
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(Consumer.class);
 
   private final MqSubscribePoint queue;
@@ -43,7 +43,7 @@ public class Consumer {
   }
 
   /**
-   * Consume message
+   * Consume message.
    */
   public void consume() {
     while (true) {

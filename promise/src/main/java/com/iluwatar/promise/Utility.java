@@ -23,9 +23,6 @@
 
 package com.iluwatar.promise;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -39,8 +36,11 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- * Utility to perform various operations
+ * Utility to perform various operations.
  */
 public class Utility {
 
@@ -71,7 +71,8 @@ public class Utility {
   }
 
   /**
-   * @return the character with lowest frequency if it exists, {@code Optional.empty()} otherwise.
+   * Return the character with the lowest frequency, if exists.
+   * @return the character, {@code Optional.empty()} otherwise.
    */
   public static Character lowestFrequencyChar(Map<Character, Integer> charFrequency) {
     Character lowestFrequencyChar = null;
@@ -92,7 +93,8 @@ public class Utility {
   }
 
   /**
-   * @return number of lines in the file at provided location. 0 if file does not exist.
+   * Count the number of lines in a file.
+   * @return number of lines, 0 if file does not exist.
    */
   public static Integer countLines(String fileLocation) {
     int lineCount = 0;

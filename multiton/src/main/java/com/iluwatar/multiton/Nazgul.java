@@ -27,9 +27,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 
  * Nazgul is a Multiton class. Nazgul instances can be queried using {@link #getInstance} method.
- *
  */
 public final class Nazgul {
 

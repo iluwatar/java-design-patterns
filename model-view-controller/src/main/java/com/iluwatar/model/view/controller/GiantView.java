@@ -27,9 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
- * GiantView displays the giant
- *
+ * GiantView displays the giant.
  */
 public class GiantView {
 

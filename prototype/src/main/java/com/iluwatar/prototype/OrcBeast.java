@@ -24,18 +24,16 @@
 package com.iluwatar.prototype;
 
 /**
- * 
- * OrcBeast
- *
+ * OrcBeast.
  */
 public class OrcBeast extends Beast {
-  
+
   private String weapon;
 
   public OrcBeast(String weapon) {
     this.weapon = weapon;
   }
-  
+
   public OrcBeast(OrcBeast orcBeast) {
     this.weapon = orcBeast.weapon;
   }
@@ -49,6 +47,6 @@ public class OrcBeast extends Beast {
   public String toString() {
     return "Orcish wolf attacks with " + weapon;
   }
-  
+
 
 }

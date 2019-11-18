@@ -1,4 +1,3 @@
-
 ---  
 layout: pattern  
 title: Subclass Sandbox 
@@ -9,7 +8,7 @@ tags:
  - Java  
  - Difficulty-Beginner  
 ---  
-  
+
 ## Intent  
 The subclass sandbox pattern describes a basic idea, while not having a lot of detailed mechanics. You will need the pattern when you have several similar subclasses. If you have to make a tiny change, then change the base class, while all subclasses shouldn't have to be touched. So the base class has to be able to provide all of the operations a derived class needs to perform.
   

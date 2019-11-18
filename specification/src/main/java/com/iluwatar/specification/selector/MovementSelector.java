@@ -25,12 +25,11 @@ package com.iluwatar.specification.selector;
 
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Movement;
-import java.util.function.Predicate;
 
 /**
  * Movement selector.
  */
-public class MovementSelector implements Predicate<Creature> {
+public class MovementSelector extends AbstractSelector<Creature> {
 
   private final Movement movement;
 

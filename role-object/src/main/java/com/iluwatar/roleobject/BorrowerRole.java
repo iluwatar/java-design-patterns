@@ -20,21 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.roleobject;
 
-public class BorrowerRole extends CustomerRole{
-    private String name;
+public class BorrowerRole extends CustomerRole {
 
-    public String getName() {
-        return name;
-    }
+  private String name;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String borrow(){
-        return String.format("Borrower %s wants to get some money.",name);
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String borrow() {
+    return String.format("Borrower %s wants to get some money.", name);
+  }
 
 }

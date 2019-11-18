@@ -32,7 +32,7 @@ import java.util.Map;
 public class Character implements Prototype {
 
   /**
-   * Enumeration of Character types
+   * Enumeration of Character types.
    */
   public enum Type {
     WARRIOR, MAGE, ROGUE
@@ -45,26 +45,28 @@ public class Character implements Prototype {
   private Type type;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Character() {
     this.prototype = new Prototype() { // Null-value object
-          @Override
-          public Integer get(Stats stat) {
-            return null;
-          }
+      @Override
+      public Integer get(Stats stat) {
+        return null;
+      }
 
-          @Override
-          public boolean has(Stats stat) {
-            return false;
-          }
+      @Override
+      public boolean has(Stats stat) {
+        return false;
+      }
 
-          @Override
-          public void set(Stats stat, Integer val) {}
+      @Override
+      public void set(Stats stat, Integer val) {
+      }
 
-          @Override
-          public void remove(Stats stat) {}
-        };
+      @Override
+      public void remove(Stats stat) {
+      }
+    };
   }
 
   public Character(Type type, Prototype prototype) {
@@ -73,7 +75,7 @@ public class Character implements Prototype {
   }
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Character(String name, Character prototype) {
     this.name = name;

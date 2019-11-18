@@ -26,7 +26,6 @@ package com.iluwatar.model.view.presenter;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -82,7 +81,7 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
   private JPanel panel;
 
   /**
-   * The Presenter component that the frame will interact with
+   * The Presenter component that the frame will interact with.
    */
   private FileSelectorPresenter presenter;
 
