@@ -29,6 +29,7 @@ package com.iluwatar.prototype;
 public abstract class Beast implements Prototype {
 
   public Beast() { }
+
   public Beast(Beast source) { }
 
   @Override
@@ -36,8 +37,8 @@ public abstract class Beast implements Prototype {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null) return false;
+    if (this == obj) { return true; }
+    if (obj == null) { return false; }
     return getClass() == obj.getClass();
   }
 

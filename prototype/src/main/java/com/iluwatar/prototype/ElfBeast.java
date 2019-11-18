@@ -51,13 +51,13 @@ public class ElfBeast extends Beast {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (!super.equals(obj)) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) { return true; }
+    if (!super.equals(obj)) { return false; }
+    if (getClass() != obj.getClass()) { return false; }
     ElfBeast other = (ElfBeast) obj;
     if (helpType == null) {
-      if (other.helpType != null) return false;
-	} else if (!helpType.equals(other.helpType)) {
+      if (other.helpType != null) { return false; }
+    } else if (!helpType.equals(other.helpType)) {
       return false;
     }
     return true;

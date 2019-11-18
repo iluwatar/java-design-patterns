@@ -51,13 +51,13 @@ public class OrcWarlord extends Warlord {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (!super.equals(obj)) return false;
-    if (getClass() != obj.getClass()) return false;
+    if (this == obj) { return true; }
+    if (!super.equals(obj)) { return false; }
+    if (getClass() != obj.getClass()) { return false; }
     OrcWarlord other = (OrcWarlord) obj;
     if (weapon == null) {
-      if (other.weapon != null) return false;
-	} else if (!weapon.equals(other.weapon)) {
+      if (other.weapon != null) { return false; }
+    } else if (!weapon.equals(other.weapon)) {
       return false;
     }
     return true;
