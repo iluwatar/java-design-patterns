@@ -24,7 +24,7 @@
 package com.iluwatar.priority.queue;
 
 /**
- * Manage priority queue
+ * Manage priority queue.
  */
 public class QueueManager {
   /*
@@ -37,7 +37,7 @@ public class QueueManager {
   }
 
   /**
-   * Publish message to queue
+   * Publish message to queue.
    */
   public void publishMessage(Message message) {
     messagePriorityMessageQueue.add(message);
@@ -45,7 +45,7 @@ public class QueueManager {
 
 
   /**
-   * recive message from queue
+   * recive message from queue.
    */
   public Message receiveMessage() {
     if (messagePriorityMessageQueue.isEmpty()) {

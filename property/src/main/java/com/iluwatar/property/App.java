@@ -28,25 +28,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * The Property pattern is also known as Prototype inheritance.
- * <p>
- * In prototype inheritance instead of classes, as opposite to Java class inheritance, objects are
- * used to create another objects and object hierarchies. Hierarchies are created using prototype
- * chain through delegation: every object has link to parent object. Any base (parent) object can be
- * amended at runtime (by adding or removal of some property), and all child objects will be
- * affected as result.
- * <p>
- * In this example we demonstrate {@link Character} instantiation using the Property pattern.
- * 
+ *
+ * <p>In prototype inheritance instead of classes, as opposite to Java class inheritance, objects
+ * are used to create another objects and object hierarchies. Hierarchies are created using
+ * prototype chain through delegation: every object has link to parent object. Any base (parent)
+ * object can be amended at runtime (by adding or removal of some property), and all child objects
+ * will be affected as result.
+ *
+ * <p>In this example we demonstrate {@link Character} instantiation using the Property pattern.
  */
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {

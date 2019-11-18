@@ -23,12 +23,12 @@
 
 package com.iluwatar.layers.service;
 
-import com.iluwatar.layers.dto.CakeInfo;
-import com.iluwatar.layers.dto.CakeLayerInfo;
-import com.iluwatar.layers.dto.CakeToppingInfo;
 import com.iluwatar.layers.dao.CakeDao;
 import com.iluwatar.layers.dao.CakeLayerDao;
 import com.iluwatar.layers.dao.CakeToppingDao;
+import com.iluwatar.layers.dto.CakeInfo;
+import com.iluwatar.layers.dto.CakeLayerInfo;
+import com.iluwatar.layers.dto.CakeToppingInfo;
 import com.iluwatar.layers.entity.Cake;
 import com.iluwatar.layers.entity.CakeLayer;
 import com.iluwatar.layers.entity.CakeTopping;
@@ -40,7 +40,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;

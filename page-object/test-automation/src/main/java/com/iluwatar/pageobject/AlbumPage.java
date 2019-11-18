@@ -23,11 +23,6 @@
 
 package com.iluwatar.pageobject;
 
-import java.io.IOException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlNumberInput;
 import com.gargoylesoftware.htmlunit.html.HtmlOption;
@@ -35,6 +30,9 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
+import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Page Object encapsulating the Album Page (album-page.html)
@@ -49,7 +47,7 @@ public class AlbumPage extends Page {
 
 
   /**
-   * Constructor
+   * Constructor.
    */
   public AlbumPage(WebClient webClient) {
     super(webClient);
@@ -57,7 +55,7 @@ public class AlbumPage extends Page {
 
 
   /**
-   * Navigates to the album page
+   * Navigates to the album page.
    *
    * @return {@link AlbumPage}
    */
@@ -81,7 +79,7 @@ public class AlbumPage extends Page {
 
 
   /**
-   * Sets the album title input text field
+   * Sets the album title input text field.
    *
    * @param albumTitle the new album title value to set
    * @return {@link AlbumPage}
@@ -94,7 +92,7 @@ public class AlbumPage extends Page {
 
 
   /**
-   * Sets the artist input text field
+   * Sets the artist input text field.
    *
    * @param artist the new artist value to set
    * @return {@link AlbumPage}
@@ -107,7 +105,7 @@ public class AlbumPage extends Page {
 
 
   /**
-   * Selects the select's option value based on the year value given
+   * Selects the select's option value based on the year value given.
    *
    * @param year the new year value to set
    * @return {@link AlbumPage}
@@ -121,7 +119,7 @@ public class AlbumPage extends Page {
 
 
   /**
-   * Sets the album rating input text field
+   * Sets the album rating input text field.
    *
    * @param albumRating the new album rating value to set
    * @return {@link AlbumPage}
@@ -133,20 +131,21 @@ public class AlbumPage extends Page {
   }
 
   /**
-   * Sets the number of songs number input field
+   * Sets the number of songs number input field.
    *
    * @param numberOfSongs the new number of songs value to be set
    * @return {@link AlbumPage}
    */
   public AlbumPage changeNumberOfSongs(int numberOfSongs) {
-    HtmlNumberInput numberOfSongsNumberField = (HtmlNumberInput) page.getElementById("numberOfSongs");
+    HtmlNumberInput numberOfSongsNumberField =
+        (HtmlNumberInput) page.getElementById("numberOfSongs");
     numberOfSongsNumberField.setText(Integer.toString(numberOfSongs));
     return this;
   }
 
 
   /**
-   * Cancel changes made by clicking the cancel button
+   * Cancel changes made by clicking the cancel button.
    *
    * @return {@link AlbumListPage}
    */
@@ -162,7 +161,7 @@ public class AlbumPage extends Page {
 
 
   /**
-   * Saves changes made by clicking the save button
+   * Saves changes made by clicking the save button.
    *
    * @return {@link AlbumPage}
    */

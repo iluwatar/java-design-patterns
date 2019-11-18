@@ -28,7 +28,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.22.0-SNAPSHOT</version>
+    <version>1.23.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2014-2019</inceptionYear>
     <properties>
@@ -187,6 +187,7 @@
 		<module>saga</module>
         <module>double-buffer</module>
         <module>sharding</module>
+        <module>game-loop</module>
     </modules>
 
     <repositories>
@@ -384,9 +385,6 @@
         </pluginManagement>
 
         <plugins>
-            <!--checkstyle plug-in. checking against googles styles
-               see config at checkstyle.xml
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -403,7 +401,8 @@
                             <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                             <encoding>UTF-8</encoding>
                             <failOnViolation>true</failOnViolation>
-                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            <violationSeverity>warning</violationSeverity>
+                            <includeTestSourceDirectory>false</includeTestSourceDirectory>
                         </configuration>
                     </execution>
                 </executions>

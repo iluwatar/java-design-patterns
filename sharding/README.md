@@ -1,10 +1,9 @@
-
----  
+---
 layout: pattern  
 title: Sharding 
-folder:  sharding  
+folder: sharding  
 permalink: /patterns/sharding/  
-categories: Other  
+categories: Other
 tags:  
  - Java  
  - Difficulty-Beginner  

@@ -26,10 +26,8 @@ package com.iluwatar.pageobject;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-
 import java.io.IOException;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +44,7 @@ public class AlbumListPage extends Page {
 
 
   /**
-   * Constructor
+   * Constructor.
    */
   public AlbumListPage(WebClient webClient) {
     super(webClient);
@@ -54,7 +52,7 @@ public class AlbumListPage extends Page {
 
 
   /**
-   * Navigates to the Album List Page
+   * Navigates to the Album List Page.
    *
    * @return {@link AlbumListPage}
    */
@@ -76,7 +74,7 @@ public class AlbumListPage extends Page {
   }
 
   /**
-   * Selects an album by the given album title
+   * Selects an album by the given album title.
    *
    * @param albumTitle the title of the album to click
    * @return the album page

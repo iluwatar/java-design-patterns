@@ -23,16 +23,15 @@
 
 package com.iluwatar.module;
 
+import java.io.PrintStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.PrintStream;
-
 /**
- * The ConsoleLoggerModule is responsible for showing logs on System Console
- * <p>
- * The below example demonstrates a Console logger module, which can print simple and error messages
- * in two designated formats
+ * The ConsoleLoggerModule is responsible for showing logs on System Console.
+ *
+ * <p>The below example demonstrates a Console logger module, which can print simple and error
+ * messages in two designated formats
  */
 public final class ConsoleLoggerModule {
 
@@ -43,11 +42,12 @@ public final class ConsoleLoggerModule {
   public PrintStream output = null;
   public PrintStream error = null;
 
-  private ConsoleLoggerModule() {}
+  private ConsoleLoggerModule() {
+  }
 
   /**
-   * Static method to get single instance of class
-   * 
+   * Static method to get single instance of class.
+   *
    * @return singleton instance of ConsoleLoggerModule
    */
   public static ConsoleLoggerModule getSingleton() {
@@ -60,7 +60,7 @@ public final class ConsoleLoggerModule {
   }
 
   /**
-   * Following method performs the initialization
+   * Following method performs the initialization.
    */
   public ConsoleLoggerModule prepare() {
 
@@ -73,7 +73,7 @@ public final class ConsoleLoggerModule {
   }
 
   /**
-   * Following method performs the finalization
+   * Following method performs the finalization.
    */
   public void unprepare() {
 
@@ -93,8 +93,8 @@ public final class ConsoleLoggerModule {
   }
 
   /**
-   * Used to print a message
-   * 
+   * Used to print a message.
+   *
    * @param value will be printed on console
    */
   public void printString(final String value) {
@@ -102,8 +102,8 @@ public final class ConsoleLoggerModule {
   }
 
   /**
-   * Used to print a error message
-   * 
+   * Used to print a error message.
+   *
    * @param value will be printed on error console
    */
   public void printErrorString(final String value) {

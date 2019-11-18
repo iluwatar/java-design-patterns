@@ -24,7 +24,7 @@
 package com.iluwatar.poison.pill;
 
 /**
- * Endpoint to retrieve {@link Message} from queue
+ * Endpoint to retrieve {@link Message} from queue.
  */
 public interface MqSubscribePoint {
 

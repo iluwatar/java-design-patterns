@@ -20,9 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.roleobject;
 
 /**
- * Key abstraction for segregated roles
+ * Key abstraction for segregated roles.
  */
-public abstract class CustomerRole extends CustomerCore{}
+public abstract class CustomerRole extends CustomerCore{
+}

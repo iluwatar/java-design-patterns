@@ -28,7 +28,7 @@ import com.iluwatar.masterworker.Result;
 import com.iluwatar.masterworker.system.systemmaster.Master;
 
 /**
- *The abstract MasterWorker class which contains reference to master.
+ * The abstract MasterWorker class which contains reference to master.
  */
 
 public abstract class MasterWorker {

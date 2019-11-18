@@ -27,7 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Stage handler that returns a new instance of String without the alphabet characters of the input string.
+ * Stage handler that returns a new instance of String without the alphabet characters of the input
+ * string.
  */
 class RemoveAlphabetsHandler implements Handler<String, String> {
 
@@ -47,8 +48,13 @@ class RemoveAlphabetsHandler implements Handler<String, String> {
     }
 
     String inputWithoutAlphabetsStr = inputWithoutAlphabets.toString();
-    LOGGER.info(String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
-        RemoveAlphabetsHandler.class, input, String.class, inputWithoutAlphabetsStr, String.class));
+    LOGGER.info(
+        String.format(
+            "Current handler: %s, input is %s of type %s, output is %s, of type %s",
+            RemoveAlphabetsHandler.class, input,
+            String.class, inputWithoutAlphabetsStr, String.class
+        )
+    );
 
     return inputWithoutAlphabetsStr;
   }
