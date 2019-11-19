@@ -23,32 +23,36 @@
 
 package com.iluwatar.updatemethod;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-/**
- * Abstract class for all the entity types.
- */
-public abstract class Entity {
+public class StatueTest {
 
-  protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+  private Statue statue;
 
-  protected int id;
-
-  protected int position;
-
-  public Entity(int id) {
-    this.id = id;
-    this.position = 0;
+  @Before
+  public void setup() {
+    statue = new Statue(1, 20);
   }
 
-  public abstract void update();
-
-  public int getPosition() {
-    return position;
+  @After
+  public void tearDown() {
+    statue = null;
   }
 
-  public void setPosition(int position) {
-    this.position = position;
+  @Test
+  public void testUpdateForPendingShoot() {
+    statue.frames = 10;
+    statue.update();
+    Assert.assertEquals(11, statue.frames);
+  }
+
+  @Test
+  public void testUpdateForShooting() {
+    statue.frames = 19;
+    statue.update();
+    Assert.assertEquals(0, statue.frames);
   }
 }
