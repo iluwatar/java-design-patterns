@@ -1,5 +1,6 @@
 package com.iluwatar.combinator;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
@@ -10,29 +11,11 @@ public class FinderTest {
 
   @Test
   public void contains() {
-    String example =
-        "the first one \n"
-            + "the second one \n"
-            + "the second one \n"
-            + "the thrid one \n";
+    var example = "the first one \nthe second one \n";
 
-    List<String> result = Finder.contains("second").find(example);
-    System.out.println("");
+    var result = Finder.contains("second").find(example);
+    Assert.assertEquals(result.size(),1);
+    Assert.assertEquals(result.get(0),"the second one ");
   }
 
-  @Test
-  public void exact() {
-  }
-
-  @Test
-  public void not() {
-  }
-
-  @Test
-  public void or() {
-  }
-
-  @Test
-  public void and() {
-  }
 }
