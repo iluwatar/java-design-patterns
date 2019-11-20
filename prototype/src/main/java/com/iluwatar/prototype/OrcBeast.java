@@ -35,17 +35,40 @@ public class OrcBeast extends Beast {
   }
 
   public OrcBeast(OrcBeast orcBeast) {
+    super(orcBeast);
     this.weapon = orcBeast.weapon;
   }
 
   @Override
-  public Beast copy() {
+  public OrcBeast copy() {
     return new OrcBeast(this);
   }
 
   @Override
   public String toString() {
     return "Orcish wolf attacks with " + weapon;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    OrcBeast other = (OrcBeast) obj;
+    if (weapon == null) {
+      if (other.weapon != null) {
+        return false;
+      }
+    } else if (!weapon.equals(other.weapon)) {
+      return false;
+    }
+    return true;
   }
 
 

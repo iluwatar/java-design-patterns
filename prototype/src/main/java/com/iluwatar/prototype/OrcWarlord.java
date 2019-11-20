@@ -35,6 +35,7 @@ public class OrcWarlord extends Warlord {
   }
 
   public OrcWarlord(OrcWarlord orcWarlord) {
+    super(orcWarlord);
     this.weapon = orcWarlord.weapon;
   }
 
@@ -48,4 +49,25 @@ public class OrcWarlord extends Warlord {
     return "Orcish warlord attacks with " + weapon;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    OrcWarlord other = (OrcWarlord) obj;
+    if (weapon == null) {
+      if (other.weapon != null) {
+        return false;
+      }
+    } else if (!weapon.equals(other.weapon)) {
+      return false;
+    }
+    return true;
+  }
 }
