@@ -23,39 +23,41 @@
 
 package com.iluwatar.updatemethod;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-/**
- * This pattern simulate a collection of independent objects by telling each to
- * process one frame of behavior at a time. The game world maintains a collection
- * of objects. Each object implements an update method that simulates one frame of
- * the object’s behavior. Each frame, the game updates every object in the collection.
- */
-public class App {
+public class WorldTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  private World world;
 
-  private static final int GAME_RUNNING_TIME = 2000;
+  @Before
+  public void setup() {
+    world = new World();
+  }
 
-  /**
-   * Program entry point.
-   * @param args runtime arguments
-   */
-  public static void main(String[] args) {
-    try {
-      var world = new World();
-      var skeleton1 = new Skeleton(1, 10);
-      var skeleton2 = new Skeleton(2, 70);
-      var statue = new Statue(3, 20);
-      world.addEntity(skeleton1);
-      world.addEntity(skeleton2);
-      world.addEntity(statue);
-      world.run();
-      Thread.sleep(GAME_RUNNING_TIME);
-      world.stop();
-    } catch (InterruptedException e) {
-      LOGGER.error(e.getMessage());
-    }
+  @After
+  public void tearDown() {
+    world = null;
+  }
+
+  @Test
+  public void testRun() {
+    world.run();
+    Assert.assertEquals(true, world.isRunning);
+  }
+
+  @Test
+  public void testStop() {
+    world.stop();
+    Assert.assertEquals(false, world.isRunning);
+  }
+
+  @Test
+  public void testAddEntity() {
+    var entity = new Skeleton(1);
+    world.addEntity(entity);
+    Assert.assertEquals(entity, world.entities.get(0));
   }
 }

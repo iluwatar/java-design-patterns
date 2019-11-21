@@ -37,9 +37,9 @@ public class World {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(World.class);
 
-  private List<Entity> entities;
+  protected List<Entity> entities;
 
-  private volatile boolean isRunning;
+  protected volatile boolean isRunning;
 
   public World() {
     entities = new ArrayList<>();
