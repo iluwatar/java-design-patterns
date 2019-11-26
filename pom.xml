@@ -180,6 +180,7 @@
         <module>double-buffer</module>
         <module>sharding</module>
         <module>game-loop</module>
+        <module>combinator</module>
         <module>update-method</module>
     </modules>
 
