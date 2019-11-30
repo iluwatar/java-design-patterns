@@ -21,55 +21,16 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.prototype;
+package com.iluwatar.combinator;
 
-/**
- * OrcBeast.
- */
-public class OrcBeast extends Beast {
+import org.junit.Test;
 
-  private String weapon;
+import static org.junit.Assert.*;
 
-  public OrcBeast(String weapon) {
-    this.weapon = weapon;
+public class CombinatorAppTest {
+
+  @Test
+  public void main() {
+    CombinatorApp.main(new String[]{});
   }
-
-  public OrcBeast(OrcBeast orcBeast) {
-    super(orcBeast);
-    this.weapon = orcBeast.weapon;
-  }
-
-  @Override
-  public OrcBeast copy() {
-    return new OrcBeast(this);
-  }
-
-  @Override
-  public String toString() {
-    return "Orcish wolf attacks with " + weapon;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!super.equals(obj)) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    OrcBeast other = (OrcBeast) obj;
-    if (weapon == null) {
-      if (other.weapon != null) {
-        return false;
-      }
-    } else if (!weapon.equals(other.weapon)) {
-      return false;
-    }
-    return true;
-  }
-
-
 }

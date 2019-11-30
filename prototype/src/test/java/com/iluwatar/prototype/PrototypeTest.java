@@ -57,6 +57,7 @@ public class PrototypeTest<P extends Prototype> {
     assertNotNull(clone);
     assertNotSame(clone, testedPrototype);
     assertSame(testedPrototype.getClass(), clone.getClass());
+    assertEquals(clone, testedPrototype);
   }
 
 }
