@@ -47,5 +47,11 @@
       <groupId>org.mongodb</groupId>
       <artifactId>mongo-java-driver</artifactId>
     </dependency>
+      <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-all</artifactId>
+          <version>2.0.2-beta</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
 </project>

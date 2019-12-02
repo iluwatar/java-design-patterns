@@ -31,6 +31,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -70,6 +71,12 @@ public class AppConfigTest {
 
     }
     assertEquals(expected, result);
+  }
+
+  @Test
+  public void testApp() throws IOException {
+    String[] args = {};
+    AppConfig.main(args);
   }
 
 }

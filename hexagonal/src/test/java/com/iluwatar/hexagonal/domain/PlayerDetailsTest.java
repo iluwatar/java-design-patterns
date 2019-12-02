@@ -41,5 +41,5 @@ class PlayerDetailsTest {
     assertEquals(details1, details2);
     PlayerDetails details3 = new PlayerDetails("john@foo.bar", "16412-123439", "+34323432");
     assertNotEquals(details1, details3);
-  }  
+  }
 }

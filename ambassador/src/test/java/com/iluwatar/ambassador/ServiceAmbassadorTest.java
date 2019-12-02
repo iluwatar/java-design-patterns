@@ -36,4 +36,9 @@ public class ServiceAmbassadorTest {
     long result = new ServiceAmbassador().doRemoteFunction(10);
     assertTrue(result == 100 || result == RemoteServiceInterface.FAILURE);
   }
+
+  @Test
+  public void testFailure() {
+
+  }
 }

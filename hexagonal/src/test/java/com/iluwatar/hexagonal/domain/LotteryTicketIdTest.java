@@ -23,9 +23,11 @@
 package com.iluwatar.hexagonal.domain;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.when;
 
 /**
  * Tests for lottery ticket id
@@ -41,5 +43,14 @@ class LotteryTicketIdTest {
     assertNotEquals(ticketId2, ticketId3);
     LotteryTicketId ticketId4 = new LotteryTicketId(ticketId1.getId());
     assertEquals(ticketId1, ticketId4);
+  }
+
+  @Test
+  void testGetId() {
+    LotteryTicketId ticket = Mockito.mock(LotteryTicketId.class);
+
+    when(ticket.getId()).thenReturn(666);
+
+    assertEquals(ticket.getId(), 666);
   }
 }
