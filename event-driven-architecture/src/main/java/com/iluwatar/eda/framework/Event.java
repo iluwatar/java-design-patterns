@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.eda.framework;
 
 /**
- * A {@link Event} is an object with a specific type that is associated
- * to a specific {@link Handler}.
+ * A {@link Event} is an object with a specific type that is associated to a specific {@link
+ * Handler}.
  */
 public interface Event {
 
   /**
-   * Returns the message type as a {@link Class} object. In this example the message type is
-   * used to handle events by their type.
+   * Returns the message type as a {@link Class} object. In this example the message type is used to
+   * handle events by their type.
+   *
    * @return the message type as a {@link Class}.
    */
   Class<? extends Event> getType();

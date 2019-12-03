@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.objectmother;
 
 /**
- * Object Mother Pattern generating Royalty Types
+ * Object Mother Pattern generating Royalty Types.
  */
 public final class RoyaltyObjectMother {
 
   /**
    * Method to create a sober and unhappy king. The standard parameters are set.
+   *
    * @return An instance of {@link com.iluwatar.objectmother.King} with the standard properties.
    */
   public static King createSoberUnhappyKing() {
@@ -37,6 +39,7 @@ public final class RoyaltyObjectMother {
 
   /**
    * Method of the object mother to create a drunk king.
+   *
    * @return A drunk {@link com.iluwatar.objectmother.King}.
    */
   public static King createDrunkKing() {
@@ -47,6 +50,7 @@ public final class RoyaltyObjectMother {
 
   /**
    * Method to create a happy king.
+   *
    * @return A happy {@link com.iluwatar.objectmother.King}.
    */
   public static King createHappyKing() {
@@ -57,6 +61,7 @@ public final class RoyaltyObjectMother {
 
   /**
    * Method to create a happy and drunk king.
+   *
    * @return A drunk and happy {@link com.iluwatar.objectmother.King}.
    */
   public static King createHappyDrunkKing() {
@@ -68,6 +73,7 @@ public final class RoyaltyObjectMother {
 
   /**
    * Method to create a flirty queen.
+   *
    * @return A flirty {@link com.iluwatar.objectmother.Queen}.
    */
   public static Queen createFlirtyQueen() {
@@ -78,6 +84,7 @@ public final class RoyaltyObjectMother {
 
   /**
    * Method to create a not flirty queen.
+   *
    * @return A not flirty {@link com.iluwatar.objectmother.Queen}.
    */
   public static Queen createNotFlirtyQueen() {

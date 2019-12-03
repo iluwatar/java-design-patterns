@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,48 +20,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.strategy;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
+
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
- * Date: 12/29/15 - 10:58 PM
+ * Date: 12/29/15 - 10:58 PM.
  *
  * @author Jeroen Meulemeester
  */
 public class DragonSlayingStrategyTest {
 
   /**
+   * Assembles test parameters.
+   *
    * @return The test parameters for each cycle
    */
   static Collection<Object[]> dataProvider() {
-    return Arrays.asList(
-        new Object[]{
-            new MeleeStrategy(),
-            "With your Excalibur you sever the dragon's head!"
-        },
-        new Object[]{
-            new ProjectileStrategy(),
-            "You shoot the dragon with the magical crossbow and it falls dead on the ground!"
-        },
-        new Object[]{
-            new SpellStrategy(),
-            "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"
-        }
+    return List.of(
+      new Object[]{
+        new MeleeStrategy(),
+        "With your Excalibur you sever the dragon's head!"
+      },
+      new Object[]{
+        new ProjectileStrategy(),
+        "You shoot the dragon with the magical crossbow and it falls dead on the ground!"
+      },
+      new Object[]{
+        new SpellStrategy(),
+        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"
+      }
     );
   }
 
@@ -79,7 +82,7 @@ public class DragonSlayingStrategyTest {
 
 
   /**
-   * Test if executing the strategy gives the correct response
+   * Test if executing the strategy gives the correct response.
    */
   @ParameterizedTest
   @MethodSource("dataProvider")

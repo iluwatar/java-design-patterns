@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.mediator;
 
 import ch.qos.logback.classic.Logger;
@@ -31,7 +32,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -49,7 +49,7 @@ import static org.mockito.Mockito.verify;
 public class PartyMemberTest {
 
   static Collection<Supplier<PartyMember>[]> dataProvider() {
-    return Arrays.asList(
+    return List.of(
             new Supplier[]{Hobbit::new},
             new Supplier[]{Hunter::new},
             new Supplier[]{Rogue::new},

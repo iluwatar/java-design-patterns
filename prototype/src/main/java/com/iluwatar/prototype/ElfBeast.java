@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.prototype;
 
 /**
- * 
- * ElfBeast
- *
+ * ElfBeast.
  */
 public class ElfBeast extends Beast {
-  
+
   private String helpType;
 
   public ElfBeast(String helpType) {
@@ -36,17 +35,40 @@ public class ElfBeast extends Beast {
   }
 
   public ElfBeast(ElfBeast elfBeast) {
+    super(elfBeast);
     this.helpType = elfBeast.helpType;
   }
 
   @Override
-  public Beast copy() {
+  public ElfBeast copy() {
     return new ElfBeast(this);
   }
 
   @Override
   public String toString() {
     return "Elven eagle helps in " + helpType;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    ElfBeast other = (ElfBeast) obj;
+    if (helpType == null) {
+      if (other.helpType != null) {
+        return false;
+      }
+    } else if (!helpType.equals(other.helpType)) {
+      return false;
+    }
+    return true;
   }
 
 }

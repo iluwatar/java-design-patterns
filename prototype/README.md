@@ -40,8 +40,12 @@ class Sheep implements Cloneable {
   public void setName(String name) { this.name = name; }
   public String getName() { return name; }
   @Override
-  public Sheep clone() throws CloneNotSupportedException {
-    return new Sheep(name);
+  public Sheep clone() {
+    try {
+      return (Sheep)super.clone();
+    } catch(CloneNotSuportedException) {
+      throw new InternalError();
+    }
   }
 }
 ```

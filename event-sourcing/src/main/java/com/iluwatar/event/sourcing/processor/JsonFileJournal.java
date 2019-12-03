@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.sourcing.processor;
 
 import com.google.gson.Gson;
@@ -42,15 +43,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This is the implementation of event journal.
- * This implementation serialize/deserialize the events with JSON
- * and writes/reads them on a Journal.json file at the working directory.
+ * This is the implementation of event journal. This implementation serialize/deserialize the events
+ * with JSON and writes/reads them on a Journal.json file at the working directory.
  *
- * Created by Serdar Hamzaogullari on 06.08.2017.
+ * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class JsonFileJournal {
 
-  private final File aFile;
+  private final File file;
   private final List<String> events = new ArrayList<>();
   private int index = 0;
 
@@ -58,10 +58,10 @@ public class JsonFileJournal {
    * Instantiates a new Json file journal.
    */
   public JsonFileJournal() {
-    aFile = new File("Journal.json");
-    if (aFile.exists()) {
+    file = new File("Journal.json");
+    if (file.exists()) {
       try (BufferedReader input = new BufferedReader(
-          new InputStreamReader(new FileInputStream(aFile), "UTF-8"))) {
+          new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
         String line;
         while ((line = input.readLine()) != null) {
           events.add(line);
@@ -87,14 +87,14 @@ public class JsonFileJournal {
       jsonElement = gson.toJsonTree(domainEvent, AccountCreateEvent.class);
     } else if (domainEvent instanceof MoneyDepositEvent) {
       jsonElement = gson.toJsonTree(domainEvent, MoneyDepositEvent.class);
-    }  else if (domainEvent instanceof MoneyTransferEvent) {
+    } else if (domainEvent instanceof MoneyTransferEvent) {
       jsonElement = gson.toJsonTree(domainEvent, MoneyTransferEvent.class);
     } else {
       throw new RuntimeException("Journal Event not recegnized");
     }
 
     try (Writer output = new BufferedWriter(
-        new OutputStreamWriter(new FileOutputStream(aFile, true), "UTF-8"))) {
+        new OutputStreamWriter(new FileOutputStream(file, true), "UTF-8"))) {
       String eventString = jsonElement.toString();
       output.write(eventString + "\r\n");
     } catch (IOException e) {
@@ -107,7 +107,7 @@ public class JsonFileJournal {
    * Reset.
    */
   public void reset() {
-    aFile.delete();
+    file.delete();
   }
 
 
@@ -134,7 +134,7 @@ public class JsonFileJournal {
       domainEvent = gson.fromJson(jsonElement, MoneyDepositEvent.class);
     } else if (eventClassName.equals("MoneyTransferEvent")) {
       domainEvent = gson.fromJson(jsonElement, MoneyTransferEvent.class);
-    }  else {
+    } else {
       throw new RuntimeException("Journal Event not recegnized");
     }
 

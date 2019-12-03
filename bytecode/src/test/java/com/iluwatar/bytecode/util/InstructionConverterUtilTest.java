@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.bytecode.util;
 
 import com.iluwatar.bytecode.Instruction;
@@ -33,19 +34,19 @@ import org.junit.jupiter.api.Test;
 public class InstructionConverterUtilTest {
   @Test
   public void testEmptyInstruction() {
-    String instruction = "";
+    var instruction = "";
 
-    int[] bytecode = InstructionConverterUtil.convertToByteCode(instruction);
+    var bytecode = InstructionConverterUtil.convertToByteCode(instruction);
 
     Assertions.assertEquals(0, bytecode.length);
   }
 
   @Test
   public void testInstructions() {
-    String instructions =
-        "LITERAL 35 SET_HEALTH SET_WISDOM SET_AGILITY PLAY_SOUND SPAWN_PARTICLES GET_HEALTH ADD DIVIDE";
+    var instructions = "LITERAL 35 SET_HEALTH SET_WISDOM SET_AGILITY PLAY_SOUND"
+        + " SPAWN_PARTICLES GET_HEALTH ADD DIVIDE";
 
-    int[] bytecode = InstructionConverterUtil.convertToByteCode(instructions);
+    var bytecode = InstructionConverterUtil.convertToByteCode(instructions);
 
     Assertions.assertEquals(10, bytecode.length);
     Assertions.assertEquals(Instruction.LITERAL.getIntValue(), bytecode[0]);

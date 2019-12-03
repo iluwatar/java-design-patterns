@@ -1,17 +1,17 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
- * <p>
+ * Copyright © 2014-2019 Ilkka Seppälä
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * <p>
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * <p>
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,23 +23,24 @@
 
 package com.iluwatar.trampoline;
 
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>Trampoline pattern allows to define recursive algorithms by iterative loop </p>
- * <p>it is possible to implement algorithms recursively in Java without blowing the stack
- * and to interleave the execution of functions without hard coding them together or even using threads.</p>
+ * Trampoline pattern allows to define recursive algorithms by iterative loop.
+ *
+ * <p>It is possible to implement algorithms recursively in Java without blowing the stack
+ * and to interleave the execution of functions without hard coding them together or even using
+ * threads.
  */
 @Slf4j
 public class TrampolineApp {
 
   /**
    * Main program for showing pattern. It does loop with factorial function.
-   * */
+   */
   public static void main(String[] args) {
     log.info("start pattern");
-    Integer result = loop(10, 1).result();
+    var result = loop(10, 1).result();
     log.info("result {}", result);
 
   }

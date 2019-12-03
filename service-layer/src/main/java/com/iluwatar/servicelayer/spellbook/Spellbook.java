@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.spellbook;
 
+import com.iluwatar.servicelayer.common.BaseEntity;
+import com.iluwatar.servicelayer.spell.Spell;
+import com.iluwatar.servicelayer.wizard.Wizard;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,14 +38,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.iluwatar.servicelayer.common.BaseEntity;
-import com.iluwatar.servicelayer.spell.Spell;
-import com.iluwatar.servicelayer.wizard.Wizard;
-
 /**
- * 
  * Spellbook entity.
- *
  */
 @Entity
 @Table(name = "SPELLBOOK")
@@ -70,7 +67,7 @@ public class Spellbook extends BaseEntity {
     this();
     this.name = name;
   }
-  
+
   public Long getId() {
     return id;
   }
@@ -78,7 +75,7 @@ public class Spellbook extends BaseEntity {
   public void setId(Long id) {
     this.id = id;
   }
-  
+
   public String getName() {
     return name;
   }

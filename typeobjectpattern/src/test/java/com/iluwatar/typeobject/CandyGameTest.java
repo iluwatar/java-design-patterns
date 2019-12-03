@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,10 @@
 
 package com.iluwatar.typeobject;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.iluwatar.typeobject.Candy.Type;
+import org.junit.jupiter.api.Test;
 
 /**
  * The CandyGameTest class tests the methods in the {@link CandyGame} class.
@@ -36,33 +36,33 @@ class CandyGameTest {
 
   @Test
   void adjacentCellsTest() {
-    CandyGame cg = new CandyGame(3,new CellPool(9));
-    ArrayList<Cell> arr1 = cg.adjacentCells(0, 0);
-    ArrayList<Cell> arr2 = cg.adjacentCells(1, 2);
-    ArrayList<Cell> arr3 = cg.adjacentCells(1, 1);
+    var cg = new CandyGame(3, new CellPool(9));
+    var arr1 = cg.adjacentCells(0, 0);
+    var arr2 = cg.adjacentCells(1, 2);
+    var arr3 = cg.adjacentCells(1, 1);
     assertTrue(arr1.size() == 2 && arr2.size() == 3 && arr3.size() == 4);
   }
 
   @Test
   void continueRoundTest() {
-    Cell[][] matrix = new Cell[2][2];
-    Candy c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
-    Candy c2 = new Candy("purple jelly", "jelly", Type.crushableCandy, 5);
-    Candy c3 = new Candy("green apple", "apple", Type.rewardFruit, 10);
-    matrix[0][0] = new Cell(c1,0,0);;
-    matrix[0][1] = new Cell(c2,1,0);
-    matrix[1][0] = new Cell(c3,0,1);
-    matrix[1][1] = new Cell(c2,1,1);
-    CellPool p = new CellPool(4);
-    CandyGame cg = new CandyGame(2,p);
+    var matrix = new Cell[2][2];
+    var c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
+    var c2 = new Candy("purple jelly", "jelly", Type.crushableCandy, 5);
+    var c3 = new Candy("green apple", "apple", Type.rewardFruit, 10);
+    matrix[0][0] = new Cell(c1, 0, 0);
+    matrix[0][1] = new Cell(c2, 1, 0);
+    matrix[1][0] = new Cell(c3, 0, 1);
+    matrix[1][1] = new Cell(c2, 1, 1);
+    var p = new CellPool(4);
+    var cg = new CandyGame(2, p);
     cg.cells = matrix;
-    boolean fruitInLastRow = cg.continueRound();
+    var fruitInLastRow = cg.continueRound();
     matrix[1][0].crush(p, matrix);
-    matrix[0][0] = new Cell(c3,0,0);
-    boolean matchingCandy = cg.continueRound(); 
-    matrix[0][1].crush(p,matrix);
-    matrix[0][1] = new Cell(c3,1,0);
-    boolean noneLeft = cg.continueRound();
+    matrix[0][0] = new Cell(c3, 0, 0);
+    var matchingCandy = cg.continueRound();
+    matrix[0][1].crush(p, matrix);
+    matrix[0][1] = new Cell(c3, 1, 0);
+    var noneLeft = cg.continueRound();
     assertTrue(fruitInLastRow && matchingCandy && !noneLeft);
   }
 

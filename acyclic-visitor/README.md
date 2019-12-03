@@ -33,7 +33,7 @@ The bad:
 * Parallel hierarchy of visitors has to be created for all members in visitable class hierarchy.
 
 ## Related patterns
-* [Visitor Pattern](../visitor/README.md)
+* [Visitor Pattern](../visitor/)
 
 ## Credits
 * [Acyclic Visitor](http://condor.depaul.edu/dmumaugh/OOT/Design-Principles/acv.pdf)

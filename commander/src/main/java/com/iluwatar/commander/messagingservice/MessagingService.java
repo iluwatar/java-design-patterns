@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp�l�
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,18 +25,21 @@ package com.iluwatar.commander.messagingservice;
 
 import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * The MessagingService is used to send messages to user regarding their order and 
- * payment status. In case an error is encountered in payment and this service is
- * found to be unavailable, the order is added to the {@link EmployeeDatabase}.
+ * The MessagingService is used to send messages to user regarding their order and payment status.
+ * In case an error is encountered in payment and this service is found to be unavailable, the order
+ * is added to the {@link com.iluwatar.commander.employeehandle.EmployeeDatabase}.
  */
 
 public class MessagingService extends Service {
+  private static final Logger LOGGER = LoggerFactory.getLogger(MessagingService.class);
 
   enum MessageToSend {
     PaymentFail, PaymentTrying, PaymentSuccessful
-  };
+  }
 
   class MessageRequest {
     String reqId;
@@ -48,18 +51,17 @@ public class MessagingService extends Service {
     }
   }
 
-  public MessagingService(MessagingDatabase db, Exception...exc) {
+  public MessagingService(MessagingDatabase db, Exception... exc) {
     super(db, exc);
   }
 
   /**
-   * Public method which will receive request from {@link Commander}.
+   * Public method which will receive request from {@link com.iluwatar.commander.Commander}.
    */
-  
-  public String receiveRequest(Object...parameters) throws DatabaseUnavailableException {
-    int messageToSend = (int) parameters[0];
-    String rId = generateId();
-    MessageToSend msg = null;
+  public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
+    var messageToSend = (int) parameters[0];
+    var id = generateId();
+    MessageToSend msg;
     if (messageToSend == 0) {
       msg = MessageToSend.PaymentFail;
     } else if (messageToSend == 1) {
@@ -67,15 +69,15 @@ public class MessagingService extends Service {
     } else { //messageToSend == 2
       msg = MessageToSend.PaymentSuccessful;
     }
-    MessageRequest req = new MessageRequest(rId, msg);
+    var req = new MessageRequest(id, msg);
     return updateDb(req);
   }
 
-  protected String updateDb(Object...parameters) throws DatabaseUnavailableException {
-    MessageRequest req = (MessageRequest) parameters[0];
+  protected String updateDb(Object... parameters) throws DatabaseUnavailableException {
+    var req = (MessageRequest) parameters[0];
     if (this.database.get(req.reqId) == null) { //idempotence, in case db fails here
       database.add(req); //if successful:
-      System.out.println(sendMessage(req.msg));
+      LOGGER.info(sendMessage(req.msg));
       return req.reqId;
     }
     return null;
@@ -83,13 +85,17 @@ public class MessagingService extends Service {
 
   String sendMessage(MessageToSend m) {
     if (m.equals(MessageToSend.PaymentSuccessful)) {
-      return "Msg: Your order has been placed and paid for successfully! Thank you for shopping with us!";
+      return "Msg: Your order has been placed and paid for successfully!"
+          + " Thank you for shopping with us!";
     } else if (m.equals(MessageToSend.PaymentTrying)) {
-      return "Msg: There was an error in your payment process, we are working on it and will return back to you"
-          + " shortly. Meanwhile, your order has been placed and will be shipped.";
+      return "Msg: There was an error in your payment process,"
+          + " we are working on it and will return back to you shortly."
+          + " Meanwhile, your order has been placed and will be shipped.";
     } else {
-      return "Msg: There was an error in your payment process. Your order is placed and has been converted to COD."
-          + " Please reach us on CUSTOMER-CARE-NUBER in case of any queries. Thank you for shopping with us!";
+      return "Msg: There was an error in your payment process."
+          + " Your order is placed and has been converted to COD."
+          + " Please reach us on CUSTOMER-CARE-NUBER in case of any queries."
+          + " Thank you for shopping with us!";
     }
   }
 }

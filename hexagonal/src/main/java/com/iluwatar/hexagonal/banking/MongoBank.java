@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.banking;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
-import org.bson.Document;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.Document;
 
 /**
- * Mongo based banking adapter
+ * Mongo based banking adapter.
  */
 public class MongoBank implements WireTransfers {
 
@@ -44,28 +44,28 @@ public class MongoBank implements WireTransfers {
   private MongoCollection<Document> accountsCollection;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public MongoBank() {
     connect();
   }
 
   /**
-   * Constructor accepting parameters
+   * Constructor accepting parameters.
    */
   public MongoBank(String dbName, String accountsCollectionName) {
     connect(dbName, accountsCollectionName);
   }
 
   /**
-   * Connect to database with default parameters
+   * Connect to database with default parameters.
    */
   public void connect() {
     connect(DEFAULT_DB, DEFAULT_ACCOUNTS_COLLECTION);
   }
 
   /**
-   * Connect to database with given parameters
+   * Connect to database with given parameters.
    */
   public void connect(String dbName, String accountsCollectionName) {
     if (mongoClient != null) {
@@ -78,6 +78,8 @@ public class MongoBank implements WireTransfers {
   }
 
   /**
+   * Get mongo client.
+   *
    * @return mongo client
    */
   public MongoClient getMongoClient() {
@@ -85,6 +87,7 @@ public class MongoBank implements WireTransfers {
   }
 
   /**
+   * Get mongo database.
    *
    * @return mongo database
    */
@@ -93,6 +96,7 @@ public class MongoBank implements WireTransfers {
   }
 
   /**
+   * Get accounts collection.
    *
    * @return accounts collection
    */
@@ -105,7 +109,8 @@ public class MongoBank implements WireTransfers {
   public void setFunds(String bankAccount, int amount) {
     Document search = new Document("_id", bankAccount);
     Document update = new Document("_id", bankAccount).append("funds", amount);
-    accountsCollection.updateOne(search, new Document("$set", update), new UpdateOptions().upsert(true));
+    accountsCollection
+        .updateOne(search, new Document("$set", update), new UpdateOptions().upsert(true));
   }
 
   @Override
@@ -120,14 +125,14 @@ public class MongoBank implements WireTransfers {
   }
 
   @Override
-  public boolean transferFunds(int amount, String sourceBackAccount, String destinationBankAccount) {
-    int sourceFunds = getFunds(sourceBackAccount);
+  public boolean transferFunds(int amount, String sourceAccount, String destinationAccount) {
+    int sourceFunds = getFunds(sourceAccount);
     if (sourceFunds < amount) {
       return false;
     } else {
-      int destFunds = getFunds(destinationBankAccount);
-      setFunds(sourceBackAccount, sourceFunds - amount);
-      setFunds(destinationBankAccount, destFunds + amount);
+      int destFunds = getFunds(destinationAccount);
+      setFunds(sourceAccount, sourceFunds - amount);
+      setFunds(destinationAccount, destFunds + amount);
       return true;
     }
   }

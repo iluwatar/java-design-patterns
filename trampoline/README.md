@@ -3,7 +3,7 @@ layout: pattern
 title: Trampoline
 folder: trampoline
 permalink: /patterns/trampoline/
-categories: Behavior
+categories: Behavioral
 tags:
  - Java
  - Difficulty-Intermediate

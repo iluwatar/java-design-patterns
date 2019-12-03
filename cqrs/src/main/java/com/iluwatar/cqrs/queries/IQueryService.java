@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cqrs.queries;
 
-import java.math.BigInteger;
-import java.util.List;
+package com.iluwatar.cqrs.queries;
 
 import com.iluwatar.cqrs.dto.Author;
 import com.iluwatar.cqrs.dto.Book;
+import java.math.BigInteger;
+import java.util.List;
 
 /**
- * 
- * This interface represents the query methods of the CQRS pattern
- *
+ * This interface represents the query methods of the CQRS pattern.
  */
 public interface IQueryService {
 

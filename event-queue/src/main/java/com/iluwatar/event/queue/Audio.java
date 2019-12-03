@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,22 +23,20 @@
 
 package com.iluwatar.event.queue;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.IOException;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class implements the Event Queue pattern.
- * @author mkuprivecz
  *
+ * @author mkuprivecz
  */
 public class Audio {
   private static final Logger LOGGER = LoggerFactory.getLogger(Audio.class);
@@ -73,9 +71,10 @@ public class Audio {
     updateThread.join();
     updateThread = null;
   }
-  
+
   /**
    * This method check the Update Method's thread is started.
+   *
    * @return boolean
    */
   public synchronized boolean isServiceRunning() {
@@ -83,8 +82,8 @@ public class Audio {
   }
 
   /**
-   * Starts the thread for the Update Method pattern if it was not started previously.
-   * Also when the thread is is ready initializes the indexes of the queue 
+   * Starts the thread for the Update Method pattern if it was not started previously. Also when the
+   * thread is is ready initializes the indexes of the queue
    */
   public void init() {
     if (updateThread == null) {
@@ -96,9 +95,9 @@ public class Audio {
     }
     startThread();
   }
-  
+
   /**
-   * This is a synchronized thread starter
+   * This is a synchronized thread starter.
    */
   private synchronized void startThread() {
     if (!updateThread.isAlive()) {
@@ -110,8 +109,9 @@ public class Audio {
 
   /**
    * This method adds a new audio into the queue.
+   *
    * @param stream is the AudioInputStream for the method
-   * @param volume is the level of the audio's volume 
+   * @param volume is the level of the audio's volume
    */
   public void playSound(AudioInputStream stream, float volume) {
     init();
@@ -128,10 +128,9 @@ public class Audio {
     getPendingAudio()[tailIndex] = new PlayMessage(stream, volume);
     tailIndex = (tailIndex + 1) % MAX_PENDING;
   }
-  
+
   /**
-   * This method uses the Update Method pattern.
-   * It takes the audio from the queue and plays it
+   * This method uses the Update Method pattern. It takes the audio from the queue and plays it
    */
   private void update() {
     // If there are no pending requests, do nothing.
@@ -155,11 +154,12 @@ public class Audio {
   }
 
   /**
-   * Returns the AudioInputStream of a file
+   * Returns the AudioInputStream of a file.
+   *
    * @param filePath is the path of the audio file
    * @return AudioInputStream
-   * @throws UnsupportedAudioFileException when the audio file is not supported 
-   * @throws IOException when the file is not readable
+   * @throws UnsupportedAudioFileException when the audio file is not supported
+   * @throws IOException                   when the file is not readable
    */
   public AudioInputStream getAudioStream(String filePath)
       throws UnsupportedAudioFileException, IOException {
@@ -167,7 +167,8 @@ public class Audio {
   }
 
   /**
-   * Returns with the message array of the queue 
+   * Returns with the message array of the queue.
+   *
    * @return PlayMessage[]
    */
   public PlayMessage[] getPendingAudio() {

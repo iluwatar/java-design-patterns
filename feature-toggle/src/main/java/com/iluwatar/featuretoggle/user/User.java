@@ -1,17 +1,17 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
- * <p>
+ * Copyright © 2014-2019 Ilkka Seppälä
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * <p>
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * <p>
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,10 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.featuretoggle.user;
 
 /**
- * Used to demonstrate the purpose of the feature toggle. This class actually has nothing to do with the pattern.
+ * Used to demonstrate the purpose of the feature toggle. This class actually has nothing to do with
+ * the pattern.
  */
 public class User {
 
@@ -40,7 +42,9 @@ public class User {
 
   /**
    * {@inheritDoc}
-   * @return The {@link String} representation of the User, in this case just return the name of the user.
+   *
+   * @return The {@link String} representation of the User, in this case just return the name of the
+   *     user.
    */
   @Override
   public String toString() {

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
 
 import com.google.inject.Inject;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
-
 import java.util.Optional;
 
 /**
- * 
- * Implementation for lottery service
- *
+ * Implementation for lottery service.
  */
 public class LotteryService {
 
@@ -41,7 +39,7 @@ public class LotteryService {
   private final WireTransfers wireTransfers;
 
   /**
-   * Constructor
+   * Constructor.
    */
   @Inject
   public LotteryService(LotteryTicketRepository repository, LotteryEventLog notifications,
@@ -52,7 +50,7 @@ public class LotteryService {
   }
 
   /**
-   * Submit lottery ticket to participate in the lottery
+   * Submit lottery ticket to participate in the lottery.
    */
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
     boolean result = wireTransfers.transferFunds(LotteryConstants.TICKET_PRIZE,
@@ -69,9 +67,12 @@ public class LotteryService {
   }
 
   /**
-   * Check if lottery ticket has won
+   * Check if lottery ticket has won.
    */
-  public LotteryTicketCheckResult checkTicketForPrize(LotteryTicketId id, LotteryNumbers winningNumbers) {
+  public LotteryTicketCheckResult checkTicketForPrize(
+      LotteryTicketId id,
+      LotteryNumbers winningNumbers
+  ) {
     return LotteryUtils.checkTicketForPrize(repository, id, winningNumbers);
   }
 }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.database;
 
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
@@ -29,8 +30,6 @@ import com.iluwatar.hexagonal.domain.PlayerDetails;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,9 +38,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.bson.Document;
 
 /**
- * Mongo lottery ticket database
+ * Mongo lottery ticket database.
  */
 public class MongoTicketRepository implements LotteryTicketRepository {
 
@@ -55,14 +55,14 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   private MongoCollection<Document> countersCollection;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public MongoTicketRepository() {
     connect();
   }
 
   /**
-   * Constructor accepting parameters
+   * Constructor accepting parameters.
    */
   public MongoTicketRepository(String dbName, String ticketsCollectionName,
                                String countersCollectionName) {
@@ -70,14 +70,14 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   }
 
   /**
-   * Connect to database with default parameters
+   * Connect to database with default parameters.
    */
   public void connect() {
     connect(DEFAULT_DB, DEFAULT_TICKETS_COLLECTION, DEFAULT_COUNTERS_COLLECTION);
   }
 
   /**
-   * Connect to database with given parameters
+   * Connect to database with given parameters.
    */
   public void connect(String dbName, String ticketsCollectionName,
                       String countersCollectionName) {
@@ -100,6 +100,8 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   }
 
   /**
+   * Get next ticket id.
+   *
    * @return next ticket id
    */
   public int getNextId() {
@@ -111,6 +113,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   }
 
   /**
+   * Get tickets collection.
    *
    * @return tickets collection
    */
@@ -119,6 +122,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   }
 
   /**
+   * Get counters collection.
    *
    * @return counters collection
    */
@@ -154,7 +158,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   public Map<LotteryTicketId, LotteryTicket> findAll() {
     Map<LotteryTicketId, LotteryTicket> map = new HashMap<>();
     List<Document> docs = ticketsCollection.find(new Document()).into(new ArrayList<>());
-    for (Document doc: docs) {
+    for (Document doc : docs) {
       LotteryTicket lotteryTicket = docToTicket(doc);
       map.put(lotteryTicket.getId(), lotteryTicket);
     }
@@ -173,6 +177,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
         .map(Integer::parseInt)
         .collect(Collectors.toSet());
     LotteryNumbers lotteryNumbers = LotteryNumbers.create(numbers);
-    return new LotteryTicket(new LotteryTicketId(doc.getInteger("ticketId")), playerDetails, lotteryNumbers);
+    return new LotteryTicket(new LotteryTicketId(doc
+        .getInteger("ticketId")), playerDetails, lotteryNumbers);
   }
 }

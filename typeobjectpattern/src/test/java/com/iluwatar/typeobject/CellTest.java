@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,39 +23,40 @@
 
 package com.iluwatar.typeobject;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.iluwatar.typeobject.Candy.Type;
+import org.junit.jupiter.api.Test;
 
 /**
  * The CellTest class tests the methods in the {@link Cell} class.
  */
-
 class CellTest {
 
   @Test
   void interactTest() {
-    Candy c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
-    Candy c2 = new Candy("green apple", "apple", Type.rewardFruit, 10);
-    Cell[][] matrix = new Cell[4][4];
-    matrix[0][0] = new Cell(c1,0,0);
-    matrix[0][1] = new Cell(c1,1,0);
-    matrix[0][2] = new Cell(c2,2,0);
-    matrix[0][3] = new Cell(c1,3,0);
-    CellPool cp = new CellPool(5);
-    int points1 = matrix[0][0].interact(matrix[0][1], cp, matrix);
-    int points2 = matrix[0][2].interact(matrix[0][3], cp, matrix);
+    var c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
+    var c2 = new Candy("green apple", "apple", Type.rewardFruit, 10);
+    var matrix = new Cell[4][4];
+    matrix[0][0] = new Cell(c1, 0, 0);
+    matrix[0][1] = new Cell(c1, 1, 0);
+    matrix[0][2] = new Cell(c2, 2, 0);
+    matrix[0][3] = new Cell(c1, 3, 0);
+    var cp = new CellPool(5);
+    var points1 = matrix[0][0].interact(matrix[0][1], cp, matrix);
+    var points2 = matrix[0][2].interact(matrix[0][3], cp, matrix);
     assertTrue(points1 > 0 && points2 == 0);
   }
 
   @Test
   void crushTest() {
-    Candy c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
-    Candy c2 = new Candy("purple candy", "candy", Type.crushableCandy, 5);
-    Cell[][] matrix = new Cell[4][4];
-    matrix[0][0] = new Cell(c1,0,0);
-    matrix[1][0] = new Cell(c2,0,1);
+    var c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
+    var c2 = new Candy("purple candy", "candy", Type.crushableCandy, 5);
+    var matrix = new Cell[4][4];
+    matrix[0][0] = new Cell(c1, 0, 0);
+    matrix[1][0] = new Cell(c2, 0, 1);
     matrix[1][0].crush(new CellPool(5), matrix);
-    assertTrue(matrix[1][0].candy.name.equals("green jelly"));
+    assertEquals("green jelly", matrix[1][0].candy.name);
   }
 }

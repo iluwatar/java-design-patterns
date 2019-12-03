@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dao;
 
 /**
- * Customer Schema SQL Class
+ * Customer Schema SQL Class.
  */
 public final class CustomerSchemaSql {
 
-  private CustomerSchemaSql() {}
+  private CustomerSchemaSql() {
+  }
 
-  public static final String CREATE_SCHEMA_SQL = "CREATE TABLE CUSTOMERS (ID NUMBER, FNAME VARCHAR(100), "
-      + "LNAME VARCHAR(100))";
+  public static final String CREATE_SCHEMA_SQL =
+      "CREATE TABLE CUSTOMERS (ID NUMBER, FNAME VARCHAR(100), "
+          + "LNAME VARCHAR(100))";
 
   public static final String DELETE_SCHEMA_SQL = "DROP TABLE CUSTOMERS";
 

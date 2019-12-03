@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,13 +24,13 @@
 package com.iluwatar.masterworker;
 
 /**
- *The abstract Result class, which contains 1 public field containing result
- *data.
+ * The abstract Result class, which contains 1 public field containing result data.
+ *
  * @param <T> T will be type of data.
  */
 
 public abstract class Result<T> {
-  
+
   public final T data;
 
   public Result(T data) {

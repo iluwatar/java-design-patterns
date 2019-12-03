@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.chain;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/6/15 - 9:29 PM
@@ -36,24 +38,23 @@ public class OrcKingTest {
   /**
    * All possible requests
    */
-  private static final Request[] REQUESTS = new Request[]{
+  private static final List<Request> REQUESTS = List.of(
       new Request(RequestType.DEFEND_CASTLE, "Don't let the barbarians enter my castle!!"),
       new Request(RequestType.TORTURE_PRISONER, "Don't just stand there, tickle him!"),
-      new Request(RequestType.COLLECT_TAX, "Don't steal, the King hates competition ..."),
-  };
+      new Request(RequestType.COLLECT_TAX, "Don't steal, the King hates competition ...")
+  );
 
   @Test
   public void testMakeRequest() {
-    final OrcKing king = new OrcKing();
+    final var king = new OrcKing();
 
-    for (final Request request : REQUESTS) {
+    REQUESTS.forEach(request -> {
       king.makeRequest(request);
       assertTrue(
           request.isHandled(),
           "Expected all requests from King to be handled, but [" + request + "] was not!"
       );
-    }
-
+    });
   }
 
 }

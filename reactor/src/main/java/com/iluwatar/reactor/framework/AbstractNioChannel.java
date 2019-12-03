@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.reactor.framework;
 
 import java.io.IOException;
@@ -34,13 +35,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * This represents the <i>Handle</i> of Reactor pattern. These are resources managed by OS which can
  * be submitted to {@link NioReactor}.
- * 
- * <p>
- * This class serves has the responsibility of reading the data when a read event occurs and writing
- * the data back when the channel is writable. It leaves the reading and writing of data on the
- * concrete implementation. It provides a block writing mechanism wherein when any
- * {@link ChannelHandler} wants to write data back, it queues the data in pending write queue and
- * clears it in block manner. This provides better throughput.
+ *
+ * <p>This class serves has the responsibility of reading the data when a read event occurs and
+ * writing the data back when the channel is writable. It leaves the reading and writing of data on
+ * the concrete implementation. It provides a block writing mechanism wherein when any {@link
+ * ChannelHandler} wants to write data back, it queues the data in pending write queue and clears it
+ * in block manner. This provides better throughput.
  */
 public abstract class AbstractNioChannel {
 
@@ -52,7 +52,7 @@ public abstract class AbstractNioChannel {
 
   /**
    * Creates a new channel.
-   * 
+   *
    * @param handler which will handle events occurring on this channel.
    * @param channel a NIO channel to be wrapped.
    */
@@ -69,6 +69,8 @@ public abstract class AbstractNioChannel {
   }
 
   /**
+   * Get channel.
+   *
    * @return the wrapped NIO channel.
    */
   public SelectableChannel getJavaChannel() {
@@ -76,9 +78,9 @@ public abstract class AbstractNioChannel {
   }
 
   /**
-   * The operation in which the channel is interested, this operation is provided to
-   * {@link Selector}.
-   * 
+   * The operation in which the channel is interested, this operation is provided to {@link
+   * Selector}.
+   *
    * @return interested operation.
    * @see SelectionKey
    */
@@ -86,7 +88,7 @@ public abstract class AbstractNioChannel {
 
   /**
    * Binds the channel on provided port.
-   * 
+   *
    * @throws IOException if any I/O error occurs.
    */
   public abstract void bind() throws IOException;
@@ -94,7 +96,7 @@ public abstract class AbstractNioChannel {
   /**
    * Reads the data using the key and returns the read data. The underlying channel should be
    * fetched using {@link SelectionKey#channel()}.
-   * 
+   *
    * @param key the key on which read event occurred.
    * @return data read.
    * @throws IOException if any I/O error occurs.
@@ -102,6 +104,8 @@ public abstract class AbstractNioChannel {
   public abstract Object read(SelectionKey key) throws IOException;
 
   /**
+   * Get handler.
+   *
    * @return the handler associated with this channel.
    */
   public ChannelHandler getHandler() {
@@ -129,9 +133,9 @@ public abstract class AbstractNioChannel {
 
   /**
    * Writes the data to the channel.
-   * 
+   *
    * @param pendingWrite the data to be written on channel.
-   * @param key the key which is writable.
+   * @param key          the key which is writable.
    * @throws IOException if any I/O error occurs.
    */
   protected abstract void doWrite(Object pendingWrite, SelectionKey key) throws IOException;
@@ -139,24 +143,23 @@ public abstract class AbstractNioChannel {
   /**
    * Queues the data for writing. The data is not guaranteed to be written on underlying channel
    * when this method returns. It will be written when the channel is flushed.
-   * 
-   * <p>
-   * This method is used by the {@link ChannelHandler} to send reply back to the client. <br>
+   *
+   * <p>This method is used by the {@link ChannelHandler} to send reply back to the client. <br>
    * Example:
-   * 
+   *
    * <pre>
    * <code>
    * {@literal @}Override
-   * public void handleChannelRead(AbstractNioChannel channel, Object readObject, SelectionKey key) {
-   *   byte[] data = ((ByteBuffer)readObject).array();
+   * public void handleChannelRead(AbstractNioChannel channel, Object readObj, SelectionKey key) {
+   *   byte[] data = ((ByteBuffer)readObj).array();
    *   ByteBuffer buffer = ByteBuffer.wrap("Server reply".getBytes());
    *   channel.write(buffer, key);
    * }
    * </code>
    * </pre>
-   * 
+   *
    * @param data the data to be written on underlying channel.
-   * @param key the key which is writable.
+   * @param key  the key which is writable.
    */
   public void write(Object data, SelectionKey key) {
     Queue<Object> pendingWrites = this.channelToPendingWrites.get(key.channel());

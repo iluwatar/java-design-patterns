@@ -42,13 +42,13 @@ public interface Blacksmith {
 
 public class ElfBlacksmith implements Blacksmith {
   public Weapon manufactureWeapon(WeaponType weaponType) {
-    return new ElfWeapon(weaponType);
+    return ELFARSENAL.get(weaponType);
   }
 }
 
 public class OrcBlacksmith implements Blacksmith {
   public Weapon manufactureWeapon(WeaponType weaponType) {
-    return new OrcWeapon(weaponType);
+    return ORCARSENAL.get(weaponType);
   }
 }
 ```
@@ -68,10 +68,6 @@ Use the Factory Method pattern when
 * a class can't anticipate the class of objects it must create
 * a class wants its subclasses to specify the objects it creates
 * classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
-
-## Presentations
-
-* [Factory Method Pattern](etc/presentation.html) 
 
 ## Real world examples
 

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dirtyflag;
 
 import java.io.BufferedReader;
@@ -28,14 +29,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A mock database manager -- Fetches data from a raw file.
- * 
- * @author swaisuan
  *
+ * @author swaisuan
  */
 public class DataFetcher {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(DataFetcher.class);
 
   private final String filename = "world.txt";
   private long lastFetched;
@@ -54,7 +58,7 @@ public class DataFetcher {
 
   /**
    * Fetches data/content from raw file.
-   * 
+   *
    * @return List of strings
    */
   public List<String> fetch() {
@@ -62,7 +66,7 @@ public class DataFetcher {
     File file = new File(classLoader.getResource(filename).getFile());
 
     if (isDirty(file.lastModified())) {
-      System.out.println(filename + " is dirty! Re-fetching file content...");
+      LOGGER.info(filename + " is dirty! Re-fetching file content...");
 
       List<String> data = new ArrayList<String>();
       try (BufferedReader br = new BufferedReader(new FileReader(file))) {

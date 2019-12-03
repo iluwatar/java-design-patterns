@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp�l�
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,8 @@
 package com.iluwatar.commander.exceptions;
 
 /**
- * DatabaseUnavailableException is thrown when database is unavailable and nothing
- * can be added or retrieved.
+ * DatabaseUnavailableException is thrown when database is unavailable and nothing can be added or
+ * retrieved.
  */
 
 public class DatabaseUnavailableException extends Exception {

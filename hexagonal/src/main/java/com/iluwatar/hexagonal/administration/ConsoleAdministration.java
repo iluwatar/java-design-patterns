@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.administration;
 
 import com.google.inject.Guice;
@@ -29,20 +30,19 @@ import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.iluwatar.hexagonal.sampledata.SampleData;
+import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Scanner;
-
 /**
- * Console interface for lottery administration
+ * Console interface for lottery administration.
  */
 public class ConsoleAdministration {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleAdministration.class);
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(String[] args) {
     MongoConnectionPropertiesLoader.load();
@@ -50,7 +50,8 @@ public class ConsoleAdministration {
     LotteryAdministration administration = injector.getInstance(LotteryAdministration.class);
     LotteryService service = injector.getInstance(LotteryService.class);
     SampleData.submitTickets(service, 20);
-    ConsoleAdministrationSrv consoleAdministration = new ConsoleAdministrationSrvImpl(administration, LOGGER);
+    ConsoleAdministrationSrv consoleAdministration =
+        new ConsoleAdministrationSrvImpl(administration, LOGGER);
     try (Scanner scanner = new Scanner(System.in)) {
       boolean exit = false;
       while (!exit) {
@@ -81,7 +82,7 @@ public class ConsoleAdministration {
   }
 
   private static String readString(Scanner scanner) {
-    System.out.print("> ");
+    LOGGER.info("> ");
     return scanner.next();
   }
 }

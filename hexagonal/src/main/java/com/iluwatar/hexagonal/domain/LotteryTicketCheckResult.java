@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
 
 /**
- *
  * Represents lottery ticket check result.
- *
  */
 public class LotteryTicketCheckResult {
 
   /**
-   * Enumeration of Type of Outcomes of a Lottery
+   * Enumeration of Type of Outcomes of a Lottery.
    */
-  public enum CheckResult { WIN_PRIZE, NO_PRIZE, TICKET_NOT_SUBMITTED }
+  public enum CheckResult {
+    WIN_PRIZE,
+    NO_PRIZE,
+    TICKET_NOT_SUBMITTED
+  }
 
   private final CheckResult checkResult;
   private final int prizeAmount;
@@ -54,6 +57,8 @@ public class LotteryTicketCheckResult {
   }
 
   /**
+   * Get result.
+   *
    * @return check result
    */
   public CheckResult getResult() {
@@ -61,6 +66,8 @@ public class LotteryTicketCheckResult {
   }
 
   /**
+   * Get prize amount.
+   *
    * @return prize amount
    */
   public int getPrizeAmount() {

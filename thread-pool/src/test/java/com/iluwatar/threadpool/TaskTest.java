@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,29 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.threadpool;
-
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.function.IntFunction;
-import java.util.stream.Collectors;
 
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.function.IntFunction;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import org.junit.jupiter.api.Test;
+
 /**
- * Date: 12/30/15 - 18:22 PM
- * Test for Tasks using a Thread Pool
+ * Date: 12/30/15 - 18:22 PM Test for Tasks using a Thread Pool
+ *
  * @param <T> Type of Task
  * @author Jeroen Meulemeester
  */
@@ -86,14 +85,13 @@ public abstract class TaskTest<T extends Task> {
   @Test
   public void testIdGeneration() throws Exception {
     assertTimeout(ofMillis(10000), () -> {
-      final ExecutorService service = Executors.newFixedThreadPool(THREAD_COUNT);
+      final var service = Executors.newFixedThreadPool(THREAD_COUNT);
 
-      final List<Callable<Integer>> tasks = new ArrayList<>();
-      for (int i = 0; i < TASK_COUNT; i++) {
-        tasks.add(() -> factory.apply(1).getId());
-      }
+      final var tasks = IntStream.range(0, TASK_COUNT)
+          .<Callable<Integer>>mapToObj(i -> () -> factory.apply(1).getId())
+          .collect(Collectors.toCollection(ArrayList::new));
 
-      final List<Integer> ids = service.invokeAll(tasks)
+      final var ids = service.invokeAll(tasks)
           .stream()
           .map(TaskTest::get)
           .filter(Objects::nonNull)
@@ -101,7 +99,7 @@ public abstract class TaskTest<T extends Task> {
 
       service.shutdownNow();
 
-      final long uniqueIdCount = ids.stream()
+      final var uniqueIdCount = ids.stream()
           .distinct()
           .count();
 
@@ -116,7 +114,7 @@ public abstract class TaskTest<T extends Task> {
    */
   @Test
   public void testTimeMs() {
-    for (int i = 0; i < 10; i++) {
+    for (var i = 0; i < 10; i++) {
       assertEquals(this.expectedExecutionTime * i, this.factory.apply(i).getTimeMs());
     }
   }

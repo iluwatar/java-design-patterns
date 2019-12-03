@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,36 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.ambassador;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.iluwatar.ambassador.util.RandomProvider;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 /**
  * Test for {@link RemoteService}
  */
-public class RemoteServiceTest {
+class RemoteServiceTest {
 
   @Test
-  public void testFailedCall() {
-    RemoteService remoteService = new RemoteService(
-        new StaticRandomProvider(0.21));
-    long result = remoteService.doRemoteFunction(10);
+  void testFailedCall() {
+    var remoteService = new RemoteService(new StaticRandomProvider(0.21));
+    var result = remoteService.doRemoteFunction(10);
     assertEquals(RemoteServiceInterface.FAILURE, result);
   }
 
   @Test
-  public void testSuccessfulCall() {
-    RemoteService remoteService = new RemoteService(
-        new StaticRandomProvider(0.2));
-    long result = remoteService.doRemoteFunction(10);
+  void testSuccessfulCall() {
+    var remoteService = new RemoteService(new StaticRandomProvider(0.2));
+    var result = remoteService.doRemoteFunction(10);
     assertEquals(100, result);
   }
 
-  private class StaticRandomProvider implements RandomProvider {
+  private static class StaticRandomProvider implements RandomProvider {
     private double value;
 
     StaticRandomProvider(double value) {

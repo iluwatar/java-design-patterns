@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,28 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.specification.selector;
 
-import java.util.function.Predicate;
+package com.iluwatar.specification.selector;
 
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Size;
 
 /**
- * 
  * Size selector.
- *
  */
-public class SizeSelector implements Predicate<Creature> {
+public class SizeSelector extends AbstractSelector<Creature> {
 
-  private final Size s;
+  private final Size size;
 
   public SizeSelector(Size s) {
-    this.s = s;
+    this.size = s;
   }
 
   @Override
   public boolean test(Creature t) {
-    return t.getSize().equals(s);
+    return t.getSize().equals(size);
   }
 }

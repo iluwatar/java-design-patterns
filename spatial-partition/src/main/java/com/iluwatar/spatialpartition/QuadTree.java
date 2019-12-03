@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,9 +28,9 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 /**
- * The quadtree data structure is being used to keep track of the objects' locations.
- * It has the insert(Point) and query(range) methods to insert a new object and find
- * the objects within a certain (rectangular) range respectively.
+ * The quadtree data structure is being used to keep track of the objects' locations. It has the
+ * insert(Point) and query(range) methods to insert a new object and find the objects within a
+ * certain (rectangular) range respectively.
  */
 
 public class QuadTree {
@@ -48,9 +48,9 @@ public class QuadTree {
     this.capacity = capacity;
     this.divided = false;
     this.points = new Hashtable<Integer, Point>();
-    this.northwest = null; 
-    this.northeast = null; 
-    this.southwest = null; 
+    this.northwest = null;
+    this.northeast = null;
+    this.southwest = null;
     this.southeast = null;
   }
 
@@ -76,25 +76,25 @@ public class QuadTree {
   }
 
   void divide() {
-    Rect nw = new Rect(this.boundary.x - this.boundary.width / 4, this.boundary.y + this.boundary.height / 4, 
-          this.boundary.width / 2, this.boundary.height / 2);
-    this.northwest = new QuadTree(nw , this.capacity);
-    Rect ne = new Rect(this.boundary.x + this.boundary.width / 4, this.boundary.y + this.boundary.height / 4, 
-          this.boundary.width / 2, this.boundary.height / 2);
-    this.northeast = new QuadTree(ne , this.capacity);
-    Rect sw = new Rect(this.boundary.x - this.boundary.width / 4, this.boundary.y - this.boundary.height / 4, 
-          this.boundary.width / 2, this.boundary.height / 2);
-    this.southwest = new QuadTree(sw , this.capacity);
-    Rect se = new Rect(this.boundary.x + this.boundary.width / 4, this.boundary.y - this.boundary.height / 4, 
-          this.boundary.width / 2, this.boundary.height / 2);
-    this.southeast = new QuadTree(se , this.capacity);
+    double x = this.boundary.coordinateX;
+    double y = this.boundary.coordinateY;
+    double width = this.boundary.width;
+    double height = this.boundary.height;
+    Rect nw = new Rect(x - width / 4, y + height / 4, width / 2, height / 2);
+    this.northwest = new QuadTree(nw, this.capacity);
+    Rect ne = new Rect(x + width / 4, y + height / 4, width / 2, height / 2);
+    this.northeast = new QuadTree(ne, this.capacity);
+    Rect sw = new Rect(x - width / 4, y - height / 4, width / 2, height / 2);
+    this.southwest = new QuadTree(sw, this.capacity);
+    Rect se = new Rect(x + width / 4, y - height / 4, width / 2, height / 2);
+    this.southeast = new QuadTree(se, this.capacity);
     this.divided = true;
   }
 
   ArrayList<Point> query(Rect r, ArrayList<Point> relevantPoints) {
     //could also be a circle instead of a rectangle
     if (this.boundary.intersects(r)) {
-      for (Enumeration<Integer> e = this.points.keys(); e.hasMoreElements();) {
+      for (Enumeration<Integer> e = this.points.keys(); e.hasMoreElements(); ) {
         Integer i = e.nextElement();
         if (r.contains(this.points.get(i))) {
           relevantPoints.add(this.points.get(i));

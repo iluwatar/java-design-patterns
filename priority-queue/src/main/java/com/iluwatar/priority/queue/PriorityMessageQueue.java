@@ -1,17 +1,17 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
- * <p>
+ * Copyright © 2014-2019 Ilkka Seppälä
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * <p>
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * <p>
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.priority.queue;
+
+import static java.util.Arrays.copyOf;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static java.util.Arrays.copyOf;
 
 /**
  * Keep high Priority message on top using maxHeap.
@@ -49,14 +50,14 @@ public class PriorityMessageQueue<T extends Comparable> {
   }
 
   /**
-   * Remove top message from queue
+   * Remove top message from queue.
    */
   public T remove() {
     if (isEmpty()) {
       return null;
     }
 
-    T root = queue[0];
+    final T root = queue[0];
     queue[0] = queue[size - 1];
     size--;
     maxHeapifyDown();
@@ -64,7 +65,7 @@ public class PriorityMessageQueue<T extends Comparable> {
   }
 
   /**
-   * Add message to queue
+   * Add message to queue.
    */
   public void add(T t) {
     ensureCapacity();
@@ -74,7 +75,7 @@ public class PriorityMessageQueue<T extends Comparable> {
   }
 
   /**
-   * Check queue size
+   * Check queue size.
    */
   public boolean isEmpty() {
     return size == 0;

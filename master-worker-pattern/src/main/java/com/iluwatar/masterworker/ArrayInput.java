@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *Class ArrayInput extends abstract class {@link Input} and contains data
- *of type int[][].
+ * Class ArrayInput extends abstract class {@link Input} and contains data of type int[][].
  */
 
 public class ArrayInput extends Input<int[][]> {
@@ -36,7 +35,7 @@ public class ArrayInput extends Input<int[][]> {
   public ArrayInput(int[][] data) {
     super(data);
   }
-  
+
   static int[] makeDivisions(int[][] data, int num) {
     int initialDivision = data.length / num; //equally dividing
     int[] divisions = new int[num];
@@ -81,6 +80,6 @@ public class ArrayInput extends Input<int[][]> {
         }
       }
       return result;
-    }    
-  } 
+    }
+  }
 }

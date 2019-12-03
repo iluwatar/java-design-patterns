@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,36 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.composite;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
- * 
- * Messenger
- *
+ * Messenger.
  */
 public class Messenger {
 
   LetterComposite messageFromOrcs() {
 
-    List<Word> words = new ArrayList<>();
-
-    words.add(new Word(Arrays.asList(new Letter('W'), new Letter('h'), new Letter('e'), new Letter(
-        'r'), new Letter('e'))));
-    words.add(new Word(Arrays.asList(new Letter('t'), new Letter('h'), new Letter('e'), new Letter(
-        'r'), new Letter('e'))));
-    words.add(new Word(Arrays.asList(new Letter('i'), new Letter('s'))));
-    words.add(new Word(Arrays.asList(new Letter('a'))));
-    words.add(new Word(Arrays.asList(new Letter('w'), new Letter('h'), new Letter('i'), new Letter(
-        'p'))));
-    words.add(new Word(Arrays.asList(new Letter('t'), new Letter('h'), new Letter('e'), new Letter(
-        'r'), new Letter('e'))));
-    words.add(new Word(Arrays.asList(new Letter('i'), new Letter('s'))));
-    words.add(new Word(Arrays.asList(new Letter('a'))));
-    words.add(new Word(Arrays.asList(new Letter('w'), new Letter('a'), new Letter('y'))));
+    var words = List.of(
+        new Word('W', 'h', 'e', 'r', 'e'),
+        new Word('t', 'h', 'e', 'r', 'e'),
+        new Word('i', 's'),
+        new Word('a'),
+        new Word('w', 'h', 'i', 'p'),
+        new Word('t', 'h', 'e', 'r', 'e'),
+        new Word('i', 's'),
+        new Word('a'),
+        new Word('w', 'a', 'y')
+    );
 
     return new Sentence(words);
 
@@ -57,20 +50,14 @@ public class Messenger {
 
   LetterComposite messageFromElves() {
 
-    List<Word> words = new ArrayList<>();
-
-    words.add(new Word(Arrays.asList(new Letter('M'), new Letter('u'), new Letter('c'), new Letter(
-        'h'))));
-    words.add(new Word(Arrays.asList(new Letter('w'), new Letter('i'), new Letter('n'), new Letter(
-        'd'))));
-    words.add(new Word(Arrays.asList(new Letter('p'), new Letter('o'), new Letter('u'), new Letter(
-        'r'), new Letter('s'))));
-    words.add(new Word(Arrays.asList(new Letter('f'), new Letter('r'), new Letter('o'), new Letter(
-        'm'))));
-    words.add(new Word(Arrays.asList(new Letter('y'), new Letter('o'), new Letter('u'), new Letter(
-        'r'))));
-    words.add(new Word(Arrays.asList(new Letter('m'), new Letter('o'), new Letter('u'), new Letter(
-        't'), new Letter('h'))));
+    var words = List.of(
+        new Word('M', 'u', 'c', 'h'),
+        new Word('w', 'i', 'n', 'd'),
+        new Word('p', 'o', 'u', 'r', 's'),
+        new Word('f', 'r', 'o', 'm'),
+        new Word('y', 'o', 'u', 'r'),
+        new Word('m', 'o', 'u', 't', 'h')
+    );
 
     return new Sentence(words);
 

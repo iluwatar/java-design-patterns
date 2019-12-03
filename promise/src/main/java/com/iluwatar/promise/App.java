@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.promise;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -31,10 +30,12 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- *
- *  The Promise object is used for asynchronous computations. A Promise represents an operation
- *  that hasn't completed yet, but is expected in the future.
+ * The Promise object is used for asynchronous computations. A Promise represents an operation
+ * that hasn't completed yet, but is expected in the future.
  *
  * <p>A Promise represents a proxy for a value not necessarily known when the promise is created. It
  * allows you to associate dependent promises to an asynchronous action's eventual success value or
@@ -48,15 +49,14 @@ import java.util.concurrent.Executors;
  * <li> Prevents callback hell and provides callback aggregation
  * </ul>
  *
- * <p>
- * In this application the usage of promise is demonstrated with two examples:
+ * <p>In this application the usage of promise is demonstrated with two examples:
  * <ul>
  * <li>Count Lines: In this example a file is downloaded and its line count is calculated.
  * The calculated line count is then consumed and printed on console.
  * <li>Lowest Character Frequency: In this example a file is downloaded and its lowest frequency
  * character is found and printed on console. This happens via a chain of promises, we start with
- * a file download promise, then a promise of character frequency, then a promise of lowest frequency
- * character which is finally consumed and result is printed on console.
+ * a file download promise, then a promise of character frequency, then a promise of lowest
+ * frequency character which is finally consumed and result is printed on console.
  * </ul>
  * 
  * @see CompletableFuture
@@ -75,7 +75,7 @@ public class App {
   }
 
   /**
-   * Program entry point
+   * Program entry point.
    * @param args arguments
    * @throws InterruptedException if main thread is interrupted.
    * @throws ExecutionException if an execution error occurs.

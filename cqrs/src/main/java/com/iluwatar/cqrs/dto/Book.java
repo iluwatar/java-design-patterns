@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.cqrs.dto;
 
 import java.util.Objects;
 
 /**
- * 
- * This is a DTO (Data Transfer Object) book, contains only useful information to be returned
- *
+ * This is a DTO (Data Transfer Object) book, contains only useful information to be returned.
  */
 public class Book {
 
@@ -35,11 +34,10 @@ public class Book {
   private double price;
 
   /**
-   * 
-   * @param title
-   *          title of the book
-   * @param price
-   *          price of the book
+   * Constructor.
+   *
+   * @param title title of the book
+   * @param price price of the book
    */
   public Book(String title, double price) {
     this.title = title;

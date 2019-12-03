@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.reader.writer.lock;
 
 import java.util.HashSet;
@@ -28,18 +29,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Class responsible for control the access for reader or writer
- * 
- * Allows multiple readers to hold the lock at same time, but if any writer holds the lock then readers wait. If reader
- * holds the lock then writer waits. This lock is not fair.
+ *
+ * <p>Allows multiple readers to hold the lock at same time, but if any writer holds the lock then
+ * readers wait. If reader holds the lock then writer waits. This lock is not fair.
  */
 public class ReaderWriterLock implements ReadWriteLock {
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(ReaderWriterLock.class);
 
 
@@ -49,13 +49,13 @@ public class ReaderWriterLock implements ReadWriteLock {
 
   /**
    * Global mutex is used to indicate that whether reader or writer gets the lock in the moment.
-   * <p>
-   * 1. When it contains the reference of {@link #readerLock}, it means that the lock is acquired by the reader, another
-   * reader can also do the read operation concurrently. <br>
-   * 2. When it contains the reference of reference of {@link #writerLock}, it means that the lock is acquired by the
-   * writer exclusively, no more reader or writer can get the lock.
-   * <p>
-   * This is the most important field in this class to control the access for reader/writer.
+   *
+   * <p>1. When it contains the reference of {@link #readerLock}, it means that the lock is
+   * acquired by the reader, another reader can also do the read operation concurrently. <br> 2.
+   * When it contains the reference of reference of {@link #writerLock}, it means that the lock is
+   * acquired by the writer exclusively, no more reader or writer can get the lock.
+   *
+   * <p>This is the most important field in this class to control the access for reader/writer.
    */
   private Set<Object> globalMutex = new HashSet<>();
 
@@ -73,22 +73,21 @@ public class ReaderWriterLock implements ReadWriteLock {
   }
 
   /**
-   * return true when globalMutex hold the reference of writerLock
+   * return true when globalMutex hold the reference of writerLock.
    */
   private boolean doesWriterOwnThisLock() {
     return globalMutex.contains(writerLock);
   }
 
   /**
-   * Nobody get the lock when globalMutex contains nothing
-   * 
+   * Nobody get the lock when globalMutex contains nothing.
    */
   private boolean isLockFree() {
     return globalMutex.isEmpty();
   }
 
   /**
-   * Reader Lock, can be access for more than one reader concurrently if no writer get the lock
+   * Reader Lock, can be access for more than one reader concurrently if no writer get the lock.
    */
   private class ReadLock implements Lock {
 
@@ -103,8 +102,8 @@ public class ReaderWriterLock implements ReadWriteLock {
     }
 
     /**
-     * Acquire the globalMutex lock on behalf of current and future concurrent readers. Make sure no writers currently
-     * owns the lock.
+     * Acquire the globalMutex lock on behalf of current and future concurrent readers. Make sure no
+     * writers currently owns the lock.
      */
     private void acquireForReaders() {
       // Try to get the globalMutex lock for the first reader
@@ -115,7 +114,8 @@ public class ReaderWriterLock implements ReadWriteLock {
           try {
             globalMutex.wait();
           } catch (InterruptedException e) {
-            LOGGER.info("InterruptedException while waiting for globalMutex in acquireForReaders", e);
+            LOGGER
+                .info("InterruptedException while waiting for globalMutex in acquireForReaders", e);
             Thread.currentThread().interrupt();
           }
         }
@@ -164,7 +164,7 @@ public class ReaderWriterLock implements ReadWriteLock {
   }
 
   /**
-   * Writer Lock, can only be accessed by one writer concurrently
+   * Writer Lock, can only be accessed by one writer concurrently.
    */
   private class WriteLock implements Lock {
 

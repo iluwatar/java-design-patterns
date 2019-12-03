@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
 
 import com.google.inject.Inject;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
-
 import java.util.Map;
 
 /**
- * 
- * Lottery administration implementation
- *
+ * Lottery administration implementation.
  */
 public class LotteryAdministration {
 
@@ -41,7 +39,7 @@ public class LotteryAdministration {
   private final WireTransfers wireTransfers;
 
   /**
-   * Constructor
+   * Constructor.
    */
   @Inject
   public LotteryAdministration(LotteryTicketRepository repository, LotteryEventLog notifications,
@@ -52,14 +50,14 @@ public class LotteryAdministration {
   }
 
   /**
-   * Get all the lottery tickets submitted for lottery
+   * Get all the lottery tickets submitted for lottery.
    */
   public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
     return repository.findAll();
   }
 
   /**
-   * Draw lottery numbers
+   * Draw lottery numbers.
    */
   public LotteryNumbers performLottery() {
     LotteryNumbers numbers = LotteryNumbers.createRandom();
@@ -68,11 +66,14 @@ public class LotteryAdministration {
       LotteryTicketCheckResult result = LotteryUtils.checkTicketForPrize(repository, id, numbers);
       if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
         boolean transferred = wireTransfers.transferFunds(LotteryConstants.PRIZE_AMOUNT,
-            LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());
+            LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails()
+                .getBankAccount());
         if (transferred) {
-          notifications.ticketWon(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+          notifications
+              .ticketWon(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
         } else {
-          notifications.prizeError(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+          notifications
+              .prizeError(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
         }
       } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
         notifications.ticketDidNotWin(tickets.get(id).getPlayerDetails());
@@ -82,7 +83,7 @@ public class LotteryAdministration {
   }
 
   /**
-   * Begin new lottery round
+   * Begin new lottery round.
    */
   public void resetLottery() {
     repository.deleteAll();

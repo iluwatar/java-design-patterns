@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.async.method.invocation;
 
 import org.junit.jupiter.api.Test;
 
 /**
- * 
  * Application test
- *
  */
-public class AppTest {
-
+class AppTest {
   @Test
-  public void test() throws Exception {
-    String[] args = {};
-    App.main(args);
+  void test() throws Exception {
+    App.main(new String[]{});
   }
 }

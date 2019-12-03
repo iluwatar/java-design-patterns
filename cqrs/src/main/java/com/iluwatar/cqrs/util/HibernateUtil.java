@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.cqrs.util;
 
 import org.hibernate.SessionFactory;
@@ -30,8 +31,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class simply returns one instance of {@link SessionFactory} initialized when the application is started
- *
+ * This class simply returns one instance of {@link SessionFactory} initialized when the application
+ * is started.
  */
 public class HibernateUtil {
 
@@ -41,7 +42,8 @@ public class HibernateUtil {
   private static SessionFactory buildSessionFactory() {
 
     // configures settings from hibernate.cfg.xml
-    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+    final StandardServiceRegistry registry =
+        new StandardServiceRegistryBuilder().configure().build();
     try {
       return new MetadataSources(registry).buildMetadata().buildSessionFactory();
     } catch (Exception ex) {

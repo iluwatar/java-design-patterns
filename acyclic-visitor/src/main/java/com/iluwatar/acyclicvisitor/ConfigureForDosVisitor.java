@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.acyclicvisitor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * ConfigureForDosVisitor class implements both zoom's and  hayes' visit method 
- * for Dos manufacturer
+ * ConfigureForDosVisitor class implements both zoom's and  hayes' visit method for Dos
+ * manufacturer.
  */
 public class ConfigureForDosVisitor implements AllModemVisitor {
 

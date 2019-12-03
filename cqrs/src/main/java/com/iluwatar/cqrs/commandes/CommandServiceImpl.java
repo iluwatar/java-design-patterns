@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cqrs.commandes;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+package com.iluwatar.cqrs.commandes;
 
 import com.iluwatar.cqrs.domain.model.Author;
 import com.iluwatar.cqrs.domain.model.Book;
 import com.iluwatar.cqrs.util.HibernateUtil;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
- * This class is an implementation of {@link ICommandService} interface. It uses Hibernate as an api for persistence.
- *
+ * This class is an implementation of {@link ICommandService} interface. It uses Hibernate as an api
+ * for persistence.
  */
 public class CommandServiceImpl implements ICommandService {
 

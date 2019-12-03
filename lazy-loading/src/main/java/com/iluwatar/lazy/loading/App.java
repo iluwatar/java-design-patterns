@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,28 +20,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.lazy.loading;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * Lazy loading idiom defers object creation until needed.
- * <p>
- * This example shows different implementations of the pattern with increasing sophistication.
- * <p>
- * Additional information and lazy loading flavours are described in
- * http://martinfowler.com/eaaCatalog/lazyLoad.html
  *
+ * <p>This example shows different implementations of the pattern with increasing sophistication.
+ *
+ * <p>Additional information and lazy loading flavours are described in
+ * http://martinfowler.com/eaaCatalog/lazyLoad.html
  */
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {

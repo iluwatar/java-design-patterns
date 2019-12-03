@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.repository;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
-
 import javax.sql.DataSource;
-
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -39,18 +40,17 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 /**
- * This is the same example as in {@link App} but with annotations based 
- * configuration for Spring.
- *
+ * This is the same example as in {@link App} but with annotations based configuration for Spring.
  */
 @EnableJpaRepositories
+@SpringBootConfiguration
 public class AppConfig {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
 
   /**
-   * Creation of H2 db
-   * 
+   * Creation of H2 db.
+   *
    * @return A new Instance of DataSource
    */
   @Bean(destroyMethod = "close")
@@ -60,15 +60,16 @@ public class AppConfig {
     basicDataSource.setUrl("jdbc:h2:~/databases/person");
     basicDataSource.setUsername("sa");
     basicDataSource.setPassword("sa");
-    return (DataSource) basicDataSource;
+    return basicDataSource;
   }
 
   /**
-   * Factory to create a especific instance of Entity Manager
+   * Factory to create a especific instance of Entity Manager.
    */
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-    LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
+    LocalContainerEntityManagerFactoryBean entityManager =
+        new LocalContainerEntityManagerFactoryBean();
     entityManager.setDataSource(dataSource());
     entityManager.setPackagesToScan("com.iluwatar");
     entityManager.setPersistenceProvider(new HibernatePersistenceProvider());
@@ -78,7 +79,7 @@ public class AppConfig {
   }
 
   /**
-   * Properties for Jpa
+   * Properties for Jpa.
    */
   private static Properties jpaProperties() {
     Properties properties = new Properties();
@@ -88,7 +89,7 @@ public class AppConfig {
   }
 
   /**
-   * Get transaction manager
+   * Get transaction manager.
    */
   @Bean
   public JpaTransactionManager transactionManager() throws SQLException {
@@ -98,10 +99,9 @@ public class AppConfig {
   }
 
   /**
-   * Program entry point
-   * 
-   * @param args
-   *          command line args
+   * Program entry point.
+   *
+   * @param args command line args
    */
   public static void main(String[] args) {
 
@@ -134,17 +134,17 @@ public class AppConfig {
     nasta.setSurname("Spotakova");
     repository.save(nasta);
 
-    LOGGER.info("Find by id 2: {}", repository.findOne(2L));
+    LOGGER.info("Find by id 2: {}", repository.findById(2L).get());
 
     // Remove record from Person
-    repository.delete(2L);
+    repository.deleteById(2L);
 
     // count records
     LOGGER.info("Count Person records: {}", repository.count());
 
     // find by name
-    Person p = repository.findOne(new PersonSpecifications.NameEqualSpec("John"));
-    LOGGER.info("Find by John is {}", p);
+    Optional<Person> p = repository.findOne(new PersonSpecifications.NameEqualSpec("John"));
+    LOGGER.info("Find by John is {}", p.get());
 
     // find by age
     persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));

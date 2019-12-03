@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,18 +26,19 @@ package com.iluwatar.masterworker;
 import java.util.ArrayList;
 
 /**
- *The abstract Input class, having 1 public field which contains input data,
- *and abstract method divideData.
+ * The abstract Input class, having 1 public field which contains input data, and abstract method
+ * divideData.
+ *
  * @param <T> T will be type of data.
  */
 
 public abstract class Input<T> {
-  
+
   public final T data;
-  
+
   public Input(T data) {
     this.data = data;
   }
-  
+
   public abstract ArrayList<Input> divideData(int num);
 }

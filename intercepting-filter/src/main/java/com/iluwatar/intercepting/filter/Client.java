@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,18 +35,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 
 /**
- * The Client class is responsible for handling the input and running them through filters inside the
- * {@link FilterManager}.
+ * The Client class is responsible for handling the input and running them through filters inside
+ * the {@link FilterManager}.
  *
- * This is where {@link Filter}s come to play as the client pre-processes the request before being displayed in the
- * {@link Target}.
- * 
+ * <p>This is where {@link Filter}s come to play as the client pre-processes the request before
+ * being displayed in the {@link Target}.
+ *
  * @author joshzambales
- *
  */
 public class Client extends JFrame { // NOSONAR
 
@@ -56,7 +57,7 @@ public class Client extends JFrame { // NOSONAR
   private JButton processButton;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Client() {
     super("Client System");
@@ -106,8 +107,10 @@ public class Client extends JFrame { // NOSONAR
     });
 
     processButton.addActionListener(e -> {
-      Order order = new Order(jtFields[0].getText(), jtFields[1].getText(), jtAreas[0].getText(), jtFields[2].getText(),
-          jtAreas[1].getText());
+      Order order =
+          new Order(jtFields[0].getText(), jtFields[1].getText(), jtAreas[0].getText(), jtFields[2]
+              .getText(),
+              jtAreas[1].getText());
       jl.setText(sendRequest(order));
     });
 

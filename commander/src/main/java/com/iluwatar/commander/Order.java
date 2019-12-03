@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp�l�
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,17 +34,18 @@ public class Order { //can store all transactions ids also
 
   enum PaymentStatus {
     NotDone, Trying, Done
-  };
-  
+  }
+
   enum MessageSent {
     NoneSent, PaymentFail, PaymentTrying, PaymentSuccessful
-  };
+  }
 
   final User user;
   final String item;
   public final String id;
   final float price;
   final long createdTime;
+  private static final Random RANDOM = new Random();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<String, Boolean>();
   PaymentStatus paid;
@@ -69,14 +70,13 @@ public class Order { //can store all transactions ids also
     this.addedToEmployeeHandle = false;
   }
 
-  String createUniqueId() {
+  private String createUniqueId() {
     StringBuilder random = new StringBuilder();
-    Random rand = new Random();
     while (random.length() < 12) { // length of the random string.
-      int index = (int) (rand.nextFloat() * ALL_CHARS.length());
+      int index = (int) (RANDOM.nextFloat() * ALL_CHARS.length());
       random.append(ALL_CHARS.charAt(index));
     }
     return random.toString();
   }
-  
+
 }

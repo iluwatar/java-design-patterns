@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.servicelocator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.servicelocator;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The service cache implementation which will cache services that are being created. On first hit,
@@ -58,14 +58,14 @@ public class ServiceCache {
       if (serviceJndiName.equals(serviceName)) {
         cachedService = serviceCache.get(serviceJndiName);
         LOGGER.info("(cache call) Fetched service {}({}) from cache... !",
-                cachedService.getName(), cachedService.getId());
+            cachedService.getName(), cachedService.getId());
       }
     }
     return cachedService;
   }
 
   /**
-   * Adds the service into the cache map
+   * Adds the service into the cache map.
    *
    * @param newService a {@link Service}
    */

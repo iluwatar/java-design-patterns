@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.reactor.app;
 
-import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
+package com.iluwatar.reactor.app;
 
 import com.iluwatar.reactor.framework.AbstractNioChannel;
 import com.iluwatar.reactor.framework.ChannelHandler;
 import com.iluwatar.reactor.framework.NioDatagramChannel.DatagramPacket;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,7 +62,11 @@ public class LoggingHandler implements ChannelHandler {
     }
   }
 
-  private static void sendReply(AbstractNioChannel channel, DatagramPacket incomingPacket, SelectionKey key) {
+  private static void sendReply(
+      AbstractNioChannel channel,
+      DatagramPacket incomingPacket,
+      SelectionKey key
+  ) {
     /*
      * Create a reply acknowledgement datagram packet setting the receiver to the sender of incoming
      * message.

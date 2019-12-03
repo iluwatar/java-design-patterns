@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,32 +20,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servant;
 
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * Servant offers some functionality to a group of classes without defining that functionality in
  * each of them. A Servant is a class whose instance provides methods that take care of a desired
  * service, while objects for which the servant does something, are taken as parameters.
- * <p>
- * In this example {@link Servant} is serving {@link King} and {@link Queen}.
  *
+ * <p>In this example {@link Servant} is serving {@link King} and {@link Queen}.
  */
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  static Servant jenkins = new Servant("Jenkins");
-  static Servant travis = new Servant("Travis");
+  private static Servant jenkins = new Servant("Jenkins");
+  private static Servant travis = new Servant("Travis");
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(String[] args) {
     scenario(jenkins, 1);
@@ -53,15 +51,13 @@ public class App {
   }
 
   /**
-   * Can add a List with enum Actions for variable scenarios
+   * Can add a List with enum Actions for variable scenarios.
    */
   public static void scenario(Servant servant, int compliment) {
     King k = new King();
     Queen q = new Queen();
 
-    List<Royalty> guests = new ArrayList<>();
-    guests.add(k);
-    guests.add(q);
+    List<Royalty> guests = List.of(k, q);
 
     // feed
     servant.feed(k);

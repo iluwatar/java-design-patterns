@@ -135,7 +135,7 @@ public class OrcKing {
 Then it is used as follows
 
 ```java
-OrcKing king = new OrcKing();
+var king = new OrcKing();
 king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle")); // Orc commander handling request "defend castle"
 king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner")); // Orc officer handling request "torture prisoner"
 king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax")); // Orc soldier handling request "collect tax"

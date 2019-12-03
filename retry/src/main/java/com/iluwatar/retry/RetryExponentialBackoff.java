@@ -1,7 +1,6 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014-2016 Ilkka SeppÃ¤lÃ¤
+ * The MIT License
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,16 +9,16 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
 package com.iluwatar.retry;
@@ -35,10 +34,11 @@ import java.util.function.Predicate;
 /**
  * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
  *
- * @author George Aristy (george.aristy@gmail.com)
  * @param <T> the remote op's return type
+ * @author George Aristy (george.aristy@gmail.com)
  */
 public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
+  private static final Random RANDOM = new Random();
   private final BusinessOperation<T> op;
   private final int maxAttempts;
   private final long maxDelay;
@@ -46,20 +46,20 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   private final Predicate<Exception> test;
   private final List<Exception> errors;
 
-    /**
-     * Ctor.
-     *
-     * @param op the {@link BusinessOperation} to retry
-     * @param maxAttempts number of times to retry
-     * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
-     *     will be ignored if no tests are given
-     */
+  /**
+   * Ctor.
+   *
+   * @param op          the {@link BusinessOperation} to retry
+   * @param maxAttempts number of times to retry
+   * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
+   *                    will be ignored if no tests are given
+   */
   @SafeVarargs
   public RetryExponentialBackoff(
-            BusinessOperation<T> op,
-            int maxAttempts,
-            long maxDelay,
-            Predicate<Exception>... ignoreTests
+      BusinessOperation<T> op,
+      int maxAttempts,
+      long maxDelay,
+      Predicate<Exception>... ignoreTests
   ) {
     this.op = op;
     this.maxAttempts = maxAttempts;
@@ -69,20 +69,20 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
     this.errors = new ArrayList<>();
   }
 
-    /**
-     * The errors encountered while retrying, in the encounter order.
-     *
-     * @return the errors encountered while retrying
-     */
+  /**
+   * The errors encountered while retrying, in the encounter order.
+   *
+   * @return the errors encountered while retrying
+   */
   public List<Exception> errors() {
     return Collections.unmodifiableList(this.errors);
   }
 
-    /**
-     * The number of retries performed.
-     *
-     * @return the number of retries performed
-     */
+  /**
+   * The number of retries performed.
+   *
+   * @return the number of retries performed
+   */
   public int attempts() {
     return this.attempts.intValue();
   }
@@ -100,16 +100,14 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
         }
 
         try {
-          Random rand = new Random();
-          long testDelay = (long) Math.pow(2, this.attempts()) * 1000 + rand.nextInt(1000);
+          long testDelay = (long) Math.pow(2, this.attempts()) * 1000 + RANDOM.nextInt(1000);
           long delay = testDelay < this.maxDelay ? testDelay : maxDelay;
           Thread.sleep(delay);
         } catch (InterruptedException f) {
           //ignore
         }
       }
-    }
-    while (true);
+    } while (true);
   }
 }
 

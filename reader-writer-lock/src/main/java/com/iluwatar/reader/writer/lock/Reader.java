@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.reader.writer.lock;
 
 import java.util.concurrent.locks.Lock;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Reader class, read when it acquired the read lock
+ * Reader class, read when it acquired the read lock.
  */
 public class Reader implements Runnable {
 
@@ -37,14 +37,14 @@ public class Reader implements Runnable {
   private Lock readLock;
 
   private String name;
-  
+
   private long readingTime;
 
   /**
-   * Create new Reader
-   * 
-   * @param name - Name of the thread owning the reader
-   * @param readLock - Lock for this reader
+   * Create new Reader.
+   *
+   * @param name        - Name of the thread owning the reader
+   * @param readLock    - Lock for this reader
    * @param readingTime - amount of time (in milliseconds) for this reader to engage reading
    */
   public Reader(String name, Lock readLock, long readingTime) {
@@ -52,11 +52,11 @@ public class Reader implements Runnable {
     this.readLock = readLock;
     this.readingTime = readingTime;
   }
-  
+
   /**
-   * Create new Reader who reads for 250ms
-   * 
-   * @param name - Name of the thread owning the reader
+   * Create new Reader who reads for 250ms.
+   *
+   * @param name     - Name of the thread owning the reader
    * @param readLock - Lock for this reader
    */
   public Reader(String name, Lock readLock) {
@@ -77,8 +77,7 @@ public class Reader implements Runnable {
   }
 
   /**
-   * Simulate the read operation
-   * 
+   * Simulate the read operation.
    */
   public void read() throws InterruptedException {
     LOGGER.info("{} begin", name);

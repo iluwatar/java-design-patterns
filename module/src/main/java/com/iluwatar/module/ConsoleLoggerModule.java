@@ -1,47 +1,53 @@
-/**
- * The MIT License Copyright (c) 2014 Ilkka Seppälä
+/*
+ * The MIT License
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rights to use, copy, modify, merge, publish, distribute,
- * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all copies or
- * substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
- * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
+
 package com.iluwatar.module;
 
 import java.io.PrintStream;
-
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * The ConsoleLoggerModule is responsible for showing logs on System Console
- * <p>
- * The below example demonstrates a Console logger module, which can print simple and error messages
- * in two designated formats
+ * The ConsoleLoggerModule is responsible for showing logs on System Console.
+ *
+ * <p>The below example demonstrates a Console logger module, which can print simple and error
+ * messages in two designated formats
  */
 public final class ConsoleLoggerModule {
 
-  private static final Logger LOGGER = Logger.getLogger(ConsoleLoggerModule.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleLoggerModule.class);
 
   private static ConsoleLoggerModule singleton = null;
 
   public PrintStream output = null;
   public PrintStream error = null;
 
-  private ConsoleLoggerModule() {}
+  private ConsoleLoggerModule() {
+  }
 
   /**
-   * Static method to get single instance of class
-   * 
+   * Static method to get single instance of class.
+   *
    * @return singleton instance of ConsoleLoggerModule
    */
   public static ConsoleLoggerModule getSingleton() {
@@ -54,7 +60,7 @@ public final class ConsoleLoggerModule {
   }
 
   /**
-   * Following method performs the initialization
+   * Following method performs the initialization.
    */
   public ConsoleLoggerModule prepare() {
 
@@ -67,7 +73,7 @@ public final class ConsoleLoggerModule {
   }
 
   /**
-   * Following method performs the finalization
+   * Following method performs the finalization.
    */
   public void unprepare() {
 
@@ -87,8 +93,8 @@ public final class ConsoleLoggerModule {
   }
 
   /**
-   * Used to print a message
-   * 
+   * Used to print a message.
+   *
    * @param value will be printed on console
    */
   public void printString(final String value) {
@@ -96,8 +102,8 @@ public final class ConsoleLoggerModule {
   }
 
   /**
-   * Used to print a error message
-   * 
+   * Used to print a error message.
+   *
    * @param value will be printed on error console
    */
   public void printErrorString(final String value) {

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.servicelayer.magic;
 
-import java.util.List;
+package com.iluwatar.servicelayer.magic;
 
 import com.iluwatar.servicelayer.spell.Spell;
 import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.wizard.Wizard;
+import java.util.List;
 
 
 /**
- * 
  * Service interface.
- *
  */
 public interface MagicService {
 

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp�l�
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,71 +27,67 @@ import com.iluwatar.commander.exceptions.IsEmptyException;
 
 /**
  * Queue data structure implementation.
+ *
  * @param <T> is the type of object the queue will hold.
  */
 
 public class Queue<T> {
 
-  Node<T> front;
-  Node<T> rear;
-  public int size = 0;
+  private Node<T> front;
+  private Node<T> rear;
+  private int size;
 
-  class Node<T> {
-    T value;
-    Node<T> next;
+  static class Node<V> {
+    V value;
+    Node<V> next;
 
-    Node(T obj, Node<T> b) {
+    Node(V obj, Node<V> b) {
       value = obj;
       next = b;
     }
   }
 
   /**
-   * Queue constructor
+   * Queue constructor.
    */
-  
   Queue() {
     front = null;
     rear = null;
     size = 0;
   }
-  
+
   boolean isEmpty() {
-    if (size == 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return size == 0;
   }
-  
+
   void enqueue(T obj) {
     if (front == null) {
-      front = new Node(obj, null);
+      front = new Node<>(obj, null);
       rear = front;
     } else {
-      Node temp = new Node(obj, null);
+      var temp = new Node<>(obj, null);
       rear.next = temp;
       rear = temp;
     }
     size++;
   }
-  
+
   T dequeue() throws IsEmptyException {
     if (isEmpty()) {
       throw new IsEmptyException();
     } else {
-      Node temp = front;
+      var temp = front;
       front = front.next;
       size = size - 1;
-      return ((T) temp.value);
+      return temp.value;
     }
   }
-  
+
   T peek() throws IsEmptyException {
     if (isEmpty()) {
       throw new IsEmptyException();
     } else {
-      return ((T)front.value);
+      return front.value;
     }
   }
 }

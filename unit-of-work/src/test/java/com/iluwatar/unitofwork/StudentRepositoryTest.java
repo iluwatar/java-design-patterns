@@ -1,7 +1,6 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014-2017 Piyush Chaudhari
+ * The MIT License
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,33 +9,35 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
 package com.iluwatar.unitofwork;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 
 /**
  * tests {@link StudentRepository}
@@ -52,7 +53,7 @@ public class StudentRepositoryTest {
   private StudentRepository studentRepository;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     context = new HashMap<>();
     studentRepository = new StudentRepository(context, studentDatabase);
   }
@@ -86,9 +87,9 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldSaveAllLocalChangesToDb() {
-    context.put(IUnitOfWork.INSERT, Collections.singletonList(student1));
-    context.put(IUnitOfWork.MODIFY, Collections.singletonList(student1));
-    context.put(IUnitOfWork.DELETE, Collections.singletonList(student1));
+    context.put(IUnitOfWork.INSERT, List.of(student1));
+    context.put(IUnitOfWork.MODIFY, List.of(student1));
+    context.put(IUnitOfWork.DELETE, List.of(student1));
 
     studentRepository.commit();
 
@@ -99,7 +100,7 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotWriteToDbIfContextIsNull() {
-    StudentRepository studentRepository = new StudentRepository(null, studentDatabase);
+    var studentRepository = new StudentRepository(null, studentDatabase);
 
     studentRepository.commit();
 
@@ -108,7 +109,7 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotWriteToDbIfNothingToCommit() {
-    StudentRepository studentRepository = new StudentRepository(new HashMap<>(), studentDatabase);
+    var studentRepository = new StudentRepository(new HashMap<>(), studentDatabase);
 
     studentRepository.commit();
 
@@ -117,8 +118,8 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotInsertToDbIfNoRegisteredStudentsToBeCommitted() {
-    context.put(IUnitOfWork.MODIFY, Collections.singletonList(student1));
-    context.put(IUnitOfWork.DELETE, Collections.singletonList(student1));
+    context.put(IUnitOfWork.MODIFY, List.of(student1));
+    context.put(IUnitOfWork.DELETE, List.of(student1));
 
     studentRepository.commit();
 
@@ -127,8 +128,8 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotModifyToDbIfNotRegisteredStudentsToBeCommitted() {
-    context.put(IUnitOfWork.INSERT, Collections.singletonList(student1));
-    context.put(IUnitOfWork.DELETE, Collections.singletonList(student1));
+    context.put(IUnitOfWork.INSERT, List.of(student1));
+    context.put(IUnitOfWork.DELETE, List.of(student1));
 
     studentRepository.commit();
 
@@ -137,8 +138,8 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotDeleteFromDbIfNotRegisteredStudentsToBeCommitted() {
-    context.put(IUnitOfWork.INSERT, Collections.singletonList(student1));
-    context.put(IUnitOfWork.MODIFY, Collections.singletonList(student1));
+    context.put(IUnitOfWork.INSERT, List.of(student1));
+    context.put(IUnitOfWork.MODIFY, List.of(student1));
 
     studentRepository.commit();
 

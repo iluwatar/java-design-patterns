@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,26 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.banking;
 
+import com.iluwatar.hexagonal.domain.LotteryConstants;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.iluwatar.hexagonal.domain.LotteryConstants;
-
 /**
- * 
- * Banking implementation
- *
+ * Banking implementation.
  */
 public class InMemoryBank implements WireTransfers {
 
   private static Map<String, Integer> accounts = new HashMap<>();
-  
+
   static {
-    accounts.put(LotteryConstants.SERVICE_BANK_ACCOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT_BALANCE);
+    accounts
+        .put(LotteryConstants.SERVICE_BANK_ACCOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT_BALANCE);
   }
-  
+
   @Override
   public void setFunds(String bankAccount, int amount) {
     accounts.put(bankAccount, amount);
@@ -51,10 +50,10 @@ public class InMemoryBank implements WireTransfers {
   }
 
   @Override
-  public boolean transferFunds(int amount, String sourceBackAccount, String destinationBankAccount) {
-    if (accounts.getOrDefault(sourceBackAccount, 0) >= amount) {
-      accounts.put(sourceBackAccount, accounts.get(sourceBackAccount) - amount);
-      accounts.put(destinationBankAccount, accounts.get(destinationBankAccount) + amount);
+  public boolean transferFunds(int amount, String sourceAccount, String destinationAccount) {
+    if (accounts.getOrDefault(sourceAccount, 0) >= amount) {
+      accounts.put(sourceAccount, accounts.get(sourceAccount) - amount);
+      accounts.put(destinationAccount, accounts.get(destinationAccount) + amount);
       return true;
     } else {
       return false;

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,27 +23,28 @@
 
 package com.iluwatar.typeobject;
 
+import com.iluwatar.typeobject.Candy.Type;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.List;
 import java.util.Random;
 import org.json.simple.parser.ParseException;
-import com.iluwatar.typeobject.Candy.Type;
 
 /**
- * The CellPool class allows the reuse of crushed cells instead of creation of new
- * cells each time. The reused cell is given a new candy to hold using the randomCode
- * field which holds all the candies available.
+ * The CellPool class allows the reuse of crushed cells instead of creation of new cells each time.
+ * The reused cell is given a new candy to hold using the randomCode field which holds all the
+ * candies available.
  */
 
 public class CellPool {
-  ArrayList<Cell> pool;
+  private static final Random RANDOM = new Random();
+  List<Cell> pool;
   int pointer;
   Candy[] randomCode;
-  
+
   CellPool(int num) {
-    this.pool = new ArrayList<Cell>(num);    
+    this.pool = new ArrayList<>(num);
     try {
       this.randomCode = assignRandomCandytypes();
     } catch (Exception e) {
@@ -57,34 +58,32 @@ public class CellPool {
       randomCode[4] = new Candy("orange gum", "candy", Type.crushableCandy, 10);
     }
     for (int i = 0; i < num; i++) {
-      Cell c = new Cell();
-      Random rand = new Random();
-      c.candy = randomCode[rand.nextInt(randomCode.length)];
+      var c = new Cell();
+      c.candy = randomCode[RANDOM.nextInt(randomCode.length)];
       this.pool.add(c);
     }
     this.pointer = num - 1;
   }
-  
+
   Cell getNewCell() {
-    Cell newCell = this.pool.remove(pointer);
+    var newCell = this.pool.remove(pointer);
     pointer--;
     return newCell;
   }
-  
+
   void addNewCell(Cell c) {
-    Random rand = new Random();
-    c.candy = randomCode[rand.nextInt(randomCode.length)]; //changing candytype to new
+    c.candy = randomCode[RANDOM.nextInt(randomCode.length)]; //changing candytype to new
     this.pool.add(c);
     pointer++;
   }
-  
+
   Candy[] assignRandomCandytypes() throws FileNotFoundException, IOException, ParseException {
-    JsonParser jp = new JsonParser();
+    var jp = new JsonParser();
     jp.parse();
-    Candy[] randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
-    int i = 0;
-    for (Enumeration<String> e = jp.candies.keys(); e.hasMoreElements();) {
-      String s = e.nextElement();
+    var randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
+    var i = 0;
+    for (var e = jp.candies.keys(); e.hasMoreElements(); ) {
+      var s = e.nextElement();
       if (!s.equals("fruit") && !s.equals("candy")) {
         //not generic
         randomCode[i] = jp.candies.get(s);

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.serverless.faas;
 
 import java.io.Serializable;
 
 /**
- * Lambda context information
+ * Lambda context information.
  */
 public class LambdaInfo implements Serializable {
 
@@ -109,27 +110,33 @@ public class LambdaInfo implements Serializable {
 
     LambdaInfo that = (LambdaInfo) o;
 
-    if (awsRequestId != null ? !awsRequestId.equals(that.awsRequestId) : that.awsRequestId != null) {
+    if (awsRequestId != null ? !awsRequestId
+        .equals(that.awsRequestId) : that.awsRequestId != null) {
       return false;
     }
-    if (logGroupName != null ? !logGroupName.equals(that.logGroupName) : that.logGroupName != null) {
+    if (logGroupName != null ? !logGroupName
+        .equals(that.logGroupName) : that.logGroupName != null) {
       return false;
     }
-    if (logStreamName != null ? !logStreamName.equals(that.logStreamName) : that.logStreamName != null) {
+    if (logStreamName != null ? !logStreamName
+        .equals(that.logStreamName) : that.logStreamName != null) {
       return false;
     }
-    if (functionName != null ? !functionName.equals(that.functionName) : that.functionName != null) {
+    if (functionName != null ? !functionName
+        .equals(that.functionName) : that.functionName != null) {
       return false;
     }
-    if (functionVersion != null ? !functionVersion.equals(that.functionVersion) : that.functionVersion != null) {
+    if (functionVersion != null ? !functionVersion
+        .equals(that.functionVersion) : that.functionVersion != null) {
       return false;
     }
-    return memoryLimitInMb != null ? memoryLimitInMb.equals(that.memoryLimitInMb) : that.memoryLimitInMb == null;
+    return memoryLimitInMb != null ? memoryLimitInMb
+        .equals(that.memoryLimitInMb) : that.memoryLimitInMb == null;
   }
 
   @Override
   public int hashCode() {
-    int result = awsRequestId != null ? awsRequestId.hashCode() : 0;
+    var result = awsRequestId != null ? awsRequestId.hashCode() : 0;
     result = 31 * result + (logGroupName != null ? logGroupName.hashCode() : 0);
     result = 31 * result + (logStreamName != null ? logStreamName.hashCode() : 0);
     result = 31 * result + (functionName != null ? functionName.hashCode() : 0);

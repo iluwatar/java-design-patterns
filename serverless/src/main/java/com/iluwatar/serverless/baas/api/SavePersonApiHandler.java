@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.serverless.baas.api;
 
 import com.amazonaws.services.lambda.runtime.Context;
@@ -27,24 +28,23 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.iluwatar.serverless.baas.model.Person;
-import org.apache.log4j.Logger;
-
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * save person into persons collection
- * Created by dheeraj.mummar on 3/4/18.
+ * save person into persons collection Created by dheeraj.mummar on 3/4/18.
  */
 public class SavePersonApiHandler extends AbstractDynamoDbHandler<Person>
     implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-  private static final Logger LOG = Logger.getLogger(SavePersonApiHandler.class);
+  private static final Logger LOG = LoggerFactory.getLogger(SavePersonApiHandler.class);
   private static final Integer CREATED_STATUS_CODE = 201;
   private static final Integer BAD_REQUEST_STATUS_CODE = 400;
 
   @Override
-  public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent
-                                                apiGatewayProxyRequestEvent, Context context) {
+  public APIGatewayProxyResponseEvent handleRequest(
+      APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent, Context context) {
     APIGatewayProxyResponseEvent apiGatewayProxyResponseEvent;
     Person person;
     try {
