@@ -35,6 +35,7 @@ public class ElfWarlord extends Warlord {
   }
 
   public ElfWarlord(ElfWarlord elfWarlord) {
+    super(elfWarlord);
     this.helpType = elfWarlord.helpType;
   }
 
@@ -48,4 +49,25 @@ public class ElfWarlord extends Warlord {
     return "Elven warlord helps in " + helpType;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    ElfWarlord other = (ElfWarlord) obj;
+    if (helpType == null) {
+      if (other.helpType != null) {
+        return false;
+      }
+    } else if (!helpType.equals(other.helpType)) {
+      return false;
+    }
+    return true;
+  }
 }

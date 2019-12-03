@@ -21,42 +21,34 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.prototype;
+package com.iluwatar.updatemethod;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/28/15 - 8:34 PM
- *
- * @author Jeroen Meulemeester
+ * Abstract class for all the entity types.
  */
-public class HeroFactoryImplTest {
+public abstract class Entity {
 
-  @Test
-  public void testFactory() throws Exception {
-    final Mage mage = mock(Mage.class);
-    final Warlord warlord = mock(Warlord.class);
-    final Beast beast = mock(Beast.class);
+  protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    when(mage.copy()).thenThrow(CloneNotSupportedException.class);
-    when(warlord.copy()).thenThrow(CloneNotSupportedException.class);
-    when(beast.copy()).thenThrow(CloneNotSupportedException.class);
+  protected int id;
 
-    final HeroFactoryImpl factory = new HeroFactoryImpl(mage, warlord, beast);
-    assertNull(factory.createMage());
-    assertNull(factory.createWarlord());
-    assertNull(factory.createBeast());
+  protected int position;
 
-    verify(mage).copy();
-    verify(warlord).copy();
-    verify(beast).copy();
-    verifyNoMoreInteractions(mage, warlord, beast);
+  public Entity(int id) {
+    this.id = id;
+    this.position = 0;
   }
 
+  public abstract void update();
+
+  public int getPosition() {
+    return position;
+  }
+
+  public void setPosition(int position) {
+    this.position = position;
+  }
 }

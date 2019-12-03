@@ -28,7 +28,6 @@ package com.iluwatar.prototype;
  */
 public class ElfMage extends Mage {
 
-
   private String helpType;
 
   public ElfMage(String helpType) {
@@ -36,6 +35,7 @@ public class ElfMage extends Mage {
   }
 
   public ElfMage(ElfMage elfMage) {
+    super(elfMage);
     this.helpType = elfMage.helpType;
   }
 
@@ -49,4 +49,25 @@ public class ElfMage extends Mage {
     return "Elven mage helps in " + helpType;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    ElfMage other = (ElfMage) obj;
+    if (helpType == null) {
+      if (other.helpType != null) {
+        return false;
+      }
+    } else if (!helpType.equals(other.helpType)) {
+      return false;
+    }
+    return true;
+  }
 }
