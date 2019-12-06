@@ -46,36 +46,36 @@ public class CustomerTest {
 
   @Test
   public void getAndSetId() {
-    final int newId = 2;
+    final var newId = 2;
     customer.setId(newId);
     assertEquals(newId, customer.getId());
   }
 
   @Test
   public void getAndSetFirstname() {
-    final String newFirstname = "Bill";
+    final var newFirstname = "Bill";
     customer.setFirstName(newFirstname);
     assertEquals(newFirstname, customer.getFirstName());
   }
 
   @Test
   public void getAndSetLastname() {
-    final String newLastname = "Clinton";
+    final var newLastname = "Clinton";
     customer.setLastName(newLastname);
     assertEquals(newLastname, customer.getLastName());
   }
 
   @Test
   public void notEqualWithDifferentId() {
-    final int newId = 2;
-    final Customer otherCustomer = new Customer(newId, FIRSTNAME, LASTNAME);
+    final var newId = 2;
+    final var otherCustomer = new Customer(newId, FIRSTNAME, LASTNAME);
     assertNotEquals(customer, otherCustomer);
     assertNotEquals(customer.hashCode(), otherCustomer.hashCode());
   }
 
   @Test
   public void equalsWithSameObjectValues() {
-    final Customer otherCustomer = new Customer(ID, FIRSTNAME, LASTNAME);
+    final var otherCustomer = new Customer(ID, FIRSTNAME, LASTNAME);
     assertEquals(customer, otherCustomer);
     assertEquals(customer.hashCode(), otherCustomer.hashCode());
   }

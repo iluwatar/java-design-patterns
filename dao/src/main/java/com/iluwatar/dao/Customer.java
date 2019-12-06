@@ -73,11 +73,11 @@ public class Customer {
 
   @Override
   public boolean equals(final Object that) {
-    boolean isEqual = false;
+    var isEqual = false;
     if (this == that) {
       isEqual = true;
     } else if (that != null && getClass() == that.getClass()) {
-      final Customer customer = (Customer) that;
+      final var customer = (Customer) that;
       if (getId() == customer.getId()) {
         isEqual = true;
       }
