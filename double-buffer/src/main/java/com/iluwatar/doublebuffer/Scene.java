@@ -57,15 +57,15 @@ public class Scene {
    *
    * @param coordinateList list of pixels of which the color should be black
    */
-  public void draw(List<Pair<Integer, Integer>> coordinateList) {
+  public void draw(List<? extends Pair<Integer, Integer>> coordinateList) {
     LOGGER.info("Start drawing next frame");
     LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
     frameBuffers[next].clearAll();
-    for (Pair<Integer, Integer> coordinate : coordinateList) {
+    coordinateList.forEach(coordinate -> {
       var x = coordinate.getKey();
       var y = coordinate.getValue();
       frameBuffers[next].draw(x, y);
-    }
+    });
     LOGGER.info("Swap current and next buffer");
     swap();
     LOGGER.info("Finish swapping");
