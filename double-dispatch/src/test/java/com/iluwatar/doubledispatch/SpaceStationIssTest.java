@@ -23,10 +23,10 @@
 
 package com.iluwatar.doubledispatch;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/10/15 - 11:31 PM
@@ -45,7 +45,7 @@ public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
    */
   @Test
   public void testConstructor() {
-    final SpaceStationIss iss = new SpaceStationIss(1, 2, 3, 4);
+    final var iss = new SpaceStationIss(1, 2, 3, 4);
     assertEquals(1, iss.getLeft());
     assertEquals(2, iss.getTop());
     assertEquals(3, iss.getRight());
@@ -63,8 +63,7 @@ public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
     testCollision(
         new FlamingAsteroid(1, 1, 3, 4),
         false, true,
-        false, false,
-        "SpaceStationIss hits FlamingAsteroid."
+        false, false
     );
   }
 
@@ -76,8 +75,7 @@ public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
     testCollision(
         new Meteoroid(1, 1, 3, 4),
         false, false,
-        false, false,
-        "SpaceStationIss hits Meteoroid."
+        false, false
     );
   }
 
@@ -89,8 +87,7 @@ public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
     testCollision(
         new SpaceStationIss(1, 1, 3, 4),
         true, false,
-        false, false,
-        "SpaceStationIss hits SpaceStationIss. SpaceStationIss is damaged!"
+        false, false
     );
   }
 
@@ -102,8 +99,7 @@ public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
     testCollision(
         new SpaceStationMir(1, 1, 3, 4),
         true, false,
-        false, false,
-        "SpaceStationIss hits SpaceStationMir. SpaceStationMir is damaged!"
+        false, false
     );
   }
 
