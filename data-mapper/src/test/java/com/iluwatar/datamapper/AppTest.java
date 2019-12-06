@@ -32,7 +32,6 @@ public final class AppTest {
 
   @Test
   public void test() {
-    final String[] args = {};
-    App.main(args);
+    App.main();
   }
 }
