@@ -24,15 +24,9 @@
 package com.iluwatar.cqrs.app;
 
 import com.iluwatar.cqrs.commandes.CommandServiceImpl;
-import com.iluwatar.cqrs.commandes.ICommandService;
 import com.iluwatar.cqrs.constants.AppConstants;
-import com.iluwatar.cqrs.dto.Author;
-import com.iluwatar.cqrs.dto.Book;
-import com.iluwatar.cqrs.queries.IQueryService;
 import com.iluwatar.cqrs.queries.QueryServiceImpl;
 import com.iluwatar.cqrs.util.HibernateUtil;
-import java.math.BigInteger;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +50,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    ICommandService commands = new CommandServiceImpl();
+    var commands = new CommandServiceImpl();
 
     // Create Authors and Books using CommandService
     commands.authorCreated(AppConstants.E_EVANS, "Eric Evans", "evans@email.com");
@@ -72,15 +66,15 @@ public class App {
     commands.bookAddedToAuthor("Domain Specific Languages", 48.89, AppConstants.M_FOWLER);
     commands.authorNameUpdated(AppConstants.E_EVANS, "Eric J. Evans");
 
-    IQueryService queries = new QueryServiceImpl();
+    var queries = new QueryServiceImpl();
 
     // Query the database using QueryService
-    Author nullAuthor = queries.getAuthorByUsername("username");
-    Author evans = queries.getAuthorByUsername(AppConstants.E_EVANS);
-    BigInteger blochBooksCount = queries.getAuthorBooksCount(AppConstants.J_BLOCH);
-    BigInteger authorsCount = queries.getAuthorsCount();
-    Book dddBook = queries.getBook("Domain-Driven Design");
-    List<Book> blochBooks = queries.getAuthorBooks(AppConstants.J_BLOCH);
+    var nullAuthor = queries.getAuthorByUsername("username");
+    var evans = queries.getAuthorByUsername(AppConstants.E_EVANS);
+    var blochBooksCount = queries.getAuthorBooksCount(AppConstants.J_BLOCH);
+    var authorsCount = queries.getAuthorsCount();
+    var dddBook = queries.getBook("Domain-Driven Design");
+    var blochBooks = queries.getAuthorBooks(AppConstants.J_BLOCH);
 
     LOGGER.info("Author username : {}", nullAuthor);
     LOGGER.info("Author evans : {}", evans);

@@ -26,8 +26,6 @@ package com.iluwatar.cqrs.commandes;
 import com.iluwatar.cqrs.domain.model.Author;
 import com.iluwatar.cqrs.domain.model.Book;
 import com.iluwatar.cqrs.util.HibernateUtil;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
@@ -39,9 +37,9 @@ public class CommandServiceImpl implements ICommandService {
   private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
   private Author getAuthorByUsername(String username) {
-    Author author = null;
-    try (Session session = sessionFactory.openSession()) {
-      Query query = session.createQuery("from Author where username=:username");
+    Author author;
+    try (var session = sessionFactory.openSession()) {
+      var query = session.createQuery("from Author where username=:username");
       query.setParameter("username", username);
       author = (Author) query.uniqueResult();
     }
@@ -53,9 +51,9 @@ public class CommandServiceImpl implements ICommandService {
   }
 
   private Book getBookByTitle(String title) {
-    Book book = null;
-    try (Session session = sessionFactory.openSession()) {
-      Query query = session.createQuery("from Book where title=:title");
+    Book book;
+    try (var session = sessionFactory.openSession()) {
+      var query = session.createQuery("from Book where title=:title");
       query.setParameter("title", title);
       book = (Book) query.uniqueResult();
     }
@@ -68,8 +66,8 @@ public class CommandServiceImpl implements ICommandService {
 
   @Override
   public void authorCreated(String username, String name, String email) {
-    Author author = new Author(username, name, email);
-    try (Session session = sessionFactory.openSession()) {
+    var author = new Author(username, name, email);
+    try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
       session.save(author);
       session.getTransaction().commit();
@@ -78,9 +76,9 @@ public class CommandServiceImpl implements ICommandService {
 
   @Override
   public void bookAddedToAuthor(String title, double price, String username) {
-    Author author = getAuthorByUsername(username);
-    Book book = new Book(title, price, author);
-    try (Session session = sessionFactory.openSession()) {
+    var author = getAuthorByUsername(username);
+    var book = new Book(title, price, author);
+    try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
       session.save(book);
       session.getTransaction().commit();
@@ -89,9 +87,9 @@ public class CommandServiceImpl implements ICommandService {
 
   @Override
   public void authorNameUpdated(String username, String name) {
-    Author author = getAuthorByUsername(username);
+    var author = getAuthorByUsername(username);
     author.setName(name);
-    try (Session session = sessionFactory.openSession()) {
+    try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
       session.update(author);
       session.getTransaction().commit();
@@ -100,9 +98,9 @@ public class CommandServiceImpl implements ICommandService {
 
   @Override
   public void authorUsernameUpdated(String oldUsername, String newUsername) {
-    Author author = getAuthorByUsername(oldUsername);
+    var author = getAuthorByUsername(oldUsername);
     author.setUsername(newUsername);
-    try (Session session = sessionFactory.openSession()) {
+    try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
       session.update(author);
       session.getTransaction().commit();
@@ -111,9 +109,9 @@ public class CommandServiceImpl implements ICommandService {
 
   @Override
   public void authorEmailUpdated(String username, String email) {
-    Author author = getAuthorByUsername(username);
+    var author = getAuthorByUsername(username);
     author.setEmail(email);
-    try (Session session = sessionFactory.openSession()) {
+    try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
       session.update(author);
       session.getTransaction().commit();
@@ -122,9 +120,9 @@ public class CommandServiceImpl implements ICommandService {
 
   @Override
   public void bookTitleUpdated(String oldTitle, String newTitle) {
-    Book book = getBookByTitle(oldTitle);
+    var book = getBookByTitle(oldTitle);
     book.setTitle(newTitle);
-    try (Session session = sessionFactory.openSession()) {
+    try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
       session.update(book);
       session.getTransaction().commit();
@@ -133,9 +131,9 @@ public class CommandServiceImpl implements ICommandService {
 
   @Override
   public void bookPriceUpdated(String title, double price) {
-    Book book = getBookByTitle(title);
+    var book = getBookByTitle(title);
     book.setPrice(price);
-    try (Session session = sessionFactory.openSession()) {
+    try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
       session.update(book);
       session.getTransaction().commit();
