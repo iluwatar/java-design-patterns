@@ -27,8 +27,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,24 +62,18 @@ public class DataFetcher {
    * @return List of strings
    */
   public List<String> fetch() {
-    ClassLoader classLoader = getClass().getClassLoader();
-    File file = new File(classLoader.getResource(filename).getFile());
+    var classLoader = getClass().getClassLoader();
+    var file = new File(classLoader.getResource(filename).getFile());
 
     if (isDirty(file.lastModified())) {
       LOGGER.info(filename + " is dirty! Re-fetching file content...");
-
-      List<String> data = new ArrayList<String>();
-      try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-        String line;
-        while ((line = br.readLine()) != null) {
-          data.add(line);
-        }
+      try (var br = new BufferedReader(new FileReader(file))) {
+        return br.lines().collect(Collectors.collectingAndThen(Collectors.toList(), List::copyOf));
       } catch (IOException e) {
         e.printStackTrace();
       }
-      return data;
     }
 
-    return new ArrayList<String>();
+    return List.of();
   }
 }
