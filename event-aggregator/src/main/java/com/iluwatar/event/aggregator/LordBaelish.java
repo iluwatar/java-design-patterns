@@ -37,7 +37,7 @@ public class LordBaelish extends EventEmitter {
 
   @Override
   public void timePasses(Weekday day) {
-    if (day.equals(Weekday.FRIDAY)) {
+    if (day == Weekday.FRIDAY) {
       notifyObservers(Event.STARK_SIGHTED);
     }
   }
