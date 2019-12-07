@@ -1,0 +1,14 @@
+@startuml
+package com.iluwatar.eip.aggregator {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.eip.aggregator.routes {
+  class MessageAggregationStrategy {
+    + MessageAggregationStrategy()
+    + aggregate(oldExchange : Exchange, newExchange : Exchange) : Exchange
+  }
+}
+@enduml

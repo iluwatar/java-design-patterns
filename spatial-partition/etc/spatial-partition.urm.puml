@@ -1,0 +1,72 @@
+@startuml
+package com.iluwatar.spatialpartition {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+    ~ noSpatialPartition(height : int, width : int, numOfMovements : int, bubbles : Hashtable<Integer, Bubble>) {static}
+    ~ withSpatialPartition(height : int, width : int, numOfMovements : int, bubbles : Hashtable<Integer, Bubble>) {static}
+  }
+  class Bubble {
+    - LOGGER : Logger {static}
+    - RANDOM : Random {static}
+    ~ radius : int
+    ~ Bubble(x : int, y : int, id : int, radius : int)
+    ~ handleCollision(bubblesToCheck : ArrayList<Point<T>>, allBubbles : Hashtable<Integer, Bubble>)
+    ~ move()
+    ~ pop(allBubbles : Hashtable<Integer, Bubble>)
+    ~ touches(b : Bubble) : boolean
+  }
+  abstract class Point<T> {
+    + coordinateX : int
+    + coordinateY : int
+    + id : int
+    ~ Point<T>(x : int, y : int, id : int)
+    ~ handleCollision(ArrayList<Point<T>>, Hashtable<Integer, T>) {abstract}
+    ~ move() {abstract}
+    ~ touches(T) : boolean {abstract}
+  }
+  class QuadTree {
+    ~ boundary : Rect
+    ~ capacity : int
+    ~ divided : boolean
+    ~ northeast : QuadTree
+    ~ northwest : QuadTree
+    ~ points : Hashtable<Integer, Point<T>>
+    ~ southeast : QuadTree
+    ~ southwest : QuadTree
+    ~ QuadTree(boundary : Rect, capacity : int)
+    ~ divide()
+    ~ insert(p : Point<T>)
+    ~ query(r : Rect, relevantPoints : ArrayList<Point<T>>) : ArrayList<Point<T>>
+  }
+  class Rect {
+    ~ coordinateX : double
+    ~ coordinateY : double
+    ~ height : double
+    ~ width : double
+    ~ Rect(x : double, y : double, width : double, height : double)
+    ~ contains(p : Point<T>) : boolean
+    ~ intersects(other : Rect) : boolean
+  }
+  class SpatialPartitionBubbles {
+    ~ bubbles : Hashtable<Integer, Bubble>
+    ~ quadTree : QuadTree
+    ~ SpatialPartitionBubbles(bubbles : Hashtable<Integer, Bubble>, quadTree : QuadTree)
+    ~ handleCollisionsUsingQt(b : Bubble)
+  }
+  abstract class SpatialPartitionGeneric<T> {
+    ~ playerPositions : Hashtable<Integer, T>
+    ~ quadTree : QuadTree
+    + SpatialPartitionGeneric<T>()
+    ~ handleCollisionsUsingQt(T) {abstract}
+  }
+}
+SpatialPartitionBubbles -->  "-quadTree" QuadTree
+SpatialPartitionGeneric -->  "-quadTree" QuadTree
+QuadTree -->  "-boundary" Rect
+QuadTree -->  "-northwest" QuadTree
+QuadTree -->  "-southwest" QuadTree
+Bubble --|> Point 
+SpatialPartitionBubbles --|> SpatialPartitionGeneric 
+@enduml

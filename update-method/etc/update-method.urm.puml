@@ -1,0 +1,51 @@
+@startuml
+package com.iluwatar.updatemethod {
+  class App {
+    - GAME_RUNNING_TIME : int {static}
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  abstract class Entity {
+    # id : int
+    # logger : Logger
+    # position : int
+    + Entity(id : int)
+    + getPosition() : int
+    + setPosition(position : int)
+    + update() {abstract}
+  }
+  class Skeleton {
+    - PATROLLING_LEFT_BOUNDING : int {static}
+    - PATROLLING_RIGHT_BOUNDING : int {static}
+    # patrollingLeft : boolean
+    + Skeleton(id : int)
+    + Skeleton(id : int, postition : int)
+    + update()
+  }
+  class Statue {
+    # delay : int
+    # frames : int
+    + Statue(id : int)
+    + Statue(id : int, delay : int)
+    - shootLightning()
+    + update()
+  }
+  class World {
+    - LOGGER : Logger {static}
+    # entities : List<Entity>
+    # isRunning : boolean
+    + World()
+    + addEntity(entity : Entity)
+    - gameLoop()
+    - processInput()
+    - render()
+    + run()
+    + stop()
+    - update()
+  }
+}
+World -->  "-entities" Entity
+Skeleton --|> Entity 
+Statue --|> Entity 
+@enduml

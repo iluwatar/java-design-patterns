@@ -53,6 +53,7 @@
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.2</annotation-api.version>
         <system-rules.version>1.19.0</system-rules.version>
+        <urm.version>1.4.8</urm.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -498,6 +499,31 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>com.iluwatar.urm</groupId>
+                <artifactId>urm-maven-plugin</artifactId>
+                <version>1.4.8</version>
+                <configuration>
+                    <!-- if outputDirectory is not set explicitly it will default to your build dir -->
+                    <outputDirectory>${project.basedir}/etc</outputDirectory>
+                    <packages>
+                        <param>com.iluwatar</param>
+                    </packages>
+                    <includeMainDirectory>true</includeMainDirectory>
+                    <includeTestDirectory>false</includeTestDirectory>
+                    <presenter>plantuml</presenter>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>map</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
     <reporting>

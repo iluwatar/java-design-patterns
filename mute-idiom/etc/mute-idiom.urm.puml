@@ -1,0 +1,24 @@
+@startuml
+package com.iluwatar.mute {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    - acquireResource() : Resource {static}
+    - closeResource(resource : Resource) {static}
+    + main(args : String[]) {static}
+    - useOfLoggedMute() {static}
+    - useOfMute() {static}
+    - utilizeResource(resource : Resource) {static}
+  }
+  interface CheckedRunnable {
+    + run() {abstract}
+  }
+  class Mute {
+    - Mute()
+    + loggedMute(runnable : CheckedRunnable) {static}
+    + mute(runnable : CheckedRunnable) {static}
+  }
+  interface Resource {
+  }
+}
+@enduml

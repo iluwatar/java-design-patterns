@@ -1,0 +1,60 @@
+@startuml
+package com.iluwatar.roleobject {
+  class ApplicationRoleObject {
+    - logger : Logger {static}
+    + ApplicationRoleObject()
+    + main(args : String[]) {static}
+  }
+  class BorrowerRole {
+    - name : String
+    + BorrowerRole()
+    + borrow() : String
+    + getName() : String
+    + setName(name : String)
+  }
+  abstract class Customer {
+    + Customer()
+    + addRole(Role) : boolean {abstract}
+    + getRole(Role, Class<T extends Customer>) : Optional<T extends Customer> {abstract}
+    + hasRole(Role) : boolean {abstract}
+    + newCustomer() : Customer {static}
+    + newCustomer(role : Role[]) : Customer {static}
+    + remRole(Role) : boolean {abstract}
+  }
+  class CustomerCore {
+    - roles : Map<Role, CustomerRole>
+    + CustomerCore()
+    + addRole(role : Role) : boolean
+    + getRole(role : Role, expectedRole : Class<T extends Customer>) : Optional<T extends Customer>
+    + hasRole(role : Role) : boolean
+    + remRole(role : Role) : boolean
+    + toString() : String
+  }
+  abstract class CustomerRole {
+    + CustomerRole()
+  }
+  class InvestorRole {
+    - amountToInvest : long
+    - name : String
+    + InvestorRole()
+    + getAmountToInvest() : long
+    + getName() : String
+    + invest() : String
+    + setAmountToInvest(amountToInvest : long)
+    + setName(name : String)
+  }
+  enum Role {
+    + Borrower {static}
+    + Investor {static}
+    - logger : Logger {static}
+    - typeCst : Class<? extends CustomerRole>
+    + instance() : Optional<T extends CustomerRole>
+    + valueOf(name : String) : Role {static}
+    + values() : Role[] {static}
+  }
+}
+BorrowerRole --|> CustomerRole 
+CustomerCore --|> Customer 
+CustomerRole --|> CustomerCore 
+InvestorRole --|> CustomerRole 
+@enduml
