@@ -157,6 +157,9 @@ public static void main(String[] args) {
 }
 ```
 
+## Class diagram
+![alt text](./etc/abstract-factory.urm.png "Abstract Factory class diagram")
+
 
 ## Applicability
 Use the Abstract Factory pattern when

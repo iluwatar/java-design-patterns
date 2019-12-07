@@ -17,6 +17,9 @@ tags:
 
 > Used for centralised parallel processing.
 
+## Class diagram
+![alt text](./etc/master-worker-pattern.urm.png "Master-Worker pattern class diagram")
+
 ## Applicability
 This pattern can be used when data can be divided into multiple parts, all of which need to go through the same computation to give a result, which need to be aggregated to get the final result.
 

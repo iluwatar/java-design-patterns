@@ -12,6 +12,7 @@ tags:
 ## Intent
 Achieve flexibility of untyped languages and keep the type-safety 
 
+## Class diagram
 ![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
 

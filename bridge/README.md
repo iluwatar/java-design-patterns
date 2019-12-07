@@ -179,6 +179,9 @@ hammer.unwield();
 // The item's glow fades.
 ```
 
+## Class diagram
+![alt text](./etc/bridge.urm.png "Bridge class diagram")
+
 ## Applicability
 Use the Bridge pattern when
 

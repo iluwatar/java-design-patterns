@@ -113,6 +113,9 @@ And then it can be used as:
 var mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
 ```
 
+## Class diagram
+![alt text](./etc/builder.urm.png "Builder class diagram")
+
 ## Applicability
 Use the Builder pattern when
 

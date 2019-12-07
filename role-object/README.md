@@ -18,6 +18,9 @@ Adapt an object to different client’s needs through transparently attached rol
 the object has to play in that client’s context. The object manages its role set dynamically. By representing roles as
 individual objects, different contexts are kept separate and system configuration is simplified.
 
+## Class diagram
+![alt text](./etc/role-object.urm.png "Role Object pattern class diagram")
+
 ## Applicability
 Use the Role Object pattern, if:
 - you want to handle a key abstraction in different contexts and you do not want to put the resulting context specific interfaces into the same class interface.

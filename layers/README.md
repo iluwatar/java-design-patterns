@@ -15,15 +15,6 @@ tags:
 Layers is an architectural pattern where software responsibilities are
  divided among the different layers of the application.
 
-![alt text](./etc/layers.png "Layers")
-
-## Applicability
-Use the Layers architecture when
-
-* you want clearly divide software responsibilities into different parts of the program
-* you want to prevent a change from propagating throughout the application
-* you want to make your application more maintainable and testable
-
 ## Explanation
 
 Real world example
@@ -101,6 +92,16 @@ public class CakeViewImpl implements View {
   }
 }
 ```
+
+## Class diagram
+![alt text](./etc/layers.png "Layers")
+
+## Applicability
+Use the Layers architecture when
+
+* you want clearly divide software responsibilities into different parts of the program
+* you want to prevent a change from propagating throughout the application
+* you want to make your application more maintainable and testable
 
 ## Credits
 

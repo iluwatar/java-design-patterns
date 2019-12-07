@@ -109,6 +109,9 @@ proxy.enter(new Wizard("Green wizard")); // Green wizard is not allowed to enter
 proxy.enter(new Wizard("Brown wizard")); // Brown wizard is not allowed to enter!
 ```
 
+## Class diagram
+![alt text](./etc/proxy.urm.png "Proxy pattern class diagram")
+
 ## Applicability
 Proxy is applicable whenever there is a need for a more
 versatile or sophisticated reference to an object than a simple pointer. Here

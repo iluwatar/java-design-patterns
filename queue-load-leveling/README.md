@@ -16,8 +16,8 @@ intermittent heavy loads that may otherwise cause the service to fail or the tas
 This pattern can help to minimize the impact of peaks in demand on availability and responsiveness 
 for both the task and the service.
 
+## Class diagram
 ![alt text](./etc/queue-load-leveling.gif "queue-load-leveling")
-
 
 ## Applicability
 

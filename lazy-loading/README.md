@@ -17,6 +17,7 @@ initialization of an object until the point at which it is needed. It can
 contribute to efficiency in the program's operation if properly and
 appropriately used.
 
+## Class diagram
 ![alt text](./etc/lazy-loading.png "Lazy Loading")
 
 ## Applicability

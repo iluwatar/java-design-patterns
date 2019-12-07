@@ -15,6 +15,7 @@ robust communication systems. The idea is to be as tolerant as possible when
 reading data from another service. This way, when the communication schema
 changes, the readers must not break.
 
+## Class diagram
 ![alt text](./etc/tolerant-reader.png "Tolerant Reader")
 
 ## Applicability

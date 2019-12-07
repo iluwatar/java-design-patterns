@@ -13,6 +13,7 @@ tags:
 Create hierarchy of objects and new objects using already existing
 objects as parents.
 
+## Class diagram
 ![alt text](./etc/property.png "Property")
 
 ## Applicability

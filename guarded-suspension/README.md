@@ -12,6 +12,7 @@ tags:
 ## Intent
 Use Guarded suspension pattern to handle a situation when you want to execute a method on object which is not in a proper state.
 
+## Class diagram
 ![Guarded Suspension diagram](./etc/guarded-suspension.png)
 
 ## Applicability

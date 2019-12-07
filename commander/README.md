@@ -13,6 +13,9 @@ tags:
 
 > Used to handle all problems that can be encountered when doing distributed transactions.
 
+## Class diagram
+![alt text](./etc/commander.urm.png "Commander class diagram")
+
 ## Applicability
 This pattern can be used when we need to make commits into 2 (or more) databases to complete transaction, which cannot be done atomically and can thereby create problems.
 

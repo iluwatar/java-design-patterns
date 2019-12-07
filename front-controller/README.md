@@ -14,6 +14,7 @@ Introduce a common handler for all requests for a web site. This
 way we can encapsulate common functionality such as security,
 internationalization, routing and logging in a single place.
 
+## Class diagram
 ![alt text](./etc/front-controller.png "Front Controller")
 
 ## Applicability

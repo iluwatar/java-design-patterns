@@ -19,6 +19,7 @@ implements the expected interface, but whose method body is empty. The
 advantage of this approach over a working default implementation is that a Null
 Object is very predictable and has no side effects: it does nothing.
 
+## Class diagram
 ![alt text](./etc/null-object.png "Null Object")
 
 ## Applicability

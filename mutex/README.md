@@ -16,6 +16,7 @@ Binary Semaphore
 ## Intent
 Create a lock which only allows a single thread to access a resource at any one instant.
 
+## Class diagram
 ![alt text](./etc/mutex.png "Mutex")
 
 ## Applicability
