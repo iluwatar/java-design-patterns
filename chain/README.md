@@ -141,6 +141,9 @@ king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner"));
 king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax")); // Orc soldier handling request "collect tax"
 ```
 
+## Class diagram
+![alt text](./etc/chain.urm.png "Chain of Responsibility class diagram")
+
 ## Applicability
 Use Chain of Responsibility when
 

@@ -9,10 +9,11 @@ tags:
  - Difficulty-Intermediate
 ---
 
-![alt text](./etc/acyclic-visitor.png "Acyclic Visitor")
-
 ## Intent
 Allow new functions to be added to existing class hierarchies without affecting those hierarchies, and without creating the troublesome dependency cycles that are inherent to the GOF VISITOR Pattern.
+
+## Class diagram
+![alt text](./etc/acyclic-visitor.png "Acyclic Visitor")
 
 ## Applicability
 This pattern can be used:

@@ -1,0 +1,50 @@
+@startuml
+package com.iluwatar.converter {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Converter<T, U> {
+    - fromDto : Function<T, U>
+    - fromEntity : Function<U, T>
+    + Converter<T, U>(fromDto : Function<T, U>, fromEntity : Function<U, T>)
+    + convertFromDto(dto : T) : U
+    + convertFromEntity(entity : U) : T
+    + createFromDtos(dtos : Collection<T>) : List<U>
+    + createFromEntities(entities : Collection<U>) : List<T>
+  }
+  class User {
+    - firstName : String
+    - isActive : boolean
+    - lastName : String
+    - userId : String
+    + User(firstName : String, lastName : String, isActive : boolean, userId : String)
+    + equals(o : Object) : boolean
+    + getFirstName() : String
+    + getLastName() : String
+    + getUserId() : String
+    + hashCode() : int
+    + isActive() : boolean
+    + toString() : String
+  }
+  class UserConverter {
+    + UserConverter()
+  }
+  class UserDto {
+    - email : String
+    - firstName : String
+    - isActive : boolean
+    - lastName : String
+    + UserDto(firstName : String, lastName : String, isActive : boolean, email : String)
+    + equals(o : Object) : boolean
+    + getEmail() : String
+    + getFirstName() : String
+    + getLastName() : String
+    + hashCode() : int
+    + isActive() : boolean
+    + toString() : String
+  }
+}
+UserConverter --|> Converter 
+@enduml

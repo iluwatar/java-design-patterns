@@ -150,6 +150,9 @@ public class App {
 }
 ```
 
+## Class diagram
+![alt text](./etc/ambassador.urm.png "Ambassador class diagram")
+
 ## Applicability
 Ambassador is applicable when working with a legacy remote service that cannot
 be modified or would be extremely difficult to modify. Connectivity features can

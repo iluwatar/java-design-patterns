@@ -48,8 +48,6 @@ public class AggregatorRoute extends RouteBuilder {
 
   /**
    * Configures the route.
-   *
-   * @throws Exception in case of exception during configuration
    */
   @Override
   public void configure() {

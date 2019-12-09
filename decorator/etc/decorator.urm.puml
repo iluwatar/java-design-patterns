@@ -1,0 +1,32 @@
+@startuml
+package com.iluwatar.decorator {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class ClubbedTroll {
+    - LOGGER : Logger {static}
+    - decorated : Troll
+    + ClubbedTroll(decorated : Troll)
+    + attack()
+    + fleeBattle()
+    + getAttackPower() : int
+  }
+  class SimpleTroll {
+    - LOGGER : Logger {static}
+    + SimpleTroll()
+    + attack()
+    + fleeBattle()
+    + getAttackPower() : int
+  }
+  interface Troll {
+    + attack() {abstract}
+    + fleeBattle() {abstract}
+    + getAttackPower() : int {abstract}
+  }
+}
+ClubbedTroll -->  "-decorated" Troll
+ClubbedTroll ..|> Troll 
+SimpleTroll ..|> Troll 
+@enduml

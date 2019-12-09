@@ -31,9 +31,8 @@ import units.SergeantUnit;
  */
 public class SergeantTest {
   @Test
-  public void sergeantReady() throws Exception {
-    final Sergeant sergeant = new Sergeant(new SergeantUnit("SergeantUnitTest"));
-
+  public void sergeantReady() {
+    final var sergeant = new Sergeant(new SergeantUnit("SergeantUnitTest"));
     sergeant.sergeantReady();
   }
 

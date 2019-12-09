@@ -18,6 +18,7 @@ requires a separate subscription. An Event Aggregator acts as a single source
 of events for many objects. It registers for all the events of the many objects
 allowing clients to register with just the aggregator.
 
+## Class diagram
 ![alt text](./etc/classes.png "Event Aggregator")
 
 ## Applicability

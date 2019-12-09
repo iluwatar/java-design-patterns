@@ -16,6 +16,7 @@ Producer Consumer Design pattern is a classic concurrency pattern which reduces
  coupling between Producer and Consumer by separating Identification of work with Execution of
  Work.
 
+## Class diagram
 ![alt text](./etc/producer-consumer.png "Producer Consumer")
 
 ## Applicability

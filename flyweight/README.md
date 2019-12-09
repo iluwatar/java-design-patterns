@@ -110,6 +110,9 @@ factory.createPotion(PotionType.HOLY_WATER).drink(); // You feel blessed. (Potio
 factory.createPotion(PotionType.HEALING).drink(); // You feel healed. (Potion=648129364)
 ```
 
+## Class diagram
+![alt text](./etc/flyweight.urm.png "Flyweight pattern class diagram")
+
 ## Applicability
 The Flyweight pattern's effectiveness depends heavily on how
 and where it's used. Apply the Flyweight pattern when all of the following are

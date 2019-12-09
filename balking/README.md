@@ -13,6 +13,7 @@ tags:
 Balking Pattern is used to prevent an object from executing certain code if it is an
 incomplete or inappropriate state
 
+## Class diagram
 ![alt text](./etc/balking.png "Balking")
 
 ## Applicability

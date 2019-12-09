@@ -16,6 +16,7 @@ Callback is a piece of executable code that is passed as an
 argument to other code, which is expected to call back (execute) the argument
 at some convenient time.
 
+## Class diagram
 ![alt text](./etc/callback.png "Callback")
 
 ## Applicability

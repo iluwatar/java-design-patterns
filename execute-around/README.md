@@ -16,6 +16,7 @@ should always be executed before and after the business method. A good example
 of this is resource allocation and deallocation leaving the user to specify
 only what to do with the resource.
 
+## Class diagram
 ![alt text](./etc/execute-around.png "Execute Around")
 
 ## Applicability

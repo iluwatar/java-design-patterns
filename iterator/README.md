@@ -17,6 +17,7 @@ Cursor
 Provide a way to access the elements of an aggregate object
 sequentially without exposing its underlying representation.
 
+## Class diagram
 ![alt text](./etc/iterator_1.png "Iterator")
 
 ## Applicability

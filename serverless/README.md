@@ -59,6 +59,9 @@ dynamically manages the allocation of machine resources. Pricing is based on the
 actual amount of resources consumed by an application, rather than on pre-purchased 
 units of capacity. 
 
+## Class diagram
+![alt text](./etc/serverless.urm.png "Serverless pattern class diagram")
+
 ## Serverless framework
 
 [Serverless](https://serverless.com/) is a toolkit for deploying and operating serverless architectures. 

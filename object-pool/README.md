@@ -16,6 +16,7 @@ short periods of time it is advantageous to utilize the Object Pool pattern.
 The Object Pool provides a cache for instantiated objects tracking which ones
 are in use and which are available.
 
+## Class diagram
 ![alt text](./etc/object-pool.png "Object Pool")
 
 ## Applicability

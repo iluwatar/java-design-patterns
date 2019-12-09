@@ -1,0 +1,27 @@
+@startuml
+package com.iluwatar.subclasssandbox {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class GroundDive {
+    + GroundDive()
+    # activate()
+  }
+  class SkyLaunch {
+    + SkyLaunch()
+    # activate()
+  }
+  abstract class Superpower {
+    # logger : Logger
+    + Superpower()
+    # activate() {abstract}
+    # move(x : double, y : double, z : double)
+    # playSound(soundName : String, volumn : int)
+    # spawnParticles(particleType : String, count : int)
+  }
+}
+GroundDive --|> Superpower 
+SkyLaunch --|> Superpower 
+@enduml

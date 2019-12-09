@@ -34,6 +34,8 @@ The variable-step game loop chooses a time step to advance based on how much rea
 
 For fixed-step game loop, a certain amount of real time has elapsed since the last turn of the game loop. This is how much game time need to be simulated for the game’s “now” to catch up with the player’s.
 
+## Class diagram
+![alt text](./etc/game-loop.urm.png "Game Loop pattern class diagram")
 
 ## Credits  
   

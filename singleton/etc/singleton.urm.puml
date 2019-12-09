@@ -1,0 +1,44 @@
+@startuml
+package com.iluwatar.singleton {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum EnumIvoryTower {
+    + INSTANCE {static}
+    + toString() : String
+    + valueOf(name : String) : EnumIvoryTower {static}
+    + values() : EnumIvoryTower[] {static}
+  }
+  class InitializingOnDemandHolderIdiom {
+    - InitializingOnDemandHolderIdiom()
+    + getInstance() : InitializingOnDemandHolderIdiom {static}
+  }
+  -class HelperHolder {
+    - INSTANCE : InitializingOnDemandHolderIdiom {static}
+    - HelperHolder()
+  }
+  class IvoryTower {
+    - INSTANCE : IvoryTower {static}
+    - IvoryTower()
+    + getInstance() : IvoryTower {static}
+  }
+  class ThreadSafeDoubleCheckLocking {
+    - flag : boolean {static}
+    - instance : ThreadSafeDoubleCheckLocking {static}
+    - ThreadSafeDoubleCheckLocking()
+    + getInstance() : ThreadSafeDoubleCheckLocking {static}
+  }
+  class ThreadSafeLazyLoadedIvoryTower {
+    - instance : ThreadSafeLazyLoadedIvoryTower {static}
+    - ThreadSafeLazyLoadedIvoryTower()
+    + getInstance() : ThreadSafeLazyLoadedIvoryTower {static}
+  }
+}
+IvoryTower -->  "-INSTANCE" IvoryTower
+ThreadSafeDoubleCheckLocking -->  "-instance" ThreadSafeDoubleCheckLocking
+ThreadSafeLazyLoadedIvoryTower -->  "-instance" ThreadSafeLazyLoadedIvoryTower
+HelperHolder ..+ InitializingOnDemandHolderIdiom
+HelperHolder -->  "-INSTANCE" InitializingOnDemandHolderIdiom
+@enduml

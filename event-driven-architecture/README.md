@@ -13,6 +13,7 @@ tags:
 ## Intent
 Send and notify state changes of your objects to other applications using an Event-driven Architecture.
 
+## Class diagram
 ![alt text](./etc/eda.png "Event Driven Architecture")
 
 ## Applicability

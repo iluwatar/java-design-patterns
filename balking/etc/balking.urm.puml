@@ -1,0 +1,30 @@
+@startuml
+package com.iluwatar.balking {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface DelayProvider {
+    + executeAfterDelay(long, TimeUnit, Runnable) {abstract}
+  }
+  class WashingMachine {
+    - LOGGER : Logger {static}
+    - delayProvider : DelayProvider
+    - washingMachineState : WashingMachineState
+    + WashingMachine()
+    + WashingMachine(delayProvider : DelayProvider)
+    + endOfWashing()
+    + getWashingMachineState() : WashingMachineState
+    + wash()
+  }
+  enum WashingMachineState {
+    + ENABLED {static}
+    + WASHING {static}
+    + valueOf(name : String) : WashingMachineState {static}
+    + values() : WashingMachineState[] {static}
+  }
+}
+WashingMachine -->  "-washingMachineState" WashingMachineState
+WashingMachine -->  "-delayProvider" DelayProvider
+@enduml

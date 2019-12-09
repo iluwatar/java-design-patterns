@@ -62,6 +62,9 @@ cloned.setName("Dolly");
 System.out.println(cloned.getName()); // Dolly
 ```
 
+## Class diagram
+![alt text](./etc/prototype.urm.png "Prototype pattern class diagram")
+
 ## Applicability
 Use the Prototype pattern when a system should be independent of how its products are created, composed and represented; and
 

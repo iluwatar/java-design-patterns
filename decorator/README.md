@@ -109,6 +109,9 @@ clubbedTroll.attack(); // The troll tries to grab you! The troll swings at you w
 clubbedTroll.fleeBattle(); // The troll shrieks in horror and runs away!
 ```
 
+## Class diagram
+![alt text](./etc/decorator.urm.png "Decorator pattern class diagram")
+
 ## Applicability
 Use Decorator
 

@@ -13,6 +13,7 @@ tags:
 Object provides an abstract interface to some type of database or
 other persistence mechanism.
 
+## Class diagram
 ![alt text](./etc/dao.png "Data Access Object")
 
 ## Applicability

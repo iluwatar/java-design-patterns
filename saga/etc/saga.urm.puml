@@ -1,0 +1,222 @@
+@startuml
+package com.iluwatar.saga.orchestration {
+  class ChapterResult<K> {
+    - state : State
+    - value : K
+    ~ ChapterResult<K>(value : K, state : State)
+    + failure(val : K) : ChapterResult<K> {static}
+    + getValue() : K
+    + isSuccess() : boolean
+    + success(val : K) : ChapterResult<K> {static}
+  }
+  enum State {
+    + FAILURE {static}
+    + SUCCESS {static}
+    + valueOf(name : String) : State {static}
+    + values() : State[] {static}
+  }
+  class FlyBookingService {
+    + FlyBookingService()
+    + getName() : String
+  }
+  class HotelBookingService {
+    + HotelBookingService()
+    + getName() : String
+    + rollback(value : String) : ChapterResult<String>
+  }
+  interface OrchestrationChapter<K> {
+    + getName() : String {abstract}
+    + process(K) : ChapterResult<K> {abstract}
+    + rollback(K) : ChapterResult<K> {abstract}
+  }
+  class OrderService {
+    + OrderService()
+    + getName() : String
+  }
+  class Saga {
+    - chapters : List<Chapter>
+    - Saga()
+    + chapter(name : String) : Saga
+    + create() : Saga {static}
+    + get(idx : int) : Chapter
+    + isPresent(idx : int) : boolean
+  }
+  class Chapter {
+    ~ name : String
+    + Chapter(name : String)
+    + getName() : String
+  }
+  enum Result {
+    + CRASHED {static}
+    + FINISHED {static}
+    + ROLLBACK {static}
+    + valueOf(name : String) : Result {static}
+    + values() : Result[] {static}
+  }
+  class SagaApplication {
+    - LOGGER : Logger {static}
+    + SagaApplication()
+    + main(args : String[]) {static}
+    - newSaga() : Saga {static}
+    - serviceDiscovery() : ServiceDiscoveryService {static}
+  }
+  class SagaOrchestrator {
+    - LOGGER : Logger {static}
+    - saga : Saga
+    - sd : ServiceDiscoveryService
+    - state : CurrentState
+    + SagaOrchestrator(saga : Saga, sd : ServiceDiscoveryService)
+    + execute(value : K) : Result
+  }
+  -class CurrentState {
+    ~ currentNumber : int
+    ~ isForward : boolean
+    ~ CurrentState()
+    ~ back() : int
+    ~ cleanUp()
+    ~ current() : int
+    ~ directionToBack()
+    ~ forward() : int
+    ~ isForward() : boolean
+  }
+  abstract class Service<K> {
+    # LOGGER : Logger {static}
+    + Service<K>()
+    + getName() : String {abstract}
+    + process(value : K) : ChapterResult<K>
+    + rollback(value : K) : ChapterResult<K>
+  }
+  class ServiceDiscoveryService {
+    - services : Map<String, OrchestrationChapter<?>>
+    + ServiceDiscoveryService()
+    + discover(orchestrationChapterService : OrchestrationChapter<?>) : ServiceDiscoveryService
+    + find(service : String) : Optional<OrchestrationChapter<K>>
+  }
+  class WithdrawMoneyService {
+    + WithdrawMoneyService()
+    + getName() : String
+    + process(value : String) : ChapterResult<String>
+  }
+}
+package com.iluwatar.saga.choreography {
+  interface ChoreographyChapter {
+    + execute(Saga) : Saga {abstract}
+    + getName() : String {abstract}
+    + process(Saga) : Saga {abstract}
+    + rollback(Saga) : Saga {abstract}
+  }
+  class FlyBookingService {
+    + FlyBookingService(service : ServiceDiscoveryService)
+    + getName() : String
+  }
+  class HotelBookingService {
+    + HotelBookingService(service : ServiceDiscoveryService)
+    + getName() : String
+  }
+  class OrderService {
+    + OrderService(service : ServiceDiscoveryService)
+    + getName() : String
+  }
+  class Saga {
+    - chapters : List<Chapter>
+    - finished : boolean
+    - forward : boolean
+    - pos : int
+    - Saga()
+    ~ back() : int
+    + chapter(name : String) : Saga
+    + create() : Saga {static}
+    ~ forward() : int
+    ~ getCurrent() : Chapter
+    + getCurrentValue() : Object
+    + getResult() : SagaResult
+    ~ isCurrentSuccess() : boolean
+    ~ isForward() : boolean
+    ~ isPresent() : boolean
+    + setCurrentStatus(result : ChapterResult)
+    + setCurrentValue(value : Object)
+    ~ setFinished(finished : boolean)
+    + setInValue(value : Object) : Saga
+    + toString() : String
+  }
+  class Chapter {
+    - inValue : Object
+    - name : String
+    - result : ChapterResult
+    + Chapter(name : String)
+    + getInValue() : Object
+    + getName() : String
+    + isSuccess() : boolean
+    + setInValue(object : Object)
+    + setResult(result : ChapterResult)
+  }
+  enum ChapterResult {
+    + INIT {static}
+    + ROLLBACK {static}
+    + SUCCESS {static}
+    + valueOf(name : String) : ChapterResult {static}
+    + values() : ChapterResult[] {static}
+  }
+  enum SagaResult {
+    + FINISHED {static}
+    + PROGRESS {static}
+    + ROLLBACKED {static}
+    + valueOf(name : String) : SagaResult {static}
+    + values() : SagaResult[] {static}
+  }
+  class SagaApplication {
+    - LOGGER : Logger {static}
+    + SagaApplication()
+    + main(args : String[]) {static}
+    - newSaga(value : Object) : Saga {static}
+    - serviceDiscovery() : ServiceDiscoveryService {static}
+  }
+  abstract class Service {
+    # LOGGER : Logger {static}
+    - sd : ServiceDiscoveryService
+    + Service(service : ServiceDiscoveryService)
+    + execute(saga : Saga) : Saga
+    - isSagaFinished(saga : Saga) : boolean
+    + process(saga : Saga) : Saga
+    + rollback(saga : Saga) : Saga
+    - serviceNotFoundException(chServiceName : String) : Supplier<RuntimeException>
+  }
+  class ServiceDiscoveryService {
+    - services : Map<String, ChoreographyChapter>
+    + ServiceDiscoveryService()
+    + discover(chapterService : ChoreographyChapter) : ServiceDiscoveryService
+    + find(service : String) : Optional<ChoreographyChapter>
+    + findAny() : ChoreographyChapter
+  }
+  class WithdrawMoneyService {
+    + WithdrawMoneyService(service : ServiceDiscoveryService)
+    + getName() : String
+    + process(saga : Saga) : Saga
+  }
+}
+SagaOrchestrator -->  "-saga" Saga
+SagaOrchestrator -->  "-sd" ServiceDiscoveryService
+SagaOrchestrator -->  "-state" CurrentState
+CurrentState ..+ SagaOrchestrator
+Chapter ..+ Saga
+Saga -->  "-chapters" Chapter
+Chapter -->  "-result" ChapterResult
+ChapterResult ..+ Saga
+ChapterResult -->  "-state" State
+State ..+ ChapterResult
+Result ..+ Saga
+Service -->  "-sd" ServiceDiscoveryService
+SagaResult ..+ Saga
+Saga -->  "-chapters" Chapter
+Chapter ..+ Saga
+FlyBookingService --|> Service 
+HotelBookingService --|> Service 
+OrderService --|> Service 
+Service ..|> ChoreographyChapter 
+WithdrawMoneyService --|> Service 
+FlyBookingService --|> Service 
+HotelBookingService --|> Service 
+OrderService --|> Service 
+Service ..|> OrchestrationChapter 
+WithdrawMoneyService --|> Service 
+@enduml

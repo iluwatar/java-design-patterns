@@ -13,6 +13,7 @@ tags:
 ## Intent
 Broadcast messages from sender to all the interested receivers.
 
+## Class diagram
 ![alt text](./etc/publish-subscribe.png "Publish Subscribe Channel")
 
 ## Applicability

@@ -1,0 +1,56 @@
+@startuml
+package com.iluwatar.factory.method {
+  class App {
+    - LOGGER : Logger {static}
+    - blacksmith : Blacksmith
+    + App(blacksmith : Blacksmith)
+    + main(args : String[]) {static}
+    - manufactureWeapons()
+  }
+  interface Blacksmith {
+    + manufactureWeapon(WeaponType) : Weapon {abstract}
+  }
+  class ElfBlacksmith {
+    - ELFARSENAL : Map<WeaponType, ElfWeapon> {static}
+    + ElfBlacksmith()
+    + manufactureWeapon(weaponType : WeaponType) : Weapon
+  }
+  class ElfWeapon {
+    - weaponType : WeaponType
+    + ElfWeapon(weaponType : WeaponType)
+    + getWeaponType() : WeaponType
+    + toString() : String
+  }
+  class OrcBlacksmith {
+    - ORCARSENAL : Map<WeaponType, OrcWeapon> {static}
+    + OrcBlacksmith()
+    + manufactureWeapon(weaponType : WeaponType) : Weapon
+  }
+  class OrcWeapon {
+    - weaponType : WeaponType
+    + OrcWeapon(weaponType : WeaponType)
+    + getWeaponType() : WeaponType
+    + toString() : String
+  }
+  interface Weapon {
+    + getWeaponType() : WeaponType {abstract}
+  }
+  enum WeaponType {
+    + AXE {static}
+    + SHORT_SWORD {static}
+    + SPEAR {static}
+    + UNDEFINED {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : WeaponType {static}
+    + values() : WeaponType[] {static}
+  }
+}
+ElfWeapon -->  "-weaponType" WeaponType
+OrcWeapon -->  "-weaponType" WeaponType
+App -->  "-blacksmith" Blacksmith
+ElfBlacksmith ..|> Blacksmith 
+ElfWeapon ..|> Weapon 
+OrcBlacksmith ..|> Blacksmith 
+OrcWeapon ..|> Weapon 
+@enduml

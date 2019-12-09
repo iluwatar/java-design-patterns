@@ -97,6 +97,9 @@ var captain = new Captain(new FishingBoatAdapter());
 captain.row();
 ```
 
+## Class diagram
+![alt text](./etc/adapter.urm.png "Adapter class diagram")
+
 ## Applicability
 Use the Adapter pattern when
 

@@ -1,0 +1,63 @@
+@startuml
+package com.iluwatar.gameloop {
+  class App {
+    - GAME_LOOP_DURATION_TIME : int {static}
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Bullet {
+    - position : float
+    + Bullet()
+    + getPosition() : float
+    + setPosition(position : float)
+  }
+  class FixedStepGameLoop {
+    - MS_PER_FRAME : long {static}
+    + FixedStepGameLoop()
+    # processGameLoop()
+    # update()
+  }
+  class FrameBasedGameLoop {
+    + FrameBasedGameLoop()
+    # processGameLoop()
+    # update()
+  }
+  class GameController {
+    # bullet : Bullet
+    + GameController()
+    + getBulletPosition() : float
+    + moveBullet(offset : float)
+  }
+  abstract class GameLoop {
+    # controller : GameController
+    - gameThread : Thread
+    # logger : Logger
+    # status : GameStatus
+    + GameLoop()
+    + isGameRunning() : boolean
+    # processGameLoop() {abstract}
+    # processInput()
+    # render()
+    + run()
+    + stop()
+  }
+  enum GameStatus {
+    + RUNNING {static}
+    + STOPPED {static}
+    + valueOf(name : String) : GameStatus {static}
+    + values() : GameStatus[] {static}
+  }
+  class VariableStepGameLoop {
+    + VariableStepGameLoop()
+    # processGameLoop()
+    # update(elapsedTime : Long)
+  }
+}
+GameLoop -->  "-status" GameStatus
+GameController -->  "-bullet" Bullet
+GameLoop -->  "-controller" GameController
+FixedStepGameLoop --|> GameLoop 
+FrameBasedGameLoop --|> GameLoop 
+VariableStepGameLoop --|> GameLoop 
+@enduml

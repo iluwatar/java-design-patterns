@@ -12,6 +12,9 @@ tags:
 ## Intent
 Ensure that a given client is not able to access service resources more than the assigned limit.
 
+## Class diagram
+![alt text](./etc/throttling-pattern.png "Throttling pattern class diagram")
+
 ## Applicability
 The Throttling pattern should be used:
 

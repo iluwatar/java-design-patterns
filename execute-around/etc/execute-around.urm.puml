@@ -1,0 +1,14 @@
+@startuml
+package com.iluwatar.execute.around {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface FileWriterAction {
+    + writeFile(FileWriter) {abstract}
+  }
+  class SimpleFileWriter {
+    + SimpleFileWriter(filename : String, action : FileWriterAction)
+  }
+}
+@enduml
