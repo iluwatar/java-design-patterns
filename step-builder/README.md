@@ -13,6 +13,7 @@ tags:
 An extension of the Builder pattern that fully guides the user through the creation of the object with no chances of confusion.
 The user experience will be much more improved by the fact that he will only see the next step methods available, NO build method until is the right time to build the object.
 
+## Class diagram
 ![alt text](./etc/step-builder.png "Step Builder")
 
 ## Applicability

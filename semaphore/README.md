@@ -19,6 +19,7 @@ of the semaphore, can access the resources at any given time.
 A semaphore which only allows one concurrent access to a resource
 is called a binary semaphore.
 
+## Class diagram
 ![alt text](./etc/semaphore.png "Semaphore")
 
 ## Applicability

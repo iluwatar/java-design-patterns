@@ -12,6 +12,7 @@ tags:
 ## Intent
 Using empty interfaces as markers to distinguish special treated objects.
 
+## Class diagram
 ![alt text](./etc/MarkerDiagram.png "Marker Interface")
 
 ## Applicability

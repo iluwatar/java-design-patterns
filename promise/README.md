@@ -20,6 +20,7 @@ allows you to associate dependent promises to an asynchronous action's eventual 
 failure reason. Promises are a way to write async code that still appears as though it is executing 
 in a synchronous way.
 
+## Class diagram
 ![alt text](./etc/promise.png "Promise")
 
 ## Applicability

@@ -23,7 +23,6 @@
 
 package com.iluwatar.event.asynchronous;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -75,7 +74,7 @@ public class EventManager implements ThreadCompleteListener {
           + " running. Please wait until it finishes and try again.");
     }
 
-    int eventId = createEvent(eventTime, true);
+    var eventId = createEvent(eventTime, true);
     currentlyRunningSyncEvent = eventId;
 
     return eventId;
@@ -106,9 +105,9 @@ public class EventManager implements ThreadCompleteListener {
           "Maximum event time allowed is " + MAX_EVENT_TIME + " seconds. Please try again.");
     }
 
-    int newEventId = generateId();
+    var newEventId = generateId();
 
-    Event newEvent = new Event(newEventId, eventTime, isSynchronous);
+    var newEvent = new Event(newEventId, eventTime, isSynchronous);
     newEvent.addListener(this);
     eventPool.put(newEventId, newEvent);
 
@@ -167,11 +166,7 @@ public class EventManager implements ThreadCompleteListener {
    */
   @SuppressWarnings("rawtypes")
   public void statusOfAllEvents() {
-    Iterator it = eventPool.entrySet().iterator();
-    while (it.hasNext()) {
-      Map.Entry pair = (Map.Entry) it.next();
-      ((Event) pair.getValue()).status();
-    }
+    eventPool.entrySet().forEach(entry -> ((Event) ((Map.Entry) entry).getValue()).status());
   }
 
   /**
@@ -179,11 +174,7 @@ public class EventManager implements ThreadCompleteListener {
    */
   @SuppressWarnings("rawtypes")
   public void shutdown() {
-    Iterator it = eventPool.entrySet().iterator();
-    while (it.hasNext()) {
-      Map.Entry pair = (Map.Entry) it.next();
-      ((Event) pair.getValue()).stop();
-    }
+    eventPool.entrySet().forEach(entry -> ((Event) ((Map.Entry) entry).getValue()).stop());
   }
 
   /**
@@ -194,7 +185,7 @@ public class EventManager implements ThreadCompleteListener {
   private int generateId() {
     // nextInt is normally exclusive of the top value,
     // so add 1 to make it inclusive
-    int randomNum = rand.nextInt((MAX_ID - MIN_ID) + 1) + MIN_ID;
+    var randomNum = rand.nextInt((MAX_ID - MIN_ID) + 1) + MIN_ID;
     while (eventPool.containsKey(randomNum)) {
       randomNum = rand.nextInt((MAX_ID - MIN_ID) + 1) + MIN_ID;
     }

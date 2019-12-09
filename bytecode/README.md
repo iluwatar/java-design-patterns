@@ -12,6 +12,9 @@ tags:
 ## Intent
 Allows to encode behaviour as instructions for virtual machine.
 
+## Class diagram
+![alt text](./etc/bytecode.urm.png "Bytecode class diagram")
+
 ## Applicability
 Use the Bytecode pattern when you have a lot of behavior you need to define and your
 game’s implementation language isn’t a good fit because:

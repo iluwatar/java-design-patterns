@@ -13,6 +13,7 @@ tags:
 Anticipate that an object’s interface needs to be extended in the future. Additional
 interfaces are defined by extension objects.
 
+## Class diagram
 ![Extension_objects](./etc/extension_obj.png "Extension objects")
 
 ## Applicability

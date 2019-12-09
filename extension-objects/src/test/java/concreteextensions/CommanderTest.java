@@ -32,8 +32,7 @@ import units.CommanderUnit;
 public class CommanderTest {
   @Test
   public void commanderReady() {
-    final Commander commander = new Commander(new CommanderUnit("CommanderUnitTest"));
-
+    final var commander = new Commander(new CommanderUnit("CommanderUnitTest"));
     commander.commanderReady();
   }
 

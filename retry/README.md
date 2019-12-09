@@ -18,8 +18,6 @@ Transparently retry certain operations that involve communication with external
 resources, particularly over the network, isolating calling code from the 
 retry implementation details.
 
-![alt text](./etc/retry.png "Retry")
-
 ## Explanation
 The `Retry` pattern consists retrying operations on remote resources over the 
 network a set number of times. It closely depends on both business and technical
@@ -130,6 +128,9 @@ attempts were left.
 
 [1] Please note that *Hystrix* is a complete implementation of the *Circuit
 Breaker* pattern, of which the *Retry* pattern can be considered a subset of.
+
+## Class diagram
+![alt text](./etc/retry.png "Retry")
 
 ## Applicability
 Whenever an application needs to communicate with an external resource, 

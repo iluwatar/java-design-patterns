@@ -18,10 +18,11 @@ It is possible by representing a computation in one of 2 states : done | more
 (completed with result, or a reference to the reminder of the computation, 
 something like the way a java.util.Supplier does).
 
-
 ## Explanation
 Trampoline pattern allows to define recursive algorithms by iterative loop.
 
+## Class diagram
+![alt text](./etc/trampoline.urm.png "Trampoline pattern class diagram")
 
 ## Applicability
 Use the Trampoline pattern when
@@ -41,5 +42,3 @@ Trampolines in Java usually involve the creation of a GenericListener to pass ev
 
 ## Credits
 * [library 'cyclops-react' uses the pattern](https://github.com/aol/cyclops-react)
-
-

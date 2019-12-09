@@ -1,0 +1,48 @@
+@startuml
+package com.iluwatar.featuretoggle.pattern {
+  interface Service {
+    + getWelcomeMessage(User) : String {abstract}
+    + isEnhanced() : boolean {abstract}
+  }
+}
+package com.iluwatar.featuretoggle.user {
+  class User {
+    - name : String
+    + User(name : String)
+    + toString() : String
+  }
+  class UserGroup {
+    - freeGroup : List<User> {static}
+    - paidGroup : List<User> {static}
+    + UserGroup()
+    + addUserToFreeGroup(user : User) {static}
+    + addUserToPaidGroup(user : User) {static}
+    + isPaid(user : User) : boolean {static}
+  }
+}
+package com.iluwatar.featuretoggle.pattern.tieredversion {
+  class TieredFeatureToggleVersion {
+    + TieredFeatureToggleVersion()
+    + getWelcomeMessage(user : User) : String
+    + isEnhanced() : boolean
+  }
+}
+package com.iluwatar.featuretoggle.pattern.propertiesversion {
+  class PropertiesFeatureToggleVersion {
+    - isEnhanced : boolean
+    + PropertiesFeatureToggleVersion(properties : Properties)
+    + getWelcomeMessage(user : User) : String
+    + isEnhanced() : boolean
+  }
+}
+package com.iluwatar.featuretoggle {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+UserGroup -->  "-freeGroup" User
+PropertiesFeatureToggleVersion ..|> Service 
+TieredFeatureToggleVersion ..|> Service 
+@enduml

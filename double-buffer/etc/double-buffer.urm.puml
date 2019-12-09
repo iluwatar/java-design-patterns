@@ -1,0 +1,45 @@
+@startuml
+package com.iluwatar.doublebuffer {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+    - printBlackPixelCoordinate(buffer : Buffer) {static}
+  }
+  interface Buffer {
+    + clear(int, int) {abstract}
+    + clearAll() {abstract}
+    + draw(int, int) {abstract}
+    + getPixels() : Pixel[] {abstract}
+  }
+  class FrameBuffer {
+    + HEIGHT : int {static}
+    + WIDTH : int {static}
+    - pixels : Pixel[]
+    + FrameBuffer()
+    + clear(x : int, y : int)
+    + clearAll()
+    + draw(x : int, y : int)
+    - getIndex(x : int, y : int) : int
+    + getPixels() : Pixel[]
+  }
+  enum Pixel {
+    + BLACK {static}
+    + WHITE {static}
+    - color : int
+    + valueOf(name : String) : Pixel {static}
+    + values() : Pixel[] {static}
+  }
+  class Scene {
+    - LOGGER : Logger {static}
+    - current : int
+    - frameBuffers : Buffer[]
+    - next : int
+    + Scene()
+    + draw(coordinateList : List<Pair<Integer, Integer>>)
+    + getBuffer() : Buffer
+    - swap()
+  }
+}
+FrameBuffer ..|> Buffer 
+@enduml

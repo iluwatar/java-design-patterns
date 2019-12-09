@@ -48,6 +48,9 @@ EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
 assertEquals(enumIvoryTower1, enumIvoryTower2); // true
 ```
 
+## Class diagram
+![alt text](./etc/singleton.urm.png "Singleton pattern class diagram")
+
 ## Applicability
 Use the Singleton pattern when
 

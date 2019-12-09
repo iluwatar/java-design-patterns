@@ -15,6 +15,7 @@ tags:
 Aggregate calls to microservices in a single location: the API Gateway. The user makes a single
 call to the API Gateway, and the API Gateway then calls each relevant microservice.
 
+## Class diagram
 ![alt text](./etc/api-gateway.png "API Gateway")
 
 ## Applicability

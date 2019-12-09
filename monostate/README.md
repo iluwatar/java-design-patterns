@@ -15,6 +15,7 @@ Borg
 ## Intent
 Enforces a behaviour like sharing the same state amongst all instances.
 
+## Class diagram
 ![alt text](./etc/monostate.png "MonoState")
 
 ## Applicability

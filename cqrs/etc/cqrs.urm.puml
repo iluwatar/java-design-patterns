@@ -1,0 +1,134 @@
+@startuml
+package com.iluwatar.cqrs.util {
+  class HibernateUtil {
+    - LOGGER : Logger {static}
+    - SESSIONFACTORY : SessionFactory {static}
+    + HibernateUtil()
+    - buildSessionFactory() : SessionFactory {static}
+    + getSessionFactory() : SessionFactory {static}
+  }
+}
+package com.iluwatar.cqrs.app {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.cqrs.dto {
+  class Author {
+    - email : String
+    - name : String
+    - username : String
+    + Author()
+    + Author(name : String, email : String, username : String)
+    + equals(obj : Object) : boolean
+    + getEmail() : String
+    + getName() : String
+    + getUsername() : String
+    + hashCode() : int
+    + toString() : String
+  }
+  class Book {
+    - price : double
+    - title : String
+    + Book()
+    + Book(title : String, price : double)
+    + equals(obj : Object) : boolean
+    + getPrice() : double
+    + getTitle() : String
+    + hashCode() : int
+    + toString() : String
+  }
+}
+package com.iluwatar.cqrs.commandes {
+  class CommandServiceImpl {
+    - sessionFactory : SessionFactory
+    + CommandServiceImpl()
+    + authorCreated(username : String, name : String, email : String)
+    + authorEmailUpdated(username : String, email : String)
+    + authorNameUpdated(username : String, name : String)
+    + authorUsernameUpdated(oldUsername : String, newUsername : String)
+    + bookAddedToAuthor(title : String, price : double, username : String)
+    + bookPriceUpdated(title : String, price : double)
+    + bookTitleUpdated(oldTitle : String, newTitle : String)
+    - getAuthorByUsername(username : String) : Author
+    - getBookByTitle(title : String) : Book
+  }
+  interface ICommandService {
+    + authorCreated(String, String, String) {abstract}
+    + authorEmailUpdated(String, String) {abstract}
+    + authorNameUpdated(String, String) {abstract}
+    + authorUsernameUpdated(String, String) {abstract}
+    + bookAddedToAuthor(String, double, String) {abstract}
+    + bookPriceUpdated(String, double) {abstract}
+    + bookTitleUpdated(String, String) {abstract}
+  }
+}
+package com.iluwatar.cqrs.queries {
+  interface IQueryService {
+    + getAuthorBooks(String) : List<Book> {abstract}
+    + getAuthorBooksCount(String) : BigInteger {abstract}
+    + getAuthorByUsername(String) : Author {abstract}
+    + getAuthorsCount() : BigInteger {abstract}
+    + getBook(String) : Book {abstract}
+  }
+  class QueryServiceImpl {
+    - sessionFactory : SessionFactory
+    + QueryServiceImpl()
+    + getAuthorBooks(username : String) : List<Book>
+    + getAuthorBooksCount(username : String) : BigInteger
+    + getAuthorByUsername(username : String) : Author
+    + getAuthorsCount() : BigInteger
+    + getBook(title : String) : Book
+  }
+}
+package com.iluwatar.cqrs.constants {
+  class AppConstants {
+    + E_EVANS : String {static}
+    + J_BLOCH : String {static}
+    + M_FOWLER : String {static}
+    + USER_NAME : String {static}
+    + AppConstants()
+  }
+}
+package com.iluwatar.cqrs.domain.model {
+  class Author {
+    - email : String
+    - id : long
+    - name : String
+    - username : String
+    # Author()
+    + Author(username : String, name : String, email : String)
+    + getEmail() : String
+    + getId() : long
+    + getName() : String
+    + getUsername() : String
+    + setEmail(email : String)
+    + setId(id : long)
+    + setName(name : String)
+    + setUsername(username : String)
+    + toString() : String
+  }
+  class Book {
+    - author : Author
+    - id : long
+    - price : double
+    - title : String
+    # Book()
+    + Book(title : String, price : double, author : Author)
+    + getAuthor() : Author
+    + getId() : long
+    + getPrice() : double
+    + getTitle() : String
+    + setAuthor(author : Author)
+    + setId(id : long)
+    + setPrice(price : double)
+    + setTitle(title : String)
+    + toString() : String
+  }
+}
+Book -->  "-author" Author
+CommandServiceImpl ..|> ICommandService 
+QueryServiceImpl ..|> IQueryService 
+@enduml

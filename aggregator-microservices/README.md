@@ -18,6 +18,8 @@ More variations of the aggregator are:
 - Chained Microservice Design Pattern: In this case each microservice is dependent/ chained to a series 
 of other microservices.
 
+## Class diagram
+
 ![alt text](./etc/aggregator-microservice.png "Aggregator Microservice")
 
 ## Applicability

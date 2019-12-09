@@ -13,6 +13,7 @@ tags:
 ## Intent
 Resource Acquisition Is Initialization pattern can be used to implement exception safe resource management.
 
+## Class diagram
 ![alt text](./etc/resource-acquisition-is-initialization.png "Resource Acquisition Is Initialization")
 
 ## Applicability

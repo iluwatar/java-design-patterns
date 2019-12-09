@@ -17,6 +17,7 @@ the system spend more time creating and destroying the threads than executing
 the actual tasks. Thread Pool solves this problem by reusing existing threads
 and eliminating the latency of creating new threads.
 
+## Class diagram
 ![alt text](./etc/thread-pool.png "Thread Pool")
 
 ## Applicability

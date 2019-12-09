@@ -15,6 +15,7 @@ Private Class Data design pattern seeks to reduce exposure of
 attributes by limiting their visibility. It reduces the number of class
 attributes by encapsulating them in single Data object.
 
+## Class diagram
 ![alt text](./etc/private-class-data.png "Private Class Data")
 
 ## Applicability

@@ -1,0 +1,74 @@
+@startuml
+package com.iluwatar.doubledispatch.constants {
+  class AppConstants {
+    + HITS : String {static}
+    + AppConstants()
+  }
+}
+package com.iluwatar.doubledispatch {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class FlamingAsteroid {
+    + FlamingAsteroid(left : int, top : int, right : int, bottom : int)
+    + collision(gameObject : GameObject)
+  }
+  abstract class GameObject {
+    - damaged : boolean
+    - onFire : boolean
+    + GameObject(left : int, top : int, right : int, bottom : int)
+    + collision(GameObject) {abstract}
+    + collisionResolve(FlamingAsteroid) {abstract}
+    + collisionResolve(Meteoroid) {abstract}
+    + collisionResolve(SpaceStationIss) {abstract}
+    + collisionResolve(SpaceStationMir) {abstract}
+    + isDamaged() : boolean
+    + isOnFire() : boolean
+    + setDamaged(damaged : boolean)
+    + setOnFire(onFire : boolean)
+    + toString() : String
+  }
+  class Meteoroid {
+    - LOGGER : Logger {static}
+    + Meteoroid(left : int, top : int, right : int, bottom : int)
+    + collision(gameObject : GameObject)
+    + collisionResolve(asteroid : FlamingAsteroid)
+    + collisionResolve(iss : SpaceStationIss)
+    + collisionResolve(meteoroid : Meteoroid)
+    + collisionResolve(mir : SpaceStationMir)
+  }
+  class Rectangle {
+    - bottom : int
+    - left : int
+    - right : int
+    - top : int
+    + Rectangle(left : int, top : int, right : int, bottom : int)
+    + getBottom() : int
+    + getLeft() : int
+    + getRight() : int
+    + getTop() : int
+    ~ intersectsWith(r : Rectangle) : boolean
+    + toString() : String
+  }
+  class SpaceStationIss {
+    + SpaceStationIss(left : int, top : int, right : int, bottom : int)
+    + collision(gameObject : GameObject)
+  }
+  class SpaceStationMir {
+    - LOGGER : Logger {static}
+    + SpaceStationMir(left : int, top : int, right : int, bottom : int)
+    + collision(gameObject : GameObject)
+    + collisionResolve(asteroid : FlamingAsteroid)
+    + collisionResolve(iss : SpaceStationIss)
+    + collisionResolve(meteoroid : Meteoroid)
+    + collisionResolve(mir : SpaceStationMir)
+  }
+}
+FlamingAsteroid --|> Meteoroid 
+GameObject --|> Rectangle 
+Meteoroid --|> GameObject 
+SpaceStationIss --|> SpaceStationMir 
+SpaceStationMir --|> GameObject 
+@enduml

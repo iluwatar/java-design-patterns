@@ -14,6 +14,7 @@ tags:
 Poison Pill is known predefined data item that allows to provide
 graceful shutdown for separate distributed consumption process.
 
+## Class diagram
 ![alt text](./etc/poison-pill.png "Poison Pill")
 
 ## Applicability

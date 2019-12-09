@@ -154,6 +154,9 @@ var elfMessage = new Messenger().messageFromElves();
 elfMessage.print(); // Much wind pours from your mouth.
 ```
 
+## Class diagram
+![alt text](./etc/composite.urm.png "Composite class diagram")
+
 ## Applicability
 Use the Composite pattern when
 

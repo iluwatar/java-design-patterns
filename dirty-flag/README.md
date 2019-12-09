@@ -14,6 +14,7 @@ tags:
 To avoid expensive re-acquisition of resources. The resources retain their identity, are kept in some
 fast-access storage, and are re-used to avoid having to acquire them again.
 
+## Class diagram
 ![alt text](./etc/dirty-flag.png "Dirty Flag")
 
 ## Applicability

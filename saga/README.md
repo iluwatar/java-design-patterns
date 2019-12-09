@@ -35,6 +35,9 @@ In this approach, there is a Saga orchestrator that manages all the transactions
 the participant services to execute local transactions based on events. 
 This orchestrator can also be though of as a Saga Manager.
 
+## Class diagram
+![alt text](./etc/saga.urm.png "Saga pattern class diagram")
+
 ## Applicability
 Use the Saga pattern, if:
 - you need to perform a group of operations related to different microservices atomically

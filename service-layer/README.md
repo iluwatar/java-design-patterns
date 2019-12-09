@@ -17,6 +17,7 @@ others. Despite their different purposes, these interfaces often need common
 interactions with the application to access and manipulate its data and invoke
 its business logic. The Service Layer fulfills this role.
 
+## Class diagram
 ![alt text](./etc/service-layer.png "Service Layer")
 
 ## Applicability

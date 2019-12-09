@@ -69,7 +69,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    DomainEventProcessor eventProcessor = new DomainEventProcessor();
+    var eventProcessor = new DomainEventProcessor();
 
 
     LOGGER.info("Running the system first time............");

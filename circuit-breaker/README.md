@@ -165,6 +165,8 @@ How does the above pattern prevent failures? Let's understand via this finite st
 - If the number of failures cross a certain threshold, we move to the **open** state, which acts just like an open circuit and prevents remote service calls from being made, thus saving resources. (Here, we return the response called ```stale response from API```)
 - Once we exceed the retry timeout period, we move to the **half-open** state and make another call to the remote service again to check if the service is working so that we can serve fresh content. A *failure* sets it back to **open** state and another attempt is made after retry timeout period, while a *success* sets it to **closed** state so that everything starts working normally again. 
 
+## Class diagram
+![alt text](./etc/circuit-breaker.urm.png "Circuit Breaker class diagram")
 
 ## Applicability
 Use the Circuit Breaker pattern when

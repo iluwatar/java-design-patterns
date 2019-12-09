@@ -17,6 +17,7 @@ an algorithm without changing the algorithm's structure.
 
 To make sure that subclasses don’t override the template method, the template method should be declared `final`.
 
+## Class diagram
 ![alt text](./etc/template-method_1.png "Template Method")
 
 ## Applicability

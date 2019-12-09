@@ -12,10 +12,9 @@ tags:
 ## Intent
 Provide pluggable filters to conduct necessary pre-processing and
 post-processing to requests from a client to a target
- 
+
+## Class diagram 
 ![alt text](./etc/intercepting-filter.png "Intercepting Filter")
-
-
 
 ## Applicability
 Use the Intercepting Filter pattern when

@@ -17,6 +17,7 @@ to minimize scattering and duplication of query code. The Repository pattern is
 especially useful in systems where number of domain classes is large or heavy
 querying is utilized.
 
+## Class diagram
 ![alt text](./etc/repository.png "Repository")
 
 ## Applicability

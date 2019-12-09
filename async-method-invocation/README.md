@@ -17,6 +17,7 @@ is not blocked while waiting results of tasks. The pattern provides parallel
 processing of multiple independent tasks and retrieving the results via
 callbacks or waiting until everything is done. 
 
+# Class diagram
 ![alt text](./etc/async-method-invocation.png "Async Method Invocation")
 
 ## Applicability
