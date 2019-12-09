@@ -27,7 +27,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import org.slf4j.Logger;
@@ -116,10 +115,11 @@ public class Audio {
   public void playSound(AudioInputStream stream, float volume) {
     init();
     // Walk the pending requests.
-    for (int i = headIndex; i != tailIndex; i = (i + 1) % MAX_PENDING) {
-      if (getPendingAudio()[i].getStream() == stream) {
+    for (var i = headIndex; i != tailIndex; i = (i + 1) % MAX_PENDING) {
+      var playMessage = getPendingAudio()[i];
+      if (playMessage.getStream() == stream) {
         // Use the larger of the two volumes.
-        getPendingAudio()[i].setVolume(Math.max(volume, getPendingAudio()[i].getVolume()));
+        playMessage.setVolume(Math.max(volume, playMessage.getVolume()));
 
         // Don't need to enqueue.
         return;
@@ -137,11 +137,10 @@ public class Audio {
     if (headIndex == tailIndex) {
       return;
     }
-    Clip clip = null;
     try {
-      AudioInputStream audioStream = getPendingAudio()[headIndex].getStream();
+      var audioStream = getPendingAudio()[headIndex].getStream();
       headIndex++;
-      clip = AudioSystem.getClip();
+      var clip = AudioSystem.getClip();
       clip.open(audioStream);
       clip.start();
     } catch (LineUnavailableException e) {

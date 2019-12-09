@@ -40,8 +40,8 @@ public class MessageAggregationStrategy implements AggregationStrategy {
       return newExchange;
     }
 
-    String in1 = (String) oldExchange.getIn().getBody();
-    String in2 = (String) newExchange.getIn().getBody();
+    var in1 = (String) oldExchange.getIn().getBody();
+    var in2 = (String) newExchange.getIn().getBody();
 
     oldExchange.getIn().setBody(in1 + ";" + in2);
 

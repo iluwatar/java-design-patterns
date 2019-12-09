@@ -23,10 +23,10 @@
 
 package units;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Created by Srdjan on 03-May-17.
@@ -35,11 +35,11 @@ public class UnitTest {
 
   @Test
   public void testConstGetSet() throws Exception {
-    final String name = "testName";
-    final Unit unit = new Unit(name);
+    final var name = "testName";
+    final var unit = new Unit(name);
     assertEquals(name, unit.getName());
 
-    final String newName = "newName";
+    final var newName = "newName";
     unit.setName(newName);
     assertEquals(newName, unit.getName());
 

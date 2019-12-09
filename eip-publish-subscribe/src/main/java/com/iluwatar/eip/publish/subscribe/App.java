@@ -23,8 +23,6 @@
 
 package com.iluwatar.eip.publish.subscribe;
 
-import org.apache.camel.CamelContext;
-import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.slf4j.Logger;
@@ -55,14 +53,14 @@ public class App {
    * Program entry point.
    */
   public static void main(String[] args) throws Exception {
-    CamelContext context = new DefaultCamelContext();
+    var context = new DefaultCamelContext();
     context.addRoutes(new RouteBuilder() {
       @Override
       public void configure() throws Exception {
         from("direct:origin").multicast().to("mock:foo", "mock:bar", "stream:out");
       }
     });
-    ProducerTemplate template = context.createProducerTemplate();
+    var template = context.createProducerTemplate();
     context.start();
     context.getRoutes().forEach(r -> LOGGER.info(r.toString()));
     template.sendBody("direct:origin", "Hello from origin");

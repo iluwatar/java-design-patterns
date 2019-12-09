@@ -23,10 +23,11 @@
 
 package com.iluwatar.event.aggregator;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 2:12 PM
@@ -37,11 +38,11 @@ public class WeekdayTest {
 
   @Test
   public void testToString() {
-    for (final Weekday weekday : Weekday.values()) {
+    Arrays.stream(Weekday.values()).forEach(weekday -> {
       final String toString = weekday.toString();
       assertNotNull(toString);
       assertEquals(weekday.name(), toString.toUpperCase());
-    }
+    });
   }
 
 }

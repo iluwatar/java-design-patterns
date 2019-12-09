@@ -27,7 +27,6 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * Sometimes in enterprise systems there is a need to group incoming data in order to process it as
@@ -49,19 +48,17 @@ public class App {
    */
   public static void main(String[] args) throws Exception {
     // Run Spring Boot application and obtain ApplicationContext
-    ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
+    var context = SpringApplication.run(App.class, args);
 
     // Get CamelContext from ApplicationContext
-    CamelContext camelContext = (CamelContext) context.getBean("camelContext");
+    var camelContext = (CamelContext) context.getBean("camelContext");
 
     // Add a new routes that will handle endpoints form SplitterRoute class.
     camelContext.addRoutes(new RouteBuilder() {
-
       @Override
-      public void configure() throws Exception {
+      public void configure() {
         from("{{endpoint}}").log("ENDPOINT: ${body}");
       }
-
     });
 
     // Add producer that will send test message to an entry point in WireTapRoute
