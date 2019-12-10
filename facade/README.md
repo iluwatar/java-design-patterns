@@ -77,9 +77,7 @@ public abstract class DwarvenMineWorker {
   }
 
   public void action(Action... actions) {
-    for (Action action : actions) {
-      action(action);
-    }
+    Arrays.stream(actions).forEach(this::action);
   }
 
   public abstract void work();
@@ -166,9 +164,7 @@ public class DwarvenGoldmineFacade {
 
   private static void makeActions(Collection<DwarvenMineWorker> workers,
       DwarvenMineWorker.Action... actions) {
-    for (DwarvenMineWorker worker : workers) {
-      worker.action(actions);
-    }
+    workers.forEach(worker -> worker.action(actions));
   }
 }
 ```
