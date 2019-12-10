@@ -23,7 +23,6 @@
 
 package com.iluwatar.flyweight;
 
-import java.util.Collections;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +41,7 @@ public class AlchemistShop {
    * Constructor.
    */
   public AlchemistShop() {
-    PotionFactory factory = new PotionFactory();
+    var factory = new PotionFactory();
     topShelf = List.of(
         factory.createPotion(PotionType.INVISIBILITY),
         factory.createPotion(PotionType.INVISIBILITY),
@@ -68,7 +67,7 @@ public class AlchemistShop {
    * @return The top shelf potions
    */
   public final List<Potion> getTopShelf() {
-    return Collections.unmodifiableList(this.topShelf);
+    return List.copyOf(this.topShelf);
   }
 
   /**
@@ -77,24 +76,16 @@ public class AlchemistShop {
    * @return The bottom shelf potions
    */
   public final List<Potion> getBottomShelf() {
-    return Collections.unmodifiableList(this.bottomShelf);
+    return List.copyOf(this.bottomShelf);
   }
 
   /**
    * Enumerate potions.
    */
   public void enumerate() {
-
     LOGGER.info("Enumerating top shelf potions\n");
-
-    for (Potion p : topShelf) {
-      p.drink();
-    }
-
+    topShelf.forEach(Potion::drink);
     LOGGER.info("Enumerating bottom shelf potions\n");
-
-    for (Potion p : bottomShelf) {
-      p.drink();
-    }
+    bottomShelf.forEach(Potion::drink);
   }
 }
