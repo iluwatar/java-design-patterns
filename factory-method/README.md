@@ -56,7 +56,7 @@ public class OrcBlacksmith implements Blacksmith {
 Now as the customers come the correct type of blacksmith is summoned and requested weapons are manufactured
 
 ```java
-Blacksmith blacksmith = new ElfBlacksmith();
+var blacksmith = new ElfBlacksmith();
 blacksmith.manufactureWeapon(WeaponType.SPEAR);
 blacksmith.manufactureWeapon(WeaponType.AXE);
 // Elvish weapons are created
