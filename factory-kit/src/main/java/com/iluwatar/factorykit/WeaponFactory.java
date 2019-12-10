@@ -24,7 +24,6 @@
 package com.iluwatar.factorykit;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -52,7 +51,7 @@ public interface WeaponFactory {
    * @return factory with specified {@link Builder}s
    */
   static WeaponFactory factory(Consumer<Builder> consumer) {
-    Map<WeaponType, Supplier<Weapon>> map = new HashMap<>();
+    var map = new HashMap<WeaponType, Supplier<Weapon>>();
     consumer.accept(map::put);
     return name -> map.get(name).get();
   }
