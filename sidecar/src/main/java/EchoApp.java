@@ -21,24 +21,37 @@
  * THE SOFTWARE.
  */
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.Map;
-import java.util.concurrent.Callable;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class Main {
-    public static void main(String args[]) throws Exception {
-        List<SideCarApp> sidecars = new ArrayList<SideCarApp>();
+public class EchoApp extends SideCarApp {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EchoApp.class);
+    private long delay;
+    private long period;
+    private ZoneId zoneId;
+    @Override
+    public Object call() throws Exception {
 
-        final Map<String,String> readerProps = new HashMap<String,String>();
-        readerProps.put("path","/Desktop");
-        SideCarApp reader = new ReaderApp();
-        reader.setProps(readerProps);
-        sidecars.add(reader);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                LOGGER.info("Local Time is:" + Instant.now().atZone(zoneId));
+            }
+        }, delay, period);
 
-        for (SideCarApp app: sidecars) {
-            app.call();
-        }
+        return null;
+    }
+
+    @Override
+    public void setProps(Map<String, String> props) {
+        this.delay = Long.getLong(props.get("delay"));
+        this.period = Long.getLong(props.get("period"));
+        this.zoneId = ZoneId.of(props.get("zoneId"));
     }
 }
