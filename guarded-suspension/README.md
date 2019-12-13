@@ -5,8 +5,7 @@ folder: guarded-suspension
 permalink: /patterns/guarded-suspension/
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
@@ -19,4 +18,5 @@ Use Guarded suspension pattern to handle a situation when you want to execute a 
 Use Guarded Suspension pattern when the developer knows that the method execution will be blocked for a finite period of time
 
 ## Related patterns
+
 * Balking 

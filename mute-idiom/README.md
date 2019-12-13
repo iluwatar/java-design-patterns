@@ -3,11 +3,9 @@ layout: pattern
 title: Mute Idiom
 folder: mute-idiom
 permalink: /patterns/mute-idiom/
-categories: Other
+categories: Idiom
 tags: 
- - Java
- - Difficulty-Beginner
- - Idiom
+ - Decoupling
 ---
 
 ## Intent

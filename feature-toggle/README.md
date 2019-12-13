@@ -5,8 +5,7 @@ folder: feature-toggle
 permalink: /patterns/feature-toggle/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
+ - Extensibility
 ---
 
 ## Also known as

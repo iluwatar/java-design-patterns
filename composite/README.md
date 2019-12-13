@@ -5,9 +5,7 @@ folder: composite
 permalink: /patterns/composite/
 categories: Structural
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Intermediate
 ---
 
 ## Intent

@@ -6,8 +6,7 @@ permalink: /patterns/data-bus/
 
 categories: Architectural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent

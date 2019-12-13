@@ -5,10 +5,7 @@ folder: promise
 permalink: /patterns/promise/
 categories: Concurrency
 tags:
- - Java
- - Functional
  - Reactive
- - Difficulty-Intermediate
 ---
 
 ## Also known as
@@ -27,9 +24,9 @@ in a synchronous way.
 Promise pattern is applicable in concurrent programming when some work needs to be done asynchronously
 and:
 
-* code maintainability and readability suffers due to callback hell.
-* you need to compose promises and need better error handling for asynchronous tasks.
-* you want to use functional style of programming.
+* Code maintainability and readability suffers due to callback hell.
+* You need to compose promises and need better error handling for asynchronous tasks.
+* You want to use functional style of programming.
 
 
 ## Real world examples

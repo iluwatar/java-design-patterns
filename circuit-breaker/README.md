@@ -3,11 +3,10 @@ layout: pattern
 title: Circuit Breaker
 folder: circuit-breaker
 permalink: /patterns/circuit-breaker/
-categories: Other
+categories: Behavioral
 tags:
- - Java
  - Performance
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent
@@ -179,6 +178,7 @@ Use the Circuit Breaker pattern when
 - [Retry Pattern](https://github.com/iluwatar/java-design-patterns/tree/master/retry)
 
 ## Real world examples
+
 * [Spring Circuit Breaker module](https://spring.io/guides/gs/circuit-breaker)
 * [Netflix Hystrix API](https://github.com/Netflix/Hystrix)
 

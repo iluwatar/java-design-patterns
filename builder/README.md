@@ -5,9 +5,7 @@ folder: builder
 permalink: /patterns/builder/
 categories: Creational
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Intermediate
 ---
 
 ## Intent

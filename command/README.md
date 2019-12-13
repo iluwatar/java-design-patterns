@@ -5,10 +5,7 @@ folder: command
 permalink: /patterns/command/
 categories: Behavioral
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Intermediate
- - Functional
 ---
 
 ## Also known as

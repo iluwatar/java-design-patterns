@@ -3,10 +3,10 @@ layout: pattern
 title: Spatial Partition
 folder: spatial-partition
 permalink: /patterns/spatial-partition/
-categories: Other
+categories: Behavioral
 tags:
- - Java
- - Difficulty-Intermediate
+ - Performance
+ - Game programming
 ---
 
 ## Intent
@@ -48,9 +48,11 @@ In our implementation, we use the Quadtree data structure which will reduce the 
 
 ## Applicability
 This pattern can be used:
+
 * When you need to keep track of a large number of objects' positions, which are getting updated every frame.
 * When it is acceptable to trade memory for speed, since creating and updating data structure will use up extra memory.
 
 ## Credits
+
 * [Game Programming Patterns/Spatial Partition](http://gameprogrammingpatterns.com/spatial-partition.html) by Bob Nystrom
 * [Quadtree tutorial](https://www.youtube.com/watch?v=OJxEcs0w_kE) by Daniel Schiffman

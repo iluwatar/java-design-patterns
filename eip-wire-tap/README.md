@@ -5,9 +5,7 @@ folder: eip-wire-tap
 permalink: /patterns/eip-wire-tap/
 categories: Integration
 tags:
- - Java
- - Difficulty-Intermittent
- - EIP
+ - Enterprise Integration Pattern
 ---
 
 ## Intent

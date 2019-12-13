@@ -5,9 +5,7 @@ folder: adapter
 permalink: /patterns/adapter/
 categories: Structural
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Beginner
 ---
 
 ## Also known as

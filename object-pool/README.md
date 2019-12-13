@@ -5,8 +5,7 @@ folder: object-pool
 permalink: /patterns/object-pool/
 categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Game programming
  - Performance
 ---
 
@@ -22,5 +21,5 @@ are in use and which are available.
 ## Applicability
 Use the Object Pool pattern when
 
-* the objects are expensive to create (allocation cost)
-* you need a large number of short-lived objects (memory fragmentation)
+* The objects are expensive to create (allocation cost)
+* You need a large number of short-lived objects (memory fragmentation)

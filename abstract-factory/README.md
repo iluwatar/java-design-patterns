@@ -5,9 +5,7 @@ folder: abstract-factory
 permalink: /patterns/abstract-factory/
 categories: Creational
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Intermediate
 ---
 
 ## Also known as

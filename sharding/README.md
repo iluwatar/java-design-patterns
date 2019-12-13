@@ -3,10 +3,10 @@ layout: pattern
 title: Sharding 
 folder: sharding  
 permalink: /patterns/sharding/  
-categories: Other
+categories: Behavioral
 tags:  
- - Java  
- - Difficulty-Beginner  
+ - Performance
+ - Cloud distributed
 ---  
   
 ## Intent  

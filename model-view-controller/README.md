@@ -3,10 +3,9 @@ layout: pattern
 title: Model-View-Controller
 folder: model-view-controller
 permalink: /patterns/model-view-controller/
-categories: Presentation Tier
+categories: Architectural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent
@@ -21,7 +20,7 @@ display.
 ## Applicability
 Use the Model-View-Controller pattern when
 
-* you want to clearly separate the domain data from its user interface representation
+* You want to clearly separate the domain data from its user interface representation
 
 ## Credits
 

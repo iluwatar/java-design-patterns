@@ -6,10 +6,7 @@ permalink: /patterns/unit-of-work/
 
 categories: Architectural
 tags:
- - Java
- - KISS
- - YAGNI
- - Difficulty-Beginner
+ - Data access
 ---
 
 ## Intent

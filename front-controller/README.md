@@ -3,10 +3,9 @@ layout: pattern
 title: Front Controller
 folder: front-controller
 permalink: /patterns/front-controller/
-categories: Presentation Tier
+categories: Structural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent

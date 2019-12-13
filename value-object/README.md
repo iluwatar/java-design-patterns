@@ -5,8 +5,7 @@ folder: value-object
 permalink: /patterns/value-object/
 categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Instantiation
 ---
 
 ## Intent
@@ -20,7 +19,7 @@ equal when they have the same value, not necessarily being the same object.
 ## Applicability
 Use the Value Object when
 
-* you need to measure the objects' equality based on the objects' value
+* You need to measure the objects' equality based on the objects' value
 
 ## Real world examples
 

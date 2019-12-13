@@ -3,11 +3,9 @@ layout: pattern
 title: Private Class Data
 folder: private-class-data
 permalink: /patterns/private-class-data/
-categories: Other
+categories: Idiom
 tags:
- - Java
- - Difficulty-Beginner
- - Idiom
+ - Data access
 ---
 
 ## Intent
@@ -21,4 +19,4 @@ attributes by encapsulating them in single Data object.
 ## Applicability
 Use the Private Class Data pattern when
 
-* you want to prevent write access to class data members
+* You want to prevent write access to class data members

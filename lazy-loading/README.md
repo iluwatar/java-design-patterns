@@ -3,11 +3,8 @@ layout: pattern
 title: Lazy Loading
 folder: lazy-loading
 permalink: /patterns/lazy-loading/
-categories: Other
+categories: Idiom
 tags:
- - Java
- - Difficulty-Beginner
- - Idiom
  - Performance
 ---
 

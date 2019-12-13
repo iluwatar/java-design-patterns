@@ -5,9 +5,8 @@ folder: decorator
 permalink: /patterns/decorator/
 categories: Structural
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Beginner
+ - Extensibility
 ---
 
 ## Also known as

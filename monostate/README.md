@@ -5,8 +5,7 @@ folder: monostate
 permalink: /patterns/monostate/
 categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Instantiation
 ---
 
 ## Also known as
@@ -27,9 +26,9 @@ Use the Monostate pattern when
 
 ## Typical Use Case
 
-* the logging class
-* managing a connection to a database
-* file manager
+* The logging class
+* Managing a connection to a database
+* File manager
 
 ## Real world examples
 

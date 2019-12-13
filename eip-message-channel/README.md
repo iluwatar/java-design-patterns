@@ -5,9 +5,7 @@ folder: eip-message-channel
 permalink: /patterns/eip-message-channel/
 categories: Integration
 tags:
- - Java
- - EIP
- - Apache Camel™
+ - Enterprise Integration Pattern
 ---
 
 ## Intent

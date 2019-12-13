@@ -5,9 +5,7 @@ folder: event-queue
 permalink: /patterns/event-queue/
 categories: Concurrency
 tags:
- - Java
- - Difficulty Intermediate
- - Queue
+ - Game programming
 ---
 
 ## Intent

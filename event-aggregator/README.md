@@ -5,8 +5,6 @@ folder: event-aggregator
 permalink: /patterns/event-aggregator/
 categories: Structural
 tags:
- - Java
- - Difficulty-Beginner
  - Reactive
 ---
 

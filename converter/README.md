@@ -3,10 +3,9 @@ layout: pattern
 title: Converter
 folder: converter
 permalink: /patterns/converter/
-categories: Business Tier
+categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent

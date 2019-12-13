@@ -3,11 +3,9 @@ layout: pattern
 title: Monad
 folder: monad
 permalink: /patterns/monad/
-categories: Other
+categories: Functional
 tags:
- - Java
- - Difficulty-Expert
- - Functional
+ - Reactive
 ---
 
 ## Intent
@@ -26,8 +24,8 @@ return - that takes plain type object and returns this object wrapped in a monad
 
 Use the Monad in any of the following situations
 
-* when you want to chain operations easily
-* when you want to apply each function regardless of the result of any of them
+* When you want to chain operations easily
+* When you want to apply each function regardless of the result of any of them
 
 ## Credits
 

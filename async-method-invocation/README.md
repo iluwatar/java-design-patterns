@@ -5,9 +5,6 @@ folder: async-method-invocation
 permalink: /patterns/async-method-invocation/
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Intermediate
- - Functional
  - Reactive
 ---
 

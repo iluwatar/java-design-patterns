@@ -3,10 +3,9 @@ layout: pattern
 title: Flux
 folder: flux
 permalink: /patterns/flux/
-categories: Presentation Tier
+categories: Structural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent

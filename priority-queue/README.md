@@ -5,8 +5,7 @@ folder: priority-queue
 permalink: /patterns/priority-queue/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent

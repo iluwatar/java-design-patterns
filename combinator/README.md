@@ -3,11 +3,9 @@ layout: pattern
 title: Combinator
 folder: combinator
 permalink: /patterns/combinator/
-categories: Behavioral
+categories: Idiom
 tags:
- - Functional
  - Reactive
- - Idiom
 ---
 
 ## Also known as
@@ -23,13 +21,16 @@ and some "combinators" which can combine values of type T in various ways to bui
 
 ## Applicability
 Use the combinator pattern when:
+
 - You are able to create a more complex value from more plain values but having the same type(a combination of them)
 
 ## Real world examples
+
 - java.util.function.Function#compose
 - java.util.function.Function#andThen
 
 ## Credits
+
 - [Example for java](https://gtrefs.github.io/code/combinator-pattern/)
 - [Combinator pattern](https://wiki.haskell.org/Combinator_pattern)
 - [Combinatory logic](https://wiki.haskell.org/Combinatory_logic)

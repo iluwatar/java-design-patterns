@@ -5,8 +5,7 @@ folder: aggregator-microservices
 permalink: /patterns/aggregator-microservices/
 categories: Architectural
 tags:
-- Java
-- Spring
+- Cloud distributed
 ---
 
 ## Intent

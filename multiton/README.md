@@ -5,8 +5,7 @@ folder: multiton
 permalink: /patterns/multiton/
 categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Instantiation
 ---
 
 ## Also known as

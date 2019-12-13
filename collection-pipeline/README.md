@@ -3,11 +3,9 @@ layout: pattern
 title: Collection Pipeline
 folder: collection-pipeline
 permalink: /patterns/collection-pipeline/
-categories: Other
+categories: Functional
 tags:
- - Java
- - Difficulty-Beginner
- - Functional
+ - Reactive
 ---
 
 ## Intent

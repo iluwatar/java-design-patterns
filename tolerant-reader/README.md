@@ -5,8 +5,7 @@ folder: tolerant-reader
 permalink: /patterns/tolerant-reader/
 categories: Integration
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
@@ -21,7 +20,7 @@ changes, the readers must not break.
 ## Applicability
 Use the Tolerant Reader pattern when
 
-* the communication schema can evolve and change and yet the receiving side should not break
+* The communication schema can evolve and change and yet the receiving side should not break
 
 ## Credits
 

@@ -3,10 +3,9 @@ layout: pattern
 title: Module
 folder: module
 permalink: /patterns/module/
-categories: Creational Pattern
+categories: Structural
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
