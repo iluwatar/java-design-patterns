@@ -5,7 +5,7 @@ folder: strategy
 permalink: /patterns/strategy/
 categories: Behavioral
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as

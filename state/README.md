@@ -5,7 +5,7 @@ folder: state
 permalink: /patterns/state/
 categories: Behavioral
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as

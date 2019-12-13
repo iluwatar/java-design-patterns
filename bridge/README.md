@@ -5,7 +5,7 @@ folder: bridge
 permalink: /patterns/bridge/
 categories: Structural
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as

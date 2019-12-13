@@ -5,7 +5,7 @@ folder: template-method
 permalink: /patterns/template-method/
 categories: Behavioral
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Intent

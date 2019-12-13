@@ -5,7 +5,7 @@ folder: visitor
 permalink: /patterns/visitor/
 categories: Behavioral
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Intent

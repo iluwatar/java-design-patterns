@@ -5,7 +5,7 @@ folder: interpreter
 permalink: /patterns/interpreter/
 categories: Behavioral
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Intent

@@ -5,7 +5,7 @@ folder: memento
 permalink: /patterns/memento/
 categories: Behavioral
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as

@@ -5,7 +5,7 @@ folder: iterator
 permalink: /patterns/iterator/
 categories: Behavioral
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as

@@ -5,7 +5,7 @@ folder: composite
 permalink: /patterns/composite/
 categories: Structural
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Intent

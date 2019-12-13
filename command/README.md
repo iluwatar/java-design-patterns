@@ -5,7 +5,7 @@ folder: command
 permalink: /patterns/command/
 categories: Behavioral
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as

@@ -5,7 +5,7 @@ folder: abstract-factory
 permalink: /patterns/abstract-factory/
 categories: Creational
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as

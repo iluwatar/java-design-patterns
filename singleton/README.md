@@ -5,7 +5,7 @@ folder: singleton
 permalink: /patterns/singleton/
 categories: Creational
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Intent

@@ -5,7 +5,7 @@ folder: chain
 permalink: /patterns/chain/
 categories: Behavioral
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Intent

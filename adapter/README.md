@@ -5,7 +5,7 @@ folder: adapter
 permalink: /patterns/adapter/
 categories: Structural
 tags:
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as
