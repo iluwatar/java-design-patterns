@@ -23,9 +23,9 @@
 
 package com.iluwatar.doublechecked.locking;
 
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,15 +50,13 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    final Inventory inventory = new Inventory(1000);
-    ExecutorService executorService = Executors.newFixedThreadPool(3);
-    for (int i = 0; i < 3; i++) {
-      executorService.execute(() -> {
-        while (inventory.addItem(new Item())) {
-          LOGGER.info("Adding another item");
-        }
-      });
-    }
+    final var inventory = new Inventory(1000);
+    var executorService = Executors.newFixedThreadPool(3);
+    IntStream.range(0, 3).<Runnable>mapToObj(i -> () -> {
+      while (inventory.addItem(new Item())) {
+        LOGGER.info("Adding another item");
+      }
+    }).forEach(executorService::execute);
 
     executorService.shutdown();
     try {

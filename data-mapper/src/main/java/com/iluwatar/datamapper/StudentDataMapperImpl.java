@@ -37,71 +37,36 @@ public final class StudentDataMapperImpl implements StudentDataMapper {
 
   @Override
   public Optional<Student> find(int studentId) {
-
-    /* Compare with existing students */
-    for (final Student student : this.getStudents()) {
-
-      /* Check if student is found */
-      if (student.getStudentId() == studentId) {
-
-        return Optional.of(student);
-      }
-    }
-
-    /* Return empty value */
-    return Optional.empty();
+    return this.getStudents().stream().filter(x -> x.getStudentId() == studentId).findFirst();
   }
 
   @Override
   public void update(Student studentToBeUpdated) throws DataMapperException {
-
-
-    /* Check with existing students */
-    if (this.getStudents().contains(studentToBeUpdated)) {
-
-      /* Get the index of student in list */
-      final int index = this.getStudents().indexOf(studentToBeUpdated);
-
-      /* Update the student in list */
-      this.getStudents().set(index, studentToBeUpdated);
-
-    } else {
-
-      /* Throw user error after wrapping in a runtime exception */
-      throw new DataMapperException("Student [" + studentToBeUpdated.getName() + "] is not found");
-    }
+    String name = studentToBeUpdated.getName();
+    Integer index = Optional.of(studentToBeUpdated)
+        .map(Student::getStudentId)
+        .flatMap(this::find)
+        .map(students::indexOf)
+        .orElseThrow(() -> new DataMapperException("Student [" + name + "] is not found"));
+    students.set(index, studentToBeUpdated);
   }
 
   @Override
   public void insert(Student studentToBeInserted) throws DataMapperException {
-
-    /* Check with existing students */
-    if (!this.getStudents().contains(studentToBeInserted)) {
-
-      /* Add student in list */
-      this.getStudents().add(studentToBeInserted);
-
-    } else {
-
-      /* Throw user error after wrapping in a runtime exception */
-      throw new DataMapperException("Student already [" + studentToBeInserted
-          .getName() + "] exists");
+    Optional<Student> student = find(studentToBeInserted.getStudentId());
+    if (student.isPresent()) {
+      String name = studentToBeInserted.getName();
+      throw new DataMapperException("Student already [" + name + "] exists");
     }
+
+    students.add(studentToBeInserted);
   }
 
   @Override
   public void delete(Student studentToBeDeleted) throws DataMapperException {
-
-    /* Check with existing students */
-    if (this.getStudents().contains(studentToBeDeleted)) {
-
-      /* Delete the student from list */
-      this.getStudents().remove(studentToBeDeleted);
-
-    } else {
-
-      /* Throw user error after wrapping in a runtime exception */
-      throw new DataMapperException("Student [" + studentToBeDeleted.getName() + "] is not found");
+    if (!students.remove(studentToBeDeleted)) {
+      String name = studentToBeDeleted.getName();
+      throw new DataMapperException("Student [" + name + "] is not found");
     }
   }
 

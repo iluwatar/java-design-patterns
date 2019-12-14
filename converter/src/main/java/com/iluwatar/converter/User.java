@@ -73,7 +73,7 @@ public class User {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    User user = (User) o;
+    var user = (User) o;
     return isActive == user.isActive && Objects.equals(firstName, user.firstName) && Objects
         .equals(lastName, user.lastName) && Objects.equals(userId, user.userId);
   }

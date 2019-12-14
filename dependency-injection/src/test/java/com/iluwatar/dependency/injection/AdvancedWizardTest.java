@@ -23,12 +23,13 @@
 
 package com.iluwatar.dependency.injection;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.iluwatar.dependency.injection.utils.InMemoryAppender;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
@@ -57,21 +58,22 @@ public class AdvancedWizardTest {
   @Test
   public void testSmokeEveryThing() throws Exception {
 
-    final Tobacco[] tobaccos = {
-        new OldTobyTobacco(), new RivendellTobacco(), new SecondBreakfastTobacco()
-    };
+    List<Tobacco> tobaccos = List.of(
+        new OldTobyTobacco(),
+        new RivendellTobacco(),
+        new SecondBreakfastTobacco()
+    );
 
-    for (final Tobacco tobacco : tobaccos) {
+    // Verify if the wizard is smoking the correct tobacco ...
+    tobaccos.forEach(tobacco -> {
       final AdvancedWizard advancedWizard = new AdvancedWizard(tobacco);
       advancedWizard.smoke();
-
-      // Verify if the wizard is smoking the correct tobacco ...
-      assertEquals("AdvancedWizard smoking " + tobacco.getClass().getSimpleName(), appender.getLastMessage());
-
-    }
+      String lastMessage = appender.getLastMessage();
+      assertEquals("AdvancedWizard smoking " + tobacco.getClass().getSimpleName(), lastMessage);
+    });
 
     // ... and nothing else is happening.
-    assertEquals(tobaccos.length, appender.getLogSize());
+    assertEquals(tobaccos.size(), appender.getLogSize());
 
   }
 

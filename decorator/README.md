@@ -98,12 +98,12 @@ Here's the troll in action
 
 ```java
 // simple troll
-Troll troll = new SimpleTroll();
+var troll = new SimpleTroll();
 troll.attack(); // The troll tries to grab you!
 troll.fleeBattle(); // The troll shrieks in horror and runs away!
 
 // change the behavior of the simple troll by adding a decorator
-Troll clubbedTroll = new ClubbedTroll(troll);
+var clubbedTroll = new ClubbedTroll(troll);
 clubbedTroll.attack(); // The troll tries to grab you! The troll swings at you with a club!
 clubbedTroll.fleeBattle(); // The troll shrieks in horror and runs away!
 ```

@@ -23,12 +23,12 @@
 
 package com.iluwatar.dependency.injection;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.iluwatar.dependency.injection.utils.InMemoryAppender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/10/15 - 8:26 PM
@@ -55,7 +55,7 @@ public class SimpleWizardTest {
    */
   @Test
   public void testSmoke() {
-    final SimpleWizard simpleWizard = new SimpleWizard();
+    final var simpleWizard = new SimpleWizard();
     simpleWizard.smoke();
     assertEquals("SimpleWizard smoking OldTobyTobacco", appender.getLastMessage());
     assertEquals(1, appender.getLogSize());

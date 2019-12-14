@@ -74,7 +74,7 @@ public class UserDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserDto userDto = (UserDto) o;
+    var userDto = (UserDto) o;
     return isActive == userDto.isActive && Objects.equals(firstName, userDto.firstName) && Objects
         .equals(lastName, userDto.lastName) && Objects.equals(email, userDto.email);
   }

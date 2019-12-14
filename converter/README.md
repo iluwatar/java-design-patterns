@@ -63,20 +63,26 @@ The specialized converters inherit from this base class as follows.
 public class UserConverter extends Converter<UserDto, User> {
 
   public UserConverter() {
-    super(userDto -> new User(userDto.getFirstName(), userDto.getLastName(), userDto.isActive(),
-            userDto.getEmail()),
-        user -> new UserDto(user.getFirstName(), user.getLastName(), user.isActive(),
-            user.getUserId()));
+    super(UserConverter::convertToEntity, UserConverter::convertToDto);
   }
+
+  private static UserDto convertToDto(User user) {
+    return new UserDto(user.getFirstName(), user.getLastName(), user.isActive(), user.getUserId());
+  }
+
+  private static User convertToEntity(UserDto dto) {
+    return new User(dto.getFirstName(), dto.getLastName(), dto.isActive(), dto.getEmail());
+  }
+
 }
 ```
 
 Now mapping between User and UserDto becomes trivial.
 
 ```java
-Converter<UserDto, User> userConverter = new UserConverter();
-UserDto dtoUser = new UserDto("John", "Doe", true, "whatever[at]wherever.com");
-User user = userConverter.convertFromDto(dtoUser);
+var userConverter = new UserConverter();
+var dtoUser = new UserDto("John", "Doe", true, "whatever[at]wherever.com");
+var user = userConverter.convertFromDto(dtoUser);
 ```
 
 ## Class diagram
