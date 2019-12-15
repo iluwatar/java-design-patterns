@@ -3,12 +3,9 @@ layout: pattern
 title: Callback
 folder: callback
 permalink: /patterns/callback/
-categories: Other
+categories: Idiom
 tags:
- - Java
- - Difficulty-Beginner
- - Functional
- - Idiom
+ - Reactive
 ---
 
 ## Intent

@@ -3,10 +3,9 @@ layout: pattern
 title: Poison Pill
 folder: poison-pill
 permalink: /patterns/poison-pill/
-categories: Other
+categories: Behavioral
 tags:
- - Java
- - Difficulty-Intermediate
+ - Cloud distributed
  - Reactive
 ---
 
@@ -20,7 +19,7 @@ graceful shutdown for separate distributed consumption process.
 ## Applicability
 Use the Poison Pill idiom when
 
-* need to send signal from one thread/process to another to terminate
+* Need to send signal from one thread/process to another to terminate
 
 ## Real world examples
 

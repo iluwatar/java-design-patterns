@@ -5,8 +5,7 @@ folder: half-sync-half-async
 permalink: /patterns/half-sync-half-async/
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Intermediate
+ - Performance
 ---
 
 ## Intent

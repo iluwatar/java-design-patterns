@@ -5,9 +5,7 @@ folder: eip-publish-subscribe
 permalink: /patterns/eip-publish-subscribe/
 categories: Integration
 tags:
- - Java
- - EIP
- - Apache Camel™
+ - Enterprise Integration Pattern
 ---
 
 ## Intent

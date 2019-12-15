@@ -5,8 +5,6 @@ folder: event-sourcing
 permalink: /patterns/event-sourcing/
 categories: Architectural
 tags:
- - Java
- - Difficulty Intermediate
  - Performance
 ---
 

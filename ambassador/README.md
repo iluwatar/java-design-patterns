@@ -5,8 +5,7 @@ folder: ambassador
 permalink: /patterns/ambassador/
 categories: Structural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent

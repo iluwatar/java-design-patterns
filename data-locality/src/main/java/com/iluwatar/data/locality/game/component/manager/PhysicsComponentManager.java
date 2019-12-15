@@ -25,6 +25,7 @@ package com.iluwatar.data.locality.game.component.manager;
 
 import com.iluwatar.data.locality.game.component.Component;
 import com.iluwatar.data.locality.game.component.PhysicsComponent;
+import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,9 +51,7 @@ public class PhysicsComponentManager {
    */
   public void start() {
     LOGGER.info("Start Physics Game Component ");
-    for (int i = 0; i < numEntities; i++) {
-      PHYSICS_COMPONENTS[i] = new PhysicsComponent();
-    }
+    IntStream.range(0, numEntities).forEach(i -> PHYSICS_COMPONENTS[i] = new PhysicsComponent());
   }
 
 
@@ -62,10 +61,8 @@ public class PhysicsComponentManager {
   public void update() {
     LOGGER.info("Update Physics Game Component ");
     // Process physics.
-    for (int i = 0; i < numEntities; i++) {
-      if (PHYSICS_COMPONENTS.length > i && PHYSICS_COMPONENTS[i] != null) {
-        PHYSICS_COMPONENTS[i].update();
-      }
-    }
+    IntStream.range(0, numEntities)
+        .filter(i -> PHYSICS_COMPONENTS.length > i && PHYSICS_COMPONENTS[i] != null)
+        .forEach(i -> PHYSICS_COMPONENTS[i].update());
   }
 }

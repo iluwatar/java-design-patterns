@@ -5,8 +5,7 @@ folder: property
 permalink: /patterns/property/
 categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Instantiation
 ---
 
 ## Intent
@@ -19,7 +18,7 @@ objects as parents.
 ## Applicability
 Use the Property pattern when
 
-* when you like to have objects with dynamic set of fields and prototype inheritance
+* When you like to have objects with dynamic set of fields and prototype inheritance
 
 ## Real world examples
 

@@ -5,9 +5,7 @@ folder: eip-splitter
 permalink: /patterns/eip-splitter/
 categories: Integration
 tags:
- - Java
- - Difficulty-Intermittent
- - EIP
+ - Enterprise Integration Pattern
 ---
 
 ## Intent

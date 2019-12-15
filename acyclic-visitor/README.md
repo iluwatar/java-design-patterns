@@ -5,8 +5,7 @@ folder: acyclic-visitor
 permalink: /patterns/acyclic-visitor/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Intermediate
+ - Extensibility
 ---
 
 ## Intent

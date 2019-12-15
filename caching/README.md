@@ -3,10 +3,8 @@ layout: pattern
 title: Caching
 folder: caching
 permalink: /patterns/caching/
-categories: Other
+categories: Behavioral
 tags:
- - Java
- - Difficulty-Intermediate
  - Performance
 ---
 

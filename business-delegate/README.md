@@ -3,10 +3,9 @@ layout: pattern
 title: Business Delegate
 folder: business-delegate
 permalink: /patterns/business-delegate/
-categories: Business Tier
+categories: Structural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent

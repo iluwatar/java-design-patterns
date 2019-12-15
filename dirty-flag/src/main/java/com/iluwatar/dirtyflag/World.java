@@ -47,10 +47,8 @@ public class World {
    * @return List of strings
    */
   public List<String> fetch() {
-    List<String> data = df.fetch();
-
+    var data = df.fetch();
     countries = data.isEmpty() ? countries : data;
-
     return countries;
   }
 }

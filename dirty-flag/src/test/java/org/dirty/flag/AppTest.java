@@ -23,19 +23,15 @@
 
 package org.dirty.flag;
 
-import java.io.IOException;
-
-import org.junit.jupiter.api.Test;
-
 import com.iluwatar.dirtyflag.App;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests that Dirty-Flag example runs without errors.
  */
 public class AppTest {
   @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+  public void test() {
+    App.main(new String[]{});
   }
 }

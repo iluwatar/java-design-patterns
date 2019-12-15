@@ -3,11 +3,9 @@ layout: pattern
 title: Double Checked Locking
 folder: double-checked-locking
 permalink: /patterns/double-checked-locking/
-categories: Concurrency
+categories: Idiom
 tags:
- - Java
- - Difficulty-Beginner
- - Idiom
+ - Performance
 ---
 
 ## Intent

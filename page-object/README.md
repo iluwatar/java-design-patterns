@@ -3,10 +3,9 @@ layout: pattern
 title: Page Object
 folder: page-object
 permalink: /patterns/page-object/
-categories: Testing
+categories: Structural
 tags:
-- Java
-- Difficulty-Intermediate
+- Decoupling
 ---
 
 ## Intent

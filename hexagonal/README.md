@@ -6,11 +6,11 @@ permalink: /patterns/hexagonal/
 pumlformat: svg
 categories: Architectural
 tags:
- - Java
- - Difficulty-Expert
+ - Decoupling
 ---
 
 ## Also known as
+
 * Ports and Adapters
 * Clean Architecture
 * Onion Architecture
@@ -28,6 +28,7 @@ Use Hexagonal Architecture pattern when
 * When it is important that the application highly maintainable and fully testable
 
 ## Tutorials
+
 * [Build Maintainable Systems With Hexagonal Architecture](http://java-design-patterns.com/blog/build-maintainable-systems-with-hexagonal-architecture/)
 
 ## Real world examples

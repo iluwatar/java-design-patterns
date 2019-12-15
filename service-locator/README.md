@@ -3,10 +3,9 @@ layout: pattern
 title: Service Locator
 folder: service-locator
 permalink: /patterns/service-locator/
-categories: Structural
+categories: Architectural
 tags:
- - Java
- - Difficulty-Beginner
+ - Game programming
  - Performance
 ---
 
@@ -29,9 +28,9 @@ improves the performance of application to great extent.
 
 ## Typical Use Case
 
-* when network hits are expensive and time consuming
-* lookups of services are done quite frequently
-* large number of services are being used
+* When network hits are expensive and time consuming
+* Lookups of services are done quite frequently
+* Large number of services are being used
 
 ## Consequences
 

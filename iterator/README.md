@@ -5,9 +5,7 @@ folder: iterator
 permalink: /patterns/iterator/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as

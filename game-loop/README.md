@@ -3,10 +3,9 @@ layout: pattern
 title: Game Loop 
 folder:  game-loop  
 permalink: /patterns/game-loop/  
-categories: Other  
+categories: Behavioral
 tags:  
- - Java  
- - Difficulty-Beginner  
+ - Game programming
 ---  
   
 ## Intent  

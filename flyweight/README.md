@@ -5,9 +5,7 @@ folder: flyweight
 permalink: /patterns/flyweight/
 categories: Structural
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Intermediate
  - Performance
 ---
 

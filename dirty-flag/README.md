@@ -3,10 +3,9 @@ layout: pattern
 title: Dirty Flag
 folder: dirty-flag
 permalink: /patterns/dirty-flag/
-categories: Other
+categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
+ - Game programming
  - Performance
 ---
 

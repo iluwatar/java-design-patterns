@@ -23,7 +23,6 @@
 
 package com.iluwatar.datamapper;
 
-import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,10 +50,10 @@ public final class App {
   public static void main(final String... args) {
 
     /* Create new data mapper for type 'first' */
-    final StudentDataMapper mapper = new StudentDataMapperImpl();
+    final var mapper = new StudentDataMapperImpl();
 
     /* Create new student */
-    Student student = new Student(1, "Adam", 'A');
+    var student = new Student(1, "Adam", 'A');
 
     /* Add student in respectibe store */
     mapper.insert(student);
@@ -62,7 +61,7 @@ public final class App {
     log.debug(STUDENT_STRING + student + ", is inserted");
 
     /* Find this student */
-    final Optional<Student> studentToBeFound = mapper.find(student.getStudentId());
+    final var studentToBeFound = mapper.find(student.getStudentId());
 
     log.debug(STUDENT_STRING + studentToBeFound + ", is searched");
 

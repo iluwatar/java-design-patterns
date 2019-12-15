@@ -5,8 +5,7 @@ folder: serverless
 permalink: /patterns/serverless/
 categories: Architectural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Cloud distributed
 ---
 
 ## Serverless
@@ -126,6 +125,7 @@ dependencies of the function.
 ## Run example in local
 
 # Pre-requisites
+
 * Node.js v6.5.0 or later.
 * Serverless CLI v1.9.0 or later. You can run npm install -g serverless to install it.
 * An AWS account. If you don't already have one, you can sign up for a free trial that includes 1 million free Lambda requests per month.
@@ -139,6 +139,7 @@ dependencies of the function.
 
 Based on the configuration in `serverless.yml` serverless framework creates following 
 resources
+
 * CloudFormation stack for S3 (ServerlessDeploymentBucket)
 * IAM Role (IamRoleLambdaExecution)
 * CloudWatch (log groups)

@@ -3,10 +3,8 @@ layout: pattern
 title: Retry
 folder: retry
 permalink: /patterns/retry/
-categories: Other
+categories: Behavioral
 tags:
-  - Java
-  - Difficulty-Expert
   - Performance
 ---
 
@@ -151,4 +149,5 @@ You can view Microsoft's article [here](https://docs.microsoft.com/en-us/azure/a
 * Operations maintenance
 
 ## Related Patterns
+
 * [Circuit Breaker](https://martinfowler.com/bliki/CircuitBreaker.html)

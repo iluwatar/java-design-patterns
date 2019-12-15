@@ -65,13 +65,10 @@ public class DbCustomerDao implements CustomerDao {
    */
   @Override
   public Stream<Customer> getAll() throws Exception {
-
-    Connection connection;
     try {
-      connection = getConnection();
-      PreparedStatement statement =
-          connection.prepareStatement("SELECT * FROM CUSTOMERS"); // NOSONAR
-      ResultSet resultSet = statement.executeQuery(); // NOSONAR
+      var connection = getConnection();
+      var statement = connection.prepareStatement("SELECT * FROM CUSTOMERS");
+      var resultSet = statement.executeQuery(); // NOSONAR
       return StreamSupport.stream(new Spliterators.AbstractSpliterator<Customer>(Long.MAX_VALUE,
           Spliterator.ORDERED) {
 
@@ -121,9 +118,8 @@ public class DbCustomerDao implements CustomerDao {
 
     ResultSet resultSet = null;
 
-    try (Connection connection = getConnection();
-         PreparedStatement statement =
-             connection.prepareStatement("SELECT * FROM CUSTOMERS WHERE ID = ?")) {
+    try (var connection = getConnection();
+         var statement = connection.prepareStatement("SELECT * FROM CUSTOMERS WHERE ID = ?")) {
 
       statement.setInt(1, id);
       resultSet = statement.executeQuery();
@@ -150,9 +146,8 @@ public class DbCustomerDao implements CustomerDao {
       return false;
     }
 
-    try (Connection connection = getConnection();
-         PreparedStatement statement =
-             connection.prepareStatement("INSERT INTO CUSTOMERS VALUES (?,?,?)")) {
+    try (var connection = getConnection();
+         var statement = connection.prepareStatement("INSERT INTO CUSTOMERS VALUES (?,?,?)")) {
       statement.setInt(1, customer.getId());
       statement.setString(2, customer.getFirstName());
       statement.setString(3, customer.getLastName());
@@ -168,8 +163,8 @@ public class DbCustomerDao implements CustomerDao {
    */
   @Override
   public boolean update(Customer customer) throws Exception {
-    try (Connection connection = getConnection();
-         PreparedStatement statement =
+    try (var connection = getConnection();
+         var statement =
              connection
                  .prepareStatement("UPDATE CUSTOMERS SET FNAME = ?, LNAME = ? WHERE ID = ?")) {
       statement.setString(1, customer.getFirstName());
@@ -186,9 +181,8 @@ public class DbCustomerDao implements CustomerDao {
    */
   @Override
   public boolean delete(Customer customer) throws Exception {
-    try (Connection connection = getConnection();
-         PreparedStatement statement =
-             connection.prepareStatement("DELETE FROM CUSTOMERS WHERE ID = ?")) {
+    try (var connection = getConnection();
+         var statement = connection.prepareStatement("DELETE FROM CUSTOMERS WHERE ID = ?")) {
       statement.setInt(1, customer.getId());
       return statement.executeUpdate() > 0;
     } catch (SQLException ex) {

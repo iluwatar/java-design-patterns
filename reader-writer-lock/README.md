@@ -5,9 +5,6 @@ folder: reader-writer-lock
 permalink: /patterns/reader-writer-lock/
 categories: Concurrency
 tags: 
- - Java
- - Difficulty-Intermediate
- - I/O
  - Performance
 ---
 
@@ -29,5 +26,4 @@ Application need to  increase the performance of resource synchronize for multip
 ## Credits
 
 * [Readers–writer lock](https://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock)
-
 * [Readers–writers_problem](https://en.wikipedia.org/wiki/Readers%E2%80%93writers_problem)

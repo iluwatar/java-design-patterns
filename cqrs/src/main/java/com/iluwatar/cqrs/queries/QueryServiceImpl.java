@@ -29,8 +29,6 @@ import com.iluwatar.cqrs.dto.Book;
 import com.iluwatar.cqrs.util.HibernateUtil;
 import java.math.BigInteger;
 import java.util.List;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 
@@ -44,9 +42,9 @@ public class QueryServiceImpl implements IQueryService {
 
   @Override
   public Author getAuthorByUsername(String username) {
-    Author authorDTo = null;
-    try (Session session = sessionFactory.openSession()) {
-      SQLQuery sqlQuery = session.createSQLQuery("SELECT a.username as \"username\","
+    Author authorDTo;
+    try (var session = sessionFactory.openSession()) {
+      var sqlQuery = session.createSQLQuery("SELECT a.username as \"username\","
           + " a.name as \"name\", a.email as \"email\""
           + "FROM Author a where a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
@@ -58,9 +56,9 @@ public class QueryServiceImpl implements IQueryService {
 
   @Override
   public Book getBook(String title) {
-    Book bookDTo = null;
-    try (Session session = sessionFactory.openSession()) {
-      SQLQuery sqlQuery = session.createSQLQuery("SELECT b.title as \"title\","
+    Book bookDTo;
+    try (var session = sessionFactory.openSession()) {
+      var sqlQuery = session.createSQLQuery("SELECT b.title as \"title\","
           + " b.price as \"price\"" + " FROM Book b where b.title=:title");
       sqlQuery.setParameter("title", title);
       bookDTo =
@@ -71,9 +69,9 @@ public class QueryServiceImpl implements IQueryService {
 
   @Override
   public List<Book> getAuthorBooks(String username) {
-    List<Book> bookDTos = null;
-    try (Session session = sessionFactory.openSession()) {
-      SQLQuery sqlQuery = session.createSQLQuery("SELECT b.title as \"title\", b.price as \"price\""
+    List<Book> bookDTos;
+    try (var session = sessionFactory.openSession()) {
+      var sqlQuery = session.createSQLQuery("SELECT b.title as \"title\", b.price as \"price\""
           + " FROM Author a , Book b where b.author_id = a.id and a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
       bookDTos = sqlQuery.setResultTransformer(Transformers.aliasToBean(Book.class)).list();
@@ -83,9 +81,9 @@ public class QueryServiceImpl implements IQueryService {
 
   @Override
   public BigInteger getAuthorBooksCount(String username) {
-    BigInteger bookcount = null;
-    try (Session session = sessionFactory.openSession()) {
-      SQLQuery sqlQuery = session.createSQLQuery(
+    BigInteger bookcount;
+    try (var session = sessionFactory.openSession()) {
+      var sqlQuery = session.createSQLQuery(
           "SELECT count(b.title)" + " FROM  Book b, Author a"
               + " where b.author_id = a.id and a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
@@ -96,9 +94,9 @@ public class QueryServiceImpl implements IQueryService {
 
   @Override
   public BigInteger getAuthorsCount() {
-    BigInteger authorcount = null;
-    try (Session session = sessionFactory.openSession()) {
-      SQLQuery sqlQuery = session.createSQLQuery("SELECT count(id) from Author");
+    BigInteger authorcount;
+    try (var session = sessionFactory.openSession()) {
+      var sqlQuery = session.createSQLQuery("SELECT count(id) from Author");
       authorcount = (BigInteger) sqlQuery.uniqueResult();
     }
     return authorcount;

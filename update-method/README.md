@@ -3,10 +3,9 @@ layout: pattern
 title: Update Method
 folder: update-method  
 permalink: /patterns/update-method/  
-categories: Other  
+categories: Behavioral
 tags:  
- - Java  
- - Difficulty-Beginner  
+ - Game programming
 ---  
   
 ## Intent  
@@ -28,9 +27,7 @@ However, if the game is more abstract and the moving pieces are less like living
 Update methods work well when:
 
 - Your game has a number of objects or systems that need to run simultaneously.
-
 - Each object’s behavior is mostly independent of the others.
-
 - The objects need to be simulated over time.
 
 ## Credits  
