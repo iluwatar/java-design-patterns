@@ -5,8 +5,8 @@ folder: cqrs
 permalink: /patterns/cqrs/
 categories: Architectural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Performance
+ - Cloud distributed
 ---
 
 ## Intent

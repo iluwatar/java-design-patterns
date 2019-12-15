@@ -5,8 +5,7 @@ folder: semaphore
 permalink: /patterns/semaphore/
 categories: Concurrency
 tags: 
- - Java
- - Difficulty-Intermediate
+ - Performance
 ---
 
 ## Also known as
@@ -25,8 +24,8 @@ is called a binary semaphore.
 ## Applicability
 Use a Semaphore when 
 
-* you have a pool of resources to allocate to different threads
-* concurrent access to a resource could lead to a race condition 
+* You have a pool of resources to allocate to different threads
+* Concurrent access to a resource could lead to a race condition 
 
 ## Credits
 

@@ -5,8 +5,7 @@ folder: bytecode
 permalink: /patterns/bytecode/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
+ - Game programming
 ---
 
 ## Intent

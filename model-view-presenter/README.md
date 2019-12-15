@@ -3,10 +3,9 @@ layout: pattern
 title: Model-View-Presenter
 folder: model-view-presenter
 permalink: /patterns/model-view-presenter/
-categories: Presentation Tier
+categories: Architectural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent
@@ -20,8 +19,8 @@ developers to build and test user interfaces.
 Use the Model-View-Presenter in any of the following
 situations
 
-* when you want to improve the "Separation of Concerns" principle in presentation logic
-* when a user interface development and testing is necessary.
+* When you want to improve the "Separation of Concerns" principle in presentation logic
+* When a user interface development and testing is necessary.
 
 ## Real world examples
 

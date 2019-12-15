@@ -5,8 +5,6 @@ folder: event-driven-architecture
 permalink: /patterns/event-driven-architecture/
 categories: Architectural
 tags:
- - Java
- - Difficulty-Intermediate
  - Reactive
 ---
 

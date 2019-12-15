@@ -3,10 +3,9 @@ layout: pattern
 title: Marker Interface
 folder: marker
 permalink: /patterns/marker/
-categories: Other
+categories: Structural
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent

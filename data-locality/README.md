@@ -3,10 +3,9 @@ layout: pattern
 title: Data Locality
 folder: data-locality
 permalink: /patterns/data-locality/
-categories: Other
+categories: Behavioral
 tags:
- - Java
- - Difficulty-Intermediate
+ - Game programming
  - Performance
 ---
 

@@ -5,8 +5,7 @@ folder: step-builder
 permalink: /patterns/step-builder/
 categories: Creational
 tags:
- - Java
- - Difficulty-Intermediate
+ - Instantiation
 ---
 
 ## Intent

@@ -3,11 +3,9 @@ layout: pattern
 title: Double Dispatch
 folder: double-dispatch
 permalink: /patterns/double-dispatch/
-categories: Other
+categories: Idiom
 tags:
- - Java
- - Difficulty-Intermediate
- - Idiom
+ - Extensibility
 ---
 
 ## Intent

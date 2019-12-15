@@ -5,9 +5,7 @@ folder: specification
 permalink: /patterns/specification/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
- - Searching
+ - Data access
 ---
 
 ## Also known as

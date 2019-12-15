@@ -5,9 +5,7 @@ folder: factory-kit
 permalink: /patterns/factory-kit/
 categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
- - Functional
+ - Extensibility
 ---
 
 ## Intent

@@ -5,8 +5,7 @@ folder: balking
 permalink: /patterns/balking/
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent

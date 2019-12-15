@@ -5,8 +5,7 @@ folder: factory-method
 permalink: /patterns/factory-method/
 categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Extensibility
  - Gang Of Four
 ---
 

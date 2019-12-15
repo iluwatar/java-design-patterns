@@ -6,9 +6,8 @@ permalink: /patterns/reactor/
 pumlformat: svg
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Expert
- - I/O
+ - Performance
+ - Reactive
 ---
 
 ## Intent
@@ -20,9 +19,9 @@ The Reactor design pattern handles service requests that are delivered concurren
 ## Applicability
 Use Reactor pattern when
 
-* a server application needs to handle concurrent service requests from multiple clients.
-* a server application needs to be available for receiving requests from new clients even when handling older client requests.
-* a server must maximize throughput, minimize latency and use CPU efficiently without blocking.
+* A server application needs to handle concurrent service requests from multiple clients.
+* A server application needs to be available for receiving requests from new clients even when handling older client requests.
+* A server must maximize throughput, minimize latency and use CPU efficiently without blocking.
 
 ## Real world examples
 

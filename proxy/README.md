@@ -5,9 +5,8 @@ folder: proxy
 permalink: /patterns/proxy/
 categories: Structural
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Also known as
@@ -130,6 +129,7 @@ are several common situations in which the Proxy pattern is applicable
 * Count references to an object
 
 ## Tutorials
+
 * [Controlling Access With Proxy Pattern](http://java-design-patterns.com/blog/controlling-access-with-proxy-pattern/)
 
 ## Real world examples

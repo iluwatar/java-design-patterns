@@ -5,9 +5,8 @@ folder: facade
 permalink: /patterns/facade/
 categories: Structural
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent

@@ -5,9 +5,7 @@ folder: eip-aggregator
 permalink: /patterns/eip-aggregator/
 categories: Integration
 tags:
- - Java
- - Difficulty-Intermittent
- - EIP
+ - Enterprise Integration Pattern
 ---
 
 ## Intent

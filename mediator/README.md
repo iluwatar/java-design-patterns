@@ -5,9 +5,8 @@ folder: mediator
 permalink: /patterns/mediator/
 categories: Behavioral
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent

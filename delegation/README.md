@@ -3,10 +3,9 @@ layout: pattern
 title: Delegation
 folder: delegation
 permalink: /patterns/delegation/
-categories: Behavioral
+categories: Structural
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Also known as

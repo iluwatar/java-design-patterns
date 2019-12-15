@@ -3,10 +3,9 @@ layout: pattern
 title: Leader Election
 folder: leader-election
 permalink: /patterns/leader-election/
-categories: Other
+categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
+ - Cloud distributed
 ---
 
 ## Intent

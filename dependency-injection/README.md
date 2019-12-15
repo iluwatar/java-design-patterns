@@ -3,10 +3,9 @@ layout: pattern
 title: Dependency Injection
 folder: dependency-injection
 permalink: /patterns/dependency-injection/
-categories: Behavioral
+categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent

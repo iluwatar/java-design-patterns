@@ -5,8 +5,6 @@ folder: thread-pool
 permalink: /patterns/thread-pool/
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Intermediate
  - Performance
 ---
 
@@ -23,4 +21,4 @@ and eliminating the latency of creating new threads.
 ## Applicability
 Use the Thread Pool pattern when
 
-* you have a large number of short-lived tasks to be executed in parallel
+* You have a large number of short-lived tasks to be executed in parallel

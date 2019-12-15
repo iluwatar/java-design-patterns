@@ -5,9 +5,8 @@ folder: api-gateway
 permalink: /patterns/api-gateway/
 categories: Architectural
 tags:
-- Java
-- Difficulty-Intermediate
-- Spring
+- Cloud distributed
+- Decoupling
 ---
 
 ## Intent

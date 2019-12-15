@@ -3,14 +3,13 @@ layout: pattern
 title: Twin
 folder: twin
 permalink: /patterns/twin/
-categories: Creational
+categories: Structural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Extensibility
 ---
 
 ## Intent
- Twin pattern is a design pattern which provides a standard solution to simulate multiple
+Twin pattern is a design pattern which provides a standard solution to simulate multiple
 inheritance in java
 
 ## Class diagram
@@ -19,8 +18,8 @@ inheritance in java
 ## Applicability
 Use the Twin idiom when
 
-* to simulate multiple inheritance in a language that does not support this feature.
-* to avoid certain problems of multiple inheritance such as name clashes.
+* To simulate multiple inheritance in a language that does not support this feature.
+* To avoid certain problems of multiple inheritance such as name clashes.
 
 ## Credits
 

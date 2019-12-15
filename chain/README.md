@@ -5,9 +5,7 @@ folder: chain
 permalink: /patterns/chain/
 categories: Behavioral
 tags:
- - Java
- - Gang Of Four
- - Difficulty-Intermediate
+ - Gang of Four
 ---
 
 ## Intent

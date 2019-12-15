@@ -48,16 +48,14 @@ public class CustomerClientApp {
    * @param args program argument.
    */
   public static void main(String[] args) {
-    List<CustomerDto> customers = new ArrayList<>();
-    CustomerDto customerOne = new CustomerDto("1", "Kelly", "Brown");
-    CustomerDto customerTwo = new CustomerDto("2", "Alfonso", "Bass");
-    customers.add(customerOne);
-    customers.add(customerTwo);
+    var customerOne = new CustomerDto("1", "Kelly", "Brown");
+    var customerTwo = new CustomerDto("2", "Alfonso", "Bass");
+    var customers = new ArrayList<>(List.of(customerOne, customerTwo));
 
-    CustomerResource customerResource = new CustomerResource(customers);
+    var customerResource = new CustomerResource(customers);
 
     LOGGER.info("All customers:-");
-    List<CustomerDto> allCustomers = customerResource.getAllCustomers();
+    var allCustomers = customerResource.getAllCustomers();
     printCustomerDetails(allCustomers);
 
     LOGGER.info("----------------------------------------------------------");
@@ -70,7 +68,7 @@ public class CustomerClientApp {
     LOGGER.info("----------------------------------------------------------");
 
     LOGGER.info("Adding customer three}");
-    CustomerDto customerThree = new CustomerDto("3", "Lynda", "Blair");
+    var customerThree = new CustomerDto("3", "Lynda", "Blair");
     customerResource.save(customerThree);
     allCustomers = customerResource.getAllCustomers();
     printCustomerDetails(allCustomers);

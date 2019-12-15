@@ -73,7 +73,7 @@ public class Book {
     if (!(obj instanceof Book)) {
       return false;
     }
-    Book book = (Book) obj;
+    var book = (Book) obj;
     return title.equals(book.getTitle()) && price == book.getPrice();
   }
 

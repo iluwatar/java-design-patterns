@@ -5,8 +5,7 @@ folder: abstract-document
 permalink: /patterns/abstract-document/
 categories: Structural
 tags: 
- - Java
- - Difficulty-Intermediate
+ - Extensibility
 ---
 
 ## Intent

@@ -6,9 +6,7 @@ permalink: /patterns/layers/
 pumlformat: svg
 categories: Architectural
 tags:
- - Java
- - Difficulty-Intermediate
- - Spring
+ - Decoupling
 ---
 
 ## Intent

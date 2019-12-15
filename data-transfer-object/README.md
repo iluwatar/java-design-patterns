@@ -5,10 +5,7 @@ folder: data-transfer-object
 permalink: /patterns/data-transfer-object/
 categories: Architectural
 tags:
- - Java
- - KISS
- - YAGNI
- - Difficulty-Beginner
+ - Performance
 ---
 
 ## Intent

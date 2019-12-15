@@ -23,11 +23,11 @@
 
 package com.iluwatar.doubledispatch;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for Rectangle
@@ -39,7 +39,7 @@ public class RectangleTest {
    */
   @Test
   public void testConstructor() {
-    final Rectangle rectangle = new Rectangle(1, 2, 3, 4);
+    final var rectangle = new Rectangle(1, 2, 3, 4);
     assertEquals(1, rectangle.getLeft());
     assertEquals(2, rectangle.getTop());
     assertEquals(3, rectangle.getRight());
@@ -52,7 +52,7 @@ public class RectangleTest {
    */
   @Test
   public void testToString() throws Exception {
-    final Rectangle rectangle = new Rectangle(1, 2, 3, 4);
+    final var rectangle = new Rectangle(1, 2, 3, 4);
     assertEquals("[1,2,3,4]", rectangle.toString());
   }
 

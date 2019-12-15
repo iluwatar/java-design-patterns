@@ -3,10 +3,10 @@ layout: pattern
 title: Type-Object
 folder: typeobjectpattern
 permalink: /patterns/typeobjectpattern/
-categories: Game Programming Patterns/Behavioral Patterns
+categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
+ - Game programming
+ - Extensibility
 ---
 
 ## Intent
@@ -23,10 +23,12 @@ Using the type-object pattern, instead of creating many classes inheriting from 
 
 ## Applicability
 This pattern can be used when:
+
 * We don’t know what types we will need up front.
 * We want to be able to modify or add new types without having to recompile or change code.
 * Only difference between the different 'types' of objects is the data, not the behaviour.
  
 ## Credits
+
 * [Game Programming Patterns/Type Object](http://gameprogrammingpatterns.com/type-object.html) by Robert Nystrom
 * [http://www.cs.sjsu.edu/~pearce/modules/patterns/analysis/top.htm]

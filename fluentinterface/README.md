@@ -3,11 +3,9 @@ layout: pattern
 title: Fluent Interface
 folder: fluentinterface
 permalink: /patterns/fluentinterface/
-categories: Other
+categories: Functional
 tags: 
- - Java
- - Difficulty-Intermediate
- - Functional
+ - Reactive
 ---
 
 ## Intent
