@@ -65,7 +65,7 @@ public class GameLoopTest {
 
   @Test
   public void testIsGameRunning() {
-    Assert.assertEquals(false, gameLoop.isGameRunning());
+    Assert.assertFalse(gameLoop.isGameRunning());
   }
 
 }
