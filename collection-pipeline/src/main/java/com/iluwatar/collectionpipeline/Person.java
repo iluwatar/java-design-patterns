@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.collectionpipeline;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class Person {
 
   /**
    * Constructor to create an instance of person.
+   *
    * @param cars the list of cars owned
    */
   public Person(List<Car> cars) {

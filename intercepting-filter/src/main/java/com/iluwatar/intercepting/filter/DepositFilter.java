@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
 /**
- * Concrete implementation of filter This checks for the deposit code
- * 
- * @author joshzambales
+ * Concrete implementation of filter This checks for the deposit code.
  *
+ * @author joshzambales
  */
 public class DepositFilter extends AbstractFilter {
 

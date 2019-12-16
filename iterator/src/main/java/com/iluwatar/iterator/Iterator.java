@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,10 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.iterator;
 
 /**
- * Iterator interface to be implemented by iterators over various data structures
+ * Iterator interface to be implemented by iterators over various data structures.
+ *
  * @param <T> generically typed for various objects
  */
 public interface Iterator<T> {

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.retry;
 
 /**
@@ -32,7 +33,7 @@ public final class DatabaseNotAvailableException extends BusinessException {
 
   /**
    * Ctor.
-   * 
+   *
    * @param message the error message
    */
   public DatabaseNotAvailableException(String message) {

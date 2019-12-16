@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,16 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.queue.load.leveling;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
- *  ServiceExecuotr class.
- *  This class will pick up Messages one by one from 
- *  the Blocking Queue and process them.
+ * ServiceExecuotr class. This class will pick up Messages one by one from the Blocking Queue and
+ * process them.
  */
 public class ServiceExecutor implements Runnable {
 

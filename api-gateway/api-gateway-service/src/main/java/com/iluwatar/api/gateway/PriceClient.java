@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.api.gateway;
 
 /**
- * An interface used to communicate with the Price microservice
+ * An interface used to communicate with the Price microservice.
  */
 public interface PriceClient {
   String getPrice();

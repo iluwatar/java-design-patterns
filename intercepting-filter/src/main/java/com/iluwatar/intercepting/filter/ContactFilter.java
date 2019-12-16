@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
 /**
  * Concrete implementation of filter This filter checks for the contact field in which it checks if
  * the input consist of numbers and it also checks if the input follows the length constraint (11
- * digits)
- * 
- * @author joshzambales
+ * digits).
  *
+ * @author joshzambales
  */
 public class ContactFilter extends AbstractFilter {
 

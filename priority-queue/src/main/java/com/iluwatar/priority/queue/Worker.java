@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,13 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.priority.queue;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Message Worker
+ * Message Worker.
  */
 public class Worker {
 
@@ -39,7 +40,7 @@ public class Worker {
   }
 
   /**
-   * Keep checking queue for message
+   * Keep checking queue for message.
    */
   @SuppressWarnings("squid:S2189")
   public void run() throws Exception {
@@ -55,7 +56,7 @@ public class Worker {
   }
 
   /**
-   * Process message
+   * Process message.
    */
   private void processMessage(Message message) {
     LOGGER.info(message.toString());

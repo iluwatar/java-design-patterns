@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,29 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.balking;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link WashingMachine}
  */
-public class WashingMachineTest {
+class WashingMachineTest {
 
-  private FakeDelayProvider fakeDelayProvider = new FakeDelayProvider();
+  private final FakeDelayProvider fakeDelayProvider = new FakeDelayProvider();
 
   @Test
-  public void wash() {
-    WashingMachine washingMachine = new WashingMachine(fakeDelayProvider);
+  void wash() {
+    var washingMachine = new WashingMachine(fakeDelayProvider);
 
     washingMachine.wash();
     washingMachine.wash();
 
-    WashingMachineState machineStateGlobal = washingMachine.getWashingMachineState();
+    var machineStateGlobal = washingMachine.getWashingMachineState();
 
     fakeDelayProvider.task.run();
 
@@ -54,13 +54,13 @@ public class WashingMachineTest {
   }
 
   @Test
-  public void endOfWashing() {
-    WashingMachine washingMachine = new WashingMachine();
+  void endOfWashing() {
+    var washingMachine = new WashingMachine();
     washingMachine.wash();
     assertEquals(WashingMachineState.ENABLED, washingMachine.getWashingMachineState());
   }
 
-  private class FakeDelayProvider implements DelayProvider {
+  private static class FakeDelayProvider implements DelayProvider {
     private Runnable task;
 
     @Override

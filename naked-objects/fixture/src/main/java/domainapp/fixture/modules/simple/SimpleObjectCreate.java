@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package domainapp.fixture.modules.simple;
 
-import org.apache.isis.applib.fixturescripts.FixtureScript;
+package domainapp.fixture.modules.simple;
 
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.dom.modules.simple.SimpleObjects;
+import org.apache.isis.applib.fixturescripts.FixtureScript;
 
 /**
- * Fixture to create a simple object
+ * Fixture to create a simple object.
  */
 public class SimpleObjectCreate extends FixtureScript {
 
@@ -45,7 +45,7 @@ public class SimpleObjectCreate extends FixtureScript {
   private String name;
 
   /**
-   * Name of the object (required)
+   * Name of the object (required).
    */
   public String getName() {
     return name;

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
 
 /**
- * 
  * Immutable value object containing lottery player details.
- *
  */
 public class PlayerDetails {
 
@@ -43,20 +42,26 @@ public class PlayerDetails {
   }
 
   /**
+   * Get email.
+   *
    * @return email
    */
   public String getEmail() {
     return emailAddress;
   }
-  
+
   /**
+   * Get back account number.
+   *
    * @return bank account number
    */
   public String getBankAccount() {
     return bankAccountNumber;
   }
-  
+
   /**
+   * Get phone number.
+   *
    * @return phone number
    */
   public String getPhoneNumber() {

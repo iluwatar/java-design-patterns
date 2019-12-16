@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
 
 /**
- * 
  * LordBaelish produces events.
- *
  */
 public class LordBaelish extends EventEmitter {
 
@@ -38,7 +37,7 @@ public class LordBaelish extends EventEmitter {
 
   @Override
   public void timePasses(Weekday day) {
-    if (day.equals(Weekday.FRIDAY)) {
+    if (day == Weekday.FRIDAY) {
       notifyObservers(Event.STARK_SIGHTED);
     }
   }

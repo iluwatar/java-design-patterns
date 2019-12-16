@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
 /**
  * Concrete implementation of filter This filter is responsible for checking/filtering the input in
  * the address field.
- * 
- * @author joshzambales
  *
+ * @author joshzambales
  */
 public class AddressFilter extends AbstractFilter {
 

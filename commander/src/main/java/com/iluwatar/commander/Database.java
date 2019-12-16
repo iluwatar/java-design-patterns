@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,17 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.commander;
 
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 /**
- * Database abstract class is extended by all databases in our example. The add and get
- * methods are used by the respective service to add to database or get from database.
+ * Database abstract class is extended by all databases in our example. The add and get methods are
+ * used by the respective service to add to database or get from database.
+ *
  * @param <T> T is the type of object being held by database.
  */
 
 public abstract class Database<T> {
   public abstract T add(T obj) throws DatabaseUnavailableException;
-  public abstract T get(String tId) throws DatabaseUnavailableException;
+
+  public abstract T get(String id) throws DatabaseUnavailableException;
 }

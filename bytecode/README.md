@@ -5,12 +5,14 @@ folder: bytecode
 permalink: /patterns/bytecode/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
+ - Game programming
 ---
 
 ## Intent
 Allows to encode behaviour as instructions for virtual machine.
+
+## Class diagram
+![alt text](./etc/bytecode.urm.png "Bytecode class diagram")
 
 ## Applicability
 Use the Bytecode pattern when you have a lot of behavior you need to define and your

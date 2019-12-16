@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.abstractdocument.domain;
 
-import java.util.stream.Stream;
+package com.iluwatar.abstractdocument.domain;
 
 import com.iluwatar.abstractdocument.Document;
 import com.iluwatar.abstractdocument.domain.enums.Property;
+import java.util.stream.Stream;
 
 /**
- * HasParts trait for static access to 'parts' property
+ * HasParts trait for static access to 'parts' property.
  */
 public interface HasParts extends Document {
 

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.poison.pill;
 
 /**
@@ -29,16 +30,15 @@ package com.iluwatar.poison.pill;
  * Pill will stop reading messages from the queue. You must also ensure that the Poison Pill will be
  * the last message that will be read from the queue (if you have prioritized queue then this can be
  * tricky).
- * <p>
- * In simple cases the Poison Pill can be just a null-reference, but holding a unique separate
+ *
+ * <p>In simple cases the Poison Pill can be just a null-reference, but holding a unique separate
  * shared object-marker (with name "Poison" or "Poison Pill") is more clear and self describing.
- * 
  */
 public class App {
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {

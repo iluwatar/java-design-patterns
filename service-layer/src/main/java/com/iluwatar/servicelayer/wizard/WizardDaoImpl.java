@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,20 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.wizard;
 
+import com.iluwatar.servicelayer.common.DaoBaseImpl;
+import com.iluwatar.servicelayer.spellbook.Spellbook;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.iluwatar.servicelayer.common.DaoBaseImpl;
-import com.iluwatar.servicelayer.spellbook.Spellbook;
-
 /**
- * 
  * WizardDao implementation.
- *
  */
 public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package concreteextensions;
 
 import abstractextensions.SoldierExtension;
@@ -28,7 +29,7 @@ import org.slf4j.LoggerFactory;
 import units.SoldierUnit;
 
 /**
- * Class defining Soldier
+ * Class defining Soldier.
  */
 public class Soldier implements SoldierExtension {
   private static final Logger LOGGER = LoggerFactory.getLogger(Soldier.class);

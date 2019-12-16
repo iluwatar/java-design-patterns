@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.delegation.simple.printers;
 
 import com.iluwatar.delegation.simple.Printer;
@@ -27,8 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Specialised Implementation of {@link Printer} for a HP Printer, in
- * this case the message to be printed is appended to "HP Printer : "
+ * Specialised Implementation of {@link Printer} for a HP Printer, in this case the message to be
+ * printed is appended to "HP Printer : ".
  *
  * @see Printer
  */

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.stepbuilder;
 
 import java.util.List;
@@ -90,15 +91,15 @@ public class Character {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
+    var sb = new StringBuilder();
     sb.append("This is a ")
-            .append(fighterClass != null ? fighterClass : wizardClass)
-            .append(" named ")
-            .append(name)
-            .append(" armed with a ")
-            .append(weapon != null ? weapon : spell != null ? spell : "with nothing")
-            .append(abilities != null ? " and wielding " + abilities + " abilities" : "")
-            .append('.');
+        .append(fighterClass != null ? fighterClass : wizardClass)
+        .append(" named ")
+        .append(name)
+        .append(" armed with a ")
+        .append(weapon != null ? weapon : spell != null ? spell : "with nothing")
+        .append(abilities != null ? " and wielding " + abilities + " abilities" : "")
+        .append('.');
     return sb.toString();
   }
 }

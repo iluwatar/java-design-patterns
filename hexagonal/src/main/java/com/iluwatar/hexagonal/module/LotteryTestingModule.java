@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.module;
 
 import com.google.inject.AbstractModule;
@@ -31,7 +32,7 @@ import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
 import com.iluwatar.hexagonal.eventlog.StdOutEventLog;
 
 /**
- * Guice module for testing dependencies
+ * Guice module for testing dependencies.
  */
 public class LotteryTestingModule extends AbstractModule {
   @Override

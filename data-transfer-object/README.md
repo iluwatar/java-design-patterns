@@ -5,16 +5,14 @@ folder: data-transfer-object
 permalink: /patterns/data-transfer-object/
 categories: Architectural
 tags:
- - Java
- - KISS
- - YAGNI
- - Difficulty-Beginner
+ - Performance
 ---
 
 ## Intent
 Pass data with multiple attributes in one shot from client to server,
 to avoid multiple calls to remote server. 
 
+## Class diagram
 ![alt text](./etc/data-transfer-object.urm.png "data-transfer-object")
 
 ## Applicability

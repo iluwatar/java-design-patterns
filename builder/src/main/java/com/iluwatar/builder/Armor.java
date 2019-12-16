@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,18 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.builder;
 
 /**
- * 
- * Armor enumeration
- *
+ * Armor enumeration.
  */
 public enum Armor {
 
   CLOTHES("clothes"), LEATHER("leather"), CHAIN_MAIL("chain mail"), PLATE_MAIL("plate mail");
 
-  private String title;
+  private final String title;
 
   Armor(String title) {
     this.title = title;

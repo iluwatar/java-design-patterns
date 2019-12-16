@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.poison.pill;
 
 /**
- * Represents abstraction of channel (or pipe) that bounds {@link Producer} and {@link Consumer}
+ * Represents abstraction of channel (or pipe) that bounds {@link Producer} and {@link Consumer}.
  */
 public interface MessageQueue extends MqPublishPoint, MqSubscribePoint {
 

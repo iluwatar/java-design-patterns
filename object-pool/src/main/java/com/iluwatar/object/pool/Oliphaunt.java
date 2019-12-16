@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,14 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.object.pool;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 
- * Oliphaunts are expensive to create
- *
+ * Oliphaunts are expensive to create.
  */
 public class Oliphaunt {
 
@@ -36,7 +35,7 @@ public class Oliphaunt {
   private final int id;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Oliphaunt() {
     id = counter.incrementAndGet();

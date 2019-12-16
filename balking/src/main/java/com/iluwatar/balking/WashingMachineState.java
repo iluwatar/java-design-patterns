@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.balking;
 
 /**
- * WashingMachineState enum describes in which state machine is,
- * it can be enabled and ready to work as well as during washing
+ * WashingMachineState enum describes in which state machine is, it can be enabled and ready to work
+ * as well as during washing.
  */
-
 public enum WashingMachineState {
   ENABLED, WASHING
 }

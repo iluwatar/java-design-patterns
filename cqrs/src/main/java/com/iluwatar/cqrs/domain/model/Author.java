@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.cqrs.domain.model;
 
 import javax.persistence.Entity;
@@ -29,7 +30,6 @@ import javax.persistence.Id;
 
 /**
  * This is an Author entity. It is used by Hibernate for persistence.
- *
  */
 @Entity
 public class Author {
@@ -41,13 +41,11 @@ public class Author {
   private String email;
 
   /**
-   * 
-   * @param username
-   *          username of the author
-   * @param name
-   *          name of the author
-   * @param email
-   *          email of the author
+   * Constructor.
+   *
+   * @param username username of the author
+   * @param name     name of the author
+   * @param email    email of the author
    */
   public Author(String username, String name, String email) {
     this.username = username;

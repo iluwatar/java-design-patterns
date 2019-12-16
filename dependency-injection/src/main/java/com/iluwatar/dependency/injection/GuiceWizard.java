@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dependency.injection;
 
 import javax.inject.Inject;
 
 /**
- * 
  * GuiceWizard implements inversion of control. Its dependencies are injected through its
  * constructor by Guice framework.
- *
  */
 public class GuiceWizard implements Wizard {
 

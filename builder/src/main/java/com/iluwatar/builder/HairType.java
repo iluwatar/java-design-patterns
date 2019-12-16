@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,19 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.builder;
 
 /**
- * 
- * HairType enumeration
- *
+ * HairType enumeration.
  */
 public enum HairType {
 
   BALD("bald"), SHORT("short"), CURLY("curly"), LONG_STRAIGHT("long straight"), LONG_CURLY(
       "long curly");
 
-  private String title;
+  private final String title;
 
   HairType(String title) {
     this.title = title;

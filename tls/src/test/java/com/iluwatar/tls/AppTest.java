@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,20 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.tls;
 
 import org.junit.jupiter.api.Test;
 
 /**
  * Tests that thread local storage example runs without errors.
- * 
- * @author Thomas Bauer, January 2017
  *
+ * @author Thomas Bauer, January 2017
  */
 public class AppTest {
   @Test
-  public void test() throws Exception {
-    String[] args = {};
-    App.main(args);
+  public void test() {
+    App.main(new String[]{});
   }
 }

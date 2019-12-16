@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.fluentinterface.fluentiterable.lazy;
 
 import java.util.Iterator;
@@ -27,6 +28,7 @@ import java.util.Iterator;
 /**
  * This class is used to realize LazyFluentIterables. It decorates a given iterator. Does not
  * support consecutive hasNext() calls.
+ *
  * @param <E> Iterable Collection of Elements of Type E
  */
 public abstract class DecoratingIterator<E> implements Iterator<E> {

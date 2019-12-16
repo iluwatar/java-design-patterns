@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,20 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.module;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.module;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * The FileLoggerModule is responsible for showing logs on File System
- * <p>
- * The below example demonstrates a File logger module, which can print simple and error messages in
- * two designated files
+ * The FileLoggerModule is responsible for showing logs on File System.
+ *
+ * <p>The below example demonstrates a File logger module, which can print simple and error
+ * messages in two designated files
  */
 public final class FileLoggerModule {
 
@@ -47,11 +47,12 @@ public final class FileLoggerModule {
   public PrintStream output = null;
   public PrintStream error = null;
 
-  private FileLoggerModule() {}
+  private FileLoggerModule() {
+  }
 
   /**
-   * Static method to get single instance of class
-   * 
+   * Static method to get single instance of class.
+   *
    * @return singleton instance of FileLoggerModule
    */
   public static FileLoggerModule getSingleton() {
@@ -64,10 +65,10 @@ public final class FileLoggerModule {
   }
 
   /**
-   * Following method performs the initialization
-   * 
+   * Following method performs the initialization.
+   *
    * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *         error.txt)
+   *                               error.txt)
    */
   public FileLoggerModule prepare() throws FileNotFoundException {
 
@@ -80,7 +81,7 @@ public final class FileLoggerModule {
   }
 
   /**
-   * Following method performs the finalization
+   * Following method performs the finalization.
    */
   public void unprepare() {
 
@@ -100,8 +101,8 @@ public final class FileLoggerModule {
   }
 
   /**
-   * Used to print a message
-   * 
+   * Used to print a message.
+   *
    * @param value will be printed in file
    */
   public void printString(final String value) {
@@ -109,8 +110,8 @@ public final class FileLoggerModule {
   }
 
   /**
-   * Used to print a error message
-   * 
+   * Used to print a error message.
+   *
    * @param value will be printed on error file
    */
   public void printErrorString(final String value) {

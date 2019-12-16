@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,22 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.price.microservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * PriceApplication starts up Spring Boot, exposing endpoints for the Price microservice through
- * the {@link PriceController}.
+ * PriceApplication starts up Spring Boot, exposing endpoints for the Price microservice through the
+ * {@link PriceController}.
  */
 @SpringBootApplication
 public class PriceApplication {
 
   /**
-   * Microservice entry point
-   * @param args
-   *          command line args
+   * Microservice entry point.
+   *
+   * @param args command line args
    */
   public static void main(String[] args) {
     SpringApplication.run(PriceApplication.class, args);

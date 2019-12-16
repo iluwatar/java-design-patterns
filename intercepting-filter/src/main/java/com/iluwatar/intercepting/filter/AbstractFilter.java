@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,17 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
 /**
  * Base class for order processing filters. Handles chain management.
- *
  */
 public abstract class AbstractFilter implements Filter {
 
   private Filter next;
 
-  public AbstractFilter() {}
+  public AbstractFilter() {
+  }
 
   public AbstractFilter(Filter next) {
     this.next = next;

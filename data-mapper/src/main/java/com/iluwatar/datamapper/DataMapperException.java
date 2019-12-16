@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.datamapper;
 
 /**
  * Using Runtime Exception for avoiding dependancy on implementation exceptions. This helps in
  * decoupling.
- * 
- * @author amit.dixit
  *
+ * @author amit.dixit
  */
 public final class DataMapperException extends RuntimeException {
 
@@ -38,7 +38,7 @@ public final class DataMapperException extends RuntimeException {
    * initialized, and may subsequently be initialized by a call to {@link #initCause}.
    *
    * @param message the detail message. The detail message is saved for later retrieval by the
-   *        {@link #getMessage()} method.
+   *                {@link #getMessage()} method.
    */
   public DataMapperException(final String message) {
     super(message);

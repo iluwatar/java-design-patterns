@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.builder;
 
 /**
- * 
  * Hero, the class with many parameters.
- * 
  */
 public final class Hero {
 
@@ -72,11 +71,11 @@ public final class Hero {
   @Override
   public String toString() {
 
-    StringBuilder sb = new StringBuilder();
+    var sb = new StringBuilder();
     sb.append("This is a ")
-            .append(profession)
-            .append(" named ")
-            .append(name);
+        .append(profession)
+        .append(" named ")
+        .append(name);
     if (hairColor != null || hairType != null) {
       sb.append(" with ");
       if (hairColor != null) {
@@ -98,9 +97,7 @@ public final class Hero {
   }
 
   /**
-   * 
    * The builder class.
-   * 
    */
   public static class Builder {
 
@@ -112,7 +109,7 @@ public final class Hero {
     private Weapon weapon;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public Builder(Profession profession, String name) {
       if (profession == null || name == null) {

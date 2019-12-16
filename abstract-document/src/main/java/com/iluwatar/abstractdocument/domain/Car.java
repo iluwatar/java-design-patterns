@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.abstractdocument.domain;
 
+import com.iluwatar.abstractdocument.AbstractDocument;
 import java.util.Map;
 
-import com.iluwatar.abstractdocument.AbstractDocument;
-
 /**
- * Car entity
+ * Car entity.
  */
 public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts {
 

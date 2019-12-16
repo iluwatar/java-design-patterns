@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.composite;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * Composite interface.
- * 
  */
 public abstract class LetterComposite {
 
@@ -42,18 +41,18 @@ public abstract class LetterComposite {
     return children.size();
   }
 
-  protected void printThisBefore() {}
+  protected void printThisBefore() {
+  }
 
-  protected void printThisAfter() {}
+  protected void printThisAfter() {
+  }
 
   /**
-   * Print
+   * Print.
    */
   public void print() {
     printThisBefore();
-    for (LetterComposite letter : children) {
-      letter.print();
-    }
+    children.forEach(LetterComposite::print);
     printThisAfter();
   }
 }

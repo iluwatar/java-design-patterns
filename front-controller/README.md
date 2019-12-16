@@ -3,10 +3,9 @@ layout: pattern
 title: Front Controller
 folder: front-controller
 permalink: /patterns/front-controller/
-categories: Presentation Tier
+categories: Structural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent
@@ -14,6 +13,7 @@ Introduce a common handler for all requests for a web site. This
 way we can encapsulate common functionality such as security,
 internationalization, routing and logging in a single place.
 
+## Class diagram
 ![alt text](./etc/front-controller.png "Front Controller")
 
 ## Applicability

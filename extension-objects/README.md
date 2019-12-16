@@ -5,14 +5,14 @@ folder: extension-objects
 permalink: /patterns/extension-objects/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Intermediate
+ - Extensibility
 ---
 
 ## Intent
 Anticipate that an object’s interface needs to be extended in the future. Additional
 interfaces are defined by extension objects.
 
+## Class diagram
 ![Extension_objects](./etc/extension_obj.png "Extension objects")
 
 ## Applicability

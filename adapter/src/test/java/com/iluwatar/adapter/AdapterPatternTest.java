@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,20 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.adapter;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 /**
  * Test class
- * 
  */
 public class AdapterPatternTest {
 
@@ -50,7 +49,7 @@ public class AdapterPatternTest {
   public void setup() {
     beans = new HashMap<>();
 
-    FishingBoatAdapter fishingBoatAdapter = spy(new FishingBoatAdapter());
+    var fishingBoatAdapter = spy(new FishingBoatAdapter());
     beans.put(FISHING_BEAN, fishingBoatAdapter);
 
     var captain = new Captain();
@@ -59,10 +58,10 @@ public class AdapterPatternTest {
   }
 
   /**
-   * This test asserts that when we use the row() method on a captain bean(client), it is
-   * internally calling sail method on the fishing boat object. The Adapter ({@link FishingBoatAdapter}
-   * ) converts the interface of the target class ( {@link FishingBoat}) into a suitable one
-   * expected by the client ({@link Captain} ).
+   * This test asserts that when we use the row() method on a captain bean(client), it is internally
+   * calling sail method on the fishing boat object. The Adapter ({@link FishingBoatAdapter} )
+   * converts the interface of the target class ( {@link FishingBoat}) into a suitable one expected
+   * by the client ({@link Captain} ).
    */
   @Test
   public void testAdapter() {

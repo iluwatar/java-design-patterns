@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.converter;
 
 import java.util.Objects;
 
 /**
- * User class
+ * User class.
  */
 public class User {
   private String firstName;
@@ -34,10 +35,12 @@ public class User {
   private String userId;
 
   /**
+   * Constructor.
+   *
    * @param firstName user's first name
    * @param lastName  user's last name
    * @param isActive  flag indicating whether the user is active
-   * @param userId user's identificator
+   * @param userId    user's identificator
    */
   public User(String firstName, String lastName, boolean isActive, String userId) {
     this.firstName = firstName;
@@ -62,24 +65,27 @@ public class User {
     return userId;
   }
 
-  @Override public boolean equals(Object o) {
+  @Override
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    User user = (User) o;
+    var user = (User) o;
     return isActive == user.isActive && Objects.equals(firstName, user.firstName) && Objects
-      .equals(lastName, user.lastName) && Objects.equals(userId, user.userId);
+        .equals(lastName, user.lastName) && Objects.equals(userId, user.userId);
   }
 
-  @Override public int hashCode() {
+  @Override
+  public int hashCode() {
     return Objects.hash(firstName, lastName, isActive, userId);
   }
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return "User{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
-      + ", isActive=" + isActive + ", userId='" + userId + '\'' + '}';
+        + ", isActive=" + isActive + ", userId='" + userId + '\'' + '}';
   }
 }

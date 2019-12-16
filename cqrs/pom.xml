@@ -30,7 +30,7 @@
 	<parent>
 		<groupId>com.iluwatar</groupId>
 		<artifactId>java-design-patterns</artifactId>
-		<version>1.22.0-SNAPSHOT</version>
+		<version>1.23.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>cqrs</artifactId>
 	<dependencies>
@@ -50,8 +50,8 @@
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
-			<scope>test</scope>
 			<version>2.1.17</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.xml.bind</groupId>

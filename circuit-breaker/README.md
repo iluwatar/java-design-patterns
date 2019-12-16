@@ -1,13 +1,12 @@
 ---
 layout: pattern
-title: CircuitBreaker
+title: Circuit Breaker
 folder: circuit-breaker
 permalink: /patterns/circuit-breaker/
-categories: Other
+categories: Behavioral
 tags:
- - Java
  - Performance
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent
@@ -165,6 +164,8 @@ How does the above pattern prevent failures? Let's understand via this finite st
 - If the number of failures cross a certain threshold, we move to the **open** state, which acts just like an open circuit and prevents remote service calls from being made, thus saving resources. (Here, we return the response called ```stale response from API```)
 - Once we exceed the retry timeout period, we move to the **half-open** state and make another call to the remote service again to check if the service is working so that we can serve fresh content. A *failure* sets it back to **open** state and another attempt is made after retry timeout period, while a *success* sets it to **closed** state so that everything starts working normally again. 
 
+## Class diagram
+![alt text](./etc/circuit-breaker.urm.png "Circuit Breaker class diagram")
 
 ## Applicability
 Use the Circuit Breaker pattern when
@@ -177,6 +178,7 @@ Use the Circuit Breaker pattern when
 - [Retry Pattern](https://github.com/iluwatar/java-design-patterns/tree/master/retry)
 
 ## Real world examples
+
 * [Spring Circuit Breaker module](https://spring.io/guides/gs/circuit-breaker)
 * [Netflix Hystrix API](https://github.com/Netflix/Hystrix)
 

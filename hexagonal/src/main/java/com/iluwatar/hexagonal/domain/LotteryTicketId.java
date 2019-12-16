@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,18 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Lottery ticked id
+ * Lottery ticked id.
  */
 public class LotteryTicketId {
 
   private static AtomicInteger numAllocated = new AtomicInteger(0);
   private final int id;
-  
+
   public LotteryTicketId() {
     this.id = numAllocated.incrementAndGet();
   }
@@ -39,7 +40,7 @@ public class LotteryTicketId {
   public LotteryTicketId(int id) {
     this.id = id;
   }
-  
+
   public int getId() {
     return id;
   }

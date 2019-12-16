@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,16 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.specification.selector;
 
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Movement;
-import org.junit.jupiter.api.Test;
+package com.iluwatar.specification.selector;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import com.iluwatar.specification.creature.Creature;
+import com.iluwatar.specification.property.Movement;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 7:37 PM
@@ -39,7 +40,7 @@ import static org.mockito.Mockito.when;
 public class MovementSelectorTest {
 
   /**
-   * Verify if the movement selector gives the correct results
+   * Verify if the movement selector gives the correct results.
    */
   @Test
   public void testMovement() {

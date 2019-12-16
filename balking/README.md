@@ -5,14 +5,14 @@ folder: balking
 permalink: /patterns/balking/
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
 Balking Pattern is used to prevent an object from executing certain code if it is an
 incomplete or inappropriate state
 
+## Class diagram
 ![alt text](./etc/balking.png "Balking")
 
 ## Applicability

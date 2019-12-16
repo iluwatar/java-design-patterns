@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,16 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.partialresponse;
 
 import java.lang.reflect.Field;
 
 /**
- * Map a video to json
+ * Map a video to json.
  */
 public class FieldJsonMapper {
 
   /**
+   * Gets json of required fields from video.
+   *
    * @param video  object containing video information
    * @param fields fields information to get
    * @return json of required fields from video

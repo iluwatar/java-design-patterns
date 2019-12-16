@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.serverless.baas.api;
 
 import com.amazonaws.services.lambda.runtime.Context;
@@ -27,14 +28,12 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.iluwatar.serverless.baas.model.Person;
+import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 /**
- * save person into persons collection
- * Created by dheeraj.mummar on 3/4/18.
+ * save person into persons collection Created by dheeraj.mummar on 3/4/18.
  */
 public class SavePersonApiHandler extends AbstractDynamoDbHandler<Person>
     implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
@@ -44,8 +43,8 @@ public class SavePersonApiHandler extends AbstractDynamoDbHandler<Person>
   private static final Integer BAD_REQUEST_STATUS_CODE = 400;
 
   @Override
-  public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent
-                                                apiGatewayProxyRequestEvent, Context context) {
+  public APIGatewayProxyResponseEvent handleRequest(
+      APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent, Context context) {
     APIGatewayProxyResponseEvent apiGatewayProxyResponseEvent;
     Person person;
     try {

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,21 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.unitofwork;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 
 /**
  * tests {@link StudentRepository}
@@ -50,7 +53,7 @@ public class StudentRepositoryTest {
   private StudentRepository studentRepository;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     context = new HashMap<>();
     studentRepository = new StudentRepository(context, studentDatabase);
   }
@@ -84,9 +87,9 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldSaveAllLocalChangesToDb() {
-    context.put(IUnitOfWork.INSERT, Collections.singletonList(student1));
-    context.put(IUnitOfWork.MODIFY, Collections.singletonList(student1));
-    context.put(IUnitOfWork.DELETE, Collections.singletonList(student1));
+    context.put(IUnitOfWork.INSERT, List.of(student1));
+    context.put(IUnitOfWork.MODIFY, List.of(student1));
+    context.put(IUnitOfWork.DELETE, List.of(student1));
 
     studentRepository.commit();
 
@@ -115,8 +118,8 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotInsertToDbIfNoRegisteredStudentsToBeCommitted() {
-    context.put(IUnitOfWork.MODIFY, Collections.singletonList(student1));
-    context.put(IUnitOfWork.DELETE, Collections.singletonList(student1));
+    context.put(IUnitOfWork.MODIFY, List.of(student1));
+    context.put(IUnitOfWork.DELETE, List.of(student1));
 
     studentRepository.commit();
 
@@ -125,8 +128,8 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotModifyToDbIfNotRegisteredStudentsToBeCommitted() {
-    context.put(IUnitOfWork.INSERT, Collections.singletonList(student1));
-    context.put(IUnitOfWork.DELETE, Collections.singletonList(student1));
+    context.put(IUnitOfWork.INSERT, List.of(student1));
+    context.put(IUnitOfWork.DELETE, List.of(student1));
 
     studentRepository.commit();
 
@@ -135,8 +138,8 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotDeleteFromDbIfNotRegisteredStudentsToBeCommitted() {
-    context.put(IUnitOfWork.INSERT, Collections.singletonList(student1));
-    context.put(IUnitOfWork.MODIFY, Collections.singletonList(student1));
+    context.put(IUnitOfWork.INSERT, List.of(student1));
+    context.put(IUnitOfWork.MODIFY, List.of(student1));
 
     studentRepository.commit();
 

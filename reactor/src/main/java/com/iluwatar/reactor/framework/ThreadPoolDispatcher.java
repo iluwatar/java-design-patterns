@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.reactor.framework;
 
 import java.nio.channels.SelectionKey;
@@ -38,7 +39,7 @@ public class ThreadPoolDispatcher implements Dispatcher {
 
   /**
    * Creates a pooled dispatcher with tunable pool size.
-   * 
+   *
    * @param poolSize number of pooled threads
    */
   public ThreadPoolDispatcher(int poolSize) {
@@ -47,9 +48,8 @@ public class ThreadPoolDispatcher implements Dispatcher {
 
   /**
    * Submits the work of dispatching the read event to worker pool, where it gets picked up by
-   * worker threads. <br>
-   * Note that this is a non-blocking call and returns immediately. It is not guaranteed that the
-   * event has been handled by associated handler.
+   * worker threads. <br> Note that this is a non-blocking call and returns immediately. It is not
+   * guaranteed that the event has been handled by associated handler.
    */
   @Override
   public void onChannelReadEvent(AbstractNioChannel channel, Object readObject, SelectionKey key) {
@@ -58,7 +58,7 @@ public class ThreadPoolDispatcher implements Dispatcher {
 
   /**
    * Stops the pool of workers.
-   * 
+   *
    * @throws InterruptedException if interrupted while stopping pool of workers.
    */
   @Override

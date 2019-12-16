@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.retry;
 
 import java.util.ArrayList;
@@ -33,8 +34,8 @@ import java.util.function.Predicate;
 /**
  * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
  *
- * @author George Aristy (george.aristy@gmail.com)
  * @param <T> the remote op's return type
+ * @author George Aristy (george.aristy@gmail.com)
  */
 public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   private static final Random RANDOM = new Random();
@@ -45,20 +46,20 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   private final Predicate<Exception> test;
   private final List<Exception> errors;
 
-    /**
-     * Ctor.
-     *
-     * @param op the {@link BusinessOperation} to retry
-     * @param maxAttempts number of times to retry
-     * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
-     *     will be ignored if no tests are given
-     */
+  /**
+   * Ctor.
+   *
+   * @param op          the {@link BusinessOperation} to retry
+   * @param maxAttempts number of times to retry
+   * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
+   *                    will be ignored if no tests are given
+   */
   @SafeVarargs
   public RetryExponentialBackoff(
-            BusinessOperation<T> op,
-            int maxAttempts,
-            long maxDelay,
-            Predicate<Exception>... ignoreTests
+      BusinessOperation<T> op,
+      int maxAttempts,
+      long maxDelay,
+      Predicate<Exception>... ignoreTests
   ) {
     this.op = op;
     this.maxAttempts = maxAttempts;
@@ -68,20 +69,20 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
     this.errors = new ArrayList<>();
   }
 
-    /**
-     * The errors encountered while retrying, in the encounter order.
-     *
-     * @return the errors encountered while retrying
-     */
+  /**
+   * The errors encountered while retrying, in the encounter order.
+   *
+   * @return the errors encountered while retrying
+   */
   public List<Exception> errors() {
     return Collections.unmodifiableList(this.errors);
   }
 
-    /**
-     * The number of retries performed.
-     *
-     * @return the number of retries performed
-     */
+  /**
+   * The number of retries performed.
+   *
+   * @return the number of retries performed
+   */
   public int attempts() {
     return this.attempts.intValue();
   }
@@ -106,8 +107,7 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
           //ignore
         }
       }
-    }
-    while (true);
+    } while (true);
   }
 }
 

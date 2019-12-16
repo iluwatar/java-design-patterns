@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelocator;
 
 import org.slf4j.Logger;
@@ -40,7 +41,7 @@ public class ServiceImpl implements Service {
   private final int id;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public ServiceImpl(String serviceName) {
     // set the service name

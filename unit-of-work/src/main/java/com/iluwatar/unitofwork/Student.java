@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.unitofwork;
 
 /**
@@ -31,6 +32,8 @@ public class Student {
   private final String address;
 
   /**
+   * Constructor.
+   *
    * @param id      student unique id
    * @param name    name of student
    * @param address address of student

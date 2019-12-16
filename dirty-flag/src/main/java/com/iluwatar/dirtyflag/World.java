@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,17 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dirtyflag;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * A middle-layer app that calls/passes along data from the back-end.
- * 
- * @author swaisuan
  *
+ * @author swaisuan
  */
 public class World {
 
@@ -43,16 +42,13 @@ public class World {
   }
 
   /**
-   * 
    * Calls {@link DataFetcher} to fetch data from back-end.
-   * 
+   *
    * @return List of strings
    */
   public List<String> fetch() {
-    List<String> data = df.fetch();
-
+    var data = df.fetch();
     countries = data.isEmpty() ? countries : data;
-
     return countries;
   }
 }

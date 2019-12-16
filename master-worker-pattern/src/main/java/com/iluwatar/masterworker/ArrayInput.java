@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.masterworker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *Class ArrayInput extends abstract class {@link Input} and contains data
- *of type int[][].
+ * Class ArrayInput extends abstract class {@link Input} and contains data of type int[][].
  */
 
 public class ArrayInput extends Input<int[][]> {
@@ -35,7 +35,7 @@ public class ArrayInput extends Input<int[][]> {
   public ArrayInput(int[][] data) {
     super(data);
   }
-  
+
   static int[] makeDivisions(int[][] data, int num) {
     int initialDivision = data.length / num; //equally dividing
     int[] divisions = new int[num];
@@ -80,6 +80,6 @@ public class ArrayInput extends Input<int[][]> {
         }
       }
       return result;
-    }    
-  } 
+    }
+  }
 }

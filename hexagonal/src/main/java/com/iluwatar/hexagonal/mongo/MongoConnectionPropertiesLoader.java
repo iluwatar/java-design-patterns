@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,13 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.mongo;
 
 import java.io.FileInputStream;
 import java.util.Properties;
 
 /**
- * Mongo connection properties loader
+ * Mongo connection properties loader.
  */
 public class MongoConnectionPropertiesLoader {
 
@@ -34,8 +35,7 @@ public class MongoConnectionPropertiesLoader {
   private static final int DEFAULT_PORT = 27017;
 
   /**
-   * Try to load connection properties from file.
-   * Fall back to default connection properties.
+   * Try to load connection properties from file. Fall back to default connection properties.
    */
   public static void load() {
     String host = DEFAULT_HOST;

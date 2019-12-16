@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,10 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.halfsynchalfasync;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.halfsynchalfasync;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
@@ -31,6 +29,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This is the asynchronous layer which does not block when a new request arrives. It just passes
@@ -62,13 +62,14 @@ public class AsynchronousService {
 
   /**
    * A non-blocking method which performs the task provided in background and returns immediately.
-   * <p>
-   * On successful completion of task the result is posted back using callback method
-   * {@link AsyncTask#onPostCall(Object)}, if task execution is unable to complete normally due to
-   * some exception then the reason for error is posted back using callback method
-   * {@link AsyncTask#onError(Throwable)}.
-   * <p>
-   * NOTE: The results are posted back in the context of background thread in this implementation.
+   *
+   * <p>On successful completion of task the result is posted back using callback method {@link
+   * AsyncTask#onPostCall(Object)}, if task execution is unable to complete normally due to some
+   * exception then the reason for error is posted back using callback method {@link
+   * AsyncTask#onError(Throwable)}.
+   *
+   * <p>NOTE: The results are posted back in the context of background thread in this
+   * implementation.
    */
   public <T> void execute(final AsyncTask<T> task) {
     try {

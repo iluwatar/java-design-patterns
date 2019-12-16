@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.ambassador;
 
 import org.junit.jupiter.api.Test;
@@ -29,13 +30,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Test for {@link Client}
  */
-public class ClientTest {
+class ClientTest {
 
   @Test
-  public void test() {
-
+  void test() {
     Client client = new Client();
-    long result = client.useService(10);
+    var result = client.useService(10);
 
     assertTrue(result == 100 || result == RemoteService.FAILURE);
   }

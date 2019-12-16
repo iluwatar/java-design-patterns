@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,23 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dao;
 
 /**
- * 
- * Custom exception
- *
+ * Custom exception.
  */
 public class CustomException extends Exception {
 
   private static final long serialVersionUID = 1L;
 
-  public CustomException() {}
+  public CustomException() {
+  }
 
   public CustomException(String message) {
     super(message);
   }
-  
+
   public CustomException(String message, Throwable cause) {
     super(message, cause);
   }

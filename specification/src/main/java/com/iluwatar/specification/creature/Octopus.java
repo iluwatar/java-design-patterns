@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,20 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.specification.creature;
 
 import com.iluwatar.specification.property.Color;
+import com.iluwatar.specification.property.Mass;
 import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
 /**
- * 
  * Octopus creature.
- *
  */
 public class Octopus extends AbstractCreature {
 
   public Octopus() {
-    super("Octopus", Size.NORMAL, Movement.SWIMMING, Color.DARK);
+    this(new Mass(12.0));
+  }
+
+  public Octopus(Mass mass) {
+    super("Octopus", Size.NORMAL, Movement.SWIMMING, Color.DARK, mass);
   }
 }

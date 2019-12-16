@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,17 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.flyweight;
 
 import java.util.EnumMap;
 import java.util.Map;
 
 /**
- * 
  * PotionFactory is the Flyweight in this example. It minimizes memory use by sharing object
  * instances. It holds a map of potion instances and new potions are created only when none of the
  * type already exists.
- * 
  */
 public class PotionFactory {
 

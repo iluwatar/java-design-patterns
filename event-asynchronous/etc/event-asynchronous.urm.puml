@@ -1,0 +1,70 @@
+@startuml
+package com.iluwatar.event.asynchronous {
+  class App {
+    - LOGGER : Logger {static}
+    + PROP_FILE_NAME : String {static}
+    ~ interactiveMode : boolean
+    + App()
+    + main(args : String[]) {static}
+    - processOption1(eventManager : EventManager, s : Scanner)
+    - processOption2(eventManager : EventManager, s : Scanner)
+    - processOption3(eventManager : EventManager, s : Scanner)
+    + quickRun()
+    + run()
+    + runInteractiveMode()
+    + setUp()
+  }
+  class Event {
+    - LOGGER : Logger {static}
+    - eventId : int
+    - eventListener : ThreadCompleteListener
+    - eventTime : int
+    - isComplete : boolean
+    - isSynchronous : boolean
+    - thread : Thread
+    + Event(eventId : int, eventTime : int, isSynchronous : boolean)
+    + addListener(listener : ThreadCompleteListener)
+    - completed()
+    + isSynchronous() : boolean
+    + removeListener(listener : ThreadCompleteListener)
+    + run()
+    + start()
+    + status()
+    + stop()
+  }
+  class EventManager {
+    - DOES_NOT_EXIST : String {static}
+    + MAX_EVENT_TIME : int {static}
+    + MAX_ID : int {static}
+    + MAX_RUNNING_EVENTS : int {static}
+    + MIN_ID : int {static}
+    - currentlyRunningSyncEvent : int
+    - eventPool : Map<Integer, Event>
+    - rand : Random
+    + EventManager()
+    + cancel(eventId : int)
+    + completedEventHandler(eventId : int)
+    + create(eventTime : int) : int
+    + createAsync(eventTime : int) : int
+    - createEvent(eventTime : int, isSynchronous : boolean) : int
+    - generateId() : int
+    + getEventPool() : Map<Integer, Event>
+    + numOfCurrentlyRunningSyncEvent() : int
+    + shutdown()
+    + start(eventId : int)
+    + status(eventId : int)
+    + statusOfAllEvents()
+  }
+  interface IEvent {
+    + start() {abstract}
+    + status() {abstract}
+    + stop() {abstract}
+  }
+  interface ThreadCompleteListener {
+    + completedEventHandler(int) {abstract}
+  }
+}
+Event -->  "-eventListener" ThreadCompleteListener
+Event ..|> IEvent 
+EventManager ..|> ThreadCompleteListener 
+@enduml

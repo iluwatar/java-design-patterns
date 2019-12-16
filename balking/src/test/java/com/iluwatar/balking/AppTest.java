@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.balking;
 
 import org.junit.jupiter.api.Test;
@@ -27,12 +28,11 @@ import org.junit.jupiter.api.Test;
 /**
  * Application test
  */
-public class AppTest {
+class AppTest {
 
   @Test
-  public void main() throws Exception {
-    String[] args = {};
-    App.main(args);
+  void main() {
+    App.main();
   }
 
 }

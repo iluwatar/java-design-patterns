@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.throttling;
 
 import java.security.InvalidParameterException;
@@ -33,8 +34,9 @@ public class Tenant {
   private int allowedCallsPerSecond;
 
   /**
+   * Constructor.
    *
-   * @param name Name of the tenant
+   * @param name                  Name of the tenant
    * @param allowedCallsPerSecond The number of calls allowed for a particular tenant.
    * @throws InvalidParameterException If number of calls is less than 0, throws exception.
    */

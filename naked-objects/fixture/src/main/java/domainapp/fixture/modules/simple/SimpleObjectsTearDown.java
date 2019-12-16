@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,13 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package domainapp.fixture.modules.simple;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
 
 /**
- * TearDown/Cleanup for SimpleObjects
+ * TearDown/Cleanup for SimpleObjects.
  */
 public class SimpleObjectsTearDown extends FixtureScript {
 

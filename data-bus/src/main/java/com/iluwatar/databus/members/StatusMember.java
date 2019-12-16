@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.databus.members;
 
 import com.iluwatar.databus.DataType;
@@ -27,7 +28,6 @@ import com.iluwatar.databus.Member;
 import com.iluwatar.databus.data.MessageData;
 import com.iluwatar.databus.data.StartingData;
 import com.iluwatar.databus.data.StoppingData;
-
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
 

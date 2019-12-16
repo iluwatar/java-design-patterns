@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
 
 /**
  * Filter Chain carries multiple filters and help to execute them in defined order on target.
- * 
+ *
  * @author joshzambales
  */
 public class FilterChain {
@@ -34,7 +35,7 @@ public class FilterChain {
 
 
   /**
-   * Adds filter
+   * Adds filter.
    */
   public void addFilter(Filter filter) {
     if (chain == null) {
@@ -45,7 +46,7 @@ public class FilterChain {
   }
 
   /**
-   * Execute filter chain
+   * Execute filter chain.
    */
   public String execute(Order order) {
     if (chain != null) {

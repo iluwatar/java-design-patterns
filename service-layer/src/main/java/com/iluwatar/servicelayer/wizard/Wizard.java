@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,11 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.wizard;
 
+import com.iluwatar.servicelayer.common.BaseEntity;
+import com.iluwatar.servicelayer.spellbook.Spellbook;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,13 +35,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.iluwatar.servicelayer.common.BaseEntity;
-import com.iluwatar.servicelayer.spellbook.Spellbook;
-
 /**
- * 
  * Wizard entity.
- *
  */
 @Entity
 @Table(name = "WIZARD")
@@ -63,7 +60,7 @@ public class Wizard extends BaseEntity {
     this();
     this.name = name;
   }
-  
+
   public Long getId() {
     return id;
   }
@@ -71,7 +68,7 @@ public class Wizard extends BaseEntity {
   public void setId(Long id) {
     this.id = id;
   }
-  
+
   public String getName() {
     return name;
   }

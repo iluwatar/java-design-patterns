@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,17 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
 
 /**
- * 
- * Weekday enumeration
- *
+ * Weekday enumeration.
  */
 public enum Weekday {
 
-  MONDAY("Monday"), TUESDAY("Tuesday"), WEDNESDAY("Wednesday"), THURSDAY("Thursday"), FRIDAY(
-      "Friday"), SATURDAY("Saturday"), SUNDAY("Sunday");
+  MONDAY("Monday"),
+  TUESDAY("Tuesday"),
+  WEDNESDAY("Wednesday"),
+  THURSDAY("Thursday"),
+  FRIDAY("Friday"),
+  SATURDAY("Saturday"),
+  SUNDAY("Sunday");
 
   private String description;
 

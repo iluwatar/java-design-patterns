@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,20 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.twin;
 
 import org.junit.jupiter.api.Test;
 
 /**
- * 
  * Application test
- *
  */
 public class AppTest {
 
   @Test
   public void test() throws Exception {
-    String[] args = {};
-    App.main(args);
+    App.main(new String[]{});
   }
 }

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package concreteextensions;
 
 import org.junit.jupiter.api.Test;
@@ -30,9 +31,8 @@ import units.SoldierUnit;
  */
 public class SoldierTest {
   @Test
-  public void soldierReady() throws Exception {
-    final Soldier soldier = new Soldier(new SoldierUnit("SoldierUnitTest"));
-
+  public void soldierReady() {
+    final var soldier = new Soldier(new SoldierUnit("SoldierUnitTest"));
     soldier.soldierReady();
   }
 

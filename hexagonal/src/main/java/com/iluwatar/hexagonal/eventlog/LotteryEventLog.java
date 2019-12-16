@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,39 +20,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.eventlog;
 
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 
 /**
- * 
- * Event log for lottery events
- *
+ * Event log for lottery events.
  */
 public interface LotteryEventLog {
 
   /**
-   * lottery ticket submitted
+   * lottery ticket submitted.
    */
   void ticketSubmitted(PlayerDetails details);
 
   /**
-   * error submitting lottery ticket
+   * error submitting lottery ticket.
    */
   void ticketSubmitError(PlayerDetails details);
 
   /**
-   * lottery ticket did not win
+   * lottery ticket did not win.
    */
   void ticketDidNotWin(PlayerDetails details);
 
   /**
-   * lottery ticket won
+   * lottery ticket won.
    */
   void ticketWon(PlayerDetails details, int prizeAmount);
 
   /**
-   * error paying the prize
+   * error paying the prize.
    */
   void prizeError(PlayerDetails details, int prizeAmount);
 

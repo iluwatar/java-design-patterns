@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,13 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.producer.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Class responsible for consume the {@link Item} produced by {@link Producer}
+ * Class responsible for consume the {@link Item} produced by {@link Producer}.
  */
 public class Consumer {
 
@@ -42,12 +43,13 @@ public class Consumer {
   }
 
   /**
-   * Consume item from the queue
+   * Consume item from the queue.
    */
   public void consume() throws InterruptedException {
 
     Item item = queue.take();
-    LOGGER.info("Consumer [{}] consume item [{}] produced by [{}]", name, item.getId(), item.getProducer());
+    LOGGER.info("Consumer [{}] consume item [{}] produced by [{}]", name,
+            item.getId(), item.getProducer());
 
   }
 }

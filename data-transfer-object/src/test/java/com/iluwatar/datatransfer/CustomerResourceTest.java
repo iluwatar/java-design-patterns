@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.datatransfer;
-
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * tests {@link CustomerResource}.
@@ -36,13 +36,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CustomerResourceTest {
   @Test
   public void shouldGetAllCustomers() {
-    CustomerDto customer = new CustomerDto("1", "Melody", "Yates");
-    List<CustomerDto> customers = new ArrayList<>();
-    customers.add(customer);
-
-    CustomerResource customerResource = new CustomerResource(customers);
-
-    List<CustomerDto> allCustomers = customerResource.getAllCustomers();
+    var customers = List.of(new CustomerDto("1", "Melody", "Yates"));
+    var customerResource = new CustomerResource(customers);
+    var allCustomers = customerResource.getAllCustomers();
 
     assertEquals(1, allCustomers.size());
     assertEquals("1", allCustomers.get(0).getId());
@@ -52,12 +48,12 @@ public class CustomerResourceTest {
 
   @Test
   public void shouldSaveCustomer() {
-    CustomerDto customer = new CustomerDto("1", "Rita", "Reynolds");
-    CustomerResource customerResource = new CustomerResource(new ArrayList<>());
+    var customer = new CustomerDto("1", "Rita", "Reynolds");
+    var customerResource = new CustomerResource(new ArrayList<>());
 
     customerResource.save(customer);
 
-    List<CustomerDto> allCustomers = customerResource.getAllCustomers();
+    var allCustomers = customerResource.getAllCustomers();
     assertEquals("1", allCustomers.get(0).getId());
     assertEquals("Rita", allCustomers.get(0).getFirstName());
     assertEquals("Reynolds", allCustomers.get(0).getLastName());
@@ -65,15 +61,13 @@ public class CustomerResourceTest {
 
   @Test
   public void shouldDeleteCustomer() {
-    CustomerDto customer = new CustomerDto("1", "Terry", "Nguyen");
-    List<CustomerDto> customers = new ArrayList<>();
-    customers.add(customer);
-
-    CustomerResource customerResource = new CustomerResource(customers);
+    var customer = new CustomerDto("1", "Terry", "Nguyen");
+    var customers = new ArrayList<>(List.of(customer));
+    var customerResource = new CustomerResource(customers);
 
     customerResource.delete(customer.getId());
 
-    List<CustomerDto> allCustomers = customerResource.getAllCustomers();
+    var allCustomers = customerResource.getAllCustomers();
     assertTrue(allCustomers.isEmpty());
   }
 

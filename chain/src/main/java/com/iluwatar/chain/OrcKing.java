@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,16 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.chain;
 
 /**
- * 
  * OrcKing makes requests that are handled by the chain.
- * 
  */
 public class OrcKing {
 
-  RequestHandler chain;
+  private RequestHandler chain;
 
   public OrcKing() {
     buildChain();

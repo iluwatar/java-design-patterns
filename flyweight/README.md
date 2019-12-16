@@ -5,9 +5,7 @@ folder: flyweight
 permalink: /patterns/flyweight/
 categories: Structural
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Intermediate
  - Performance
 ---
 
@@ -109,6 +107,9 @@ factory.createPotion(PotionType.HOLY_WATER).drink(); // You feel blessed. (Potio
 factory.createPotion(PotionType.HOLY_WATER).drink(); // You feel blessed. (Potion=1104106489)
 factory.createPotion(PotionType.HEALING).drink(); // You feel healed. (Potion=648129364)
 ```
+
+## Class diagram
+![alt text](./etc/flyweight.urm.png "Flyweight pattern class diagram")
 
 ## Applicability
 The Flyweight pattern's effectiveness depends heavily on how

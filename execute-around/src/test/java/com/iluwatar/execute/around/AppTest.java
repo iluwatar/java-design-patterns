@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,32 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.execute.around;
 
+import java.io.File;
+import java.io.IOException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.IOException;
-
 /**
- * 
  * Tests execute-around example.
- *
  */
 public class AppTest {
 
   @Test
   public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+    App.main(new String[]{});
   }
 
   @BeforeEach
   @AfterEach
   public void cleanup() {
-    File file = new File("testfile.txt");
+    var file = new File("testfile.txt");
     file.delete();
   }
 }

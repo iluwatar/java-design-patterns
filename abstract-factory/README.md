@@ -5,9 +5,7 @@ folder: abstract-factory
 permalink: /patterns/abstract-factory/
 categories: Creational
 tags:
- - Java
- - Gang Of Four
- - Difficulty-Intermediate
+ - Gang of Four
 ---
 
 ## Also known as
@@ -109,10 +107,10 @@ public class OrcKingdomFactory implements KingdomFactory {
 Now we have our abstract factory that lets us make family of related objects i.e. Elven kingdom factory creates Elven castle, king and army etc.
 
 ```java
-KingdomFactory factory = new ElfKingdomFactory();
-Castle castle = factory.createCastle();
-King king = factory.createKing();
-Army army = factory.createArmy();
+var factory = new ElfKingdomFactory();
+var castle = factory.createCastle();
+var king = factory.createKing();
+var army = factory.createArmy();
 
 castle.getDescription();  // Output: This is the Elven castle!
 king.getDescription(); // Output: This is the Elven king!
@@ -143,7 +141,7 @@ public static class FactoryMaker {
 }
 
 public static void main(String[] args) {
-  App app = new App();
+  var app = new App();
 
   LOGGER.info("Elf Kingdom");
   app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
@@ -156,6 +154,9 @@ public static void main(String[] args) {
   -- similar use of the orc factory
 }
 ```
+
+## Class diagram
+![alt text](./etc/abstract-factory.urm.png "Abstract Factory class diagram")
 
 
 ## Applicability
@@ -187,10 +188,6 @@ Use the Abstract Factory pattern when
 
 ## Tutorial
 * [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
-
-## Presentations
-
-* [Abstract Factory Pattern](etc/presentation.html) 
 
 
 ## Real world examples

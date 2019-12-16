@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,21 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.dirty.flag;
 
-import java.io.IOException;
-
-import org.junit.jupiter.api.Test;
-
 import com.iluwatar.dirtyflag.App;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests that Dirty-Flag example runs without errors.
  */
 public class AppTest {
   @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+  public void test() {
+    App.main(new String[]{});
   }
 }

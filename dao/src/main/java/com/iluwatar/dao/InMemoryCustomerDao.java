@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dao;
 
 import java.util.HashMap;
@@ -28,8 +29,8 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * An in memory implementation of {@link CustomerDao}, which stores the customers in JVM memory
- * and data is lost when the application exits.
+ * An in memory implementation of {@link CustomerDao}, which stores the customers in JVM memory and
+ * data is lost when the application exits.
  * <br>
  * This implementation is useful as temporary database or for testing.
  */
@@ -55,7 +56,7 @@ public class InMemoryCustomerDao implements CustomerDao {
     if (getById(customer.getId()).isPresent()) {
       return false;
     }
-    
+
     idToCustomer.put(customer.getId(), customer);
     return true;
   }

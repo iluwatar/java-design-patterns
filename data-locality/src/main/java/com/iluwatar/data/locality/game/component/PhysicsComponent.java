@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,19 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.data.locality.game.component;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Implementation of Physics Component of Game
+ * Implementation of Physics Component of Game.
  */
 public class PhysicsComponent implements Component {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(PhysicsComponent.class);
+
   /**
-   * update physics component of game
+   * update physics component of game.
    */
   @Override
   public void update() {

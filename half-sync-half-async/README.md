@@ -5,8 +5,7 @@ folder: half-sync-half-async
 permalink: /patterns/half-sync-half-async/
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Intermediate
+ - Performance
 ---
 
 ## Intent
@@ -14,6 +13,7 @@ The Half-Sync/Half-Async pattern decouples synchronous I/O from
 asynchronous I/O in a system to simplify concurrent programming effort without
 degrading execution efficiency.
 
+## Class diagram
 ![Half-Sync/Half-Async class diagram](./etc/half-sync-half-async.png)
 
 ## Applicability

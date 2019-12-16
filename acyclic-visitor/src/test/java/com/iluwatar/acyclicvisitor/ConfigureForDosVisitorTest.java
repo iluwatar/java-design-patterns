@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.acyclicvisitor;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,7 +37,7 @@ import uk.org.lidalia.slf4jtest.TestLoggerFactory;
  */
 public class ConfigureForDosVisitorTest {
 
-  TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForDosVisitor.class);
+  private TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForDosVisitor.class);
   
   @Test
   public void testVisitForZoom() {    
@@ -45,19 +46,21 @@ public class ConfigureForDosVisitorTest {
     
     conDos.visit(zoom);
     
-    assertThat(logger.getLoggingEvents()).extracting("level", "message").contains(
-        tuple(INFO, zoom + " used with Dos configurator."));
+    assertThat(logger.getLoggingEvents())
+        .extracting("level", "message")
+        .contains(tuple(INFO, zoom + " used with Dos configurator."));
   }
   
   @Test
   public void testVisitForHayes() {
-    ConfigureForDosVisitor conDos = new ConfigureForDosVisitor();
-    Hayes hayes = new Hayes();
+    var conDos = new ConfigureForDosVisitor();
+    var hayes = new Hayes();
     
     conDos.visit(hayes);
     
-    assertThat(logger.getLoggingEvents()).extracting("level", "message").contains(
-        tuple(INFO, hayes + " used with Dos configurator."));
+    assertThat(logger.getLoggingEvents())
+        .extracting("level", "message")
+        .contains(tuple(INFO, hayes + " used with Dos configurator."));
   }
   
   @AfterEach

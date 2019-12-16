@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.repository;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
-
 import javax.sql.DataSource;
-
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.slf4j.Logger;
@@ -41,9 +40,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 /**
- * This is the same example as in {@link App} but with annotations based 
- * configuration for Spring.
- *
+ * This is the same example as in {@link App} but with annotations based configuration for Spring.
  */
 @EnableJpaRepositories
 @SpringBootConfiguration
@@ -52,8 +49,8 @@ public class AppConfig {
   private static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
 
   /**
-   * Creation of H2 db
-   * 
+   * Creation of H2 db.
+   *
    * @return A new Instance of DataSource
    */
   @Bean(destroyMethod = "close")
@@ -67,11 +64,12 @@ public class AppConfig {
   }
 
   /**
-   * Factory to create a especific instance of Entity Manager
+   * Factory to create a especific instance of Entity Manager.
    */
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-    LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
+    LocalContainerEntityManagerFactoryBean entityManager =
+        new LocalContainerEntityManagerFactoryBean();
     entityManager.setDataSource(dataSource());
     entityManager.setPackagesToScan("com.iluwatar");
     entityManager.setPersistenceProvider(new HibernatePersistenceProvider());
@@ -81,7 +79,7 @@ public class AppConfig {
   }
 
   /**
-   * Properties for Jpa
+   * Properties for Jpa.
    */
   private static Properties jpaProperties() {
     Properties properties = new Properties();
@@ -91,7 +89,7 @@ public class AppConfig {
   }
 
   /**
-   * Get transaction manager
+   * Get transaction manager.
    */
   @Bean
   public JpaTransactionManager transactionManager() throws SQLException {
@@ -101,10 +99,9 @@ public class AppConfig {
   }
 
   /**
-   * Program entry point
-   * 
-   * @param args
-   *          command line args
+   * Program entry point.
+   *
+   * @param args command line args
    */
   public static void main(String[] args) {
 

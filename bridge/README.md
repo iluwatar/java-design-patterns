@@ -5,9 +5,7 @@ folder: bridge
 permalink: /patterns/bridge/
 categories: Structural
 tags:
- - Java
- - Gang Of Four
- - Difficulty-Intermediate
+ - Gang of Four
 ---
 
 ## Also known as
@@ -156,7 +154,7 @@ public class SoulEatingEnchantment implements Enchantment {
 And both the hierarchies in action
 
 ```java
-Sword enchantedSword = new Sword(new SoulEatingEnchantment());
+var enchantedSword = new Sword(new SoulEatingEnchantment());
 enchantedSword.wield();
 enchantedSword.swing();
 enchantedSword.unwield();
@@ -167,7 +165,7 @@ enchantedSword.unwield();
 // The sword is unwielded.
 // Bloodlust slowly disappears.
 
-Hammer hammer = new Hammer(new FlyingEnchantment());
+var hammer = new Hammer(new FlyingEnchantment());
 hammer.wield();
 hammer.swing();
 hammer.unwield();
@@ -178,6 +176,9 @@ hammer.unwield();
 // The hammer is unwielded.
 // The item's glow fades.
 ```
+
+## Class diagram
+![alt text](./etc/bridge.urm.png "Bridge class diagram")
 
 ## Applicability
 Use the Bridge pattern when

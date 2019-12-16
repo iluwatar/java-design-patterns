@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.abstractdocument;
 
 import java.util.Map;
@@ -27,12 +28,12 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
- * Document interface
+ * Document interface.
  */
 public interface Document {
 
   /**
-   * Puts the value related to the key
+   * Puts the value related to the key.
    *
    * @param key   element key
    * @param value element value
@@ -41,7 +42,7 @@ public interface Document {
   Void put(String key, Object value);
 
   /**
-   * Gets the value for the key
+   * Gets the value for the key.
    *
    * @param key element key
    * @return value or null
@@ -49,7 +50,7 @@ public interface Document {
   Object get(String key);
 
   /**
-   * Gets the stream of child documents
+   * Gets the stream of child documents.
    *
    * @param key         element key
    * @param constructor constructor of child class

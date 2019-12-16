@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,13 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.data.locality.game.component;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Implementation of Render Component of Game
+ * Implementation of Render Component of Game.
  */
 public class RenderComponent implements Component {
 
@@ -38,7 +39,7 @@ public class RenderComponent implements Component {
   }
 
   /**
-   * render
+   * render.
    */
   @Override
   public void render() {

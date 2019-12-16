@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,18 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.flux.store;
 
-import java.util.LinkedList;
-import java.util.List;
+package com.iluwatar.flux.store;
 
 import com.iluwatar.flux.action.Action;
 import com.iluwatar.flux.view.View;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * 
  * Store is a data model.
- *
  */
 public abstract class Store {
 

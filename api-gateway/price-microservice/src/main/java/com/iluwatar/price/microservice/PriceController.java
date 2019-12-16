@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.price.microservice;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +28,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Exposes the Price microservice's endpoints
+ * Exposes the Price microservice's endpoints.
  */
 @RestController
 public class PriceController {
 
   /**
-   * An endpoint for a user to retrieve a product's price
+   * An endpoint for a user to retrieve a product's price.
+   *
    * @return A product's price
    */
   @RequestMapping(value = "/price", method = RequestMethod.GET)

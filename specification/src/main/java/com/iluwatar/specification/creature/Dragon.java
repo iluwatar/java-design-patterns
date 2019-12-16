@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,20 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.specification.creature;
 
 import com.iluwatar.specification.property.Color;
+import com.iluwatar.specification.property.Mass;
 import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
 /**
- * 
  * Dragon creature.
- *
  */
 public class Dragon extends AbstractCreature {
 
   public Dragon() {
-    super("Dragon", Size.LARGE, Movement.FLYING, Color.RED);
+    this(new Mass(39300.0));
+  }
+
+  public Dragon(Mass mass) {
+    super("Dragon", Size.LARGE, Movement.FLYING, Color.RED, mass);
   }
 }

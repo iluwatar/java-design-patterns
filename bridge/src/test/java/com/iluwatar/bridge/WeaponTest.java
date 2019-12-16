@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,9 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.bridge;
 
-import org.junit.jupiter.api.Disabled;
+package com.iluwatar.bridge;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
@@ -31,16 +30,15 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 /**
  * Base class for weapon tests
  */
-public abstract class WeaponTest {
+abstract class WeaponTest {
 
   /**
-   * Invoke the basic actions of the given weapon, and test if the underlying enchantment implementation
-   * is invoked
-   *
+   * Invoke the basic actions of the given weapon, and test if the underlying enchantment
+   * implementation is invoked
    */
-  protected final void testBasicWeaponActions(final Weapon weapon) {
+  final void testBasicWeaponActions(final Weapon weapon) {
     assertNotNull(weapon);
-    Enchantment enchantment = weapon.getEnchantment();
+    var enchantment = weapon.getEnchantment();
     assertNotNull(enchantment);
     assertNotNull(weapon.getEnchantment());
 

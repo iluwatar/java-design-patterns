@@ -5,9 +5,7 @@ folder: eip-splitter
 permalink: /patterns/eip-splitter/
 categories: Integration
 tags:
- - Java
- - Difficulty-Intermittent
- - EIP
+ - Enterprise Integration Pattern
 ---
 
 ## Intent
@@ -17,6 +15,7 @@ service/sold goods, price etc.). Such bundled messages may not be accepted by ot
 pattern comes in handy. It will take the whole document, split it based on given criteria and send individual
 items to the endpoint.
 
+## Diagram
 ![alt text](./etc/sequencer.gif "Splitter")
 
 ## Applicability
@@ -29,4 +28,3 @@ Use the Splitter pattern when
 
 * [Gregor Hohpe, Bobby Woolf - Enterprise Integration Patterns](http://www.enterpriseintegrationpatterns.com/patterns/messaging/Sequencer.html)
 * [Apache Camel - Documentation](http://camel.apache.org/splitter.html)
-

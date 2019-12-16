@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.repository;
 
 import javax.persistence.Entity;
@@ -27,9 +28,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * 
- * Person entity
- *
+ * Person entity.
  */
 @Entity
 public class Person {
@@ -46,7 +45,7 @@ public class Person {
   }
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Person(String name, String surname, int age) {
     this.name = name;

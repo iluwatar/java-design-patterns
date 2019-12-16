@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.commander.employeehandle;
 
 import com.iluwatar.commander.Order;
@@ -27,22 +28,22 @@ import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 /**
- * The EmployeeHandle class is the middle-man between {@link Commander} and 
+ * The EmployeeHandle class is the middle-man between {@link com.iluwatar.commander.Commander} and
  * {@link EmployeeDatabase}.
  */
 
 public class EmployeeHandle extends Service {
 
-  public EmployeeHandle(EmployeeDatabase db, Exception...exc) {
+  public EmployeeHandle(EmployeeDatabase db, Exception... exc) {
     super(db, exc);
   }
 
-  public String receiveRequest(Object...parameters) throws DatabaseUnavailableException {
-    return updateDb((Order)parameters[0]);
+  public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
+    return updateDb(parameters[0]);
   }
 
-  protected String updateDb(Object...parameters) throws DatabaseUnavailableException {
-    Order o = (Order) parameters[0];
+  protected String updateDb(Object... parameters) throws DatabaseUnavailableException {
+    var o = (Order) parameters[0];
     if (database.get(o.id) == null) {
       database.add(o);
       return o.id; //true rcvd - change addedToEmployeeHandle to true else dont do anything

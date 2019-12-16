@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.api.gateway;
 
 /**
@@ -27,7 +28,7 @@ package com.iluwatar.api.gateway;
  */
 public class MobileProduct {
   /**
-   * The price of the product
+   * The price of the product.
    */
   private String price;
 

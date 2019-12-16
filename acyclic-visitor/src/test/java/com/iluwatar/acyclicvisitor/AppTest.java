@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,20 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.acyclicvisitor;
 
 import org.junit.jupiter.api.Test;
-
-import com.iluwatar.acyclicvisitor.App;
 
 /**
  * Tests that the Acyclic Visitor example runs without errors.
  */
 public class AppTest {
-  
+
   @Test
   public void test() {
-    String[] args = {};
-    App.main(args);  
+    App.main(new String[]{});
   }
 }

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.factorykit;
 
 import java.util.HashMap;
@@ -38,6 +39,7 @@ public interface WeaponFactory {
 
   /**
    * Creates an instance of the given type.
+   *
    * @param name representing enum of an object type to be created.
    * @return new instance of a requested class implementing {@link Weapon} interface.
    */
@@ -45,6 +47,7 @@ public interface WeaponFactory {
 
   /**
    * Creates factory - placeholder for specified {@link Builder}s.
+   *
    * @param consumer for the new builder to the factory.
    * @return factory with specified {@link Builder}s
    */

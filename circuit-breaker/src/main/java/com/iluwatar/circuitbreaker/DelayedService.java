@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.circuitbreaker;
 
 /**
-* This simulates the remote service
-* It responds only after a certain timeout period (default set to 20 seconds)
-*/
+ * This simulates the remote service It responds only after a certain timeout period (default set to
+ * 20 seconds).
+ */
 public class DelayedService {
   private final int delay;
 
   /**
-   * Constructor to create an instance of DelayedService, which is down for first few seconds
+   * Constructor to create an instance of DelayedService, which is down for first few seconds.
+   *
    * @param delay the delay after which service would behave properly, in seconds
    */
   public DelayedService(int delay) {
@@ -42,7 +44,10 @@ public class DelayedService {
   }
 
   /**
-   * @param serverStartTime Time at which actual server was started which makes calls to this service
+   * Responds based on delay, current time and server start time if the service is down / working.
+   *
+   * @param serverStartTime Time at which actual server was started which makes calls to this
+   *                        service
    * @return The state of the service
    */
   public String response(long serverStartTime) {

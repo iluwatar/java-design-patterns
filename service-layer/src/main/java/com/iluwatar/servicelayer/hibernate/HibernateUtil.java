@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.hibernate;
 
 import com.iluwatar.servicelayer.spell.Spell;
 import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.wizard.Wizard;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
@@ -39,7 +39,7 @@ public final class HibernateUtil {
   private static final Logger LOGGER = LoggerFactory.getLogger(HibernateUtil.class);
 
   /**
-   * The cached session factory
+   * The cached session factory.
    */
   private static volatile SessionFactory sessionFactory;
 

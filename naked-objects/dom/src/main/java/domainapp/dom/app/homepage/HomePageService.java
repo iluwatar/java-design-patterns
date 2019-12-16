@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package domainapp.dom.app.homepage;
 
 import org.apache.isis.applib.DomainObjectContainer;
@@ -30,7 +31,8 @@ import org.apache.isis.applib.annotation.NatureOfService;
 import org.apache.isis.applib.annotation.SemanticsOf;
 
 /**
- * HomePage Domain Service
+ * HomePage Domain Service.
+ *
  * @see HomePageViewModel linked view to HomePage
  */
 @DomainService(nature = NatureOfService.VIEW_CONTRIBUTIONS_ONLY)

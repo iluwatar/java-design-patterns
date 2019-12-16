@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.serverless.baas.api;
 
 import com.amazonaws.services.lambda.runtime.Context;
@@ -27,14 +28,12 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.iluwatar.serverless.baas.model.Person;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
-
 /**
- * find person from persons collection
- * Created by dheeraj.mummar on 3/5/18.
+ * find person from persons collection Created by dheeraj.mummar on 3/5/18.
  */
 public class FindPersonApiHandler extends AbstractDynamoDbHandler<Person>
     implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
@@ -43,10 +42,11 @@ public class FindPersonApiHandler extends AbstractDynamoDbHandler<Person>
   private static final Integer SUCCESS_STATUS_CODE = 200;
 
   @Override
-  public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent,
-                                                    Context context) {
+  public APIGatewayProxyResponseEvent handleRequest(
+      APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent, Context context) {
     Map<String, String> pathParameters = apiGatewayProxyRequestEvent.getPathParameters();
-    pathParameters.keySet().stream().map(key -> key + "=" + pathParameters.get(key)).forEach(LOG::info);
+    pathParameters.keySet().stream().map(key -> key + "=" + pathParameters.get(key))
+        .forEach(LOG::info);
 
     Person person = this.getDynamoDbMapper().load(Person.class, apiGatewayProxyRequestEvent
         .getPathParameters().get("id"));

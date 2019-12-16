@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,12 +24,11 @@
 package com.iluwatar.circuitbreaker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 /**
- * 
  * Monitoring Service test
- *
  */
 public class MonitoringServiceTest {
 
@@ -40,24 +39,24 @@ public class MonitoringServiceTest {
     var response = monitoringService.localResourceResponse();
     assertEquals(response, "Local Service is working");
   }
-  
+
   @Test
   public void testRemoteResponse() {
     var monitoringService = new MonitoringService();
-    var circuitBreaker = new CircuitBreaker(1,1,100);
+    var circuitBreaker = new CircuitBreaker(1, 1, 100);
     //Set time in past to make the server work
     var serverStartTime = System.nanoTime() / 10;
     var response = monitoringService.remoteResourceResponse(circuitBreaker, serverStartTime);
     assertEquals(response, "Delayed service is working");
   }
-  
+
   @Test
   public void testRemoteResponse2() {
-    MonitoringService monitoringService = new MonitoringService();
-    CircuitBreaker circuitBreaker = new CircuitBreaker(1,1,100);
+    var monitoringService = new MonitoringService();
+    var circuitBreaker = new CircuitBreaker(1, 1, 100);
     //Set time as current time as initially server fails
-    long serverStartTime = System.nanoTime();
-    String response = monitoringService.remoteResourceResponse(circuitBreaker, serverStartTime);
+    var serverStartTime = System.nanoTime();
+    var response = monitoringService.remoteResourceResponse(circuitBreaker, serverStartTime);
     assertEquals(response, "Remote service not responding");
   }
 }

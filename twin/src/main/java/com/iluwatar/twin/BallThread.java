@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.twin;
 
 import org.slf4j.Logger;
@@ -28,7 +29,6 @@ import org.slf4j.LoggerFactory;
 /**
  * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
  * and resume. It hold the reference of {@link BallItem} to delegate the draw task.
- * 
  */
 
 public class BallThread extends Thread {
@@ -46,7 +46,7 @@ public class BallThread extends Thread {
   }
 
   /**
-   * Run the thread
+   * Run the thread.
    */
   public void run() {
 

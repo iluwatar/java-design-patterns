@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    The MIT License
-    Copyright © 2014-2019 Ilkka Seppälä
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
-
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!-- The MIT License Copyright © 2014-2019 Ilkka Seppälä Permission is hereby
+	granted, free of charge, to any person obtaining a copy of this software
+	and associated documentation files (the "Software"), to deal in the Software
+	without restriction, including without limitation the rights to use, copy,
+	modify, merge, publish, distribute, sublicense, and/or sell copies of the
+	Software, and to permit persons to whom the Software is furnished to do so,
+	subject to the following conditions: The above copyright notice and this
+	permission notice shall be included in all copies or substantial portions
+	of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+	KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+	NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+	ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+	DEALINGS IN THE SOFTWARE. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.22.0-SNAPSHOT</version>
+    <version>1.23.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2014-2019</inceptionYear>
     <properties>
@@ -61,6 +53,7 @@
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.2</annotation-api.version>
         <system-rules.version>1.19.0</system-rules.version>
+        <urm.version>1.4.8</urm.version>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -176,14 +169,20 @@
         <module>master-worker-pattern</module>
         <module>spatial-partition</module>
         <module>priority-queue</module>
-	    <module>commander</module>
-	    <module>typeobjectpattern</module>
+        <module>commander</module>
+        <module>typeobjectpattern</module>
         <module>bytecode</module>
         <module>leader-election</module>
         <module>data-locality</module>
         <module>subclass-sandbox</module>
         <module>circuit-breaker</module>
+        <module>role-object</module>
+        <module>saga</module>
         <module>double-buffer</module>
+        <module>sharding</module>
+        <module>game-loop</module>
+        <module>combinator</module>
+        <module>update-method</module>
     </modules>
 
     <repositories>
@@ -377,13 +376,32 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
                 </plugin>
+                <!-- Maven assembly plugin template for all child project to follow -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                            <configuration>
+                                <descriptorRefs>
+                                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                                </descriptorRefs>
+                                <!-- below two line make sure the fat jar is sharing the same name
+                                    as of project name -->
+                                <finalName>${project.artifactId}</finalName>
+                                <appendAssemblyId>false</appendAssemblyId>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
 
         <plugins>
-            <!--checkstyle plug-in. checking against googles styles
-               see config at checkstyle.xml
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -400,12 +418,37 @@
                             <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                             <encoding>UTF-8</encoding>
                             <failOnViolation>true</failOnViolation>
-                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            <violationSeverity>warning</violationSeverity>
+                            <includeTestSourceDirectory>false</includeTestSourceDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
+            <!-- Resolves ${projectRoot} to the project root directory. Used by the
+                license-maven-plugin to find the correct location of license-plugin-header-style.xml
+                when built from a submodule directory. -->
+            <plugin>
+                <groupId>org.commonjava.maven.plugins</groupId>
+                <artifactId>directory-maven-plugin</artifactId>
+                <version>0.3.1</version>
+                <executions>
+                    <execution>
+                        <id>directories</id>
+                        <goals>
+                            <goal>directory-of</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <property>projectRoot</property>
+                            <project>
+                                <groupId>com.iluwatar</groupId>
+                                <artifactId>java-design-patterns</artifactId>
+                            </project>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
@@ -416,6 +459,15 @@
                         <owner>Ilkka Seppälä</owner>
                     </properties>
                     <skipExistingHeaders>true</skipExistingHeaders>
+                    <headerDefinitions>
+                        <headerDefinition>${projectRoot}${file.separator}license-plugin-header-style.xml</headerDefinition>
+                    </headerDefinitions>
+                    <mapping>
+                        <java>SLASHSTAR_CUSTOM_STYLE</java>
+                    </mapping>
+                    <excludes>
+                        <exclude>.github/FUNDING.yml</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
@@ -448,9 +500,32 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>com.iluwatar.urm</groupId>
+                <artifactId>urm-maven-plugin</artifactId>
+                <version>1.4.8</version>
+                <configuration>
+                    <!-- if outputDirectory is not set explicitly it will default to your build dir -->
+                    <outputDirectory>${project.basedir}/etc</outputDirectory>
+                    <packages>
+                        <param>com.iluwatar</param>
+                    </packages>
+                    <includeMainDirectory>true</includeMainDirectory>
+                    <includeTestDirectory>false</includeTestDirectory>
+                    <presenter>plantuml</presenter>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>map</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
-
     <reporting>
         <plugins>
             <plugin>

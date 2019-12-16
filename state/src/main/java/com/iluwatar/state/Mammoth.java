@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.state;
 
 /**
- * 
  * Mammoth has internal state that defines its behavior.
- * 
  */
 public class Mammoth {
 
@@ -36,7 +35,7 @@ public class Mammoth {
   }
 
   /**
-   * Makes time pass for the mammoth
+   * Makes time pass for the mammoth.
    */
   public void timePasses() {
     if (state.getClass().equals(PeacefulState.class)) {

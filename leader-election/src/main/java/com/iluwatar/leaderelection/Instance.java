@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,27 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.leaderelection;
 
 /**
- *  Instance interface
+ * Instance interface.
  */
 public interface Instance {
 
   /**
    * Check if the instance is alive or not.
+   *
    * @return {@code true} if the instance is alive.
    */
   boolean isAlive();
 
   /**
    * Set the health status of the certain instance.
+   *
    * @param alive {@code true} for alive.
    */
   void setAlive(boolean alive);
 
   /**
    * Consume messages from other instances.
+   *
    * @param message Message sent by other instances
    */
   void onMessage(Message message);

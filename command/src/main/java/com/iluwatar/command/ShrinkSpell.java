@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.command;
 
 /**
- * 
- * ShrinkSpell is a concrete command
- *
+ * ShrinkSpell is a concrete command.
  */
 public class ShrinkSpell extends Command {
 
@@ -42,7 +41,7 @@ public class ShrinkSpell extends Command {
   @Override
   public void undo() {
     if (oldSize != null && target != null) {
-      Size temp = target.getSize();
+      var temp = target.getSize();
       target.setSize(oldSize);
       oldSize = temp;
     }

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.acyclicvisitor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * ConfigureForUnixVisitor class implements zoom's visit method for Unix 
- * manufacturer, unlike traditional visitor pattern, this class may selectively implement
- * visit for other modems.
+ * ConfigureForUnixVisitor class implements zoom's visit method for Unix manufacturer, unlike
+ * traditional visitor pattern, this class may selectively implement visit for other modems.
  */
 public class ConfigureForUnixVisitor implements ZoomVisitor {
 

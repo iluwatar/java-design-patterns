@@ -5,8 +5,7 @@ folder: feature-toggle
 permalink: /patterns/feature-toggle/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
+ - Extensibility
 ---
 
 ## Also known as
@@ -18,6 +17,7 @@ and rolled out. Allowing switching back to the older feature quickly if needed. 
 can easily introduce code complexity. There is also cause for concern that the old feature that the toggle is eventually
 going to phase out is never removed, causing redundant code smells and increased maintainability.
 
+## Class diagram
 ![alt text](./etc/feature-toggle.png "Feature Toggle")
 
 ## Applicability

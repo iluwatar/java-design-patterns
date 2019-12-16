@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.execute.around;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * 
  * Interface for specifying what to do with the file resource.
- *
  */
 @FunctionalInterface
 public interface FileWriterAction {

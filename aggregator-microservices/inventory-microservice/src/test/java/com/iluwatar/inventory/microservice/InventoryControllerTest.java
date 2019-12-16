@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,11 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.inventory.microservice;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Test Inventory Rest Controller
@@ -32,10 +33,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class InventoryControllerTest {
   @Test
   public void testGetProductInventories() {
-    InventoryController inventoryController = new InventoryController();
-
-    int numberOfInventories = inventoryController.getProductInventories();
-
+    var inventoryController = new InventoryController();
+    var numberOfInventories = inventoryController.getProductInventories();
     assertEquals(5, numberOfInventories);
   }
 }

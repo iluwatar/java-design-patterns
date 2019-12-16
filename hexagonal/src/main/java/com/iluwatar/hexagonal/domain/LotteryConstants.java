@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
 
 /**
- * 
- * Lottery domain constants
- *
+ * Lottery domain constants.
  */
 public class LotteryConstants {
 
@@ -37,5 +36,5 @@ public class LotteryConstants {
   public static final int TICKET_PRIZE = 3;
   public static final int SERVICE_BANK_ACCOUNT_BALANCE = 150000;
   public static final int PLAYER_MAX_BALANCE = 100;
-  
+
 }

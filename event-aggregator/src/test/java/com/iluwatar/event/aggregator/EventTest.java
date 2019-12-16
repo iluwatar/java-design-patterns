@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.event.aggregator;
 
-import org.junit.jupiter.api.Test;
+package com.iluwatar.event.aggregator;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 2:52 PM
@@ -39,11 +41,10 @@ public class EventTest {
    */
   @Test
   public void testToString() {
-    for (final Event event : Event.values()) {
-      final String toString = event.toString();
+    Arrays.stream(Event.values()).map(Event::toString).forEach(toString -> {
       assertNotNull(toString);
       assertFalse(toString.trim().isEmpty());
-    }
+    });
   }
 
 }

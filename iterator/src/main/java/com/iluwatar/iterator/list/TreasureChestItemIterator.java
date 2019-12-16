@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.iterator.list;
 
 import com.iluwatar.iterator.Iterator;
 import java.util.List;
 
 /**
- *
- * TreasureChestItemIterator
- *
+ * TreasureChestItemIterator.
  */
 public class TreasureChestItemIterator implements Iterator<Item> {
 
@@ -37,7 +36,7 @@ public class TreasureChestItemIterator implements Iterator<Item> {
   private ItemType type;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public TreasureChestItemIterator(TreasureChest chest, ItemType type) {
     this.chest = chest;

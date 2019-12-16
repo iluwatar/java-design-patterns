@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,44 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.api.gateway;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-
 import org.springframework.stereotype.Component;
 
 /**
- * An adapter to communicate with the Price microservice
+ * An adapter to communicate with the Price microservice.
  */
 @Component
 public class PriceClientImpl implements PriceClient {
   /**
-   * Makes a simple HTTP Get request to the Price microservice
-   * 
+   * Makes a simple HTTP Get request to the Price microservice.
+   *
    * @return The price of the product
    */
   @Override
   public String getPrice() {
-
-    String response = null;
-
-    HttpClient httpClient = HttpClient.newHttpClient();
-    HttpRequest httpGet = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50006/price")).build();
+    var httpClient = HttpClient.newHttpClient();
+    var httpGet = HttpRequest.newBuilder()
+        .GET()
+        .uri(URI.create("http://localhost:50006/price"))
+        .build();
 
     try {
-      HttpResponse<String> httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
-      response = httpResponse.body();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (InterruptedException e) {
+      var httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
+      return httpResponse.body();
+    } catch (IOException | InterruptedException e) {
       e.printStackTrace();
     }
 
-    return response;
+    return null;
   }
 }

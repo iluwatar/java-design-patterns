@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.object.pool;
 
 /**
- * 
- * Oliphaunt object pool
- *
+ * Oliphaunt object pool.
  */
 public class OliphauntPool extends ObjectPool<Oliphaunt> {
 

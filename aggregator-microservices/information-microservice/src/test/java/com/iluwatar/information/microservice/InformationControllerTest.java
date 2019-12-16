@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,11 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.information.microservice;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for Information Rest Controller
@@ -33,10 +34,8 @@ public class InformationControllerTest {
 
   @Test
   public void shouldGetProductTitle() {
-    InformationController infoController = new InformationController();
-
-    String title = infoController.getProductTitle();
-
+    var infoController = new InformationController();
+    var title = infoController.getProductTitle();
     assertEquals("The Product Title.", title);
   }
 

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,21 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.mute;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.mute;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Mute pattern is utilized when we need to suppress an exception due to an API flaw or in 
- * situation when all we can do to handle the exception is to log it. 
- * This pattern should not be used everywhere. It is very important to logically handle the 
- * exceptions in a system, but some situations like the ones described above require this pattern, 
- * so that we don't need to repeat 
+ * Mute pattern is utilized when we need to suppress an exception due to an API flaw or in situation
+ * when all we can do to handle the exception is to log it. This pattern should not be used
+ * everywhere. It is very important to logically handle the exceptions in a system, but some
+ * situations like the ones described above require this pattern, so that we don't need to repeat
  * <pre>
  * <code>
  *   try {
@@ -44,7 +43,6 @@ import java.sql.SQLException;
  *   }
  * </code>
  * </pre> every time we need to ignore an exception.
- * 
  */
 public class App {
 
@@ -52,7 +50,7 @@ public class App {
 
   /**
    * Program entry point.
-   * 
+   *
    * @param args command line args.
    * @throws Exception if any exception occurs
    */
@@ -64,7 +62,7 @@ public class App {
   }
 
   /*
-   * Typically used when the API declares some exception but cannot do so. Usually a 
+   * Typically used when the API declares some exception but cannot do so. Usually a
    * signature mistake.In this example out is not supposed to throw exception as it is a
    * ByteArrayOutputStream. So we utilize mute, which will throw AssertionError if unexpected
    * exception occurs.
@@ -97,7 +95,7 @@ public class App {
 
   private static Resource acquireResource() throws SQLException {
     return new Resource() {
-      
+
       @Override
       public void close() throws IOException {
         throw new IOException("Error in closing resource: " + this);

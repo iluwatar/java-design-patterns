@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
 
 /**
- * 
  * LordVarys produces events.
- *
  */
 public class LordVarys extends EventEmitter {
 
@@ -38,7 +37,7 @@ public class LordVarys extends EventEmitter {
 
   @Override
   public void timePasses(Weekday day) {
-    if (day.equals(Weekday.SATURDAY)) {
+    if (day == Weekday.SATURDAY) {
       notifyObservers(Event.TRAITOR_DETECTED);
     }
   }

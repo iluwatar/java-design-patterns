@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.tolerantreader;
 
 /**
- * 
- * RainbowFishV2 is the evolved schema
- *
+ * RainbowFishV2 is the evolved schema.
  */
 public class RainbowFishV2 extends RainbowFish {
 
@@ -40,10 +39,10 @@ public class RainbowFishV2 extends RainbowFish {
   }
 
   /**
-   * Constructor
+   * Constructor.
    */
   public RainbowFishV2(String name, int age, int lengthMeters, int weightTons, boolean sleeping,
-      boolean hungry, boolean angry) {
+                       boolean hungry, boolean angry) {
     this(name, age, lengthMeters, weightTons);
     this.sleeping = sleeping;
     this.hungry = hungry;

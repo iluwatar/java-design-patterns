@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,24 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.trampoline;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-
-import java.io.IOException;
-
-import static org.junit.Assert.*;
 
 
 /**
  * Test for trampoline pattern.
- * */
+ */
 public class TrampolineAppTest {
 
 
   @Test
   public void testTrampolineWithFactorialFunction() {
-    int result = TrampolineApp.loop(10, 1).result();
+    long result = TrampolineApp.loop(10, 1).result();
     assertEquals("Be equal", 3628800, result);
   }
 

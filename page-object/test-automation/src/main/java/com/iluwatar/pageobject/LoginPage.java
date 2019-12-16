@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.pageobject;
 
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -28,7 +29,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +44,7 @@ public class LoginPage extends Page {
   private HtmlPage page;
 
   /**
-   * Constructor
+   * Constructor.
    *
    * @param webClient {@link WebClient}
    */
@@ -53,7 +53,7 @@ public class LoginPage extends Page {
   }
 
   /**
-   * Navigates to the Login page
+   * Navigates to the Login page.
    *
    * @return {@link LoginPage}
    */
@@ -76,7 +76,7 @@ public class LoginPage extends Page {
 
 
   /**
-   * Enters the username into the username input text field
+   * Enters the username into the username input text field.
    *
    * @param username the username to enter
    * @return {@link LoginPage}
@@ -89,23 +89,24 @@ public class LoginPage extends Page {
 
 
   /**
-   * Enters the password into the password input password field
+   * Enters the password into the password input password field.
    *
    * @param password the password to enter
    * @return {@link LoginPage}
    */
   public LoginPage enterPassword(String password) {
-    HtmlPasswordInput passwordInputPasswordField = (HtmlPasswordInput) page.getElementById("password");
+    HtmlPasswordInput passwordInputPasswordField =
+        (HtmlPasswordInput) page.getElementById("password");
     passwordInputPasswordField.setText(password);
     return this;
   }
 
 
   /**
-   * Clicking on the login button to 'login'
+   * Clicking on the login button to 'login'.
    *
-   * @return {@link AlbumListPage}
-   *        - this is the page that user gets navigated to once successfully logged in
+   * @return {@link AlbumListPage} - this is the page that user gets navigated to once successfully
+   *     logged in
    */
   public AlbumListPage login() {
     HtmlSubmitInput loginButton = (HtmlSubmitInput) page.getElementById("loginButton");

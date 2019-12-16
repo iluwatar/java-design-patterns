@@ -5,8 +5,7 @@ folder: priority-queue
 permalink: /patterns/priority-queue/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
@@ -14,6 +13,9 @@ Prioritize requests sent to services so that requests with a higher priority are
 
 ## Explanation
 Applications may delegate specific tasks to other services; for example, to perform background processing or to integrate with other applications or services. In the cloud, a message queue is typically used to delegate tasks to background processing. In many cases the order in which requests are received by a service is not important. However, in some cases it may be necessary to prioritize specific requests. These requests should be processed earlier than others of a lower priority that may have been sent previously by the application.
+
+## Class diagram
+![alt text](./etc/priority-queue.urm.png "Priority Queue pattern class diagram")
 
 ## Applicability
 Use the Property pattern when

@@ -3,18 +3,16 @@ layout: pattern
 title: Partial Response
 folder: partial-response
 permalink: /patterns/partial-response/
-categories: Architectural
+categories: Behavioral
 tags:
- - Java
- - KISS
- - YAGNI
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
 Send partial response from server to client on need basis. Client will specify the the fields
 that it need to server, instead of serving all details for resource. 
 
+## Class diagram
 ![alt text](./etc/partial-response.urm.png "partial-response")
 
 ## Applicability

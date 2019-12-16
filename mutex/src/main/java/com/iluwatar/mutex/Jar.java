@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.mutex;
 
 /**
- * A Jar has a resource of beans which can only be accessed by a single Thief
- * (thread) at any one time. A Mutex lock is used to prevent more than one Thief
- * taking a bean simultaneously. 
+ * A Jar has a resource of beans which can only be accessed by a single Thief (thread) at any one
+ * time. A Mutex lock is used to prevent more than one Thief taking a bean simultaneously.
  */
 public class Jar {
 

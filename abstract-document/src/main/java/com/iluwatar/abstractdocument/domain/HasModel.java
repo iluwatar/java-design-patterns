@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.abstractdocument.domain;
 
-import java.util.Optional;
+package com.iluwatar.abstractdocument.domain;
 
 import com.iluwatar.abstractdocument.Document;
 import com.iluwatar.abstractdocument.domain.enums.Property;
+import java.util.Optional;
 
 /**
- * HasModel trait for static access to 'model' property
+ * HasModel trait for static access to 'model' property.
  */
 public interface HasModel extends Document {
 

@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.poison.pill;
 
 import java.util.Collections;
@@ -27,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * {@link Message} basic implementation
+ * {@link Message} basic implementation.
  */
 public class SimpleMessage implements Message {
 

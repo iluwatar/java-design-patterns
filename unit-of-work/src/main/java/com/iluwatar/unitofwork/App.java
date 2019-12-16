@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.unitofwork;
 
 import java.util.HashMap;
@@ -30,6 +31,7 @@ import java.util.List;
  */
 public class App {
   /**
+   * Program entry point.
    *
    * @param args no argument sent
    */
@@ -38,7 +40,7 @@ public class App {
     var shyam = new Student(2, "Shyam", "Z bridge, Pune");
     var gopi = new Student(3, "Gopi", "Street 10, Mumbai");
 
-    HashMap<String, List<Student>> context = new HashMap<>();
+    var context = new HashMap<String, List<Student>>();
     var studentDatabase = new StudentDatabase();
     var studentRepository = new StudentRepository(context, studentDatabase);
 

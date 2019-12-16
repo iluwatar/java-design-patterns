@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.business.delegate;
 
 /**
- * BusinessDelegate separates the presentation and business tiers
+ * BusinessDelegate separates the presentation and business tiers.
  */
 public class BusinessDelegate {
 

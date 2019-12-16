@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,13 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.pipeline;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Stage handler that returns a new instance of String without the digit characters of the input string.
+ * Stage handler that returns a new instance of String without the digit characters of the input
+ * string.
  */
 class RemoveDigitsHandler implements Handler<String, String> {
 
@@ -46,8 +48,9 @@ class RemoveDigitsHandler implements Handler<String, String> {
     }
 
     String inputWithoutDigitsStr = inputWithoutDigits.toString();
-    LOGGER.info(String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
-        RemoveDigitsHandler.class, input, String.class, inputWithoutDigitsStr, String.class));
+    LOGGER
+        .info(String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
+            RemoveDigitsHandler.class, input, String.class, inputWithoutDigitsStr, String.class));
 
     return inputWithoutDigitsStr;
   }

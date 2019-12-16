@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,21 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servant;
 
 import java.util.List;
 
 /**
- * 
- * Servant
- *
+ * Servant.
  */
 public class Servant {
 
   public String name;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Servant(String name) {
     this.name = name;
@@ -53,7 +52,7 @@ public class Servant {
   }
 
   /**
-   * Check if we will be hanged
+   * Check if we will be hanged.
    */
   public boolean checkIfYouWillBeHanged(List<Royalty> tableGuests) {
     boolean anotherDay = true;

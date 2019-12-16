@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,10 +24,10 @@
 package com.iluwatar.circuitbreaker;
 
 /**
- * Enumeration for states the circuit breaker could be in
+ * Enumeration for states the circuit breaker could be in.
  */
 public enum State {
-        CLOSED,
-        OPEN,
-        HALF_OPEN
+  CLOSED,
+  OPEN,
+  HALF_OPEN
 }

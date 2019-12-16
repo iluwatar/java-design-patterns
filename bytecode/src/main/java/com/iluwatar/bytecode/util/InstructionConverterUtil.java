@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,16 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.bytecode.util;
 
 import com.iluwatar.bytecode.Instruction;
 
 /**
- * Utility class used for instruction validation and conversion
+ * Utility class used for instruction validation and conversion.
  */
 public class InstructionConverterUtil {
   /**
-   * Converts instructions represented as String
+   * Converts instructions represented as String.
    *
    * @param instructions to convert
    * @return array of int representing bytecode
@@ -39,15 +40,16 @@ public class InstructionConverterUtil {
       return new int[0];
     }
 
-    String[] splitedInstructions = instructions.trim().split(" ");
-    int[] bytecode = new int[splitedInstructions.length];
-    for (int i = 0; i < splitedInstructions.length; i++) {
+    var splitedInstructions = instructions.trim().split(" ");
+    var bytecode = new int[splitedInstructions.length];
+    for (var i = 0; i < splitedInstructions.length; i++) {
       if (isValidInstruction(splitedInstructions[i])) {
         bytecode[i] = Instruction.valueOf(splitedInstructions[i]).getIntValue();
       } else if (isValidInt(splitedInstructions[i])) {
-        bytecode[i] = Integer.valueOf(splitedInstructions[i]);
+        bytecode[i] = Integer.parseInt(splitedInstructions[i]);
       } else {
-        throw new IllegalArgumentException("Invalid instruction or number: " + splitedInstructions[i]);
+        var errorMessage = "Invalid instruction or number: " + splitedInstructions[i];
+        throw new IllegalArgumentException(errorMessage);
       }
     }
 

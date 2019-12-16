@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.lazy.loading;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * Simple implementation of the lazy loading idiom. However, this is not thread safe.
- *
  */
 public class HolderNaive {
 
@@ -37,14 +36,14 @@ public class HolderNaive {
   private Heavy heavy;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public HolderNaive() {
     LOGGER.info("HolderNaive created");
   }
 
   /**
-   * Get heavy object
+   * Get heavy object.
    */
   public Heavy getHeavy() {
     if (heavy == null) {

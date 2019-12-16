@@ -5,9 +5,8 @@ folder: facade
 permalink: /patterns/facade/
 categories: Structural
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
@@ -146,10 +145,10 @@ public class DwarvenGoldmineFacade {
   private final List<DwarvenMineWorker> workers;
 
   public DwarvenGoldmineFacade() {
-    workers = new ArrayList<>();
-    workers.add(new DwarvenGoldDigger());
-    workers.add(new DwarvenCartOperator());
-    workers.add(new DwarvenTunnelDigger());
+      workers = List.of(
+            new DwarvenGoldDigger(),
+            new DwarvenCartOperator(),
+            new DwarvenTunnelDigger());
   }
 
   public void startNewDay() {
@@ -196,6 +195,9 @@ facade.endDay();
 // Dwarven tunnel digger goes home.
 // Dwarven tunnel digger goes to sleep.
 ```
+
+## Class diagram
+![alt text](./etc/facade.urm.png "Facade pattern class diagram")
 
 ## Applicability
 Use the Facade pattern when

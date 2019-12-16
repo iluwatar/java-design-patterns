@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,20 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.nullobject;
 
 /**
- * 
  * Null Object implementation for binary tree node.
- * <p>
- * Implemented as Singleton, since all the NullNodes are the same.
  *
+ * <p>Implemented as Singleton, since all the NullNodes are the same.
  */
 public final class NullNode implements Node {
 
   private static NullNode instance = new NullNode();
 
-  private NullNode() {}
+  private NullNode() {
+  }
 
   public static NullNode getInstance() {
     return instance;

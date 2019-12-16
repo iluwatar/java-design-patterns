@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.data.locality.game.component.manager;
 
 import com.iluwatar.data.locality.game.component.Component;
 import com.iluwatar.data.locality.game.component.RenderComponent;
+import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *  Render component manager for Game
+ * Render component manager for Game.
  */
 public class RenderComponentManager {
 
@@ -45,26 +47,22 @@ public class RenderComponentManager {
   }
 
   /**
-   * Start render component
+   * Start render component.
    */
   public void start() {
     LOGGER.info("Start Render Game Component ");
-    for (int i = 0; i < numEntities; i++) {
-      RENDER_COMPONENTS[i] = new RenderComponent();
-    }
+    IntStream.range(0, numEntities).forEach(i -> RENDER_COMPONENTS[i] = new RenderComponent());
   }
 
 
   /**
-   * render component
+   * render component.
    */
   public void render() {
     LOGGER.info("Update Render Game Component ");
     // Process Render.
-    for (int i = 0; i < numEntities; i++) {
-      if (RENDER_COMPONENTS.length > i && RENDER_COMPONENTS[i] != null) {
-        RENDER_COMPONENTS[i].render();
-      }
-    }
+    IntStream.range(0, numEntities)
+        .filter(i -> RENDER_COMPONENTS.length > i && RENDER_COMPONENTS[i] != null)
+        .forEach(i -> RENDER_COMPONENTS[i].render());
   }
 }

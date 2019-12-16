@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,28 +20,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.banking;
 
 /**
- * 
  * Interface to bank accounts.
- *
  */
 public interface WireTransfers {
 
   /**
-   * Set amount of funds for bank account
+   * Set amount of funds for bank account.
    */
   void setFunds(String bankAccount, int amount);
 
   /**
-   * Get amount of funds for bank account
+   * Get amount of funds for bank account.
    */
   int getFunds(String bankAccount);
 
   /**
-   * Transfer funds from one bank account to another
+   * Transfer funds from one bank account to another.
    */
   boolean transferFunds(int amount, String sourceBackAccount, String destinationBankAccount);
-  
+
 }

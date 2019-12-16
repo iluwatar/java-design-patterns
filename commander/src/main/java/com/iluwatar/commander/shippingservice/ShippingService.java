@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,19 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.commander.shippingservice;
 
 import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 /**
- * ShippingService class receives request from {@link Commander} class and adds it
- * to the {@link ShippingDatabase}.
+ * ShippingService class receives request from {@link com.iluwatar.commander.Commander} class and
+ * adds it to the {@link ShippingDatabase}.
  */
 
 public class ShippingService extends Service {
 
-  class ShippingRequest {
+  static class ShippingRequest {
     String transactionId;
     String item;
     String address;
@@ -44,22 +45,24 @@ public class ShippingService extends Service {
     }
   }
 
-  public ShippingService(ShippingDatabase db, Exception...exc) {
+  public ShippingService(ShippingDatabase db, Exception... exc) {
     super(db, exc);
   }
 
   /**
-   * Public method which will receive request from {@link Commander}.
+   * Public method which will receive request from {@link com.iluwatar.commander.Commander}.
    */
-  
-  public String receiveRequest(Object...parameters) throws DatabaseUnavailableException {
-    String tId = generateId();
-    ShippingRequest req = new ShippingRequest(tId, (String) parameters[0] /*item*/, (String) parameters[1]/*address*/);
+
+  public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
+    var id = generateId();
+    var item = (String) parameters[0];
+    var address = (String) parameters[1];
+    var req = new ShippingRequest(id, item, address);
     return updateDb(req);
   }
 
-  protected String updateDb(Object...parameters) throws DatabaseUnavailableException {
-    ShippingRequest req = (ShippingRequest) parameters[0];
+  protected String updateDb(Object... parameters) throws DatabaseUnavailableException {
+    var req = (ShippingRequest) parameters[0];
     if (this.database.get(req.transactionId) == null) {
       database.add(req);
       return req.transactionId;

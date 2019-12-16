@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
 /**
  * Filters perform certain tasks prior or after execution of request by request handler. In this
  * case, before the request is handled by the target, the request undergoes through each Filter
- * 
- * @author joshzambales
  *
+ * @author joshzambales
  */
 public interface Filter {
 

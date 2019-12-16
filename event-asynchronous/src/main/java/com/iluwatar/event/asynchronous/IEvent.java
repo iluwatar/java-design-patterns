@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,11 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.asynchronous;
 
 /**
- * Events that fulfill the start stop and list out current status behaviour
- * follow this interface
+ * Events that fulfill the start stop and list out current status behaviour follow this interface.
  */
 public interface IEvent {
 

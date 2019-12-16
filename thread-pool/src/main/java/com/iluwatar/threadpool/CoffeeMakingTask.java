@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.threadpool;
 
 /**
- * 
- * CoffeeMakingTask is a concrete task
- * 
+ * CoffeeMakingTask is a concrete task.
  */
 public class CoffeeMakingTask extends Task {
 

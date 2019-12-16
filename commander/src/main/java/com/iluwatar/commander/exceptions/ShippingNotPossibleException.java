@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,11 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.commander.exceptions;
 
 /**
- * ShippingNotPossibleException is thrown when the address entered cannot be shipped to
- * by service currently for some reason.
+ * ShippingNotPossibleException is thrown when the address entered cannot be shipped to by service
+ * currently for some reason.
  */
 
 public class ShippingNotPossibleException extends Exception {

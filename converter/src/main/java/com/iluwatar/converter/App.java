@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -20,15 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.converter;
 
-
-import com.google.common.collect.Lists;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The Converter pattern is a behavioral design pattern which allows a common way of bidirectional
@@ -37,10 +34,11 @@ import java.util.List;
  * objects between types.
  */
 public class App {
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   /**
-   * Program entry point
+   * Program entry point.
    *
    * @param args command line args
    */
@@ -51,8 +49,11 @@ public class App {
     User user = userConverter.convertFromDto(dtoUser);
     LOGGER.info("Entity converted from DTO:" + user);
 
-    ArrayList<User> users = Lists.newArrayList(new User("Camile", "Tough", false, "124sad"),
-        new User("Marti", "Luther", true, "42309fd"), new User("Kate", "Smith", true, "if0243"));
+    var users = List.of(
+        new User("Camile", "Tough", false, "124sad"),
+        new User("Marti", "Luther", true, "42309fd"),
+        new User("Kate", "Smith", true, "if0243")
+    );
     LOGGER.info("Domain entities:");
     users.stream().map(User::toString).forEach(LOGGER::info);
 
