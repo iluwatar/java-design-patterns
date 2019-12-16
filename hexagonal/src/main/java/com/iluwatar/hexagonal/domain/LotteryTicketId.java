@@ -59,10 +59,9 @@ public class LotteryTicketId {
       return false;
     }
 
-    LotteryTicketId that = (LotteryTicketId) o;
+    var that = (LotteryTicketId) o;
 
     return id == that.id;
-
   }
 
   @Override
