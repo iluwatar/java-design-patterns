@@ -54,14 +54,14 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    FilterManager filterManager = new FilterManager();
+    var filterManager = new FilterManager();
     filterManager.addFilter(new NameFilter());
     filterManager.addFilter(new ContactFilter());
     filterManager.addFilter(new AddressFilter());
     filterManager.addFilter(new DepositFilter());
     filterManager.addFilter(new OrderFilter());
 
-    Client client = new Client();
+    var client = new Client();
     client.setFilterManager(filterManager);
   }
 }
