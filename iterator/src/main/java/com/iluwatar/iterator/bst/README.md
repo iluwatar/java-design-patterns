@@ -63,7 +63,7 @@ public TreeNode next() throws IllegalStateException {
   if (pathStack.isEmpty()) {
     throw new IllegalStateException();
   }
-  TreeNode next = pathStack.pop();
+  var next = pathStack.pop();
   // follow right child to next smallest node
   pushPathToNextSmallest(next.getRight());
   return next;
