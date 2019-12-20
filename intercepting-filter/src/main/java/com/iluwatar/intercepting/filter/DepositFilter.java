@@ -32,8 +32,9 @@ public class DepositFilter extends AbstractFilter {
 
   @Override
   public String execute(Order order) {
-    String result = super.execute(order);
-    if (order.getDepositNumber() == null || order.getDepositNumber().isEmpty()) {
+    var result = super.execute(order);
+    var depositNumber = order.getDepositNumber();
+    if (depositNumber == null || depositNumber.isEmpty()) {
       return result + "Invalid deposit number! ";
     } else {
       return result;

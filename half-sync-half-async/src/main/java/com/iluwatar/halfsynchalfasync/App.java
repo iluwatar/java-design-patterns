@@ -70,7 +70,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    AsynchronousService service = new AsynchronousService(new LinkedBlockingQueue<>());
+    var service = new AsynchronousService(new LinkedBlockingQueue<>());
     /*
      * A new task to calculate sum is received but as this is main thread, it should not block. So
      * it passes it to the asynchronous task layer to compute and proceeds with handling other

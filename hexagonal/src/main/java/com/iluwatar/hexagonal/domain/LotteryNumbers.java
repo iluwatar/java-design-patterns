@@ -99,9 +99,9 @@ public class LotteryNumbers {
    */
   private void generateRandomNumbers() {
     numbers.clear();
-    RandomNumberGenerator generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
+    var generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
     while (numbers.size() < NUM_NUMBERS) {
-      int num = generator.nextInt();
+      var num = generator.nextInt();
       numbers.add(num);
     }
   }
@@ -141,8 +141,8 @@ public class LotteryNumbers {
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
+    final var prime = 31;
+    var result = 1;
     result = prime * result + ((numbers == null) ? 0 : numbers.hashCode());
     return result;
   }
@@ -158,14 +158,11 @@ public class LotteryNumbers {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    LotteryNumbers other = (LotteryNumbers) obj;
+    var other = (LotteryNumbers) obj;
     if (numbers == null) {
-      if (other.numbers != null) {
-        return false;
-      }
-    } else if (!numbers.equals(other.numbers)) {
-      return false;
+      return other.numbers == null;
+    } else {
+      return numbers.equals(other.numbers);
     }
-    return true;
   }
 }

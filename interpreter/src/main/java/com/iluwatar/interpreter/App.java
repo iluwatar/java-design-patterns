@@ -49,24 +49,24 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    String tokenString = "4 3 2 - 1 + *";
-    Stack<Expression> stack = new Stack<>();
+    var tokenString = "4 3 2 - 1 + *";
+    var stack = new Stack<Expression>();
 
-    String[] tokenList = tokenString.split(" ");
-    for (String s : tokenList) {
+    var tokenList = tokenString.split(" ");
+    for (var s : tokenList) {
       if (isOperator(s)) {
-        Expression rightExpression = stack.pop();
-        Expression leftExpression = stack.pop();
+        var rightExpression = stack.pop();
+        var leftExpression = stack.pop();
         LOGGER.info("popped from stack left: {} right: {}",
             leftExpression.interpret(), rightExpression.interpret());
-        Expression operator = getOperatorInstance(s, leftExpression, rightExpression);
+        var operator = getOperatorInstance(s, leftExpression, rightExpression);
         LOGGER.info("operator: {}", operator);
-        int result = operator.interpret();
-        NumberExpression resultExpression = new NumberExpression(result);
+        var result = operator.interpret();
+        var resultExpression = new NumberExpression(result);
         stack.push(resultExpression);
         LOGGER.info("push result to stack: {}", resultExpression.interpret());
       } else {
-        Expression i = new NumberExpression(s);
+        var i = new NumberExpression(s);
         stack.push(i);
         LOGGER.info("push to stack: {}", i.interpret());
       }
