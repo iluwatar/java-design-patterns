@@ -128,7 +128,7 @@ public class DwarvenGoldmineFacadeTest {
 
     public boolean logContains(String message) {
       return log.stream()
-          .map(ILoggingEvent::getMessage)
+          .map(ILoggingEvent::getFormattedMessage)
           .anyMatch(message::equals);
     }
   }
