@@ -63,8 +63,6 @@ public class DwarvenGoldmineFacade {
       Collection<DwarvenMineWorker> workers,
       DwarvenMineWorker.Action... actions
   ) {
-    for (DwarvenMineWorker worker : workers) {
-      worker.action(actions);
-    }
+    workers.forEach(worker -> worker.action(actions));
   }
 }
