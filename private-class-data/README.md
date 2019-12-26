@@ -3,11 +3,9 @@ layout: pattern
 title: Private Class Data
 folder: private-class-data
 permalink: /patterns/private-class-data/
-categories: Other
+categories: Idiom
 tags:
- - Java
- - Difficulty-Beginner
- - Idiom
+ - Data access
 ---
 
 ## Intent
@@ -15,9 +13,10 @@ Private Class Data design pattern seeks to reduce exposure of
 attributes by limiting their visibility. It reduces the number of class
 attributes by encapsulating them in single Data object.
 
+## Class diagram
 ![alt text](./etc/private-class-data.png "Private Class Data")
 
 ## Applicability
 Use the Private Class Data pattern when
 
-* you want to prevent write access to class data members
+* You want to prevent write access to class data members

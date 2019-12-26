@@ -2,7 +2,7 @@
 <!--
 
     The MIT License
-    Copyright (c) 2014-2016 Ilkka Seppälä
+    Copyright © 2014-2019 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
   <parent>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.21.0-SNAPSHOT</version>
+    <version>1.23.0-SNAPSHOT</version>
   </parent>
   <artifactId>service-layer</artifactId>
   <dependencies>
@@ -42,9 +42,12 @@
 		<artifactId>h2</artifactId>
 	</dependency>
     <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <scope>test</scope>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-impl</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
     </dependency>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
@@ -57,4 +60,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
 </project>

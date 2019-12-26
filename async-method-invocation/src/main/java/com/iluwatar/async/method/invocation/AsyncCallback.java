@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.async.method.invocation;
 
 import java.util.Optional;
 
 /**
- * 
- * AsyncCallback interface
+ * AsyncCallback interface.
  *
- * @param <T>
- * 
+ * @param <T> Type of Result
  */
 public interface AsyncCallback<T> {
 
@@ -37,7 +36,7 @@ public interface AsyncCallback<T> {
    * Complete handler which is executed when async task is completed or fails execution.
    *
    * @param value the evaluated value from async task, undefined when execution fails
-   * @param ex empty value if execution succeeds, some exception if executions fails
+   * @param ex    empty value if execution succeeds, some exception if executions fails
    */
   void onComplete(T value, Optional<Exception> ex);
 }

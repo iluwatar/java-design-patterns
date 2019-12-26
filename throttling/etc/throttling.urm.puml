@@ -1,0 +1,47 @@
+@startuml
+package com.iluwatar.throttling {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+    - makeServiceCalls(tenant : Tenant, callsCount : CallsCount) {static}
+  }
+  ~class B2BService {
+    - LOGGER : Logger {static}
+    - callsCount : CallsCount
+    + B2BService(timer : Throttler, callsCount : CallsCount)
+    + dummyCustomerApi(tenant : Tenant) : int
+    - getRandomCustomerId() : int
+  }
+  class CallsCount {
+    - LOGGER : Logger {static}
+    - tenantCallsCount : Map<String, AtomicLong>
+    + CallsCount()
+    + addTenant(tenantName : String)
+    + getCount(tenantName : String) : long
+    + incrementCount(tenantName : String)
+    + reset()
+  }
+  class Tenant {
+    - allowedCallsPerSecond : int
+    - name : String
+    + Tenant(name : String, allowedCallsPerSecond : int, callsCount : CallsCount)
+    + getAllowedCallsPerSecond() : int
+    + getName() : String
+  }
+}
+package com.iluwatar.throttling.timer {
+  class ThrottleTimerImpl {
+    - callsCount : CallsCount
+    - throttlePeriod : int
+    + ThrottleTimerImpl(throttlePeriod : int, callsCount : CallsCount)
+    + start()
+  }
+  interface Throttler {
+    + start() {abstract}
+  }
+}
+B2BService -->  "-callsCount" CallsCount
+ThrottleTimerImpl -->  "-callsCount" CallsCount
+ThrottleTimerImpl ..|> Throttler 
+@enduml

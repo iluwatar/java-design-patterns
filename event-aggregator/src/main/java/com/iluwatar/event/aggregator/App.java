@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,47 +20,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
- * 
  * A system with lots of objects can lead to complexities when a client wants to subscribe to
  * events. The client has to find and register for each object individually, if each object has
  * multiple events then each event requires a separate subscription.
- * <p>
- * An Event Aggregator acts as a single source of events for many objects. It registers for all the
- * events of the many objects allowing clients to register with just the aggregator.
- * <p>
- * In the example {@link LordBaelish}, {@link LordVarys} and {@link Scout} deliver events to
- * {@link KingsHand}. {@link KingsHand}, the event aggregator, then delivers the events to
- * {@link KingJoffrey}.
  *
+ * <p>An Event Aggregator acts as a single source of events for many objects. It registers for all
+ * the events of the many objects allowing clients to register with just the aggregator.
+ *
+ * <p>In the example {@link LordBaelish}, {@link LordVarys} and {@link Scout} deliver events to
+ * {@link KingsHand}. {@link KingsHand}, the event aggregator, then delivers the events to {@link
+ * KingJoffrey}.
  */
 public class App {
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
 
-    KingJoffrey kingJoffrey = new KingJoffrey();
-    KingsHand kingsHand = new KingsHand(kingJoffrey);
+    var kingJoffrey = new KingJoffrey();
+    var kingsHand = new KingsHand(kingJoffrey);
 
-    List<EventEmitter> emitters = new ArrayList<>();
-    emitters.add(kingsHand);
-    emitters.add(new LordBaelish(kingsHand));
-    emitters.add(new LordVarys(kingsHand));
-    emitters.add(new Scout(kingsHand));
+    var emitters = List.of(
+        kingsHand,
+        new LordBaelish(kingsHand),
+        new LordVarys(kingsHand),
+        new Scout(kingsHand)
+    );
 
-    for (Weekday day : Weekday.values()) {
-      for (EventEmitter emitter : emitters) {
-        emitter.timePasses(day);
-      }
-    }
+    Arrays.stream(Weekday.values())
+        .<Consumer<? super EventEmitter>>map(day -> emitter -> emitter.timePasses(day))
+        .forEachOrdered(emitters::forEach);
   }
 }

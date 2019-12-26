@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.common;
 
+import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.iluwatar.servicelayer.hibernate.HibernateUtil;
-
 /**
- * 
  * Base class for Dao implementations.
  *
- * @param <E>
- * 
+ * @param <E> Type of Entity
  */
 public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 
@@ -56,12 +52,12 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 
   @Override
   public E find(Long id) {
-    Session session = getSessionFactory().openSession();
+    var session = getSessionFactory().openSession();
     Transaction tx = null;
     E result = null;
     try {
       tx = session.beginTransaction();
-      Criteria criteria = session.createCriteria(persistentClass);
+      var criteria = session.createCriteria(persistentClass);
       criteria.add(Restrictions.idEq(id));
       result = (E) criteria.uniqueResult();
       tx.commit();
@@ -78,7 +74,7 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 
   @Override
   public void persist(E entity) {
-    Session session = getSessionFactory().openSession();
+    var session = getSessionFactory().openSession();
     Transaction tx = null;
     try {
       tx = session.beginTransaction();
@@ -96,7 +92,7 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 
   @Override
   public E merge(E entity) {
-    Session session = getSessionFactory().openSession();
+    var session = getSessionFactory().openSession();
     Transaction tx = null;
     E result = null;
     try {
@@ -116,7 +112,7 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 
   @Override
   public void delete(E entity) {
-    Session session = getSessionFactory().openSession();
+    var session = getSessionFactory().openSession();
     Transaction tx = null;
     try {
       tx = session.beginTransaction();
@@ -134,7 +130,7 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 
   @Override
   public List<E> findAll() {
-    Session session = getSessionFactory().openSession();
+    var session = getSessionFactory().openSession();
     Transaction tx = null;
     List<E> result = null;
     try {

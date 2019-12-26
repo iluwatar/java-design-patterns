@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.throttling;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.security.InvalidParameterException;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
 
 /**
  * TenantTest to test the creation of Tenant with valid parameters.
@@ -36,7 +36,7 @@ public class TenantTest {
   @Test
   public void constructorTest() {
     assertThrows(InvalidParameterException.class, () -> {
-      Tenant tenant = new Tenant("FailTenant", -1, new CallsCount());
+      new Tenant("FailTenant", -1, new CallsCount());
     });
   }
 }

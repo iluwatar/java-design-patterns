@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,39 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.eip.wiretap;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 /**
- * In most integration cases there is a need to monitor the messages flowing through the system. It is usually achieved
- * by intercepting the message and redirecting it to a different location like console, filesystem or the database.
- * It is important that such functionality should not modify the original message and influence the processing path.
+ * In most integration cases there is a need to monitor the messages flowing through the system. It
+ * is usually achieved by intercepting the message and redirecting it to a different location like
+ * console, filesystem or the database. It is important that such functionality should not modify
+ * the original message and influence the processing path.
  *
  * <p>
- * Wire Tap allows you to route messages to a separate location while they are being forwarded to the ultimate
- * destination. It basically consumes messages of the input channel and publishes the unmodified message to both
- * output channels.
+ * Wire Tap allows you to route messages to a separate location while they are being forwarded to
+ * the ultimate destination. It basically consumes messages of the input channel and publishes the
+ * unmodified message to both output channels.
  * </p>
  */
 @SpringBootApplication
 public class App {
 
   /**
-   * Program entry point. It starts Spring Boot application and using Apache Camel it auto-configures routes.
+   * Program entry point. It starts Spring Boot application and using Apache Camel it
+   * auto-configures routes.
    *
    * @param args command line args
    */
   public static void main(String[] args) throws Exception {
     // Run Spring Boot application and obtain ApplicationContext
-    ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
+    var context = SpringApplication.run(App.class, args);
 
     // Get CamelContext from ApplicationContext
-    CamelContext camelContext = (CamelContext) context.getBean("camelContext");
+    var camelContext = (CamelContext) context.getBean("camelContext");
 
     // Add a new routes that will handle endpoints form WireTapRoute class.
     camelContext.addRoutes(new RouteBuilder() {

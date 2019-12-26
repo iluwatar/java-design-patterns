@@ -5,9 +5,7 @@ folder: composite
 permalink: /patterns/composite/
 categories: Structural
 tags:
- - Java
- - Gang Of Four
- - Difficulty-Intermediate
+ - Gang of Four
 ---
 
 ## Intent
@@ -35,41 +33,56 @@ Taking our sentence example from above. Here we have the base class and differen
 
 ```java
 public abstract class LetterComposite {
+
   private List<LetterComposite> children = new ArrayList<>();
+
   public void add(LetterComposite letter) {
     children.add(letter);
   }
+
   public int count() {
     return children.size();
   }
-  protected void printThisBefore() {}
-  protected void printThisAfter() {}
+
+  protected void printThisBefore() {
+  }
+
+  protected void printThisAfter() {
+  }
+
   public void print() {
     printThisBefore();
-    for (LetterComposite letter : children) {
-      letter.print();
-    }
+    children.forEach(LetterComposite::print);
     printThisAfter();
   }
 }
 
 public class Letter extends LetterComposite {
-  private char c;
+
+  private char character;
+
   public Letter(char c) {
-    this.c = c;
+    this.character = c;
   }
+
   @Override
   protected void printThisBefore() {
-    System.out.print(c);
+    System.out.print(character);
   }
 }
 
 public class Word extends LetterComposite {
+
   public Word(List<Letter> letters) {
-    for (Letter l : letters) {
-      this.add(l);
+    letters.forEach(this::add);
+  }
+
+  public Word(char... letters) {
+    for (char letter : letters) {
+      this.add(new Letter(letter));
     }
   }
+
   @Override
   protected void printThisBefore() {
     System.out.print(" ");
@@ -77,11 +90,11 @@ public class Word extends LetterComposite {
 }
 
 public class Sentence extends LetterComposite {
+
   public Sentence(List<Word> words) {
-    for (Word w : words) {
-      this.add(w);
-    }
+    words.forEach(this::add);
   }
+
   @Override
   protected void printThisAfter() {
     System.out.print(".");
@@ -93,41 +106,54 @@ Then we have a messenger to carry messages
 
 ```java
 public class Messenger {
+
   LetterComposite messageFromOrcs() {
-    List<Word> words = new ArrayList<>();
-    words.add(new Word(Arrays.asList(new Letter('W'), new Letter('h'), new Letter('e'), new Letter('r'), new Letter('e'))));
-    words.add(new Word(Arrays.asList(new Letter('t'), new Letter('h'), new Letter('e'), new Letter('r'), new Letter('e'))));
-    words.add(new Word(Arrays.asList(new Letter('i'), new Letter('s'))));
-    words.add(new Word(Arrays.asList(new Letter('a'))));
-    words.add(new Word(Arrays.asList(new Letter('w'), new Letter('h'), new Letter('i'), new Letter('p'))));
-    words.add(new Word(Arrays.asList(new Letter('t'), new Letter('h'), new Letter('e'), new Letter('r'), new Letter('e'))));
-    words.add(new Word(Arrays.asList(new Letter('i'), new Letter('s'))));
-    words.add(new Word(Arrays.asList(new Letter('a'))));
-    words.add(new Word(Arrays.asList(new Letter('w'), new Letter('a'), new Letter('y'))));
+
+    var words = List.of(
+        new Word('W', 'h', 'e', 'r', 'e'),
+        new Word('t', 'h', 'e', 'r', 'e'),
+        new Word('i', 's'),
+        new Word('a'),
+        new Word('w', 'h', 'i', 'p'),
+        new Word('t', 'h', 'e', 'r', 'e'),
+        new Word('i', 's'),
+        new Word('a'),
+        new Word('w', 'a', 'y')
+    );
+
     return new Sentence(words);
+
   }
 
   LetterComposite messageFromElves() {
-    List<Word> words = new ArrayList<>();
-    words.add(new Word(Arrays.asList(new Letter('M'), new Letter('u'), new Letter('c'), new Letter('h'))));
-    words.add(new Word(Arrays.asList(new Letter('w'), new Letter('i'), new Letter('n'), new Letter('d'))));
-    words.add(new Word(Arrays.asList(new Letter('p'), new Letter('o'), new Letter('u'), new Letter('r'), new Letter('s'))));
-    words.add(new Word(Arrays.asList(new Letter('f'), new Letter('r'), new Letter('o'), new Letter('m'))));
-    words.add(new Word(Arrays.asList(new Letter('y'), new Letter('o'), new Letter('u'), new Letter('r'))));
-    words.add(new Word(Arrays.asList(new Letter('m'), new Letter('o'), new Letter('u'), new Letter('t'), new Letter('h'))));
+
+    var words = List.of(
+        new Word('M', 'u', 'c', 'h'),
+        new Word('w', 'i', 'n', 'd'),
+        new Word('p', 'o', 'u', 'r', 's'),
+        new Word('f', 'r', 'o', 'm'),
+        new Word('y', 'o', 'u', 'r'),
+        new Word('m', 'o', 'u', 't', 'h')
+    );
+
     return new Sentence(words);
+
   }
+
 }
 ```
 
 And then it can be used as
 
 ```java
-LetterComposite orcMessage = new Messenger().messageFromOrcs();
+var orcMessage = new Messenger().messageFromOrcs();
 orcMessage.print(); // Where there is a whip there is a way.
-LetterComposite elfMessage = new Messenger().messageFromElves();
+var elfMessage = new Messenger().messageFromElves();
 elfMessage.print(); // Much wind pours from your mouth.
 ```
+
+## Class diagram
+![alt text](./etc/composite.urm.png "Composite class diagram")
 
 ## Applicability
 Use the Composite pattern when

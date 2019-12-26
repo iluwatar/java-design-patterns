@@ -6,8 +6,7 @@ permalink: /patterns/data-bus/
 
 categories: Architectural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent
@@ -16,6 +15,7 @@ Allows send of messages/events between components of an application
 without them needing to know about each other. They only need to know
 about the type of the message/event being sent.
 
+## Class diagram
 ![data bus pattern uml diagram](./etc/data-bus.urm.png "Data Bus pattern")
 
 ## Applicability

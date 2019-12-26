@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,26 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.Resource;
-
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import com.google.common.collect.Lists;
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test case to test the functions of {@link PersonRepository}, beside the CRUD functions, the query
@@ -47,7 +43,7 @@ import com.google.common.collect.Lists;
  * 
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { AppConfig.class }, loader = AnnotationConfigContextLoader.class)
+@SpringBootTest(classes = { AppConfig.class })
 public class AnnotationBasedRepositoryTest {
 
   @Resource
@@ -58,7 +54,7 @@ public class AnnotationBasedRepositoryTest {
   Person john = new Person("John", "lawrence", 35);
   Person terry = new Person("Terry", "Law", 36);
 
-  List<Person> persons = Arrays.asList(peter, nasta, john, terry);
+  List<Person> persons = List.of(peter, nasta, john, terry);
 
   /**
    * Prepare data for test
@@ -66,7 +62,7 @@ public class AnnotationBasedRepositoryTest {
   @BeforeEach
   public void setup() {
 
-    repository.save(persons);
+    repository.saveAll(persons);
   }
 
   @Test
@@ -119,8 +115,8 @@ public class AnnotationBasedRepositoryTest {
   @Test
   public void testFindOneByNameEqualSpec() {
 
-    Person actual = repository.findOne(new PersonSpecifications.NameEqualSpec("Terry"));
-    assertEquals(terry, actual);
+    Optional<Person> actual = repository.findOne(new PersonSpecifications.NameEqualSpec("Terry"));
+    assertEquals(terry, actual.get());
   }
 
   @AfterEach

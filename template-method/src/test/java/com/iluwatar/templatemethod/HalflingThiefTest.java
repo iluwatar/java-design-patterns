@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.templatemethod;
 
-import org.junit.jupiter.api.Test;
+package com.iluwatar.templatemethod;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 18:15 PM
@@ -40,8 +41,8 @@ public class HalflingThiefTest {
    */
   @Test
   public void testSteal() {
-    final StealingMethod method = mock(StealingMethod.class);
-    final HalflingThief thief = new HalflingThief(method);
+    final var method = mock(StealingMethod.class);
+    final var thief = new HalflingThief(method);
 
     thief.steal();
     verify(method).steal();
@@ -54,13 +55,13 @@ public class HalflingThiefTest {
    */
   @Test
   public void testChangeMethod() {
-    final StealingMethod initialMethod = mock(StealingMethod.class);
-    final HalflingThief thief = new HalflingThief(initialMethod);
+    final var initialMethod = mock(StealingMethod.class);
+    final var thief = new HalflingThief(initialMethod);
 
     thief.steal();
     verify(initialMethod).steal();
 
-    final StealingMethod newMethod = mock(StealingMethod.class);
+    final var newMethod = mock(StealingMethod.class);
     thief.changeMethod(newMethod);
 
     thief.steal();

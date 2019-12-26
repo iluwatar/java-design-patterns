@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.strategy;
 
 import org.slf4j.Logger;
@@ -27,15 +28,15 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * The Strategy pattern (also known as the policy pattern) is a software design pattern that enables
- * an algorithm's behavior to be selected at runtime.
- * <p>
- * Before Java 8 the Strategies needed to be separate classes forcing the developer
+ * <p>The Strategy pattern (also known as the policy pattern) is a software design pattern that
+ * enables an algorithm's behavior to be selected at runtime.</p>
+ *
+ * <p>Before Java 8 the Strategies needed to be separate classes forcing the developer
  * to write lots of boilerplate code. With modern Java it is easy to pass behavior
- * with method references and lambdas making the code shorter and more readable.
- * <p>
- * In this example ({@link DragonSlayingStrategy}) encapsulates an algorithm. The containing object
- * ({@link DragonSlayer}) can alter its behavior by changing its strategy.
+ * with method references and lambdas making the code shorter and more readable.</p>
+ *
+ * <p>In this example ({@link DragonSlayingStrategy}) encapsulates an algorithm. The containing
+ * object ({@link DragonSlayer}) can alter its behavior by changing its strategy.</p>
  * 
  */
 public class App {
@@ -43,14 +44,14 @@ public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   
   /**
-   * Program entry point
+   * Program entry point.
    * 
    * @param args command line args
    */
   public static void main(String[] args) {
     // GoF Strategy pattern
     LOGGER.info("Green dragon spotted ahead!");
-    DragonSlayer dragonSlayer = new DragonSlayer(new MeleeStrategy());
+    var dragonSlayer = new DragonSlayer(new MeleeStrategy());
     dragonSlayer.goToBattle();
     LOGGER.info("Red dragon emerges.");
     dragonSlayer.changeStrategy(new ProjectileStrategy());

@@ -1,0 +1,80 @@
+@startuml
+package com.iluwatar.data.locality.game.component.manager {
+  class AiComponentManager {
+    - AI_COMPONENTS : Component[] {static}
+    - LOGGER : Logger {static}
+    - MAX_ENTITIES : int {static}
+    - numEntities : int
+    + AiComponentManager(numEntities : int)
+    + start()
+    + update()
+  }
+  class PhysicsComponentManager {
+    - LOGGER : Logger {static}
+    - MAX_ENTITIES : int {static}
+    - PHYSICS_COMPONENTS : Component[] {static}
+    - numEntities : int
+    + PhysicsComponentManager(numEntities : int)
+    + start()
+    + update()
+  }
+  class RenderComponentManager {
+    - LOGGER : Logger {static}
+    - MAX_ENTITIES : int {static}
+    - RENDER_COMPONENTS : Component[] {static}
+    - numEntities : int
+    + RenderComponentManager(numEntities : int)
+    + render()
+    + start()
+  }
+}
+package com.iluwatar.data.locality {
+  class Application {
+    - LOGGER : Logger {static}
+    - NUM_ENTITIES : int {static}
+    + Application()
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.data.locality.game {
+  class GameEntity {
+    - LOGGER : Logger {static}
+    - aiComponentManager : AiComponentManager
+    - physicsComponentManager : PhysicsComponentManager
+    - renderComponentManager : RenderComponentManager
+    + GameEntity(numEntities : int)
+    + start()
+    + update()
+  }
+}
+package com.iluwatar.data.locality.game.component {
+  class AiComponent {
+    - LOGGER : Logger {static}
+    + AiComponent()
+    + render()
+    + update()
+  }
+  interface Component {
+    + render() {abstract}
+    + update() {abstract}
+  }
+  class PhysicsComponent {
+    - LOGGER : Logger {static}
+    + PhysicsComponent()
+    + render()
+    + update()
+  }
+  class RenderComponent {
+    - LOGGER : Logger {static}
+    + RenderComponent()
+    + render()
+    + update()
+  }
+}
+GameEntity -->  "-physicsComponentManager" PhysicsComponentManager
+GameEntity -->  "-aiComponentManager" AiComponentManager
+GameEntity -->  "-renderComponentManager" RenderComponentManager
+AiComponent ..|> Component 
+PhysicsComponent ..|> Component 
+RenderComponent ..|> Component 
+@enduml

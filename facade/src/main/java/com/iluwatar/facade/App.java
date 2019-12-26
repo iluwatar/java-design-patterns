@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,30 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.facade;
 
 /**
- * 
  * The Facade design pattern is often used when a system is very complex or difficult to understand
  * because the system has a large number of interdependent classes or its source code is
  * unavailable. This pattern hides the complexities of the larger system and provides a simpler
  * interface to the client. It typically involves a single wrapper class which contains a set of
  * members required by client. These members access the system on behalf of the facade client and
  * hide the implementation details.
- * <p>
- * In this example the Facade is ({@link DwarvenGoldmineFacade}) and it provides a simpler interface
- * to the goldmine subsystem.
- * 
+ *
+ * <p>In this example the Facade is ({@link DwarvenGoldmineFacade}) and it provides a simpler
+ * interface to the goldmine subsystem.
  */
 public class App {
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
-    DwarvenGoldmineFacade facade = new DwarvenGoldmineFacade();
+    var facade = new DwarvenGoldmineFacade();
     facade.startNewDay();
     facade.digOutGold();
     facade.endDay();

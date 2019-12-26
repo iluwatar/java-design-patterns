@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.async.method.invocation;
 
 import java.util.concurrent.ExecutionException;
 
 /**
- * AsyncResult interface
+ * AsyncResult interface.
+ *
  * @param <T> parameter returned when getValue is invoked
  */
 public interface AsyncResult<T> {
@@ -41,7 +43,7 @@ public interface AsyncResult<T> {
    * Gets the value of completed async task.
    *
    * @return evaluated value or throws ExecutionException if execution has failed
-   * @throws ExecutionException if execution has failed, containing the root cause
+   * @throws ExecutionException    if execution has failed, containing the root cause
    * @throws IllegalStateException if execution is not completed
    */
   T getValue() throws ExecutionException;

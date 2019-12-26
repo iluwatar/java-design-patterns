@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
 /**
  * Concrete implementation of filter. This filter checks if the input in the Name field is valid.
  * (alphanumeric)
- * 
- * @author joshzambales
  *
+ * @author joshzambales
  */
 public class NameFilter extends AbstractFilter {
 
   @Override
   public String execute(Order order) {
-    String result = super.execute(order);
-    if (order.getName() == null || order.getName().isEmpty()
-        || order.getName().matches(".*[^\\w|\\s]+.*")) {
+    var result = super.execute(order);
+    var name = order.getName();
+    if (name == null || name.isEmpty() || name.matches(".*[^\\w|\\s]+.*")) {
       return result + "Invalid name! ";
     } else {
       return result;

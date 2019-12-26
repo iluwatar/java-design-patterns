@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,31 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by Alexis on 28-Apr-17.
- * With Marker interface idea is to make empty interface and extend it.
- * Basically it is just to identify the special objects from normal objects.
- * Like in case of serialization , objects that need to be serialized must implement serializable interface
- * (it is empty interface) and down the line writeObject() method must be checking
- * if it is a instance of serializable or not.
- * <p>
- * Marker interface vs annotation
- * Marker interfaces and marker annotations both have their uses,
- * neither of them is obsolete or always better then the other one.
- * If you want to define a type that does not have any new methods associated with it,
- * a marker interface is the way to go.
- * If you want to mark program elements other than classes and interfaces,
- * to allow for the possibility of adding more information to the marker in the future,
- * or to fit the marker into a framework that already makes heavy use of annotation types,
- * then a marker annotation is the correct choice
+ * Created by Alexis on 28-Apr-17. With Marker interface idea is to make empty interface and extend
+ * it. Basically it is just to identify the special objects from normal objects. Like in case of
+ * serialization , objects that need to be serialized must implement serializable interface (it is
+ * empty interface) and down the line writeObject() method must be checking if it is a instance of
+ * serializable or not.
+ *
+ * <p>Marker interface vs annotation Marker interfaces and marker annotations both have their uses,
+ * neither of them is obsolete or always better then the other one. If you want to define a type
+ * that does not have any new methods associated with it, a marker interface is the way to go. If
+ * you want to mark program elements other than classes and interfaces, to allow for the possibility
+ * of adding more information to the marker in the future, or to fit the marker into a framework
+ * that already makes heavy use of annotation types, then a marker annotation is the correct choice
  */
 public class App {
 
   /**
-   * Program entry point
+   * Program entry point.
    *
    * @param args command line args
    */

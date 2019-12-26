@@ -3,10 +3,9 @@ layout: pattern
 title: Dependency Injection
 folder: dependency-injection
 permalink: /patterns/dependency-injection/
-categories: Behavioral
+categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
@@ -17,6 +16,7 @@ pattern separates the creation of a client's dependencies from its own
 behavior, which allows program designs to be loosely coupled and to follow the
 inversion of control and single responsibility principles.
 
+## Class diagram
 ![alt text](./etc/dependency-injection.png "Dependency Injection")
 
 ## Applicability

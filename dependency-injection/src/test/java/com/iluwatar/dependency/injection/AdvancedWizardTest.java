@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dependency.injection;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.iluwatar.dependency.injection.utils.InMemoryAppender;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
@@ -56,21 +58,22 @@ public class AdvancedWizardTest {
   @Test
   public void testSmokeEveryThing() throws Exception {
 
-    final Tobacco[] tobaccos = {
-        new OldTobyTobacco(), new RivendellTobacco(), new SecondBreakfastTobacco()
-    };
+    List<Tobacco> tobaccos = List.of(
+        new OldTobyTobacco(),
+        new RivendellTobacco(),
+        new SecondBreakfastTobacco()
+    );
 
-    for (final Tobacco tobacco : tobaccos) {
+    // Verify if the wizard is smoking the correct tobacco ...
+    tobaccos.forEach(tobacco -> {
       final AdvancedWizard advancedWizard = new AdvancedWizard(tobacco);
       advancedWizard.smoke();
-
-      // Verify if the wizard is smoking the correct tobacco ...
-      assertEquals("AdvancedWizard smoking " + tobacco.getClass().getSimpleName(), appender.getLastMessage());
-
-    }
+      String lastMessage = appender.getLastMessage();
+      assertEquals("AdvancedWizard smoking " + tobacco.getClass().getSimpleName(), lastMessage);
+    });
 
     // ... and nothing else is happening.
-    assertEquals(tobaccos.length, appender.getLogSize());
+    assertEquals(tobaccos.size(), appender.getLogSize());
 
   }
 

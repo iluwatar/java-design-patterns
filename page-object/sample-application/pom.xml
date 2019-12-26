@@ -2,7 +2,7 @@
 <!--
 
     The MIT License
-    Copyright (c) 2014-2016 Ilkka Seppälä
+    Copyright © 2014-2019 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@
   <parent>
     <artifactId>page-object</artifactId>
     <groupId>com.iluwatar</groupId>
-    <version>1.21.0-SNAPSHOT</version>
+    <version>1.23.0-SNAPSHOT</version>
   </parent>
   <artifactId>sample-application</artifactId>
 </project>

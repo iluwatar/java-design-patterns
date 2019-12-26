@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
-
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test Lottery Tickets for equality
@@ -37,16 +36,16 @@ class LotteryTicketTest {
 
   @Test
   void testEquals() {
-    PlayerDetails details1 = new PlayerDetails("bob@foo.bar", "1212-121212", "+34332322");
-    LotteryNumbers numbers1 = LotteryNumbers.create(new HashSet<>(Arrays.asList(1, 2, 3, 4)));
-    LotteryTicket ticket1 = new LotteryTicket(new LotteryTicketId(), details1, numbers1);
-    PlayerDetails details2 = new PlayerDetails("bob@foo.bar", "1212-121212", "+34332322");
-    LotteryNumbers numbers2 = LotteryNumbers.create(new HashSet<>(Arrays.asList(1, 2, 3, 4)));
-    LotteryTicket ticket2 = new LotteryTicket(new LotteryTicketId(), details2, numbers2);
+    var details1 = new PlayerDetails("bob@foo.bar", "1212-121212", "+34332322");
+    var numbers1 = LotteryNumbers.create(Set.of(1, 2, 3, 4));
+    var ticket1 = new LotteryTicket(new LotteryTicketId(), details1, numbers1);
+    var details2 = new PlayerDetails("bob@foo.bar", "1212-121212", "+34332322");
+    var numbers2 = LotteryNumbers.create(Set.of(1, 2, 3, 4));
+    var ticket2 = new LotteryTicket(new LotteryTicketId(), details2, numbers2);
     assertEquals(ticket1, ticket2);
-    PlayerDetails details3 = new PlayerDetails("elsa@foo.bar", "1223-121212", "+49332322");
-    LotteryNumbers numbers3 = LotteryNumbers.create(new HashSet<>(Arrays.asList(1, 2, 3, 8)));
-    LotteryTicket ticket3 = new LotteryTicket(new LotteryTicketId(), details3, numbers3);
+    var details3 = new PlayerDetails("elsa@foo.bar", "1223-121212", "+49332322");
+    var numbers3 = LotteryNumbers.create(Set.of(1, 2, 3, 8));
+    var ticket3 = new LotteryTicket(new LotteryTicketId(), details3, numbers3);
     assertNotEquals(ticket1, ticket3);
   }
 }

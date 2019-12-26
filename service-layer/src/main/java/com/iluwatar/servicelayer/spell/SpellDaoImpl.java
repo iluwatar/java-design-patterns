@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.spell;
 
 import com.iluwatar.servicelayer.common.DaoBaseImpl;
-
-import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 /**
- * 
  * SpellDao implementation.
- *
  */
 public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
 
@@ -40,9 +36,9 @@ public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
   public Spell findByName(String name) {
     Transaction tx = null;
     Spell result = null;
-    try (Session session = getSessionFactory().openSession()) {
+    try (var session = getSessionFactory().openSession()) {
       tx = session.beginTransaction();
-      Criteria criteria = session.createCriteria(persistentClass);
+      var criteria = session.createCriteria(persistentClass);
       criteria.add(Restrictions.eq("name", name));
       result = (Spell) criteria.uniqueResult();
       tx.commit();

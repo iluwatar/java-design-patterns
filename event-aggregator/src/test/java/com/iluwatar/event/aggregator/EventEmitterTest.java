@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.event.aggregator;
 
-import org.junit.jupiter.api.Test;
+package com.iluwatar.event.aggregator;
 
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -34,10 +33,11 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/12/15 - 10:58 PM
- * Tests for Event Emitter
+ * Date: 12/12/15 - 10:58 PM Tests for Event Emitter
+ *
  * @param <E> Type of Event Emitter
  * @author Jeroen Meulemeester
  */
@@ -98,13 +98,13 @@ public abstract class EventEmitterTest<E extends EventEmitter> {
   private void testAllDays(final Weekday specialDay, final Event event, final E emitter,
                            final EventObserver... observers) {
 
-    for (final Weekday weekday : Weekday.values()) {
+    for (final var weekday : Weekday.values()) {
       // Pass each week of the day, day by day to the event emitter
       emitter.timePasses(weekday);
 
       if (weekday == specialDay) {
         // On a special day, every observer should have received the event
-        for (final EventObserver observer : observers) {
+        for (final var observer : observers) {
           verify(observer, times(1)).onEvent(eq(event));
         }
       } else {
@@ -125,10 +125,10 @@ public abstract class EventEmitterTest<E extends EventEmitter> {
    * @param event      The expected event emitted by the test object
    */
   private void testAllDaysWithoutDefaultObserver(final Weekday specialDay, final Event event) {
-    final EventObserver observer1 = mock(EventObserver.class);
-    final EventObserver observer2 = mock(EventObserver.class);
+    final var observer1 = mock(EventObserver.class);
+    final var observer2 = mock(EventObserver.class);
 
-    final E emitter = this.factoryWithoutDefaultObserver.get();
+    final var emitter = this.factoryWithoutDefaultObserver.get();
     emitter.registerObserver(observer1);
     emitter.registerObserver(observer2);
 
@@ -142,11 +142,11 @@ public abstract class EventEmitterTest<E extends EventEmitter> {
    * @param event      The expected event emitted by the test object
    */
   private void testAllDaysWithDefaultObserver(final Weekday specialDay, final Event event) {
-    final EventObserver defaultObserver = mock(EventObserver.class);
-    final EventObserver observer1 = mock(EventObserver.class);
-    final EventObserver observer2 = mock(EventObserver.class);
+    final var defaultObserver = mock(EventObserver.class);
+    final var observer1 = mock(EventObserver.class);
+    final var observer2 = mock(EventObserver.class);
 
-    final E emitter = this.factoryWithDefaultObserver.apply(defaultObserver);
+    final var emitter = this.factoryWithDefaultObserver.apply(defaultObserver);
     emitter.registerObserver(observer1);
     emitter.registerObserver(observer2);
 

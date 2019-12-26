@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.serverless.baas.api;
 
 import com.amazonaws.regions.Regions;
@@ -29,13 +30,13 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * abstract dynamodb handler
+ * abstract dynamodb handler.
+ *
  * @param <T> - serializable collection
  */
 public abstract class AbstractDynamoDbHandler<T extends Serializable> {
@@ -77,10 +78,10 @@ public abstract class AbstractDynamoDbHandler<T extends Serializable> {
   }
 
   /**
-   * API Gateway response
+   * API Gateway response.
    *
    * @param statusCode - status code
-   * @param body - Object body
+   * @param body       - Object body
    * @return - api gateway proxy response
    */
   protected APIGatewayProxyResponseEvent apiGatewayProxyResponseEvent(Integer statusCode, T body) {

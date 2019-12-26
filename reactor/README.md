@@ -6,22 +6,22 @@ permalink: /patterns/reactor/
 pumlformat: svg
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Expert
- - I/O
+ - Performance
+ - Reactive
 ---
 
 ## Intent
 The Reactor design pattern handles service requests that are delivered concurrently to an application by one or more clients. The application can register specific handlers for processing which are called by reactor on specific events. Dispatching of event handlers is performed by an initiation dispatcher, which manages the registered event handlers. Demultiplexing of service requests is performed by a synchronous event demultiplexer.
 
+## Class diagram
 ![Reactor](./etc/reactor.png "Reactor")
 
 ## Applicability
 Use Reactor pattern when
 
-* a server application needs to handle concurrent service requests from multiple clients.
-* a server application needs to be available for receiving requests from new clients even when handling older client requests.
-* a server must maximize throughput, minimize latency and use CPU efficiently without blocking.
+* A server application needs to handle concurrent service requests from multiple clients.
+* A server application needs to be available for receiving requests from new clients even when handling older client requests.
+* A server must maximize throughput, minimize latency and use CPU efficiently without blocking.
 
 ## Real world examples
 

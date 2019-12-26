@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,50 +20,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.serverless.faas.api;
 
-import com.iluwatar.serverless.faas.ApiGatewayResponse;
+package com.iluwatar.serverless.faas.api;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.iluwatar.serverless.faas.ApiGatewayResponse;
 import com.iluwatar.serverless.faas.LambdaInfo;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * LambdaInfoApiHandler - simple api to get lambda context
- * Created by dheeraj.mummar on 2/5/18.
+ * LambdaInfoApiHandler - simple api to get lambda context Created by dheeraj.mummar on 2/5/18.
  */
-public class LambdaInfoApiHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
+public class LambdaInfoApiHandler
+    implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
 
-  private static final Logger LOG = Logger.getLogger(LambdaInfoApiHandler.class);
+  private static final Logger LOG = LoggerFactory.getLogger(LambdaInfoApiHandler.class);
   private static final Integer SUCCESS_STATUS_CODE = 200;
 
 
   @Override
   public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
-    BasicConfigurator.configure();
     LOG.info("received: " + input);
 
     return new ApiGatewayResponse
-            .ApiGatewayResponseBuilder<LambdaInfo>()
-            .headers(headers())
-            .statusCode(SUCCESS_STATUS_CODE)
-            .body(lambdaInfo(context))
-            .build();
+        .ApiGatewayResponseBuilder<LambdaInfo>()
+        .headers(headers())
+        .statusCode(SUCCESS_STATUS_CODE)
+        .body(lambdaInfo(context))
+        .build();
 
   }
 
   /**
-   * lambdaInfo
+   * lambdaInfo.
+   *
    * @param context - Lambda context
    * @return LambdaInfo
    */
   private LambdaInfo lambdaInfo(Context context) {
-    LambdaInfo lambdaInfo = new LambdaInfo();
+    var lambdaInfo = new LambdaInfo();
     lambdaInfo.setAwsRequestId(context.getAwsRequestId());
     lambdaInfo.setFunctionName(context.getFunctionName());
     lambdaInfo.setFunctionVersion(context.getFunctionVersion());
@@ -75,7 +74,7 @@ public class LambdaInfoApiHandler implements RequestHandler<Map<String, Object>,
   }
 
   private Map<String, String> headers() {
-    Map<String, String> headers = new HashMap<>();
+    var headers = new HashMap<String, String>();
     headers.put("Content-Type", "application/json");
 
     return headers;

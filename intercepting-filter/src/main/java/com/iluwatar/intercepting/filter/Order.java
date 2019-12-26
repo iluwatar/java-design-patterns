@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
 /**
  * Order class carries the order data.
- *
  */
 public class Order {
 
@@ -34,12 +34,16 @@ public class Order {
   private String depositNumber;
   private String orderItem;
 
-  public Order() {}
+  public Order() {
+  }
 
   /**
-   * Constructor
+   * Constructor.
    */
-  public Order(String name, String contactNumber, String address, String depositNumber, String order) {
+  public Order(
+      String name, String contactNumber, String address,
+      String depositNumber, String order
+  ) {
     this.name = name;
     this.contactNumber = contactNumber;
     this.address = address;

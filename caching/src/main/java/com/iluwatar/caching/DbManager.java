@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,29 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.caching;
 
+import com.iluwatar.caching.constants.CachingConstants;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.UpdateOptions;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.bson.Document;
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.UpdateOptions;
-
 /**
+ * <p>DBManager handles the communication with the underlying data store i.e. Database. It contains
+ * the implemented methods for querying, inserting, and updating data. MongoDB was used as the
+ * database for the application.</p>
  *
- * <p>DBManager handles the communication with the underlying data store i.e. Database. It contains the
- * implemented methods for querying, inserting, and updating data. MongoDB was used as the database
- * for the application.</p>
- * 
- * <p>Developer/Tester is able to choose whether the application should use MongoDB as its underlying
- * data storage (connect()) or a simple Java data structure to (temporarily) store the data/objects
- * during runtime (createVirtualDB()).</p>
- * 
+ * <p>Developer/Tester is able to choose whether the application should use MongoDB as its
+ * underlying data storage (connect()) or a simple Java data structure to (temporarily) store the
+ * data/objects during runtime (createVirtualDB()).</p>
  */
 public final class DbManager {
 
@@ -56,7 +53,7 @@ public final class DbManager {
   }
 
   /**
-   * Create DB
+   * Create DB.
    */
   public static void createVirtualDb() {
     useMongoDB = false;
@@ -64,7 +61,7 @@ public final class DbManager {
   }
 
   /**
-   * Connect to DB
+   * Connect to DB.
    */
   public static void connect() throws ParseException {
     useMongoDB = true;
@@ -73,7 +70,7 @@ public final class DbManager {
   }
 
   /**
-   * Read user account from DB
+   * Read user account from DB.
    */
   public static UserAccount readFromDb(String userId) {
     if (!useMongoDB) {
@@ -89,17 +86,20 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    FindIterable<Document> iterable =
-        db.getCollection("user_accounts").find(new Document("userID", userId));
+    var iterable = db
+        .getCollection(CachingConstants.USER_ACCOUNT)
+        .find(new Document(CachingConstants.USER_ID, userId));
     if (iterable == null) {
       return null;
     }
     Document doc = iterable.first();
-    return new UserAccount(userId, doc.getString("userName"), doc.getString("additionalInfo"));
+    String userName = doc.getString(CachingConstants.USER_NAME);
+    String appInfo = doc.getString(CachingConstants.ADD_INFO);
+    return new UserAccount(userId, userName, appInfo);
   }
 
   /**
-   * Write user account to DB
+   * Write user account to DB.
    */
   public static void writeToDb(UserAccount userAccount) {
     if (!useMongoDB) {
@@ -113,13 +113,15 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    db.getCollection("user_accounts").insertOne(
-        new Document("userID", userAccount.getUserId()).append("userName",
-            userAccount.getUserName()).append("additionalInfo", userAccount.getAdditionalInfo()));
+    db.getCollection(CachingConstants.USER_ACCOUNT).insertOne(
+        new Document(CachingConstants.USER_ID, userAccount.getUserId())
+            .append(CachingConstants.USER_NAME, userAccount.getUserName())
+            .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())
+    );
   }
 
   /**
-   * Update DB
+   * Update DB.
    */
   public static void updateDb(UserAccount userAccount) {
     if (!useMongoDB) {
@@ -133,14 +135,13 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    db.getCollection("user_accounts").updateOne(
-        new Document("userID", userAccount.getUserId()),
-        new Document("$set", new Document("userName", userAccount.getUserName()).append(
-            "additionalInfo", userAccount.getAdditionalInfo())));
+    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
+        new Document(CachingConstants.USER_ID, userAccount.getUserId()),
+        new Document("$set", new Document(CachingConstants.USER_NAME, userAccount.getUserName())
+            .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())));
   }
 
   /**
-   *
    * Insert data into DB if it does not exist. Else, update it.
    */
   public static void upsertDb(UserAccount userAccount) {
@@ -155,10 +156,14 @@ public final class DbManager {
         e.printStackTrace();
       }
     }
-    db.getCollection("user_accounts").updateOne(
-        new Document("userID", userAccount.getUserId()),
-        new Document("$set", new Document("userID", userAccount.getUserId()).append("userName",
-            userAccount.getUserName()).append("additionalInfo", userAccount.getAdditionalInfo())),
-        new UpdateOptions().upsert(true));
+    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
+        new Document(CachingConstants.USER_ID, userAccount.getUserId()),
+        new Document("$set",
+            new Document(CachingConstants.USER_ID, userAccount.getUserId())
+                .append(CachingConstants.USER_NAME, userAccount.getUserName())
+                .append(CachingConstants.ADD_INFO, userAccount.getAdditionalInfo())
+        ),
+        new UpdateOptions().upsert(true)
+    );
   }
 }

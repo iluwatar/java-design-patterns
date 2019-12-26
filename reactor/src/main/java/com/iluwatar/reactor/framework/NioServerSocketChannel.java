@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.reactor.framework;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.reactor.framework;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -32,10 +30,12 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * A wrapper over {@link NioServerSocketChannel} which can read and write data on a
- * {@link SocketChannel}.
+ * A wrapper over {@link NioServerSocketChannel} which can read and write data on a {@link
+ * SocketChannel}.
  */
 public class NioServerSocketChannel extends AbstractNioChannel {
 
@@ -46,11 +46,11 @@ public class NioServerSocketChannel extends AbstractNioChannel {
   /**
    * Creates a {@link ServerSocketChannel} which will bind at provided port and use
    * <code>handler</code> to handle incoming events on this channel.
-   * <p>
-   * Note the constructor does not bind the socket, {@link #bind()} method should be called for
+   *
+   * <p>Note the constructor does not bind the socket, {@link #bind()} method should be called for
    * binding the socket.
-   * 
-   * @param port the port on which channel will be bound to accept incoming connection requests.
+   *
+   * @param port    the port on which channel will be bound to accept incoming connection requests.
    * @param handler the handler that will handle incoming requests on this channel.
    * @throws IOException if any I/O error occurs.
    */
@@ -67,6 +67,8 @@ public class NioServerSocketChannel extends AbstractNioChannel {
   }
 
   /**
+   * Get server socket channel.
+   *
    * @return the underlying {@link ServerSocketChannel}.
    */
   @Override
@@ -93,7 +95,7 @@ public class NioServerSocketChannel extends AbstractNioChannel {
 
   /**
    * Binds TCP socket on the provided <code>port</code>.
-   * 
+   *
    * @throws IOException if any I/O error occurs.
    */
   @Override

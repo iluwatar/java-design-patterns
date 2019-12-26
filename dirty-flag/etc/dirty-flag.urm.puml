@@ -1,0 +1,25 @@
+@startuml
+package com.iluwatar.dirtyflag {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+    + run()
+  }
+  class DataFetcher {
+    - LOGGER : Logger {static}
+    - filename : String
+    - lastFetched : long
+    + DataFetcher()
+    + fetch() : List<String>
+    - isDirty(fileLastModified : long) : boolean
+  }
+  class World {
+    - countries : List<String>
+    - df : DataFetcher
+    + World()
+    + fetch() : List<String>
+  }
+}
+World -->  "-df" DataFetcher
+@enduml

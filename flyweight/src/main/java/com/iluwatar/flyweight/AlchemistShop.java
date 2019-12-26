@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.flyweight;
 
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
- * 
  * AlchemistShop holds potions on its shelves. It uses PotionFactory to provide the potions.
- * 
  */
 public class AlchemistShop {
 
@@ -42,67 +38,54 @@ public class AlchemistShop {
   private List<Potion> bottomShelf;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public AlchemistShop() {
-    topShelf = new ArrayList<>();
-    bottomShelf = new ArrayList<>();
-    fillShelves();
-  }
-
-  private void fillShelves() {
-
-    PotionFactory factory = new PotionFactory();
-
-    topShelf.add(factory.createPotion(PotionType.INVISIBILITY));
-    topShelf.add(factory.createPotion(PotionType.INVISIBILITY));
-    topShelf.add(factory.createPotion(PotionType.STRENGTH));
-    topShelf.add(factory.createPotion(PotionType.HEALING));
-    topShelf.add(factory.createPotion(PotionType.INVISIBILITY));
-    topShelf.add(factory.createPotion(PotionType.STRENGTH));
-    topShelf.add(factory.createPotion(PotionType.HEALING));
-    topShelf.add(factory.createPotion(PotionType.HEALING));
-
-    bottomShelf.add(factory.createPotion(PotionType.POISON));
-    bottomShelf.add(factory.createPotion(PotionType.POISON));
-    bottomShelf.add(factory.createPotion(PotionType.POISON));
-    bottomShelf.add(factory.createPotion(PotionType.HOLY_WATER));
-    bottomShelf.add(factory.createPotion(PotionType.HOLY_WATER));
+    var factory = new PotionFactory();
+    topShelf = List.of(
+        factory.createPotion(PotionType.INVISIBILITY),
+        factory.createPotion(PotionType.INVISIBILITY),
+        factory.createPotion(PotionType.STRENGTH),
+        factory.createPotion(PotionType.HEALING),
+        factory.createPotion(PotionType.INVISIBILITY),
+        factory.createPotion(PotionType.STRENGTH),
+        factory.createPotion(PotionType.HEALING),
+        factory.createPotion(PotionType.HEALING)
+    );
+    bottomShelf = List.of(
+        factory.createPotion(PotionType.POISON),
+        factory.createPotion(PotionType.POISON),
+        factory.createPotion(PotionType.POISON),
+        factory.createPotion(PotionType.HOLY_WATER),
+        factory.createPotion(PotionType.HOLY_WATER)
+    );
   }
 
   /**
-   * Get a read-only list of all the items on the top shelf
+   * Get a read-only list of all the items on the top shelf.
    *
    * @return The top shelf potions
    */
   public final List<Potion> getTopShelf() {
-    return Collections.unmodifiableList(this.topShelf);
+    return List.copyOf(this.topShelf);
   }
 
   /**
-   * Get a read-only list of all the items on the bottom shelf
+   * Get a read-only list of all the items on the bottom shelf.
    *
    * @return The bottom shelf potions
    */
   public final List<Potion> getBottomShelf() {
-    return Collections.unmodifiableList(this.bottomShelf);
+    return List.copyOf(this.bottomShelf);
   }
 
   /**
-   * Enumerate potions
+   * Enumerate potions.
    */
   public void enumerate() {
-
     LOGGER.info("Enumerating top shelf potions\n");
-
-    for (Potion p : topShelf) {
-      p.drink();
-    }
-
+    topShelf.forEach(Potion::drink);
     LOGGER.info("Enumerating bottom shelf potions\n");
-
-    for (Potion p : bottomShelf) {
-      p.drink();
-    }
+    bottomShelf.forEach(Potion::drink);
   }
 }

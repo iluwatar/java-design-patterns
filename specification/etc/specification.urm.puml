@@ -1,0 +1,177 @@
+@startuml
+package com.iluwatar.specification.creature {
+  abstract class AbstractCreature {
+    - color : Color
+    - mass : Mass
+    - movement : Movement
+    - name : String
+    - size : Size
+    + AbstractCreature(name : String, size : Size, movement : Movement, color : Color, mass : Mass)
+    + getColor() : Color
+    + getMass() : Mass
+    + getMovement() : Movement
+    + getName() : String
+    + getSize() : Size
+    + toString() : String
+  }
+  interface Creature {
+    + getColor() : Color {abstract}
+    + getMass() : Mass {abstract}
+    + getMovement() : Movement {abstract}
+    + getName() : String {abstract}
+    + getSize() : Size {abstract}
+  }
+  class Dragon {
+    + Dragon()
+    + Dragon(mass : Mass)
+  }
+  class Goblin {
+    + Goblin()
+    + Goblin(mass : Mass)
+  }
+  class KillerBee {
+    + KillerBee()
+    + KillerBee(mass : Mass)
+  }
+  class Octopus {
+    + Octopus()
+    + Octopus(mass : Mass)
+  }
+  class Shark {
+    + Shark()
+    + Shark(mass : Mass)
+  }
+  class Troll {
+    + Troll()
+    + Troll(mass : Mass)
+  }
+}
+package com.iluwatar.specification.property {
+  enum Color {
+    + DARK {static}
+    + GREEN {static}
+    + LIGHT {static}
+    + RED {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Color {static}
+    + values() : Color[] {static}
+  }
+  class Mass {
+    - title : String
+    - value : double
+    + Mass(value : double)
+    + equals(obj : Object) : boolean
+    + greaterThan(other : Mass) : boolean
+    + greaterThanOrEq(other : Mass) : boolean
+    + smallerThan(other : Mass) : boolean
+    + smallerThanOrEq(other : Mass) : boolean
+    + toString() : String
+  }
+  enum Movement {
+    + FLYING {static}
+    + SWIMMING {static}
+    + WALKING {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Movement {static}
+    + values() : Movement[] {static}
+  }
+  enum Size {
+    + LARGE {static}
+    + NORMAL {static}
+    + SMALL {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Size {static}
+    + values() : Size[] {static}
+  }
+}
+package com.iluwatar.specification.selector {
+  abstract class AbstractSelector<T> {
+    + AbstractSelector<T>()
+    + and(other : AbstractSelector<T>) : AbstractSelector<T>
+    + not() : AbstractSelector<T>
+    + or(other : AbstractSelector<T>) : AbstractSelector<T>
+  }
+  class ColorSelector {
+    - color : Color
+    + ColorSelector(c : Color)
+    + test(t : Creature) : boolean
+  }
+  class ConjunctionSelector<T> {
+    - leafComponents : List<AbstractSelector<T>>
+    ~ ConjunctionSelector<T>(selectors : AbstractSelector<T>[])
+    + test(t : T) : boolean
+  }
+  class DisjunctionSelector<T> {
+    - leafComponents : List<AbstractSelector<T>>
+    ~ DisjunctionSelector<T>(selectors : AbstractSelector<T>[])
+    + test(t : T) : boolean
+  }
+  class MassEqualSelector {
+    - mass : Mass
+    + MassEqualSelector(mass : double)
+    + test(t : Creature) : boolean
+  }
+  class MassGreaterThanSelector {
+    - mass : Mass
+    + MassGreaterThanSelector(mass : double)
+    + test(t : Creature) : boolean
+  }
+  class MassSmallerThanOrEqSelector {
+    - mass : Mass
+    + MassSmallerThanOrEqSelector(mass : double)
+    + test(t : Creature) : boolean
+  }
+  class MovementSelector {
+    - movement : Movement
+    + MovementSelector(m : Movement)
+    + test(t : Creature) : boolean
+  }
+  class NegationSelector<T> {
+    - component : AbstractSelector<T>
+    ~ NegationSelector<T>(selector : AbstractSelector<T>)
+    + test(t : T) : boolean
+  }
+  class SizeSelector {
+    - size : Size
+    + SizeSelector(s : Size)
+    + test(t : Creature) : boolean
+  }
+}
+package com.iluwatar.specification.app {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+SizeSelector -->  "-size" Size
+AbstractCreature -->  "-mass" Mass
+MassEqualSelector -->  "-mass" Mass
+AbstractCreature -->  "-color" Color
+MassGreaterThanSelector -->  "-mass" Mass
+MovementSelector -->  "-movement" Movement
+NegationSelector -->  "-component" AbstractSelector
+AbstractCreature -->  "-movement" Movement
+MassSmallerThanOrEqSelector -->  "-mass" Mass
+AbstractCreature -->  "-size" Size
+ColorSelector -->  "-color" Color
+AbstractCreature ..|> Creature 
+Dragon --|> AbstractCreature 
+Goblin --|> AbstractCreature 
+KillerBee --|> AbstractCreature 
+Octopus --|> AbstractCreature 
+Shark --|> AbstractCreature 
+Troll --|> AbstractCreature 
+ColorSelector --|> AbstractSelector 
+ConjunctionSelector --|> AbstractSelector 
+DisjunctionSelector --|> AbstractSelector 
+MassEqualSelector --|> AbstractSelector 
+MassGreaterThanSelector --|> AbstractSelector 
+MassSmallerThanOrEqSelector --|> AbstractSelector 
+MovementSelector --|> AbstractSelector 
+NegationSelector --|> AbstractSelector 
+SizeSelector --|> AbstractSelector 
+@enduml

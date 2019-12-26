@@ -6,16 +6,14 @@ permalink: /patterns/unit-of-work/
 
 categories: Architectural
 tags:
- - Java
- - KISS
- - YAGNI
- - Difficulty-Beginner
+ - Data access
 ---
 
 ## Intent
 When a business transaction is completed, all the these updates are sent as one 
   big unit of work to be persisted in a database in one go so as to minimize database trips. 
 
+## Class diagram
 ![alt text](etc/unit-of-work.urm.png "unit-of-work")
 
 ## Applicability

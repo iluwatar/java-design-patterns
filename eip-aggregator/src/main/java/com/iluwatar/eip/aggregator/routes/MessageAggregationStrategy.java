@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.eip.aggregator.routes;
 
 import org.apache.camel.Exchange;
@@ -27,8 +28,8 @@ import org.apache.camel.processor.aggregate.AggregationStrategy;
 import org.springframework.stereotype.Component;
 
 /**
- * Aggregation strategy joining bodies of messages. If message is first one <i>oldMessage</i> is null. All changes are
- * made on IN messages.
+ * Aggregation strategy joining bodies of messages. If message is first one <i>oldMessage</i> is
+ * null. All changes are made on IN messages.
  */
 @Component
 public class MessageAggregationStrategy implements AggregationStrategy {
@@ -39,8 +40,8 @@ public class MessageAggregationStrategy implements AggregationStrategy {
       return newExchange;
     }
 
-    String in1 = (String) oldExchange.getIn().getBody();
-    String in2 = (String) newExchange.getIn().getBody();
+    var in1 = (String) oldExchange.getIn().getBody();
+    var in2 = (String) newExchange.getIn().getBody();
 
     oldExchange.getIn().setBody(in1 + ";" + in2);
 

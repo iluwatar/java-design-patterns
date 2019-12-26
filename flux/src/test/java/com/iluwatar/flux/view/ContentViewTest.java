@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.flux.view;
 
-import com.iluwatar.flux.action.Content;
-import com.iluwatar.flux.store.ContentStore;
-import org.junit.jupiter.api.Test;
+package com.iluwatar.flux.view;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
+import com.iluwatar.flux.action.Content;
+import com.iluwatar.flux.store.ContentStore;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 10:31 PM
@@ -40,11 +41,11 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 public class ContentViewTest {
 
   @Test
-  public void testStoreChanged() throws Exception {
-    final ContentStore store = mock(ContentStore.class);
+  public void testStoreChanged() {
+    final var store = mock(ContentStore.class);
     when(store.getContent()).thenReturn(Content.PRODUCTS);
 
-    final ContentView view = new ContentView();
+    final var view = new ContentView();
     view.storeChanged(store);
 
     verify(store, times(1)).getContent();

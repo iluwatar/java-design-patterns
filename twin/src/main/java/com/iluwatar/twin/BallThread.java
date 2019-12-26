@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory;
 /**
  * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
  * and resume. It hold the reference of {@link BallItem} to delegate the draw task.
- * 
  */
 
 public class BallThread extends Thread {
@@ -47,7 +46,7 @@ public class BallThread extends Thread {
   }
 
   /**
-   * Run the thread
+   * Run the thread.
    */
   public void run() {
 

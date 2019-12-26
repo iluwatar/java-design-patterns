@@ -5,8 +5,7 @@ folder: aggregator-microservices
 permalink: /patterns/aggregator-microservices/
 categories: Architectural
 tags:
-- Java
-- Spring
+- Cloud distributed
 ---
 
 ## Intent
@@ -17,6 +16,8 @@ More variations of the aggregator are:
 - Proxy Microservice Design Pattern: A different microservice is called upon the business need. 
 - Chained Microservice Design Pattern: In this case each microservice is dependent/ chained to a series 
 of other microservices.
+
+## Class diagram
 
 ![alt text](./etc/aggregator-microservice.png "Aggregator Microservice")
 

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.threadpool;
 
-import org.junit.jupiter.api.Test;
+package com.iluwatar.threadpool;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/30/15 - 18:21 PM
@@ -41,8 +42,8 @@ public class WorkerTest {
    */
   @Test
   public void testRun() {
-    final Task task = mock(Task.class);
-    final Worker worker = new Worker(task);
+    final var task = mock(Task.class);
+    final var worker = new Worker(task);
     verifyZeroInteractions(task);
 
     worker.run();

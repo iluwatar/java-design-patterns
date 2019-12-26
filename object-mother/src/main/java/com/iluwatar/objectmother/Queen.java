@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.objectmother;
 
 /**
- * Defines all attributes and behaviour related to the Queen
+ * Defines all attributes and behaviour related to the Queen.
  */
 public class Queen implements Royalty {
   private boolean isDrunk = false;
@@ -60,6 +61,7 @@ public class Queen implements Royalty {
 
   /**
    * Method which is called when the king is flirting to a queen.
+   *
    * @param king King who initialized the flirt.
    * @return A value which describes if the flirt was successful or not.
    */

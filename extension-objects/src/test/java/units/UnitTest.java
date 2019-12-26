@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package units;
 
-import org.junit.jupiter.api.Test;
+package units;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Created by Srdjan on 03-May-17.
@@ -34,11 +35,11 @@ public class UnitTest {
 
   @Test
   public void testConstGetSet() throws Exception {
-    final String name = "testName";
-    final Unit unit = new Unit(name);
+    final var name = "testName";
+    final var unit = new Unit(name);
     assertEquals(name, unit.getName());
 
-    final String newName = "newName";
+    final var newName = "newName";
     unit.setName(newName);
     assertEquals(newName, unit.getName());
 

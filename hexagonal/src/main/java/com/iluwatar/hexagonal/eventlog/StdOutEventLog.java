@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.eventlog;
 
 import com.iluwatar.hexagonal.domain.PlayerDetails;
@@ -27,7 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Standard output event log
+ * Standard output event log.
  */
 public class StdOutEventLog implements LotteryEventLog {
 
@@ -41,24 +42,25 @@ public class StdOutEventLog implements LotteryEventLog {
 
   @Override
   public void ticketDidNotWin(PlayerDetails details) {
-    LOGGER.info("Lottery ticket for {} was checked and unfortunately did not win this time.", details.getEmail());
+    LOGGER.info("Lottery ticket for {} was checked and unfortunately did not win this time.",
+        details.getEmail());
   }
 
   @Override
   public void ticketWon(PlayerDetails details, int prizeAmount) {
     LOGGER.info("Lottery ticket for {} has won! The bank account {} was deposited with {} credits.",
-            details.getEmail(), details.getBankAccount(), prizeAmount);
+        details.getEmail(), details.getBankAccount(), prizeAmount);
   }
 
   @Override
   public void prizeError(PlayerDetails details, int prizeAmount) {
-    LOGGER.error("Lottery ticket for {} has won! Unfortunately the bank credit transfer of {} failed.",
-            details.getEmail(), prizeAmount);
+    LOGGER.error("Lottery ticket for {} has won! Unfortunately the bank credit transfer of"
+        + " {} failed.", details.getEmail(), prizeAmount);
   }
 
   @Override
   public void ticketSubmitError(PlayerDetails details) {
-    LOGGER.error("Lottery ticket for {} could not be submitted because the credit transfer of 3 credits failed.",
-            details.getEmail());
+    LOGGER.error("Lottery ticket for {} could not be submitted because the credit transfer"
+        + " of 3 credits failed.", details.getEmail());
   }
 }

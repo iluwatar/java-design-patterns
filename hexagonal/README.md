@@ -6,11 +6,11 @@ permalink: /patterns/hexagonal/
 pumlformat: svg
 categories: Architectural
 tags:
- - Java
- - Difficulty-Expert
+ - Decoupling
 ---
 
 ## Also known as
+
 * Ports and Adapters
 * Clean Architecture
 * Onion Architecture
@@ -18,6 +18,7 @@ tags:
 ## Intent
 Allow an application to equally be driven by users, programs, automated test or batch scripts, and to be developed and tested in isolation from its eventual run-time devices and databases.
 
+## Class diagram
 ![Hexagonal Architecture class diagram](./etc/hexagonal.png)
 
 ## Applicability
@@ -27,10 +28,8 @@ Use Hexagonal Architecture pattern when
 * When it is important that the application highly maintainable and fully testable
 
 ## Tutorials
-* [Build Maintainable Systems With Hexagonal Architecture](http://java-design-patterns.com/blog/build-maintainable-systems-with-hexagonal-architecture/)
 
-## Presentations
-* [Hexagonal Architecture](https://github.com/iluwatar/java-design-patterns/tree/master/hexagonal/etc/presentation.html)
+* [Build Maintainable Systems With Hexagonal Architecture](http://java-design-patterns.com/blog/build-maintainable-systems-with-hexagonal-architecture/)
 
 ## Real world examples
 

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.singleton;
 
 /**
- * Double check locking
- * <p>
- * http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html
- * <p>
- * Broken under Java 1.4.
+ * <p>Double check locking.</p>
+ *
+ * <p>http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html</p>
+ *
+ * <p>Broken under Java 1.4.</p>
  *
  * @author mortezaadi@gmail.com
  */
@@ -35,12 +36,16 @@ public final class ThreadSafeDoubleCheckLocking {
 
   private static volatile ThreadSafeDoubleCheckLocking instance;
 
+  private static boolean flag = true;
+
   /**
    * private constructor to prevent client from instantiating.
    */
   private ThreadSafeDoubleCheckLocking() {
     // to prevent instantiating by Reflection call
-    if (instance != null) {
+    if (flag) {
+      flag = false;
+    } else {
       throw new IllegalStateException("Already initialized.");
     }
   }
@@ -54,18 +59,22 @@ public final class ThreadSafeDoubleCheckLocking {
     // local variable increases performance by 25 percent
     // Joshua Bloch "Effective Java, Second Edition", p. 283-284
     
-    ThreadSafeDoubleCheckLocking result = instance;
-    // Check if singleton instance is initialized. If it is initialized then we can return the instance.
+    var result = instance;
+    // Check if singleton instance is initialized.
+    // If it is initialized then we can return the instance.
     if (result == null) {
-      // It is not initialized but we cannot be sure because some other thread might have initialized it
-      // in the meanwhile. So to make sure we need to lock on an object to get mutual exclusion.
+      // It is not initialized but we cannot be sure because some other thread might have
+      // initialized it in the meanwhile.
+      // So to make sure we need to lock on an object to get mutual exclusion.
       synchronized (ThreadSafeDoubleCheckLocking.class) {
-        // Again assign the instance to local variable to check if it was initialized by some other thread
-        // while current thread was blocked to enter the locked zone. If it was initialized then we can 
-        // return the previously created instance just like the previous null check.
+        // Again assign the instance to local variable to check if it was initialized by some
+        // other thread while current thread was blocked to enter the locked zone.
+        // If it was initialized then we can return the previously created instance
+        // just like the previous null check.
         result = instance;
         if (result == null) {
-          // The instance is still not initialized so we can safely (no other thread can enter this zone)
+          // The instance is still not initialized so we can safely
+          // (no other thread can enter this zone)
           // create an instance and make it our singleton instance.
           instance = result = new ThreadSafeDoubleCheckLocking();
         }

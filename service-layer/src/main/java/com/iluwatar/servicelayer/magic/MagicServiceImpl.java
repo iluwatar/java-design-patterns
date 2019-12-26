@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.servicelayer.magic;
 
-import java.util.ArrayList;
-import java.util.List;
+package com.iluwatar.servicelayer.magic;
 
 import com.iluwatar.servicelayer.spell.Spell;
 import com.iluwatar.servicelayer.spell.SpellDao;
@@ -31,11 +29,11 @@ import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.spellbook.SpellbookDao;
 import com.iluwatar.servicelayer.wizard.Wizard;
 import com.iluwatar.servicelayer.wizard.WizardDao;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * 
  * Service implementation.
- *
  */
 public class MagicServiceImpl implements MagicService {
 
@@ -44,7 +42,7 @@ public class MagicServiceImpl implements MagicService {
   private SpellDao spellDao;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public MagicServiceImpl(WizardDao wizardDao, SpellbookDao spellbookDao, SpellDao spellDao) {
     this.wizardDao = wizardDao;
@@ -69,14 +67,14 @@ public class MagicServiceImpl implements MagicService {
 
   @Override
   public List<Wizard> findWizardsWithSpellbook(String name) {
-    Spellbook spellbook = spellbookDao.findByName(name);
+    var spellbook = spellbookDao.findByName(name);
     return new ArrayList<>(spellbook.getWizards());
   }
 
   @Override
   public List<Wizard> findWizardsWithSpell(String name) {
-    Spell spell = spellDao.findByName(name);
-    Spellbook spellbook = spell.getSpellbook();
+    var spell = spellDao.findByName(name);
+    var spellbook = spell.getSpellbook();
     return new ArrayList<>(spellbook.getWizards());
   }
 }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,38 +20,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.semaphore;
 
 /**
  * A FruitShop contains three FruitBowl instances and controls access to them.
  */
 public class FruitShop {
-   
+
   /**
    * The FruitBowl instances stored in the class.
    */
   private FruitBowl[] bowls = {
-    new FruitBowl(),
-    new FruitBowl(),
-    new FruitBowl()
+      new FruitBowl(),
+      new FruitBowl(),
+      new FruitBowl()
   };
 
   /**
    * Access flags for each of the FruitBowl instances.
    */
   private boolean[] available = {
-    true,
-    true,
-    true
+      true,
+      true,
+      true
   };
 
   /**
    * The Semaphore that controls access to the class resources.
    */
   private Semaphore semaphore;
-  
+
   /**
-   * FruitShop constructor
+   * FruitShop constructor.
    */
   public FruitShop() {
     for (int i = 0; i < 100; i++) {
@@ -59,30 +60,30 @@ public class FruitShop {
       bowls[1].put(new Fruit(Fruit.FruitType.ORANGE));
       bowls[2].put(new Fruit(Fruit.FruitType.LEMON));
     }
-        
+
     semaphore = new Semaphore(3);
   }
 
   /**
-   * 
+   * Returns the amount of fruits left in shop.
+   *
    * @return The amount of Fruit left in the shop.
    */
   public synchronized int countFruit() {
     return bowls[0].countFruit() + bowls[1].countFruit() + bowls[2].countFruit();
   }
-  
+
   /**
-   * Method called by Customer to get a FruitBowl from the shop. This method
-   * will try to acquire the Semaphore before returning the first available 
-   * FruitBowl.
-   */   
+   * Method called by Customer to get a FruitBowl from the shop. This method will try to acquire the
+   * Semaphore before returning the first available FruitBowl.
+   */
   public synchronized FruitBowl takeBowl() {
-        
+
     FruitBowl bowl = null;
-        
+
     try {
       semaphore.acquire();
-            
+
       if (available[0]) {
         bowl = bowls[0];
         available[0] = false;
@@ -93,7 +94,7 @@ public class FruitShop {
         bowl = bowls[2];
         available[2] = false;
       }
-            
+
     } catch (InterruptedException e) {
       e.printStackTrace();
     } finally {
@@ -101,20 +102,19 @@ public class FruitShop {
     }
     return bowl;
   }
-  
+
   /**
-   * Method called by a Customer instance to return a FruitBowl to the shop. 
-   * This method releases the Semaphore, making the FruitBowl available to 
-   * another Customer.
-   */   
+   * Method called by a Customer instance to return a FruitBowl to the shop. This method releases
+   * the Semaphore, making the FruitBowl available to another Customer.
+   */
   public synchronized void returnBowl(FruitBowl bowl) {
     if (bowl == bowls[0]) {
       available[0] = true;
     } else if (bowl == bowls[1]) {
       available[1] = true;
     } else if (bowl == bowls[2]) {
-      available [2] = true;
+      available[2] = true;
     }
   }
-    
+
 }

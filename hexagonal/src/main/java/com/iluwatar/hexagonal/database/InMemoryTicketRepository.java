@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,37 +20,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.database;
 
+import com.iluwatar.hexagonal.domain.LotteryTicket;
+import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import com.iluwatar.hexagonal.domain.LotteryTicket;
-import com.iluwatar.hexagonal.domain.LotteryTicketId;
-
 /**
- * 
  * Mock database for lottery tickets.
- *
  */
 public class InMemoryTicketRepository implements LotteryTicketRepository {
-  
+
   private static Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
 
   @Override
   public Optional<LotteryTicket> findById(LotteryTicketId id) {
-    LotteryTicket ticket = tickets.get(id);
-    if (ticket == null) {
-      return Optional.empty();
-    } else {
-      return Optional.of(ticket);
-    }
+    return Optional.ofNullable(tickets.get(id));
   }
 
   @Override
   public Optional<LotteryTicketId> save(LotteryTicket ticket) {
-    LotteryTicketId id = new LotteryTicketId();
+    var id = new LotteryTicketId();
     tickets.put(id, ticket);
     return Optional.of(id);
   }

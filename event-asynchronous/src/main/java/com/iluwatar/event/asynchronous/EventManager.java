@@ -1,38 +1,44 @@
-/**
- * The MIT License Copyright (c) 2014-2016 Ilkka Seppälä
+/*
+ * The MIT License
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
- * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
- * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
- * Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
- * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
+
 package com.iluwatar.event.asynchronous;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- *
- * EventManager handles and maintains a pool of event threads. {@link Event} threads are created upon user request. Thre
- * are two types of events; Asynchronous and Synchronous. There can be multiple Asynchronous events running at once but
- * only one Synchronous event running at a time. Currently supported event operations are: start, stop, and getStatus.
- * Once an event is complete, it then notifies EventManager through a listener. The EventManager then takes the event
- * out of the pool.
- *
+ * EventManager handles and maintains a pool of event threads. {@link Event} threads are created
+ * upon user request. Thre are two types of events; Asynchronous and Synchronous. There can be
+ * multiple Asynchronous events running at once but only one Synchronous event running at a time.
+ * Currently supported event operations are: start, stop, and getStatus. Once an event is complete,
+ * it then notifies EventManager through a listener. The EventManager then takes the event out of
+ * the pool.
  */
 public class EventManager implements ThreadCompleteListener {
 
-  public static final int MAX_RUNNING_EVENTS = 1000; // Just don't wanna have too many running events. :)
+  public static final int MAX_RUNNING_EVENTS = 1000;
+  // Just don't wanna have too many running events. :)
   public static final int MIN_ID = 1;
   public static final int MAX_ID = MAX_RUNNING_EVENTS;
   public static final int MAX_EVENT_TIME = 1800; // in seconds / 30 minutes.
@@ -40,9 +46,10 @@ public class EventManager implements ThreadCompleteListener {
   private Random rand;
   private Map<Integer, Event> eventPool;
 
+  private static final String DOES_NOT_EXIST = " does not exist.";
+
   /**
    * EventManager constructor.
-   *
    */
   public EventManager() {
     rand = new Random(1);
@@ -56,17 +63,18 @@ public class EventManager implements ThreadCompleteListener {
    * @param eventTime Time an event should run for.
    * @return eventId
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
-   * @throws InvalidOperationException No new synchronous events can be created when one is already running.
-   * @throws LongRunningEventException Long running events are not allowed in the app.
+   * @throws InvalidOperationException      No new synchronous events can be created when one is
+   *                                        already running.
+   * @throws LongRunningEventException      Long running events are not allowed in the app.
    */
   public int create(int eventTime)
       throws MaxNumOfEventsAllowedException, InvalidOperationException, LongRunningEventException {
     if (currentlyRunningSyncEvent != -1) {
-      throw new InvalidOperationException(
-          "Event [" + currentlyRunningSyncEvent + "] is still running. Please wait until it finishes and try again.");
+      throw new InvalidOperationException("Event [" + currentlyRunningSyncEvent + "] is still"
+          + " running. Please wait until it finishes and try again.");
     }
 
-    int eventId = createEvent(eventTime, true);
+    var eventId = createEvent(eventTime, true);
     currentlyRunningSyncEvent = eventId;
 
     return eventId;
@@ -78,16 +86,18 @@ public class EventManager implements ThreadCompleteListener {
    * @param eventTime Time an event should run for.
    * @return eventId
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
-   * @throws LongRunningEventException Long running events are not allowed in the app.
+   * @throws LongRunningEventException      Long running events are not allowed in the app.
    */
-  public int createAsync(int eventTime) throws MaxNumOfEventsAllowedException, LongRunningEventException {
+  public int createAsync(int eventTime) throws MaxNumOfEventsAllowedException,
+      LongRunningEventException {
     return createEvent(eventTime, false);
   }
 
   private int createEvent(int eventTime, boolean isSynchronous)
       throws MaxNumOfEventsAllowedException, LongRunningEventException {
     if (eventPool.size() == MAX_RUNNING_EVENTS) {
-      throw new MaxNumOfEventsAllowedException("Too many events are running at the moment. Please try again later.");
+      throw new MaxNumOfEventsAllowedException("Too many events are running at the moment."
+          + " Please try again later.");
     }
 
     if (eventTime >= MAX_EVENT_TIME) {
@@ -95,9 +105,9 @@ public class EventManager implements ThreadCompleteListener {
           "Maximum event time allowed is " + MAX_EVENT_TIME + " seconds. Please try again.");
     }
 
-    int newEventId = generateId();
+    var newEventId = generateId();
 
-    Event newEvent = new Event(newEventId, eventTime, isSynchronous);
+    var newEvent = new Event(newEventId, eventTime, isSynchronous);
     newEvent.addListener(this);
     eventPool.put(newEventId, newEvent);
 
@@ -112,7 +122,7 @@ public class EventManager implements ThreadCompleteListener {
    */
   public void start(int eventId) throws EventDoesNotExistException {
     if (!eventPool.containsKey(eventId)) {
-      throw new EventDoesNotExistException(eventId + " does not exist.");
+      throw new EventDoesNotExistException(eventId + DOES_NOT_EXIST);
     }
 
     eventPool.get(eventId).start();
@@ -126,7 +136,7 @@ public class EventManager implements ThreadCompleteListener {
    */
   public void cancel(int eventId) throws EventDoesNotExistException {
     if (!eventPool.containsKey(eventId)) {
-      throw new EventDoesNotExistException(eventId + " does not exist.");
+      throw new EventDoesNotExistException(eventId + DOES_NOT_EXIST);
     }
 
     if (eventId == currentlyRunningSyncEvent) {
@@ -145,7 +155,7 @@ public class EventManager implements ThreadCompleteListener {
    */
   public void status(int eventId) throws EventDoesNotExistException {
     if (!eventPool.containsKey(eventId)) {
-      throw new EventDoesNotExistException(eventId + " does not exist.");
+      throw new EventDoesNotExistException(eventId + DOES_NOT_EXIST);
     }
 
     eventPool.get(eventId).status();
@@ -156,11 +166,7 @@ public class EventManager implements ThreadCompleteListener {
    */
   @SuppressWarnings("rawtypes")
   public void statusOfAllEvents() {
-    Iterator it = eventPool.entrySet().iterator();
-    while (it.hasNext()) {
-      Map.Entry pair = (Map.Entry) it.next();
-      ((Event) pair.getValue()).status();
-    }
+    eventPool.entrySet().forEach(entry -> ((Event) ((Map.Entry) entry).getValue()).status());
   }
 
   /**
@@ -168,21 +174,18 @@ public class EventManager implements ThreadCompleteListener {
    */
   @SuppressWarnings("rawtypes")
   public void shutdown() {
-    Iterator it = eventPool.entrySet().iterator();
-    while (it.hasNext()) {
-      Map.Entry pair = (Map.Entry) it.next();
-      ((Event) pair.getValue()).stop();
-    }
+    eventPool.entrySet().forEach(entry -> ((Event) ((Map.Entry) entry).getValue()).stop());
   }
 
   /**
-   * Returns a pseudo-random number between min and max, inclusive. The difference between min and max can be at most
+   * Returns a pseudo-random number between min and max, inclusive. The difference between min and
+   * max can be at most
    * <code>Integer.MAX_VALUE - 1</code>.
    */
   private int generateId() {
     // nextInt is normally exclusive of the top value,
     // so add 1 to make it inclusive
-    int randomNum = rand.nextInt((MAX_ID - MIN_ID) + 1) + MIN_ID;
+    var randomNum = rand.nextInt((MAX_ID - MIN_ID) + 1) + MIN_ID;
     while (eventPool.containsKey(randomNum)) {
       randomNum = rand.nextInt((MAX_ID - MIN_ID) + 1) + MIN_ID;
     }

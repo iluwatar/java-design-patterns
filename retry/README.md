@@ -3,10 +3,8 @@ layout: pattern
 title: Retry
 folder: retry
 permalink: /patterns/retry/
-categories: Other
+categories: Behavioral
 tags:
-  - Java
-  - Difficulty-Expert
   - Performance
 ---
 
@@ -17,8 +15,6 @@ Enables an application to handle transient failures from external resources.
 Transparently retry certain operations that involve communication with external
 resources, particularly over the network, isolating calling code from the 
 retry implementation details.
-
-![alt text](./etc/retry.png "Retry")
 
 ## Explanation
 The `Retry` pattern consists retrying operations on remote resources over the 
@@ -131,6 +127,9 @@ attempts were left.
 [1] Please note that *Hystrix* is a complete implementation of the *Circuit
 Breaker* pattern, of which the *Retry* pattern can be considered a subset of.
 
+## Class diagram
+![alt text](./etc/retry.png "Retry")
+
 ## Applicability
 Whenever an application needs to communicate with an external resource, 
 particularly in a cloud environment, and if the business requirements allow it.
@@ -150,4 +149,5 @@ You can view Microsoft's article [here](https://docs.microsoft.com/en-us/azure/a
 * Operations maintenance
 
 ## Related Patterns
+
 * [Circuit Breaker](https://martinfowler.com/bliki/CircuitBreaker.html)

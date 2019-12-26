@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.caching;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * The Caching pattern describes how to avoid expensive re-acquisition of resources by not releasing
  * the resources immediately after their use. The resources retain their identity, are kept in some
  * fast-access storage, and are re-used to avoid having to acquire them again. There are four main
@@ -42,8 +42,8 @@ import org.slf4j.LoggerFactory;
  * should be written back to the backing store (i.e. Database) and help keep both data sources
  * synchronized/up-to-date. This pattern can improve performance and also helps to maintain
  * consistency between data held in the cache and the data in the underlying data store.
- * <p>
- * In this example, the user account ({@link UserAccount}) entity is used as the underlying
+ *
+ * <p>In this example, the user account ({@link UserAccount}) entity is used as the underlying
  * application data. The cache itself is implemented as an internal (Java) data structure. It adopts
  * a Least-Recently-Used (LRU) strategy for evicting data from itself when its full. The four
  * strategies are individually tested. The testing of the cache is restricted towards saving and
@@ -59,7 +59,6 @@ import org.slf4j.LoggerFactory;
  * @see CacheStore
  * @see LruCache
  * @see CachingPolicy
- *
  */
 public class App {
 
@@ -67,17 +66,17 @@ public class App {
 
 
   /**
-   * Program entry point
+   * Program entry point.
    *
    * @param args command line args
    */
   public static void main(String[] args) {
     AppManager.initDb(false); // VirtualDB (instead of MongoDB) was used in running the JUnit tests
-                              // and the App class to avoid Maven compilation errors. Set flag to
-                              // true to run the tests with MongoDB (provided that MongoDB is
-                              // installed and socket connection is open).
+    // and the App class to avoid Maven compilation errors. Set flag to
+    // true to run the tests with MongoDB (provided that MongoDB is
+    // installed and socket connection is open).
     AppManager.initCacheCapacity(3);
-    App app = new App();
+    var app = new App();
     app.useReadAndWriteThroughStrategy();
     app.useReadThroughAndWriteAroundStrategy();
     app.useReadThroughAndWriteBehindStrategy();
@@ -85,13 +84,13 @@ public class App {
   }
 
   /**
-   * Read-through and write-through
+   * Read-through and write-through.
    */
   public void useReadAndWriteThroughStrategy() {
     LOGGER.info("# CachingPolicy.THROUGH");
     AppManager.initCachingPolicy(CachingPolicy.THROUGH);
 
-    UserAccount userAccount1 = new UserAccount("001", "John", "He is a boy.");
+    var userAccount1 = new UserAccount("001", "John", "He is a boy.");
 
     AppManager.save(userAccount1);
     LOGGER.info(AppManager.printCacheContent());
@@ -100,13 +99,13 @@ public class App {
   }
 
   /**
-   * Read-through and write-around
+   * Read-through and write-around.
    */
   public void useReadThroughAndWriteAroundStrategy() {
     LOGGER.info("# CachingPolicy.AROUND");
     AppManager.initCachingPolicy(CachingPolicy.AROUND);
 
-    UserAccount userAccount2 = new UserAccount("002", "Jane", "She is a girl.");
+    var userAccount2 = new UserAccount("002", "Jane", "She is a girl.");
 
     AppManager.save(userAccount2);
     LOGGER.info(AppManager.printCacheContent());
@@ -122,15 +121,15 @@ public class App {
   }
 
   /**
-   * Read-through and write-behind
+   * Read-through and write-behind.
    */
   public void useReadThroughAndWriteBehindStrategy() {
     LOGGER.info("# CachingPolicy.BEHIND");
     AppManager.initCachingPolicy(CachingPolicy.BEHIND);
 
-    UserAccount userAccount3 = new UserAccount("003", "Adam", "He likes food.");
-    UserAccount userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
-    UserAccount userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
+    var userAccount3 = new UserAccount("003", "Adam", "He likes food.");
+    var userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
+    var userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
 
     AppManager.save(userAccount3);
     AppManager.save(userAccount4);
@@ -146,16 +145,16 @@ public class App {
   }
 
   /**
-   * Cache-Aside
+   * Cache-Aside.
    */
   public void useCacheAsideStategy() {
     LOGGER.info("# CachingPolicy.ASIDE");
     AppManager.initCachingPolicy(CachingPolicy.ASIDE);
     LOGGER.info(AppManager.printCacheContent());
 
-    UserAccount userAccount3 = new UserAccount("003", "Adam", "He likes food.");
-    UserAccount userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
-    UserAccount userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
+    var userAccount3 = new UserAccount("003", "Adam", "He likes food.");
+    var userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
+    var userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
     AppManager.save(userAccount3);
     AppManager.save(userAccount4);
     AppManager.save(userAccount5);

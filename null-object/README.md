@@ -5,8 +5,7 @@ folder: null-object
 permalink: /patterns/null-object/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Beginner
+ - Extensibility
 ---
 
 ## Intent
@@ -19,12 +18,14 @@ implements the expected interface, but whose method body is empty. The
 advantage of this approach over a working default implementation is that a Null
 Object is very predictable and has no side effects: it does nothing.
 
+## Class diagram
 ![alt text](./etc/null-object.png "Null Object")
 
 ## Applicability
 Use the Null Object pattern when
 
-* you want to avoid explicit null checks and keep the algorithm elegant and easy to read.
+* You want to avoid explicit null checks and keep the algorithm elegant and easy to read.
 
 ## Credits
+
 * [Pattern Languages of Program Design](http://www.amazon.com/Pattern-Languages-Program-Design-Coplien/dp/0201607344/ref=sr_1_1)

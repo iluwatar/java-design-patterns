@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp�l�
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,11 +37,11 @@ class BubbleTest {
   @Test
   void moveTest() {
     Bubble b = new Bubble(10,10,1,2);
-    int initialX = b.x;
-    int initialY = b.y;
+    int initialX = b.coordinateX;
+    int initialY = b.coordinateY;
     b.move();
     //change in x and y < |2|
-    assertTrue((b.x - initialX < 2 && b.x - initialX > -2) && (b.y - initialY < 2 && b.y - initialY > -2));
+    assertTrue((b.coordinateX - initialX < 2 && b.coordinateX - initialX > -2) && (b.coordinateY - initialY < 2 && b.coordinateY - initialY > -2));
   }
 
   @Test

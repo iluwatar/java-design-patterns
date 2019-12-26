@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.monad;
 
 import java.util.ArrayList;
@@ -29,18 +30,18 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * Class representing Monad design pattern. Monad is a way of chaining operations on the
- * given object together step by step. In Validator each step results in either success or
- * failure indicator, giving a way of receiving each of them easily and finally getting
- * validated object or list of exceptions.
+ * Class representing Monad design pattern. Monad is a way of chaining operations on the given
+ * object together step by step. In Validator each step results in either success or failure
+ * indicator, giving a way of receiving each of them easily and finally getting validated object or
+ * list of exceptions.
  *
  * @param <T> Placeholder for an object.
  */
 public class Validator<T> {
   /**
-   * Object that is validated
+   * Object that is validated.
    */
-  private final T t;
+  private final T obj;
 
   /**
    * List of exception thrown during validation.
@@ -49,14 +50,15 @@ public class Validator<T> {
 
   /**
    * Creates a monadic value of given object.
-   * @param t object to be validated
+   *
+   * @param obj object to be validated
    */
-  private Validator(T t) {
-    this.t = t;
+  private Validator(T obj) {
+    this.obj = obj;
   }
 
   /**
-   * Creates validator against given object
+   * Creates validator against given object.
    *
    * @param t   object to be validated
    * @param <T> object's type
@@ -67,25 +69,27 @@ public class Validator<T> {
   }
 
   /**
-   * @param validation one argument boolean-valued function that
-   *                   represents one step of validation. Adds exception to main validation exception
-   *                   list when single step validation ends with failure.
+   * Checks if the validation is successful.
+   *
+   * @param validation one argument boolean-valued function that represents one step of validation.
+   *                   Adds exception to main validation exception list when single step validation
+   *                   ends with failure.
    * @param message    error message when object is invalid
    * @return this
    */
   public Validator<T> validate(Predicate<T> validation, String message) {
-    if (!validation.test(t)) {
+    if (!validation.test(obj)) {
       exceptions.add(new IllegalStateException(message));
     }
     return this;
   }
 
   /**
-   * Extension for the {@link Validator#validate(Function, Predicate, String)} method,
-   * dedicated for objects, that need to be projected before requested validation.
+   * Extension for the {@link Validator#validate(Function, Predicate, String)} method, dedicated for
+   * objects, that need to be projected before requested validation.
    *
-   * @param projection function that gets an objects, and returns projection representing
-   *                   element to be validated.
+   * @param projection function that gets an objects, and returns projection representing element to
+   *                   be validated.
    * @param validation see {@link Validator#validate(Function, Predicate, String)}
    * @param message    see {@link Validator#validate(Function, Predicate, String)}
    * @param <U>        see {@link Validator#validate(Function, Predicate, String)}
@@ -104,7 +108,7 @@ public class Validator<T> {
    */
   public T get() throws IllegalStateException {
     if (exceptions.isEmpty()) {
-      return t;
+      return obj;
     }
     IllegalStateException e = new IllegalStateException();
     exceptions.forEach(e::addSuppressed);

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.bridge;
 
-import org.junit.jupiter.api.Test;
+package com.iluwatar.bridge;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * Tests for hammer
  */
-public class HammerTest extends WeaponTest {
+class HammerTest extends WeaponTest {
 
   /**
    * Invoke all possible actions on the weapon and check if the actions are executed on the actual
    * underlying weapon implementation.
    */
   @Test
-  public void testHammer() {
-    final Hammer hammer = spy(new Hammer(mock(FlyingEnchantment.class)));
+  void testHammer() {
+    final var hammer = spy(new Hammer(mock(FlyingEnchantment.class)));
     testBasicWeaponActions(hammer);
   }
 }

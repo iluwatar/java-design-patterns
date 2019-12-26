@@ -1,17 +1,17 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
- * <p>
+ * Copyright © 2014-2019 Ilkka Seppälä
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * <p>
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * <p>
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@ package com.iluwatar.converter;
 import java.util.Objects;
 
 /**
- * User class
+ * User class.
  */
 public class User {
   private String firstName;
@@ -35,10 +35,12 @@ public class User {
   private String userId;
 
   /**
+   * Constructor.
+   *
    * @param firstName user's first name
    * @param lastName  user's last name
    * @param isActive  flag indicating whether the user is active
-   * @param userId user's identificator
+   * @param userId    user's identificator
    */
   public User(String firstName, String lastName, boolean isActive, String userId) {
     this.firstName = firstName;
@@ -63,24 +65,27 @@ public class User {
     return userId;
   }
 
-  @Override public boolean equals(Object o) {
+  @Override
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    User user = (User) o;
+    var user = (User) o;
     return isActive == user.isActive && Objects.equals(firstName, user.firstName) && Objects
-      .equals(lastName, user.lastName) && Objects.equals(userId, user.userId);
+        .equals(lastName, user.lastName) && Objects.equals(userId, user.userId);
   }
 
-  @Override public int hashCode() {
+  @Override
+  public int hashCode() {
     return Objects.hash(firstName, lastName, isActive, userId);
   }
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return "User{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
-      + ", isActive=" + isActive + ", userId='" + userId + '\'' + '}';
+        + ", isActive=" + isActive + ", userId='" + userId + '\'' + '}';
   }
 }

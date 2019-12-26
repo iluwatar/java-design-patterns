@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.image.microservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * ImageApplication starts up Spring Boot, exposing endpoints for the Image microservice through
- * the {@link ImageController}.
+ * ImageApplication starts up Spring Boot, exposing endpoints for the Image microservice through the
+ * {@link ImageController}.
  */
 @SpringBootApplication
 public class ImageApplication {
 
   /**
-   * Microservice entry point
-   * @param args
-   *          command line args
+   * Microservice entry point.
+   *
+   * @param args command line args
    */
   public static void main(String[] args) {
     SpringApplication.run(ImageApplication.class, args);

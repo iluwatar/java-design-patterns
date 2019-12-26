@@ -3,15 +3,15 @@ layout: pattern
 title: Marker Interface
 folder: marker
 permalink: /patterns/marker/
-categories: Other
+categories: Structural
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
 Using empty interfaces as markers to distinguish special treated objects.
 
+## Class diagram
 ![alt text](./etc/MarkerDiagram.png "Marker Interface")
 
 ## Applicability

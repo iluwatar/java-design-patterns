@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.repository;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -36,8 +37,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * query construction code is concentrated. This becomes more important when there are a large
  * number of domain classes or heavy querying. In these cases particularly, adding this layer helps
  * minimize duplicate query logic.
- * <p>
- * In this example we utilize Spring Data to automatically generate a repository for us from the
+ *
+ * <p>In this example we utilize Spring Data to automatically generate a repository for us from the
  * {@link Person} domain object. Using the {@link PersonRepository} we perform CRUD operations on
  * the entity, moreover, the query by {@link org.springframework.data.jpa.domain.Specification} are
  * also performed. Underneath we have configured in-memory H2 database for which schema is created
@@ -48,10 +49,9 @@ public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
-   * 
-   * @param args
-   *          command line args
+   * Program entry point.
+   *
+   * @param args command line args
    */
   public static void main(String[] args) {
 
@@ -84,17 +84,17 @@ public class App {
     nasta.setSurname("Spotakova");
     repository.save(nasta);
 
-    LOGGER.info("Find by id 2: {}", repository.findOne(2L));
+    LOGGER.info("Find by id 2: {}", repository.findById(2L).get());
 
     // Remove record from Person
-    repository.delete(2L);
+    repository.deleteById(2L);
 
     // count records
     LOGGER.info("Count Person records: {}", repository.count());
 
     // find by name
-    Person p = repository.findOne(new PersonSpecifications.NameEqualSpec("John"));
-    LOGGER.info("Find by John is {}", p);
+    Optional<Person> p = repository.findOne(new PersonSpecifications.NameEqualSpec("John"));
+    LOGGER.info("Find by John is {}", p.get());
 
     // find by age
     persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));
@@ -105,7 +105,7 @@ public class App {
     }
 
     repository.deleteAll();
-    
+
     context.close();
 
   }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,40 +27,42 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
- * The abstract Point class which will be extended by any object in the field
- * whose location has to be kept track of. Defined by x,y coordinates and an id
- * for easy hashing into hashtable.
+ * The abstract Point class which will be extended by any object in the field whose location has to
+ * be kept track of. Defined by x,y coordinates and an id for easy hashing into hashtable.
+ *
  * @param <T> T will be type subclass
  */
 
 public abstract class Point<T> {
 
-  public int x; 
-  public int y; 
+  public int coordinateX;
+  public int coordinateY;
   public final int id;
-  
+
   Point(int x, int y, int id) {
-    this.x = x;
-    this.y = y;
+    this.coordinateX = x;
+    this.coordinateY = y;
     this.id = id;
   }
 
   /**
-   * defines how the object moves
+   * defines how the object moves.
    */
   abstract void move();
-  
+
   /**
-   * defines conditions for interacting with an object obj
+   * defines conditions for interacting with an object obj.
+   *
    * @param obj is another object on field which also extends Point
    * @return whether the object can interact with the other or not
    */
   abstract boolean touches(T obj);
-  
+
   /**
-   * handling interactions/collisions with other objects
+   * handling interactions/collisions with other objects.
+   *
    * @param pointsToCheck contains the objects which need to be checked
-   * @param allPoints contains hashtable of all points on field at this time
+   * @param allPoints     contains hashtable of all points on field at this time
    */
   abstract void handleCollision(ArrayList<Point> pointsToCheck, Hashtable<Integer, T> allPoints);
 }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.hexagonal.domain;
 
-import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
-import org.junit.jupiter.api.Test;
+package com.iluwatar.hexagonal.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
+import org.junit.jupiter.api.Test;
+
 /**
- * 
  * Unit tests for {@link LotteryTicketCheckResult}
- *
  */
 class LotteryTicketCheckResultTest {
 
   @Test
   void testEquals() {
-    LotteryTicketCheckResult result1 = new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
-    LotteryTicketCheckResult result2 = new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
+    var result1 = new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
+    var result2 = new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
     assertEquals(result1, result2);
-    LotteryTicketCheckResult result3 = new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 300000);
+    var result3 = new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 300000);
     assertNotEquals(result1, result3);
-  } 
+  }
 }

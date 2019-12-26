@@ -5,8 +5,7 @@ folder: service-layer
 permalink: /patterns/service-layer/
 categories: Architectural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Data access
 ---
 
 ## Intent
@@ -17,13 +16,14 @@ others. Despite their different purposes, these interfaces often need common
 interactions with the application to access and manipulate its data and invoke
 its business logic. The Service Layer fulfills this role.
 
+## Class diagram
 ![alt text](./etc/service-layer.png "Service Layer")
 
 ## Applicability
 Use the Service Layer pattern when
 
-* you want to encapsulate domain logic under API
-* you need to implement multiple interfaces with common logic and data
+* You want to encapsulate domain logic under API
+* You need to implement multiple interfaces with common logic and data
 
 ## Credits
 

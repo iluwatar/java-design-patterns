@@ -1,0 +1,57 @@
+@startuml
+package com.iluwatar.dependency.injection {
+  class AdvancedSorceress {
+    - tobacco : Tobacco
+    + AdvancedSorceress()
+    + setTobacco(tobacco : Tobacco)
+    + smoke()
+  }
+  class AdvancedWizard {
+    - tobacco : Tobacco
+    + AdvancedWizard(tobacco : Tobacco)
+    + smoke()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class GuiceWizard {
+    - tobacco : Tobacco
+    + GuiceWizard(tobacco : Tobacco)
+    + smoke()
+  }
+  class OldTobyTobacco {
+    + OldTobyTobacco()
+  }
+  class RivendellTobacco {
+    + RivendellTobacco()
+  }
+  class SecondBreakfastTobacco {
+    + SecondBreakfastTobacco()
+  }
+  class SimpleWizard {
+    - tobacco : OldTobyTobacco
+    + SimpleWizard()
+    + smoke()
+  }
+  abstract class Tobacco {
+    - LOGGER : Logger {static}
+    + Tobacco()
+    + smoke(wizard : Wizard)
+  }
+  interface Wizard {
+    + smoke() {abstract}
+  }
+}
+AdvancedSorceress -->  "-tobacco" Tobacco
+SimpleWizard -->  "-tobacco" OldTobyTobacco
+AdvancedWizard -->  "-tobacco" Tobacco
+GuiceWizard -->  "-tobacco" Tobacco
+AdvancedSorceress ..|> Wizard 
+AdvancedWizard ..|> Wizard 
+GuiceWizard ..|> Wizard 
+OldTobyTobacco --|> Tobacco 
+RivendellTobacco --|> Tobacco 
+SecondBreakfastTobacco --|> Tobacco 
+SimpleWizard ..|> Wizard 
+@enduml

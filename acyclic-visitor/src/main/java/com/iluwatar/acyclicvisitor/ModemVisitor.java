@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.acyclicvisitor;
 
 /**
- * ModemVisitor interface does not contain any visit methods so that it does not
- * depend on the visited hierarchy. Each derivative's visit method is declared in 
- * its own visitor interface
+ * ModemVisitor interface does not contain any visit methods so that it does not depend on the
+ * visited hierarchy. Each derivative's visit method is declared in its own visitor interface
  */
 public interface ModemVisitor {
   // Visitor is a degenerate base class for all visitors.

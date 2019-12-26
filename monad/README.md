@@ -3,11 +3,9 @@ layout: pattern
 title: Monad
 folder: monad
 permalink: /patterns/monad/
-categories: Other
+categories: Functional
 tags:
- - Java
- - Difficulty-Expert
- - Functional
+ - Reactive
 ---
 
 ## Intent
@@ -19,14 +17,15 @@ operations:
 bind - that takes monadic object and a function from plain object to monadic value and returns monadic value
 return - that takes plain type object and returns this object wrapped in a monadic value.
 
+## Class diagram
 ![alt text](./etc/monad.png "Monad")
 
 ## Applicability
 
 Use the Monad in any of the following situations
 
-* when you want to chain operations easily
-* when you want to apply each function regardless of the result of any of them
+* When you want to chain operations easily
+* When you want to apply each function regardless of the result of any of them
 
 ## Credits
 

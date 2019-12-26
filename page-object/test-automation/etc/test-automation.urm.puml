@@ -1,0 +1,51 @@
+@startuml
+package com.iluwatar.pageobject {
+  class AlbumListPage {
+    - ALBUM_LIST_HTML_FILE : String {static}
+    - LOGGER : Logger {static}
+    - PAGE_URL : String {static}
+    - page : HtmlPage
+    + AlbumListPage(webClient : WebClient)
+    + isAt() : boolean
+    + navigateToPage() : AlbumListPage
+    + selectAlbum(albumTitle : String) : AlbumPage
+  }
+  class AlbumPage {
+    - ALBUM_PAGE_HTML_FILE : String {static}
+    - LOGGER : Logger {static}
+    - PAGE_URL : String {static}
+    - page : HtmlPage
+    + AlbumPage(webClient : WebClient)
+    + cancelChanges() : AlbumListPage
+    + changeAlbumRating(albumRating : String) : AlbumPage
+    + changeAlbumTitle(albumTitle : String) : AlbumPage
+    + changeAlbumYear(year : int) : AlbumPage
+    + changeArtist(artist : String) : AlbumPage
+    + changeNumberOfSongs(numberOfSongs : int) : AlbumPage
+    + isAt() : boolean
+    + navigateToPage() : AlbumPage
+    + saveChanges() : AlbumPage
+  }
+  class LoginPage {
+    - LOGGER : Logger {static}
+    - LOGIN_PAGE_HTML_FILE : String {static}
+    - PAGE_URL : String {static}
+    - page : HtmlPage
+    + LoginPage(webClient : WebClient)
+    + enterPassword(password : String) : LoginPage
+    + enterUsername(username : String) : LoginPage
+    + isAt() : boolean
+    + login() : AlbumListPage
+    + navigateToPage() : LoginPage
+  }
+  abstract class Page {
+    + AUT_PATH : String {static}
+    # webClient : WebClient
+    + Page(webClient : WebClient)
+    + isAt() : boolean {abstract}
+  }
+}
+AlbumListPage --|> Page 
+AlbumPage --|> Page 
+LoginPage --|> Page 
+@enduml

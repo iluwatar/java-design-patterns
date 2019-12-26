@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.databus.members;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.iluwatar.databus.DataBus;
 import com.iluwatar.databus.data.MessageData;
 import com.iluwatar.databus.data.StartingData;
 import com.iluwatar.databus.data.StoppingData;
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDateTime;
 import java.time.Month;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link StatusMember}.
@@ -44,9 +44,9 @@ public class StatusMemberTest {
   @Test
   public void statusRecordsTheStartTime() {
     //given
-    final LocalDateTime startTime = LocalDateTime.of(2017, Month.APRIL, 1, 19, 9);
-    final StartingData startingData = new StartingData(startTime);
-    final StatusMember statusMember = new StatusMember(1);
+    final var startTime = LocalDateTime.of(2017, Month.APRIL, 1, 19, 9);
+    final var startingData = new StartingData(startTime);
+    final var statusMember = new StatusMember(1);
     //when
     statusMember.accept(startingData);
     //then
@@ -56,10 +56,10 @@ public class StatusMemberTest {
   @Test
   public void statusRecordsTheStopTime() {
     //given
-    final LocalDateTime stop = LocalDateTime.of(2017, Month.APRIL, 1, 19, 12);
-    final StoppingData stoppingData = new StoppingData(stop);
+    final var stop = LocalDateTime.of(2017, Month.APRIL, 1, 19, 12);
+    final var stoppingData = new StoppingData(stop);
     stoppingData.setDataBus(DataBus.getInstance());
-    final StatusMember statusMember = new StatusMember(1);
+    final var statusMember = new StatusMember(1);
     //when
     statusMember.accept(stoppingData);
     //then
@@ -69,8 +69,8 @@ public class StatusMemberTest {
   @Test
   public void statusIgnoresMessageData() {
     //given
-    final MessageData messageData = new MessageData("message");
-    final StatusMember statusMember = new StatusMember(1);
+    final var messageData = new MessageData("message");
+    final var statusMember = new StatusMember(1);
     //when
     statusMember.accept(messageData);
     //then

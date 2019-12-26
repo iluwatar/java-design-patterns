@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,15 @@ import javax.sound.sampled.AudioInputStream;
 
 /**
  * The Event Queue's queue will store the instances of this class.
- * @author mkuprivecz
  *
+ * @author mkuprivecz
  */
 public class PlayMessage {
-  
+
   private AudioInputStream stream;
-  
+
   private float volume;
-  
+
   public PlayMessage(AudioInputStream stream, float volume) {
     setStream(stream);
     setVolume(volume);

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
 
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
-
-import java.util.Optional;
+import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
 
 /**
- * Lottery utilities
+ * Lottery utilities.
  */
 public class LotteryUtils {
 
@@ -35,19 +35,22 @@ public class LotteryUtils {
   }
 
   /**
-   * Checks if lottery ticket has won
+   * Checks if lottery ticket has won.
    */
-  public static LotteryTicketCheckResult checkTicketForPrize(LotteryTicketRepository repository, LotteryTicketId id,
-                                                      LotteryNumbers winningNumbers) {
-    Optional<LotteryTicket> optional = repository.findById(id);
+  public static LotteryTicketCheckResult checkTicketForPrize(
+      LotteryTicketRepository repository,
+      LotteryTicketId id,
+      LotteryNumbers winningNumbers
+  ) {
+    var optional = repository.findById(id);
     if (optional.isPresent()) {
       if (optional.get().getNumbers().equals(winningNumbers)) {
-        return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.WIN_PRIZE, 1000);
+        return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 1000);
       } else {
-        return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.NO_PRIZE);
+        return new LotteryTicketCheckResult(CheckResult.NO_PRIZE);
       }
     } else {
-      return new LotteryTicketCheckResult(LotteryTicketCheckResult.CheckResult.TICKET_NOT_SUBMITTED);
+      return new LotteryTicketCheckResult(CheckResult.TICKET_NOT_SUBMITTED);
     }
   }
 }

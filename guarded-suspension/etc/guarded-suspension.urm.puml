@@ -1,0 +1,15 @@
+@startuml
+package com.iluwatar.guarded.suspension {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class GuardedQueue {
+    - LOGGER : Logger {static}
+    - sourceList : Queue<Integer>
+    + GuardedQueue()
+    + get() : Integer
+    + put(e : Integer)
+  }
+}
+@enduml

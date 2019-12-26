@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.doubledispatch;
 
-import org.junit.jupiter.api.Test;
+package com.iluwatar.doubledispatch;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/10/15 - 11:31 PM
@@ -45,7 +46,7 @@ public class FlamingAsteroidTest extends CollisionTest<FlamingAsteroid> {
    */
   @Test
   public void testConstructor() {
-    final FlamingAsteroid asteroid = new FlamingAsteroid(1, 2, 3, 4);
+    final var asteroid = new FlamingAsteroid(1, 2, 3, 4);
     assertEquals(1, asteroid.getLeft());
     assertEquals(2, asteroid.getTop());
     assertEquals(3, asteroid.getRight());
@@ -63,8 +64,7 @@ public class FlamingAsteroidTest extends CollisionTest<FlamingAsteroid> {
     testCollision(
         new FlamingAsteroid(1, 2, 3, 4),
         false, true,
-        false, true,
-        "FlamingAsteroid hits FlamingAsteroid."
+        false, true
     );
   }
 
@@ -76,8 +76,7 @@ public class FlamingAsteroidTest extends CollisionTest<FlamingAsteroid> {
     testCollision(
         new Meteoroid(1, 1, 3, 4),
         false, false,
-        false, true,
-        "FlamingAsteroid hits Meteoroid."
+        false, true
     );
   }
 
@@ -89,8 +88,7 @@ public class FlamingAsteroidTest extends CollisionTest<FlamingAsteroid> {
     testCollision(
         new SpaceStationIss(1, 1, 3, 4),
         true, true,
-        false, true,
-        "FlamingAsteroid hits SpaceStationIss. SpaceStationIss is damaged! SpaceStationIss is set on fire!"
+        false, true
     );
   }
 
@@ -102,8 +100,7 @@ public class FlamingAsteroidTest extends CollisionTest<FlamingAsteroid> {
     testCollision(
         new SpaceStationMir(1, 1, 3, 4),
         true, true,
-        false, true,
-        "FlamingAsteroid hits SpaceStationMir. SpaceStationMir is damaged! SpaceStationMir is set on fire!"
+        false, true
     );
   }
 

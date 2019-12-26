@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.threadpool;
 
 import org.junit.jupiter.api.Test;
 
 /**
  * Application test
- * 
- * @author ilkka
  *
+ * @author ilkka
  */
 public class AppTest {
 
   @Test
   public void test() {
-    String[] args = {};
-    App.main(args);
+    App.main(new String[]{});
   }
 }

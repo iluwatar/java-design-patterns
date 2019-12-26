@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.prototype;
 
 /**
- * 
- * OrcMage
- *
+ * OrcMage.
  */
 public class OrcMage extends Mage {
 
@@ -34,8 +33,9 @@ public class OrcMage extends Mage {
   public OrcMage(String weapon) {
     this.weapon = weapon;
   }
-  
+
   public OrcMage(OrcMage orcMage) {
+    super(orcMage);
     this.weapon = orcMage.weapon;
   }
 
@@ -49,4 +49,25 @@ public class OrcMage extends Mage {
     return "Orcish mage attacks with " + weapon;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    OrcMage other = (OrcMage) obj;
+    if (weapon == null) {
+      if (other.weapon != null) {
+        return false;
+      }
+    } else if (!weapon.equals(other.weapon)) {
+      return false;
+    }
+    return true;
+  }
 }

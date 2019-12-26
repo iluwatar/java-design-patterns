@@ -1,0 +1,68 @@
+@startuml
+package com.iluwatar.dao {
+  class App {
+    - ALL_CUSTOMERS : String {static}
+    - DB_URL : String {static}
+    - log : Logger {static}
+    + App()
+    - addCustomers(customerDao : CustomerDao) {static}
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteSchema(dataSource : DataSource) {static}
+    + generateSampleCustomers() : List<Customer> {static}
+    + main(args : String[]) {static}
+    - performOperationsUsing(customerDao : CustomerDao) {static}
+  }
+  class Customer {
+    - firstName : String
+    - id : int
+    - lastName : String
+    + Customer(id : int, firstName : String, lastName : String)
+    + equals(that : Object) : boolean
+    + getFirstName() : String
+    + getId() : int
+    + getLastName() : String
+    + hashCode() : int
+    + setFirstName(firstName : String)
+    + setId(id : int)
+    + setLastName(lastName : String)
+    + toString() : String
+  }
+  interface CustomerDao {
+    + add(Customer) : boolean {abstract}
+    + delete(Customer) : boolean {abstract}
+    + getAll() : Stream<Customer> {abstract}
+    + getById(int) : Optional<Customer> {abstract}
+    + update(Customer) : boolean {abstract}
+  }
+  class CustomerSchemaSql {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    - CustomerSchemaSql()
+  }
+  class DbCustomerDao {
+    - LOGGER : Logger {static}
+    - dataSource : DataSource
+    + DbCustomerDao(dataSource : DataSource)
+    + add(customer : Customer) : boolean
+    - createCustomer(resultSet : ResultSet) : Customer
+    + delete(customer : Customer) : boolean
+    + getAll() : Stream<Customer>
+    + getById(id : int) : Optional<Customer>
+    - getConnection() : Connection
+    - mutedClose(connection : Connection, statement : PreparedStatement, resultSet : ResultSet)
+    + update(customer : Customer) : boolean
+  }
+  class InMemoryCustomerDao {
+    - idToCustomer : Map<Integer, Customer>
+    + InMemoryCustomerDao()
+    + add(customer : Customer) : boolean
+    + delete(customer : Customer) : boolean
+    + getAll() : Stream<Customer>
+    + getById(id : int) : Optional<Customer>
+    + update(customer : Customer) : boolean
+  }
+}
+DbCustomerDao ..|> CustomerDao 
+InMemoryCustomerDao ..|> CustomerDao 
+@enduml

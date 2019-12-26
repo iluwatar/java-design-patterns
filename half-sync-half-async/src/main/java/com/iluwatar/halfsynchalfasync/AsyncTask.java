@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.halfsynchalfasync;
 
 import java.util.concurrent.Callable;
@@ -29,7 +30,7 @@ import java.util.concurrent.Callable;
  * typically done is background threads and the result is posted back in form of callback. The
  * callback does not implement {@code isComplete}, {@code cancel} as it is out of scope of this
  * pattern.
- * 
+ *
  * @param <O> type of result
  */
 public interface AsyncTask<O> extends Callable<O> {
@@ -52,7 +53,7 @@ public interface AsyncTask<O> extends Callable<O> {
   /**
    * A callback called if computing the task resulted in some exception. This method is called when
    * either of {@link #call()} or {@link #onPreCall()} throw any exception.
-   * 
+   *
    * @param throwable error cause
    */
   void onError(Throwable throwable);
