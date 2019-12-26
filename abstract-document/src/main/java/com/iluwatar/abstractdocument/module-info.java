@@ -1,0 +1,2 @@
+module abstractdocument.modules {
+}
