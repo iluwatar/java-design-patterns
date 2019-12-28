@@ -23,7 +23,7 @@
 
 package com.iluwatar.spatialpartition;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Hashtable;
 
 /**
@@ -64,5 +64,5 @@ public abstract class Point<T> {
    * @param pointsToCheck contains the objects which need to be checked
    * @param allPoints     contains hashtable of all points on field at this time
    */
-  abstract void handleCollision(ArrayList<Point> pointsToCheck, Hashtable<Integer, T> allPoints);
+  abstract void handleCollision(Collection<? extends Point> pointsToCheck, Hashtable<Integer, T> allPoints);
 }
