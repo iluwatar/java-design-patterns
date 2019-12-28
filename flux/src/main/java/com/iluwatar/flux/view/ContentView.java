@@ -40,7 +40,7 @@ public class ContentView implements View {
 
   @Override
   public void storeChanged(Store store) {
-    ContentStore contentStore = (ContentStore) store;
+    var contentStore = (ContentStore) store;
     content = contentStore.getContent();
     render();
   }

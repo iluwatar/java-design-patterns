@@ -72,7 +72,7 @@ public class PotionFactory {
   }
 
   Potion createPotion(PotionType type) {
-    Potion potion = potions.get(type);
+    var potion = potions.get(type);
     if (potion == null) {
       switch (type) {
         case HEALING:
@@ -99,7 +99,7 @@ public class PotionFactory {
 And it can be used as below
 
 ```java
-PotionFactory factory = new PotionFactory();
+var factory = new PotionFactory();
 factory.createPotion(PotionType.INVISIBILITY).drink(); // You become invisible. (Potion=6566818)
 factory.createPotion(PotionType.HEALING).drink(); // You feel healed. (Potion=648129364)
 factory.createPotion(PotionType.INVISIBILITY).drink(); // You become invisible. (Potion=6566818)
