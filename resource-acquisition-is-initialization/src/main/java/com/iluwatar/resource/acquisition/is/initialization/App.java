@@ -54,11 +54,11 @@ public class App {
    */
   public static void main(String[] args) throws Exception {
 
-    try (SlidingDoor slidingDoor = new SlidingDoor()) {
+    try (var ignored = new SlidingDoor()) {
       LOGGER.info("Walking in.");
     }
 
-    try (TreasureChest treasureChest = new TreasureChest()) {
+    try (var ignored = new TreasureChest()) {
       LOGGER.info("Looting contents.");
     }
   }
