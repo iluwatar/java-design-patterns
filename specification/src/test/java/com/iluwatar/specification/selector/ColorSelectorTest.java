@@ -44,13 +44,13 @@ public class ColorSelectorTest {
    */
   @Test
   public void testColor() {
-    final Creature greenCreature = mock(Creature.class);
+    final var greenCreature = mock(Creature.class);
     when(greenCreature.getColor()).thenReturn(Color.GREEN);
 
-    final Creature redCreature = mock(Creature.class);
+    final var redCreature = mock(Creature.class);
     when(redCreature.getColor()).thenReturn(Color.RED);
 
-    final ColorSelector greenSelector = new ColorSelector(Color.GREEN);
+    final var greenSelector = new ColorSelector(Color.GREEN);
     assertTrue(greenSelector.test(greenCreature));
     assertFalse(greenSelector.test(redCreature));
 

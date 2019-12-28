@@ -83,27 +83,24 @@ public class CreatureTest {
   @ParameterizedTest
   @MethodSource("dataProvider")
   public void testGetColor(Creature testedCreature, String name, Size size, Movement movement,
-      Color color) {
+                           Color color) {
     assertEquals(color, testedCreature.getColor());
   }
 
   @ParameterizedTest
   @MethodSource("dataProvider")
   public void testGetMass(Creature testedCreature, String name, Size size, Movement movement,
-      Color color, Mass mass) {
+                          Color color, Mass mass) {
     assertEquals(mass, testedCreature.getMass());
   }
 
   @ParameterizedTest
   @MethodSource("dataProvider")
   public void testToString(Creature testedCreature, String name, Size size, Movement movement,
-      Color color, Mass mass) {
-    final String toString = testedCreature.toString();
+                           Color color, Mass mass) {
+    final var toString = testedCreature.toString();
     assertNotNull(toString);
-    assertEquals(
-        String.format("%s [size=%s, movement=%s, color=%s, mass=%s]", name, size, movement, color,
-            mass),
-        toString
-    );
+    assertEquals(String
+        .format("%s [size=%s, movement=%s, color=%s, mass=%s]", name, size, movement, color, mass), toString);
   }
 }
