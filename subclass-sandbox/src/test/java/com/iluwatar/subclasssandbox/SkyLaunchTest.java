@@ -70,8 +70,8 @@ public class SkyLaunchTest {
   public void testActivate() {
     log.clearLog();
     var skyLaunch = new SkyLaunch();
-    skyLaunch.activate();;
-    String[] logs = log.getLog().split("\n");
+    skyLaunch.activate();
+    var logs = log.getLog().split("\n");
     final var expectedSize = 3;
     final var log1 = getLogContent(logs[0]);
     final var expectedLog1 = "Move to ( 0.0, 0.0, 20.0 )";
