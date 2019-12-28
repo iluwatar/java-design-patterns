@@ -28,11 +28,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -53,18 +51,18 @@ public class DragonSlayingStrategyTest {
    */
   static Collection<Object[]> dataProvider() {
     return List.of(
-      new Object[]{
-        new MeleeStrategy(),
-        "With your Excalibur you sever the dragon's head!"
-      },
-      new Object[]{
-        new ProjectileStrategy(),
-        "You shoot the dragon with the magical crossbow and it falls dead on the ground!"
-      },
-      new Object[]{
-        new SpellStrategy(),
-        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"
-      }
+        new Object[]{
+            new MeleeStrategy(),
+            "With your Excalibur you sever the dragon's head!"
+        },
+        new Object[]{
+            new ProjectileStrategy(),
+            "You shoot the dragon with the magical crossbow and it falls dead on the ground!"
+        },
+        new Object[]{
+            new SpellStrategy(),
+            "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"
+        }
     );
   }
 
