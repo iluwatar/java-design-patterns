@@ -23,15 +23,14 @@
 
 package com.iluwatar.servant;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/28/15 - 10:02 PM
@@ -42,8 +41,8 @@ public class ServantTest {
 
   @Test
   public void testFeed() {
-    final Royalty royalty = mock(Royalty.class);
-    final Servant servant = new Servant("test");
+    final var royalty = mock(Royalty.class);
+    final var servant = new Servant("test");
     servant.feed(royalty);
     verify(royalty).getFed();
     verifyNoMoreInteractions(royalty);
@@ -51,8 +50,8 @@ public class ServantTest {
 
   @Test
   public void testGiveWine() {
-    final Royalty royalty = mock(Royalty.class);
-    final Servant servant = new Servant("test");
+    final var royalty = mock(Royalty.class);
+    final var servant = new Servant("test");
     servant.giveWine(royalty);
     verify(royalty).getDrink();
     verifyNoMoreInteractions(royalty);
@@ -60,8 +59,8 @@ public class ServantTest {
 
   @Test
   public void testGiveCompliments() {
-    final Royalty royalty = mock(Royalty.class);
-    final Servant servant = new Servant("test");
+    final var royalty = mock(Royalty.class);
+    final var servant = new Servant("test");
     servant.giveCompliments(royalty);
     verify(royalty).receiveCompliments();
     verifyNoMoreInteractions(royalty);
@@ -69,15 +68,15 @@ public class ServantTest {
 
   @Test
   public void testCheckIfYouWillBeHanged() {
-    final Royalty goodMoodRoyalty = mock(Royalty.class);
+    final var goodMoodRoyalty = mock(Royalty.class);
     when(goodMoodRoyalty.getMood()).thenReturn(true);
 
-    final Royalty badMoodRoyalty = mock(Royalty.class);
+    final var badMoodRoyalty = mock(Royalty.class);
     when(badMoodRoyalty.getMood()).thenReturn(true);
 
-    final List<Royalty> goodCompany = List.of(goodMoodRoyalty, goodMoodRoyalty, goodMoodRoyalty);
+    final var goodCompany = List.of(goodMoodRoyalty, goodMoodRoyalty, goodMoodRoyalty);
 
-    final List<Royalty> badCompany =  List.of(goodMoodRoyalty, goodMoodRoyalty, badMoodRoyalty);
+    final var badCompany = List.of(goodMoodRoyalty, goodMoodRoyalty, badMoodRoyalty);
 
     assertTrue(new Servant("test").checkIfYouWillBeHanged(goodCompany));
     assertTrue(new Servant("test").checkIfYouWillBeHanged(badCompany));
