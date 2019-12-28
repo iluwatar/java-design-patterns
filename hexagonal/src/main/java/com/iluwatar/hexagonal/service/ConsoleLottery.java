@@ -24,7 +24,6 @@
 package com.iluwatar.hexagonal.service;
 
 import com.google.inject.Guice;
-import com.google.inject.Injector;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
@@ -45,15 +44,15 @@ public class ConsoleLottery {
    */
   public static void main(String[] args) {
     MongoConnectionPropertiesLoader.load();
-    Injector injector = Guice.createInjector(new LotteryModule());
-    LotteryService service = injector.getInstance(LotteryService.class);
-    WireTransfers bank = injector.getInstance(WireTransfers.class);
+    var injector = Guice.createInjector(new LotteryModule());
+    var service = injector.getInstance(LotteryService.class);
+    var bank = injector.getInstance(WireTransfers.class);
     try (Scanner scanner = new Scanner(System.in)) {
-      boolean exit = false;
+      var exit = false;
       while (!exit) {
         printMainMenu();
-        String cmd = readString(scanner);
-        LotteryConsoleService lotteryConsoleService = new LotteryConsoleServiceImpl(LOGGER);
+        var cmd = readString(scanner);
+        var lotteryConsoleService = new LotteryConsoleServiceImpl(LOGGER);
         if ("1".equals(cmd)) {
           lotteryConsoleService.queryLotteryAccountFunds(bank, scanner);
         } else if ("2".equals(cmd)) {

@@ -67,14 +67,14 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public FluentIterable<E> filter(Predicate<? super E> predicate) {
-    return new LazyFluentIterable<E>() {
+    return new LazyFluentIterable<>() {
       @Override
       public Iterator<E> iterator() {
         return new DecoratingIterator<E>(iterable.iterator()) {
           @Override
           public E computeNext() {
             while (fromIterator.hasNext()) {
-              E candidate = fromIterator.next();
+              var candidate = fromIterator.next();
               if (predicate.test(candidate)) {
                 return candidate;
               }
@@ -94,7 +94,7 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public Optional<E> first() {
-    Iterator<E> resultIterator = first(1).iterator();
+    var resultIterator = first(1).iterator();
     return resultIterator.hasNext() ? Optional.of(resultIterator.next()) : Optional.empty();
   }
 
@@ -116,7 +116,7 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
           @Override
           public E computeNext() {
             if (currentIndex < count && fromIterator.hasNext()) {
-              E candidate = fromIterator.next();
+              var candidate = fromIterator.next();
               currentIndex++;
               return candidate;
             }
@@ -134,7 +134,7 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public Optional<E> last() {
-    Iterator<E> resultIterator = last(1).iterator();
+    var resultIterator = last(1).iterator();
     return resultIterator.hasNext() ? Optional.of(resultIterator.next()) : Optional.empty();
   }
 
@@ -162,25 +162,20 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
           public E computeNext() {
             initialize();
 
-            E candidate = null;
             while (currentIndex < stopIndex && fromIterator.hasNext()) {
               currentIndex++;
               fromIterator.next();
             }
             if (currentIndex >= stopIndex && fromIterator.hasNext()) {
-              candidate = fromIterator.next();
+              return fromIterator.next();
             }
-            return candidate;
+            return null;
           }
 
           private void initialize() {
             if (list == null) {
               list = new ArrayList<>();
-              Iterator<E> newIterator = iterable.iterator();
-              while (newIterator.hasNext()) {
-                list.add(newIterator.next());
-              }
-
+              iterable.forEach(list::add);
               totalElementsCount = list.size();
               stopIndex = totalElementsCount - count;
             }

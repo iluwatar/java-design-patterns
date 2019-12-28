@@ -34,10 +34,11 @@ public class ContactFilter extends AbstractFilter {
 
   @Override
   public String execute(Order order) {
-    String result = super.execute(order);
-    if (order.getContactNumber() == null || order.getContactNumber().isEmpty()
-        || order.getContactNumber().matches(".*[^\\d]+.*")
-        || order.getContactNumber().length() != 11) {
+    var result = super.execute(order);
+    var contactNumber = order.getContactNumber();
+    if (contactNumber == null || contactNumber.isEmpty()
+        || contactNumber.matches(".*[^\\d]+.*")
+        || contactNumber.length() != 11) {
       return result + "Invalid contact number! ";
     } else {
       return result;

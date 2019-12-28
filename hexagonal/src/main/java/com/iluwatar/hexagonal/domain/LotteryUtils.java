@@ -25,7 +25,6 @@ package com.iluwatar.hexagonal.domain;
 
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
-import java.util.Optional;
 
 /**
  * Lottery utilities.
@@ -43,7 +42,7 @@ public class LotteryUtils {
       LotteryTicketId id,
       LotteryNumbers winningNumbers
   ) {
-    Optional<LotteryTicket> optional = repository.findById(id);
+    var optional = repository.findById(id);
     if (optional.isPresent()) {
       if (optional.get().getNumbers().equals(winningNumbers)) {
         return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 1000);

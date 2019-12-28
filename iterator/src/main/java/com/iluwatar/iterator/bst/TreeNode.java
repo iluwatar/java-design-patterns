@@ -72,7 +72,7 @@ public class TreeNode<T extends Comparable<T>> {
    * @param valToInsert The value to insert as a new TreeNode
    */
   public void insert(T valToInsert) {
-    TreeNode<T> parent = getParentNodeOfValueToBeInserted(valToInsert);
+    var parent = getParentNodeOfValueToBeInserted(valToInsert);
     parent.insertNewChild(valToInsert);
   }
 
@@ -84,7 +84,7 @@ public class TreeNode<T extends Comparable<T>> {
    */
   private TreeNode<T> getParentNodeOfValueToBeInserted(T valToInsert) {
     TreeNode<T> parent = null;
-    TreeNode<T> curr = this;
+    var curr = this;
 
     while (curr != null) {
       parent = curr;
