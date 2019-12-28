@@ -40,4 +40,36 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>bully</id>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.iluwatar.leaderelection.bully.BullyApp</mainClass>
+                                </manifest>
+                            </archive>
+                            <finalName>${project.artifactId}-Bully</finalName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>ring</id>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.iluwatar.leaderelection.ring.RingApp</mainClass>
+                                </manifest>
+                            </archive>
+                            <finalName>${project.artifactId}-Ring</finalName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

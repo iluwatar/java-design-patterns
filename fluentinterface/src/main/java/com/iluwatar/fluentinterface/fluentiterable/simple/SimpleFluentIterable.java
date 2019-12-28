@@ -62,9 +62,9 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public final FluentIterable<E> filter(Predicate<? super E> predicate) {
-    Iterator<E> iterator = iterator();
+    var iterator = iterator();
     while (iterator.hasNext()) {
-      E nextElement = iterator.next();
+      var nextElement = iterator.next();
       if (!predicate.test(nextElement)) {
         iterator.remove();
       }
@@ -79,7 +79,7 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public final Optional<E> first() {
-    Iterator<E> resultIterator = first(1).iterator();
+    var resultIterator = first(1).iterator();
     return resultIterator.hasNext() ? Optional.of(resultIterator.next()) : Optional.empty();
   }
 
@@ -92,8 +92,8 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public final FluentIterable<E> first(int count) {
-    Iterator<E> iterator = iterator();
-    int currentCount = 0;
+    var iterator = iterator();
+    var currentCount = 0;
     while (iterator.hasNext()) {
       iterator.next();
       if (currentCount >= count) {
@@ -111,7 +111,7 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public final Optional<E> last() {
-    List<E> list = last(1).asList();
+    var list = last(1).asList();
     if (list.isEmpty()) {
       return Optional.empty();
     }
@@ -127,9 +127,9 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public final FluentIterable<E> last(int count) {
-    int remainingElementsCount = getRemainingElementsCount();
-    Iterator<E> iterator = iterator();
-    int currentIndex = 0;
+    var remainingElementsCount = getRemainingElementsCount();
+    var iterator = iterator();
+    var currentIndex = 0;
     while (iterator.hasNext()) {
       iterator.next();
       if (currentIndex < remainingElementsCount - count) {
@@ -150,11 +150,8 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public final <T> FluentIterable<T> map(Function<? super E, T> function) {
-    List<T> temporaryList = new ArrayList<>();
-    Iterator<E> iterator = iterator();
-    while (iterator.hasNext()) {
-      temporaryList.add(function.apply(iterator.next()));
-    }
+    var temporaryList = new ArrayList<T>();
+    this.forEach(e -> temporaryList.add(function.apply(e)));
     return from(temporaryList);
   }
 
@@ -178,7 +175,7 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
   }
 
   public static <E> FluentIterable<E> fromCopyOf(Iterable<E> iterable) {
-    List<E> copy = FluentIterable.copyToList(iterable);
+    var copy = FluentIterable.copyToList(iterable);
     return new SimpleFluentIterable<>(copy);
   }
 
@@ -204,10 +201,8 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
    * @return the count of remaining objects of the current Iterable
    */
   public final int getRemainingElementsCount() {
-    int counter = 0;
-    Iterator<E> iterator = iterator();
-    while (iterator.hasNext()) {
-      iterator.next();
+    var counter = 0;
+    for (var ignored : this) {
       counter++;
     }
     return counter;
@@ -219,10 +214,8 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
    * @return a new List with the remaining objects.
    */
   public static <E> List<E> toList(Iterator<E> iterator) {
-    List<E> copy = new ArrayList<>();
-    while (iterator.hasNext()) {
-      copy.add(iterator.next());
-    }
+    var copy = new ArrayList<E>();
+    iterator.forEachRemaining(copy::add);
     return copy;
   }
 }

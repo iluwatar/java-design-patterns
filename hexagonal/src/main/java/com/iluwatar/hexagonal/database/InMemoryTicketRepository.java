@@ -38,17 +38,12 @@ public class InMemoryTicketRepository implements LotteryTicketRepository {
 
   @Override
   public Optional<LotteryTicket> findById(LotteryTicketId id) {
-    LotteryTicket ticket = tickets.get(id);
-    if (ticket == null) {
-      return Optional.empty();
-    } else {
-      return Optional.of(ticket);
-    }
+    return Optional.ofNullable(tickets.get(id));
   }
 
   @Override
   public Optional<LotteryTicketId> save(LotteryTicket ticket) {
-    LotteryTicketId id = new LotteryTicketId();
+    var id = new LotteryTicketId();
     tickets.put(id, ticket);
     return Optional.of(id);
   }

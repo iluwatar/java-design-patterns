@@ -28,12 +28,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-
-import java.util.NoSuchElementException;
 
 @TestInstance(Lifecycle.PER_CLASS)
 class BstIteratorTest {
@@ -55,14 +54,14 @@ class BstIteratorTest {
 
   @Test
   void nextForEmptyTree() {
-    BstIterator<Integer> iter = new BstIterator<>(emptyRoot);
+    var iter = new BstIterator<>(emptyRoot);
     assertThrows(NoSuchElementException.class, iter::next,
         "next() should throw an IllegalStateException if hasNext() is false.");
   }
 
   @Test
   void nextOverEntirePopulatedTree() {
-    BstIterator<Integer> iter = new BstIterator<>(nonEmptyRoot);
+    var iter = new BstIterator<>(nonEmptyRoot);
     assertEquals(Integer.valueOf(1), iter.next().getVal(), "First Node is 1.");
     assertEquals(Integer.valueOf(3), iter.next().getVal(), "Second Node is 3.");
     assertEquals(Integer.valueOf(4), iter.next().getVal(), "Third Node is 4.");
@@ -73,19 +72,19 @@ class BstIteratorTest {
 
   @Test
   void hasNextForEmptyTree() {
-    BstIterator<Integer> iter = new BstIterator<>(emptyRoot);
+    var iter = new BstIterator<>(emptyRoot);
     assertFalse(iter.hasNext(), "hasNext() should return false for empty tree.");
   }
 
   @Test
   void hasNextForPopulatedTree() {
-    BstIterator<Integer> iter = new BstIterator<>(nonEmptyRoot);
+    var iter = new BstIterator<>(nonEmptyRoot);
     assertTrue(iter.hasNext(), "hasNext() should return true for populated tree.");
   }
 
   @Test
   void nextAndHasNextOverEntirePopulatedTree() {
-    BstIterator<Integer> iter = new BstIterator<>(nonEmptyRoot);
+    var iter = new BstIterator<>(nonEmptyRoot);
     assertTrue(iter.hasNext(), "Iterator hasNext() should be true.");
     assertEquals(Integer.valueOf(1), iter.next().getVal(), "First Node is 1.");
     assertTrue(iter.hasNext(), "Iterator hasNext() should be true.");

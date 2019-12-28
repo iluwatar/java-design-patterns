@@ -23,6 +23,9 @@
 
 package com.iluwatar.hexagonal.database;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
@@ -32,11 +35,6 @@ import com.mongodb.MongoClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests for Mongo based ticket repository
@@ -53,7 +51,7 @@ class MongoTicketRepositoryTest {
   @BeforeEach
   void init() {
     MongoConnectionPropertiesLoader.load();
-    MongoClient mongoClient = new MongoClient(System.getProperty("mongo-host"),
+    var mongoClient = new MongoClient(System.getProperty("mongo-host"),
         Integer.parseInt(System.getProperty("mongo-port")));
     mongoClient.dropDatabase(TEST_DB);
     mongoClient.close();
@@ -77,16 +75,16 @@ class MongoTicketRepositoryTest {
   @Test
   void testCrudOperations() {
     // create new lottery ticket and save it
-    PlayerDetails details = new PlayerDetails("foo@bar.com", "123-123", "07001234");
-    LotteryNumbers random = LotteryNumbers.createRandom();
-    LotteryTicket original = new LotteryTicket(new LotteryTicketId(), details, random);
-    Optional<LotteryTicketId> saved = repository.save(original);
+    var details = new PlayerDetails("foo@bar.com", "123-123", "07001234");
+    var random = LotteryNumbers.createRandom();
+    var original = new LotteryTicket(new LotteryTicketId(), details, random);
+    var saved = repository.save(original);
     assertEquals(1, repository.getTicketsCollection().count());
     assertTrue(saved.isPresent());
     // fetch the saved lottery ticket from database and check its contents
-    Optional<LotteryTicket> found = repository.findById(saved.get());
+    var found = repository.findById(saved.get());
     assertTrue(found.isPresent());
-    LotteryTicket ticket = found.get();
+    var ticket = found.get();
     assertEquals("foo@bar.com", ticket.getPlayerDetails().getEmail());
     assertEquals("123-123", ticket.getPlayerDetails().getBankAccount());
     assertEquals("07001234", ticket.getPlayerDetails().getPhoneNumber());

@@ -31,10 +31,7 @@ import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 
@@ -55,20 +52,18 @@ public class LotteryConsoleServiceImpl implements LotteryConsoleService {
   @Override
   public void checkTicket(LotteryService service, Scanner scanner) {
     logger.info("What is the ID of the lottery ticket?");
-    String id = readString(scanner);
+    var id = readString(scanner);
     logger.info("Give the 4 comma separated winning numbers?");
-    String numbers = readString(scanner);
+    var numbers = readString(scanner);
     try {
-      String[] parts = numbers.split(",");
-      Set<Integer> winningNumbers = new HashSet<>();
-      for (int i = 0; i < 4; i++) {
-        winningNumbers.add(Integer.parseInt(parts[i]));
-      }
+      var winningNumbers = Arrays.stream(numbers.split(","))
+          .map(Integer::parseInt)
+          .limit(4)
+          .collect(Collectors.toSet());
 
-      final LotteryTicketId lotteryTicketId = new LotteryTicketId(Integer.parseInt(id));
-      final LotteryNumbers lotteryNumbers = LotteryNumbers.create(winningNumbers);
-      LotteryTicketCheckResult result =
-          service.checkTicketForPrize(lotteryTicketId, lotteryNumbers);
+      final var lotteryTicketId = new LotteryTicketId(Integer.parseInt(id));
+      final var lotteryNumbers = LotteryNumbers.create(winningNumbers);
+      var result = service.checkTicketForPrize(lotteryTicketId, lotteryNumbers);
 
       if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
         logger.info("Congratulations! The lottery ticket has won!");
@@ -85,26 +80,24 @@ public class LotteryConsoleServiceImpl implements LotteryConsoleService {
   @Override
   public void submitTicket(LotteryService service, Scanner scanner) {
     logger.info("What is your email address?");
-    String email = readString(scanner);
+    var email = readString(scanner);
     logger.info("What is your bank account number?");
-    String account = readString(scanner);
+    var account = readString(scanner);
     logger.info("What is your phone number?");
-    String phone = readString(scanner);
-    PlayerDetails details = new PlayerDetails(email, account, phone);
+    var phone = readString(scanner);
+    var details = new PlayerDetails(email, account, phone);
     logger.info("Give 4 comma separated lottery numbers?");
-    String numbers = readString(scanner);
+    var numbers = readString(scanner);
     try {
-      String[] parts = numbers.split(",");
-      Set<Integer> chosen = Arrays.stream(parts).map(Integer::parseInt).collect(Collectors.toSet());
-      LotteryNumbers lotteryNumbers = LotteryNumbers.create(chosen);
-      LotteryTicket lotteryTicket =
-          new LotteryTicket(new LotteryTicketId(), details, lotteryNumbers);
-      Optional<LotteryTicketId> id = service.submitTicket(lotteryTicket);
-      if (id.isPresent()) {
-        logger.info("Submitted lottery ticket with id: {}", id.get());
-      } else {
-        logger.info("Failed submitting lottery ticket - please try again.");
-      }
+      var chosen = Arrays.stream(numbers.split(","))
+          .map(Integer::parseInt)
+          .collect(Collectors.toSet());
+      var lotteryNumbers = LotteryNumbers.create(chosen);
+      var lotteryTicket = new LotteryTicket(new LotteryTicketId(), details, lotteryNumbers);
+      service.submitTicket(lotteryTicket).ifPresentOrElse(
+          (id) -> logger.info("Submitted lottery ticket with id: {}", id),
+          () -> logger.info("Failed submitting lottery ticket - please try again.")
+      );
     } catch (Exception e) {
       logger.info("Failed submitting lottery ticket - please try again.");
     }
@@ -113,9 +106,9 @@ public class LotteryConsoleServiceImpl implements LotteryConsoleService {
   @Override
   public void addFundsToLotteryAccount(WireTransfers bank, Scanner scanner) {
     logger.info("What is the account number?");
-    String account = readString(scanner);
+    var account = readString(scanner);
     logger.info("How many credits do you want to deposit?");
-    String amount = readString(scanner);
+    var amount = readString(scanner);
     bank.setFunds(account, Integer.parseInt(amount));
     logger.info("The account {} now has {} credits.", account, bank.getFunds(account));
   }
@@ -123,7 +116,7 @@ public class LotteryConsoleServiceImpl implements LotteryConsoleService {
   @Override
   public void queryLotteryAccountFunds(WireTransfers bank, Scanner scanner) {
     logger.info("What is the account number?");
-    String account = readString(scanner);
+    var account = readString(scanner);
     logger.info("The account {} has {} credits.", account, bank.getFunds(account));
   }
 

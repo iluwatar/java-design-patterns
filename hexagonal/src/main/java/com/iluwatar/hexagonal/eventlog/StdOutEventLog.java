@@ -42,9 +42,8 @@ public class StdOutEventLog implements LotteryEventLog {
 
   @Override
   public void ticketDidNotWin(PlayerDetails details) {
-    LOGGER
-        .info("Lottery ticket for {} was checked and unfortunately did not win this time.", details
-            .getEmail());
+    LOGGER.info("Lottery ticket for {} was checked and unfortunately did not win this time.",
+        details.getEmail());
   }
 
   @Override
@@ -55,9 +54,8 @@ public class StdOutEventLog implements LotteryEventLog {
 
   @Override
   public void prizeError(PlayerDetails details, int prizeAmount) {
-    LOGGER
-        .error("Lottery ticket for {} has won! Unfortunately the bank credit transfer of"
-            + " {} failed.", details.getEmail(), prizeAmount);
+    LOGGER.error("Lottery ticket for {} has won! Unfortunately the bank credit transfer of"
+        + " {} failed.", details.getEmail(), prizeAmount);
   }
 
   @Override
