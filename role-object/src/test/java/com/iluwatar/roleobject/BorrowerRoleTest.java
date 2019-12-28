@@ -25,16 +25,12 @@ package com.iluwatar.roleobject;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class BorrowerRoleTest {
 
-    @Test
-    public void borrowTest() {
-        BorrowerRole borrowerRole = new BorrowerRole();
-        borrowerRole.setName("test");
-        String res = "Borrower test wants to get some money.";
-
-        Assert.assertEquals(borrowerRole.borrow(),res);
-    }
+  @Test
+  public void borrowTest() {
+    var borrowerRole = new BorrowerRole();
+    borrowerRole.setName("test");
+    Assert.assertEquals(borrowerRole.borrow(), "Borrower test wants to get some money.");
+  }
 }

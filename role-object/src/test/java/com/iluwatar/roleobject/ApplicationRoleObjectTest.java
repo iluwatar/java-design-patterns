@@ -26,8 +26,8 @@ import org.junit.Test;
 
 public class ApplicationRoleObjectTest {
 
-    @Test
-    public void mainTest() {
-        ApplicationRoleObject.main(new String[]{});
-    }
+  @Test
+  public void mainTest() {
+    ApplicationRoleObject.main(new String[]{});
+  }
 }

@@ -73,7 +73,7 @@ public class CustomerCore extends Customer {
 
   @Override
   public String toString() {
-    String roles = Arrays.toString(this.roles.keySet().toArray());
+    var roles = Arrays.toString(this.roles.keySet().toArray());
     return "Customer{roles=" + roles + "}";
   }
 }
