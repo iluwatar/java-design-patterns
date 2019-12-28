@@ -50,9 +50,7 @@ public class PersonSpecifications {
 
     @Override
     public Predicate toPredicate(Root<Person> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-
       return cb.between(root.get("age"), from, to);
-
     }
 
   }
@@ -72,9 +70,7 @@ public class PersonSpecifications {
      * Get predicate.
      */
     public Predicate toPredicate(Root<Person> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-
       return cb.equal(root.get("name"), this.name);
-
     }
   }
 
