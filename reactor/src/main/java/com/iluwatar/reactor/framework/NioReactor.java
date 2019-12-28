@@ -27,10 +27,7 @@ import java.io.IOException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
-import java.util.Iterator;
 import java.util.Queue;
-import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -119,20 +116,15 @@ public class NioReactor {
    * @throws IOException if any I/O error occurs.
    */
   public NioReactor registerChannel(AbstractNioChannel channel) throws IOException {
-    SelectionKey key = channel.getJavaChannel().register(selector, channel.getInterestedOps());
+    var key = channel.getJavaChannel().register(selector, channel.getInterestedOps());
     key.attach(channel);
     channel.setReactor(this);
     return this;
   }
 
   private void eventLoop() throws IOException {
-    while (true) {
-
-      // honor interrupt request
-      if (Thread.interrupted()) {
-        break;
-      }
-
+    // honor interrupt request
+    while (!Thread.interrupted()) {
       // honor any pending commands first
       processPendingCommands();
 
@@ -145,12 +137,11 @@ public class NioReactor {
       /*
        * Represents the events that have occurred on registered handles.
        */
-      Set<SelectionKey> keys = selector.selectedKeys();
-
-      Iterator<SelectionKey> iterator = keys.iterator();
+      var keys = selector.selectedKeys();
+      var iterator = keys.iterator();
 
       while (iterator.hasNext()) {
-        SelectionKey key = iterator.next();
+        var key = iterator.next();
         if (!key.isValid()) {
           iterator.remove();
           continue;
@@ -162,9 +153,9 @@ public class NioReactor {
   }
 
   private void processPendingCommands() {
-    Iterator<Runnable> iterator = pendingCommands.iterator();
+    var iterator = pendingCommands.iterator();
     while (iterator.hasNext()) {
-      Runnable command = iterator.next();
+      var command = iterator.next();
       command.run();
       iterator.remove();
     }
@@ -185,15 +176,14 @@ public class NioReactor {
   }
 
   private static void onChannelWritable(SelectionKey key) throws IOException {
-    AbstractNioChannel channel = (AbstractNioChannel) key.attachment();
+    var channel = (AbstractNioChannel) key.attachment();
     channel.flush(key);
   }
 
   private void onChannelReadable(SelectionKey key) {
     try {
       // reads the incoming data in context of reactor main loop. Can this be improved?
-      Object readObject = ((AbstractNioChannel) key.attachment()).read(key);
-
+      var readObject = ((AbstractNioChannel) key.attachment()).read(key);
       dispatchReadEvent(key, readObject);
     } catch (IOException e) {
       try {
@@ -212,10 +202,10 @@ public class NioReactor {
   }
 
   private void onChannelAcceptable(SelectionKey key) throws IOException {
-    ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
-    SocketChannel socketChannel = serverSocketChannel.accept();
+    var serverSocketChannel = (ServerSocketChannel) key.channel();
+    var socketChannel = serverSocketChannel.accept();
     socketChannel.configureBlocking(false);
-    SelectionKey readKey = socketChannel.register(selector, SelectionKey.OP_READ);
+    var readKey = socketChannel.register(selector, SelectionKey.OP_READ);
     readKey.attach(key.attachment());
   }
 
