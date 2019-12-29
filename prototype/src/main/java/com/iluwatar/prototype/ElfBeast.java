@@ -60,15 +60,11 @@ public class ElfBeast extends Beast {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    ElfBeast other = (ElfBeast) obj;
+    var other = (ElfBeast) obj;
     if (helpType == null) {
-      if (other.helpType != null) {
-        return false;
-      }
-    } else if (!helpType.equals(other.helpType)) {
-      return false;
+      return other.helpType == null;
     }
-    return true;
+    return helpType.equals(other.helpType);
   }
 
 }
