@@ -30,7 +30,7 @@ import java.util.Random;
  * to queue.
  */
 public class Producer {
-  
+
   private static final Random RANDOM = new Random();
 
   private final ItemQueue queue;
@@ -49,7 +49,7 @@ public class Producer {
    */
   public void produce() throws InterruptedException {
 
-    Item item = new Item(name, itemId++);
+    var item = new Item(name, itemId++);
     queue.put(item);
     Thread.sleep(RANDOM.nextInt(2000));
   }
