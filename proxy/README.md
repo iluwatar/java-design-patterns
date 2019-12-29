@@ -100,7 +100,7 @@ public class WizardTowerProxy implements WizardTower {
 And here is tower entering scenario
 
 ```java
-WizardTowerProxy proxy = new WizardTowerProxy(new IvoryTower());
+var proxy = new WizardTowerProxy(new IvoryTower());
 proxy.enter(new Wizard("Red wizard")); // Red wizard enters the tower.
 proxy.enter(new Wizard("White wizard")); // White wizard enters the tower.
 proxy.enter(new Wizard("Black wizard")); // Black wizard enters the tower.
