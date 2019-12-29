@@ -33,7 +33,7 @@ public class QueueManager {
   private final PriorityMessageQueue<Message> messagePriorityMessageQueue;
 
   public QueueManager(int initialCapacity) {
-    messagePriorityMessageQueue = new PriorityMessageQueue<Message>(new Message[initialCapacity]);
+    messagePriorityMessageQueue = new PriorityMessageQueue<>(new Message[initialCapacity]);
   }
 
   /**
