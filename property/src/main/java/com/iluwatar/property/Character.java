@@ -93,7 +93,7 @@ public class Character implements Prototype {
 
   @Override
   public Integer get(Stats stat) {
-    boolean containsValue = properties.containsKey(stat);
+    var containsValue = properties.containsKey(stat);
     if (containsValue) {
       return properties.get(stat);
     } else {
@@ -118,7 +118,7 @@ public class Character implements Prototype {
 
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
+    var builder = new StringBuilder();
     if (name != null) {
       builder.append("Player: ").append(name).append('\n');
     }
@@ -128,8 +128,8 @@ public class Character implements Prototype {
     }
 
     builder.append("Stats:\n");
-    for (Stats stat : Stats.values()) {
-      Integer value = this.get(stat);
+    for (var stat : Stats.values()) {
+      var value = this.get(stat);
       if (value == null) {
         continue;
       }
