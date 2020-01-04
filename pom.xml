@@ -42,7 +42,7 @@
         <mockito.version>1.10.19</mockito.version>
         <htmlunit.version>2.22</htmlunit.version>
         <guice.version>4.0</guice.version>
-        <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
+        <mongo-java-driver.version>3.12.0</mongo-java-driver.version>
         <slf4j.version>1.7.28</slf4j.version>
         <logback.version>1.2.3</logback.version>
         <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
