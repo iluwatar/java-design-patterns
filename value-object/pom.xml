@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-testlib</artifactId>
-			<version>19.0</version>
+			<version>23.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
