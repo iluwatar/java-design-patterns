@@ -31,7 +31,6 @@ import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.spellbook.SpellbookDaoImpl;
 import com.iluwatar.servicelayer.wizard.Wizard;
 import com.iluwatar.servicelayer.wizard.WizardDaoImpl;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -178,29 +177,21 @@ public class App {
    * Query the data.
    */
   public static void queryData() {
-    var service =
-        new MagicServiceImpl(new WizardDaoImpl(), new SpellbookDaoImpl(), new SpellDaoImpl());
+    var wizardDao = new WizardDaoImpl();
+    var spellbookDao = new SpellbookDaoImpl();
+    var spellDao = new SpellDaoImpl();
+    var service = new MagicServiceImpl(wizardDao, spellbookDao, spellDao);
     LOGGER.info("Enumerating all wizards");
-    for (Wizard w : service.findAllWizards()) {
-      LOGGER.info(w.getName());
-    }
+    service.findAllWizards().stream().map(Wizard::getName).forEach(LOGGER::info);
     LOGGER.info("Enumerating all spellbooks");
-    for (Spellbook s : service.findAllSpellbooks()) {
-      LOGGER.info(s.getName());
-    }
+    service.findAllSpellbooks().stream().map(Spellbook::getName).forEach(LOGGER::info);
     LOGGER.info("Enumerating all spells");
-    for (Spell s : service.findAllSpells()) {
-      LOGGER.info(s.getName());
-    }
+    service.findAllSpells().stream().map(Spell::getName).forEach(LOGGER::info);
     LOGGER.info("Find wizards with spellbook 'Book of Idores'");
-    List<Wizard> wizardsWithSpellbook = service.findWizardsWithSpellbook("Book of Idores");
-    for (Wizard w : wizardsWithSpellbook) {
-      LOGGER.info("{} has 'Book of Idores'", w.getName());
-    }
+    var wizardsWithSpellbook = service.findWizardsWithSpellbook("Book of Idores");
+    wizardsWithSpellbook.forEach(w -> LOGGER.info("{} has 'Book of Idores'", w.getName()));
     LOGGER.info("Find wizards with spell 'Fireball'");
-    List<Wizard> wizardsWithSpell = service.findWizardsWithSpell("Fireball");
-    for (Wizard w : wizardsWithSpell) {
-      LOGGER.info("{} has 'Fireball'", w.getName());
-    }
+    var wizardsWithSpell = service.findWizardsWithSpell("Fireball");
+    wizardsWithSpell.forEach(w -> LOGGER.info("{} has 'Fireball'", w.getName()));
   }
 }

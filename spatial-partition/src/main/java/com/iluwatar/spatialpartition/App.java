@@ -23,8 +23,6 @@
 
 package com.iluwatar.spatialpartition;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Random;
 import org.slf4j.Logger;
@@ -62,58 +60,46 @@ import org.slf4j.LoggerFactory;
 public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  static void noSpatialPartition(int height, int width,
-                                 int numOfMovements, Hashtable<Integer, Bubble> bubbles) {
-    ArrayList<Point> bubblesToCheck = new ArrayList<Point>();
-    for (Enumeration<Integer> e = bubbles.keys(); e.hasMoreElements(); ) {
-      bubblesToCheck.add(bubbles
-          .get(e.nextElement())); //all bubbles have to be checked for collision for all bubbles
-    }
+  static void noSpatialPartition(int numOfMovements, Hashtable<Integer, Bubble> bubbles) {
+    //all bubbles have to be checked for collision for all bubbles
+    var bubblesToCheck = bubbles.values();
 
     //will run numOfMovement times or till all bubbles have popped
     while (numOfMovements > 0 && !bubbles.isEmpty()) {
-      for (Enumeration<Integer> e = bubbles.keys(); e.hasMoreElements(); ) {
-        Integer i = e.nextElement();
+      bubbles.forEach((i, bubble) -> {
         // bubble moves, new position gets updated
         // and collisions are checked with all bubbles in bubblesToCheck
-        bubbles.get(i).move();
-        bubbles.replace(i, bubbles.get(i));
-        bubbles.get(i).handleCollision(bubblesToCheck, bubbles);
-      }
+        bubble.move();
+        bubbles.replace(i, bubble);
+        bubble.handleCollision(bubblesToCheck, bubbles);
+      });
       numOfMovements--;
     }
-    for (Integer key : bubbles.keySet()) {
-      //bubbles not popped
-      LOGGER.info("Bubble " + key + " not popped");
-    }
+    //bubbles not popped
+    bubbles.keySet().stream().map(key -> "Bubble " + key + " not popped").forEach(LOGGER::info);
   }
 
   static void withSpatialPartition(
       int height, int width, int numOfMovements, Hashtable<Integer, Bubble> bubbles) {
     //creating quadtree
-    Rect rect = new Rect(width / 2, height / 2, width, height);
-    QuadTree quadTree = new QuadTree(rect, 4);
+    var rect = new Rect(width / 2, height / 2, width, height);
+    var quadTree = new QuadTree(rect, 4);
 
     //will run numOfMovement times or till all bubbles have popped
     while (numOfMovements > 0 && !bubbles.isEmpty()) {
       //quadtree updated each time
-      for (Enumeration<Integer> e = bubbles.keys(); e.hasMoreElements(); ) {
-        quadTree.insert(bubbles.get(e.nextElement()));
-      }
-      for (Enumeration<Integer> e = bubbles.keys(); e.hasMoreElements(); ) {
-        Integer i = e.nextElement();
+      bubbles.values().forEach(quadTree::insert);
+      bubbles.forEach((i, bubble) -> {
         //bubble moves, new position gets updated, quadtree used to reduce computations
-        bubbles.get(i).move();
-        bubbles.replace(i, bubbles.get(i));
-        SpatialPartitionBubbles sp = new SpatialPartitionBubbles(bubbles, quadTree);
-        sp.handleCollisionsUsingQt(bubbles.get(i));
-      }
+        bubble.move();
+        bubbles.replace(i, bubble);
+        var sp = new SpatialPartitionBubbles(bubbles, quadTree);
+        sp.handleCollisionsUsingQt(bubble);
+      });
       numOfMovements--;
     }
-    for (Integer key : bubbles.keySet()) {
-      //bubbles not popped
-      LOGGER.info("Bubble " + key + " not popped");
-    }
+    //bubbles not popped
+    bubbles.keySet().stream().map(key -> "Bubble " + key + " not popped").forEach(LOGGER::info);
   }
 
   /**
@@ -123,23 +109,23 @@ public class App {
    */
 
   public static void main(String[] args) {
-    Hashtable<Integer, Bubble> bubbles1 = new Hashtable<Integer, Bubble>();
-    Hashtable<Integer, Bubble> bubbles2 = new Hashtable<Integer, Bubble>();
-    Random rand = new Random();
+    var bubbles1 = new Hashtable<Integer, Bubble>();
+    var bubbles2 = new Hashtable<Integer, Bubble>();
+    var rand = new Random();
     for (int i = 0; i < 10000; i++) {
-      Bubble b = new Bubble(rand.nextInt(300), rand.nextInt(300), i, rand.nextInt(2) + 1);
+      var b = new Bubble(rand.nextInt(300), rand.nextInt(300), i, rand.nextInt(2) + 1);
       bubbles1.put(i, b);
       bubbles2.put(i, b);
       LOGGER.info("Bubble " + i + " with radius " + b.radius
           + " added at (" + b.coordinateX + "," + b.coordinateY + ")");
     }
 
-    long start1 = System.currentTimeMillis();
-    App.noSpatialPartition(300, 300, 20, bubbles1);
-    long end1 = System.currentTimeMillis();
-    long start2 = System.currentTimeMillis();
+    var start1 = System.currentTimeMillis();
+    App.noSpatialPartition(20, bubbles1);
+    var end1 = System.currentTimeMillis();
+    var start2 = System.currentTimeMillis();
     App.withSpatialPartition(300, 300, 20, bubbles2);
-    long end2 = System.currentTimeMillis();
+    var end2 = System.currentTimeMillis();
     LOGGER.info("Without spatial partition takes " + (end1 - start1) + "ms");
     LOGGER.info("With spatial partition takes " + (end2 - start2) + "ms");
   }

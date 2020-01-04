@@ -27,7 +27,6 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.iluwatar.serverless.faas.ApiGatewayResponse;
 import com.iluwatar.serverless.faas.LambdaInfo;
-import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,13 +45,11 @@ public class LambdaInfoApiHandler
   public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
     LOG.info("received: " + input);
 
-    return new ApiGatewayResponse
-        .ApiGatewayResponseBuilder<LambdaInfo>()
+    return new ApiGatewayResponse.ApiGatewayResponseBuilder<LambdaInfo>()
         .headers(headers())
         .statusCode(SUCCESS_STATUS_CODE)
         .body(lambdaInfo(context))
         .build();
-
   }
 
   /**
@@ -69,14 +66,10 @@ public class LambdaInfoApiHandler
     lambdaInfo.setLogGroupName(context.getLogGroupName());
     lambdaInfo.setLogStreamName(context.getLogStreamName());
     lambdaInfo.setMemoryLimitInMb(context.getMemoryLimitInMB());
-
     return lambdaInfo;
   }
 
   private Map<String, String> headers() {
-    var headers = new HashMap<String, String>();
-    headers.put("Content-Type", "application/json");
-
-    return headers;
+    return Map.of("Content-Type", "application/json");
   }
 }

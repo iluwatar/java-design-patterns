@@ -29,6 +29,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Person class Created by dheeraj.mummarareddy on 3/4/18.
@@ -92,15 +93,15 @@ public class Person implements Serializable {
 
     Person person = (Person) o;
 
-    if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) {
+    if (!Objects.equals(firstName, person.firstName)) {
       return false;
     }
 
-    if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) {
+    if (!Objects.equals(lastName, person.lastName)) {
       return false;
     }
 
-    return address != null ? address.equals(person.address) : person.address == null;
+    return Objects.equals(address, person.address);
   }
 
   @Override

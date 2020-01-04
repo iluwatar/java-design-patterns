@@ -165,7 +165,7 @@ public final class CharacterStepBuilder {
 
     @Override
     public Character build() {
-      Character character = new Character(name);
+      var character = new Character(name);
 
       if (fighterClass != null) {
         character.setFighterClass(fighterClass);

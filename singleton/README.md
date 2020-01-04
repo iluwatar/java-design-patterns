@@ -41,8 +41,8 @@ public enum EnumIvoryTower {
 Then in order to use
 
 ```java
-EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.INSTANCE;
-EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
+var enumIvoryTower1 = EnumIvoryTower.INSTANCE;
+var enumIvoryTower2 = EnumIvoryTower.INSTANCE;
 assertEquals(enumIvoryTower1, enumIvoryTower2); // true
 ```
 

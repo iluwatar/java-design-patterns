@@ -23,18 +23,18 @@
 
 package com.iluwatar.saga.orchestration;
 
+import static com.iluwatar.saga.orchestration.Saga.Result;
 import static com.iluwatar.saga.orchestration.Saga.Result.CRASHED;
 import static com.iluwatar.saga.orchestration.Saga.Result.FINISHED;
 import static com.iluwatar.saga.orchestration.Saga.Result.ROLLBACK;
 
-import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 /**
- * The orchestrator that manages all the transactions and directs
- * the participant services to execute local transactions based on events.
+ * The orchestrator that manages all the transactions and directs the participant services to
+ * execute local transactions based on events.
  */
 public class SagaOrchestrator {
   private static final Logger LOGGER = LoggerFactory.getLogger(SagaOrchestrator.class);
@@ -45,8 +45,9 @@ public class SagaOrchestrator {
 
   /**
    * Create a new service to orchetrate sagas.
+   *
    * @param saga saga to process
-   * @param sd service discovery @see {@link ServiceDiscoveryService}
+   * @param sd   service discovery @see {@link ServiceDiscoveryService}
    */
   public SagaOrchestrator(Saga saga, ServiceDiscoveryService sd) {
     this.saga = saga;
@@ -59,30 +60,30 @@ public class SagaOrchestrator {
    *
    * @param value incoming value
    * @param <K>   type for incoming value
-   * @return result @see {@link Saga.Result}
+   * @return result @see {@link Result}
    */
   @SuppressWarnings("unchecked")
-  public <K> Saga.Result execute(K value) {
+  public <K> Result execute(K value) {
     state.cleanUp();
     LOGGER.info(" The new saga is about to start");
-    Saga.Result result = FINISHED;
+    var result = FINISHED;
     K tempVal = value;
 
     while (true) {
-      int next = state.current();
-      Saga.Chapter ch = saga.get(next);
-      Optional<OrchestrationChapter> srvOpt = sd.find(ch.name);
+      var next = state.current();
+      var ch = saga.get(next);
+      var srvOpt = sd.find(ch.name);
 
-      if (!srvOpt.isPresent()) {
+      if (srvOpt.isEmpty()) {
         state.directionToBack();
         state.back();
         continue;
       }
 
-      OrchestrationChapter srv = srvOpt.get();
+      var srv = srvOpt.get();
 
       if (state.isForward()) {
-        ChapterResult processRes = srv.process(tempVal);
+        var processRes = srv.process(tempVal);
         if (processRes.isSuccess()) {
           next = state.forward();
           tempVal = (K) processRes.getValue();
@@ -90,7 +91,7 @@ public class SagaOrchestrator {
           state.directionToBack();
         }
       } else {
-        ChapterResult rlRes = srv.rollback(tempVal);
+        var rlRes = srv.rollback(tempVal);
         if (rlRes.isSuccess()) {
           next = state.back();
           tempVal = (K) rlRes.getValue();

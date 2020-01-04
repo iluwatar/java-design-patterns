@@ -27,8 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * ShardManager with range strategy. This strategy groups related items together
- * in the same shard, and orders them by shard key.
+ * ShardManager with range strategy. This strategy groups related items together in the same shard,
+ * and orders them by shard key.
  */
 public class RangeShardManager extends ShardManager {
 
@@ -46,21 +46,16 @@ public class RangeShardManager extends ShardManager {
   @Override
   protected int allocateShard(Data data) {
     var type = data.getType();
-    var shardId = -1;
     switch (type) {
       case type1:
-        shardId = 1;
-        break;
+        return 1;
       case type2:
-        shardId = 2;
-        break;
+        return 2;
       case type3:
-        shardId = 3;
-        break;
+        return 3;
       default:
-        break;
+        return -1;
     }
-    return shardId;
   }
 
 }
