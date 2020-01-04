@@ -46,8 +46,7 @@ public abstract class AbstractNioChannel {
 
   private final SelectableChannel channel;
   private final ChannelHandler handler;
-  private final Map<SelectableChannel, Queue<Object>> channelToPendingWrites =
-      new ConcurrentHashMap<>();
+  private final Map<SelectableChannel, Queue<Object>> channelToPendingWrites;
   private NioReactor reactor;
 
   /**
@@ -59,6 +58,7 @@ public abstract class AbstractNioChannel {
   public AbstractNioChannel(ChannelHandler handler, SelectableChannel channel) {
     this.handler = handler;
     this.channel = channel;
+    this.channelToPendingWrites = new ConcurrentHashMap<>();
   }
 
   /**
@@ -117,18 +117,14 @@ public abstract class AbstractNioChannel {
    * whole pending block of data at once.
    */
   void flush(SelectionKey key) throws IOException {
-    Queue<Object> pendingWrites = channelToPendingWrites.get(key.channel());
-    while (true) {
-      Object pendingWrite = pendingWrites.poll();
-      if (pendingWrite == null) {
-        // We don't have anything more to write so channel is interested in reading more data
-        reactor.changeOps(key, SelectionKey.OP_READ);
-        break;
-      }
-
+    var pendingWrites = channelToPendingWrites.get(key.channel());
+    Object pendingWrite;
+    while ((pendingWrite = pendingWrites.poll()) != null) {
       // ask the concrete channel to make sense of data and write it to java channel
       doWrite(pendingWrite, key);
     }
+    // We don't have anything more to write so channel is interested in reading more data
+    reactor.changeOps(key, SelectionKey.OP_READ);
   }
 
   /**
@@ -162,7 +158,7 @@ public abstract class AbstractNioChannel {
    * @param key  the key which is writable.
    */
   public void write(Object data, SelectionKey key) {
-    Queue<Object> pendingWrites = this.channelToPendingWrites.get(key.channel());
+    var pendingWrites = this.channelToPendingWrites.get(key.channel());
     if (pendingWrites == null) {
       synchronized (this.channelToPendingWrites) {
         pendingWrites = this.channelToPendingWrites.get(key.channel());

@@ -124,15 +124,17 @@ public class App {
      * This represents application specific business logic that dispatcher will call on appropriate
      * events. These events are read events in our example.
      */
-    LoggingHandler loggingHandler = new LoggingHandler();
+    var loggingHandler = new LoggingHandler();
 
     /*
      * Our application binds to multiple channels and uses same logging handler to handle incoming
      * log requests.
      */
-    reactor.registerChannel(tcpChannel(6666, loggingHandler))
+    reactor
+        .registerChannel(tcpChannel(6666, loggingHandler))
         .registerChannel(tcpChannel(6667, loggingHandler))
-        .registerChannel(udpChannel(6668, loggingHandler)).start();
+        .registerChannel(udpChannel(6668, loggingHandler))
+        .start();
   }
 
   /**
@@ -144,20 +146,20 @@ public class App {
   public void stop() throws InterruptedException, IOException {
     reactor.stop();
     dispatcher.stop();
-    for (AbstractNioChannel channel : channels) {
+    for (var channel : channels) {
       channel.getJavaChannel().close();
     }
   }
 
   private AbstractNioChannel tcpChannel(int port, ChannelHandler handler) throws IOException {
-    NioServerSocketChannel channel = new NioServerSocketChannel(port, handler);
+    var channel = new NioServerSocketChannel(port, handler);
     channel.bind();
     channels.add(channel);
     return channel;
   }
 
   private AbstractNioChannel udpChannel(int port, ChannelHandler handler) throws IOException {
-    NioDatagramChannel channel = new NioDatagramChannel(port, handler);
+    var channel = new NioDatagramChannel(port, handler);
     channel.bind();
     channels.add(channel);
     return channel;
