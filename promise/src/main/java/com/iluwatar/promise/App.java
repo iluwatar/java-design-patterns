@@ -37,11 +37,10 @@ import org.slf4j.LoggerFactory;
  * hasn't completed yet, but is expected in the future.
  *
  * <p>A Promise represents a proxy for a value not necessarily known when the promise is created.
- * It
- * allows you to associate dependent promises to an asynchronous action's eventual success value or
- * failure reason. This lets asynchronous methods return values like synchronous methods: instead of
- * the final value, the asynchronous method returns a promise of having a value at some point in the
- * future.
+ * It allows you to associate dependent promises to an asynchronous action's eventual success value
+ * or failure reason. This lets asynchronous methods return values like synchronous methods: instead
+ * of the final value, the asynchronous method returns a promise of having a value at some point in
+ * the future.
  *
  * <p>Promises provide a few advantages over callback objects:
  * <ul>
@@ -102,13 +101,12 @@ public class App {
    * consume the result in a Consumer<Character>
    */
   private void calculateLowestFrequencyChar() {
-    lowestFrequencyChar()
-        .thenAccept(
-            charFrequency -> {
-              LOGGER.info("Char with lowest frequency is: {}", charFrequency);
-              taskCompleted();
-            }
-        );
+    lowestFrequencyChar().thenAccept(
+        charFrequency -> {
+          LOGGER.info("Char with lowest frequency is: {}", charFrequency);
+          taskCompleted();
+        }
+    );
   }
 
   /*
@@ -116,13 +114,12 @@ public class App {
    * in a Consumer<Integer>
    */
   private void calculateLineCount() {
-    countLines()
-        .thenAccept(
-            count -> {
-              LOGGER.info("Line count is: {}", count);
-              taskCompleted();
-            }
-        );
+    countLines().thenAccept(
+        count -> {
+          LOGGER.info("Line count is: {}", count);
+          taskCompleted();
+        }
+    );
   }
 
   /*
