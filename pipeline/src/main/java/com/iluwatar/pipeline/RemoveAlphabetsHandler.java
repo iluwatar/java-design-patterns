@@ -39,7 +39,10 @@ class RemoveAlphabetsHandler implements Handler<String, String> {
   public String process(String input) {
     var inputWithoutAlphabets = new StringBuilder();
     var isAlphabetic = (IntPredicate) Character::isAlphabetic;
-    input.chars().filter(isAlphabetic.negate()).forEachOrdered(inputWithoutAlphabets::append);
+    input.chars()
+        .filter(isAlphabetic.negate())
+        .mapToObj(x -> (char) x)
+        .forEachOrdered(inputWithoutAlphabets::append);
 
     var inputWithoutAlphabetsStr = inputWithoutAlphabets.toString();
     LOGGER.info(

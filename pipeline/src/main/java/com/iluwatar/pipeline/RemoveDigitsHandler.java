@@ -39,7 +39,10 @@ class RemoveDigitsHandler implements Handler<String, String> {
   public String process(String input) {
     var inputWithoutDigits = new StringBuilder();
     var isDigit = (IntPredicate) Character::isDigit;
-    input.chars().filter(isDigit.negate()).forEachOrdered(inputWithoutDigits::append);
+    input.chars()
+        .filter(isDigit.negate())
+        .mapToObj(x -> (char) x)
+        .forEachOrdered(inputWithoutDigits::append);
 
     var inputWithoutDigitsStr = inputWithoutDigits.toString();
     LOGGER.info(
