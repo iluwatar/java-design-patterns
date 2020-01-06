@@ -44,13 +44,13 @@ public class MovementSelectorTest {
    */
   @Test
   public void testMovement() {
-    final Creature swimmingCreature = mock(Creature.class);
+    final var swimmingCreature = mock(Creature.class);
     when(swimmingCreature.getMovement()).thenReturn(Movement.SWIMMING);
 
-    final Creature flyingCreature = mock(Creature.class);
+    final var flyingCreature = mock(Creature.class);
     when(flyingCreature.getMovement()).thenReturn(Movement.FLYING);
 
-    final MovementSelector swimmingSelector = new MovementSelector(Movement.SWIMMING);
+    final var swimmingSelector = new MovementSelector(Movement.SWIMMING);
     assertTrue(swimmingSelector.test(swimmingCreature));
     assertFalse(swimmingSelector.test(flyingCreature));
 

@@ -54,10 +54,10 @@ public class App {
    * Can add a List with enum Actions for variable scenarios.
    */
   public static void scenario(Servant servant, int compliment) {
-    King k = new King();
-    Queen q = new Queen();
+    var k = new King();
+    var q = new Queen();
 
-    List<Royalty> guests = List.of(k, q);
+    var guests = List.of(k, q);
 
     // feed
     servant.feed(k);
@@ -69,9 +69,7 @@ public class App {
     servant.giveCompliments(guests.get(compliment));
 
     // outcome of the night
-    for (Royalty r : guests) {
-      r.changeMood();
-    }
+    guests.forEach(Royalty::changeMood);
 
     // check your luck
     if (servant.checkIfYouWillBeHanged(guests)) {

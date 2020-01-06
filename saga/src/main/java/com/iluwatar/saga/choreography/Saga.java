@@ -28,9 +28,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Saga representation.
- * Saga consists of chapters.
- * Every ChoreographyChapter is executed a certain service.
+ * Saga representation. Saga consists of chapters. Every ChoreographyChapter is executed a certain
+ * service.
  */
 public class Saga {
 
@@ -61,6 +60,7 @@ public class Saga {
 
   /**
    * add chapter to saga.
+   *
    * @param name chapter name
    * @return this
    */
@@ -71,6 +71,7 @@ public class Saga {
 
   /**
    * set value to last chapter.
+   *
    * @param value invalue
    * @return this
    */
@@ -84,6 +85,7 @@ public class Saga {
 
   /**
    * get value from current chapter.
+   *
    * @return value
    */
   public Object getCurrentValue() {
@@ -92,6 +94,7 @@ public class Saga {
 
   /**
    * set value to current chapter.
+   *
    * @param value to set
    */
   public void setCurrentValue(Object value) {
@@ -100,6 +103,7 @@ public class Saga {
 
   /**
    * set status for current chapter.
+   *
    * @param result to set
    */
   public void setCurrentStatus(ChapterResult result) {
@@ -145,8 +149,8 @@ public class Saga {
   }
 
   /**
-   * Class presents a chapter status and incoming
-   * parameters(incoming parameter transforms to outcoming parameter).
+   * Class presents a chapter status and incoming parameters(incoming parameter transforms to
+   * outcoming parameter).
    */
   public static class Chapter {
     private String name;
@@ -173,6 +177,7 @@ public class Saga {
 
     /**
      * set result.
+     *
      * @param result {@link ChapterResult}
      */
     public void setResult(ChapterResult result) {
@@ -181,6 +186,7 @@ public class Saga {
 
     /**
      * the result for chapter is good.
+     *
      * @return true if is good otherwise bad
      */
     public boolean isSuccess() {

@@ -38,7 +38,7 @@ public class SlidingDoor implements AutoCloseable {
   }
 
   @Override
-  public void close() throws Exception {
+  public void close() {
     LOGGER.info("Sliding door closes.");
   }
 }

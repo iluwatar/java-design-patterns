@@ -64,13 +64,14 @@ public class Customer extends Thread {
   public void run() {
 
     while (fruitShop.countFruit() > 0) {
-      FruitBowl bowl = fruitShop.takeBowl();
-      Fruit fruit;
-
-      if (bowl != null && (fruit = bowl.take()) != null) {
-        LOGGER.info("{} took an {}", name, fruit);
-        fruitBowl.put(fruit);
-        fruitShop.returnBowl(bowl);
+      var bowl = fruitShop.takeBowl();
+      if (bowl != null) {
+        var fruit = bowl.take();
+        if (fruit != null) {
+          LOGGER.info("{} took an {}", name, fruit);
+          fruitBowl.put(fruit);
+          fruitShop.returnBowl(bowl);
+        }
       }
     }
 

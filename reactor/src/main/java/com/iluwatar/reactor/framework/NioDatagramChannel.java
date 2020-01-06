@@ -73,15 +73,15 @@ public class NioDatagramChannel extends AbstractNioChannel {
    */
   @Override
   public DatagramPacket read(SelectionKey key) throws IOException {
-    ByteBuffer buffer = ByteBuffer.allocate(1024);
-    SocketAddress sender = ((DatagramChannel) key.channel()).receive(buffer);
+    var buffer = ByteBuffer.allocate(1024);
+    var sender = ((DatagramChannel) key.channel()).receive(buffer);
 
     /*
      * It is required to create a DatagramPacket because we need to preserve which socket address
      * acts as destination for sending reply packets.
      */
     buffer.flip();
-    DatagramPacket packet = new DatagramPacket(buffer);
+    var packet = new DatagramPacket(buffer);
     packet.setSender(sender);
 
     return packet;
@@ -115,7 +115,7 @@ public class NioDatagramChannel extends AbstractNioChannel {
    */
   @Override
   protected void doWrite(Object pendingWrite, SelectionKey key) throws IOException {
-    DatagramPacket pendingPacket = (DatagramPacket) pendingWrite;
+    var pendingPacket = (DatagramPacket) pendingWrite;
     getJavaChannel().send(pendingPacket.getData(), pendingPacket.getReceiver());
   }
 

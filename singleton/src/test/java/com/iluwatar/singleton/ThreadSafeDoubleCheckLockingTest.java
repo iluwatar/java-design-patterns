@@ -23,9 +23,7 @@
 
 package com.iluwatar.singleton;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-
 import org.junit.Test;
 
 /**
@@ -47,11 +45,10 @@ public class ThreadSafeDoubleCheckLockingTest extends SingletonTest<ThreadSafeDo
    */
   @Test(expected = InvocationTargetException.class)
   public void testCreatingNewInstanceByRefection() throws Exception {
-    ThreadSafeDoubleCheckLocking instance1 = ThreadSafeDoubleCheckLocking.getInstance();
-    Constructor constructor = ThreadSafeDoubleCheckLocking.class.getDeclaredConstructor();
+    ThreadSafeDoubleCheckLocking.getInstance();
+    var constructor = ThreadSafeDoubleCheckLocking.class.getDeclaredConstructor();
     constructor.setAccessible(true);
-    ThreadSafeDoubleCheckLocking instance2 =
-            (ThreadSafeDoubleCheckLocking) constructor.newInstance(null);
+    constructor.newInstance((Object[]) null);
   }
 
 }
