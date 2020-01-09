@@ -33,7 +33,7 @@
         <junit.version>4.12</junit.version>
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <junit-vintage.version>${junit.version}.2</junit-vintage.version>
-        <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
+        <sping-test-junit5.version>1.5.0</sping-test-junit5.version>
         <compiler.version>3.8.1</compiler.version>
         <jacoco.version>0.8.4</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
