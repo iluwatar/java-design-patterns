@@ -156,7 +156,7 @@
 				</plugin>
 				<plugin>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>3.2.3</version>
+					<version>2.4</version>
 				</plugin>
 
 				<plugin>
