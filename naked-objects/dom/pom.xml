@@ -181,7 +181,7 @@
 					<plugin>
 						<groupId>org.apache.isis.tool</groupId>
 						<artifactId>isis-maven-plugin</artifactId>
-						<version>1.9.0-SNAPSHOT</version>
+						<version>2.0.0-M2</version>
 						<configuration>
 							<isisConfigDir>../webapp/src/main/webapp/WEB-INF</isisConfigDir>
 						</configuration>
@@ -189,7 +189,7 @@
 							<dependency>
 								<groupId>org.apache.isis.example.application</groupId>
 								<artifactId>simpleapp-dom</artifactId>
-								<version>1.9.0-SNAPSHOT</version>
+								<version>2.0.0-M2</version>
 							</dependency>
 							<!-- ... workaround to avoid conflict with plexus-default (not sure 
 								why exclusions in the isis-maven-plugin aren't sufficient, though ... -->
