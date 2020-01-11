@@ -27,5 +27,5 @@ Use a Mutex when
 
 ## Credits
 
-* [Lock (computer science)] (http://en.wikipedia.org/wiki/Lock_(computer_science))
-* [Semaphores] (http://tutorials.jenkov.com/java-concurrency/semaphores.html)
+* [Lock (computer science)](http://en.wikipedia.org/wiki/Lock_(computer_science))
+* [Semaphores](http://tutorials.jenkov.com/java-concurrency/semaphores.html)
