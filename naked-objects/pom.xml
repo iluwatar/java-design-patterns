@@ -119,7 +119,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-report-plugin</artifactId>
-					<version>2.16</version>
+					<version>2.22.2</version>
 					<configuration>
 						<showSuccess>false</showSuccess>
 					</configuration>
