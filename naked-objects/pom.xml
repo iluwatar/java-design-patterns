@@ -152,7 +152,7 @@
 				</plugin>
 				<plugin>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.3</version>
+					<version>3.8.2</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-war-plugin</artifactId>
