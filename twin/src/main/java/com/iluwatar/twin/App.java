@@ -21,6 +21,10 @@
  * THE SOFTWARE.
  */
 
+ /*
+ Commit by isidrohg
+ */
+
 package com.iluwatar.twin;
 
 /**
