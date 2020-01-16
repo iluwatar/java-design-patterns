@@ -60,14 +60,10 @@ public class ElfWarlord extends Warlord {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    ElfWarlord other = (ElfWarlord) obj;
+    var other = (ElfWarlord) obj;
     if (helpType == null) {
-      if (other.helpType != null) {
-        return false;
-      }
-    } else if (!helpType.equals(other.helpType)) {
-      return false;
+      return other.helpType == null;
     }
-    return true;
+    return helpType.equals(other.helpType);
   }
 }

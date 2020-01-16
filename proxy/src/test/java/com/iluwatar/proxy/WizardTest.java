@@ -23,9 +23,10 @@
 
 package com.iluwatar.proxy;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link Wizard}
@@ -33,10 +34,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class WizardTest {
 
   @Test
-  public void testToString() throws Exception {
-    final String[] wizardNames = {"Gandalf", "Dumbledore", "Oz", "Merlin"};
-    for (String name : wizardNames) {
-      assertEquals(name, new Wizard(name).toString());
-    }
+  public void testToString() {
+    List.of("Gandalf", "Dumbledore", "Oz", "Merlin")
+        .forEach(name -> assertEquals(name, new Wizard(name).toString()));
   }
 }

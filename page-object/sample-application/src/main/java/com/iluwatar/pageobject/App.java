@@ -71,8 +71,8 @@ public final class App {
   public static void main(String[] args) {
 
     try {
-      File applicationFile =
-          new File(App.class.getClassLoader().getResource("sample-ui/login.html").getPath());
+      var classLoader = App.class.getClassLoader();
+      var applicationFile = new File(classLoader.getResource("sample-ui/login.html").getPath());
 
       // should work for unix like OS (mac, unix etc...)
       if (Desktop.isDesktopSupported()) {
