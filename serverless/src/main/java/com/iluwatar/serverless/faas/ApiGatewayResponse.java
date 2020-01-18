@@ -30,10 +30,8 @@ import java.util.Map;
 
 /**
  * Api gateway response.
- *
- * @param <T> serializable object
  */
-public class ApiGatewayResponse<T extends Serializable> implements Serializable {
+public class ApiGatewayResponse implements Serializable {
 
   private static final long serialVersionUID = 1181159426782844892L;
 
@@ -50,8 +48,12 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
    * @param headers         - response headers
    * @param isBase64Encoded - base64Encoded flag
    */
-  public ApiGatewayResponse(Integer statusCode, String body, Map<String, String> headers,
-                            Boolean isBase64Encoded) {
+  public ApiGatewayResponse(
+      Integer statusCode,
+      String body,
+      Map<String, String> headers,
+      Boolean isBase64Encoded
+  ) {
     this.statusCode = statusCode;
     this.body = body;
     this.headers = headers;

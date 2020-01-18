@@ -24,6 +24,11 @@
 package com.iluwatar.masterworker;
 
 import com.iluwatar.masterworker.system.ArrayTransposeMasterWorker;
+import com.iluwatar.masterworker.system.MasterWorker;
+import com.iluwatar.masterworker.system.systemmaster.ArrayTransposeMaster;
+import com.iluwatar.masterworker.system.systemmaster.Master;
+import com.iluwatar.masterworker.system.systemworkers.ArrayTransposeWorker;
+import com.iluwatar.masterworker.system.systemworkers.Worker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

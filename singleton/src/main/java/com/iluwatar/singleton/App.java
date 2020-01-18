@@ -45,8 +45,7 @@ import org.slf4j.LoggerFactory;
  * example is found in {@link EnumIvoryTower}. At first glance the code looks short and simple.
  * However, you should be aware of the downsides including committing to implementation strategy,
  * extending the enum class, serializability and restrictions to coding. These are extensively
- * discussed in Stack Overflow:
- * http://programmers.stackexchange.com/questions/179386/what-are-the-downsides-of-implementing
+ * discussed in Stack Overflow: http://programmers.stackexchange.com/questions/179386/what-are-the-downsides-of-implementing
  * -a-singleton-with-javas-enum</p>
  *
  * <p>{@link ThreadSafeLazyLoadedIvoryTower} is a Singleton implementation that is initialized on
@@ -54,9 +53,9 @@ import org.slf4j.LoggerFactory;
  * synchronized.</p>
  *
  * <p>Another Singleton implementation that is initialized on demand is found in
- * {@link ThreadSafeDoubleCheckLocking}. It is somewhat faster than
- * {@link ThreadSafeLazyLoadedIvoryTower} since it doesn't synchronize the whole access method but
- * only the method internals on specific conditions.</p>
+ * {@link ThreadSafeDoubleCheckLocking}. It is somewhat faster than {@link
+ * ThreadSafeLazyLoadedIvoryTower} since it doesn't synchronize the whole access method but only the
+ * method internals on specific conditions.</p>
  *
  * <p>Yet another way to implement thread safe lazily initialized Singleton can be found in
  * {@link InitializingOnDemandHolderIdiom}. However, this implementation requires at least Java 8
@@ -80,10 +79,8 @@ public class App {
     LOGGER.info("ivoryTower2={}", ivoryTower2);
 
     // lazily initialized singleton
-    var threadSafeIvoryTower1 =
-        ThreadSafeLazyLoadedIvoryTower.getInstance();
-    var threadSafeIvoryTower2 =
-        ThreadSafeLazyLoadedIvoryTower.getInstance();
+    var threadSafeIvoryTower1 = ThreadSafeLazyLoadedIvoryTower.getInstance();
+    var threadSafeIvoryTower2 = ThreadSafeLazyLoadedIvoryTower.getInstance();
     LOGGER.info("threadSafeIvoryTower1={}", threadSafeIvoryTower1);
     LOGGER.info("threadSafeIvoryTower2={}", threadSafeIvoryTower2);
 
@@ -100,11 +97,9 @@ public class App {
     LOGGER.info(dcl2.toString());
 
     // initialize on demand holder idiom
-    var demandHolderIdiom =
-        InitializingOnDemandHolderIdiom.getInstance();
+    var demandHolderIdiom = InitializingOnDemandHolderIdiom.getInstance();
     LOGGER.info(demandHolderIdiom.toString());
-    var demandHolderIdiom2 =
-        InitializingOnDemandHolderIdiom.getInstance();
+    var demandHolderIdiom2 = InitializingOnDemandHolderIdiom.getInstance();
     LOGGER.info(demandHolderIdiom2.toString());
   }
 }

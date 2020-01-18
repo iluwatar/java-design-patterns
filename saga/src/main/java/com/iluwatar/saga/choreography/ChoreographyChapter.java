@@ -25,9 +25,9 @@ package com.iluwatar.saga.choreography;
 
 
 /**
- * ChoreographyChapter is an interface representing a contract for an external service.
- * In that case, a service needs to make a decision what to do further
- * hence the server needs to get all context representing {@link Saga}
+ * ChoreographyChapter is an interface representing a contract for an external service. In that
+ * case, a service needs to make a decision what to do further hence the server needs to get all
+ * context representing {@link Saga}
  */
 public interface ChoreographyChapter {
 
@@ -41,6 +41,7 @@ public interface ChoreographyChapter {
 
   /**
    * get name method.
+   *
    * @return service name.
    */
   String getName();

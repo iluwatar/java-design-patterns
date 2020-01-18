@@ -27,9 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Saga representation.
- * Saga consists of chapters.
- * Every ChoreographyChapter is executed by a certain service.
+ * Saga representation. Saga consists of chapters. Every ChoreographyChapter is executed by a
+ * certain service.
  */
 public class Saga {
 

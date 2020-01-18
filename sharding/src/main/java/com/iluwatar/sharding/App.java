@@ -24,14 +24,14 @@
 package com.iluwatar.sharding;
 
 /**
- * Sharding pattern means dividing a data store into a set of horizontal partitions
- * or shards. This pattern can improve scalability when storing and accessing large
- * volumes of data.
+ * Sharding pattern means dividing a data store into a set of horizontal partitions or shards. This
+ * pattern can improve scalability when storing and accessing large volumes of data.
  */
 public class App {
 
   /**
    * Program main entry point.
+   *
    * @param args program runtime arguments
    */
   public static void main(String[] args) {
@@ -45,7 +45,7 @@ public class App {
     var shard2 = new Shard(2);
     var shard3 = new Shard(3);
 
-    ShardManager manager = new LookupShardManager();
+    var manager = new LookupShardManager();
     manager.addNewShard(shard1);
     manager.addNewShard(shard2);
     manager.addNewShard(shard3);
@@ -58,27 +58,27 @@ public class App {
     shard2.clearData();
     shard3.clearData();
 
-    manager = new RangeShardManager();
-    manager.addNewShard(shard1);
-    manager.addNewShard(shard2);
-    manager.addNewShard(shard3);
-    manager.storeData(data1);
-    manager.storeData(data2);
-    manager.storeData(data3);
-    manager.storeData(data4);
+    var rangeShardManager = new RangeShardManager();
+    rangeShardManager.addNewShard(shard1);
+    rangeShardManager.addNewShard(shard2);
+    rangeShardManager.addNewShard(shard3);
+    rangeShardManager.storeData(data1);
+    rangeShardManager.storeData(data2);
+    rangeShardManager.storeData(data3);
+    rangeShardManager.storeData(data4);
 
     shard1.clearData();
     shard2.clearData();
     shard3.clearData();
 
-    manager = new HashShardManager();
-    manager.addNewShard(shard1);
-    manager.addNewShard(shard2);
-    manager.addNewShard(shard3);
-    manager.storeData(data1);
-    manager.storeData(data2);
-    manager.storeData(data3);
-    manager.storeData(data4);
+    var hashShardManager = new HashShardManager();
+    hashShardManager.addNewShard(shard1);
+    hashShardManager.addNewShard(shard2);
+    hashShardManager.addNewShard(shard3);
+    hashShardManager.storeData(data1);
+    hashShardManager.storeData(data2);
+    hashShardManager.storeData(data3);
+    hashShardManager.storeData(data4);
 
     shard1.clearData();
     shard2.clearData();

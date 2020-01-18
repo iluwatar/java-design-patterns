@@ -24,7 +24,6 @@
 package com.iluwatar.sharding;
 
 import java.util.Map;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -57,7 +56,7 @@ public class ShardManagerTest {
       shardManager.addNewShard(shard);
       var field = ShardManager.class.getDeclaredField("shardMap");
       field.setAccessible(true);
-      Map<Integer, Shard> map = (Map<Integer, Shard>) field.get(shardManager);
+      var map = (Map<Integer, Shard>) field.get(shardManager);
       Assert.assertEquals(1, map.size());
       Assert.assertEquals(shard, map.get(1));
     } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -73,7 +72,7 @@ public class ShardManagerTest {
       boolean flag = shardManager.removeShardById(1);
       var field = ShardManager.class.getDeclaredField("shardMap");
       field.setAccessible(true);
-      Map<Integer, Shard> map = (Map<Integer, Shard>) field.get(shardManager);
+      var map = (Map<Integer, Shard>) field.get(shardManager);
       Assert.assertEquals(true, flag);
       Assert.assertEquals(0, map.size());
     } catch (IllegalAccessException | NoSuchFieldException e) {
@@ -83,9 +82,9 @@ public class ShardManagerTest {
 
   @Test
   public void testGetShardById() {
-    Shard shard = new Shard(1);
+    var shard = new Shard(1);
     shardManager.addNewShard(shard);
-    Shard tmpShard = shardManager.getShardById(1);
+    var tmpShard = shardManager.getShardById(1);
     Assert.assertEquals(shard, tmpShard);
   }
 

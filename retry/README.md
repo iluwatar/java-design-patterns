@@ -78,7 +78,7 @@ to recover from this error.
 We can model a 'recoverable' scenario by instantiating `FindCustomer` like this:
 
 ```java
-final BusinessOperation<String> op = new FindCustomer(
+final var op = new FindCustomer(
     "12345",
     new CustomerNotFoundException("not found"),
     new CustomerNotFoundException("still not found"),
@@ -97,7 +97,7 @@ worker thread in the database subsystem typically needs 50ms to
 this:
 
 ```java
-final BusinessOperation<String> op = new Retry<>(
+final var op = new Retry<>(
     new FindCustomer(
         "1235",
         new CustomerNotFoundException("not found"),

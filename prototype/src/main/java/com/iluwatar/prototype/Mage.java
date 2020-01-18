@@ -28,9 +28,11 @@ package com.iluwatar.prototype;
  */
 public abstract class Mage implements Prototype {
 
-  public Mage() { }
+  public Mage() {
+  }
 
-  public Mage(Mage source) { }
+  public Mage(Mage source) {
+  }
 
   @Override
   public abstract Mage copy();

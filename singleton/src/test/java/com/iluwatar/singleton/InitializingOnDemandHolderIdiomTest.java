@@ -29,7 +29,7 @@ package com.iluwatar.singleton;
  * @author Jeroen Meulemeester
  */
 public class InitializingOnDemandHolderIdiomTest
-        extends SingletonTest<InitializingOnDemandHolderIdiom> {
+    extends SingletonTest<InitializingOnDemandHolderIdiom> {
 
   /**
    * Create a new singleton test instance using the given 'getInstance' method.

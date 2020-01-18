@@ -22,11 +22,12 @@
  */
 package com.iluwatar.saga.orchestration;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static com.iluwatar.saga.orchestration.Saga.Result;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * test to test orchestration logic
@@ -37,17 +38,16 @@ public class SagaOrchestratorInternallyTest {
 
   @Test
   public void executeTest() {
-    SagaOrchestrator sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
-    Saga.Result result = sagaOrchestrator.execute(1);
-    Assert.assertEquals(result, Saga.Result.ROLLBACK);
+    var sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
+    var result = sagaOrchestrator.execute(1);
+    Assert.assertEquals(result, Result.ROLLBACK);
     Assert.assertArrayEquals(
         records.toArray(new String[]{}),
         new String[]{"+1", "+2", "+3", "+4", "-4", "-3", "-2", "-1"});
   }
 
   private static Saga newSaga() {
-    return Saga
-        .create()
+    return Saga.create()
         .chapter("1")
         .chapter("2")
         .chapter("3")
@@ -55,12 +55,11 @@ public class SagaOrchestratorInternallyTest {
   }
 
   private ServiceDiscoveryService serviceDiscovery() {
-    return
-        new ServiceDiscoveryService()
-            .discover(new Service1())
-            .discover(new Service2())
-            .discover(new Service3())
-            .discover(new Service4());
+    return new ServiceDiscoveryService()
+        .discover(new Service1())
+        .discover(new Service2())
+        .discover(new Service3())
+        .discover(new Service4());
   }
 
   class Service1 extends Service<Integer> {

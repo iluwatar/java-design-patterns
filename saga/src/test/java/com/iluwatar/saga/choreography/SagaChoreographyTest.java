@@ -33,10 +33,10 @@ public class SagaChoreographyTest {
 
   @Test
   public void executeTest() {
-    ServiceDiscoveryService sd = serviceDiscovery();
-    ChoreographyChapter service = sd.findAny();
-    Saga badOrderSaga = service.execute(newSaga("bad_order"));
-    Saga goodOrderSaga = service.execute(newSaga("good_order"));
+    var sd = serviceDiscovery();
+    var service = sd.findAny();
+    var badOrderSaga = service.execute(newSaga("bad_order"));
+    var goodOrderSaga = service.execute(newSaga("good_order"));
 
     Assert.assertEquals(badOrderSaga.getResult(), Saga.SagaResult.ROLLBACKED);
     Assert.assertEquals(goodOrderSaga.getResult(), Saga.SagaResult.FINISHED);
@@ -52,7 +52,7 @@ public class SagaChoreographyTest {
   }
 
   private static ServiceDiscoveryService serviceDiscovery() {
-    ServiceDiscoveryService sd = new ServiceDiscoveryService();
+    var sd = new ServiceDiscoveryService();
     return sd
         .discover(new OrderService(sd))
         .discover(new FlyBookingService(sd))

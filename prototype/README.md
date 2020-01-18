@@ -52,11 +52,11 @@ class Sheep implements Cloneable {
 Then it can be cloned like below
 
 ```java
-Sheep original = new Sheep("Jolly");
+var original = new Sheep("Jolly");
 System.out.println(original.getName()); // Jolly
 
 // Clone and modify what is required
-Sheep cloned = original.clone();
+var cloned = original.clone();
 cloned.setName("Dolly");
 System.out.println(cloned.getName()); // Dolly
 ```

@@ -19,9 +19,9 @@ Say, you are building a war game with hundreds, or maybe even thousands of playe
 
 ```java
 public void handleMeLee(Unit units[], int numUnits) {
-  for (int a = 0; a < numUnits - 1; a++)
+  for (var a = 0; a < numUnits - 1; a++)
   {
-    for (int b = a + 1; b < numUnits; b++)
+    for (var b = a + 1; b < numUnits; b++)
     {
       if (units[a].position() == units[b].position())
       {
