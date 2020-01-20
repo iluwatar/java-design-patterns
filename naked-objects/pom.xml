@@ -37,7 +37,7 @@
 		<isis.version>1.9.0</isis.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<assertj-core.version>2.0.0</assertj-core.version>
+		<assertj-core.version>3.14.0</assertj-core.version>
 	</properties>
 	<repositories>
 		<repository>
