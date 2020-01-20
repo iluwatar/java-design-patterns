@@ -37,7 +37,7 @@
         <compiler.version>3.8.1</compiler.version>
         <jacoco.version>0.8.4</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
-        <camel.version>2.24.0</camel.version>
+        <camel.version>3.0.1</camel.version>
         <guava.version>19.0</guava.version>
         <mockito.version>1.10.19</mockito.version>
         <htmlunit.version>2.22</htmlunit.version>
