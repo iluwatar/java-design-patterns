@@ -194,7 +194,7 @@
 				<plugin>
 					<groupId>org.apache.rat</groupId>
 					<artifactId>apache-rat-plugin</artifactId>
-					<version>0.10</version>
+					<version>0.13</version>
 					<configuration>
 						<addDefaultLicenseMatchers>true</addDefaultLicenseMatchers>
 						<excludeSubProjects>true</excludeSubProjects>
