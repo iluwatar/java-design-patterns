@@ -1,0 +1,54 @@
+@startuml
+package com.iluwatar.leaderfollowers {
+  class App {
+    + App()
+    - addTasks(taskSet : TaskSet) {static}
+    - execute(workCenter : WorkCenter, taskSet : TaskSet) {static}
+    + main(args : String[]) {static}
+  }
+  class Task {
+    - finished : boolean
+    - time : int
+    + Task(time : int)
+    + getTime() : int
+    + isFinished() : boolean
+    + setFinished()
+  }
+  class TaskHandler {
+    + TaskHandler()
+    + handleTask(task : Task)
+  }
+  class TaskSet {
+    - queue : BlockingQueue<Task>
+    + TaskSet()
+    + addTask(task : Task)
+    + getSize() : int
+    + getTask() : Task
+  }
+  class WorkCenter {
+    - leader : Worker
+    - workers : List<Worker>
+    + WorkCenter()
+    + addWorker(worker : Worker)
+    + createWorkers(numberOfWorkers : int, taskSet : TaskSet, taskHandler : TaskHandler)
+    + getLeader() : Worker
+    + getWorkers() : List<Worker>
+    + promoteLeader()
+    + removeWorker(worker : Worker)
+  }
+  class Worker {
+    - id : long
+    - taskHandler : TaskHandler
+    - taskSet : TaskSet
+    - workCenter : WorkCenter
+    + Worker(id : long, workCenter : WorkCenter, taskSet : TaskSet, taskHandler : TaskHandler)
+    + equals(o : Object) : boolean
+    + hashCode() : int
+    + run()
+  }
+}
+Worker -->  "-taskSet" TaskSet
+Worker -->  "-taskHandler" TaskHandler
+TaskSet -->  "-queue" Task
+Worker -->  "-workCenter" WorkCenter
+@enduml
