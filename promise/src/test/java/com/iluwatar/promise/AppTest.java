@@ -23,12 +23,10 @@
 
 package com.iluwatar.promise;
 
+import java.util.concurrent.ExecutionException;
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.ExecutionException;
-
 /**
- * 
  * Application test.
  */
 public class AppTest {

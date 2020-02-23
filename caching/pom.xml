@@ -41,7 +41,7 @@
     <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>mongodb-driver</artifactId>
-      <version>3.0.4</version>
+      <version>3.12.1</version>
     </dependency>
     <dependency>
       <groupId>org.mongodb</groupId>
@@ -68,6 +68,21 @@
         <configuration>
           <skipTests>false</skipTests>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <configuration>
+              <archive>
+                <manifest>
+                  <mainClass>com.iluwatar.caching.App</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

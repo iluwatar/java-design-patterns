@@ -55,13 +55,6 @@ public class Servant {
    * Check if we will be hanged.
    */
   public boolean checkIfYouWillBeHanged(List<Royalty> tableGuests) {
-    boolean anotherDay = true;
-    for (Royalty r : tableGuests) {
-      if (!r.getMood()) {
-        anotherDay = false;
-      }
-    }
-
-    return anotherDay;
+    return tableGuests.stream().allMatch(Royalty::getMood);
   }
 }

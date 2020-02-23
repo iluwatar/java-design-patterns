@@ -100,24 +100,24 @@ public class MassGreaterThanSelector extends AbstractSelector<Creature> {
 With these building blocks in place, we can perform a search for red creatures as follows:
 
 ```java
-    List<Creature> redCreatures = creatures.stream().filter(new ColorSelector(Color.RED))
+    var redCreatures = creatures.stream().filter(new ColorSelector(Color.RED))
       .collect(Collectors.toList());
 ```
 
 But we could also use our parameterized selector like this:
 
 ```java
-    List<Creature> heavyCreatures = creatures.stream().filter(new MassGreaterThanSelector(500.0)
+    var heavyCreatures = creatures.stream().filter(new MassGreaterThanSelector(500.0)
       .collect(Collectors.toList());
 ```
 
 Our third option is to combine multiple selectors together. Performing a search for special creatures (defined as red, flying, and not small) could be done as follows:
 
 ```java
-    AbstractSelector specialCreaturesSelector = 
+    var specialCreaturesSelector = 
       new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING)).and(new SizeSelector(Size.SMALL).not());
 
-    List<Creature> specialCreatures = creatures.stream().filter(specialCreaturesSelector)
+    var specialCreatures = creatures.stream().filter(specialCreaturesSelector)
       .collect(Collectors.toList());
 ```
 

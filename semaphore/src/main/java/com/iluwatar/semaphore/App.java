@@ -38,7 +38,7 @@ public class App {
    * main method.
    */
   public static void main(String[] args) {
-    FruitShop shop = new FruitShop();
+    var shop = new FruitShop();
     new Customer("Peter", shop).start();
     new Customer("Paul", shop).start();
     new Customer("Mary", shop).start();

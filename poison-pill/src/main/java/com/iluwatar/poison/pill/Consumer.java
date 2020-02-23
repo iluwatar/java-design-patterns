@@ -47,22 +47,20 @@ public class Consumer {
    */
   public void consume() {
     while (true) {
-      Message msg;
       try {
-        msg = queue.take();
+        var msg = queue.take();
         if (Message.POISON_PILL.equals(msg)) {
           LOGGER.info("Consumer {} receive request to terminate.", name);
           break;
         }
+        var sender = msg.getHeader(Headers.SENDER);
+        var body = msg.getBody();
+        LOGGER.info("Message [{}] from [{}] received by [{}]", body, sender, name);
       } catch (InterruptedException e) {
         // allow thread to exit
         LOGGER.error("Exception caught.", e);
         return;
       }
-
-      String sender = msg.getHeader(Headers.SENDER);
-      String body = msg.getBody();
-      LOGGER.info("Message [{}] from [{}] received by [{}]", body, sender, name);
     }
   }
 }

@@ -38,7 +38,7 @@ public class MenuStore extends Store {
   @Override
   public void onAction(Action action) {
     if (action.getType().equals(ActionType.MENU_ITEM_SELECTED)) {
-      MenuAction menuAction = (MenuAction) action;
+      var menuAction = (MenuAction) action;
       selected = menuAction.getMenuItem();
       notifyChange();
     }

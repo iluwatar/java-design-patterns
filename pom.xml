@@ -42,13 +42,13 @@
         <mockito.version>1.10.19</mockito.version>
         <htmlunit.version>2.22</htmlunit.version>
         <guice.version>4.0</guice.version>
-        <mongo-java-driver.version>3.3.0</mongo-java-driver.version>
-        <slf4j.version>1.7.28</slf4j.version>
+        <mongo-java-driver.version>3.12.1</mongo-java-driver.version>
+        <slf4j.version>1.7.30</slf4j.version>
         <logback.version>1.2.3</logback.version>
         <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
         <aws-java-sdk-dynamodb.version>1.11.289</aws-java-sdk-dynamodb.version>
         <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
-        <jackson.version>2.8.5</jackson.version>
+        <jackson.version>2.10.2</jackson.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.2</annotation-api.version>
@@ -322,7 +322,7 @@
             <dependency>
                 <groupId>org.javassist</groupId>
                 <artifactId>javassist</artifactId>
-                <version>3.25.0-GA</version>
+                <version>3.26.0-GA</version>
             </dependency>
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>

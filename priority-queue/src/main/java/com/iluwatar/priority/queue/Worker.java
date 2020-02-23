@@ -45,7 +45,7 @@ public class Worker {
   @SuppressWarnings("squid:S2189")
   public void run() throws Exception {
     while (true) {
-      Message message = queueManager.receiveMessage();
+      var message = queueManager.receiveMessage();
       if (message == null) {
         LOGGER.info("No Message ... waiting");
         Thread.sleep(200);

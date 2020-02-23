@@ -26,20 +26,18 @@ package com.iluwatar.producer.consumer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Producer Consumer Design pattern is a classic concurrency or threading pattern which reduces
- * coupling between Producer and Consumer by separating Identification of work with
- * Execution of Work.
+ * coupling between Producer and Consumer by separating Identification of work with Execution of
+ * Work.
  *
  * <p>In producer consumer design pattern a shared queue is used to control the flow and this
- * separation allows you to code producer and consumer separately. It also addresses the issue
- * of different timing require to produce item or consuming item. by using producer consumer
- * pattern both Producer and Consumer Thread can work with different speed.
- * 
+ * separation allows you to code producer and consumer separately. It also addresses the issue of
+ * different timing require to produce item or consuming item. by using producer consumer pattern
+ * both Producer and Consumer Thread can work with different speed.
  */
 public class App {
 
@@ -47,18 +45,17 @@ public class App {
 
   /**
    * Program entry point.
-   * 
-   * @param args
-   *          command line args
+   *
+   * @param args command line args
    */
   public static void main(String[] args) {
 
-    ItemQueue queue = new ItemQueue();
+    var queue = new ItemQueue();
 
-    ExecutorService executorService = Executors.newFixedThreadPool(5);
-    for (int i = 0; i < 2; i++) {
+    var executorService = Executors.newFixedThreadPool(5);
+    for (var i = 0; i < 2; i++) {
 
-      final Producer producer = new Producer("Producer_" + i, queue);
+      final var producer = new Producer("Producer_" + i, queue);
       executorService.submit(() -> {
         while (true) {
           producer.produce();
@@ -66,8 +63,8 @@ public class App {
       });
     }
 
-    for (int i = 0; i < 3; i++) {
-      final Consumer consumer = new Consumer("Consumer_" + i, queue);
+    for (var i = 0; i < 3; i++) {
+      final var consumer = new Consumer("Consumer_" + i, queue);
       executorService.submit(() -> {
         while (true) {
           consumer.consume();

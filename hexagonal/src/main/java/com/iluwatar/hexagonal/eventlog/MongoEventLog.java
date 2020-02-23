@@ -107,7 +107,7 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void ticketSubmitted(PlayerDetails details) {
-    Document document = new Document("email", details.getEmail());
+    var document = new Document("email", details.getEmail());
     document.put("phone", details.getPhoneNumber());
     document.put("bank", details.getBankAccount());
     document
@@ -118,7 +118,7 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void ticketSubmitError(PlayerDetails details) {
-    Document document = new Document("email", details.getEmail());
+    var document = new Document("email", details.getEmail());
     document.put("phone", details.getPhoneNumber());
     document.put("bank", details.getBankAccount());
     document.put("message", "Lottery ticket could not be submitted because lack of funds.");
@@ -128,7 +128,7 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void ticketDidNotWin(PlayerDetails details) {
-    Document document = new Document("email", details.getEmail());
+    var document = new Document("email", details.getEmail());
     document.put("phone", details.getPhoneNumber());
     document.put("bank", details.getBankAccount());
     document.put("message", "Lottery ticket was checked and unfortunately did not win this time.");
@@ -138,7 +138,7 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void ticketWon(PlayerDetails details, int prizeAmount) {
-    Document document = new Document("email", details.getEmail());
+    var document = new Document("email", details.getEmail());
     document.put("phone", details.getPhoneNumber());
     document.put("bank", details.getBankAccount());
     document.put("message", String
@@ -150,7 +150,7 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void prizeError(PlayerDetails details, int prizeAmount) {
-    Document document = new Document("email", details.getEmail());
+    var document = new Document("email", details.getEmail());
     document.put("phone", details.getPhoneNumber());
     document.put("bank", details.getBankAccount());
     document.put("message", String

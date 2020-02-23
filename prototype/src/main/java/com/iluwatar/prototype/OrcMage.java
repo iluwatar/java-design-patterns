@@ -60,14 +60,10 @@ public class OrcMage extends Mage {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    OrcMage other = (OrcMage) obj;
+    var other = (OrcMage) obj;
     if (weapon == null) {
-      if (other.weapon != null) {
-        return false;
-      }
-    } else if (!weapon.equals(other.weapon)) {
-      return false;
+      return other.weapon == null;
     }
-    return true;
+    return weapon.equals(other.weapon);
   }
 }

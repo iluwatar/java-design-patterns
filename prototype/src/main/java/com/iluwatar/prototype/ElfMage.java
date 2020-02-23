@@ -60,14 +60,10 @@ public class ElfMage extends Mage {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    ElfMage other = (ElfMage) obj;
+    var other = (ElfMage) obj;
     if (helpType == null) {
-      if (other.helpType != null) {
-        return false;
-      }
-    } else if (!helpType.equals(other.helpType)) {
-      return false;
+      return other.helpType == null;
     }
-    return true;
+    return helpType.equals(other.helpType);
   }
 }

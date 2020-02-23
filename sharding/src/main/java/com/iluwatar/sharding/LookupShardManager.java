@@ -58,8 +58,7 @@ public class LookupShardManager extends ShardManager {
       return lookupMap.get(key);
     } else {
       var shardCount = shardMap.size();
-      var allocatedShardId = new Random().nextInt(shardCount - 1) + 1;
-      return allocatedShardId;
+      return new Random().nextInt(shardCount - 1) + 1;
     }
   }
 

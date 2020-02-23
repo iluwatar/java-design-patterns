@@ -70,8 +70,8 @@ public class GroundDiveTest {
   public void testActivate() {
     log.clearLog();
     var groundDive = new GroundDive();
-    groundDive.activate();;
-    String[] logs = log.getLog().split("\n");
+    groundDive.activate();
+    var logs = log.getLog().split("\n");
     final var expectedSize = 3;
     final var log1 = logs[0].split("-")[1].trim() + " -" + logs[0].split("-")[2].trim();
     final var expectedLog1 = "Move to ( 0.0, 0.0, -20.0 )";

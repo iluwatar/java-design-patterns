@@ -23,7 +23,7 @@
 
 package com.iluwatar.spatialpartition;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Random;
 import org.slf4j.Logger;
@@ -64,10 +64,10 @@ public class Bubble extends Point<Bubble> {
     allBubbles.remove(this.id);
   }
 
-  void handleCollision(ArrayList<Point> bubblesToCheck, Hashtable<Integer, Bubble> allBubbles) {
-    boolean toBePopped = false; //if any other bubble collides with it, made true
-    for (int i = 0; i < bubblesToCheck.size(); i++) {
-      Integer otherId = bubblesToCheck.get(i).id;
+  void handleCollision(Collection<? extends Point> toCheck, Hashtable<Integer, Bubble> allBubbles) {
+    var toBePopped = false; //if any other bubble collides with it, made true
+    for (var point : toCheck) {
+      var otherId = point.id;
       if (allBubbles.get(otherId) != null && //the bubble hasn't been popped yet
           this.id != otherId && //the two bubbles are not the same
           this.touches(allBubbles.get(otherId))) { //the bubbles touch

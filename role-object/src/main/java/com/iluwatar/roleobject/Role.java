@@ -24,7 +24,6 @@
 package com.iluwatar.roleobject;
 
 import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,7 +47,7 @@ public enum Role {
    */
   @SuppressWarnings("unchecked")
   public <T extends CustomerRole> Optional<T> instance() {
-    Class<? extends CustomerRole> typeCst = this.typeCst;
+    var typeCst = this.typeCst;
     try {
       return (Optional<T>) Optional.of(typeCst.newInstance());
     } catch (InstantiationException | IllegalAccessException e) {

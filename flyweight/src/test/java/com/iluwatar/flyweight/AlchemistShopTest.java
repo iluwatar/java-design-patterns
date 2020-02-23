@@ -23,13 +23,11 @@
 
 package com.iluwatar.flyweight;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.ArrayList;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 10:54 PM
@@ -39,18 +37,18 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class AlchemistShopTest {
 
   @Test
-  public void testShop() throws Exception {
-    final AlchemistShop shop = new AlchemistShop();
+  public void testShop() {
+    final var shop = new AlchemistShop();
 
-    final List<Potion> bottomShelf = shop.getBottomShelf();
+    final var bottomShelf = shop.getBottomShelf();
     assertNotNull(bottomShelf);
     assertEquals(5, bottomShelf.size());
 
-    final List<Potion> topShelf = shop.getTopShelf();
+    final var topShelf = shop.getTopShelf();
     assertNotNull(topShelf);
     assertEquals(8, topShelf.size());
 
-    final List<Potion> allPotions = new ArrayList<>();
+    final var allPotions = new ArrayList<Potion>();
     allPotions.addAll(topShelf);
     allPotions.addAll(bottomShelf);
 

@@ -68,11 +68,11 @@ public class FruitBowl {
    * toString method.
    */
   public String toString() {
-    int apples = 0;
-    int oranges = 0;
-    int lemons = 0;
+    var apples = 0;
+    var oranges = 0;
+    var lemons = 0;
 
-    for (Fruit f : fruit) {
+    for (var f : fruit) {
       switch (f.getType()) {
         case APPLE:
           apples++;

@@ -78,7 +78,7 @@ public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T
     if (pathStack.isEmpty()) {
       throw new NoSuchElementException();
     }
-    TreeNode<T> next = pathStack.pop();
+    var next = pathStack.pop();
     pushPathToNextSmallest(next.getRight());
     return next;
   }

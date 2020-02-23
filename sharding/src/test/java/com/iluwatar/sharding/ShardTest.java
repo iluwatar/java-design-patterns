@@ -25,7 +25,6 @@ package com.iluwatar.sharding;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -48,7 +47,8 @@ public class ShardTest {
   }
 
   @After
-  public void tearDown() {}
+  public void tearDown() {
+  }
 
   @Test
   public void testStoreData() {
@@ -56,7 +56,7 @@ public class ShardTest {
       shard.storeData(data);
       var field = Shard.class.getDeclaredField("dataStore");
       field.setAccessible(true);
-      Map<Integer, Data> dataMap = (Map<Integer, Data>) field.get(shard);
+      var dataMap = (Map<Integer, Data>) field.get(shard);
       Assert.assertEquals(1, dataMap.size());
       Assert.assertEquals(data, dataMap.get(1));
     } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -68,13 +68,13 @@ public class ShardTest {
   @Test
   public void testClearData() {
     try {
-      Map<Integer, Data> dataMap = new HashMap<>();
+      var dataMap = new HashMap<Integer, Data>();
       dataMap.put(1, data);
       var field = Shard.class.getDeclaredField("dataStore");
       field.setAccessible(true);
       field.set(shard, dataMap);
       shard.clearData();
-      dataMap = (Map<Integer, Data>) field.get(shard);
+      dataMap = (HashMap<Integer, Data>) field.get(shard);
       Assert.assertEquals(0, dataMap.size());
     } catch (NoSuchFieldException | IllegalAccessException e) {
       Assert.fail("Fail to modify field access.");

@@ -60,15 +60,11 @@ public class OrcBeast extends Beast {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    OrcBeast other = (OrcBeast) obj;
+    var other = (OrcBeast) obj;
     if (weapon == null) {
-      if (other.weapon != null) {
-        return false;
-      }
-    } else if (!weapon.equals(other.weapon)) {
-      return false;
+      return other.weapon == null;
     }
-    return true;
+    return weapon.equals(other.weapon);
   }
 
 

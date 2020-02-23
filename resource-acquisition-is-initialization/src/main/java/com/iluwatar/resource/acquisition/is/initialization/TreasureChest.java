@@ -24,7 +24,6 @@
 package com.iluwatar.resource.acquisition.is.initialization;
 
 import java.io.Closeable;
-import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +39,7 @@ public class TreasureChest implements Closeable {
   }
 
   @Override
-  public void close() throws IOException {
+  public void close() {
     LOGGER.info("Treasure chest closes.");
   }
 }

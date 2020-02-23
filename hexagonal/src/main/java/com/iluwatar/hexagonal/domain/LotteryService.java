@@ -23,6 +23,9 @@
 
 package com.iluwatar.hexagonal.domain;
 
+import static com.iluwatar.hexagonal.domain.LotteryConstants.SERVICE_BANK_ACCOUNT;
+import static com.iluwatar.hexagonal.domain.LotteryConstants.TICKET_PRIZE;
+
 import com.google.inject.Inject;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
@@ -53,15 +56,16 @@ public class LotteryService {
    * Submit lottery ticket to participate in the lottery.
    */
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
-    boolean result = wireTransfers.transferFunds(LotteryConstants.TICKET_PRIZE,
-        ticket.getPlayerDetails().getBankAccount(), LotteryConstants.SERVICE_BANK_ACCOUNT);
+    var playerDetails = ticket.getPlayerDetails();
+    var playerAccount = playerDetails.getBankAccount();
+    var result = wireTransfers.transferFunds(TICKET_PRIZE, playerAccount, SERVICE_BANK_ACCOUNT);
     if (!result) {
-      notifications.ticketSubmitError(ticket.getPlayerDetails());
+      notifications.ticketSubmitError(playerDetails);
       return Optional.empty();
     }
-    Optional<LotteryTicketId> optional = repository.save(ticket);
+    var optional = repository.save(ticket);
     if (optional.isPresent()) {
-      notifications.ticketSubmitted(ticket.getPlayerDetails());
+      notifications.ticketSubmitted(playerDetails);
     }
     return optional;
   }
