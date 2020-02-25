@@ -41,8 +41,8 @@ public class Java8HolderTest extends AbstractHolderTest {
     final var holderField = Java8Holder.class.getDeclaredField("heavy");
     holderField.setAccessible(true);
 
-    final Supplier<Heavy> supplier = (Supplier<Heavy>) holderField.get(this.holder);
-    final Class<? extends Supplier> supplierClass = supplier.getClass();
+    final var supplier = (Supplier<Heavy>) holderField.get(this.holder);
+    final var supplierClass = supplier.getClass();
 
     // This is a little fishy, but I don't know another way to test this:
     // The lazy holder is at first a lambda, but gets replaced with a new supplier after loading ...

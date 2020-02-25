@@ -39,27 +39,27 @@ public class RingMessageManagerTest {
 
   @Test
   public void testSendHeartbeatMessage() {
-    Instance instance1 = new RingInstance(null, 1, 1);
+    var instance1 = new RingInstance(null, 1, 1);
     Map<Integer, Instance> instanceMap = Map.of(1, instance1);
-    MessageManager messageManager = new RingMessageManager(instanceMap);
+    var messageManager = new RingMessageManager(instanceMap);
     assertTrue(messageManager.sendHeartbeatMessage(1));
   }
 
   @Test
   public void testSendElectionMessage() {
     try {
-      Instance instance1 = new RingInstance(null, 1, 1);
-      Instance instance2 = new RingInstance(null, 1, 2);
-      Instance instance3 = new RingInstance(null, 1, 3);
+      var instance1 = new RingInstance(null, 1, 1);
+      var instance2 = new RingInstance(null, 1, 2);
+      var instance3 = new RingInstance(null, 1, 3);
       Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3);
-      MessageManager messageManager = new RingMessageManager(instanceMap);
-      String messageContent = "2";
+      var messageManager = new RingMessageManager(instanceMap);
+      var messageContent = "2";
       messageManager.sendElectionMessage(2, messageContent);
-      Message ringMessage = new Message(MessageType.ELECTION, messageContent);
-      Class instanceClass = AbstractInstance.class;
-      Field messageQueueField = instanceClass.getDeclaredField("messageQueue");
+      var ringMessage = new Message(MessageType.ELECTION, messageContent);
+      var instanceClass = AbstractInstance.class;
+      var messageQueueField = instanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);
-      Message ringMessageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
+      var ringMessageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
       assertEquals(ringMessageSent.getType(), ringMessage.getType());
       assertEquals(ringMessageSent.getContent(), ringMessage.getContent());
     } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -70,18 +70,18 @@ public class RingMessageManagerTest {
   @Test
   public void testSendLeaderMessage() {
     try {
-      Instance instance1 = new RingInstance(null, 1, 1);
-      Instance instance2 = new RingInstance(null, 1, 2);
-      Instance instance3 = new RingInstance(null, 1, 3);
+      var instance1 = new RingInstance(null, 1, 1);
+      var instance2 = new RingInstance(null, 1, 2);
+      var instance3 = new RingInstance(null, 1, 3);
       Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3);
-      MessageManager messageManager = new RingMessageManager(instanceMap);
-      String messageContent = "3";
+      var messageManager = new RingMessageManager(instanceMap);
+      var messageContent = "3";
       messageManager.sendLeaderMessage(2, 3);
-      Message ringMessage = new Message(MessageType.LEADER, messageContent);
-      Class instanceClass = AbstractInstance.class;
-      Field messageQueueField = instanceClass.getDeclaredField("messageQueue");
+      var ringMessage = new Message(MessageType.LEADER, messageContent);
+      var instanceClass = AbstractInstance.class;
+      var messageQueueField = instanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);
-      Message ringMessageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
+      var ringMessageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
       assertEquals(ringMessageSent, ringMessage);
     } catch (NoSuchFieldException | IllegalAccessException e) {
       fail("Error to access private field.");
@@ -91,17 +91,17 @@ public class RingMessageManagerTest {
   @Test
   public void testSendHeartbeatInvokeMessage() {
     try {
-      Instance instance1 = new RingInstance(null, 1, 1);
-      Instance instance2 = new RingInstance(null, 1, 2);
-      Instance instance3 = new RingInstance(null, 1, 3);
+      var instance1 = new RingInstance(null, 1, 1);
+      var instance2 = new RingInstance(null, 1, 2);
+      var instance3 = new RingInstance(null, 1, 3);
       Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3);
-      MessageManager messageManager = new RingMessageManager(instanceMap);
+      var messageManager = new RingMessageManager(instanceMap);
       messageManager.sendHeartbeatInvokeMessage(2);
-      Message ringMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");
-      Class instanceClass = AbstractInstance.class;
-      Field messageQueueField = instanceClass.getDeclaredField("messageQueue");
+      var ringMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");
+      var instanceClass = AbstractInstance.class;
+      var messageQueueField = instanceClass.getDeclaredField("messageQueue");
       messageQueueField.setAccessible(true);
-      Message ringMessageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
+      var ringMessageSent = ((Queue<Message>) messageQueueField.get(instance3)).poll();
       assertEquals(ringMessageSent.getType(), ringMessage.getType());
       assertEquals(ringMessageSent.getContent(), ringMessage.getContent());
     } catch (NoSuchFieldException | IllegalAccessException e) {
