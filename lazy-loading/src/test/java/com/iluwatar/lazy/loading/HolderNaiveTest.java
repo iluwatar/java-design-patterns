@@ -36,7 +36,7 @@ public class HolderNaiveTest extends AbstractHolderTest {
 
   @Override
   Heavy getInternalHeavyValue() throws Exception {
-    final Field holderField = HolderNaive.class.getDeclaredField("heavy");
+    final var holderField = HolderNaive.class.getDeclaredField("heavy");
     holderField.setAccessible(true);
     return (Heavy) holderField.get(this.holder);
   }
