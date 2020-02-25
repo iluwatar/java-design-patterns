@@ -68,18 +68,18 @@ public class CakeViewImplTest {
   @Test
   public void testRender() {
 
-    final List<CakeLayerInfo> layers = List.of(
+    final var layers = List.of(
             new CakeLayerInfo("layer1", 1000),
             new CakeLayerInfo("layer2", 2000),
             new CakeLayerInfo("layer3", 3000));
 
-    final CakeInfo cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
-    final List<CakeInfo> cakes = List.of(cake);
+    final var cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
+    final var cakes = List.of(cake);
 
-    final CakeBakingService bakingService = mock(CakeBakingService.class);
+    final var bakingService = mock(CakeBakingService.class);
     when(bakingService.getAllCakes()).thenReturn(cakes);
 
-    final CakeViewImpl cakeView = new CakeViewImpl(bakingService);
+    final var cakeView = new CakeViewImpl(bakingService);
 
     assertEquals(0, appender.getLogSize());
 
