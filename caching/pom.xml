@@ -46,12 +46,12 @@
     <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>mongodb-driver-core</artifactId>
-      <version>3.0.4</version>
+      <version>3.12.1</version>
     </dependency>
     <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>bson</artifactId>
-      <version>3.0.4</version>
+      <version>3.12.1</version>
     </dependency>
   </dependencies>
   <!--
