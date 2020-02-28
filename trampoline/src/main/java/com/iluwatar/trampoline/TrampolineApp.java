@@ -24,6 +24,9 @@
 package com.iluwatar.trampoline;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Trampoline pattern allows to define recursive algorithms by iterative loop.
@@ -35,13 +38,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TrampolineApp {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(TrampolineApp.class);
+
   /**
    * Main program for showing pattern. It does loop with factorial function.
    */
   public static void main(String[] args) {
-    log.info("start pattern");
+    LOGGER.info("start pattern");
     var result = loop(10, 1).result();
-    log.info("result {}", result);
+    LOGGER.info("result {}", result);
 
   }
 
