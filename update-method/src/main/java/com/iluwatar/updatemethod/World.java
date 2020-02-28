@@ -26,7 +26,6 @@ package com.iluwatar.updatemethod;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -87,7 +86,8 @@ public class World {
    * Render the next frame. Here we do nothing since it is not related to the
    * pattern.
    */
-  private void render() {}
+  private void render() {
+  }
 
   /**
    * Run game loop.
