@@ -187,7 +187,7 @@
 				<plugin>
 					<groupId>org.simplericity.jettyconsole</groupId>
 					<artifactId>jetty-console-maven-plugin</artifactId>
-					<version>1.56</version>
+					<version>1.61</version>
 				</plugin>
 
 				<!-- Apache Release Audit Tool -->
