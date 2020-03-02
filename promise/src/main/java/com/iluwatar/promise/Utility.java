@@ -37,6 +37,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Stream;
+
+import static java.nio.file.Files.lines;
+import static java.nio.file.Paths.get;
 
 /**
  * Utility to perform various operations
@@ -94,16 +98,14 @@ public class Utility {
    * @return number of lines in the file at provided location. 0 if file does not exist.
    */
   public static Integer countLines(String fileLocation) {
-    int lineCount = 0;
-    try (Reader reader = new FileReader(fileLocation);
-        BufferedReader bufferedReader = new BufferedReader(reader)) {
-      while (bufferedReader.readLine() != null) {
-        lineCount++;
+      int lineCount = 0;
+      try (Stream<String> stream = lines(get(fileLocation))) {
+          lineCount = (int) stream.count();
       }
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-    return lineCount;
+      catch (IOException e) {
+          return lineCount;
+      }
+      return lineCount;
   }
 
   /**
