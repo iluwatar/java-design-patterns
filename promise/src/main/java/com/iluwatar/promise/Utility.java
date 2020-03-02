@@ -104,7 +104,7 @@ public class Utility {
       }
      catch (IOException ex) {
       ex.printStackTrace();
-     }
+    }
     return lineCount;
   }
 
