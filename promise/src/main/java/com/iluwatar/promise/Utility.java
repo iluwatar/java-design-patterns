@@ -101,8 +101,8 @@ public class Utility {
       int lineCount = 0;
       try (Stream<String> stream = lines(get(fileLocation))) {
           lineCount = (int) stream.count();
-      }
-     catch (IOException ex) {
+
+      } catch (IOException ex) {
       ex.printStackTrace();
     }
     return lineCount;
