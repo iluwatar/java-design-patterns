@@ -103,9 +103,9 @@ public class Utility {
           lineCount = (int) stream.count();
       }
       catch (IOException ex) {
-          ex.printStackTrace();
-      }
-      return lineCount;
+       ex.printStackTrace();
+     }
+     return lineCount;
   }
 
   /**
