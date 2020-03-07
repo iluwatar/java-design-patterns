@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.spell;
 
+import com.iluwatar.servicelayer.common.BaseEntity;
+import com.iluwatar.servicelayer.spellbook.Spellbook;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,13 +33,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.iluwatar.servicelayer.common.BaseEntity;
-import com.iluwatar.servicelayer.spellbook.Spellbook;
-
 /**
- * 
  * Spell entity.
- *
  */
 @Entity
 @Table(name = "SPELL")
@@ -53,13 +51,14 @@ public class Spell extends BaseEntity {
   @JoinColumn(name = "SPELLBOOK_ID_FK", referencedColumnName = "SPELLBOOK_ID")
   private Spellbook spellbook;
 
-  public Spell() {}
+  public Spell() {
+  }
 
   public Spell(String name) {
     this();
     this.name = name;
   }
-  
+
   public Long getId() {
     return id;
   }
@@ -67,7 +66,7 @@ public class Spell extends BaseEntity {
   public void setId(Long id) {
     this.id = id;
   }
-  
+
   public String getName() {
     return name;
   }

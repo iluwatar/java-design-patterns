@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.producer.consumer;
 
 import java.util.Random;
 
 /**
  * Class responsible for producing unit of work that can be expressed as {@link Item} and submitted
- * to queue
+ * to queue.
  */
 public class Producer {
+
+  private static final Random RANDOM = new Random();
 
   private final ItemQueue queue;
 
@@ -42,13 +45,12 @@ public class Producer {
   }
 
   /**
-   * Put item in the queue
+   * Put item in the queue.
    */
   public void produce() throws InterruptedException {
 
-    Item item = new Item(name, itemId++);
+    var item = new Item(name, itemId++);
     queue.put(item);
-    Random random = new Random();
-    Thread.sleep(random.nextInt(2000));
+    Thread.sleep(RANDOM.nextInt(2000));
   }
 }

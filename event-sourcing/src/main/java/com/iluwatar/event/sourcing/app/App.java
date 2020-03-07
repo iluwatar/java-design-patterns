@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.sourcing.app;
 
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
@@ -41,13 +42,13 @@ import org.slf4j.LoggerFactory;
  * transactional data, and maintain full audit trails and history that can enable compensating
  * actions.
  *
- * This App class is an example usage of Event Sourcing pattern. As an example, two bank account is
- * created, then some money deposit and transfer actions are taken so a new state of accounts is
+ * <p>This App class is an example usage of Event Sourcing pattern. As an example, two bank account
+ * is created, then some money deposit and transfer actions are taken so a new state of accounts is
  * created. At that point, state is cleared in order to represent a system shot down. After the shot
  * down, system state is recovered by re-creating the past events from event journal. Then state is
  * printed so a user can view the last state is same with the state before system shot down.
  *
- * Created by Serdar Hamzaogullari on 06.08.2017.
+ * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class App {
 
@@ -68,7 +69,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    DomainEventProcessor eventProcessor = new DomainEventProcessor();
+    var eventProcessor = new DomainEventProcessor();
 
 
     LOGGER.info("Running the system first time............");
@@ -85,10 +86,10 @@ public class App {
     LOGGER.info("Do some money operations............");
 
     eventProcessor.process(new MoneyDepositEvent(
-        2, new Date().getTime(), ACCOUNT_OF_DAENERYS,  new BigDecimal("100000")));
+        2, new Date().getTime(), ACCOUNT_OF_DAENERYS, new BigDecimal("100000")));
 
     eventProcessor.process(new MoneyDepositEvent(
-        3, new Date().getTime(), ACCOUNT_OF_JON,  new BigDecimal("100")));
+        3, new Date().getTime(), ACCOUNT_OF_JON, new BigDecimal("100")));
 
     eventProcessor.process(new MoneyTransferEvent(
         4, new Date().getTime(), new BigDecimal("10000"), ACCOUNT_OF_DAENERYS,

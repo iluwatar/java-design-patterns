@@ -2,7 +2,7 @@
 <!--
 
     The MIT License
-    Copyright (c) 2014-2016 Ilkka Seppälä
+    Copyright © 2014-2019 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -24,83 +24,48 @@
 
 -->
 <project
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.21.0-SNAPSHOT</version>
+    <version>1.23.0-SNAPSHOT</version>
   </parent>
   <artifactId>dao</artifactId>
 
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
     </dependency>
     <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-      </dependency>
-    <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
     </dependency>
   </dependencies>
-
   <build>
-
-    <!-- 
-    log4j.xml file will be copied both in ${project.build.outputDirectory} 
-    and ${project.build.directory}. Thanks to Sean Patrick Floyd 
-    (http://stackoverflow.com/questions/5637532/maven-how-to-place-resource-file-together-with-jar) 
-    -->
-      
-    <resources>
-      <resource> <!-- regular processing for every resource file -->
-        <directory>src/main/resources</directory>
-      </resource>
-      <resource> <!-- processing with a different output directory for log4j.xml -->
-        <directory>src/main/resources</directory>
-        <includes>
-          <include>log4j.xml</include>
-        </includes>
-        <targetPath>..</targetPath> <!-- relative to target/classes i.e. ${project.build.directory} -->
-      </resource>
-    </resources>
-
     <plugins>
-
-      <!-- 
-      This will exclude log4j.xml file from generated JAR 
-      -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <excludes>
-            <exclude>log4j.xml</exclude>
-          </excludes>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-            </manifest>
-          </archive>
-        </configuration>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <configuration>
+              <archive>
+                <manifest>
+                  <mainClass>com.iluwatar.dao.App</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
-
     </plugins>
   </build>
 </project>

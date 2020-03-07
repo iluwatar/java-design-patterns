@@ -1,27 +1,32 @@
-/**
- * The MIT License Copyright (c) 2016 Amit Dixit
+/*
+ * The MIT License
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rights to use, copy, modify, merge, publish, distribute,
- * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all copies or
- * substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
- * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
-package com.iluwatar.datamapper;
 
-import org.junit.jupiter.api.Test;
+package com.iluwatar.datamapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
@@ -41,11 +46,11 @@ public class DataMapperTest {
   public void testFirstDataMapper() {
 
     /* Create new data mapper of first type */
-    final StudentDataMapper mapper = new StudentDataMapperImpl();
+    final var mapper = new StudentDataMapperImpl();
 
     /* Create new student */
-    int studentId = 1;
-    Student student = new Student(studentId, "Adam", 'A');
+    var studentId = 1;
+    var student = new Student(studentId, "Adam", 'A');
 
     /* Add student in respectibe db */
     mapper.insert(student);
@@ -54,7 +59,7 @@ public class DataMapperTest {
     assertEquals(studentId, mapper.find(student.getStudentId()).get().getStudentId());
 
     /* Update existing student object */
-    String updatedName = "AdamUpdated";
+    var updatedName = "AdamUpdated";
     student = new Student(student.getStudentId(), updatedName, 'A');
 
     /* Update student in respectibe db */

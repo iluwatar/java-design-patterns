@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,32 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.eip.wiretap.routes;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.apache.camel.EndpointInject;
-import org.apache.camel.Message;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
  * Test class for <i>WireTapRoute</i>.
  * <p>
- * In order for it to work we have to mock endpoints we want to read/write to. To mock those we need to substitute
- * original endpoint names to mocks.
+ * In order for it to work we have to mock endpoints we want to read/write to. To mock those we need
+ * to substitute original endpoint names to mocks.
  * </p>
  */
 @ExtendWith(SpringExtension.class)
-@SpringApplicationConfiguration(classes = WireTapRouteTest.class)
+@SpringBootTest(classes = WireTapRouteTest.class)
 @ActiveProfiles("test")
 @EnableAutoConfiguration
 @ComponentScan
@@ -62,6 +62,7 @@ public class WireTapRouteTest {
 
   /**
    * Test if both endpoints receive exactly one message containing the same, unchanged body.
+   *
    * @throws Exception in case of en exception during the test
    */
   @Test
@@ -75,8 +76,8 @@ public class WireTapRouteTest {
     endpoint.assertIsSatisfied();
     wireTapEndpoint.assertIsSatisfied();
 
-    Message endpointIn = endpoint.getExchanges().get(0).getIn();
-    Message wireTapEndpointIn = wireTapEndpoint.getExchanges().get(0).getIn();
+    var endpointIn = endpoint.getExchanges().get(0).getIn();
+    var wireTapEndpointIn = wireTapEndpoint.getExchanges().get(0).getIn();
 
     assertEquals("TEST", endpointIn.getBody());
     assertEquals("TEST", wireTapEndpointIn.getBody());

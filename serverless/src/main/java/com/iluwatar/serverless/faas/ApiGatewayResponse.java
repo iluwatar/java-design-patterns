@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.serverless.faas;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.Serializable;
 import java.util.Map;
 
 /**
- * Api gateway response
- *
- * @param <T> serializable object
+ * Api gateway response.
  */
-public class ApiGatewayResponse<T extends Serializable> implements Serializable {
+public class ApiGatewayResponse implements Serializable {
 
   private static final long serialVersionUID = 1181159426782844892L;
 
@@ -43,15 +41,19 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
   private final Boolean isBase64Encoded;
 
   /**
-   * api gateway response
+   * api gateway response.
    *
-   * @param statusCode - http status code
-   * @param body - response body
-   * @param headers - response headers
+   * @param statusCode      - http status code
+   * @param body            - response body
+   * @param headers         - response headers
    * @param isBase64Encoded - base64Encoded flag
    */
-  public ApiGatewayResponse(Integer statusCode, String body, Map<String, String> headers,
-                            Boolean isBase64Encoded) {
+  public ApiGatewayResponse(
+      Integer statusCode,
+      String body,
+      Map<String, String> headers,
+      Boolean isBase64Encoded
+  ) {
     this.statusCode = statusCode;
     this.body = body;
     this.headers = headers;
@@ -59,7 +61,7 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
   }
 
   /**
-   * http status code
+   * http status code.
    *
    * @return statusCode - http status code
    */
@@ -68,7 +70,7 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
   }
 
   /**
-   * response body
+   * response body.
    *
    * @return string body
    */
@@ -77,7 +79,7 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
   }
 
   /**
-   * response headers
+   * response headers.
    *
    * @return response headers
    */
@@ -86,7 +88,7 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
   }
 
   /**
-   * base64Encoded flag, API Gateway expects the property to be called "isBase64Encoded"
+   * base64Encoded flag, API Gateway expects the property to be called "isBase64Encoded".
    *
    * @return base64Encoded flag
    */
@@ -95,7 +97,8 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
   }
 
   /**
-   * ApiGatewayResponse Builder class
+   * ApiGatewayResponse Builder class.
+   *
    * @param <T> Serializable object
    */
   public static class ApiGatewayResponseBuilder<T extends Serializable> {
@@ -106,7 +109,8 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
     private Boolean isBase64Encoded;
 
     /**
-     * http status code
+     * http status code.
+     *
      * @param statusCode - http status code
      * @return ApiGatewayResponseBuilder
      */
@@ -116,7 +120,8 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
     }
 
     /**
-     * Serializable body
+     * Serializable body.
+     *
      * @param body - Serializable object
      * @return ApiGatewayResponseBuilder
      */
@@ -126,7 +131,8 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
     }
 
     /**
-     * response headers
+     * response headers.
+     *
      * @param headers - response headers
      * @return ApiGatewayResponseBuilder
      */
@@ -136,7 +142,8 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
     }
 
     /**
-     * base64Encoded glag
+     * base64Encoded flag.
+     *
      * @param isBase64Encoded - base64Encoded flag
      * @return ApiGatewayResponseBuilder
      */
@@ -146,7 +153,7 @@ public class ApiGatewayResponse<T extends Serializable> implements Serializable 
     }
 
     /**
-     * build ApiGatewayResponse
+     * build ApiGatewayResponse.
      *
      * @return ApiGatewayResponse
      */

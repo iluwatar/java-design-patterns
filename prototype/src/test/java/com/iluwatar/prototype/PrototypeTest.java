@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,45 +20,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.prototype;
-
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.Arrays;
-import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
+import java.util.Collection;
+import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
 /**
  * Date: 12/28/15 - 8:45 PM
+ *
  * @param <P> Prototype
  * @author Jeroen Meulemeester
  */
 public class PrototypeTest<P extends Prototype> {
   static Collection<Object[]> dataProvider() {
-    return Arrays.asList(
-            new Object[]{new OrcBeast("axe"), "Orcish wolf attacks with axe"},
-            new Object[]{new OrcMage("sword"), "Orcish mage attacks with sword"},
-            new Object[]{new OrcWarlord("laser"), "Orcish warlord attacks with laser"},
-            new Object[]{new ElfBeast("cooking"), "Elven eagle helps in cooking"},
-            new Object[]{new ElfMage("cleaning"), "Elven mage helps in cleaning"},
-            new Object[]{new ElfWarlord("protecting"), "Elven warlord helps in protecting"}
+    return List.of(
+        new Object[]{new OrcBeast("axe"), "Orcish wolf attacks with axe"},
+        new Object[]{new OrcMage("sword"), "Orcish mage attacks with sword"},
+        new Object[]{new OrcWarlord("laser"), "Orcish warlord attacks with laser"},
+        new Object[]{new ElfBeast("cooking"), "Elven eagle helps in cooking"},
+        new Object[]{new ElfMage("cleaning"), "Elven mage helps in cleaning"},
+        new Object[]{new ElfWarlord("protecting"), "Elven warlord helps in protecting"}
     );
   }
 
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testPrototype(P testedPrototype, String expectedToString) throws Exception {
+  public void testPrototype(P testedPrototype, String expectedToString) {
     assertEquals(expectedToString, testedPrototype.toString());
 
-    final Object clone = testedPrototype.copy();
+    final var clone = testedPrototype.copy();
     assertNotNull(clone);
     assertNotSame(clone, testedPrototype);
     assertSame(testedPrototype.getClass(), clone.getClass());
+    assertEquals(clone, testedPrototype);
   }
 
 }

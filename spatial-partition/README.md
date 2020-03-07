@@ -3,10 +3,10 @@ layout: pattern
 title: Spatial Partition
 folder: spatial-partition
 permalink: /patterns/spatial-partition/
-categories: Game Programming pattern/Optimisation pattern
+categories: Behavioral
 tags:
- - Java
- - Difficulty-Intermediate
+ - Performance
+ - Game programming
 ---
 
 ## Intent
@@ -14,19 +14,14 @@ As explained in the book [Game Programming Patterns](http://gameprogrammingpatte
 
 > efficiently locate objects by storing them in a data structure organized by their positions.
 
-## Applicability
-This pattern can be used:
-* When you need to keep track of a large number of objects' positions, which are getting updated every frame.
-* When it is acceptable to trade memory for speed, since creating and updating data structure will use up extra memory.
-
 ## Explanation
 Say, you are building a war game with hundreds, or maybe even thousands of players, who are clashing on the battle field. Each player's position is getting updated every frame. The simple way to handle all interactions taking place on the field is to check each player's position against every other player's position:
 
 ```java
 public void handleMeLee(Unit units[], int numUnits) {
-  for (int a = 0; a < numUnits - 1; a++)
+  for (var a = 0; a < numUnits - 1; a++)
   {
-    for (int b = a + 1; b < numUnits; b++)
+    for (var b = a + 1; b < numUnits; b++)
     {
       if (units[a].position() == units[b].position())
       {
@@ -48,7 +43,16 @@ The idea behind the Spatial Partition design pattern is to enable quick location
 
 In our implementation, we use the Quadtree data structure which will reduce the time complexity of finding the objects within a certain range from O(n^2) to O(nlogn), decreasing the computations required significantly in case of large number of objects.
 
+## Class diagram
+![alt text](./etc/spatial-partition.urm.png "Spatial Partition pattern class diagram")
+
+## Applicability
+This pattern can be used:
+
+* When you need to keep track of a large number of objects' positions, which are getting updated every frame.
+* When it is acceptable to trade memory for speed, since creating and updating data structure will use up extra memory.
+
 ## Credits
+
 * [Game Programming Patterns/Spatial Partition](http://gameprogrammingpatterns.com/spatial-partition.html) by Bob Nystrom
 * [Quadtree tutorial](https://www.youtube.com/watch?v=OJxEcs0w_kE) by Daniel Schiffman
-

@@ -5,9 +5,7 @@ folder: abstract-factory
 permalink: /patterns/abstract-factory/
 categories: Creational
 tags:
- - Java
- - Gang Of Four
- - Difficulty-Intermediate
+ - Gang of Four
 ---
 
 ## Also known as
@@ -109,10 +107,10 @@ public class OrcKingdomFactory implements KingdomFactory {
 Now we have our abstract factory that lets us make family of related objects i.e. Elven kingdom factory creates Elven castle, king and army etc.
 
 ```java
-KingdomFactory factory = new ElfKingdomFactory();
-Castle castle = factory.createCastle();
-King king = factory.createKing();
-Army army = factory.createArmy();
+var factory = new ElfKingdomFactory();
+var castle = factory.createCastle();
+var king = factory.createKing();
+var army = factory.createArmy();
 
 castle.getDescription();  // Output: This is the Elven castle!
 king.getDescription(); // Output: This is the Elven king!
@@ -143,7 +141,7 @@ public static class FactoryMaker {
 }
 
 public static void main(String[] args) {
-  App app = new App();
+  var app = new App();
 
   LOGGER.info("Elf Kingdom");
   app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
@@ -157,6 +155,9 @@ public static void main(String[] args) {
 }
 ```
 
+## Class diagram
+![alt text](./etc/abstract-factory.urm.png "Abstract Factory class diagram")
+
 
 ## Applicability
 Use the Abstract Factory pattern when
@@ -169,23 +170,24 @@ Use the Abstract Factory pattern when
 *	you need a run-time value to construct a particular dependency
 *	you want to decide which product to call from a family at runtime.
 *	you need to supply one or more parameters only known at run-time before you can resolve a dependency.
+* when you need consistency among products
+* you don’t want to change existing code when adding new products or families of products to the program.
 
 ## Use Cases:	
 
 *	Selecting to call the appropriate implementation of FileSystemAcmeService or DatabaseAcmeService or NetworkAcmeService at runtime.
 *	Unit test case writing becomes much easier
+* UI tools for different OS
 
 ## Consequences:
 
 *	Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
+* While the pattern is great when creating predefined objects, adding the new ones might be challenging.
+* The code may become more complicated than it should be, since a lot of new interfaces and classes are introduced along with the pattern.
 
 
 ## Tutorial
 * [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
-
-## Presentations
-
-* [Abstract Factory Pattern](etc/presentation.html) 
 
 
 ## Real world examples

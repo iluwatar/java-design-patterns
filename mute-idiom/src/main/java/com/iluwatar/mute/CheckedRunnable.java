@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,12 +25,12 @@ package com.iluwatar.mute;
 
 /**
  * A runnable which may throw exception on execution.
- *
  */
 @FunctionalInterface
 public interface CheckedRunnable {
   /**
    * Same as {@link Runnable#run()} with a possibility of exception in execution.
+   *
    * @throws Exception if any exception occurs.
    */
   void run() throws Exception;

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.specification.app;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+package com.iluwatar.specification.app;
 
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.creature.Dragon;
@@ -36,52 +33,77 @@ import com.iluwatar.specification.creature.Troll;
 import com.iluwatar.specification.property.Color;
 import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.selector.ColorSelector;
+import com.iluwatar.specification.selector.MassEqualSelector;
+import com.iluwatar.specification.selector.MassGreaterThanSelector;
+import com.iluwatar.specification.selector.MassSmallerThanOrEqSelector;
 import com.iluwatar.specification.selector.MovementSelector;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
- * The central idea of the Specification pattern is to separate the statement of how to match a
+ * <p>The central idea of the Specification pattern is to separate the statement of how to match a
  * candidate, from the candidate object that it is matched against. As well as its usefulness in
- * selection, it is also valuable for validation and for building to order.
- * <p>
- * In this example we have a pool of creatures with different properties. We then have defined
- * separate selection rules (Specifications) that we apply to the collection and as output receive
- * only the creatures that match the selection criteria.
- * <p>
- * http://martinfowler.com/apsupp/spec.pdf
+ * selection, it is also valuable for validation and for building to order.</p>
  *
+ * <p>In this example we have a pool of creatures with different properties. We then have defined
+ * separate selection rules (Specifications) that we apply to the collection and as output receive
+ * only the creatures that match the selection criteria.</p>
+ *
+ * <p>http://martinfowler.com/apsupp/spec.pdf</p>
  */
 public class App {
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(String[] args) {
     // initialize creatures list
-    List<Creature> creatures =
-        Arrays.asList(new Goblin(), new Octopus(), new Dragon(), new Shark(), new Troll(),
-            new KillerBee());
+    var creatures = List.of(
+        new Goblin(),
+        new Octopus(),
+        new Dragon(),
+        new Shark(),
+        new Troll(),
+        new KillerBee()
+    );
+    // so-called "hard-coded" specification
+    LOGGER.info("Demonstrating hard-coded specification :");
     // find all walking creatures
     LOGGER.info("Find all walking creatures");
-    List<Creature> walkingCreatures =
-        creatures.stream().filter(new MovementSelector(Movement.WALKING))
-            .collect(Collectors.toList());
-    walkingCreatures.forEach(c -> LOGGER.info(c.toString()));
+    print(creatures, new MovementSelector(Movement.WALKING));
     // find all dark creatures
     LOGGER.info("Find all dark creatures");
-    List<Creature> darkCreatures =
-        creatures.stream().filter(new ColorSelector(Color.DARK)).collect(Collectors.toList());
-    darkCreatures.forEach(c -> LOGGER.info(c.toString()));
+    print(creatures, new ColorSelector(Color.DARK));
+    LOGGER.info("\n");
+    // so-called "parameterized" specification
+    LOGGER.info("Demonstrating parameterized specification :");
+    // find all creatures heavier than 500kg
+    LOGGER.info("Find all creatures heavier than 600kg");
+    print(creatures, new MassGreaterThanSelector(600.0));
+    // find all creatures heavier than 500kg
+    LOGGER.info("Find all creatures lighter than or weighing exactly 500kg");
+    print(creatures, new MassSmallerThanOrEqSelector(500.0));
+    LOGGER.info("\n");
+    // so-called "composite" specification
+    LOGGER.info("Demonstrating composite specification :");
     // find all red and flying creatures
     LOGGER.info("Find all red and flying creatures");
-    List<Creature> redAndFlyingCreatures =
-        creatures.stream()
-            .filter(new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING)))
-            .collect(Collectors.toList());
-    redAndFlyingCreatures.forEach(c -> LOGGER.info(c.toString()));
+    var redAndFlying = new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING));
+    print(creatures, redAndFlying);
+    // find all creatures dark or red, non-swimming, and heavier than or equal to 400kg
+    LOGGER.info("Find all scary creatures");
+    var scaryCreaturesSelector = new ColorSelector(Color.DARK)
+        .or(new ColorSelector(Color.RED)).and(new MovementSelector(Movement.SWIMMING).not())
+        .and(new MassGreaterThanSelector(400.0).or(new MassEqualSelector(400.0)));
+    print(creatures, scaryCreaturesSelector);
+  }
+
+  private static void print(List<? extends Creature> creatures, Predicate<Creature> selector) {
+    creatures.stream().filter(selector).map(Objects::toString).forEach(LOGGER::info);
   }
 }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.resource.acquisition.is.initialization;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import java.util.LinkedList;
 import java.util.List;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Date: 12/28/15 - 9:31 PM
@@ -55,8 +55,8 @@ public class ClosableTest {
   }
 
   @Test
-  public void testOpenClose() throws Exception {
-    try (final SlidingDoor door = new SlidingDoor(); final TreasureChest chest = new TreasureChest()) {
+  public void testOpenClose() {
+    try (final var ignored = new SlidingDoor(); final var ignored1 = new TreasureChest()) {
       assertTrue(appender.logContains("Sliding door opens."));
       assertTrue(appender.logContains("Treasure chest opens."));
     }

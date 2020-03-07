@@ -5,13 +5,13 @@ folder: abstract-document
 permalink: /patterns/abstract-document/
 categories: Structural
 tags: 
- - Java
- - Difficulty-Intermediate
+ - Extensibility
 ---
 
 ## Intent
 Achieve flexibility of untyped languages and keep the type-safety 
 
+## Class diagram
 ![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
 

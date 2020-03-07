@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.prototype;
 
 /**
- * 
- * ElfWarlord
- *
+ * ElfWarlord.
  */
 public class ElfWarlord extends Warlord {
 
   private String helpType;
-  
+
   public ElfWarlord(String helpType) {
     this.helpType = helpType;
   }
 
   public ElfWarlord(ElfWarlord elfWarlord) {
+    super(elfWarlord);
     this.helpType = elfWarlord.helpType;
   }
 
@@ -49,4 +49,21 @@ public class ElfWarlord extends Warlord {
     return "Elven warlord helps in " + helpType;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    var other = (ElfWarlord) obj;
+    if (helpType == null) {
+      return other.helpType == null;
+    }
+    return helpType.equals(other.helpType);
+  }
 }

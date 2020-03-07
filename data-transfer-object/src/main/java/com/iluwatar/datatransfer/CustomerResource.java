@@ -1,7 +1,6 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2017 Gopinath Langote
+ * The MIT License
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,16 +9,16 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
 package com.iluwatar.datatransfer;
@@ -27,13 +26,15 @@ package com.iluwatar.datatransfer;
 import java.util.List;
 
 /**
- * The resource class which serves customer information.
- * This class act as server in the demo. Which has all customer details.
+ * The resource class which serves customer information. This class act as server in the demo. Which
+ * has all customer details.
  */
 public class CustomerResource {
   private List<CustomerDto> customers;
 
   /**
+   * Initialise resource with existing customers.
+   *
    * @param customers initialize resource with existing customers. Act as database.
    */
   public CustomerResource(List<CustomerDto> customers) {
@@ -41,6 +42,8 @@ public class CustomerResource {
   }
 
   /**
+   * Get all customers.
+   *
    * @return : all customers in list.
    */
   public List<CustomerDto> getAllCustomers() {
@@ -48,6 +51,8 @@ public class CustomerResource {
   }
 
   /**
+   * Save new customer.
+   *
    * @param customer save new customer to list.
    */
   public void save(CustomerDto customer) {
@@ -55,6 +60,8 @@ public class CustomerResource {
   }
 
   /**
+   * Delete customer with given id.
+   *
    * @param customerId delete customer with id {@code customerId}
    */
   public void delete(String customerId) {

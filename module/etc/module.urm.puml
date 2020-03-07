@@ -1,0 +1,43 @@
+@startuml
+package com.iluwatar.module {
+  class App {
+    + consoleLoggerModule : ConsoleLoggerModule {static}
+    + fileLoggerModule : FileLoggerModule {static}
+    + App()
+    + execute(args : String[]) {static}
+    + main(args : String[]) {static}
+    + prepare() {static}
+    + unprepare() {static}
+  }
+  class ConsoleLoggerModule {
+    - LOGGER : Logger {static}
+    + error : PrintStream
+    + output : PrintStream
+    - singleton : ConsoleLoggerModule {static}
+    - ConsoleLoggerModule()
+    + getSingleton() : ConsoleLoggerModule {static}
+    + prepare() : ConsoleLoggerModule
+    + printErrorString(value : String)
+    + printString(value : String)
+    + unprepare()
+  }
+  class FileLoggerModule {
+    - ERROR_FILE : String {static}
+    - LOGGER : Logger {static}
+    - OUTPUT_FILE : String {static}
+    + error : PrintStream
+    + output : PrintStream
+    - singleton : FileLoggerModule {static}
+    - FileLoggerModule()
+    + getSingleton() : FileLoggerModule {static}
+    + prepare() : FileLoggerModule
+    + printErrorString(value : String)
+    + printString(value : String)
+    + unprepare()
+  }
+}
+FileLoggerModule -->  "-singleton" FileLoggerModule
+App -->  "-consoleLoggerModule" ConsoleLoggerModule
+ConsoleLoggerModule -->  "-singleton" ConsoleLoggerModule
+App -->  "-fileLoggerModule" FileLoggerModule
+@enduml

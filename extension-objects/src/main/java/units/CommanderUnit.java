@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package units;
 
 import abstractextensions.UnitExtension;
 import concreteextensions.Commander;
+import java.util.Optional;
 
 /**
- * Class defining CommanderUnit
+ * Class defining CommanderUnit.
  */
 public class CommanderUnit extends Unit {
 
@@ -38,10 +40,7 @@ public class CommanderUnit extends Unit {
   public UnitExtension getUnitExtension(String extensionName) {
 
     if (extensionName.equals("CommanderExtension")) {
-      if (unitExtension == null) {
-        unitExtension = new Commander(this);
-      }
-      return unitExtension;
+      return Optional.ofNullable(unitExtension).orElseGet(() -> new Commander(this));
     }
 
     return super.getUnitExtension(extensionName);

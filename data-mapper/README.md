@@ -3,15 +3,15 @@ layout: pattern
 title: Data Mapper
 folder: data-mapper
 permalink: /patterns/data-mapper/
-categories: Persistence Tier
+categories: Architectural
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
 A layer of mappers that moves data between objects and a database while keeping them independent of each other and the mapper itself
 
+## Class diagram
 ![alt text](./etc/data-mapper.png "Data Mapper")
 
 ## Applicability

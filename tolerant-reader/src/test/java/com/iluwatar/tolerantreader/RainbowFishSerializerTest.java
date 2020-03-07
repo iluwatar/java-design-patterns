@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.tolerantreader;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+
+import java.io.File;
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
 import org.junit.rules.TemporaryFolder;
-
-import java.io.File;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 /**
  * Date: 12/30/15 - 18:39 PM
@@ -61,10 +61,10 @@ public class RainbowFishSerializerTest {
    */
   @Test
   public void testWriteV1ReadV1() throws Exception {
-    final File outputFile = this.testFolder.newFile();
+    final var outputFile = this.testFolder.newFile();
     RainbowFishSerializer.writeV1(V1, outputFile.getPath());
 
-    final RainbowFish fish = RainbowFishSerializer.readV1(outputFile.getPath());
+    final var fish = RainbowFishSerializer.readV1(outputFile.getPath());
     assertNotSame(V1, fish);
     assertEquals(V1.getName(), fish.getName());
     assertEquals(V1.getAge(), fish.getAge());
@@ -78,10 +78,10 @@ public class RainbowFishSerializerTest {
    */
   @Test
   public void testWriteV2ReadV1() throws Exception {
-    final File outputFile = this.testFolder.newFile();
+    final var outputFile = this.testFolder.newFile();
     RainbowFishSerializer.writeV2(V2, outputFile.getPath());
 
-    final RainbowFish fish = RainbowFishSerializer.readV1(outputFile.getPath());
+    final var fish = RainbowFishSerializer.readV1(outputFile.getPath());
     assertNotSame(V2, fish);
     assertEquals(V2.getName(), fish.getName());
     assertEquals(V2.getAge(), fish.getAge());

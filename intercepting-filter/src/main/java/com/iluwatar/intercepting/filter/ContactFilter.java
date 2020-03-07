@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,24 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
 /**
  * Concrete implementation of filter This filter checks for the contact field in which it checks if
  * the input consist of numbers and it also checks if the input follows the length constraint (11
- * digits)
- * 
- * @author joshzambales
+ * digits).
  *
+ * @author joshzambales
  */
 public class ContactFilter extends AbstractFilter {
 
   @Override
   public String execute(Order order) {
-    String result = super.execute(order);
-    if (order.getContactNumber() == null || order.getContactNumber().isEmpty()
-        || order.getContactNumber().matches(".*[^\\d]+.*")
-        || order.getContactNumber().length() != 11) {
+    var result = super.execute(order);
+    var contactNumber = order.getContactNumber();
+    if (contactNumber == null || contactNumber.isEmpty()
+        || contactNumber.matches(".*[^\\d]+.*")
+        || contactNumber.length() != 11) {
       return result + "Invalid contact number! ";
     } else {
       return result;

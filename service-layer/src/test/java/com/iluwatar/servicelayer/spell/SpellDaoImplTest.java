@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelayer.spell;
-
-import com.iluwatar.servicelayer.common.BaseDaoTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import com.iluwatar.servicelayer.common.BaseDaoTest;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/28/15 - 11:02 PM
@@ -43,10 +42,10 @@ public class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
 
   @Test
   public void testFindByName() {
-    final SpellDaoImpl dao = getDao();
-    final List<Spell> allSpells = dao.findAll();
-    for (final Spell spell : allSpells) {
-      final Spell spellByName = dao.findByName(spell.getName());
+    final var dao = getDao();
+    final var allSpells = dao.findAll();
+    for (final var spell : allSpells) {
+      final var spellByName = dao.findByName(spell.getName());
       assertNotNull(spellByName);
       assertEquals(spell.getId(), spellByName.getId());
       assertEquals(spell.getName(), spellByName.getName());

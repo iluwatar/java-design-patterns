@@ -5,9 +5,7 @@ folder: singleton
 permalink: /patterns/singleton/
 categories: Creational
 tags:
- - Java
- - Gang Of Four
- - Difficulty-Beginner
+ - Gang of Four
 ---
 
 ## Intent
@@ -43,22 +41,25 @@ public enum EnumIvoryTower {
 Then in order to use
 
 ```java
-EnumIvoryTower enumIvoryTower1 = EnumIvoryTower.INSTANCE;
-EnumIvoryTower enumIvoryTower2 = EnumIvoryTower.INSTANCE;
+var enumIvoryTower1 = EnumIvoryTower.INSTANCE;
+var enumIvoryTower2 = EnumIvoryTower.INSTANCE;
 assertEquals(enumIvoryTower1, enumIvoryTower2); // true
 ```
+
+## Class diagram
+![alt text](./etc/singleton.urm.png "Singleton pattern class diagram")
 
 ## Applicability
 Use the Singleton pattern when
 
-* there must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
-* when the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code
+* There must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
+* When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code
 
 ## Typical Use Case
 
-* the logging class
-* managing a connection to a database
-* file manager
+* The logging class
+* Managing a connection to a database
+* File manager
 
 ## Real world examples
 

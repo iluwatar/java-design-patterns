@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.sourcing.domain;
 
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
@@ -31,11 +32,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This is the Account class that holds the account info, the account number,
- * account owner name and money of the account. Account class also have the business logic of events
- * that effects this account.
+ * This is the Account class that holds the account info, the account number, account owner name and
+ * money of the account. Account class also have the business logic of events that effects this
+ * account.
  *
- * Created by Serdar Hamzaogullari on 06.08.2017.
+ * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
 public class Account {
 
@@ -45,11 +46,14 @@ public class Account {
   private final String owner;
   private BigDecimal money;
 
+  private static final String MSG =
+      "Some external api for only realtime execution could be called here.";
+
   /**
    * Instantiates a new Account.
    *
    * @param accountNo the account no
-   * @param owner the owner
+   * @param owner     the owner
    */
   public Account(int accountNo, String owner) {
     this.accountNo = accountNo;
@@ -100,7 +104,7 @@ public class Account {
    * @return the account
    */
   public Account copy() {
-    Account account = new Account(accountNo, owner);
+    var account = new Account(accountNo, owner);
     account.setMoney(money);
     return account;
   }
@@ -126,19 +130,19 @@ public class Account {
     depositMoney(money);
     AccountAggregate.putAccount(this);
     if (realTime) {
-      LOGGER.info("Some external api for only realtime execution could be called here.");
+      LOGGER.info(MSG);
     }
   }
 
   private void handleWithdrawal(BigDecimal money, boolean realTime) {
-    if (this.money.compareTo(money) == -1) {
+    if (this.money.compareTo(money) < 0) {
       throw new RuntimeException("Insufficient Account Balance");
     }
 
     withdrawMoney(money);
     AccountAggregate.putAccount(this);
     if (realTime) {
-      LOGGER.info("Some external api for only realtime execution could be called here.");
+      LOGGER.info(MSG);
     }
   }
 
@@ -160,7 +164,7 @@ public class Account {
   public void handleEvent(AccountCreateEvent accountCreateEvent) {
     AccountAggregate.putAccount(this);
     if (accountCreateEvent.isRealTime()) {
-      LOGGER.info("Some external api for only realtime execution could be called here.");
+      LOGGER.info(MSG);
     }
   }
 

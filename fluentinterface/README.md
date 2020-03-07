@@ -3,11 +3,9 @@ layout: pattern
 title: Fluent Interface
 folder: fluentinterface
 permalink: /patterns/fluentinterface/
-categories: Other
+categories: Functional
 tags: 
- - Java
- - Difficulty-Intermediate
- - Functional
+ - Reactive
 ---
 
 ## Intent
@@ -21,6 +19,7 @@ A fluent interface can be implemented using any of
  * Static Factory Methods and Imports
  * Named parameters - can be simulated in Java using static factory methods.
 
+## Class diagram
 ![Fluent Interface](./etc/fluentinterface.png "Fluent Interface")
 
 ## Applicability

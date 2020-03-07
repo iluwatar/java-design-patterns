@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.flux.action;
 
-import org.junit.jupiter.api.Test;
+package com.iluwatar.flux.action;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 10:11 PM
@@ -35,9 +36,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ContentTest {
 
   @Test
-  public void testToString() throws Exception {
-    for (final Content content : Content.values()) {
-      final String toString = content.toString();
+  public void testToString() {
+    for (final var content : Content.values()) {
+      final var toString = content.toString();
       assertNotNull(toString);
       assertFalse(toString.trim().isEmpty());
     }

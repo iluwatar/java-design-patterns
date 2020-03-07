@@ -3,11 +3,9 @@ layout: pattern
 title: Double Checked Locking
 folder: double-checked-locking
 permalink: /patterns/double-checked-locking/
-categories: Concurrency
+categories: Idiom
 tags:
- - Java
- - Difficulty-Beginner
- - Idiom
+ - Performance
 ---
 
 ## Intent
@@ -16,6 +14,7 @@ locking criterion (the "lock hint") without actually acquiring the lock. Only
 if the locking criterion check indicates that locking is required does the
 actual locking logic proceed.
 
+## Class diagram
 ![alt text](./etc/double_checked_locking_1.png "Double Checked Locking")
 
 ## Applicability

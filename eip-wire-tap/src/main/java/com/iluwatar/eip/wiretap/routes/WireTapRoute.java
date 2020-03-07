@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.eip.wiretap.routes;
 
 import org.apache.camel.builder.RouteBuilder;
@@ -28,19 +29,20 @@ import org.springframework.stereotype.Component;
 /**
  * Sample wire tap route definition.
  *
- * <p>
- * It consumes messages out of the <i>direct:entry</i> entry point and forwards them to <i>direct:endpoint</i>.
- * Wire Tap intercepts the message and sends it to <i>direct:wireTap</i>, which in turn forwards it to
+ * <p>It consumes messages out of the <i>direct:entry</i> entry point and forwards them to
+ * <i>direct:endpoint</i>. Wire Tap intercepts the message and sends it to <i>direct:wireTap</i>,
+ * which in turn forwards it to
  * <i>direct:wireTapEndpoint</i>.
- * </p>
  *
- * In this example input/output endpoints names are stored in <i>application.properties</i> file.
+ * <p>In this example input/output endpoints names are stored in <i>application.properties</i>
+ * file.
  */
 @Component
 public class WireTapRoute extends RouteBuilder {
 
   /**
-   * Configures the route
+   * Configures the route.
+   *
    * @throws Exception in case of exception during configuration
    */
   @Override

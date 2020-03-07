@@ -1,0 +1,44 @@
+@startuml
+package com.iluwatar.circuitbreaker {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class CircuitBreaker {
+    ~ failureCount : int
+    - failureThreshold : int
+    - futureTime : long
+    ~ lastFailureTime : long
+    - retryTimePeriod : long
+    - state : State
+    - timeout : long
+    ~ CircuitBreaker(timeout : long, failureThreshold : int, retryTimePeriod : long)
+    + call(serviceToCall : String, serverStartTime : long) : String
+    + getState() : String
+    - recordFailure()
+    - reset()
+    # setState()
+    + setStateForBypass(state : State)
+  }
+  class DelayedService {
+    - delay : int
+    + DelayedService()
+    + DelayedService(delay : int)
+    + response(serverStartTime : long) : String
+  }
+  class MonitoringService {
+    + MonitoringService()
+    + localResourceResponse() : String
+    + remoteResourceResponse(circuitBreaker : CircuitBreaker, serverStartTime : long) : String
+  }
+  enum State {
+    + CLOSED {static}
+    + HALF_OPEN {static}
+    + OPEN {static}
+    + valueOf(name : String) : State {static}
+    + values() : State[] {static}
+  }
+}
+CircuitBreaker -->  "-state" State
+@enduml

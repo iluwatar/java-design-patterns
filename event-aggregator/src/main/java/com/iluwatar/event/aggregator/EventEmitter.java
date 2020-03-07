@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
 
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 
  * EventEmitter is the base class for event producers that can be observed.
- *
  */
 public abstract class EventEmitter {
 
@@ -48,9 +47,7 @@ public abstract class EventEmitter {
   }
 
   protected void notifyObservers(Event e) {
-    for (EventObserver obs : observers) {
-      obs.onEvent(e);
-    }
+    observers.forEach(obs -> obs.onEvent(e));
   }
 
   public abstract void timePasses(Weekday day);

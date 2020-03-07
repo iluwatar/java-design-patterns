@@ -5,8 +5,7 @@ folder: value-object
 permalink: /patterns/value-object/
 categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Instantiation
 ---
 
 ## Intent
@@ -14,12 +13,13 @@ Provide objects which follow value semantics rather than reference semantics.
 This means value objects' equality are not based on identity. Two value objects are
 equal when they have the same value, not necessarily being the same object.
 
+## Class diagram
 ![alt text](./etc/value-object.png "Value Object")
 
 ## Applicability
 Use the Value Object when
 
-* you need to measure the objects' equality based on the objects' value
+* You need to measure the objects' equality based on the objects' value
 
 ## Real world examples
 

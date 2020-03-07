@@ -5,14 +5,13 @@ folder: eip-publish-subscribe
 permalink: /patterns/eip-publish-subscribe/
 categories: Integration
 tags:
- - Java
- - EIP
- - Apache Camel™
+ - Enterprise Integration Pattern
 ---
 
 ## Intent
 Broadcast messages from sender to all the interested receivers.
 
+## Class diagram
 ![alt text](./etc/publish-subscribe.png "Publish Subscribe Channel")
 
 ## Applicability

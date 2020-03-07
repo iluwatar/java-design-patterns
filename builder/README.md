@@ -5,9 +5,7 @@ folder: builder
 permalink: /patterns/builder/
 categories: Creational
 tags:
- - Java
- - Gang Of Four
- - Difficulty-Intermediate
+ - Gang of Four
 ---
 
 ## Intent
@@ -110,8 +108,11 @@ And then we have the builder
 And then it can be used as:
 
 ```java
-Hero mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
+var mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
 ```
+
+## Class diagram
+![alt text](./etc/builder.urm.png "Builder class diagram")
 
 ## Applicability
 Use the Builder pattern when
@@ -126,6 +127,7 @@ Use the Builder pattern when
 * [java.lang.StringBuffer](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuffer.html#append-boolean-)
 * All implementations of [java.lang.Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html)
 * [Apache Camel builders](https://github.com/apache/camel/tree/0e195428ee04531be27a0b659005e3aa8d159d23/camel-core/src/main/java/org/apache/camel/builder)
+* [Apache Commons Option.Builder](https://commons.apache.org/proper/commons-cli/apidocs/org/apache/commons/cli/Option.Builder.html)
 
 ## Credits
 

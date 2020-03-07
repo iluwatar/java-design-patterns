@@ -1,7 +1,6 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014-2017 Gopinath Langote
+ * The MIT License
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,16 +9,16 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
 package com.iluwatar.partialresponse;
@@ -27,23 +26,28 @@ package com.iluwatar.partialresponse;
 import java.lang.reflect.Field;
 
 /**
- * Map a video to json
+ * Map a video to json.
  */
 public class FieldJsonMapper {
 
   /**
+   * Gets json of required fields from video.
+   *
    * @param video  object containing video information
    * @param fields fields information to get
    * @return json of required fields from video
    */
   public String toJson(Video video, String[] fields) throws Exception {
-    StringBuilder json = new StringBuilder().append("{");
+    var json = new StringBuilder().append("{");
 
-    for (int i = 0, fieldsLength = fields.length; i < fieldsLength; i++) {
+    var i = 0;
+    var fieldsLength = fields.length;
+    while (i < fieldsLength) {
       json.append(getString(video, Video.class.getDeclaredField(fields[i])));
       if (i != fieldsLength - 1) {
         json.append(",");
       }
+      i++;
     }
     json.append("}");
     return json.toString();
@@ -51,7 +55,7 @@ public class FieldJsonMapper {
 
   private String getString(Video video, Field declaredField) throws IllegalAccessException {
     declaredField.setAccessible(true);
-    Object value = declaredField.get(video);
+    var value = declaredField.get(video);
     if (declaredField.get(video) instanceof Integer) {
       return "\"" + declaredField.getName() + "\"" + ": " + value;
     }

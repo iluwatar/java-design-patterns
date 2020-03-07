@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.chain;
 
 /**
- * 
- * OrcOfficer
- *
+ * OrcOfficer.
  */
 public class OrcOfficer extends RequestHandler {
 
@@ -35,7 +34,7 @@ public class OrcOfficer extends RequestHandler {
 
   @Override
   public void handleRequest(Request req) {
-    if (req.getRequestType().equals(RequestType.TORTURE_PRISONER)) {
+    if (RequestType.TORTURE_PRISONER == req.getRequestType()) {
       printHandling(req);
       req.markHandled();
     } else {

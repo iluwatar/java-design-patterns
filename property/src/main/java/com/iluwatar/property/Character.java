@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.property;
 
 import java.util.HashMap;
@@ -31,7 +32,7 @@ import java.util.Map;
 public class Character implements Prototype {
 
   /**
-   * Enumeration of Character types
+   * Enumeration of Character types.
    */
   public enum Type {
     WARRIOR, MAGE, ROGUE
@@ -44,26 +45,28 @@ public class Character implements Prototype {
   private Type type;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Character() {
     this.prototype = new Prototype() { // Null-value object
-          @Override
-          public Integer get(Stats stat) {
-            return null;
-          }
+      @Override
+      public Integer get(Stats stat) {
+        return null;
+      }
 
-          @Override
-          public boolean has(Stats stat) {
-            return false;
-          }
+      @Override
+      public boolean has(Stats stat) {
+        return false;
+      }
 
-          @Override
-          public void set(Stats stat, Integer val) {}
+      @Override
+      public void set(Stats stat, Integer val) {
+      }
 
-          @Override
-          public void remove(Stats stat) {}
-        };
+      @Override
+      public void remove(Stats stat) {
+      }
+    };
   }
 
   public Character(Type type, Prototype prototype) {
@@ -72,7 +75,7 @@ public class Character implements Prototype {
   }
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Character(String name, Character prototype) {
     this.name = name;
@@ -90,7 +93,7 @@ public class Character implements Prototype {
 
   @Override
   public Integer get(Stats stat) {
-    boolean containsValue = properties.containsKey(stat);
+    var containsValue = properties.containsKey(stat);
     if (containsValue) {
       return properties.get(stat);
     } else {
@@ -115,7 +118,7 @@ public class Character implements Prototype {
 
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
+    var builder = new StringBuilder();
     if (name != null) {
       builder.append("Player: ").append(name).append('\n');
     }
@@ -125,8 +128,8 @@ public class Character implements Prototype {
     }
 
     builder.append("Stats:\n");
-    for (Stats stat : Stats.values()) {
-      Integer value = this.get(stat);
+    for (var stat : Stats.values()) {
+      var value = this.get(stat);
       if (value == null) {
         continue;
       }

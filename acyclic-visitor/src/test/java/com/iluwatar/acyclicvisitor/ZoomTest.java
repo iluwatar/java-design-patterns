@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.acyclicvisitor;
 
 
@@ -29,11 +30,6 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
 
-import com.iluwatar.acyclicvisitor.ConfigureForDosVisitor;
-import com.iluwatar.acyclicvisitor.ConfigureForUnixVisitor;
-import com.iluwatar.acyclicvisitor.Zoom;
-import com.iluwatar.acyclicvisitor.ZoomVisitor;
-
 /**
  * Zoom test class
  */
@@ -41,8 +37,8 @@ public class ZoomTest {
   
   @Test
   public void testAcceptForDos() {  
-    Zoom zoom = new Zoom();
-    ConfigureForDosVisitor mockVisitor = mock(ConfigureForDosVisitor.class);
+    var zoom = new Zoom();
+    var mockVisitor = mock(ConfigureForDosVisitor.class);
     
     zoom.accept(mockVisitor);
     verify((ZoomVisitor)mockVisitor).visit(eq(zoom));
@@ -50,8 +46,8 @@ public class ZoomTest {
   
   @Test
   public void testAcceptForUnix() {
-    Zoom zoom = new Zoom();
-    ConfigureForUnixVisitor mockVisitor = mock(ConfigureForUnixVisitor.class);
+    var zoom = new Zoom();
+    var mockVisitor = mock(ConfigureForUnixVisitor.class);
     
     zoom.accept(mockVisitor);
     verify((ZoomVisitor)mockVisitor).visit(eq(zoom));

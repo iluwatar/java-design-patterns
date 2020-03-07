@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.doubledispatch;
 
+import com.iluwatar.doubledispatch.constants.AppConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
- * Space station Mir game object
- *
+ * Space station Mir game object.
  */
 public class SpaceStationMir extends GameObject {
 
@@ -45,29 +45,31 @@ public class SpaceStationMir extends GameObject {
 
   @Override
   public void collisionResolve(FlamingAsteroid asteroid) {
-    LOGGER.info("{} hits {}. {} is damaged! {} is set on fire!", asteroid.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName(), this.getClass().getSimpleName());
+    LOGGER.info(AppConstants.HITS, " {} is damaged! {} is set on fire!", asteroid.getClass()
+            .getSimpleName(),
+        this.getClass().getSimpleName(), this.getClass().getSimpleName(), this.getClass()
+            .getSimpleName());
     setDamaged(true);
     setOnFire(true);
   }
 
   @Override
   public void collisionResolve(Meteoroid meteoroid) {
-    LOGGER.info("{} hits {}. {} is damaged!", meteoroid.getClass().getSimpleName(),
+    LOGGER.info(AppConstants.HITS, " {} is damaged!", meteoroid.getClass().getSimpleName(),
         this.getClass().getSimpleName(), this.getClass().getSimpleName());
     setDamaged(true);
   }
 
   @Override
   public void collisionResolve(SpaceStationMir mir) {
-    LOGGER.info("{} hits {}. {} is damaged!", mir.getClass().getSimpleName(),
+    LOGGER.info(AppConstants.HITS, " {} is damaged!", mir.getClass().getSimpleName(),
         this.getClass().getSimpleName(), this.getClass().getSimpleName());
     setDamaged(true);
   }
 
   @Override
   public void collisionResolve(SpaceStationIss iss) {
-    LOGGER.info("{} hits {}. {} is damaged!", iss.getClass().getSimpleName(),
+    LOGGER.info(AppConstants.HITS, " {} is damaged!", iss.getClass().getSimpleName(),
         this.getClass().getSimpleName(), this.getClass().getSimpleName());
     setDamaged(true);
   }

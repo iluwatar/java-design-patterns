@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,33 +20,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.acyclicvisitor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Zoom class implements its accept method
+ * Zoom class implements its accept method.
  */
 public class Zoom extends Modem {
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);
 
   /**
-   * Accepts all visitors but honors only ZoomVisitor
+   * Accepts all visitors but honors only ZoomVisitor.
    */
   @Override
   public void accept(ModemVisitor modemVisitor) {
-    if (modemVisitor instanceof  ZoomVisitor) {
+    if (modemVisitor instanceof ZoomVisitor) {
       ((ZoomVisitor) modemVisitor).visit(this);
     } else {
       LOGGER.info("Only ZoomVisitor is allowed to visit Zoom modem");
     }
   }
-  
+
   /**
-   * Zoom modem's toString
-   * method
+   * Zoom modem's toString method.
    */
   @Override
   public String toString() {

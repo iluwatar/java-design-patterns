@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 /*
  * Fiducia IT AG, All rights reserved. Use is subject to license terms.
  */
@@ -31,21 +32,22 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Result object that will be returned by the Callable {@link DateFormatCallable} 
- * used in {@link App}
+ * Result object that will be returned by the Callable {@link DateFormatCallable} used in {@link
+ * App}.
  *
- * @author Thomas Bauer, 2017 
+ * @author Thomas Bauer, 2017
  */
 public class Result {
   // A list to collect the date values created in one thread
-  private List<Date> dateList = new ArrayList<Date>();
+  private List<Date> dateList = new ArrayList<>();
 
   // A list to collect Exceptions thrown in one threads (should be none in
   // this example)
-  private List<String> exceptionList = new ArrayList<String>();
-  
+  private List<String> exceptionList = new ArrayList<>();
+
   /**
-   * 
+   * Get list of date values collected within a thread execution.
+   *
    * @return List of date values collected within an thread execution
    */
   public List<Date> getDateList() {
@@ -53,7 +55,8 @@ public class Result {
   }
 
   /**
-   * 
+   * Get list of exceptions thrown within a thread execution.
+   *
    * @return List of exceptions thrown within an thread execution
    */
   public List<String> getExceptionList() {

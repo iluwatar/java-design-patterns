@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.facade;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Date: 12/9/15 - 9:40 PM
@@ -55,16 +55,16 @@ public class DwarvenGoldmineFacadeTest {
     appender.stop();
   }
 
-   /**
+  /**
    * Test a complete day cycle in the gold mine by executing all three different steps: {@link
    * DwarvenGoldmineFacade#startNewDay()}, {@link DwarvenGoldmineFacade#digOutGold()} and {@link
    * DwarvenGoldmineFacade#endDay()}.
-   *
+   * <p>
    * See if the workers are doing what's expected from them on each step.
    */
   @Test
   public void testFullWorkDay() {
-    final DwarvenGoldmineFacade goldMine = new DwarvenGoldmineFacade();
+    final var goldMine = new DwarvenGoldmineFacade();
     goldMine.startNewDay();
 
     // On the start of a day, all workers should wake up ...
@@ -127,7 +127,9 @@ public class DwarvenGoldmineFacadeTest {
     }
 
     public boolean logContains(String message) {
-      return log.stream().anyMatch(event -> event.getFormattedMessage().equals(message));
+      return log.stream()
+          .map(ILoggingEvent::getFormattedMessage)
+          .anyMatch(message::equals);
     }
   }
 

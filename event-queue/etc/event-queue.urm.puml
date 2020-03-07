@@ -1,0 +1,38 @@
+@startuml
+package com.iluwatar.event.queue {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Audio {
+    - INSTANCE : Audio {static}
+    - LOGGER : Logger {static}
+    - MAX_PENDING : int {static}
+    - headIndex : int
+    - pendingAudio : PlayMessage[]
+    - tailIndex : int
+    - updateThread : Thread
+    ~ Audio()
+    + getAudioStream(filePath : String) : AudioInputStream
+    + getInstance() : Audio {static}
+    + getPendingAudio() : PlayMessage[]
+    + init()
+    + isServiceRunning() : boolean
+    + playSound(stream : AudioInputStream, volume : float)
+    - startThread()
+    + stopService()
+    - update()
+  }
+  class PlayMessage {
+    - stream : AudioInputStream
+    - volume : float
+    + PlayMessage(stream : AudioInputStream, volume : float)
+    + getStream() : AudioInputStream
+    + getVolume() : float
+    - setStream(stream : AudioInputStream)
+    + setVolume(volume : float)
+  }
+}
+Audio -->  "-INSTANCE" Audio
+@enduml

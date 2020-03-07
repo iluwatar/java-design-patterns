@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.memento;
 
 /**
- * 
  * Star uses "mementos" to store and restore state.
- * 
  */
 public class Star {
 
@@ -34,7 +33,7 @@ public class Star {
   private int massTons;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Star(StarType startType, int startAge, int startMass) {
     this.type = startType;
@@ -43,7 +42,7 @@ public class Star {
   }
 
   /**
-   * Makes time pass for the star
+   * Makes time pass for the star.
    */
   public void timePasses() {
     ageYears *= 2;
@@ -95,9 +94,7 @@ public class Star {
   }
 
   /**
-   * 
-   * StarMemento implementation
-   * 
+   * StarMemento implementation.
    */
   private static class StarMementoInternal implements StarMemento {
 

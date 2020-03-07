@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,29 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.serverless.baas.api;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
-import com.iluwatar.serverless.baas.api.FindPersonApiHandler;
-import com.iluwatar.serverless.baas.api.SavePersonApiHandler;
 import com.iluwatar.serverless.baas.model.Person;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.Collections;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 /**
- * Unit tests for FindPersonApiHandler
- * Created by dheeraj.mummar on 3/5/18.
+ * Unit tests for FindPersonApiHandler Created by dheeraj.mummar on 3/5/18.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class FindPersonApiHandlerTest {
@@ -65,8 +62,7 @@ public class FindPersonApiHandlerTest {
   }
 
   private APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent() {
-    return new APIGatewayProxyRequestEvent()
-        .withPathParamters(Collections
-            .singletonMap("id", "37e7a1fe-3544-473d-b764-18128f02d72d"));
+    var request = new APIGatewayProxyRequestEvent();
+    return request.withPathParamters(Map.of("id", "37e7a1fe-3544-473d-b764-18128f02d72d"));
   }
 }

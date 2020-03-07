@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+
     The MIT License
-    Copyright (c) 2014-2016 Ilkka Seppälä
+    Copyright © 2014-2019 Ilkka Seppälä
+
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
+
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
+
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -17,6 +21,7 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
+
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -26,7 +31,7 @@
     <parent>
         <groupId>com.iluwatar</groupId>
         <artifactId>java-design-patterns</artifactId>
-        <version>1.21.0-SNAPSHOT</version>
+        <version>1.23.0-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -38,7 +43,6 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
-            <version>${camel.version}</version>
         </dependency>
 
         <dependency>
@@ -47,15 +51,20 @@
             <version>${camel.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+
+
         <!-- Testing -->
         <dependency>
             <groupId>com.github.sbrannen</groupId>
             <artifactId>spring-test-junit5</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -75,4 +84,24 @@
         </dependency>
 
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.iluwatar.eip.splitter.App</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

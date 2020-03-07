@@ -1,0 +1,8 @@
+@startuml
+package com.iluwatar.eip.wiretap {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+@enduml

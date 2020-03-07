@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,40 +20,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.service;
 
 import com.google.inject.Guice;
-import com.google.inject.Injector;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
+import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Scanner;
-
 /**
- * Console interface for lottery players
+ * Console interface for lottery players.
  */
 public class ConsoleLottery {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleLottery.class);
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(String[] args) {
     MongoConnectionPropertiesLoader.load();
-    Injector injector = Guice.createInjector(new LotteryModule());
-    LotteryService service = injector.getInstance( LotteryService.class);
-    WireTransfers bank = injector.getInstance(WireTransfers.class);
-    try (final Scanner scanner = new Scanner(System.in)) {
-      boolean exit = false;
+    var injector = Guice.createInjector(new LotteryModule());
+    var service = injector.getInstance(LotteryService.class);
+    var bank = injector.getInstance(WireTransfers.class);
+    try (Scanner scanner = new Scanner(System.in)) {
+      var exit = false;
       while (!exit) {
         printMainMenu();
-        String cmd = readString(scanner);
-        LotteryConsoleService lotteryConsoleService = new LotteryConsoleServiceImpl(LOGGER);
+        var cmd = readString(scanner);
+        var lotteryConsoleService = new LotteryConsoleServiceImpl(LOGGER);
         if ("1".equals(cmd)) {
           lotteryConsoleService.queryLotteryAccountFunds(bank, scanner);
         } else if ("2".equals(cmd)) {
@@ -82,7 +81,7 @@ public class ConsoleLottery {
   }
 
   private static String readString(Scanner scanner) {
-    System.out.print("> ");
+    LOGGER.info("> ");
     return scanner.next();
   }
 }

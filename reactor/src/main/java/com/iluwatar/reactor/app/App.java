@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.reactor.app;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+package com.iluwatar.reactor.app;
 
 import com.iluwatar.reactor.framework.AbstractNioChannel;
 import com.iluwatar.reactor.framework.ChannelHandler;
@@ -33,19 +30,20 @@ import com.iluwatar.reactor.framework.NioDatagramChannel;
 import com.iluwatar.reactor.framework.NioReactor;
 import com.iluwatar.reactor.framework.NioServerSocketChannel;
 import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This application demonstrates Reactor pattern. The example demonstrated is a Distributed Logging
  * Service where it listens on multiple TCP or UDP sockets for incoming log requests.
- * 
- * <p>
- * <i>INTENT</i> <br>
+ *
+ * <p><i>INTENT</i> <br>
  * The Reactor design pattern handles service requests that are delivered concurrently to an
  * application by one or more clients. The application can register specific handlers for processing
  * which are called by reactor on specific events.
- * 
- * <p>
- * <i>PROBLEM</i> <br>
+ *
+ * <p><i>PROBLEM</i> <br>
  * Server applications in a distributed system must handle multiple clients that send them service
  * requests. Following forces need to be resolved:
  * <ul>
@@ -54,9 +52,8 @@ import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
  * <li>Programming Simplicity</li>
  * <li>Adaptability</li>
  * </ul>
- * 
- * <p>
- * <i>PARTICIPANTS</i> <br>
+ *
+ * <p><i>PARTICIPANTS</i> <br>
  * <ul>
  * <li>Synchronous Event De-multiplexer
  * <p>
@@ -88,7 +85,6 @@ import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
  * separate thread for each client, which provides better scalability under load (number of clients
  * increase).
  * The example uses Java NIO framework to implement the Reactor.
- * 
  */
 public class App {
 
@@ -99,7 +95,7 @@ public class App {
   /**
    * Creates an instance of App which will use provided dispatcher for dispatching events on
    * reactor.
-   * 
+   *
    * @param dispatcher the dispatcher that will be used to dispatch events.
    */
   public App(Dispatcher dispatcher) {
@@ -128,40 +124,42 @@ public class App {
      * This represents application specific business logic that dispatcher will call on appropriate
      * events. These events are read events in our example.
      */
-    LoggingHandler loggingHandler = new LoggingHandler();
+    var loggingHandler = new LoggingHandler();
 
     /*
      * Our application binds to multiple channels and uses same logging handler to handle incoming
      * log requests.
      */
-    reactor.registerChannel(tcpChannel(6666, loggingHandler))
+    reactor
+        .registerChannel(tcpChannel(6666, loggingHandler))
         .registerChannel(tcpChannel(6667, loggingHandler))
-        .registerChannel(udpChannel(6668, loggingHandler)).start();
+        .registerChannel(udpChannel(6668, loggingHandler))
+        .start();
   }
 
   /**
    * Stops the NIO reactor. This is a blocking call.
-   * 
+   *
    * @throws InterruptedException if interrupted while stopping the reactor.
-   * @throws IOException if any I/O error occurs
+   * @throws IOException          if any I/O error occurs
    */
   public void stop() throws InterruptedException, IOException {
     reactor.stop();
     dispatcher.stop();
-    for (AbstractNioChannel channel : channels) {
+    for (var channel : channels) {
       channel.getJavaChannel().close();
     }
   }
 
   private AbstractNioChannel tcpChannel(int port, ChannelHandler handler) throws IOException {
-    NioServerSocketChannel channel = new NioServerSocketChannel(port, handler);
+    var channel = new NioServerSocketChannel(port, handler);
     channel.bind();
     channels.add(channel);
     return channel;
   }
 
   private AbstractNioChannel udpChannel(int port, ChannelHandler handler) throws IOException {
-    NioDatagramChannel channel = new NioDatagramChannel(port, handler);
+    var channel = new NioDatagramChannel(port, handler);
     channel.bind();
     channels.add(channel);
     return channel;

@@ -1,0 +1,64 @@
+@startuml
+package com.iluwatar.eda.handler {
+  class UserCreatedEventHandler {
+    - LOGGER : Logger {static}
+    + UserCreatedEventHandler()
+    + onEvent(event : UserCreatedEvent)
+  }
+  class UserUpdatedEventHandler {
+    - LOGGER : Logger {static}
+    + UserUpdatedEventHandler()
+    + onEvent(event : UserUpdatedEvent)
+  }
+}
+package com.iluwatar.eda.event {
+  abstract class AbstractEvent {
+    + AbstractEvent()
+    + getType() : Class<? extends Event>
+  }
+  class UserCreatedEvent {
+    - user : User
+    + UserCreatedEvent(user : User)
+    + getUser() : User
+  }
+  class UserUpdatedEvent {
+    - user : User
+    + UserUpdatedEvent(user : User)
+    + getUser() : User
+  }
+}
+package com.iluwatar.eda.framework {
+  interface Event {
+    + getType() : Class<? extends Event> {abstract}
+  }
+  class EventDispatcher {
+    - handlers : Map<Class<? extends Event>, Handler<? extends Event>>
+    + EventDispatcher()
+    + dispatch(event : E extends Event)
+    + registerHandler(eventType : Class<E extends Event>, handler : Handler<E extends Event>)
+  }
+  interface Handler<E extends Event> {
+    + onEvent(E extends Event) {abstract}
+  }
+}
+package com.iluwatar.eda.model {
+  class User {
+    - username : String
+    + User(username : String)
+    + getUsername() : String
+  }
+}
+package com.iluwatar.eda {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+UserCreatedEvent -->  "-user" User
+UserUpdatedEvent -->  "-user" User
+AbstractEvent ..|> Event 
+UserCreatedEvent --|> AbstractEvent 
+UserUpdatedEvent --|> AbstractEvent 
+UserCreatedEventHandler ..|> Handler 
+UserUpdatedEventHandler ..|> Handler 
+@enduml

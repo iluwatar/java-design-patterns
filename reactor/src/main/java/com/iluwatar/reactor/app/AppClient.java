@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.reactor.app;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.reactor.app;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -38,6 +35,8 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Represents the clients of Reactor pattern. Multiple clients are run concurrently and send logging
@@ -55,7 +54,7 @@ public class AppClient {
    * @throws IOException if any I/O error occurs.
    */
   public static void main(String[] args) throws IOException {
-    AppClient appClient = new AppClient();
+    var appClient = new AppClient();
     appClient.start();
   }
 
@@ -118,8 +117,8 @@ public class AppClient {
     @Override
     public void run() {
       try (Socket socket = new Socket(InetAddress.getLocalHost(), serverPort)) {
-        OutputStream outputStream = socket.getOutputStream();
-        PrintWriter writer = new PrintWriter(outputStream);
+        var outputStream = socket.getOutputStream();
+        var writer = new PrintWriter(outputStream);
         sendLogRequests(writer, socket.getInputStream());
       } catch (IOException e) {
         LOGGER.error("error sending requests", e);
@@ -128,12 +127,12 @@ public class AppClient {
     }
 
     private void sendLogRequests(PrintWriter writer, InputStream inputStream) throws IOException {
-      for (int i = 0; i < 4; i++) {
+      for (var i = 0; i < 4; i++) {
         writer.println(clientName + " - Log request: " + i);
         writer.flush();
 
-        byte[] data = new byte[1024];
-        int read = inputStream.read(data, 0, data.length);
+        var data = new byte[1024];
+        var read = inputStream.read(data, 0, data.length);
         if (read == 0) {
           LOGGER.info("Read zero bytes");
         } else {
@@ -157,7 +156,7 @@ public class AppClient {
      * Creates a new UDP logging client.
      *
      * @param clientName the name of the client to be sent in logging requests.
-     * @param port the port on which client will send logging requests.
+     * @param port       the port on which client will send logging requests.
      * @throws UnknownHostException if localhost is unknown
      */
     public UdpLoggingClient(String clientName, int port) throws UnknownHostException {
@@ -167,17 +166,17 @@ public class AppClient {
 
     @Override
     public void run() {
-      try (DatagramSocket socket = new DatagramSocket()) {
-        for (int i = 0; i < 4; i++) {
+      try (var socket = new DatagramSocket()) {
+        for (var i = 0; i < 4; i++) {
 
-          String message = clientName + " - Log request: " + i;
-          DatagramPacket request =
-              new DatagramPacket(message.getBytes(), message.getBytes().length, remoteAddress);
+          var message = clientName + " - Log request: " + i;
+          var bytes = message.getBytes();
+          var request = new DatagramPacket(bytes, bytes.length, remoteAddress);
 
           socket.send(request);
 
-          byte[] data = new byte[1024];
-          DatagramPacket reply = new DatagramPacket(data, data.length);
+          var data = new byte[1024];
+          var reply = new DatagramPacket(data, data.length);
           socket.receive(reply);
           if (reply.getLength() == 0) {
             LOGGER.info("Read zero bytes");

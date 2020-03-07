@@ -1,21 +1,26 @@
-/**
- * The MIT License Copyright (c) 2014-2016 Ilkka Seppälä
+/*
+ * The MIT License
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
- * associated documentation files (the "Software"), to deal in the Software without restriction,
- * including without limitation the rights to use, copy, modify, merge, publish, distribute,
- * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all copies or
- * substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
- * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
+
 package com.iluwatar.iterator.bst;
 
 /**
@@ -31,7 +36,7 @@ public class TreeNode<T extends Comparable<T>> {
   private TreeNode<T> right;
 
   /**
-   * Creates a TreeNode with a given value, and null children
+   * Creates a TreeNode with a given value, and null children.
    *
    * @param val The value of the given node
    */
@@ -62,12 +67,12 @@ public class TreeNode<T extends Comparable<T>> {
   }
 
   /**
-   * Inserts new TreeNode based on a given value into the subtree represented by self
+   * Inserts new TreeNode based on a given value into the subtree represented by self.
    *
    * @param valToInsert The value to insert as a new TreeNode
    */
   public void insert(T valToInsert) {
-    TreeNode<T> parent = getParentNodeOfValueToBeInserted(valToInsert);
+    var parent = getParentNodeOfValueToBeInserted(valToInsert);
     parent.insertNewChild(valToInsert);
   }
 
@@ -79,7 +84,7 @@ public class TreeNode<T extends Comparable<T>> {
    */
   private TreeNode<T> getParentNodeOfValueToBeInserted(T valToInsert) {
     TreeNode<T> parent = null;
-    TreeNode<T> curr = this;
+    var curr = this;
 
     while (curr != null) {
       parent = curr;

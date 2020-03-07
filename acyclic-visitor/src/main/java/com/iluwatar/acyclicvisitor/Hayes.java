@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.acyclicvisitor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Hayes class implements its accept method
+ * Hayes class implements its accept method.
  */
 public class Hayes extends Modem {
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);
 
   /**
-   * Accepts all visitors but honors only HayesVisitor
+   * Accepts all visitors but honors only HayesVisitor.
    */
   @Override
   public void accept(ModemVisitor modemVisitor) {
@@ -44,10 +45,9 @@ public class Hayes extends Modem {
     }
 
   }
-  
+
   /**
-   * Hayes' modem's toString
-   * method
+   * Hayes' modem's toString method.
    */
   @Override
   public String toString() {

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
+
+import static com.iluwatar.hexagonal.domain.LotteryConstants.PRIZE_AMOUNT;
+import static com.iluwatar.hexagonal.domain.LotteryConstants.SERVICE_BANK_ACCOUNT;
 
 import com.google.inject.Inject;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
-
 import java.util.Map;
 
 /**
- * 
- * Lottery administration implementation
- *
+ * Lottery administration implementation.
  */
 public class LotteryAdministration {
 
@@ -41,7 +42,7 @@ public class LotteryAdministration {
   private final WireTransfers wireTransfers;
 
   /**
-   * Constructor
+   * Constructor.
    */
   @Inject
   public LotteryAdministration(LotteryTicketRepository repository, LotteryEventLog notifications,
@@ -52,37 +53,38 @@ public class LotteryAdministration {
   }
 
   /**
-   * Get all the lottery tickets submitted for lottery
+   * Get all the lottery tickets submitted for lottery.
    */
   public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
     return repository.findAll();
   }
 
   /**
-   * Draw lottery numbers
+   * Draw lottery numbers.
    */
   public LotteryNumbers performLottery() {
-    LotteryNumbers numbers = LotteryNumbers.createRandom();
-    Map<LotteryTicketId, LotteryTicket> tickets = getAllSubmittedTickets();
-    for (LotteryTicketId id : tickets.keySet()) {
-      LotteryTicketCheckResult result = LotteryUtils.checkTicketForPrize(repository, id, numbers);
-      if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
-        boolean transferred = wireTransfers.transferFunds(LotteryConstants.PRIZE_AMOUNT,
-            LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails().getBankAccount());
-        if (transferred) {
-          notifications.ticketWon(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+    var numbers = LotteryNumbers.createRandom();
+    var tickets = getAllSubmittedTickets();
+    for (var id : tickets.keySet()) {
+      var lotteryTicket = tickets.get(id);
+      var playerDetails = lotteryTicket.getPlayerDetails();
+      var playerAccount = playerDetails.getBankAccount();
+      var result = LotteryUtils.checkTicketForPrize(repository, id, numbers).getResult();
+      if (result == LotteryTicketCheckResult.CheckResult.WIN_PRIZE) {
+        if (wireTransfers.transferFunds(PRIZE_AMOUNT, SERVICE_BANK_ACCOUNT, playerAccount)) {
+          notifications.ticketWon(playerDetails, PRIZE_AMOUNT);
         } else {
-          notifications.prizeError(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+          notifications.prizeError(playerDetails, PRIZE_AMOUNT);
         }
-      } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
-        notifications.ticketDidNotWin(tickets.get(id).getPlayerDetails());
+      } else if (result == LotteryTicketCheckResult.CheckResult.NO_PRIZE) {
+        notifications.ticketDidNotWin(playerDetails);
       }
     }
     return numbers;
   }
 
   /**
-   * Begin new lottery round
+   * Begin new lottery round.
    */
   public void resetLottery() {
     repository.deleteAll();

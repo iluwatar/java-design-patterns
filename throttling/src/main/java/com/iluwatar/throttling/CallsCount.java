@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.throttling;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.throttling;
 
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * A class to keep track of the counter of different Tenants
- * @author drastogi
+ * A class to keep track of the counter of different Tenants.
  *
+ * @author drastogi
  */
 public final class CallsCount {
 
@@ -42,36 +42,37 @@ public final class CallsCount {
 
   /**
    * Add a new tenant to the map.
+   *
    * @param tenantName name of the tenant.
    */
   public void addTenant(String tenantName) {
     tenantCallsCount.putIfAbsent(tenantName, new AtomicLong(0));
   }
-  
+
   /**
    * Increment the count of the specified tenant.
+   *
    * @param tenantName name of the tenant.
    */
   public void incrementCount(String tenantName) {
     tenantCallsCount.get(tenantName).incrementAndGet();
   }
-  
+
   /**
-   * 
+   * Get count of tenant based on tenant name.
+   *
    * @param tenantName name of the tenant.
    * @return the count of the tenant.
    */
   public long getCount(String tenantName) {
     return tenantCallsCount.get(tenantName).get();
   }
-  
+
   /**
    * Resets the count of all the tenants in the map.
    */
   public void reset() {
     LOGGER.debug("Resetting the map.");
-    for (Entry<String, AtomicLong> e : tenantCallsCount.entrySet()) {
-      tenantCallsCount.put(e.getKey(), new AtomicLong(0));
-    }
+    tenantCallsCount.replaceAll((k, v) -> new AtomicLong(0));
   }
 }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.administration;
 
 /**
- * Console interface for lottery administration
+ * Console interface for lottery administration.
  */
 public interface ConsoleAdministrationSrv {
 
   /**
-   * Get all submitted tickets
+   * Get all submitted tickets.
    */
   void getAllSubmittedTickets();
 
   /**
-   * Draw lottery numbers
+   * Draw lottery numbers.
    */
   void performLottery();
 
   /**
-   * Begin new lottery round
+   * Begin new lottery round.
    */
   void resetLottery();
 }

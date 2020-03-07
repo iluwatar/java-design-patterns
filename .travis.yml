@@ -1,30 +1,29 @@
 language: java
+dist: bionic
 jdk:
-- oraclejdk8
+- openjdk11
+sudo: required
 
 env:
   global:
-  - GH_REF: github.com/iluwatar/java-design-patterns.git
-  - secure: LxTDuNS/rBWIvKkaEqr79ImZAe48mCdoYCF41coxNXgNoippo4GIBArknqtv+XvdkiuRZ1yGyj6pn8GU33c/yn+krddTUkVCwTbVatbalW5jhQjDbHYym/JcxaK9ZS/3JTeGcWrBgiPqHEEDhCf26vPZsXoMSeVCEORVKTp1BSg=
-  - secure: "eoWlW9GyTJY04P8K3pxayXwU9/hmptQg/LfirispQkV9YvmziCfSzXnatnBhNfud98sCzY8BScXnb+OWLTnjLKpId4rtEqb0aJ40Jc32cUKzgzFAUn7cNcDAbUIfyPAGVqyQqfj/11wYSADwWMMOPlW97ExUtoyiH2WenXuRHso="
-  
-before_install:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
+  - secure: "DCpazS3nkLnter3sguXEAS2fC/1ZWNfM+XLyif9MfNFxlZdpni2vCD/jA0Rdpga8puQWHNVLyAec+RPFH/2qSmJ1c1UTV5MaLv8tPqwUX0VFA+1I6XoSv6oX4ldHTBWHEWqQHkRFOLoil0h0edc0tTOWQwXF8U+DLAB+HkRb4gw="
 
-# default install command is just "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
-install:
-- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -e
+services:
+- xvfb
+
+addons:
+  sonarcloud:
+    organization: "iluwatar"
+    token:
+      secure: "FpHwMYPMkdWU6CeIB7+O3qIeIM4vJMp47UjkKK53f0w0s6tPZofZZkab+gcL2TqKSil7sFVB/AQXU1cUubflRszwcLbNsc8H2yFehD79o0o0Mqd1Dd5ip/q0KQbHkkln+InFlVLfvrLB4Xd4mlQVxbGhqpULBhXjKzFzQlRFcuU="
+script:
+  # Because of Travis security restrictions, SonarCloud analysis cannot be run on pull requests originated from forks
+  # See https://docs.travis-ci.com/user/pull-requests/#pull-requests-and-security-restrictions
+  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then mvn clean verify; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then mvn clean verify sonar:sonar -Dsonar.projectKey=iluwatar_java-design-patterns -Dsonar.host.url=https://sonarcloud.io; fi'
 
 after_success:
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
-- bash update-ghpages.sh
-
-# use latest java version available instead of travis default
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
+- bash update-website.sh
 
 notifications:
   email:
@@ -35,5 +34,3 @@ notifications:
     on_success: change  # options: [always|never|change] default: always
     on_failure: always  # options: [always|never|change] default: always
     on_start: never     # options: [always|never|change] default: always
-
-sudo: required

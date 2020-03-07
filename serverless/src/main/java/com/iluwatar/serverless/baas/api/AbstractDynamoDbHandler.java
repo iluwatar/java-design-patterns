@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.serverless.baas.api;
 
 import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
- * abstract dynamodb handler
+ * abstract dynamodb handler.
+ *
  * @param <T> - serializable collection
  */
 public abstract class AbstractDynamoDbHandler<T extends Serializable> {
@@ -49,7 +48,7 @@ public abstract class AbstractDynamoDbHandler<T extends Serializable> {
   }
 
   private void initAmazonDynamoDb() {
-    AmazonDynamoDB amazonDynamoDb = AmazonDynamoDBClientBuilder
+    var amazonDynamoDb = AmazonDynamoDBClientBuilder
         .standard()
         .withRegion(Regions.US_EAST_1)
         .build();
@@ -70,28 +69,22 @@ public abstract class AbstractDynamoDbHandler<T extends Serializable> {
   }
 
   protected Map<String, String> headers() {
-    Map<String, String> headers = new HashMap<>();
-    headers.put("Content-Type", "application/json");
-
-    return headers;
+    return Map.of("Content-Type", "application/json");
   }
 
   /**
-   * API Gateway response
+   * API Gateway response.
    *
    * @param statusCode - status code
-   * @param body - Object body
+   * @param body       - Object body
    * @return - api gateway proxy response
    */
   protected APIGatewayProxyResponseEvent apiGatewayProxyResponseEvent(Integer statusCode, T body) {
-    APIGatewayProxyResponseEvent apiGatewayProxyResponseEvent =
-        new APIGatewayProxyResponseEvent().withHeaders(headers());
+    var apiGatewayProxyResponseEvent = new APIGatewayProxyResponseEvent().withHeaders(headers());
     try {
       apiGatewayProxyResponseEvent
           .withStatusCode(statusCode)
-          .withBody(getObjectMapper()
-              .writeValueAsString(body));
-
+          .withBody(getObjectMapper().writeValueAsString(body));
     } catch (JsonProcessingException jsonProcessingException) {
       throw new RuntimeException(jsonProcessingException);
     }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp�l�
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,9 @@
 
 package com.iluwatar.spatialpartition;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.util.Hashtable;
 import org.junit.jupiter.api.Test;
 
@@ -35,24 +37,27 @@ class SpatialPartitionBubblesTest {
 
   @Test
   void handleCollisionsUsingQtTest() {
-    Bubble b1 = new Bubble(10,10,1,3);
-    Bubble b2 = new Bubble(5,5,2,1);
-    Bubble b3 = new Bubble(9,9,3,1);
-    Bubble b4 = new Bubble(8,8,4,2);
-    Hashtable<Integer, Bubble> bubbles = new Hashtable<Integer, Bubble>();
-    bubbles.put(1, b1); 
-    bubbles.put(2, b2); 
-    bubbles.put(3, b3); 
+    var b1 = new Bubble(10, 10, 1, 3);
+    var b2 = new Bubble(5, 5, 2, 1);
+    var b3 = new Bubble(9, 9, 3, 1);
+    var b4 = new Bubble(8, 8, 4, 2);
+    var bubbles = new Hashtable<Integer, Bubble>();
+    bubbles.put(1, b1);
+    bubbles.put(2, b2);
+    bubbles.put(3, b3);
     bubbles.put(4, b4);
-    Rect r = new Rect(10,10,20,20);
-    QuadTree qt = new QuadTree(r,4);
-    qt.insert(b1); 
-    qt.insert(b2); 
-    qt.insert(b3); 
+    var r = new Rect(10, 10, 20, 20);
+    var qt = new QuadTree(r, 4);
+    qt.insert(b1);
+    qt.insert(b2);
+    qt.insert(b3);
     qt.insert(b4);
-    SpatialPartitionBubbles sp = new SpatialPartitionBubbles(bubbles, qt);
+    var sp = new SpatialPartitionBubbles(bubbles, qt);
     sp.handleCollisionsUsingQt(b1);
     //b1 touches b3 and b4 but not b2 - so b1,b3,b4 get popped
-    assertTrue(bubbles.get(1) == null && bubbles.get(2) != null && bubbles.get(3) == null && bubbles.get(4) == null);
+    assertNull(bubbles.get(1));
+    assertNotNull(bubbles.get(2));
+    assertNull(bubbles.get(3));
+    assertNull(bubbles.get(4));
   }
 }

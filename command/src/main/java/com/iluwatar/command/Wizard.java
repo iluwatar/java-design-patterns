@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.command;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.command;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * 
- * Wizard is the invoker of the commands
- *
+ * Wizard is the invoker of the commands.
  */
 public class Wizard {
 
@@ -45,7 +43,7 @@ public class Wizard {
   }
 
   /**
-   * Cast spell
+   * Cast spell.
    */
   public void castSpell(Command command, Target target) {
     LOGGER.info("{} casts {} at {}", this, command, target);
@@ -54,11 +52,11 @@ public class Wizard {
   }
 
   /**
-   * Undo last spell
+   * Undo last spell.
    */
   public void undoLastSpell() {
     if (!undoStack.isEmpty()) {
-      Command previousSpell = undoStack.pollLast();
+      var previousSpell = undoStack.pollLast();
       redoStack.offerLast(previousSpell);
       LOGGER.info("{} undoes {}", this, previousSpell);
       previousSpell.undo();
@@ -66,11 +64,11 @@ public class Wizard {
   }
 
   /**
-   * Redo last spell
+   * Redo last spell.
    */
   public void redoLastSpell() {
     if (!redoStack.isEmpty()) {
-      Command previousSpell = redoStack.pollLast();
+      var previousSpell = redoStack.pollLast();
       undoStack.offerLast(previousSpell);
       LOGGER.info("{} redoes {}", this, previousSpell);
       previousSpell.redo();

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.poison.pill;
 
 /**
@@ -29,39 +30,30 @@ package com.iluwatar.poison.pill;
  * Pill will stop reading messages from the queue. You must also ensure that the Poison Pill will be
  * the last message that will be read from the queue (if you have prioritized queue then this can be
  * tricky).
- * <p>
- * In simple cases the Poison Pill can be just a null-reference, but holding a unique separate
+ *
+ * <p>In simple cases the Poison Pill can be just a null-reference, but holding a unique separate
  * shared object-marker (with name "Poison" or "Poison Pill") is more clear and self describing.
- * 
  */
 public class App {
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
-    MessageQueue queue = new SimpleMessageQueue(10000);
+    var queue = new SimpleMessageQueue(10000);
 
-    final Producer producer = new Producer("PRODUCER_1", queue);
-    final Consumer consumer = new Consumer("CONSUMER_1", queue);
+    final var producer = new Producer("PRODUCER_1", queue);
+    final var consumer = new Consumer("CONSUMER_1", queue);
 
-    new Thread() {
-      @Override
-      public void run() {
-        consumer.consume();
-      }
-    }.start();
+    new Thread(consumer::consume).start();
 
-    new Thread() {
-      @Override
-      public void run() {
-        producer.send("hand shake");
-        producer.send("some very important information");
-        producer.send("bye!");
-        producer.stop();
-      }
-    }.start();
+    new Thread(() -> {
+      producer.send("hand shake");
+      producer.send("some very important information");
+      producer.send("bye!");
+      producer.stop();
+    }).start();
   }
 }

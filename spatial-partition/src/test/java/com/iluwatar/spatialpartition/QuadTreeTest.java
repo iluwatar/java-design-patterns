@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp�l�
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,13 @@
 
 package com.iluwatar.spatialpartition;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Random;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -37,41 +40,34 @@ class QuadTreeTest {
 
   @Test
   void queryTest() {
-    ArrayList<Point> points = new ArrayList<Point>();
-    Random rand = new Random();
+    var points = new ArrayList<Point>();
+    var rand = new Random();
     for (int i = 0; i < 20; i++) {
-      Bubble p = new Bubble(rand.nextInt(300), rand.nextInt(300), i, rand.nextInt(2) + 1);
+      var p = new Bubble(rand.nextInt(300), rand.nextInt(300), i, rand.nextInt(2) + 1);
       points.add(p);
     }
-    Rect field = new Rect(150,150,300,300); //size of field
-    Rect queryRange = new Rect(70,130,100,100); //result = all points lying in this rectangle
+    var field = new Rect(150, 150, 300, 300); //size of field
+    var queryRange = new Rect(70, 130, 100, 100); //result = all points lying in this rectangle
     //points found in the query range using quadtree and normal method is same
-    assertTrue(QuadTreeTest.quadTreeTest(points, field, queryRange).equals(QuadTreeTest.verify(points, queryRange)));
+    var points1 = QuadTreeTest.quadTreeTest(points, field, queryRange);
+    var points2 = QuadTreeTest.verify(points, queryRange);
+    assertEquals(points1, points2);
   }
 
-  static Hashtable<Integer, Point> quadTreeTest(ArrayList<Point> points, Rect field, Rect queryRange) {
+  static Hashtable<Integer, Point> quadTreeTest(Collection<Point> points, Rect field, Rect queryRange) {
     //creating quadtree and inserting all points
-    QuadTree qTree = new QuadTree(field, 4);
-    for (int i = 0; i < points.size(); i++) {
-      qTree.insert(points.get(i));
-    }
+    var qTree = new QuadTree(queryRange, 4);
+    points.forEach(qTree::insert);
 
-    ArrayList<Point> queryResult = qTree.query(queryRange, new ArrayList<Point>());
-    Hashtable<Integer, Point> result = new Hashtable<Integer, Point>();
-    for (int i = 0; i < queryResult.size(); i++) {
-      Point p = queryResult.get(i);
-      result.put(p.id, p);
-    }
-    return result;
+    return qTree
+        .query(field, new ArrayList<>())
+        .stream()
+        .collect(Collectors.toMap(p -> p.id, p -> p, (a, b) -> b, Hashtable::new));
   }
 
-  static Hashtable<Integer, Point> verify(ArrayList<Point> points, Rect queryRange) {
-    Hashtable<Integer, Point> result = new Hashtable<Integer, Point>();
-    for (int i = 0; i < points.size(); i++) {
-      if (queryRange.contains(points.get(i))) {
-        result.put(points.get(i).id, points.get(i));
-      }
-    }
-    return result;
+  static Hashtable<Integer, Point> verify(Collection<Point> points, Rect queryRange) {
+    return points.stream()
+        .filter(queryRange::contains)
+        .collect(Collectors.toMap(point -> point.id, point -> point, (a, b) -> b, Hashtable::new));
   }
 }

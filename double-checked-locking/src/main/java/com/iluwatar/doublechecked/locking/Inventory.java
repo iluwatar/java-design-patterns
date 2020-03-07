@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.doublechecked.locking;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * 
- * Inventory
- *
+ * Inventory.
  */
 public class Inventory {
 
@@ -45,7 +42,7 @@ public class Inventory {
   private final Lock lock;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Inventory(int inventorySize) {
     this.inventorySize = inventorySize;
@@ -54,7 +51,7 @@ public class Inventory {
   }
 
   /**
-   * Add item
+   * Add item.
    */
   public boolean addItem(Item item) {
     if (items.size() < inventorySize) {
@@ -62,7 +59,8 @@ public class Inventory {
       try {
         if (items.size() < inventorySize) {
           items.add(item);
-          LOGGER.info("{}: items.size()={}, inventorySize={}", Thread.currentThread(), items.size(), inventorySize);
+          var thread = Thread.currentThread();
+          LOGGER.info("{}: items.size()={}, inventorySize={}", thread, items.size(), inventorySize);
           return true;
         }
       } finally {
@@ -73,12 +71,12 @@ public class Inventory {
   }
 
   /**
-   * Get all the items in the inventory
+   * Get all the items in the inventory.
    *
    * @return All the items of the inventory, as an unmodifiable list
    */
   public final List<Item> getItems() {
-    return Collections.unmodifiableList(items);
+    return List.copyOf(items);
   }
 
 }

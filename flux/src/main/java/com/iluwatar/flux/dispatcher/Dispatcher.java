@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.flux.dispatcher;
 
-import java.util.LinkedList;
-import java.util.List;
+package com.iluwatar.flux.dispatcher;
 
 import com.iluwatar.flux.action.Action;
 import com.iluwatar.flux.action.Content;
@@ -31,11 +29,11 @@ import com.iluwatar.flux.action.ContentAction;
 import com.iluwatar.flux.action.MenuAction;
 import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.store.Store;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * 
  * Dispatcher sends Actions to registered Stores.
- *
  */
 public final class Dispatcher {
 
@@ -43,7 +41,8 @@ public final class Dispatcher {
 
   private List<Store> stores = new LinkedList<>();
 
-  private Dispatcher() {}
+  private Dispatcher() {
+  }
 
   public static Dispatcher getInstance() {
     return instance;
@@ -54,7 +53,7 @@ public final class Dispatcher {
   }
 
   /**
-   * Menu item selected handler
+   * Menu item selected handler.
    */
   public void menuItemSelected(MenuItem menuItem) {
     dispatchAction(new MenuAction(menuItem));
@@ -71,6 +70,6 @@ public final class Dispatcher {
   }
 
   private void dispatchAction(Action action) {
-    stores.stream().forEach(store -> store.onAction(action));
+    stores.forEach(store -> store.onAction(action));
   }
 }

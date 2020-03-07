@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dao;
-
-import org.h2.jdbcx.JdbcDataSource;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -44,6 +31,17 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.sql.DataSource;
+import org.h2.jdbcx.JdbcDataSource;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 /**
  * Tests {@link DbCustomerDao}.
@@ -56,12 +54,13 @@ public class DbCustomerDaoTest {
 
   /**
    * Creates customers schema.
+   *
    * @throws SQLException if there is any error while creating schema.
    */
   @BeforeEach
   public void createSchema() throws SQLException {
-    try (Connection connection = DriverManager.getConnection(DB_URL);
-        Statement statement = connection.createStatement()) {
+    try (var connection = DriverManager.getConnection(DB_URL);
+         var statement = connection.createStatement()) {
       statement.execute(CustomerSchemaSql.CREATE_SCHEMA_SQL);
     }
   }
@@ -74,14 +73,15 @@ public class DbCustomerDaoTest {
 
     /**
      * Setup for connection success scenario.
+     *
      * @throws Exception if any error occurs.
      */
     @BeforeEach
     public void setUp() throws Exception {
-      JdbcDataSource dataSource = new JdbcDataSource();
+      var dataSource = new JdbcDataSource();
       dataSource.setURL(DB_URL);
       dao = new DbCustomerDao(dataSource);
-      boolean result = dao.add(existingCustomer);
+      var result = dao.add(existingCustomer);
       assertTrue(result);
     }
 
@@ -93,12 +93,12 @@ public class DbCustomerDaoTest {
 
       @Test
       public void addingShouldResultInSuccess() throws Exception {
-        try (Stream<Customer> allCustomers = dao.getAll()) {
+        try (var allCustomers = dao.getAll()) {
           assumeTrue(allCustomers.count() == 1);
         }
 
-        final Customer nonExistingCustomer = new Customer(2, "Robert", "Englund");
-        boolean result = dao.add(nonExistingCustomer);
+        final var nonExistingCustomer = new Customer(2, "Robert", "Englund");
+        var result = dao.add(nonExistingCustomer);
         assertTrue(result);
 
         assertCustomerCountIs(2);
@@ -107,8 +107,8 @@ public class DbCustomerDaoTest {
 
       @Test
       public void deletionShouldBeFailureAndNotAffectExistingCustomers() throws Exception {
-        final Customer nonExistingCustomer = new Customer(2, "Robert", "Englund");
-        boolean result = dao.delete(nonExistingCustomer);
+        final var nonExistingCustomer = new Customer(2, "Robert", "Englund");
+        var result = dao.delete(nonExistingCustomer);
 
         assertFalse(result);
         assertCustomerCountIs(1);
@@ -116,11 +116,11 @@ public class DbCustomerDaoTest {
 
       @Test
       public void updationShouldBeFailureAndNotAffectExistingCustomers() throws Exception {
-        final int nonExistingId = getNonExistingCustomerId();
-        final String newFirstname = "Douglas";
-        final String newLastname = "MacArthur";
-        final Customer customer = new Customer(nonExistingId, newFirstname, newLastname);
-        boolean result = dao.update(customer);
+        final var nonExistingId = getNonExistingCustomerId();
+        final var newFirstname = "Douglas";
+        final var newLastname = "MacArthur";
+        final var customer = new Customer(nonExistingId, newFirstname, newLastname);
+        var result = dao.update(customer);
 
         assertFalse(result);
         assertFalse(dao.getById(nonExistingId).isPresent());
@@ -135,16 +135,14 @@ public class DbCustomerDaoTest {
     /**
      * Represents a scenario where DAO operations are being performed on an already existing
      * customer.
-     *
      */
     @Nested
     public class ExistingCustomer {
 
       @Test
       public void addingShouldResultInFailureAndNotAffectExistingCustomers() throws Exception {
-        Customer existingCustomer = new Customer(1, "Freddy", "Krueger");
-
-        boolean result = dao.add(existingCustomer);
+        var existingCustomer = new Customer(1, "Freddy", "Krueger");
+        var result = dao.add(existingCustomer);
 
         assertFalse(result);
         assertCustomerCountIs(1);
@@ -153,7 +151,7 @@ public class DbCustomerDaoTest {
 
       @Test
       public void deletionShouldBeSuccessAndCustomerShouldBeNonAccessible() throws Exception {
-        boolean result = dao.delete(existingCustomer);
+        var result = dao.delete(existingCustomer);
 
         assertTrue(result);
         assertCustomerCountIs(0);
@@ -161,15 +159,16 @@ public class DbCustomerDaoTest {
       }
 
       @Test
-      public void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation() throws Exception {
-        final String newFirstname = "Bernard";
-        final String newLastname = "Montgomery";
-        final Customer customer = new Customer(existingCustomer.getId(), newFirstname, newLastname);
-        boolean result = dao.update(customer);
+      public void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation() throws
+          Exception {
+        final var newFirstname = "Bernard";
+        final var newLastname = "Montgomery";
+        final var customer = new Customer(existingCustomer.getId(), newFirstname, newLastname);
+        var result = dao.update(customer);
 
         assertTrue(result);
 
-        final Customer cust = dao.getById(existingCustomer.getId()).get();
+        final var cust = dao.getById(existingCustomer.getId()).get();
         assertEquals(newFirstname, cust.getFirstName());
         assertEquals(newLastname, cust.getLastName());
       }
@@ -177,28 +176,28 @@ public class DbCustomerDaoTest {
   }
 
   /**
-   * Represents a scenario where DB connectivity is not present due to network issue, or
-   * DB service unavailable.
-   * 
+   * Represents a scenario where DB connectivity is not present due to network issue, or DB service
+   * unavailable.
    */
   @Nested
   public class ConnectivityIssue {
-    
+
     private static final String EXCEPTION_CAUSE = "Connection not available";
 
     /**
      * setup a connection failure scenario.
+     *
      * @throws SQLException if any error occurs.
      */
     @BeforeEach
     public void setUp() throws SQLException {
       dao = new DbCustomerDao(mockedDatasource());
     }
-    
+
     private DataSource mockedDatasource() throws SQLException {
-      DataSource mockedDataSource = mock(DataSource.class);
-      Connection mockedConnection = mock(Connection.class);
-      SQLException exception = new SQLException(EXCEPTION_CAUSE);
+      var mockedDataSource = mock(DataSource.class);
+      var mockedConnection = mock(Connection.class);
+      var exception = new SQLException(EXCEPTION_CAUSE);
       doThrow(exception).when(mockedConnection).prepareStatement(Mockito.anyString());
       doReturn(mockedConnection).when(mockedDataSource).getConnection();
       return mockedDataSource;
@@ -210,30 +209,30 @@ public class DbCustomerDaoTest {
         dao.add(new Customer(2, "Bernard", "Montgomery"));
       });
     }
-    
+
     @Test
     public void deletingACustomerFailsWithExceptionAsFeedbackToTheClient() {
       assertThrows(Exception.class, () -> {
         dao.delete(existingCustomer);
       });
     }
-    
+
     @Test
     public void updatingACustomerFailsWithFeedbackToTheClient() {
-      final String newFirstname = "Bernard";
-      final String newLastname = "Montgomery";
+      final var newFirstname = "Bernard";
+      final var newLastname = "Montgomery";
       assertThrows(Exception.class, () -> {
         dao.update(new Customer(existingCustomer.getId(), newFirstname, newLastname));
       });
     }
-    
+
     @Test
     public void retrievingACustomerByIdFailsWithExceptionAsFeedbackToClient() {
       assertThrows(Exception.class, () -> {
         dao.getById(existingCustomer.getId());
       });
     }
-    
+
     @Test
     public void retrievingAllCustomersFailsWithExceptionAsFeedbackToClient() {
       assertThrows(Exception.class, () -> {
@@ -245,18 +244,19 @@ public class DbCustomerDaoTest {
 
   /**
    * Delete customer schema for fresh setup per test.
+   *
    * @throws SQLException if any error occurs.
    */
   @AfterEach
   public void deleteSchema() throws SQLException {
-    try (Connection connection = DriverManager.getConnection(DB_URL);
-        Statement statement = connection.createStatement()) {
+    try (var connection = DriverManager.getConnection(DB_URL);
+         var statement = connection.createStatement()) {
       statement.execute(CustomerSchemaSql.DELETE_SCHEMA_SQL);
     }
   }
 
   private void assertCustomerCountIs(int count) throws Exception {
-    try (Stream<Customer> allCustomers = dao.getAll()) {
+    try (var allCustomers = dao.getAll()) {
       assertEquals(count, allCustomers.count());
     }
   }
@@ -264,7 +264,7 @@ public class DbCustomerDaoTest {
 
   /**
    * An arbitrary number which does not correspond to an active Customer id.
-   * 
+   *
    * @return an int of a customer id which doesn't exist
    */
   private int getNonExistingCustomerId() {

@@ -1,0 +1,79 @@
+@startuml
+package com.iluwatar.promise {
+  class App {
+    - DEFAULT_URL : String {static}
+    - LOGGER : Logger {static}
+    - executor : ExecutorService
+    - stopLatch : CountDownLatch
+    - App()
+    - calculateLineCount()
+    - calculateLowestFrequencyChar()
+    - characterFrequency() : Promise<Map<Character, Integer>>
+    - countLines() : Promise<Integer>
+    - download(urlString : String) : Promise<String>
+    - lowestFrequencyChar() : Promise<Character>
+    + main(args : String[]) {static}
+    - promiseUsage()
+    - stop()
+    - taskCompleted()
+  }
+  class Promise<T> {
+    - exceptionHandler : Consumer<? super Throwable>
+    - fulfillmentAction : Runnable
+    + Promise<T>()
+    + fulfill(value : T)
+    + fulfillExceptionally(exception : Exception)
+    + fulfillInAsync(task : Callable<T>, executor : Executor) : Promise<T>
+    - handleException(exception : Exception)
+    + onError(exceptionHandler : Consumer<? super Throwable>) : Promise<T>
+    - postFulfillment()
+    + thenAccept(action : Consumer<? super T>) : Promise<Void>
+    + thenApply(func : Function<? super T, V>) : Promise<V>
+  }
+  -class ConsumeAction {
+    - action : Consumer<? super T>
+    - dest : Promise<Void>
+    - src : Promise<T>
+    - ConsumeAction(src : Promise<T>, dest : Promise<T>, action : Consumer<T>)
+    + run()
+  }
+  -class TransformAction<V> {
+    - dest : Promise<V>
+    - func : Function<? super T, V>
+    - src : Promise<T>
+    - TransformAction<V>(src : Promise<T>, dest : Promise<T>, func : Function<T, R>)
+    + run()
+  }
+  ~class PromiseSupport<T> {
+    - COMPLETED : int {static}
+    - FAILED : int {static}
+    - LOGGER : Logger {static}
+    - RUNNING : int {static}
+    - exception : Exception
+    - lock : Object
+    - state : int
+    - value : T
+    ~ PromiseSupport<T>()
+    + cancel(mayInterruptIfRunning : boolean) : boolean
+    ~ fulfill(value : T)
+    ~ fulfillExceptionally(exception : Exception)
+    + get() : T
+    + get(timeout : long, unit : TimeUnit) : T
+    + isCancelled() : boolean
+    + isDone() : boolean
+  }
+  class Utility {
+    - LOGGER : Logger {static}
+    + Utility()
+    + characterFrequency(fileLocation : String) : Map<Character, Integer> {static}
+    + countLines(fileLocation : String) : Integer {static}
+    + downloadFile(urlString : String) : String {static}
+    + lowestFrequencyChar(charFrequency : Map<Character, Integer>) : Character {static}
+  }
+}
+TransformAction --+ Promise
+TransformAction -->  "-src" Promise
+ConsumeAction --+ Promise
+ConsumeAction -->  "-src" Promise
+Promise --|> PromiseSupport 
+@enduml

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.nullobject;
 
 /**
- * 
  * Null Object pattern replaces null values with neutral objects. Many times this simplifies
  * algorithms since no extra null checks are needed.
- * <p>
- * In this example we build a binary tree where the nodes are either normal or Null Objects. No null
- * values are used in the tree making the traversal easy.
  *
+ * <p>In this example we build a binary tree where the nodes are either normal or Null Objects. No
+ * null values are used in the tree making the traversal easy.
  */
 public class App {
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
@@ -43,7 +42,7 @@ public class App {
         new NodeImpl("1", new NodeImpl("11", new NodeImpl("111", NullNode.getInstance(),
             NullNode.getInstance()), NullNode.getInstance()), new NodeImpl("12",
             NullNode.getInstance(), new NodeImpl("122", NullNode.getInstance(),
-                NullNode.getInstance())));
+            NullNode.getInstance())));
 
     root.walk();
   }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,35 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.cqrs;
-
-import java.math.BigInteger;
-import java.util.List;
-
-import com.iluwatar.cqrs.commandes.CommandServiceImpl;
-import com.iluwatar.cqrs.commandes.ICommandService;
-import com.iluwatar.cqrs.dto.Author;
-import com.iluwatar.cqrs.dto.Book;
-import com.iluwatar.cqrs.queries.IQueryService;
-import com.iluwatar.cqrs.queries.QueryServiceImpl;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.iluwatar.cqrs.commandes.CommandServiceImpl;
+import com.iluwatar.cqrs.dto.Author;
+import com.iluwatar.cqrs.dto.Book;
+import com.iluwatar.cqrs.queries.IQueryService;
+import com.iluwatar.cqrs.queries.QueryServiceImpl;
+import java.math.BigInteger;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 /**
  * Integration test of IQueryService and ICommandService with h2 data
- *
  */
 public class IntegrationTest {
 
   private static IQueryService queryService;
-  private static ICommandService commandService;
 
   @BeforeAll
   public static void initializeAndPopulateDatabase() {
-    commandService = new CommandServiceImpl();
+    var commandService = new CommandServiceImpl();
     queryService = new QueryServiceImpl();
 
     // create first author1
@@ -72,7 +68,7 @@ public class IntegrationTest {
 
   @Test
   public void testGetAuthorByUsername() {
-    Author author = queryService.getAuthorByUsername("username1");
+    var author = queryService.getAuthorByUsername("username1");
     assertEquals("username1", author.getUsername());
     assertEquals("name1", author.getName());
     assertEquals("email1", author.getEmail());
@@ -80,22 +76,22 @@ public class IntegrationTest {
 
   @Test
   public void testGetUpdatedAuthorByUsername() {
-    Author author = queryService.getAuthorByUsername("new_username2");
-    Author expectedAuthor = new Author("new_name2", "new_email2", "new_username2");
+    var author = queryService.getAuthorByUsername("new_username2");
+    var expectedAuthor = new Author("new_name2", "new_email2", "new_username2");
     assertEquals(expectedAuthor, author);
 
   }
 
   @Test
   public void testGetBook() {
-    Book book = queryService.getBook("title1");
+    var book = queryService.getBook("title1");
     assertEquals("title1", book.getTitle());
     assertEquals(10, book.getPrice(), 0.01);
   }
 
   @Test
   public void testGetAuthorBooks() {
-    List<Book> books = queryService.getAuthorBooks("username1");
+    var books = queryService.getAuthorBooks("username1");
     assertEquals(2, books.size());
     assertTrue(books.contains(new Book("title1", 10)));
     assertTrue(books.contains(new Book("new_title2", 30)));
@@ -103,13 +99,13 @@ public class IntegrationTest {
 
   @Test
   public void testGetAuthorBooksCount() {
-    BigInteger bookCount = queryService.getAuthorBooksCount("username1");
+    var bookCount = queryService.getAuthorBooksCount("username1");
     assertEquals(new BigInteger("2"), bookCount);
   }
 
   @Test
   public void testGetAuthorsCount() {
-    BigInteger authorCount = queryService.getAuthorsCount();
+    var authorCount = queryService.getAuthorsCount();
     assertEquals(new BigInteger("2"), authorCount);
   }
 

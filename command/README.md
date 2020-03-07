@@ -5,10 +5,7 @@ folder: command
 permalink: /patterns/command/
 categories: Behavioral
 tags:
- - Java
- - Gang Of Four
- - Difficulty-Intermediate
- - Functional
+ - Gang of Four
 ---
 
 ## Also known as
@@ -19,6 +16,7 @@ Encapsulate a request as an object, thereby letting you
 parameterize clients with different requests, queue or log requests, and
 support undoable operations.
 
+## Class diagram
 ![alt text](./etc/command.png "Command")
 
 ## Applicability
@@ -35,10 +33,6 @@ Use the Command pattern when you want to
 * to keep a history of requests
 * implement callback functionality
 * implement the undo functionality
-
-## Presentations
-
-* [Command Pattern](etc/presentation.html) 
 
 ## Real world examples
 

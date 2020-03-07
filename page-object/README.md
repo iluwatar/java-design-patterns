@@ -3,17 +3,16 @@ layout: pattern
 title: Page Object
 folder: page-object
 permalink: /patterns/page-object/
-categories: Testing
+categories: Structural
 tags:
-- Java
-- Difficulty-Intermediate
+- Decoupling
 ---
 
 ## Intent
 
 Page Object encapsulates the UI, hiding the underlying UI widgetry of an application (commonly a web application) and providing an application-specific API to allow the manipulation of UI components required for tests. In doing so, it allows the test class itself to focus on the test logic instead.
 
-
+## Class diagram
 ![alt text](./etc/page-object.png "Page Object")
 
 

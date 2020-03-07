@@ -1,0 +1,52 @@
+@startuml
+package com.iluwatar.collectionpipeline {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Car {
+    - category : Category
+    - make : String
+    - model : String
+    - year : int
+    + Car(make : String, model : String, yearOfMake : int, category : Category)
+    + equals(obj : Object) : boolean
+    + getCategory() : Category
+    + getMake() : String
+    + getModel() : String
+    + getYear() : int
+    + hashCode() : int
+  }
+  class CarFactory {
+    - CarFactory()
+    + createCars() : List<Car> {static}
+  }
+  enum Category {
+    + CONVERTIBLE {static}
+    + JEEP {static}
+    + SEDAN {static}
+    + valueOf(name : String) : Category {static}
+    + values() : Category[] {static}
+  }
+  class FunctionalProgramming {
+    - FunctionalProgramming()
+    + getGroupingOfCarsByCategory(cars : List<Car>) : Map<Category, List<Car>> {static}
+    + getModelsAfter2000(cars : List<Car>) : List<String> {static}
+    + getSedanCarsOwnedSortedByDate(persons : List<Person>) : List<Car> {static}
+  }
+  class ImperativeProgramming {
+    - ImperativeProgramming()
+    + getGroupingOfCarsByCategory(cars : List<Car>) : Map<Category, List<Car>> {static}
+    + getModelsAfter2000(cars : List<Car>) : List<String> {static}
+    + getSedanCarsOwnedSortedByDate(persons : List<Person>) : List<Car> {static}
+  }
+  class Person {
+    - cars : List<Car>
+    + Person(cars : List<Car>)
+    + getCars() : List<Car>
+  }
+}
+Person -->  "-cars" Car
+Car -->  "-category" Category
+@enduml

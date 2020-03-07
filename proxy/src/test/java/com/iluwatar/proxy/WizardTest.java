@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.proxy;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link Wizard}
@@ -32,10 +34,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class WizardTest {
 
   @Test
-  public void testToString() throws Exception {
-    final String[] wizardNames = {"Gandalf", "Dumbledore", "Oz", "Merlin"};
-    for (String name : wizardNames) {
-      assertEquals(name, new Wizard(name).toString());
-    }
+  public void testToString() {
+    List.of("Gandalf", "Dumbledore", "Oz", "Merlin")
+        .forEach(name -> assertEquals(name, new Wizard(name).toString()));
   }
 }

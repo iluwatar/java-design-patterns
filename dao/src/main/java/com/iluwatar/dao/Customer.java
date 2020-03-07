@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,6 @@ package com.iluwatar.dao;
 
 /**
  * A customer POJO that represents the data that will be read from the data source.
- *
  */
 public class Customer {
 
@@ -74,11 +73,11 @@ public class Customer {
 
   @Override
   public boolean equals(final Object that) {
-    boolean isEqual = false;
+    var isEqual = false;
     if (this == that) {
       isEqual = true;
     } else if (that != null && getClass() == that.getClass()) {
-      final Customer customer = (Customer) that;
+      final var customer = (Customer) that;
       if (getId() == customer.getId()) {
         isEqual = true;
       }

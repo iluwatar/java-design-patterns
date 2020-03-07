@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Sepp�l�
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,62 +23,71 @@
 
 package com.iluwatar.spatialpartition;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import org.junit.jupiter.api.Test;
 
 /**
-* Testing methods in Bubble class.
-*/
+ * Testing methods in Bubble class.
+ */
 
 class BubbleTest {
 
   @Test
   void moveTest() {
-    Bubble b = new Bubble(10,10,1,2);
-    int initialX = b.x;
-    int initialY = b.y;
+    var b = new Bubble(10, 10, 1, 2);
+    var initialX = b.coordinateX;
+    var initialY = b.coordinateY;
     b.move();
     //change in x and y < |2|
-    assertTrue((b.x - initialX < 2 && b.x - initialX > -2) && (b.y - initialY < 2 && b.y - initialY > -2));
+    assertTrue(b.coordinateX - initialX < 2 && b.coordinateX - initialX > -2);
+    assertTrue(b.coordinateY - initialY < 2 && b.coordinateY - initialY > -2);
   }
 
   @Test
   void touchesTest() {
-    Bubble b1 = new Bubble(0,0,1,2);
-    Bubble b2 = new Bubble(1,1,2,1);
-    Bubble b3 = new Bubble(10,10,3,1);
+    var b1 = new Bubble(0, 0, 1, 2);
+    var b2 = new Bubble(1, 1, 2, 1);
+    var b3 = new Bubble(10, 10, 3, 1);
     //b1 touches b2 but not b3
-    assertTrue(b1.touches(b2) && !b1.touches(b3));
+    assertTrue(b1.touches(b2));
+    assertFalse(b1.touches(b3));
   }
 
   @Test
   void popTest() {
-    Bubble b1 = new Bubble(10,10,1,2);
-    Bubble b2 = new Bubble(0,0,2,2);
-    Hashtable<Integer, Bubble> bubbles = new Hashtable<Integer, Bubble>();
-    bubbles.put(1, b1); 
+    var b1 = new Bubble(10, 10, 1, 2);
+    var b2 = new Bubble(0, 0, 2, 2);
+    var bubbles = new Hashtable<Integer, Bubble>();
+    bubbles.put(1, b1);
     bubbles.put(2, b2);
     b1.pop(bubbles);
     //after popping, bubble no longer in hashtable containing all bubbles
-    assertTrue(bubbles.get(1) == null && bubbles.get(2) != null);
+    assertNull(bubbles.get(1));
+    assertNotNull(bubbles.get(2));
   }
 
   @Test
   void handleCollisionTest() {
-    Bubble b1 = new Bubble(0,0,1,2);
-    Bubble b2 = new Bubble(1,1,2,1);
-    Bubble b3 = new Bubble(10,10,3,1);
-    Hashtable<Integer, Bubble> bubbles = new Hashtable<Integer, Bubble>();
-    bubbles.put(1, b1); 
-    bubbles.put(2, b2); 
+    var b1 = new Bubble(0, 0, 1, 2);
+    var b2 = new Bubble(1, 1, 2, 1);
+    var b3 = new Bubble(10, 10, 3, 1);
+    var bubbles = new Hashtable<Integer, Bubble>();
+    bubbles.put(1, b1);
+    bubbles.put(2, b2);
     bubbles.put(3, b3);
-    ArrayList<Point> bubblesToCheck = new ArrayList<Point>();
-    bubblesToCheck.add(b2); 
+    var bubblesToCheck = new ArrayList<Point>();
+    bubblesToCheck.add(b2);
     bubblesToCheck.add(b3);
     b1.handleCollision(bubblesToCheck, bubbles);
     //b1 touches b2 and not b3, so b1, b2 will be popped
-    assertTrue(bubbles.get(1) == null && bubbles.get(2) == null && bubbles.get(3) != null);
+    assertNull(bubbles.get(1));
+    assertNull(bubbles.get(2));
+    assertNotNull(bubbles.get(3));
   }
 }

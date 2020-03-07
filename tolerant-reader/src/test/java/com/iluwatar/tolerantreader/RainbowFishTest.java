@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.tolerantreader;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 /**
  * Date: 12/30/15 - 18:34 PM
@@ -38,7 +39,7 @@ public class RainbowFishTest {
    */
   @Test
   public void testValues() {
-    final RainbowFish fish = new RainbowFish("name", 1, 2, 3);
+    final var fish = new RainbowFish("name", 1, 2, 3);
     assertEquals("name", fish.getName());
     assertEquals(1, fish.getAge());
     assertEquals(2, fish.getLengthMeters());

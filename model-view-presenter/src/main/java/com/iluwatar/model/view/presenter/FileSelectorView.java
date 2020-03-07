@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.model.view.presenter;
 
 import java.io.Serializable;
@@ -41,44 +42,50 @@ public interface FileSelectorView extends Serializable {
   void close();
 
   /**
+   * Returns true if view is opened.
+   *
    * @return True, if the view is opened, false otherwise.
    */
   boolean isOpened();
 
   /**
    * Sets the presenter component, to the one given as parameter.
-   * 
+   *
    * @param presenter The new presenter component.
    */
   void setPresenter(FileSelectorPresenter presenter);
 
   /**
+   * Gets presenter component.
+   *
    * @return The presenter Component.
    */
   FileSelectorPresenter getPresenter();
 
   /**
    * Sets the file's name, to the value given as parameter.
-   * 
+   *
    * @param name The new name of the file.
    */
   void setFileName(String name);
 
   /**
+   * Gets the name of file.
+   *
    * @return The name of the file.
    */
   String getFileName();
 
   /**
    * Displays a message to the users.
-   * 
+   *
    * @param message The message to be displayed.
    */
   void showMessage(String message);
 
   /**
    * Displays the data to the view.
-   * 
+   *
    * @param data The data to be written.
    */
   void displayData(String data);

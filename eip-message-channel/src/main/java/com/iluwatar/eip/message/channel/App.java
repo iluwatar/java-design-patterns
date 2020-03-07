@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.eip.message.channel;
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * When two applications communicate with each other using a messaging system they first need to
  * establish a communication channel that will carry the data. Message Channel decouples Message
  * producers and consumers.
- * <p>
- * The sending application doesn't necessarily know what particular application will end up
+ *
+ * <p>The sending application doesn't necessarily know what particular application will end up
  * retrieving it, but it can be assured that the application that retrieves the information is
  * interested in that information. This is because the messaging system has different Message
  * Channels for different types of information the applications want to communicate. When an
@@ -43,22 +42,21 @@ import org.slf4j.LoggerFactory;
  * Likewise, an application that wants to receive particular information doesn't pull info off some
  * random channel; it selects what channel to get information from based on what type of information
  * it wants.
- * <p>
- * In this example we use Apache Camel to establish two different Message Channels. The first one
- * reads from standard input and delivers messages to Direct endpoint. The second Message Channel is
- * established from the Direct component to console output. No actual messages are sent, only the
- * established routes are printed to standard output.
- * 
+ *
+ * <p>In this example we use Apache Camel to establish two different Message Channels. The first
+ * one reads from standard input and delivers messages to Direct endpoint. The second Message
+ * Channel is established from the Direct component to console output. No actual messages are sent,
+ * only the established routes are printed to standard output.
  */
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(String[] args) throws Exception {
-    CamelContext context = new DefaultCamelContext();
+    var context = new DefaultCamelContext();
 
     context.addRoutes(new RouteBuilder() {
 

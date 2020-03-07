@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +20,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.doublechecked.locking;
-
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.core.AppenderBase;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.slf4j.LoggerFactory;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
 /**
  * Date: 12/10/15 - 9:34 PM
@@ -82,32 +82,30 @@ public class InventoryTest {
   public void testAddItem() throws Exception {
     assertTimeout(ofMillis(10000), () -> {
       // Create a new inventory with a limit of 1000 items and put some load on the add method
-      final Inventory inventory = new Inventory(INVENTORY_SIZE);
-      final ExecutorService executorService = Executors.newFixedThreadPool(THREAD_COUNT);
-      for (int i = 0; i < THREAD_COUNT; i++) {
-        executorService.execute(() -> {
-          while (inventory.addItem(new Item())) {};
-        });
-      }
+      final var inventory = new Inventory(INVENTORY_SIZE);
+      final var executorService = Executors.newFixedThreadPool(THREAD_COUNT);
+      IntStream.range(0, THREAD_COUNT).<Runnable>mapToObj(i -> () -> {
+        while (inventory.addItem(new Item())) ;
+      }).forEach(executorService::execute);
 
       // Wait until all threads have finished
       executorService.shutdown();
       executorService.awaitTermination(5, TimeUnit.SECONDS);
 
       // Check the number of items in the inventory. It should not have exceeded the allowed maximum
-      final List<Item> items = inventory.getItems();
+      final var items = inventory.getItems();
       assertNotNull(items);
       assertEquals(INVENTORY_SIZE, items.size());
 
       assertEquals(INVENTORY_SIZE, appender.getLogSize());
 
       // ... and check if the inventory size is increasing continuously
-      for (int i = 0; i < items.size(); i++) {
-        assertTrue(appender.log.get(i).getFormattedMessage().contains("items.size()=" + (i + 1)));
-      }
+      IntStream.range(0, items.size())
+          .mapToObj(i -> appender.log.get(i).getFormattedMessage()
+              .contains("items.size()=" + (i + 1)))
+          .forEach(Assertions::assertTrue);
     });
   }
-
 
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {

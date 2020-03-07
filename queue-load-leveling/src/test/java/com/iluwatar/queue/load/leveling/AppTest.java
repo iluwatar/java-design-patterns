@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2019 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.queue.load.leveling;
 
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 /**
  * Application Test
  */
 public class AppTest {
   @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+  public void test() {
+    App.main(new String[]{});
   }
 }
