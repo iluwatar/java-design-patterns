@@ -88,7 +88,6 @@ public class Utility {
    * @return number of lines, 0 if file does not exist.
    */
   public static Integer countLines(String fileLocation) {
-    int lineCount = 0;
     try (var bufferedReader = new BufferedReader(new FileReader(fileLocation))) {
       return (int) bufferedReader.lines().count();
     } catch (IOException ex) {
