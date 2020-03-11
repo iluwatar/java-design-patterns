@@ -17,3 +17,4 @@ datanucleus.log
 /bin/
 *.log
 event-sourcing/Journal.json
+java-design-patterns-web
