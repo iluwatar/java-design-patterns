@@ -52,7 +52,7 @@
 		</repository>
 		<repository>
 			<id>Cloudbees snapshots</id>
-			<url>http://repository-estatio.forge.cloudbees.com/snapshot/</url>
+			<url>https://repository-estatio.forge.cloudbees.com/snapshot/</url>
 			<snapshots>
 			</snapshots>
 			<releases>
