@@ -23,12 +23,12 @@
 
 package com.iluwatar.collectionpipeline;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Imperative-style programming to iterate over the list and get the names of cars made later than
@@ -57,11 +57,27 @@ public class ImperativeProgramming {
    * @return {@link List} of {@link String} of car models built after year 2000
    */
   public static List<String> getModelsAfter2000(List<Car> cars) {
-    return cars.stream()
-        .filter(car -> car.getYear() > 2000)
-        .sorted(Comparator.comparingInt(Car::getYear))
-        .map(Car::getModel)
-        .collect(Collectors.toList());
+    List<Car> carsSortedByYear = new ArrayList<>();
+
+    for (Car car : cars) {
+      if (car.getYear() > 2000) {
+        carsSortedByYear.add(car);
+      }
+    }
+
+    Collections.sort(carsSortedByYear, new Comparator<Car>() {
+      @Override
+      public int compare(Car car1, Car car2) {
+        return car1.getYear() - car2.getYear();
+      }
+    });
+
+    List<String> models = new ArrayList<>();
+    for (Car car : carsSortedByYear) {
+      models.add(car.getModel());
+    }
+
+    return models;
   }
 
   /**
@@ -71,7 +87,17 @@ public class ImperativeProgramming {
    * @return {@link Map} with category as key and cars belonging to that category as value
    */
   public static Map<Category, List<Car>> getGroupingOfCarsByCategory(List<Car> cars) {
-    return cars.stream().collect(Collectors.groupingBy(Car::getCategory));
+    Map<Category, List<Car>> groupingByCategory = new HashMap<>();
+    for (Car car : cars) {
+      if (groupingByCategory.containsKey(car.getCategory())) {
+        groupingByCategory.get(car.getCategory()).add(car);
+      } else {
+        List<Car> categoryCars = new ArrayList<>();
+        categoryCars.add(car);
+        groupingByCategory.put(car.getCategory(), categoryCars);
+      }
+    }
+    return groupingByCategory;
   }
 
   /**
@@ -82,11 +108,25 @@ public class ImperativeProgramming {
    * @return {@link List} of {@link Car} to belonging to the group
    */
   public static List<Car> getSedanCarsOwnedSortedByDate(List<Person> persons) {
-    return persons.stream()
-        .map(Person::getCars)
-        .flatMap(Collection::stream)
-        .filter(car -> car.getCategory() == Category.SEDAN)
-        .sorted(Comparator.comparingInt(Car::getYear))
-        .collect(Collectors.toList());
+    List<Car> cars = new ArrayList<>();
+    for (Person person : persons) {
+      cars.addAll(person.getCars());
+    }
+
+    List<Car> sedanCars = new ArrayList<>();
+    for (Car car : cars) {
+      if (Category.SEDAN.equals(car.getCategory())) {
+        sedanCars.add(car);
+      }
+    }
+
+    sedanCars.sort(new Comparator<Car>() {
+      @Override
+      public int compare(Car o1, Car o2) {
+        return o1.getYear() - o2.getYear();
+      }
+    });
+
+    return sedanCars;
   }
 }
