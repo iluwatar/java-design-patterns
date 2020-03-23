@@ -72,11 +72,9 @@ public class App {
    * Start the work, dispatch tasks and stop the thread pool at last.
    */
   private static void execute(WorkCenter workCenter, TaskSet taskSet) throws InterruptedException {
-    List<Worker> workers = workCenter.getWorkers();
+    var workers = workCenter.getWorkers();
     var exec = Executors.newFixedThreadPool(workers.size());
-    for (var worker : workers) {
-      exec.submit(worker);
-    }
+    workers.forEach(exec::submit);
     Thread.sleep(1000);
     addTasks(taskSet);
     exec.awaitTermination(2, TimeUnit.SECONDS);
