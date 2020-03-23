@@ -45,31 +45,31 @@ public class CakeTest {
 
   @Test
   public void testSetId() {
-    final Cake cake = new Cake();
+    final var cake = new Cake();
     assertNull(cake.getId());
 
-    final Long expectedId = 1234L;
+    final var expectedId = 1234L;
     cake.setId(expectedId);
     assertEquals(expectedId, cake.getId());
   }
 
   @Test
   public void testSetTopping() {
-    final Cake cake = new Cake();
+    final var cake = new Cake();
     assertNull(cake.getTopping());
 
-    final CakeTopping expectedTopping = new CakeTopping("DummyTopping", 1000);
+    final var expectedTopping = new CakeTopping("DummyTopping", 1000);
     cake.setTopping(expectedTopping);
     assertEquals(expectedTopping, cake.getTopping());
   }
 
   @Test
   public void testSetLayers() {
-    final Cake cake = new Cake();
+    final var cake = new Cake();
     assertNotNull(cake.getLayers());
     assertTrue(cake.getLayers().isEmpty());
 
-    final Set<CakeLayer> expectedLayers = Set.of(
+    final var expectedLayers = Set.of(
             new CakeLayer("layer1", 1000),
             new CakeLayer("layer2", 2000),
             new CakeLayer("layer3", 3000));
@@ -79,7 +79,7 @@ public class CakeTest {
 
   @Test
   public void testAddLayer() {
-    final Cake cake = new Cake();
+    final var cake = new Cake();
     assertNotNull(cake.getLayers());
     assertTrue(cake.getLayers().isEmpty());
 
@@ -90,7 +90,7 @@ public class CakeTest {
     cake.setLayers(initialLayers);
     assertEquals(initialLayers, cake.getLayers());
 
-    final CakeLayer newLayer = new CakeLayer("layer3", 3000);
+    final var newLayer = new CakeLayer("layer3", 3000);
     cake.addLayer(newLayer);
 
     final Set<CakeLayer> expectedLayers = new HashSet<>();
@@ -102,18 +102,18 @@ public class CakeTest {
 
   @Test
   public void testToString() {
-    final CakeTopping topping = new CakeTopping("topping", 20);
+    final var topping = new CakeTopping("topping", 20);
     topping.setId(2345L);
 
-    final CakeLayer layer = new CakeLayer("layer", 100);
+    final var layer = new CakeLayer("layer", 100);
     layer.setId(3456L);
 
-    final Cake cake = new Cake();
+    final var cake = new Cake();
     cake.setId(1234L);
     cake.setTopping(topping);
     cake.addLayer(layer);
 
-    final String expected = "id=1234 topping=id=2345 name=topping calories=20 "
+    final var expected = "id=1234 topping=id=2345 name=topping calories=20 "
             + "layers=[id=3456 name=layer calories=100]";
     assertEquals(expected, cake.toString());
 

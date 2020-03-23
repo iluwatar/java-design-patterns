@@ -36,7 +36,7 @@ public class HolderThreadSafeTest extends AbstractHolderTest {
 
   @Override
   Heavy getInternalHeavyValue() throws Exception {
-    final Field holderField = HolderThreadSafe.class.getDeclaredField("heavy");
+    final var holderField = HolderThreadSafe.class.getDeclaredField("heavy");
     holderField.setAccessible(true);
     return (Heavy) holderField.get(this.holder);
   }

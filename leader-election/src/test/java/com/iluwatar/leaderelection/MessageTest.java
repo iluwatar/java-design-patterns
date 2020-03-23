@@ -34,14 +34,14 @@ public class MessageTest {
 
   @Test
   public void testGetType() {
-    Message message = new Message(MessageType.HEARTBEAT, "");
+    var message = new Message(MessageType.HEARTBEAT, "");
     assertEquals(MessageType.HEARTBEAT, message.getType());
   }
 
   @Test
   public void testGetContent() {
-    String content = "test";
-    Message message = new Message(MessageType.HEARTBEAT, content);
+    var content = "test";
+    var message = new Message(MessageType.HEARTBEAT, content);
     assertEquals(content, message.getContent());
   }
 

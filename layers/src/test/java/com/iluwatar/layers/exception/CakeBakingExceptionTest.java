@@ -38,15 +38,15 @@ public class CakeBakingExceptionTest {
 
   @Test
   public void testConstructor() {
-    final CakeBakingException exception = new CakeBakingException();
+    final var exception = new CakeBakingException();
     assertNull(exception.getMessage());
     assertNull(exception.getCause());
   }
 
   @Test
   public void testConstructorWithMessage() {
-    final String expectedMessage = "message";
-    final CakeBakingException exception = new CakeBakingException(expectedMessage);
+    final var expectedMessage = "message";
+    final var exception = new CakeBakingException(expectedMessage);
     assertEquals(expectedMessage, exception.getMessage());
     assertNull(exception.getCause());
   }
