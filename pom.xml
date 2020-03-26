@@ -183,6 +183,7 @@
         <module>game-loop</module>
         <module>combinator</module>
         <module>update-method</module>
+        <module>leader-followers</module>
     </modules>
 
     <repositories>
