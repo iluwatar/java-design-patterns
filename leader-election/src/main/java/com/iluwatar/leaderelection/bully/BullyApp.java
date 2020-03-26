@@ -43,13 +43,13 @@ public class BullyApp {
   public static void main(String[] args) {
 
     Map<Integer, Instance> instanceMap = new HashMap<>();
-    MessageManager messageManager = new BullyMessageManager(instanceMap);
+    var messageManager = new BullyMessageManager(instanceMap);
 
-    BullyInstance instance1 = new BullyInstance(messageManager, 1, 1);
-    BullyInstance instance2 = new BullyInstance(messageManager, 2, 1);
-    BullyInstance instance3 = new BullyInstance(messageManager, 3, 1);
-    BullyInstance instance4 = new BullyInstance(messageManager, 4, 1);
-    BullyInstance instance5 = new BullyInstance(messageManager, 5, 1);
+    var instance1 = new BullyInstance(messageManager, 1, 1);
+    var instance2 = new BullyInstance(messageManager, 2, 1);
+    var instance3 = new BullyInstance(messageManager, 3, 1);
+    var instance4 = new BullyInstance(messageManager, 4, 1);
+    var instance5 = new BullyInstance(messageManager, 5, 1);
 
     instanceMap.put(1, instance1);
     instanceMap.put(2, instance2);
@@ -59,11 +59,11 @@ public class BullyApp {
 
     instance4.onMessage(new Message(MessageType.HEARTBEAT_INVOKE, ""));
 
-    final Thread thread1 = new Thread(instance1);
-    final Thread thread2 = new Thread(instance2);
-    final Thread thread3 = new Thread(instance3);
-    final Thread thread4 = new Thread(instance4);
-    final Thread thread5 = new Thread(instance5);
+    final var thread1 = new Thread(instance1);
+    final var thread2 = new Thread(instance2);
+    final var thread3 = new Thread(instance3);
+    final var thread4 = new Thread(instance4);
+    final var thread5 = new Thread(instance5);
 
     thread1.start();
     thread2.start();

@@ -66,7 +66,7 @@ public class Message {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Message message = (Message) o;
+    var message = (Message) o;
     return type == message.type && Objects.equals(content, message.content);
   }
 
