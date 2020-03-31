@@ -21,29 +21,31 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.lazy.loading;
-
-import java.lang.reflect.Field;
+package com.iluwatar.leaderfollowers;
 
 /**
- * Date: 12/19/15 - 12:05 PM
- *
- * @author Jeroen Meulemeester
+ * A unit of work to be processed by the Workers.
  */
-public class HolderNaiveTest extends AbstractHolderTest {
+public class Task {
 
-  private final HolderNaive holder = new HolderNaive();
+  private final int time;
 
-  @Override
-  Heavy getInternalHeavyValue() throws Exception {
-    final var holderField = HolderNaive.class.getDeclaredField("heavy");
-    holderField.setAccessible(true);
-    return (Heavy) holderField.get(this.holder);
+  private boolean finished;
+
+  public Task(int time) {
+    this.time = time;
   }
 
-  @Override
-  Heavy getHeavy() {
-    return holder.getHeavy();
+  public int getTime() {
+    return time;
+  }
+
+  public void setFinished() {
+    this.finished = true;
+  }
+
+  public boolean isFinished() {
+    return this.finished;
   }
 
 }

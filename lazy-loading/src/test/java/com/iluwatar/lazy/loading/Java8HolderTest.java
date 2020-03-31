@@ -38,16 +38,16 @@ public class Java8HolderTest extends AbstractHolderTest {
 
   @Override
   Heavy getInternalHeavyValue() throws Exception {
-    final Field holderField = Java8Holder.class.getDeclaredField("heavy");
+    final var holderField = Java8Holder.class.getDeclaredField("heavy");
     holderField.setAccessible(true);
 
-    final Supplier<Heavy> supplier = (Supplier<Heavy>) holderField.get(this.holder);
-    final Class<? extends Supplier> supplierClass = supplier.getClass();
+    final var supplier = (Supplier<Heavy>) holderField.get(this.holder);
+    final var supplierClass = supplier.getClass();
 
     // This is a little fishy, but I don't know another way to test this:
     // The lazy holder is at first a lambda, but gets replaced with a new supplier after loading ...
     if (supplierClass.isLocalClass()) {
-      final Field instanceField = supplierClass.getDeclaredField("heavyInstance");
+      final var instanceField = supplierClass.getDeclaredField("heavyInstance");
       instanceField.setAccessible(true);
       return (Heavy) instanceField.get(supplier);
     } else {

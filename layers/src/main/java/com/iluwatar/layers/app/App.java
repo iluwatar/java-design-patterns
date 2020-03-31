@@ -84,7 +84,7 @@ public class App {
 
   /**
    * Application entry point.
-   * 
+   *
    * @param args Command line parameters
    */
   public static void main(String[] args) {
@@ -93,7 +93,7 @@ public class App {
     initializeData(cakeBakingService);
 
     // create view and render it
-    CakeViewImpl cakeView = new CakeViewImpl(cakeBakingService);
+    var cakeView = new CakeViewImpl(cakeBakingService);
     cakeView.render();
   }
 
@@ -111,17 +111,16 @@ public class App {
     cakeBakingService.saveNewTopping(new CakeToppingInfo("candies", 350));
     cakeBakingService.saveNewTopping(new CakeToppingInfo("cherry", 350));
 
-    CakeInfo cake1 =
-            new CakeInfo(new CakeToppingInfo("candies", 0), List.of(
-                    new CakeLayerInfo("chocolate", 0),
-                    new CakeLayerInfo("banana", 0),
-                    new CakeLayerInfo("strawberry", 0)));
+    var cake1 = new CakeInfo(new CakeToppingInfo("candies", 0), List.of(
+        new CakeLayerInfo("chocolate", 0),
+        new CakeLayerInfo("banana", 0),
+        new CakeLayerInfo("strawberry", 0)));
     try {
       cakeBakingService.bakeNewCake(cake1);
     } catch (CakeBakingException e) {
       e.printStackTrace();
     }
-    CakeInfo cake2 = new CakeInfo(new CakeToppingInfo("cherry", 0), List.of(
+    var cake2 = new CakeInfo(new CakeToppingInfo("cherry", 0), List.of(
         new CakeLayerInfo("vanilla", 0),
         new CakeLayerInfo("lemon", 0),
         new CakeLayerInfo("strawberry", 0)));

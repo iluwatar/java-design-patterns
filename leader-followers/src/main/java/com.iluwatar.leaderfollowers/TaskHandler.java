@@ -21,29 +21,26 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.lazy.loading;
+package com.iluwatar.leaderfollowers;
 
-import java.lang.reflect.Field;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/19/15 - 12:05 PM
- *
- * @author Jeroen Meulemeester
+ * The TaskHandler is used by the {@link Worker} to process the newly arrived task.
  */
-public class HolderNaiveTest extends AbstractHolderTest {
+public class TaskHandler {
 
-  private final HolderNaive holder = new HolderNaive();
+  private static final Logger LOGGER = LoggerFactory.getLogger(TaskHandler.class);
 
-  @Override
-  Heavy getInternalHeavyValue() throws Exception {
-    final var holderField = HolderNaive.class.getDeclaredField("heavy");
-    holderField.setAccessible(true);
-    return (Heavy) holderField.get(this.holder);
-  }
-
-  @Override
-  Heavy getHeavy() {
-    return holder.getHeavy();
+  /**
+   * This interface handles one task at a time.
+   */
+  public void handleTask(Task task) throws InterruptedException {
+    var time = task.getTime();
+    Thread.sleep(time);
+    LOGGER.info("It takes " + time + " milliseconds to finish the task");
+    task.setFinished();
   }
 
 }

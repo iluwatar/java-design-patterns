@@ -21,29 +21,22 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.lazy.loading;
+package com.iluwatar.leaderfollowers;
 
-import java.lang.reflect.Field;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Date: 12/19/15 - 12:05 PM
- *
- * @author Jeroen Meulemeester
+ * Tests for TaskHandler
  */
-public class HolderNaiveTest extends AbstractHolderTest {
+public class TaskHandlerTest {
 
-  private final HolderNaive holder = new HolderNaive();
-
-  @Override
-  Heavy getInternalHeavyValue() throws Exception {
-    final var holderField = HolderNaive.class.getDeclaredField("heavy");
-    holderField.setAccessible(true);
-    return (Heavy) holderField.get(this.holder);
-  }
-
-  @Override
-  Heavy getHeavy() {
-    return holder.getHeavy();
-  }
+    @Test
+    public void testHandleTask() throws InterruptedException {
+        var taskHandler = new TaskHandler();
+        var handle = new Task(100);
+        taskHandler.handleTask(handle);
+        Assert.assertTrue(handle.isFinished());
+    }
 
 }

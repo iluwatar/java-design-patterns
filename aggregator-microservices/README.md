@@ -27,4 +27,4 @@ Use the Aggregator Microservices pattern when you need a unified API for various
 
 ## Credits
 
-* [Microservice Design Patterns](http://blog.arungupta.me/microservice-design-patterns/)
+* [Microservice Design Patterns](http://web.archive.org/web/20190705163602/http://blog.arungupta.me/microservice-design-patterns/)

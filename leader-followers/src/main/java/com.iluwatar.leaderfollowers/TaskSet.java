@@ -21,29 +21,27 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.lazy.loading;
+package com.iluwatar.leaderfollowers;
 
-import java.lang.reflect.Field;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 /**
- * Date: 12/19/15 - 12:05 PM
- *
- * @author Jeroen Meulemeester
+ * A TaskSet is a collection of the tasks, the leader receives task from here.
  */
-public class HolderNaiveTest extends AbstractHolderTest {
+public class TaskSet {
 
-  private final HolderNaive holder = new HolderNaive();
+  private BlockingQueue<Task> queue = new ArrayBlockingQueue<>(100);
 
-  @Override
-  Heavy getInternalHeavyValue() throws Exception {
-    final var holderField = HolderNaive.class.getDeclaredField("heavy");
-    holderField.setAccessible(true);
-    return (Heavy) holderField.get(this.holder);
+  public void addTask(Task task) throws InterruptedException {
+    queue.put(task);
   }
 
-  @Override
-  Heavy getHeavy() {
-    return holder.getHeavy();
+  public Task getTask() throws InterruptedException {
+    return queue.take();
   }
 
+  public int getSize() {
+    return queue.size();
+  }
 }

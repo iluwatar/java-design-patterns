@@ -21,29 +21,42 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.lazy.loading;
+package com.iluwatar.leaderfollowers;
 
-import java.lang.reflect.Field;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Date: 12/19/15 - 12:05 PM
- *
- * @author Jeroen Meulemeester
+ * Tests for WorkCenter
  */
-public class HolderNaiveTest extends AbstractHolderTest {
+public class WorkCenterTest {
 
-  private final HolderNaive holder = new HolderNaive();
-
-  @Override
-  Heavy getInternalHeavyValue() throws Exception {
-    final var holderField = HolderNaive.class.getDeclaredField("heavy");
-    holderField.setAccessible(true);
-    return (Heavy) holderField.get(this.holder);
+  @Test
+  public void testCreateWorkers() {
+    var taskSet = new TaskSet();
+    var taskHandler = new TaskHandler();
+    var workCenter = new WorkCenter();
+    workCenter.createWorkers(5, taskSet, taskHandler);
+    Assert.assertEquals(workCenter.getWorkers().size(), 5);
+    Assert.assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
   }
 
-  @Override
-  Heavy getHeavy() {
-    return holder.getHeavy();
+  @Test
+  public void testNullLeader() {
+    var workCenter = new WorkCenter();
+    workCenter.promoteLeader();
+    Assert.assertNull(workCenter.getLeader());
   }
 
+  @Test
+  public void testPromoteLeader() {
+    var taskSet = new TaskSet();
+    var taskHandler = new TaskHandler();
+    var workCenter = new WorkCenter();
+    workCenter.createWorkers(5, taskSet, taskHandler);
+    workCenter.removeWorker(workCenter.getLeader());
+    workCenter.promoteLeader();
+    Assert.assertEquals(workCenter.getWorkers().size(), 4);
+    Assert.assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
+  }
 }
