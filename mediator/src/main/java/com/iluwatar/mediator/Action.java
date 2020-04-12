@@ -34,8 +34,8 @@ public enum Action {
   ENEMY("spotted enemies", "runs for cover"),
   NONE("", "");
 
-  private String title;
-  private String description;
+  private final String title;
+  private final String description;
 
   Action(String title, String description) {
     this.title = title;
