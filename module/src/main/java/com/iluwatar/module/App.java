@@ -65,10 +65,8 @@ public class App {
 
   /**
    * Following method is main executor.
-   *
-   * @param args for providing default program arguments
    */
-  public static void execute(final String... args) {
+  public static void execute() {
 
     /* Send logs on file system */
     fileLoggerModule.printString("Message");
@@ -88,7 +86,7 @@ public class App {
    */
   public static void main(final String... args) throws FileNotFoundException {
     prepare();
-    execute(args);
+    execute();
     unprepare();
   }
 }
