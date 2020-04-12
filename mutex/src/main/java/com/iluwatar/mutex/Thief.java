@@ -54,7 +54,7 @@ public class Thief extends Thread {
    */
   @Override
   public void run() {
-    int beans = 0;
+    var beans = 0;
 
     while (jar.takeBean()) {
       beans = beans + 1;

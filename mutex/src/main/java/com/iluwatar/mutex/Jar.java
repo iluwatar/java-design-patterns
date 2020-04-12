@@ -48,7 +48,7 @@ public class Jar {
    * Method for a thief to take a bean.
    */
   public boolean takeBean() {
-    boolean success = false;
+    var success = false;
     try {
       lock.acquire();
       success = beans > 0;

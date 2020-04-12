@@ -23,10 +23,11 @@
 
 package com.iluwatar.mutex;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.stream.IntStream;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for taking beans from a Jar
@@ -35,11 +36,9 @@ public class JarTest {
 
   @Test
   public void testTakeBeans() {
-    Mutex mutex = new Mutex();
-    Jar jar = new Jar(10, mutex);
-    for (int i = 0; i < 10; i++) {
-      assertTrue(jar.takeBean());
-    }
+    var mutex = new Mutex();
+    var jar = new Jar(10, mutex);
+    IntStream.range(0, 10).mapToObj(i -> jar.takeBean()).forEach(Assertions::assertTrue);
     assertFalse(jar.takeBean());
   }
 
