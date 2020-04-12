@@ -41,9 +41,8 @@ import org.slf4j.LoggerFactory;
  * instance of a plain object with {@link Validator#of(Object)} and validates it {@link
  * Validator#validate(Function, Predicate, String)} against given predicates.
  *
- * <p>As a validation result {@link Validator#get()} it either returns valid object {@link
- * Validator#t} or throws a list of exceptions {@link Validator#exceptions} collected during
- * validation.
+ * <p>As a validation result {@link Validator#get()} either returns valid object
+ * or throws {@link IllegalStateException} with list of exceptions collected during validation.
  */
 public class App {
 
@@ -55,10 +54,10 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    User user = new User("user", 24, Sex.FEMALE, "foobar.com");
+    var user = new User("user", 24, Sex.FEMALE, "foobar.com");
     LOGGER.info(Validator.of(user).validate(User::getName, Objects::nonNull, "name is null")
         .validate(User::getName, name -> !name.isEmpty(), "name is empty")
-        .validate(User::getEmail, email -> !email.contains("@"), "email doesn't containt '@'")
+        .validate(User::getEmail, email -> !email.contains("@"), "email doesn't contains '@'")
         .validate(User::getAge, age -> age > 20 && age < 30, "age isn't between...").get()
         .toString());
   }
