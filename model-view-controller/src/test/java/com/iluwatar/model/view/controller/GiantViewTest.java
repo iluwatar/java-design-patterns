@@ -31,7 +31,6 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import java.util.LinkedList;
 import java.util.List;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,9 +61,9 @@ public class GiantViewTest {
    */
   @Test
   public void testDisplayGiant() {
-    final GiantView view = new GiantView();
+    final var view = new GiantView();
 
-    final GiantModel model = mock(GiantModel.class);
+    final var model = mock(GiantModel.class);
     view.displayGiant(model);
 
     assertEquals(model.toString(), appender.getLastMessage());
@@ -74,10 +73,10 @@ public class GiantViewTest {
   /**
    * Logging Appender Implementation
    */
-  public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+  public static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
-    public InMemoryAppender(Class clazz) {
+    public InMemoryAppender(Class<?> clazz) {
       ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
       start();
     }
