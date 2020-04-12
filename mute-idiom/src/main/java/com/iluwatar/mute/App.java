@@ -25,7 +25,7 @@ package com.iluwatar.mute;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,9 +52,8 @@ public class App {
    * Program entry point.
    *
    * @param args command line args.
-   * @throws Exception if any exception occurs
    */
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
 
     useOfLoggedMute();
 
@@ -68,17 +67,17 @@ public class App {
    * exception occurs.
    */
   private static void useOfMute() {
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    var out = new ByteArrayOutputStream();
     Mute.mute(() -> out.write("Hello".getBytes()));
   }
 
-  private static void useOfLoggedMute() throws SQLException {
-    Resource resource = null;
+  private static void useOfLoggedMute() {
+    Optional<Resource> resource = Optional.empty();
     try {
-      resource = acquireResource();
-      utilizeResource(resource);
+      resource = Optional.of(acquireResource());
+      utilizeResource(resource.get());
     } finally {
-      closeResource(resource);
+      resource.ifPresent(App::closeResource);
     }
   }
 
@@ -86,14 +85,14 @@ public class App {
    * All we can do while failed close of a resource is to log it.
    */
   private static void closeResource(Resource resource) {
-    Mute.loggedMute(() -> resource.close());
+    Mute.loggedMute(resource::close);
   }
 
-  private static void utilizeResource(Resource resource) throws SQLException {
+  private static void utilizeResource(Resource resource) {
     LOGGER.info("Utilizing acquired resource: {}", resource);
   }
 
-  private static Resource acquireResource() throws SQLException {
+  private static Resource acquireResource() {
     return new Resource() {
 
       @Override
