@@ -35,7 +35,7 @@ public class Thief {
     LOGGER.info("Steal valuable items");
   }
 
-  protected static void doNothing() {
+  protected void doNothing() {
     LOGGER.info("Pretend nothing happened and just leave");
   }
 }

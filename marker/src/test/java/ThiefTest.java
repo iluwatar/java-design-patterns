@@ -21,9 +21,11 @@
  * THE SOFTWARE.
  */
 
-import org.junit.jupiter.api.Test;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Test;
 
 /**
  * Thief test
@@ -31,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class ThiefTest {
   @Test
   public void testThief() {
-    Thief thief = new Thief();
-    assertFalse(thief instanceof Permission);
+    var thief = new Thief();
+    assertThat(thief, not(instanceOf(Permission.class)));
   }
 }
