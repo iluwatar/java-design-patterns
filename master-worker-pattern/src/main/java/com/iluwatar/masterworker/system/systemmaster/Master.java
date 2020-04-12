@@ -26,8 +26,9 @@ package com.iluwatar.masterworker.system.systemmaster;
 import com.iluwatar.masterworker.Input;
 import com.iluwatar.masterworker.Result;
 import com.iluwatar.masterworker.system.systemworkers.Worker;
-import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * The abstract Master class which contains private fields numOfWorkers (number of workers), workers
@@ -38,24 +39,24 @@ import java.util.Hashtable;
 
 public abstract class Master {
   private final int numOfWorkers;
-  private final ArrayList<Worker> workers;
+  private final List<Worker> workers;
+  private final Dictionary<Integer, Result<?>> allResultData;
   private int expectedNumResults;
-  private Hashtable<Integer, Result> allResultData;
-  private Result finalResult;
+  private Result<?> finalResult;
 
   Master(int numOfWorkers) {
     this.numOfWorkers = numOfWorkers;
     this.workers = setWorkers(numOfWorkers);
     this.expectedNumResults = 0;
-    this.allResultData = new Hashtable<Integer, Result>(numOfWorkers);
+    this.allResultData = new Hashtable<>(numOfWorkers);
     this.finalResult = null;
   }
 
-  public Result getFinalResult() {
+  public Result<?> getFinalResult() {
     return this.finalResult;
   }
 
-  Hashtable<Integer, Result> getAllResultData() {
+  Dictionary<Integer, Result<?>> getAllResultData() {
     return this.allResultData;
   }
 
@@ -63,21 +64,21 @@ public abstract class Master {
     return this.expectedNumResults;
   }
 
-  ArrayList<Worker> getWorkers() {
+  List<Worker> getWorkers() {
     return this.workers;
   }
 
-  abstract ArrayList<Worker> setWorkers(int num);
+  abstract List<Worker> setWorkers(int num);
 
-  public void doWork(Input input) {
+  public void doWork(Input<?> input) {
     divideWork(input);
   }
 
-  private void divideWork(Input input) {
-    ArrayList<Input> dividedInput = input.divideData(numOfWorkers);
+  private void divideWork(Input<?> input) {
+    List<? extends Input<?>> dividedInput = input.divideData(numOfWorkers);
     if (dividedInput != null) {
       this.expectedNumResults = dividedInput.size();
-      for (int i = 0; i < this.expectedNumResults; i++) {
+      for (var i = 0; i < this.expectedNumResults; i++) {
         //ith division given to ith worker in this.workers
         this.workers.get(i).setReceivedData(this, dividedInput.get(i));
         this.workers.get(i).run();
@@ -85,12 +86,12 @@ public abstract class Master {
     }
   }
 
-  public void receiveData(Result data, Worker w) {
+  public void receiveData(Result<?> data, Worker w) {
     //check if can receive..if yes:
     collectResult(data, w.getWorkerId());
   }
 
-  private void collectResult(Result data, int workerId) {
+  private void collectResult(Result<?> data, int workerId) {
     this.allResultData.put(workerId, data);
     if (this.allResultData.size() == this.expectedNumResults) {
       //all data received
@@ -98,5 +99,5 @@ public abstract class Master {
     }
   }
 
-  abstract Result aggregateData();
+  abstract Result<?> aggregateData();
 }
