@@ -26,16 +26,13 @@ package com.iluwatar.model.view.presenter;
 import org.junit.jupiter.api.Test;
 
 /**
- * 
  * Application test
- *
  */
 public class AppTest {
 
   @Test
   public void test() {
-    String[] args = {};
-    App.main(args);
+    App.main(new String[]{});
   }
 
 }
