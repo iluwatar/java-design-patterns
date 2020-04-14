@@ -45,7 +45,7 @@ public abstract class ObjectPool<T> {
     if (available.isEmpty()) {
       available.add(create());
     }
-    T instance = available.iterator().next();
+    var instance = available.iterator().next();
     available.remove(instance);
     inUse.add(instance);
     return instance;
