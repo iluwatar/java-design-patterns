@@ -48,8 +48,7 @@ import org.junit.Test;
  * the same time since you already have an outline.
  *
  * <p>In ({@link CashAAATest}) we have four test methods. Each of them has only one reason to
- * change
- * and one reason to fail. In a large and complicated code base, tests that honor the single
+ * change and one reason to fail. In a large and complicated code base, tests that honor the single
  * responsibility principle are much easier to troubleshoot.
  */
 public class CashAAATest {
