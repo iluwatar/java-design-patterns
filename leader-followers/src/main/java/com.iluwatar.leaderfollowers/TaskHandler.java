@@ -21,41 +21,26 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.trampoline;
+package com.iluwatar.leaderfollowers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Trampoline pattern allows to define recursive algorithms by iterative loop.
- *
- * <p>It is possible to implement algorithms recursively in Java without blowing the stack
- * and to interleave the execution of functions without hard coding them together or even using
- * threads.
+ * The TaskHandler is used by the {@link Worker} to process the newly arrived task.
  */
-public class TrampolineApp {
+public class TaskHandler {
 
-  private static final Logger log = LoggerFactory.getLogger(TrampolineApp.class);
-
-  /**
-   * Main program for showing pattern. It does loop with factorial function.
-   */
-  public static void main(String[] args) {
-    log.info("start pattern");
-    var result = loop(10, 1).result();
-    log.info("result {}", result);
-
-  }
+  private static final Logger LOGGER = LoggerFactory.getLogger(TaskHandler.class);
 
   /**
-   * Manager for pattern. Define it with a factorial function.
+   * This interface handles one task at a time.
    */
-  public static Trampoline<Integer> loop(int times, int prod) {
-    if (times == 0) {
-      return Trampoline.done(prod);
-    } else {
-      return Trampoline.more(() -> loop(times - 1, prod * times));
-    }
+  public void handleTask(Task task) throws InterruptedException {
+    var time = task.getTime();
+    Thread.sleep(time);
+    LOGGER.info("It takes " + time + " milliseconds to finish the task");
+    task.setFinished();
   }
 
 }

@@ -21,41 +21,27 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.trampoline;
+package com.iluwatar.leaderfollowers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 /**
- * Trampoline pattern allows to define recursive algorithms by iterative loop.
- *
- * <p>It is possible to implement algorithms recursively in Java without blowing the stack
- * and to interleave the execution of functions without hard coding them together or even using
- * threads.
+ * A TaskSet is a collection of the tasks, the leader receives task from here.
  */
-public class TrampolineApp {
+public class TaskSet {
 
-  private static final Logger log = LoggerFactory.getLogger(TrampolineApp.class);
+  private BlockingQueue<Task> queue = new ArrayBlockingQueue<>(100);
 
-  /**
-   * Main program for showing pattern. It does loop with factorial function.
-   */
-  public static void main(String[] args) {
-    log.info("start pattern");
-    var result = loop(10, 1).result();
-    log.info("result {}", result);
-
+  public void addTask(Task task) throws InterruptedException {
+    queue.put(task);
   }
 
-  /**
-   * Manager for pattern. Define it with a factorial function.
-   */
-  public static Trampoline<Integer> loop(int times, int prod) {
-    if (times == 0) {
-      return Trampoline.done(prod);
-    } else {
-      return Trampoline.more(() -> loop(times - 1, prod * times));
-    }
+  public Task getTask() throws InterruptedException {
+    return queue.take();
   }
 
+  public int getSize() {
+    return queue.size();
+  }
 }

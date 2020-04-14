@@ -21,41 +21,42 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.trampoline;
+package com.iluwatar.leaderfollowers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Trampoline pattern allows to define recursive algorithms by iterative loop.
- *
- * <p>It is possible to implement algorithms recursively in Java without blowing the stack
- * and to interleave the execution of functions without hard coding them together or even using
- * threads.
+ * Tests for WorkCenter
  */
-public class TrampolineApp {
+public class WorkCenterTest {
 
-  private static final Logger log = LoggerFactory.getLogger(TrampolineApp.class);
-
-  /**
-   * Main program for showing pattern. It does loop with factorial function.
-   */
-  public static void main(String[] args) {
-    log.info("start pattern");
-    var result = loop(10, 1).result();
-    log.info("result {}", result);
-
+  @Test
+  public void testCreateWorkers() {
+    var taskSet = new TaskSet();
+    var taskHandler = new TaskHandler();
+    var workCenter = new WorkCenter();
+    workCenter.createWorkers(5, taskSet, taskHandler);
+    Assert.assertEquals(workCenter.getWorkers().size(), 5);
+    Assert.assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
   }
 
-  /**
-   * Manager for pattern. Define it with a factorial function.
-   */
-  public static Trampoline<Integer> loop(int times, int prod) {
-    if (times == 0) {
-      return Trampoline.done(prod);
-    } else {
-      return Trampoline.more(() -> loop(times - 1, prod * times));
-    }
+  @Test
+  public void testNullLeader() {
+    var workCenter = new WorkCenter();
+    workCenter.promoteLeader();
+    Assert.assertNull(workCenter.getLeader());
   }
 
+  @Test
+  public void testPromoteLeader() {
+    var taskSet = new TaskSet();
+    var taskHandler = new TaskHandler();
+    var workCenter = new WorkCenter();
+    workCenter.createWorkers(5, taskSet, taskHandler);
+    workCenter.removeWorker(workCenter.getLeader());
+    workCenter.promoteLeader();
+    Assert.assertEquals(workCenter.getWorkers().size(), 4);
+    Assert.assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
+  }
 }
