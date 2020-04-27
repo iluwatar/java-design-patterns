@@ -1,0 +1,69 @@
+@startuml
+package com.iluwatar.associationtable {
+  class App {
+    - App()
+    + main(args : String[]) {static}
+  }
+  ~class AssociationTable {
+    ~ associations : int[][] {static}
+    ~ AssociationTable()
+    ~ contentOfTable() {static}
+  }
+  class Course {
+    - id : int
+    - id_count : int {static}
+    - name : String
+    ~ Course(name : String)
+    - addElement(arr : int[][], studentId : int) : int[][]
+    ~ addStudent(student : Student)
+    - deleteElement(arr : int[][], studentId : int) : int[][]
+    ~ deleteStudent(student : Student)
+    ~ getId() : int
+    ~ getName() : String
+    ~ listOfStudents()
+    ~ setName(name : String)
+  }
+  interface CourseTable {
+    + delete(Course) {abstract}
+    + insert(Course) {abstract}
+    + update(Course, String) {abstract}
+  }
+  class CourseTableImpl {
+    ~ courses : HashMap<Integer, String> {static}
+    + CourseTableImpl()
+    + delete(courseToBeDeleted : Course)
+    + getCourses() : HashMap<Integer, String>
+    + insert(courseToBeInserted : Course)
+    + update(c : Course, newName : String)
+  }
+  class Student {
+    - id : int
+    - id_count : int {static}
+    - name : String
+    ~ Student(name : String)
+    ~ addCourse(course : Course)
+    - addElement(arr : int[][], courseId : int) : int[][]
+    ~ deleteCourse(course : Course)
+    - deleteElement(arr : int[][], courseId : int) : int[][]
+    ~ getId() : int
+    ~ getName() : String
+    ~ listOfCourses()
+    ~ setName(name : String)
+  }
+  interface StudentTable {
+    + delete(Student) {abstract}
+    + insert(Student) {abstract}
+    + update(Student, String) {abstract}
+  }
+  class StudentTableImpl {
+    ~ students : HashMap<Integer, String> {static}
+    + StudentTableImpl()
+    + delete(studentToBeDeleted : Student)
+    + getStudents() : HashMap<Integer, String>
+    + insert(studentToBeInserted : Student)
+    + update(st : Student, newName : String)
+  }
+}
+CourseTableImpl ..|> CourseTable 
+StudentTableImpl ..|> StudentTable 
+@enduml
