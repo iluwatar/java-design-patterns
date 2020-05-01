@@ -21,6 +21,9 @@
  * THE SOFTWARE.
  */
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Created by Alexis on 28-Apr-17. With Marker interface idea is to make empty interface and extend
  * it. Basically it is just to identify the special objects from normal objects. Like in case of
@@ -43,10 +46,23 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+    final Logger logger = LoggerFactory.getLogger(App.class);
     var guard = new Guard();
     var thief = new Thief();
-    guard.enter();
-    thief.doNothing();
+
+    //noinspection ConstantConditions
+    if (guard instanceof Permission) {
+      guard.enter();
+    } else {
+      logger.info("You have no permission to enter, please leave this area");
+    }
+
+    //noinspection ConstantConditions
+    if (thief instanceof Permission) {
+      thief.doNothing();
+    } else {
+      thief.doNothing();
+    }
   }
 }
 
