@@ -5,7 +5,7 @@ folder: arrange-act-assert
 permalink: /patterns/arrange-act-assert/
 categories: Idiom
 tags:
- - Unit Test
+ - Testing
 ---
 
 ## Also known as
