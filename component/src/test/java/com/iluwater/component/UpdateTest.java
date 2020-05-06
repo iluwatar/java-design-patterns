@@ -23,12 +23,27 @@
 package com.iluwater.component;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
+import static junit.framework.TestCase.assertEquals;
+
 /**
  * Tests that Component example runs without errors.
  */
-public class AppTest {
+public class UpdateTest {
     @Test
-    public void test() {
-        App.main(new String[]{});
+    public void UpdateTest() {
+        ArrayList<Component> arrayList = new ArrayList<>();
+        arrayList.add(new BjornInputComponent());
+        arrayList.add(new BjornPhysicsComponent());
+        arrayList.add(new BjornGraphicsComponent());
+        GameObject gameObject = new GameObject(arrayList);
+        gameObject.setPositionOFy(12);
+        gameObject.setPositionOFx(13);
+        gameObject.setVelocity(1);
+        gameObject.update();
+        assertEquals(14, gameObject.getPositionOFx());
+        assertEquals(13,gameObject.getPositionOFy());
     }
 }
