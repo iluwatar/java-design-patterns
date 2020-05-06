@@ -12,8 +12,6 @@ tags:
 
 > Allow a single entity to span multiple domains without coupling the domains to each other.
 
-## Class diagram
-![alt text](./etc/commander.urm.png "Commander class diagram")
 
 ## Applicability
 1.You want to keep decoupled from each other in a class which contains multiple domains.  
