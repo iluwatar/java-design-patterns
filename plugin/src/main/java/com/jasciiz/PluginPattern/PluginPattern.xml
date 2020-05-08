@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <plugins>
+        <plugin>
+            <name>plugin1</name>
+            <place>com.jasciiz.PluginPattern.plugin1</place>
+        </plugin>
+        <plugin>
+            <name>plugin2</name>
+            <place>com.jasciiz.PluginPattern.plugin2</place>
+        </plugin>
+    </plugins>
+</root>
