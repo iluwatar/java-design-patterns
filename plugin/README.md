@@ -1,8 +1,8 @@
 ---
 layout: pattern
-title: Plugin Pattern
+title: plugin
 folder: plugin-pattern
-permalink: /patterns/plugin-pattern/
+permalink: /patterns/plugin/
 categories: Separation
 tags: 
  - Extensibility
@@ -18,7 +18,7 @@ Use Plugin whenever you have a good reason to reverse a package, or layer, depen
 Plugin pattern provides centralized, runtime configuration.
 
 ## Class diagram
-[]()
+![image](https://github.com/jasciiz/java-design-patterns/blob/master/plugin/etc/Plugin-Pattern.png)
 
 ## Applicability
 Using when:
