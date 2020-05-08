@@ -18,7 +18,7 @@ Use Plugin whenever you have a good reason to reverse a package, or layer, depen
 Plugin pattern provides centralized, runtime configuration.
 
 ## Class diagram
-![image](https://github.com/jasciiz/java-design-patterns/blob/master/plugin/etc/Plugin-Pattern.png)
+![image](https://github.com/jasciiz/java-design-patterns/blob/master/plugin/etc/UML.jpg)
 
 ## Applicability
 Using when:
@@ -27,4 +27,8 @@ Using when:
 
 + Configuration shouldn't be scattered throughout your application, nor should it require a rebuild or redeployment. 
 
+
+## Credits
+
+* [Patterns of Enterprise Application Architecture](http://martinfowler.com/eaaCatalog/plugin.html)
 
