@@ -40,7 +40,7 @@
         <camel.version>2.24.0</camel.version>
         <guava.version>19.0</guava.version>
         <mockito.version>1.10.19</mockito.version>
-        <htmlunit.version>2.22</htmlunit.version>
+        <htmlunit.version>2.37.0</htmlunit.version>
         <guice.version>4.0</guice.version>
         <mongo-java-driver.version>3.12.1</mongo-java-driver.version>
         <slf4j.version>1.7.30</slf4j.version>
