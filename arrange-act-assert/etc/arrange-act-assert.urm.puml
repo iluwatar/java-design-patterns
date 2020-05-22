@@ -1,0 +1,11 @@
+@startuml
+package com.iluwatar.arrangeactassert {
+  class Cash {
+    - amount : int
+    ~ Cash(amount : int)
+    ~ count() : int
+    ~ minus(subtrahend : int) : boolean
+    ~ plus(addend : int)
+  }
+}
+@enduml
