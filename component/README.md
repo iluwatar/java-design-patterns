@@ -5,7 +5,9 @@ folder: component
 permalink: /patterns/component/  
 categories: Behavioral  
 tags:  
- - Java  
+ - Java   
+ - Game Programming   
+ - Decoupling   
 ---
 
 ## Intent
