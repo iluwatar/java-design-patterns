@@ -1,4 +1,4 @@
- /*
+/*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package com.iluwater.component;
+package com.iluwatar.component;
 
 import java.util.ArrayList;
 /**
@@ -37,20 +37,20 @@ import java.util.ArrayList;
  * components, in another way, multiple components can construct a object.
  * Here is a demo using component pattern to solve a game-like problem.
  * A person named Bjorn who has three components: input;physics;graphics
- * These three components with a common game object can construct our protagonist:Bjorn, also can
+ * These three component with a common game object can construct our protagonist:Bjorn, also can
  * construct other objects like dog or cat if you want to write a real game.
  */
 
 public class App {
-    /**
-     * Launcher for this demo design pattern
-     */
-    public static void main(String[] args) {
-        ArrayList<Component> arrayList = new ArrayList<>();
-        arrayList.add(new BjornInputComponent());s
-        arrayList.add(new BjornPhysicsComponent());
-        arrayList.add(new BjornGraphicsComponent());
-        GameObject gameObject = new GameObject(arrayList);
-        gameObject.update();
-    }
+  /**
+   * Launcher for this demo design pattern
+   */
+  public static void main(String[] args) {
+    ArrayList<Component> arrayList = new ArrayList<>();
+    arrayList.add(new BjornInputComponent());
+    arrayList.add(new BjornPhysicsComponent());
+    arrayList.add(new BjornGraphicsComponent());
+    GameObject gameObject = new GameObject(arrayList);
+    gameObject.update();
+  }
 }
