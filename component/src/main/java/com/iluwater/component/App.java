@@ -1,4 +1,4 @@
-/*
+ /*
  * The MIT License
  * Copyright © 2014-2019 Ilkka Seppälä
  *
@@ -24,7 +24,7 @@
 package com.iluwater.component;
 
 import java.util.ArrayList;
-/*
+/**
  * Object-oriented to a certain extent can solve many problems of code reuse and data reuse,
  * but it also has great defects:
  * 1.the coupling of data organization is very strong.
@@ -36,15 +36,18 @@ import java.util.ArrayList;
  * A component is a part of one object. We can consider that a object contains multiple
  * components, in another way, multiple components can construct a object.
  * Here is a demo using component pattern to solve a game-like problem.
- * A person named Bjorn who has three component: get input;judge physics state;show graphics state
- * These three component with a common game object can construct our protagonist:Bjorn, also can
+ * A person named Bjorn who has three components: input;physics;graphics
+ * These three components with a common game object can construct our protagonist:Bjorn, also can
  * construct other objects like dog or cat if you want to write a real game.
  */
 
 public class App {
+    /**
+     * Launcher for this demo design pattern
+     */
     public static void main(String[] args) {
-        ArrayList<Component>arrayList = new ArrayList<>();
-        arrayList.add(new BjornInputComponent());
+        ArrayList<Component> arrayList = new ArrayList<>();
+        arrayList.add(new BjornInputComponent());s
         arrayList.add(new BjornPhysicsComponent());
         arrayList.add(new BjornGraphicsComponent());
         GameObject gameObject = new GameObject(arrayList);
