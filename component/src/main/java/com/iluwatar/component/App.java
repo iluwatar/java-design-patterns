@@ -29,10 +29,10 @@ import java.util.ArrayList;
  * but it also has great defects:
  * 1.the coupling of data organization is very strong.
  * 2.Interface logic is difficult to reuse and hot plug.
- *
+ * <p></p>
  * The component pattern solves the defects of object orientation and process orientation and
  * is widely used in game clients
- *
+ * <p></p>
  * A component is a part of one object. We can consider that a object contains multiple
  * components, in another way, multiple components can construct a object.
  * Here is a demo using component pattern to solve a game-like problem.
@@ -42,7 +42,7 @@ import java.util.ArrayList;
  */
 
 public class App {
-  /**
+  /**.
    * Launcher for this demo design pattern
    */
   public static void main(String[] args) {

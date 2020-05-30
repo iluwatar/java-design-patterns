@@ -1,6 +1,6 @@
 package com.iluwatar.component;
 
-/**
+/**.
  * GraphicsComponent is an interface for Graphics function
  */
 

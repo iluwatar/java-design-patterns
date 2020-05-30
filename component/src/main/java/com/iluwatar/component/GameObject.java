@@ -2,7 +2,7 @@ package com.iluwatar.component;
 
 import java.util.ArrayList;
 
-/**
+/**.
  * GameObject is a class for all object in the game.
  * It was constructed by a collection of component.
  */
@@ -13,17 +13,17 @@ public class GameObject {
   private int positionOFy;
   ArrayList<Component> componentArrayList;
 
-  /**
+  /**.
    * Constructor for GameObject
    * @param componentArrayList is the list of this object contains
    */
 
-  public GameObject(ArrayList<Component> componentArrayList){
-    this.componentArrayList=new ArrayList<>();
+  public GameObject(ArrayList<Component> componentArrayList) {
+    this.componentArrayList = new ArrayList<>();
     this.componentArrayList.addAll(componentArrayList);
   }
 
-  /**
+  /**.
    * setter for velocity
    * @param velocity is the velocity of this object
    */
@@ -32,7 +32,7 @@ public class GameObject {
     this.velocity = velocity;
   }
 
-  /**
+  /**.
    * getter for velocity
    */
 
@@ -40,7 +40,7 @@ public class GameObject {
     return velocity;
   }
 
-  /**
+  /**.
    * setter for PositionOFx
    * @param positionOFx is the PositionOFx of this object
    */
@@ -50,7 +50,7 @@ public class GameObject {
   }
 
 
-  /**
+  /**.
    * getter for PositionOFx
    */
 
@@ -58,7 +58,7 @@ public class GameObject {
     return positionOFx;
   }
 
-  /**
+  /**.
    * setter for PositionOFy
    * @param positionOFy is the PositionOFy of this object
    */
@@ -67,7 +67,7 @@ public class GameObject {
     this.positionOFy = positionOFy;
   }
 
-  /**
+  /**.
    * getter for PositionOFy
    */
 
@@ -75,11 +75,11 @@ public class GameObject {
     return positionOFy;
   }
 
-  /**
+  /**.
    * update for this object's components.
    */
 
-  public void update(){
+  public void update() {
     for (Component component : componentArrayList) {
       component.update(this);
     }

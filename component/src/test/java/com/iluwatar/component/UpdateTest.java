@@ -26,7 +26,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
  * Tests that Component example runs without errors.
@@ -54,6 +55,7 @@ public class UpdateTest {
   @Test
   public void physicsUpdateTest() {
     var arrayList = new ArrayList<Component>();
+    arrayList.add(new BjornInputComponent());
     arrayList.add(new BjornPhysicsComponent());
     arrayList.add(new BjornGraphicsComponent());
     var gameObject = new GameObject(arrayList);
@@ -86,7 +88,11 @@ public class UpdateTest {
    */
   @Test
   public void setPositionOFxTest(){
-    var gameObject = new GameObject(null);
+    var arrayList = new ArrayList<Component>();
+    arrayList.add(new BjornInputComponent());
+    arrayList.add(new BjornPhysicsComponent());
+    arrayList.add(new BjornGraphicsComponent());
+    var gameObject = new GameObject(arrayList);
     gameObject.setPositionOFx(1);
     assertEquals(1,gameObject.getPositionOFx());
   }
@@ -95,7 +101,11 @@ public class UpdateTest {
    */
   @Test
   public void getPositionOFxTest(){
-    var gameObject = new GameObject(null);
+    var arrayList = new ArrayList<Component>();
+    arrayList.add(new BjornInputComponent());
+    arrayList.add(new BjornPhysicsComponent());
+    arrayList.add(new BjornGraphicsComponent());
+    var gameObject = new GameObject(arrayList);
     gameObject.setPositionOFx(1);
     assertEquals(1,gameObject.getPositionOFx());
   }
@@ -104,7 +114,11 @@ public class UpdateTest {
    */
   @Test
   public void setPositionOFyTest(){
-    var gameObject = new GameObject(null);
+    var arrayList = new ArrayList<Component>();
+    arrayList.add(new BjornInputComponent());
+    arrayList.add(new BjornPhysicsComponent());
+    arrayList.add(new BjornGraphicsComponent());
+    var gameObject = new GameObject(arrayList);
     gameObject.setPositionOFy(1);
     assertEquals(1,gameObject.getPositionOFy());
   }
@@ -113,7 +127,11 @@ public class UpdateTest {
    */
   @Test
   public void getPositionOFyTest(){
-    var gameObject = new GameObject(null);
+    var arrayList = new ArrayList<Component>();
+    arrayList.add(new BjornInputComponent());
+    arrayList.add(new BjornPhysicsComponent());
+    arrayList.add(new BjornGraphicsComponent());
+    var gameObject = new GameObject(arrayList);
     gameObject.setPositionOFy(1);
     assertEquals(1,gameObject.getPositionOFy());
   }
@@ -122,7 +140,11 @@ public class UpdateTest {
    */
   @Test
   public void setVelocityTest(){
-    var gameObject = new GameObject(null);
+    var arrayList = new ArrayList<Component>();
+    arrayList.add(new BjornInputComponent());
+    arrayList.add(new BjornPhysicsComponent());
+    arrayList.add(new BjornGraphicsComponent());
+    var gameObject = new GameObject(arrayList);
     gameObject.setVelocity(1);
     assertEquals(1,gameObject.getVelocity());
   }
@@ -131,7 +153,11 @@ public class UpdateTest {
    */
   @Test
   public void getVelocityTest(){
-    var gameObject = new GameObject(null);
+    var arrayList = new ArrayList<Component>();
+    arrayList.add(new BjornInputComponent());
+    arrayList.add(new BjornPhysicsComponent());
+    arrayList.add(new BjornGraphicsComponent());
+    var gameObject = new GameObject(arrayList);
     gameObject.setVelocity(1);
     assertEquals(1,gameObject.getVelocity());
   }

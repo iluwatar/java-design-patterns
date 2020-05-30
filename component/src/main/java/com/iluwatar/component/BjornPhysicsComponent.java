@@ -8,7 +8,7 @@ import org.slf4j.Logger;
  * BjornPhysicsComponent is a class for our main game star
  * This class creat a Physics component for Bjorn.
  */
-public class BjornPhysicsComponent implements PhysicsComponent{
+public class BjornPhysicsComponent implements PhysicsComponent {
 
   private static final Logger LOGGER = getLogger(BjornPhysicsComponent.class);
 
@@ -20,7 +20,7 @@ public class BjornPhysicsComponent implements PhysicsComponent{
    */
   @Override
   public void update(GameObject gameObject) {
-    if(gameObject.getPositionOFx() == gameObject.getPositionOFy()){
+    if (gameObject.getPositionOFx() == gameObject.getPositionOFy()) {
       LOGGER.info("Your position is pretty good, keep it!");
     }
   }
