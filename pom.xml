@@ -185,7 +185,7 @@
         <module>update-method</module>
         <module>leader-followers</module>
         <module>arrange-act-assert</module>
-        <module>finite-state-machine</module>
+        <module>component</module>
     </modules>
 
     <repositories>

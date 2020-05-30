@@ -20,45 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package com.iluwatar.component;
 
-package com.iluwatar.finite.state.machine;
-
-/**.
- * A running state for the game character.
+import org.junit.jupiter.api.Test;
+/**
+ * Tests that Component example runs without errors.
  */
-public class RunState implements State {
-  /**.
-   * This method is a handler for event.
-   * @param context is context data.
-   * @param event is an event.
+public class AppTest {
+  /**
+   * test for the design pattern runnable.
    */
-  @Override
-  public void handle(Context context, Event event) {
-    switch (event) {
-      case MOVING_ON_OFF:
-        context.setState(new StandState());
-        stop();
-        break;
-      case MOVING_RUN:
-        context.setState(new WalkState());
-        cool_down();
-        break;
-      default:
-        break;
-    }
-  }
-
-  /**.
-   * A method which simulates Game character stop.
-   */
-  private void stop() {
-    System.out.println("Stop running! Game character is standing now!");
-  }
-
-  /**.
-   * A method which simulates Game character change from run to walk.
-   */
-  private void cool_down() {
-    System.out.println("Stop running! Game character is walking now!");
+  @Test
+  public void test() {
+    App.main(new String[]{});
   }
 }

@@ -21,6 +21,6 @@
  * THE SOFTWARE.
  */
 
-module com.iluwatar.finite.state.machine {
-	requires org.slf4j;
+module com.iluwatar.component {
+    requires org.slf4j;
 }
