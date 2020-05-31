@@ -33,9 +33,9 @@ public class NewArithmetic {
   private static final Logger LOGGER = LoggerFactory.getLogger(NewArithmetic.class);
   private static final  String VERSION = "2.0";
 
-  private NewSource source;
+  private final NewSource source;
 
-  public NewArithmetic(final NewSource source) {
+  public NewArithmetic(NewSource source) {
     this.source = source;
   }
 
@@ -44,7 +44,7 @@ public class NewArithmetic {
    * @param nums numbers need to add together
    * @return accumulate sum
    */
-  public int sum(final int... nums) {
+  public int sum(int... nums) {
     LOGGER.info("Arithmetic sum {}", VERSION);
     return source.accumulateSum(nums);
   }
@@ -54,7 +54,7 @@ public class NewArithmetic {
    * @param nums numbers need to multiply together
    * @return accumulate multiplication
    */
-  public int mul(final int... nums) {
+  public int mul(int... nums) {
     LOGGER.info("Arithmetic mul {}", VERSION);
     return source.accumulateMul(nums);
   }
@@ -64,7 +64,7 @@ public class NewArithmetic {
    * @param nums numbers need to check
    * @return  if has any zero, return true, else, return false
    */
-  public boolean ifHasZero(final int... nums) {
+  public boolean ifHasZero(int... nums) {
     LOGGER.info("Arithmetic check zero {}", VERSION);
     return !source.ifNonZero(nums);
   }
