@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package com.iluwater.strangler;
+package com.iluwatar.strangler;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test methods in HalfArithmetic
  */
 class HalfArithmeticTest {
-  private static HalfArithmetic arithmetic = new HalfArithmetic(new HalfSource(), new OldSource());
+  private static final HalfArithmetic arithmetic = new HalfArithmetic(new HalfSource(), new OldSource());
 
   @Test
   public void testSum() {

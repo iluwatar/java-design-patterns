@@ -21,16 +21,36 @@
  * THE SOFTWARE.
  */
 
-package com.iluwater.strangler;
+package com.iluwatar.strangler;
 
-import org.junit.jupiter.api.Test;
+import java.util.Arrays;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Application test
+ * New source. Completely covers functionalities of old source with new techniques
+ * and also has some new features.
  */
-public class AppTest {
-  @Test
-  public void test() {
-    App.main(new String[]{});
+public class NewSource {
+  private static final Logger LOGGER = LoggerFactory.getLogger(NewSource.class);
+  private static final  String VERSION = "2.0";
+
+  public int accumulateSum(int... nums) {
+    LOGGER.info("Source module {}", VERSION);
+    return Arrays.stream(nums).reduce(0, Integer::sum);
+  }
+
+  /**
+   * Implement accumulate multiply with new technique.
+   * Replace old one in {@link OldSource}
+   */
+  public int accumulateMul(int... nums) {
+    LOGGER.info("Source module {}", VERSION);
+    return Arrays.stream(nums).reduce(1, (a, b) -> a * b);
+  }
+
+  public boolean ifNonZero(int... nums) {
+    LOGGER.info("Source module {}", VERSION);
+    return Arrays.stream(nums).allMatch(num -> num != 0);
   }
 }
