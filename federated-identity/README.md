@@ -1,4 +1,4 @@
-﻿---
+---
 layout: pattern
 title: Federated Identity
 folder: federated-identity
