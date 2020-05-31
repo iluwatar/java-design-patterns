@@ -65,7 +65,7 @@ public final class FileLoggerModuleTest {
   public void testFileMessage() throws IOException {
 
     /* Get singletong instance of File Logger Module */
-    final FileLoggerModule fileLoggerModule = FileLoggerModule.getSingleton();
+    final var fileLoggerModule = FileLoggerModule.getSingleton();
 
     /* Prepare the essential sub modules, to perform the sequence of jobs */
     fileLoggerModule.prepare();
@@ -89,7 +89,7 @@ public final class FileLoggerModuleTest {
   public void testNoFileMessage() throws IOException {
 
     /* Get singletong instance of File Logger Module */
-    final FileLoggerModule fileLoggerModule = FileLoggerModule.getSingleton();
+    final var fileLoggerModule = FileLoggerModule.getSingleton();
 
     /* Prepare the essential sub modules, to perform the sequence of jobs */
     fileLoggerModule.prepare();
@@ -111,7 +111,7 @@ public final class FileLoggerModuleTest {
   public void testFileErrorMessage() throws FileNotFoundException {
 
     /* Get singletong instance of File Logger Module */
-    final FileLoggerModule fileLoggerModule = FileLoggerModule.getSingleton();
+    final var fileLoggerModule = FileLoggerModule.getSingleton();
 
     /* Prepare the essential sub modules, to perform the sequence of jobs */
     fileLoggerModule.prepare();
@@ -136,7 +136,7 @@ public final class FileLoggerModuleTest {
   public void testNoFileErrorMessage() throws FileNotFoundException {
 
     /* Get singletong instance of File Logger Module */
-    final FileLoggerModule fileLoggerModule = FileLoggerModule.getSingleton();
+    final var fileLoggerModule = FileLoggerModule.getSingleton();
 
     /* Prepare the essential sub modules, to perform the sequence of jobs */
     fileLoggerModule.prepare();
@@ -157,7 +157,7 @@ public final class FileLoggerModuleTest {
   private static final String readFirstLine(final String file) {
 
     String firstLine = null;
-    try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+    try (var bufferedReader = new BufferedReader(new FileReader(file))) {
 
       while (bufferedReader.ready()) {
 
