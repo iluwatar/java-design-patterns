@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package com.iluwater.strangler;
+package com.iluwater;
 
 /**
  *
