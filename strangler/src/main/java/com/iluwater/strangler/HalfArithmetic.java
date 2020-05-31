@@ -34,8 +34,8 @@ public class HalfArithmetic {
   private static final Logger LOGGER = LoggerFactory.getLogger(HalfArithmetic.class);
   private static final String VERSION = "1.5";
 
-  private HalfSource newSource;
-  private OldSource oldSource;
+  private final HalfSource newSource;
+  private final OldSource oldSource;
 
   public HalfArithmetic(final HalfSource newSource, final OldSource oldSource) {
     this.newSource = newSource;
