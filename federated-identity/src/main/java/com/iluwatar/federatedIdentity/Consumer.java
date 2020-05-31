@@ -1,4 +1,4 @@
-package com.iluwater.federatedIdentity;
+package com.iluwatar.federatedIdentity;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

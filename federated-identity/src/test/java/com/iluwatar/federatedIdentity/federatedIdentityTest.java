@@ -1,4 +1,4 @@
-package com.iluwater.federatedIdentity;
+package com.iluwatar.federatedIdentity;
 
 import org.junit.Before;
 import org.junit.Test;

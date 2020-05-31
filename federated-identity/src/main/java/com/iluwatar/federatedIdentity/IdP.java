@@ -1,4 +1,4 @@
-package com.iluwater.federatedIdentity;
+package com.iluwatar.federatedIdentity;
 
 import io.javalin.Javalin;
 import io.javalin.plugin.openapi.OpenApiOptions;
