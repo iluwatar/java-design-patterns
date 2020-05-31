@@ -15,6 +15,7 @@ import org.apache.http.client.fluent.Request;
  *
  * <p>@author jasciiz
  */
+//CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/443
 public class Server {
   String name;
   ArrayList<String> idPList;

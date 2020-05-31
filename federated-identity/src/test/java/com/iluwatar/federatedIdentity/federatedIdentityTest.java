@@ -3,7 +3,7 @@ package com.iluwatar.federatedIdentity;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-
+//CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/443
 public class federatedIdentityTest {
     Consumer consumer;
     IdP idP;

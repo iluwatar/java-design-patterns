@@ -13,6 +13,7 @@ import org.apache.http.client.fluent.Request;
  *
  * <p>@author jasciiz
  */
+//CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/443
 public class Consumer {
   String name;
   int age;
@@ -35,6 +36,7 @@ public class Consumer {
    * @throws IOException throw
    *  when input name with "//".
    */
+  //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/443
   public Consumer(String name, int age, String data, String others) throws IOException {
     if(name.contains("//")){
       throw new IOException("wrong name! Do not contain \"//\"!");

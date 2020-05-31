@@ -12,6 +12,7 @@ import java.util.HashMap;
  *
  *<p>@author jasciiz
  */
+//CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/443
 public class IdP {
   String name;
   HashMap<String, String> hashMap;
