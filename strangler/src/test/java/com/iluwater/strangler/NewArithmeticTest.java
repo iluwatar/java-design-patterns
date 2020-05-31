@@ -21,27 +21,30 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.strangler;
+package com.iluwater.strangler;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test methods in HalfSource
+ * Test methods in NewArithmetic
  */
-public class HalfSourceTest {
-  private static final HalfSource source = new HalfSource();
+class NewArithmeticTest {
+  private static NewArithmetic arithmetic = new NewArithmetic(new NewSource());
 
   @Test
-  public void testAccumulateSum() {
-    assertEquals(0, source.accumulateSum(-1, 0, 1));
+  public void testSum() {
+    assertEquals(0, arithmetic.sum(-1, 0, 1));
   }
 
   @Test
-  public void testIfNonZero() {
-    assertFalse(source.ifNonZero(-1, 0, 1));
+  public void testMul() {
+    assertEquals(0, arithmetic.mul(-1, 0, 1));
+  }
+
+  @Test
+  public void testIfHasZero() {
+    assertTrue(arithmetic.ifHasZero(-1, 0, 1));
   }
 }

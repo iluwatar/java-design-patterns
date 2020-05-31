@@ -21,21 +21,21 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.strangler;
+package com.iluwater.strangler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * System after whole migration. Only depends on new version source ({@link NewSource}).
+ * Old version system depends on old version source ({@link OldSource}).
  */
-public class NewArithmetic {
-  private static final Logger LOGGER = LoggerFactory.getLogger(NewArithmetic.class);
-  private static final  String VERSION = "2.0";
+public class OldArithmetic {
+  private static final Logger LOGGER = LoggerFactory.getLogger(OldArithmetic.class);
+  private static final  String VERSION = "1.0";
 
-  private final NewSource source;
+  private OldSource source;
 
-  public NewArithmetic(NewSource source) {
+  public OldArithmetic(final OldSource source) {
     this.source = source;
   }
 
@@ -44,7 +44,7 @@ public class NewArithmetic {
    * @param nums numbers need to add together
    * @return accumulate sum
    */
-  public int sum(int... nums) {
+  public int sum(final int... nums) {
     LOGGER.info("Arithmetic sum {}", VERSION);
     return source.accumulateSum(nums);
   }
@@ -54,18 +54,8 @@ public class NewArithmetic {
    * @param nums numbers need to multiply together
    * @return accumulate multiplication
    */
-  public int mul(int... nums) {
+  public int mul(final int... nums) {
     LOGGER.info("Arithmetic mul {}", VERSION);
     return source.accumulateMul(nums);
-  }
-
-  /**
-   * Chech if has any zero.
-   * @param nums numbers need to check
-   * @return  if has any zero, return true, else, return false
-   */
-  public boolean ifHasZero(int... nums) {
-    LOGGER.info("Arithmetic check zero {}", VERSION);
-    return !source.ifNonZero(nums);
   }
 }

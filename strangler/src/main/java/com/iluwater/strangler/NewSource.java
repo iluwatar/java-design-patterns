@@ -21,25 +21,36 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.strangler;
+package com.iluwater.strangler;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Arrays;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Test methods in OldSource
+ * New source. Completely covers functionalities of old source with new techniques
+ * and also has some new features.
  */
-public class OldSourceTest {
-  private static final OldSource source = new OldSource();
+public class NewSource {
+  private static final Logger LOGGER = LoggerFactory.getLogger(NewSource.class);
+  private static final  String VERSION = "2.0";
 
-  @Test
-  public void testAccumulateSum() {
-    assertEquals(0, source.accumulateSum(-1, 0, 1));
+  public int accumulateSum(final int... nums) {
+    LOGGER.info("Source module {}", VERSION);
+    return Arrays.stream(nums).reduce(0, Integer::sum);
   }
 
-  @Test
-  public void testAccumulateMul() {
-    assertEquals(0, source.accumulateMul(-1, 0, 1));
+  /**
+   * Implement accumulate multiply with new technique.
+   * Replace old one in {@link OldSource}
+   */
+  public int accumulateMul(final int... nums) {
+    LOGGER.info("Source module {}", VERSION);
+    return Arrays.stream(nums).reduce(1, (a, b) -> a * b);
+  }
+
+  public boolean ifNonZero(final int... nums) {
+    LOGGER.info("Source module {}", VERSION);
+    return Arrays.stream(nums).allMatch(num -> num != 0);
   }
 }

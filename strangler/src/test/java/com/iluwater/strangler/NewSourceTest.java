@@ -21,41 +21,31 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.strangler;
+package com.iluwater.strangler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
- * Old version system depends on old version source ({@link OldSource}).
+ * Test methods in NewSource
  */
-public class OldArithmetic {
-  private static final Logger LOGGER = LoggerFactory.getLogger(OldArithmetic.class);
-  private static final  String VERSION = "1.0";
+public class NewSourceTest {
+  private static NewSource source = new NewSource();
 
-  private final OldSource source;
-
-  public OldArithmetic(OldSource source) {
-    this.source = source;
+  @Test
+  public void testAccumulateSum() {
+    assertEquals(0, source.accumulateSum(-1, 0, 1));
   }
 
-  /**
-   * Accumulate sum.
-   * @param nums numbers need to add together
-   * @return accumulate sum
-   */
-  public int sum(int... nums) {
-    LOGGER.info("Arithmetic sum {}", VERSION);
-    return source.accumulateSum(nums);
+  @Test
+  public void testAccumulateMul() {
+    assertEquals(0, source.accumulateMul(-1, 0, 1));
   }
 
-  /**
-   * Accumulate multiplication.
-   * @param nums numbers need to multiply together
-   * @return accumulate multiplication
-   */
-  public int mul(int... nums) {
-    LOGGER.info("Arithmetic mul {}", VERSION);
-    return source.accumulateMul(nums);
+  @Test
+  public void testIfNonZero() {
+    assertFalse(source.ifNonZero(-1, 0, 1));
   }
 }
