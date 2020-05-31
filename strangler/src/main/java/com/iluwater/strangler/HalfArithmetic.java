@@ -37,7 +37,7 @@ public class HalfArithmetic {
   private final HalfSource newSource;
   private final OldSource oldSource;
 
-  public HalfArithmetic(final HalfSource newSource, final OldSource oldSource) {
+  public HalfArithmetic(HalfSource newSource, OldSource oldSource) {
     this.newSource = newSource;
     this.oldSource = oldSource;
   }
@@ -47,7 +47,7 @@ public class HalfArithmetic {
    * @param nums numbers need to add together
    * @return accumulate sum
    */
-  public int sum(final int... nums) {
+  public int sum(int... nums) {
     LOGGER.info("Arithmetic sum {}", VERSION);
     return newSource.accumulateSum(nums);
   }
@@ -57,7 +57,7 @@ public class HalfArithmetic {
    * @param nums numbers need to multiply together
    * @return accumulate multiplication
    */
-  public int mul(final int... nums) {
+  public int mul(int... nums) {
     LOGGER.info("Arithmetic mul {}", VERSION);
     return oldSource.accumulateMul(nums);
   }
@@ -67,7 +67,7 @@ public class HalfArithmetic {
    * @param nums numbers need to check
    * @return  if has any zero, return true, else, return false
    */
-  public boolean ifHasZero(final int... nums) {
+  public boolean ifHasZero(int... nums) {
     LOGGER.info("Arithmetic check zero {}", VERSION);
     return !newSource.ifNonZero(nums);
   }
