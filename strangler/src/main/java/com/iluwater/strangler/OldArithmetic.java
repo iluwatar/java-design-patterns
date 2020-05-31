@@ -33,9 +33,9 @@ public class OldArithmetic {
   private static final Logger LOGGER = LoggerFactory.getLogger(OldArithmetic.class);
   private static final  String VERSION = "1.0";
 
-  private OldSource source;
+  private final OldSource source;
 
-  public OldArithmetic(final OldSource source) {
+  public OldArithmetic(OldSource source) {
     this.source = source;
   }
 
@@ -44,7 +44,7 @@ public class OldArithmetic {
    * @param nums numbers need to add together
    * @return accumulate sum
    */
-  public int sum(final int... nums) {
+  public int sum(int... nums) {
     LOGGER.info("Arithmetic sum {}", VERSION);
     return source.accumulateSum(nums);
   }
@@ -54,7 +54,7 @@ public class OldArithmetic {
    * @param nums numbers need to multiply together
    * @return accumulate multiplication
    */
-  public int mul(final int... nums) {
+  public int mul(int... nums) {
     LOGGER.info("Arithmetic mul {}", VERSION);
     return source.accumulateMul(nums);
   }
