@@ -54,7 +54,7 @@ public class ElfWarlord extends Warlord {
     if (this == obj) {
       return true;
     }
-    if (!super.equals(obj)) {
+    if (obj ==null) {
       return false;
     }
     if (getClass() != obj.getClass()) {

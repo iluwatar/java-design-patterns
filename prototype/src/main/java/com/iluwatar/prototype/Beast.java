@@ -38,14 +38,6 @@ public abstract class Beast implements Prototype {
   public abstract Beast copy();
 
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    return getClass() == obj.getClass();
-  }
+  public abstract boolean equals(Object obj);
 
 }
