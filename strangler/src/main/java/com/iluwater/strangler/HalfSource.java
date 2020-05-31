@@ -38,7 +38,7 @@ public class HalfSource {
    * Implement accumulate sum with new technique.
    * Replace old one in {@link OldSource}
    */
-  public int accumulateSum(final int... nums) {
+  public int accumulateSum(int... nums) {
     LOGGER.info("Source module {}", VERSION);
     return Arrays.stream(nums).reduce(0, Integer::sum);
   }
@@ -47,7 +47,7 @@ public class HalfSource {
    * Check if all number is not zero.
    * New feature.
    */
-  public boolean ifNonZero(final int... nums) {
+  public boolean ifNonZero(int... nums) {
     LOGGER.info("Source module {}", VERSION);
     return Arrays.stream(nums).allMatch(num -> num != 0);
   }
