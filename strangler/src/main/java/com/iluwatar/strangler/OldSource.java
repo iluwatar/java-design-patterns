@@ -21,51 +21,39 @@
  * THE SOFTWARE.
  */
 
-package com.iluwater.strangler;
+package com.iluwatar.strangler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * System after whole migration. Only depends on new version source ({@link NewSource}).
+ * Old source with techniques out of date.
  */
-public class NewArithmetic {
-  private static final Logger LOGGER = LoggerFactory.getLogger(NewArithmetic.class);
-  private static final  String VERSION = "2.0";
+public class OldSource {
+  private static final Logger LOGGER = LoggerFactory.getLogger(OldSource.class);
+  private static final String VERSION = "1.0";
 
-  private NewSource source;
-
-  public NewArithmetic(final NewSource source) {
-    this.source = source;
+  /**
+   * Implement accumulate sum with old technique.
+   */
+  public int accumulateSum(int... nums) {
+    LOGGER.info("Source module {}", VERSION);
+    var sum = 0;
+    for (final var num : nums) {
+      sum += num;
+    }
+    return sum;
   }
 
   /**
-   * Accumulate sum.
-   * @param nums numbers need to add together
-   * @return accumulate sum
+   * Implement accumulate multiply with old technique.
    */
-  public int sum(final int... nums) {
-    LOGGER.info("Arithmetic sum {}", VERSION);
-    return source.accumulateSum(nums);
-  }
-
-  /**
-   * Accumulate multiplication.
-   * @param nums numbers need to multiply together
-   * @return accumulate multiplication
-   */
-  public int mul(final int... nums) {
-    LOGGER.info("Arithmetic mul {}", VERSION);
-    return source.accumulateMul(nums);
-  }
-
-  /**
-   * Chech if has any zero.
-   * @param nums numbers need to check
-   * @return  if has any zero, return true, else, return false
-   */
-  public boolean ifHasZero(final int... nums) {
-    LOGGER.info("Arithmetic check zero {}", VERSION);
-    return !source.ifNonZero(nums);
+  public int accumulateMul(int... nums) {
+    LOGGER.info("Source module {}", VERSION);
+    var sum = 1;
+    for (final var num : nums) {
+      sum *= num;
+    }
+    return sum;
   }
 }

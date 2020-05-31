@@ -21,39 +21,25 @@
  * THE SOFTWARE.
  */
 
-package com.iluwater.strangler;
+package com.iluwatar.strangler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Old source with techniques out of date.
+ * Test methods in OldArithmetic
  */
-public class OldSource {
-  private static final Logger LOGGER = LoggerFactory.getLogger(OldSource.class);
-  private static final  String VERSION = "1.0";
+class OldArithmeticTest {
+  private static final OldArithmetic arithmetic = new OldArithmetic(new OldSource());
 
-  /**
-   * Implement accumulate sum with old technique.
-   */
-  public int accumulateSum(final int... nums) {
-    LOGGER.info("Source module {}", VERSION);
-    var sum = 0;
-    for (final var num : nums) {
-      sum += num;
-    }
-    return sum;
+  @Test
+  public void testSum() {
+    assertEquals(0, arithmetic.sum(-1, 0, 1));
   }
 
-  /**
-   * Implement accumulate multiply with old technique.
-   */
-  public int accumulateMul(final int... nums) {
-    LOGGER.info("Source module {}", VERSION);
-    var sum = 1;
-    for (final var num : nums) {
-      sum *= num;
-    }
-    return sum;
+  @Test
+  public void testMul() {
+    assertEquals(0, arithmetic.mul(-1, 0, 1));
   }
 }

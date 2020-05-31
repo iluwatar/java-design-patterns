@@ -21,26 +21,16 @@
  * THE SOFTWARE.
  */
 
-package com.iluwater.strangler;
+package com.iluwatar.strangler;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
- * Test methods in HalfSource
+ * Application test
  */
-public class HalfSourceTest {
-  private static HalfSource source = new HalfSource();
-
+public class AppTest {
   @Test
-  public void testAccumulateSum() {
-    assertEquals(0, source.accumulateSum(-1, 0, 1));
-  }
-
-  @Test
-  public void testIfNonZero() {
-    assertFalse(source.ifNonZero(-1, 0, 1));
+  public void test() {
+    App.main(new String[]{});
   }
 }

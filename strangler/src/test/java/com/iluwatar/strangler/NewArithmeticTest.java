@@ -21,17 +21,17 @@
  * THE SOFTWARE.
  */
 
-package com.iluwater.strangler;
+package com.iluwatar.strangler;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test methods in OldArithmetic
+ * Test methods in NewArithmetic
  */
-class OldArithmeticTest {
-  private static OldArithmetic arithmetic = new OldArithmetic(new OldSource());
+class NewArithmeticTest {
+  private static final NewArithmetic arithmetic = new NewArithmetic(new NewSource());
 
   @Test
   public void testSum() {
@@ -41,5 +41,10 @@ class OldArithmeticTest {
   @Test
   public void testMul() {
     assertEquals(0, arithmetic.mul(-1, 0, 1));
+  }
+
+  @Test
+  public void testIfHasZero() {
+    assertTrue(arithmetic.ifHasZero(-1, 0, 1));
   }
 }
