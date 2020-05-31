@@ -185,6 +185,7 @@
         <module>update-method</module>
         <module>leader-followers</module>
         <module>strangler</module>
+        <module>arrange-act-assert</module>
     </modules>
 
     <repositories>
