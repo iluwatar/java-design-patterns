@@ -23,4 +23,8 @@ jobs:
     - name: Install xvfb
       run: sudo apt-get install xvfb
     - name: Build with Maven
-      run: xvfb-run mvn clean verify
+      with:
+        args: xvfb-run mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+      env:
+        GITHUB_TOKEN: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
