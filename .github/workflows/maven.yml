@@ -22,6 +22,4 @@ jobs:
         java-version: 11
     - name: Build with Maven
       uses: GabrielBB/xvfb-action@v1.2
-      with:
-        working-directory: ./ #optional
-        run: mvn clean verify
+      run: mvn clean verify
