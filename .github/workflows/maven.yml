@@ -20,6 +20,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install xvfb
+      run: sudo apt-get install xvfb
     - name: Build with Maven
-      uses: GabrielBB/xvfb-action@v1.2
-      run: mvn clean verify
+      run: xvfb-run mvn clean verify
