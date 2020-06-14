@@ -50,7 +50,7 @@ public class App {
    */
   public static void main(String[] args) {
     // GoF Strategy pattern
-    LOGGER.info("Green dragon spotted ahead!");
+    LOGGER.info("Green dragon spotted ahead!")sadf
     var dragonSlayer = new DragonSlayer(new MeleeStrategy());
     dragonSlayer.goToBattle();
     LOGGER.info("Red dragon emerges.");
