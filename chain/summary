@@ -1,0 +1,23 @@
+the structure of summary for all pattern can have this stuructre (summary-compnents-has a relation-example-is a relation)
+=>summary
+this is gang of four design pattern it's behavioral design pattern it used when there many object can handle specific request object without the sender object specify the handler object explicitly it just send the request 
+------------------------------------------------------------------------------------
+=>components
+*sender
+*request
+*handler
+------------------------------------------------------------------------------------
+=>has a relation
+*sender has chain of handlers
+* request has type 
+* handler has the next handler in the chain
+------------------------------------------------------------------------------------
+=>example
+we have one king that commanding from his people (commander,  officer, soldier)
+------------------------------------------------------------------------------------
+=> is a relation (one sender-one request-many handlers)
+*king is sender 
+*command is request
+*commander is handler
+*officers is handler
+*soldier is handler 
