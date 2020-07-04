@@ -1,0 +1,61 @@
+@startuml
+package com.iluwatar.strangler {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class HalfArithmetic {
+    - LOGGER : Logger {static}
+    - VERSION : String {static}
+    - newSource : HalfSource
+    - oldSource : OldSource
+    + HalfArithmetic(newSource : HalfSource, oldSource : OldSource)
+    + ifHasZero(nums : int[]) : boolean
+    + mul(nums : int[]) : int
+    + sum(nums : int[]) : int
+  }
+  class HalfSource {
+    - LOGGER : Logger {static}
+    - VERSION : String {static}
+    + HalfSource()
+    + accumulateSum(nums : int[]) : int
+    + ifNonZero(nums : int[]) : boolean
+  }
+  class NewArithmetic {
+    - LOGGER : Logger {static}
+    - VERSION : String {static}
+    - source : NewSource
+    + NewArithmetic(source : NewSource)
+    + ifHasZero(nums : int[]) : boolean
+    + mul(nums : int[]) : int
+    + sum(nums : int[]) : int
+  }
+  class NewSource {
+    - LOGGER : Logger {static}
+    - VERSION : String {static}
+    + NewSource()
+    + accumulateMul(nums : int[]) : int
+    + accumulateSum(nums : int[]) : int
+    + ifNonZero(nums : int[]) : boolean
+  }
+  class OldArithmetic {
+    - LOGGER : Logger {static}
+    - VERSION : String {static}
+    - source : OldSource
+    + OldArithmetic(source : OldSource)
+    + mul(nums : int[]) : int
+    + sum(nums : int[]) : int
+  }
+  class OldSource {
+    - LOGGER : Logger {static}
+    - VERSION : String {static}
+    + OldSource()
+    + accumulateMul(nums : int[]) : int
+    + accumulateSum(nums : int[]) : int
+  }
+}
+OldArithmetic -->  "-source" OldSource
+NewArithmetic -->  "-source" NewSource
+HalfArithmetic -->  "-newSource" HalfSource
+HalfArithmetic -->  "-oldSource" OldSource
+@enduml
