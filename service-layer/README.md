@@ -28,4 +28,4 @@ Use the Service Layer pattern when
 ## Credits
 
 * [Martin Fowler - Service Layer](http://martinfowler.com/eaaCatalog/serviceLayer.html)
-* [Patterns of Enterprise Application Architecture](http://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420)
+* [Patterns of Enterprise Application Architecture](https://www.amazon.com/gp/product/0321127420/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321127420&linkCode=as2&tag=javadesignpat-20&linkId=d9f7d37b032ca6e96253562d075fcc4a)
