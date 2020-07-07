@@ -26,3 +26,4 @@ Use the Data Transfer Object pattern when
 
 * [Design Pattern - Transfer Object Pattern](https://www.tutorialspoint.com/design_pattern/transfer_object_pattern.htm)
 * [Data Transfer Object](https://msdn.microsoft.com/en-us/library/ff649585.aspx)
+* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=f27d2644fbe5026ea448791a8ad09c94)
