@@ -15,6 +15,105 @@ Cursor
 Provide a way to access the elements of an aggregate object
 sequentially without exposing its underlying representation.
 
+## Explanation
+
+Real world example
+
+> Treasure chest contains a set of magical items. There multiple types of items such as rings, potions and weapons. The items can be browsed by type using an iterator the treasure chest provides. 
+
+In plain words
+
+> Containers can provide a representation agnostic iterator interface to provide access to the elements. 
+
+Wikipedia says
+
+> In object-oriented programming, the iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements.
+
+**Programmatic Example**
+
+The main class in our example is the treasure chest that contains items.
+
+```java
+public class TreasureChest {
+
+  private List<Item> items;
+
+  public TreasureChest() {
+    items = List.of(
+        new Item(ItemType.POTION, "Potion of courage"),
+        new Item(ItemType.RING, "Ring of shadows"),
+        new Item(ItemType.POTION, "Potion of wisdom"),
+        new Item(ItemType.POTION, "Potion of blood"),
+        new Item(ItemType.WEAPON, "Sword of silver +1"),
+        new Item(ItemType.POTION, "Potion of rust"),
+        new Item(ItemType.POTION, "Potion of healing"),
+        new Item(ItemType.RING, "Ring of armor"),
+        new Item(ItemType.WEAPON, "Steel halberd"),
+        new Item(ItemType.WEAPON, "Dagger of poison"));
+  }
+
+  public Iterator<Item> iterator(ItemType itemType) {
+    return new TreasureChestItemIterator(this, itemType);
+  }
+
+  public List<Item> getItems() {
+    return new ArrayList<>(items);
+  }
+}
+
+public class Item {
+
+  private ItemType type;
+  private String name;
+
+  public Item(ItemType type, String name) {
+    this.setType(type);
+    this.name = name;
+  }
+
+  @Override
+  public String toString() {
+    return name;
+  }
+
+  public ItemType getType() {
+    return type;
+  }
+
+  public final void setType(ItemType type) {
+    this.type = type;
+  }
+}
+
+public enum ItemType {
+
+  ANY, WEAPON, RING, POTION
+
+}
+```
+
+The iterator interface is extremely simple.
+
+```java
+public interface Iterator<T> {
+
+  boolean hasNext();
+
+  T next();
+}
+```
+
+In the following example we iterate through the ring type items found in the chest. 
+
+```java
+var itemIterator = TREASURE_CHEST.iterator(ItemType.RING);
+while (itemIterator.hasNext()) {
+  LOGGER.info(itemIterator.next().toString());
+}
+// Ring of shadows
+// Ring of armor
+```
+
 ## Class diagram
 ![alt text](./etc/iterator_1.png "Iterator")
 
