@@ -35,7 +35,7 @@ public class Customer {
   /**
    * Creates an instance of customer.
    */
-  public Customer(final int id, final String firstName, final String lastName) {
+  public Customer(int id, String firstName, String lastName) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
