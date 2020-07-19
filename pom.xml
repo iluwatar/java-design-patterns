@@ -192,6 +192,7 @@
         <module>leader-followers</module>
         <module>strangler</module>
         <module>arrange-act-assert</module>
+        <module>transaction-script</module>
     </modules>
 
     <repositories>
@@ -377,6 +378,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M3</version>
                     <configuration>
+                        <!--suppress UnresolvedMavenProperty -->
                         <argLine>-Xmx1024M ${argLine}</argLine>
                     </configuration>
                 </plugin>
@@ -474,6 +476,7 @@
                     </properties>
                     <skipExistingHeaders>true</skipExistingHeaders>
                     <headerDefinitions>
+                        <!--suppress UnresolvedMavenProperty -->
                         <headerDefinition>${projectRoot}${file.separator}license-plugin-header-style.xml</headerDefinition>
                     </headerDefinitions>
                     <mapping>
