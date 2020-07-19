@@ -12,9 +12,106 @@ tags:
 Policy
 
 ## Intent
-Define a family of algorithms, encapsulate each one, and make them
-interchangeable. Strategy lets the algorithm vary independently from clients
-that use it.
+Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary 
+independently from clients that use it.
+
+## Explanation
+
+Real world example
+
+> Slaying dragons is a dangerous profession. With experience it becomes easier. Veteran dragonslayers have developed different fighting strategies against different types of dragons.         
+
+In plain words
+
+> Strategy pattern allows choosing the best suited algorithm at runtime.   
+
+Wikipedia says
+
+> In computer programming, the strategy pattern (also known as the policy pattern) is a behavioral software design pattern that enables selecting an algorithm at runtime.
+
+**Programmatic Example**
+
+Let's first introduce the dragon slaying strategy interface and its implementations.
+
+```java
+@FunctionalInterface
+public interface DragonSlayingStrategy {
+
+  void execute();
+}
+
+public class MeleeStrategy implements DragonSlayingStrategy {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(MeleeStrategy.class);
+
+  @Override
+  public void execute() {
+    LOGGER.info("With your Excalibur you sever the dragon's head!");
+  }
+}
+
+public class ProjectileStrategy implements DragonSlayingStrategy {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ProjectileStrategy.class);
+
+  @Override
+  public void execute() {
+    LOGGER.info("You shoot the dragon with the magical crossbow and it falls dead on the ground!");
+  }
+}
+
+public class SpellStrategy implements DragonSlayingStrategy {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(SpellStrategy.class);
+
+  @Override
+  public void execute() {
+    LOGGER.info("You cast the spell of disintegration and the dragon vaporizes in a pile of dust!");
+  }
+}
+```
+
+And here is the mighty dragonslayer who is able to pick his fighting strategy based on the opponent.
+
+```java
+public class DragonSlayer {
+
+  private DragonSlayingStrategy strategy;
+
+  public DragonSlayer(DragonSlayingStrategy strategy) {
+    this.strategy = strategy;
+  }
+
+  public void changeStrategy(DragonSlayingStrategy strategy) {
+    this.strategy = strategy;
+  }
+
+  public void goToBattle() {
+    strategy.execute();
+  }
+}
+```
+
+Finally here's dragonslayer in action.
+
+```java
+    LOGGER.info("Green dragon spotted ahead!");
+    var dragonSlayer = new DragonSlayer(new MeleeStrategy());
+    dragonSlayer.goToBattle();
+    LOGGER.info("Red dragon emerges.");
+    dragonSlayer.changeStrategy(new ProjectileStrategy());
+    dragonSlayer.goToBattle();
+    LOGGER.info("Black dragon lands before you.");
+    dragonSlayer.changeStrategy(new SpellStrategy());
+    dragonSlayer.goToBattle();
+    
+    // Green dragon spotted ahead!
+    // With your Excalibur you sever the dragon's head!
+    // Red dragon emerges.
+    // You shoot the dragon with the magical crossbow and it falls dead on the ground!
+    // Black dragon lands before you.
+    // You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
+```
 
 ## Class diagram
 ![alt text](./etc/strategy_1.png "Strategy")
