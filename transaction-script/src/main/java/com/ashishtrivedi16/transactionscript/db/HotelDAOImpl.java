@@ -1,9 +1,6 @@
 package com.ashishtrivedi16.transactionscript.db;
 
 import com.ashishtrivedi16.transactionscript.Room;
-import com.ashishtrivedi16.transactionscript.TransactionScriptApp;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -19,7 +16,6 @@ import java.util.stream.StreamSupport;
 
 public class HotelDAOImpl implements HotelDAO {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionScriptApp.class);
     private final DataSource dataSource;
 
     public HotelDAOImpl(DataSource dataSource) {
@@ -89,7 +85,7 @@ public class HotelDAOImpl implements HotelDAO {
         }
 
         try (var connection = getConnection();
-             var statement = connection.prepareStatement("INSERT INTO ROOMS VALUES (?,?,?)")) {
+             var statement = connection.prepareStatement("INSERT INTO ROOMS VALUES (?,?,?,?)")) {
             statement.setInt(1, room.getId());
             statement.setString(2, room.getRoomType());
             statement.setInt(3, room.getPrice());

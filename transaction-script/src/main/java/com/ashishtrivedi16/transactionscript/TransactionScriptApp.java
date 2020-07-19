@@ -1,14 +1,17 @@
 package com.ashishtrivedi16.transactionscript;
 
+import com.ashishtrivedi16.transactionscript.db.CustomException;
 import com.ashishtrivedi16.transactionscript.db.HotelDAOImpl;
 import com.ashishtrivedi16.transactionscript.db.RoomSchemaSql;
+
+import java.sql.SQLException;
+import java.util.List;
+import javax.sql.DataSource;
+
+import org.h2.jdbc.JdbcSQLException;
 import org.h2.jdbcx.JdbcDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.sql.DataSource;
-import java.sql.SQLException;
-import java.util.List;
 
 public class TransactionScriptApp {
 
@@ -25,9 +28,23 @@ public class TransactionScriptApp {
         final var dataSource = createDataSource();
         createSchema(dataSource);
         final var DAO = new HotelDAOImpl(dataSource);
+
+        addRooms(DAO);
         try (var customerStream = DAO.getAll()) {
             customerStream.forEach((customer) -> LOGGER.info(customer.toString()));
         }
+
+        Hotel hotel = new Hotel(DAO);
+
+        hotel.bookRoom(1);
+        hotel.bookRoom(2);
+        hotel.bookRoom(3);
+        hotel.bookRoom(4);
+        hotel.bookRoom(5);
+        hotel.bookRoom(6);
+
+        hotel.cancelRoomBooking(3);
+        hotel.cancelRoomBooking(4);
 
         deleteSchema(dataSource);
 
@@ -40,10 +57,12 @@ public class TransactionScriptApp {
         }
     }
 
-    private static void createSchema(DataSource dataSource) throws SQLException {
+    private static void createSchema(DataSource dataSource) throws Exception {
         try (var connection = dataSource.getConnection();
              var statement = connection.createStatement()) {
             statement.execute(RoomSchemaSql.CREATE_SCHEMA_SQL);
+        } catch (JdbcSQLException e) {
+            throw new CustomException(e.getMessage(), e);
         }
     }
 
@@ -67,26 +86,5 @@ public class TransactionScriptApp {
         final var room5 = new Room(5, "Single", 50, false);
         final var room6 = new Room(6, "Double", 80, false);
         return List.of(room1, room2, room3, room4, room5, room6);
-    }
-
-    private static void generate(final HotelDAOImpl hotelDAO) throws Exception {
-//        addRooms(hotelDAO);
-//        LOGGER.info(ALL_ROOMS);
-//        try (var customerStream = hotelDAO.getAll()) {
-//            customerStream.forEach((customer) -> LOGGER.info(customer.toString()));
-//        }
-//        LOGGER.info("hotelDAO.getCustomerById(2): " + hotelDAO.getById(2));
-//        final var customer = new Room(4, "Dan", "Danson");
-//        hotelDAO.add(customer);
-//        LOGGER.info(ALL_ROOMS + hotelDAO.getAll());
-//        customer.setFirstName("Daniel");
-//        customer.setLastName("Danielson");
-//        hotelDAO.update(customer);
-//        LOGGER.info(ALL_ROOMS);
-//        try (var customerStream = hotelDAO.getAll()) {
-//            customerStream.forEach((cust) -> LOGGER.info(cust.toString()));
-//        }
-//        hotelDAO.delete(customer);
-//        LOGGER.info(ALL_ROOMS + hotelDAO.getAll());
     }
 }
