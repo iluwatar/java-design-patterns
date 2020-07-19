@@ -153,7 +153,7 @@ Here's the full example in action.
     // The hobbits are shivering in the cold weather.
     weather.timePasses();
     // The weather changed to sunny.
-    //The sun hurts the orcs' eyes.
+    // The sun hurts the orcs' eyes.
     // The happy hobbits bade in the warm sun.
 ```
 
