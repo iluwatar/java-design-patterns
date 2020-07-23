@@ -59,8 +59,9 @@ public class App {
       then is expected to receive an input of char[] array since that is the type being returned
       by the previous handler, ConvertToCharArrayHandler.
      */
-    new Pipeline<>(new RemoveAlphabetsHandler())
+    var filters = new Pipeline<>(new RemoveAlphabetsHandler())
         .addHandler(new RemoveDigitsHandler())
         .addHandler(new ConvertToCharArrayHandler());
+    filters.execute("GoYankees123!");
   }
 }
