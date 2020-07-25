@@ -31,19 +31,20 @@ programming tutorials how to implement a specific pattern. We use the most
 popular battle-proven open source Java technologies.
 
 Before you dive into the material, you should be familiar with various
-software design principles.
+[Software Design Principles](https://java-design-patterns.com/principles/).
 
 All designs should be as simple as possible. You should start with KISS, YAGNI,
 and Do The Simplest Thing That Could Possibly Work principles. Complexity and
 patterns should only be introduced when they are needed for practical
 extensibility.
 
-Once you are familiar with these concepts you can start drilling down into
-patterns by any of the following approaches
+Once you are familiar with these concepts you can start drilling down into the
+[available design patterns](https://java-design-patterns.com/patterns/) by any 
+of the following approaches
 
- - Using difficulty tags, `Difficulty-Beginner`, `Difficulty-Intermediate` & `Difficulty-Expert`.
+ - Search for a specific pattern by name. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
+ - Using tags such as `Performance`, `Gang of Four` or `Data access`.
  - Using pattern categories, `Creational`, `Behavioral`, and others.
- - Search for a specific pattern. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
 
 Hopefully you find the object oriented solutions presented on this site useful
 in your architectures and have as much fun learning them as we had developing them.
