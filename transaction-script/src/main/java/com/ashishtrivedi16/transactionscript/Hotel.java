@@ -1,51 +1,66 @@
 package com.ashishtrivedi16.transactionscript;
 
-import com.ashishtrivedi16.transactionscript.db.HotelDAOImpl;
+import com.ashishtrivedi16.transactionscript.db.HotelDaoImpl;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Optional;
-
 public class Hotel {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionScriptApp.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(TransactionScriptApp.class);
 
-    private HotelDAOImpl hotelDAO;
+  private HotelDaoImpl hotelDao;
 
-    public Hotel(HotelDAOImpl hotelDAO) {
-        this.hotelDAO = hotelDAO;
+  public Hotel(HotelDaoImpl hotelDao) {
+    this.hotelDao = hotelDao;
+  }
+
+  /**
+   * Book a room.
+   *
+   * @param roomNumber room to book
+   * @throws Exception if any error
+   */
+  public void bookRoom(int roomNumber) throws Exception {
+
+    Optional<Room> room = hotelDao.getById(roomNumber);
+
+    if (room.isEmpty()) {
+      LOGGER.info(roomNumber + " does not exist");
+    } else {
+      if (room.get().isBooked()) {
+        LOGGER.info("Room already booked!");
+      } else {
+        Room updateRoomBooking = room.get();
+        updateRoomBooking.setBooked(true);
+        hotelDao.update(updateRoomBooking);
+      }
     }
+  }
 
-    public void bookRoom(int roomNumber) throws Exception {
-        /*
-            TODO
-                -> Check if room is available
-                -> Book the room
-                -> Commit transaction
-        */
+  /**
+   * Cancel a room booking.
+   *
+   * @param roomNumber room to cancel booking
+   * @throws Exception if any error
+   */
+  public void cancelRoomBooking(int roomNumber) throws Exception {
 
-        Optional<Room> room = hotelDAO.getById(roomNumber);
+    Optional<Room> room = hotelDao.getById(roomNumber);
 
-        if (!room.isPresent()) {
-            LOGGER.info(roomNumber + " does not exist");
-        } else {
-            if (room.get().isBooked()) {
-                LOGGER.info("Room already booked!");
-            } else {
-                Room updateRoomBooking = room.get();
-                updateRoomBooking.setBooked(true);
-                hotelDAO.update(updateRoomBooking);
-            }
-        }
+    if (room.isEmpty()) {
+      LOGGER.info("Room number: " + roomNumber + " does not exist");
+    } else {
+      if (room.get().isBooked()) {
+        Room updateRoomBooking = room.get();
+        updateRoomBooking.setBooked(false);
+        int refundAmount = updateRoomBooking.getPrice();
+        hotelDao.update(updateRoomBooking);
+
+        LOGGER.info("Booking cancelled for room number: " + roomNumber);
+        LOGGER.info(refundAmount + " is refunded");
+      } else {
+        LOGGER.info("No booking for the room exists");
+      }
     }
-
-    public void cancelRoomBooking(int roomNumber) {
-        /*
-
-            TODO
-                -> Check if room is booked
-                -> Calculate refund price
-                -> Cancel the room booking
-                -> Commit transaction
-         */
-    }
+  }
 }
