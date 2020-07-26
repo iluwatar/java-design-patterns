@@ -43,6 +43,7 @@
     <logger name="com.iluwatar" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
     </logger>
 
     <logger name="org.hibernate" additivity="false">
