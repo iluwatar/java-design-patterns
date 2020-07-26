@@ -5,8 +5,9 @@ folder: circuit-breaker
 permalink: /patterns/circuit-breaker/
 categories: Behavioral
 tags:
- - Performance
- - Decoupling
+  - Performance
+  - Decoupling
+  - Cloud distributed
 ---
 
 ## Intent
@@ -187,4 +188,4 @@ Use the Circuit Breaker pattern when
 * [Understanding Circuit Breaker Pattern](https://itnext.io/understand-circuitbreaker-design-pattern-with-simple-practical-example-92a752615b42)
 * [Martin Fowler on Circuit Breaker](https://martinfowler.com/bliki/CircuitBreaker.html)
 * [Fault tolerance in a high volume, distributed system](https://medium.com/netflix-techblog/fault-tolerance-in-a-high-volume-distributed-system-91ab4faae74a)
-* [Microsoft docs](https://docs.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker)
+* [Circuit Breaker pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker)

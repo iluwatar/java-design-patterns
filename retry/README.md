@@ -6,6 +6,7 @@ permalink: /patterns/retry/
 categories: Behavioral
 tags:
   - Performance
+  - Cloud distributed
 ---
 
 ## Intent

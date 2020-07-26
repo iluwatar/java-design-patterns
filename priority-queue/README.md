@@ -6,6 +6,7 @@ permalink: /patterns/priority-queue/
 categories: Behavioral
 tags:
  - Decoupling
+ - Cloud distributed
 ---
 
 ## Intent
@@ -18,12 +19,11 @@ Applications may delegate specific tasks to other services; for example, to perf
 ![alt text](./etc/priority-queue.urm.png "Priority Queue pattern class diagram")
 
 ## Applicability
-Use the Property pattern when
+Use the Priority Queue pattern when
 
 * The system must handle multiple tasks that might have different priorities.
 * Different users or tenants should be served with different priority..
 
-## Real world examples
+## Credits
 
-* [ Priority Queue Pattern](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/dn589794(v=pandp.10))
-Microsoft Azure does not provide a queuing mechanism that natively support automatic prioritization of messages through sorting. However, it does provide Azure Service Bus topics and subscriptions, which support a queuing mechanism that provides message filtering, together with a wide range of flexible capabilities that make it ideal for use in almost all priority queue implementations.
+* [Priority Queue pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/priority-queue)

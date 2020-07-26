@@ -26,4 +26,4 @@ This pattern offers the following benefits:
 
 ## Credits  
   
-* [Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications - Sharding Pattern](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/dn589797(v=pandp.10)?redirectedfrom=MSDN)
+* [Sharding pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/sharding)

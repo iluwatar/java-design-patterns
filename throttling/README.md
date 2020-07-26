@@ -6,6 +6,7 @@ permalink: /patterns/throttling/
 categories: Behavioral
 tags:
  - Performance
+ - Cloud distributed
 ---
 
 ## Intent
