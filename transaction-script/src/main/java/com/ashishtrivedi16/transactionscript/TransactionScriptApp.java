@@ -47,6 +47,7 @@ public class TransactionScriptApp {
     deleteSchema(dataSource);
     createSchema(dataSource);
     final var dao = new HotelDaoImpl(dataSource);
+
     addRooms(dao);
 
     getRoomStatus(dao);
@@ -97,7 +98,7 @@ public class TransactionScriptApp {
    *
    * @return h2 datasource
    */
-  public static DataSource createDataSource() {
+  private static DataSource createDataSource() {
     JdbcDataSource dataSource = new JdbcDataSource();
     dataSource.setUrl(H2_DB_URL);
     return dataSource;
@@ -114,7 +115,7 @@ public class TransactionScriptApp {
    *
    * @return list of rooms
    */
-  public static List<Room> generateSampleRooms() {
+  private static List<Room> generateSampleRooms() {
     final var room1 = new Room(1, "Single", 50, false);
     final var room2 = new Room(2, "Double", 80, false);
     final var room3 = new Room(3, "Queen", 120, false);

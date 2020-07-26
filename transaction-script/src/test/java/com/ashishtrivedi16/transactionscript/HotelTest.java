@@ -63,7 +63,7 @@ public class HotelTest {
   @Test()
   public void bookingRoomWithInvalidIdShouldRaiseException() {
     assertThrows(Exception.class, () -> {
-      hotel.bookRoom(999);
+      hotel.bookRoom(getNonExistingRoomId());
     });
   }
 
@@ -91,7 +91,7 @@ public class HotelTest {
   @Test
   public void cancelRoomBookingWithInvalidIdShouldRaiseException() {
     assertThrows(Exception.class, () -> {
-      hotel.cancelRoomBooking(999);
+      hotel.cancelRoomBooking(getNonExistingRoomId());
     });
   }
 
@@ -139,5 +139,14 @@ public class HotelTest {
     final var room5 = new Room(5, "Single", 50, false);
     final var room6 = new Room(6, "Double", 80, false);
     return List.of(room1, room2, room3, room4, room5, room6);
+  }
+
+  /**
+   * An arbitrary number which does not correspond to an active Room id.
+   *
+   * @return an int of a room id which doesn't exist
+   */
+  private int getNonExistingRoomId() {
+    return 999;
   }
 }

@@ -261,7 +261,6 @@ public class HotelDaoImplTest {
     }
   }
 
-
   /**
    * An arbitrary number which does not correspond to an active Room id.
    *
