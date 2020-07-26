@@ -21,18 +21,23 @@
  * THE SOFTWARE.
  */
 
-package com.ashishtrivedi16.transactionscript.db;
+package com.ashishtrivedi16.transactionscript;
 
 /**
- * Customer Schema SQL Class.
+ * Custom exception.
  */
-public final class RoomSchemaSql {
+public class CustomException extends Exception {
 
-  public static final String CREATE_SCHEMA_SQL =
-      "CREATE TABLE ROOMS (ID NUMBER, ROOM_TYPE VARCHAR(100), PRICE INT(100), BOOKED VARCHAR(100))";
-  public static final String DELETE_SCHEMA_SQL = "DROP TABLE ROOMS IF EXISTS";
+  private static final long serialVersionUID = 1L;
 
-  private RoomSchemaSql() {
+  public CustomException() {
   }
 
+  public CustomException(String message) {
+    super(message);
+  }
+
+  public CustomException(String message, Throwable cause) {
+    super(message, cause);
+  }
 }

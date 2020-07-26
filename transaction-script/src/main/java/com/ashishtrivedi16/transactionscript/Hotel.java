@@ -1,6 +1,5 @@
 package com.ashishtrivedi16.transactionscript;
 
-import com.ashishtrivedi16.transactionscript.db.HotelDaoImpl;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +24,10 @@ public class Hotel {
     Optional<Room> room = hotelDao.getById(roomNumber);
 
     if (room.isEmpty()) {
-      LOGGER.info(roomNumber + " does not exist");
+      throw new Exception("Room number: " + roomNumber + " does not exist");
     } else {
       if (room.get().isBooked()) {
-        LOGGER.info("Room already booked!");
+        throw new Exception("Room already booked!");
       } else {
         Room updateRoomBooking = room.get();
         updateRoomBooking.setBooked(true);
@@ -48,7 +47,7 @@ public class Hotel {
     Optional<Room> room = hotelDao.getById(roomNumber);
 
     if (room.isEmpty()) {
-      LOGGER.info("Room number: " + roomNumber + " does not exist");
+      throw new Exception("Room number: " + roomNumber + " does not exist");
     } else {
       if (room.get().isBooked()) {
         Room updateRoomBooking = room.get();
@@ -59,7 +58,7 @@ public class Hotel {
         LOGGER.info("Booking cancelled for room number: " + roomNumber);
         LOGGER.info(refundAmount + " is refunded");
       } else {
-        LOGGER.info("No booking for the room exists");
+        throw new Exception("No booking for the room exists");
       }
     }
   }

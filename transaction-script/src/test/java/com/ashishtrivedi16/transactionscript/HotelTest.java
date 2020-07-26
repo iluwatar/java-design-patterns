@@ -1,58 +1,87 @@
 package com.ashishtrivedi16.transactionscript;
 
-import java.sql.SQLException;
-import java.util.List;
-import javax.sql.DataSource;
 import org.h2.jdbc.JdbcSQLException;
 import org.h2.jdbcx.JdbcDataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class TransactionScriptApp {
+import javax.sql.DataSource;
+import java.sql.SQLException;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.mockito.Mockito.*;
+
+/**
+ * Tests {@link Hotel}
+ */
+public class HotelTest {
 
   private static final String H2_DB_URL = "jdbc:h2:~/test";
-  private static final Logger LOGGER = LoggerFactory.getLogger(TransactionScriptApp.class);
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line arguments
-   * @throws Exception if any error occurs
-   */
-  public static void main(String[] args) throws Exception {
+  private Hotel hotel;
+  private HotelDaoImpl dao;
 
+  @BeforeEach
+  public void setUp() throws Exception {
     final var dataSource = createDataSource();
     deleteSchema(dataSource);
     createSchema(dataSource);
-    final var dao = new HotelDaoImpl(dataSource);
+    dao = new HotelDaoImpl(dataSource);
     addRooms(dao);
+    hotel = new Hotel(dao);
 
-    getRoomStatus(dao);
+  }
 
-    Hotel hotel = new Hotel(dao);
-
+  @Test
+  public void bookingRoomShouldChangeBookedStatusToTrue() throws Exception {
     hotel.bookRoom(1);
-    hotel.bookRoom(2);
-    hotel.bookRoom(3);
-    hotel.bookRoom(4);
-    hotel.bookRoom(5);
-    hotel.bookRoom(6);
+    assertTrue(dao.getById(1).get().isBooked());
+  }
 
+  @Test()
+  public void bookingRoomWithInvalidIdShouldRaiseException() {
+    assertThrows(Exception.class, () -> {
+      hotel.bookRoom(999);
+    });
+  }
+
+  @Test()
+  public void bookingRoomAgainShouldRaiseException() {
+    assertThrows(Exception.class, () -> {
+      hotel.bookRoom(1);
+      hotel.bookRoom(1);
+    });
+  }
+
+  @Test
+  public void NotBookingRoomShouldNotChangeBookedStatus() throws Exception {
+    assertFalse(dao.getById(1).get().isBooked());
+  }
+
+  @Test
+  public void cancelRoomBookingShouldChangeBookedStatus() throws Exception {
+    hotel.bookRoom(1);
+    assertTrue(dao.getById(1).get().isBooked());
     hotel.cancelRoomBooking(1);
-    hotel.cancelRoomBooking(3);
-    hotel.cancelRoomBooking(5);
-
-    getRoomStatus(dao);
-
-    deleteSchema(dataSource);
-
+    assertFalse(dao.getById(1).get().isBooked());
   }
 
-  private static void getRoomStatus(HotelDaoImpl dao) throws Exception {
-    try (var customerStream = dao.getAll()) {
-      customerStream.forEach((customer) -> LOGGER.info(customer.toString()));
-    }
+  @Test
+  public void cancelRoomBookingWithInvalidIdShouldRaiseException() {
+    assertThrows(Exception.class, () -> {
+      hotel.cancelRoomBooking(999);
+    });
   }
+
+  @Test
+  public void cancelRoomBookingForUnbookedRoomShouldRaiseException() {
+    assertThrows(Exception.class, () -> {
+      hotel.cancelRoomBooking(1);
+    });
+  }
+
 
   private static void deleteSchema(DataSource dataSource) throws SQLException {
     try (var connection = dataSource.getConnection();
@@ -70,11 +99,6 @@ public class TransactionScriptApp {
     }
   }
 
-  /**
-   * Get database.
-   *
-   * @return h2 datasource
-   */
   public static DataSource createDataSource() {
     JdbcDataSource dataSource = new JdbcDataSource();
     dataSource.setUrl(H2_DB_URL);
@@ -87,11 +111,6 @@ public class TransactionScriptApp {
     }
   }
 
-  /**
-   * Generate rooms.
-   *
-   * @return list of rooms
-   */
   public static List<Room> generateSampleRooms() {
     final var room1 = new Room(1, "Single", 50, false);
     final var room2 = new Room(2, "Double", 80, false);

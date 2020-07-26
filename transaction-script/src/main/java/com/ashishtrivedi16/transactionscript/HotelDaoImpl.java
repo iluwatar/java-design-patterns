@@ -1,6 +1,5 @@
-package com.ashishtrivedi16.transactionscript.db;
+package com.ashishtrivedi16.transactionscript;
 
-import com.ashishtrivedi16.transactionscript.Room;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -116,7 +115,7 @@ public class HotelDaoImpl implements HotelDao {
   @Override
   public Boolean delete(Room room) throws Exception {
     try (var connection = getConnection();
-         var statement = connection.prepareStatement("DELETE FROM CUSTOMERS WHERE ID = ?")) {
+         var statement = connection.prepareStatement("DELETE FROM ROOMS WHERE ID = ?")) {
       statement.setInt(1, room.getId());
       return statement.executeUpdate() > 0;
     } catch (SQLException ex) {

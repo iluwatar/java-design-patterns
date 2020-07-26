@@ -1,6 +1,4 @@
-package com.ashishtrivedi16.transactionscript.db;
-
-import com.ashishtrivedi16.transactionscript.Room;
+package com.ashishtrivedi16.transactionscript;
 
 import java.util.Optional;
 import java.util.stream.Stream;
