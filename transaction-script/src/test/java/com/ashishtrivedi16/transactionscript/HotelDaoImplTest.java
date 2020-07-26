@@ -57,6 +57,7 @@ public class HotelDaoImplTest {
   public void createSchema() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL);
          var statement = connection.createStatement()) {
+      statement.execute(RoomSchemaSql.DELETE_SCHEMA_SQL);
       statement.execute(RoomSchemaSql.CREATE_SCHEMA_SQL);
     }
   }
