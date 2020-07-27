@@ -31,6 +31,19 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "npathai",
+      "name": "Narendra Pathai",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1792515?v=4",
+      "profile": "https://github.com/npathai",
+      "contributions": [
+        "code",
+        "ideas",
+        "maintenance",
+        "question",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
