@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "iluwatar",
+      "name": "Ilkka Seppälä",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/582346?v=4",
+      "profile": "https://github.com/iluwatar",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "java-design-patterns",
+  "projectOwner": "iluwatar",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
