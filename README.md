@@ -69,7 +69,7 @@ This project is licensed under the terms of the MIT license.
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/iluwatar"><img src="https://avatars1.githubusercontent.com/u/582346?v=4" width="100px;" alt=""/><br /><sub><b>Ilkka Seppälä</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=iluwatar" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/iluwatar"><img src="https://avatars1.githubusercontent.com/u/582346?v=4" width="100px;" alt=""/><br /><sub><b>Ilkka Seppälä</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=iluwatar" title="Code">💻</a> <a href="#projectManagement-iluwatar" title="Project Management">📆</a></td>
   </tr>
 </table>
 
