@@ -11,16 +11,9 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/582346?v=4",
       "profile": "https://github.com/iluwatar",
       "contributions": [
-        "code",
         "projectManagement",
         "maintenance",
-        "blog",
-        "content",
-        "doc",
-        "ideas",
-        "infra",
-        "review",
-        "projectManagement"
+        "content"
       ]
     },
     {
@@ -40,8 +33,6 @@
       "contributions": [
         "code",
         "ideas",
-        "maintenance",
-        "question",
         "review"
       ]
     },
