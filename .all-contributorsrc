@@ -44,6 +44,15 @@
         "question",
         "review"
       ]
+    },
+    {
+      "login": "fluxw42",
+      "name": "Jeroen Meulemeester",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1545460?v=4",
+      "profile": "https://github.com/fluxw42",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
