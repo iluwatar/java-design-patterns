@@ -69,7 +69,7 @@ This project is licensed under the terms of the MIT license.
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/iluwatar"><img src="https://avatars1.githubusercontent.com/u/582346?v=4" width="100px;" alt=""/><br /><sub><b>Ilkka Seppälä</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=iluwatar" title="Code">💻</a> <a href="#projectManagement-iluwatar" title="Project Management">📆</a></td>
+    <td align="center"><a href="https://github.com/iluwatar"><img src="https://avatars1.githubusercontent.com/u/582346?v=4" width="100px;" alt=""/><br /><sub><b>Ilkka Seppälä</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=iluwatar" title="Code">💻</a> <a href="#projectManagement-iluwatar" title="Project Management">📆</a> <a href="#maintenance-iluwatar" title="Maintenance">🚧</a> <a href="#blog-iluwatar" title="Blogposts">📝</a> <a href="#content-iluwatar" title="Content">🖋</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=iluwatar" title="Documentation">📖</a> <a href="#ideas-iluwatar" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-iluwatar" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Ailuwatar" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/amit1307"><img src="https://avatars0.githubusercontent.com/u/23420222?v=4" width="100px;" alt=""/><br /><sub><b>amit1307</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=amit1307" title="Code">💻</a></td>
   </tr>
 </table>

@@ -12,6 +12,14 @@
       "profile": "https://github.com/iluwatar",
       "contributions": [
         "code",
+        "projectManagement",
+        "maintenance",
+        "blog",
+        "content",
+        "doc",
+        "ideas",
+        "infra",
+        "review"
         "projectManagement"
       ]
     },
