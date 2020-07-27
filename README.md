@@ -9,7 +9,7 @@
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -69,10 +69,11 @@ This project is licensed under the terms of the MIT license.
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/iluwatar"><img src="https://avatars1.githubusercontent.com/u/582346?v=4" width="100px;" alt=""/><br /><sub><b>Ilkka Seppälä</b></sub></a><br /><a href="#projectManagement-iluwatar" title="Project Management">📆</a> <a href="#maintenance-iluwatar" title="Maintenance">🚧</a> <a href="#content-iluwatar" title="Content">🖋</a> </td>
+    <td align="center"><a href="https://github.com/iluwatar"><img src="https://avatars1.githubusercontent.com/u/582346?v=4" width="100px;" alt=""/><br /><sub><b>Ilkka Seppälä</b></sub></a><br /><a href="#projectManagement-iluwatar" title="Project Management">📆</a> <a href="#maintenance-iluwatar" title="Maintenance">🚧</a> <a href="#content-iluwatar" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/amit1307"><img src="https://avatars0.githubusercontent.com/u/23420222?v=4" width="100px;" alt=""/><br /><sub><b>amit1307</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=amit1307" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/npathai"><img src="https://avatars2.githubusercontent.com/u/1792515?v=4" width="100px;" alt=""/><br /><sub><b>Narendra Pathai</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=npathai" title="Code">💻</a> <a href="#ideas-npathai" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Anpathai" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/fluxw42"><img src="https://avatars1.githubusercontent.com/u/1545460?v=4" width="100px;" alt=""/><br /><sub><b>Jeroen Meulemeester</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=fluxw42" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.joemccarthy.co.uk"><img src="https://avatars0.githubusercontent.com/u/4526195?v=4" width="100px;" alt=""/><br /><sub><b>Joseph McCarthy</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mikulucky" title="Code">💻</a></td>
   </tr>
 </table>
 
