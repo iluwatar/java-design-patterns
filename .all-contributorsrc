@@ -290,6 +290,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "lbroman",
+      "name": "lbroman",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/86007?v=4",
+      "profile": "https://github.com/lbroman",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
