@@ -290,6 +290,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "christofferh",
+      "name": "Christoffer Hamberg",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/767643?v=4",
+      "profile": "https://christofferh.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
