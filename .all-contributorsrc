@@ -281,6 +281,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "sideris",
+      "name": "Petros G. Sideris",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/5484694?v=4",
+      "profile": "https://sideris.xyz/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
