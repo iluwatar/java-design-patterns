@@ -290,6 +290,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "leonmak",
+      "name": "Leon Mak",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/13071508?v=4",
+      "profile": "http://leonmak.me",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
