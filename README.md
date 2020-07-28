@@ -9,7 +9,7 @@
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-22-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-23-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -97,6 +97,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/JuhoKang"><img src="https://avatars1.githubusercontent.com/u/4745294?v=4" width="100px;" alt=""/><br /><sub><b>Juho Kang</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=JuhoKang" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/dheeraj-mummareddy"><img src="https://avatars2.githubusercontent.com/u/7002230?v=4" width="100px;" alt=""/><br /><sub><b>Dheeraj Mummareddy</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dheeraj-mummareddy" title="Code">💻</a></td>
   </tr>
 </table>
 
