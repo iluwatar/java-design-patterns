@@ -245,6 +245,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "qpi",
+      "name": "Mihály Kuprivecz",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1001491?v=4",
+      "profile": "http://futurehomes.hu",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
