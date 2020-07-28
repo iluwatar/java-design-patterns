@@ -290,6 +290,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "IAmPramod",
+      "name": "Pramod Gupta",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2184241?v=4",
+      "profile": "https://www.linkedin.com/in/pramodgupta3/",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 4,
