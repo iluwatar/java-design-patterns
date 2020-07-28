@@ -71,6 +71,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "markusmo3",
+      "name": "Markus Moser",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3317416?v=4",
+      "profile": "https://markusmo3.github.io",
+      "contributions": [
+        "design",
+        "code",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
