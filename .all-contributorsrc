@@ -290,6 +290,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Tschis",
+      "name": "Rodolfo Forte",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/20662669?v=4",
+      "profile": "http://tschis.github.io",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 4,
