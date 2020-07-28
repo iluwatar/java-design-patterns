@@ -299,6 +299,33 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "ankurkaushal",
+      "name": "Ankur Kaushal",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2236616?v=4",
+      "profile": "https://github.com/ankurkaushal",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "okinskas",
+      "name": "Ovidijus Okinskas",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/20372387?v=4",
+      "profile": "https://www.linkedin.com/in/ovidijus-okinskas/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "robertt240",
+      "name": "Robert Kasperczyk",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/9137432?v=4",
+      "profile": "https://github.com/robertt240",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
