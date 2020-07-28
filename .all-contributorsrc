@@ -137,6 +137,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "kemitix",
+      "name": "Paul Campbell",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1147749?v=4",
+      "profile": "https://kemitix.github.io/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
