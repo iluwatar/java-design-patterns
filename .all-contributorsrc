@@ -182,6 +182,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "colinbut",
+      "name": "Colin But",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/10725674?v=4",
+      "profile": "http://colinbut.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
