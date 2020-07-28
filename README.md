@@ -9,7 +9,7 @@
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -85,6 +85,9 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/joshzambales"><img src="https://avatars1.githubusercontent.com/u/8704552?v=4" width="100px;" alt=""/><br /><sub><b>joshzambales</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=joshzambales" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Crossy147"><img src="https://avatars2.githubusercontent.com/u/7272996?v=4" width="100px;" alt=""/><br /><sub><b>Kamil Pietruszka</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Crossy147" title="Code">💻</a></td>
     <td align="center"><a href="http://cs.joensuu.fi/~zkhayda"><img src="https://avatars2.githubusercontent.com/u/660742?v=4" width="100px;" alt=""/><br /><sub><b>Zafar Khaydarov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=zafarella" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=zafarella" title="Documentation">📖</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://kemitix.github.io/"><img src="https://avatars1.githubusercontent.com/u/1147749?v=4" width="100px;" alt=""/><br /><sub><b>Paul Campbell</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=kemitix" title="Code">💻</a></td>
   </tr>
 </table>
 
