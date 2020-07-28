@@ -127,6 +127,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "zafarella",
+      "name": "Zafar Khaydarov",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/660742?v=4",
+      "profile": "http://cs.joensuu.fi/~zkhayda",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
