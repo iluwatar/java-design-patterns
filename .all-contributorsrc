@@ -82,6 +82,15 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "isabiq",
+      "name": "Sabiq Ihab",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/19510920?v=4",
+      "profile": "https://twitter.com/i_sabiq",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
