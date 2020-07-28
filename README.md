@@ -9,7 +9,7 @@
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-25-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-26-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -100,6 +100,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/dheeraj-mummareddy"><img src="https://avatars2.githubusercontent.com/u/7002230?v=4" width="100px;" alt=""/><br /><sub><b>Dheeraj Mummareddy</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dheeraj-mummareddy" title="Code">💻</a></td>
     <td align="center"><a href="https://www.bernardosulzbach.com"><img src="https://avatars0.githubusercontent.com/u/8271090?v=4" width="100px;" alt=""/><br /><sub><b>Bernardo Sulzbach</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=bernardosulzbach" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/4lexis"><img src="https://avatars0.githubusercontent.com/u/19871727?v=4" width="100px;" alt=""/><br /><sub><b>Aleksandar Dudukovic</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=4lexis" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.yusufaytas.com"><img src="https://avatars2.githubusercontent.com/u/1049483?v=4" width="100px;" alt=""/><br /><sub><b>Yusuf Aytaş</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yusufaytas" title="Code">💻</a></td>
   </tr>
 </table>
 
