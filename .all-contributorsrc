@@ -290,6 +290,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "hannespernpeintner",
+      "name": "Hannes",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1679437?v=4",
+      "profile": "https://bitbucket.org/hannespernpeintner/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
