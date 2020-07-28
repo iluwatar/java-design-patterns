@@ -9,7 +9,7 @@
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-28-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-29-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -103,6 +103,9 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://www.yusufaytas.com"><img src="https://avatars2.githubusercontent.com/u/1049483?v=4" width="100px;" alt=""/><br /><sub><b>Yusuf Aytaş</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yusufaytas" title="Code">💻</a></td>
     <td align="center"><a href="http://futurehomes.hu"><img src="https://avatars2.githubusercontent.com/u/1001491?v=4" width="100px;" alt=""/><br /><sub><b>Mihály Kuprivecz</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=qpi" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/kapinuss"><img src="https://avatars0.githubusercontent.com/u/17639945?v=4" width="100px;" alt=""/><br /><sub><b>Stanislav Kapinus</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=kapinuss" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/gvsharma"><img src="https://avatars1.githubusercontent.com/u/6648152?v=4" width="100px;" alt=""/><br /><sub><b>GVSharma</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=gvsharma" title="Code">💻</a></td>
   </tr>
 </table>
 
