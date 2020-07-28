@@ -290,6 +290,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "amogozov",
+      "name": "Artur Mogozov",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/7372215?v=4",
+      "profile": "https://github.com/amogozov",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
