@@ -290,6 +290,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "pnowy",
+      "name": "Przemek",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3254609?v=4",
+      "profile": "https://przemeknowak.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
