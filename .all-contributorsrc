@@ -290,6 +290,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "besok",
+      "name": "Boris",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/29834592?v=4",
+      "profile": "https://github.com/besok",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
