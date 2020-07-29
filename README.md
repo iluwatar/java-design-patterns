@@ -183,6 +183,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="http://www.devsedge.net/"><img src="https://avatars0.githubusercontent.com/u/9956006?v=4" width="100px;" alt=""/><br /><sub><b>Luigi Cortese</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=LuigiCortese" title="Code">💻</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://github.com/Juaanma"><img src="https://avatars3.githubusercontent.com/u/7390500?v=4" width="100px;" alt=""/><br /><sub><b>Juan Manuel Suárez</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Juaanma" title="Code">💻</a></td>
   </tr>
   <tr>
   </tr>
