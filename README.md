@@ -202,6 +202,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://about.me/dzmitryh"><img src="https://avatars2.githubusercontent.com/u/5390492?v=4" width="100px;" alt=""/><br /><sub><b>Dima Gubin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dzmitryh" title="Code">💻</a></td>
+    <td align="center"><a href="http://ccygnus.com/"><img src="https://avatars1.githubusercontent.com/u/9342724?v=4" width="100px;" alt=""/><br /><sub><b>Christian Cygnus</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=christophercolumbusdog" title="Code">💻</a></td>
   </tr>
 </table>
 
