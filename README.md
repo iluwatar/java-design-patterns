@@ -166,6 +166,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
     <td align="center"><a href="http://mitchell-irvin.com"><img src="https://avatars0.githubusercontent.com/u/16233245?v=4" width="100px;" alt=""/><br /><sub><b>Mitchell Irvin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mitchellirvin" title="Code">💻</a></td>
   <tr>
+    <td align="center"><a href="https://github.com/kirill-vlasov"><img src="https://avatars3.githubusercontent.com/u/16112495?v=4" width="100px;" alt=""/><br /><sub><b>Kirill Vlasov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=kirill-vlasov" title="Code">💻</a></td>
   </tr>
   <tr>
   </tr>
