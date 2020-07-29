@@ -189,6 +189,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://www.vanogrid.com"><img src="https://avatars0.githubusercontent.com/u/4307918?v=4" width="100px;" alt=""/><br /><sub><b>Alexander Ivanov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=vanogrid" title="Code">💻</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://github.com/valdar-hu"><img src="https://avatars3.githubusercontent.com/u/17962817?v=4" width="100px;" alt=""/><br /><sub><b>Krisztián Nagy</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=valdar-hu" title="Code">💻</a></td>
   </tr>
   <tr>
   </tr>
