@@ -9,7 +9,7 @@
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-111-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-112-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -234,6 +234,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://jahhein.github.io"><img src="https://avatars2.githubusercontent.com/u/10779515?v=4" width="100px;" alt=""/><br /><sub><b>Jacob Hein</b></sub></a><br /><a href="#content-Jahhein" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/iamrichardjones"><img src="https://avatars3.githubusercontent.com/u/14842151?v=4" width="100px;" alt=""/><br /><sub><b>Richard Jones</b></sub></a><br /><a href="#content-iamrichardjones" title="Content">🖋</a></td>
     <td align="center"><a href="https://rachelcarmena.github.io"><img src="https://avatars0.githubusercontent.com/u/22792183?v=4" width="100px;" alt=""/><br /><sub><b>Rachel M. Carmena</b></sub></a><br /><a href="#content-rachelcarmena" title="Content">🖋</a></td>
+    <td align="center"><a href="https://zd-zero.github.io"><img src="https://avatars0.githubusercontent.com/u/21978370?v=4" width="100px;" alt=""/><br /><sub><b>Zaerald Denze Lungos</b></sub></a><br /><a href="#content-zd-zero" title="Content">🖋</a></td>
   </tr>
 </table>
 
