@@ -1029,6 +1029,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "xiaod-dev",
+      "name": "Mike Liu",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/21277644?v=4",
+      "profile": "https://xiaod.info",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 4,
