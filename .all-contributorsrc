@@ -911,6 +911,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "yorlov",
+      "name": "Yuri Orlov",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1595733?v=4",
+      "profile": "http://vk.com/yuri.orlov",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
