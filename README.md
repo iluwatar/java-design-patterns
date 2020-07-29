@@ -204,6 +204,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://about.me/dzmitryh"><img src="https://avatars2.githubusercontent.com/u/5390492?v=4" width="100px;" alt=""/><br /><sub><b>Dima Gubin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dzmitryh" title="Code">💻</a></td>
     <td align="center"><a href="http://ccygnus.com/"><img src="https://avatars1.githubusercontent.com/u/9342724?v=4" width="100px;" alt=""/><br /><sub><b>Christian Cygnus</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=christophercolumbusdog" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/anthonycampbell"><img src="https://avatars3.githubusercontent.com/u/10249255?v=4" width="100px;" alt=""/><br /><sub><b>anthony</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=anthonycampbell" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/amogozov"><img src="https://avatars3.githubusercontent.com/u/7372215?v=4" width="100px;" alt=""/><br /><sub><b>Artur Mogozov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=amogozov" title="Code">💻</a></td>
   </tr>
 </table>
 
