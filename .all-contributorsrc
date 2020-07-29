@@ -992,6 +992,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "iamrichardjones",
+      "name": "Richard Jones",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/14842151?v=4",
+      "profile": "https://github.com/iamrichardjones",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 4,
