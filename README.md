@@ -154,6 +154,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/AnaghaSasikumar"><img src="https://avatars2.githubusercontent.com/u/42939261?v=4" width="100px;" alt=""/><br /><sub><b>AnaghaSasikumar</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=AnaghaSasikumar" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/waisuan"><img src="https://avatars2.githubusercontent.com/u/10975700?v=4" width="100px;" alt=""/><br /><sub><b>Evan Sia Wai Suan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=waisuan" title="Code">💻</a></td>
   </tr>
 </table>
 
