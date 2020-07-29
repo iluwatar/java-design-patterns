@@ -190,6 +190,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/valdar-hu"><img src="https://avatars3.githubusercontent.com/u/17962817?v=4" width="100px;" alt=""/><br /><sub><b>Krisztián Nagy</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=valdar-hu" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/staillebois"><img src="https://avatars0.githubusercontent.com/u/23701200?v=4" width="100px;" alt=""/><br /><sub><b>staillebois</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=staillebois" title="Code">💻</a></td>
   </tr>
   <tr>
   </tr>
