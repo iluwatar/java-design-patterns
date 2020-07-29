@@ -172,6 +172,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/kirill-vlasov"><img src="https://avatars3.githubusercontent.com/u/16112495?v=4" width="100px;" alt=""/><br /><sub><b>Kirill Vlasov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=kirill-vlasov" title="Code">💻</a></td>
     <td align="center"><a href="http://joningi.net"><img src="https://avatars2.githubusercontent.com/u/6115148?v=4" width="100px;" alt=""/><br /><sub><b>Jón Ingi Sveinbjörnsson</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=joningiwork" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/dmitraver"><img src="https://avatars3.githubusercontent.com/u/1798156?v=4" width="100px;" alt=""/><br /><sub><b>Dmitry Avershin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dmitraver" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/besok"><img src="https://avatars2.githubusercontent.com/u/29834592?v=4" width="100px;" alt=""/><br /><sub><b>Boris</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=besok" title="Code">💻</a></td>
   </tr>
   <tr>
   </tr>
