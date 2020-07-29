@@ -160,6 +160,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/kanwarpreet25"><img src="https://avatars0.githubusercontent.com/u/39183641?v=4" width="100px;" alt=""/><br /><sub><b>kanwarpreet25</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=kanwarpreet25" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/MSaifAsif"><img src="https://avatars1.githubusercontent.com/u/6280554?v=4" width="100px;" alt=""/><br /><sub><b>M Saif Asif</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=MSaifAsif" title="Code">💻</a></td>
   </tr>
 </table>
 
