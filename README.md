@@ -179,6 +179,7 @@ This project is licensed under the terms of the MIT license.
   <tr>
     <td align="center"><a href="https://github.com/baislsl"><img src="https://avatars0.githubusercontent.com/u/17060584?v=4" width="100px;" alt=""/><br /><sub><b>Shengli Bai</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=baislsl" title="Code">💻</a></td>
     <td align="center"><a href="http://adamski.pro"><img src="https://avatars1.githubusercontent.com/u/6537430?v=4" width="100px;" alt=""/><br /><sub><b>adamski.pro</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=akrystian" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Rzeposlaw"><img src="https://avatars2.githubusercontent.com/u/18425745?v=4" width="100px;" alt=""/><br /><sub><b>Katarzyna Rzepecka</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Rzeposlaw" title="Code">💻</a></td>
   </tr>
   <tr>
   </tr>
