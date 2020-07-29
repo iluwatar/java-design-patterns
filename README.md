@@ -149,6 +149,7 @@ This project is licensed under the terms of the MIT license.
   <tr>
     <td align="center"><a href="https://github.com/leogtzr"><img src="https://avatars0.githubusercontent.com/u/1211969?v=4" width="100px;" alt=""/><br /><sub><b>Leo Gutiérrez Ramírez</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=leogtzr" title="Code">💻</a></td>
     <td align="center"><a href="https://bitbucket.org/hannespernpeintner/"><img src="https://avatars3.githubusercontent.com/u/1679437?v=4" width="100px;" alt=""/><br /><sub><b>Hannes</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=hannespernpeintner" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/dgruntz"><img src="https://avatars0.githubusercontent.com/u/1516800?v=4" width="100px;" alt=""/><br /><sub><b>Dominik Gruntz</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dgruntz" title="Code">💻</a></td>
   </tr>
 </table>
 
