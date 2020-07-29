@@ -902,6 +902,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "trautonen",
+      "name": "Tapio Rautonen",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1641063?v=4",
+      "profile": "https://github.com/trautonen",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
