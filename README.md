@@ -184,6 +184,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/Juaanma"><img src="https://avatars3.githubusercontent.com/u/7390500?v=4" width="100px;" alt=""/><br /><sub><b>Juan Manuel Suárez</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Juaanma" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/7agustibm"><img src="https://avatars0.githubusercontent.com/u/8149332?v=4" width="100px;" alt=""/><br /><sub><b>Agustí Becerra Milà</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=7agustibm" title="Code">💻</a></td>
   </tr>
   <tr>
   </tr>
