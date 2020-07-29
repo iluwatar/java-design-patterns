@@ -195,6 +195,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/prafful1"><img src="https://avatars0.githubusercontent.com/u/14350274?v=4" width="100px;" alt=""/><br /><sub><b>Prafful Agarwal</b></sub></a><br /><a href="#content-prafful1" title="Content">🖋</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://przemeknowak.com"><img src="https://avatars1.githubusercontent.com/u/3254609?v=4" width="100px;" alt=""/><br /><sub><b>Przemek</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=pnowy" title="Code">💻</a></td>
   </tr>
 </table>
 
