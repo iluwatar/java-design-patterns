@@ -114,7 +114,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/gvsharma"><img src="https://avatars1.githubusercontent.com/u/6648152?v=4" width="100px;" alt=""/><br /><sub><b>GVSharma</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=gvsharma" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/SrdjanPaunovic"><img src="https://avatars1.githubusercontent.com/u/22815104?v=4" width="100px;" alt=""/><br /><sub><b>Srđan Paunović</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=SrdjanPaunovic" title="Code">💻</a></td>
     <td align="center"><a href="https://sideris.xyz/"><img src="https://avatars3.githubusercontent.com/u/5484694?v=4" width="100px;" alt=""/><br /><sub><b>Petros G. Sideris</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=sideris" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/gwildor28"><img src="https://avatars0.githubusercontent.com/u/16000365?v=4" width="100px;" alt=""/><br /><sub><b>gwildor28</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=gwildor28" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/amit2103"><img src="https://avatars3.githubusercontent.com/u/7566692?v=4" width="100px;" alt=""/><br /><sub><b>Amit Pandey</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=amit2103" title="Code">💻</a></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/qza"><img src="https://avatars3.githubusercontent.com/u/233149?v=4" width="100px;" alt=""/><br /><sub><b>qza</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=qza" title="Code">💻</a></td>
@@ -126,6 +126,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://twitter.com/StPitsios"><img src="https://avatars1.githubusercontent.com/u/6773603?v=4" width="100px;" alt=""/><br /><sub><b>Stamatis Pitsios</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=pitsios-s" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/robertt240"><img src="https://avatars1.githubusercontent.com/u/9137432?v=4" width="100px;" alt=""/><br /><sub><b>Robert Kasperczyk</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=robertt240" title="Code">💻</a></td>
     <td align="center"><a href="https://t.me/paul_docker"><img src="https://avatars1.githubusercontent.com/u/2404785?v=4" width="100px;" alt=""/><br /><sub><b>田浩</b></sub></a><br /><a href="#content-llitfkitfk" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/gwildor28"><img src="https://avatars0.githubusercontent.com/u/16000365?v=4" width="100px;" alt=""/><br /><sub><b>gwildor28</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=gwildor28" title="Code">💻</a></td>
   </tr>
 </table>
 
