@@ -164,10 +164,12 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://alwayswithme.github.io"><img src="https://avatars3.githubusercontent.com/u/3234786?v=4" width="100px;" alt=""/><br /><sub><b>PhoenixYip</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Alwayswithme" title="Code">💻</a></td>
     <td align="center"><a href="https://ranjeet-floyd.github.io"><img src="https://avatars0.githubusercontent.com/u/1992972?v=4" width="100px;" alt=""/><br /><sub><b>Ranjeet</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ranjeet-floyd" title="Code">💻</a></td>
   </tr>
+  <tr>
     <td align="center"><a href="http://mitchell-irvin.com"><img src="https://avatars0.githubusercontent.com/u/16233245?v=4" width="100px;" alt=""/><br /><sub><b>Mitchell Irvin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mitchellirvin" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jarpit96"><img src="https://avatars2.githubusercontent.com/u/10098713?v=4" width="100px;" alt=""/><br /><sub><b>Arpit Jain</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=jarpit96" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/hoangnam2261"><img src="https://avatars2.githubusercontent.com/u/31692990?v=4" width="100px;" alt=""/><br /><sub><b>hoangnam2261</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=hoangnam2261" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/fanofxiaofeng"><img src="https://avatars0.githubusercontent.com/u/3983683?v=4" width="100px;" alt=""/><br /><sub><b>靳阳</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=fanofxiaofeng" title="Code">💻</a></td>
+  </tr>
   <tr>
     <td align="center"><a href="https://github.com/kirill-vlasov"><img src="https://avatars3.githubusercontent.com/u/16112495?v=4" width="100px;" alt=""/><br /><sub><b>Kirill Vlasov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=kirill-vlasov" title="Code">💻</a></td>
     <td align="center"><a href="http://joningi.net"><img src="https://avatars2.githubusercontent.com/u/6115148?v=4" width="100px;" alt=""/><br /><sub><b>Jón Ingi Sveinbjörnsson</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=joningiwork" title="Code">💻</a></td>
@@ -175,6 +177,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/besok"><img src="https://avatars2.githubusercontent.com/u/29834592?v=4" width="100px;" alt=""/><br /><sub><b>Boris</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=besok" title="Code">💻</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://github.com/baislsl"><img src="https://avatars0.githubusercontent.com/u/17060584?v=4" width="100px;" alt=""/><br /><sub><b>Shengli Bai</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=baislsl" title="Code">💻</a></td>
   </tr>
   <tr>
   </tr>
