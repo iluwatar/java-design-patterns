@@ -1019,6 +1019,15 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "webpro",
+      "name": "Lars Kappert",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/456426?v=4",
+      "profile": "https://webpro.nl",
+      "contributions": [
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 4,
