@@ -152,6 +152,9 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/dgruntz"><img src="https://avatars0.githubusercontent.com/u/1516800?v=4" width="100px;" alt=""/><br /><sub><b>Dominik Gruntz</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dgruntz" title="Code">💻</a></td>
     <td align="center"><a href="https://christofferh.com"><img src="https://avatars1.githubusercontent.com/u/767643?v=4" width="100px;" alt=""/><br /><sub><b>Christoffer Hamberg</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=christofferh" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/AnaghaSasikumar"><img src="https://avatars2.githubusercontent.com/u/42939261?v=4" width="100px;" alt=""/><br /><sub><b>AnaghaSasikumar</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=AnaghaSasikumar" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
