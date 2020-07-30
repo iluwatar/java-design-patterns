@@ -48,7 +48,7 @@ class RemoteServiceTest {
   }
 
   private static class StaticRandomProvider implements RandomProvider {
-    private double value;
+    private final double value;
 
     StaticRandomProvider(double value) {
       this.value = value;

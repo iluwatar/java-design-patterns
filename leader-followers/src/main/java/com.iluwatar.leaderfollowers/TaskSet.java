@@ -31,7 +31,7 @@ import java.util.concurrent.BlockingQueue;
  */
 public class TaskSet {
 
-  private BlockingQueue<Task> queue = new ArrayBlockingQueue<>(100);
+  private final BlockingQueue<Task> queue = new ArrayBlockingQueue<>(100);
 
   public void addTask(Task task) throws InterruptedException {
     queue.put(task);

@@ -47,7 +47,7 @@ public class AbstractDocumentTest {
     }
   }
 
-  private DocumentImplementation document = new DocumentImplementation(new HashMap<>());
+  private final DocumentImplementation document = new DocumentImplementation(new HashMap<>());
 
   @Test
   public void shouldPutAndGetValue() {

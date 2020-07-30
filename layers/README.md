@@ -79,7 +79,7 @@ public class CakeViewImpl implements View {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(CakeViewImpl.class);
 
-  private CakeBakingService cakeBakingService;
+  private final CakeBakingService cakeBakingService;
 
   public CakeViewImpl(CakeBakingService cakeBakingService) {
     this.cakeBakingService = cakeBakingService;

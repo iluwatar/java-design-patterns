@@ -30,7 +30,7 @@ import java.util.Arrays;
  */
 public abstract class Unit {
 
-  private Unit[] children;
+  private final Unit[] children;
 
   public Unit(Unit... children) {
     this.children = children;

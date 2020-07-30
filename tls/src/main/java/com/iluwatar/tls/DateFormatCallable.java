@@ -46,10 +46,10 @@ public class DateFormatCallable implements Callable<Result> {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(DateFormatCallable.class);
   // class variables (members)
-  private ThreadLocal<DateFormat> df;    //TLTL   
+  private final ThreadLocal<DateFormat> df;    //TLTL
   // private DateFormat df;                 //NTLNTL
 
-  private String dateValue; // for dateValue Thread Local not needed
+  private final String dateValue; // for dateValue Thread Local not needed
 
 
   /**

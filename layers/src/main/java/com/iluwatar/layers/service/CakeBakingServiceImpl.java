@@ -52,7 +52,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CakeBakingServiceImpl implements CakeBakingService {
 
-  private AbstractApplicationContext context;
+  private final AbstractApplicationContext context;
 
   public CakeBakingServiceImpl() {
     this.context = new ClassPathXmlApplicationContext("applicationContext.xml");

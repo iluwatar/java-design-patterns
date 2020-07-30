@@ -39,9 +39,9 @@ public class PersonSpecifications {
    */
   public static class AgeBetweenSpec implements Specification<Person> {
 
-    private int from;
+    private final int from;
 
-    private int to;
+    private final int to;
 
     public AgeBetweenSpec(int from, int to) {
       this.from = from;

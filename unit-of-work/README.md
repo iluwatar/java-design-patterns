@@ -79,8 +79,8 @@ public interface IUnitOfWork<T> {
 public class StudentRepository implements IUnitOfWork<Student> {
   private static final Logger LOGGER = LoggerFactory.getLogger(StudentRepository.class);
 
-  private Map<String, List<Student>> context;
-  private StudentDatabase studentDatabase;
+  private final Map<String, List<Student>> context;
+  private final StudentDatabase studentDatabase;
 
   public StudentRepository(Map<String, List<Student>> context, StudentDatabase studentDatabase) {
     this.context = context;

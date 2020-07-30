@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
  */
 public class ConverterTest {
 
-  private UserConverter userConverter = new UserConverter();
+  private final UserConverter userConverter = new UserConverter();
 
   /**
    * Tests whether a converter created of opposite functions holds equality as a bijection.

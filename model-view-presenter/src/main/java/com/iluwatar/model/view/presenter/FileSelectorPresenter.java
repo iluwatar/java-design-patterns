@@ -41,7 +41,7 @@ public class FileSelectorPresenter implements Serializable {
   /**
    * The View component that the presenter interacts with.
    */
-  private FileSelectorView view;
+  private final FileSelectorView view;
 
   /**
    * The Model component that the presenter interacts with.

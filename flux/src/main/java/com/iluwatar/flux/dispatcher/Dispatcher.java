@@ -37,9 +37,9 @@ import java.util.List;
  */
 public final class Dispatcher {
 
-  private static Dispatcher instance = new Dispatcher();
+  private static final Dispatcher instance = new Dispatcher();
 
-  private List<Store> stores = new LinkedList<>();
+  private final List<Store> stores = new LinkedList<>();
 
   private Dispatcher() {
   }

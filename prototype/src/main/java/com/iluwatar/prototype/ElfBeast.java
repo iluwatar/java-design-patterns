@@ -28,7 +28,7 @@ package com.iluwatar.prototype;
  */
 public class ElfBeast extends Beast {
 
-  private String helpType;
+  private final String helpType;
 
   public ElfBeast(String helpType) {
     this.helpType = helpType;

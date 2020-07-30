@@ -40,7 +40,7 @@ public abstract class Master {
   private final int numOfWorkers;
   private final ArrayList<Worker> workers;
   private int expectedNumResults;
-  private Hashtable<Integer, Result> allResultData;
+  private final Hashtable<Integer, Result> allResultData;
   private Result finalResult;
 
   Master(int numOfWorkers) {

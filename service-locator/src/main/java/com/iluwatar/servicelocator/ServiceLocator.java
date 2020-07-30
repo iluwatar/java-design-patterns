@@ -31,7 +31,7 @@ package com.iluwatar.servicelocator;
  */
 public final class ServiceLocator {
 
-  private static ServiceCache serviceCache = new ServiceCache();
+  private static final ServiceCache serviceCache = new ServiceCache();
 
   private ServiceLocator() {
   }

@@ -35,14 +35,14 @@ Nazgul is the multiton class.
 ```java
 public enum NazgulName {
 
-  KHAMUL, MURAZOR, DWAR, JI_INDUR, AKHORAHIL, HOARMURATH, ADUNAPHEL, REN, UVATHA;
+  KHAMUL, MURAZOR, DWAR, JI_INDUR, AKHORAHIL, HOARMURATH, ADUNAPHEL, REN, UVATHA
 }
 
 public final class Nazgul {
 
-  private static Map<NazgulName, Nazgul> nazguls;
+  private static final Map<NazgulName, Nazgul> nazguls;
 
-  private NazgulName name;
+  private final NazgulName name;
 
   static {
     nazguls = new ConcurrentHashMap<>();

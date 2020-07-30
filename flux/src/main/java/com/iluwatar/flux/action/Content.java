@@ -31,7 +31,7 @@ public enum Content {
   PRODUCTS("Products - This page lists the company's products."), COMPANY(
       "Company - This page displays information about the company.");
 
-  private String title;
+  private final String title;
 
   Content(String title) {
     this.title = title;

@@ -36,7 +36,7 @@ public enum Weekday {
   SATURDAY("Saturday"),
   SUNDAY("Sunday");
 
-  private String description;
+  private final String description;
 
   Weekday(String description) {
     this.description = description;

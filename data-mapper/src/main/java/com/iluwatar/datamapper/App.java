@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class App {
 
-  private static Logger log = LoggerFactory.getLogger(App.class);
+  private static final Logger log = LoggerFactory.getLogger(App.class);
   private static final String STUDENT_STRING = "App.main(), student : ";
 
 

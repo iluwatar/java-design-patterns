@@ -228,8 +228,8 @@ public class NioReactor {
    * A command that changes the interested operations of the key provided.
    */
   class ChangeKeyOpsCommand implements Runnable {
-    private SelectionKey key;
-    private int interestedOps;
+    private final SelectionKey key;
+    private final int interestedOps;
 
     public ChangeKeyOpsCommand(SelectionKey key, int interestedOps) {
       this.key = key;

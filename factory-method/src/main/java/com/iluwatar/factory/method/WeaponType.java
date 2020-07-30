@@ -30,7 +30,7 @@ public enum WeaponType {
 
   SHORT_SWORD("short sword"), SPEAR("spear"), AXE("axe"), UNDEFINED("");
 
-  private String title;
+  private final String title;
 
   WeaponType(String title) {
     this.title = title;

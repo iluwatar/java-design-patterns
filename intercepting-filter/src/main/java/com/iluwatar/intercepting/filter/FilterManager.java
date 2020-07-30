@@ -30,7 +30,7 @@ package com.iluwatar.intercepting.filter;
  */
 public class FilterManager {
 
-  private FilterChain filterChain;
+  private final FilterChain filterChain;
 
   public FilterManager() {
     filterChain = new FilterChain();

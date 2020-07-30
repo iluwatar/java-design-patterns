@@ -32,7 +32,7 @@ Given the army unit example from above, we first have the Unit and UnitVisitor b
 ```java
 public abstract class Unit {
 
-  private Unit[] children;
+  private final Unit[] children;
 
   public Unit(Unit... children) {
     this.children = children;

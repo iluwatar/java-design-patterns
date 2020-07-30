@@ -28,8 +28,8 @@ package com.iluwatar.interpreter;
  */
 public class PlusExpression extends Expression {
 
-  private Expression leftExpression;
-  private Expression rightExpression;
+  private final Expression leftExpression;
+  private final Expression rightExpression;
 
   public PlusExpression(Expression leftExpression, Expression rightExpression) {
     this.leftExpression = leftExpression;

@@ -101,7 +101,7 @@ public class NodeImpl implements Node {
 
 public final class NullNode implements Node {
 
-  private static NullNode instance = new NullNode();
+  private static final NullNode instance = new NullNode();
 
   private NullNode() {
   }
