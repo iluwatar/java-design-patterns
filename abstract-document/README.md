@@ -184,7 +184,7 @@ Use the Abstract Document Pattern when
 * You want more loosely coupled system
 
 ## Credits
-``
+
 * [Wikipedia: Abstract Document Pattern](https://en.wikipedia.org/wiki/Abstract_Document_Pattern)
 * [Martin Fowler: Dealing with properties](http://martinfowler.com/apsupp/properties.pdf)
 * [Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing (v. 4)](https://www.amazon.com/gp/product/0470059028/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0470059028&linkId=e3aacaea7017258acf184f9f3283b492)
