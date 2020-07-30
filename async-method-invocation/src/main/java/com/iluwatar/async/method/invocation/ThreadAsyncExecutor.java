@@ -100,7 +100,7 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
     void setValue(T value) {
       this.value = value;
       this.state = COMPLETED;
-      this.callback.ifPresent(ac -> ac.onComplete(value, Optional.<Exception>empty()));
+      this.callback.ifPresent(ac -> ac.onComplete(value, Optional.empty()));
       synchronized (lock) {
         lock.notifyAll();
       }

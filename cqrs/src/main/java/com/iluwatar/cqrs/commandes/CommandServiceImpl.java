@@ -34,7 +34,7 @@ import org.hibernate.SessionFactory;
  */
 public class CommandServiceImpl implements ICommandService {
 
-  private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+  private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
   private Author getAuthorByUsername(String username) {
     Author author;

@@ -35,7 +35,7 @@ public class Scene {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Scene.class);
 
-  private Buffer[] frameBuffers;
+  private final Buffer[] frameBuffers;
 
   private int current;
 

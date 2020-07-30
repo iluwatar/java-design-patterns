@@ -80,7 +80,7 @@ import java.util.List;
  */
 public class App {
 
-  private static CakeBakingService cakeBakingService = new CakeBakingServiceImpl();
+  private static final CakeBakingService cakeBakingService = new CakeBakingServiceImpl();
 
   /**
    * Application entry point.

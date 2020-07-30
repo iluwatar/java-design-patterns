@@ -34,7 +34,7 @@ import units.SoldierUnit;
 public class Soldier implements SoldierExtension {
   private static final Logger LOGGER = LoggerFactory.getLogger(Soldier.class);
 
-  private SoldierUnit unit;
+  private final SoldierUnit unit;
 
   public Soldier(SoldierUnit soldierUnit) {
     this.unit = soldierUnit;

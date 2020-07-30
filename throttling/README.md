@@ -32,8 +32,8 @@ Tenant class presents the clients of the API. CallsCount tracks the number of AP
 ```java
 public class Tenant {
 
-  private String name;
-  private int allowedCallsPerSecond;
+  private final String name;
+  private final int allowedCallsPerSecond;
 
   public Tenant(String name, int allowedCallsPerSecond, CallsCount callsCount) {
     if (allowedCallsPerSecond < 0) {
@@ -56,7 +56,7 @@ public class Tenant {
 public final class CallsCount {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(CallsCount.class);
-  private Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
+  private final Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
 
   public void addTenant(String tenantName) {
     tenantCallsCount.putIfAbsent(tenantName, new AtomicLong(0));

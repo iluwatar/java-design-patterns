@@ -116,7 +116,7 @@ public class LotteryNumbers {
    */
   private static class RandomNumberGenerator {
 
-    private PrimitiveIterator.OfInt randomIterator;
+    private final PrimitiveIterator.OfInt randomIterator;
 
     /**
      * Initialize a new random number generator that generates random numbers in the range [min,

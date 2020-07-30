@@ -32,10 +32,10 @@ public class RainbowFish implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private String name;
-  private int age;
-  private int lengthMeters;
-  private int weightTons;
+  private final String name;
+  private final int age;
+  private final int lengthMeters;
+  private final int weightTons;
 
   /**
    * Constructor.

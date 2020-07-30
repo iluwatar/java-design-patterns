@@ -103,10 +103,7 @@ public class HeroStat {
     if (luck != other.luck) {
       return false;
     }
-    if (strength != other.strength) {
-      return false;
-    }
-    return true;
+    return strength == other.strength;
   }
 
   // The clone() method should not be public. Just don't override it.

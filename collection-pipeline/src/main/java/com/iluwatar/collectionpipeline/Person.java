@@ -29,7 +29,7 @@ import java.util.List;
  * A Person class that has the list of cars that the person owns and use.
  */
 public class Person {
-  private List<Car> cars;
+  private final List<Car> cars;
 
   /**
    * Constructor to create an instance of person.

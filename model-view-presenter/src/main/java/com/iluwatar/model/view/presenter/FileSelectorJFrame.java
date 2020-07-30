@@ -48,37 +48,37 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
   /**
    * The "OK" button for loading the file.
    */
-  private JButton ok;
+  private final JButton ok;
 
   /**
    * The cancel button.
    */
-  private JButton cancel;
+  private final JButton cancel;
 
   /**
    * The information label.
    */
-  private JLabel info;
+  private final JLabel info;
 
   /**
    * The contents label.
    */
-  private JLabel contents;
+  private final JLabel contents;
 
   /**
    * The text field for giving the name of the file that we want to open.
    */
-  private JTextField input;
+  private final JTextField input;
 
   /**
    * A text area that will keep the contents of the file opened.
    */
-  private JTextArea area;
+  private final JTextArea area;
 
   /**
    * The panel that will hold our widgets.
    */
-  private JPanel panel;
+  private final JPanel panel;
 
   /**
    * The Presenter component that the frame will interact with.

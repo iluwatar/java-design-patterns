@@ -32,7 +32,7 @@ import java.util.Map;
  */
 public class InMemoryBank implements WireTransfers {
 
-  private static Map<String, Integer> accounts = new HashMap<>();
+  private static final Map<String, Integer> accounts = new HashMap<>();
 
   static {
     accounts

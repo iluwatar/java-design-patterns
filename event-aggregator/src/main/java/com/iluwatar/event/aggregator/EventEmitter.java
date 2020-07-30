@@ -31,7 +31,7 @@ import java.util.List;
  */
 public abstract class EventEmitter {
 
-  private List<EventObserver> observers;
+  private final List<EventObserver> observers;
 
   public EventEmitter() {
     observers = new LinkedList<>();

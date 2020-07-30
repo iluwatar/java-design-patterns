@@ -55,7 +55,7 @@ public class Java8Holder {
       }
     }
 
-    if (!HeavyFactory.class.isInstance(heavy)) {
+    if (!(heavy instanceof HeavyFactory)) {
       heavy = new HeavyFactory();
     }
 

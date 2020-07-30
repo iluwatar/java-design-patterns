@@ -36,7 +36,7 @@ import java.util.Optional;
  */
 public class CustomerCore extends Customer {
 
-  private Map<Role, CustomerRole> roles;
+  private final Map<Role, CustomerRole> roles;
 
   public CustomerCore() {
     roles = new HashMap<>();

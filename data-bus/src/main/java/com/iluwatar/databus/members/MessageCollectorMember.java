@@ -41,7 +41,7 @@ public class MessageCollectorMember implements Member {
 
   private final String name;
 
-  private List<String> messages = new ArrayList<>();
+  private final List<String> messages = new ArrayList<>();
 
   public MessageCollectorMember(String name) {
     this.name = name;

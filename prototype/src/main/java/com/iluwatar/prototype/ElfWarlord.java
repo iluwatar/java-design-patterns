@@ -28,7 +28,7 @@ package com.iluwatar.prototype;
  */
 public class ElfWarlord extends Warlord {
 
-  private String helpType;
+  private final String helpType;
 
   public ElfWarlord(String helpType) {
     this.helpType = helpType;

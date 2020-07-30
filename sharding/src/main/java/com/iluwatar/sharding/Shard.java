@@ -33,7 +33,7 @@ public class Shard {
 
   private final int id;
 
-  private Map<Integer, Data> dataStore;
+  private final Map<Integer, Data> dataStore;
 
   public Shard(final int id) {
     this.id = id;

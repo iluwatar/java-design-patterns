@@ -34,7 +34,7 @@ Taking our sentence example from above. Here we have the base class and differen
 ```java
 public abstract class LetterComposite {
 
-  private List<LetterComposite> children = new ArrayList<>();
+  private final List<LetterComposite> children = new ArrayList<>();
 
   public void add(LetterComposite letter) {
     children.add(letter);
@@ -59,7 +59,7 @@ public abstract class LetterComposite {
 
 public class Letter extends LetterComposite {
 
-  private char character;
+  private final char character;
 
   public Letter(char c) {
     this.character = c;

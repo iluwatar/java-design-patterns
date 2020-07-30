@@ -32,7 +32,7 @@ import java.util.Optional;
  * The class representing a service discovery pattern.
  */
 public class ServiceDiscoveryService {
-  private Map<String, ChoreographyChapter> services;
+  private final Map<String, ChoreographyChapter> services;
 
   /**
    * find any service.

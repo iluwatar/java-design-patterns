@@ -28,8 +28,8 @@ package com.iluwatar.model.view.controller;
  */
 public class GiantController {
 
-  private GiantModel giant;
-  private GiantView view;
+  private final GiantModel giant;
+  private final GiantView view;
 
   public GiantController(GiantModel giant, GiantView view) {
     this.giant = giant;

@@ -33,7 +33,7 @@ import java.util.Hashtable;
  */
 
 public class EmployeeDatabase extends Database<Order> {
-  private Hashtable<String, Order> data;
+  private final Hashtable<String, Order> data;
 
   public EmployeeDatabase() {
     this.data = new Hashtable<>();

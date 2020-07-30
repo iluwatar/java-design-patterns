@@ -83,7 +83,7 @@ public abstract class DwarvenMineWorker {
 
   public abstract String name();
 
-  static enum Action {
+  enum Action {
     GO_TO_SLEEP, WAKE_UP, GO_HOME, GO_TO_MINE, WORK
   }
 }
