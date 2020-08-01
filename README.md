@@ -9,7 +9,7 @@
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-117-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-118-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -244,6 +244,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/nishant"><img src="https://avatars2.githubusercontent.com/u/15331971?v=4" width="100px;" alt=""/><br /><sub><b>Nishant Arora</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=nishant" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/raja-peeyush-kumar-singh"><img src="https://avatars0.githubusercontent.com/u/5496024?v=4" width="100px;" alt=""/><br /><sub><b>Peeyush</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=raja-peeyush-kumar-singh" title="Code">💻</a></td>
   </tr>
 </table>
 
