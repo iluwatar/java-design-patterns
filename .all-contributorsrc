@@ -1038,6 +1038,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "charlesfinley",
+      "name": "Matt Dolan",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6307904?v=4",
+      "profile": "https://github.com/charlesfinley",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
