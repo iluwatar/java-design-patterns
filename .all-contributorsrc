@@ -1056,6 +1056,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "nishant",
+      "name": "Nishant Arora",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/15331971?v=4",
+      "profile": "https://github.com/nishant",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
