@@ -58,7 +58,7 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>iluwatar</sonar.organization>
         <sonar.projectKey>iluwatar_java-design-patterns</sonar.projectKey>
-        <sonar.moduleKey>${artifactId}</sonar.moduleKey>
+        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
         <sonar.projectName>Java Design Patterns</sonar.projectName>
     </properties>
     <modules>
