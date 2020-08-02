@@ -40,7 +40,7 @@ public class AbstractDocumentTest {
   private static final String KEY = "key";
   private static final String VALUE = "value";
 
-  private class DocumentImplementation extends AbstractDocument {
+  private static class DocumentImplementation extends AbstractDocument {
 
     DocumentImplementation(Map<String, Object> properties) {
       super(properties);
