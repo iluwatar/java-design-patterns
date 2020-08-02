@@ -192,6 +192,7 @@
         <module>leader-followers</module>
         <module>strangler</module>
         <module>arrange-act-assert</module>
+        <module>finite-state-machine</module>
     </modules>
 
     <repositories>
