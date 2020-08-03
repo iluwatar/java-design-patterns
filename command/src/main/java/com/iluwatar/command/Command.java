@@ -27,13 +27,11 @@ package com.iluwatar.command;
  * Interface for Commands.
  */
 public interface Command {
+  void execute(Target target);
 
-  public void execute(Target target);
+  void undo();
 
-  public void undo();
+  void redo();
 
-  public void redo();
-
-  public String toString();
-
+  String toString();
 }
