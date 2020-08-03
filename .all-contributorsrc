@@ -1048,6 +1048,33 @@
         "code",
         "review"
       ]
+    },
+    {
+      "login": "MananS77",
+      "name": "Manan",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/21033516?v=4",
+      "profile": "https://github.com/MananS77",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "nishant",
+      "name": "Nishant Arora",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/15331971?v=4",
+      "profile": "https://github.com/nishant",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "raja-peeyush-kumar-singh",
+      "name": "Peeyush",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5496024?v=4",
+      "profile": "https://github.com/raja-peeyush-kumar-singh",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
