@@ -46,7 +46,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    final Logger logger = LoggerFactory.getLogger(App.class);
+    final var logger = LoggerFactory.getLogger(App.class);
     var guard = new Guard();
     var thief = new Thief();
 
@@ -59,7 +59,7 @@ public class App {
 
     //noinspection ConstantConditions
     if (thief instanceof Permission) {
-      thief.doNothing();
+      thief.steal();
     } else {
       thief.doNothing();
     }

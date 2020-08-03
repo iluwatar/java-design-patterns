@@ -28,10 +28,9 @@ import org.slf4j.LoggerFactory;
  * Class defining Thief.
  */
 public class Thief {
-
   private static final Logger LOGGER = LoggerFactory.getLogger(Thief.class);
 
-  protected static void steal() {
+  protected void steal() {
     LOGGER.info("Steal valuable items");
   }
 
