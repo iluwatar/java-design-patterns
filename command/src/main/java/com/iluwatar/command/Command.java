@@ -26,15 +26,14 @@ package com.iluwatar.command;
 /**
  * Interface for Commands.
  */
-public abstract class Command {
+public interface Command {
 
-  public abstract void execute(Target target);
+  public void execute(Target target);
 
-  public abstract void undo();
+  public void undo();
 
-  public abstract void redo();
+  public void redo();
 
-  @Override
-  public abstract String toString();
+  public String toString();
 
 }
