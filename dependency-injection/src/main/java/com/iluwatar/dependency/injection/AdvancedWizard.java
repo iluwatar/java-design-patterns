@@ -29,7 +29,7 @@ package com.iluwatar.dependency.injection;
  */
 public class AdvancedWizard implements Wizard {
 
-  private Tobacco tobacco;
+  private final Tobacco tobacco;
 
   public AdvancedWizard(Tobacco tobacco) {
     this.tobacco = tobacco;

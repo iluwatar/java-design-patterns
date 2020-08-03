@@ -81,7 +81,7 @@ public abstract class Master {
       for (var i = 0; i < this.expectedNumResults; i++) {
         //ith division given to ith worker in this.workers
         this.workers.get(i).setReceivedData(this, dividedInput.get(i));
-        this.workers.get(i).run();
+        this.workers.get(i).start();
       }
     }
   }

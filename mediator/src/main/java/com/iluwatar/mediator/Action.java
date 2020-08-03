@@ -27,7 +27,6 @@ package com.iluwatar.mediator;
  * Action enumeration.
  */
 public enum Action {
-
   HUNT("hunted a rabbit", "arrives for dinner"),
   TALE("tells a tale", "comes to listen"),
   GOLD("found gold", "takes his share of the gold"),

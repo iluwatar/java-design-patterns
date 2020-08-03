@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
  */
 public class AbstractFactoryTest {
 
-  private App app = new App();
+  private final App app = new App();
   private KingdomFactory elfFactory;
   private KingdomFactory orcFactory;
 

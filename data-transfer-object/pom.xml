@@ -48,7 +48,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.iluwatar.datatransfer.CustomerClientApp</mainClass>
+                                    <mainClass>com.iluwatar.datatransfer.App</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

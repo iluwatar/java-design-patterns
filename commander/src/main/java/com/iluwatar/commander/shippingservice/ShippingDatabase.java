@@ -34,7 +34,7 @@ import java.util.Hashtable;
 
 public class ShippingDatabase extends Database<ShippingRequest> {
 
-  private Hashtable<String, ShippingRequest> data;
+  private final Hashtable<String, ShippingRequest> data;
 
   public ShippingDatabase() {
     this.data = new Hashtable<>();

@@ -54,6 +54,12 @@
         <annotation-api.version>1.3.2</annotation-api.version>
         <system-rules.version>1.19.0</system-rules.version>
         <urm.version>1.4.8</urm.version>
+        <!-- SonarCloud -->
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>iluwatar</sonar.organization>
+        <sonar.projectKey>iluwatar_java-design-patterns</sonar.projectKey>
+        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+        <sonar.projectName>Java Design Patterns</sonar.projectName>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -184,6 +190,8 @@
         <module>combinator</module>
         <module>update-method</module>
         <module>leader-followers</module>
+        <module>strangler</module>
+        <module>arrange-act-assert</module>
     </modules>
 
     <repositories>
@@ -367,10 +375,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M3</version>
-                    <configuration>
-                        <argLine>-Xmx1024M ${argLine}</argLine>
-                    </configuration>
+                    <version>3.0.0-M5</version>
                 </plugin>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
@@ -398,6 +403,11 @@
                             </configuration>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.7.0.1746</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -461,7 +471,7 @@
                     </properties>
                     <skipExistingHeaders>true</skipExistingHeaders>
                     <headerDefinitions>
-                        <headerDefinition>${projectRoot}${file.separator}license-plugin-header-style.xml</headerDefinition>
+                        <headerDefinition>license-plugin-header-style.xml</headerDefinition>
                     </headerDefinitions>
                     <mapping>
                         <java>SLASHSTAR_CUSTOM_STYLE</java>
@@ -527,14 +537,4 @@
 
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>
-        </plugins>
-    </reporting>
-
 </project>

@@ -23,3 +23,4 @@ Use the Message Channel pattern when
 ## Real world examples
 
 * [akka-camel](http://doc.akka.io/docs/akka/snapshot/scala/camel.html)
+* [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://www.amazon.com/gp/product/0321200683/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321200683&linkCode=as2&tag=javadesignpat-20&linkId=122e0cff74eedd004cc81a3ecfa623cf)

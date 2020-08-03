@@ -34,8 +34,8 @@ public class AlchemistShop {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AlchemistShop.class);
 
-  private List<Potion> topShelf;
-  private List<Potion> bottomShelf;
+  private final List<Potion> topShelf;
+  private final List<Potion> bottomShelf;
 
   /**
    * Constructor.

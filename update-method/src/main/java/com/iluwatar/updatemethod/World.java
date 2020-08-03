@@ -87,7 +87,8 @@ public class World {
    * Render the next frame. Here we do nothing since it is not related to the
    * pattern.
    */
-  private void render() {}
+  private void render() {
+  }
 
   /**
    * Run game loop.

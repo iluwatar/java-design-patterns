@@ -28,9 +28,9 @@ package com.iluwatar.producer.consumer;
  */
 public class Item {
 
-  private String producer;
+  private final String producer;
 
-  private int id;
+  private final int id;
 
   public Item(String producer, int id) {
     this.id = id;

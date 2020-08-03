@@ -10,10 +10,13 @@ tags:
 ---
 
 ## Intent
-Specify the kinds of objects to create using a prototypical
-instance, and create new objects by copying this prototype.
+Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
 ## Explanation
+
+First it should be noted that Prototype pattern is not used to gain performance benefits. It's only used for creating
+new objects from prototype instance.
+
 Real world example
 
 > Remember Dolly? The sheep that was cloned! Lets not get into the details but the key point here is that it is all about cloning.
@@ -78,4 +81,5 @@ Use the Prototype pattern when a system should be independent of how its product
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
+* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)

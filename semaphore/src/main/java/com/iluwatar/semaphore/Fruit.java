@@ -35,7 +35,7 @@ public class Fruit {
     ORANGE, APPLE, LEMON
   }
 
-  private FruitType type;
+  private final FruitType type;
 
   public Fruit(FruitType type) {
     this.type = type;

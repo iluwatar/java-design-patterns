@@ -33,7 +33,7 @@ public final class Nazgul {
 
   private static final Map<NazgulName, Nazgul> nazguls;
 
-  private NazgulName name;
+  private final NazgulName name;
 
   static {
     nazguls = new ConcurrentHashMap<>();

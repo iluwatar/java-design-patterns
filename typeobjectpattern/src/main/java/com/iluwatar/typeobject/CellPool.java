@@ -77,7 +77,7 @@ public class CellPool {
     pointer++;
   }
 
-  Candy[] assignRandomCandytypes() throws FileNotFoundException, IOException, ParseException {
+  Candy[] assignRandomCandytypes() throws IOException, ParseException {
     var jp = new JsonParser();
     jp.parse();
     var randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'

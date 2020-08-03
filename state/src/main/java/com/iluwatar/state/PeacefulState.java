@@ -33,7 +33,7 @@ public class PeacefulState implements State {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(PeacefulState.class);
 
-  private Mammoth mammoth;
+  private final Mammoth mammoth;
 
   public PeacefulState(Mammoth mammoth) {
     this.mammoth = mammoth;

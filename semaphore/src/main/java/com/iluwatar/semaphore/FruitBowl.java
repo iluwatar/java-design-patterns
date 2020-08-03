@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class FruitBowl {
 
-  private List<Fruit> fruit = new ArrayList<>();
+  private final List<Fruit> fruit = new ArrayList<>();
 
   /**
    * Returns the amount of fruits left in bowl.
