@@ -75,13 +75,20 @@ public abstract class Master {
   }
 
   private void divideWork(Input<?> input) {
-    List<? extends Input<?>> dividedInput = input.divideData(numOfWorkers);
+    var dividedInput = input.divideData(numOfWorkers);
     if (dividedInput != null) {
       this.expectedNumResults = dividedInput.size();
       for (var i = 0; i < this.expectedNumResults; i++) {
         //ith division given to ith worker in this.workers
         this.workers.get(i).setReceivedData(this, dividedInput.get(i));
         this.workers.get(i).start();
+      }
+      for (var i = 0; i < this.expectedNumResults; i++) {
+        try {
+          this.workers.get(i).join();
+        } catch (InterruptedException e) {
+          System.err.println("Error while executing thread");
+        }
       }
     }
   }
