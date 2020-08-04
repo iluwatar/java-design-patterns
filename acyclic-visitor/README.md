@@ -101,7 +101,7 @@ public class ConfigureForUnixVisitor implements ZoomVisitor {
 }
 ```
 
-Finally here are the visitors in action.
+Finally, here are the visitors in action.
 
 ```java
     var conUnix = new ConfigureForUnixVisitor();
