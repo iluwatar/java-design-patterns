@@ -4,7 +4,7 @@ package com.iluwatar.command {
     + App()
     + main(args : String[]) {static}
   }
-  abstract class Command {
+  interface Command {
     + Command()
     + execute(Target) {abstract}
     + redo() {abstract}
@@ -77,7 +77,7 @@ ShrinkSpell -->  "-oldSize" Size
 InvisibilitySpell -->  "-target" Target
 ShrinkSpell -->  "-target" Target
 Target -->  "-visibility" Visibility
-Goblin --|> Target 
-InvisibilitySpell --|> Command 
-ShrinkSpell --|> Command 
+Goblin --|> Target
+InvisibilitySpell ..|> Command
+ShrinkSpell ..|> Command
 @enduml
