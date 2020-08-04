@@ -29,5 +29,5 @@ package com.iluwatar.ambassador;
 interface RemoteServiceInterface {
   int FAILURE = -1;
 
-  long doRemoteFunction(int value) throws Exception;
+  long doRemoteFunction(int value);
 }
