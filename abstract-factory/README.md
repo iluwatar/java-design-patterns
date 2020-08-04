@@ -21,7 +21,7 @@ objects without specifying their concrete classes.
 
 Real world example
 
-> To create a kingdom we need objects with common theme. Elven kingdom needs an Elven king, Elven castle and Elven army whereas Orcish kingdom needs an Orcish king, Orcish castle and Orcish army. There is a dependency between the objects in the kingdom.
+> To create a kingdom we need objects with a common theme. Elven kingdom needs an Elven king, Elven castle and Elven army whereas Orcish kingdom needs an Orcish king, Orcish castle and Orcish army. There is a dependency between the objects in the kingdom.
 
 In plain words
 
@@ -33,7 +33,8 @@ Wikipedia says
 
 **Programmatic Example**
 
-Translating the kingdom example above. First of all we have some interfaces and implementation for the objects in the kingdom
+Translating the kingdom example above. First of all we have some interfaces and implementation for the objects in the 
+kingdom.
 
 ```java
 public interface Castle {
@@ -188,9 +189,9 @@ Use the Abstract Factory pattern when
 * When you need consistency among products
 * You don’t want to change existing code when adding new products or families of products to the program.
 
-## Use Cases:	
+Example use cases	
 
-* Selecting to call the appropriate implementation of FileSystemAcmeService or DatabaseAcmeService or NetworkAcmeService at runtime.
+* Selecting to call to the appropriate implementation of FileSystemAcmeService or DatabaseAcmeService or NetworkAcmeService at runtime.
 * Unit test case writing becomes much easier
 * UI tools for different OS
 
@@ -204,12 +205,16 @@ Use the Abstract Factory pattern when
 
 * [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
 
-
-## Real world examples
+## Known uses
 
 * [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
 * [javax.xml.transform.TransformerFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/transform/TransformerFactory.html#newInstance--)
 * [javax.xml.xpath.XPathFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/xpath/XPathFactory.html#newInstance--)
+
+## Related patterns
+
+[Factory Method](https://java-design-patterns.com/patterns/factory-method/)
+[Factory Kit](https://java-design-patterns.com/patterns/factory-kit/)
 
 ## Credits
 
