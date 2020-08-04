@@ -26,7 +26,6 @@ package com.iluwatar.masterworker.system.systemmaster;
 import com.iluwatar.masterworker.Input;
 import com.iluwatar.masterworker.Result;
 import com.iluwatar.masterworker.system.systemworkers.Worker;
-import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -40,7 +39,7 @@ import java.util.List;
 public abstract class Master {
   private final int numOfWorkers;
   private final List<Worker> workers;
-  private final Dictionary<Integer, Result<?>> allResultData;
+  private final Hashtable<Integer, Result<?>> allResultData;
   private int expectedNumResults;
   private Result<?> finalResult;
 
@@ -56,7 +55,7 @@ public abstract class Master {
     return this.finalResult;
   }
 
-  Dictionary<Integer, Result<?>> getAllResultData() {
+  Hashtable<Integer, Result<?>> getAllResultData() {
     return this.allResultData;
   }
 
