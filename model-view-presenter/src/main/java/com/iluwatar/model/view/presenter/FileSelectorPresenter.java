@@ -91,7 +91,7 @@ public class FileSelectorPresenter implements Serializable {
     }
 
     if (loader.fileExists()) {
-      String data = loader.loadData();
+      var data = loader.loadData();
       view.displayData(data);
     } else {
       view.showMessage("The file specified does not exist.");

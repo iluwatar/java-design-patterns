@@ -23,9 +23,8 @@
 
 package com.iluwatar.module;
 
-import org.junit.jupiter.api.Test;
-
 import java.io.FileNotFoundException;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests that Module example runs without errors.
@@ -34,7 +33,6 @@ public final class AppTest {
 
   @Test
   public void test() throws FileNotFoundException {
-    final String[] args = {};
-    App.main(args);
+    App.main();
   }
 }

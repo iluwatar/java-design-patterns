@@ -23,16 +23,14 @@
 
 package com.iluwatar.mute;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test for the mute-idiom pattern
@@ -50,9 +48,7 @@ public class MuteTest {
 
   @Test
   public void muteShouldRethrowUnexpectedExceptionAsAssertionError() {
-    assertThrows(AssertionError.class, () -> {
-      Mute.mute(this::methodThrowingException);
-    });
+    assertThrows(AssertionError.class, () -> Mute.mute(this::methodThrowingException));
   }
 
   @Test
@@ -62,7 +58,7 @@ public class MuteTest {
 
   @Test
   public void loggedMuteShouldLogExceptionTraceBeforeSwallowingIt() {
-    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    var stream = new ByteArrayOutputStream();
     System.setErr(new PrintStream(stream));
 
     Mute.loggedMute(this::methodThrowingException);
