@@ -367,7 +367,6 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${compiler.version}</version>
                     <configuration>
                         <source>11</source>
                         <target>11</target>
