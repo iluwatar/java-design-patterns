@@ -63,7 +63,7 @@ public final class FileLoggerModuleTest {
   @Test
   public void testFileMessage() throws IOException {
 
-    /* Get singletong instance of File Logger Module */
+    /* Get singleton instance of File Logger Module */
     final var fileLoggerModule = FileLoggerModule.getSingleton();
 
     /* Prepare the essential sub modules, to perform the sequence of jobs */
@@ -109,7 +109,7 @@ public final class FileLoggerModuleTest {
   @Test
   public void testFileErrorMessage() throws FileNotFoundException {
 
-    /* Get singletong instance of File Logger Module */
+    /* Get singleton instance of File Logger Module */
     final var fileLoggerModule = FileLoggerModule.getSingleton();
 
     /* Prepare the essential sub modules, to perform the sequence of jobs */
@@ -134,7 +134,7 @@ public final class FileLoggerModuleTest {
   @Test
   public void testNoFileErrorMessage() throws FileNotFoundException {
 
-    /* Get singletong instance of File Logger Module */
+    /* Get singleton instance of File Logger Module */
     final var fileLoggerModule = FileLoggerModule.getSingleton();
 
     /* Prepare the essential sub modules, to perform the sequence of jobs */
