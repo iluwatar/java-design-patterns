@@ -25,7 +25,6 @@ package domainapp.integtests.bootstrap;
 
 import org.apache.isis.core.commons.config.IsisConfiguration;
 import org.apache.isis.core.integtestsupport.IsisSystemForTest;
-import org.apache.isis.objectstore.jdo.datanucleus.DataNucleusPersistenceMechanismInstaller;
 import org.apache.isis.objectstore.jdo.datanucleus.IsisConfigurationForJdoIntegTests;
 
 /**
@@ -40,7 +39,7 @@ public final class SimpleAppSystemInitializer {
    * Init test system
    */
   public static void initIsft() {
-    IsisSystemForTest isft = IsisSystemForTest.getElseNull();
+    var isft = IsisSystemForTest.getElseNull();
     if (isft == null) {
       isft = new SimpleAppSystemBuilder().build().setUpSystem();
       IsisSystemForTest.set(isft);
@@ -51,15 +50,13 @@ public final class SimpleAppSystemInitializer {
 
     public SimpleAppSystemBuilder() {
       with(testConfiguration());
-      with(new DataNucleusPersistenceMechanismInstaller());
 
       // services annotated with @DomainService
       withServicesIn("domainapp");
     }
 
     private static IsisConfiguration testConfiguration() {
-      final IsisConfigurationForJdoIntegTests testConfiguration =
-          new IsisConfigurationForJdoIntegTests();
+      final var testConfiguration = new IsisConfigurationForJdoIntegTests();
 
       testConfiguration.addRegisterEntitiesPackagePrefix("domainapp.dom.modules");
       return testConfiguration;
