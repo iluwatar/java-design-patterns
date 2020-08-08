@@ -9,7 +9,7 @@ tags:
 ---
 
 ## Intent
-Transaction script(TS) is mainly used in small applications where nothing complex is done and bigger architecture's are not needed.
+Transaction Script organizes business logic by procedures where each procedure handles a single request from the presentation.
 
 ## Explanation
 Real world example
