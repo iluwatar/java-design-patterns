@@ -3,7 +3,7 @@ layout: pattern
 title: Transaction Script
 folder: transaction-script
 permalink: /patterns/transaction-script/
-categories: Domain logic
+categories: Behavioral
 tags:
  - Data access
 ---
