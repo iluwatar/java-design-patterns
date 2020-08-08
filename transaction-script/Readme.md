@@ -1,6 +1,6 @@
 ---
 layout: pattern
-title: Transaction script
+title: Transaction Script
 folder: transaction-script
 permalink: /patterns/transaction-script/
 categories: Domain logic
