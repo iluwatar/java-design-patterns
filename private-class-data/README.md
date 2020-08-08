@@ -18,12 +18,15 @@ attributes by encapsulating them in single Data object.
 Real world example
 
 > Imagine you are cooking a stew for your family for dinner.You want to prevent your family members from comsuming the stew by tasting it while you are cooking, otherwise there will be no more stew for dinner later.
+
 In plain words
 
 > Private class data pattern prevent manipulation of data that is meant to be immutable by seperating the data from methods that use it into a class that maintains the data state.
+
 Wikipedia says
 
 > Private class data is a design pattern in computer programming used to encapsulate class attributes and their manipulation.
+
 **Programmatic Example**
 
 Taking our stew example from above. First we have a Stew class where its data is not protected by private class data, making the stew's ingredient mutable to class methods. 
