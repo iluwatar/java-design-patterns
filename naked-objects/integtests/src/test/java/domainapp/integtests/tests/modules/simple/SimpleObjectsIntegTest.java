@@ -124,9 +124,7 @@ public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
       @SuppressWarnings("UnstableApiUsage")
       protected boolean matchesSafely(Throwable item) {
         final var causalChain = Throwables.getCausalChain(item);
-        return causalChain.stream()
-            .map(Throwable::getClass)
-            .allMatch(cls::isAssignableFrom);
+        return causalChain.stream().map(Throwable::getClass).anyMatch(cls::isAssignableFrom);
       }
 
       @Override

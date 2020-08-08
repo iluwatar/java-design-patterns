@@ -25,6 +25,7 @@ package domainapp.integtests.bootstrap;
 
 import org.apache.isis.core.commons.config.IsisConfiguration;
 import org.apache.isis.core.integtestsupport.IsisSystemForTest;
+import org.apache.isis.objectstore.jdo.datanucleus.DataNucleusPersistenceMechanismInstaller;
 import org.apache.isis.objectstore.jdo.datanucleus.IsisConfigurationForJdoIntegTests;
 
 /**
@@ -50,6 +51,7 @@ public final class SimpleAppSystemInitializer {
 
     public SimpleAppSystemBuilder() {
       with(testConfiguration());
+      with(new DataNucleusPersistenceMechanismInstaller());
 
       // services annotated with @DomainService
       withServicesIn("domainapp");
