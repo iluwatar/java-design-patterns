@@ -30,4 +30,4 @@ Do not use this pattern when
 
 ## Credits
 
-* [ Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/dn568104(v=pandp.10))
+* [Leader Election pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/leader-election)

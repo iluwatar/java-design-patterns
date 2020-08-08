@@ -38,7 +38,7 @@ public class Candy {
   Candy parent;
   String parentName;
   private int points;
-  private Type type;
+  private final Type type;
 
   Candy(String name, String parentName, Type type, int points) {
     this.name = name;

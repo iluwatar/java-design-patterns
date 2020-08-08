@@ -89,8 +89,8 @@ import java.util.List;
 public class App {
 
   private NioReactor reactor;
-  private List<AbstractNioChannel> channels = new ArrayList<>();
-  private Dispatcher dispatcher;
+  private final List<AbstractNioChannel> channels = new ArrayList<>();
+  private final Dispatcher dispatcher;
 
   /**
    * Creates an instance of App which will use provided dispatcher for dispatching events on

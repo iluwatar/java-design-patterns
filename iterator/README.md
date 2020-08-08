@@ -36,7 +36,7 @@ The main class in our example is the treasure chest that contains items.
 ```java
 public class TreasureChest {
 
-  private List<Item> items;
+  private final List<Item> items;
 
   public TreasureChest() {
     items = List.of(
@@ -64,7 +64,7 @@ public class TreasureChest {
 public class Item {
 
   private ItemType type;
-  private String name;
+  private final String name;
 
   public Item(ItemType type, String name) {
     this.setType(type);

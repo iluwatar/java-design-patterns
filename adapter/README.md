@@ -12,9 +12,8 @@ tags:
 Wrapper
 
 ## Intent
-Convert the interface of a class into another interface the clients
-expect. Adapter lets classes work together that couldn't otherwise because of
-incompatible interfaces.
+Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that 
+couldn't otherwise because of incompatible interfaces.
 
 ## Explanation
 
@@ -56,7 +55,7 @@ And captain expects an implementation of `RowingBoat` interface to be able to mo
 ```java
 public class Captain {
 
-  private RowingBoat rowingBoat;
+  private final RowingBoat rowingBoat;
   // default constructor and setter for rowingBoat
   public Captain(RowingBoat rowingBoat) {
     this.rowingBoat = rowingBoat;
@@ -75,7 +74,7 @@ public class FishingBoatAdapter implements RowingBoat {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(FishingBoatAdapter.class);
 
-  private FishingBoat boat;
+  private final FishingBoat boat;
 
   public FishingBoatAdapter() {
     boat = new FishingBoat();

@@ -50,7 +50,7 @@ public class DbCustomerDaoTest {
 
   private static final String DB_URL = "jdbc:h2:~/dao";
   private DbCustomerDao dao;
-  private Customer existingCustomer = new Customer(1, "Freddy", "Krueger");
+  private final Customer existingCustomer = new Customer(1, "Freddy", "Krueger");
 
   /**
    * Creates customers schema.

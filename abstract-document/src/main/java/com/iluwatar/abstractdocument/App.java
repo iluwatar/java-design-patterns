@@ -43,9 +43,11 @@ public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Executes the App.
+   * Program entry point.
+   *
+   * @param args command line args
    */
-  public App() {
+  public static void main(String[] args) {
     LOGGER.info("Constructing parts and car");
 
     var wheelProperties = Map.of(
@@ -75,14 +77,4 @@ public class App {
         p.getPrice().orElse(null))
     );
   }
-
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    new App();
-  }
-
 }

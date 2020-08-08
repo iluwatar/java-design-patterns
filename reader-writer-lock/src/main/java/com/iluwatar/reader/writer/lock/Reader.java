@@ -34,11 +34,11 @@ public class Reader implements Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Reader.class);
 
-  private Lock readLock;
+  private final Lock readLock;
 
-  private String name;
+  private final String name;
 
-  private long readingTime;
+  private final long readingTime;
 
   /**
    * Create new Reader.

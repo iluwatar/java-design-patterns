@@ -29,7 +29,7 @@ package com.iluwatar.flux.action;
  */
 public class MenuAction extends Action {
 
-  private MenuItem menuItem;
+  private final MenuItem menuItem;
 
   public MenuAction(MenuItem menuItem) {
     super(ActionType.MENU_ITEM_SELECTED);

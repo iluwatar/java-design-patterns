@@ -9,11 +9,115 @@ tags:
 ---
 
 ## Intent
-Define the skeleton of an algorithm in an operation, deferring some
-steps to subclasses. Template method lets subclasses redefine certain steps of
-an algorithm without changing the algorithm's structure.
+Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets 
+subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 
-To make sure that subclasses don’t override the template method, the template method should be declared `final`.
+## Explanation
+Real world example
+
+> The general steps in stealing an item are the same. First you pick the target, next you confuse him somehow and finally you steal the item. However there are many ways to implement these steps.   
+
+In plain words
+
+> Template Method pattern outlines the general steps in the parent class and lets the concrete child implementations define the details. 
+
+Wikipedia says
+
+> In object-oriented programming, the template method is one of the behavioral design patterns identified by Gamma et al. in the book Design Patterns. The template method is a method in a superclass, usually an abstract superclass, and defines the skeleton of an operation in terms of a number of high-level steps. These steps are themselves implemented by additional helper methods in the same class as the template method.
+
+**Programmatic Example**
+
+Let's first introduce the template method class along with its concrete implementations.
+
+```java
+public abstract class StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(StealingMethod.class);
+
+  protected abstract String pickTarget();
+
+  protected abstract void confuseTarget(String target);
+
+  protected abstract void stealTheItem(String target);
+
+  public void steal() {
+    var target = pickTarget();
+    LOGGER.info("The target has been chosen as {}.", target);
+    confuseTarget(target);
+    stealTheItem(target);
+  }
+}
+
+public class SubtleMethod extends StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(SubtleMethod.class);
+
+  @Override
+  protected String pickTarget() {
+    return "shop keeper";
+  }
+
+  @Override
+  protected void confuseTarget(String target) {
+    LOGGER.info("Approach the {} with tears running and hug him!", target);
+  }
+
+  @Override
+  protected void stealTheItem(String target) {
+    LOGGER.info("While in close contact grab the {}'s wallet.", target);
+  }
+}
+
+public class HitAndRunMethod extends StealingMethod {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(HitAndRunMethod.class);
+
+  @Override
+  protected String pickTarget() {
+    return "old goblin woman";
+  }
+
+  @Override
+  protected void confuseTarget(String target) {
+    LOGGER.info("Approach the {} from behind.", target);
+  }
+
+  @Override
+  protected void stealTheItem(String target) {
+    LOGGER.info("Grab the handbag and run away fast!");
+  }
+}
+```
+
+Here's the halfling thief class containing the template method.
+
+```java
+public class HalflingThief {
+
+  private StealingMethod method;
+
+  public HalflingThief(StealingMethod method) {
+    this.method = method;
+  }
+
+  public void steal() {
+    method.steal();
+  }
+
+  public void changeMethod(StealingMethod method) {
+    this.method = method;
+  }
+}
+```
+
+And finally we show how the halfling thief utilizes the different stealing methods.
+
+```java
+    var thief = new HalflingThief(new HitAndRunMethod());
+    thief.steal();
+    thief.changeMethod(new SubtleMethod());
+    thief.steal();
+```
 
 ## Class diagram
 ![alt text](./etc/template-method_1.png "Template Method")

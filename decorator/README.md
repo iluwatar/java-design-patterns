@@ -70,7 +70,7 @@ public class ClubbedTroll implements Troll {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);
 
-  private Troll decorated;
+  private final Troll decorated;
 
   public ClubbedTroll(Troll decorated) {
     this.decorated = decorated;

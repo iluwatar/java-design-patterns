@@ -64,7 +64,7 @@ Customer resource class acts as the server for customer information.
 
 ```java
 public class CustomerResource {
-  private List<CustomerDto> customers;
+  private final List<CustomerDto> customers;
 
   public CustomerResource(List<CustomerDto> customers) {
     this.customers = customers;

@@ -43,10 +43,10 @@ public class PartyImplTest {
    */
   @Test
   public void testPartyAction() {
-    final PartyMember partyMember1 = mock(PartyMember.class);
-    final PartyMember partyMember2 = mock(PartyMember.class);
+    final var partyMember1 = mock(PartyMember.class);
+    final var partyMember2 = mock(PartyMember.class);
 
-    final PartyImpl party = new PartyImpl();
+    final var party = new PartyImpl();
     party.addMember(partyMember1);
     party.addMember(partyMember2);
 
@@ -58,7 +58,6 @@ public class PartyImplTest {
     verify(partyMember2).partyAction(Action.GOLD);
 
     verifyNoMoreInteractions(partyMember1, partyMember2);
-
   }
 
 }

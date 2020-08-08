@@ -42,14 +42,14 @@ public class NullNodeTest {
    */
   @Test
   public void testGetInstance() {
-    final NullNode instance = NullNode.getInstance();
+    final var instance = NullNode.getInstance();
     assertNotNull(instance);
     assertSame(instance, NullNode.getInstance());
   }
 
   @Test
   public void testFields() {
-    final NullNode node = NullNode.getInstance();
+    final var node = NullNode.getInstance();
     assertEquals(0, node.getTreeSize());
     assertNull(node.getName());
     assertNull(node.getLeft());

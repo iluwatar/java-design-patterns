@@ -46,7 +46,13 @@ jobs:
     # Some tests need screen access
     - name: Install xvfb
       run: sudo apt-get install xvfb
+    # SonarQube scan does not work for forked repositories
+    # See https://jira.sonarsource.com/browse/MMF-1371
     - name: Build with Maven
+      if: github.ref != 'refs/heads/master'
+      run: xvfb-run mvn clean verify
+    - name: Build with Maven and run SonarQube analysis
+      if: github.ref == 'refs/heads/master'
       run: xvfb-run mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
       env:
         # These two env variables are needed for sonar analysis

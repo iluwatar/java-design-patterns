@@ -104,7 +104,7 @@ public class VirtualMachineTest {
     bytecode[2] = LITERAL.getIntValue();
     bytecode[3] = 50;                        // health amount
     bytecode[4] = SET_HEALTH.getIntValue();
-    bytecode[5] = LITERAL.getIntValue();;
+    bytecode[5] = LITERAL.getIntValue();
     bytecode[6] = wizardNumber;
     bytecode[7] = GET_HEALTH.getIntValue();
 

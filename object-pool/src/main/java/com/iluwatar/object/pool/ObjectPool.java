@@ -33,8 +33,8 @@ import java.util.Set;
  */
 public abstract class ObjectPool<T> {
 
-  private Set<T> available = new HashSet<>();
-  private Set<T> inUse = new HashSet<>();
+  private final Set<T> available = new HashSet<>();
+  private final Set<T> inUse = new HashSet<>();
 
   protected abstract T create();
 
