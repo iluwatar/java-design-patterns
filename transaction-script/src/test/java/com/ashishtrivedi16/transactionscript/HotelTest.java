@@ -28,7 +28,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -103,7 +102,7 @@ public class HotelTest {
   }
 
 
-  private static void deleteSchema(DataSource dataSource) throws SQLException {
+  private static void deleteSchema(DataSource dataSource) throws java.sql.SQLException {
     try (var connection = dataSource.getConnection();
          var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.DELETE_SCHEMA_SQL);
@@ -115,7 +114,7 @@ public class HotelTest {
          var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.CREATE_SCHEMA_SQL);
     } catch (Exception e) {
-      throw new CustomException(e.getMessage(), e);
+      throw new SqlException(e.getMessage(), e);
     }
   }
 

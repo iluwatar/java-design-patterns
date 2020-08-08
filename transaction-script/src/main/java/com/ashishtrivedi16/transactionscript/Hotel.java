@@ -44,7 +44,7 @@ public class Hotel {
    */
   public void bookRoom(int roomNumber) throws Exception {
 
-    Optional<Room> room = hotelDao.getById(roomNumber);
+    var room = hotelDao.getById(roomNumber);
 
     if (room.isEmpty()) {
       throw new Exception("Room number: " + roomNumber + " does not exist");
@@ -52,7 +52,7 @@ public class Hotel {
       if (room.get().isBooked()) {
         throw new Exception("Room already booked!");
       } else {
-        Room updateRoomBooking = room.get();
+        var updateRoomBooking = room.get();
         updateRoomBooking.setBooked(true);
         hotelDao.update(updateRoomBooking);
       }
@@ -66,14 +66,14 @@ public class Hotel {
    * @throws Exception if any error
    */
   public void cancelRoomBooking(int roomNumber) throws Exception {
-
-    Optional<Room> room = hotelDao.getById(roomNumber);
+  
+    var room = hotelDao.getById(roomNumber);
 
     if (room.isEmpty()) {
       throw new Exception("Room number: " + roomNumber + " does not exist");
     } else {
       if (room.get().isBooked()) {
-        Room updateRoomBooking = room.get();
+        var updateRoomBooking = room.get();
         updateRoomBooking.setBooked(false);
         int refundAmount = updateRoomBooking.getPrice();
         hotelDao.update(updateRoomBooking);

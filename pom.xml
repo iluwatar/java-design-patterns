@@ -372,6 +372,7 @@
                         <source>11</source>
                         <target>11</target>
                     </configuration>
+                    <version>3.0.0-M3</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
