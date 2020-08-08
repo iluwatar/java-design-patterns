@@ -21,7 +21,7 @@ Real world example
 
 In plain words
 
-> Private class data pattern prevent manipulation of data that is meant to be immutable by seperating the data from methods that use it into a class that maintains the data state.
+> Private class data pattern prevent manipulation of data that is meant to be immutable by seperating the data from methods that use it and placing them into a class that maintains the data state.
 
 Wikipedia says
 
