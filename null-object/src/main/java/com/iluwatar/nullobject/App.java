@@ -37,7 +37,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    Node root = new NodeImpl("1",
+    var root = new NodeImpl("1",
         new NodeImpl("11",
             new NodeImpl("111", NullNode.getInstance(), NullNode.getInstance()),
             NullNode.getInstance()
