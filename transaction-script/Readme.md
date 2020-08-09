@@ -13,8 +13,7 @@ Transaction Script organizes business logic by procedures where each procedure h
 
 ## Explanation
 Real world example
-> Your need is to be able to book a hotel room and also be able to cancel that booking.
-> 
+> You need to create a hotel room booking system. Since the requirements are quite simple we intend to use the Transaction Script pattern here.
 
 In plain words
 > All logic related to booking a hotel room like checking room availability,
