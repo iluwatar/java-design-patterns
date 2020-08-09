@@ -35,7 +35,7 @@ Wikipedia says
 Taking our stew example from above. First we have a `Stew` class where its data is not protected by 
 private class data, making the stew's ingredient mutable to class methods. 
 
-```
+```java
 public class Stew {
   private static final Logger LOGGER = LoggerFactory.getLogger(Stew.class);
   private int numPotatoes;
@@ -73,7 +73,7 @@ public class Stew {
 Now, we have `ImmutableStew` class, where its data is protected by `StewData` class. Now, the 
 methods in are unable to manipulate the data of the `ImmutableStew` class.
 
-```
+```java
 public class StewData {
   private final int numPotatoes;
   private final int numCarrots;
@@ -114,7 +114,7 @@ public class ImmutableStew {
 
 Let's try creating an instance of each class and call their methods:
 
-```
+```java
 var stew = new Stew(1, 2, 3, 4);
 stew.mix();   // Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers
 stew.taste(); // Tasting the stew
