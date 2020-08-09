@@ -17,7 +17,7 @@ attributes by encapsulating them in single Data object.
 
 Real world example
 
-> Imagine you are cooking a stew for your family for dinner.You want to prevent your family members from comsuming the stew by tasting it while you are cooking, otherwise there will be no more stew for dinner later.
+> Imagine you are cooking a stew for your family for dinner. You want to prevent your family members from comsuming the stew by tasting it while you are cooking, otherwise there will be no more stew for dinner later.
 
 In plain words
 
@@ -66,7 +66,7 @@ public class Stew {
 }
 ```
 
-Now, we have ImmutableStew class, where its ingredient is protected by StewData class so methods are unable to manipulate the data of the stew.
+Now, we have ImmutableStew class, where its data is protected by StewData class. Now, the methods in are unable to manipulate the data of the ImmutableStew class.
 ```
 public class StewData {
   private final int numPotatoes;
