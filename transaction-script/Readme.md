@@ -23,7 +23,7 @@ In plain words
 
 Programmatic example
 
-The Hotel class takes care of booking and cancelling a room in a hotel.
+The `Hotel` class takes care of booking and cancelling room reservations.
 
 ```java
 public class Hotel {
