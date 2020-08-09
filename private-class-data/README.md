@@ -9,27 +9,31 @@ tags:
 ---
 
 ## Intent
-Private Class Data design pattern seeks to reduce exposure of
-attributes by limiting their visibility. It reduces the number of class
-attributes by encapsulating them in single Data object.
+Private Class Data design pattern seeks to reduce exposure of attributes by limiting their 
+visibility. It reduces the number of class attributes by encapsulating them in single Data object.
 
 ## Explanation
 
 Real world example
 
-> Imagine you are cooking a stew for your family for dinner. You want to prevent your family members from consuming the stew by tasting it while you are cooking, otherwise there will be no more stew for dinner later.
+> Imagine you are cooking a stew for your family for dinner. You want to prevent your family members 
+> from consuming the stew by tasting it while you are cooking, otherwise there will be no more stew 
+> for dinner later.
 
 In plain words
 
-> Private class data pattern prevent manipulation of data that is meant to be immutable by separating the data from methods that use it into a class that maintains the data state.
+> Private class data pattern prevents manipulation of data that is meant to be immutable by 
+> separating the data from the methods that use it into a class that maintains the data state.
 
 Wikipedia says
 
-> Private class data is a design pattern in computer programming used to encapsulate class attributes and their manipulation.
+> Private class data is a design pattern in computer programming used to encapsulate class 
+> attributes and their manipulation.
 
 **Programmatic Example**
 
-Taking our stew example from above. First we have a `Stew` class where its data is not protected by private class data, making the stew's ingredient mutable to class methods. 
+Taking our stew example from above. First we have a `Stew` class where its data is not protected by 
+private class data, making the stew's ingredient mutable to class methods. 
 
 ```
 public class Stew {
@@ -66,7 +70,9 @@ public class Stew {
 }
 ```
 
-Now, we have `ImmutableStew` class, where its data is protected by `StewData` class. Now, the methods in are unable to manipulate the data of the `ImmutableStew` class.
+Now, we have `ImmutableStew` class, where its data is protected by `StewData` class. Now, the 
+methods in are unable to manipulate the data of the `ImmutableStew` class.
+
 ```
 public class StewData {
   private final int numPotatoes;
@@ -106,7 +112,8 @@ public class ImmutableStew {
 }
 ```
 
-Let's try creating some instance of each class and calling their methods
+Let's try creating an instance of each class and call their methods:
+
 ```
 var stew = new Stew(1, 2, 3, 4);
 stew.mix();   // Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers
