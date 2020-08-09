@@ -93,8 +93,7 @@ if booked then calculates the refund amount and updates the database using the D
 ![alt text](./etc/transaction-script.png "Transaction script model")
 
 ## Applicability
-Use the transaction script model when the application has only a small amount of logic and that
-logic won't be extended in the future.
+Use the Transaction Script pattern when the application has only a small amount of logic and that logic won't be extended in the future.
 
 
 ## Known uses
