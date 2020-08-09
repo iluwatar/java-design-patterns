@@ -16,10 +16,7 @@ Real world example
 > You need to create a hotel room booking system. Since the requirements are quite simple we intend to use the Transaction Script pattern here.
 
 In plain words
-> All logic related to booking a hotel room like checking room availability,
-> calculate rates and update the database is done inside a single transaction script.
-> Similar procedure is also needed for cancelling a room booking and all 
-> that logic will be in another transaction script.
+> Transaction Script organizes business logic into transactions that the system needs to carry out.
 
 Programmatic example
 
