@@ -76,7 +76,7 @@ public class Hotel {
 }
 ```
 
-This class has two methods, one for booking and cancelling a room respectively.
+The `Hotel` class has two methods, one for booking and cancelling a room respectively. Each one of them handles a single transaction in the system, making `Hotel` implement the Transaction Script pattern.
 
 ```
 public void bookRoom(int roomNumber);
