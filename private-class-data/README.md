@@ -17,11 +17,11 @@ attributes by encapsulating them in single Data object.
 
 Real world example
 
-> Imagine you are cooking a stew for your family for dinner. You want to prevent your family members from comsuming the stew by tasting it while you are cooking, otherwise there will be no more stew for dinner later.
+> Imagine you are cooking a stew for your family for dinner. You want to prevent your family members from consuming the stew by tasting it while you are cooking, otherwise there will be no more stew for dinner later.
 
 In plain words
 
-> Private class data pattern prevent manipulation of data that is meant to be immutable by seperating the data from methods that use it into a class that maintains the data state.
+> Private class data pattern prevent manipulation of data that is meant to be immutable by separating the data from methods that use it into a class that maintains the data state.
 
 Wikipedia says
 
@@ -29,7 +29,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Taking our stew example from above. First we have a Stew class where its data is not protected by private class data, making the stew's ingredient mutable to class methods. 
+Taking our stew example from above. First we have a `Stew` class where its data is not protected by private class data, making the stew's ingredient mutable to class methods. 
 
 ```
 public class Stew {
@@ -66,7 +66,7 @@ public class Stew {
 }
 ```
 
-Now, we have ImmutableStew class, where its data is protected by StewData class. Now, the methods in are unable to manipulate the data of the ImmutableStew class.
+Now, we have `ImmutableStew` class, where its data is protected by `StewData` class. Now, the methods in are unable to manipulate the data of the `ImmutableStew` class.
 ```
 public class StewData {
   private final int numPotatoes;
