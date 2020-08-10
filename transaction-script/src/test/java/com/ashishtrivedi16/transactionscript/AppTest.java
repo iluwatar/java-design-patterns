@@ -31,6 +31,6 @@ import org.junit.jupiter.api.Test;
 public class AppTest {
   @Test
   public void test() throws Exception {
-    TransactionScriptApp.main(new String[]{});
+    App.main(new String[]{});
   }
 }

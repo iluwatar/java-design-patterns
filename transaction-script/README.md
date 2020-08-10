@@ -24,7 +24,7 @@ The `Hotel` class takes care of booking and cancelling room reservations.
 
 ```java
 public class Hotel {
-  private static final Logger LOGGER = LoggerFactory.getLogger(TransactionScriptApp.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private HotelDaoImpl hotelDao;
 

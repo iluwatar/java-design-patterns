@@ -60,7 +60,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.ashishtrivedi16.transactionscript.TransactionScriptApp</mainClass>
+                                    <mainClass>com.ashishtrivedi16.transactionscript.App</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

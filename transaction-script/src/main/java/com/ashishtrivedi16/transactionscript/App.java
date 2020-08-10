@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public class App {
 
   private static final String H2_DB_URL = "jdbc:h2:~/test";
-  private static final Logger LOGGER = LoggerFactory.getLogger(TransactionScriptApp.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

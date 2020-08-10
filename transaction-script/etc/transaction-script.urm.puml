@@ -1,6 +1,6 @@
 @startuml
 package com.ashishtrivedi16.transaction-script {
-  class TransactionScriptApp {
+  class App {
     - H2_DB_URL : String {static}
     - LOGGER : Logger {static}
     - addRooms(hotelDaoImpl : HotelDaoImpl) {static}
