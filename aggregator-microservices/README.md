@@ -6,6 +6,8 @@ permalink: /patterns/aggregator-microservices/
 categories: Architectural
 tags:
 - Cloud distributed
+- Decoupling
+- Microservices
 ---
 
 ## Intent
