@@ -74,7 +74,7 @@ public class HotelDaoImpl implements HotelDao {
         }
       });
     } catch (Exception e) {
-      throw new SqlException(e.getMessage(), e);
+      throw new Exception(e.getMessage(), e);
     }
   }
 
@@ -92,8 +92,8 @@ public class HotelDaoImpl implements HotelDao {
       } else {
         return Optional.empty();
       }
-    } catch (Exception ex) {
-      throw new SqlException(ex.getMessage(), ex);
+    } catch (Exception e) {
+      throw new Exception(e.getMessage(), e);
     } finally {
       if (resultSet != null) {
         resultSet.close();
@@ -115,8 +115,8 @@ public class HotelDaoImpl implements HotelDao {
       statement.setBoolean(4, room.isBooked());
       statement.execute();
       return true;
-    } catch (Exception ex) {
-      throw new SqlException(ex.getMessage(), ex);
+    } catch (Exception e) {
+      throw new Exception(e.getMessage(), e);
     }
   }
 
@@ -132,8 +132,8 @@ public class HotelDaoImpl implements HotelDao {
       statement.setBoolean(3, room.isBooked());
       statement.setInt(4, room.getId());
       return statement.executeUpdate() > 0;
-    } catch (Exception ex) {
-      throw new SqlException(ex.getMessage(), ex);
+    } catch (Exception e) {
+      throw new Exception(e.getMessage(), e);
     }
   }
 
@@ -143,8 +143,8 @@ public class HotelDaoImpl implements HotelDao {
          var statement = connection.prepareStatement("DELETE FROM ROOMS WHERE ID = ?")) {
       statement.setInt(1, room.getId());
       return statement.executeUpdate() > 0;
-    } catch (Exception ex) {
-      throw new SqlException(ex.getMessage(), ex);
+    } catch (Exception e) {
+      throw new Exception(e.getMessage(), e);
     }
   }
 
@@ -159,7 +159,7 @@ public class HotelDaoImpl implements HotelDao {
       statement.close();
       connection.close();
     } catch (Exception e) {
-      throw new SqlException(e.getMessage(), e);
+      throw new Exception(e.getMessage(), e);
     }
   }
 

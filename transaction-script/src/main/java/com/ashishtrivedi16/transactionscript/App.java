@@ -88,7 +88,7 @@ public class App {
          var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.CREATE_SCHEMA_SQL);
     } catch (Exception e) {
-      throw new SqlException(e.getMessage(), e);
+      throw new Exception(e.getMessage(), e);
     }
   }
 
