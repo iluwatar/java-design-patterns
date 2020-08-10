@@ -23,7 +23,6 @@
 
 package com.ashishtrivedi16.transactionscript;
 
-import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

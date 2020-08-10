@@ -33,8 +33,11 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import javax.sql.DataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HotelDaoImpl implements HotelDao {
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private final DataSource dataSource;
 
@@ -67,7 +70,7 @@ public class HotelDaoImpl implements HotelDao {
         try {
           mutedClose(connection, statement, resultSet);
         } catch (Exception e) {
-          e.printStackTrace();
+          LOGGER.error(e.getMessage());
         }
       });
     } catch (Exception e) {
