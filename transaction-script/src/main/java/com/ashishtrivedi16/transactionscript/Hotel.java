@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 public class Hotel {
   private static final Logger LOGGER = LoggerFactory.getLogger(TransactionScriptApp.class);
 
-  private HotelDaoImpl hotelDao;
+  private final HotelDaoImpl hotelDao;
 
   public Hotel(HotelDaoImpl hotelDao) {
     this.hotelDao = hotelDao;
