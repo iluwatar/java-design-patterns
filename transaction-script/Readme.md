@@ -97,10 +97,6 @@ if booked then calculates the refund amount and updates the database using the D
 Use the transaction script model when the application has only a small amount of logic and that
 logic won't be extended in the future.
 
-
-## Known uses
-* Revenue recognition in business systems.
-
 ## Consequences
 * As the business logic gets more complicated, 
 it gets progressively harder to keep the transaction script 
