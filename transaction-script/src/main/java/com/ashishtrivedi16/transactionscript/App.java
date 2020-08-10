@@ -29,7 +29,7 @@ import org.h2.jdbcx.JdbcDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TransactionScriptApp {
+public class App {
 
   private static final String H2_DB_URL = "jdbc:h2:~/test";
   private static final Logger LOGGER = LoggerFactory.getLogger(TransactionScriptApp.class);
