@@ -36,7 +36,7 @@ import java.util.NoSuchElementException;
  */
 public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T>> {
 
-  private ArrayDeque<TreeNode<T>> pathStack;
+  private final ArrayDeque<TreeNode<T>> pathStack;
 
   public BstIterator(TreeNode<T> root) {
     pathStack = new ArrayDeque<>();

@@ -132,11 +132,15 @@ are several common situations in which the Proxy pattern is applicable
 
 * [Controlling Access With Proxy Pattern](http://java-design-patterns.com/blog/controlling-access-with-proxy-pattern/)
 
-## Real world examples
+## Known uses
 
 * [java.lang.reflect.Proxy](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)
 * [Apache Commons Proxy](https://commons.apache.org/proper/commons-proxy/)
 * Mocking frameworks Mockito, Powermock, EasyMock
+
+## Related patterns
+
+* [Ambassador](https://java-design-patterns.com/patterns/ambassador/)
 
 ## Credits
 

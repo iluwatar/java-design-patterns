@@ -33,7 +33,7 @@ import java.util.Hashtable;
  */
 
 public class MessagingDatabase extends Database<MessageRequest> {
-  private Hashtable<String, MessageRequest> data;
+  private final Hashtable<String, MessageRequest> data;
 
   public MessagingDatabase() {
     this.data = new Hashtable<>();

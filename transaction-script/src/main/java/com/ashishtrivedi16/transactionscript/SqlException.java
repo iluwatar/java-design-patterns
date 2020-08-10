@@ -26,18 +26,18 @@ package com.ashishtrivedi16.transactionscript;
 /**
  * Custom exception.
  */
-public class CustomException extends Exception {
+public class SqlException extends Exception {
 
   private static final long serialVersionUID = 1L;
 
-  public CustomException() {
+  public SqlException() {
   }
 
-  public CustomException(String message) {
+  public SqlException(String message) {
     super(message);
   }
 
-  public CustomException(String message, Throwable cause) {
+  public SqlException(String message, Throwable cause) {
     super(message, cause);
   }
 }

@@ -94,7 +94,7 @@ public class App {
         .filter(positives())
         .first(4)
         .last(2)
-        .map(number -> "String[" + valueOf(number) + "]")
+        .map(number -> "String[" + number + "]")
         .asList();
     prettyPrint("The lazy list contains the last two of the first four positive numbers "
         + "mapped to Strings: ", lastTwoOfFirstFourStringMapped);

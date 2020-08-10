@@ -36,8 +36,8 @@ public class Wizard {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
 
-  private Deque<Command> undoStack = new LinkedList<>();
-  private Deque<Command> redoStack = new LinkedList<>();
+  private final Deque<Command> undoStack = new LinkedList<>();
+  private final Deque<Command> redoStack = new LinkedList<>();
 
   public Wizard() {}
 
@@ -75,19 +75,18 @@ public class Wizard {
 Next we present the spell hierarchy.
 
 ```java
-public abstract class Command {
+public interface Command {
 
-  public abstract void execute(Target target);
+  void execute(Target target);
 
-  public abstract void undo();
+  void undo();
 
-  public abstract void redo();
+  void redo();
 
-  @Override
-  public abstract String toString();
+  String toString();
 }
 
-public class InvisibilitySpell extends Command {
+public class InvisibilitySpell implements Command {
 
   private Target target;
 
@@ -117,7 +116,7 @@ public class InvisibilitySpell extends Command {
   }
 }
 
-public class ShrinkSpell extends Command {
+public class ShrinkSpell implements Command {
 
   private Size oldSize;
   private Target target;

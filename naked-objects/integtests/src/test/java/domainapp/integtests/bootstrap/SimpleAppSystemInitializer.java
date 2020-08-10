@@ -40,7 +40,7 @@ public final class SimpleAppSystemInitializer {
    * Init test system
    */
   public static void initIsft() {
-    IsisSystemForTest isft = IsisSystemForTest.getElseNull();
+    var isft = IsisSystemForTest.getElseNull();
     if (isft == null) {
       isft = new SimpleAppSystemBuilder().build().setUpSystem();
       IsisSystemForTest.set(isft);
@@ -58,8 +58,7 @@ public final class SimpleAppSystemInitializer {
     }
 
     private static IsisConfiguration testConfiguration() {
-      final IsisConfigurationForJdoIntegTests testConfiguration =
-          new IsisConfigurationForJdoIntegTests();
+      final var testConfiguration = new IsisConfigurationForJdoIntegTests();
 
       testConfiguration.addRegisterEntitiesPackagePrefix("domainapp.dom.modules");
       return testConfiguration;

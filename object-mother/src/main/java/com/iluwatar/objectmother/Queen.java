@@ -66,9 +66,6 @@ public class Queen implements Royalty {
    * @return A value which describes if the flirt was successful or not.
    */
   public boolean getFlirted(King king) {
-    if (this.isFlirty && king.isHappy && !king.isDrunk) {
-      return true;
-    }
-    return false;
+    return this.isFlirty && king.isHappy && !king.isDrunk;
   }
 }

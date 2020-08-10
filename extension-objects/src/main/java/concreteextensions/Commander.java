@@ -35,7 +35,7 @@ public class Commander implements CommanderExtension {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Commander.class);
 
-  private CommanderUnit unit;
+  private final CommanderUnit unit;
 
   public Commander(CommanderUnit commanderUnit) {
     this.unit = commanderUnit;

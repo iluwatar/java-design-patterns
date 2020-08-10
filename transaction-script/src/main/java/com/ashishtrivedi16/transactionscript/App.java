@@ -23,7 +23,6 @@
 
 package com.ashishtrivedi16.transactionscript;
 
-import java.sql.SQLException;
 import java.util.List;
 import javax.sql.DataSource;
 import org.h2.jdbcx.JdbcDataSource;
@@ -51,8 +50,8 @@ public class TransactionScriptApp {
     addRooms(dao);
 
     getRoomStatus(dao);
-
-    Hotel hotel = new Hotel(dao);
+  
+    var hotel = new Hotel(dao);
 
     hotel.bookRoom(1);
     hotel.bookRoom(2);
@@ -77,7 +76,7 @@ public class TransactionScriptApp {
     }
   }
 
-  private static void deleteSchema(DataSource dataSource) throws SQLException {
+  private static void deleteSchema(DataSource dataSource) throws java.sql.SQLException {
     try (var connection = dataSource.getConnection();
          var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.DELETE_SCHEMA_SQL);
@@ -89,7 +88,7 @@ public class TransactionScriptApp {
          var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.CREATE_SCHEMA_SQL);
     } catch (Exception e) {
-      throw new CustomException(e.getMessage(), e);
+      throw new SqlException(e.getMessage(), e);
     }
   }
 
@@ -99,7 +98,7 @@ public class TransactionScriptApp {
    * @return h2 datasource
    */
   private static DataSource createDataSource() {
-    JdbcDataSource dataSource = new JdbcDataSource();
+    var dataSource = new JdbcDataSource();
     dataSource.setUrl(H2_DB_URL);
     return dataSource;
   }

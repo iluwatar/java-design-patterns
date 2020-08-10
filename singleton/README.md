@@ -34,7 +34,7 @@ Joshua Bloch, Effective Java 2nd Edition p.18
 
 ```java
 public enum EnumIvoryTower {
-  INSTANCE;
+  INSTANCE
 }
 ```
 

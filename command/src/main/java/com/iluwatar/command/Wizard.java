@@ -35,8 +35,8 @@ public class Wizard {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
 
-  private Deque<Command> undoStack = new LinkedList<>();
-  private Deque<Command> redoStack = new LinkedList<>();
+  private final Deque<Command> undoStack = new LinkedList<>();
+  private final Deque<Command> redoStack = new LinkedList<>();
 
   public Wizard() {
     // comment to ignore sonar issue: LEVEL critical

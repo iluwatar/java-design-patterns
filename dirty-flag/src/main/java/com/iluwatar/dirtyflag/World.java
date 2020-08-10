@@ -34,7 +34,7 @@ import java.util.List;
 public class World {
 
   private List<String> countries;
-  private DataFetcher df;
+  private final DataFetcher df;
 
   public World() {
     this.countries = new ArrayList<String>();

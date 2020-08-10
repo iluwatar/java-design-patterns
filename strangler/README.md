@@ -6,6 +6,7 @@ permalink: /patterns/strangler/
 categories: Structural
 tags:
  - Extensibility
+ - Cloud distributed
 ---
 
 ## Intent
@@ -25,7 +26,5 @@ so usually use it when the system is not so simple.
 
 ## Credits
 
-* [Strangler pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/strangler#context-and-problem)
+* [Strangler pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/strangler)
 * [Legacy Application Strangulation : Case Studies](https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/)
-
-

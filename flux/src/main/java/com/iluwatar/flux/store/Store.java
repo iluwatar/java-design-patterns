@@ -33,7 +33,7 @@ import java.util.List;
  */
 public abstract class Store {
 
-  private List<View> views = new LinkedList<>();
+  private final List<View> views = new LinkedList<>();
 
   public abstract void onAction(Action action);
 

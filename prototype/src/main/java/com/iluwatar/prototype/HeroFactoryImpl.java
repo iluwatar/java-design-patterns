@@ -28,9 +28,9 @@ package com.iluwatar.prototype;
  */
 public class HeroFactoryImpl implements HeroFactory {
 
-  private Mage mage;
-  private Warlord warlord;
-  private Beast beast;
+  private final Mage mage;
+  private final Warlord warlord;
+  private final Beast beast;
 
   /**
    * Constructor.

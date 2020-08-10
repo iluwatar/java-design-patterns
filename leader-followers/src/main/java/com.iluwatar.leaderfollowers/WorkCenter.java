@@ -34,7 +34,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class WorkCenter {
 
   private Worker leader;
-  private List<Worker> workers = new CopyOnWriteArrayList<>();
+  private final List<Worker> workers = new CopyOnWriteArrayList<>();
 
   /**
    * Create workers and set leader.

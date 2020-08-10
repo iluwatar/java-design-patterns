@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
  */
 public class AlbumListPageTest {
 
-  private AlbumListPage albumListPage = new AlbumListPage(new WebClient());
+  private final AlbumListPage albumListPage = new AlbumListPage(new WebClient());
 
   @BeforeEach
   public void setUp() {

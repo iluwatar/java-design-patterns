@@ -44,9 +44,9 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    FileLoader loader = new FileLoader();
-    FileSelectorJFrame frame = new FileSelectorJFrame();
-    FileSelectorPresenter presenter = new FileSelectorPresenter(frame);
+    var loader = new FileLoader();
+    var frame = new FileSelectorJFrame();
+    var presenter = new FileSelectorPresenter(frame);
     presenter.setLoader(loader);
     presenter.start();
   }

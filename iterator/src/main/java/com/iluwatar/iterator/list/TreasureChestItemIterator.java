@@ -30,9 +30,9 @@ import com.iluwatar.iterator.Iterator;
  */
 public class TreasureChestItemIterator implements Iterator<Item> {
 
-  private TreasureChest chest;
+  private final TreasureChest chest;
   private int idx;
-  private ItemType type;
+  private final ItemType type;
 
   /**
    * Constructor.

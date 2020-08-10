@@ -28,10 +28,10 @@ package com.iluwatar.privateclassdata;
  */
 public class StewData {
 
-  private int numPotatoes;
-  private int numCarrots;
-  private int numMeat;
-  private int numPeppers;
+  private final int numPotatoes;
+  private final int numCarrots;
+  private final int numMeat;
+  private final int numPeppers;
 
   /**
    * Constructor.

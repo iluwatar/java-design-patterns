@@ -38,7 +38,7 @@ import org.hibernate.transform.Transformers;
  */
 public class QueryServiceImpl implements IQueryService {
 
-  private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+  private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
   @Override
   public Author getAuthorByUsername(String username) {

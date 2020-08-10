@@ -30,7 +30,7 @@ public enum MenuItem {
 
   HOME("Home"), PRODUCTS("Products"), COMPANY("Company");
 
-  private String title;
+  private final String title;
 
   MenuItem(String title) {
     this.title = title;

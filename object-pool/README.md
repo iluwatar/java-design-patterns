@@ -36,7 +36,7 @@ Here's the basic Oliphaunt class. These are very expensive to create.
 ```java
 public class Oliphaunt {
 
-  private static AtomicInteger counter = new AtomicInteger(0);
+  private static final AtomicInteger counter = new AtomicInteger(0);
 
   private final int id;
 
@@ -65,8 +65,8 @@ Next we present the Object Pool and more specifically Oliphaunt Pool.
 ```java
 public abstract class ObjectPool<T> {
 
-  private Set<T> available = new HashSet<>();
-  private Set<T> inUse = new HashSet<>();
+  private final Set<T> available = new HashSet<>();
+  private final Set<T> inUse = new HashSet<>();
 
   protected abstract T create();
 

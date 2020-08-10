@@ -58,7 +58,7 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>iluwatar</sonar.organization>
         <sonar.projectKey>iluwatar_java-design-patterns</sonar.projectKey>
-        <sonar.moduleKey>${artifactId}</sonar.moduleKey>
+        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
         <sonar.projectName>Java Design Patterns</sonar.projectName>
     </properties>
     <modules>
@@ -376,11 +376,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M3</version>
-                    <configuration>
-                        <!--suppress UnresolvedMavenProperty -->
-                        <argLine>-Xmx1024M ${argLine}</argLine>
-                    </configuration>
+                    <version>3.0.0-M5</version>
                 </plugin>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
@@ -476,8 +472,7 @@
                     </properties>
                     <skipExistingHeaders>true</skipExistingHeaders>
                     <headerDefinitions>
-                        <!--suppress UnresolvedMavenProperty -->
-                        <headerDefinition>${projectRoot}${file.separator}license-plugin-header-style.xml</headerDefinition>
+                        <headerDefinition>license-plugin-header-style.xml</headerDefinition>
                     </headerDefinitions>
                     <mapping>
                         <java>SLASHSTAR_CUSTOM_STYLE</java>
@@ -543,14 +538,4 @@
 
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>
-        </plugins>
-    </reporting>
-
 </project>

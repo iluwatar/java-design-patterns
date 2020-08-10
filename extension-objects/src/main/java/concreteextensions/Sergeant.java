@@ -35,7 +35,7 @@ public class Sergeant implements SergeantExtension {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Sergeant.class);
 
-  private SergeantUnit unit;
+  private final SergeantUnit unit;
 
   public Sergeant(SergeantUnit sergeantUnit) {
     this.unit = sergeantUnit;

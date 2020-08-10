@@ -10,10 +10,13 @@ tags:
 ---
 
 ## Intent
-Specify the kinds of objects to create using a prototypical
-instance, and create new objects by copying this prototype.
+Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
 ## Explanation
+
+First it should be noted that Prototype pattern is not used to gain performance benefits. It's only used for creating
+new objects from prototype instance.
+
 Real world example
 
 > Remember Dolly? The sheep that was cloned! Lets not get into the details but the key point here is that it is all about cloning.
