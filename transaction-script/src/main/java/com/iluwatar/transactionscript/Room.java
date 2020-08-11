@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package com.ashishtrivedi16.transactionscript;
+package com.iluwatar.transactionscript;
 
 /**
  * A room POJO that represents the data that will be read from the data source.

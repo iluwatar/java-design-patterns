@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package com.ashishtrivedi16.transactionscript;
+package com.iluwatar.transactionscript;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

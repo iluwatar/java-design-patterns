@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package com.ashishtrivedi16.transactionscript;
+package com.iluwatar.transactionscript;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -21,18 +21,20 @@
  * THE SOFTWARE.
  */
 
-package com.ashishtrivedi16.transactionscript;
+package com.iluwatar.transactionscript;
 
-/**
- * Customer Schema SQL Class.
- */
-public final class RoomSchemaSql {
+import java.util.Optional;
+import java.util.stream.Stream;
 
-  public static final String CREATE_SCHEMA_SQL =
-      "CREATE TABLE ROOMS (ID NUMBER, ROOM_TYPE VARCHAR(100), PRICE INT(100), BOOKED VARCHAR(100))";
-  public static final String DELETE_SCHEMA_SQL = "DROP TABLE ROOMS IF EXISTS";
+public interface HotelDao {
 
-  private RoomSchemaSql() {
-  }
+  Stream<Room> getAll() throws Exception;
 
+  Optional<Room> getById(int id) throws Exception;
+
+  Boolean add(Room room) throws Exception;
+
+  Boolean update(Room room) throws Exception;
+
+  Boolean delete(Room room) throws Exception;
 }

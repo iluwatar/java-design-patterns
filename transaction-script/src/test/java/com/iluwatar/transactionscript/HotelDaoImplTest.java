@@ -21,10 +21,11 @@
  * THE SOFTWARE.
  */
 
-package com.ashishtrivedi16.transactionscript;
+package com.iluwatar.transactionscript;
 
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -79,7 +80,7 @@ public class HotelDaoImplTest {
       dataSource.setURL(DB_URL);
       dao = new HotelDaoImpl(dataSource);
       var result = dao.add(existingRoom);
-      assertTrue(result);
+      Assertions.assertTrue(result);
     }
 
     /**
@@ -96,7 +97,7 @@ public class HotelDaoImplTest {
 
         final var nonExistingRoom = new Room(2, "Double", 80, false);
         var result = dao.add(nonExistingRoom);
-        assertTrue(result);
+        Assertions.assertTrue(result);
 
         assertRoomCountIs(2);
         assertEquals(nonExistingRoom, dao.getById(nonExistingRoom.getId()).get());
@@ -107,7 +108,7 @@ public class HotelDaoImplTest {
         final var nonExistingRoom = new Room(2, "Double", 80, false);
         var result = dao.delete(nonExistingRoom);
 
-        assertFalse(result);
+        Assertions.assertFalse(result);
         assertRoomCountIs(1);
       }
 
@@ -119,7 +120,7 @@ public class HotelDaoImplTest {
         final var room = new Room(nonExistingId, newRoomType, newPrice, false);
         var result = dao.update(room);
 
-        assertFalse(result);
+        Assertions.assertFalse(result);
         assertFalse(dao.getById(nonExistingId).isPresent());
       }
 
@@ -141,7 +142,7 @@ public class HotelDaoImplTest {
         var existingRoom = new Room(1, "Single", 50, false);
         var result = dao.add(existingRoom);
 
-        assertFalse(result);
+        Assertions.assertFalse(result);
         assertRoomCountIs(1);
         assertEquals(existingRoom, dao.getById(existingRoom.getId()).get());
       }
@@ -150,7 +151,7 @@ public class HotelDaoImplTest {
       public void deletionShouldBeSuccessAndRoomShouldBeNonAccessible() throws Exception {
         var result = dao.delete(existingRoom);
 
-        assertTrue(result);
+        Assertions.assertTrue(result);
         assertRoomCountIs(0);
         assertFalse(dao.getById(existingRoom.getId()).isPresent());
       }
@@ -164,7 +165,7 @@ public class HotelDaoImplTest {
         final var Room = new Room(existingRoom.getId(), newRoomType, newPrice, newBookingStatus);
         var result = dao.update(Room);
 
-        assertTrue(result);
+        Assertions.assertTrue(result);
 
         final var room = dao.getById(existingRoom.getId()).get();
         assertEquals(newRoomType, room.getRoomType());

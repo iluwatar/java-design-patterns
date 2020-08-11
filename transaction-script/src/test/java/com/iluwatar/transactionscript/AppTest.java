@@ -21,20 +21,16 @@
  * THE SOFTWARE.
  */
 
-package com.ashishtrivedi16.transactionscript;
+package com.iluwatar.transactionscript;
 
-import java.util.Optional;
-import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 
-public interface HotelDao {
-
-  Stream<Room> getAll() throws Exception;
-
-  Optional<Room> getById(int id) throws Exception;
-
-  Boolean add(Room room) throws Exception;
-
-  Boolean update(Room room) throws Exception;
-
-  Boolean delete(Room room) throws Exception;
+/**
+ * Tests that Transaction script example runs without errors.
+ */
+public class AppTest {
+  @Test
+  public void test() throws Exception {
+    App.main(new String[]{});
+  }
 }

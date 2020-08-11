@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package com.ashishtrivedi16.transactionscript;
+package com.iluwatar.transactionscript;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
