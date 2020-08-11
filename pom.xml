@@ -192,6 +192,7 @@
         <module>leader-followers</module>
         <module>strangler</module>
         <module>arrange-act-assert</module>
+        <module>transaction-script</module>
     </modules>
 
     <repositories>
