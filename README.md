@@ -9,7 +9,7 @@
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-120-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-121-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -247,6 +247,9 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/raja-peeyush-kumar-singh"><img src="https://avatars0.githubusercontent.com/u/5496024?v=4" width="100px;" alt=""/><br /><sub><b>Peeyush</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=raja-peeyush-kumar-singh" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/ravening"><img src="https://avatars1.githubusercontent.com/u/10645273?v=4" width="100px;" alt=""/><br /><sub><b>Rakesh</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ravening" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/vINCENT8888801"><img src="https://avatars0.githubusercontent.com/u/8037883?v=4" width="100px;" alt=""/><br /><sub><b>Wei Seng</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=vINCENT8888801" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/ashish-trivedi-218379135/"><img src="https://avatars3.githubusercontent.com/u/23194128?v=4" width="100px;" alt=""/><br /><sub><b>Ashish Trivedi</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ashishtrivedi16" title="Code">💻</a></td>
   </tr>
 </table>
 
