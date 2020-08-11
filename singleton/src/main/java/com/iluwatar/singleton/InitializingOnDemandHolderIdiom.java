@@ -45,7 +45,7 @@ public final class InitializingOnDemandHolderIdiom {
   }
 
   /**
-   * Sigleton instance.
+   * Singleton instance.
    *
    * @return Singleton instance
    */
