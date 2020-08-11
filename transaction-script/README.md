@@ -16,10 +16,12 @@ request from the presentation.
 ## Explanation
 
 Real world example
+
 > You need to create a hotel room booking system. Since the requirements are quite simple we intend 
 > to use the Transaction Script pattern here.
 
 In plain words
+
 > Transaction Script organizes business logic into transactions that the system needs to carry out.
 
 Programmatic example
@@ -80,15 +82,9 @@ The `Hotel` class has two methods, one for booking and cancelling a room respect
 them handles a single transaction in the system, making `Hotel` implement the Transaction Script 
 pattern.
 
-```
-public void bookRoom(int roomNumber);
-```
 The `bookRoom` method consolidates all the needed steps like checking if the room is already booked
 or not, if not booked then books the room and updates the database by using the DAO. 
 
-```
-public void cancelRoomBooking(int roomNumber)
-```
 The `cancelRoom` method consolidates steps like checking if the room is booked or not, 
 if booked then calculates the refund amount and updates the database using the DAO.
 
