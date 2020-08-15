@@ -25,14 +25,16 @@ package com.iluwatar.partialresponse;
 
 import org.junit.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
  * Application test
  */
 public class AppTest {
 
   @Test
-  public void main() throws Exception {
-    App.main(new String[]{});
+  public void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 
 }

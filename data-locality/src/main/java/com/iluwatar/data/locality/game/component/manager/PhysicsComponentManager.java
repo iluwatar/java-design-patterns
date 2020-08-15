@@ -40,7 +40,7 @@ public class PhysicsComponentManager {
 
   private final int numEntities;
 
-  private static final Component[] PHYSICS_COMPONENTS = new PhysicsComponent[MAX_ENTITIES];
+  private final Component[] PHYSICS_COMPONENTS = new PhysicsComponent[MAX_ENTITIES];
 
   public PhysicsComponentManager(int numEntities) {
     this.numEntities = numEntities;

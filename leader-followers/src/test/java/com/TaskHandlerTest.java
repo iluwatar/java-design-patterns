@@ -21,30 +21,24 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.leaderfollowers;
+package com;
 
+import com.iluwatar.leaderfollowers.Task;
+import com.iluwatar.leaderfollowers.TaskHandler;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for TaskSet
+ * Tests for TaskHandler
  */
-public class TaskSetTest {
+public class TaskHandlerTest {
 
     @Test
-    public void testAddTask() throws InterruptedException {
-        var taskSet = new TaskSet();
-        taskSet.addTask(new Task(10));
-        Assert.assertTrue(taskSet.getSize() == 1);
-    }
-
-    @Test
-    public void testGetTask() throws InterruptedException {
-        var taskSet = new TaskSet();
-        taskSet.addTask(new Task(100));
-        Task task = taskSet.getTask();
-        Assert.assertTrue(task.getTime() == 100);
-        Assert.assertTrue(taskSet.getSize() == 0);
+    public void testHandleTask() throws InterruptedException {
+        var taskHandler = new TaskHandler();
+        var handle = new Task(100);
+        taskHandler.handleTask(handle);
+        Assert.assertTrue(handle.isFinished());
     }
 
 }

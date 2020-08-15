@@ -24,14 +24,25 @@
 package com.iluwatar.datamapper;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * Tests that Data-Mapper example runs without errors.
  */
-public final class AppTest {
+final class AppTest {
+
+  /**
+   * Issue: Add at least one assertion to this test case.
+   *
+   * Solution: Inserted assertion to check whether the execution of the main method in {@link App#main(String[])}
+   * throws an exception.
+   */
 
   @Test
-  public void test() {
-    App.main();
+  void shouldExecuteApplicationWithoutException() {
+
+    assertDoesNotThrow((Executable) App::main);
   }
 }

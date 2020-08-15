@@ -45,4 +45,8 @@ public class Commander implements CommanderExtension {
   public void commanderReady() {
     LOGGER.info("[Commander] " + unit.getName() + " is ready!");
   }
+
+  public CommanderUnit getUnit() {
+    return unit;
+  }
 }

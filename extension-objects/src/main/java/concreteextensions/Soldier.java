@@ -44,4 +44,8 @@ public class Soldier implements SoldierExtension {
   public void soldierReady() {
     LOGGER.info("[Solider] " + unit.getName() + "  is ready!");
   }
+
+  public SoldierUnit getUnit() {
+    return unit;
+  }
 }

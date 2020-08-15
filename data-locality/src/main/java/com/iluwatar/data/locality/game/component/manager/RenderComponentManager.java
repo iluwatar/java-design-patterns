@@ -40,7 +40,7 @@ public class RenderComponentManager {
 
   private final int numEntities;
 
-  private static final Component[] RENDER_COMPONENTS = new RenderComponent[MAX_ENTITIES];
+  private final Component[] RENDER_COMPONENTS = new RenderComponent[MAX_ENTITIES];
 
   public RenderComponentManager(int numEntities) {
     this.numEntities = numEntities;

@@ -21,8 +21,11 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.leaderfollowers;
+package com;
 
+import com.iluwatar.leaderfollowers.TaskHandler;
+import com.iluwatar.leaderfollowers.TaskSet;
+import com.iluwatar.leaderfollowers.WorkCenter;
 import org.junit.Assert;
 import org.junit.Test;
 

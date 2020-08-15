@@ -21,9 +21,12 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.leaderfollowers;
+package com;
 
+import com.iluwatar.leaderfollowers.App;
 import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  *
@@ -33,9 +36,8 @@ import org.junit.Test;
 public class AppTest {
 
     @Test
-    public void test() throws InterruptedException {
-        String[] args = {};
-        App.main(args);
+    public void shouldExecuteApplicationWithoutException() {
+        assertDoesNotThrow(() -> App.main(new String[]{}));
     }
 
 }

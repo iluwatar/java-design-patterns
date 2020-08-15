@@ -81,6 +81,7 @@ import java.util.List;
 public class App {
 
   private static final CakeBakingService cakeBakingService = new CakeBakingServiceImpl();
+  public static final String STRAWBERRY = "strawberry";
 
   /**
    * Application entry point.
@@ -103,10 +104,10 @@ public class App {
   private static void initializeData(CakeBakingService cakeBakingService) {
     cakeBakingService.saveNewLayer(new CakeLayerInfo("chocolate", 1200));
     cakeBakingService.saveNewLayer(new CakeLayerInfo("banana", 900));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("strawberry", 950));
+    cakeBakingService.saveNewLayer(new CakeLayerInfo(STRAWBERRY, 950));
     cakeBakingService.saveNewLayer(new CakeLayerInfo("lemon", 950));
     cakeBakingService.saveNewLayer(new CakeLayerInfo("vanilla", 950));
-    cakeBakingService.saveNewLayer(new CakeLayerInfo("strawberry", 950));
+    cakeBakingService.saveNewLayer(new CakeLayerInfo(STRAWBERRY, 950));
 
     cakeBakingService.saveNewTopping(new CakeToppingInfo("candies", 350));
     cakeBakingService.saveNewTopping(new CakeToppingInfo("cherry", 350));
@@ -114,7 +115,7 @@ public class App {
     var cake1 = new CakeInfo(new CakeToppingInfo("candies", 0), List.of(
         new CakeLayerInfo("chocolate", 0),
         new CakeLayerInfo("banana", 0),
-        new CakeLayerInfo("strawberry", 0)));
+        new CakeLayerInfo(STRAWBERRY, 0)));
     try {
       cakeBakingService.bakeNewCake(cake1);
     } catch (CakeBakingException e) {
@@ -123,7 +124,7 @@ public class App {
     var cake2 = new CakeInfo(new CakeToppingInfo("cherry", 0), List.of(
         new CakeLayerInfo("vanilla", 0),
         new CakeLayerInfo("lemon", 0),
-        new CakeLayerInfo("strawberry", 0)));
+        new CakeLayerInfo(STRAWBERRY, 0)));
     try {
       cakeBakingService.bakeNewCake(cake2);
     } catch (CakeBakingException e) {

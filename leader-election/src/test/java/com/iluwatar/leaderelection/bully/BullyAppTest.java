@@ -25,15 +25,16 @@ package com.iluwatar.leaderelection.bully;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
  * BullyApp unit test.
  */
-public class BullyAppTest {
+class BullyAppTest {
 
   @Test
-  public void test() {
-    String[] args = {};
-    BullyApp.main(args);
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> BullyApp.main(new String[]{}));
   }
 
 }

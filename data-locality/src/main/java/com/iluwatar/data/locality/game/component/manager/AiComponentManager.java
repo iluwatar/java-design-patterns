@@ -40,7 +40,7 @@ public class AiComponentManager {
 
   private final int numEntities;
 
-  private static final Component[] AI_COMPONENTS = new AiComponent[MAX_ENTITIES];
+  private final Component[] AI_COMPONENTS = new AiComponent[MAX_ENTITIES];
 
   public AiComponentManager(int numEntities) {
     this.numEntities = numEntities;
