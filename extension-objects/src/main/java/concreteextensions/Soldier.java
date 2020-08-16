@@ -42,7 +42,7 @@ public class Soldier implements SoldierExtension {
 
   @Override
   public void soldierReady() {
-    LOGGER.info("[Solider] " + unit.getName() + "  is ready!");
+    LOGGER.info("[Soldier] " + unit.getName() + " is ready!");
   }
 
   public SoldierUnit getUnit() {
