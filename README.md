@@ -251,7 +251,7 @@ This project is licensed under the terms of the MIT license.
   <tr>
     <td align="center"><a href="https://www.linkedin.com/in/ashish-trivedi-218379135/"><img src="https://avatars3.githubusercontent.com/u/23194128?v=4" width="100px;" alt=""/><br /><sub><b>Ashish Trivedi</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ashishtrivedi16" title="Code">💻</a></td>
     <td align="center"><a href="https://rayyounghong.com"><img src="https://avatars1.githubusercontent.com/u/41055099?v=4" width="100px;" alt=""/><br /><sub><b>洪月阳</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=RayYH" title="Code">💻</a></td>
-    <td align="center"><a href="https://xdvrx1.github.io/"><img src="https://avatars0.githubusercontent.com/u/47092464?v=4" width="100px;" alt=""/><br /><sub><b>xdvrx1</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Axdvrx1" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://xdvrx1.github.io/"><img src="https://avatars0.githubusercontent.com/u/47092464?v=4" width="100px;" alt=""/><br /><sub><b>xdvrx1</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Axdvrx1" title="Reviewed Pull Requests">👀</a> <a href="#ideas-xdvrx1" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
