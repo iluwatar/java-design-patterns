@@ -24,11 +24,9 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java CI with Maven
+name: Java PR Builder
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -43,6 +41,12 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
     # Some tests need screen access
     - name: Install xvfb
       run: sudo apt-get install xvfb
@@ -51,10 +55,3 @@ jobs:
     - name: Build with Maven
       if: github.ref != 'refs/heads/master'
       run: xvfb-run mvn clean verify
-    - name: Build with Maven and run SonarQube analysis
-      if: github.ref == 'refs/heads/master'
-      run: xvfb-run mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-      env:
-        # These two env variables are needed for sonar analysis
-        GITHUB_TOKEN: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
