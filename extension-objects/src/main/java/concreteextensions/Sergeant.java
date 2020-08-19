@@ -43,6 +43,10 @@ public class Sergeant implements SergeantExtension {
 
   @Override
   public void sergeantReady() {
-    LOGGER.info("[Sergeant] " + unit.getName() + " is ready! ");
+    LOGGER.info("[Sergeant] " + unit.getName() + " is ready!");
+  }
+
+  public SergeantUnit getUnit() {
+    return unit;
   }
 }

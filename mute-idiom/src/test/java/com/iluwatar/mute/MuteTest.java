@@ -23,41 +23,40 @@
 
 package com.iluwatar.mute;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Test for the mute-idiom pattern
  */
-public class MuteTest {
+class MuteTest {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MuteTest.class);
 
   private static final String MESSAGE = "should not occur";
 
   @Test
-  public void muteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
-    Mute.mute(this::methodNotThrowingAnyException);
+  void muteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
+    assertDoesNotThrow(() -> Mute.mute(this::methodNotThrowingAnyException));
   }
 
   @Test
-  public void muteShouldRethrowUnexpectedExceptionAsAssertionError() {
+  void muteShouldRethrowUnexpectedExceptionAsAssertionError() {
     assertThrows(AssertionError.class, () -> Mute.mute(this::methodThrowingException));
   }
 
   @Test
-  public void loggedMuteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
-    Mute.loggedMute(this::methodNotThrowingAnyException);
+  void loggedMuteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
+    assertDoesNotThrow(() -> Mute.mute(this::methodNotThrowingAnyException));
   }
 
   @Test
-  public void loggedMuteShouldLogExceptionTraceBeforeSwallowingIt() {
+  void loggedMuteShouldLogExceptionTraceBeforeSwallowingIt() {
     var stream = new ByteArrayOutputStream();
     System.setErr(new PrintStream(stream));
 

@@ -30,8 +30,8 @@ package com.iluwatar.typeobject;
 public class Candy {
 
   enum Type {
-    crushableCandy,
-    rewardFruit
+    CRUSHABLE_CANDY,
+    REWARD_FRUIT
   }
 
   String name;

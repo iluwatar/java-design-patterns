@@ -20,16 +20,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.roleobject;
 
+package com;
+
+import com.iluwatar.leaderfollowers.Task;
+import com.iluwatar.leaderfollowers.TaskSet;
+import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+/**
+ * Tests for TaskSet
+ */
+public class TaskSetTest {
 
-public class ApplicationRoleObjectTest {
+    @Test
+    public void testAddTask() throws InterruptedException {
+        var taskSet = new TaskSet();
+        taskSet.addTask(new Task(10));
+        Assert.assertTrue(taskSet.getSize() == 1);
+    }
 
-  @Test
-  public void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> ApplicationRoleObject.main(new String[]{}));
-  }
+    @Test
+    public void testGetTask() throws InterruptedException {
+        var taskSet = new TaskSet();
+        taskSet.addTask(new Task(100));
+        Task task = taskSet.getTask();
+        Assert.assertTrue(task.getTime() == 100);
+        Assert.assertTrue(taskSet.getSize() == 0);
+    }
+
 }

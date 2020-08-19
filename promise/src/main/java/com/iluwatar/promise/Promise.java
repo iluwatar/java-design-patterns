@@ -47,6 +47,7 @@ public class Promise<T> extends PromiseSupport<T> {
    * Creates a promise that will be fulfilled in future.
    */
   public Promise() {
+    // Empty constructor
   }
 
   /**

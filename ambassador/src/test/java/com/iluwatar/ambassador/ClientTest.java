@@ -37,6 +37,6 @@ class ClientTest {
     Client client = new Client();
     var result = client.useService(10);
 
-    assertTrue(result == 100 || result == RemoteService.FAILURE);
+    assertTrue(result == 100 || result == RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue());
   }
 }

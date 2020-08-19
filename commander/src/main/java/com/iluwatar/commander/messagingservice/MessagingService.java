@@ -38,7 +38,7 @@ public class MessagingService extends Service {
   private static final Logger LOGGER = LoggerFactory.getLogger(MessagingService.class);
 
   enum MessageToSend {
-    PaymentFail, PaymentTrying, PaymentSuccessful
+    PAYMENT_FAIL, PAYMENT_TRYING, PAYMENT_SUCCESSFUL
   }
 
   class MessageRequest {
@@ -63,11 +63,11 @@ public class MessagingService extends Service {
     var id = generateId();
     MessageToSend msg;
     if (messageToSend == 0) {
-      msg = MessageToSend.PaymentFail;
+      msg = MessageToSend.PAYMENT_FAIL;
     } else if (messageToSend == 1) {
-      msg = MessageToSend.PaymentTrying;
+      msg = MessageToSend.PAYMENT_TRYING;
     } else { //messageToSend == 2
-      msg = MessageToSend.PaymentSuccessful;
+      msg = MessageToSend.PAYMENT_SUCCESSFUL;
     }
     var req = new MessageRequest(id, msg);
     return updateDb(req);
@@ -84,10 +84,10 @@ public class MessagingService extends Service {
   }
 
   String sendMessage(MessageToSend m) {
-    if (m.equals(MessageToSend.PaymentSuccessful)) {
+    if (m.equals(MessageToSend.PAYMENT_SUCCESSFUL)) {
       return "Msg: Your order has been placed and paid for successfully!"
           + " Thank you for shopping with us!";
-    } else if (m.equals(MessageToSend.PaymentTrying)) {
+    } else if (m.equals(MessageToSend.PAYMENT_TRYING)) {
       return "Msg: There was an error in your payment process,"
           + " we are working on it and will return back to you shortly."
           + " Meanwhile, your order has been placed and will be shipped.";
