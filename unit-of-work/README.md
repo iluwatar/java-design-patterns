@@ -11,21 +11,27 @@ tags:
 ---
 
 ## Intent
-When a business transaction is completed, all the the updates are sent as one big unit of work to be persisted 
-in one go to minimize database round-trips. 
+
+When a business transaction is completed, all the the updates are sent as one big unit of work to be 
+persisted in one go to minimize database round-trips. 
 
 ## Explanation
+
 Real world example
 
-> We have a database containing student information. Administrators all over the country are constantly updating this information and it causes high load on the database server. To make the load more manageable we apply to Unit of Work pattern to send many small updates in batches.       
+> We have a database containing student information. Administrators all over the country are 
+> constantly updating this information and it causes high load on the database server. To make the 
+> load more manageable we apply to Unit of Work pattern to send many small updates in batches.       
 
 In plain words
 
-> Unit of Work merges many small database updates in single batch to optimize the number of round-trips. 
+> Unit of Work merges many small database updates in single batch to optimize the number of 
+> round-trips. 
 
 [MartinFowler.com](https://martinfowler.com/eaaCatalog/unitOfWork.html) says
 
-> Maintains a list of objects affected by a business transaction and coordinates the writing out of changes and the resolution of concurrency problems.
+> Maintains a list of objects affected by a business transaction and coordinates the writing out of 
+> changes and the resolution of concurrency problems.
 
 **Programmatic Example**
 
@@ -57,8 +63,9 @@ public class Student {
 }
 ```
 
-The essence of the implementation is the `StudentRepository` implementing the Unit of Work pattern. It maintains a map
-of database operations (`context`) that need to be done and when `commit` is called it applies them in single batch.
+The essence of the implementation is the `StudentRepository` implementing the Unit of Work pattern. 
+It maintains a map of database operations (`context`) that need to be done and when `commit` is 
+called it applies them in single batch.
 
 ```java
 public interface IUnitOfWork<T> {
@@ -160,7 +167,7 @@ public class StudentRepository implements IUnitOfWork<Student> {
 }
 ```
 
-Finally here's how we use the `StudentRepository` and `commit` the transaction.
+Finally, here's how we use the `StudentRepository` and `commit` the transaction.
 
 ```java
     studentRepository.registerNew(ram);
@@ -170,9 +177,11 @@ Finally here's how we use the `StudentRepository` and `commit` the transaction.
 ```
 
 ## Class diagram
+
 ![alt text](etc/unit-of-work.urm.png "unit-of-work")
 
 ## Applicability
+
 Use the Unit Of Work pattern when
 
 * To optimize the time taken for database transactions.

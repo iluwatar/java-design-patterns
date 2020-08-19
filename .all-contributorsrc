@@ -1111,6 +1111,35 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "xdvrx1",
+      "name": "xdvrx1",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/47092464?v=4",
+      "profile": "https://xdvrx1.github.io/",
+      "contributions": [
+        "review",
+        "ideas"
+      ]
+    },
+    {
+      "login": "ohbus",
+      "name": "Subhrodip Mohanta",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13291222?v=4",
+      "profile": "http://subho.xyz",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "nahteb",
+      "name": "Bethan Palmer",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/13121570?v=4",
+      "profile": "https://github.com/nahteb",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,

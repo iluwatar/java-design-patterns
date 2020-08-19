@@ -46,7 +46,7 @@ public class Orcs implements WeatherObserver {
 
   @Override
   public void update(WeatherType currentWeather) {
-    LOGGER.info("The hobbits are facing " + currentWeather.getDescription() + " weather now");
+    LOGGER.info("The orcs are facing " + currentWeather.getDescription() + " weather now");
   }
 }
 
