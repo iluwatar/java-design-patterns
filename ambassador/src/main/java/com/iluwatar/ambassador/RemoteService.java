@@ -74,6 +74,7 @@ public class RemoteService implements RemoteServiceInterface {
     } catch (InterruptedException e) {
       LOGGER.error("Thread sleep state interrupted", e);
     }
-    return waitTime <= THRESHOLD ? value * 10 : RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue();
+    return waitTime <= THRESHOLD ? value * 10
+            : RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue();
   }
 }

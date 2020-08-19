@@ -36,10 +36,10 @@ import com.iluwatar.commander.queue.QueueDatabase;
 import com.iluwatar.commander.queue.QueueTask;
 import com.iluwatar.commander.queue.QueueTask.TaskType;
 import com.iluwatar.commander.shippingservice.ShippingService;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 
 /**
  * <p>Commander pattern is used to handle all issues that can come up while making a
@@ -171,10 +171,53 @@ public class Commander {
     var list = paymentService.exceptionsList;
     var t = new Thread(() -> {
       Retry.Operation op = (l) -> {
-        handlePaymentRetryOperation(order, l);
+        if (!l.isEmpty()) {
+          if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
+            LOG.debug("Order " + order.id + ": Error in connecting to payment service,"
+                    + " trying again..");
+          } else {
+            LOG.debug("Order " + order.id + ": Error in creating payment request..");
+          }
+          throw l.remove(0);
+        }
+        if (order.paid.equals(PaymentStatus.TRYING)) {
+          var transactionId = paymentService.receiveRequest(order.price);
+          order.paid = PaymentStatus.DONE;
+          LOG.info("Order " + order.id + ": Payment successful, transaction Id: " + transactionId);
+          if (!finalSiteMsgShown) {
+            LOG.info("Payment made successfully, thank you for shopping with us!!");
+            finalSiteMsgShown = true;
+          }
+          sendSuccessMessage(order);
+        }
       };
       Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
-        handlePaymentErrorIssue(order, o, err);
+        if (PaymentDetailsErrorException.class.isAssignableFrom(err.getClass())) {
+          if (!finalSiteMsgShown) {
+            LOG.info("There was an error in payment. Your account/card details "
+                    + "may have been incorrect. "
+                    + "Meanwhile, your order has been converted to COD and will be shipped.");
+            finalSiteMsgShown = true;
+          }
+          LOG.error("Order " + order.id + ": Payment details incorrect, failed..");
+          o.paid = PaymentStatus.NOT_DONE;
+          sendPaymentFailureMessage(o);
+        } else {
+          if (o.messageSent.equals(MessageSent.NONE_SENT)) {
+            if (!finalSiteMsgShown) {
+              LOG.info("There was an error in payment. We are on it, and will get back to you "
+                      + "asap. Don't worry, your order has been placed and will be shipped.");
+              finalSiteMsgShown = true;
+            }
+            LOG.warn("Order " + order.id + ": Payment error, going to queue..");
+            sendPaymentPossibleErrorMsg(o);
+          }
+          if (o.paid.equals(PaymentStatus.TRYING) && System
+                  .currentTimeMillis() - o.createdTime < paymentTime) {
+            var qt = new QueueTask(o, TaskType.PAYMENT, -1);
+            updateQueue(qt);
+          }
+        }
       };
       var r = new Retry<>(op, handleError, numOfRetries, retryDuration,
           e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -185,58 +228,6 @@ public class Commander {
       }
     });
     t.start();
-  }
-
-  private void handlePaymentRetryOperation(Order order, List<Exception> l) throws Exception {
-    if (!l.isEmpty()) {
-      if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-        LOG.debug("Order " + order.id + ": Error in connecting to payment service,"
-            + " trying again..");
-      } else {
-        LOG.debug("Order " + order.id + ": Error in creating payment request..");
-      }
-      throw l.remove(0);
-    }
-    if (order.paid.equals(PaymentStatus.TRYING)) {
-      var transactionId = paymentService.receiveRequest(order.price);
-      order.paid = PaymentStatus.DONE;
-      LOG.info("Order " + order.id + ": Payment successful, transaction Id: " + transactionId);
-
-      if (!finalSiteMsgShown) {
-        LOG.info("Payment made successfully, thank you for shopping with us!!");
-        finalSiteMsgShown = true;
-      }
-      sendSuccessMessage(order);
-    }
-  }
-
-  private void handlePaymentErrorIssue(Order order, Order o, Exception err) {
-    if (PaymentDetailsErrorException.class.isAssignableFrom(err.getClass())) {
-      if (!finalSiteMsgShown) {
-        LOG.info("There was an error in payment. Your account/card details "
-            + "may have been incorrect. "
-            + "Meanwhile, your order has been converted to COD and will be shipped.");
-        finalSiteMsgShown = true;
-      }
-      LOG.error("Order " + order.id + ": Payment details incorrect, failed..");
-      o.paid = PaymentStatus.NOT_DONE;
-      sendPaymentFailureMessage(o);
-    } else {
-      if (o.messageSent.equals(MessageSent.NONE_SENT)) {
-        if (!finalSiteMsgShown) {
-          LOG.info("There was an error in payment. We are on it, and will get back to you "
-              + "asap. Don't worry, your order has been placed and will be shipped.");
-          finalSiteMsgShown = true;
-        }
-        LOG.warn("Order " + order.id + ": Payment error, going to queue..");
-        sendPaymentPossibleErrorMsg(o);
-      }
-      if (o.paid.equals(PaymentStatus.TRYING) && System
-          .currentTimeMillis() - o.createdTime < paymentTime) {
-        var qt = new QueueTask(o, TaskType.PAYMENT, -1);
-        updateQueue(qt);
-      }
-    }
   }
 
   private void updateQueue(QueueTask qt) {
@@ -371,24 +362,24 @@ public class Commander {
 
   private Retry.Operation handleSuccessMessageRetryOperation(Order order) {
     return (l) -> {
-        if (!l.isEmpty()) {
-          if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-            LOG.debug("Order " + order.id + ": Error in connecting to messaging service "
-                + "(Payment Success msg), trying again..");
-          } else {
-            LOG.debug("Order " + order.id + ": Error in creating Payment Success"
-                + " messaging request..");
-          }
-          throw l.remove(0);
+      if (!l.isEmpty()) {
+        if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
+          LOG.debug("Order " + order.id + ": Error in connecting to messaging service "
+              + "(Payment Success msg), trying again..");
+        } else {
+          LOG.debug("Order " + order.id + ": Error in creating Payment Success"
+              + " messaging request..");
         }
-        if (!order.messageSent.equals(MessageSent.PAYMENT_FAIL)
-            && !order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL)) {
-          var requestId = messagingService.receiveRequest(2);
-          order.messageSent = MessageSent.PAYMENT_SUCCESSFUL;
-          LOG.info("Order " + order.id + ": Payment Success message sent,"
-              + " request Id: " + requestId);
-        }
-      };
+        throw l.remove(0);
+      }
+      if (!order.messageSent.equals(MessageSent.PAYMENT_FAIL)
+          && !order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL)) {
+        var requestId = messagingService.receiveRequest(2);
+        order.messageSent = MessageSent.PAYMENT_SUCCESSFUL;
+        LOG.info("Order " + order.id + ": Payment Success message sent,"
+            + " request Id: " + requestId);
+      }
+    };
   }
 
   private void sendPaymentFailureMessage(Order order) {
@@ -483,7 +474,8 @@ public class Commander {
     }
   }
 
-  private void handlePaymentPossibleErrorMsgRetryOperation(Order order, List<Exception> l) throws Exception {
+  private void handlePaymentPossibleErrorMsgRetryOperation(Order order, List<Exception> l)
+          throws Exception {
     if (!l.isEmpty()) {
       if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
         LOG.debug("Order " + order.id + ": Error in connecting to messaging service "
