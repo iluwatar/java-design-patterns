@@ -36,7 +36,7 @@ class DirtyFlagTest {
   void testIsDirty() {
     var df = new DataFetcher();
     var countries = df.fetch();
-    Assertions.assertTrue(countries.isEmpty());
+    Assertions.assertFalse(countries.isEmpty());
   }
 
   @Test
