@@ -54,6 +54,7 @@
         <annotation-api.version>1.3.2</annotation-api.version>
         <system-rules.version>1.19.0</system-rules.version>
         <urm.version>1.4.8</urm.version>
+        <mockito-junit-jupiter.version>3.5.0</mockito-junit-jupiter.version>
         <!-- SonarCloud -->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>iluwatar</sonar.organization>
@@ -225,6 +226,12 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito-junit-jupiter.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
