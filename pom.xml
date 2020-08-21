@@ -193,6 +193,7 @@
         <module>strangler</module>
         <module>arrange-act-assert</module>
         <module>transaction-script</module>
+        <module>filterer</module>
     </modules>
 
     <repositories>

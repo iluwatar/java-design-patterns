@@ -1,0 +1,132 @@
+@startuml
+package com.iluwatar.filterer.domain {
+  interface Filterer<G, E> {
+    + by(Predicate<? super E>) : G {abstract}
+  }
+}
+package com.iluwatar.filterer.issue {
+  interface Issue {
+    + endOffset() : int {abstract}
+    + startOffset() : int {abstract}
+    + type() : IssueType {abstract}
+  }
+  interface IssueAwareText {
+    + filtered() : Filterer<? extends IssueAwareText, ? extends Issue> {abstract}
+    + issues() : List<? extends Issue> {abstract}
+    + text() : String {abstract}
+  }
+  class IssuePosition {
+    - endOffset : int
+    - startOffset : int
+    - IssuePosition(startOffset : int, endOffset : int)
+    ~ endOffset() : int
+    + equals(o : Object) : boolean
+    + hashCode() : int
+    + of(startOffset : int, endOffset : int) : IssuePosition {static}
+    ~ startOffset() : int
+  }
+  ~enum IssueType {
+    + GRAMMAR {static}
+    + SPELLING {static}
+    + valueOf(name : String) : IssueType {static}
+    + values() : IssueType[] {static}
+  }
+  interface IssueWiseText {
+    + filtered() : Filterer<? extends IssueWiseText, ? extends Issue> {abstract}
+    + issues() : List<? extends Issue> {abstract}
+    + text() : String {abstract}
+  }
+  interface ProbabilisticIssueAwareText {
+    + filtered() : Filterer<? extends ProbabilisticIssueAwareText, ? extends ProbableIssue> {abstract}
+    + issues() : List<? extends ProbableIssue> {abstract}
+  }
+  interface ProbabilisticIssueWiseText {
+    + filtered() : Filterer<? extends ProbabilisticIssueWiseText, ? extends ProbableIssue> {abstract}
+    + issues() : List<? extends ProbableIssue> {abstract}
+  }
+  interface ProbableIssue {
+    + probability() : double {abstract}
+  }
+  class SimpleIssue {
+    - issuePosition : IssuePosition
+    - issueType : IssueType
+    ~ SimpleIssue(issuePosition : IssuePosition, issueType : IssueType)
+    + endOffset() : int
+    + equals(o : Object) : boolean
+    + hashCode() : int
+    + startOffset() : int
+    + type() : IssueType
+  }
+  class SimpleIssueAwareText {
+    - issues : ImmutableList<Issue>
+    - text : String
+    ~ SimpleIssueAwareText(text : String, issues : List<Issue>)
+    + equals(o : Object) : boolean
+    + filtered() : Filterer<? extends IssueAwareText, ? extends Issue>
+    - filteredGroup(predicate : Predicate<? super Issue>) : IssueAwareText
+    - filteredItems(predicate : Predicate<? super Issue>) : ImmutableList<Issue>
+    + hashCode() : int
+    + issues() : List<? extends Issue>
+    + text() : String
+  }
+  class SimpleIssueWiseText {
+    - issues : ImmutableList<Issue>
+    - text : String
+    + SimpleIssueWiseText(text : String, issues : List<Issue>)
+    + equals(o : Object) : boolean
+    + filtered() : Filterer<? extends IssueWiseText, ? extends Issue>
+    - filteredGroup(predicate : Predicate<? super Issue>) : IssueWiseText
+    - filteredItems(predicate : Predicate<? super Issue>) : ImmutableList<Issue>
+    + hashCode() : int
+    + issues() : List<? extends Issue>
+    + text() : String
+  }
+  class SimpleProbabilisticIssueAwareText {
+    - issues : ImmutableList<ProbableIssue>
+    - text : String
+    ~ SimpleProbabilisticIssueAwareText(text : String, issues : List<ProbableIssue>)
+    + equals(o : Object) : boolean
+    + filtered() : Filterer<? extends ProbabilisticIssueAwareText, ? extends ProbableIssue>
+    - filteredGroup(predicate : Predicate<? super ProbableIssue>) : ProbabilisticIssueAwareText
+    - filteredItems(predicate : Predicate<? super ProbableIssue>) : ImmutableList<ProbableIssue>
+    + hashCode() : int
+    + issues() : List<? extends ProbableIssue>
+    + text() : String
+  }
+  class SimpleProbabilisticIssueWiseText {
+    - issues : ImmutableList<ProbableIssue>
+    - text : String
+    + SimpleProbabilisticIssueWiseText(text : String, issues : List<ProbableIssue>)
+    + equals(o : Object) : boolean
+    + filtered() : Filterer<? extends ProbabilisticIssueWiseText, ? extends ProbableIssue>
+    - filteredGroup(predicate : Predicate<? super ProbableIssue>) : ProbabilisticIssueWiseText
+    - filteredItems(predicate : Predicate<? super ProbableIssue>) : ImmutableList<ProbableIssue>
+    + hashCode() : int
+    + issues() : List<? extends ProbableIssue>
+    + text() : String
+  }
+  class SimpleProbableIssue {
+    - probability : double
+    ~ SimpleProbableIssue(issuePosition : IssuePosition, issueType : IssueType, probability : double)
+    + equals(o : Object) : boolean
+    + hashCode() : int
+    + probability() : double
+  }
+}
+SimpleIssueWiseText -->  "-issues" Issue
+SimpleProbabilisticIssueAwareText -->  "-issues" ProbableIssue
+SimpleIssue -->  "-issueType" IssueType
+SimpleIssueAwareText -->  "-issues" Issue
+SimpleProbabilisticIssueWiseText -->  "-issues" ProbableIssue
+SimpleIssue -->  "-issuePosition" IssuePosition
+ProbabilisticIssueAwareText --|> IssueAwareText 
+ProbabilisticIssueWiseText --|> IssueWiseText 
+ProbableIssue --|> Issue 
+SimpleIssue ..|> Issue 
+SimpleIssueAwareText ..|> IssueAwareText 
+SimpleIssueWiseText ..|> IssueWiseText 
+SimpleProbabilisticIssueAwareText ..|> ProbabilisticIssueAwareText 
+SimpleProbabilisticIssueWiseText ..|> ProbabilisticIssueWiseText 
+SimpleProbableIssue ..|> ProbableIssue 
+SimpleProbableIssue --|> SimpleIssue 
+@enduml
