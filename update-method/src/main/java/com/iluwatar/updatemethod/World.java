@@ -88,6 +88,7 @@ public class World {
    * pattern.
    */
   private void render() {
+    // Does Nothing
   }
 
   /**

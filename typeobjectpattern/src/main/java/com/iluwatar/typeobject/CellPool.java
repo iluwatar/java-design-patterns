@@ -24,7 +24,7 @@
 package com.iluwatar.typeobject;
 
 import com.iluwatar.typeobject.Candy.Type;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +39,8 @@ import org.json.simple.parser.ParseException;
 
 public class CellPool {
   private static final Random RANDOM = new Random();
+  public static final String FRUIT = "fruit";
+  public static final String CANDY = "candy";
   List<Cell> pool;
   int pointer;
   Candy[] randomCode;
@@ -51,11 +53,11 @@ public class CellPool {
       e.printStackTrace();
       //manually initialising this.randomCode
       this.randomCode = new Candy[5];
-      randomCode[0] = new Candy("cherry", "fruit", Type.rewardFruit, 20);
-      randomCode[1] = new Candy("mango", "fruit", Type.rewardFruit, 20);
-      randomCode[2] = new Candy("purple popsicle", "candy", Type.crushableCandy, 10);
-      randomCode[3] = new Candy("green jellybean", "candy", Type.crushableCandy, 10);
-      randomCode[4] = new Candy("orange gum", "candy", Type.crushableCandy, 10);
+      randomCode[0] = new Candy("cherry", FRUIT, Type.REWARD_FRUIT, 20);
+      randomCode[1] = new Candy("mango", FRUIT, Type.REWARD_FRUIT, 20);
+      randomCode[2] = new Candy("purple popsicle", CANDY, Type.CRUSHABLE_CANDY, 10);
+      randomCode[3] = new Candy("green jellybean", CANDY, Type.CRUSHABLE_CANDY, 10);
+      randomCode[4] = new Candy("orange gum", CANDY, Type.CRUSHABLE_CANDY, 10);
     }
     for (int i = 0; i < num; i++) {
       var c = new Cell();
@@ -84,7 +86,7 @@ public class CellPool {
     var i = 0;
     for (var e = jp.candies.keys(); e.hasMoreElements(); ) {
       var s = e.nextElement();
-      if (!s.equals("fruit") && !s.equals("candy")) {
+      if (!s.equals(FRUIT) && !s.equals(CANDY)) {
         //not generic
         randomCode[i] = jp.candies.get(s);
         i++;

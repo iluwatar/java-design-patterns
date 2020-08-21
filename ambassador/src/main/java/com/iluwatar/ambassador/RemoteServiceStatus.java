@@ -21,22 +21,28 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.leaderfollowers;
-
-import org.junit.Assert;
-import org.junit.Test;
+package com.iluwatar.ambassador;
 
 /**
- * Tests for TaskHandler
+ * Holds information regarding the status of the Remote Service.
+ *
+ * <p> This Enum replaces the integer value previously
+ * stored in {@link RemoteServiceInterface} as SonarCloud was identifying
+ * it as an issue. All test cases have been checked after changes,
+ * without failures. </p>
  */
-public class TaskHandlerTest {
 
-    @Test
-    public void testHandleTask() throws InterruptedException {
-        var taskHandler = new TaskHandler();
-        var handle = new Task(100);
-        taskHandler.handleTask(handle);
-        Assert.assertTrue(handle.isFinished());
-    }
+public enum RemoteServiceStatus {
+  FAILURE(-1)
+  ;
 
+  private final long remoteServiceStatusValue;
+
+  RemoteServiceStatus(long remoteServiceStatusValue) {
+    this.remoteServiceStatusValue = remoteServiceStatusValue;
+  }
+
+  public long getRemoteServiceStatusValue() {
+    return remoteServiceStatusValue;
+  }
 }

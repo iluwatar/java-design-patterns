@@ -104,13 +104,13 @@ public class CandyGame {
 
   boolean continueRound() {
     for (var i = 0; i < this.cells.length; i++) {
-      if (this.cells[cells.length - 1][i].candy.getType().equals(Type.rewardFruit)) {
+      if (this.cells[cells.length - 1][i].candy.getType().equals(Type.REWARD_FRUIT)) {
         return true;
       }
     }
     for (var i = 0; i < this.cells.length; i++) {
       for (var j = 0; j < this.cells.length; j++) {
-        if (!this.cells[i][j].candy.getType().equals(Type.rewardFruit)) {
+        if (!this.cells[i][j].candy.getType().equals(Type.REWARD_FRUIT)) {
           var adj = adjacentCells(i, j);
           for (Cell cell : adj) {
             if (this.cells[i][j].candy.name.equals(cell.candy.name)) {
@@ -136,7 +136,7 @@ public class CandyGame {
       for (var i = 0; i < this.cells.length; i++) {
         var points = 0;
         var j = this.cells.length - 1;
-        while (this.cells[j][i].candy.getType().equals(Type.rewardFruit)) {
+        while (this.cells[j][i].candy.getType().equals(Type.REWARD_FRUIT)) {
           points = this.cells[j][i].candy.getPoints();
           this.cells[j][i].crush(pool, this.cells);
           handleChange(points);

@@ -29,7 +29,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.stream.Collectors;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -58,9 +58,9 @@ public class JsonParser {
       var name = (String) candy.get("name");
       var parentName = (String) candy.get("parent");
       var t = (String) candy.get("type");
-      var type = Type.crushableCandy;
+      var type = Type.CRUSHABLE_CANDY;
       if (t.equals("rewardFruit")) {
-        type = Type.rewardFruit;
+        type = Type.REWARD_FRUIT;
       }
       var points = Integer.parseInt((String) candy.get("points"));
       var c = new Candy(name, parentName, type, points);

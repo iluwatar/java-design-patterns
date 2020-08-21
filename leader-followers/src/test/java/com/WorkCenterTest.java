@@ -21,30 +21,45 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.leaderfollowers;
+package com;
 
+import com.iluwatar.leaderfollowers.TaskHandler;
+import com.iluwatar.leaderfollowers.TaskSet;
+import com.iluwatar.leaderfollowers.WorkCenter;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for TaskSet
+ * Tests for WorkCenter
  */
-public class TaskSetTest {
+public class WorkCenterTest {
 
-    @Test
-    public void testAddTask() throws InterruptedException {
-        var taskSet = new TaskSet();
-        taskSet.addTask(new Task(10));
-        Assert.assertTrue(taskSet.getSize() == 1);
-    }
+  @Test
+  public void testCreateWorkers() {
+    var taskSet = new TaskSet();
+    var taskHandler = new TaskHandler();
+    var workCenter = new WorkCenter();
+    workCenter.createWorkers(5, taskSet, taskHandler);
+    Assert.assertEquals(workCenter.getWorkers().size(), 5);
+    Assert.assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
+  }
 
-    @Test
-    public void testGetTask() throws InterruptedException {
-        var taskSet = new TaskSet();
-        taskSet.addTask(new Task(100));
-        Task task = taskSet.getTask();
-        Assert.assertTrue(task.getTime() == 100);
-        Assert.assertTrue(taskSet.getSize() == 0);
-    }
+  @Test
+  public void testNullLeader() {
+    var workCenter = new WorkCenter();
+    workCenter.promoteLeader();
+    Assert.assertNull(workCenter.getLeader());
+  }
 
+  @Test
+  public void testPromoteLeader() {
+    var taskSet = new TaskSet();
+    var taskHandler = new TaskHandler();
+    var workCenter = new WorkCenter();
+    workCenter.createWorkers(5, taskSet, taskHandler);
+    workCenter.removeWorker(workCenter.getLeader());
+    workCenter.promoteLeader();
+    Assert.assertEquals(workCenter.getWorkers().size(), 4);
+    Assert.assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
+  }
 }

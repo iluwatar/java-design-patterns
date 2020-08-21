@@ -21,21 +21,20 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.leaderfollowers;
+package com.iluwatar.unitofwork;
 
-import org.junit.Test;
+public enum UnitActions {
+  INSERT("INSERT"),
+  DELETE("DELETE"),
+  MODIFY("MODIFY");
 
-/**
- *
- * Application test
- *
- */
-public class AppTest {
+  private final String actionValue;
 
-    @Test
-    public void test() throws InterruptedException {
-        String[] args = {};
-        App.main(args);
-    }
+  UnitActions(String actionValue) {
+    this.actionValue = actionValue;
+  }
 
+  public String getActionValue() {
+    return actionValue;
+  }
 }

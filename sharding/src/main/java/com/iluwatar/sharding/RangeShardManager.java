@@ -47,11 +47,11 @@ public class RangeShardManager extends ShardManager {
   protected int allocateShard(Data data) {
     var type = data.getType();
     switch (type) {
-      case type1:
+      case TYPE_1:
         return 1;
-      case type2:
+      case TYPE_2:
         return 2;
-      case type3:
+      case TYPE_3:
         return 3;
       default:
         return -1;
