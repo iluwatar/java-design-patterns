@@ -190,7 +190,8 @@ It enables you to easily extend filtering ability of container-like objects as b
 * [Application of Filterer pattern in domain of text analysis](https://www.javacodegeeks.com/2019/02/filterer-pattern-10-steps.html)
 
 ## Known uses
-One of the uses is present on the blog presented in this link. It presents how to use `Filterer` pattern to create text issue anaylyzer with support for test cases used for unit testing.
+One of the uses is present on the blog presented in [this](https://www.javacodegeeks.com/2019/02/filterer-pattern-10-steps.html) link. 
+It presents how to use `Filterer` pattern to create text issue analyzer with support for test cases used for unit testing.
 
 ## Consequences
 Pros :
