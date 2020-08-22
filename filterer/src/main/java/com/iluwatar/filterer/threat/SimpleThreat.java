@@ -21,39 +21,54 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
+package com.iluwatar.filterer.threat;
 
 import java.util.Objects;
 
 /**
- * Represents position of an issue. Takes starting and ending offset of issue in given text.
+ * Represents a simple threat.
  */
-public final class IssuePosition {
+public class SimpleThreat implements Threat {
 
-  private final int startOffset;
-  private final int endOffset;
+  private final ThreatType threatType;
+  private final int id;
+  private final String name;
 
   /**
-   * Factory method for constructing `IssuePosition` instances.
-   * @param startOffset starting offset of where the issue begins.
-   * @param endOffset ending offset of where the issue ends.
-   * @return new IssuePosition instance.
+   * Constructor.
+   *
+   * @param threatType {@link ThreatType}.
+   * @param id         threat id.
+   * @param name       threat name.
    */
-  public static IssuePosition of(final int startOffset, final int endOffset) {
-    return new IssuePosition(startOffset, endOffset);
+  public SimpleThreat(final ThreatType threatType, final int id, String name) {
+    this.threatType = threatType;
+    this.id = id;
+    this.name = name;
   }
 
-  private IssuePosition(int startOffset, int endOffset) {
-    this.startOffset = startOffset;
-    this.endOffset = endOffset;
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String name() {
+    return name;
   }
 
-  int startOffset() {
-    return startOffset;
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int id() {
+    return id;
   }
 
-  int endOffset() {
-    return endOffset;
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public ThreatType type() {
+    return threatType;
   }
 
   @Override
@@ -64,13 +79,23 @@ public final class IssuePosition {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IssuePosition that = (IssuePosition) o;
-    return startOffset == that.startOffset
-            && endOffset == that.endOffset;
+    SimpleThreat that = (SimpleThreat) o;
+    return id == that.id
+            && threatType == that.threatType
+            && Objects.equals(name, that.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startOffset, endOffset);
+    return Objects.hash(threatType, id, name);
+  }
+
+  @Override
+  public String toString() {
+    return "SimpleThreat{"
+            + "threatType=" + threatType
+            + ", id=" + id
+            + ", name='" + name + '\''
+            + '}';
   }
 }

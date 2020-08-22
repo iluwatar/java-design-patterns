@@ -21,22 +21,23 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
+package com.iluwatar.filterer.threat;
 
 import java.util.Objects;
 
 /**
  * {@inheritDoc}
  */
-public class SimpleProbableIssue extends SimpleIssue implements ProbableIssue {
+public class SimpleProbableThreat extends SimpleThreat implements ProbableThreat {
 
   private final double probability;
 
-  SimpleProbableIssue(final IssuePosition issuePosition,
-                      final IssueType issueType,
-                      final double probability
+  public SimpleProbableThreat(final String name,
+                              final int id,
+                              final ThreatType threatType,
+                              final double probability
   ) {
-    super(issuePosition, issueType);
+    super(threatType, id, name);
     this.probability = probability;
   }
 
@@ -59,12 +60,20 @@ public class SimpleProbableIssue extends SimpleIssue implements ProbableIssue {
     if (!super.equals(o)) {
       return false;
     }
-    SimpleProbableIssue that = (SimpleProbableIssue) o;
+    SimpleProbableThreat that = (SimpleProbableThreat) o;
     return Double.compare(that.probability, probability) == 0;
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(super.hashCode(), probability);
+  }
+
+  @Override
+  public String toString() {
+    return "SimpleProbableThreat{"
+            + "probability=" + probability
+            + "} "
+            + super.toString();
   }
 }

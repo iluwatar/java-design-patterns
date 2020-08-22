@@ -21,25 +21,27 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
+package com.iluwatar.filterer.threat;
 
 import com.google.common.collect.ImmutableList;
 import com.iluwatar.filterer.domain.Filterer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * {@inheritDoc}
  */
-public class SimpleProbabilisticIssueAwareText implements ProbabilisticIssueAwareText {
+public class SimpleThreatAwareSystem implements ThreatAwareSystem {
 
-  private final String text;
-  private final ImmutableList<ProbableIssue> issues;
+  private final String systemId;
+  private final ImmutableList<Threat> issues;
 
-  SimpleProbabilisticIssueAwareText(final String text, final List<ProbableIssue> issues) {
-    this.text = text;
+  public SimpleThreatAwareSystem(final String systemId, final List<Threat> issues) {
+    this.systemId = systemId;
     this.issues = ImmutableList.copyOf(issues);
   }
 
@@ -47,38 +49,34 @@ public class SimpleProbabilisticIssueAwareText implements ProbabilisticIssueAwar
    * {@inheritDoc}
    */
   @Override
-  public String text() {
-    return text;
+  public String systemId() {
+    return systemId;
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public List<? extends ProbableIssue> issues() {
-    return issues;
+  public List<? extends Threat> threats() {
+    return new ArrayList<>(issues);
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  public Filterer<? extends ProbabilisticIssueAwareText, ? extends ProbableIssue> filtered() {
+  public Filterer<? extends ThreatAwareSystem, ? extends Threat> filtered() {
     return this::filteredGroup;
   }
 
-  private ProbabilisticIssueAwareText filteredGroup(
-          final Predicate<? super ProbableIssue> predicate
-  ) {
-    return new SimpleProbabilisticIssueAwareText(this.text, filteredItems(predicate));
+  private ThreatAwareSystem filteredGroup(Predicate<? super Threat> predicate) {
+    return new SimpleThreatAwareSystem(this.systemId, filteredItems(predicate));
   }
 
-  private ImmutableList<ProbableIssue> filteredItems(
-          final Predicate<? super ProbableIssue> predicate
-  ) {
+  private List<Threat> filteredItems(Predicate<? super Threat> predicate) {
     return this.issues.stream()
             .filter(predicate)
-            .collect(ImmutableList.toImmutableList());
+            .collect(Collectors.toList());
   }
 
   @Override
@@ -89,13 +87,21 @@ public class SimpleProbabilisticIssueAwareText implements ProbabilisticIssueAwar
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SimpleProbabilisticIssueAwareText that = (SimpleProbabilisticIssueAwareText) o;
-    return text.equals(that.text)
+    SimpleThreatAwareSystem that = (SimpleThreatAwareSystem) o;
+    return systemId.equals(that.systemId)
             && issues.equals(that.issues);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, issues);
+    return Objects.hash(systemId, issues);
+  }
+
+  @Override
+  public String toString() {
+    return "SimpleThreatAwareSystem{"
+            + "systemId='" + systemId
+            + '\'' + ", issues=" + issues
+            + '}';
   }
 }

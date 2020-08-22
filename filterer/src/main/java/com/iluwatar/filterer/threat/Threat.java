@@ -21,35 +21,29 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
-
-import com.iluwatar.filterer.domain.Filterer;
-
-import java.util.List;
+package com.iluwatar.filterer.threat;
 
 /**
- * Represents text that is aware of issues that are present in it.
+ * Represents a threat that can be detected in given system.
  */
-public interface IssueAwareText {
-
+public interface Threat {
   /**
-   * Returns the analyzed text.
+   * Returns name of the threat.
    *
-   * @return the analyzed text.
+   * @return value representing name of the threat.
    */
-  String text();
+  String name();
 
   /**
-   * Returns list of issues for this text.
-   * @return list of issues for this text.
+   * Returns unique id of the threat.
+   *
+   * @return value representing threat id.
    */
-  List<? extends Issue> issues();
+  int id();
 
   /**
-   * Returns the instance of {@link Filterer} helper interface that allows to covariantly
-   * specify lower bound for predicate that we want to filter by.
-   * @return an instance of {@link Filterer} helper interface.
+   * Returns threat type.
+   * @return {@link ThreatType}
    */
-  Filterer<? extends IssueAwareText, ? extends Issue> filtered();
-
+  ThreatType type();
 }

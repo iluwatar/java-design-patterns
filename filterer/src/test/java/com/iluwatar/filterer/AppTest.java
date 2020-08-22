@@ -21,29 +21,13 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
+package com.iluwatar.filterer;
 
-/**
- * Represents an issue that can be detected in given text.
- */
-public interface Issue {
-  /**
-   * Returns starting position where the issue begins.
-   *
-   * @return value representing starting position of the issue.
-   */
-  int startOffset();
+import org.junit.jupiter.api.Test;
 
-  /**
-   * Returns ending position where the issue ends.
-   *
-   * @return value representing ending position of the issue.
-   */
-  int endOffset();
-
-  /**
-   * Returns issue type.
-   * @return {@link IssueType}
-   */
-  IssueType type();
+class AppTest {
+  @Test
+  void shouldLaunchApp() {
+    App.main(new String[]{});
+  }
 }

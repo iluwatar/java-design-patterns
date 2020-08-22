@@ -21,59 +21,35 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
+package com.iluwatar.filterer.threat;
 
-import java.util.Objects;
+import com.iluwatar.filterer.domain.Filterer;
 
-public class SimpleIssue implements Issue {
+import java.util.List;
 
-  private final IssuePosition issuePosition;
-  private final IssueType issueType;
-
-  SimpleIssue(final IssuePosition issuePosition, IssueType issueType) {
-    this.issuePosition = issuePosition;
-    this.issueType = issueType;
-  }
+/**
+ * Represents system that is aware of threats that are present in it.
+ */
+public interface ThreatAwareSystem {
 
   /**
-   * {@inheritDoc}
+   * Returns the system id.
+   *
+   * @return system id.
    */
-  @Override
-  public int startOffset() {
-    return issuePosition.startOffset();
-  }
+  String systemId();
 
   /**
-   * {@inheritDoc}
+   * Returns list of threats for this system.
+   * @return list of threats for this system.
    */
-  @Override
-  public int endOffset() {
-    return issuePosition.endOffset();
-  }
+  List<? extends Threat> threats();
 
   /**
-   * {@inheritDoc}
+   * Returns the instance of {@link Filterer} helper interface that allows to covariantly
+   * specify lower bound for predicate that we want to filter by.
+   * @return an instance of {@link Filterer} helper interface.
    */
-  @Override
-  public IssueType type() {
-    return issueType;
-  }
+  Filterer<? extends ThreatAwareSystem, ? extends Threat> filtered();
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SimpleIssue that = (SimpleIssue) o;
-    return issuePosition.equals(that.issuePosition)
-            && issueType == that.issueType;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(issuePosition, issueType);
-  }
 }

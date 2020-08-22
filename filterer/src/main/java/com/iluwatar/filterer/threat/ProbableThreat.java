@@ -21,32 +21,15 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
+package com.iluwatar.filterer.threat;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-class SimpleIssueAwareTextTest {
-
-  @Test
-  void shouldFilterByStartOffset() {
-    //given
-    SimpleIssue spellingIssue = new SimpleIssue(IssuePosition.of(4, 5), IssueType.SPELLING);
-    SimpleIssue grammarIssue = new SimpleIssue(IssuePosition.of(8, 12), IssueType.GRAMMAR);
-    List<Issue> issues = List.of(spellingIssue, grammarIssue);
-
-    SimpleIssueAwareText simpleIssueWiseText = new SimpleIssueAwareText("I mihgt gone there", issues);
-
-    //when
-    IssueAwareText filtered = simpleIssueWiseText.filtered()
-            .by(issue1 -> issue1.startOffset() == 4);
-
-    //then
-    assertThat(filtered.issues()).hasSize(1);
-    assertThat(filtered.issues()).element(0).isEqualTo(spellingIssue);
-  }
-
+/**
+ * Represents threat that might be a threat with given probability.
+ */
+public interface ProbableThreat extends Threat {
+  /**
+   * Returns probability of occurrence of given threat.
+   * @return probability of occurrence of given threat.
+   */
+  double probability();
 }

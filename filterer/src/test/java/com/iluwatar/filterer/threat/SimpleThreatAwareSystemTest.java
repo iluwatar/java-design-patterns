@@ -21,6 +21,30 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
+package com.iluwatar.filterer.threat;
 
-enum IssueType { GRAMMAR, SPELLING }
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class SimpleThreatAwareSystemTest {
+  @Test
+  void shouldFilterByThreatType() {
+    //given
+    Threat rootkit = new SimpleThreat(ThreatType.ROOTKIT, 1, "Simple-Rootkit");
+    Threat trojan = new SimpleThreat(ThreatType.TROJAN, 2, "Simple-Trojan");
+    List<Threat> threats = List.of(rootkit, trojan);
+
+    ThreatAwareSystem threatAwareSystem = new SimpleThreatAwareSystem("System-1", threats);
+
+    //when
+    ThreatAwareSystem rootkitThreatAwareSystem = threatAwareSystem.filtered()
+            .by(threat -> threat.type() == ThreatType.ROOTKIT);
+
+    //then
+    assertEquals(rootkitThreatAwareSystem.threats().size(), 1);
+    assertEquals(rootkitThreatAwareSystem.threats().get(0), rootkit);
+  }
+}

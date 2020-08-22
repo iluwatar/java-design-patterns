@@ -21,29 +21,6 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
+package com.iluwatar.filterer.threat;
 
-import com.iluwatar.filterer.domain.Filterer;
-
-import java.util.List;
-
-/**
- * Represents text that is aware of it's issues with given probability of their occurrence.
- */
-public interface ProbabilisticIssueAwareText extends IssueAwareText {
-
-  /**
-   * {@inheritDoc}
-   * @return
-   */
-  @Override
-  List<? extends ProbableIssue> issues();
-
-  /**
-   * {@inheritDoc}
-   * @return
-   */
-  @Override
-  Filterer<? extends ProbabilisticIssueAwareText, ? extends ProbableIssue> filtered();
-}
-
+public enum ThreatType { TROJAN, WORM, ROOTKIT }

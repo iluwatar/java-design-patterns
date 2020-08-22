@@ -21,32 +21,29 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
+package com.iluwatar.filterer.threat;
 
-import org.junit.jupiter.api.Test;
+import com.iluwatar.filterer.domain.Filterer;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+/**
+ * Represents system that is aware of it's threats with given probability of their occurrence.
+ */
+public interface ProbabilisticThreatAwareSystem extends ThreatAwareSystem {
 
-class SimpleProbabilisticIssueAwareTextTest {
+  /**
+   * {@inheritDoc}
+   * @return
+   */
+  @Override
+  List<? extends ProbableThreat> threats();
 
-  @Test
-  void shouldFilterByProbability() {
-    //given
-    ProbableIssue spellingIssue = new SimpleProbableIssue(IssuePosition.of(4, 5), IssueType.SPELLING, 100);
-    ProbableIssue grammarIssue = new SimpleProbableIssue(IssuePosition.of(8, 12), IssueType.GRAMMAR, 99);
-    List<ProbableIssue> issues = List.of(spellingIssue, grammarIssue);
-
-    SimpleProbabilisticIssueAwareText simpleIssueWiseText = new SimpleProbabilisticIssueAwareText("I mihgt gone there", issues);
-
-    //when
-    ProbabilisticIssueAwareText filtered = simpleIssueWiseText.filtered()
-            .by(issue1 -> Double.compare(issue1.probability(), 99) == 0);
-
-    //then
-    assertThat(filtered.issues()).hasSize(1);
-    assertThat(filtered.issues()).element(0).isEqualTo(grammarIssue);
-  }
-
+  /**
+   * {@inheritDoc}
+   * @return
+   */
+  @Override
+  Filterer<? extends ProbabilisticThreatAwareSystem, ? extends ProbableThreat> filtered();
 }
+

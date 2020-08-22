@@ -21,15 +21,31 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.filterer.issue;
+package com.iluwatar.filterer.threat;
 
-/**
- * Represents issue that is an issue with given probability.
- */
-public interface ProbableIssue extends Issue {
-  /**
-   * Returns probability of occurrence of given issue.
-   * @return probability of occurrence of given issue.
-   */
-  double probability();
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class SimpleProbabilisticThreatAwareSystemTest {
+  @Test
+  void shouldFilterByProbability() {
+    //given
+    ProbableThreat trojan = new SimpleProbableThreat("Troyan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
+    ProbableThreat rootkit = new SimpleProbableThreat("Rootkit-System", 2, ThreatType.ROOTKIT, 0.8);
+    List<ProbableThreat> probableThreats = List.of(trojan, rootkit);
+
+    ProbabilisticThreatAwareSystem simpleProbabilisticThreatAwareSystem =
+            new SimpleProbabilisticThreatAwareSystem("System-1", probableThreats);
+
+    //when
+    ProbabilisticThreatAwareSystem filtered = simpleProbabilisticThreatAwareSystem.filtered()
+            .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
+
+    //then
+    assertEquals(filtered.threats().size(), 1);
+    assertEquals(filtered.threats().get(0), trojan);
+  }
 }
