@@ -1,4 +1,4 @@
---- # this is so called 'Yaml Front Matter', read up on it here: http://jekyllrb.com/docs/frontmatter/
+---
 layout: pattern
 title: Filterer
 folder: filterer
