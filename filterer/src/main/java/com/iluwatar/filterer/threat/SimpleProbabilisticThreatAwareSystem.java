@@ -93,7 +93,7 @@ public class SimpleProbabilisticThreatAwareSystem implements ProbabilisticThreat
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SimpleProbabilisticThreatAwareSystem that = (SimpleProbabilisticThreatAwareSystem) o;
+    var that = (SimpleProbabilisticThreatAwareSystem) o;
     return systemId.equals(that.systemId)
             && threats.equals(that.threats);
   }

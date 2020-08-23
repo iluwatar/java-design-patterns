@@ -23,7 +23,6 @@
 
 package com.iluwatar.filterer;
 
-import com.iluwatar.filterer.threat.ProbabilisticThreatAwareSystem;
 import com.iluwatar.filterer.threat.ProbableThreat;
 import com.iluwatar.filterer.threat.SimpleProbabilisticThreatAwareSystem;
 import com.iluwatar.filterer.threat.SimpleProbableThreat;
@@ -65,24 +64,22 @@ public class App {
   private static void filteringSimpleProbableThreats() {
     LOGGER.info(" ### Filtering ProbabilisticThreatAwareSystem by probability ###");
 
-    ProbableThreat trojanArcBomb =
-            new SimpleProbableThreat("Trojan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
-    ProbableThreat rootkit =
-            new SimpleProbableThreat("Rootkit-Kernel", 2, ThreatType.ROOTKIT, 0.8);
+    var trojanArcBomb = new SimpleProbableThreat("Trojan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
+    var rootkit = new SimpleProbableThreat("Rootkit-Kernel", 2, ThreatType.ROOTKIT, 0.8);
 
     List<ProbableThreat> probableThreats = List.of(trojanArcBomb, rootkit);
 
-    ProbabilisticThreatAwareSystem probabilisticThreatAwareSystem =
-            new SimpleProbabilisticThreatAwareSystem("System-1", probableThreats);
+    var probabilisticThreatAwareSystem =
+            new SimpleProbabilisticThreatAwareSystem("Sys-1", probableThreats);
 
     LOGGER.info("Filtering ProbabilisticThreatAwareSystem. Initial : "
             + probabilisticThreatAwareSystem);
 
     //Filtering using filterer
-    ProbabilisticThreatAwareSystem filtered = probabilisticThreatAwareSystem.filtered()
+    var filteredThreatAwareSystem = probabilisticThreatAwareSystem.filtered()
             .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
 
-    LOGGER.info("Filtered by probability = 0.99 : " + filtered);
+    LOGGER.info("Filtered by probability = 0.99 : " + filteredThreatAwareSystem);
   }
 
   /**
@@ -93,16 +90,16 @@ public class App {
   private static void filteringSimpleThreats() {
     LOGGER.info("### Filtering ThreatAwareSystem by ThreatType ###");
 
-    Threat rootkit = new SimpleThreat(ThreatType.ROOTKIT, 1, "Simple-Rootkit");
-    Threat trojan = new SimpleThreat(ThreatType.TROJAN, 2, "Simple-Trojan");
+    var rootkit = new SimpleThreat(ThreatType.ROOTKIT, 1, "Simple-Rootkit");
+    var trojan = new SimpleThreat(ThreatType.TROJAN, 2, "Simple-Trojan");
     List<Threat> threats = List.of(rootkit, trojan);
 
-    ThreatAwareSystem threatAwareSystem = new SimpleThreatAwareSystem("System-1", threats);
+    var threatAwareSystem = new SimpleThreatAwareSystem("Sys-1", threats);
 
     LOGGER.info("Filtering ThreatAwareSystem. Initial : " + threatAwareSystem);
 
     //Filtering using Filterer
-    ThreatAwareSystem rootkitThreatAwareSystem = threatAwareSystem.filtered()
+    var rootkitThreatAwareSystem = threatAwareSystem.filtered()
             .by(threat -> threat.type() == ThreatType.ROOTKIT);
 
     LOGGER.info("Filtered by threatType = ROOTKIT : " + rootkitThreatAwareSystem);

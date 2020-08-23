@@ -60,7 +60,7 @@ public class SimpleProbableThreat extends SimpleThreat implements ProbableThreat
     if (!super.equals(o)) {
       return false;
     }
-    SimpleProbableThreat that = (SimpleProbableThreat) o;
+    var that = (SimpleProbableThreat) o;
     return Double.compare(that.probability, probability) == 0;
   }
 

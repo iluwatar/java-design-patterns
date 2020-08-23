@@ -33,15 +33,15 @@ class SimpleProbabilisticThreatAwareSystemTest {
   @Test
   void shouldFilterByProbability() {
     //given
-    ProbableThreat trojan = new SimpleProbableThreat("Troyan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
-    ProbableThreat rootkit = new SimpleProbableThreat("Rootkit-System", 2, ThreatType.ROOTKIT, 0.8);
+    var trojan = new SimpleProbableThreat("Troyan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
+    var rootkit = new SimpleProbableThreat("Rootkit-System", 2, ThreatType.ROOTKIT, 0.8);
     List<ProbableThreat> probableThreats = List.of(trojan, rootkit);
 
-    ProbabilisticThreatAwareSystem simpleProbabilisticThreatAwareSystem =
+    var simpleProbabilisticThreatAwareSystem =
             new SimpleProbabilisticThreatAwareSystem("System-1", probableThreats);
 
     //when
-    ProbabilisticThreatAwareSystem filtered = simpleProbabilisticThreatAwareSystem.filtered()
+    var filtered = simpleProbabilisticThreatAwareSystem.filtered()
             .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
 
     //then

@@ -87,7 +87,7 @@ public class SimpleThreatAwareSystem implements ThreatAwareSystem {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SimpleThreatAwareSystem that = (SimpleThreatAwareSystem) o;
+    var that = (SimpleThreatAwareSystem) o;
     return systemId.equals(that.systemId)
             && issues.equals(that.issues);
   }

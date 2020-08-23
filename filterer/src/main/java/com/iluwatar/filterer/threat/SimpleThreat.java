@@ -79,7 +79,7 @@ public class SimpleThreat implements Threat {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SimpleThreat that = (SimpleThreat) o;
+    var that = (SimpleThreat) o;
     return id == that.id
             && threatType == that.threatType
             && Objects.equals(name, that.name);

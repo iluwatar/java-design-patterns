@@ -33,14 +33,14 @@ class SimpleThreatAwareSystemTest {
   @Test
   void shouldFilterByThreatType() {
     //given
-    Threat rootkit = new SimpleThreat(ThreatType.ROOTKIT, 1, "Simple-Rootkit");
-    Threat trojan = new SimpleThreat(ThreatType.TROJAN, 2, "Simple-Trojan");
+    var rootkit = new SimpleThreat(ThreatType.ROOTKIT, 1, "Simple-Rootkit");
+    var trojan = new SimpleThreat(ThreatType.TROJAN, 2, "Simple-Trojan");
     List<Threat> threats = List.of(rootkit, trojan);
 
-    ThreatAwareSystem threatAwareSystem = new SimpleThreatAwareSystem("System-1", threats);
+    var threatAwareSystem = new SimpleThreatAwareSystem("System-1", threats);
 
     //when
-    ThreatAwareSystem rootkitThreatAwareSystem = threatAwareSystem.filtered()
+    var rootkitThreatAwareSystem = threatAwareSystem.filtered()
             .by(threat -> threat.type() == ThreatType.ROOTKIT);
 
     //then

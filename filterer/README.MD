@@ -14,7 +14,7 @@ tags:
 Filterer
 
 ## Intent
-The intent of this design pattern is to to introduce a functional interface that will add a functionality for container-like objects to easily return filtered versions of themselves.
+The intent of this design pattern is to introduce a functional interface that will add a functionality for container-like objects to easily return filtered versions of themselves.
 
 ## Explanation
 Real world example
@@ -59,7 +59,7 @@ The container-like object (`ThreatAwareSystem` in our case) needs to have a meth
 ability to covariantly specify a lower bound of contravariant `Predicate` in the subinterfaces of interfaces representing the container-like objects.
 
 In our example we will be able to pass a predicate that takes `? extends Threat` object and return `?  extends ThreatAwareSystem`
-from `Filtered::by` method. A simple implementation of `ThreadAwareSystem` :
+from `Filtered::by` method. A simple implementation of `ThreatAwareSystem` :
 ```java
 public class SimpleThreatAwareSystem implements ThreatAwareSystem {
 
@@ -99,7 +99,7 @@ public class SimpleThreatAwareSystem implements ThreatAwareSystem {
 ```
 the `filtered` method is overridden to filter the threats list by given predicate.
 
-Now if we introduce new subtype of `Thread` interface that adds probability with which given thread can appear :
+Now if we introduce a new subtype of `Threat` interface that adds probability with which given threat can appear :
 ```java
 public interface ProbableThreat extends Threat {
   double probability();
@@ -116,7 +116,7 @@ public interface ProbabilisticThreatAwareSystem extends ThreatAwareSystem {
 }
 ````
 Notice how we override the `filtered` method in `ProbabilisticThreatAwareSystem` and specify different return covariant type
-by specifing different generic types. Our interfaces are clean and not cluttered by default implementations. We
+by specifying different generic types. Our interfaces are clean and not cluttered by default implementations. We
 we will be able to filter `ProbabilisticThreatAwareSystem` by `ProbableThreat` properties :
 ```java
 public class SimpleProbabilisticThreatAwareSystem implements ProbabilisticThreatAwareSystem {
