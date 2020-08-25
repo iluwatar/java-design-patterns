@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.23.0</version>
+    <version>1.24.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2014-2019</inceptionYear>
     <properties>
