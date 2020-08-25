@@ -1167,6 +1167,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "stefanbirkner",
+      "name": "Stefan Birkner",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/711349?v=4",
+      "profile": "https://www.stefan-birkner.de",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
