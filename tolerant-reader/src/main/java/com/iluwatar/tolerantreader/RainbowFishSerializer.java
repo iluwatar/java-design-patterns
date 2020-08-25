@@ -38,6 +38,9 @@ import java.util.Map;
  */
 public final class RainbowFishSerializer {
 
+  public static final String LENGTH_METERS = "lengthMeters";
+  public static final String WEIGHT_TONS = "weightTons";
+
   private RainbowFishSerializer() {
   }
 
@@ -48,8 +51,8 @@ public final class RainbowFishSerializer {
     var map = Map.of(
         "name", rainbowFish.getName(),
         "age", String.format("%d", rainbowFish.getAge()),
-        "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
-        "weightTons", String.format("%d", rainbowFish.getWeightTons())
+            LENGTH_METERS, String.format("%d", rainbowFish.getLengthMeters()),
+            WEIGHT_TONS, String.format("%d", rainbowFish.getWeightTons())
     );
 
     try (var fileOut = new FileOutputStream(filename);
@@ -65,8 +68,8 @@ public final class RainbowFishSerializer {
     var map = Map.of(
         "name", rainbowFish.getName(),
         "age", String.format("%d", rainbowFish.getAge()),
-        "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
-        "weightTons", String.format("%d", rainbowFish.getWeightTons()),
+            "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
+            WEIGHT_TONS, String.format("%d", rainbowFish.getWeightTons()),
         "angry", Boolean.toString(rainbowFish.getAngry()),
         "hungry", Boolean.toString(rainbowFish.getHungry()),
         "sleeping", Boolean.toString(rainbowFish.getSleeping())
@@ -93,7 +96,7 @@ public final class RainbowFishSerializer {
         map.get("name"),
         Integer.parseInt(map.get("age")),
         Integer.parseInt(map.get("lengthMeters")),
-        Integer.parseInt(map.get("weightTons"))
+        Integer.parseInt(map.get(WEIGHT_TONS))
     );
   }
 }

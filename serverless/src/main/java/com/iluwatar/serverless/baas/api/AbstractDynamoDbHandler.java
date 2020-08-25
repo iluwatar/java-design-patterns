@@ -40,7 +40,7 @@ import java.util.Map;
 public abstract class AbstractDynamoDbHandler<T extends Serializable> {
   private DynamoDBMapper dynamoDbMapper;
 
-  private ObjectMapper objectMapper;
+  private final ObjectMapper objectMapper;
 
   public AbstractDynamoDbHandler() {
     this.initAmazonDynamoDb();

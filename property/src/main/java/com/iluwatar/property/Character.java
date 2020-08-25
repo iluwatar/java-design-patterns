@@ -61,10 +61,12 @@ public class Character implements Prototype {
 
       @Override
       public void set(Stats stat, Integer val) {
+        // Does Nothing
       }
 
       @Override
       public void remove(Stats stat) {
+        // Does Nothing.
       }
     };
   }

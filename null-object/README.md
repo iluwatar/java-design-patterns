@@ -101,7 +101,7 @@ public class NodeImpl implements Node {
 
 public final class NullNode implements Node {
 
-  private static NullNode instance = new NullNode();
+  private static final NullNode instance = new NullNode();
 
   private NullNode() {
   }
@@ -141,11 +141,16 @@ public final class NullNode implements Node {
 Then we can construct and traverse the binary tree without errors as follows.
 
 ```java
-    Node root =
-        new NodeImpl("1", new NodeImpl("11", new NodeImpl("111", NullNode.getInstance(),
-            NullNode.getInstance()), NullNode.getInstance()), new NodeImpl("12",
-            NullNode.getInstance(), new NodeImpl("122", NullNode.getInstance(),
-            NullNode.getInstance())));
+    var root = new NodeImpl("1",
+            new NodeImpl("11",
+                new NodeImpl("111", NullNode.getInstance(), NullNode.getInstance()),
+                NullNode.getInstance()
+            ),
+            new NodeImpl("12",
+                NullNode.getInstance(),
+                new NodeImpl("122", NullNode.getInstance(), NullNode.getInstance())
+            )
+        );
     root.walk();
     
     // 1

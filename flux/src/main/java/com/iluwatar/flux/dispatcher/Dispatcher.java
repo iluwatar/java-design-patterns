@@ -39,7 +39,7 @@ public final class Dispatcher {
 
   private static Dispatcher instance = new Dispatcher();
 
-  private List<Store> stores = new LinkedList<>();
+  private final List<Store> stores = new LinkedList<>();
 
   private Dispatcher() {
   }
@@ -57,15 +57,10 @@ public final class Dispatcher {
    */
   public void menuItemSelected(MenuItem menuItem) {
     dispatchAction(new MenuAction(menuItem));
-    switch (menuItem) {
-      case HOME:
-      case PRODUCTS:
-      default:
-        dispatchAction(new ContentAction(Content.PRODUCTS));
-        break;
-      case COMPANY:
-        dispatchAction(new ContentAction(Content.COMPANY));
-        break;
+    if (menuItem == MenuItem.COMPANY) {
+      dispatchAction(new ContentAction(Content.COMPANY));
+    } else {
+      dispatchAction(new ContentAction(Content.PRODUCTS));
     }
   }
 

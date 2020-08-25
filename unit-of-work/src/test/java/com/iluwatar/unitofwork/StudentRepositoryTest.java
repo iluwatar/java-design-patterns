@@ -63,7 +63,7 @@ public class StudentRepositoryTest {
     studentRepository.registerNew(student1);
     studentRepository.registerNew(student2);
 
-    assertEquals(2, context.get(IUnitOfWork.INSERT).size());
+    assertEquals(2, context.get(UnitActions.INSERT.getActionValue()).size());
     verifyNoMoreInteractions(studentDatabase);
   }
 
@@ -72,7 +72,7 @@ public class StudentRepositoryTest {
     studentRepository.registerDeleted(student1);
     studentRepository.registerDeleted(student2);
 
-    assertEquals(2, context.get(IUnitOfWork.DELETE).size());
+    assertEquals(2, context.get(UnitActions.DELETE.getActionValue()).size());
     verifyNoMoreInteractions(studentDatabase);
   }
 
@@ -81,15 +81,15 @@ public class StudentRepositoryTest {
     studentRepository.registerModified(student1);
     studentRepository.registerModified(student2);
 
-    assertEquals(2, context.get(IUnitOfWork.MODIFY).size());
+    assertEquals(2, context.get(UnitActions.MODIFY.getActionValue()).size());
     verifyNoMoreInteractions(studentDatabase);
   }
 
   @Test
   public void shouldSaveAllLocalChangesToDb() {
-    context.put(IUnitOfWork.INSERT, List.of(student1));
-    context.put(IUnitOfWork.MODIFY, List.of(student1));
-    context.put(IUnitOfWork.DELETE, List.of(student1));
+    context.put(UnitActions.INSERT.getActionValue(), List.of(student1));
+    context.put(UnitActions.MODIFY.getActionValue(), List.of(student1));
+    context.put(UnitActions.DELETE.getActionValue(), List.of(student1));
 
     studentRepository.commit();
 
@@ -118,8 +118,8 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotInsertToDbIfNoRegisteredStudentsToBeCommitted() {
-    context.put(IUnitOfWork.MODIFY, List.of(student1));
-    context.put(IUnitOfWork.DELETE, List.of(student1));
+    context.put(UnitActions.MODIFY.getActionValue(), List.of(student1));
+    context.put(UnitActions.DELETE.getActionValue(), List.of(student1));
 
     studentRepository.commit();
 
@@ -128,8 +128,8 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotModifyToDbIfNotRegisteredStudentsToBeCommitted() {
-    context.put(IUnitOfWork.INSERT, List.of(student1));
-    context.put(IUnitOfWork.DELETE, List.of(student1));
+    context.put(UnitActions.INSERT.getActionValue(), List.of(student1));
+    context.put(UnitActions.DELETE.getActionValue(), List.of(student1));
 
     studentRepository.commit();
 
@@ -138,8 +138,8 @@ public class StudentRepositoryTest {
 
   @Test
   public void shouldNotDeleteFromDbIfNotRegisteredStudentsToBeCommitted() {
-    context.put(IUnitOfWork.INSERT, List.of(student1));
-    context.put(IUnitOfWork.MODIFY, List.of(student1));
+    context.put(UnitActions.INSERT.getActionValue(), List.of(student1));
+    context.put(UnitActions.MODIFY.getActionValue(), List.of(student1));
 
     studentRepository.commit();
 

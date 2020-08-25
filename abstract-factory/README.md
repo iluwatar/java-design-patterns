@@ -9,16 +9,19 @@ tags:
 ---
 
 ## Also known as
+
 Kit
 
 ## Intent
+
 Provide an interface for creating families of related or dependent
 objects without specifying their concrete classes.
 
 ## Explanation
+
 Real world example
 
-> To create a kingdom we need objects with common theme. Elven kingdom needs an Elven king, Elven castle and Elven army whereas Orcish kingdom needs an Orcish king, Orcish castle and Orcish army. There is a dependency between the objects in the kingdom.
+> To create a kingdom we need objects with a common theme. Elven kingdom needs an Elven king, Elven castle and Elven army whereas Orcish kingdom needs an Orcish king, Orcish castle and Orcish army. There is a dependency between the objects in the kingdom.
 
 In plain words
 
@@ -30,15 +33,18 @@ Wikipedia says
 
 **Programmatic Example**
 
-Translating the kingdom example above. First of all we have some interfaces and implementation for the objects in the kingdom
+Translating the kingdom example above. First of all we have some interfaces and implementation for the objects in the 
+kingdom.
 
 ```java
 public interface Castle {
   String getDescription();
 }
+
 public interface King {
   String getDescription();
 }
+
 public interface Army {
   String getDescription();
 }
@@ -66,7 +72,7 @@ public class ElfArmy implements Army {
   }
 }
 
-// Orcish implementations similarly...
+// Orcish implementations similarly -> ...
 
 ```
 
@@ -112,9 +118,17 @@ var castle = factory.createCastle();
 var king = factory.createKing();
 var army = factory.createArmy();
 
-castle.getDescription();  // Output: This is the Elven castle!
-king.getDescription(); // Output: This is the Elven king!
-army.getDescription(); // Output: This is the Elven Army!
+castle.getDescription();
+king.getDescription();
+army.getDescription();
+```
+
+Program output:
+
+```java
+This is the Elven castle!
+This is the Elven king!
+This is the Elven Army!
 ```
 
 Now, we can design a factory for our different kingdom factories. In this example, we created FactoryMaker, responsible for returning an instance of either ElfKingdomFactory or OrcKingdomFactory.  
@@ -156,45 +170,51 @@ public static void main(String[] args) {
 ```
 
 ## Class diagram
+
 ![alt text](./etc/abstract-factory.urm.png "Abstract Factory class diagram")
 
 
 ## Applicability
+
 Use the Abstract Factory pattern when
 
-* a system should be independent of how its products are created, composed and represented
-* a system should be configured with one of multiple families of products
-* a family of related product objects is designed to be used together, and you need to enforce this constraint
-* you want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
-* the lifetime of the dependency is conceptually shorter than the lifetime of the consumer.
-*	you need a run-time value to construct a particular dependency
-*	you want to decide which product to call from a family at runtime.
-*	you need to supply one or more parameters only known at run-time before you can resolve a dependency.
-* when you need consistency among products
-* you don’t want to change existing code when adding new products or families of products to the program.
+* The system should be independent of how its products are created, composed and represented
+* The system should be configured with one of multiple families of products
+* The family of related product objects is designed to be used together, and you need to enforce this constraint
+* You want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
+* The lifetime of the dependency is conceptually shorter than the lifetime of the consumer.
+* You need a run-time value to construct a particular dependency
+* You want to decide which product to call from a family at runtime.
+* You need to supply one or more parameters only known at run-time before you can resolve a dependency.
+* When you need consistency among products
+* You don’t want to change existing code when adding new products or families of products to the program.
 
-## Use Cases:	
+Example use cases	
 
-*	Selecting to call the appropriate implementation of FileSystemAcmeService or DatabaseAcmeService or NetworkAcmeService at runtime.
-*	Unit test case writing becomes much easier
+* Selecting to call to the appropriate implementation of FileSystemAcmeService or DatabaseAcmeService or NetworkAcmeService at runtime.
+* Unit test case writing becomes much easier
 * UI tools for different OS
 
 ## Consequences:
 
-*	Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
+* Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
 * While the pattern is great when creating predefined objects, adding the new ones might be challenging.
-* The code may become more complicated than it should be, since a lot of new interfaces and classes are introduced along with the pattern.
-
+* The code becomes more complicated than it should be, since a lot of new interfaces and classes are introduced along with the pattern.
 
 ## Tutorial
+
 * [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
 
-
-## Real world examples
+## Known uses
 
 * [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
 * [javax.xml.transform.TransformerFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/transform/TransformerFactory.html#newInstance--)
 * [javax.xml.xpath.XPathFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/xpath/XPathFactory.html#newInstance--)
+
+## Related patterns
+
+[Factory Method](https://java-design-patterns.com/patterns/factory-method/)
+[Factory Kit](https://java-design-patterns.com/patterns/factory-kit/)
 
 ## Credits
 

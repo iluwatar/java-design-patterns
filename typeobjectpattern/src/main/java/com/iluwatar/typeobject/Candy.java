@@ -30,15 +30,15 @@ package com.iluwatar.typeobject;
 public class Candy {
 
   enum Type {
-    crushableCandy,
-    rewardFruit
+    CRUSHABLE_CANDY,
+    REWARD_FRUIT
   }
 
   String name;
   Candy parent;
   String parentName;
   private int points;
-  private Type type;
+  private final Type type;
 
   Candy(String name, String parentName, Type type, int points) {
     this.name = name;

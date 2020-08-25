@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.23.0-SNAPSHOT</version>
+    <version>1.24.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2014-2019</inceptionYear>
     <properties>
@@ -52,13 +52,14 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.2</annotation-api.version>
-        <system-rules.version>1.19.0</system-rules.version>
-        <urm.version>1.4.8</urm.version>
+        <system-lambda.version>1.1.0</system-lambda.version>
+        <urm.version>2.0.0</urm.version>
+        <mockito-junit-jupiter.version>3.5.0</mockito-junit-jupiter.version>
         <!-- SonarCloud -->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>iluwatar</sonar.organization>
         <sonar.projectKey>iluwatar_java-design-patterns</sonar.projectKey>
-        <sonar.moduleKey>${artifactId}</sonar.moduleKey>
+        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
         <sonar.projectName>Java Design Patterns</sonar.projectName>
     </properties>
     <modules>
@@ -192,6 +193,8 @@
         <module>leader-followers</module>
         <module>strangler</module>
         <module>arrange-act-assert</module>
+        <module>transaction-script</module>
+        <module>filterer</module>
     </modules>
 
     <repositories>
@@ -335,8 +338,8 @@
             </dependency>
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
-                <artifactId>system-rules</artifactId>
-                <version>${system-rules.version}</version>
+                <artifactId>system-lambda</artifactId>
+                <version>${system-lambda.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -375,10 +378,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M3</version>
-                    <configuration>
-                        <argLine>-Xmx1024M ${argLine}</argLine>
-                    </configuration>
+                    <version>3.0.0-M5</version>
                 </plugin>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
@@ -474,7 +474,7 @@
                     </properties>
                     <skipExistingHeaders>true</skipExistingHeaders>
                     <headerDefinitions>
-                        <headerDefinition>${projectRoot}${file.separator}license-plugin-header-style.xml</headerDefinition>
+                        <headerDefinition>license-plugin-header-style.xml</headerDefinition>
                     </headerDefinitions>
                     <mapping>
                         <java>SLASHSTAR_CUSTOM_STYLE</java>
@@ -540,14 +540,4 @@
 
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>
-        </plugins>
-    </reporting>
-
 </project>

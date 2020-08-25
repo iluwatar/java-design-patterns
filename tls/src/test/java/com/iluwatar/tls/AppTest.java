@@ -25,14 +25,16 @@ package com.iluwatar.tls;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
  * Tests that thread local storage example runs without errors.
  *
  * @author Thomas Bauer, January 2017
  */
-public class AppTest {
+class AppTest {
   @Test
-  public void test() {
-    App.main(new String[]{});
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

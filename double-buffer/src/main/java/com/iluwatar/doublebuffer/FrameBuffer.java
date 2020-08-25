@@ -33,7 +33,7 @@ public class FrameBuffer implements Buffer {
   public static final int WIDTH = 10;
   public static final int HEIGHT = 8;
 
-  private Pixel[] pixels = new Pixel[WIDTH * HEIGHT];
+  private final Pixel[] pixels = new Pixel[WIDTH * HEIGHT];
 
   public FrameBuffer() {
     clearAll();

@@ -34,11 +34,14 @@ Let's first define the types of stars we are capable to handle.
 
 ```java
 public enum StarType {
+  SUN("sun"),
+  RED_GIANT("red giant"),
+  WHITE_DWARF("white dwarf"),
+  SUPERNOVA("supernova"),
+  DEAD("dead star"),
+  UNDEFINED("");
 
-  SUN("sun"), RED_GIANT("red giant"), WHITE_DWARF("white dwarf"), SUPERNOVA("supernova"), DEAD(
-      "dead star"), UNDEFINED("");
-
-  private String title;
+  private final String title;
 
   StarType(String title) {
     this.title = title;
@@ -95,8 +98,7 @@ public class Star {
   }
 
   StarMemento getMemento() {
-
-    StarMementoInternal state = new StarMementoInternal();
+    var state = new StarMementoInternal();
     state.setAgeYears(ageYears);
     state.setMassTons(massTons);
     state.setType(type);
@@ -104,8 +106,7 @@ public class Star {
   }
 
   void setMemento(StarMemento memento) {
-
-    StarMementoInternal state = (StarMementoInternal) memento;
+    var state = (StarMementoInternal) memento;
     this.type = state.getType();
     this.ageYears = state.getAgeYears();
     this.massTons = state.getMassTons();
@@ -152,8 +153,8 @@ public class Star {
 And finally here's how we use the mementos to store and restore star states.
 
 ```java
-    Stack<StarMemento> states = new Stack<>();
-    Star star = new Star(StarType.SUN, 10000000, 500000);
+    var states = new Stack<>();
+    var star = new Star(StarType.SUN, 10000000, 500000);
     LOGGER.info(star.toString());
     states.add(star.getMemento());
     star.timePasses();

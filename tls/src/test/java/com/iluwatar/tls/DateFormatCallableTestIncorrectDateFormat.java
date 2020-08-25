@@ -54,18 +54,18 @@ public class DateFormatCallableTestIncorrectDateFormat {
   /**
    * Expected number of date values in the date value list created by the run of DateFormatRunnalbe
    */
-  private int expectedCounterDateValues = 0;
+  private final int expectedCounterDateValues = 0;
 
   /**
    * Expected number of exceptions in the exception list created by the run of DateFormatRunnalbe.
    */
-  private int expectedCounterExceptions = 5;
+  private final int expectedCounterExceptions = 5;
 
   /**
    * Expected content of the list containing the exceptions created by the run of
    * DateFormatRunnalbe
    */
-  private List<String> expectedExceptions = List.of(
+  private final List<String> expectedExceptions = List.of(
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",

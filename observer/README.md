@@ -13,18 +13,18 @@ tags:
 Dependents, Publish-Subscribe
 
 ## Intent
-Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified 
+Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified
 and updated automatically.
 
 ## Explanation
 
 Real world example
 
-> In a land far away lives the races of hobbits and orcs. Both of them are mostly outdoors so they closely follow the changes in weather. One could say that they are constantly observing the weather.        
+> In a land far away lives the races of hobbits and orcs. Both of them are mostly outdoors so they closely follow the changes in weather. One could say that they are constantly observing the weather.
 
 In plain words
 
-> Register as an observer to receive state changes in the object.   
+> Register as an observer to receive state changes in the object.
 
 Wikipedia says
 
@@ -46,22 +46,7 @@ public class Orcs implements WeatherObserver {
 
   @Override
   public void update(WeatherType currentWeather) {
-    switch (currentWeather) {
-      case COLD:
-        LOGGER.info("The orcs are freezing cold.");
-        break;
-      case RAINY:
-        LOGGER.info("The orcs are dripping wet.");
-        break;
-      case SUNNY:
-        LOGGER.info("The sun hurts the orcs' eyes.");
-        break;
-      case WINDY:
-        LOGGER.info("The orc smell almost vanishes in the wind.");
-        break;
-      default:
-        break;
-    }
+    LOGGER.info("The orcs are facing " + currentWeather.getDescription() + " weather now");
   }
 }
 
@@ -72,21 +57,7 @@ public class Hobbits implements WeatherObserver {
   @Override
   public void update(WeatherType currentWeather) {
     switch (currentWeather) {
-      case COLD:
-        LOGGER.info("The hobbits are shivering in the cold weather.");
-        break;
-      case RAINY:
-        LOGGER.info("The hobbits look for cover from the rain.");
-        break;
-      case SUNNY:
-        LOGGER.info("The happy hobbits bade in the warm sun.");
-        break;
-      case WINDY:
-        LOGGER.info("The hobbits hold their hats tightly in the windy weather.");
-        break;
-      default:
-        break;
-    }
+      LOGGER.info("The hobbits are facing " + currentWeather.getDescription() + " weather now");
   }
 }
 ```
@@ -99,7 +70,7 @@ public class Weather {
   private static final Logger LOGGER = LoggerFactory.getLogger(Weather.class);
 
   private WeatherType currentWeather;
-  private List<WeatherObserver> observers;
+  private final List<WeatherObserver> observers;
 
   public Weather() {
     observers = new ArrayList<>();
@@ -141,20 +112,20 @@ Here's the full example in action.
 
     weather.timePasses();
     // The weather changed to rainy.
-    // The orcs are dripping wet.
-    // The hobbits look for cover from the rain.
+    // The orcs are facing rainy weather now
+    // The hobbits are facing rainy weather now
     weather.timePasses();
     // The weather changed to windy.
-    // The orc smell almost vanishes in the wind.
-    // The hobbits hold their hats tightly in the windy weather.
+    // The orcs are facing windy weather now
+    // The hobbits are facing windy weather now
     weather.timePasses();
     // The weather changed to cold.
-    // The orcs are freezing cold.
-    // The hobbits are shivering in the cold weather.
+    // The orcs are facing cold weather now
+    // The hobbits are facing cold weather now
     weather.timePasses();
     // The weather changed to sunny.
-    // The sun hurts the orcs' eyes.
-    // The happy hobbits bade in the warm sun.
+    // The orcs are facing sunny weather now
+    // The hobbits are facing sunny weather now
 ```
 
 ## Class diagram

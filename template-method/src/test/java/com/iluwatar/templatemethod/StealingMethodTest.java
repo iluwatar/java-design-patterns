@@ -146,7 +146,7 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {
       ((Logger) LoggerFactory.getLogger("root")).addAppender(this);

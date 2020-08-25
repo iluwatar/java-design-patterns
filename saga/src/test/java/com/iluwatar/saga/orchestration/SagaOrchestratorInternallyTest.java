@@ -34,7 +34,7 @@ import org.junit.Test;
  */
 public class SagaOrchestratorInternallyTest {
 
-  private List<String> records = new ArrayList<>();
+  private final List<String> records = new ArrayList<>();
 
   @Test
   public void executeTest() {

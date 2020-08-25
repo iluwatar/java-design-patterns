@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 public final class CallsCount {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(CallsCount.class);
-  private Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
+  private final Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
 
   /**
    * Add a new tenant to the map.

@@ -112,7 +112,7 @@ public interface CustomerDao {
 
 public class InMemoryCustomerDao implements CustomerDao {
 
-  private Map<Integer, Customer> idToCustomer = new HashMap<>();
+  private final Map<Integer, Customer> idToCustomer = new HashMap<>();
 
   @Override
   public Stream<Customer> getAll() {
