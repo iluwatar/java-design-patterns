@@ -39,7 +39,7 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.24.0</camel.version>
         <guava.version>19.0</guava.version>
-        <mockito.version>1.10.19</mockito.version>
+        <mockito.version>3.5.6</mockito.version>
         <htmlunit.version>2.22</htmlunit.version>
         <guice.version>4.0</guice.version>
         <mongo-java-driver.version>3.12.1</mongo-java-driver.version>
@@ -206,6 +206,18 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>1.9.7</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy-agent</artifactId>
+                <version>1.9.7</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
