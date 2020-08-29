@@ -9,15 +9,17 @@ tags:
 ---
 
 ## Intent
-Compose objects into tree structures to represent part-whole
-hierarchies. Composite lets clients treat individual objects and compositions
-of objects uniformly.
+
+Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients 
+treat individual objects and compositions of objects uniformly.
 
 ## Explanation
 
 Real world example
 
-> Every sentence is composed of words which are in turn composed of characters. Each of these objects is printable and they can have something printed before or after them like sentence always ends with full stop and word always has space before it
+> Every sentence is composed of words which are in turn composed of characters. Each of these 
+> objects is printable and they can have something printed before or after them like sentence always 
+> ends with full stop and word always has space before it.
 
 In plain words
 
@@ -25,11 +27,16 @@ In plain words
 
 Wikipedia says
 
-> In software engineering, the composite pattern is a partitioning design pattern. The composite pattern describes that a group of objects is to be treated in the same way as a single instance of an object. The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies. Implementing the composite pattern lets clients treat individual objects and compositions uniformly.
+> In software engineering, the composite pattern is a partitioning design pattern. The composite 
+> pattern describes that a group of objects is to be treated in the same way as a single instance of 
+> an object. The intent of a composite is to "compose" objects into tree structures to represent 
+> part-whole hierarchies. Implementing the composite pattern lets clients treat individual objects 
+> and compositions uniformly.
 
 **Programmatic Example**
 
-Taking our sentence example from above. Here we have the base class and different printable types
+Taking our sentence example from above. Here we have the base class `LetterComposite` and the 
+different printable types `Letter`, `Word` and `Sentence`. 
 
 ```java
 public abstract class LetterComposite {
@@ -102,7 +109,7 @@ public class Sentence extends LetterComposite {
 }
 ```
 
-Then we have a messenger to carry messages
+Then we have a messenger to carry messages:
 
 ```java
 public class Messenger {
@@ -143,7 +150,7 @@ public class Messenger {
 }
 ```
 
-And then it can be used as
+And then it can be used as:
 
 ```java
 var orcMessage = new Messenger().messageFromOrcs();
@@ -153,13 +160,16 @@ elfMessage.print(); // Much wind pours from your mouth.
 ```
 
 ## Class diagram
+
 ![alt text](./etc/composite.urm.png "Composite class diagram")
 
 ## Applicability
+
 Use the Composite pattern when
 
-* you want to represent part-whole hierarchies of objects
-* you want clients to be able to ignore the difference between compositions of objects and individual objects. Clients will treat all objects in the composite structure uniformly
+* You want to represent part-whole hierarchies of objects.
+* You want clients to be able to ignore the difference between compositions of objects and 
+individual objects. Clients will treat all objects in the composite structure uniformly.
 
 ## Real world examples
 
