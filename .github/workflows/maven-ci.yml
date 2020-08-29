@@ -50,7 +50,8 @@ jobs:
     # Some tests need screen access
     - name: Install xvfb
       run: sudo apt-get install -y xvfb
-    # SonarQube scan does not work for forked repositories
+    # The SonarQube analysis is only for the master branch of the main repository.
+    # SonarQube scan does not work for forked repositories try changing it to xvfb-run mvn clean verify
     # See https://jira.sonarsource.com/browse/MMF-1371
     - name: Build with Maven and run SonarQube analysis
       run: xvfb-run mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
