@@ -10,17 +10,20 @@ tags:
 ---
 
 ## Also known as
+
 Virtual Constructor
 
 ## Intent
-Define an interface for creating an object, but let subclasses
-decide which class to instantiate. Factory Method lets a class defer
-instantiation to subclasses.
+
+Define an interface for creating an object, but let subclasses decide which class to instantiate. 
+Factory Method lets a class defer instantiation to subclasses.
 
 ## Explanation
+
 Real world example
 
-> Blacksmith manufactures weapons. Elves require Elvish weapons and orcs require Orcish weapons. Depending on the customer at hand the right type of blacksmith is summoned.
+> Blacksmith manufactures weapons. Elves require Elvish weapons and orcs require Orcish weapons. 
+> Depending on the customer at hand the right type of blacksmith is summoned.
 
 In plain words
 
@@ -28,11 +31,16 @@ In plain words
 
 Wikipedia says
 
-> In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory method—either specified in an interface and implemented by child classes, or implemented in a base class and optionally overridden by derived classes—rather than by calling a constructor.
+> In class-based programming, the factory method pattern is a creational pattern that uses factory 
+> methods to deal with the problem of creating objects without having to specify the exact class of 
+> the object that will be created. This is done by creating objects by calling a factory method 
+> — either specified in an interface and implemented by child classes, or implemented in a base 
+> class and optionally overridden by derived classes—rather than by calling a constructor.
 
  **Programmatic Example**
 
-Taking our blacksmith example above. First of all we have a blacksmith interface and some implementations for it
+Taking our blacksmith example above. First of all we have a `Blacksmith` interface and some 
+implementations for it:
 
 ```java
 public interface Blacksmith {
@@ -52,24 +60,33 @@ public class OrcBlacksmith implements Blacksmith {
 }
 ```
 
-Now as the customers come the correct type of blacksmith is summoned and requested weapons are manufactured
+When the customers come, the correct type of blacksmith is summoned and requested weapons are 
+manufactured:
 
 ```java
 var blacksmith = new ElfBlacksmith();
 blacksmith.manufactureWeapon(WeaponType.SPEAR);
 blacksmith.manufactureWeapon(WeaponType.AXE);
-// Elvish weapons are created
+```
+
+Program output:
+```java
+// Elven spear
+// Elven axe
 ```
 
 ## Class diagram
+
 ![alt text](./etc/factory-method.urm.png "Factory Method pattern class diagram")
 
 ## Applicability
-Use the Factory Method pattern when
 
-* a class can't anticipate the class of objects it must create
-* a class wants its subclasses to specify the objects it creates
-* classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate
+Use the Factory Method pattern when:
+
+* Class cannot anticipate the class of objects it must create.
+* Class wants its subclasses to specify the objects it creates.
+* Classes delegate responsibility to one of several helper subclasses, and you want to localize the 
+knowledge of which helper subclass is the delegate.
 
 ## Real world examples
 
