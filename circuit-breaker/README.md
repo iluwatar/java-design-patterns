@@ -12,32 +12,43 @@ tags:
 
 ## Intent
 
-Handle costly remote *procedure/service* calls in such a way that the failure of a **single** service/component cannot bring the whole application down, and we can reconnect to the service as soon as possible.
+Handle costly remote service calls in such a way that the failure of a single service/component 
+cannot bring the whole application down, and we can reconnect to the service as soon as possible.
 
 ## Explanation
 
 Real world example
 
-> Imagine a Web App that has both local (example: files and images) and remote (example: database entries) to serve. The database might not be responding due to a variety of reasons, so if the application keeps trying to read from the database using multiple threads/processes, soon all of them will hang and our entire web application will crash. We should be able to detect this situation and show the user an appropriate message so that he/she can explore other parts of the app unaffected by the database failure without any problem. 
+> Imagine a web application that has both local files/images and remote database entries to serve. 
+> The database might not be responding due to a variety of reasons, so if the application keeps 
+> trying to read from the database using multiple threads/processes, soon all of them will hang 
+> causing our entire web application will crash. We should be able to detect this situation and show 
+> the user an appropriate message so that he/she can explore other parts of the app unaffected by 
+> the database failure. 
 
 In plain words
 
-> Allows us to save resources when we know a remote service failed. Useful when all parts of our application are highly decoupled from each other, and failure of one component doesn't mean the other parts will stop working.
+> Circuit Breaker allows graceful handling of failed remote services. It's especially useful when 
+> all parts of our application are highly decoupled from each other, and failure of one component 
+> doesn't mean the other parts will stop working.
 
 Wikipedia says
 
-> **Circuit breaker** is a design pattern used in modern software development. It is used to detect failures and encapsulates the logic of preventing a failure from constantly recurring, during maintenance, temporary external system failure or unexpected system difficulties.
-
-So, how does this all come together?
+> Circuit breaker is a design pattern used in modern software development. It is used to detect 
+> failures and encapsulates the logic of preventing a failure from constantly recurring, during 
+> maintenance, temporary external system failure or unexpected system difficulties.
 
 ## Programmatic Example
-With the above example in mind we will imitate the functionality in a simple manner. We have two services: A *monitoring service* which will mimic the web app and will make both **local** and **remote** calls.
+
+So, how does this all come together? With the above example in mind we will imitate the 
+functionality in a simple example. A monitoring service mimics the web app and makes both local and 
+remote calls.
 
 The service architecture is as follows:
 
 ![alt text](./etc/ServiceDiagram.PNG "Service Diagram")
 
-In terms of code, the End user application is:
+In terms of code, the end user application is:
 
 ```java
 public class App {
@@ -62,7 +73,7 @@ public class App {
 }
 ```
 
-The monitoring service is: 
+The monitoring service: 
 
 ``` java
 public class MonitoringService {
@@ -80,7 +91,8 @@ public class MonitoringService {
   }
 }
 ```
-As it can be seen, it does the call to get local resources directly, but it wraps the call to remote (costly) service in a circuit breaker object, which prevents faults as follows:
+As it can be seen, it does the call to get local resources directly, but it wraps the call to 
+remote (costly) service in a circuit breaker object, which prevents faults as follows:
 
 ```java
 public class CircuitBreaker {
@@ -155,24 +167,27 @@ public class CircuitBreaker {
 }
 ```
 
-How does the above pattern prevent failures? Let's understand via this finite state machine implemented by it.
+How does the above pattern prevent failures? Let's understand via this finite state machine 
+implemented by it.
 
 ![alt text](./etc/StateDiagram.PNG "State Diagram")
 
-- We initialize the Circuit Breaker object with certain parameters: **timeout**, **failureThreshold** and **retryTimePeriod** which help determine how resilient the API is.
-- Initially, we are in the **closed** state and the remote call to API happens.
+- We initialize the Circuit Breaker object with certain parameters: `timeout`, `failureThreshold` and `retryTimePeriod` which help determine how resilient the API is.
+- Initially, we are in the `closed` state and nos remote calls to the API have occurred.
 - Every time the call succeeds, we reset the state to as it was in the beginning.
-- If the number of failures cross a certain threshold, we move to the **open** state, which acts just like an open circuit and prevents remote service calls from being made, thus saving resources. (Here, we return the response called ```stale response from API```)
-- Once we exceed the retry timeout period, we move to the **half-open** state and make another call to the remote service again to check if the service is working so that we can serve fresh content. A *failure* sets it back to **open** state and another attempt is made after retry timeout period, while a *success* sets it to **closed** state so that everything starts working normally again. 
+- If the number of failures cross a certain threshold, we move to the `open` state, which acts just like an open circuit and prevents remote service calls from being made, thus saving resources. (Here, we return the response called ```stale response from API```)
+- Once we exceed the retry timeout period, we move to the `half-open` state and make another call to the remote service again to check if the service is working so that we can serve fresh content. A failure sets it back to `open` state and another attempt is made after retry timeout period, while a success sets it to `closed` state so that everything starts working normally again. 
 
 ## Class diagram
+
 ![alt text](./etc/circuit-breaker.urm.png "Circuit Breaker class diagram")
 
 ## Applicability
+
 Use the Circuit Breaker pattern when
 
 - Building a fault-tolerant application where failure of some services shouldn't bring the entire application down.
-- Building an continuously incremental/continuous delivery application, as some of it's components can be upgraded without shutting it down entirely.
+- Building a continuously running (always-on) application, so that its components can be upgraded without shutting it down entirely.
 
 ## Related Patterns
 
