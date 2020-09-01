@@ -1176,6 +1176,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "fedorskvorcov",
+      "name": "Fedor Skvorcov",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/43882212?v=4",
+      "profile": "https://github.com/fedorskvorcov",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,

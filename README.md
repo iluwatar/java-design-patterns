@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-129-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-130-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -263,6 +263,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://www.stefan-birkner.de"><img src="https://avatars1.githubusercontent.com/u/711349?v=4" width="100px;" alt=""/><br /><sub><b>Stefan Birkner</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=stefanbirkner" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/fedorskvorcov"><img src="https://avatars3.githubusercontent.com/u/43882212?v=4" width="100px;" alt=""/><br /><sub><b>Fedor Skvorcov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=fedorskvorcov" title="Code">💻</a></td>
   </tr>
 </table>
 
