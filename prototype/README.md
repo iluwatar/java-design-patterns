@@ -10,16 +10,19 @@ tags:
 ---
 
 ## Intent
-Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
+
+Specify the kinds of objects to create using a prototypical instance, and create new objects by 
+copying this prototype.
 
 ## Explanation
 
-First it should be noted that Prototype pattern is not used to gain performance benefits. It's only used for creating
-new objects from prototype instance.
+First it should be noted that Prototype pattern is not used to gain performance benefits. It's only 
+used for creating new objects from prototype instance.
 
 Real world example
 
-> Remember Dolly? The sheep that was cloned! Lets not get into the details but the key point here is that it is all about cloning.
+> Remember Dolly? The sheep that was cloned! Lets not get into the details but the key point here is 
+> that it is all about cloning.
 
 In plain words
 
@@ -27,9 +30,12 @@ In plain words
 
 Wikipedia says
 
-> The prototype pattern is a creational design pattern in software development. It is used when the type of objects to create is determined by a prototypical instance, which is cloned to produce new objects.
+> The prototype pattern is a creational design pattern in software development. It is used when the 
+> type of objects to create is determined by a prototypical instance, which is cloned to produce new 
+> objects.
 
-In short, it allows you to create a copy of an existing object and modify it to your needs, instead of going through the trouble of creating an object from scratch and setting it up.
+In short, it allows you to create a copy of an existing object and modify it to your needs, instead 
+of going through the trouble of creating an object from scratch and setting it up.
 
 **Programmatic Example**
 
@@ -52,7 +58,7 @@ class Sheep implements Cloneable {
 }
 ```
 
-Then it can be cloned like below
+Then it can be cloned like below:
 
 ```java
 var original = new Sheep("Jolly");
@@ -65,15 +71,20 @@ System.out.println(cloned.getName()); // Dolly
 ```
 
 ## Class diagram
+
 ![alt text](./etc/prototype.urm.png "Prototype pattern class diagram")
 
 ## Applicability
-Use the Prototype pattern when a system should be independent of how its products are created, composed and represented; and
 
-* When the classes to instantiate are specified at run-time, for example, by dynamic loading
-* To avoid building a class hierarchy of factories that parallels the class hierarchy of products
-* When instances of a class can have one of only a few different combinations of state. It may be more convenient to install a corresponding number of prototypes and clone them rather than instantiating the class manually, each time with the appropriate state
-* When object creation is expensive compared to cloning
+Use the Prototype pattern when a system should be independent of how its products are created, 
+composed, represented and
+
+* When the classes to instantiate are specified at run-time, for example, by dynamic loading.
+* To avoid building a class hierarchy of factories that parallels the class hierarchy of products.
+* When instances of a class can have one of only a few different combinations of state. It may be 
+more convenient to install a corresponding number of prototypes and clone them rather than 
+instantiating the class manually, each time with the appropriate state.
+* When object creation is expensive compared to cloning.
 
 ## Real world examples
 
