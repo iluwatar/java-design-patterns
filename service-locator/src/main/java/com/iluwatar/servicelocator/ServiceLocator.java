@@ -50,7 +50,7 @@ public final class ServiceLocator {
       return serviceObj;
     } else {
       /*
-       * If we are unable to retrive anything from cache, then lookup the service and add it in the
+       * If we are unable to retrieve anything from cache, then lookup the service and add it in the
        * cache map
        */
       var ctx = new InitContext();
