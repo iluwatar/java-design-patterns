@@ -1,10 +1,10 @@
 package com.iluwatar.simplefactory;
 
 /**
- * Car interface
+ * Car interface.
  */
 public interface Car {
-
-	public String getDescription();
-
+  
+  public String getDescription();
+  
 }
