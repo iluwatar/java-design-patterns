@@ -195,6 +195,7 @@
         <module>arrange-act-assert</module>
         <module>transaction-script</module>
         <module>filterer</module>
+        <module>simple-factory</module>
     </modules>
 
     <repositories>
