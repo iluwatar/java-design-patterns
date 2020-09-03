@@ -24,6 +24,9 @@
 package com.iluwatar.abstractfactory;
 
 import com.iluwatar.abstractfactory.App.FactoryMaker.KingdomType;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,12 +44,19 @@ import org.slf4j.LoggerFactory;
  * and its implementations ( {@link ElfKingdomFactory}, {@link OrcKingdomFactory}). The example uses
  * both concrete implementations to create a king, a castle and an army.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
+  @Setter
+  @Getter
   private King king;
+
+  @Setter
+  @Getter
   private Castle castle;
+
+  @Setter
+  @Getter
   private Army army;
 
   /**
@@ -56,30 +66,6 @@ public class App {
     setKing(factory.createKing());
     setCastle(factory.createCastle());
     setArmy(factory.createArmy());
-  }
-
-  public King getKing() {
-    return king;
-  }
-
-  private void setKing(final King king) {
-    this.king = king;
-  }
-
-  public Castle getCastle() {
-    return castle;
-  }
-
-  private void setCastle(final Castle castle) {
-    this.castle = castle;
-  }
-
-  public Army getArmy() {
-    return army;
-  }
-
-  private void setArmy(final Army army) {
-    this.army = army;
   }
 
   /**
@@ -118,16 +104,16 @@ public class App {
 
     var app = new App();
 
-    LOGGER.info("Elf Kingdom");
+    log.info("Elf Kingdom");
     app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
-    LOGGER.info(app.getArmy().getDescription());
-    LOGGER.info(app.getCastle().getDescription());
-    LOGGER.info(app.getKing().getDescription());
+    log.info(app.getArmy().getDescription());
+    log.info(app.getCastle().getDescription());
+    log.info(app.getKing().getDescription());
 
-    LOGGER.info("Orc Kingdom");
+    log.info("Orc Kingdom");
     app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
-    LOGGER.info(app.getArmy().getDescription());
-    LOGGER.info(app.getCastle().getDescription());
-    LOGGER.info(app.getKing().getDescription());
+    log.info(app.getArmy().getDescription());
+    log.info(app.getCastle().getDescription());
+    log.info(app.getKing().getDescription());
   }
 }
