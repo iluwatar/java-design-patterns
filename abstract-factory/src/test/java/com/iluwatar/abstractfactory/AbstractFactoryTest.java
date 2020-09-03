@@ -48,30 +48,39 @@ public class AbstractFactoryTest {
 
   @Test
   public void king() {
-    final var elfKing = app.getKing(elfFactory);
+    app.createKingdom(elfFactory);
+    final var elfKing = app.getKing();
     assertTrue(elfKing instanceof ElfKing);
     assertEquals(ElfKing.DESCRIPTION, elfKing.getDescription());
-    final var orcKing = app.getKing(orcFactory);
+
+    app.createKingdom(orcFactory);
+    final var orcKing = app.getKing();
     assertTrue(orcKing instanceof OrcKing);
     assertEquals(OrcKing.DESCRIPTION, orcKing.getDescription());
   }
 
   @Test
   public void castle() {
-    final var elfCastle = app.getCastle(elfFactory);
+    app.createKingdom(elfFactory);
+    final var elfCastle = app.getCastle();
     assertTrue(elfCastle instanceof ElfCastle);
     assertEquals(ElfCastle.DESCRIPTION, elfCastle.getDescription());
-    final var orcCastle = app.getCastle(orcFactory);
+
+    app.createKingdom(orcFactory);
+    final var orcCastle = app.getCastle();
     assertTrue(orcCastle instanceof OrcCastle);
     assertEquals(OrcCastle.DESCRIPTION, orcCastle.getDescription());
   }
 
   @Test
   public void army() {
-    final var elfArmy = app.getArmy(elfFactory);
+    app.createKingdom(elfFactory);
+    final var elfArmy = app.getArmy();
     assertTrue(elfArmy instanceof ElfArmy);
     assertEquals(ElfArmy.DESCRIPTION, elfArmy.getDescription());
-    final var orcArmy = app.getArmy(orcFactory);
+
+    app.createKingdom(orcFactory);
+    final var orcArmy = app.getArmy();
     assertTrue(orcArmy instanceof OrcArmy);
     assertEquals(OrcArmy.DESCRIPTION, orcArmy.getDescription());
   }

@@ -58,10 +58,6 @@ public class App {
     setArmy(factory.createArmy());
   }
 
-  King getKing(final KingdomFactory factory) {
-    return factory.createKing();
-  }
-
   public King getKing() {
     return king;
   }
@@ -70,20 +66,12 @@ public class App {
     this.king = king;
   }
 
-  Castle getCastle(final KingdomFactory factory) {
-    return factory.createCastle();
-  }
-
   public Castle getCastle() {
     return castle;
   }
 
   private void setCastle(final Castle castle) {
     this.castle = castle;
-  }
-
-  Army getArmy(final KingdomFactory factory) {
-    return factory.createArmy();
   }
 
   public Army getArmy() {
