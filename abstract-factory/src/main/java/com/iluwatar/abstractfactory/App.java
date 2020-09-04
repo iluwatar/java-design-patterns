@@ -23,12 +23,8 @@
 
 package com.iluwatar.abstractfactory;
 
-import com.iluwatar.abstractfactory.App.FactoryMaker.KingdomType;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The Abstract Factory pattern provides a way to encapsulate a group of individual factories that
@@ -45,55 +41,10 @@ import org.slf4j.LoggerFactory;
  * both concrete implementations to create a king, a castle and an army.
  */
 @Slf4j
-public class App {
+public class App implements Runnable {
 
-  @Setter
   @Getter
-  private King king;
-
-  @Setter
-  @Getter
-  private Castle castle;
-
-  @Setter
-  @Getter
-  private Army army;
-
-  /**
-   * Creates kingdom.
-   */
-  public void createKingdom(final KingdomFactory factory) {
-    setKing(factory.createKing());
-    setCastle(factory.createCastle());
-    setArmy(factory.createArmy());
-  }
-
-  /**
-   * The factory of kingdom factories.
-   */
-  public static class FactoryMaker {
-
-    /**
-     * Enumeration for the different types of Kingdoms.
-     */
-    public enum KingdomType {
-      ELF, ORC
-    }
-
-    /**
-     * The factory method to create KingdomFactory concrete objects.
-     */
-    public static KingdomFactory makeFactory(KingdomType type) {
-      switch (type) {
-        case ELF:
-          return new ElfKingdomFactory();
-        case ORC:
-          return new OrcKingdomFactory();
-        default:
-          throw new IllegalArgumentException("KingdomType not supported.");
-      }
-    }
-  }
+  private final Kingdom kingdom = new Kingdom();
 
   /**
    * Program entry point.
@@ -101,19 +52,30 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-
     var app = new App();
+  }
 
+  @Override
+  public void run() {
     log.info("Elf Kingdom");
-    app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
-    log.info(app.getArmy().getDescription());
-    log.info(app.getCastle().getDescription());
-    log.info(app.getKing().getDescription());
+    createKingdom(Kingdom.FactoryMaker.makeFactory(Kingdom.FactoryMaker.KingdomType.ELF));
+    log.info(kingdom.getArmy().getDescription());
+    log.info(kingdom.getCastle().getDescription());
+    log.info(kingdom.getKing().getDescription());
 
     log.info("Orc Kingdom");
-    app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
-    log.info(app.getArmy().getDescription());
-    log.info(app.getCastle().getDescription());
-    log.info(app.getKing().getDescription());
+    createKingdom(Kingdom.FactoryMaker.makeFactory(Kingdom.FactoryMaker.KingdomType.ORC));
+    log.info(kingdom.getArmy().getDescription());
+    log.info(kingdom.getCastle().getDescription());
+    log.info(kingdom.getKing().getDescription());
+  }
+
+  /**
+   * Creates kingdom.
+   */
+  public void createKingdom(final KingdomFactory factory) {
+    kingdom.setKing(factory.createKing());
+    kingdom.setCastle(factory.createCastle());
+    kingdom.setArmy(factory.createArmy());
   }
 }
