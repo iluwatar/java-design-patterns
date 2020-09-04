@@ -68,41 +68,52 @@ public class Ferrari implements Car {
 }
 ```
 
+Enumeration above represents types of cars that we support(Ford and Ferrari).
+
+```java
+public enum CarType {
+  
+  /**
+   * Enumeration for different types of cars.
+   */
+  FORD(Ford::new), 
+  FERRARI(Ferrari::new);
+  
+  private final Supplier<Car> constructor; 
+  
+  CarType(Supplier<Car> constructor) {
+    this.constructor = constructor;
+  }
+  
+  public Supplier<Car> getConstructor() {
+    return this.constructor;
+  }
+}
+```
 Then we have the static method "getCar" to create car objects encapsulated in the factory class "CarSimpleFactory".
 
 ```java
 /**
  * Factory of cars.
  */
-public class CarSimpleFactory {
-  
-  /**
-   * Enumeration for different types of cars.
-   */
-  static enum CarType {
-    FORD, FERRARI
-  }
+public class CarsFactory {
   
   /**
    * Factory method takes as parameter a car type and initiate the appropriate class.
    */
   public static Car getCar(CarType type) {
-    switch (type) {
-      case FORD: return new Ford();
-      case FERRARI: return new Ferrari();
-      default: throw new IllegalArgumentException("Model not supported.");
-    }
+    return type.getConstructor().get();
   }
 }
 ```
 
-Now on the client code we can create differentes types of cars(Ford or Ferrari) using the factory class.
+Now on the client code we can create different types of cars using the factory class.
 
 ```java
-Car car1 = CarSimpleFactory.getCar(CarSimpleFactory.CarType.FORD);
-Car car2 = CarSimpleFactory.getCar(CarSimpleFactory.CarType.FERRARI);
+var car1 = CarsFactory.getCar(CarType.FORD);
+var car2 = CarsFactory.getCar(CarType.FERRARI);
 LOGGER.info(car1.getDescription());
-LOGGER.info(car2.getDescription());
+LOGGER.info(car2.getDescription());;
 ```
 
 Program output:

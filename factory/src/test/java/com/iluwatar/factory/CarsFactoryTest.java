@@ -8,7 +8,7 @@ class CarsFactoryTest {
 
 	@Test
 	void shouldReturnFerrariInstance() {
-		final var ferrari = CarsFactory.getCar(CarsFactory.CarType.FERRARI);
+		final var ferrari = CarsFactory.getCar(CarType.FERRARI);
 		assertTrue(ferrari instanceof Ferrari);
 	}
 

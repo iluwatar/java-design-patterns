@@ -43,8 +43,8 @@ public class App {
    * Program main entry point.
    */
   public static void main(String[] args) {
-    var car1 = CarsFactory.getCar(CarsFactory.CarType.FORD);
-    var car2 = CarsFactory.getCar(CarsFactory.CarType.FERRARI);
+    var car1 = CarsFactory.getCar(CarType.FORD);
+    var car2 = CarsFactory.getCar(CarType.FERRARI);
     LOGGER.info(car1.getDescription());
     LOGGER.info(car2.getDescription());
   }
