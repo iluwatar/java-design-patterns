@@ -29,7 +29,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-We have an interface "Car" and tow implementations "Ford" and "Ferrari".
+We have an interface 'Car' and tow implementations 'Ford' and 'Ferrari'.
 
 ```java
 /**
@@ -68,7 +68,7 @@ public class Ferrari implements Car {
 }
 ```
 
-Enumeration above represents types of cars that we support(Ford and Ferrari).
+Enumeration above represents types of cars that we support (Ford and Ferrari).
 
 ```java
 public enum CarType {
@@ -90,7 +90,7 @@ public enum CarType {
   }
 }
 ```
-Then we have the static method "getCar" to create car objects encapsulated in the factory class "CarSimpleFactory".
+Then we have the static method 'getCar' to create car objects encapsulated in the factory class 'CarSimpleFactory'.
 
 ```java
 /**
@@ -122,13 +122,18 @@ Program output:
 This is Ford.
 This Ferrari.
 ```
-## Applicability
+## Class Diagram
+![alt text](./etc/factory.urm.png "Factory pattern class diagram")
 
+## Applicability
 Use the Simple Factory pattern when you only care about the creation of a object, not how to create and manage it.
 
-## Disadvantages:
+## Pros
+* Allows keeping all objects creation in one place and avoid of spreading 'new' key value across codebase.
+* Allows to writs loosely coupled code. Some of its main advantages include better testability, easy-to-understand code, swappable components, scalability and isolated features.
 
-The code becomes more complicated than it should be. 
+## Cons
+* The code becomes more complicated than it should be. 
 
 ## Related patterns
 
