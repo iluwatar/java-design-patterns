@@ -77,7 +77,7 @@ public class App implements Runnable {
 
   /**
    * Creates kingdom.
-   * @param kingdomType
+   * @param kingdomType type of Kingdom
    */
   public void createKingdom(final Kingdom.FactoryMaker.KingdomType kingdomType) {
     final KingdomFactory kingdomFactory = Kingdom.FactoryMaker.makeFactory(kingdomType);
