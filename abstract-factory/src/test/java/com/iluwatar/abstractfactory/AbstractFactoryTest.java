@@ -23,7 +23,6 @@
 
 package com.iluwatar.abstractfactory;
 
-import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -48,14 +47,14 @@ public class AbstractFactoryTest {
   @Test
   public void king() {
     app.createKingdom(elfFactory);
-    val kingdom = app.getKingdom();
+    final var kingdom = app.getKingdom();
 
-    val elfKing = kingdom.getKing();
+    final var elfKing = kingdom.getKing();
     assertTrue(elfKing instanceof ElfKing);
     assertEquals(ElfKing.DESCRIPTION, elfKing.getDescription());
 
     app.createKingdom(orcFactory);
-    val orcKing = kingdom.getKing();
+    final var orcKing = kingdom.getKing();
     assertTrue(orcKing instanceof OrcKing);
     assertEquals(OrcKing.DESCRIPTION, orcKing.getDescription());
   }
@@ -63,14 +62,14 @@ public class AbstractFactoryTest {
   @Test
   public void castle() {
     app.createKingdom(elfFactory);
-    val kingdom = app.getKingdom();
+    final var kingdom = app.getKingdom();
 
-    val elfCastle = kingdom.getCastle();
+    final var elfCastle = kingdom.getCastle();
     assertTrue(elfCastle instanceof ElfCastle);
     assertEquals(ElfCastle.DESCRIPTION, elfCastle.getDescription());
 
     app.createKingdom(orcFactory);
-    val orcCastle = kingdom.getCastle();
+    final var orcCastle = kingdom.getCastle();
     assertTrue(orcCastle instanceof OrcCastle);
     assertEquals(OrcCastle.DESCRIPTION, orcCastle.getDescription());
   }
@@ -78,14 +77,14 @@ public class AbstractFactoryTest {
   @Test
   public void army() {
     app.createKingdom(elfFactory);
-    val kingdom = app.getKingdom();
+    final var kingdom = app.getKingdom();
 
-    val elfArmy = kingdom.getArmy();
+    final var elfArmy = kingdom.getArmy();
     assertTrue(elfArmy instanceof ElfArmy);
     assertEquals(ElfArmy.DESCRIPTION, elfArmy.getDescription());
 
     app.createKingdom(orcFactory);
-    val orcArmy = kingdom.getArmy();
+    final var orcArmy = kingdom.getArmy();
     assertTrue(orcArmy instanceof OrcArmy);
     assertEquals(OrcArmy.DESCRIPTION, orcArmy.getDescription());
   }
@@ -93,11 +92,11 @@ public class AbstractFactoryTest {
   @Test
   public void createElfKingdom() {
     app.createKingdom(elfFactory);
-    val kingdom = app.getKingdom();
+    final var kingdom = app.getKingdom();
 
-    val king = kingdom.getKing();
-    val castle = kingdom.getCastle();
-    val army = kingdom.getArmy();
+    final var king = kingdom.getKing();
+    final var castle = kingdom.getCastle();
+    final var army = kingdom.getArmy();
     assertTrue(king instanceof ElfKing);
     assertEquals(ElfKing.DESCRIPTION, king.getDescription());
     assertTrue(castle instanceof ElfCastle);
@@ -109,11 +108,11 @@ public class AbstractFactoryTest {
   @Test
   public void createOrcKingdom() {
     app.createKingdom(orcFactory);
-    val kingdom = app.getKingdom();
+    final var kingdom = app.getKingdom();
 
-    val king = kingdom.getKing();
-    val castle = kingdom.getCastle();
-    val army = kingdom.getArmy();
+    final var king = kingdom.getKing();
+    final var castle = kingdom.getCastle();
+    final var army = kingdom.getArmy();
     assertTrue(king instanceof OrcKing);
     assertEquals(OrcKing.DESCRIPTION, king.getDescription());
     assertTrue(castle instanceof OrcCastle);
