@@ -118,10 +118,12 @@ Use the Simple Factory pattern when you only care about the creation of a object
 and manage it.
 
 Pros
+
 * Allows keeping all objects creation in one place and avoid of spreading 'new' key value across codebase.
 * Allows to writs loosely coupled code. Some of its main advantages include better testability, easy-to-understand code, swappable components, scalability and isolated features.
 
 Cons
+
 * The code becomes more complicated than it should be. 
 
 ## Related patterns
