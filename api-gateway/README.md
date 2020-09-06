@@ -10,6 +10,10 @@ tags:
   - Microservices
 ---
 
+## Also knows as
+
+Gateway Routing
+
 ## Intent
 
 Aggregate calls to microservices in a single location, the API Gateway. The user makes a single call 
@@ -146,6 +150,7 @@ public class ApiGateway {
 ```
 
 ## Class diagram
+
 ![alt text](./etc/api-gateway.png "API Gateway")
 
 ## Applicability
@@ -160,3 +165,4 @@ Use the API Gateway pattern when
 * [NGINX - Building Microservices: Using an API Gateway](https://www.nginx.com/blog/building-microservices-using-an-api-gateway/)
 * [Microservices Patterns: With examples in Java](https://www.amazon.com/gp/product/1617294543/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617294543&linkId=ac7b6a57f866ac006a309d9086e8cfbd)
 * [Building Microservices: Designing Fine-Grained Systems](https://www.amazon.com/gp/product/1491950358/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1491950358&linkId=4c95ca9831e05e3f0dadb08841d77bf1)
+* [Gateway Routing pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/gateway-routing)
