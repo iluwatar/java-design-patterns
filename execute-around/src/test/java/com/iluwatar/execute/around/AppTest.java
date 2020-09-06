@@ -29,19 +29,21 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
  * Tests execute-around example.
  */
-public class AppTest {
+class AppTest {
 
   @Test
-  public void test() throws IOException {
-    App.main(new String[]{});
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 
   @BeforeEach
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     var file = new File("testfile.txt");
     file.delete();
   }

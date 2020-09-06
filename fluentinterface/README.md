@@ -9,23 +9,25 @@ tags:
 ---
 
 ## Intent
-A fluent interface provides an easy-readable, flowing interface, that often mimics a domain specific language. Using 
-this pattern results in code that can be read nearly as human language.
+
+A fluent interface provides an easy-readable, flowing interface, that often mimics a domain specific 
+language. Using this pattern results in code that can be read nearly as human language.
 
 ## Explanation
 
-The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API. Those interfaces tend 
-to mimic domain specific languages, so they can nearly be read as human languages.
+The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API. Those 
+interfaces tend to mimic domain specific languages, so they can nearly be read as human languages.
  
 A fluent interface can be implemented using any of
  
- * Method Chaining - calling a method returns some object on which further methods can be called.
- * Static Factory Methods and Imports
+ * Method chaining - calling a method returns some object on which further methods can be called.
+ * Static factory methods and imports.
  * Named parameters - can be simulated in Java using static factory methods.
 
 Real world example
 
-> We need to select numbers based on different criteria from the list. It's a great chance to utilize fluent interface pattern to provide readable easy-to-use developer experience. 
+> We need to select numbers based on different criteria from the list. It's a great chance to 
+> utilize fluent interface pattern to provide readable easy-to-use developer experience. 
 
 In plain words
 
@@ -33,7 +35,9 @@ In plain words
 
 Wikipedia says
 
-> In software engineering, a fluent interface is an object-oriented API whose design relies extensively on method chaining. Its goal is to increase code legibility by creating a domain-specific language (DSL).
+> In software engineering, a fluent interface is an object-oriented API whose design relies 
+> extensively on method chaining. Its goal is to increase code legibility by creating a 
+> domain-specific language (DSL).
 
 **Programmatic Example**
 
@@ -134,29 +138,35 @@ result is printed afterwards.
         .first(2)
         .last()
         .ifPresent(number -> LOGGER.info("Last amongst first two negatives: {}", number));
-    
-    // The initial list contains: 1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68.
-    // The first three negative values are: -61, -22, -87.
-    // The last two positive values are: 23, 2.
-    // The first even number is: 14
-    // A string-mapped list of negative numbers contains: String[-61], String[-22], String[-87], String[-82], String[-98], String[-68].
-    // The lazy list contains the last two of the first four positive numbers mapped to Strings: String[18], String[6].
-    // Last amongst first two negatives: -22    
+```
+
+Program output:
+
+```java
+The initial list contains: 1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68.
+The first three negative values are: -61, -22, -87.
+The last two positive values are: 23, 2.
+The first even number is: 14
+A string-mapped list of negative numbers contains: String[-61], String[-22], String[-87], String[-82], String[-98], String[-68].
+The lazy list contains the last two of the first four positive numbers mapped to Strings: String[18], String[6].
+Last amongst first two negatives: -22    
 ```
 
 ## Class diagram
+
 ![Fluent Interface](./etc/fluentinterface.png "Fluent Interface")
 
 ## Applicability
+
 Use the Fluent Interface pattern when
 
-* You provide an API that would benefit from a DSL-like usage
-* You have objects that are difficult to configure or use
+* You provide an API that would benefit from a DSL-like usage.
+* You have objects that are difficult to configure or use.
 
 ## Known uses
 
 * [Java 8 Stream API](http://www.oracle.com/technetwork/articles/java/ma14-java-se-8-streams-2177646.html)
-* [Google Guava FluentInterable](https://github.com/google/guava/wiki/FunctionalExplained)
+* [Google Guava FluentIterable](https://github.com/google/guava/wiki/FunctionalExplained)
 * [JOOQ](http://www.jooq.org/doc/3.0/manual/getting-started/use-cases/jooq-as-a-standalone-sql-builder/)
 * [Mockito](http://mockito.org/)
 * [Java Hamcrest](http://code.google.com/p/hamcrest/wiki/Tutorial)

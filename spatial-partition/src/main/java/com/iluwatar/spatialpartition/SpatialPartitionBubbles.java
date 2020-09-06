@@ -34,8 +34,8 @@ import java.util.Hashtable;
 
 public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
 
-  final Hashtable<Integer, Bubble> bubbles;
-  final QuadTree quadTree;
+  private final Hashtable<Integer, Bubble> bubbles;
+  private final QuadTree quadTree;
 
   SpatialPartitionBubbles(Hashtable<Integer, Bubble> bubbles, QuadTree quadTree) {
     this.bubbles = bubbles;

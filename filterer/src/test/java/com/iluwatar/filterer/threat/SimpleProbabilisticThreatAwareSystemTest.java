@@ -21,22 +21,31 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.leaderfollowers;
+package com.iluwatar.filterer.threat;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * Tests for TaskHandler
- */
-public class TaskHandlerTest {
+import java.util.List;
 
-    @Test
-    public void testHandleTask() throws InterruptedException {
-        var taskHandler = new TaskHandler();
-        var handle = new Task(100);
-        taskHandler.handleTask(handle);
-        Assert.assertTrue(handle.isFinished());
-    }
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+class SimpleProbabilisticThreatAwareSystemTest {
+  @Test
+  void shouldFilterByProbability() {
+    //given
+    var trojan = new SimpleProbableThreat("Troyan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
+    var rootkit = new SimpleProbableThreat("Rootkit-System", 2, ThreatType.ROOTKIT, 0.8);
+    List<ProbableThreat> probableThreats = List.of(trojan, rootkit);
+
+    var simpleProbabilisticThreatAwareSystem =
+            new SimpleProbabilisticThreatAwareSystem("System-1", probableThreats);
+
+    //when
+    var filtered = simpleProbabilisticThreatAwareSystem.filtered()
+            .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
+
+    //then
+    assertEquals(filtered.threats().size(), 1);
+    assertEquals(filtered.threats().get(0), trojan);
+  }
 }

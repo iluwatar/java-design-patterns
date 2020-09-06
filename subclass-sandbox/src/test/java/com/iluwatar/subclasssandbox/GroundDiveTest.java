@@ -23,55 +23,48 @@
 
 package com.iluwatar.subclasssandbox;
 
+import com.github.stefanbirkner.systemlambda.Statement;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.contrib.java.lang.system.SystemOutRule;
+
+import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOutNormalized;
 
 /**
  * GroundDive unit tests.
  */
 public class GroundDiveTest {
 
-  @Rule
-  public SystemOutRule log = new SystemOutRule().enableLog();
-
   @Test
-  public void testMove() {
-    log.clearLog();
+  public void testMove() throws Exception {
     var groundDive = new GroundDive();
     groundDive.move(1.0, 1.0, 1.0);
-    var outputLog = getLogContent(log.getLog());
+    var outputLog = getLogContent(() -> groundDive.move(1.0, 1.0, 1.0));
     var expectedLog = "Move to ( 1.0, 1.0, 1.0 )";
     Assert.assertEquals(outputLog, expectedLog);
   }
 
   @Test
-  public void testPlaySound() {
-    log.clearLog();
+  public void testPlaySound() throws Exception {
     var groundDive = new GroundDive();
-    groundDive.playSound("SOUND_NAME", 1);
-    var outputLog = getLogContent(log.getLog());
+    var outputLog = getLogContent(() -> groundDive.playSound("SOUND_NAME", 1));
     var expectedLog = "Play SOUND_NAME with volumn 1";
     Assert.assertEquals(outputLog, expectedLog);
   }
 
   @Test
-  public void testSpawnParticles() {
-    log.clearLog();
+  public void testSpawnParticles() throws Exception {
     var groundDive = new GroundDive();
-    groundDive.spawnParticles("PARTICLE_TYPE", 100);
-    final var outputLog = getLogContent(log.getLog());
+    final var outputLog = getLogContent(
+            () -> groundDive.spawnParticles("PARTICLE_TYPE", 100));
     final var expectedLog = "Spawn 100 particle with type PARTICLE_TYPE";
     Assert.assertEquals(outputLog, expectedLog);
   }
 
   @Test
-  public void testActivate() {
-    log.clearLog();
+  public void testActivate() throws Exception {
     var groundDive = new GroundDive();
-    groundDive.activate();
-    var logs = log.getLog().split("\n");
+    var logs = tapSystemOutNormalized(groundDive::activate)
+            .split("\n");
     final var expectedSize = 3;
     final var log1 = logs[0].split("-")[1].trim() + " -" + logs[0].split("-")[2].trim();
     final var expectedLog1 = "Move to ( 0.0, 0.0, -20.0 )";
@@ -83,6 +76,11 @@ public class GroundDiveTest {
     Assert.assertEquals(log1, expectedLog1);
     Assert.assertEquals(log2, expectedLog2);
     Assert.assertEquals(log3, expectedLog3);
+  }
+
+  private String getLogContent(Statement statement) throws Exception {
+    var log = tapSystemOutNormalized(statement);
+    return getLogContent(log);
   }
 
   private String getLogContent(String log) {

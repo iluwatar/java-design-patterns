@@ -21,21 +21,15 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.leaderfollowers;
-
-import org.junit.Test;
+package com.iluwatar.filterer.threat;
 
 /**
- *
- * Application test
- *
+ * Represents threat that might be a threat with given probability.
  */
-public class AppTest {
-
-    @Test
-    public void test() throws InterruptedException {
-        String[] args = {};
-        App.main(args);
-    }
-
+public interface ProbableThreat extends Threat {
+  /**
+   * Returns probability of occurrence of given threat.
+   * @return probability of occurrence of given threat.
+   */
+  double probability();
 }

@@ -70,7 +70,7 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
     return new LazyFluentIterable<>() {
       @Override
       public Iterator<E> iterator() {
-        return new DecoratingIterator<E>(iterable.iterator()) {
+        return new DecoratingIterator<>(iterable.iterator()) {
           @Override
           public E computeNext() {
             while (fromIterator.hasNext()) {
@@ -107,10 +107,10 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public FluentIterable<E> first(int count) {
-    return new LazyFluentIterable<E>() {
+    return new LazyFluentIterable<>() {
       @Override
       public Iterator<E> iterator() {
-        return new DecoratingIterator<E>(iterable.iterator()) {
+        return new DecoratingIterator<>(iterable.iterator()) {
           int currentIndex;
 
           @Override
@@ -149,10 +149,10 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public FluentIterable<E> last(int count) {
-    return new LazyFluentIterable<E>() {
+    return new LazyFluentIterable<>() {
       @Override
       public Iterator<E> iterator() {
-        return new DecoratingIterator<E>(iterable.iterator()) {
+        return new DecoratingIterator<>(iterable.iterator()) {
           private int stopIndex;
           private int totalElementsCount;
           private List<E> list;
@@ -194,10 +194,10 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public <T> FluentIterable<T> map(Function<? super E, T> function) {
-    return new LazyFluentIterable<T>() {
+    return new LazyFluentIterable<>() {
       @Override
       public Iterator<T> iterator() {
-        return new DecoratingIterator<T>(null) {
+        return new DecoratingIterator<>(null) {
           final Iterator<E> oldTypeIterator = iterable.iterator();
 
           @Override
@@ -226,7 +226,7 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
 
   @Override
   public Iterator<E> iterator() {
-    return new DecoratingIterator<E>(iterable.iterator()) {
+    return new DecoratingIterator<>(iterable.iterator()) {
       @Override
       public E computeNext() {
         return fromIterator.hasNext() ? fromIterator.next() : null;

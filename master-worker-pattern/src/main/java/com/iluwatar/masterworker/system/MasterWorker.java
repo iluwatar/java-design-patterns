@@ -40,7 +40,7 @@ public abstract class MasterWorker {
 
   abstract Master setMaster(int numOfWorkers);
 
-  public Result getResult(Input input) {
+  public Result<?> getResult(Input<?> input) {
     this.master.doWork(input);
     return this.master.getFinalResult();
   }

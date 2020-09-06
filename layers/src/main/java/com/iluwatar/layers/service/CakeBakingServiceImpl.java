@@ -35,9 +35,7 @@ import com.iluwatar.layers.entity.CakeTopping;
 import com.iluwatar.layers.exception.CakeBakingException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -72,7 +70,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
     Set<CakeLayer> foundLayers = new HashSet<>();
     for (var info : cakeInfo.cakeLayerInfos) {
       var found = allLayers.stream().filter(layer -> layer.getName().equals(info.name)).findFirst();
-      if (!found.isPresent()) {
+      if (found.isEmpty()) {
         throw new CakeBakingException(String.format("Layer %s is not available", info.name));
       } else {
         foundLayers.add(found.get());
@@ -114,9 +112,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   private List<CakeTopping> getAvailableToppingEntities() {
     var bean = context.getBean(CakeToppingDao.class);
     List<CakeTopping> result = new ArrayList<>();
-    var iterator = bean.findAll().iterator();
-    while (iterator.hasNext()) {
-      var topping = iterator.next();
+    for (CakeTopping topping : bean.findAll()) {
       if (topping.getCake() == null) {
         result.add(topping);
       }
@@ -128,9 +124,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   public List<CakeToppingInfo> getAvailableToppings() {
     var bean = context.getBean(CakeToppingDao.class);
     List<CakeToppingInfo> result = new ArrayList<>();
-    var iterator = bean.findAll().iterator();
-    while (iterator.hasNext()) {
-      var next = iterator.next();
+    for (CakeTopping next : bean.findAll()) {
       if (next.getCake() == null) {
         result.add(new CakeToppingInfo(next.getId(), next.getName(), next.getCalories()));
       }
@@ -141,9 +135,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   private List<CakeLayer> getAvailableLayerEntities() {
     var bean = context.getBean(CakeLayerDao.class);
     List<CakeLayer> result = new ArrayList<>();
-    var iterator = bean.findAll().iterator();
-    while (iterator.hasNext()) {
-      var next = iterator.next();
+    for (CakeLayer next : bean.findAll()) {
       if (next.getCake() == null) {
         result.add(next);
       }
@@ -155,9 +147,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   public List<CakeLayerInfo> getAvailableLayers() {
     var bean = context.getBean(CakeLayerDao.class);
     List<CakeLayerInfo> result = new ArrayList<>();
-    var iterator = bean.findAll().iterator();
-    while (iterator.hasNext()) {
-      var next = iterator.next();
+    for (CakeLayer next : bean.findAll()) {
       if (next.getCake() == null) {
         result.add(new CakeLayerInfo(next.getId(), next.getName(), next.getCalories()));
       }
@@ -169,9 +159,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   public List<CakeInfo> getAllCakes() {
     var cakeBean = context.getBean(CakeDao.class);
     List<CakeInfo> result = new ArrayList<>();
-    var iterator = cakeBean.findAll().iterator();
-    while (iterator.hasNext()) {
-      var cake = iterator.next();
+    for (Cake cake : cakeBean.findAll()) {
       var cakeToppingInfo =
           new CakeToppingInfo(cake.getTopping().getId(), cake.getTopping().getName(), cake
               .getTopping().getCalories());

@@ -27,8 +27,9 @@ package com.iluwatar.model.view.controller;
  * Health enumeration.
  */
 public enum Health {
-
-  HEALTHY("healthy"), WOUNDED("wounded"), DEAD("dead");
+  HEALTHY("healthy"),
+  WOUNDED("wounded"),
+  DEAD("dead");
 
   private final String title;
 

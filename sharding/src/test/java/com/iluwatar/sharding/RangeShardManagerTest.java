@@ -50,7 +50,7 @@ public class RangeShardManagerTest {
 
   @Test
   public void testStoreData() {
-    var data = new Data(1, "test", Data.DataType.type1);
+    var data = new Data(1, "test", Data.DataType.TYPE_1);
     rangeShardManager.storeData(data);
     Assert.assertEquals(data, rangeShardManager.getShardById(1).getDataById(1));
   }

@@ -21,42 +21,16 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.leaderfollowers;
+package com.iluwatar.filterer.domain;
 
-import org.junit.Assert;
-import org.junit.Test;
+import java.util.function.Predicate;
 
 /**
- * Tests for WorkCenter
+ * Filterer helper interface.
+ * @param <G> type of the container-like object.
+ * @param <E> type of the elements contained within this container-like object.
  */
-public class WorkCenterTest {
-
-  @Test
-  public void testCreateWorkers() {
-    var taskSet = new TaskSet();
-    var taskHandler = new TaskHandler();
-    var workCenter = new WorkCenter();
-    workCenter.createWorkers(5, taskSet, taskHandler);
-    Assert.assertEquals(workCenter.getWorkers().size(), 5);
-    Assert.assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
-  }
-
-  @Test
-  public void testNullLeader() {
-    var workCenter = new WorkCenter();
-    workCenter.promoteLeader();
-    Assert.assertNull(workCenter.getLeader());
-  }
-
-  @Test
-  public void testPromoteLeader() {
-    var taskSet = new TaskSet();
-    var taskHandler = new TaskHandler();
-    var workCenter = new WorkCenter();
-    workCenter.createWorkers(5, taskSet, taskHandler);
-    workCenter.removeWorker(workCenter.getLeader());
-    workCenter.promoteLeader();
-    Assert.assertEquals(workCenter.getWorkers().size(), 4);
-    Assert.assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
-  }
+@FunctionalInterface
+public interface Filterer<G, E> {
+  G by(Predicate<? super E> predicate);
 }

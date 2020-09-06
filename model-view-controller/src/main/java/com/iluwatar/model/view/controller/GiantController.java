@@ -36,6 +36,7 @@ public class GiantController {
     this.view = view;
   }
 
+  @SuppressWarnings("UnusedReturnValue")
   public Health getHealth() {
     return giant.getHealth();
   }
@@ -44,6 +45,7 @@ public class GiantController {
     this.giant.setHealth(health);
   }
 
+  @SuppressWarnings("UnusedReturnValue")
   public Fatigue getFatigue() {
     return giant.getFatigue();
   }
@@ -52,6 +54,7 @@ public class GiantController {
     this.giant.setFatigue(fatigue);
   }
 
+  @SuppressWarnings("UnusedReturnValue")
   public Nourishment getNourishment() {
     return giant.getNourishment();
   }

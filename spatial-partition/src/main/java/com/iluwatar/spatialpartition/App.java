@@ -59,6 +59,7 @@ import org.slf4j.LoggerFactory;
 
 public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  private static final String BUBBLE = "Bubble ";
 
   static void noSpatialPartition(int numOfMovements, Hashtable<Integer, Bubble> bubbles) {
     //all bubbles have to be checked for collision for all bubbles
@@ -76,7 +77,7 @@ public class App {
       numOfMovements--;
     }
     //bubbles not popped
-    bubbles.keySet().stream().map(key -> "Bubble " + key + " not popped").forEach(LOGGER::info);
+    bubbles.keySet().stream().map(key -> BUBBLE + key + " not popped").forEach(LOGGER::info);
   }
 
   static void withSpatialPartition(
@@ -99,7 +100,7 @@ public class App {
       numOfMovements--;
     }
     //bubbles not popped
-    bubbles.keySet().stream().map(key -> "Bubble " + key + " not popped").forEach(LOGGER::info);
+    bubbles.keySet().stream().map(key -> BUBBLE + key + " not popped").forEach(LOGGER::info);
   }
 
   /**
@@ -116,7 +117,7 @@ public class App {
       var b = new Bubble(rand.nextInt(300), rand.nextInt(300), i, rand.nextInt(2) + 1);
       bubbles1.put(i, b);
       bubbles2.put(i, b);
-      LOGGER.info("Bubble " + i + " with radius " + b.radius
+      LOGGER.info(BUBBLE + i + " with radius " + b.radius
           + " added at (" + b.coordinateX + "," + b.coordinateY + ")");
     }
 

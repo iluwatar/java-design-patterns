@@ -1085,6 +1085,116 @@
         "code",
         "review"
       ]
+    },
+    {
+      "login": "vINCENT8888801",
+      "name": "Wei Seng",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/8037883?v=4",
+      "profile": "https://github.com/vINCENT8888801",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ashishtrivedi16",
+      "name": "Ashish Trivedi",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/23194128?v=4",
+      "profile": "https://www.linkedin.com/in/ashish-trivedi-218379135/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "RayYH",
+      "name": "洪月阳",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/41055099?v=4",
+      "profile": "https://rayyounghong.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "xdvrx1",
+      "name": "xdvrx1",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/47092464?v=4",
+      "profile": "https://xdvrx1.github.io/",
+      "contributions": [
+        "review",
+        "ideas"
+      ]
+    },
+    {
+      "login": "ohbus",
+      "name": "Subhrodip Mohanta",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13291222?v=4",
+      "profile": "http://subho.xyz",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "nahteb",
+      "name": "Bethan Palmer",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/13121570?v=4",
+      "profile": "https://github.com/nahteb",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ToxicDreamz",
+      "name": "Toxic Dreamz",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/45225562?v=4",
+      "profile": "https://github.com/ToxicDreamz",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "edycutjong",
+      "name": "Edy Cu Tjong",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1098102?v=4",
+      "profile": "http://www.edycutjong.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "mkrzywanski",
+      "name": "Michał Krzywański",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/15279585?v=4",
+      "profile": "https://github.com/mkrzywanski",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "stefanbirkner",
+      "name": "Stefan Birkner",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/711349?v=4",
+      "profile": "https://www.stefan-birkner.de",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "fedorskvorcov",
+      "name": "Fedor Skvorcov",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/43882212?v=4",
+      "profile": "https://github.com/fedorskvorcov",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "samilAyoub",
+      "name": "samilAyoub",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/61546990?v=4",
+      "profile": "https://github.com/samilAyoub",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,

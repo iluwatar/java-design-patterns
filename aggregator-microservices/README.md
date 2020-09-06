@@ -6,6 +6,8 @@ permalink: /patterns/aggregator-microservices/
 categories: Architectural
 tags:
 - Cloud distributed
+- Decoupling
+- Microservices
 ---
 
 ## Intent
@@ -17,7 +19,7 @@ The user makes a single call to the aggregator service, and the aggregator then 
 Real world example
 
 > Our web marketplace needs information about products and their current inventory. It makes a call to an aggregator
-> service that in turn calls the product information microservice and product inventory microservice returning the
+> service which in turn calls the product information microservice and product inventory microservice returning the
 > combined information. 
 
 In plain words
@@ -41,7 +43,7 @@ public class Product {
 }
 ```
 
-Next we can introduct our `Aggregator` microservice. It contains clients `ProductInformationClient` and
+Next we can introduce our `Aggregator` microservice. It contains clients `ProductInformationClient` and
 `ProductInventoryClient` for calling respective microservices.
 
 ```java

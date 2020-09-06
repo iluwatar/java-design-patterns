@@ -1,0 +1,35 @@
+@startuml
+package com.iluwatar.factory {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface Car {
+    + getDescription() : String {abstract}
+  }
+  class CarsFactory {
+    + CarsFactory()
+    + getCar(type : CarType) : Car {static}
+  }
+  ~enum CarType {
+    + FERRARI {static}
+    + FORD {static}
+    + valueOf(name : String) : CarType {static}
+    + values() : CarType[] {static}
+  }
+  class Ferrari {
+    ~ DESCRIPTION : String {static}
+    + Ferrari()
+    + getDescription() : String
+  }
+  class Ford {
+    ~ DESCRIPTION : String {static}
+    + Ford()
+    + getDescription() : String
+  }
+}
+CarType ..+ CarsFactory
+Ferrari ..|> Car 
+Ford ..|> Car 
+@enduml

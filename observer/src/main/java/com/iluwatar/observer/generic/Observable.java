@@ -35,7 +35,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public abstract class Observable<S extends Observable<S, O, A>, O extends Observer<S, O, A>, A> {
 
-  protected List<O> observers;
+  protected final List<O> observers;
 
   public Observable() {
     this.observers = new CopyOnWriteArrayList<>();

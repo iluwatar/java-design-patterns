@@ -24,37 +24,41 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java CI with Maven
+name: Java CI
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 jobs:
   build:
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone for improving relevancy of SonarQube reporting
+        fetch-depth: 0
     - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
     # Some tests need screen access
     - name: Install xvfb
-      run: sudo apt-get install xvfb
-    # SonarQube scan does not work for forked repositories
+      run: sudo apt-get install -y xvfb
+    # The SonarQube analysis is only for the master branch of the main repository.
+    # SonarQube scan does not work for forked repositories try changing it to xvfb-run mvn clean verify
     # See https://jira.sonarsource.com/browse/MMF-1371
-    - name: Build with Maven
-      if: github.ref != 'refs/heads/master'
-      run: xvfb-run mvn clean verify
     - name: Build with Maven and run SonarQube analysis
-      if: github.ref == 'refs/heads/master'
       run: xvfb-run mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
       env:
         # These two env variables are needed for sonar analysis
-        GITHUB_TOKEN: ${{ secrets.REPOSITORY_ACCESS_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

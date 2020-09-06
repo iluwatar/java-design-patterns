@@ -33,7 +33,7 @@ public class GuardTest {
 
   @Test
   public void testGuard() {
-    Guard guard = new Guard();
+    var guard = new Guard();
     assertThat(guard, instanceOf(Permission.class));
   }
 }
