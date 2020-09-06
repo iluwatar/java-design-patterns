@@ -23,7 +23,6 @@
 
 package com.iluwatar.abstractfactory;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,25 +34,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AbstractFactoryTest {
 
   private final App app = new App();
-  private KingdomFactory elfFactory;
-  private KingdomFactory orcFactory;
-
-  @BeforeEach
-  public void setUp() {
-    elfFactory = Kingdom.FactoryMaker.makeFactory(Kingdom.FactoryMaker.KingdomType.ELF);
-    orcFactory = Kingdom.FactoryMaker.makeFactory(Kingdom.FactoryMaker.KingdomType.ORC);
-  }
 
   @Test
   public void king() {
-    app.createKingdom(elfFactory);
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
     final var elfKing = kingdom.getKing();
     assertTrue(elfKing instanceof ElfKing);
     assertEquals(ElfKing.DESCRIPTION, elfKing.getDescription());
 
-    app.createKingdom(orcFactory);
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
     final var orcKing = kingdom.getKing();
     assertTrue(orcKing instanceof OrcKing);
     assertEquals(OrcKing.DESCRIPTION, orcKing.getDescription());
@@ -61,14 +52,14 @@ public class AbstractFactoryTest {
 
   @Test
   public void castle() {
-    app.createKingdom(elfFactory);
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
     final var elfCastle = kingdom.getCastle();
     assertTrue(elfCastle instanceof ElfCastle);
     assertEquals(ElfCastle.DESCRIPTION, elfCastle.getDescription());
 
-    app.createKingdom(orcFactory);
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
     final var orcCastle = kingdom.getCastle();
     assertTrue(orcCastle instanceof OrcCastle);
     assertEquals(OrcCastle.DESCRIPTION, orcCastle.getDescription());
@@ -76,14 +67,14 @@ public class AbstractFactoryTest {
 
   @Test
   public void army() {
-    app.createKingdom(elfFactory);
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
     final var elfArmy = kingdom.getArmy();
     assertTrue(elfArmy instanceof ElfArmy);
     assertEquals(ElfArmy.DESCRIPTION, elfArmy.getDescription());
 
-    app.createKingdom(orcFactory);
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
     final var orcArmy = kingdom.getArmy();
     assertTrue(orcArmy instanceof OrcArmy);
     assertEquals(OrcArmy.DESCRIPTION, orcArmy.getDescription());
@@ -91,7 +82,7 @@ public class AbstractFactoryTest {
 
   @Test
   public void createElfKingdom() {
-    app.createKingdom(elfFactory);
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
     final var king = kingdom.getKing();
@@ -107,7 +98,7 @@ public class AbstractFactoryTest {
 
   @Test
   public void createOrcKingdom() {
-    app.createKingdom(orcFactory);
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
     final var kingdom = app.getKingdom();
 
     final var king = kingdom.getKing();

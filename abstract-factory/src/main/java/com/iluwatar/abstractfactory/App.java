@@ -26,8 +26,6 @@ package com.iluwatar.abstractfactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
 /**
  * The Abstract Factory pattern provides a way to encapsulate a group of individual factories that
  * have a common theme without specifying their concrete classes. In normal usage, the client
@@ -64,13 +62,13 @@ public class App implements Runnable {
   @Override
   public void run() {
     log.info("Elf Kingdom");
-    createKingdom(Kingdom.FactoryMaker.makeFactory(Kingdom.FactoryMaker.KingdomType.ELF));
+    createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     log.info(kingdom.getArmy().getDescription());
     log.info(kingdom.getCastle().getDescription());
     log.info(kingdom.getKing().getDescription());
 
     log.info("Orc Kingdom");
-    createKingdom(Kingdom.FactoryMaker.makeFactory(Kingdom.FactoryMaker.KingdomType.ORC));
+    createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
     log.info(kingdom.getArmy().getDescription());
     log.info(kingdom.getCastle().getDescription());
     log.info(kingdom.getKing().getDescription());
@@ -78,10 +76,12 @@ public class App implements Runnable {
 
   /**
    * Creates kingdom.
+   * @param kingdomType
    */
-  public void createKingdom(final KingdomFactory factory) {
-    kingdom.setKing(factory.createKing());
-    kingdom.setCastle(factory.createCastle());
-    kingdom.setArmy(factory.createArmy());
+  public void createKingdom(final Kingdom.FactoryMaker.KingdomType kingdomType) {
+    final KingdomFactory kingdomFactory = Kingdom.FactoryMaker.makeFactory(kingdomType);
+    kingdom.setKing(kingdomFactory.createKing());
+    kingdom.setCastle(kingdomFactory.createCastle());
+    kingdom.setArmy(kingdomFactory.createArmy());
   }
 }
