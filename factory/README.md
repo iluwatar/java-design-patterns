@@ -128,6 +128,6 @@ Cons
 
 ## Related patterns
 
-[Factory Method](https://java-design-patterns.com/patterns/factory-method/)
-[Factory Kit](https://java-design-patterns.com/patterns/factory-kit/)
-[Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/)
+* [Factory Method](https://java-design-patterns.com/patterns/factory-method/)
+* [Factory Kit](https://java-design-patterns.com/patterns/factory-kit/)
+* [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/)
