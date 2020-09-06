@@ -5,6 +5,6 @@ package com.iluwatar.factory;
  */
 public interface Car {
   
-  public String getDescription();
+  String getDescription();
   
 }
