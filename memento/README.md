@@ -9,24 +9,30 @@ tags:
 ---
 
 ## Also known as
+
 Token
 
 ## Intent
-Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored 
-to this state later.
+
+Without violating encapsulation, capture and externalize an object's internal state so that the 
+object can be restored to this state later.
 
 ## Explanation
+
 Real world example
 
-> We are working on astrology application where we need to analyze star properties over time. We are creating snapshots of star state using Memento pattern.
+> We are working on astrology application where we need to analyze star properties over time. We are 
+> creating snapshots of star state using Memento pattern.
 
 In plain words
 
-> Memento pattern captures object internal state making it easy to store and restore objects in any point of time.
+> Memento pattern captures object internal state making it easy to store and restore objects in any 
+> point of time.
 
 Wikipedia says
 
-> The memento pattern is a software design pattern that provides the ability to restore an object to its previous state (undo via rollback).
+> The memento pattern is a software design pattern that provides the ability to restore an object to 
+> its previous state (undo via rollback).
 
 **Programmatic Example**
 
@@ -38,23 +44,13 @@ public enum StarType {
   RED_GIANT("red giant"),
   WHITE_DWARF("white dwarf"),
   SUPERNOVA("supernova"),
-  DEAD("dead star"),
-  UNDEFINED("");
-
-  private final String title;
-
-  StarType(String title) {
-    this.title = title;
-  }
-
-  @Override
-  public String toString() {
-    return title;
-  }
+  DEAD("dead star");
+  ...
 }
 ```
 
-Next let's jump straight to the essentials. Here's the star class along with the mementos that we need manipulate. 
+Next, let's jump straight to the essentials. Here's the `Star` class along with the mementos that we 
+need manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
 
 ```java
 public interface StarMemento {
@@ -123,29 +119,8 @@ public class Star {
     private int ageYears;
     private int massTons;
 
-    public StarType getType() {
-      return type;
-    }
-
-    public void setType(StarType type) {
-      this.type = type;
-    }
-
-    public int getAgeYears() {
-      return ageYears;
-    }
-
-    public void setAgeYears(int ageYears) {
-      this.ageYears = ageYears;
-    }
-
-    public int getMassTons() {
-      return massTons;
-    }
-
-    public void setMassTons(int massTons) {
-      this.massTons = massTons;
-    }
+    // setters and getters ->
+    ...
   }
 }
 ```
@@ -172,27 +147,33 @@ And finally here's how we use the mementos to store and restore star states.
       star.setMemento(states.pop());
       LOGGER.info(star.toString());
     }
-    
-    // sun age: 10000000 years mass: 500000 tons
-    // red giant age: 20000000 years mass: 4000000 tons
-    // white dwarf age: 40000000 years mass: 32000000 tons
-    // supernova age: 80000000 years mass: 256000000 tons
-    // dead star age: 160000000 years mass: 2048000000 tons
-    // supernova age: 80000000 years mass: 256000000 tons
-    // white dwarf age: 40000000 years mass: 32000000 tons
-    // red giant age: 20000000 years mass: 4000000 tons
-    // sun age: 10000000 years mass: 500000 tons
 ```
 
+Program output:
+
+```
+sun age: 10000000 years mass: 500000 tons
+red giant age: 20000000 years mass: 4000000 tons
+white dwarf age: 40000000 years mass: 32000000 tons
+supernova age: 80000000 years mass: 256000000 tons
+dead star age: 160000000 years mass: 2048000000 tons
+supernova age: 80000000 years mass: 256000000 tons
+white dwarf age: 40000000 years mass: 32000000 tons
+red giant age: 20000000 years mass: 4000000 tons
+sun age: 10000000 years mass: 500000 tons
+```
 
 ## Class diagram
+
 ![alt text](./etc/memento.png "Memento")
 
 ## Applicability
+
 Use the Memento pattern when
 
-* a snapshot of an object's state must be saved so that it can be restored to that state later, and
-* a direct interface to obtaining the state would expose implementation details and break the object's encapsulation
+* A snapshot of an object's state must be saved so that it can be restored to that state later, and
+* A direct interface to obtaining the state would expose implementation details and break the 
+object's encapsulation
 
 ## Real world examples
 

@@ -33,7 +33,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
@@ -49,9 +49,9 @@ jobs:
           ${{ runner.os }}-maven-
     # Some tests need screen access
     - name: Install xvfb
-      run: sudo apt-get install xvfb
-    # SonarQube scan does not work for forked repositories
+      run: sudo apt-get install -y xvfb
+    # This worflow is only for building Pull Requests, the master branch runs Sonar analysis on the main repository.
+    # SonarQube scan does not work for forked repositories.
     # See https://jira.sonarsource.com/browse/MMF-1371
     - name: Build with Maven
-      if: github.ref != 'refs/heads/master'
       run: xvfb-run mvn clean verify

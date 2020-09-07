@@ -23,8 +23,6 @@
 
 package com.iluwatar.fluentinterface.app;
 
-import static java.lang.String.valueOf;
-
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.simple.SimpleFluentIterable;

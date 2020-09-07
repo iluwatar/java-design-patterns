@@ -31,8 +31,7 @@ public enum StarType {
   RED_GIANT("red giant"),
   WHITE_DWARF("white dwarf"),
   SUPERNOVA("supernova"),
-  DEAD("dead star"),
-  UNDEFINED("");
+  DEAD("dead star");
 
   private final String title;
 

@@ -9,15 +9,19 @@ tags:
 ---
 
 ## Intent
-Dependency Injection is a software design pattern in which one or more dependencies (or services) are injected, or 
-passed by reference, into a dependent object (or client) and are made part of the client's state. The pattern separates 
-the creation of a client's dependencies from its own behavior, which allows program designs to be loosely coupled and 
-to follow the inversion of control and single responsibility principles.
+
+Dependency Injection is a software design pattern in which one or more dependencies (or services) 
+are injected, or passed by reference, into a dependent object (or client) and are made part of the 
+client's state. The pattern separates the creation of a client's dependencies from its own behavior, 
+which allows program designs to be loosely coupled and to follow the inversion of control and single 
+responsibility principles.
 
 ## Explanation
+
 Real world example
 
-> The old wizard likes to fill his pipe and smoke tobacco once in a while. However, he doesn't want to depend on a single tobacco brand only but likes to be able to enjoy them all interchangeably.    
+> The old wizard likes to fill his pipe and smoke tobacco once in a while. However, he doesn't want 
+> to depend on a single tobacco brand only but likes to be able to enjoy them all interchangeably.    
 
 In plain words
 
@@ -25,11 +29,12 @@ In plain words
 
 Wikipedia says
 
-> In software engineering, dependency injection is a technique in which an object receives other objects that it depends on. These other objects are called dependencies.
+> In software engineering, dependency injection is a technique in which an object receives other 
+> objects that it depends on. These other objects are called dependencies.
 
 **Programmatic Example**
 
-Let's first introduce the tobacco brands.
+Let's first introduce the `Tobacco` interface and the concrete brands.
 
 ```java
 public abstract class Tobacco {
@@ -52,7 +57,7 @@ public class OldTobyTobacco extends Tobacco {
 }
 ```
 
-Next here's the wizard class hierarchy.
+Next here's the `Wizard` class hierarchy.
 
 ```java
 public interface Wizard {
@@ -83,13 +88,15 @@ And lastly we can show how easy it is to give the old wizard any brand of tobacc
 ```
 
 ## Class diagram
+
 ![alt text](./etc/dependency-injection.png "Dependency Injection")
 
 ## Applicability
-Use the Dependency Injection pattern when
 
-* When you need to remove knowledge of concrete implementation from object
-* To enable unit testing of classes in isolation using mock objects or stubs
+Use the Dependency Injection pattern when:
+
+* When you need to remove knowledge of concrete implementation from object.
+* To enable unit testing of classes in isolation using mock objects or stubs.
 
 ## Credits
 

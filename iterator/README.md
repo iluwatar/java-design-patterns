@@ -9,29 +9,34 @@ tags:
 ---
 
 ## Also known as
+
 Cursor
 
 ## Intent
-Provide a way to access the elements of an aggregate object
-sequentially without exposing its underlying representation.
+Provide a way to access the elements of an aggregate object sequentially without exposing its 
+underlying representation.
 
 ## Explanation
 
 Real world example
 
-> Treasure chest contains a set of magical items. There multiple types of items such as rings, potions and weapons. The items can be browsed by type using an iterator the treasure chest provides. 
+> Treasure chest contains a set of magical items. There multiple types of items such as rings, 
+> potions and weapons. The items can be browsed by type using an iterator the treasure chest 
+> provides. 
 
 In plain words
 
-> Containers can provide a representation agnostic iterator interface to provide access to the elements. 
+> Containers can provide a representation agnostic iterator interface to provide access to the 
+> elements. 
 
 Wikipedia says
 
-> In object-oriented programming, the iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements.
+> In object-oriented programming, the iterator pattern is a design pattern in which an iterator is 
+> used to traverse a container and access the container's elements.
 
 **Programmatic Example**
 
-The main class in our example is the treasure chest that contains items.
+The main class in our example is the `TreasureChest` that contains items.
 
 ```java
 public class TreasureChest {
@@ -60,7 +65,11 @@ public class TreasureChest {
     return new ArrayList<>(items);
   }
 }
+```
 
+Here's the `Item` class:
+
+```java
 public class Item {
 
   private ItemType type;
@@ -92,7 +101,7 @@ public enum ItemType {
 }
 ```
 
-The iterator interface is extremely simple.
+The `Iterator` interface is extremely simple.
 
 ```java
 public interface Iterator<T> {
@@ -110,19 +119,26 @@ var itemIterator = TREASURE_CHEST.iterator(ItemType.RING);
 while (itemIterator.hasNext()) {
   LOGGER.info(itemIterator.next().toString());
 }
-// Ring of shadows
-// Ring of armor
+```
+
+Program output:
+
+```java
+Ring of shadows
+Ring of armor
 ```
 
 ## Class diagram
+
 ![alt text](./etc/iterator_1.png "Iterator")
 
 ## Applicability
+
 Use the Iterator pattern
 
-* to access an aggregate object's contents without exposing its internal representation
-* to support multiple traversals of aggregate objects
-* to provide a uniform interface for traversing different aggregate structures
+* To access an aggregate object's contents without exposing its internal representation.
+* To support multiple traversals of aggregate objects.
+* To provide a uniform interface for traversing different aggregate structures.
 
 ## Real world examples
 

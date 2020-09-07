@@ -36,7 +36,7 @@ public abstract class GameLoop {
 
   protected volatile GameStatus status;
 
-  protected GameController controller;
+  protected final GameController controller;
 
   private Thread gameThread;
 
@@ -53,7 +53,7 @@ public abstract class GameLoop {
    */
   public void run() {
     status = GameStatus.RUNNING;
-    gameThread = new Thread(() -> processGameLoop());
+    gameThread = new Thread(this::processGameLoop);
     gameThread.start();
   }
 

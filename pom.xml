@@ -195,6 +195,7 @@
 		<module>arrange-act-assert</module>
 		<module>transaction-script</module>
 		<module>filterer</module>
+		<module>factory</module>
 	</modules>
 
 	<repositories>
@@ -547,7 +548,7 @@
 						</execution>
 					</executions>
 				</plugin>
-
+				
 			</plugins>
 		</pluginManagement>
 	</build>

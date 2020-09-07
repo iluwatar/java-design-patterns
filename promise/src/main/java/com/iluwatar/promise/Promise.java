@@ -141,7 +141,7 @@ public class Promise<T> extends PromiseSupport<T> {
    */
   public <V> Promise<V> thenApply(Function<? super T, V> func) {
     Promise<V> dest = new Promise<>();
-    fulfillmentAction = new TransformAction<V>(this, dest, func);
+    fulfillmentAction = new TransformAction<>(this, dest, func);
     return dest;
   }
 
