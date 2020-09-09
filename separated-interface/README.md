@@ -10,7 +10,7 @@ tags:
 
 
 ## Intent
-Separate the interface definition and implementation in different packages. This allows the client to be completly unaware of the implementation.
+Separate the interface definition and implementation in different packages. This allows the client to be completely unaware of the implementation.
 
 ## Explanation
 

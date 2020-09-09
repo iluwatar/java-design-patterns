@@ -30,13 +30,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * <p>The Strategy pattern (also known as the policy pattern) is a software design pattern that
- * enables an algorithm's behavior to be selected at runtime.</p>
+ * <p>The Separated Interface pattern encourages to separate the interface definition and
+ * implementation in different packages. This allows the client to be completely unaware of the
+ * implementation.</p>
  *
- * <p>Before Java 8 the Strategies needed to be separate classes forcing the developer
- * to write lots of boilerplate code. With modern Java it is easy to pass behavior with method
- * references and lambdas making the code shorter and more readable.</p>
- *
+ * <p>In this class the {@link InvoiceGenerator} class is injected with different instances of
+ * {@link com.iluwatar.separatedinterface.invoice.TaxCalculator} implementations located in separate
+ * packages, to receive different responses for both of the implementations.</p>
  */
 public class App {
 
