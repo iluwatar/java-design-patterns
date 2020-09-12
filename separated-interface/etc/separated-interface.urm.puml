@@ -8,14 +8,14 @@ package com.iluwatar.separatedinterface {
   }
 }
 package com.iluwatar.separatedinterface.taxes {
-  class DomesticTax {
+  class DomesticTaxCalculator {
     + TAX_PERCENTAGE : double {static}
-    + DomesticTax()
+    + DomesticTaxCalculator()
     + calculate(amount : double) : double
   }
-  class ForeignTax {
+  class ForeignTaxCalculator {
     + TAX_PERCENTAGE : double {static}
-    + ForeignTax()
+    + ForeignTaxCalculator()
     + calculate(amount : double) : double
   }
 }
@@ -31,6 +31,6 @@ package com.iluwatar.separatedinterface.invoice {
   }
 }
 InvoiceGenerator -->  "-taxCalculator" TaxCalculator
-DomesticTax ..|> TaxCalculator 
-ForeignTax ..|> TaxCalculator 
+DomesticTaxCalculator ..|> TaxCalculator 
+ForeignTaxCalculator ..|> TaxCalculator 
 @enduml

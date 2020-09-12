@@ -23,18 +23,19 @@
 
 package com.iluwatar.separatedinterface.taxes;
 
-import com.iluwatar.separatedinterface.invoice.TaxCalculator;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-/**
- * TaxCalculator for foreign goods with 60% tax.
- */
-public class ForeignTax implements TaxCalculator {
+public class ForeignTaxCalculatorTest {
 
-  public static final double TAX_PERCENTAGE = 60;
+  private ForeignTaxCalculator target;
 
-  @Override
-  public double calculate(double amount) {
-    return amount * TAX_PERCENTAGE / 100.0;
+  @Test
+  public void testTaxCalculation(){
+    target = new ForeignTaxCalculator();
+
+    var tax=target.calculate(100.0);
+    Assertions.assertEquals(tax,60.0);
   }
 
 }

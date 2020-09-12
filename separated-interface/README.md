@@ -3,7 +3,7 @@ layout: pattern
 title: Separated Interface
 folder: separated-interface
 permalink: /patterns/separated-interface/
-categories: Architectural
+categories: Structural
 tags:
  - Decoupling
 ---
@@ -22,7 +22,7 @@ In plain words
 
 > Separated interface pattern encourages to keep the implementations of an interface decoupled from the client and its definition, so the client is not dependent on the implementation.
 
-A client code may abstract some specific functionality to an interface, and define the definition of the interface as an SPI. Another package may implement this interface definition with a concrete logic, which will be injected into the client code at runtime (with a third class, injecting the implementation in the client) or at compile time (using Plugin pattern with some configurable file).
+A client code may abstract some specific functionality to an interface, and define the definition of the interface as an SPI ([Service Programming Interface](https://en.wikipedia.org/wiki/Service_provider_interface) is an API intended and open to be implemented or extended by a third party). Another package may implement this interface definition with a concrete logic, which will be injected into the client code at runtime (with a third class, injecting the implementation in the client) or at compile time (using Plugin pattern with some configurable file).
 
 **Programmatic Example**
 
@@ -60,9 +60,9 @@ public interface TaxCalculator {
 
 **Implementation package**
 In another package (which the client is completely unaware of) there exist multiple implementations of the ```TaxCalculator``` interface
-```ForeignTax``` which levies 60% tax for international products.
+```ForeignTaxCalculator``` which levies 60% tax for international products.
 ```java
-public class ForeignTax implements TaxCalculator {
+public class ForeignTaxCalculator implements TaxCalculator {
 
   public static final double TAX_PERCENTAGE = 60;
 
@@ -74,9 +74,9 @@ public class ForeignTax implements TaxCalculator {
 }
 ```
 
-```DomesticTax``` which levies 20% tax for international products.
+```DomesticTaxCalculator``` which levies 20% tax for international products.
 ```java
-public class DomesticTax implements TaxCalculator {
+public class DomesticTaxCalculator implements TaxCalculator {
 
   public static final double TAX_PERCENTAGE = 20;
 
@@ -91,11 +91,11 @@ public class DomesticTax implements TaxCalculator {
 These both implementations are instantiated and injected in the client class by the ```App.java``` class
 
 ```java
-    var internationalProductInvoice = new InvoiceGenerator(PRODUCT_COST, new ForeignTax());
+    var internationalProductInvoice = new InvoiceGenerator(PRODUCT_COST, new ForeignTaxCalculator());
 
     LOGGER.info("Foreign Tax applied: {}", "" + internationalProductInvoice.getAmountWithTax());
 
-    var domesticProductInvoice = new InvoiceGenerator(PRODUCT_COST, new DomesticTax());
+    var domesticProductInvoice = new InvoiceGenerator(PRODUCT_COST, new DomesticTaxCalculator());
 
     LOGGER.info("Domestic Tax applied: {}", "" + domesticProductInvoice.getAmountWithTax());
 ```

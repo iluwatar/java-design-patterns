@@ -24,8 +24,8 @@
 package com.iluwatar.separatedinterface;
 
 import com.iluwatar.separatedinterface.invoice.InvoiceGenerator;
-import com.iluwatar.separatedinterface.taxes.DomesticTax;
-import com.iluwatar.separatedinterface.taxes.ForeignTax;
+import com.iluwatar.separatedinterface.taxes.DomesticTaxCalculator;
+import com.iluwatar.separatedinterface.taxes.ForeignTaxCalculator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,11 +51,12 @@ public class App {
    */
   public static void main(String[] args) {
     //Create the invoice generator with product cost as 50 and foreign product tax
-    var internationalProductInvoice = new InvoiceGenerator(PRODUCT_COST, new ForeignTax());
+    var internationalProductInvoice = new InvoiceGenerator(PRODUCT_COST,
+        new ForeignTaxCalculator());
     LOGGER.info("Foreign Tax applied: {}", "" + internationalProductInvoice.getAmountWithTax());
 
     //Create the invoice generator with product cost as 50 and domestic product tax
-    var domesticProductInvoice = new InvoiceGenerator(PRODUCT_COST, new DomesticTax());
+    var domesticProductInvoice = new InvoiceGenerator(PRODUCT_COST, new DomesticTaxCalculator());
     LOGGER.info("Domestic Tax applied: {}", "" + domesticProductInvoice.getAmountWithTax());
   }
 }

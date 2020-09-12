@@ -23,19 +23,18 @@
 
 package com.iluwatar.separatedinterface.taxes;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import com.iluwatar.separatedinterface.invoice.TaxCalculator;
 
-public class DomesticTaxTest {
+/**
+ * TaxCalculator for Domestic goods with 20% tax.
+ */
+public class DomesticTaxCalculator implements TaxCalculator {
 
-  private DomesticTax target;
+  public static final double TAX_PERCENTAGE = 20;
 
-  @Test
-  public void testTaxCaluclation(){
-    target = new DomesticTax();
-
-    var tax=target.calculate(100.0);
-    Assertions.assertEquals(tax,20.0);
+  @Override
+  public double calculate(double amount) {
+    return amount * TAX_PERCENTAGE / 100.0;
   }
 
 }
