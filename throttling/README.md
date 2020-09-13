@@ -10,12 +10,15 @@ tags:
 ---
 
 ## Intent
+
 Ensure that a given client is not able to access service resources more than the assigned limit.
 
 ## Explanation
+
 Real world example
 
-> A large multinational corporation offers API to its customers. The API is rate-limited and each customer can only make certain amount of calls per second.      
+> A large multinational corporation offers API to its customers. The API is rate-limited and each 
+> customer can only make certain amount of calls per second.      
 
 In plain words
 
@@ -23,7 +26,9 @@ In plain words
 
 [Microsoft documentation](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling) says
 
-> Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. This can allow the system to continue to function and meet service level agreements, even when an increase in demand places an extreme load on resources.
+> Control the consumption of resources used by an instance of an application, an individual tenant, 
+> or an entire service. This can allow the system to continue to function and meet service level 
+> agreements, even when an increase in demand places an extreme load on resources.
 
 **Programmatic Example**
 
@@ -77,7 +82,8 @@ public final class CallsCount {
 }
 ```
 
-Next we introduce the service that the tenants are calling. To track the call count we use the throttler timer.
+Next we introduce the service that the tenants are calling. To track the call count we use the 
+throttler timer.
 
 ```java
 public interface Throttler {
@@ -134,7 +140,8 @@ class B2BService {
 }
 ```
 
-Now we are ready to see the full example in action. Tenant Adidas is rate-limited to 5 calls per second and Nike to 6.
+Now we are ready to see the full example in action. Tenant Adidas is rate-limited to 5 calls per 
+second and Nike to 6.
 
 ```java
   public static void main(String[] args) {
@@ -171,9 +178,11 @@ Now we are ready to see the full example in action. Tenant Adidas is rate-limite
 
 
 ## Class diagram
-![alt text](./etc/throttling-pattern.png "Throttling pattern class diagram")
+
+![alt text](./etc/throttling_urm.png "Throttling pattern class diagram")
 
 ## Applicability
+
 The Throttling pattern should be used:
 
 * When a service access needs to be restricted to not have high impacts on the performance of the service.
