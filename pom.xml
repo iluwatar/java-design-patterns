@@ -196,6 +196,7 @@
         <module>transaction-script</module>
         <module>filterer</module>
         <module>factory</module>
+        <module>separated-interface</module>
     </modules>
 
     <repositories>
