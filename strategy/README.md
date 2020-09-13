@@ -9,17 +9,20 @@ tags:
 ---
 
 ## Also known as
+
 Policy
 
 ## Intent
-Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary 
-independently from clients that use it.
+
+Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets 
+the algorithm vary independently from clients that use it.
 
 ## Explanation
 
 Real world example
 
-> Slaying dragons is a dangerous profession. With experience it becomes easier. Veteran dragonslayers have developed different fighting strategies against different types of dragons.         
+> Slaying dragons is a dangerous job. With experience it becomes easier. Veteran 
+> dragonslayers have developed different fighting strategies against different types of dragons.         
 
 In plain words
 
@@ -27,7 +30,8 @@ In plain words
 
 Wikipedia says
 
-> In computer programming, the strategy pattern (also known as the policy pattern) is a behavioral software design pattern that enables selecting an algorithm at runtime.
+> In computer programming, the strategy pattern (also known as the policy pattern) is a behavioral 
+> software design pattern that enables selecting an algorithm at runtime.
 
 **Programmatic Example**
 
@@ -71,7 +75,8 @@ public class SpellStrategy implements DragonSlayingStrategy {
 }
 ```
 
-And here is the mighty dragonslayer who is able to pick his fighting strategy based on the opponent.
+And here is the mighty dragonslayer, who is able to pick his fighting strategy based on the 
+opponent.
 
 ```java
 public class DragonSlayer {
@@ -92,7 +97,7 @@ public class DragonSlayer {
 }
 ```
 
-Finally here's dragonslayer in action.
+Finally here's the dragonslayer in action.
 
 ```java
     LOGGER.info("Green dragon spotted ahead!");
@@ -104,19 +109,25 @@ Finally here's dragonslayer in action.
     LOGGER.info("Black dragon lands before you.");
     dragonSlayer.changeStrategy(new SpellStrategy());
     dragonSlayer.goToBattle();
-    
-    // Green dragon spotted ahead!
-    // With your Excalibur you sever the dragon's head!
-    // Red dragon emerges.
-    // You shoot the dragon with the magical crossbow and it falls dead on the ground!
-    // Black dragon lands before you.
-    // You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
+```
+
+Program output:
+
+```
+    Green dragon spotted ahead!
+    With your Excalibur you sever the dragon's head!
+    Red dragon emerges.
+    You shoot the dragon with the magical crossbow and it falls dead on the ground!
+    Black dragon lands before you.
+    You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
 ```
 
 ## Class diagram
-![alt text](./etc/strategy_1.png "Strategy")
+
+![alt text](./etc/strategy_urm.png "Strategy")
 
 ## Applicability
+
 Use the Strategy pattern when
 
 * Many related classes differ only in their behavior. Strategies provide a way to configure a class either one of many behaviors
