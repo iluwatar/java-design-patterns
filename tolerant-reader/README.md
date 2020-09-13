@@ -9,14 +9,18 @@ tags:
 ---
 
 ## Intent
-Tolerant Reader is an integration pattern that helps creating robust communication systems. The idea is to be as 
-tolerant as possible when reading data from another service. This way, when the communication schema changes, the 
-readers must not break.
+
+Tolerant Reader is an integration pattern that helps creating robust communication systems. The idea 
+is to be as tolerant as possible when reading data from another service. This way, when the 
+communication schema changes, the readers must not break.
 
 ## Explanation
+
 Real world example
 
-> We are persisting rainbowfish objects to file and later on they need to be restored. What makes it problematic is that rainbowfish data structure is versioned and evolves over time. New version of rainbowfish needs to be able to restore old versions as well.     
+> We are persisting rainbowfish objects to file and later on they need to be restored. What makes it 
+> problematic is that rainbowfish data structure is versioned and evolves over time. New version of 
+> rainbowfish needs to be able to restore old versions as well.     
 
 In plain words
 
@@ -24,11 +28,11 @@ In plain words
 
 [Robustness Principle](https://java-design-patterns.com/principles/#robustness-principle) says
 
-> Be conservative in what you do, be liberal in what you accept from others
+> Be conservative in what you do, be liberal in what you accept from others.
 
 **Programmatic Example**
 
-Here's the versioned rainbowfish. Notice how the second version introduces additional properties.
+Here's the versioned `RainbowFish`. Notice how the second version introduces additional properties.
 
 ```java
 public class RainbowFish implements Serializable {
@@ -104,7 +108,8 @@ public class RainbowFishV2 extends RainbowFish {
 }
 ```
 
-Next we introduce the rainbowfish serializer. This is the class that implements the Tolerant Reader pattern.
+Next we introduce the `RainbowFishSerializer`. This is the class that implements the Tolerant Reader 
+pattern.
 
 ```java
 public final class RainbowFishSerializer {
@@ -185,18 +190,23 @@ And finally here's the full example in action.
     LOGGER.info("deserializedFishV2 name={} age={} length={} weight={}",
         deserializedFishV2.getName(), deserializedFishV2.getAge(),
         deserializedFishV2.getLengthMeters(), deserializedFishV2.getWeightTons());
-    
-    // fishV1 name=Zed age=10 length=11 weight=12
-    // deserializedFishV1 name=Zed age=10 length=11 weight=12
-    // fishV2 name=Scar age=5 length=12 weight=15 sleeping=true hungry=true angry=true
-    // deserializedFishV2 name=Scar age=5 length=12 weight=15
 ```
 
+Program output:
+
+```
+fishV1 name=Zed age=10 length=11 weight=12
+deserializedFishV1 name=Zed age=10 length=11 weight=12
+fishV2 name=Scar age=5 length=12 weight=15 sleeping=true hungry=true angry=true
+deserializedFishV2 name=Scar age=5 length=12 weight=15
+```
 
 ## Class diagram
-![alt text](./etc/tolerant-reader.png "Tolerant Reader")
+
+![alt text](./etc/tolerant_reader_urm.png "Tolerant Reader")
 
 ## Applicability
+
 Use the Tolerant Reader pattern when
 
 * The communication schema can evolve and change and yet the receiving side should not break
