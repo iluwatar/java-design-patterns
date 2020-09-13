@@ -9,21 +9,30 @@ tags:
 ---
 
 ## Intent
-Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets 
-subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
+
+Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template 
+Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's 
+structure.
 
 ## Explanation
+
 Real world example
 
-> The general steps in stealing an item are the same. First you pick the target, next you confuse him somehow and finally you steal the item. However there are many ways to implement these steps.   
+> The general steps in stealing an item are the same. First you pick the target, next you confuse 
+> him somehow and finally you steal the item. However there are many ways to implement these steps.   
 
 In plain words
 
-> Template Method pattern outlines the general steps in the parent class and lets the concrete child implementations define the details. 
+> Template Method pattern outlines the general steps in the parent class and lets the concrete child 
+> implementations define the details. 
 
 Wikipedia says
 
-> In object-oriented programming, the template method is one of the behavioral design patterns identified by Gamma et al. in the book Design Patterns. The template method is a method in a superclass, usually an abstract superclass, and defines the skeleton of an operation in terms of a number of high-level steps. These steps are themselves implemented by additional helper methods in the same class as the template method.
+> In object-oriented programming, the template method is one of the behavioral design patterns 
+> identified by Gamma et al. in the book Design Patterns. The template method is a method in a 
+> superclass, usually an abstract superclass, and defines the skeleton of an operation in terms of 
+> a number of high-level steps. These steps are themselves implemented by additional helper methods 
+> in the same class as the template method.
 
 **Programmatic Example**
 
@@ -120,9 +129,11 @@ And finally we show how the halfling thief utilizes the different stealing metho
 ```
 
 ## Class diagram
-![alt text](./etc/template-method_1.png "Template Method")
+
+![alt text](./etc/template_method_urm.png "Template Method")
 
 ## Applicability
+
 The Template Method pattern should be used
 
 * To implement the invariant parts of an algorithm once and leave it up to subclasses to implement the behavior that can vary
