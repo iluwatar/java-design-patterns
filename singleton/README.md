@@ -9,14 +9,16 @@ tags:
 ---
 
 ## Intent
-Ensure a class only has one instance, and provide a global point of
-access to it.
+
+Ensure a class only has one instance, and provide a global point of access to it.
 
 
 ## Explanation
+
 Real world example
 
-> There can only be one ivory tower where the wizards study their magic. The same enchanted ivory tower is always used by the wizards. Ivory tower here is singleton.
+> There can only be one ivory tower where the wizards study their magic. The same enchanted ivory 
+> tower is always used by the wizards. Ivory tower here is singleton.
 
 In plain words
 
@@ -24,7 +26,9 @@ In plain words
 
 Wikipedia says
 
-> In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system.
+> In software engineering, the singleton pattern is a software design pattern that restricts the 
+> instantiation of a class to one object. This is useful when exactly one object is needed to 
+> coordinate actions across the system.
 
 **Programmatic Example**
 
@@ -38,7 +42,7 @@ public enum EnumIvoryTower {
 }
 ```
 
-Then in order to use
+Then in order to use:
 
 ```java
 var enumIvoryTower1 = EnumIvoryTower.INSTANCE;
@@ -47,9 +51,11 @@ assertEquals(enumIvoryTower1, enumIvoryTower2); // true
 ```
 
 ## Class diagram
+
 ![alt text](./etc/singleton.urm.png "Singleton pattern class diagram")
 
 ## Applicability
+
 Use the Singleton pattern when
 
 * There must be exactly one instance of a class, and it must be accessible to clients from a well-known access point

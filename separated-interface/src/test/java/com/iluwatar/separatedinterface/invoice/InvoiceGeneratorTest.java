@@ -21,33 +21,28 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatialpartition;
+package com.iluwatar.separatedinterface.invoice;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-/**
- * This class extends the generic SpatialPartition abstract class and is used in our example to keep
- * track of all the bubbles that collide, pop and stay un-popped.
- */
+import static org.mockito.Mockito.*;
 
-public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
+public class InvoiceGeneratorTest {
 
-  private final Hashtable<Integer, Bubble> bubbles;
-  private final QuadTree quadTree;
+  private InvoiceGenerator target;
 
-  SpatialPartitionBubbles(Hashtable<Integer, Bubble> bubbles, QuadTree quadTree) {
-    this.bubbles = bubbles;
-    this.quadTree = quadTree;
+  @Test
+  public void testGenerateTax() {
+    var productCost = 50.0;
+    var tax = 10.0;
+    TaxCalculator taxCalculatorMock = mock(TaxCalculator.class);
+    doReturn(tax).when(taxCalculatorMock).calculate(productCost);
+
+    target = new InvoiceGenerator(productCost, taxCalculatorMock);
+
+    Assertions.assertEquals(target.getAmountWithTax(), productCost + tax);
+    verify(taxCalculatorMock, times(1)).calculate(productCost);
   }
 
-  void handleCollisionsUsingQt(Bubble b) {
-    // finding points within area of a square drawn with centre same as
-    // centre of bubble and length = radius of bubble
-    var rect = new Rect(b.coordinateX, b.coordinateY, 2 * b.radius, 2 * b.radius);
-    var quadTreeQueryResult = new ArrayList<Point>();
-    this.quadTree.query(rect, quadTreeQueryResult);
-    //handling these collisions
-    b.handleCollision(quadTreeQueryResult, this.bubbles);
-  }
 }

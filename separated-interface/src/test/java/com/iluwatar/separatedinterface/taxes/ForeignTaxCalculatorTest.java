@@ -21,33 +21,21 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatialpartition;
+package com.iluwatar.separatedinterface.taxes;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-/**
- * This class extends the generic SpatialPartition abstract class and is used in our example to keep
- * track of all the bubbles that collide, pop and stay un-popped.
- */
+public class ForeignTaxCalculatorTest {
 
-public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
+  private ForeignTaxCalculator target;
 
-  private final Hashtable<Integer, Bubble> bubbles;
-  private final QuadTree quadTree;
+  @Test
+  public void testTaxCalculation(){
+    target = new ForeignTaxCalculator();
 
-  SpatialPartitionBubbles(Hashtable<Integer, Bubble> bubbles, QuadTree quadTree) {
-    this.bubbles = bubbles;
-    this.quadTree = quadTree;
+    var tax=target.calculate(100.0);
+    Assertions.assertEquals(tax,60.0);
   }
 
-  void handleCollisionsUsingQt(Bubble b) {
-    // finding points within area of a square drawn with centre same as
-    // centre of bubble and length = radius of bubble
-    var rect = new Rect(b.coordinateX, b.coordinateY, 2 * b.radius, 2 * b.radius);
-    var quadTreeQueryResult = new ArrayList<Point>();
-    this.quadTree.query(rect, quadTreeQueryResult);
-    //handling these collisions
-    b.handleCollision(quadTreeQueryResult, this.bubbles);
-  }
 }

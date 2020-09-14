@@ -21,33 +21,31 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.spatialpartition;
-
-import java.util.ArrayList;
-import java.util.Hashtable;
+package com.iluwatar.separatedinterface.invoice;
 
 /**
- * This class extends the generic SpatialPartition abstract class and is used in our example to keep
- * track of all the bubbles that collide, pop and stay un-popped.
+ * InvoiceGenerator class generates an invoice, accepting the product cost and calculating the total
+ * price payable inclusive tax (calculated by {@link TaxCalculator}).
  */
+public class InvoiceGenerator {
 
-public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
+  /**
+   * The TaxCalculator interface to calculate the payable tax.
+   */
+  private final TaxCalculator taxCalculator;
 
-  private final Hashtable<Integer, Bubble> bubbles;
-  private final QuadTree quadTree;
+  /**
+   * The base product amount without tax.
+   */
+  private final double amount;
 
-  SpatialPartitionBubbles(Hashtable<Integer, Bubble> bubbles, QuadTree quadTree) {
-    this.bubbles = bubbles;
-    this.quadTree = quadTree;
+  public InvoiceGenerator(double amount, TaxCalculator taxCalculator) {
+    this.amount = amount;
+    this.taxCalculator = taxCalculator;
   }
 
-  void handleCollisionsUsingQt(Bubble b) {
-    // finding points within area of a square drawn with centre same as
-    // centre of bubble and length = radius of bubble
-    var rect = new Rect(b.coordinateX, b.coordinateY, 2 * b.radius, 2 * b.radius);
-    var quadTreeQueryResult = new ArrayList<Point>();
-    this.quadTree.query(rect, quadTreeQueryResult);
-    //handling these collisions
-    b.handleCollision(quadTreeQueryResult, this.bubbles);
+  public double getAmountWithTax() {
+    return amount + taxCalculator.calculate(amount);
   }
+
 }

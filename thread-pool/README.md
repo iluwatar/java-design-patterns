@@ -9,16 +9,19 @@ tags:
 ---
 
 ## Intent
-It is often the case that tasks to be executed are short-lived and
-the number of tasks is large. Creating a new thread for each task would make
-the system spend more time creating and destroying the threads than executing
-the actual tasks. Thread Pool solves this problem by reusing existing threads
-and eliminating the latency of creating new threads.
+
+It is often the case that tasks to be executed are short-lived and the number of tasks is large. 
+Creating a new thread for each task would make the system spend more time creating and destroying 
+the threads than executing the actual tasks. Thread Pool solves this problem by reusing existing 
+threads and eliminating the latency of creating new threads.
 
 ## Explanation
+
 Real world example
 
-> We have a large number of relatively short tasks at hand. We need to peel huge amounts of potatoes and serve mighty amount of coffee cups. Creating a new thread for each task would be a waste so we establish a thread pool.       
+> We have a large number of relatively short tasks at hand. We need to peel huge amounts of potatoes 
+> and serve mighty amount of coffee cups. Creating a new thread for each task would be a waste so we 
+> establish a thread pool.       
 
 In plain words
 
@@ -26,11 +29,18 @@ In plain words
 
 Wikipedia says
 
-> In computer programming, a thread pool is a software design pattern for achieving concurrency of execution in a computer program. Often also called a replicated workers or worker-crew model, a thread pool maintains multiple threads waiting for tasks to be allocated for concurrent execution by the supervising program. By maintaining a pool of threads, the model increases performance and avoids latency in execution due to frequent creation and destruction of threads for short-lived tasks. The number of available threads is tuned to the computing resources available to the program, such as a parallel task queue after completion of execution.
+> In computer programming, a thread pool is a software design pattern for achieving concurrency of 
+> execution in a computer program. Often also called a replicated workers or worker-crew model, 
+> a thread pool maintains multiple threads waiting for tasks to be allocated for concurrent 
+> execution by the supervising program. By maintaining a pool of threads, the model increases 
+> performance and avoids latency in execution due to frequent creation and destruction of threads 
+> for short-lived tasks. The number of available threads is tuned to the computing resources 
+> available to the program, such as a parallel task queue after completion of execution.
 
 **Programmatic Example**
 
-Let's first look at our task hierarchy. We have a base class and then concrete CoffeeMakingTask and PotatoPeelingTask.
+Let's first look at our task hierarchy. We have a base class and then concrete `CoffeeMakingTask` 
+and `PotatoPeelingTask`.
 
 ```java
 public abstract class Task {
@@ -88,8 +98,8 @@ public class PotatoPeelingTask extends Task {
 }
 ```
 
-Next we present a runnable Worker class that the thread pool will utilize to handle all the potato peeling and coffee 
-making.
+Next we present a runnable `Worker` class that the thread pool will utilize to handle all the potato 
+peeling and coffee making.
 
 ```java
 public class Worker implements Runnable {
@@ -156,9 +166,11 @@ Now we are ready to show the full example in action.
 ```
 
 ## Class diagram
-![alt text](./etc/thread-pool.png "Thread Pool")
+
+![alt text](./etc/thread_pool_urm.png "Thread Pool")
 
 ## Applicability
+
 Use the Thread Pool pattern when
 
 * You have a large number of short-lived tasks to be executed in parallel
