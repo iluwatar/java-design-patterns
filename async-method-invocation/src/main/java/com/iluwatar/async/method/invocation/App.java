@@ -24,6 +24,8 @@
 package com.iluwatar.async.method.invocation;
 
 import java.util.concurrent.Callable;
+
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,9 +57,8 @@ import org.slf4j.LoggerFactory;
  * @see java.util.concurrent.CompletableFuture
  * @see java.util.concurrent.ExecutorService
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -123,6 +124,6 @@ public class App {
   }
 
   private static void log(String msg) {
-    LOGGER.info(msg);
+    log.info(msg);
   }
 }

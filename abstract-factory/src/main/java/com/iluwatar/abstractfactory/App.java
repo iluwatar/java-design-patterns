@@ -23,8 +23,7 @@
 
 package com.iluwatar.abstractfactory;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Abstract Factory pattern provides a way to encapsulate a group of individual factories that
@@ -40,9 +39,8 @@ import org.slf4j.LoggerFactory;
  * and its implementations ( {@link ElfKingdomFactory}, {@link OrcKingdomFactory}). The example uses
  * both concrete implementations to create a king, a castle and an army.
  */
+@Slf4j
 public class App implements Runnable {
-
-  private static Logger log = LoggerFactory.getLogger(App.class);
 
   private final Kingdom kingdom = new Kingdom();
 

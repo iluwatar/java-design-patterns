@@ -23,16 +23,16 @@
 
 package com.iluwatar.balking;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Washing machine class.
  */
+@Slf4j
 public class WashingMachine {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(WashingMachine.class);
   private final DelayProvider delayProvider;
   private WashingMachineState washingMachineState;
 
@@ -69,14 +69,14 @@ public class WashingMachine {
   public void wash() {
     synchronized (this) {
       var machineState = getWashingMachineState();
-      LOGGER.info("{}: Actual machine state: {}", Thread.currentThread().getName(), machineState);
+      log.info("{}: Actual machine state: {}", Thread.currentThread().getName(), machineState);
       if (this.washingMachineState == WashingMachineState.WASHING) {
-        LOGGER.error("ERROR: Cannot wash if the machine has been already washing!");
+        log.error("ERROR: Cannot wash if the machine has been already washing!");
         return;
       }
       this.washingMachineState = WashingMachineState.WASHING;
     }
-    LOGGER.info("{}: Doing the washing", Thread.currentThread().getName());
+    log.info("{}: Doing the washing", Thread.currentThread().getName());
 
     this.delayProvider.executeAfterDelay(50, TimeUnit.MILLISECONDS, this::endOfWashing);
   }
@@ -86,7 +86,7 @@ public class WashingMachine {
    */
   public synchronized void endOfWashing() {
     washingMachineState = WashingMachineState.ENABLED;
-    LOGGER.info("{}: Washing completed.", Thread.currentThread().getId());
+    log.info("{}: Washing completed.", Thread.currentThread().getId());
   }
 
 }

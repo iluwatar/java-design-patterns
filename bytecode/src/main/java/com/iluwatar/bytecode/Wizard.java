@@ -23,15 +23,14 @@
 
 package com.iluwatar.bytecode;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class represent game objects which properties can be changed by instructions interpreted by
  * virtual machine.
  */
+@Slf4j
 public class Wizard {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
 
   private int health;
 
@@ -66,12 +65,12 @@ public class Wizard {
   }
 
   public void playSound() {
-    LOGGER.info("Playing sound");
+    log.info("Playing sound");
     numberOfPlayedSounds++;
   }
 
   public void spawnParticles() {
-    LOGGER.info("Spawning particles");
+    log.info("Spawning particles");
     numberOfSpawnedParticles++;
   }
 

@@ -23,28 +23,26 @@
 
 package com.iluwatar.bridge;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * SoulEatingEnchantment.
  */
+@Slf4j
 public class SoulEatingEnchantment implements Enchantment {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SoulEatingEnchantment.class);
-
+  
   @Override
   public void onActivate() {
-    LOGGER.info("The item spreads bloodlust.");
+    log.info("The item spreads bloodlust.");
   }
 
   @Override
   public void apply() {
-    LOGGER.info("The item eats the soul of enemies.");
+    log.info("The item eats the soul of enemies.");
   }
 
   @Override
   public void onDeactivate() {
-    LOGGER.info("Bloodlust slowly disappears.");
+    log.info("Bloodlust slowly disappears.");
   }
 }
