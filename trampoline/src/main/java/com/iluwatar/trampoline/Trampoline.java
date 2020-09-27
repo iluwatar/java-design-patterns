@@ -98,12 +98,12 @@ public interface Trampoline<T> {
         return trampoline(this);
       }
 
-      T trampoline(final Trampoline<T> trampoline) {
+      private T trampoline(final Trampoline<T> trampoline) {
         return Stream.iterate(trampoline, Trampoline::jump)
             .filter(Trampoline::complete)
             .findFirst()
             .map(Trampoline::result)
-            .orElseThrow();
+            .get();
       }
     };
   }
