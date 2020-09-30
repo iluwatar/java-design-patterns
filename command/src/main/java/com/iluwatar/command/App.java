@@ -32,10 +32,10 @@ package com.iluwatar.command;
  * client. A command object (spell) knows about the receiver (target) and invokes a method of the
  * receiver. Values for parameters of the receiver method are stored in the command. The receiver
  * then does the work. An invoker object (wizard) knows how to execute a command, and optionally
- * does bookkeeping about the command execution. The invoker does not know anything about a concrete
- * command, it knows only about command interface. Both an invoker object and several command
+ * does bookkeeping about the command execution. The invoker does not know anything about a is
+ * executed. Both an invoker object and several command
  * objects are held by a client object (app). The client decides which commands to execute at which
- * points. To execute a command, it passes the command object to the invoker object.
+ * points. To execute a command, it passes a reference of the command object to the invoker object.
  *
  * <p>In other words, in this example the wizard casts spells on the goblin. The wizard keeps track
  * of the previous spells cast, so it is easy to undo them. In addition, the wizard keeps track of
@@ -54,10 +54,10 @@ public class App {
 
     goblin.printStatus();
 
-    wizard.castSpell(new ShrinkSpell(), goblin);
+    wizard.castSpell(goblin::changeSize);
     goblin.printStatus();
 
-    wizard.castSpell(new InvisibilitySpell(), goblin);
+    wizard.castSpell(goblin::changeVisibility);
     goblin.printStatus();
 
     wizard.undoLastSpell();
