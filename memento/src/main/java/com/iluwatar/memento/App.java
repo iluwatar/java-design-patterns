@@ -52,9 +52,9 @@ public class App {
    * Program entry point.
    */
   public static void main(String[] args) {
-    Stack<StarMemento> states = new Stack<>();
+    var states = new Stack<StarMemento>();
 
-    Star star = new Star(StarType.SUN, 10000000, 500000);
+    var star = new Star(StarType.SUN, 10000000, 500000);
     LOGGER.info(star.toString());
     states.add(star.getMemento());
     star.timePasses();

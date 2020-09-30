@@ -32,7 +32,7 @@ import java.util.Map;
  */
 public class EventDispatcher {
 
-  private Map<Class<? extends Event>, Handler<? extends Event>> handlers;
+  private final Map<Class<? extends Event>, Handler<? extends Event>> handlers;
 
   public EventDispatcher() {
     handlers = new HashMap<>();

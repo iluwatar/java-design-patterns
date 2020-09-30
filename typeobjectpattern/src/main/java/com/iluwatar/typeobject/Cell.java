@@ -74,8 +74,8 @@ public class Cell {
   }
 
   int interact(Cell c, CellPool pool, Cell[][] cellMatrix) {
-    if (this.candy.getType().equals(Type.rewardFruit) || c.candy.getType()
-        .equals(Type.rewardFruit)) {
+    if (this.candy.getType().equals(Type.REWARD_FRUIT) || c.candy.getType()
+        .equals(Type.REWARD_FRUIT)) {
       return 0;
     } else {
       if (this.candy.name.equals(c.candy.name)) {

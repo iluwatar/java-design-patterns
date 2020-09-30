@@ -55,6 +55,7 @@ import org.slf4j.LoggerFactory;
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  public static final String BOOK_OF_IDORES = "Book of Idores";
 
   /**
    * Program entry point.
@@ -135,7 +136,7 @@ public class App {
     spellbook4.addSpell(spell11);
     spellbook4.addSpell(spell12);
     spellbookDao.merge(spellbook4);
-    var spellbook5 = new Spellbook("Book of Idores");
+    var spellbook5 = new Spellbook(BOOK_OF_IDORES);
     spellbookDao.persist(spellbook5);
     spellbook5.addSpell(spell13);
     spellbookDao.merge(spellbook5);
@@ -164,7 +165,7 @@ public class App {
     wizardDao.merge(wizard2);
     var wizard3 = new Wizard("Xuban Munoa");
     wizardDao.persist(wizard3);
-    wizard3.addSpellbook(spellbookDao.findByName("Book of Idores"));
+    wizard3.addSpellbook(spellbookDao.findByName(BOOK_OF_IDORES));
     wizard3.addSpellbook(spellbookDao.findByName("Book of Opaen"));
     wizardDao.merge(wizard3);
     var wizard4 = new Wizard("Blasius Dehooge");
@@ -188,7 +189,7 @@ public class App {
     LOGGER.info("Enumerating all spells");
     service.findAllSpells().stream().map(Spell::getName).forEach(LOGGER::info);
     LOGGER.info("Find wizards with spellbook 'Book of Idores'");
-    var wizardsWithSpellbook = service.findWizardsWithSpellbook("Book of Idores");
+    var wizardsWithSpellbook = service.findWizardsWithSpellbook(BOOK_OF_IDORES);
     wizardsWithSpellbook.forEach(w -> LOGGER.info("{} has 'Book of Idores'", w.getName()));
     LOGGER.info("Find wizards with spell 'Fireball'");
     var wizardsWithSpell = service.findWizardsWithSpell("Fireball");

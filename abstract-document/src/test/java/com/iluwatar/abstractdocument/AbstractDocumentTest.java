@@ -40,14 +40,14 @@ public class AbstractDocumentTest {
   private static final String KEY = "key";
   private static final String VALUE = "value";
 
-  private class DocumentImplementation extends AbstractDocument {
+  private static class DocumentImplementation extends AbstractDocument {
 
     DocumentImplementation(Map<String, Object> properties) {
       super(properties);
     }
   }
 
-  private DocumentImplementation document = new DocumentImplementation(new HashMap<>());
+  private final DocumentImplementation document = new DocumentImplementation(new HashMap<>());
 
   @Test
   public void shouldPutAndGetValue() {

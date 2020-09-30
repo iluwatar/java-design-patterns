@@ -23,9 +23,9 @@
 
 package com.iluwatar.memento;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/20/15 - 10:08 AM
@@ -39,7 +39,7 @@ public class StarTest {
    */
   @Test
   public void testTimePasses() {
-    final Star star = new Star(StarType.SUN, 1, 2);
+    final var star = new Star(StarType.SUN, 1, 2);
     assertEquals("sun age: 1 years mass: 2 tons", star.toString());
 
     star.timePasses();
@@ -66,16 +66,16 @@ public class StarTest {
    */
   @Test
   public void testSetMemento() {
-    final Star star = new Star(StarType.SUN, 1, 2);
-    final StarMemento firstMemento = star.getMemento();
+    final var star = new Star(StarType.SUN, 1, 2);
+    final var firstMemento = star.getMemento();
     assertEquals("sun age: 1 years mass: 2 tons", star.toString());
 
     star.timePasses();
-    final StarMemento secondMemento = star.getMemento();
+    final var secondMemento = star.getMemento();
     assertEquals("red giant age: 2 years mass: 16 tons", star.toString());
 
     star.timePasses();
-    final StarMemento thirdMemento = star.getMemento();
+    final var thirdMemento = star.getMemento();
     assertEquals("white dwarf age: 4 years mass: 128 tons", star.toString());
 
     star.timePasses();

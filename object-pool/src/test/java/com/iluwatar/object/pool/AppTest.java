@@ -30,11 +30,10 @@ import org.junit.jupiter.api.Test;
  * Application test
  *
  */
-public class AppTest {
+class AppTest {
 
   @Test
-  public void test() {
-    String[] args = {};
-    App.main(args);
+  void shouldExecuteApplicationWithoutException() {
+    App.main(new String[]{});
   }
 }

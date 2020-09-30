@@ -30,8 +30,8 @@ import java.security.InvalidParameterException;
  */
 public class Tenant {
 
-  private String name;
-  private int allowedCallsPerSecond;
+  private final String name;
+  private final int allowedCallsPerSecond;
 
   /**
    * Constructor.

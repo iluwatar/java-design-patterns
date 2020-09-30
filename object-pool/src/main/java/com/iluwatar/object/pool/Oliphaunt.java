@@ -30,7 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Oliphaunt {
 
-  private static AtomicInteger counter = new AtomicInteger(0);
+  private static final AtomicInteger counter = new AtomicInteger(0);
 
   private final int id;
 

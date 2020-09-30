@@ -42,7 +42,7 @@ public class ShardTest {
 
   @Before
   public void setup() {
-    data = new Data(1, "test", Data.DataType.type1);
+    data = new Data(1, "test", Data.DataType.TYPE_1);
     shard = new Shard(1);
   }
 

@@ -30,8 +30,8 @@ import java.util.Map;
  * has all video details.
  */
 public class VideoResource {
-  private FieldJsonMapper fieldJsonMapper;
-  private Map<Integer, Video> videos;
+  private final FieldJsonMapper fieldJsonMapper;
+  private final Map<Integer, Video> videos;
 
   /**
    * Constructor.

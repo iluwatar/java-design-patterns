@@ -70,22 +70,18 @@ public class Star {
   }
 
   StarMemento getMemento() {
-
-    StarMementoInternal state = new StarMementoInternal();
+    var state = new StarMementoInternal();
     state.setAgeYears(ageYears);
     state.setMassTons(massTons);
     state.setType(type);
     return state;
-
   }
 
   void setMemento(StarMemento memento) {
-
-    StarMementoInternal state = (StarMementoInternal) memento;
+    var state = (StarMementoInternal) memento;
     this.type = state.getType();
     this.ageYears = state.getAgeYears();
     this.massTons = state.getMassTons();
-
   }
 
   @Override

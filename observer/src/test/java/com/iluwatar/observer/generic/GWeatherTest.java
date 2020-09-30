@@ -59,9 +59,9 @@ public class GWeatherTest {
    */
   @Test
   public void testAddRemoveObserver() {
-    final Race observer = mock(Race.class);
+    final var observer = mock(Race.class);
 
-    final GWeather weather = new GWeather();
+    final var weather = new GWeather();
     weather.addObserver(observer);
     verifyZeroInteractions(observer);
 
@@ -82,13 +82,13 @@ public class GWeatherTest {
    */
   @Test
   public void testTimePasses() {
-    final Race observer = mock(Race.class);
-    final GWeather weather = new GWeather();
+    final var observer = mock(Race.class);
+    final var weather = new GWeather();
     weather.addObserver(observer);
 
-    final InOrder inOrder = inOrder(observer);
-    final WeatherType[] weatherTypes = WeatherType.values();
-    for (int i = 1; i < 20; i++) {
+    final var inOrder = inOrder(observer);
+    final var weatherTypes = WeatherType.values();
+    for (var i = 1; i < 20; i++) {
       weather.timePasses();
       inOrder.verify(observer).update(weather, weatherTypes[i % weatherTypes.length]);
     }

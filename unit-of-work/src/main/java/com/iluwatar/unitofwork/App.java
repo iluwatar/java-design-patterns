@@ -35,6 +35,7 @@ public class App {
    *
    * @param args no argument sent
    */
+
   public static void main(String[] args) {
     var ram = new Student(1, "Ram", "Street 9, Cupertino");
     var shyam = new Student(2, "Shyam", "Z bridge, Pune");

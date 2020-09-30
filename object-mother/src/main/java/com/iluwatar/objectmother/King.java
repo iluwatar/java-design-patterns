@@ -60,7 +60,7 @@ public class King implements Royalty {
    * @param queen Queen which should be flirted.
    */
   public void flirt(Queen queen) {
-    boolean flirtStatus = queen.getFlirted(this);
+    var flirtStatus = queen.getFlirted(this);
     if (!flirtStatus) {
       this.makeUnhappy();
     } else {

@@ -32,7 +32,7 @@ import java.util.Map;
  */
 public class OrcBlacksmith implements Blacksmith {
 
-  private static Map<WeaponType, OrcWeapon> ORCARSENAL;
+  private static final Map<WeaponType, OrcWeapon> ORCARSENAL;
 
   static {
     ORCARSENAL = new HashMap<>(WeaponType.values().length);

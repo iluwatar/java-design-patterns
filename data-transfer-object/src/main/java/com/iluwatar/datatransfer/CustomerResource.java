@@ -30,7 +30,7 @@ import java.util.List;
  * has all customer details.
  */
 public class CustomerResource {
-  private List<CustomerDto> customers;
+  private final List<CustomerDto> customers;
 
   /**
    * Initialise resource with existing customers.

@@ -40,50 +40,50 @@ public class RoyaltyObjectMotherTest {
 
   @Test
   public void unsuccessfulKingFlirt() {
-    King soberUnhappyKing = RoyaltyObjectMother.createSoberUnhappyKing();
-    Queen flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
+    var soberUnhappyKing = RoyaltyObjectMother.createSoberUnhappyKing();
+    var flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
     soberUnhappyKing.flirt(flirtyQueen);
     assertFalse(soberUnhappyKing.isHappy());
   }
 
   @Test
   public void queenIsBlockingFlirtCauseDrunkKing() {
-    King drunkUnhappyKing = RoyaltyObjectMother.createDrunkKing();
-    Queen notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
+    var drunkUnhappyKing = RoyaltyObjectMother.createDrunkKing();
+    var notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
     drunkUnhappyKing.flirt(notFlirtyQueen);
     assertFalse(drunkUnhappyKing.isHappy());
   }
 
   @Test
   public void queenIsBlockingFlirt() {
-    King soberHappyKing = RoyaltyObjectMother.createHappyKing();
-    Queen notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
+    var soberHappyKing = RoyaltyObjectMother.createHappyKing();
+    var notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
     soberHappyKing.flirt(notFlirtyQueen);
     assertFalse(soberHappyKing.isHappy());
   }
 
   @Test
   public void successfullKingFlirt() {
-    King soberHappyKing = RoyaltyObjectMother.createHappyKing();
-    Queen flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
+    var soberHappyKing = RoyaltyObjectMother.createHappyKing();
+    var flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
     soberHappyKing.flirt(flirtyQueen);
     assertTrue(soberHappyKing.isHappy());
   }
 
   @Test
   public void testQueenType() {
-    Royalty flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
-    Royalty notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
+    var flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
+    var notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
     assertEquals(flirtyQueen.getClass(), Queen.class);
     assertEquals(notFlirtyQueen.getClass(), Queen.class);
   }
 
   @Test
   public void testKingType() {
-    Royalty drunkKing = RoyaltyObjectMother.createDrunkKing();
-    Royalty happyDrunkKing = RoyaltyObjectMother.createHappyDrunkKing();
-    Royalty happyKing = RoyaltyObjectMother.createHappyKing();
-    Royalty soberUnhappyKing = RoyaltyObjectMother.createSoberUnhappyKing();
+    var drunkKing = RoyaltyObjectMother.createDrunkKing();
+    var happyDrunkKing = RoyaltyObjectMother.createHappyDrunkKing();
+    var happyKing = RoyaltyObjectMother.createHappyKing();
+    var soberUnhappyKing = RoyaltyObjectMother.createSoberUnhappyKing();
     assertEquals(drunkKing.getClass(), King.class);
     assertEquals(happyDrunkKing.getClass(), King.class);
     assertEquals(happyKing.getClass(), King.class);

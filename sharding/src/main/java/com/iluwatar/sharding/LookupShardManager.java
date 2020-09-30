@@ -39,7 +39,7 @@ public class LookupShardManager extends ShardManager {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(LookupShardManager.class);
 
-  private Map<Integer, Integer> lookupMap = new HashMap<>();
+  private final Map<Integer, Integer> lookupMap = new HashMap<>();
 
   @Override
   public int storeData(Data data) {

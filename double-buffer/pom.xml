@@ -29,7 +29,7 @@
     <parent>
         <artifactId>java-design-patterns</artifactId>
         <groupId>com.iluwatar</groupId>
-        <version>1.23.0-SNAPSHOT</version>
+        <version>1.24.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -43,6 +43,11 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>

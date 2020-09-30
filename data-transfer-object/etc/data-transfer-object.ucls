@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.iluwatar.datatransfer.CustomerClientApp" project="data-transfer-object" 
+  <class id="1" language="java" name="com.iluwatar.datatransfer.App" project="data-transfer-object"
     file="/data-transfer-object/src/main/java/com/iluwatar/datatransfer/CustomerClientApp.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="145" y="93"/>    

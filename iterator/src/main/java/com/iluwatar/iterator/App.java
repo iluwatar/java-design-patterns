@@ -62,7 +62,7 @@ public class App {
     LOGGER.info("------------------------");
     LOGGER.info("BST Iterator: ");
     var root = buildIntegerBst();
-    var bstIterator = new BstIterator<Integer>(root);
+    var bstIterator = new BstIterator<>(root);
     while (bstIterator.hasNext()) {
       LOGGER.info("Next node: " + bstIterator.next().getVal());
     }
