@@ -23,49 +23,37 @@
 
 package com.iluwatar.circuitbreaker;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 /**
- * The service class which makes local and remote calls Uses {@link DefaultCircuitBreaker} object to
- * ensure remote calls don't use up resources.
+ * Monitoring Service test
  */
-public class MonitoringService {
+public class DelayedRemoteServiceTest {
 
-  private final CircuitBreaker delayedService;
-
-  private final CircuitBreaker quickService;
-
-  public MonitoringService(CircuitBreaker delayedService, CircuitBreaker quickService) {
-    this.delayedService = delayedService;
-    this.quickService = quickService;
-  }
-
-  //Assumption: Local service won't fail, no need to wrap it in a circuit breaker logic
-  public String localResourceResponse() {
-    return "Local Service is working";
+  /**
+   * Testing immediate response of the delayed service.
+   *
+   * @throws RemoteServiceException
+   */
+  @Test
+  public void testDefaultConstructor() throws RemoteServiceException {
+    Assertions.assertThrows(RemoteServiceException.class, () -> {
+      var obj = new DelayedRemoteService();
+      obj.call();
+    });
   }
 
   /**
-   * Fetch response from the delayed service (with some simulated startup time).
+   * Testing server started in past (2 seconds ago) and with a simulated delay of 1 second.
    *
-   * @return response string
+   * @throws RemoteServiceException
    */
-  public String delayedServiceResponse() {
-    try {
-      return this.delayedService.attemptRequest();
-    } catch (RemoteServiceException e) {
-      return e.getMessage();
-    }
-  }
-
-  /**
-   * Fetches response from a healthy service without any failure.
-   *
-   * @return response string
-   */
-  public String quickServiceResponse() {
-    try {
-      return this.quickService.attemptRequest();
-    } catch (RemoteServiceException e) {
-      return e.getMessage();
-    }
+  @Test
+  public void testParameterizedConstructor() throws RemoteServiceException {
+      var obj = new DelayedRemoteService(System.nanoTime()-2000*1000*1000,1);
+      assertEquals("Delayed service is working",obj.call());
   }
 }

@@ -63,7 +63,7 @@
         <sonar.projectName>Java Design Patterns</sonar.projectName>
     </properties>
     <modules>
-        <module>abstract-factory</module>
+        <!--<module>abstract-factory</module>
         <module>tls</module>
         <module>builder</module>
         <module>factory-method</module>
@@ -181,9 +181,9 @@
         <module>bytecode</module>
         <module>leader-election</module>
         <module>data-locality</module>
-        <module>subclass-sandbox</module>
+        <module>subclass-sandbox</module>-->
         <module>circuit-breaker</module>
-        <module>role-object</module>
+       <!-- <module>role-object</module>
         <module>saga</module>
         <module>double-buffer</module>
         <module>sharding</module>
@@ -196,7 +196,7 @@
         <module>transaction-script</module>
         <module>filterer</module>
         <module>factory</module>
-        <module>separated-interface</module>
+        <module>separated-interface</module>-->
     </modules>
 
     <repositories>

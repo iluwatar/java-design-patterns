@@ -23,19 +23,13 @@
 
 package com.iluwatar.circuitbreaker;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-
 /**
- * Monitoring Service test
+ * A quick response remote service, that responds healthy without any delay or failure.
  */
-public class DelayedServiceTest {
+public class QuickRemoteService implements RemoteService {
 
-  //Improves code coverage
-  @Test
-  public void testDefaultConstructor() {
-    var obj = new DelayedService();
-    assertEquals(obj.response(System.nanoTime()), "Delayed service is down");
+  @Override
+  public String call() throws RemoteServiceException {
+    return "Quick Service is working";
   }
 }
