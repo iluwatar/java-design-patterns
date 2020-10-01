@@ -97,8 +97,9 @@ public interface Trampoline<T> {
       public T get() {
         return trampoline(this);
       }
-
-      T trampoline(final Trampoline<T> trampoline) {
+      
+      @Override
+      public T trampoline(final Trampoline<T> trampoline) {
         return Stream.iterate(trampoline, Trampoline::jump)
             .filter(Trampoline::complete)
             .findFirst()
