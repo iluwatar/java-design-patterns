@@ -26,7 +26,8 @@ import abstractextensions.SergeantExtension;
 import abstractextensions.SoldierExtension;
 import java.util.Optional;
 import java.util.function.Function;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 import units.CommanderUnit;
 import units.SergeantUnit;
 import units.SoldierUnit;
@@ -36,6 +37,7 @@ import units.Unit;
  * Anticipate that an object’s interface needs to be extended in the future. Additional interfaces
  * are defined by extension objects.
  */
+@Slf4j
 public class App {
 
   /**
@@ -58,10 +60,9 @@ public class App {
   }
 
   private static void checkExtensionsForUnit(Unit unit) {
-    final var logger = LoggerFactory.getLogger(App.class);
 
     var name = unit.getName();
-    Function<String, Runnable> func = (e) -> () -> logger.info(name + " without " + e);
+    Function<String, Runnable> func = (e) -> () -> log.info(name + " without " + e);
 
     var extension = "SoldierExtension";
     Optional.ofNullable(unit.getUnitExtension(extension))

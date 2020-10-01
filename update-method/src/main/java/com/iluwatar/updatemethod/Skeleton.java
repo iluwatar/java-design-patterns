@@ -23,12 +23,15 @@
 
 package com.iluwatar.updatemethod;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Skeletons are always patrolling on the game map. Initially all the skeletons
  * patrolling to the right, and after them reach the bounding, it will start
  * patrolling to the left. For each frame, one skeleton will move 1 position
  * step.
  */
+@Slf4j
 public class Skeleton extends Entity {
 
   private static final int PATROLLING_LEFT_BOUNDING = 0;
@@ -72,7 +75,7 @@ public class Skeleton extends Entity {
         patrollingLeft = true;
       }
     }
-    logger.info("Skeleton " + id + " is on position " + position + ".");
+    log.info("Skeleton " + id + " is on position " + position + ".");
   }
 }
 

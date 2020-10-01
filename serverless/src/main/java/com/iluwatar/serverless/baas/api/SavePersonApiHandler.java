@@ -29,16 +29,16 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.iluwatar.serverless.baas.model.Person;
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * save person into persons collection Created by dheeraj.mummar on 3/4/18.
  */
+@Slf4j
 public class SavePersonApiHandler extends AbstractDynamoDbHandler<Person>
     implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(SavePersonApiHandler.class);
+
   private static final Integer CREATED_STATUS_CODE = 201;
   private static final Integer BAD_REQUEST_STATUS_CODE = 400;
 
@@ -50,7 +50,7 @@ public class SavePersonApiHandler extends AbstractDynamoDbHandler<Person>
       getDynamoDbMapper().save(person);
       return apiGatewayProxyResponseEvent(CREATED_STATUS_CODE, person);
     } catch (IOException ioException) {
-      LOG.error("unable to parse body", ioException);
+      log.error("unable to parse body", ioException);
       return apiGatewayProxyResponseEvent(BAD_REQUEST_STATUS_CODE, null);
     }
   }

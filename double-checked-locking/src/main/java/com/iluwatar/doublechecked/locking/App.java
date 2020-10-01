@@ -26,8 +26,7 @@ package com.iluwatar.doublechecked.locking;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Double Checked Locking is a concurrency design pattern used to reduce the overhead of acquiring a
@@ -40,9 +39,9 @@ import org.slf4j.LoggerFactory;
  * locking to add item to inventory. In this method, the thread which gets the lock first adds the
  * item.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -54,7 +53,7 @@ public class App {
     var executorService = Executors.newFixedThreadPool(3);
     IntStream.range(0, 3).<Runnable>mapToObj(i -> () -> {
       while (inventory.addItem(new Item())) {
-        LOGGER.info("Adding another item");
+        log.info("Adding another item");
       }
     }).forEach(executorService::execute);
 
@@ -62,7 +61,7 @@ public class App {
     try {
       executorService.awaitTermination(5, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown");
+      log.error("Error waiting for ExecutorService shutdown");
     }
   }
 }

@@ -27,8 +27,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.Callable;
 import java.util.stream.IntStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * DateFormatCallable converts string dates to a date format using SimpleDateFormat. The date format
@@ -42,12 +41,11 @@ import org.slf4j.LoggerFactory;
  *
  * @author Thomas Bauer, 2017
  */
+@Slf4j
 public class DateFormatCallable implements Callable<Result> {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(DateFormatCallable.class);
   // class variables (members)
   private final ThreadLocal<DateFormat> df;    //TLTL
-  // private DateFormat df;                 //NTLNTL
 
   private final String dateValue; // for dateValue Thread Local not needed
 
@@ -69,7 +67,7 @@ public class DateFormatCallable implements Callable<Result> {
 
   @Override
   public Result call() {
-    LOGGER.info(Thread.currentThread() + " started executing...");
+    log.info(Thread.currentThread() + " started executing...");
     var result = new Result();
 
     // Convert date value to date 5 times
@@ -86,7 +84,7 @@ public class DateFormatCallable implements Callable<Result> {
       }
     });
 
-    LOGGER.info(Thread.currentThread() + " finished processing part of the thread");
+    log.info(Thread.currentThread() + " finished processing part of the thread");
 
     return result;
   }

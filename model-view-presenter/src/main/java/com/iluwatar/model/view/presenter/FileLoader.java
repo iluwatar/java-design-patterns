@@ -28,8 +28,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.Serializable;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Every instance of this class represents the Model component in the Model-View-Presenter
@@ -37,14 +36,13 @@ import org.slf4j.LoggerFactory;
  *
  * <p>It is responsible for reading and loading the contents of a given file.
  */
+@Slf4j
 public class FileLoader implements Serializable {
 
   /**
    * Generated serial version UID.
    */
   private static final long serialVersionUID = -4745803872902019069L;
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(FileLoader.class);
 
   /**
    * Indicates if the file is loaded or not.
@@ -66,7 +64,7 @@ public class FileLoader implements Serializable {
       this.loaded = true;
       return result;
     } catch (Exception e) {
-      LOGGER.error("File {} does not exist", dataFileName);
+      log.error("File {} does not exist", dataFileName);
     }
 
     return null;

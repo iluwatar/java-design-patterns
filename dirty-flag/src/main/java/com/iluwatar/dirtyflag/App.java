@@ -25,8 +25,7 @@ package com.iluwatar.dirtyflag;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This application demonstrates the <b>Dirty Flag</b> pattern. The dirty flag behavioral pattern
@@ -51,9 +50,9 @@ import org.slf4j.LoggerFactory;
  * re-fetches from <i>world.txt</i> when needed. {@link World} mainly serves the data to the
  * front-end.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program execution point.
@@ -66,8 +65,8 @@ public class App {
       @Override
       public void run() {
         var countries = world.fetch();
-        LOGGER.info("Our world currently has the following countries:-");
-        countries.stream().map(country -> "\t" + country).forEach(LOGGER::info);
+        log.info("Our world currently has the following countries:-");
+        countries.stream().map(country -> "\t" + country).forEach(log::info);
       }
     }, 0, 15, TimeUnit.SECONDS); // Run at every 15 seconds.
   }

@@ -25,16 +25,15 @@ package com.iluwatar.throttling;
 
 import com.iluwatar.throttling.timer.Throttler;
 import java.util.concurrent.ThreadLocalRandom;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A service which accepts a tenant and throttles the resource based on the time given to the
  * tenant.
  */
+@Slf4j
 class B2BService {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(B2BService.class);
   private final CallsCount callsCount;
 
   public B2BService(Throttler timer, CallsCount callsCount) {
@@ -50,9 +49,9 @@ class B2BService {
   public int dummyCustomerApi(Tenant tenant) {
     var tenantName = tenant.getName();
     var count = callsCount.getCount(tenantName);
-    LOGGER.debug("Counter for {} : {} ", tenant.getName(), count);
+    log.debug("Counter for {} : {} ", tenant.getName(), count);
     if (count >= tenant.getAllowedCallsPerSecond()) {
-      LOGGER.error("API access per second limit reached for: {}", tenantName);
+      log.error("API access per second limit reached for: {}", tenantName);
       return -1;
     }
     callsCount.incrementCount(tenantName);

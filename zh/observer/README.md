@@ -93,7 +93,7 @@ public class Weather {
   public void timePasses() {
     var enumValues = WeatherType.values();
     currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
-    LOGGER.info("The weather changed to {}.", currentWeather);
+    log.info("The weather changed to {}.", currentWeather);
     notifyObservers();
   }
 

@@ -24,15 +24,15 @@
 package concreteextensions;
 
 import abstractextensions.SoldierExtension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import units.SoldierUnit;
 
 /**
  * Class defining Soldier.
  */
+@Slf4j
 public class Soldier implements SoldierExtension {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Soldier.class);
+
 
   private final SoldierUnit unit;
 
@@ -42,7 +42,7 @@ public class Soldier implements SoldierExtension {
 
   @Override
   public void soldierReady() {
-    LOGGER.info("[Soldier] " + unit.getName() + " is ready!");
+    log.info("[Soldier] " + unit.getName() + " is ready!");
   }
 
   public SoldierUnit getUnit() {

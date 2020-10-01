@@ -24,21 +24,19 @@
 package com.iluwatar.pipeline;
 
 import java.util.Arrays;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Stage handler that converts an input String to its char[] array counterpart.
  */
+@Slf4j
 class ConvertToCharArrayHandler implements Handler<String, char[]> {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ConvertToCharArrayHandler.class);
 
   @Override
   public char[] process(String input) {
     var characters = input.toCharArray();
     var string = Arrays.toString(characters);
-    LOGGER.info(
+    log.info(
         String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
             ConvertToCharArrayHandler.class, input, String.class, string, Character[].class)
     );

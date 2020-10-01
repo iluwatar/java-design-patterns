@@ -23,8 +23,7 @@
 
 package com.iluwatar.stepbuilder;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Step Builder Pattern
@@ -56,9 +55,9 @@ import org.slf4j.LoggerFactory;
  *
  * @see <a href="http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html">http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html</a>
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -75,7 +74,7 @@ public class App {
         .noAbilities()
         .build();
 
-    LOGGER.info(warrior.toString());
+    log.info(warrior.toString());
 
     var mage = CharacterStepBuilder
         .newBuilder()
@@ -87,7 +86,7 @@ public class App {
         .noMoreAbilities()
         .build();
 
-    LOGGER.info(mage.toString());
+    log.info(mage.toString());
 
     var thief = CharacterStepBuilder
         .newBuilder()
@@ -96,6 +95,6 @@ public class App {
         .noWeapon()
         .build();
 
-    LOGGER.info(thief.toString());
+    log.info(thief.toString());
   }
 }

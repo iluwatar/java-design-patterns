@@ -24,8 +24,7 @@
 package com.iluwatar.delegation.simple.printers;
 
 import com.iluwatar.delegation.simple.Printer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Specialised Implementation of {@link Printer} for a Epson Printer, in this case the message to be
@@ -33,16 +32,16 @@ import org.slf4j.LoggerFactory;
  *
  * @see Printer
  */
+@Slf4j
 public class EpsonPrinter implements Printer {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(EpsonPrinter.class);
 
   /**
    * {@inheritDoc}
    */
   @Override
   public void print(String message) {
-    LOGGER.info("Epson Printer : {}", message);
+    log.info("Epson Printer : {}", message);
   }
 
 }

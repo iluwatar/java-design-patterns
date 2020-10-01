@@ -24,8 +24,7 @@
 package com.iluwatar.partialresponse;
 
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Partial response pattern is a design pattern in which client specifies fields to fetch to
@@ -35,8 +34,9 @@ import org.slf4j.LoggerFactory;
  * <p>{@link VideoResource} act as server to serve video information.
  */
 
+@Slf4j
 public class App {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
 
   /**
    * Method as act client and request to server for video details.
@@ -55,20 +55,20 @@ public class App {
     var videoResource = new VideoResource(new FieldJsonMapper(), videos);
 
 
-    LOGGER.info("Retrieving full response from server:-");
-    LOGGER.info("Get all video information:");
+    log.info("Retrieving full response from server:-");
+    log.info("Get all video information:");
     var videoDetails = videoResource.getDetails(1);
-    LOGGER.info(videoDetails);
+    log.info(videoDetails);
 
-    LOGGER.info("----------------------------------------------------------");
+    log.info("----------------------------------------------------------");
 
-    LOGGER.info("Retrieving partial response from server:-");
-    LOGGER.info("Get video @id, @title, @director:");
+    log.info("Retrieving partial response from server:-");
+    log.info("Get video @id, @title, @director:");
     var specificFieldsDetails = videoResource.getDetails(3, "id", "title", "director");
-    LOGGER.info(specificFieldsDetails);
+    log.info(specificFieldsDetails);
 
-    LOGGER.info("Get video @id, @length:");
+    log.info("Get video @id, @length:");
     var videoLength = videoResource.getDetails(3, "id", "length");
-    LOGGER.info(videoLength);
+    log.info(videoLength);
   }
 }

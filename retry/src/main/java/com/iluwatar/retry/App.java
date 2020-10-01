@@ -23,8 +23,7 @@
 
 package com.iluwatar.retry;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The <em>Retry</em> pattern enables applications to handle potentially recoverable failures from
@@ -57,8 +56,8 @@ import org.slf4j.LoggerFactory;
  * @see <a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/retry">Retry pattern
  *     (Microsoft Azure Docs)</a>
  */
+@Slf4j
 public final class App {
-  private static final Logger LOG = LoggerFactory.getLogger(App.class);
   public static final String NOT_FOUND = "not found";
   private static BusinessOperation<String> op;
 
@@ -78,7 +77,7 @@ public final class App {
   private static void noErrors() throws Exception {
     op = new FindCustomer("123");
     op.perform();
-    LOG.info("Sometimes the operation executes with no errors.");
+    log.info("Sometimes the operation executes with no errors.");
   }
 
   private static void errorNoRetry() throws Exception {
@@ -86,7 +85,7 @@ public final class App {
     try {
       op.perform();
     } catch (CustomerNotFoundException e) {
-      LOG.info("Yet the operation will throw an error every once in a while.");
+      log.info("Yet the operation will throw an error every once in a while.");
     }
   }
 
@@ -99,7 +98,7 @@ public final class App {
     );
     op = retry;
     final var customerId = op.perform();
-    LOG.info(String.format(
+    log.info(String.format(
         "However, retrying the operation while ignoring a recoverable error will eventually yield "
             + "the result %s after a number of attempts %s", customerId, retry.attempts()
     ));
@@ -114,7 +113,7 @@ public final class App {
     );
     op = retry;
     final var customerId = op.perform();
-    LOG.info(String.format(
+    log.info(String.format(
         "However, retrying the operation while ignoring a recoverable error will eventually yield "
             + "the result %s after a number of attempts %s", customerId, retry.attempts()
     ));

@@ -23,8 +23,7 @@
 
 package com.iluwatar.datamapper;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
@@ -36,9 +35,8 @@ import org.slf4j.LoggerFactory;
  *
  * <p>The below example demonstrates basic CRUD operations: Create, Read, Update, and Delete.
  */
+@Slf4j
 public final class App {
-
-  private static final Logger log = LoggerFactory.getLogger(App.class);
   private static final String STUDENT_STRING = "App.main(), student : ";
 
 

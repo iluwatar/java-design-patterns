@@ -24,9 +24,8 @@
 package com.iluwatar.doublebuffer;
 
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.MutablePair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Double buffering is a term used to describe a device that has two buffers. The usage of multiple
@@ -35,9 +34,9 @@ import org.slf4j.LoggerFactory;
  * separate frame is being buffered to be shown next. This method makes animations and games look
  * more realistic than the same done in a single buffer mode.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program main entry point.
@@ -65,15 +64,15 @@ public class App {
   }
 
   private static void printBlackPixelCoordinate(Buffer buffer) {
-    StringBuilder log = new StringBuilder("Black Pixels: ");
+    StringBuilder logMessage = new StringBuilder("Black Pixels: ");
     var pixels = buffer.getPixels();
     for (var i = 0; i < pixels.length; ++i) {
       if (pixels[i] == Pixel.BLACK) {
         var y = i / FrameBuffer.WIDTH;
         var x = i % FrameBuffer.WIDTH;
-        log.append(" (").append(x).append(", ").append(y).append(")");
+        logMessage.append(" (").append(x).append(", ").append(y).append(")");
       }
     }
-    LOGGER.info(log.toString());
+    log.info(logMessage.toString());
   }
 }

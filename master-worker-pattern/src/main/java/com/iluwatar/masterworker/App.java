@@ -29,8 +29,7 @@ import com.iluwatar.masterworker.system.systemmaster.ArrayTransposeMaster;
 import com.iluwatar.masterworker.system.systemmaster.Master;
 import com.iluwatar.masterworker.system.systemworkers.ArrayTransposeWorker;
 import com.iluwatar.masterworker.system.systemworkers.Worker;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>The <b><em>Master-Worker</em></b> pattern is used when the problem at hand can be solved by
@@ -55,9 +54,9 @@ import org.slf4j.LoggerFactory;
  * ArrayInput} and {@link ArrayResult}.</p>
  */
 
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -76,7 +75,7 @@ public class App {
       ArrayUtilityMethods.printMatrix(inputMatrix);
       ArrayUtilityMethods.printMatrix(result.data);
     } else {
-      LOGGER.info("Please enter non-zero input");
+      log.info("Please enter non-zero input");
     }
   }
 

@@ -23,21 +23,19 @@
 
 package com.iluwatar.twin;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * GameItem is a common class which provides some common methods for game object.
  */
+@Slf4j
 public abstract class GameItem {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(GameItem.class);
 
   /**
    * Template method, do some common logic before draw.
    */
   public void draw() {
-    LOGGER.info("draw");
+    log.info("draw");
     doDraw();
   }
 

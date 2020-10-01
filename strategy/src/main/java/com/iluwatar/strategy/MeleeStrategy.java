@@ -23,18 +23,17 @@
 
 package com.iluwatar.strategy;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Melee strategy.
  */
+@Slf4j
 public class MeleeStrategy implements DragonSlayingStrategy {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(MeleeStrategy.class);
 
   @Override
   public void execute() {
-    LOGGER.info("With your Excalibur you sever the dragon's head!");
+    log.info("With your Excalibur you sever the dragon's head!");
   }
 }

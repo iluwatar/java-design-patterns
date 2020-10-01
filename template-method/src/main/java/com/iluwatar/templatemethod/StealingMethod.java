@@ -23,15 +23,13 @@
 
 package com.iluwatar.templatemethod;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * StealingMethod defines skeleton for the algorithm.
  */
+@Slf4j
 public abstract class StealingMethod {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(StealingMethod.class);
 
   protected abstract String pickTarget();
 
@@ -44,7 +42,7 @@ public abstract class StealingMethod {
    */
   public void steal() {
     var target = pickTarget();
-    LOGGER.info("The target has been chosen as {}.", target);
+    log.info("The target has been chosen as {}.", target);
     confuseTarget(target);
     stealTheItem(target);
   }

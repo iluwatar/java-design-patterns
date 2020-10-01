@@ -26,15 +26,14 @@ package com.iluwatar.caching;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The caching strategies are implemented in this class.
  */
+@Slf4j
 public class CacheStore {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(CacheStore.class);
 
   private static LruCache cache;
 
@@ -57,10 +56,10 @@ public class CacheStore {
    */
   public static UserAccount readThrough(String userId) {
     if (cache.contains(userId)) {
-      LOGGER.info("# Cache Hit!");
+      log.info("# Cache Hit!");
       return cache.get(userId);
     }
-    LOGGER.info("# Cache Miss!");
+    log.info("# Cache Miss!");
     UserAccount userAccount = DbManager.readFromDb(userId);
     cache.set(userId, userAccount);
     return userAccount;
@@ -96,13 +95,13 @@ public class CacheStore {
    */
   public static UserAccount readThroughWithWriteBackPolicy(String userId) {
     if (cache.contains(userId)) {
-      LOGGER.info("# Cache Hit!");
+      log.info("# Cache Hit!");
       return cache.get(userId);
     }
-    LOGGER.info("# Cache Miss!");
+    log.info("# Cache Miss!");
     UserAccount userAccount = DbManager.readFromDb(userId);
     if (cache.isFull()) {
-      LOGGER.info("# Cache is FULL! Writing LRU data to DB...");
+      log.info("# Cache is FULL! Writing LRU data to DB...");
       UserAccount toBeWrittenToDb = cache.getLruData();
       DbManager.upsertDb(toBeWrittenToDb);
     }
@@ -115,7 +114,7 @@ public class CacheStore {
    */
   public static void writeBehind(UserAccount userAccount) {
     if (cache.isFull() && !cache.contains(userAccount.getUserId())) {
-      LOGGER.info("# Cache is FULL! Writing LRU data to DB...");
+      log.info("# Cache is FULL! Writing LRU data to DB...");
       UserAccount toBeWrittenToDb = cache.getLruData();
       DbManager.upsertDb(toBeWrittenToDb);
     }
@@ -135,7 +134,7 @@ public class CacheStore {
    * Writes remaining content in the cache into the DB.
    */
   public static void flushCache() {
-    LOGGER.info("# flushCache...");
+    log.info("# flushCache...");
     Optional.ofNullable(cache)
         .map(LruCache::getCacheDataInListForm)
         .orElse(List.of())

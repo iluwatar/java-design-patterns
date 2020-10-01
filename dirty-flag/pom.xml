@@ -50,6 +50,10 @@
       <version>3.5.0</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+      </dependency>
   </dependencies>
   <build>
     <plugins>

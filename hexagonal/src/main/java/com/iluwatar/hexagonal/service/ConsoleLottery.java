@@ -29,15 +29,14 @@ import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import java.util.Scanner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Console interface for lottery players.
  */
+@Slf4j
 public class ConsoleLottery {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleLottery.class);
 
   /**
    * Program entry point.
@@ -52,7 +51,7 @@ public class ConsoleLottery {
       while (!exit) {
         printMainMenu();
         var cmd = readString(scanner);
-        var lotteryConsoleService = new LotteryConsoleServiceImpl(LOGGER);
+        var lotteryConsoleService = new LotteryConsoleServiceImpl(log);
         if ("1".equals(cmd)) {
           lotteryConsoleService.queryLotteryAccountFunds(bank, scanner);
         } else if ("2".equals(cmd)) {
@@ -64,24 +63,24 @@ public class ConsoleLottery {
         } else if ("5".equals(cmd)) {
           exit = true;
         } else {
-          LOGGER.info("Unknown command");
+          log.info("Unknown command");
         }
       }
     }
   }
 
   private static void printMainMenu() {
-    LOGGER.info("");
-    LOGGER.info("### Lottery Service Console ###");
-    LOGGER.info("(1) Query lottery account funds");
-    LOGGER.info("(2) Add funds to lottery account");
-    LOGGER.info("(3) Submit ticket");
-    LOGGER.info("(4) Check ticket");
-    LOGGER.info("(5) Exit");
+    log.info("");
+    log.info("### Lottery Service Console ###");
+    log.info("(1) Query lottery account funds");
+    log.info("(2) Add funds to lottery account");
+    log.info("(3) Submit ticket");
+    log.info("(4) Check ticket");
+    log.info("(5) Exit");
   }
 
   private static String readString(Scanner scanner) {
-    LOGGER.info("> ");
+    log.info("> ");
     return scanner.next();
   }
 }

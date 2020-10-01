@@ -24,15 +24,14 @@
 package com.iluwatar.reader.writer.lock;
 
 import java.util.concurrent.locks.Lock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Reader class, read when it acquired the read lock.
  */
+@Slf4j
 public class Reader implements Runnable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Reader.class);
 
   private final Lock readLock;
 
@@ -69,7 +68,7 @@ public class Reader implements Runnable {
     try {
       read();
     } catch (InterruptedException e) {
-      LOGGER.info("InterruptedException when reading", e);
+      log.info("InterruptedException when reading", e);
       Thread.currentThread().interrupt();
     } finally {
       readLock.unlock();
@@ -80,8 +79,8 @@ public class Reader implements Runnable {
    * Simulate the read operation.
    */
   public void read() throws InterruptedException {
-    LOGGER.info("{} begin", name);
+    log.info("{} begin", name);
     Thread.sleep(readingTime);
-    LOGGER.info("{} finish after reading {}ms", name, readingTime);
+    log.info("{} finish after reading {}ms", name, readingTime);
   }
 }

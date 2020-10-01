@@ -27,15 +27,14 @@ import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.dispatcher.Dispatcher;
 import com.iluwatar.flux.store.MenuStore;
 import com.iluwatar.flux.store.Store;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * MenuView is a concrete view.
  */
+@Slf4j
 public class MenuView implements View {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(MenuView.class);
 
   private MenuItem selected = MenuItem.HOME;
 
@@ -50,9 +49,9 @@ public class MenuView implements View {
   public void render() {
     for (var item : MenuItem.values()) {
       if (selected.equals(item)) {
-        LOGGER.info("* {}", item);
+        log.info("* {}", item);
       } else {
-        LOGGER.info(item.toString());
+        log.info(item.toString());
       }
     }
   }

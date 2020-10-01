@@ -26,8 +26,7 @@ package com.iluwatar.data.locality.game;
 import com.iluwatar.data.locality.game.component.manager.AiComponentManager;
 import com.iluwatar.data.locality.game.component.manager.PhysicsComponentManager;
 import com.iluwatar.data.locality.game.component.manager.RenderComponentManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The game Entity maintains a big array of pointers . Each spin of the game loop, we need to run
@@ -39,8 +38,9 @@ import org.slf4j.LoggerFactory;
  *
  * <p>Render them using their render components.
  */
+@Slf4j
 public class GameEntity {
-  private static final Logger LOGGER = LoggerFactory.getLogger(GameEntity.class);
+
 
   private final AiComponentManager aiComponentManager;
   private final PhysicsComponentManager physicsComponentManager;
@@ -50,7 +50,7 @@ public class GameEntity {
    * Init components.
    */
   public GameEntity(int numEntities) {
-    LOGGER.info("Init Game with #Entity : {}", numEntities);
+    log.info("Init Game with #Entity : {}", numEntities);
     aiComponentManager = new AiComponentManager(numEntities);
     physicsComponentManager = new PhysicsComponentManager(numEntities);
     renderComponentManager = new RenderComponentManager(numEntities);
@@ -60,7 +60,7 @@ public class GameEntity {
    * start all component.
    */
   public void start() {
-    LOGGER.info("Start Game");
+    log.info("Start Game");
     aiComponentManager.start();
     physicsComponentManager.start();
     renderComponentManager.start();
@@ -70,7 +70,7 @@ public class GameEntity {
    * update all component.
    */
   public void update() {
-    LOGGER.info("Update Game Component");
+    log.info("Update Game Component");
     // Process AI.
     aiComponentManager.update();
 

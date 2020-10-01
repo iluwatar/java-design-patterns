@@ -24,8 +24,7 @@
 package com.iluwatar.doubledispatch;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * When a message with a parameter is sent to an object, the resultant behaviour is defined by the
@@ -46,9 +45,9 @@ import org.slf4j.LoggerFactory;
  * coordinates. If there is an overlap, then the objects collide utilizing the Double Dispatch
  * pattern.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -63,8 +62,8 @@ public class App {
         new Meteoroid(10, 10, 15, 15),
         new SpaceStationIss(12, 12, 14, 14)
     );
-    objects.forEach(o -> LOGGER.info(o.toString()));
-    LOGGER.info("");
+    objects.forEach(o -> log.info(o.toString()));
+    log.info("");
 
     // collision check
     objects.forEach(o1 -> objects.forEach(o2 -> {
@@ -72,10 +71,10 @@ public class App {
         o1.collision(o2);
       }
     }));
-    LOGGER.info("");
+    log.info("");
 
     // output eventual object statuses
-    objects.forEach(o -> LOGGER.info(o.toString()));
-    LOGGER.info("");
+    objects.forEach(o -> log.info(o.toString()));
+    log.info("");
   }
 }

@@ -26,14 +26,14 @@ package com.iluwatar.unitofwork;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * {@link StudentRepository} Student database repository. supports unit of work for student data.
  */
+@Slf4j
 public class StudentRepository implements IUnitOfWork<Student> {
-  private static final Logger LOGGER = LoggerFactory.getLogger(StudentRepository.class);
+
 
   private final Map<String, List<Student>> context;
   private final StudentDatabase studentDatabase;
@@ -51,20 +51,20 @@ public class StudentRepository implements IUnitOfWork<Student> {
 
   @Override
   public void registerNew(Student student) {
-    LOGGER.info("Registering {} for insert in context.", student.getName());
+    log.info("Registering {} for insert in context.", student.getName());
     register(student, UnitActions.INSERT.getActionValue());
   }
 
   @Override
   public void registerModified(Student student) {
-    LOGGER.info("Registering {} for modify in context.", student.getName());
+    log.info("Registering {} for modify in context.", student.getName());
     register(student, UnitActions.MODIFY.getActionValue());
 
   }
 
   @Override
   public void registerDeleted(Student student) {
-    LOGGER.info("Registering {} for delete in context.", student.getName());
+    log.info("Registering {} for delete in context.", student.getName());
     register(student, UnitActions.DELETE.getActionValue());
   }
 
@@ -85,7 +85,7 @@ public class StudentRepository implements IUnitOfWork<Student> {
     if (context == null || context.size() == 0) {
       return;
     }
-    LOGGER.info("Commit started");
+    log.info("Commit started");
     if (context.containsKey(UnitActions.INSERT.getActionValue())) {
       commitInsert();
     }
@@ -96,13 +96,13 @@ public class StudentRepository implements IUnitOfWork<Student> {
     if (context.containsKey(UnitActions.DELETE.getActionValue())) {
       commitDelete();
     }
-    LOGGER.info("Commit finished.");
+    log.info("Commit finished.");
   }
 
   private void commitInsert() {
     var studentsToBeInserted = context.get(UnitActions.INSERT.getActionValue());
     for (var student : studentsToBeInserted) {
-      LOGGER.info("Saving {} to database.", student.getName());
+      log.info("Saving {} to database.", student.getName());
       studentDatabase.insert(student);
     }
   }
@@ -110,7 +110,7 @@ public class StudentRepository implements IUnitOfWork<Student> {
   private void commitModify() {
     var modifiedStudents = context.get(UnitActions.MODIFY.getActionValue());
     for (var student : modifiedStudents) {
-      LOGGER.info("Modifying {} to database.", student.getName());
+      log.info("Modifying {} to database.", student.getName());
       studentDatabase.modify(student);
     }
   }
@@ -118,7 +118,7 @@ public class StudentRepository implements IUnitOfWork<Student> {
   private void commitDelete() {
     var deletedStudents = context.get(UnitActions.DELETE.getActionValue());
     for (var student : deletedStudents) {
-      LOGGER.info("Deleting {} to database.", student.getName());
+      log.info("Deleting {} to database.", student.getName());
       studentDatabase.delete(student);
     }
   }

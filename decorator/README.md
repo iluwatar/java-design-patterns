@@ -57,7 +57,7 @@ public class SimpleTroll implements Troll {
 
   @Override
   public void attack() {
-    LOGGER.info("The troll tries to grab you!");
+    log.info("The troll tries to grab you!");
   }
 
   @Override
@@ -67,7 +67,7 @@ public class SimpleTroll implements Troll {
 
   @Override
   public void fleeBattle() {
-    LOGGER.info("The troll shrieks in horror and runs away!");
+    log.info("The troll shrieks in horror and runs away!");
   }
 }
 ```
@@ -88,7 +88,7 @@ public class ClubbedTroll implements Troll {
   @Override
   public void attack() {
     decorated.attack();
-    LOGGER.info("The troll swings at you with a club!");
+    log.info("The troll swings at you with a club!");
   }
 
   @Override

@@ -101,7 +101,7 @@ public class WizardTowerProxy implements WizardTower {
       tower.enter(wizard);
       numWizards++;
     } else {
-      LOGGER.info("{} is not allowed to enter!", wizard);
+      log.info("{} is not allowed to enter!", wizard);
     }
   }
 }

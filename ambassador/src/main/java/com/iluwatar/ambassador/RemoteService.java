@@ -27,8 +27,7 @@ import static java.lang.Thread.sleep;
 
 import com.iluwatar.ambassador.util.RandomProvider;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A remote legacy application represented by a Singleton implementation.

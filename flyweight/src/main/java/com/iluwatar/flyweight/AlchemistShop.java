@@ -24,15 +24,14 @@
 package com.iluwatar.flyweight;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * AlchemistShop holds potions on its shelves. It uses PotionFactory to provide the potions.
  */
+@Slf4j
 public class AlchemistShop {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(AlchemistShop.class);
 
   private final List<Potion> topShelf;
   private final List<Potion> bottomShelf;
@@ -83,9 +82,9 @@ public class AlchemistShop {
    * Enumerate potions.
    */
   public void enumerate() {
-    LOGGER.info("Enumerating top shelf potions\n");
+    log.info("Enumerating top shelf potions\n");
     topShelf.forEach(Potion::drink);
-    LOGGER.info("Enumerating bottom shelf potions\n");
+    log.info("Enumerating bottom shelf potions\n");
     bottomShelf.forEach(Potion::drink);
   }
 }

@@ -23,8 +23,7 @@
 
 package com.iluwatar.combinator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -41,13 +40,8 @@ import org.slf4j.LoggerFactory;
  * {@link Finder#and(Finder)}
  * Using them the became possible to get more complex functions {@link Finders}
  */
+@Slf4j
 public class CombinatorApp {
-
-  /**
-   * Logger.
-   */
-  private static final Logger LOGGER = LoggerFactory.getLogger(CombinatorApp.class);
-
   /**
    * main.
    * @param args args
@@ -56,19 +50,19 @@ public class CombinatorApp {
     var queriesOr = new String[]{"many", "Annabel"};
     var finder = Finders.expandedFinder(queriesOr);
     var res = finder.find(text());
-    LOGGER.info("the result of expanded(or) query[{}] is {}", queriesOr, res);
+    log.info("the result of expanded(or) query[{}] is {}", queriesOr, res);
 
     var queriesAnd = new String[]{"Annabel", "my"};
     finder = Finders.specializedFinder(queriesAnd);
     res = finder.find(text());
-    LOGGER.info("the result of specialized(and) query[{}] is {}", queriesAnd, res);
+    log.info("the result of specialized(and) query[{}] is {}", queriesAnd, res);
 
     finder = Finders.advancedFinder("it was","kingdom","sea");
     res = finder.find(text());
-    LOGGER.info("the result of advanced query is {}", res);
+    log.info("the result of advanced query is {}", res);
 
     res = Finders.filteredFinder(" was ", "many", "child").find(text());
-    LOGGER.info("the result of filtered query is {}", res);
+    log.info("the result of filtered query is {}", res);
 
 
   }

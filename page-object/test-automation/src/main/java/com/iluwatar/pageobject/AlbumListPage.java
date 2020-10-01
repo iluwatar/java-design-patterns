@@ -28,15 +28,14 @@ import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import java.io.IOException;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Page Object encapsulating the Album List page (album-list.html)
  */
+@Slf4j
 public class AlbumListPage extends Page {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(AlbumListPage.class);
   private static final String ALBUM_LIST_HTML_FILE = "album-list.html";
   private static final String PAGE_URL = "file:" + AUT_PATH + ALBUM_LIST_HTML_FILE;
 
@@ -60,7 +59,7 @@ public class AlbumListPage extends Page {
     try {
       page = this.webClient.getPage(PAGE_URL);
     } catch (IOException e) {
-      LOGGER.error("An error occured on navigateToPage.", e);
+      log.error("An error occured on navigateToPage.", e);
     }
     return this;
   }
@@ -88,7 +87,7 @@ public class AlbumListPage extends Page {
           anchor.click();
           return new AlbumPage(webClient);
         } catch (IOException e) {
-          LOGGER.error("An error occured on selectAlbum", e);
+          log.error("An error occured on selectAlbum", e);
         }
       }
     }

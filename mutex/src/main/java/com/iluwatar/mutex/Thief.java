@@ -23,16 +23,15 @@
 
 package com.iluwatar.mutex;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Thief is a class which continually tries to acquire a jar and take a bean from it. When the jar
  * is empty the thief stops.
  */
+@Slf4j
 public class Thief extends Thread {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Thief.class);
 
   /**
    * The name of the thief.
@@ -58,10 +57,10 @@ public class Thief extends Thread {
 
     while (jar.takeBean()) {
       beans = beans + 1;
-      LOGGER.info("{} took a bean.", name);
+      log.info("{} took a bean.", name);
     }
 
-    LOGGER.info("{} took {} beans.", name, beans);
+    log.info("{} took {} beans.", name, beans);
   }
 
 }

@@ -23,9 +23,8 @@
 
 package com.iluwatar.balking;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Washing machine class.

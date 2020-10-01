@@ -25,17 +25,16 @@ package com.iluwatar.priority.queue;
 
 import static java.util.Arrays.copyOf;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Keep high Priority message on top using maxHeap.
  *
  * @param <T> :  DataType to push in Queue
  */
+@Slf4j
 public class PriorityMessageQueue<T extends Comparable> {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(PriorityMessageQueue.class);
 
   private int size = 0;
 
@@ -171,7 +170,7 @@ public class PriorityMessageQueue<T extends Comparable> {
    */
   public void print() {
     for (var i = 0; i <= size / 2; i++) {
-      LOGGER.info(" PARENT : " + queue[i] + " LEFT CHILD : "
+      log.info(" PARENT : " + queue[i] + " LEFT CHILD : "
           + left(i) + " RIGHT CHILD :" + right(i));
     }
   }

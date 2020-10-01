@@ -29,8 +29,7 @@ import com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersi
 import com.iluwatar.featuretoggle.user.User;
 import com.iluwatar.featuretoggle.user.UserGroup;
 import java.util.Properties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Feature Toggle pattern allows for complete code executions to be turned on or off with ease.
@@ -45,9 +44,9 @@ import org.slf4j.LoggerFactory;
  * <p>Note that this pattern can easily introduce code complexity, and if not kept in check can
  * result in redundant unmaintained code within the codebase.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Block 1 shows the {@link PropertiesFeatureToggleVersion} being run with {@link Properties}
@@ -58,7 +57,7 @@ public class App {
    * the username is not included.
    *
    * <p>Block 3 shows the {@link
-   * com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion} being set up with
+   * TieredFeatureToggleVersion} being set up with
    * two users on who is on the free level, while the other is on the paid level. When the {@link
    * Service#getWelcomeMessage(User)} is called with the paid {@link User} note that the welcome
    * message contains their username, while the same service call with the free tier user is more
@@ -68,7 +67,7 @@ public class App {
    * @see UserGroup
    * @see Service
    * @see PropertiesFeatureToggleVersion
-   * @see com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion
+   * @see TieredFeatureToggleVersion
    */
   public static void main(String[] args) {
 
@@ -76,7 +75,7 @@ public class App {
     properties.put("enhancedWelcome", true);
     var service = new PropertiesFeatureToggleVersion(properties);
     final var welcomeMessage = service.getWelcomeMessage(new User("Jamie No Code"));
-    LOGGER.info(welcomeMessage);
+    log.info(welcomeMessage);
 
     // ---------------------------------------------
 
@@ -85,7 +84,7 @@ public class App {
     var turnedOffService = new PropertiesFeatureToggleVersion(turnedOff);
     final var welcomeMessageturnedOff =
         turnedOffService.getWelcomeMessage(new User("Jamie No Code"));
-    LOGGER.info(welcomeMessageturnedOff);
+    log.info(welcomeMessageturnedOff);
 
     // --------------------------------------------
 
@@ -99,7 +98,7 @@ public class App {
 
     final var welcomeMessagePaidUser = service2.getWelcomeMessage(paidUser);
     final var welcomeMessageFreeUser = service2.getWelcomeMessage(freeUser);
-    LOGGER.info(welcomeMessageFreeUser);
-    LOGGER.info(welcomeMessagePaidUser);
+    log.info(welcomeMessageFreeUser);
+    log.info(welcomeMessagePaidUser);
   }
 }

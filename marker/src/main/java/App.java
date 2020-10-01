@@ -21,8 +21,7 @@
  * THE SOFTWARE.
  */
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by Alexis on 28-Apr-17. With Marker interface idea is to make empty interface and extend
@@ -38,6 +37,7 @@ import org.slf4j.LoggerFactory;
  * of adding more information to the marker in the future, or to fit the marker into a framework
  * that already makes heavy use of annotation types, then a marker annotation is the correct choice
  */
+@Slf4j
 public class App {
 
   /**
@@ -46,7 +46,6 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    final var logger = LoggerFactory.getLogger(App.class);
     var guard = new Guard();
     var thief = new Thief();
 
@@ -54,7 +53,7 @@ public class App {
     if (guard instanceof Permission) {
       guard.enter();
     } else {
-      logger.info("You have no permission to enter, please leave this area");
+      log.info("You have no permission to enter, please leave this area");
     }
 
     //noinspection ConstantConditions
