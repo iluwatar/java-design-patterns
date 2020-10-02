@@ -25,13 +25,16 @@ package com.iluwatar.hexagonal;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
  * Unit test for simple App.
  */
 class AppTest {
 
   @Test
-  void testApp() {
-    App.main(new String[]{});
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
+
   }
 }

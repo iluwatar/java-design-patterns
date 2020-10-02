@@ -56,7 +56,7 @@ public class HashShardManagerTest {
 
   @Test
   public void testStoreData() {
-    var data = new Data(1, "test", Data.DataType.type1);
+    var data = new Data(1, "test", Data.DataType.TYPE_1);
     hashShardManager.storeData(data);
     Assert.assertEquals(data, hashShardManager.getShardById(1).getDataById(1));
   }

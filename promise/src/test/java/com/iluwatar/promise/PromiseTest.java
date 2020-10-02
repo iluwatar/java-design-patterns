@@ -67,7 +67,7 @@ public class PromiseTest {
 
   @Test
   public void promiseIsFulfilledWithAnExceptionIfTaskThrowsAnException()
-      throws InterruptedException, TimeoutException {
+      throws InterruptedException {
     testWaitingForeverForPromiseToBeFulfilled();
     testWaitingSomeTimeForPromiseToBeFulfilled();
   }

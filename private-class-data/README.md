@@ -9,6 +9,7 @@ tags:
 ---
 
 ## Intent
+
 Private Class Data design pattern seeks to reduce exposure of attributes by limiting their 
 visibility. It reduces the number of class attributes by encapsulating them in single Data object.
 
@@ -124,9 +125,11 @@ immutableStew.mix();  // Mixing the immutable stew we find: 2 potatoes, 4 carrot
 ```
 
 ## Class diagram
+
 ![alt text](./etc/private-class-data.png "Private Class Data")
 
 ## Applicability
+
 Use the Private Class Data pattern when
 
-* You want to prevent write access to class data members
+* You want to prevent write access to class data members.

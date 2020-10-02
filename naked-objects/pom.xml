@@ -29,7 +29,7 @@
 	<parent>
 		<artifactId>java-design-patterns</artifactId>
 		<groupId>com.iluwatar</groupId>
-		<version>1.23.0-SNAPSHOT</version>
+		<version>1.24.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>naked-objects</artifactId>
 	<packaging>pom</packaging>
@@ -333,17 +333,17 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-dom</artifactId>
-				<version>1.23.0-SNAPSHOT</version>
+				<version>1.24.0-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-fixture</artifactId>
-				<version>1.23.0-SNAPSHOT</version>
+				<version>1.24.0-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>naked-objects-webapp</artifactId>
-				<version>1.23.0-SNAPSHOT</version>
+				<version>1.24.0-SNAPSHOT</version>
 			</dependency>
 
 		</dependencies>

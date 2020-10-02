@@ -9,13 +9,15 @@ tags:
 ---
 
 ## Intent
+
 Object provides an abstract interface to some type of database or other persistence mechanism.
 
 ## Explanation
 
 Real world example
 
-> There's a set of customers that need to be persisted to database. Additionally we need the whole set of CRUD (create/read/update/delete) operations so we can operate on customers easily. 
+> There's a set of customers that need to be persisted to database. Additionally we need the whole 
+> set of CRUD (create/read/update/delete) operations so we can operate on customers easily. 
 
 In plain words
 
@@ -23,11 +25,12 @@ In plain words
 
 Wikipedia says
 
-> In computer software, a data access object (DAO) is a pattern that provides an abstract interface to some type of database or other persistence mechanism.
+> In computer software, a data access object (DAO) is a pattern that provides an abstract interface 
+> to some type of database or other persistence mechanism.
 
 **Programmatic Example**
 
-Walking through our customers example, here's the basic Customer entity.
+Walking through our customers example, here's the basic `Customer` entity.
 
 ```java
 public class Customer {
@@ -41,60 +44,13 @@ public class Customer {
     this.firstName = firstName;
     this.lastName = lastName;
   }
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(final int id) {
-    this.id = id;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(final String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(final String lastName) {
-    this.lastName = lastName;
-  }
-
-  @Override
-  public String toString() {
-    return "Customer{" + "id=" + getId() + ", firstName='" + getFirstName() + '\'' + ", lastName='"
-        + getLastName() + '\'' + '}';
-  }
-
-  @Override
-  public boolean equals(final Object that) {
-    var isEqual = false;
-    if (this == that) {
-      isEqual = true;
-    } else if (that != null && getClass() == that.getClass()) {
-      final var customer = (Customer) that;
-      if (getId() == customer.getId()) {
-        isEqual = true;
-      }
-    }
-    return isEqual;
-  }
-
-  @Override
-  public int hashCode() {
-    return getId();
-  }
+  // getters and setters ->
+  ...
 }
 ```
 
-Here's the DAO interface and two different implementations for it. InMemoryCustomerDao keeps a simple map of customers 
-in memory while DBCustomerDao is the real RDBMS implementation.
+Here's the `CustomerDao` interface and two different implementations for it. `InMemoryCustomerDao` 
+keeps a simple map of customers in memory while `DBCustomerDao` is the real RDBMS implementation.
 
 ```java
 public interface CustomerDao {
@@ -114,35 +70,8 @@ public class InMemoryCustomerDao implements CustomerDao {
 
   private final Map<Integer, Customer> idToCustomer = new HashMap<>();
 
-  @Override
-  public Stream<Customer> getAll() {
-    return idToCustomer.values().stream();
-  }
-
-  @Override
-  public Optional<Customer> getById(final int id) {
-    return Optional.ofNullable(idToCustomer.get(id));
-  }
-
-  @Override
-  public boolean add(final Customer customer) {
-    if (getById(customer.getId()).isPresent()) {
-      return false;
-    }
-
-    idToCustomer.put(customer.getId(), customer);
-    return true;
-  }
-
-  @Override
-  public boolean update(final Customer customer) {
-    return idToCustomer.replace(customer.getId(), customer) != null;
-  }
-
-  @Override
-  public boolean delete(final Customer customer) {
-    return idToCustomer.remove(customer.getId()) != null;
-  }
+  // implement the interface using the map
+  ...
 }
 
 public class DbCustomerDao implements CustomerDao {
@@ -155,121 +84,8 @@ public class DbCustomerDao implements CustomerDao {
     this.dataSource = dataSource;
   }
 
-  @Override
-  public Stream<Customer> getAll() throws Exception {
-    try {
-      var connection = getConnection();
-      var statement = connection.prepareStatement("SELECT * FROM CUSTOMERS");
-      var resultSet = statement.executeQuery();
-      return StreamSupport.stream(new Spliterators.AbstractSpliterator<Customer>(Long.MAX_VALUE,
-          Spliterator.ORDERED) {
-
-        @Override
-        public boolean tryAdvance(Consumer<? super Customer> action) {
-          try {
-            if (!resultSet.next()) {
-              return false;
-            }
-            action.accept(createCustomer(resultSet));
-            return true;
-          } catch (SQLException e) {
-            throw new RuntimeException(e);
-          }
-        }
-      }, false).onClose(() -> mutedClose(connection, statement, resultSet));
-    } catch (SQLException e) {
-      throw new CustomException(e.getMessage(), e);
-    }
-  }
-
-  private Connection getConnection() throws SQLException {
-    return dataSource.getConnection();
-  }
-
-  private void mutedClose(Connection connection, PreparedStatement statement, ResultSet resultSet) {
-    try {
-      resultSet.close();
-      statement.close();
-      connection.close();
-    } catch (SQLException e) {
-      LOGGER.info("Exception thrown " + e.getMessage());
-    }
-  }
-
-  private Customer createCustomer(ResultSet resultSet) throws SQLException {
-    return new Customer(resultSet.getInt("ID"),
-        resultSet.getString("FNAME"),
-        resultSet.getString("LNAME"));
-  }
-
-  @Override
-  public Optional<Customer> getById(int id) throws Exception {
-
-    ResultSet resultSet = null;
-
-    try (var connection = getConnection();
-         var statement = connection.prepareStatement("SELECT * FROM CUSTOMERS WHERE ID = ?")) {
-
-      statement.setInt(1, id);
-      resultSet = statement.executeQuery();
-      if (resultSet.next()) {
-        return Optional.of(createCustomer(resultSet));
-      } else {
-        return Optional.empty();
-      }
-    } catch (SQLException ex) {
-      throw new CustomException(ex.getMessage(), ex);
-    } finally {
-      if (resultSet != null) {
-        resultSet.close();
-      }
-    }
-  }
-
-  @Override
-  public boolean add(Customer customer) throws Exception {
-    if (getById(customer.getId()).isPresent()) {
-      return false;
-    }
-
-    try (var connection = getConnection();
-         var statement = connection.prepareStatement("INSERT INTO CUSTOMERS VALUES (?,?,?)")) {
-      statement.setInt(1, customer.getId());
-      statement.setString(2, customer.getFirstName());
-      statement.setString(3, customer.getLastName());
-      statement.execute();
-      return true;
-    } catch (SQLException ex) {
-      throw new CustomException(ex.getMessage(), ex);
-    }
-  }
-
-  @Override
-  public boolean update(Customer customer) throws Exception {
-    try (var connection = getConnection();
-         var statement =
-             connection
-                 .prepareStatement("UPDATE CUSTOMERS SET FNAME = ?, LNAME = ? WHERE ID = ?")) {
-      statement.setString(1, customer.getFirstName());
-      statement.setString(2, customer.getLastName());
-      statement.setInt(3, customer.getId());
-      return statement.executeUpdate() > 0;
-    } catch (SQLException ex) {
-      throw new CustomException(ex.getMessage(), ex);
-    }
-  }
-
-  @Override
-  public boolean delete(Customer customer) throws Exception {
-    try (var connection = getConnection();
-         var statement = connection.prepareStatement("DELETE FROM CUSTOMERS WHERE ID = ?")) {
-      statement.setInt(1, customer.getId());
-      return statement.executeUpdate() > 0;
-    } catch (SQLException ex) {
-      throw new CustomException(ex.getMessage(), ex);
-    }
-  }
-}
+  // implement the interface using the data source
+  ...
 ```
 
 Finally here's how we use our DAO to manage customers.
@@ -301,15 +117,45 @@ Finally here's how we use our DAO to manage customers.
     deleteSchema(dataSource);
 ```
 
+The program output:
+
+```java
+customerDao.getAllCustomers(): 
+Customer{id=1, firstName='Adam', lastName='Adamson'}
+Customer{id=2, firstName='Bob', lastName='Bobson'}
+Customer{id=3, firstName='Carl', lastName='Carlson'}
+customerDao.getCustomerById(2): Optional[Customer{id=2, firstName='Bob', lastName='Bobson'}]
+customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@7cef4e59
+customerDao.getAllCustomers(): 
+Customer{id=1, firstName='Adam', lastName='Adamson'}
+Customer{id=2, firstName='Bob', lastName='Bobson'}
+Customer{id=3, firstName='Carl', lastName='Carlson'}
+Customer{id=4, firstName='Daniel', lastName='Danielson'}
+customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@2db0f6b2
+customerDao.getAllCustomers(): 
+Customer{id=1, firstName='Adam', lastName='Adamson'}
+Customer{id=2, firstName='Bob', lastName='Bobson'}
+Customer{id=3, firstName='Carl', lastName='Carlson'}
+customerDao.getCustomerById(2): Optional[Customer{id=2, firstName='Bob', lastName='Bobson'}]
+customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@12c8a2c0
+customerDao.getAllCustomers(): 
+Customer{id=1, firstName='Adam', lastName='Adamson'}
+Customer{id=2, firstName='Bob', lastName='Bobson'}
+Customer{id=3, firstName='Carl', lastName='Carlson'}
+Customer{id=4, firstName='Daniel', lastName='Danielson'}
+customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@6ec8211c
+```
 
 ## Class diagram
+
 ![alt text](./etc/dao.png "Data Access Object")
 
 ## Applicability
-Use the Data Access Object in any of the following situations
 
-* when you want to consolidate how the data layer is accessed
-* when you want to avoid writing multiple data retrieval/persistence layers
+Use the Data Access Object in any of the following situations:
+
+* When you want to consolidate how the data layer is accessed.
+* When you want to avoid writing multiple data retrieval/persistence layers.
 
 ## Credits
 

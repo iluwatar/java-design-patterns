@@ -82,7 +82,7 @@ public interface Trampoline<T> {
    * @return Trampoline with more work
    */
   static <T> Trampoline<T> more(final Trampoline<Trampoline<T>> trampoline) {
-    return new Trampoline<T>() {
+    return new Trampoline<>() {
       @Override
       public boolean complete() {
         return false;
