@@ -22,8 +22,9 @@
  */
 package com.iluwatar.saga.orchestration;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * test to check general logic
@@ -36,8 +37,8 @@ public class SagaOrchestratorTest {
     Saga.Result badOrder = sagaOrchestrator.execute("bad_order");
     Saga.Result crashedOrder = sagaOrchestrator.execute("crashed_order");
 
-    Assert.assertEquals(badOrder, Saga.Result.ROLLBACK);
-    Assert.assertEquals(crashedOrder, Saga.Result.CRASHED);
+    assertEquals(badOrder, Saga.Result.ROLLBACK);
+    assertEquals(crashedOrder, Saga.Result.CRASHED);
   }
 
   private static Saga newSaga() {

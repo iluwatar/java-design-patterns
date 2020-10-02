@@ -22,7 +22,7 @@
  */
 package com.iluwatar.saga.orchestration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * empty test
