@@ -23,41 +23,42 @@
 
 package com.iluwatar.updatemethod;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WorldTest {
 
-  private World world;
+  private static World world;
 
-  @Before
-  public void setup() {
+  @BeforeAll
+  public static void setup() {
     world = new World();
   }
 
-  @After
-  public void tearDown() {
+  @AfterAll
+  public static void tearDown() {
     world = null;
   }
 
   @Test
   public void testRun() {
     world.run();
-    Assert.assertEquals(true, world.isRunning);
+    assertEquals(true, world.isRunning);
   }
 
   @Test
   public void testStop() {
     world.stop();
-    Assert.assertEquals(false, world.isRunning);
+    assertEquals(false, world.isRunning);
   }
 
   @Test
   public void testAddEntity() {
     var entity = new Skeleton(1);
     world.addEntity(entity);
-    Assert.assertEquals(entity, world.entities.get(0));
+    assertEquals(entity, world.entities.get(0));
   }
 }
