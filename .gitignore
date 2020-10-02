@@ -1,4 +1,5 @@
 target
+docs
 .metadata
 .settings
 .classpath
@@ -18,3 +19,4 @@ datanucleus.log
 *.log
 event-sourcing/Journal.json
 java-design-patterns-web
+
