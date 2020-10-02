@@ -1,0 +1,21 @@
+@startuml
+package com.iluwatar.registry {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Customer {
+    - id : String
+    - name : String
+    + getId() : String
+    + getName() : String
+    + toString() : String
+  }
+  class CustomerRegistry {
+    + addCustomer(customer : Customer)
+    + getCustomer(id : String)
+  }
+}
+Customer --> "-addCustomer" CustomerRegistry
+@enduml
