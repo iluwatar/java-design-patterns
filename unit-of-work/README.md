@@ -152,7 +152,7 @@ public class StudentRepository implements IUnitOfWork<Student> {
   private void commitModify() {
     var modifiedStudents = context.get(IUnitOfWork.MODIFY);
     for (var student : modifiedStudents) {
-      LOGGER.info("Modifying {} to database.", student.getName());
+      log.info("Modifying {} to database.", student.getName());
       studentDatabase.modify(student);
     }
   }

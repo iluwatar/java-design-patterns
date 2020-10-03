@@ -23,16 +23,15 @@
 
 package com.iluwatar.semaphore;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A Customer attempts to repeatedly take Fruit from the FruitShop by taking Fruit from FruitBowl
  * instances.
  */
+@Slf4j
 public class Customer extends Thread {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Customer.class);
 
   /**
    * Name of the Customer.
@@ -68,14 +67,14 @@ public class Customer extends Thread {
       if (bowl != null) {
         var fruit = bowl.take();
         if (fruit != null) {
-          LOGGER.info("{} took an {}", name, fruit);
+          log.info("{} took an {}", name, fruit);
           fruitBowl.put(fruit);
           fruitShop.returnBowl(bowl);
         }
       }
     }
 
-    LOGGER.info("{} took {}", name, fruitBowl);
+    log.info("{} took {}", name, fruitBowl);
 
   }
 

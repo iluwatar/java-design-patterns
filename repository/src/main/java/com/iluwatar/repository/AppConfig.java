@@ -26,10 +26,9 @@ package com.iluwatar.repository;
 import java.util.List;
 import java.util.Properties;
 import javax.sql.DataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -42,9 +41,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
  */
 @EnableJpaRepositories
 @SpringBootConfiguration
+@Slf4j
 public class AppConfig {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
 
   /**
    * Creation of H2 db.
@@ -115,35 +114,35 @@ public class AppConfig {
     repository.save(terry);
 
     // Count Person records
-    LOGGER.info("Count Person records: {}", repository.count());
+    log.info("Count Person records: {}", repository.count());
 
     // Print all records
     var persons = (List<Person>) repository.findAll();
-    persons.stream().map(Person::toString).forEach(LOGGER::info);
+    persons.stream().map(Person::toString).forEach(log::info);
 
     // Update Person
     nasta.setName("Barbora");
     nasta.setSurname("Spotakova");
     repository.save(nasta);
 
-    repository.findById(2L).ifPresent(p -> LOGGER.info("Find by id 2: {}", p));
+    repository.findById(2L).ifPresent(p -> log.info("Find by id 2: {}", p));
 
     // Remove record from Person
     repository.deleteById(2L);
 
     // count records
-    LOGGER.info("Count Person records: {}", repository.count());
+    log.info("Count Person records: {}", repository.count());
 
     // find by name
     repository
         .findOne(new PersonSpecifications.NameEqualSpec("John"))
-        .ifPresent(p -> LOGGER.info("Find by John is {}", p));
+        .ifPresent(p -> log.info("Find by John is {}", p));
 
     // find by age
     persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));
 
-    LOGGER.info("Find Person with age between 20,40: ");
-    persons.stream().map(Person::toString).forEach(LOGGER::info);
+    log.info("Find Person with age between 20,40: ");
+    persons.stream().map(Person::toString).forEach(log::info);
 
     context.close();
 

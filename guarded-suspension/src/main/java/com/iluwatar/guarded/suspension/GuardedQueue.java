@@ -25,8 +25,7 @@ package com.iluwatar.guarded.suspension;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Guarded Queue is an implementation for Guarded Suspension Pattern Guarded suspension pattern is
@@ -35,8 +34,9 @@ import org.slf4j.LoggerFactory;
  *
  * @see <a href="http://java-design-patterns.com/patterns/guarded-suspension/">http://java-design-patterns.com/patterns/guarded-suspension/</a>
  */
+@Slf4j
 public class GuardedQueue {
-  private static final Logger LOGGER = LoggerFactory.getLogger(GuardedQueue.class);
+
   private final Queue<Integer> sourceList;
 
   public GuardedQueue() {
@@ -51,13 +51,13 @@ public class GuardedQueue {
   public synchronized Integer get() {
     while (sourceList.isEmpty()) {
       try {
-        LOGGER.info("waiting");
+        log.info("waiting");
         wait();
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
     }
-    LOGGER.info("getting");
+    log.info("getting");
     return sourceList.peek();
   }
 
@@ -67,9 +67,9 @@ public class GuardedQueue {
    * @param e number which we want to put to our queue
    */
   public synchronized void put(Integer e) {
-    LOGGER.info("putting");
+    log.info("putting");
     sourceList.add(e);
-    LOGGER.info("notifying");
+    log.info("notifying");
     notify();
   }
 }

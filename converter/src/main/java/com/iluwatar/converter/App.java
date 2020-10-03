@@ -24,8 +24,7 @@
 package com.iluwatar.converter;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Converter pattern is a behavioral design pattern which allows a common way of bidirectional
@@ -33,9 +32,9 @@ import org.slf4j.LoggerFactory;
  * isomorphic types). Moreover, the pattern introduces a common way of converting a collection of
  * objects between types.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -47,19 +46,19 @@ public class App {
 
     UserDto dtoUser = new UserDto("John", "Doe", true, "whatever[at]wherever.com");
     User user = userConverter.convertFromDto(dtoUser);
-    LOGGER.info("Entity converted from DTO:" + user);
+    log.info("Entity converted from DTO:" + user);
 
     var users = List.of(
         new User("Camile", "Tough", false, "124sad"),
         new User("Marti", "Luther", true, "42309fd"),
         new User("Kate", "Smith", true, "if0243")
     );
-    LOGGER.info("Domain entities:");
-    users.stream().map(User::toString).forEach(LOGGER::info);
+    log.info("Domain entities:");
+    users.stream().map(User::toString).forEach(log::info);
 
-    LOGGER.info("DTO entities converted from domain:");
+    log.info("DTO entities converted from domain:");
     List<UserDto> dtoEntities = userConverter.createFromEntities(users);
-    dtoEntities.stream().map(UserDto::toString).forEach(LOGGER::info);
+    dtoEntities.stream().map(UserDto::toString).forEach(log::info);
 
   }
 }

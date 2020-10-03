@@ -23,18 +23,16 @@
 
 package com.iluwatar.business.delegate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Service JMS implementation.
  */
+@Slf4j
 public class JmsService implements BusinessService {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(JmsService.class);
 
   @Override
   public void doProcessing() {
-    LOGGER.info("JmsService is now processing");
+    log.info("JmsService is now processing");
   }
 }

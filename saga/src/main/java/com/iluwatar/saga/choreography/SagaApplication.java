@@ -23,8 +23,7 @@
 
 package com.iluwatar.saga.choreography;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This pattern is used in distributed services to perform a group of operations atomically. This is
@@ -41,11 +40,12 @@ import org.slf4j.LoggerFactory;
  * <p>The major difference with choreography saga is an ability to handle crashed services
  * (otherwise in choreography services very hard to prevent a saga if one of them has been crashed)
  *
- * @see com.iluwatar.saga.choreography.Saga
+ * @see Saga
  * @see Service
  */
+@Slf4j
 public class SagaApplication {
-  private static final Logger LOGGER = LoggerFactory.getLogger(SagaApplication.class);
+
 
   /**
    * main method.
@@ -55,7 +55,7 @@ public class SagaApplication {
     var service = sd.findAny();
     var goodOrderSaga = service.execute(newSaga("good_order"));
     var badOrderSaga = service.execute(newSaga("bad_order"));
-    LOGGER.info("orders: goodOrder is {}, badOrder is {}",
+    log.info("orders: goodOrder is {}, badOrder is {}",
         goodOrderSaga.getResult(), badOrderSaga.getResult());
 
   }

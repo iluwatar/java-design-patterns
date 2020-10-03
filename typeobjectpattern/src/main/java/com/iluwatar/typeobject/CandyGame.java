@@ -26,17 +26,16 @@ package com.iluwatar.typeobject;
 import com.iluwatar.typeobject.Candy.Type;
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The CandyGame class contains the rules for the continuation of the game and has the game matrix
  * (field 'cells') and totalPoints gained during the game.
  */
 
+@Slf4j
 public class CandyGame {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(CandyGame.class);
 
   Cell[][] cells;
   CellPool pool;
@@ -60,21 +59,21 @@ public class CandyGame {
   }
 
   void printGameStatus() {
-    LOGGER.info("");
+    log.info("");
     for (Cell[] cell : cells) {
       for (var j = 0; j < cells.length; j++) {
         var candyName = cell[j].candy.name;
         if (candyName.length() < 20) {
           var totalSpaces = 20 - candyName.length();
-          LOGGER.info(numOfSpaces(totalSpaces / 2) + cell[j].candy.name
+          log.info(numOfSpaces(totalSpaces / 2) + cell[j].candy.name
               + numOfSpaces(totalSpaces - totalSpaces / 2) + "|");
         } else {
-          LOGGER.info(candyName + "|");
+          log.info(candyName + "|");
         }
       }
-      LOGGER.info("");
+      log.info("");
     }
-    LOGGER.info("");
+    log.info("");
   }
 
   List<Cell> adjacentCells(int y, int x) {
@@ -124,7 +123,7 @@ public class CandyGame {
   }
 
   void handleChange(int points) {
-    LOGGER.info("+" + points + " points!");
+    log.info("+" + points + " points!");
     this.totalPoints += points;
     printGameStatus();
   }

@@ -23,19 +23,18 @@
 
 package com.iluwatar.facade;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * DwarvenCartOperator is one of the goldmine subsystems.
  */
+@Slf4j
 public class DwarvenCartOperator extends DwarvenMineWorker {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenCartOperator.class);
 
   @Override
   public void work() {
-    LOGGER.info("{} moves gold chunks out of the mine.", name());
+    log.info("{} moves gold chunks out of the mine.", name());
   }
 
   @Override

@@ -24,12 +24,10 @@
 package com.iluwatar.leaderfollowers;
 
 import java.util.Objects;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Worker implements Runnable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
   private final long id;
   private final WorkCenter workCenter;
@@ -68,10 +66,10 @@ public class Worker implements Runnable {
           workCenter.notifyAll();
         }
         taskHandler.handleTask(task);
-        LOGGER.info("The Worker with the ID " + id + " completed the task");
+        log.info("The Worker with the ID " + id + " completed the task");
         workCenter.addWorker(this);
       } catch (InterruptedException e) {
-        LOGGER.warn("Worker interrupted");
+        log.warn("Worker interrupted");
         return;
       }
     }

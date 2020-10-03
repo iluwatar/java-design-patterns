@@ -23,9 +23,12 @@
 
 package com.iluwatar.updatemethod;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Statues shoot lightning at regular intervals.
  */
+@Slf4j
 public class Statue extends Entity {
 
   protected int frames;
@@ -64,6 +67,6 @@ public class Statue extends Entity {
   }
 
   private void shootLightning() {
-    logger.info("Statue " + id + " shoots lightning!");
+    log.info("Statue " + id + " shoots lightning!");
   }
 }

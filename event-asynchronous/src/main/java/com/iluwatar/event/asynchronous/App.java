@@ -26,8 +26,7 @@ package com.iluwatar.event.asynchronous;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This application demonstrates the <b>Event-based Asynchronous</b> pattern. Essentially, users (of
@@ -55,9 +54,9 @@ import org.slf4j.LoggerFactory;
  * @see EventManager
  * @see Event
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   public static final String PROP_FILE_NAME = "config.properties";
 
@@ -88,7 +87,7 @@ public class App {
       try {
         prop.load(inputStream);
       } catch (IOException e) {
-        LOGGER.error("{} was not found. Defaulting to non-interactive mode.", PROP_FILE_NAME, e);
+        log.error("{} was not found. Defaulting to non-interactive mode.", PROP_FILE_NAME, e);
       }
       var property = prop.getProperty("INTERACTIVE_MODE");
       if (property.equalsIgnoreCase("YES")) {
@@ -117,27 +116,27 @@ public class App {
     try {
       // Create an Asynchronous event.
       var asyncEventId = eventManager.createAsync(60);
-      LOGGER.info("Async Event [{}] has been created.", asyncEventId);
+      log.info("Async Event [{}] has been created.", asyncEventId);
       eventManager.start(asyncEventId);
-      LOGGER.info("Async Event [{}] has been started.", asyncEventId);
+      log.info("Async Event [{}] has been started.", asyncEventId);
 
       // Create a Synchronous event.
       var syncEventId = eventManager.create(60);
-      LOGGER.info("Sync Event [{}] has been created.", syncEventId);
+      log.info("Sync Event [{}] has been created.", syncEventId);
       eventManager.start(syncEventId);
-      LOGGER.info("Sync Event [{}] has been started.", syncEventId);
+      log.info("Sync Event [{}] has been started.", syncEventId);
 
       eventManager.status(asyncEventId);
       eventManager.status(syncEventId);
 
       eventManager.cancel(asyncEventId);
-      LOGGER.info("Async Event [{}] has been stopped.", asyncEventId);
+      log.info("Async Event [{}] has been stopped.", asyncEventId);
       eventManager.cancel(syncEventId);
-      LOGGER.info("Sync Event [{}] has been stopped.", syncEventId);
+      log.info("Sync Event [{}] has been stopped.", syncEventId);
 
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
         | InvalidOperationException e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 
@@ -150,9 +149,9 @@ public class App {
     var s = new Scanner(System.in);
     var option = -1;
     while (option != 4) {
-      LOGGER.info("Hello. Would you like to boil some eggs?");
-      LOGGER.info("(1) BOIL AN EGG \n(2) STOP BOILING THIS EGG \n(3) HOW ARE MY EGGS? \n(4) EXIT");
-      LOGGER.info("Choose [1,2,3,4]: ");
+      log.info("Hello. Would you like to boil some eggs?");
+      log.info("(1) BOIL AN EGG \n(2) STOP BOILING THIS EGG \n(3) HOW ARE MY EGGS? \n(4) EXIT");
+      log.info("Choose [1,2,3,4]: ");
       option = s.nextInt();
 
       if (option == 1) {
@@ -171,16 +170,16 @@ public class App {
 
   private void processOption3(EventManager eventManager, Scanner s) {
     s.nextLine();
-    LOGGER.info("Just one egg (O) OR all of them (A) ?: ");
+    log.info("Just one egg (O) OR all of them (A) ?: ");
     var eggChoice = s.nextLine();
 
     if (eggChoice.equalsIgnoreCase("O")) {
-      LOGGER.info("Which egg?: ");
+      log.info("Which egg?: ");
       int eventId = s.nextInt();
       try {
         eventManager.status(eventId);
       } catch (EventDoesNotExistException e) {
-        LOGGER.error(e.getMessage());
+        log.error(e.getMessage());
       }
     } else if (eggChoice.equalsIgnoreCase("A")) {
       eventManager.statusOfAllEvents();
@@ -188,42 +187,42 @@ public class App {
   }
 
   private void processOption2(EventManager eventManager, Scanner s) {
-    LOGGER.info("Which egg?: ");
+    log.info("Which egg?: ");
     var eventId = s.nextInt();
     try {
       eventManager.cancel(eventId);
-      LOGGER.info("Egg [{}] is removed from boiler.", eventId);
+      log.info("Egg [{}] is removed from boiler.", eventId);
     } catch (EventDoesNotExistException e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 
   private void processOption1(EventManager eventManager, Scanner s) {
     s.nextLine();
-    LOGGER.info("Boil multiple eggs at once (A) or boil them one-by-one (S)?: ");
+    log.info("Boil multiple eggs at once (A) or boil them one-by-one (S)?: ");
     var eventType = s.nextLine();
-    LOGGER.info("How long should this egg be boiled for (in seconds)?: ");
+    log.info("How long should this egg be boiled for (in seconds)?: ");
     var eventTime = s.nextInt();
     if (eventType.equalsIgnoreCase("A")) {
       try {
         var eventId = eventManager.createAsync(eventTime);
         eventManager.start(eventId);
-        LOGGER.info("Egg [{}] is being boiled.", eventId);
+        log.info("Egg [{}] is being boiled.", eventId);
       } catch (MaxNumOfEventsAllowedException | LongRunningEventException
           | EventDoesNotExistException e) {
-        LOGGER.error(e.getMessage());
+        log.error(e.getMessage());
       }
     } else if (eventType.equalsIgnoreCase("S")) {
       try {
         var eventId = eventManager.create(eventTime);
         eventManager.start(eventId);
-        LOGGER.info("Egg [{}] is being boiled.", eventId);
+        log.info("Egg [{}] is being boiled.", eventId);
       } catch (MaxNumOfEventsAllowedException | InvalidOperationException
           | LongRunningEventException | EventDoesNotExistException e) {
-        LOGGER.error(e.getMessage());
+        log.error(e.getMessage());
       }
     } else {
-      LOGGER.info("Unknown event type.");
+      log.info("Unknown event type.");
     }
   }
 

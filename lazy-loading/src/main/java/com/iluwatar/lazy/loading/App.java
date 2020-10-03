@@ -23,8 +23,7 @@
 
 package com.iluwatar.lazy.loading;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Lazy loading idiom defers object creation until needed.
@@ -34,9 +33,9 @@ import org.slf4j.LoggerFactory;
  * <p>Additional information and lazy loading flavours are described in
  * http://martinfowler.com/eaaCatalog/lazyLoad.html
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -48,16 +47,16 @@ public class App {
     // Simple lazy loader - not thread safe
     var holderNaive = new HolderNaive();
     var heavy = holderNaive.getHeavy();
-    LOGGER.info("heavy={}", heavy);
+    log.info("heavy={}", heavy);
 
     // Thread safe lazy loader, but with heavy synchronization on each access
     var holderThreadSafe = new HolderThreadSafe();
     var another = holderThreadSafe.getHeavy();
-    LOGGER.info("another={}", another);
+    log.info("another={}", another);
 
     // The most efficient lazy loader utilizing Java 8 features
     var java8Holder = new Java8Holder();
     var next = java8Holder.getHeavy();
-    LOGGER.info("next={}", next);
+    log.info("next={}", next);
   }
 }

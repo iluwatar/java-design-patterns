@@ -23,8 +23,7 @@
 
 package com.iluwatar.prototype;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Prototype pattern is a creational design pattern in software development. It is used when the
@@ -36,9 +35,9 @@ import org.slf4j.LoggerFactory;
  * <p>In this example we have a factory class ({@link HeroFactoryImpl}) producing objects by
  * cloning the existing ones. The factory's prototype objects are given as constructor parameters.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -54,9 +53,9 @@ public class App {
     var mage = factory.createMage();
     var warlord = factory.createWarlord();
     var beast = factory.createBeast();
-    LOGGER.info(mage.toString());
-    LOGGER.info(warlord.toString());
-    LOGGER.info(beast.toString());
+    log.info(mage.toString());
+    log.info(warlord.toString());
+    log.info(beast.toString());
 
     factory = new HeroFactoryImpl(
         new OrcMage("axe"),
@@ -66,8 +65,8 @@ public class App {
     mage = factory.createMage();
     warlord = factory.createWarlord();
     beast = factory.createBeast();
-    LOGGER.info(mage.toString());
-    LOGGER.info(warlord.toString());
-    LOGGER.info(beast.toString());
+    log.info(mage.toString());
+    log.info(warlord.toString());
+    log.info(beast.toString());
   }
 }

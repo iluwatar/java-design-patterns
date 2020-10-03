@@ -23,8 +23,7 @@
 
 package com.iluwatar.composite;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Composite pattern is a partitioning design pattern. The Composite pattern describes that a
@@ -35,24 +34,24 @@ import org.slf4j.LoggerFactory;
  *
  * <p>In this example we have sentences composed of words composed of letters. All of the objects
  * can be treated through the same interface ({@link LetterComposite}).
- * 
+ *
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
-   * 
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
-    LOGGER.info("Message from the orcs: ");
+    log.info("Message from the orcs: ");
 
     var orcMessage = new Messenger().messageFromOrcs();
     orcMessage.print();
 
-    LOGGER.info("\nMessage from the elves: ");
+    log.info("\nMessage from the elves: ");
 
     var elfMessage = new Messenger().messageFromElves();
     elfMessage.print();

@@ -137,7 +137,7 @@ result is printed afterwards.
         .filter(negatives())
         .first(2)
         .last()
-        .ifPresent(number -> LOGGER.info("Last amongst first two negatives: {}", number));
+        .ifPresent(number -> log.info("Last amongst first two negatives: {}", number));
 ```
 
 Program output:

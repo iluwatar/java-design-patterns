@@ -162,7 +162,7 @@ Now we are ready to show the full example in action.
     while (!executor.isTerminated()) {
       Thread.yield();
     }
-    LOGGER.info("Program finished");
+    log.info("Program finished");
 ```
 
 ## Class diagram

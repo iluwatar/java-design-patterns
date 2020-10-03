@@ -27,15 +27,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The game world class. Maintain all the objects existed in the game frames.
  */
+@Slf4j
 public class World {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(World.class);
 
   protected List<Entity> entities;
 
@@ -69,7 +67,7 @@ public class World {
       int lag = new Random().nextInt(200) + 50;
       Thread.sleep(lag);
     } catch (InterruptedException e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 
@@ -95,7 +93,7 @@ public class World {
    * Run game loop.
    */
   public void run() {
-    LOGGER.info("Start game.");
+    log.info("Start game.");
     isRunning = true;
     var thread = new Thread(this::gameLoop);
     thread.start();
@@ -105,7 +103,7 @@ public class World {
    * Stop game loop.
    */
   public void stop() {
-    LOGGER.info("Stop game.");
+    log.info("Stop game.");
     isRunning = false;
   }
 

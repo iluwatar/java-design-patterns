@@ -24,16 +24,15 @@
 package com.iluwatar.masterworker;
 
 import java.util.Random;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class ArrayUtilityMethods has some utility methods for matrices and arrays.
  */
 
+@Slf4j
 public class ArrayUtilityMethods {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ArrayUtilityMethods.class);
 
   private static final Random RANDOM = new Random();
 
@@ -106,9 +105,9 @@ public class ArrayUtilityMethods {
     //prints out int[][]
     for (var ints : matrix) {
       for (var j = 0; j < matrix[0].length; j++) {
-        LOGGER.info(ints[j] + " ");
+        log.info(ints[j] + " ");
       }
-      LOGGER.info("");
+      log.info("");
     }
   }
 

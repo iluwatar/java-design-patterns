@@ -23,16 +23,14 @@
 
 package com.iluwatar.bridge;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Hammer.
  */
+@Slf4j
 public class Hammer implements Weapon {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Hammer.class);
-
+  
   private final Enchantment enchantment;
 
   public Hammer(Enchantment enchantment) {
@@ -41,19 +39,19 @@ public class Hammer implements Weapon {
 
   @Override
   public void wield() {
-    LOGGER.info("The hammer is wielded.");
+    log.info("The hammer is wielded.");
     enchantment.onActivate();
   }
 
   @Override
   public void swing() {
-    LOGGER.info("The hammer is swinged.");
+    log.info("The hammer is swinged.");
     enchantment.apply();
   }
 
   @Override
   public void unwield() {
-    LOGGER.info("The hammer is unwielded.");
+    log.info("The hammer is unwielded.");
     enchantment.onDeactivate();
   }
 

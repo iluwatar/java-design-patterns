@@ -76,7 +76,7 @@ public final class CallsCount {
   }
 
   public void reset() {
-    LOGGER.debug("Resetting the map.");
+    log.debug("Resetting the map.");
     tenantCallsCount.replaceAll((k, v) -> new AtomicLong(0));
   }
 }
@@ -125,9 +125,9 @@ class B2BService {
   public int dummyCustomerApi(Tenant tenant) {
     var tenantName = tenant.getName();
     var count = callsCount.getCount(tenantName);
-    LOGGER.debug("Counter for {} : {} ", tenant.getName(), count);
+    log.debug("Counter for {} : {} ", tenant.getName(), count);
     if (count >= tenant.getAllowedCallsPerSecond()) {
-      LOGGER.error("API access per second limit reached for: {}", tenantName);
+      log.error("API access per second limit reached for: {}", tenantName);
       return -1;
     }
     callsCount.incrementCount(tenantName);
@@ -157,7 +157,7 @@ second and Nike to 6.
     try {
       executorService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      LOGGER.error("Executor Service terminated: {}", e.getMessage());
+      log.error("Executor Service terminated: {}", e.getMessage());
     }
   }
 
@@ -170,7 +170,7 @@ second and Nike to 6.
       try {
         Thread.sleep(1);
       } catch (InterruptedException e) {
-        LOGGER.error("Thread interrupted: {}", e.getMessage());
+        log.error("Thread interrupted: {}", e.getMessage());
       }
     });
   }

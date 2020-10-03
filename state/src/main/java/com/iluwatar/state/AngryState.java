@@ -23,15 +23,14 @@
 
 package com.iluwatar.state;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Angry state.
  */
+@Slf4j
 public class AngryState implements State {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(AngryState.class);
 
   private final Mammoth mammoth;
 
@@ -41,12 +40,12 @@ public class AngryState implements State {
 
   @Override
   public void observe() {
-    LOGGER.info("{} is furious!", mammoth);
+    log.info("{} is furious!", mammoth);
   }
 
   @Override
   public void onEnterState() {
-    LOGGER.info("{} gets angry!", mammoth);
+    log.info("{} gets angry!", mammoth);
   }
 
 }

@@ -28,16 +28,15 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.iluwatar.serverless.baas.model.Person;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * find person from persons collection Created by dheeraj.mummar on 3/5/18.
  */
+@Slf4j
 public class FindPersonApiHandler extends AbstractDynamoDbHandler<Person>
     implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(FindPersonApiHandler.class);
   private static final Integer SUCCESS_STATUS_CODE = 200;
 
   @Override
@@ -49,7 +48,7 @@ public class FindPersonApiHandler extends AbstractDynamoDbHandler<Person>
   }
 
   private static void logKeyValue(String key, String value) {
-    LOG.info(key + "=" + value);
+    log.info(key + "=" + value);
   }
 
 }

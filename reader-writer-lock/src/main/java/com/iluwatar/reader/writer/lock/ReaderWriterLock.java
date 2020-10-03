@@ -29,8 +29,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class responsible for control the access for reader or writer
@@ -38,9 +37,9 @@ import org.slf4j.LoggerFactory;
  * <p>Allows multiple readers to hold the lock at same time, but if any writer holds the lock then
  * readers wait. If reader holds the lock then writer waits. This lock is not fair.
  */
+@Slf4j
 public class ReaderWriterLock implements ReadWriteLock {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderWriterLock.class);
 
 
   private final Object readerMutex = new Object();
@@ -115,7 +114,7 @@ public class ReaderWriterLock implements ReadWriteLock {
             globalMutex.wait();
           } catch (InterruptedException e) {
             var message = "InterruptedException while waiting for globalMutex in acquireForReaders";
-            LOGGER.info(message, e);
+            log.info(message, e);
             Thread.currentThread().interrupt();
           }
         }
@@ -176,7 +175,7 @@ public class ReaderWriterLock implements ReadWriteLock {
           try {
             globalMutex.wait();
           } catch (InterruptedException e) {
-            LOGGER.info("InterruptedException while waiting for globalMutex to begin writing", e);
+            log.info("InterruptedException while waiting for globalMutex to begin writing", e);
             Thread.currentThread().interrupt();
           }
         }

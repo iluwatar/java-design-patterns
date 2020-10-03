@@ -23,8 +23,7 @@
 
 package com.iluwatar.caching;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Caching pattern describes how to avoid expensive re-acquisition of resources by not releasing
@@ -60,9 +59,9 @@ import org.slf4j.LoggerFactory;
  * @see LruCache
  * @see CachingPolicy
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
 
   /**
@@ -87,13 +86,13 @@ public class App {
    * Read-through and write-through.
    */
   public void useReadAndWriteThroughStrategy() {
-    LOGGER.info("# CachingPolicy.THROUGH");
+    log.info("# CachingPolicy.THROUGH");
     AppManager.initCachingPolicy(CachingPolicy.THROUGH);
 
     var userAccount1 = new UserAccount("001", "John", "He is a boy.");
 
     AppManager.save(userAccount1);
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
     AppManager.find("001");
     AppManager.find("001");
   }
@@ -102,21 +101,21 @@ public class App {
    * Read-through and write-around.
    */
   public void useReadThroughAndWriteAroundStrategy() {
-    LOGGER.info("# CachingPolicy.AROUND");
+    log.info("# CachingPolicy.AROUND");
     AppManager.initCachingPolicy(CachingPolicy.AROUND);
 
     var userAccount2 = new UserAccount("002", "Jane", "She is a girl.");
 
     AppManager.save(userAccount2);
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
     AppManager.find("002");
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
     userAccount2 = AppManager.find("002");
     userAccount2.setUserName("Jane G.");
     AppManager.save(userAccount2);
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
     AppManager.find("002");
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
     AppManager.find("002");
   }
 
@@ -124,7 +123,7 @@ public class App {
    * Read-through and write-behind.
    */
   public void useReadThroughAndWriteBehindStrategy() {
-    LOGGER.info("# CachingPolicy.BEHIND");
+    log.info("# CachingPolicy.BEHIND");
     AppManager.initCachingPolicy(CachingPolicy.BEHIND);
 
     var userAccount3 = new UserAccount("003", "Adam", "He likes food.");
@@ -134,23 +133,23 @@ public class App {
     AppManager.save(userAccount3);
     AppManager.save(userAccount4);
     AppManager.save(userAccount5);
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
     AppManager.find("003");
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
     UserAccount userAccount6 = new UserAccount("006", "Yasha", "She is an only child.");
     AppManager.save(userAccount6);
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
     AppManager.find("004");
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
   }
 
   /**
    * Cache-Aside.
    */
   public void useCacheAsideStategy() {
-    LOGGER.info("# CachingPolicy.ASIDE");
+    log.info("# CachingPolicy.ASIDE");
     AppManager.initCachingPolicy(CachingPolicy.ASIDE);
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
 
     var userAccount3 = new UserAccount("003", "Adam", "He likes food.");
     var userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
@@ -159,10 +158,10 @@ public class App {
     AppManager.save(userAccount4);
     AppManager.save(userAccount5);
 
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
     AppManager.find("003");
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
     AppManager.find("004");
-    LOGGER.info(AppManager.printCacheContent());
+    log.info(AppManager.printCacheContent());
   }
 }

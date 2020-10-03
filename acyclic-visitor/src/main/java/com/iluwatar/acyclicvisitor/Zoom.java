@@ -23,15 +23,13 @@
 
 package com.iluwatar.acyclicvisitor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Zoom class implements its accept method.
  */
+@Slf4j
 public class Zoom extends Modem {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForDosVisitor.class);
 
   /**
    * Accepts all visitors but honors only ZoomVisitor.
@@ -41,7 +39,7 @@ public class Zoom extends Modem {
     if (modemVisitor instanceof ZoomVisitor) {
       ((ZoomVisitor) modemVisitor).visit(this);
     } else {
-      LOGGER.info("Only ZoomVisitor is allowed to visit Zoom modem");
+      log.info("Only ZoomVisitor is allowed to visit Zoom modem");
     }
   }
 

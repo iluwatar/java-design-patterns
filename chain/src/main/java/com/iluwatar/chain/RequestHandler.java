@@ -23,15 +23,13 @@
 
 package com.iluwatar.chain;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * RequestHandler.
  */
+@Slf4j
 public abstract class RequestHandler {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(RequestHandler.class);
 
   private final RequestHandler next;
 
@@ -49,7 +47,7 @@ public abstract class RequestHandler {
   }
 
   protected void printHandling(Request req) {
-    LOGGER.info("{} handling request \"{}\"", this, req);
+    log.info("{} handling request \"{}\"", this, req);
   }
 
   @Override

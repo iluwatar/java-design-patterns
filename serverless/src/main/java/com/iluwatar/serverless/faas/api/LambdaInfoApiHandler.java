@@ -28,22 +28,21 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.iluwatar.serverless.faas.ApiGatewayResponse;
 import com.iluwatar.serverless.faas.LambdaInfo;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * LambdaInfoApiHandler - simple api to get lambda context Created by dheeraj.mummar on 2/5/18.
  */
+@Slf4j
 public class LambdaInfoApiHandler
     implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
 
-  private static final Logger LOG = LoggerFactory.getLogger(LambdaInfoApiHandler.class);
   private static final Integer SUCCESS_STATUS_CODE = 200;
 
 
   @Override
   public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
-    LOG.info("received: " + input);
+    log.info("received: " + input);
 
     return new ApiGatewayResponse.ApiGatewayResponseBuilder<LambdaInfo>()
         .headers(headers())

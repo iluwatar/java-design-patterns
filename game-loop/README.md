@@ -163,29 +163,29 @@ Finally, we show all the game loops in action.
 
 ```java
     try {
-      LOGGER.info("Start frame-based game loop:");
+      log.info("Start frame-based game loop:");
       var frameBasedGameLoop = new FrameBasedGameLoop();
       frameBasedGameLoop.run();
       Thread.sleep(GAME_LOOP_DURATION_TIME);
       frameBasedGameLoop.stop();
-      LOGGER.info("Stop frame-based game loop.");
+      log.info("Stop frame-based game loop.");
 
-      LOGGER.info("Start variable-step game loop:");
+      log.info("Start variable-step game loop:");
       var variableStepGameLoop = new VariableStepGameLoop();
       variableStepGameLoop.run();
       Thread.sleep(GAME_LOOP_DURATION_TIME);
       variableStepGameLoop.stop();
-      LOGGER.info("Stop variable-step game loop.");
+      log.info("Stop variable-step game loop.");
 
-      LOGGER.info("Start fixed-step game loop:");
+      log.info("Start fixed-step game loop:");
       var fixedStepGameLoop = new FixedStepGameLoop();
       fixedStepGameLoop.run();
       Thread.sleep(GAME_LOOP_DURATION_TIME);
       fixedStepGameLoop.stop();
-      LOGGER.info("Stop variable-step game loop.");
+      log.info("Stop variable-step game loop.");
       
     } catch (InterruptedException e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
 ```
 

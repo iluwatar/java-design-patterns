@@ -23,8 +23,7 @@
 
 package com.iluwatar.circuitbreaker;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
@@ -54,9 +53,9 @@ import org.slf4j.LoggerFactory;
  * recovers, it goes back to the closed state and the cycle continues.
  * </p>
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -71,13 +70,13 @@ public class App {
     var circuitBreaker = new CircuitBreaker(3000, 1, 2000 * 1000 * 1000);
     var serverStartTime = System.nanoTime();
     while (true) {
-      LOGGER.info(obj.localResourceResponse());
-      LOGGER.info(obj.remoteResourceResponse(circuitBreaker, serverStartTime));
-      LOGGER.info(circuitBreaker.getState());
+      log.info(obj.localResourceResponse());
+      log.info(obj.remoteResourceResponse(circuitBreaker, serverStartTime));
+      log.info(circuitBreaker.getState());
       try {
         Thread.sleep(5 * 1000);
       } catch (InterruptedException e) {
-        LOGGER.error(e.getMessage());
+        log.error(e.getMessage());
       }
     }
   }

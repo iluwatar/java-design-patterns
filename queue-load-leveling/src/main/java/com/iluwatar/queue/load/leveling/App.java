@@ -26,8 +26,7 @@ package com.iluwatar.queue.load.leveling;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Many solutions in the cloud involve running tasks that invoke services. In this environment, if a
@@ -58,9 +57,9 @@ import org.slf4j.LoggerFactory;
  * MessageQueue. The service executor class {@link ServiceExecutor} will pick up one task at a time
  * from the Queue and execute them.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   //Executor shut down time limit.
   private static final int SHUTDOWN_TIME = 15;
@@ -72,7 +71,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    // An Executor that provides methods to manage termination and methods that can 
+    // An Executor that provides methods to manage termination and methods that can
     // produce a Future for tracking progress of one or more asynchronous tasks.
     ExecutorService executor = null;
 
@@ -80,7 +79,7 @@ public class App {
       // Create a MessageQueue object.
       var msgQueue = new MessageQueue();
 
-      LOGGER.info("Submitting TaskGenerators and ServiceExecutor threads.");
+      log.info("Submitting TaskGenerators and ServiceExecutor threads.");
 
       // Create three TaskGenerator threads. Each of them will submit different number of jobs.
       final var taskRunnable1 = new TaskGenerator(msgQueue, 5);
@@ -101,18 +100,18 @@ public class App {
       executor.submit(srvRunnable);
 
       // Initiates an orderly shutdown.
-      LOGGER.info("Initiating shutdown."
+      log.info("Initiating shutdown."
           + " Executor will shutdown only after all the Threads are completed.");
       executor.shutdown();
 
-      // Wait for SHUTDOWN_TIME seconds for all the threads to complete 
-      // their tasks and then shut down the executor and then exit. 
+      // Wait for SHUTDOWN_TIME seconds for all the threads to complete
+      // their tasks and then shut down the executor and then exit.
       if (!executor.awaitTermination(SHUTDOWN_TIME, TimeUnit.SECONDS)) {
-        LOGGER.info("Executor was shut down and Exiting.");
+        log.info("Executor was shut down and Exiting.");
         executor.shutdownNow();
       }
     } catch (Exception e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 }

@@ -26,17 +26,16 @@ package com.iluwatar.throttling;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A class to keep track of the counter of different Tenants.
  *
  * @author drastogi
  */
+@Slf4j
 public final class CallsCount {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(CallsCount.class);
   private final Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
 
   /**
@@ -71,7 +70,7 @@ public final class CallsCount {
    * Resets the count of all the tenants in the map.
    */
   public void reset() {
-    LOGGER.debug("Resetting the map.");
+    log.debug("Resetting the map.");
     tenantCallsCount.replaceAll((k, v) -> new AtomicLong(0));
   }
 }

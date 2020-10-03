@@ -36,15 +36,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Utility to perform various operations.
  */
+@Slf4j
 public class Utility {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Utility.class);
 
   /**
    * Calculates character frequency of the file provided.
@@ -98,7 +97,7 @@ public class Utility {
    * @return the absolute path of the file downloaded.
    */
   public static String downloadFile(String urlString) throws IOException {
-    LOGGER.info("Downloading contents from url: {}", urlString);
+    log.info("Downloading contents from url: {}", urlString);
     var url = new URL(urlString);
     var file = File.createTempFile("promise_pattern", null);
     try (var bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -108,7 +107,7 @@ public class Utility {
         writer.write(line);
         writer.write("\n");
       }
-      LOGGER.info("File downloaded at: {}", file.getAbsolutePath());
+      log.info("File downloaded at: {}", file.getAbsolutePath());
       return file.getAbsolutePath();
     }
   }

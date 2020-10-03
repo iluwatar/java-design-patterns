@@ -25,8 +25,7 @@ package com.iluwatar.servicelocator;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The service cache implementation which will cache services that are being created. On first hit,
@@ -36,9 +35,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author saifasif
  */
+@Slf4j
 public class ServiceCache {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceCache.class);
 
   private final Map<String, Service> serviceCache;
 
@@ -57,7 +56,7 @@ public class ServiceCache {
       var cachedService = serviceCache.get(serviceName);
       var name = cachedService.getName();
       var id = cachedService.getId();
-      LOGGER.info("(cache call) Fetched service {}({}) from cache... !", name, id);
+      log.info("(cache call) Fetched service {}({}) from cache... !", name, id);
       return cachedService;
     }
     return null;

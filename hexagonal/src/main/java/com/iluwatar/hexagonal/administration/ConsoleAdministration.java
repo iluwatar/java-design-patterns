@@ -30,15 +30,14 @@ import com.iluwatar.hexagonal.module.LotteryModule;
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.iluwatar.hexagonal.sampledata.SampleData;
 import java.util.Scanner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Console interface for lottery administration.
  */
+@Slf4j
 public class ConsoleAdministration {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleAdministration.class);
 
   /**
    * Program entry point.
@@ -49,7 +48,7 @@ public class ConsoleAdministration {
     var administration = injector.getInstance(LotteryAdministration.class);
     var service = injector.getInstance(LotteryService.class);
     SampleData.submitTickets(service, 20);
-    var consoleAdministration = new ConsoleAdministrationSrvImpl(administration, LOGGER);
+    var consoleAdministration = new ConsoleAdministrationSrvImpl(administration, log);
     try (var scanner = new Scanner(System.in)) {
       var exit = false;
       while (!exit) {
@@ -64,23 +63,23 @@ public class ConsoleAdministration {
         } else if ("4".equals(cmd)) {
           exit = true;
         } else {
-          LOGGER.info("Unknown command: {}", cmd);
+          log.info("Unknown command: {}", cmd);
         }
       }
     }
   }
 
   private static void printMainMenu() {
-    LOGGER.info("");
-    LOGGER.info("### Lottery Administration Console ###");
-    LOGGER.info("(1) Show all submitted tickets");
-    LOGGER.info("(2) Perform lottery draw");
-    LOGGER.info("(3) Reset lottery ticket database");
-    LOGGER.info("(4) Exit");
+    log.info("");
+    log.info("### Lottery Administration Console ###");
+    log.info("(1) Show all submitted tickets");
+    log.info("(2) Perform lottery draw");
+    log.info("(3) Reset lottery ticket database");
+    log.info("(4) Exit");
   }
 
   private static String readString(Scanner scanner) {
-    LOGGER.info("> ");
+    log.info("> ");
     return scanner.next();
   }
 }

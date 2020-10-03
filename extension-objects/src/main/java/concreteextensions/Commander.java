@@ -24,16 +24,15 @@
 package concreteextensions;
 
 import abstractextensions.CommanderExtension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import units.CommanderUnit;
 
 /**
  * Class defining Commander.
  */
+@Slf4j
 public class Commander implements CommanderExtension {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Commander.class);
 
   private final CommanderUnit unit;
 
@@ -43,7 +42,7 @@ public class Commander implements CommanderExtension {
 
   @Override
   public void commanderReady() {
-    LOGGER.info("[Commander] " + unit.getName() + " is ready!");
+    log.info("[Commander] " + unit.getName() + " is ready!");
   }
 
   public CommanderUnit getUnit() {

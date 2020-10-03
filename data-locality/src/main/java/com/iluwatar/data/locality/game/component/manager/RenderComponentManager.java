@@ -26,15 +26,14 @@ package com.iluwatar.data.locality.game.component.manager;
 import com.iluwatar.data.locality.game.component.Component;
 import com.iluwatar.data.locality.game.component.RenderComponent;
 import java.util.stream.IntStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Render component manager for Game.
  */
+@Slf4j
 public class RenderComponentManager {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(RenderComponentManager.class);
 
   private static final int MAX_ENTITIES = 10000;
 
@@ -50,7 +49,7 @@ public class RenderComponentManager {
    * Start render component.
    */
   public void start() {
-    LOGGER.info("Start Render Game Component ");
+    log.info("Start Render Game Component ");
     IntStream.range(0, numEntities).forEach(i -> renderComponents[i] = new RenderComponent());
   }
 
@@ -59,7 +58,7 @@ public class RenderComponentManager {
    * render component.
    */
   public void render() {
-    LOGGER.info("Update Render Game Component ");
+    log.info("Update Render Game Component ");
     // Process Render.
     IntStream.range(0, numEntities)
         .filter(i -> renderComponents.length > i && renderComponents[i] != null)

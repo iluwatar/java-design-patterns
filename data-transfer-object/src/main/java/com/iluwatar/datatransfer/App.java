@@ -25,8 +25,7 @@ package com.iluwatar.datatransfer;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Data Transfer Object pattern is a design pattern in which an data transfer object is used to
@@ -38,9 +37,9 @@ import org.slf4j.LoggerFactory;
  * <p>CustomerResource ({@link CustomerResource}) act as server to serve customer information. And
  * The CustomerDto ({@link CustomerDto} is data transfer object to share customer information.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Method as act client and request to server for details.
@@ -54,20 +53,20 @@ public class App {
 
     var customerResource = new CustomerResource(customers);
 
-    LOGGER.info("All customers:-");
+    log.info("All customers:-");
     var allCustomers = customerResource.getAllCustomers();
     printCustomerDetails(allCustomers);
 
-    LOGGER.info("----------------------------------------------------------");
+    log.info("----------------------------------------------------------");
 
-    LOGGER.info("Deleting customer with id {1}");
+    log.info("Deleting customer with id {1}");
     customerResource.delete(customerOne.getId());
     allCustomers = customerResource.getAllCustomers();
     printCustomerDetails(allCustomers);
 
-    LOGGER.info("----------------------------------------------------------");
+    log.info("----------------------------------------------------------");
 
-    LOGGER.info("Adding customer three}");
+    log.info("Adding customer three}");
     var customerThree = new CustomerDto("3", "Lynda", "Blair");
     customerResource.save(customerThree);
     allCustomers = customerResource.getAllCustomers();
@@ -75,6 +74,6 @@ public class App {
   }
 
   private static void printCustomerDetails(List<CustomerDto> allCustomers) {
-    allCustomers.forEach(customer -> LOGGER.info(customer.getFirstName()));
+    allCustomers.forEach(customer -> log.info(customer.getFirstName()));
   }
 }

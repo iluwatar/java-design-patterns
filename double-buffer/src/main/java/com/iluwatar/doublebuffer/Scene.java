@@ -24,16 +24,15 @@
 package com.iluwatar.doublebuffer;
 
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Scene class. Render the output frame.
  */
+@Slf4j
 public class Scene {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Scene.class);
 
   private final Buffer[] frameBuffers;
 
@@ -58,22 +57,22 @@ public class Scene {
    * @param coordinateList list of pixels of which the color should be black
    */
   public void draw(List<? extends Pair<Integer, Integer>> coordinateList) {
-    LOGGER.info("Start drawing next frame");
-    LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
+    log.info("Start drawing next frame");
+    log.info("Current buffer: " + current + " Next buffer: " + next);
     frameBuffers[next].clearAll();
     coordinateList.forEach(coordinate -> {
       var x = coordinate.getKey();
       var y = coordinate.getValue();
       frameBuffers[next].draw(x, y);
     });
-    LOGGER.info("Swap current and next buffer");
+    log.info("Swap current and next buffer");
     swap();
-    LOGGER.info("Finish swapping");
-    LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
+    log.info("Finish swapping");
+    log.info("Current buffer: " + current + " Next buffer: " + next);
   }
 
   public Buffer getBuffer() {
-    LOGGER.info("Get current buffer: " + current);
+    log.info("Get current buffer: " + current);
     return frameBuffers[current];
   }
 

@@ -23,18 +23,17 @@
 
 package com.iluwatar.observer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Hobbits.
  */
+@Slf4j
 public class Hobbits implements WeatherObserver {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Hobbits.class);
 
   @Override
   public void update(WeatherType currentWeather) {
-    LOGGER.info("The hobbits are facing " + currentWeather.getDescription() + " weather now");
+    log.info("The hobbits are facing " + currentWeather.getDescription() + " weather now");
   }
 }

@@ -26,8 +26,7 @@ package com.iluwatar.module;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The FileLoggerModule is responsible for showing logs on File System.
@@ -35,9 +34,9 @@ import org.slf4j.LoggerFactory;
  * <p>The below example demonstrates a File logger module, which can print simple and error
  * messages in two designated files
  */
+@Slf4j
 public final class FileLoggerModule {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(FileLoggerModule.class);
 
   private static FileLoggerModule singleton = null;
 
@@ -72,7 +71,7 @@ public final class FileLoggerModule {
    */
   public FileLoggerModule prepare() throws FileNotFoundException {
 
-    LOGGER.debug("FileLoggerModule::prepare();");
+    log.debug("FileLoggerModule::prepare();");
 
     this.output = new PrintStream(new FileOutputStream(OUTPUT_FILE));
     this.error = new PrintStream(new FileOutputStream(ERROR_FILE));
@@ -97,7 +96,7 @@ public final class FileLoggerModule {
       this.error.close();
     }
 
-    LOGGER.debug("FileLoggerModule::unprepare();");
+    log.debug("FileLoggerModule::unprepare();");
   }
 
   /**

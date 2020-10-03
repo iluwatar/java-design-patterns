@@ -23,24 +23,21 @@
 
 package com.iluwatar.api.gateway;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
  * An adapter to communicate with the Image microservice.
  */
 @Component
+@Slf4j
 public class ImageClientImpl implements ImageClient {
-  private static final Logger LOGGER = getLogger(ImageClientImpl.class);
 
   /**
    * Makes a simple HTTP Get request to the Image microservice.
@@ -56,12 +53,12 @@ public class ImageClientImpl implements ImageClient {
         .build();
 
     try {
-      LOGGER.info("Sending request to fetch image path");
+      log.info("Sending request to fetch image path");
       var httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
       logResponse(httpResponse);
       return httpResponse.body();
     } catch (IOException | InterruptedException e) {
-      LOGGER.error("Failure occurred while getting image path", e);
+      log.error("Failure occurred while getting image path", e);
     }
 
     return null;
@@ -69,9 +66,9 @@ public class ImageClientImpl implements ImageClient {
 
   private void logResponse(HttpResponse<String> httpResponse) {
     if (isSuccessResponse(httpResponse.statusCode())) {
-      LOGGER.info("Image path received successfully");
+      log.info("Image path received successfully");
     } else {
-      LOGGER.warn("Image path request failed");
+      log.warn("Image path request failed");
     }
   }
 

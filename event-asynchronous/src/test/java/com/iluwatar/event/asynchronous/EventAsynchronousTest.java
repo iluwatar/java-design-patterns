@@ -29,14 +29,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Application test
  */
+@Slf4j
 public class EventAsynchronousTest {
-  private static final Logger LOGGER = LoggerFactory.getLogger(EventAsynchronousTest.class);
+
 
   @Test
   public void testAsynchronousEvent() {
@@ -50,7 +50,7 @@ public class EventAsynchronousTest {
       eventManager.cancel(aEventId);
       assertTrue(eventManager.getEventPool().isEmpty());
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 
@@ -67,7 +67,7 @@ public class EventAsynchronousTest {
       assertTrue(eventManager.getEventPool().isEmpty());
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
         | InvalidOperationException e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 
@@ -81,7 +81,7 @@ public class EventAsynchronousTest {
         sEventId = eventManager.create(60);
         eventManager.start(sEventId);
       } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-        LOGGER.error(e.getMessage());
+        log.error(e.getMessage());
       }
     });
   }
@@ -105,7 +105,7 @@ public class EventAsynchronousTest {
 
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
         | InvalidOperationException e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 
@@ -132,7 +132,7 @@ public class EventAsynchronousTest {
       assertTrue(eventManager.getEventPool().isEmpty());
 
     } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 }

@@ -23,8 +23,7 @@
 
 package com.iluwatar.updatemethod;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This pattern simulate a collection of independent objects by telling each to
@@ -32,9 +31,9 @@ import org.slf4j.LoggerFactory;
  * of objects. Each object implements an update method that simulates one frame of
  * the object’s behavior. Each frame, the game updates every object in the collection.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private static final int GAME_RUNNING_TIME = 2000;
 
@@ -55,7 +54,7 @@ public class App {
       Thread.sleep(GAME_RUNNING_TIME);
       world.stop();
     } catch (InterruptedException e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 }

@@ -30,15 +30,14 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A wrapper over {@link DatagramChannel} which can read and write data on a DatagramChannel.
  */
+@Slf4j
 public class NioDatagramChannel extends AbstractNioChannel {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(NioDatagramChannel.class);
 
   private final int port;
 
@@ -106,7 +105,7 @@ public class NioDatagramChannel extends AbstractNioChannel {
   public void bind() throws IOException {
     getJavaChannel().socket().bind(new InetSocketAddress(InetAddress.getLocalHost(), port));
     getJavaChannel().configureBlocking(false);
-    LOGGER.info("Bound UDP socket at port: {}", port);
+    log.info("Bound UDP socket at port: {}", port);
   }
 
   /**
@@ -122,7 +121,7 @@ public class NioDatagramChannel extends AbstractNioChannel {
   /**
    * Writes the outgoing {@link DatagramPacket} to the channel. The intended receiver of the
    * datagram packet must be set in the <code>data</code> using {@link
-   * DatagramPacket#setReceiver(SocketAddress)}.
+   * DatagramPacket#setReceiver( SocketAddress )}.
    */
   @Override
   public void write(Object data, SelectionKey key) {

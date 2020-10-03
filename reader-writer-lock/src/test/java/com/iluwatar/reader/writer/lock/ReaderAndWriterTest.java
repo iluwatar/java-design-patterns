@@ -31,12 +31,12 @@ import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author hongshuwei@gmail.com
  */
+@Slf4j
 public class ReaderAndWriterTest {
 
   private InMemoryAppender appender;
@@ -50,8 +50,6 @@ public class ReaderAndWriterTest {
   public void tearDown() {
     appender.stop();
   }
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderAndWriterTest.class);
 
   /**
    * Verify reader and writer can only get the lock to read and write orderly
@@ -74,7 +72,7 @@ public class ReaderAndWriterTest {
     try {
       executeService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown", e);
+      log.error("Error waiting for ExecutorService shutdown", e);
     }
 
     assertTrue(appender.logContains("Reader 1 begin"));
@@ -104,7 +102,7 @@ public class ReaderAndWriterTest {
     try {
       executeService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown", e);
+      log.error("Error waiting for ExecutorService shutdown", e);
     }
 
     assertTrue(appender.logContains("Writer 1 begin"));

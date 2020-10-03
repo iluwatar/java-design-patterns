@@ -23,11 +23,10 @@
 
 package com.iluwatar.transactionscript;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Hotel {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private final HotelDaoImpl hotelDao;
 
@@ -77,8 +76,8 @@ public class Hotel {
         int refundAmount = updateRoomBooking.getPrice();
         hotelDao.update(updateRoomBooking);
 
-        LOGGER.info("Booking cancelled for room number: " + roomNumber);
-        LOGGER.info(refundAmount + " is refunded");
+        log.info("Booking cancelled for room number: " + roomNumber);
+        log.info(refundAmount + " is refunded");
       } else {
         throw new Exception("No booking for the room exists");
       }

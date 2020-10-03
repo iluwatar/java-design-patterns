@@ -23,15 +23,14 @@
 
 package com.iluwatar.state;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Peaceful state.
  */
+@Slf4j
 public class PeacefulState implements State {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(PeacefulState.class);
 
   private final Mammoth mammoth;
 
@@ -41,12 +40,12 @@ public class PeacefulState implements State {
 
   @Override
   public void observe() {
-    LOGGER.info("{} is calm and peaceful.", mammoth);
+    log.info("{} is calm and peaceful.", mammoth);
   }
 
   @Override
   public void onEnterState() {
-    LOGGER.info("{} calms down.", mammoth);
+    log.info("{} calms down.", mammoth);
   }
 
 }

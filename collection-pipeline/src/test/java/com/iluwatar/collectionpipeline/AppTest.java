@@ -28,14 +28,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Tests that Collection Pipeline methods work as expected.
  */
+@Slf4j
 public class AppTest {
-  private static final Logger LOGGER = LoggerFactory.getLogger(AppTest.class);
+
 
   private final List<Car> cars = CarFactory.createCars();
 
@@ -68,7 +68,7 @@ public class AppTest {
     );
     var modelsFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
     var modelsImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
-    LOGGER.info("Category " + modelsFunctional);
+    log.info("Category " + modelsFunctional);
     assertEquals(modelsExpected, modelsFunctional);
     assertEquals(modelsExpected, modelsImperative);
   }

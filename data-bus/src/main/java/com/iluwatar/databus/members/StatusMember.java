@@ -29,16 +29,16 @@ import com.iluwatar.databus.data.MessageData;
 import com.iluwatar.databus.data.StartingData;
 import com.iluwatar.databus.data.StoppingData;
 import java.time.LocalDateTime;
-import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Receiver of Data-Bus events.
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
+@Slf4j
 public class StatusMember implements Member {
 
-  private static final Logger LOGGER = Logger.getLogger(StatusMember.class.getName());
 
   private final int id;
 
@@ -61,13 +61,13 @@ public class StatusMember implements Member {
 
   private void handleEvent(StartingData data) {
     started = data.getWhen();
-    LOGGER.info(String.format("Receiver #%d sees application started at %s", id, started));
+    log.info(String.format("Receiver #%d sees application started at %s", id, started));
   }
 
   private void handleEvent(StoppingData data) {
     stopped = data.getWhen();
-    LOGGER.info(String.format("Receiver #%d sees application stopping at %s", id, stopped));
-    LOGGER.info(String.format("Receiver #%d sending goodbye message", id));
+    log.info(String.format("Receiver #%d sees application stopping at %s", id, stopped));
+    log.info(String.format("Receiver #%d sending goodbye message", id));
     data.getDataBus().publish(MessageData.of(String.format("Goodbye cruel world from #%d!", id)));
   }
 

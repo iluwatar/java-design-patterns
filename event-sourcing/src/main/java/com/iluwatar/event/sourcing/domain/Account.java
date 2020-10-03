@@ -28,8 +28,7 @@ import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is the Account class that holds the account info, the account number, account owner name and
@@ -38,9 +37,8 @@ import org.slf4j.LoggerFactory;
  *
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
+@Slf4j
 public class Account {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Account.class);
 
   private final int accountNo;
   private final String owner;
@@ -130,7 +128,7 @@ public class Account {
     depositMoney(money);
     AccountAggregate.putAccount(this);
     if (realTime) {
-      LOGGER.info(MSG);
+      log.info(MSG);
     }
   }
 
@@ -142,7 +140,7 @@ public class Account {
     withdrawMoney(money);
     AccountAggregate.putAccount(this);
     if (realTime) {
-      LOGGER.info(MSG);
+      log.info(MSG);
     }
   }
 
@@ -164,7 +162,7 @@ public class Account {
   public void handleEvent(AccountCreateEvent accountCreateEvent) {
     AccountAggregate.putAccount(this);
     if (accountCreateEvent.isRealTime()) {
-      LOGGER.info(MSG);
+      log.info(MSG);
     }
   }
 

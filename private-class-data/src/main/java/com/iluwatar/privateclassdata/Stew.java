@@ -23,15 +23,14 @@
 
 package com.iluwatar.privateclassdata;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Mutable stew class.
  */
+@Slf4j
 public class Stew {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Stew.class);
 
   private int numPotatoes;
   private int numCarrots;
@@ -52,7 +51,7 @@ public class Stew {
    * Mix the stew.
    */
   public void mix() {
-    LOGGER.info("Mixing the stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
+    log.info("Mixing the stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
         numPotatoes, numCarrots, numMeat, numPeppers);
   }
 
@@ -60,7 +59,7 @@ public class Stew {
    * Taste the stew.
    */
   public void taste() {
-    LOGGER.info("Tasting the stew");
+    log.info("Tasting the stew");
     if (numPotatoes > 0) {
       numPotatoes--;
     }

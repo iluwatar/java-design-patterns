@@ -45,6 +45,10 @@
 	   <artifactId>swing-layout</artifactId>
 	   <version>1.0.2</version>
     </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+      </dependency>
   </dependencies>
   <build>
     <plugins>

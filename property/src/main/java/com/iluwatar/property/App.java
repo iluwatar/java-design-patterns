@@ -24,8 +24,7 @@
 package com.iluwatar.property;
 
 import com.iluwatar.property.Character.Type;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Property pattern is also known as Prototype inheritance.
@@ -38,9 +37,9 @@ import org.slf4j.LoggerFactory;
  *
  * <p>In this example we demonstrate {@link Character} instantiation using the Property pattern.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -70,16 +69,16 @@ public class App {
     /* usage */
     var mag = new Character("Player_1", mageProto);
     mag.set(Stats.ARMOR, 8);
-    LOGGER.info(mag.toString());
+    log.info(mag.toString());
 
     var warrior = new Character("Player_2", warProto);
-    LOGGER.info(warrior.toString());
+    log.info(warrior.toString());
 
     var rogue = new Character("Player_3", rogueProto);
-    LOGGER.info(rogue.toString());
+    log.info(rogue.toString());
 
     var rogueDouble = new Character("Player_4", rogue);
     rogueDouble.set(Stats.ATTACK_POWER, 12);
-    LOGGER.info(rogueDouble.toString());
+    log.info(rogueDouble.toString());
   }
 }

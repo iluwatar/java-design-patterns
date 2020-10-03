@@ -23,8 +23,7 @@
 
 package com.iluwatar.decorator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Decorator pattern is a more flexible alternative to subclassing. The Decorator class
@@ -36,9 +35,9 @@ import org.slf4j.LoggerFactory;
  * battle. Then we decorate the {@link SimpleTroll} with a {@link ClubbedTroll} and perform the
  * attack again. You can see how the behavior changes after the decoration.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -48,17 +47,17 @@ public class App {
   public static void main(String[] args) {
 
     // simple troll
-    LOGGER.info("A simple looking troll approaches.");
+    log.info("A simple looking troll approaches.");
     var troll = new SimpleTroll();
     troll.attack();
     troll.fleeBattle();
-    LOGGER.info("Simple troll power {}.\n", troll.getAttackPower());
+    log.info("Simple troll power {}.\n", troll.getAttackPower());
 
     // change the behavior of the simple troll by adding a decorator
-    LOGGER.info("A troll with huge club surprises you.");
+    log.info("A troll with huge club surprises you.");
     var clubbedTroll = new ClubbedTroll(troll);
     clubbedTroll.attack();
     clubbedTroll.fleeBattle();
-    LOGGER.info("Clubbed troll power {}.\n", clubbedTroll.getAttackPower());
+    log.info("Clubbed troll power {}.\n", clubbedTroll.getAttackPower());
   }
 }

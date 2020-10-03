@@ -24,15 +24,14 @@
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * GWeather.
  */
+@Slf4j
 public class GWeather extends Observable<GWeather, Race, WeatherType> {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(GWeather.class);
 
   private WeatherType currentWeather;
 
@@ -46,7 +45,7 @@ public class GWeather extends Observable<GWeather, Race, WeatherType> {
   public void timePasses() {
     var enumValues = WeatherType.values();
     currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
-    LOGGER.info("The weather changed to {}.", currentWeather);
+    log.info("The weather changed to {}.", currentWeather);
     notifyObservers(currentWeather);
   }
 }

@@ -95,13 +95,13 @@ public class DragonSlayer {
 最后是屠龙者的行动。
 
 ```java
-    LOGGER.info("Green dragon spotted ahead!");
+    log.info("Green dragon spotted ahead!");
     var dragonSlayer = new DragonSlayer(new MeleeStrategy());
     dragonSlayer.goToBattle();
-    LOGGER.info("Red dragon emerges.");
+    log.info("Red dragon emerges.");
     dragonSlayer.changeStrategy(new ProjectileStrategy());
     dragonSlayer.goToBattle();
-    LOGGER.info("Black dragon lands before you.");
+    log.info("Black dragon lands before you.");
     dragonSlayer.changeStrategy(new SpellStrategy());
     dragonSlayer.goToBattle();
     

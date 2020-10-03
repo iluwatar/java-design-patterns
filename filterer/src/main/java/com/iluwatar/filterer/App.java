@@ -35,8 +35,7 @@ import com.iluwatar.filterer.threat.ThreatType;
 import java.util.List;
 import java.util.function.Predicate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This demo class represent how {@link com.iluwatar.filterer.domain.Filterer} pattern is used to
@@ -46,9 +45,9 @@ import org.slf4j.LoggerFactory;
  * The thing is to keep it simple if we add new subtype of {@link Threat}
  * (for example {@link ProbableThreat}) - we still need to be able to filter by it's properties.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   public static void main(String[] args) {
     filteringSimpleThreats();
@@ -57,12 +56,12 @@ public class App {
 
   /**
    * Demonstrates how to filter {@link com.iluwatar.filterer.threat.ProbabilisticThreatAwareSystem}
-   * based on probability property. The @{@link com.iluwatar.filterer.domain.Filterer#by(Predicate)}
-   * method is able to use {@link com.iluwatar.filterer.threat.ProbableThreat}
-   * as predicate argument.
+   * based on probability property.
+   * The @{@link com.iluwatar.filterer.domain.Filterer#by(Predicate)} method is able to use
+   * {@link com.iluwatar.filterer.threat.ProbableThreat} as predicate argument.
    */
   private static void filteringSimpleProbableThreats() {
-    LOGGER.info(" ### Filtering ProbabilisticThreatAwareSystem by probability ###");
+    log.info(" ### Filtering ProbabilisticThreatAwareSystem by probability ###");
 
     var trojanArcBomb = new SimpleProbableThreat("Trojan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
     var rootkit = new SimpleProbableThreat("Rootkit-Kernel", 2, ThreatType.ROOTKIT, 0.8);
@@ -72,14 +71,14 @@ public class App {
     var probabilisticThreatAwareSystem =
             new SimpleProbabilisticThreatAwareSystem("Sys-1", probableThreats);
 
-    LOGGER.info("Filtering ProbabilisticThreatAwareSystem. Initial : "
+    log.info("Filtering ProbabilisticThreatAwareSystem. Initial : "
             + probabilisticThreatAwareSystem);
 
     //Filtering using filterer
     var filteredThreatAwareSystem = probabilisticThreatAwareSystem.filtered()
             .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
 
-    LOGGER.info("Filtered by probability = 0.99 : " + filteredThreatAwareSystem);
+    log.info("Filtered by probability = 0.99 : " + filteredThreatAwareSystem);
   }
 
   /**
@@ -88,7 +87,7 @@ public class App {
    * method is able to use {@link Threat} as predicate argument.
    */
   private static void filteringSimpleThreats() {
-    LOGGER.info("### Filtering ThreatAwareSystem by ThreatType ###");
+    log.info("### Filtering ThreatAwareSystem by ThreatType ###");
 
     var rootkit = new SimpleThreat(ThreatType.ROOTKIT, 1, "Simple-Rootkit");
     var trojan = new SimpleThreat(ThreatType.TROJAN, 2, "Simple-Trojan");
@@ -96,13 +95,13 @@ public class App {
 
     var threatAwareSystem = new SimpleThreatAwareSystem("Sys-1", threats);
 
-    LOGGER.info("Filtering ThreatAwareSystem. Initial : " + threatAwareSystem);
+    log.info("Filtering ThreatAwareSystem. Initial : " + threatAwareSystem);
 
     //Filtering using Filterer
     var rootkitThreatAwareSystem = threatAwareSystem.filtered()
             .by(threat -> threat.type() == ThreatType.ROOTKIT);
 
-    LOGGER.info("Filtered by threatType = ROOTKIT : " + rootkitThreatAwareSystem);
+    log.info("Filtered by threatType = ROOTKIT : " + rootkitThreatAwareSystem);
   }
 
 }

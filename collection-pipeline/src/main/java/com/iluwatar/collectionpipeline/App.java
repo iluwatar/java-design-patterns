@@ -24,8 +24,7 @@
 package com.iluwatar.collectionpipeline;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * In imperative-style programming, it is common to use for and while loops for most kinds of data
@@ -35,9 +34,9 @@ import org.slf4j.LoggerFactory;
  * create sophisticated programs where data flow from upstream to downstream and is passed through a
  * series of transformations.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -48,23 +47,23 @@ public class App {
     var cars = CarFactory.createCars();
 
     var modelsImperative = ImperativeProgramming.getModelsAfter2000(cars);
-    LOGGER.info(modelsImperative.toString());
+    log.info(modelsImperative.toString());
 
     var modelsFunctional = FunctionalProgramming.getModelsAfter2000(cars);
-    LOGGER.info(modelsFunctional.toString());
+    log.info(modelsFunctional.toString());
 
     var groupingByCategoryImperative = ImperativeProgramming.getGroupingOfCarsByCategory(cars);
-    LOGGER.info(groupingByCategoryImperative.toString());
+    log.info(groupingByCategoryImperative.toString());
 
     var groupingByCategoryFunctional = FunctionalProgramming.getGroupingOfCarsByCategory(cars);
-    LOGGER.info(groupingByCategoryFunctional.toString());
+    log.info(groupingByCategoryFunctional.toString());
 
     var john = new Person(cars);
 
     var sedansOwnedImperative = ImperativeProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
-    LOGGER.info(sedansOwnedImperative.toString());
+    log.info(sedansOwnedImperative.toString());
 
     var sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));
-    LOGGER.info(sedansOwnedFunctional.toString());
+    log.info(sedansOwnedFunctional.toString());
   }
 }

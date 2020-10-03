@@ -25,15 +25,14 @@ package com.iluwatar.leaderelection;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract class of all the instance implementation classes.
  */
-public abstract class AbstractInstance implements Instance, Runnable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(AbstractInstance.class);
+@Slf4j
+public abstract class AbstractInstance implements Instance, Runnable {
 
   protected static final int HEARTBEAT_INTERVAL = 5000;
   private static final String INSTANCE = "Instance ";
@@ -107,27 +106,27 @@ public abstract class AbstractInstance implements Instance, Runnable {
   private void processMessage(Message message) {
     switch (message.getType()) {
       case ELECTION:
-        LOGGER.info(INSTANCE + localId + " - Election Message handling...");
+        log.info(INSTANCE + localId + " - Election Message handling...");
         handleElectionMessage(message);
         break;
       case LEADER:
-        LOGGER.info(INSTANCE + localId + " - Leader Message handling...");
+        log.info(INSTANCE + localId + " - Leader Message handling...");
         handleLeaderMessage(message);
         break;
       case HEARTBEAT:
-        LOGGER.info(INSTANCE + localId + " - Heartbeat Message handling...");
+        log.info(INSTANCE + localId + " - Heartbeat Message handling...");
         handleHeartbeatMessage(message);
         break;
       case ELECTION_INVOKE:
-        LOGGER.info(INSTANCE + localId + " - Election Invoke Message handling...");
+        log.info(INSTANCE + localId + " - Election Invoke Message handling...");
         handleElectionInvokeMessage();
         break;
       case LEADER_INVOKE:
-        LOGGER.info(INSTANCE + localId + " - Leader Invoke Message handling...");
+        log.info(INSTANCE + localId + " - Leader Invoke Message handling...");
         handleLeaderInvokeMessage();
         break;
       case HEARTBEAT_INVOKE:
-        LOGGER.info(INSTANCE + localId + " - Heartbeat Invoke Message handling...");
+        log.info(INSTANCE + localId + " - Heartbeat Invoke Message handling...");
         handleHeartbeatInvokeMessage();
         break;
       default:

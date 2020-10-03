@@ -26,8 +26,7 @@ package com.iluwatar.reader.writer.lock;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * In a multiple thread applications, the threads may try to synchronize the shared resources
@@ -45,9 +44,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author hongshuwei@gmail.com
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -64,19 +63,19 @@ public class App {
       var writingTime = ThreadLocalRandom.current().nextLong(5000);
       executeService.submit(new Writer("Writer " + i, lock.writeLock(), writingTime));
     }
-    LOGGER.info("Writers added...");
+    log.info("Writers added...");
 
     // Start readers
     for (var i = 0; i < 5; i++) {
       var readingTime = ThreadLocalRandom.current().nextLong(10);
       executeService.submit(new Reader("Reader " + i, lock.readLock(), readingTime));
     }
-    LOGGER.info("Readers added...");
+    log.info("Readers added...");
 
     try {
       Thread.sleep(5000L);
     } catch (InterruptedException e) {
-      LOGGER.error("Error sleeping before adding more readers", e);
+      log.error("Error sleeping before adding more readers", e);
       Thread.currentThread().interrupt();
     }
 
@@ -85,7 +84,7 @@ public class App {
       var readingTime = ThreadLocalRandom.current().nextLong(10);
       executeService.submit(new Reader("Reader " + i, lock.readLock(), readingTime));
     }
-    LOGGER.info("More readers added...");
+    log.info("More readers added...");
 
 
     // In the system console, it can see that the read operations are executed concurrently while
@@ -94,7 +93,7 @@ public class App {
     try {
       executeService.awaitTermination(5, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown", e);
+      log.error("Error waiting for ExecutorService shutdown", e);
       Thread.currentThread().interrupt();
     }
 

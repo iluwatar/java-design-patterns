@@ -25,8 +25,7 @@ package com.iluwatar.tls;
 
 import java.util.Calendar;
 import java.util.concurrent.Executors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ThreadLocal pattern
@@ -58,9 +57,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author Thomas Bauer, 2017
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -96,11 +95,11 @@ public class App {
 
       // a correct run should deliver 20 times 15.12.2015
       // and a correct run shouldn't deliver any exception
-      LOGGER.info("The List dateList contains " + counterDateValues + " date values");
-      LOGGER.info("The List exceptionList contains " + counterExceptions + " exceptions");
+      log.info("The List dateList contains " + counterDateValues + " date values");
+      log.info("The List exceptionList contains " + counterExceptions + " exceptions");
 
     } catch (Exception e) {
-      LOGGER.info("Abnormal end of program. Program throws exception: " + e);
+      log.info("Abnormal end of program. Program throws exception: " + e);
     }
     executor.shutdown();
   }
@@ -118,7 +117,7 @@ public class App {
       var cal = Calendar.getInstance();
       cal.setTime(dt);
       // Formatted output of the date value: DD.MM.YYYY
-      LOGGER.info(cal.get(Calendar.DAY_OF_MONTH) + "."
+      log.info(cal.get(Calendar.DAY_OF_MONTH) + "."
           + cal.get(Calendar.MONTH) + "."
           + cal.get(Calendar.YEAR)
       );
@@ -137,7 +136,7 @@ public class App {
     var counter = 0;
     for (var ex : res.getExceptionList()) {
       counter++;
-      LOGGER.info(ex);
+      log.info(ex);
     }
     return counter;
   }

@@ -23,15 +23,14 @@
 
 package com.iluwatar.event.asynchronous;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Each Event runs as a separate/individual thread.
  */
+@Slf4j
 public class Event implements IEvent, Runnable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Event.class);
 
   private final int eventId;
   private final int eventTime;
@@ -74,9 +73,9 @@ public class Event implements IEvent, Runnable {
   @Override
   public void status() {
     if (!isComplete) {
-      LOGGER.info("[{}] is not done.", eventId);
+      log.info("[{}] is not done.", eventId);
     } else {
-      LOGGER.info("[{}] is done.", eventId);
+      log.info("[{}] is done.", eventId);
     }
   }
 

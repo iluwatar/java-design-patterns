@@ -23,15 +23,13 @@
 
 package com.iluwatar.updatemethod;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract class for all the entity types.
  */
+@Slf4j
 public abstract class Entity {
-
-  protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   protected int id;
 

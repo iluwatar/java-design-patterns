@@ -25,15 +25,13 @@ package com.iluwatar.command;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Wizard is the invoker of the commands.
  */
+@Slf4j
 public class Wizard {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
 
   private final Deque<Command> undoStack = new LinkedList<>();
   private final Deque<Command> redoStack = new LinkedList<>();
@@ -46,7 +44,7 @@ public class Wizard {
    * Cast spell.
    */
   public void castSpell(Command command, Target target) {
-    LOGGER.info("{} casts {} at {}", this, command, target);
+    log.info("{} casts {} at {}", this, command, target);
     command.execute(target);
     undoStack.offerLast(command);
   }
@@ -58,7 +56,7 @@ public class Wizard {
     if (!undoStack.isEmpty()) {
       var previousSpell = undoStack.pollLast();
       redoStack.offerLast(previousSpell);
-      LOGGER.info("{} undoes {}", this, previousSpell);
+      log.info("{} undoes {}", this, previousSpell);
       previousSpell.undo();
     }
   }
@@ -70,7 +68,7 @@ public class Wizard {
     if (!redoStack.isEmpty()) {
       var previousSpell = redoStack.pollLast();
       undoStack.offerLast(previousSpell);
-      LOGGER.info("{} redoes {}", this, previousSpell);
+      log.info("{} redoes {}", this, previousSpell);
       previousSpell.redo();
     }
   }

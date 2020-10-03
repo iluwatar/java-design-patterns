@@ -32,8 +32,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class acts as Synchronous Event De-multiplexer and Initiation Dispatcher of Reactor pattern.
@@ -50,9 +49,9 @@ import org.slf4j.LoggerFactory;
  * possible edge cases which are required in a real application. This implementation is meant to
  * demonstrate the fundamental concepts that lie behind Reactor pattern.
  */
+@Slf4j
 public class NioReactor {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(NioReactor.class);
 
   private final Selector selector;
   private final Dispatcher dispatcher;
@@ -83,10 +82,10 @@ public class NioReactor {
   public void start() {
     reactorMain.execute(() -> {
       try {
-        LOGGER.info("Reactor started, waiting for events...");
+        log.info("Reactor started, waiting for events...");
         eventLoop();
       } catch (IOException e) {
-        LOGGER.error("exception in event loop", e);
+        log.error("exception in event loop", e);
       }
     });
   }
@@ -102,7 +101,7 @@ public class NioReactor {
     selector.wakeup();
     reactorMain.awaitTermination(4, TimeUnit.SECONDS);
     selector.close();
-    LOGGER.info("Reactor stopped");
+    log.info("Reactor stopped");
   }
 
   /**
@@ -189,7 +188,7 @@ public class NioReactor {
       try {
         key.channel().close();
       } catch (IOException e1) {
-        LOGGER.error("error closing channel", e1);
+        log.error("error closing channel", e1);
       }
     }
   }

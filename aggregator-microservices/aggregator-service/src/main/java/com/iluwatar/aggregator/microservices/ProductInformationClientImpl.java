@@ -28,17 +28,15 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
  * An adapter to communicate with information micro-service.
  */
 @Component
+@Slf4j
 public class ProductInformationClientImpl implements ProductInformationClient {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ProductInformationClientImpl.class);
 
   @Override
   public String getProductTitle() {
@@ -51,9 +49,9 @@ public class ProductInformationClientImpl implements ProductInformationClient {
       var httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
       return httpResponse.body();
     } catch (IOException ioe) {
-      LOGGER.error("IOException Occurred", ioe);
+      log.error("IOException Occurred", ioe);
     } catch (InterruptedException ie) {
-      LOGGER.error("InterruptedException Occurred", ie);
+      log.error("InterruptedException Occurred", ie);
     }
     return null;
   }

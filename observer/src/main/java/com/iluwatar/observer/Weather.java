@@ -25,16 +25,14 @@ package com.iluwatar.observer;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Weather can be observed by implementing {@link WeatherObserver} interface and registering as
  * listener.
  */
+@Slf4j
 public class Weather {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Weather.class);
 
   private WeatherType currentWeather;
   private final List<WeatherObserver> observers;
@@ -58,7 +56,7 @@ public class Weather {
   public void timePasses() {
     var enumValues = WeatherType.values();
     currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
-    LOGGER.info("The weather changed to {}.", currentWeather);
+    log.info("The weather changed to {}.", currentWeather);
     notifyObservers();
   }
 

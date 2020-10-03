@@ -31,8 +31,7 @@ import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.spellbook.SpellbookDaoImpl;
 import com.iluwatar.servicelayer.wizard.Wizard;
 import com.iluwatar.servicelayer.wizard.WizardDaoImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -52,9 +51,9 @@ import org.slf4j.LoggerFactory;
  * dao, service). For persistence the example uses in-memory H2 database which is populated on each
  * application startup.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   public static final String BOOK_OF_IDORES = "Book of Idores";
 
   /**
@@ -182,17 +181,17 @@ public class App {
     var spellbookDao = new SpellbookDaoImpl();
     var spellDao = new SpellDaoImpl();
     var service = new MagicServiceImpl(wizardDao, spellbookDao, spellDao);
-    LOGGER.info("Enumerating all wizards");
-    service.findAllWizards().stream().map(Wizard::getName).forEach(LOGGER::info);
-    LOGGER.info("Enumerating all spellbooks");
-    service.findAllSpellbooks().stream().map(Spellbook::getName).forEach(LOGGER::info);
-    LOGGER.info("Enumerating all spells");
-    service.findAllSpells().stream().map(Spell::getName).forEach(LOGGER::info);
-    LOGGER.info("Find wizards with spellbook 'Book of Idores'");
+    log.info("Enumerating all wizards");
+    service.findAllWizards().stream().map(Wizard::getName).forEach(log::info);
+    log.info("Enumerating all spellbooks");
+    service.findAllSpellbooks().stream().map(Spellbook::getName).forEach(log::info);
+    log.info("Enumerating all spells");
+    service.findAllSpells().stream().map(Spell::getName).forEach(log::info);
+    log.info("Find wizards with spellbook 'Book of Idores'");
     var wizardsWithSpellbook = service.findWizardsWithSpellbook(BOOK_OF_IDORES);
-    wizardsWithSpellbook.forEach(w -> LOGGER.info("{} has 'Book of Idores'", w.getName()));
-    LOGGER.info("Find wizards with spell 'Fireball'");
+    wizardsWithSpellbook.forEach(w -> log.info("{} has 'Book of Idores'", w.getName()));
+    log.info("Find wizards with spell 'Fireball'");
     var wizardsWithSpell = service.findWizardsWithSpell("Fireball");
-    wizardsWithSpell.forEach(w -> LOGGER.info("{} has 'Fireball'", w.getName()));
+    wizardsWithSpell.forEach(w -> log.info("{} has 'Fireball'", w.getName()));
   }
 }

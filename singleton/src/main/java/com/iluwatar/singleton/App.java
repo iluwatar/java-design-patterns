@@ -23,8 +23,7 @@
 
 package com.iluwatar.singleton;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>Singleton pattern ensures that the class can have only one existing instance per Java
@@ -61,9 +60,9 @@ import org.slf4j.LoggerFactory;
  * {@link InitializingOnDemandHolderIdiom}. However, this implementation requires at least Java 8
  * API level to work.</p>
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -75,31 +74,31 @@ public class App {
     // eagerly initialized singleton
     var ivoryTower1 = IvoryTower.getInstance();
     var ivoryTower2 = IvoryTower.getInstance();
-    LOGGER.info("ivoryTower1={}", ivoryTower1);
-    LOGGER.info("ivoryTower2={}", ivoryTower2);
+    log.info("ivoryTower1={}", ivoryTower1);
+    log.info("ivoryTower2={}", ivoryTower2);
 
     // lazily initialized singleton
     var threadSafeIvoryTower1 = ThreadSafeLazyLoadedIvoryTower.getInstance();
     var threadSafeIvoryTower2 = ThreadSafeLazyLoadedIvoryTower.getInstance();
-    LOGGER.info("threadSafeIvoryTower1={}", threadSafeIvoryTower1);
-    LOGGER.info("threadSafeIvoryTower2={}", threadSafeIvoryTower2);
+    log.info("threadSafeIvoryTower1={}", threadSafeIvoryTower1);
+    log.info("threadSafeIvoryTower2={}", threadSafeIvoryTower2);
 
     // enum singleton
     var enumIvoryTower1 = EnumIvoryTower.INSTANCE;
     var enumIvoryTower2 = EnumIvoryTower.INSTANCE;
-    LOGGER.info("enumIvoryTower1={}", enumIvoryTower1);
-    LOGGER.info("enumIvoryTower2={}", enumIvoryTower2);
+    log.info("enumIvoryTower1={}", enumIvoryTower1);
+    log.info("enumIvoryTower2={}", enumIvoryTower2);
 
     // double checked locking
     var dcl1 = ThreadSafeDoubleCheckLocking.getInstance();
-    LOGGER.info(dcl1.toString());
+    log.info(dcl1.toString());
     var dcl2 = ThreadSafeDoubleCheckLocking.getInstance();
-    LOGGER.info(dcl2.toString());
+    log.info(dcl2.toString());
 
     // initialize on demand holder idiom
     var demandHolderIdiom = InitializingOnDemandHolderIdiom.getInstance();
-    LOGGER.info(demandHolderIdiom.toString());
+    log.info(demandHolderIdiom.toString());
     var demandHolderIdiom2 = InitializingOnDemandHolderIdiom.getInstance();
-    LOGGER.info(demandHolderIdiom2.toString());
+    log.info(demandHolderIdiom2.toString());
   }
 }

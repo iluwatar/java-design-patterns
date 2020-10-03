@@ -88,12 +88,12 @@ public class HitAndRunMethod extends StealingMethod {
 
   @Override
   protected void confuseTarget(String target) {
-    LOGGER.info("Approach the {} from behind.", target);
+    log.info("Approach the {} from behind.", target);
   }
 
   @Override
   protected void stealTheItem(String target) {
-    LOGGER.info("Grab the handbag and run away fast!");
+    log.info("Grab the handbag and run away fast!");
   }
 }
 ```

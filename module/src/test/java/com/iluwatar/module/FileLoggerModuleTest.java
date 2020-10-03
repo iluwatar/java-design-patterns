@@ -31,8 +31,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Module pattern can be considered a Creational pattern and a Structural pattern. It manages
@@ -44,9 +43,9 @@ import org.slf4j.LoggerFactory;
  * The below example demonstrates a JUnit test for testing two different modules: File Logger and
  * Console Logger
  */
+@Slf4j
 public final class FileLoggerModuleTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(FileLoggerModuleTest.class);
 
   private static final String OUTPUT_FILE = "output.txt";
   private static final String ERROR_FILE = "error.txt";
@@ -164,10 +163,10 @@ public final class FileLoggerModuleTest {
         firstLine = bufferedReader.readLine();
       }
 
-      LOGGER.info("ModuleTest::readFirstLine() : firstLine : " + firstLine);
+      log.info("ModuleTest::readFirstLine() : firstLine : " + firstLine);
 
     } catch (final IOException e) {
-      LOGGER.error("ModuleTest::readFirstLine()", e);
+      log.error("ModuleTest::readFirstLine()", e);
     }
 
     return firstLine;

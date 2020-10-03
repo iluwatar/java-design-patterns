@@ -35,16 +35,15 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Represents the clients of Reactor pattern. Multiple clients are run concurrently and send logging
  * requests to Reactor.
  */
+@Slf4j
 public class AppClient {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(AppClient.class);
 
   private final ExecutorService service = Executors.newFixedThreadPool(4);
 
@@ -64,7 +63,7 @@ public class AppClient {
    * @throws IOException if any I/O error occurs.
    */
   public void start() throws IOException {
-    LOGGER.info("Starting logging clients");
+    log.info("Starting logging clients");
     service.execute(new TcpLoggingClient("Client 1", 6666));
     service.execute(new TcpLoggingClient("Client 2", 6667));
     service.execute(new UdpLoggingClient("Client 3", 6668));
@@ -81,17 +80,17 @@ public class AppClient {
       try {
         service.awaitTermination(1000, TimeUnit.SECONDS);
       } catch (InterruptedException e) {
-        LOGGER.error("exception awaiting termination", e);
+        log.error("exception awaiting termination", e);
       }
     }
-    LOGGER.info("Logging clients stopped");
+    log.info("Logging clients stopped");
   }
 
   private static void artificialDelayOf(long millis) {
     try {
       Thread.sleep(millis);
     } catch (InterruptedException e) {
-      LOGGER.error("sleep interrupted", e);
+      log.error("sleep interrupted", e);
     }
   }
 
@@ -121,7 +120,7 @@ public class AppClient {
         var writer = new PrintWriter(outputStream);
         sendLogRequests(writer, socket.getInputStream());
       } catch (IOException e) {
-        LOGGER.error("error sending requests", e);
+        log.error("error sending requests", e);
         throw new RuntimeException(e);
       }
     }
@@ -134,9 +133,9 @@ public class AppClient {
         var data = new byte[1024];
         var read = inputStream.read(data, 0, data.length);
         if (read == 0) {
-          LOGGER.info("Read zero bytes");
+          log.info("Read zero bytes");
         } else {
-          LOGGER.info(new String(data, 0, read));
+          log.info(new String(data, 0, read));
         }
 
         artificialDelayOf(100);
@@ -179,15 +178,15 @@ public class AppClient {
           var reply = new DatagramPacket(data, data.length);
           socket.receive(reply);
           if (reply.getLength() == 0) {
-            LOGGER.info("Read zero bytes");
+            log.info("Read zero bytes");
           } else {
-            LOGGER.info(new String(reply.getData(), 0, reply.getLength()));
+            log.info(new String(reply.getData(), 0, reply.getLength()));
           }
 
           artificialDelayOf(100);
         }
       } catch (IOException e1) {
-        LOGGER.error("error sending packets", e1);
+        log.error("error sending packets", e1);
       }
     }
   }

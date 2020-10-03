@@ -23,14 +23,14 @@
 
 package com.iluwatar.strangler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Old version system depends on old version source ({@link OldSource}).
  */
+@Slf4j
 public class OldArithmetic {
-  private static final Logger LOGGER = LoggerFactory.getLogger(OldArithmetic.class);
+
   private static final  String VERSION = "1.0";
 
   private final OldSource source;
@@ -45,7 +45,7 @@ public class OldArithmetic {
    * @return accumulate sum
    */
   public int sum(int... nums) {
-    LOGGER.info("Arithmetic sum {}", VERSION);
+    log.info("Arithmetic sum {}", VERSION);
     return source.accumulateSum(nums);
   }
 
@@ -55,7 +55,7 @@ public class OldArithmetic {
    * @return accumulate multiplication
    */
   public int mul(int... nums) {
-    LOGGER.info("Arithmetic mul {}", VERSION);
+    log.info("Arithmetic mul {}", VERSION);
     return source.accumulateMul(nums);
   }
 }

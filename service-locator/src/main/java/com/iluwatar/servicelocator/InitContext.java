@@ -23,8 +23,7 @@
 
 package com.iluwatar.servicelocator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * For JNDI lookup of services from the web.xml. Will match name of the service name that is being
@@ -32,9 +31,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author saifasif
  */
+@Slf4j
 public class InitContext {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(InitContext.class);
 
   /**
    * Perform the lookup based on the service name. The returned object will need to be casted into a
@@ -45,10 +44,10 @@ public class InitContext {
    */
   public Object lookup(String serviceName) {
     if (serviceName.equals("jndi/serviceA")) {
-      LOGGER.info("Looking up service A and creating new service for A");
+      log.info("Looking up service A and creating new service for A");
       return new ServiceImpl("jndi/serviceA");
     } else if (serviceName.equals("jndi/serviceB")) {
-      LOGGER.info("Looking up service B and creating new service for B");
+      log.info("Looking up service B and creating new service for B");
       return new ServiceImpl("jndi/serviceB");
     } else {
       return null;

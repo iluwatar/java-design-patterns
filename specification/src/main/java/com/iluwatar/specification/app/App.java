@@ -40,8 +40,7 @@ import com.iluwatar.specification.selector.MovementSelector;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>The central idea of the Specification pattern is to separate the statement of how to match a
@@ -54,9 +53,9 @@ import org.slf4j.LoggerFactory;
  *
  * <p>http://martinfowler.com/apsupp/spec.pdf</p>
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -72,31 +71,31 @@ public class App {
         new KillerBee()
     );
     // so-called "hard-coded" specification
-    LOGGER.info("Demonstrating hard-coded specification :");
+    log.info("Demonstrating hard-coded specification :");
     // find all walking creatures
-    LOGGER.info("Find all walking creatures");
+    log.info("Find all walking creatures");
     print(creatures, new MovementSelector(Movement.WALKING));
     // find all dark creatures
-    LOGGER.info("Find all dark creatures");
+    log.info("Find all dark creatures");
     print(creatures, new ColorSelector(Color.DARK));
-    LOGGER.info("\n");
+    log.info("\n");
     // so-called "parameterized" specification
-    LOGGER.info("Demonstrating parameterized specification :");
+    log.info("Demonstrating parameterized specification :");
     // find all creatures heavier than 500kg
-    LOGGER.info("Find all creatures heavier than 600kg");
+    log.info("Find all creatures heavier than 600kg");
     print(creatures, new MassGreaterThanSelector(600.0));
     // find all creatures heavier than 500kg
-    LOGGER.info("Find all creatures lighter than or weighing exactly 500kg");
+    log.info("Find all creatures lighter than or weighing exactly 500kg");
     print(creatures, new MassSmallerThanOrEqSelector(500.0));
-    LOGGER.info("\n");
+    log.info("\n");
     // so-called "composite" specification
-    LOGGER.info("Demonstrating composite specification :");
+    log.info("Demonstrating composite specification :");
     // find all red and flying creatures
-    LOGGER.info("Find all red and flying creatures");
+    log.info("Find all red and flying creatures");
     var redAndFlying = new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING));
     print(creatures, redAndFlying);
     // find all creatures dark or red, non-swimming, and heavier than or equal to 400kg
-    LOGGER.info("Find all scary creatures");
+    log.info("Find all scary creatures");
     var scaryCreaturesSelector = new ColorSelector(Color.DARK)
         .or(new ColorSelector(Color.RED)).and(new MovementSelector(Movement.SWIMMING).not())
         .and(new MassGreaterThanSelector(400.0).or(new MassEqualSelector(400.0)));
@@ -104,6 +103,6 @@ public class App {
   }
 
   private static void print(List<? extends Creature> creatures, Predicate<Creature> selector) {
-    creatures.stream().filter(selector).map(Objects::toString).forEach(LOGGER::info);
+    creatures.stream().filter(selector).map(Objects::toString).forEach(log::info);
   }
 }

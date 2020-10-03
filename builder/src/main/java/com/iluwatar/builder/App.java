@@ -24,8 +24,7 @@
 package com.iluwatar.builder;
 
 import com.iluwatar.builder.Hero.Builder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The intention of the Builder pattern is to find a solution to the telescoping constructor
@@ -48,10 +47,9 @@ import org.slf4j.LoggerFactory;
  * configuration for the {@link Hero} object can be done using the fluent {@link Builder} interface.
  * When configuration is ready the build method is called to receive the final {@link Hero} object.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
+  
   /**
    * Program entry point.
    *
@@ -63,19 +61,19 @@ public class App {
         .withHairColor(HairColor.BLACK)
         .withWeapon(Weapon.DAGGER)
         .build();
-    LOGGER.info(mage.toString());
+    log.info(mage.toString());
 
     var warrior = new Hero.Builder(Profession.WARRIOR, "Amberjill")
         .withHairColor(HairColor.BLOND)
         .withHairType(HairType.LONG_CURLY).withArmor(Armor.CHAIN_MAIL).withWeapon(Weapon.SWORD)
         .build();
-    LOGGER.info(warrior.toString());
+    log.info(warrior.toString());
 
     var thief = new Hero.Builder(Profession.THIEF, "Desmond")
         .withHairType(HairType.BALD)
         .withWeapon(Weapon.BOW)
         .build();
-    LOGGER.info(thief.toString());
+    log.info(thief.toString());
 
   }
 }

@@ -23,18 +23,17 @@
 
 package com.iluwatar.flyweight;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * StrengthPotion.
  */
+@Slf4j
 public class StrengthPotion implements Potion {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(StrengthPotion.class);
 
   @Override
   public void drink() {
-    LOGGER.info("You feel strong. (Potion={})", System.identityHashCode(this));
+    log.info("You feel strong. (Potion={})", System.identityHashCode(this));
   }
 }

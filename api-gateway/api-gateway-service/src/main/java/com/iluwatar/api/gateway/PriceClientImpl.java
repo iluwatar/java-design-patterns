@@ -23,8 +23,6 @@
 
 package com.iluwatar.api.gateway;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -32,16 +30,15 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
 
 /**
  * An adapter to communicate with the Price microservice.
  */
 @Component
+@Slf4j
 public class PriceClientImpl implements PriceClient {
-  private static final Logger LOGGER = getLogger(PriceClientImpl.class);
 
   /**
    * Makes a simple HTTP Get request to the Price microservice.
@@ -57,12 +54,12 @@ public class PriceClientImpl implements PriceClient {
         .build();
 
     try {
-      LOGGER.info("Sending request to fetch price info");
+      log.info("Sending request to fetch price info");
       var httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
       logResponse(httpResponse);
       return httpResponse.body();
     } catch (IOException | InterruptedException e) {
-      LOGGER.error("Failure occurred while getting price info", e);
+      log.error("Failure occurred while getting price info", e);
     }
 
     return null;
@@ -70,9 +67,9 @@ public class PriceClientImpl implements PriceClient {
 
   private void logResponse(HttpResponse<String> httpResponse) {
     if (isSuccessResponse(httpResponse.statusCode())) {
-      LOGGER.info("Price info received successfully");
+      log.info("Price info received successfully");
     } else {
-      LOGGER.warn("Price info request failed");
+      log.warn("Price info request failed");
     }
   }
 

@@ -26,15 +26,14 @@ package com.iluwatar.data.locality.game.component.manager;
 import com.iluwatar.data.locality.game.component.Component;
 import com.iluwatar.data.locality.game.component.PhysicsComponent;
 import java.util.stream.IntStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Physics component Manager for Game.
  */
+@Slf4j
 public class PhysicsComponentManager {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(PhysicsComponentManager.class);
 
   private static final int MAX_ENTITIES = 10000;
 
@@ -50,7 +49,7 @@ public class PhysicsComponentManager {
    * Start physics component of Game.
    */
   public void start() {
-    LOGGER.info("Start Physics Game Component ");
+    log.info("Start Physics Game Component ");
     IntStream.range(0, numEntities).forEach(i -> physicsComponents[i] = new PhysicsComponent());
   }
 
@@ -59,7 +58,7 @@ public class PhysicsComponentManager {
    * Update physics component of Game.
    */
   public void update() {
-    LOGGER.info("Update Physics Game Component ");
+    log.info("Update Physics Game Component ");
     // Process physics.
     IntStream.range(0, numEntities)
         .filter(i -> physicsComponents.length > i && physicsComponents[i] != null)
