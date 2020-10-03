@@ -23,17 +23,16 @@
 
 package com.iluwatar.twin;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class represents a Ball which extends {@link GameItem} and implements the logic for ball
  * item, like move and draw. It hold a reference of {@link BallThread} to delegate the suspend and
  * resume task.
  */
+@Slf4j
 public class BallItem extends GameItem {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(BallItem.class);
 
   private boolean isSuspended;
 
@@ -46,11 +45,11 @@ public class BallItem extends GameItem {
   @Override
   public void doDraw() {
 
-    LOGGER.info("doDraw");
+    log.info("doDraw");
   }
 
   public void move() {
-    LOGGER.info("move");
+    log.info("move");
   }
 
   @Override

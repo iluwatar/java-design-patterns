@@ -26,17 +26,15 @@ package com.iluwatar.mute;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test for the mute-idiom pattern
  */
+@Slf4j
 class MuteTest {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(MuteTest.class);
 
   private static final String MESSAGE = "should not occur";
 
@@ -67,7 +65,7 @@ class MuteTest {
 
 
   private void methodNotThrowingAnyException() {
-    LOGGER.info("Executed successfully");
+    log.info("Executed successfully");
   }
 
   private void methodThrowingException() throws Exception {

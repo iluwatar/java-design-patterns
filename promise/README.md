@@ -255,7 +255,7 @@ a file using `Promise`.
 ```java
   countLines().thenAccept(
       count -> {
-        LOGGER.info("Line count is: {}", count);
+        log.info("Line count is: {}", count);
         taskCompleted();
       }
   );

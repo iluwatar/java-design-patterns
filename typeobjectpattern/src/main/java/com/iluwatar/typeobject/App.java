@@ -23,11 +23,9 @@
 
 package com.iluwatar.typeobject;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * <p>Type object pattern is the pattern we use when the OOP concept of creating a base class and
@@ -47,9 +45,9 @@ import org.slf4j.LoggerFactory;
  * the game and the {@link App} class has the game itself.</p>
  */
 
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -69,9 +67,9 @@ public class App {
       var pool = new CellPool(numOfRows * numOfRows + 5);
       var cg = new CandyGame(numOfRows, pool);
       if (round > 1) {
-        LOGGER.info("Refreshing..");
+        log.info("Refreshing..");
       } else {
-        LOGGER.info("Starting game..");
+        log.info("Starting game..");
       }
       cg.printGameStatus();
       end = System.currentTimeMillis();
@@ -79,13 +77,13 @@ public class App {
       pointsWon += cg.totalPoints;
       end = System.currentTimeMillis();
     }
-    LOGGER.info("Game Over");
+    log.info("Game Over");
     if (pointsWon >= toWin) {
-      LOGGER.info("" + pointsWon);
-      LOGGER.info("You win!!");
+      log.info("" + pointsWon);
+      log.info("You win!!");
     } else {
-      LOGGER.info("" + pointsWon);
-      LOGGER.info("Sorry, you lose!");
+      log.info("" + pointsWon);
+      log.info("Sorry, you lose!");
     }
   }
 }

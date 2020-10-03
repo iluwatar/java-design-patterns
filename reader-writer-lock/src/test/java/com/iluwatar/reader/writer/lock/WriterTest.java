@@ -32,12 +32,12 @@ import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author hongshuwei@gmail.com
  */
+@Slf4j
 public class WriterTest {
 
   private InMemoryAppender appender;
@@ -51,8 +51,6 @@ public class WriterTest {
   public void tearDown() {
     appender.stop();
   }
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(WriterTest.class);
 
   /**
    * Verify that multiple writers will get the lock in order.
@@ -75,7 +73,7 @@ public class WriterTest {
     try {
       executeService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown", e);
+      log.error("Error waiting for ExecutorService shutdown", e);
     }
     // Write operation will hold the write lock 250 milliseconds, so here we verify that when two
     // writer execute concurrently, the second writer can only writes only when the first one is

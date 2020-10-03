@@ -27,8 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Data structure/implementation of the application's cache. The data structure consists of a hash
@@ -37,9 +36,9 @@ import org.slf4j.LoggerFactory;
  * the data is moved to the front of the list to depict itself as the most-recently-used data. The
  * LRU data is always at the end of the list.
  */
+@Slf4j
 public class LruCache {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(LruCache.class);
 
   class Node {
     String userId;
@@ -118,7 +117,7 @@ public class LruCache {
     } else {
       var newNode = new Node(userId, userAccount);
       if (cache.size() >= capacity) {
-        LOGGER.info("# Cache is FULL! Removing {} from cache...", end.userId);
+        log.info("# Cache is FULL! Removing {} from cache...", end.userId);
         cache.remove(end.userId); // remove LRU data from cache.
         remove(end);
         setHead(newNode);
@@ -139,7 +138,7 @@ public class LruCache {
   public void invalidate(String userId) {
     var toBeRemoved = cache.remove(userId);
     if (toBeRemoved != null) {
-      LOGGER.info("# {} has been updated! Removing older version from cache...", userId);
+      log.info("# {} has been updated! Removing older version from cache...", userId);
       remove(toBeRemoved);
     }
   }

@@ -23,15 +23,15 @@
 
 package com.iluwatar.strangler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * System under migration. Depends on old version source ({@link OldSource}) and
  * developing one ({@link HalfSource}).
  */
+@Slf4j
 public class HalfArithmetic {
-  private static final Logger LOGGER = LoggerFactory.getLogger(HalfArithmetic.class);
+
   private static final String VERSION = "1.5";
 
   private final HalfSource newSource;
@@ -48,7 +48,7 @@ public class HalfArithmetic {
    * @return accumulate sum
    */
   public int sum(int... nums) {
-    LOGGER.info("Arithmetic sum {}", VERSION);
+    log.info("Arithmetic sum {}", VERSION);
     return newSource.accumulateSum(nums);
   }
 
@@ -58,7 +58,7 @@ public class HalfArithmetic {
    * @return accumulate multiplication
    */
   public int mul(int... nums) {
-    LOGGER.info("Arithmetic mul {}", VERSION);
+    log.info("Arithmetic mul {}", VERSION);
     return oldSource.accumulateMul(nums);
   }
 
@@ -68,7 +68,7 @@ public class HalfArithmetic {
    * @return  if has any zero, return true, else, return false
    */
   public boolean ifHasZero(int... nums) {
-    LOGGER.info("Arithmetic check zero {}", VERSION);
+    log.info("Arithmetic check zero {}", VERSION);
     return !newSource.ifNonZero(nums);
   }
 }

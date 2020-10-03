@@ -27,17 +27,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ShardManager with lookup strategy. In this strategy the sharding logic implements
  * a map that routes a request for data to the shard that contains that data by using
  * the shard key.
  */
+@Slf4j
 public class LookupShardManager extends ShardManager {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(LookupShardManager.class);
 
   private final Map<Integer, Integer> lookupMap = new HashMap<>();
 
@@ -47,7 +46,7 @@ public class LookupShardManager extends ShardManager {
     lookupMap.put(data.getKey(), shardId);
     var shard = shardMap.get(shardId);
     shard.storeData(data);
-    LOGGER.info(data.toString() + " is stored in Shard " + shardId);
+    log.info(data.toString() + " is stored in Shard " + shardId);
     return shardId;
   }
 

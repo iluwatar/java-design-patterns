@@ -26,15 +26,13 @@ package com.iluwatar.data.locality.game.component.manager;
 import com.iluwatar.data.locality.game.component.AiComponent;
 import com.iluwatar.data.locality.game.component.Component;
 import java.util.stream.IntStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * AI component manager for Game.
  */
+@Slf4j
 public class AiComponentManager {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AiComponentManager.class);
 
   private static final int MAX_ENTITIES = 10000;
 
@@ -50,7 +48,7 @@ public class AiComponentManager {
    * start AI component of Game.
    */
   public void start() {
-    LOGGER.info("Start AI Game Component");
+    log.info("Start AI Game Component");
     IntStream.range(0, numEntities).forEach(i -> aiComponents[i] = new AiComponent());
   }
 
@@ -58,7 +56,7 @@ public class AiComponentManager {
    * Update AI component of Game.
    */
   public void update() {
-    LOGGER.info("Update AI Game Component");
+    log.info("Update AI Game Component");
     IntStream.range(0, numEntities)
         .filter(i -> aiComponents.length > i && aiComponents[i] != null)
         .forEach(i -> aiComponents[i].update());

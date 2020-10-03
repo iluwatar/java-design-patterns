@@ -30,8 +30,7 @@ import java.util.List;
 import java.util.StringJoiner;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API.
@@ -44,9 +43,9 @@ import org.slf4j.LoggerFactory;
  * demonstrated with a simple number list that is filtered, transformed and collected. The result is
  * printed afterwards.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -76,7 +75,7 @@ public class App {
         .fromCopyOf(integerList)
         .filter(number -> number % 2 == 0)
         .first()
-        .ifPresent(evenNumber -> LOGGER.info("The first even number is: {}", evenNumber));
+        .ifPresent(evenNumber -> log.info("The first even number is: {}", evenNumber));
 
 
     var transformedList = SimpleFluentIterable
@@ -102,7 +101,7 @@ public class App {
         .filter(negatives())
         .first(2)
         .last()
-        .ifPresent(number -> LOGGER.info("Last amongst first two negatives: {}", number));
+        .ifPresent(number -> log.info("Last amongst first two negatives: {}", number));
   }
 
   private static Function<Integer, String> transformToString() {
@@ -127,6 +126,6 @@ public class App {
   ) {
     var joiner = new StringJoiner(delimiter, prefix, ".");
     iterable.forEach(e -> joiner.add(e.toString()));
-    LOGGER.info(joiner.toString());
+    log.info(joiner.toString());
   }
 }

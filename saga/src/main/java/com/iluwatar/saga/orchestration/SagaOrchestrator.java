@@ -28,16 +28,16 @@ import static com.iluwatar.saga.orchestration.Saga.Result.CRASHED;
 import static com.iluwatar.saga.orchestration.Saga.Result.FINISHED;
 import static com.iluwatar.saga.orchestration.Saga.Result.ROLLBACK;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
  * The orchestrator that manages all the transactions and directs the participant services to
  * execute local transactions based on events.
  */
+@Slf4j
 public class SagaOrchestrator {
-  private static final Logger LOGGER = LoggerFactory.getLogger(SagaOrchestrator.class);
+
   private final Saga saga;
   private final ServiceDiscoveryService sd;
   private final CurrentState state;
@@ -65,7 +65,7 @@ public class SagaOrchestrator {
   @SuppressWarnings("unchecked")
   public <K> Result execute(K value) {
     state.cleanUp();
-    LOGGER.info(" The new saga is about to start");
+    log.info(" The new saga is about to start");
     var result = FINISHED;
     K tempVal = value;
 

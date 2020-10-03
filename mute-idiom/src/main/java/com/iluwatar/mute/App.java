@@ -26,8 +26,7 @@ package com.iluwatar.mute;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Optional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Mute pattern is utilized when we need to suppress an exception due to an API flaw or in situation
@@ -44,9 +43,9 @@ import org.slf4j.LoggerFactory;
  * </code>
  * </pre> every time we need to ignore an exception.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -89,7 +88,7 @@ public class App {
   }
 
   private static void utilizeResource(Resource resource) {
-    LOGGER.info("Utilizing acquired resource: {}", resource);
+    log.info("Utilizing acquired resource: {}", resource);
   }
 
   private static Resource acquireResource() {

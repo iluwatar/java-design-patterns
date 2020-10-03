@@ -25,10 +25,10 @@ package com.iluwatar.abstractdocument;
 
 import com.iluwatar.abstractdocument.domain.Car;
 import com.iluwatar.abstractdocument.domain.enums.Property;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * The Abstract Document pattern enables handling additional, non-static properties. This pattern

@@ -23,16 +23,14 @@
 
 package com.iluwatar.queue.load.leveling;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ServiceExecuotr class. This class will pick up Messages one by one from the Blocking Queue and
  * process them.
  */
+@Slf4j
 public class ServiceExecutor implements Runnable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private final MessageQueue msgQueue;
 
@@ -49,15 +47,15 @@ public class ServiceExecutor implements Runnable {
         var msg = msgQueue.retrieveMsg();
 
         if (null != msg) {
-          LOGGER.info(msg.toString() + " is served.");
+          log.info(msg.toString() + " is served.");
         } else {
-          LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
+          log.info("Service Executor: Waiting for Messages to serve .. ");
         }
 
         Thread.sleep(1000);
       }
     } catch (Exception e) {
-      LOGGER.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 }

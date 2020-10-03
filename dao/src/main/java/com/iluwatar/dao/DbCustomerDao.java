@@ -34,15 +34,14 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import javax.sql.DataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * An implementation of {@link CustomerDao} that persists customers in RDBMS.
  */
+@Slf4j
 public class DbCustomerDao implements CustomerDao {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(DbCustomerDao.class);
 
   private final DataSource dataSource;
 
@@ -100,7 +99,7 @@ public class DbCustomerDao implements CustomerDao {
       statement.close();
       connection.close();
     } catch (SQLException e) {
-      LOGGER.info("Exception thrown " + e.getMessage());
+      log.info("Exception thrown " + e.getMessage());
     }
   }
 

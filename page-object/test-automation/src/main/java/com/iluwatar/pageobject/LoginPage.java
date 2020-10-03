@@ -29,15 +29,14 @@ import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Page Object encapsulating the Login Page (login.html)
  */
+@Slf4j
 public class LoginPage extends Page {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(LoginPage.class);
   private static final String LOGIN_PAGE_HTML_FILE = "login.html";
   private static final String PAGE_URL = "file:" + AUT_PATH + LOGIN_PAGE_HTML_FILE;
 
@@ -61,7 +60,7 @@ public class LoginPage extends Page {
     try {
       page = this.webClient.getPage(PAGE_URL);
     } catch (IOException e) {
-      LOGGER.error("An error occured on navigateToPage.", e);
+      log.error("An error occured on navigateToPage.", e);
     }
     return this;
   }
@@ -112,7 +111,7 @@ public class LoginPage extends Page {
     try {
       loginButton.click();
     } catch (IOException e) {
-      LOGGER.error("An error occured on login.", e);
+      log.error("An error occured on login.", e);
     }
     return new AlbumListPage(webClient);
   }

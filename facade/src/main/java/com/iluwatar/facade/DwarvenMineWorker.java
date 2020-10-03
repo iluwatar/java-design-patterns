@@ -24,30 +24,28 @@
 package com.iluwatar.facade;
 
 import java.util.Arrays;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * DwarvenMineWorker is one of the goldmine subsystems.
  */
+@Slf4j
 public abstract class DwarvenMineWorker {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenMineWorker.class);
-
   public void goToSleep() {
-    LOGGER.info("{} goes to sleep.", name());
+    log.info("{} goes to sleep.", name());
   }
 
   public void wakeUp() {
-    LOGGER.info("{} wakes up.", name());
+    log.info("{} wakes up.", name());
   }
 
   public void goHome() {
-    LOGGER.info("{} goes home.", name());
+    log.info("{} goes home.", name());
   }
 
   public void goToMine() {
-    LOGGER.info("{} goes to the mine.", name());
+    log.info("{} goes to the mine.", name());
   }
 
   private void action(Action action) {
@@ -68,7 +66,7 @@ public abstract class DwarvenMineWorker {
         work();
         break;
       default:
-        LOGGER.info("Undefined action");
+        log.info("Undefined action");
         break;
     }
   }

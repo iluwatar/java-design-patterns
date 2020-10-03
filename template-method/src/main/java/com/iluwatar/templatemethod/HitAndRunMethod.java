@@ -23,15 +23,14 @@
 
 package com.iluwatar.templatemethod;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * HitAndRunMethod implementation of {@link StealingMethod}.
  */
+@Slf4j
 public class HitAndRunMethod extends StealingMethod {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(HitAndRunMethod.class);
 
   @Override
   protected String pickTarget() {
@@ -40,11 +39,11 @@ public class HitAndRunMethod extends StealingMethod {
 
   @Override
   protected void confuseTarget(String target) {
-    LOGGER.info("Approach the {} from behind.", target);
+    log.info("Approach the {} from behind.", target);
   }
 
   @Override
   protected void stealTheItem(String target) {
-    LOGGER.info("Grab the handbag and run away fast!");
+    log.info("Grab the handbag and run away fast!");
   }
 }

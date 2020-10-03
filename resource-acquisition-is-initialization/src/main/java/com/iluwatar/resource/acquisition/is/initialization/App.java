@@ -23,8 +23,7 @@
 
 package com.iluwatar.resource.acquisition.is.initialization;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Resource Acquisition Is Initialization pattern was developed for exception safe resource
@@ -36,7 +35,7 @@ import org.slf4j.LoggerFactory;
  * <p>In Java RAII is achieved with try-with-resources statement and interfaces {@link
  * java.io.Closeable} and {@link AutoCloseable}. The try-with-resources statement ensures that each
  * resource is closed at the end of the statement. Any object that implements {@link
- * java.lang.AutoCloseable}, which includes all objects which implement {@link java.io.Closeable},
+ * AutoCloseable}, which includes all objects which implement {@link java.io.Closeable},
  * can be used as a resource.
  *
  * <p>In this example, {@link SlidingDoor} implements {@link AutoCloseable} and {@link
@@ -45,9 +44,9 @@ import org.slf4j.LoggerFactory;
  *
  * <p>http://docs.oracle.com/javase/7/docs/technotes/guides/language/try-with-resources.html
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -55,11 +54,11 @@ public class App {
   public static void main(String[] args) throws Exception {
 
     try (var ignored = new SlidingDoor()) {
-      LOGGER.info("Walking in.");
+      log.info("Walking in.");
     }
 
     try (var ignored = new TreasureChest()) {
-      LOGGER.info("Looting contents.");
+      log.info("Looting contents.");
     }
   }
 }

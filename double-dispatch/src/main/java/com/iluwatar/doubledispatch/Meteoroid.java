@@ -24,15 +24,14 @@
 package com.iluwatar.doubledispatch;
 
 import com.iluwatar.doubledispatch.constants.AppConstants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Meteoroid game object.
  */
+@Slf4j
 public class Meteoroid extends GameObject {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Meteoroid.class);
 
   public Meteoroid(int left, int top, int right, int bottom) {
     super(left, top, right, bottom);
@@ -45,23 +44,23 @@ public class Meteoroid extends GameObject {
 
   @Override
   public void collisionResolve(FlamingAsteroid asteroid) {
-    LOGGER.info(AppConstants.HITS, asteroid.getClass().getSimpleName(), this.getClass()
+    log.info(AppConstants.HITS, asteroid.getClass().getSimpleName(), this.getClass()
         .getSimpleName());
   }
 
   @Override
   public void collisionResolve(Meteoroid meteoroid) {
-    LOGGER.info(AppConstants.HITS, meteoroid.getClass().getSimpleName(), this.getClass()
+    log.info(AppConstants.HITS, meteoroid.getClass().getSimpleName(), this.getClass()
         .getSimpleName());
   }
 
   @Override
   public void collisionResolve(SpaceStationMir mir) {
-    LOGGER.info(AppConstants.HITS, mir.getClass().getSimpleName(), this.getClass().getSimpleName());
+    log.info(AppConstants.HITS, mir.getClass().getSimpleName(), this.getClass().getSimpleName());
   }
 
   @Override
   public void collisionResolve(SpaceStationIss iss) {
-    LOGGER.info(AppConstants.HITS, iss.getClass().getSimpleName(), this.getClass().getSimpleName());
+    log.info(AppConstants.HITS, iss.getClass().getSimpleName(), this.getClass().getSimpleName());
   }
 }

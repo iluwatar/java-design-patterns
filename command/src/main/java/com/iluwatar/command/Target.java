@@ -23,15 +23,13 @@
 
 package com.iluwatar.command;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Base class for spell targets.
  */
+@Slf4j
 public abstract class Target {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Target.class);
 
   private Size size;
 
@@ -60,6 +58,6 @@ public abstract class Target {
    * Print status.
    */
   public void printStatus() {
-    LOGGER.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
+    log.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
   }
 }

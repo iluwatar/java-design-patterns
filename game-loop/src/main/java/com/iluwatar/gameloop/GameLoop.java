@@ -24,15 +24,13 @@
 package com.iluwatar.gameloop;
 
 import java.util.Random;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract class for GameLoop implementation class.
  */
+@Slf4j
 public abstract class GameLoop {
-
-  protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   protected volatile GameStatus status;
 
@@ -83,7 +81,7 @@ public abstract class GameLoop {
       var lag = new Random().nextInt(200) + 50;
       Thread.sleep(lag);
     } catch (InterruptedException e) {
-      logger.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 
@@ -93,7 +91,7 @@ public abstract class GameLoop {
    */
   protected void render() {
     var position = controller.getBulletPosition();
-    logger.info("Current bullet position: " + position);
+    log.info("Current bullet position: " + position);
   }
 
   /**

@@ -27,8 +27,7 @@ import com.iluwatar.reactor.framework.SameThreadDispatcher;
 import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -37,9 +36,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * This class tests the Distributed Logging service by starting a Reactor and then sending it
  * concurrent logging requests using multiple clients.
  */
+@Slf4j
 public class ReactorTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ReactorTest.class);
 
   /**
    * Test the application using pooled thread dispatcher.
@@ -49,7 +48,7 @@ public class ReactorTest {
    */
   @Test
   public void testAppUsingThreadPoolDispatcher() throws IOException, InterruptedException {
-    LOGGER.info("testAppUsingThreadPoolDispatcher start");
+    log.info("testAppUsingThreadPoolDispatcher start");
     var app = new App(new ThreadPoolDispatcher(2));
     app.start();
 
@@ -64,13 +63,13 @@ public class ReactorTest {
     try {
       Thread.sleep(2000);
     } catch (InterruptedException e) {
-      LOGGER.error("sleep interrupted", e);
+      log.error("sleep interrupted", e);
     }
 
     client.stop();
 
     app.stop();
-    LOGGER.info("testAppUsingThreadPoolDispatcher stop");
+    log.info("testAppUsingThreadPoolDispatcher stop");
   }
 
   /**
@@ -81,7 +80,7 @@ public class ReactorTest {
    */
   @Test
   public void testAppUsingSameThreadDispatcher() throws IOException, InterruptedException {
-    LOGGER.info("testAppUsingSameThreadDispatcher start");
+    log.info("testAppUsingSameThreadDispatcher start");
     var app = new App(new SameThreadDispatcher());
     app.start();
 
@@ -96,12 +95,12 @@ public class ReactorTest {
     try {
       Thread.sleep(2000);
     } catch (InterruptedException e) {
-      LOGGER.error("sleep interrupted", e);
+      log.error("sleep interrupted", e);
     }
 
     client.stop();
 
     app.stop();
-    LOGGER.info("testAppUsingSameThreadDispatcher stop");
+    log.info("testAppUsingSameThreadDispatcher stop");
   }
 }

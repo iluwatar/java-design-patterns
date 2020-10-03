@@ -23,8 +23,7 @@
 
 package com.iluwatar.saga.orchestration;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This pattern is used in distributed services to perform a group of operations atomically. This is
@@ -45,8 +44,9 @@ import org.slf4j.LoggerFactory;
  * @see SagaOrchestrator
  * @see Service
  */
+@Slf4j
 public class SagaApplication {
-  private static final Logger LOGGER = LoggerFactory.getLogger(SagaApplication.class);
+
 
   /**
    * method to show common saga logic.
@@ -58,7 +58,7 @@ public class SagaApplication {
     Saga.Result badOrder = sagaOrchestrator.execute("bad_order");
     Saga.Result crashedOrder = sagaOrchestrator.execute("crashed_order");
 
-    LOGGER.info("orders: goodOrder is {}, badOrder is {},crashedOrder is {}",
+    log.info("orders: goodOrder is {}, badOrder is {},crashedOrder is {}",
         goodOrder, badOrder, crashedOrder);
   }
 

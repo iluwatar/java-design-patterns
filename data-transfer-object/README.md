@@ -92,7 +92,7 @@ Now fetching customer information is easy since we have the DTOs.
 
 ```java
     var allCustomers = customerResource.getAllCustomers();
-    allCustomers.forEach(customer -> LOGGER.info(customer.getFirstName()));
+    allCustomers.forEach(customer -> log.info(customer.getFirstName()));
     // Kelly
     // Alfonso
 ```

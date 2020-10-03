@@ -30,15 +30,14 @@ import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Page Object encapsulating the Album Page (album-page.html)
  */
+@Slf4j
 public class AlbumPage extends Page {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(AlbumPage.class);
   private static final String ALBUM_PAGE_HTML_FILE = "album-page.html";
   private static final String PAGE_URL = "file:" + AUT_PATH + ALBUM_PAGE_HTML_FILE;
 
@@ -62,7 +61,7 @@ public class AlbumPage extends Page {
     try {
       page = this.webClient.getPage(PAGE_URL);
     } catch (IOException e) {
-      LOGGER.error("An error occured on navigateToPage.", e);
+      log.error("An error occured on navigateToPage.", e);
     }
     return this;
   }
@@ -152,7 +151,7 @@ public class AlbumPage extends Page {
     try {
       cancelButton.click();
     } catch (IOException e) {
-      LOGGER.error("An error occured on cancelChanges.", e);
+      log.error("An error occured on cancelChanges.", e);
     }
     return new AlbumListPage(webClient);
   }
@@ -168,7 +167,7 @@ public class AlbumPage extends Page {
     try {
       saveButton.click();
     } catch (IOException e) {
-      LOGGER.error("An error occured on saveChanges.", e);
+      log.error("An error occured on saveChanges.", e);
     }
     return this;
   }

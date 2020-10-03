@@ -24,8 +24,6 @@
 package com.iluwatar.business.delegate;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Service JMS implementation.

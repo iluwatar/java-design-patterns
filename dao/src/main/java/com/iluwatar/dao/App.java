@@ -26,9 +26,8 @@ package com.iluwatar.dao;
 import java.sql.SQLException;
 import java.util.List;
 import javax.sql.DataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Data Access Object (DAO) is an object that provides an abstract interface to some type of
@@ -42,9 +41,9 @@ import org.slf4j.LoggerFactory;
  * without directly interacting with the data source. The below example demonstrates basic CRUD
  * operations: select, add, update, and delete.
  */
+@Slf4j
 public class App {
   private static final String DB_URL = "jdbc:h2:~/dao";
-  private static final Logger log = LoggerFactory.getLogger(App.class);
   private static final String ALL_CUSTOMERS = "customerDao.getAllCustomers(): ";
 
   /**

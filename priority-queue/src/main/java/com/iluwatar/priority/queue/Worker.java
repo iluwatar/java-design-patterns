@@ -23,15 +23,13 @@
 
 package com.iluwatar.priority.queue;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Message Worker.
  */
+@Slf4j
 public class Worker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
   private final QueueManager queueManager;
 
@@ -47,7 +45,7 @@ public class Worker {
     while (true) {
       var message = queueManager.receiveMessage();
       if (message == null) {
-        LOGGER.info("No Message ... waiting");
+        log.info("No Message ... waiting");
         Thread.sleep(200);
       } else {
         processMessage(message);
@@ -59,7 +57,7 @@ public class Worker {
    * Process message.
    */
   private void processMessage(Message message) {
-    LOGGER.info(message.toString());
+    log.info(message.toString());
   }
 
 }

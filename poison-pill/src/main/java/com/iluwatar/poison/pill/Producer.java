@@ -25,16 +25,15 @@ package com.iluwatar.poison.pill;
 
 import com.iluwatar.poison.pill.Message.Headers;
 import java.util.Date;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class responsible for producing unit of work that can be expressed as message and submitted to
  * queue.
  */
+@Slf4j
 public class Producer {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
 
   private final MqPublishPoint queue;
   private final String name;
@@ -66,7 +65,7 @@ public class Producer {
       queue.put(msg);
     } catch (InterruptedException e) {
       // allow thread to exit
-      LOGGER.error("Exception caught.", e);
+      log.error("Exception caught.", e);
     }
   }
 
@@ -79,7 +78,7 @@ public class Producer {
       queue.put(Message.POISON_PILL);
     } catch (InterruptedException e) {
       // allow thread to exit
-      LOGGER.error("Exception caught.", e);
+      log.error("Exception caught.", e);
     }
   }
 }

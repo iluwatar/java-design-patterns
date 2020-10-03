@@ -23,33 +23,31 @@
 
 package com.iluwatar.mediator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract base class for party members.
  */
+@Slf4j
 public abstract class PartyMemberBase implements PartyMember {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(PartyMemberBase.class);
 
   protected Party party;
 
   @Override
   public void joinedParty(Party party) {
-    LOGGER.info("{} joins the party", this);
+    log.info("{} joins the party", this);
     this.party = party;
   }
 
   @Override
   public void partyAction(Action action) {
-    LOGGER.info("{} {}", this, action.getDescription());
+    log.info("{} {}", this, action.getDescription());
   }
 
   @Override
   public void act(Action action) {
     if (party != null) {
-      LOGGER.info("{} {}", this, action);
+      log.info("{} {}", this, action);
       party.act(this, action);
     }
   }

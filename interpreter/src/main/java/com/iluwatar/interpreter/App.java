@@ -24,8 +24,7 @@
 package com.iluwatar.interpreter;
 
 import java.util.Stack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Interpreter pattern is a design pattern that specifies how to evaluate sentences in a
@@ -36,9 +35,9 @@ import org.slf4j.LoggerFactory;
  * <p>In this example we use the Interpreter pattern to break sentences into expressions ({@link
  * Expression}) that can be evaluated and as a whole form the result.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -57,21 +56,21 @@ public class App {
       if (isOperator(s)) {
         var rightExpression = stack.pop();
         var leftExpression = stack.pop();
-        LOGGER.info("popped from stack left: {} right: {}",
+        log.info("popped from stack left: {} right: {}",
             leftExpression.interpret(), rightExpression.interpret());
         var operator = getOperatorInstance(s, leftExpression, rightExpression);
-        LOGGER.info("operator: {}", operator);
+        log.info("operator: {}", operator);
         var result = operator.interpret();
         var resultExpression = new NumberExpression(result);
         stack.push(resultExpression);
-        LOGGER.info("push result to stack: {}", resultExpression.interpret());
+        log.info("push result to stack: {}", resultExpression.interpret());
       } else {
         var i = new NumberExpression(s);
         stack.push(i);
-        LOGGER.info("push to stack: {}", i.interpret());
+        log.info("push to stack: {}", i.interpret());
       }
     }
-    LOGGER.info("result: {}", stack.pop().interpret());
+    log.info("result: {}", stack.pop().interpret());
   }
 
   public static boolean isOperator(String s) {

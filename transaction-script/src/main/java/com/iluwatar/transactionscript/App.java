@@ -25,9 +25,8 @@ package com.iluwatar.transactionscript;
 
 import java.util.List;
 import javax.sql.DataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Transaction Script (TS) is one of the simplest domain logic pattern.
@@ -37,16 +36,16 @@ import org.slf4j.LoggerFactory;
  * <p>In this example we will use the TS pattern to implement booking and cancellation
  * methods for a Hotel management App. The main method will initialise an instance of
  * {@link Hotel} and add rooms to it. After that it will book and cancel a couple of rooms
- * and that will be printed by the logger.</p>
+ * and that will be printed by the log</p>
  *
  * <p>The thing we have to note here is that all the operations related to booking or cancelling
  * a room like checking the database if the room exists, checking the booking status or the
  * room, calculating refund price are all clubbed inside a single transaction script method.</p>
  */
+@Slf4j
 public class App {
 
   private static final String H2_DB_URL = "jdbc:h2:~/test";
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -67,7 +66,7 @@ public class App {
 
     // Print room booking status
     getRoomStatus(dao);
-  
+
     var hotel = new Hotel(dao);
 
     // Book rooms
@@ -91,7 +90,7 @@ public class App {
 
   private static void getRoomStatus(HotelDaoImpl dao) throws Exception {
     try (var customerStream = dao.getAll()) {
-      customerStream.forEach((customer) -> LOGGER.info(customer.toString()));
+      customerStream.forEach((customer) -> log.info(customer.toString()));
     }
   }
 

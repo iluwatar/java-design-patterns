@@ -25,8 +25,7 @@ package com.iluwatar.spatialpartition;
 
 import java.util.Hashtable;
 import java.util.Random;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>The idea behind the <b>Spatial Partition</b> design pattern is to enable efficient location
@@ -57,8 +56,9 @@ import org.slf4j.LoggerFactory;
  * speed of the game.</p>
  */
 
+@Slf4j
 public class App {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   private static final String BUBBLE = "Bubble ";
 
   static void noSpatialPartition(int numOfMovements, Hashtable<Integer, Bubble> bubbles) {
@@ -77,7 +77,7 @@ public class App {
       numOfMovements--;
     }
     //bubbles not popped
-    bubbles.keySet().stream().map(key -> BUBBLE + key + " not popped").forEach(LOGGER::info);
+    bubbles.keySet().stream().map(key -> BUBBLE + key + " not popped").forEach(log::info);
   }
 
   static void withSpatialPartition(
@@ -100,7 +100,7 @@ public class App {
       numOfMovements--;
     }
     //bubbles not popped
-    bubbles.keySet().stream().map(key -> BUBBLE + key + " not popped").forEach(LOGGER::info);
+    bubbles.keySet().stream().map(key -> BUBBLE + key + " not popped").forEach(log::info);
   }
 
   /**
@@ -117,7 +117,7 @@ public class App {
       var b = new Bubble(rand.nextInt(300), rand.nextInt(300), i, rand.nextInt(2) + 1);
       bubbles1.put(i, b);
       bubbles2.put(i, b);
-      LOGGER.info(BUBBLE + i + " with radius " + b.radius
+      log.info(BUBBLE + i + " with radius " + b.radius
           + " added at (" + b.coordinateX + "," + b.coordinateY + ")");
     }
 
@@ -127,8 +127,8 @@ public class App {
     var start2 = System.currentTimeMillis();
     App.withSpatialPartition(300, 300, 20, bubbles2);
     var end2 = System.currentTimeMillis();
-    LOGGER.info("Without spatial partition takes " + (end1 - start1) + "ms");
-    LOGGER.info("With spatial partition takes " + (end2 - start2) + "ms");
+    log.info("Without spatial partition takes " + (end1 - start1) + "ms");
+    log.info("With spatial partition takes " + (end2 - start2) + "ms");
   }
 }
 
