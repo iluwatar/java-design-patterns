@@ -29,6 +29,6 @@ Use the Event Sourcing pattern when
 ## Credits
 
 * [Martin Fowler - Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html)
-* [Event Sourcing | Microsoft Docs](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
+* [Event Sourcing in Microsoft's documentation](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
 * [Reference 3: Introducing Event Sourcing](https://msdn.microsoft.com/en-us/library/jj591559.aspx)
 * [Event Sourcing pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
