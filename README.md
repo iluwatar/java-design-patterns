@@ -15,10 +15,10 @@
 
 # Introduction
 
-Design patterns are the best formalized practices a programmer can use to
+Design patterns are the best formalized practices a programmer can be use to
 solve common problems when designing an application or system.
 
-Design patterns can speed up the development process by providing tested, proven
+Design patterns can enhance the development process by providing tested, proven
 development paradigms.
 
 Reusing design patterns help prevent subtle issues that cause major
@@ -55,7 +55,7 @@ in your architectures and have as much fun learning them as we had developing th
 
 # How to contribute
 
-If you are willing to contribute to the project you will find the relevant information in 
+If you are willing to contribute to the project you will find the relevant  information in 
 our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help 
 you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
