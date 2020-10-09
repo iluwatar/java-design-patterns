@@ -147,6 +147,7 @@
         <module>aggregator-microservices</module>
         <module>promise</module>
         <module>page-object</module>
+        <module>page-factory</module>
         <module>event-asynchronous</module>
         <module>event-queue</module>
         <module>queue-load-leveling</module>
