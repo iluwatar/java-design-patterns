@@ -24,9 +24,8 @@
 package com.iluwatar.circuitbreaker;
 
 /**
- * The delay based Circuit breaker implementation that works in a
- * CLOSED->OPEN-(retry_time_period)->HALF_OPEN->CLOSED flow with some retry time period for failed
- * services and a failure threshold for service to open
+ * The delay based Circuit breaker implementation that works in a CLOSED->OPEN-(retry_time_period)->HALF_OPEN->CLOSED
+ * flow with some retry time period for failed services and a failure threshold for service to open
  * circuit.
  */
 public class DefaultCircuitBreaker implements CircuitBreaker {
@@ -35,6 +34,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   private final long retryTimePeriod;
   private final RemoteService service;
   long lastFailureTime;
+  private String lastFailureResponse;
   int failureCount;
   private final int failureThreshold;
   private State state;
@@ -64,7 +64,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
     this.failureCount = 0;
   }
 
-  //Reset everything to defaults
+  // Reset everything to defaults
   @Override
   public void recordSuccess() {
     this.failureCount = 0;
@@ -73,12 +73,14 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   }
 
   @Override
-  public void recordFailure() {
+  public void recordFailure(String response) {
     failureCount = failureCount + 1;
     this.lastFailureTime = System.nanoTime();
+    // Cache the failure response for returning on open state
+    this.lastFailureResponse = response;
   }
 
-  //Evaluate the current state based on failureThreshold, failureCount and lastFailureTime.
+  // Evaluate the current state based on failureThreshold, failureCount and lastFailureTime.
   protected void evaluateState() {
     if (failureCount >= failureThreshold) { //Then something is wrong with remote service
       if ((System.nanoTime() - lastFailureTime) > retryTimePeriod) {
@@ -132,8 +134,8 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   public String attemptRequest() throws RemoteServiceException {
     evaluateState();
     if (state == State.OPEN) {
-      // return  cached response if no the circuit is in OPEN state
-      return "This is stale response from API";
+      // return cached response if the circuit is in OPEN state
+      return this.lastFailureResponse;
     } else {
       // Make the API request if the circuit is not OPEN
       try {
@@ -145,7 +147,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
         recordSuccess();
         return response;
       } catch (RemoteServiceException ex) {
-        recordFailure();
+        recordFailure(ex.getMessage());
         throw ex;
       }
     }

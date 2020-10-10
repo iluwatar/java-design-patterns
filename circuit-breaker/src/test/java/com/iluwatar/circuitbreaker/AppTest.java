@@ -27,11 +27,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * App Test showing usage of circuit breaker.
  */
 public class AppTest {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(AppTest.class);
 
   //Startup delay for delayed service (in seconds)
   private static final int STARTUP_DELAY = 4;
@@ -79,7 +83,7 @@ public class AppTest {
     //As failure threshold is "1", the circuit breaker is changed to OPEN
     assertEquals("OPEN", delayedServiceCircuitBreaker.getState());
     //As circuit state is OPEN, we expect a quick fallback response from circuit breaker.
-    assertEquals("This is stale response from API", monitoringService.delayedServiceResponse());
+    assertEquals("Delayed service is down", monitoringService.delayedServiceResponse());
 
     //Meanwhile, the quick service is responding and the circuit state is CLOSED
     assertEquals("Quick Service is working", monitoringService.quickServiceResponse());
@@ -96,6 +100,7 @@ public class AppTest {
 
     //Waiting for recovery period of 2 seconds for circuit breaker to retry service.
     try {
+      LOGGER.info("Waiting 2s for delayed service to become responsive");
       Thread.sleep(2000);
     } catch (InterruptedException e) {
       e.printStackTrace();
@@ -114,6 +119,7 @@ public class AppTest {
 
     //Waiting for 4 seconds, which is enough for DelayedService to become healthy and respond successfully.
     try {
+      LOGGER.info("Waiting 4s for delayed service to become responsive");
       Thread.sleep(4000);
     } catch (InterruptedException e) {
       e.printStackTrace();

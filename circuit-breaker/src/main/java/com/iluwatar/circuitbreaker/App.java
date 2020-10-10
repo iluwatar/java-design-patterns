@@ -69,12 +69,10 @@ public class App {
     var serverStartTime = System.nanoTime();
 
     var delayedService = new DelayedRemoteService(serverStartTime, 5);
-    //Set the circuit Breaker parameters
     var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000, 2,
         2000 * 1000 * 1000);
 
     var quickService = new QuickRemoteService();
-    //Set the circuit Breaker parameters
     var quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, 2,
         2000 * 1000 * 1000);
 
@@ -99,6 +97,7 @@ public class App {
 
     //Wait for the delayed service to become responsive
     try {
+      LOGGER.info("Waiting for delayed service to become responsive");
       Thread.sleep(5000);
     } catch (InterruptedException e) {
       e.printStackTrace();

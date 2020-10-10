@@ -19,12 +19,15 @@ cannot bring the whole application down, and we can reconnect to the service as 
 
 Real world example
 
-> Imagine a web application that has both local files/images and remote database entries to serve. 
-> The database might not be responding due to a variety of reasons, so if the application keeps 
-> trying to read from the database using multiple threads/processes, soon all of them will hang 
-> causing our entire web application will crash. We should be able to detect this situation and show 
-> the user an appropriate message so that he/she can explore other parts of the app unaffected by 
-> the database failure. 
+> Imagine a web application that has both local files/images and remote services that are used for 
+> fetching data. These remote services may be either healthy and responsive at times, or may become 
+> slow and unresponsive at some point of time due to variety of reasons. So if one of the remote 
+> services is slow or not responding successfully, our application will try to fetch response from 
+> the remote service using multiple threads/processes, soon all of them will hang (also called 
+> [thread starvation](https://en.wikipedia.org/wiki/Starvation_(computer_science))) causing our entire web application to crash. We should be able to detect 
+> this situation and show the user an appropriate message so that he/she can explore other parts of 
+> the app unaffected by the remote service failure. Meanwhile, the other services that are working 
+> normally, should keep functioning unaffected by this failure.
 
 In plain words
 
@@ -65,12 +68,10 @@ public class App {
     var serverStartTime = System.nanoTime();
 
     var delayedService = new DelayedRemoteService(serverStartTime, 5);
-    //Set the circuit Breaker parameters
     var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000, 2,
         2000 * 1000 * 1000);
 
     var quickService = new QuickRemoteService();
-    //Set the circuit Breaker parameters
     var quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, 2,
         2000 * 1000 * 1000);
 
@@ -95,6 +96,7 @@ public class App {
 
     //Wait for the delayed service to become responsive
     try {
+      LOGGER.info("Waiting for delayed service to become responsive");
       Thread.sleep(5000);
     } catch (InterruptedException e) {
       e.printStackTrace();
@@ -166,6 +168,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   private final long retryTimePeriod;
   private final RemoteService service;
   long lastFailureTime;
+  private String lastFailureResponse;
   int failureCount;
   private final int failureThreshold;
   private State state;
@@ -195,7 +198,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
     this.failureCount = 0;
   }
 
-  //Reset everything to defaults
+  // Reset everything to defaults
   @Override
   public void recordSuccess() {
     this.failureCount = 0;
@@ -204,12 +207,14 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   }
 
   @Override
-  public void recordFailure() {
+  public void recordFailure(String response) {
     failureCount = failureCount + 1;
     this.lastFailureTime = System.nanoTime();
+    // Cache the failure response for returning on open state
+    this.lastFailureResponse = response;
   }
 
-  //Evaluate the current state based on failureThreshold, failureCount and lastFailureTime.
+  // Evaluate the current state based on failureThreshold, failureCount and lastFailureTime.
   protected void evaluateState() {
     if (failureCount >= failureThreshold) { //Then something is wrong with remote service
       if ((System.nanoTime() - lastFailureTime) > retryTimePeriod) {
@@ -263,8 +268,8 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   public String attemptRequest() throws RemoteServiceException {
     evaluateState();
     if (state == State.OPEN) {
-      // return  cached response if no the circuit is in OPEN state
-      return "This is stale response from API";
+      // return cached response if the circuit is in OPEN state
+      return this.lastFailureResponse;
     } else {
       // Make the API request if the circuit is not OPEN
       try {
@@ -276,13 +281,12 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
         recordSuccess();
         return response;
       } catch (RemoteServiceException ex) {
-        recordFailure();
+        recordFailure(ex.getMessage());
         throw ex;
       }
     }
   }
 }
-
 ```
 
 How does the above pattern prevent failures? Let's understand via this finite state machine 
