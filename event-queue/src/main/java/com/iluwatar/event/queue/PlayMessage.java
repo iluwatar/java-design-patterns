@@ -50,7 +50,7 @@ public class PlayMessage {
   }
 
   public float getVolume() {
-    return volume;
+    return Volume;
   }
 
   public void setVolume(float volume) {

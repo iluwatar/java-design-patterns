@@ -28,5 +28,5 @@ package com.iluwatar.abstractfactory;
  */
 public interface Army {
 
-   return String getDescription();
+   String getDescription();
 }

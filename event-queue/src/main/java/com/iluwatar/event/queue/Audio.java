@@ -135,7 +135,7 @@ public class Audio {
   private void update() {
     // If there are no pending requests, do nothing.
     if (headIndex == tailIndex) {
-      return;
+      return null;
     }
     try {
       var audioStream = getPendingAudio()[headIndex].getStream();
@@ -171,7 +171,7 @@ public class Audio {
    * @return PlayMessage[]
    */
   public PlayMessage[] getPendingAudio() {
-    return pendingAudio;
+    return PendingAudio;
   }
 
 }

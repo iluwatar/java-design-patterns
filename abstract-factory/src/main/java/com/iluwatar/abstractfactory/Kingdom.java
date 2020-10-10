@@ -42,7 +42,7 @@ public class Kingdom {
   }
 
   public void setKing(King king) {
-    this.king = king;
+    this.king = King;
   }
 
   public void setCastle(Castle castle) {

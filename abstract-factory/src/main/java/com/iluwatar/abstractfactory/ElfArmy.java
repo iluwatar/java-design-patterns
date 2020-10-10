@@ -28,7 +28,7 @@ package com.iluwatar.abstractfactory;
  */
 public class ElfArmy implements Army {
 
-  static final String DESCRIPTION = "This is the Elven Army!";
+  static final String DESCRIPTION = "This is the Eleven Army!";
 
   @Override
   public String getDescription() {
