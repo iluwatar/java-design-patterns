@@ -24,9 +24,9 @@
 package com.iluwatar.circuitbreaker;
 
 /**
- * The delay based Circuit breaker implementation that works in a CLOSED->OPEN-(retry_time_period)->HALF_OPEN->CLOSED
- * flow with some retry time period for failed services and a failure threshold for service to open
- * circuit.
+ * The delay based Circuit breaker implementation that works in a
+ * CLOSED->OPEN-(retry_time_period)->HALF_OPEN->CLOSED flow with some retry time period for failed
+ * services and a failure threshold for service to open circuit.
  */
 public class DefaultCircuitBreaker implements CircuitBreaker {
 
