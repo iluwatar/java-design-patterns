@@ -24,7 +24,6 @@
 package com.iluwatar.spatialpartition;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Hashtable;
 
 /**

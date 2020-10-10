@@ -9,15 +9,21 @@ tags:
 ---
 
 ## Also known as
+
 Objects for States
 
 ## Intent
-Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
+
+Allow an object to alter its behavior when its internal state changes. The object will appear to 
+change its class.
 
 ## Explanation
+
 Real world example
 
-> When observing a mammoth in its natural habitat it seems to change its behavior based on the situation. It may first appear calm but over time when it detects a threat it gets angry and dangerous to its surroundings.  
+> When observing a mammoth in its natural habitat it seems to change its behavior based on the 
+> situation. It may first appear calm but over time when it detects a threat it gets angry and 
+> dangerous to its surroundings.  
 
 In plain words
 
@@ -25,7 +31,10 @@ In plain words
 
 Wikipedia says
 
-> The state pattern is a behavioral software design pattern that allows an object to alter its behavior when its internal state changes. This pattern is close to the concept of finite-state machines. The state pattern can be interpreted as a strategy pattern, which is able to switch a strategy through invocations of methods defined in the pattern's interface.
+> The state pattern is a behavioral software design pattern that allows an object to alter its 
+> behavior when its internal state changes. This pattern is close to the concept of finite-state 
+> machines. The state pattern can be interpreted as a strategy pattern, which is able to switch a 
+> strategy through invocations of methods defined in the pattern's interface.
 
 **Programmatic Example**
 
@@ -126,17 +135,23 @@ And here is the full example how the mammoth behaves over time.
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();
-    
-    // The mammoth gets angry!
-    // The mammoth is furious!
-    // The mammoth calms down.
-    // The mammoth is calm and peaceful.
+```
+
+Program output:
+
+```java
+    The mammoth gets angry!
+    The mammoth is furious!
+    The mammoth calms down.
+    The mammoth is calm and peaceful.
 ```
 
 ## Class diagram
-![alt text](./etc/state_1.png "State")
+
+![alt text](./etc/state_urm.png "State")
 
 ## Applicability
+
 Use the State pattern in either of the following cases
 
 * An object's behavior depends on its state, and it must change its behavior at run-time depending on that state

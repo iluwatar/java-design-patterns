@@ -10,22 +10,23 @@ tags:
 
 ## Intent
 
-Trampoline pattern is used for implementing algorithms recursively in Java without blowing the stack and to interleave 
-the execution of functions without hard coding them together.
+Trampoline pattern is used for implementing algorithms recursively in Java without blowing the stack 
+and to interleave the execution of functions without hard coding them together.
 
 ## Explanation
 
 Recursion is a frequently adopted technique for solving algorithmic problems in a divide and conquer
-style. For example calculating fibonacci accumulating sum and factorials. In these kinds of problems recursion is 
-more straightforward than their loop counterpart. Furthermore recursion may need less code and looks more concise. 
-There is a saying that every recursion problem can be solved using a loop with the cost of writing code that is more
-difficult to understand.
+style. For example calculating fibonacci accumulating sum and factorials. In these kinds of problems 
+recursion is more straightforward than their loop counterpart. Furthermore recursion may need less 
+code and looks more concise. There is a saying that every recursion problem can be solved using 
+a loop with the cost of writing code that is more difficult to understand.
 
-However recursion type solutions have one big caveat. For each recursive call it typically needs an intermediate value 
-stored and there is a limited amount of stack memory available. Running out of stack memory creates a stack overflow
-error and halts the program execution.
+However recursion type solutions have one big caveat. For each recursive call it typically needs 
+an intermediate value stored and there is a limited amount of stack memory available. Running out of 
+stack memory creates a stack overflow error and halts the program execution.
 
-Trampoline pattern is a trick that allows us define recursive algorithms in Java without blowing the stack. 
+Trampoline pattern is a trick that allows us define recursive algorithms in Java without blowing the 
+stack. 
 
 Real world example
 
@@ -37,14 +38,18 @@ In plain words
 
 Wikipedia says
 
-> In Java, trampoline refers to using reflection to avoid using inner classes, for example in event listeners. The time overhead of a reflection call is traded for the space overhead of an inner class. Trampolines in Java usually involve the creation of a GenericListener to pass events to an outer class.
+> In Java, trampoline refers to using reflection to avoid using inner classes, for example in event 
+> listeners. The time overhead of a reflection call is traded for the space overhead of an inner 
+> class. Trampolines in Java usually involve the creation of a GenericListener to pass events to 
+> an outer class.
 
 **Programmatic Example**
 
 Here's the `Trampoline` implementation in Java.
 
-When `get` is called on the returned Trampoline, internally it will iterate calling `jump` on the returned `Trampoline` 
-as long as the concrete instance returned is `Trampoline`, stopping once the returned instance is `done`.
+When `get` is called on the returned Trampoline, internally it will iterate calling `jump` on the 
+returned `Trampoline` as long as the concrete instance returned is `Trampoline`, stopping once the 
+returned instance is `done`.
 
 ```java
 public interface Trampoline<T> {
@@ -110,15 +115,21 @@ Using the `Trampoline` to get Fibonacci values.
   log.info("start pattern");
   var result = loop(10, 1).result();
   log.info("result {}", result);
-  
-  // start pattern
-  // result 3628800
+```
+
+Program output:
+
+```
+start pattern
+result 3628800
 ```
 
 ## Class diagram
+
 ![alt text](./etc/trampoline.urm.png "Trampoline pattern class diagram")
 
 ## Applicability
+
 Use the Trampoline pattern when
 
 * For implementing tail recursive function. This pattern allows to switch on a stackless operation.

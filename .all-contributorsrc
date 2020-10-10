@@ -1195,6 +1195,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "vdlald",
+      "name": "Vladislav Golubinov",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/29997701?v=4",
+      "profile": "https://github.com/vdlald",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "swarajsaaj",
+      "name": "Swaraj",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6285049?v=4",
+      "profile": "https://github.com/swarajsaaj",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ChFlick",
+      "name": "Christoph Flick",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4465376?v=4",
+      "profile": "http://christophflick.de",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 4,
