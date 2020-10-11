@@ -10,19 +10,15 @@ tags:
 
 ## Intent
 
-In most object-oriented languages, such as Java or C#, references may be null. These references need 
-to be checked to ensure they are not null before invoking any methods, because methods typically 
-cannot be invoked on null references. Instead of using a null reference to convey absence of an
-object (for instance, a non-existent customer), one uses an object which implements the expected 
-interface, but whose method body is empty. The advantage of this approach over a working default 
-implementation is that a Null Object is very predictable and has no side effects: it does nothing.
+In most object-oriented languages, such as Java or C#, references may be null. These references need to be checked to ensure they are not null before invoking any methods because methods typically cannot be invoked on null references. Instead of using a null reference to convey the absence of an
+object (for instance, a non-existent customer), one uses an object which implements the expected interface, but whose method body is empty. The advantage of this approach over a working default implementation is that a Null Object is very predictable and has no side effects: it does nothing.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > We are building a binary tree from nodes. There are ordinary nodes and "empty" nodes. Traversing 
-> the tree normally should not cause errors, so we use null object pattern where necessary.            
+> the tree normally should not cause errors, so we use the null object pattern where necessary.            
 
 In plain words
 
@@ -36,7 +32,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Here's the definition of `Node` interface.
+Here's the definition of the `Node` interface.
 
 ```java
 public interface Node {

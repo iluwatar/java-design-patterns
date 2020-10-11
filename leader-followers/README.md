@@ -19,9 +19,9 @@ that process I/O handles shared by the threads.
 ## Applicability
 Use Leader-Followers pattern when
 
-* multiple threads take turns sharing a set of event sources in order to detect, de-multiplex, dispatch and process service requests that occur on the event sources.
+* multiple threads take turns sharing a set of event sources to detect, de-multiplex, dispatch, and process service requests that occur on the event sources.
 
-## Real world examples
+## Real-world examples
 
 * [ACE Thread Pool Reactor framework](https://www.dre.vanderbilt.edu/~schmidt/PDF/HPL.pdf)
 * [JAWS](http://www.dre.vanderbilt.edu/~schmidt/PDF/PDCP.pdf)

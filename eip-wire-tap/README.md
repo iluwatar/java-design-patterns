@@ -10,14 +10,14 @@ tags:
 
 ## Intent
 In most integration cases there is a need to monitor the messages flowing through the system. It is usually achieved
-by intercepting the message and redirecting it to a different location like console, filesystem or the database.
-It is important that such functionality should not modify the original message and influence the processing path.
+by intercepting the message and redirecting it to a different location like the console, filesystem, or the database.
+Such functionality must not modify the original message and influence the processing path.
 
 ## Diagram
 ![alt text](./etc/wiretap.gif "Wire Tap")
 
 ## Applicability
-Use the Wire Tap pattern when
+Use the WireTap pattern when
 
 * You need to monitor messages flowing through the system
 * You need to redirect the same, unchanged message to two different endpoints/paths

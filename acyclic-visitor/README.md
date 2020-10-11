@@ -15,10 +15,10 @@ the troublesome dependency cycles that are inherent to the GoF Visitor Pattern.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > We have a hierarchy of modem classes. The modems in this hierarchy need to be visited by an external algorithm based 
-> on filtering criteria (is it Unix or DOS compatible modem). 
+> on filtering criteria (is it Unix or DOS-compatible modem). 
 
 In plain words
 
@@ -63,7 +63,7 @@ public class Hayes extends Modem {
 }
 ```
 
-Next we introduce the `ModemVisitor` hierarchy.
+Next, we introduce the `ModemVisitor` hierarchy.
 
 ```java
 public interface ModemVisitor {
@@ -143,12 +143,12 @@ The good:
 
 * No dependency cycles between class hierarchies.
 * No need to recompile all the visitors if a new one is added.
-* Does not cause compilation failure in existing visitors if class hierarchy has a new member.
+* Does not cause compilation failure in existing visitors if the class hierarchy has a new member.
 
 The bad:
 
-* Violates [Liskov's Substitution Principle](https://java-design-patterns.com/principles/#liskov-substitution-principle) by showing that it can accept all visitors but actually only being interested in particular visitors.
-* Parallel hierarchy of visitors has to be created for all members in visitable class hierarchy.
+* Violates [Liskov's Substitution Principle](https://java-design-patterns.com/principles/#liskov-substitution-principle) by showing that it can accept all visitors but only being interested in particular visitors.
+* Parallel hierarchy of visitors has to be created for all members in the visitable class hierarchy.
 
 ## Related patterns
 

@@ -9,7 +9,7 @@ tags:
 ---
 
 ## Intent
-Allows to encode behaviour as instructions for virtual machine.
+Allows encoding behavior as instructions for a virtual machine.
 
 ## Class diagram
 ![alt text](./etc/bytecode.urm.png "Bytecode class diagram")

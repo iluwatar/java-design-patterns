@@ -15,14 +15,13 @@ Wrapper
 
 ## Intent
 
-Attach additional responsibilities to an object dynamically. Decorators provide a flexible 
-alternative to subclassing for extending functionality.
+Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> There is an angry troll living in the nearby hills. Usually it goes bare handed but sometimes it 
+> There is an angry troll living in the nearby hills. Usually, it goes barehanded but sometimes it 
 > has a weapon. To arm the troll it's not necessary to create a new troll but to decorate it 
 > dynamically with a suitable weapon.
 
@@ -72,7 +71,7 @@ public class SimpleTroll implements Troll {
 }
 ```
 
-Next we want to add club for the troll. We can do it dynamically by using a decorator:
+Next, we want to add a club for the troll. We can do it dynamically by using a decorator:
 
 ```java
 public class ClubbedTroll implements Troll {
@@ -137,15 +136,13 @@ Decorator is used to:
 * Add responsibilities to individual objects dynamically and transparently, that is, without 
 affecting other objects.
 * For responsibilities that can be withdrawn.
-* When extension by subclassing is impractical. Sometimes a large number of independent extensions 
-are possible and would produce an explosion of subclasses to support every combination. Or a class 
-definition may be hidden or otherwise unavailable for subclassing.
+* When extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of subclasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing.
 
 ## Tutorial
 
 * [Decorator Pattern Tutorial](https://www.journaldev.com/1540/decorator-design-pattern-in-java-example)
 
-## Real world examples
+## Real-world examples
 
  * [java.io.InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html), [java.io.OutputStream](http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html),
  [java.io.Reader](http://docs.oracle.com/javase/8/docs/api/java/io/Reader.html) and [java.io.Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)

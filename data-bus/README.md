@@ -11,15 +11,15 @@ tags:
 
 ## Intent
 
-Allows send of messages/events between components of an application
+Allows sending of messages/events between components of an application
 without them needing to know about each other. They only need to know
-about the type of the message/event being sent.
+about the type of message/event being sent.
 
 ## Class diagram
 ![data bus pattern uml diagram](./etc/data-bus.urm.png "Data Bus pattern")
 
 ## Applicability
-Use Data Bus pattern when
+Use the Data Bus pattern when
 
 * you want your components to decide themselves which messages/events they want to receive
 * you want to have many-to-many communication

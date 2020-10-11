@@ -9,7 +9,7 @@ tags:
 ---
 
 ## Intent
-Using empty interfaces as markers to distinguish special treated objects.
+Using empty interfaces as markers to distinguish specially treated objects.
 
 ## Class diagram
 ![alt text](./etc/MarkerDiagram.png "Marker Interface")
@@ -20,7 +20,7 @@ Use the Marker Interface pattern when
 * you want to identify the special objects from normal objects (to treat them differently)
 * you want to mark that some object is available for certain sort of operations
 
-## Real world examples
+## Real-world examples
 
 * [javase.8.docs.api.java.io.Serializable](https://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html)
 * [javase.8.docs.api.java.lang.Cloneable](https://docs.oracle.com/javase/8/docs/api/java/lang/Cloneable.html)

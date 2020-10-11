@@ -11,16 +11,15 @@ tags:
 ## Intent
 
 It is often the case that tasks to be executed are short-lived and the number of tasks is large. 
-Creating a new thread for each task would make the system spend more time creating and destroying 
-the threads than executing the actual tasks. Thread Pool solves this problem by reusing existing 
+Creating a new thread for each task would make the system spend more time creating and destroying the threads than executing the actual tasks. Thread Pool solves this problem by reusing existing 
 threads and eliminating the latency of creating new threads.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > We have a large number of relatively short tasks at hand. We need to peel huge amounts of potatoes 
-> and serve mighty amount of coffee cups. Creating a new thread for each task would be a waste so we 
+> and serve a mighty amount of coffee cups. Creating a new thread for each task would be a waste so we 
 > establish a thread pool.       
 
 In plain words
@@ -39,7 +38,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Let's first look at our task hierarchy. We have a base class and then concrete `CoffeeMakingTask` 
+Let's first look at our task hierarchy. We have a base class and then a concrete `CoffeeMakingTask` 
 and `PotatoPeelingTask`.
 
 ```java
@@ -98,7 +97,7 @@ public class PotatoPeelingTask extends Task {
 }
 ```
 
-Next we present a runnable `Worker` class that the thread pool will utilize to handle all the potato 
+Next, we present a runnable `Worker` class that the thread pool will utilize to handle all the potato 
 peeling and coffee making.
 
 ```java
@@ -148,7 +147,7 @@ Now we are ready to show the full example in action.
         new PotatoPeelingTask(5));
 
     // Creates a thread pool that reuses a fixed number of threads operating off a shared
-    // unbounded queue. At any point, at most nThreads threads will be active processing
+    // unbounded queue. At any point, at most threads will be active processing
     // tasks. If additional tasks are submitted when all threads are active, they will wait
     // in the queue until a thread is available.
     var executor = Executors.newFixedThreadPool(3);

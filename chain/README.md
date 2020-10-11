@@ -9,16 +9,14 @@ tags:
 ---
 
 ## Intent
-Avoid coupling the sender of a request to its receiver by giving more than one object a chance to 
-handle the request. Chain the receiving objects and pass the request along the chain until an object 
-handles it.
+Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > The Orc King gives loud orders to his army. The closest one to react is the commander, then 
-> officer and then soldier. The commander, officer and soldier here form a chain of responsibility.
+> officer, and then a soldier. The commander, officer, and soldier here form a chain of responsibility.
 
 In plain words
 
@@ -34,7 +32,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Translating our example with the orcs from above. First we have the `Request` class:
+Translating our example with the orcs from above. First, we have the `Request` class:
 
 ```java
 public class Request {
@@ -156,7 +154,7 @@ Use Chain of Responsibility when
 * You want to issue a request to one of several objects without specifying the receiver explicitly.
 * The set of objects that can handle a request should be specified dynamically.
 
-## Real world examples
+## Real-world examples
 
 * [java.util.logging.Logger#log()](http://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29)
 * [Apache Commons Chain](https://commons.apache.org/proper/commons-chain/index.html)

@@ -22,7 +22,7 @@ Use the Extension Objects pattern when:
 * a class representing a key abstraction plays different roles for different clients. The number of roles the class can play should be open-ended. There is a need to preserve the key abstraction itself. For example, a customer object is still a customer object even if different subsystems view it differently.
 * a class should be extensible with new behavior without subclassing from it.
 
-## Real world examples
+## Real-world examples
 
 * [OpenDoc](https://en.wikipedia.org/wiki/OpenDoc)
 * [Object Linking and Embedding](https://en.wikipedia.org/wiki/Object_Linking_and_Embedding)

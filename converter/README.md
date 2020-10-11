@@ -13,13 +13,13 @@ tags:
 The purpose of the Converter pattern is to provide a generic, common way of bidirectional
 conversion between corresponding types, allowing a clean implementation in which the types do not
 need to be aware of each other. Moreover, the Converter pattern introduces bidirectional collection
-mapping, reducing a boilerplate code to minimum.
+mapping, reducing a boilerplate code to a minimum.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> In real world applications it is often the case that database layer consists of entities that need 
+> In real-world applications it is often the case that the database layer consists of entities that need 
 > to be mapped into DTOs for use on the business logic layer. Similar mapping is done for 
 > potentially huge amount of classes and we need a generic way to achieve this.
 

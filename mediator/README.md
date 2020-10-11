@@ -11,7 +11,7 @@ tags:
 
 ## Intent
 Define an object that encapsulates how a set of objects interact.
-Mediator promotes loose coupling by keeping objects from referring to each
+The mediator promotes loose coupling by keeping objects from referring to each
 other explicitly, and it lets you vary their interaction independently.
 
 ## Class diagram
@@ -22,9 +22,9 @@ Use the Mediator pattern when
 
 * a set of objects communicate in well-defined but complex ways. The resulting interdependencies are unstructured and difficult to understand
 * reusing an object is difficult because it refers to and communicates with many other objects
-* a behavior that's distributed between several classes should be customizable without a lot of subclassing
+* Behavior that's distributed between several classes should be customizable without a lot of subclassing
 
-## Real world examples
+## Real-world examples
 
 * All scheduleXXX() methods of [java.util.Timer](http://docs.oracle.com/javase/8/docs/api/java/util/Timer.html)
 * [java.util.concurrent.Executor#execute()](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html#execute-java.lang.Runnable-)

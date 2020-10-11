@@ -15,10 +15,10 @@ Ensure that a given client is not able to access service resources more than the
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > A large multinational corporation offers API to its customers. The API is rate-limited and each 
-> customer can only make certain amount of calls per second.      
+> Customers can only make a certain amount of calls per second.      
 
 In plain words
 
@@ -32,10 +32,10 @@ In plain words
 
 **Programmatic Example**
 
-Tenant class presents the clients of the API. CallsCount tracks the number of API calls per tenant.
+The tenant class presents the clients of the API. CallsCount tracks the number of API calls per tenant.
 
 ```java
-public class Tenant {
+The public class Tenant {
 
   private final String name;
   private final int allowedCallsPerSecond;
@@ -82,7 +82,7 @@ public final class CallsCount {
 }
 ```
 
-Next we introduce the service that the tenants are calling. To track the call count we use the 
+Next, we introduce the service that the tenants are calling. To track the call count we use the 
 throttler timer.
 
 ```java
@@ -185,7 +185,7 @@ second and Nike to 6.
 
 The Throttling pattern should be used:
 
-* When a service access needs to be restricted to not have high impacts on the performance of the service.
+* When service access needs to be restricted not to have a high impact on the performance of the service.
 * When multiple clients are consuming the same service resources and restriction has to be made according to the usage per client.
 
 ## Credits

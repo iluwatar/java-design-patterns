@@ -9,11 +9,11 @@ tags:
 ---
 
 ## Intent
-Sometimes in enterprise systems there is a need to group incoming data in order to process it as a whole. For example
-you may need to gather offers and after defined number of offers has been received you would like to choose the one with
+Sometimes in enterprise systems, there is a need to group incoming data to process it as a whole. For example,
+you may need to gather offers and after a defined number of offers has been received you would like to choose the one with
 the best parameters. 
 
-Aggregator allows you to merge messages based on defined criteria and parameters. It gathers original messages, 
+The aggregator allows you to merge messages based on defined criteria and parameters. It gathers original messages, 
 applies aggregation strategy and upon fulfilling given criteria, releasing merged messages.
 
 ## Diagram 

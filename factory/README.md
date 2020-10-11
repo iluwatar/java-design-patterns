@@ -15,16 +15,15 @@ tags:
 
 ## Intent
 
-Providing a static method encapsulated in a class called factory, in order to hide the 
-implementation logic and makes client code focus on usage rather then initialization new objects.
+Providing a static method encapsulated in a class called the factory, to hide the implementation logic and makes client code focus on usage rather than initialization of new objects.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> Lets say we have a web application connected to SQLServer, but now we want to switch to Oracle. To 
-> do so without modifying existing source code, we need to implements Simple Factory pattern, in 
-> which a static method can be invoked to create connection to a given database.
+> let us say we have a web application connected to SQLServer, but now we want to switch to Oracle. To 
+> do so without modifying existing source code, we need to implement Simple Factory pattern, in 
+> which a static method can be invoked to create a connection to a given database.
 
 Wikipedia says
 
@@ -61,7 +60,7 @@ public class Ferrari implements Car {
 }
 ```
 
-Enumeration above represents types of cars that we support (`Ford` and `Ferrari`).
+The enumeration above represents types of cars that we support (`Ford` and `Ferrari`).
 
 ```java
 public enum CarType {
@@ -80,7 +79,7 @@ public enum CarType {
   }
 }
 ```
-Then we have the static method `getCar` to create car objects encapsulated in the factory class 
+Then we have the static method `gear` to create car objects encapsulated in the factory class 
 `CarSimpleFactory`.
 
 ```java
@@ -92,7 +91,7 @@ public class CarsFactory {
 }
 ```
 
-Now on the client code we can create different types of cars using the factory class.
+Now on the client code, we can create different types of cars using the factory class.
 
 ```java
 var car1 = CarsFactory.getCar(CarType.FORD);
@@ -114,13 +113,13 @@ This Ferrari.
 
 ## Applicability
 
-Use the Simple Factory pattern when you only care about the creation of a object, not how to create 
+Use the Simple Factory pattern when you only care about the creation of an object, not how to create 
 and manage it.
 
 Pros
 
-* Allows keeping all objects creation in one place and avoid of spreading 'new' key value across codebase.
-* Allows to writs loosely coupled code. Some of its main advantages include better testability, easy-to-understand code, swappable components, scalability and isolated features.
+* Allows keeping all objects created in one place and avoid spreading 'new' key value across the codebase.
+* Allows to writs loosely coupled code. Some of its main advantages include better testability, easy-to-understand code, swappable components, scalability, and isolated features.
 
 Cons
 

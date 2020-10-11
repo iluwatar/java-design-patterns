@@ -9,10 +9,10 @@ tags:
 ---
 
 ## Intent
-It is very common in integration systems that incoming messages consists of many items bundled together. For example
+It is very common in integration systems that incoming messages consist of many items bundled together. For example,
 an invoice document contains multiple invoice lines describing transaction (quantity, name of provided
-service/sold goods, price etc.). Such bundled messages may not be accepted by other systems. This is where splitter
-pattern comes in handy. It will take the whole document, split it based on given criteria and send individual
+service/sold goods, price, etc.). Such bundled messages may not be accepted by other systems. This is where the splitter
+pattern comes in handy. It will take the whole document, split it based on given criteria, and send individual
 items to the endpoint.
 
 ## Diagram
@@ -22,7 +22,7 @@ items to the endpoint.
 Use the Splitter pattern when
 
 * You need to split received data into smaller pieces to process them individually
-* You need to control the size of data batches you are able to process
+* You need to control the size of data batches you can process
 
 ## Credits
 

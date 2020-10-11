@@ -20,5 +20,5 @@ actual locking logic proceed.
 ## Applicability
 Use the Double Checked Locking pattern when
 
-* there is a concurrent access in object creation, e.g. singleton, where you want to create single instance of the same class and checking if it's null or not maybe not be enough when there are two or more threads that checks if instance is null or not.
-* there is a concurrent access on a method where method's behaviour changes according to the some constraints and these constraint change within this method.
+* there is concurrent access in object creation, e.g. singleton, where you want to create a single instance of the same class and checking if it's null or not maybe be enough when there are two or more threads that check if the instance is null or not.
+* there is concurrent access on a method where the method's behavior changes according to some constraints and these constraint change within this method.

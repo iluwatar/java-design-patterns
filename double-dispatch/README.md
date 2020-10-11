@@ -18,8 +18,8 @@ behavior based on receiver and parameter types.
 ## Applicability
 Use the Double Dispatch pattern when
 
-* the dynamic behavior is not defined only based on receiving object's type but also on the receiving method's parameter type.
+* the dynamic behavior is not defined only based on the receiving object's type but also the receiving method's parameter type.
 
-## Real world examples
+## Real-world examples
 
 * [ObjectOutputStream](https://docs.oracle.com/javase/8/docs/api/java/io/ObjectOutputStream.html)

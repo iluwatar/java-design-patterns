@@ -10,25 +10,22 @@ tags:
 
 ## Intent
 
-Trampoline pattern is used for implementing algorithms recursively in Java without blowing the stack 
+The trampoline pattern is used for implementing algorithms recursively in Java without blowing the stack 
 and to interleave the execution of functions without hard coding them together.
 
 ## Explanation
 
 Recursion is a frequently adopted technique for solving algorithmic problems in a divide and conquer
-style. For example calculating fibonacci accumulating sum and factorials. In these kinds of problems 
-recursion is more straightforward than their loop counterpart. Furthermore recursion may need less 
-code and looks more concise. There is a saying that every recursion problem can be solved using 
-a loop with the cost of writing code that is more difficult to understand.
+style. For example, calculating Fibonacci accumulating sum and factorials. In these kinds of problems, 
+recursion is more straightforward than their loop counterpart. Furthermore, recursion may need less code and looks more concise. There is a saying that every recursion problem can be solved using a loop with the cost of writing code that is more difficult to understand.
 
-However recursion type solutions have one big caveat. For each recursive call it typically needs 
-an intermediate value stored and there is a limited amount of stack memory available. Running out of 
+However, recursion type solutions have one big caveat. For each recursive call, it typically needs an intermediate value stored and there is a limited amount of stack memory available. Running out of 
 stack memory creates a stack overflow error and halts the program execution.
 
-Trampoline pattern is a trick that allows us define recursive algorithms in Java without blowing the 
+The trampoline pattern is a trick that allows us to define recursive algorithms in Java without blowing the 
 stack. 
 
-Real world example
+Real-world example
 
 > A recursive Fibonacci calculation without the stack overflow problem using the Trampoline pattern.       
 
@@ -132,7 +129,7 @@ result 3628800
 
 Use the Trampoline pattern when
 
-* For implementing tail recursive function. This pattern allows to switch on a stackless operation.
+* For implementing the tail-recursive function. This pattern allows us to switch on a stackless operation.
 * For interleaving the execution of two or more functions on the same thread.
 
 ## Known uses

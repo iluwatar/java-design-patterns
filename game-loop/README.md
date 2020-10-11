@@ -10,11 +10,10 @@ tags:
   
 ## Intent
   
-A game loop runs continuously during gameplay. Each turn of the loop, it processes user input 
-without blocking, updates the game state, and renders the game. It tracks the passage of time to 
+A game loop runs continuously during gameplay. Each turn of the loop, it processes user input without blocking, updates the game state, and renders the game. It tracks the passage of time to 
 control the rate of gameplay.
 
-This pattern decouples progression of game time from user input and processor speed.
+This pattern decouples the progression of game time from user input and processor speed.
 
 ## Applicability
   
@@ -22,14 +21,14 @@ This pattern is used in every game engine.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Game loop is the main process of all the game rendering threads. It's present in all modern games. 
-> It drives input process, internal status update, rendering, AI and all the other processes.
+> It drives the input process, internal status update, rendering, AI, and all the other processes.
 
 In plain words
 
-> Game Loop pattern ensures that game time progresses in equal speed in all different hardware 
+> Game Loop pattern ensures that game time progresses at equal speed in all different hardware 
 > setups. 
 
 Wikipedia says
@@ -39,8 +38,8 @@ Wikipedia says
 
 **Programmatic Example**
 
-Let's start with something simple. Here's `Bullet` class. Bullets will move in our game. For 
-demonstration purposes it's enough that it has 1-dimensional position.
+Let's start with something simple. Here's the `Bullet` class. Bullets will move in our game. For 
+demonstration purposes it's enough that it has a 1-dimensional position.
 
 ```java
 public class Bullet {
@@ -83,7 +82,7 @@ public class GameController {
 }
 ```
 
-Now we introduce the game loop. Or actually in this demo we have 3 different game loops. Let's see
+Now we introduce the game loop. Or actually, in this demo, we have 3 different game loops. Let's see
 the base class `GameLoop` first.
 
 ```java

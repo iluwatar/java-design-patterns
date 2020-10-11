@@ -11,15 +11,15 @@ tags:
 ## Intent
 
 Separate the construction of a complex object from its representation so that the same construction 
-process can create different representations.
+the process can create different representations.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a character generator for a role-playing game. The easiest option is to let the computer 
 > create the character for you. If you want to manually select the character details like 
-> profession, gender, hair color etc. the character generation becomes a step-by-step process that 
+> profession, gender, hair color, etc. the character generation becomes a step-by-step process that 
 > completes when all the selections are ready.
 
 In plain words
@@ -37,25 +37,23 @@ Having said that let me add a bit about what telescoping constructor anti-patter
 or the other, we have all seen a constructor like below:
 
 ```java
-public Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
+public Hero(Profession profession, String name, HairType hair type, HairColor hair color, Armor armor, Weapon weapon) {
 }
 ```
 
-As you can see the number of constructor parameters can quickly get out of hand, and it may become 
-difficult to understand the arrangement of parameters. Plus this parameter list could keep on 
-growing if you would want to add more options in the future. This is called telescoping constructor 
+As you can see the number of constructor parameters can quickly get out of hand, and it may become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in the future. This is called telescoping constructor 
 anti-pattern.
 
 **Programmatic Example**
 
-The sane alternative is to use the Builder pattern. First of all we have our hero that we want to 
+The sane alternative is to use the Builder pattern. First of all, we have the hero that we want to 
 create:
 
 ```java
 public final class Hero {
   private final Profession profession;
   private final String name;
-  private final HairType hairType;
+  private final HairType hairtype;
   private final HairColor hairColor;
   private final Armor armor;
   private final Weapon weapon;
@@ -133,7 +131,7 @@ Use the Builder pattern when
 * The algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
 * The construction process must allow different representations for the object that's constructed
 
-## Real world examples
+## Real-world examples
 
 * [java.lang.StringBuilder](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
 * [java.nio.ByteBuffer](http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html#put-byte-) as well as similar buffers such as FloatBuffer, IntBuffer and so on.

@@ -10,18 +10,18 @@ tags:
 
 ## Serverless
 
-Serverless eliminates the need to plan for infrastructure and let's you focus on your 
+Serverless eliminates the need to plan for infrastructure and lets you focus on your 
 application. 
 
-Following are optimization katas you should be aware of while building a serverless 
+The following are optimization katas you should be aware of while building a serverless 
 applications
 
 * The Lean function
     * Concise logic - Use functions to transform, not transport (utilize some of the 
-    integration available from the provider to transport), and make sure you read only
+    integration available from the provider to transport), and make sure you read-only
      what you need
-    * Efficient/single purpose code - avoid conditional/routing logic and break down 
-    into individual functions, avoid "fat"/monolithic functions and control the 
+    * Efficient/single-purpose code - avoid conditional/routing logic and break down 
+    into individual functions, avoid "fat"/monolithic functions, and control the 
     dependencies in the function deployment package to reduce the load time for your 
     function
     * ephemeral environment - Utilize container start for expensive initializations
@@ -30,19 +30,18 @@ applications
     payload constraints (async - 128K)
     * resilient routing - Understand retry policies and leverage dead letter queues 
     (SQS or SNS for replays) and remember retries count as invocations
-    * concurrent execution - lambda thinks of it's scale in terms of concurrency and 
-    its not request based/duration based. Lambda will spin up the number of instances 
+    * concurrent execution - lambda thinks of its scale in terms of concurrency and 
+    it is not request based/duration based. Lambda will spin up the number of instances 
     based on the request. 
 * Coordinated calls
-    * Decoupled via APIs - best practice to setup your application is to have API's as
-     contracts that ensures separation of concerns
+    * Decoupled via APIs - best practice to set up your application is to have API's as
+     contracts that ensure separation of concerns
     * scale-matched downstream - make sure when Lambda is calling downstream 
-    components, you are matching scale configuration to it (by specifying max 
-    concurrency based on downstream services)
+    components, you are matching scale configuration to it (by specifying the max concurrency based on downstream services)
     * secured - Always ask a question, do I need a VPC?
-* Serviceful operations
+* Service operations
     * Automated - use automated tools to manage and maintain the stack 
-    * monitored applications - use monitoring services to get holistic view of your 
+    * monitored applications - use monitoring services to get a holistic view of your 
     serverless applications
 
 ## Intent
@@ -53,9 +52,8 @@ to market in half.
  
 ## Explanation
 
-Serverless computing is a cloud computing execution model in which the cloud provider 
-dynamically manages the allocation of machine resources. Pricing is based on the 
-actual amount of resources consumed by an application, rather than on pre-purchased 
+Serverless computing is a cloud computing execution model in which the cloud provider dynamically manages the allocation of machine resources. Pricing is based on the 
+the actual amount of resources consumed by an application, rather than on pre-purchased 
 units of capacity. 
 
 ## Class diagram
@@ -67,9 +65,9 @@ units of capacity.
 
 ## (Function as a Service or "FaaS")
 
-The term ‘Serverless’ is confusing since with such applications there are both server 
+The term ‘Serverless’ is confusing since with such applications there are both servers 
 hardware and server processes running somewhere, but the difference to normal 
-approaches is that the organization building and supporting a ‘Serverless’ application
+approaches are that the organization building and supporting a ‘Serverless’ application
  is not looking after the hardware or the processes - they are outsourcing this to a vendor.
 
 Some of the Serverless Cloud Providers are 
@@ -83,18 +81,18 @@ Some of the Serverless Cloud Providers are
 ![https://serverless.com/framework/docs/providers/webtasks/](./etc/webtask-small-grayscale.png "webtask")
 ...
 
-Anything that triggers an Lambda Function to execute is regarded by the Framework as 
-an Event. Most of the Serverless Cloud Providers support following Events
+Anything that triggers a Lambda Function to execute is regarded by the Framework as 
+an Event. Most of the Serverless Cloud Providers support the following Events
 - Http
 - PubSub Events
 - scheduled
 
 AWS supports processing event generated from AWS Services (S3/Cloudwatch/etc) and 
-using aws as a compute engine is our first choice.
+using AWS as a compute engine is our first choice.
 
 ## (Backend as a Service or "BaaS")
 This example creates a backend for ‘persons’ collection which uses DynamoDB NoSQL 
-database service also provided by Amazon. 
+database service is also provided by Amazon. 
 
 ## AWS lambda function implementation
 
@@ -115,10 +113,8 @@ public class LambdaInfoApiHandler implements RequestHandler<Map<String, Object>,
   }
 }
 ```
-handleRequest method is where the function code is implemented. Context provides 
-useful information about Lambda execution environment. AWS Lambda function needs a 
-deployment package. This package is either a .zip or .jar file that contains all the 
-dependencies of the function.
+handleRequest method is where the function code is implemented. Context provides useful information about the Lambda execution environment. AWS Lambda function needs a 
+deployment package. This package is either a .zip or .jar file that contains all the dependencies of the function.
 
 `serverless.yml` contains configuration to manage deployments for your functions.
 
@@ -137,7 +133,7 @@ dependencies of the function.
 * `mvn clean package`
 * `serverless deploy --stage=dev --verbose`
 
-Based on the configuration in `serverless.yml` serverless framework creates following 
+Based on the configuration in `serverless.yml` serverless framework creates the following 
 resources
 
 * CloudFormation stack for S3 (ServerlessDeploymentBucket)
@@ -178,15 +174,15 @@ curl -X POST \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -d '{
-	"firstName": "Thor",
-	"lastName": "Odinson",
-	"address": {
-		"addressLineOne": "1 Odin ln",
-		"addressLineTwo": "100",
-		"city": "Asgard",
-		"state": "country of the Gods",
-		"zipCode": "00001"
-	}
+  "firstName": "Thor",
+  "lastName": "Odinson",
+  "address": {
+    "addressLineOne": "1 Odin ln",
+    "addressLineTwo": "100",
+    "city": "Asgard",
+    "state": "country of the Gods",
+    "zipCode": "00001"
+  }
 }'
 ```
 

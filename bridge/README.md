@@ -18,12 +18,12 @@ Decouple an abstraction from its implementation so that the two can vary indepen
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Consider you have a weapon with different enchantments, and you are supposed to allow mixing 
 > different weapons with different enchantments. What would you do? Create multiple copies of each 
 > of the weapons for each of the enchantments or would you just create separate enchantment and set 
-> it for the weapon as needed? Bridge pattern allows you to do the second.
+> it for the weapon as needed? The bridge pattern allows you to do the second.
 
 In Plain Words
 
@@ -166,7 +166,7 @@ enchantedSword.swing();
 enchantedSword.unwield();
 // The sword is wielded.
 // The item spreads bloodlust.
-// The sword is swinged.
+// The sword is swung.
 // The item eats the soul of enemies.
 // The sword is unwielded.
 // Bloodlust slowly disappears.
@@ -177,8 +177,8 @@ hammer.swing();
 hammer.unwield();
 // The hammer is wielded.
 // The item begins to glow faintly.
-// The hammer is swinged.
-// The item flies and strikes the enemies finally returning to owner's hand.
+// The hammer is swung.
+// The item flies and strikes the enemies finally returning to the owner's hand.
 // The hammer is unwielded.
 // The item's glow fades.
 ```

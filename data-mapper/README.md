@@ -9,7 +9,7 @@ tags:
 ---
 
 ## Intent
-A layer of mappers that moves data between objects and a database while keeping them independent of each other and the mapper itself
+A layer of Mappers that moves data between objects and a database while keeping them independent of each other and the mapper itself
 
 ## Class diagram
 ![alt text](./etc/data-mapper.png "Data Mapper")
@@ -17,7 +17,7 @@ A layer of mappers that moves data between objects and a database while keeping 
 ## Applicability
 Use the Data Mapper in any of the following situations
 
-* when you want to decouple data objects from DB access layer 
+* when you want to decouple data objects from the DB access layer 
 * when you want to write multiple data retrieval/persistence implementations
 
 ## Credits

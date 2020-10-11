@@ -9,7 +9,7 @@ tags:
 ---
 
 ## Object Mother
-Define a factory of immutable content with separated builder and factory interfaces.
+Define a factory of immutable content with a separated builder and factory interfaces.
 
 ## Class diagram
 ![alt text](./etc/object-mother.png "Object Mother")

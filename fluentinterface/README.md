@@ -10,13 +10,13 @@ tags:
 
 ## Intent
 
-A fluent interface provides an easy-readable, flowing interface, that often mimics a domain specific 
+A fluent interface provides an easy-readable, flowing interface, that often mimics a domain-specific 
 language. Using this pattern results in code that can be read nearly as human language.
 
 ## Explanation
 
-The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API. Those 
-interfaces tend to mimic domain specific languages, so they can nearly be read as human languages.
+The Fluent Interface pattern is useful when you want to provide an easily readable, flowing API. Those 
+interfaces tend to mimic domain-specific languages, so they can nearly be read as human languages.
  
 A fluent interface can be implemented using any of
  
@@ -24,14 +24,14 @@ A fluent interface can be implemented using any of
  * Static factory methods and imports.
  * Named parameters - can be simulated in Java using static factory methods.
 
-Real world example
+Real-world example
 
 > We need to select numbers based on different criteria from the list. It's a great chance to 
 > utilize fluent interface pattern to provide readable easy-to-use developer experience. 
 
 In plain words
 
-> Fluent Interface pattern provides easily readable flowing interface to code.
+> Fluent Interface pattern provides an easily readable flowing interface to code.
 
 Wikipedia says
 
@@ -41,7 +41,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-In this example two implementations of a `FluentIterable` interface are given.
+In this example, two implementations of a `FluentIterable` interface are given.
 
 ```java
 public interface FluentIterable<E> extends Iterable<E> {
@@ -68,7 +68,7 @@ public interface FluentIterable<E> extends Iterable<E> {
 }
 ```
 
-The `SimpleFluentIterable` evaluates eagerly and would be too costly for real world applications.
+The `SimpleFluentIterable` evaluates eagerly and would be too costly for real-world applications.
 
 ```java
 public class SimpleFluentIterable<E> implements FluentIterable<E> {
@@ -84,8 +84,8 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
 }
 ```
 
-Their usage is demonstrated with a simple number list that is filtered, transformed and collected. The 
-result is printed afterwards.
+Their usage is demonstrated with a simple number list that is filtered, transformed, and collected. The 
+the result is printed afterward.
 
 ```java
     var integerList = List.of(1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68);
@@ -144,12 +144,12 @@ Program output:
 
 ```java
 The initial list contains: 1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68.
-The first three negative values are: -61, -22, -87.
-The last two positive values are: 23, 2.
+The first three negative values are -61, -22, -87.
+The last two positive values are 23, 2.
 The first even number is: 14
 A string-mapped list of negative numbers contains: String[-61], String[-22], String[-87], String[-82], String[-98], String[-68].
 The lazy list contains the last two of the first four positive numbers mapped to Strings: String[18], String[6].
-Last amongst first two negatives: -22    
+Last amongst the first two negatives: -22    
 ```
 
 ## Class diagram

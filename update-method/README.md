@@ -9,7 +9,7 @@ tags:
 ---  
   
 ## Intent  
-Update method pattern simulates a collection of independent objects by telling each to process one frame of behavior at a time.
+The update method pattern simulates a collection of independent objects by telling each to process one frame of behavior at a time.
 
 ## Explanation
 The game world maintains a collection of objects. Each object implements an update method that simulates one frame of the object’s behavior. Each frame, the game updates every object in the collection.
@@ -26,7 +26,7 @@ However, if the game is more abstract and the moving pieces are less like living
 
 Update methods work well when:
 
-- Your game has a number of objects or systems that need to run simultaneously.
+- Your game has several objects or systems that need to run simultaneously.
 - Each object’s behavior is mostly independent of the others.
 - The objects need to be simulated over time.
 

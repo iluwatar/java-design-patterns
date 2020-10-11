@@ -18,8 +18,8 @@ inheritance in java
 ## Applicability
 Use the Twin idiom when
 
-* To simulate multiple inheritance in a language that does not support this feature.
-* To avoid certain problems of multiple inheritance such as name clashes.
+* To simulate multiple inheritances in a language that does not support this feature.
+* To avoid certain problems of multiple inheritances such as name clashes.
 
 ## Credits
 

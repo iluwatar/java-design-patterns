@@ -11,20 +11,15 @@ tags:
 
 ## Intent
 
-Prioritize requests sent to services so that requests with a higher priority are received and 
-processed more quickly than those of a lower priority. This pattern is useful in applications that 
+Prioritize requests sent to services so that requests with a higher priority are received and processed more quickly than those of a lower priority. This pattern is useful in applications that 
 offer different service level guarantees to individual clients.
 
 ## Explanation
 
-Applications may delegate specific tasks to other services; for example, to perform background 
-processing or to integrate with other applications or services. In the cloud, a message queue is 
-typically used to delegate tasks to background processing. In many cases the order in which requests 
-are received by a service is not important. However, in some cases it may be necessary to prioritize 
-specific requests. These requests should be processed earlier than others of a lower priority that 
+Applications may delegate specific tasks to other services; for example, to perform background processing or to integrate with other applications or services. In the cloud, a message queue is typically used to delegate tasks to background processing. In many cases, the order in which requests are received by a service is not important. However, in some cases, it may be necessary to prioritize specific requests. These requests should be processed earlier than others of a lower priority than 
 may have been sent previously by the application.
 
-Real world example
+Real-world example
 
 > Imagine a video processing service with free and premium customers. The requests coming from the
 > paying premium customers should be prioritized over the others. 
@@ -48,7 +43,7 @@ Looking at the video processing example from above, let's first see the `Message
 public class Message implements Comparable<Message> {
 
   private final String message;
-  private final int priority; // define message priority in queue
+  private final int priority; // define message priority in the queue
 
   public Message(String message, int priority) {
     this.message = message;
@@ -119,10 +114,10 @@ public class QueueManager {
 }
 ```
 
-`Worker` constantly polls `QueueManager` for highest priority message and processes it.
+`Worker` constantly polls `QueueManager` for the highest priority message and processes it.
 
 ```java
-public class Worker {
+The public class Worker {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
@@ -150,7 +145,7 @@ public class Worker {
 }
 ```
 
-Here's the full example how we create an instance of `QueueManager` and process messages using
+Here's the full example of how we create an instance of `QueueManager` and process messages using
 `Worker`.
 
 ```java
@@ -206,7 +201,7 @@ No Message ... waiting
 Use the Priority Queue pattern when:
 
 * The system must handle multiple tasks that might have different priorities.
-* Different users or tenants should be served with different priority.
+* Different users or tenants should be served with a different priority.
 
 ## Credits
 

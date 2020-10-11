@@ -3,7 +3,7 @@ layout: pattern
 title: Filterer
 folder: filterer
 permalink: /patterns/filterer/
-description: Design pattern that helps container-like objects to return filtered version of themselves.# short meta description that shows in Google search results
+description: Design pattern that helps container-like objects to return a filtered version of themselves.# a short meta description that shows in Google search results
 categories:
  - Functional
 tags:
@@ -16,14 +16,13 @@ Filterer
 
 ## Intent
 
-The intent of this design pattern is to introduce a functional interface that will add a 
-functionality for container-like objects to easily return filtered versions of themselves.
+This design pattern intends to introduce a functional interface that will add a functionality for container-like objects to easily return filtered versions of themselves.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> We are designing a threat (malware) detection software which can analyze target systems for 
+> We are designing a threat (malware) detection software that can analyze target systems for 
 > threats that are present in it. In the design we have to take into consideration that new 
 > Threat types can be added later. Additionally, there is a requirement that the threat detection 
 > system can filter the detected threats based on different criteria (the target system acts as 
@@ -36,8 +35,7 @@ In plain words
 
 **Programmatic Example**
 
-To model the threat detection example presented above we introduce `Threat` and `ThreatAwareSystem` 
-interfaces.
+To model the threat detection example presented above, we introduce `Threat` and `ThreatAwareSystem` interfaces.
 
 ```java
 public interface Threat {
@@ -54,7 +52,7 @@ public interface ThreatAwareSystem {
 }
 ```
 
-Notice the `filtered` method that returns instance of `Filterer` interface which is defined as:
+Notice the `filtered` method that returns an instance of `Filterer` interface which is defined as:
 
 ```java
 @FunctionalInterface
@@ -63,14 +61,10 @@ public interface Filterer<G, E> {
 }
 ```
 
-It is used to fulfill the requirement for system to be able to filter itself based on threat 
-properties. The container-like object (`ThreatAwareSystem` in our case) needs to have a method that 
-returns an instance of `Filterer`. This helper interface gives ability to covariantly specify a 
-lower bound of contravariant `Predicate` in the subinterfaces of interfaces representing the 
-container-like objects.
+It is used to fulfill the requirement for the system to be able to filter itself based on threat properties. The container-like object (`ThreatAwareSystem` in our case) needs to have a method that returns an instance of `Filterer`. This helper interface gives the ability to covariantly specify a 
+lower bound of contravariant `Predicate` in the subinterfaces of interfaces representing the container-like objects.
 
-In our example we will be able to pass a predicate that takes `? extends Threat` object and 
-return `?  extends ThreatAwareSystem` from `Filtered::by` method. A simple implementation 
+In our example, we will be able to pass a predicate that takes `? extends Threat` object and return `?  extends ThreatAwareSystem` from `Filtered::by` method. A simple implementation 
 of `ThreatAwareSystem`:
 
 ```java
@@ -111,10 +105,10 @@ public class SimpleThreatAwareSystem implements ThreatAwareSystem {
 }
 ```
 
-The `filtered` method is overridden to filter the threats list by given predicate.
+The `filtered` method is overridden to filter the threats list by a given predicate.
 
 Now if we introduce a new subtype of `Threat` interface that adds probability with which given 
-threat can appear:
+a threat can appear:
 
 ```java
 public interface ProbableThreat extends Threat {
@@ -135,9 +129,8 @@ public interface ProbabilisticThreatAwareSystem extends ThreatAwareSystem {
 }
 ````
 
-Notice how we override the `filtered` method in `ProbabilisticThreatAwareSystem` and specify 
-different return covariant type by specifying different generic types. Our interfaces are clean and 
-not cluttered by default implementations. We we will be able to filter 
+Notice how we override the `filtered` method in `ProbabilisticThreatAwareSystem` and specify different return covariant types by specifying different generic types. Our interfaces are clean and 
+not cluttered by default implementations. We will be able to filter 
 `ProbabilisticThreatAwareSystem` by `ProbableThreat` properties:
 
 ```java
@@ -210,21 +203,18 @@ ProbabilisticThreatAwareSystem filtered = simpleProbabilisticThreatAwareSystem.f
 
 ## Applicability
 
-Pattern can be used when working with container-like objects that use subtyping, instead of 
-parametrizing (generics) for extensible class structure. It enables you to easily extend filtering 
-ability of container-like objects as business requirements change.
+A pattern can be used when working with container-like objects that use subtyping, instead of parametrizing (generics) for the extensible class structure. It enables you to easily extend filtering 
+the ability of container-like objects as business requirements change.
 
 ## Tutorials
 
-* [Article about Filterer pattern posted on it's author's blog](https://blog.tlinkowski.pl/2018/filterer-pattern/)
-* [Application of Filterer pattern in domain of text analysis](https://www.javacodegeeks.com/2019/02/filterer-pattern-10-steps.html)
+* [Article about Filterer pattern posted on its author's blog](https://blog.tlinkowski.pl/2018/filterer-pattern/)
+* [Application of Filterer pattern in the domain of text analysis](https://www.javacodegeeks.com/2019/02/filterer-pattern-10-steps.html)
 
 ## Known uses
 
 One of the uses is present on the blog presented in 
-[this](https://www.javacodegeeks.com/2019/02/filterer-pattern-10-steps.html) link. It presents how 
-to use `Filterer` pattern to create text issue analyzer with support for test cases used for unit 
-testing.
+[this](https://www.javacodegeeks.com/2019/02/filterer-pattern-10-steps.html) link. It presents how to use the `Filterer` pattern to create a text issue analyzer with support for test cases used for unit testing.
 
 ## Consequences
 

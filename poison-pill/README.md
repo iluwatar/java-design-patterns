@@ -11,12 +11,12 @@ tags:
 
 ## Intent
 
-Poison Pill is known predefined data item that allows to provide graceful shutdown for separate 
+Poison Pill is a known predefined data item that allows providing graceful shutdown for separate 
 distributed consumption process.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Let's think about a message queue with one producer and one consumer. The producer keeps pushing 
 > new messages in the queue and the consumer keeps reading them. Finally when it's time to 
@@ -121,7 +121,7 @@ public class SimpleMessageQueue implements MessageQueue {
 }
 ```
 
-Next we need message `Producer` and `Consumer`. Internally they use the message queues from above.
+Next, we need the message `Producer` and `Consumer`. Internally they use the message queues from above.
 It's important to notice that when `Producer` stops, it sends out the poison pill to inform 
 `Consumer` that the messaging has finished. 
 
@@ -184,7 +184,7 @@ public class Consumer {
 }
 ```
 
-Finally we are ready to present the whole example in action.
+Finally, we are ready to present the whole example in action.
 
 ```java
     var queue = new SimpleMessageQueue(10000);
@@ -208,7 +208,7 @@ Program output:
 Message [hand shake] from [PRODUCER_1] received by [CONSUMER_1]
 Message [some very important information] from [PRODUCER_1] received by [CONSUMER_1]
 Message [bye!] from [PRODUCER_1] received by [CONSUMER_1]
-Consumer CONSUMER_1 receive request to terminate.
+Consumer CONSUMER_1 receives a request to terminate.
 ```
 
 ## Class diagram
@@ -219,8 +219,8 @@ Consumer CONSUMER_1 receive request to terminate.
 
 Use the Poison Pill idiom when:
 
-* There's a need to send signal from one thread/process to another to terminate.
+* There's a need to send a signal from one thread/process to another to terminate.
 
-## Real world examples
+## Real-world examples
 
 * [akka.actor.PoisonPill](http://doc.akka.io/docs/akka/2.1.4/java/untyped-actors.html)

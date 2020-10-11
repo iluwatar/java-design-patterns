@@ -10,13 +10,13 @@ tags:
 
 ## Intent
 
-Object provides an abstract interface to some type of database or other persistence mechanism.
+The object provides an abstract interface to some type of database or another persistence mechanism.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> There's a set of customers that need to be persisted to database. Additionally we need the whole 
+> There's a set of customers that need to be persisted in the database. Additionally, we need the whole 
 > set of CRUD (create/read/update/delete) operations so we can operate on customers easily. 
 
 In plain words
@@ -26,11 +26,11 @@ In plain words
 Wikipedia says
 
 > In computer software, a data access object (DAO) is a pattern that provides an abstract interface 
-> to some type of database or other persistence mechanism.
+> to some type of database or another persistence mechanism.
 
 **Programmatic Example**
 
-Walking through our customers example, here's the basic `Customer` entity.
+Walking through our customer's example, here's the basic `Customer` entity.
 
 ```java
 public class Customer {
@@ -49,7 +49,7 @@ public class Customer {
 }
 ```
 
-Here's the `CustomerDao` interface and two different implementations for it. `InMemoryCustomerDao` 
+Here are the `CustomerDao` interface and two different implementations for it. `InMemoryCustomerDao` 
 keeps a simple map of customers in memory while `DBCustomerDao` is the real RDBMS implementation.
 
 ```java

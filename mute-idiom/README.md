@@ -18,8 +18,8 @@ while executing some business logic. The template removes the need to write repe
 ## Applicability
 Use this idiom when
 
-* an API declares some exception but can never throw that exception eg. ByteArrayOutputStream bulk write method.
-* you need to suppress some exception just by logging it, such as closing a resource.
+* an API declares some exception but can never throw that exception, for example:- ByteArrayOutputStream bulk writes method.
+* you need to suppress some exception just by logging in, such as closing a resource.
 
 ## Credits
 

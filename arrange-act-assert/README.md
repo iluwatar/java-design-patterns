@@ -32,9 +32,9 @@ It also enforces a certain degree of discipline when you write your tests. You h
 clearly about the three steps your test will perform. It makes tests more natural to write at
 the same time since you already have an outline.
 
-Real world example
+Real-world example
 
-> We need to write comprehensive and clear unit test suite for a class.
+> We need to write a comprehensive and clear unit test suite for a class.
 
 In plain words
 

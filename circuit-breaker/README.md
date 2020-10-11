@@ -17,14 +17,14 @@ cannot bring the whole application down, and we can reconnect to the service as 
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a web application that has both local files/images and remote database entries to serve. 
 > The database might not be responding due to a variety of reasons, so if the application keeps 
 > trying to read from the database using multiple threads/processes, soon all of them will hang 
 > causing our entire web application will crash. We should be able to detect this situation and show 
 > the user an appropriate message so that he/she can explore other parts of the app unaffected by 
-> the database failure. 
+> database failure. 
 
 In plain words
 
@@ -36,19 +36,18 @@ Wikipedia says
 
 > Circuit breaker is a design pattern used in modern software development. It is used to detect 
 > failures and encapsulates the logic of preventing a failure from constantly recurring, during 
-> maintenance, temporary external system failure or unexpected system difficulties.
+> maintenance, temporary external system failure, or unexpected system difficulties.
 
 ## Programmatic Example
 
-So, how does this all come together? With the above example in mind we will imitate the 
-functionality in a simple example. A monitoring service mimics the web app and makes both local and 
+So, how does this all come together? With the above example in mind, we will imitate the functionality in a simple example. A monitoring service mimics the web app and makes both local and 
 remote calls.
 
 The service architecture is as follows:
 
 ![alt text](./etc/ServiceDiagram.PNG "Service Diagram")
 
-In terms of code, the end user application is:
+In terms of code, the end-user application is:
 
 ```java
 public class App {
@@ -172,11 +171,11 @@ implemented by it.
 
 ![alt text](./etc/StateDiagram.PNG "State Diagram")
 
-- We initialize the Circuit Breaker object with certain parameters: `timeout`, `failureThreshold` and `retryTimePeriod` which help determine how resilient the API is.
+- We initialize the Circuit Breaker object with certain parameters: `timeout`, `failure threshold`, and `retry time period` which help determine how resilient the API is.
 - Initially, we are in the `closed` state and nos remote calls to the API have occurred.
-- Every time the call succeeds, we reset the state to as it was in the beginning.
-- If the number of failures cross a certain threshold, we move to the `open` state, which acts just like an open circuit and prevents remote service calls from being made, thus saving resources. (Here, we return the response called ```stale response from API```)
-- Once we exceed the retry timeout period, we move to the `half-open` state and make another call to the remote service again to check if the service is working so that we can serve fresh content. A failure sets it back to `open` state and another attempt is made after retry timeout period, while a success sets it to `closed` state so that everything starts working normally again. 
+- Every time the call succeeds, we reset the state as it was in the beginning.
+- If the number of failures crosses a certain threshold, we move to the `open` state, which acts just like an open circuit and prevents remote service calls from being made, thus saving resources. (Here, we return the response called ```stale response from API```)
+- Once we exceed the retry timeout period, we move to the `half-open` state and make another call to the remote service again to check if the service is working so that we can serve fresh content. A failure sets it back to `open` state and another attempt is made after a retry timeout period, while a success sets it to `closed` state so that everything starts working normally again. 
 
 ## Class diagram
 
@@ -186,14 +185,14 @@ implemented by it.
 
 Use the Circuit Breaker pattern when
 
-- Building a fault-tolerant application where failure of some services shouldn't bring the entire application down.
+- Building a fault-tolerant application where the failure of some services shouldn't bring the entire application down.
 - Building a continuously running (always-on) application, so that its components can be upgraded without shutting it down entirely.
 
 ## Related Patterns
 
 - [Retry Pattern](https://github.com/iluwatar/java-design-patterns/tree/master/retry)
 
-## Real world examples
+## Real-world examples
 
 * [Spring Circuit Breaker module](https://spring.io/guides/gs/circuit-breaker)
 * [Netflix Hystrix API](https://github.com/Netflix/Hystrix)

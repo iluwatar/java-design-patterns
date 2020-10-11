@@ -15,10 +15,10 @@ Use sharing to support large numbers of fine-grained objects efficiently.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Alchemist's shop has shelves full of magic potions. Many of the potions are the same so there is 
-> no need to create new object for each of them. Instead one object instance can represent multiple 
+> no need to create a new object for each of them. Instead, one object instance can represent multiple 
 > shelf items so memory footprint remains small.
 
 In plain words
@@ -29,13 +29,13 @@ In plain words
 Wikipedia says
 
 > In computer programming, flyweight is a software design pattern. A flyweight is an object that 
-> minimizes memory use by sharing as much data as possible with other similar objects; it is a way 
+> minimizes memory use by sharing as much data as possible with other similar objects; it is away 
 > to use objects in large numbers when a simple repeated representation would use an unacceptable 
 > amount of memory.
 
 **Programmatic example**
 
-Translating our alchemist shop example from above. First of all we have different potion types:
+Translating our alchemist shop example from above. First of all, we have different potion types:
 
 ```java
 public interface Potion {
@@ -138,12 +138,11 @@ Flyweight pattern when all of the following are true:
 * An application uses a large number of objects.
 * Storage costs are high because of the sheer quantity of objects.
 * Most object state can be made extrinsic.
-* Many groups of objects may be replaced by relatively few shared objects once extrinsic state is 
-removed.
+* Many groups of objects may be replaced by relatively few shared objects once an extrinsic state is removed.
 * The application doesn't depend on object identity. Since flyweight objects may be shared, identity 
 tests will return true for conceptually distinct objects.
 
-## Real world examples
+## Real-world examples
 
 * [java.lang.Integer#valueOf(int)](http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html#valueOf%28int%29) and similarly for Byte, Character and other wrapped types.
 

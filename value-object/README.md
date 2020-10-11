@@ -10,7 +10,7 @@ tags:
 
 ## Intent
 Provide objects which follow value semantics rather than reference semantics.
-This means value objects' equality are not based on identity. Two value objects are
+This means value objects' equality is not based on identity. Two value objects are
 equal when they have the same value, not necessarily being the same object.
 
 ## Class diagram
@@ -21,7 +21,7 @@ Use the Value Object when
 
 * You need to measure the objects' equality based on the objects' value
 
-## Real world examples
+## Real-world examples
 
 * [java.util.Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
 * [java.time.LocalDate](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html)

@@ -10,12 +10,11 @@ tags:
 
 ## Intent
 
-Private Class Data design pattern seeks to reduce exposure of attributes by limiting their 
-visibility. It reduces the number of class attributes by encapsulating them in single Data object.
+Private Class Data design pattern seeks to reduce exposure of attributes by limiting their visibility. It reduces the number of class attributes by encapsulating them in a single Data object.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine you are cooking a stew for your family for dinner. You want to prevent your family members 
 > from consuming the stew by tasting it while you are cooking, otherwise there will be no more stew 
@@ -28,12 +27,12 @@ In plain words
 
 Wikipedia says
 
-> Private class data is a design pattern in computer programming used to encapsulate class 
+> Private class data is a design pattern in computer programming used to encapsulate a class 
 > attributes and their manipulation.
 
 **Programmatic Example**
 
-Taking our stew example from above. First we have a `Stew` class where its data is not protected by 
+Taking our stew example from above. First, we have a `Stew` class where its data is not protected by 
 private class data, making the stew's ingredient mutable to class methods. 
 
 ```java
@@ -71,8 +70,8 @@ public class Stew {
 }
 ```
 
-Now, we have `ImmutableStew` class, where its data is protected by `StewData` class. Now, the 
-methods in are unable to manipulate the data of the `ImmutableStew` class.
+Now, we have the `ImmutableStew` class, where its data is protected by the `StewData` class. Now, the 
+methods are unable to manipulate the data of the `ImmutableStew` class.
 
 ```java
 public class StewData {

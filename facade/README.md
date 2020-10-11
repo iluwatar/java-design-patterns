@@ -16,7 +16,7 @@ interface that makes the subsystem easier to use.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > How does a goldmine work? "Well, the miners go down there and dig gold!" you say. That is what you 
 > believe because you are using a simple interface that goldmine provides on the outside, internally 
@@ -192,7 +192,7 @@ Program output:
 
 ```java
 // Dwarf gold digger wakes up.
-// Dwarf gold digger goes to the mine.
+// Dwarf gold-digger goes to the mine.
 // Dwarf cart operator wakes up.
 // Dwarf cart operator goes to the mine.
 // Dwarven tunnel digger wakes up.
@@ -200,8 +200,8 @@ Program output:
 // Dwarf gold digger digs for gold.
 // Dwarf cart operator moves gold chunks out of the mine.
 // Dwarven tunnel digger creates another promising tunnel.
-// Dwarf gold digger goes home.
-// Dwarf gold digger goes to sleep.
+// Dwarf gold-digger goes home.
+// Dwarf gold-digger goes to sleep.
 // Dwarf cart operator goes home.
 // Dwarf cart operator goes to sleep.
 // Dwarven tunnel digger goes home.
@@ -216,11 +216,7 @@ Program output:
 
 Use the Facade pattern when
 
-* You want to provide a simple interface to a complex subsystem. Subsystems often get more complex 
-as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the 
-subsystem more reusable and easier to customize, but it also becomes harder to use for clients that 
-don't need to customize it. A facade can provide a simple default view of the subsystem that is good 
-enough for most clients. Only clients needing more customization will need to look beyond the 
+* You want to provide a simple interface to a complex subsystem. Subsystems often get more complex as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the subsystem more reusable and easier to customize, but it also becomes harder to use for clients that don't need to customize it. A facade can provide a simple default view of the subsystem that is good enough for most clients. Only clients needing more customization will need to look beyond the 
 facade.
 * There are many dependencies between clients and the implementation classes of an abstraction. 
 Introduce a facade to decouple the subsystem from clients and other subsystems, thereby promoting 

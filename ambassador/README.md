@@ -15,7 +15,7 @@ Provide a helper service instance on a client and offload common functionality a
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > A remote service has many clients accessing a function it provides. The service is a legacy application and is 
 > impossible to update. Large numbers of requests from users are causing connectivity issues. New rules for request 
@@ -28,15 +28,15 @@ In plain words
 
 Microsoft documentation states
 
-> An ambassador service can be thought of as an out-of-process proxy which is co-located with the client. This pattern 
+> An ambassador service can be thought of as an out-of-process proxy that is co-located with the client. This pattern 
 > can be useful for offloading common client connectivity tasks such as monitoring, logging, routing, 
-> security (such as TLS), and resiliency patterns in a language agnostic way. It is often used with legacy applications, 
-> or other applications that are difficult to modify, in order to extend their networking capabilities. It can also 
+> security (such as TLS), and resiliency patterns in a language-agnostic way. It is often used with legacy applications, 
+> or other applications that are difficult to modify, to extend their networking capabilities. It can also 
 > enable a specialized team to implement those features.
 
 **Programmatic Example**
 
-With the above introduction in mind we will imitate the functionality in this example. We have an interface implemented 
+With the above introduction in mind, we will imitate the functionality in this example. We have an interface implemented 
 by the remote service as well as the ambassador service:
 
 ```java
@@ -45,7 +45,7 @@ interface RemoteServiceInterface {
 }
 ```
 
-A remote services represented as a singleton.
+Remote services are represented as a singleton.
 
 ```java
 public class RemoteService implements RemoteServiceInterface {
@@ -161,13 +161,13 @@ public class App {
 Here's the output for running the example:
 
 ```java
-Time taken (ms): 111
+Time is taken (ms): 111
 Service result: 120
-Time taken (ms): 931
+Time is taken (ms): 931
 Failed to reach remote: (1)
-Time taken (ms): 665
+Time is taken (ms): 665
 Failed to reach remote: (2)
-Time taken (ms): 538
+Time is taken (ms): 538
 Failed to reach remote: (3)
 Service result: -1
 ```
@@ -178,12 +178,11 @@ Service result: -1
 
 ## Applicability
 
-Ambassador is applicable when working with a legacy remote service which cannot be modified or would be extremely 
-difficult to modify. Connectivity features can be implemented on the client avoiding the need for changes on the remote 
+Ambassador is applicable when working with a legacy remote service that cannot be modified or would be extremely difficult to modify. Connectivity features can be implemented on the client avoiding the need for changes on the remote 
 service.
 
 * Ambassador provides a local interface for a remote service.
-* Ambassador provides logging, circuit breaking, retries and security on the client.
+* Ambassador provides logging, circuit breaking, retries, and security on the client.
 
 ## Typical Use Case
 

@@ -12,15 +12,14 @@ tags:
 Wrapper
 
 ## Intent
-Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that 
-couldn't otherwise because of incompatible interfaces.
+Convert the interface of a class into another interface the clients expect. The adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> Consider that you have some pictures in your memory card and you need to transfer them to your computer. In order to transfer them you need some kind of adapter that is compatible with your computer ports so that you can attach memory card to your computer. In this case card reader is an adapter.
-> Another example would be the famous power adapter; a three legged plug can't be connected to a two pronged outlet, it needs to use a power adapter that makes it compatible with the two pronged outlet.
+> Consider that you have some pictures in your memory card and you need to transfer them to your computer. To transfer them you need some kind of adapter that is compatible with your computer ports so that you can attach a memory card to your computer. In this case card reader is an adapter.
+> Another example would be the famous power adapter; a three-legged plug can't be connected to a two-pronged outlet, it needs to use a power adapter that makes it compatible with the two-pronged outlet.
 > Yet another example would be a translator translating words spoken by one person to another
 
 In plain words
@@ -35,7 +34,7 @@ Wikipedia says
 
 Consider a captain that can only use rowing boats and cannot sail at all.
 
-First we have interfaces `RowingBoat` and `FishingBoat`
+First, we have interfaces `RowingBoat` and `FishingBoat`
 
 ```java
 public interface RowingBoat {
@@ -50,7 +49,7 @@ public class FishingBoat {
 }
 ```
 
-And captain expects an implementation of `RowingBoat` interface to be able to move
+And captain expects an implementation of the `RowingBoat` interface to be able to move
 
 ```java
 public class Captain {
@@ -108,17 +107,17 @@ Use the Adapter pattern when
 ## Consequences:
 Class and object adapters have different trade-offs. A class adapter
 
-*	adapts Adaptee to Target by committing to a concrete Adaptee class. As a consequence, a class adapter won’t work when we want to adapt a class and all its subclasses.
-*	let’s Adapter override some of Adaptee’s behavior, since Adapter is a subclass of Adaptee.
-*	introduces only one object, and no additional pointer indirection is needed to get to the adaptee.
+* adapts Adaptee to Target by committing to a concrete Adaptee class. As a consequence, a class adapter won’t work when we want to adopt a class and all its subclasses.
+*, let’s Adapter override some of Adaptee’s behavior since Adapter is a subclass of Adaptee.
+* introduces only one object, and no additional pointer indirection is needed to get to the adaptee.
 
-An object adapter	
+An object adapter 
 
-*	let’s a single Adapter work with many Adaptees—that is, the Adaptee itself and all of its subclasses (if any). The Adapter can also add functionality to all Adaptees at once.
-*	makes it harder to override Adaptee behavior. It will require subclassing Adaptee and making Adapter refer to the subclass rather than the Adaptee itself.
+* lets a single Adapter work with many Adaptees—that is, the Adaptee itself and all of its subclasses (if any). The Adapter can also add functionality to all Adaptees at once.
+* makes it harder to override Adaptee behavior. It will require subclassing Adaptee and making Adapter refer to the subclass rather than the Adaptee itself.
 
 
-## Real world examples
+## Real-world examples
 
 * [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList%28T...%29)
 * [java.util.Collections#list()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#list-java.util.Enumeration-)

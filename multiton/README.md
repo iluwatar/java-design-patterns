@@ -14,22 +14,22 @@ Registry
 
 ## Intent
 
-Ensure a class only has limited number of instances and provide a global point of access to them.
+Ensure a class only has a limited number of instances and provides a global point of access to them.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > The Nazgûl, also called ringwraiths or the Nine Riders, are Sauron's most terrible servants. By 
 > definition there's always nine of them.           
 
 In plain words
 
-> Multiton pattern ensures there's predefined amount of instances available globally.   
+> Multiton pattern ensures there's a predefined amount of instances available globally.   
 
 Wikipedia says
 
-> In software engineering, the multiton pattern is a design pattern which generalizes the singleton 
+> In software engineering, the multiton pattern is a design pattern that generalizes the singleton 
 > pattern. Whereas the singleton allows only one instance of a class to be created, the multiton 
 > pattern allows for the controlled creation of multiple instances, which it manages through the use 
 > of a map.
@@ -113,5 +113,5 @@ UVATHA=com.iluwatar.multiton.Nazgul@15cea7b0
 
 Use the Multiton pattern when
 
-* There must be specific number of instances of a class, and they must be accessible to clients from 
+* There must be a specific number of instances of a class, and they must be accessible to clients from 
 a well-known access point.

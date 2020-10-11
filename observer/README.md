@@ -20,10 +20,10 @@ dependents are notified and updated automatically.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> In a land far away lives the races of hobbits and orcs. Both of them are mostly outdoors so they 
-> closely follow the changes in weather. One could say that they are constantly observing the 
+> In a land far away live the races of hobbits and orcs. Both of them are mostly outdoors so they 
+> closely follow the weather changes. One could say that they are constantly observing the 
 > weather.
 
 In plain words
@@ -93,7 +93,7 @@ public class Weather {
   }
 
   /**
-   * Makes time pass for weather.
+   * Makes time pass for the weather.
    */
   public void timePasses() {
     var enumValues = WeatherType.values();
@@ -147,18 +147,16 @@ The hobbits are facing sunny weather now
 
 Use the Observer pattern in any of the following situations:
 
-* When an abstraction has two aspects, one dependent on the other. Encapsulating these aspects in 
-separate objects lets you vary and reuse them independently.
+* When an abstraction has two aspects, one dependent on the other. Encapsulating these aspects in separate objects lets you vary and reuse them independently.
 * When a change to one object requires changing others, and you don't know how many objects need to 
 be changed.
-* When an object should be able to notify other objects without making assumptions about who these 
-objects are. In other words, you don't want these objects tightly coupled.
+* When an object should be able to notify other objects without making assumptions about who these objects are. In other words, you don't want these objects tightly coupled.
 
 ## Typical Use Case
 
 * Changing in one object leads to a change in other objects.
 
-## Real world examples
+## Real-world examples
 
 * [java.util.Observer](http://docs.oracle.com/javase/8/docs/api/java/util/Observer.html)
 * [java.util.EventListener](http://docs.oracle.com/javase/8/docs/api/java/util/EventListener.html)

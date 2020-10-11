@@ -20,7 +20,7 @@ Factory Method lets a class defer instantiation to subclasses.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Blacksmith manufactures weapons. Elves require Elvish weapons and orcs require Orcish weapons. 
 > Depending on the customer at hand the right type of blacksmith is summoned.
@@ -39,12 +39,12 @@ Wikipedia says
 
  **Programmatic Example**
 
-Taking our blacksmith example above. First of all we have a `Blacksmith` interface and some 
+Taking our blacksmith example above. First of all, we have a `Blacksmith` interface and some 
 implementations for it:
 
 ```java
 public interface Blacksmith {
-  Weapon manufactureWeapon(WeaponType weaponType);
+  Weapon manufacture weapon(WeaponType weapon type);
 }
 
 public class ElfBlacksmith implements Blacksmith {
@@ -88,7 +88,7 @@ Use the Factory Method pattern when:
 * Classes delegate responsibility to one of several helper subclasses, and you want to localize the 
 knowledge of which helper subclass is the delegate.
 
-## Real world examples
+## Real-world examples
 
 * [java.util.Calendar](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
 * [java.util.ResourceBundle](http://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)

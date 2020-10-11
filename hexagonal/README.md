@@ -3,7 +3,7 @@ layout: pattern
 title: Hexagonal Architecture
 folder: hexagonal
 permalink: /patterns/hexagonal/
-pumlformat: svg
+pumlformat: SVG
 categories: Architectural
 tags:
  - Decoupling
@@ -16,7 +16,7 @@ tags:
 * Onion Architecture
 
 ## Intent
-Allow an application to equally be driven by users, programs, automated test or batch scripts, and to be developed and tested in isolation from its eventual run-time devices and databases.
+Allow an application to equally be driven by users, programs, automated test, or batch scripts, and to be developed and tested in isolation from its eventual run-time devices and databases.
 
 ## Class diagram
 ![Hexagonal Architecture class diagram](./etc/hexagonal.png)
@@ -31,7 +31,7 @@ Use Hexagonal Architecture pattern when
 
 * [Build Maintainable Systems With Hexagonal Architecture](http://java-design-patterns.com/blog/build-maintainable-systems-with-hexagonal-architecture/)
 
-## Real world examples
+## Real-world examples
 
 * [Apache Isis](https://isis.apache.org/) builds generic UI and REST API directly from the underlying domain objects
 

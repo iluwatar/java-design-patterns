@@ -9,8 +9,8 @@ tags:
 ---
 
 ## Intent
-Send partial response from server to client on need basis. Client will specify the the fields
-that it need to server, instead of serving all details for resource. 
+Send partial response from the server to the client on a need basis. The client will specify the fields
+that it needs to the server, instead of serving all details for the resource. 
 
 ## Class diagram
 ![alt text](./etc/partial-response.urm.png "partial-response")
@@ -18,8 +18,8 @@ that it need to server, instead of serving all details for resource.
 ## Applicability
 Use the Partial Response pattern when
 
-* Client need only subset of data from resource.
-* To avoid too much data transfer over wire
+* Client needs the only subset of data from a resource.
+* To avoid too much data transfer over the wire
 
 ## Credits
 

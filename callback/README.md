@@ -10,19 +10,19 @@ tags:
 
 ## Intent
 
-Callback is a piece of executable code that is passed as an argument to other code, which is 
+A callback is a piece of executable code that is passed as an argument to other code, which is 
 expected to call back (execute) the argument at some convenient time.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> We need to be notified after executing task has finished. We pass a callback method for 
+> We need to be notified after the executing task has finished. We pass a callback method for 
 > the executor and wait for it to call back on us.     
 
 In plain words
 
-> Callback is a method passed to the executor which will be called at defined moment. 
+> Callback is a method passed to the executor which will be called at a defining moment. 
 
 Wikipedia says
 
@@ -32,7 +32,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Callback is a simple interface with single method.
+A callback is a simple interface with a single method.
 
 ```java
 public interface Callback {
@@ -41,7 +41,7 @@ public interface Callback {
 }
 ```
 
-Next we define a task that will execute the callback after the task execution has finished.
+Next, we define a task that will execute the callback after the task execution has finished.
 
 ```java
 public abstract class Task {
@@ -82,6 +82,6 @@ Use the Callback pattern when
 
 * when some arbitrary synchronous or asynchronous action must be performed after execution of some defined activity.
 
-## Real world examples
+## Real-world examples
 
 * [CyclicBarrier](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept a callback that will be triggered every time a barrier is tripped.

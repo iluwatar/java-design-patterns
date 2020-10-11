@@ -22,7 +22,7 @@ Use the Lazy Loading idiom when
 
 * eager loading is expensive or the object to be loaded might not be needed at all
 
-## Real world examples
+## Real-world examples
 
 * JPA annotations @OneToOne, @OneToMany, @ManyToOne, @ManyToMany and fetch = FetchType.LAZY
 

@@ -10,16 +10,15 @@ tags:
 
 ## Intent
 
-Tolerant Reader is an integration pattern that helps creating robust communication systems. The idea 
-is to be as tolerant as possible when reading data from another service. This way, when the 
+Tolerant Reader is an integration pattern that helps in creating robust communication systems. The idea is to be as tolerant as possible when reading data from another service. This way, when the 
 communication schema changes, the readers must not break.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > We are persisting rainbowfish objects to file and later on they need to be restored. What makes it 
-> problematic is that rainbowfish data structure is versioned and evolves over time. New version of 
+> problematic is that the rainbowfish data structure is versioned and evolves. New version of 
 > rainbowfish needs to be able to restore old versions as well.     
 
 In plain words
@@ -32,7 +31,7 @@ In plain words
 
 **Programmatic Example**
 
-Here's the versioned `RainbowFish`. Notice how the second version introduces additional properties.
+Here are the versioned `RainbowFish`. Notice how the second version introduces additional properties.
 
 ```java
 public class RainbowFish implements Serializable {
@@ -108,7 +107,7 @@ public class RainbowFishV2 extends RainbowFish {
 }
 ```
 
-Next we introduce the `RainbowFishSerializer`. This is the class that implements the Tolerant Reader 
+Next, we introduce `RainbowFishSerializer`. This is the class that implements the Tolerant Reader 
 pattern.
 
 ```java
@@ -166,7 +165,7 @@ public final class RainbowFishSerializer {
 }
 ```
 
-And finally here's the full example in action.
+And, finally, here's the full example in action.
 
 ```java
     var fishV1 = new RainbowFish("Zed", 10, 11, 12);

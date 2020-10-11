@@ -9,15 +9,15 @@ tags:
 ---
 
 ## Intent
-Broadcast messages from sender to all the interested receivers.
+Broadcast messages from the sender to all the interested receivers.
 
 ## Class diagram
 ![alt text](./etc/publish-subscribe.png "Publish Subscribe Channel")
 
 ## Applicability
-Use the Publish Subscribe Channel pattern when
+Use the Publish-Subscribe Channel pattern when
 
-* two or more applications need to communicate using a messaging system for broadcasts.
+* Two or more applications need to communicate using a messaging system for broadcasts.
 
 ## Credits
 

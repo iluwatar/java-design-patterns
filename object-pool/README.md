@@ -15,17 +15,15 @@ Resource Pool
 
 ## Intent
 
-When objects are expensive to create and they are needed only for short periods of time it is 
-advantageous to utilize the Object Pool pattern. The Object Pool provides a cache for instantiated 
-objects tracking which ones are in use and which are available.
+When objects are expensive to create and they are needed only for short periods it is advantageous to utilize the Object Pool pattern. The Object Pool provides a cache for instantiated objects tracking which ones are in use and which are available.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > In our war game we need to use oliphaunts, massive and mythic beasts, but the problem is that they 
 > are extremely expensive to create. The solution is to create a pool of them, track which ones are 
-> in-use, and instead of disposing them re-use the instances.   
+> in-use, and instead of disposing them to re-use the instances.   
 
 In plain words
 
@@ -67,7 +65,7 @@ public class Oliphaunt {
 }
 ```
 
-Next we present the `ObjectPool` and more specifically `OliphauntPool`.
+Next, we present the `ObjectPool` and more specifically `OliphauntPool`.
 
 ```java
 public abstract class ObjectPool<T> {

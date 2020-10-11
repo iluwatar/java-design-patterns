@@ -10,17 +10,17 @@ tags:
 
 ## Intent
 
-Use dynamic properties and achieve flexibility of untyped languages while keeping type-safety. 
+Use dynamic properties and achieve the flexibility of untyped languages while keeping type-safety. 
 
 ## Explanation
 
 The Abstract Document pattern enables handling additional, non-static properties. This pattern
-uses concept of traits to enable type safety and separate properties of different classes into
+uses the concept of traits to enable type safety and separate properties of different classes into
 set of interfaces.
 
-Real world example
+Real-world example
 
->  Consider a car that consists of multiple parts. However we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
+>  Consider a car that consists of multiple parts. However, we don't know if the specific car has all the parts or just some of them. Our cars are dynamic and extremely flexible.
 
 In plain words
 
@@ -28,15 +28,12 @@ In plain words
 
 Wikipedia says
 
-> An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing 
-the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components 
-in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the 
-support of type-safety. The pattern makes use of traits to separate different properties of a class into different 
+> An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the support of type-safety. The pattern makes use of traits to separate different properties of a class into different 
 interfaces.
 
 **Programmatic Example**
 
-Let's first define the base classes `Document` and `AbstractDocument`. They basically make the object hold a property
+Let's first define the base classes `Document` and `AbstractDocument`. They make the object hold a property
 map and any amount of child objects.
 
 ```java
@@ -82,7 +79,7 @@ public abstract class AbstractDocument implements Document {
   ...
 }
 ```
-Next we define an enum `Property` and a set of interfaces for type, price, model and parts. This allows us to create
+Next, we define an enum `Property` and a set of interfaces for type, price, model, and parts. This allows us to create
 static looking interface to our `Car` class.
 
 ```java
@@ -180,7 +177,7 @@ And finally here's how we construct and use the `Car` in a full example.
 Use the Abstract Document Pattern when
 
 * There is a need to add new properties on the fly
-* You want a flexible way to organize domain in tree like structure
+* You want a flexible way to organize domain in a tree-like structure
 * You want more loosely coupled system
 
 ## Credits

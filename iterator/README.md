@@ -18,10 +18,10 @@ underlying representation.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Treasure chest contains a set of magical items. There multiple types of items such as rings, 
-> potions and weapons. The items can be browsed by type using an iterator the treasure chest 
+> potions, and weapons. The items can be browsed by type using an iterator the treasure chest 
 > provides. 
 
 In plain words
@@ -36,7 +36,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-The main class in our example is the `TreasureChest` that contains items.
+The main class in our example is the `treasure chest` that contains items.
 
 ```java
 public class TreasureChest {
@@ -96,7 +96,7 @@ public class Item {
 
 public enum ItemType {
 
-  ANY, WEAPON, RING, POTION
+  ANY WEAPON, RING, POTION
 
 }
 ```
@@ -112,7 +112,7 @@ public interface Iterator<T> {
 }
 ```
 
-In the following example we iterate through the ring type items found in the chest. 
+In the following example, we iterate through the ring-type items found in the chest. 
 
 ```java
 var itemIterator = TREASURE_CHEST.iterator(ItemType.RING);
@@ -140,7 +140,7 @@ Use the Iterator pattern
 * To support multiple traversals of aggregate objects.
 * To provide a uniform interface for traversing different aggregate structures.
 
-## Real world examples
+## Real-world examples
 
 * [java.util.Iterator](http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)
 * [java.util.Enumeration](http://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html)

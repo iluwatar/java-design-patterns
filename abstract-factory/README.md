@@ -19,9 +19,9 @@ objects without specifying their concrete classes.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> To create a kingdom we need objects with a common theme. Elven kingdom needs an Elven king, Elven castle and Elven army whereas Orcish kingdom needs an Orcish king, Orcish castle and Orcish army. There is a dependency between the objects in the kingdom.
+> To create a kingdom we need objects with a common theme. The elven kingdom needs an Elven king, an Elven castle, and an Elven army whereas the Orcish kingdom needs an Orcish king, Orcish castle, and Orcish army. There is a dependency between the objects in the kingdom.
 
 In plain words
 
@@ -33,7 +33,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Translating the kingdom example above. First of all we have some interfaces and implementation for the objects in the 
+Translating the kingdom example above. First of all, we have some interfaces and implementation for the objects in the 
 kingdom.
 
 ```java
@@ -110,7 +110,7 @@ public class OrcKingdomFactory implements KingdomFactory {
 }
 ```
 
-Now we have our abstract factory that lets us make family of related objects i.e. Elven kingdom factory creates Elven castle, king and army etc.
+Now we have the abstract factory that lets us make a family of related objects that is, the Elven kingdom factory creates Elven castle, king and army, etc.
 
 ```java
 var factory = new ElfKingdomFactory();
@@ -178,8 +178,8 @@ public static void main(String[] args) {
 
 Use the Abstract Factory pattern when
 
-* The system should be independent of how its products are created, composed and represented
-* The system should be configured with one of multiple families of products
+* The system should be independent of how its products are created, composed, and represented
+* The system should be configured with one of the multiple families of products
 * The family of related product objects is designed to be used together, and you need to enforce this constraint
 * You want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
 * The lifetime of the dependency is conceptually shorter than the lifetime of the consumer.
@@ -189,7 +189,7 @@ Use the Abstract Factory pattern when
 * When you need consistency among products
 * You don’t want to change existing code when adding new products or families of products to the program.
 
-Example use cases	
+Example use cases 
 
 * Selecting to call to the appropriate implementation of FileSystemAcmeService or DatabaseAcmeService or NetworkAcmeService at runtime.
 * Unit test case writing becomes much easier
@@ -199,7 +199,7 @@ Example use cases
 
 * Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
 * While the pattern is great when creating predefined objects, adding the new ones might be challenging.
-* The code becomes more complicated than it should be, since a lot of new interfaces and classes are introduced along with the pattern.
+* The code becomes more complicated than it should be since a lot of new interfaces and classes are introduced along with the pattern.
 
 ## Tutorial
 

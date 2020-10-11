@@ -10,13 +10,12 @@ tags:
 
 ## Intent
 
-Execute Around idiom frees the user from certain actions that should always be executed before and 
-after the business method. A good example of this is resource allocation and deallocation leaving 
+Execute Around idiom frees the user from certain actions that should always be executed before and after the business method. A good example of this is resource allocation and deallocation leaving 
 the user to specify only what to do with the resource.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > We need to provide a class that can be used to write text strings to files. To make it easy for 
 > the user we let our service class open and close the file automatically, the user only has to 
@@ -24,7 +23,7 @@ Real world example
 
 In plain words
 
-> Execute Around idiom handles boilerplate code before and after business method.  
+> Execute Around idiom handles boilerplate code before and after the business method.  
 
 [Stack Overflow](https://stackoverflow.com/questions/341971/what-is-the-execute-around-idiom) says
 

@@ -13,13 +13,13 @@ Proxy Pattern
 
 ## Intent
 It is a technique where an object expresses certain behavior to the outside but in 
-reality delegates responsibility for implementing that behaviour to an associated object. 
+reality delegates responsibility for implementing that behavior to an associated object. 
 
 ## Class diagram
 ![alt text](./etc/delegation.png "Delegate")
 
 ## Applicability
-Use the Delegate pattern in order to achieve the following
+Use the Delegate pattern to achieve the following
 
 * Reduce the coupling of methods to their class
 * Components that behave identically, but realize that this situation can change in the future.

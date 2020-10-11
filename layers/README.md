@@ -3,7 +3,7 @@ layout: pattern
 title: Layers
 folder: layers
 permalink: /patterns/layers/
-pumlformat: svg
+pumlformat: SVG
 categories: Architectural
 tags:
  - Decoupling
@@ -11,12 +11,12 @@ tags:
 
 ## Intent
 
-Layers is an architectural pattern where software responsibilities are divided among the different 
+A layer is an architectural pattern where software responsibilities are divided among the different 
 layers of the application.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Consider a web site displaying decorated cakes for weddings and such. Instead of the web page 
 > directly reaching into the database, it relies on a service to deliver this information. The 
@@ -24,19 +24,19 @@ Real world example
 
 In plain words
 
-> With Layers architectural pattern different concerns reside on separate layers. View layer is 
+> With Layers' architectural pattern different concerns reside on separate layers. View layer is 
 > interested only in rendering, service layer assembles the requested data from various sources, and 
 > data layer gets the bits from the data storage.
 
 Wikipedia says
 
 > In software engineering, multitier architecture (often referred to as n-tier architecture) or 
-> multilayered architecture is a client–server architecture in which presentation, application 
+> multilayered architecture is a client-server architecture in which presentation, application 
 > processing, and data management functions are physically separated.
 
 **Programmatic Example**
 
-On the data layer, we keep our cake building blocks. `Cake` consist of layers and topping.
+On the data layer, we keep our cake building blocks. `Cake` consists of layers and topping.
 
 ```java
 @Entity
@@ -73,7 +73,7 @@ public interface CakeBakingService {
 }
 ```
 
-On the top we have our `View` responsible of rendering the cakes.
+On the top, we have our `View` responsible for rendering the cakes.
 
 ```java
 public interface View {
@@ -106,7 +106,7 @@ public class CakeViewImpl implements View {
 
 Use the Layers architecture when
 
-* You want clearly divide software responsibilities into different parts of the program.
+* You want to divide software responsibilities into different parts of the program.
 * You want to prevent a change from propagating throughout the application.
 * You want to make your application more maintainable and testable.
 
