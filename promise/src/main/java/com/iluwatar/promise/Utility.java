@@ -91,6 +91,20 @@ public class Utility {
     }
     return 0;
   }
+  
+  /**
+   * Count the number of non empty lines in a file.
+   *
+   * @return number of non empty lines, 0 if file does not exist.
+   */
+  public static Integer countNonEmptyLines(String fileLocation) {
+    try (var bufferedReader = new BufferedReader(new FileReader(fileLocation))) {
+      return (int) bufferedReader.lines().filter(str -> !str.isEmpty).count();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+    return 0;
+  }
 
   /**
    * Downloads the contents from the given urlString, and stores it in a temporary directory.
