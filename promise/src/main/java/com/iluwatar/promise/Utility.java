@@ -99,7 +99,7 @@ public class Utility {
    */
   public static Integer countNonEmptyLines(String fileLocation) {
     try (var bufferedReader = new BufferedReader(new FileReader(fileLocation))) {
-      return (int) bufferedReader.lines().filter(str -> !str.isEmpty).count();
+      return (int) bufferedReader.lines().filter(str -> !str.isEmpty()).count();
     } catch (IOException ex) {
       ex.printStackTrace();
     }
