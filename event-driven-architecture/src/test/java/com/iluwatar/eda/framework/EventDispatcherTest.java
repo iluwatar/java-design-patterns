@@ -36,14 +36,14 @@ import org.junit.jupiter.api.Test;
 /**
  * Event Dispatcher unit tests to assert and verify correct event dispatcher behaviour
  */
-public class EventDispatcherTest {
+class EventDispatcherTest {
 
   /**
    * This unit test should register events and event handlers correctly with the event dispatcher
    * and events should be dispatched accordingly.
    */
   @Test
-  public void testEventDriverPattern() {
+  void testEventDriverPattern() {
 
     var dispatcher = spy(new EventDispatcher());
     var userCreatedEventHandler = spy(new UserCreatedEventHandler());

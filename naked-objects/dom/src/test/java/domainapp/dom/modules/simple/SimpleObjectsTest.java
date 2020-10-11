@@ -23,10 +23,9 @@
 
 package domainapp.dom.modules.simple;
 
-import com.google.common.collect.Lists;
-
 import static org.junit.Assert.assertEquals;
 
+import com.google.common.collect.Lists;
 import java.util.List;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
@@ -56,7 +55,7 @@ public class SimpleObjectsTest {
     simpleObjects = new SimpleObjects();
     simpleObjects.container = mockContainer;
   }
-  
+
   @Test
   public void testCreate() {
 
@@ -83,7 +82,7 @@ public class SimpleObjectsTest {
     assertEquals(simpleObject, obj);
     assertEquals(objectName, obj.getName());
   }
-  
+
   @Test
   public void testListAll() {
 

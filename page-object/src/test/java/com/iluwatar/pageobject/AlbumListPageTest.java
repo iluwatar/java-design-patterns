@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.iluwatar.pageobject.pages.AlbumListPage;
-import com.iluwatar.pageobject.pages.AlbumPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +43,7 @@ public class AlbumListPageTest {
   }
 
   @Test
-  public void testSelectAlbum() {
+  void testSelectAlbum() {
     var albumPage = albumListPage.selectAlbum("21");
     albumPage.navigateToPage();
     assertTrue(albumPage.isAt());

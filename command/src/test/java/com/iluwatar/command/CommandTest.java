@@ -41,7 +41,7 @@ import org.junit.jupiter.api.Test;
  * objects are held by a client object (app). The client decides which commands to execute at which
  * points. To execute a command, it passes the command object to the invoker object.
  */
-public class CommandTest {
+class CommandTest {
 
   private static final String GOBLIN = "Goblin";
 
@@ -51,7 +51,7 @@ public class CommandTest {
    * wizard keeps track of the spells undone, so they can be redone.
    */
   @Test
-  public void testCommand() {
+  void testCommand() {
 
     var wizard = new Wizard();
     var goblin = new Goblin();

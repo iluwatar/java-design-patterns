@@ -77,8 +77,8 @@ public class Data {
   @Override
   public String toString() {
     return "Data {" + "key="
-      + key + ", value='" + value
-      + '\'' + ", type=" + type + '}';
+        + key + ", value='" + value
+        + '\'' + ", type=" + type + '}';
   }
 }
 

@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 public class AlchemistShopTest {
 
   @Test
-  public void testShop() {
+  void testShop() {
     final var shop = new AlchemistShop();
 
     final var bottomShelf = shop.getBottomShelf();

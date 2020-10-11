@@ -23,8 +23,7 @@
 
 package com.iluwatar.singleton;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>Singleton pattern ensures that the class can have only one existing instance per Java
@@ -61,9 +60,8 @@ import org.slf4j.LoggerFactory;
  * {@link InitializingOnDemandHolderIdiom}. However, this implementation requires at least Java 8
  * API level to work.</p>
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

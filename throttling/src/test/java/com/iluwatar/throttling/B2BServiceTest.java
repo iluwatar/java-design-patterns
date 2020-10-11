@@ -37,7 +37,7 @@ public class B2BServiceTest {
   private final CallsCount callsCount = new CallsCount();
 
   @Test
-  public void dummyCustomerApiTest() {
+  void dummyCustomerApiTest() {
     var tenant = new Tenant("testTenant", 2, callsCount);
     // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
     var timer = (Throttler) () -> {

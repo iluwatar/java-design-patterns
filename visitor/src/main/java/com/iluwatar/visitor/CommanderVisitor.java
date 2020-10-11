@@ -23,15 +23,13 @@
 
 package com.iluwatar.visitor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * CommanderVisitor.
  */
+@Slf4j
 public class CommanderVisitor implements UnitVisitor {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(CommanderVisitor.class);
 
   @Override
   public void visitSoldier(Soldier soldier) {

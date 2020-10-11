@@ -41,7 +41,7 @@ public class WorkerTest {
    * Verify if a worker does the actual job
    */
   @Test
-  public void testRun() {
+  void testRun() {
     final var task = mock(Task.class);
     final var worker = new Worker(task);
     verifyZeroInteractions(task);

@@ -60,7 +60,7 @@ public class GiantViewTest {
    * standard out stream, nothing more, nothing less.
    */
   @Test
-  public void testDisplayGiant() {
+  void testDisplayGiant() {
     final var view = new GiantView();
 
     final var model = mock(GiantModel.class);

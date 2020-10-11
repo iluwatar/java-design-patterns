@@ -24,8 +24,7 @@
 package com.iluwatar.servant;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -35,9 +34,8 @@ import org.slf4j.LoggerFactory;
  *
  * <p>In this example {@link Servant} is serving {@link King} and {@link Queen}.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private static final Servant jenkins = new Servant("Jenkins");
   private static final Servant travis = new Servant("Travis");

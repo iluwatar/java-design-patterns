@@ -23,20 +23,19 @@
 
 package com.iluwatar.ambassador;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A simple Client.
  */
+@Slf4j
 public class Client {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
   private final ServiceAmbassador serviceAmbassador = new ServiceAmbassador();
 
   long useService(int value) {
     var result = serviceAmbassador.doRemoteFunction(value);
-    LOGGER.info("Service result: " + result);
+    LOGGER.info("Service result: {}", result);
     return result;
   }
 }

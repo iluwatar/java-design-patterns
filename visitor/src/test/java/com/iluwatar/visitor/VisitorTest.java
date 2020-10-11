@@ -96,7 +96,7 @@ public abstract class VisitorTest<V extends UnitVisitor> {
   }
 
   @Test
-  public void testVisitCommander() {
+  void testVisitCommander() {
     this.visitor.visitCommander(new Commander());
     if (this.commanderResponse.isPresent()) {
       assertEquals(this.commanderResponse.get(), appender.getLastMessage());
@@ -105,7 +105,7 @@ public abstract class VisitorTest<V extends UnitVisitor> {
   }
 
   @Test
-  public void testVisitSergeant() {
+  void testVisitSergeant() {
     this.visitor.visitSergeant(new Sergeant());
     if (this.sergeantResponse.isPresent()) {
       assertEquals(this.sergeantResponse.get(), appender.getLastMessage());
@@ -114,7 +114,7 @@ public abstract class VisitorTest<V extends UnitVisitor> {
   }
 
   @Test
-  public void testVisitSoldier() {
+  void testVisitSoldier() {
     this.visitor.visitSoldier(new Soldier());
     if (this.soldierResponse.isPresent()) {
       assertEquals(this.soldierResponse.get(), appender.getLastMessage());

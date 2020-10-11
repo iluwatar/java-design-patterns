@@ -29,11 +29,15 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.PrimitiveIterator;
 import java.util.Set;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * Value object representing lottery numbers. This lottery uses sets of 4 numbers. The numbers must
  * be unique and between 1 and 20.
  */
+@EqualsAndHashCode
+@ToString
 public class LotteryNumbers {
 
   private final Set<Integer> numbers;
@@ -106,11 +110,6 @@ public class LotteryNumbers {
     }
   }
 
-  @Override
-  public String toString() {
-    return "LotteryNumbers{" + "numbers=" + numbers + '}';
-  }
-
   /**
    * Helper class for generating random numbers.
    */
@@ -139,30 +138,4 @@ public class LotteryNumbers {
     }
   }
 
-  @Override
-  public int hashCode() {
-    final var prime = 31;
-    var result = 1;
-    result = prime * result + ((numbers == null) ? 0 : numbers.hashCode());
-    return result;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    var other = (LotteryNumbers) obj;
-    if (numbers == null) {
-      return other.numbers == null;
-    } else {
-      return numbers.equals(other.numbers);
-    }
-  }
 }

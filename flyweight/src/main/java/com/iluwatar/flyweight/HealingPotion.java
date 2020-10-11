@@ -23,15 +23,13 @@
 
 package com.iluwatar.flyweight;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * HealingPotion.
  */
+@Slf4j
 public class HealingPotion implements Potion {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(HealingPotion.class);
 
   @Override
   public void drink() {

@@ -41,15 +41,15 @@ public class GameControllerTest {
     controller = null;
   }
 
-  @org.junit.jupiter.api.Test
-  public void testMoveBullet() {
+  @Test
+  void testMoveBullet() {
     controller.moveBullet(1.5f);
     Assertions.assertEquals(1.5f, controller.bullet.getPosition(), 0);
   }
 
-  @org.junit.jupiter.api.Test
-  public void testGetBulletPosition() {
-    Assertions.assertEquals(controller.bullet.getPosition(), controller.getBulletPosition(), 0);
+  @Test
+  void testGetBulletPosition() {
+    Assert.assertEquals(controller.bullet.getPosition(), controller.getBulletPosition(), 0);
   }
 
 }

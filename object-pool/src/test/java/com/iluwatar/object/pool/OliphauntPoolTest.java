@@ -23,12 +23,15 @@
 
 package com.iluwatar.object.pool;
 
-import org.junit.jupiter.api.Test;
+import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-
-import static java.time.Duration.ofMillis;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/27/15 - 1:05 AM
@@ -42,7 +45,7 @@ public class OliphauntPoolTest {
    * object instantiation is done only once. Verify if we get the same object each time.
    */
   @Test
-  public void testSubsequentCheckinCheckout() {
+  void testSubsequentCheckinCheckout() {
     assertTimeout(ofMillis(5000), () -> {
       final var pool = new OliphauntPool();
       assertEquals("Pool available=0 inUse=0", pool.toString());
@@ -71,7 +74,7 @@ public class OliphauntPoolTest {
    * object instantiation is done only once. Verify if we get the same object each time.
    */
   @Test
-  public void testConcurrentCheckinCheckout() {
+  void testConcurrentCheckinCheckout() {
     assertTimeout(ofMillis(5000), () -> {
       final var pool = new OliphauntPool();
       assertEquals(pool.toString(), "Pool available=0 inUse=0");

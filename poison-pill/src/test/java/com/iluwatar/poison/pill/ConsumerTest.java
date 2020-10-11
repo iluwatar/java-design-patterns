@@ -56,7 +56,7 @@ public class ConsumerTest {
   }
 
   @Test
-  public void testConsume() throws Exception {
+  void testConsume() throws Exception {
     final var messages = List.of(
         createMessage("you", "Hello!"),
         createMessage("me", "Hi!"),

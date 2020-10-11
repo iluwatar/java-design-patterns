@@ -23,8 +23,7 @@
 
 package com.iluwatar.bridge;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Composition over inheritance. The Bridge pattern can also be thought of as two layers of
@@ -39,9 +38,8 @@ import org.slf4j.LoggerFactory;
  * enchantments. We can easily combine any weapon with any enchantment using composition instead of
  * creating deep class hierarchy.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

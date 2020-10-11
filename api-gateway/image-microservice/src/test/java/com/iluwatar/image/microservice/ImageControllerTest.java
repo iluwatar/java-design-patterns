@@ -23,16 +23,17 @@
 
 package com.iluwatar.image.microservice;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Image Rest Controller
  */
-public class ImageControllerTest {
+class ImageControllerTest {
+
   @Test
-  public void testGetImagePath() {
+  void testGetImagePath() {
     var imageController = new ImageController();
     var imagePath = imageController.getImagePath();
     assertEquals("/product-image.png", imagePath);

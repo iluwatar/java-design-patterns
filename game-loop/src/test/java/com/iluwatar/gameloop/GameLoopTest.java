@@ -41,7 +41,8 @@ public class GameLoopTest {
   public void setup() {
     gameLoop = new GameLoop() {
       @Override
-      protected void processGameLoop() {}
+      protected void processGameLoop() {
+      }
     };
   }
 
@@ -50,21 +51,21 @@ public class GameLoopTest {
     gameLoop = null;
   }
 
-  @org.junit.jupiter.api.Test
-  public void testRun() {
+  @Test
+  void testRun() {
     gameLoop.run();
     Assertions.assertEquals(GameStatus.RUNNING, gameLoop.status);
   }
 
-  @org.junit.jupiter.api.Test
-  public void testStop() {
+  @Test
+  void testStop() {
     gameLoop.stop();
     Assertions.assertEquals(GameStatus.STOPPED, gameLoop.status);
   }
 
-  @org.junit.jupiter.api.Test
-  public void testIsGameRunning() {
-    Assertions.assertFalse(gameLoop.isGameRunning());
+  @Test
+  void testIsGameRunning() {
+    Assert.assertFalse(gameLoop.isGameRunning());
   }
 
 }

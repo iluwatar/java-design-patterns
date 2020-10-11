@@ -25,8 +25,6 @@ package com.iluwatar.combinator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 class FinderTest {
 
   @Test
@@ -35,7 +33,6 @@ class FinderTest {
 
     var result = Finder.contains("second").find(example);
     assertEquals(1, result.size());
-    assertEquals("the second one ", result.get(0));
+    assertEquals( "the second one ", result.get(0));
   }
-
 }

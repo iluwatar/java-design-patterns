@@ -60,7 +60,7 @@ public class MammothTest {
    * value.
    */
   @Test
-  public void testTimePasses() {
+  void testTimePasses() {
     final var mammoth = new Mammoth();
 
     mammoth.observe();
@@ -89,7 +89,7 @@ public class MammothTest {
    * Verify if {@link Mammoth#toString()} gives the expected value
    */
   @Test
-  public void testToString() {
+  void testToString() {
     final var toString = new Mammoth().toString();
     assertNotNull(toString);
     assertEquals("The mammoth", toString);

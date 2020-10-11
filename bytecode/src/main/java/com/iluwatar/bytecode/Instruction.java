@@ -23,9 +23,14 @@
 
 package com.iluwatar.bytecode;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 /**
  * Representation of instructions understandable by virtual machine.
  */
+@AllArgsConstructor
+@Getter
 public enum Instruction {
 
   LITERAL(1),
@@ -40,15 +45,7 @@ public enum Instruction {
   ADD(10),
   DIVIDE(11);
 
-  private final int value;
-
-  Instruction(int value) {
-    this.value = value;
-  }
-
-  public int getIntValue() {
-    return value;
-  }
+  private final int intValue;
 
   /**
    * Converts integer value to Instruction.

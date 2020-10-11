@@ -31,10 +31,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Created by Srdjan on 03-May-17.
  */
-public class UnitTest {
+class UnitTest {
 
   @Test
-  public void testConstGetSet() throws Exception {
+  void testConstGetSet() throws Exception {
     final var name = "testName";
     final var unit = new Unit(name);
     assertEquals(name, unit.getName());

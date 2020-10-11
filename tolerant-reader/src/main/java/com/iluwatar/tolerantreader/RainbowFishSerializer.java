@@ -51,8 +51,8 @@ public final class RainbowFishSerializer {
     var map = Map.of(
         "name", rainbowFish.getName(),
         "age", String.format("%d", rainbowFish.getAge()),
-            LENGTH_METERS, String.format("%d", rainbowFish.getLengthMeters()),
-            WEIGHT_TONS, String.format("%d", rainbowFish.getWeightTons())
+        LENGTH_METERS, String.format("%d", rainbowFish.getLengthMeters()),
+        WEIGHT_TONS, String.format("%d", rainbowFish.getWeightTons())
     );
 
     try (var fileOut = new FileOutputStream(filename);
@@ -68,11 +68,11 @@ public final class RainbowFishSerializer {
     var map = Map.of(
         "name", rainbowFish.getName(),
         "age", String.format("%d", rainbowFish.getAge()),
-            LENGTH_METERS, String.format("%d", rainbowFish.getLengthMeters()),
-            WEIGHT_TONS, String.format("%d", rainbowFish.getWeightTons()),
-        "angry", Boolean.toString(rainbowFish.getAngry()),
-        "hungry", Boolean.toString(rainbowFish.getHungry()),
-        "sleeping", Boolean.toString(rainbowFish.getSleeping())
+        LENGTH_METERS, String.format("%d", rainbowFish.getLengthMeters()),
+        WEIGHT_TONS, String.format("%d", rainbowFish.getWeightTons()),
+        "angry", Boolean.toString(rainbowFish.isAngry()),
+        "hungry", Boolean.toString(rainbowFish.isHungry()),
+        "sleeping", Boolean.toString(rainbowFish.isSleeping())
     );
 
     try (var fileOut = new FileOutputStream(filename);

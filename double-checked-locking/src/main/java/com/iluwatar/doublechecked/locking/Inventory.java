@@ -27,15 +27,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Inventory.
  */
+@Slf4j
 public class Inventory {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Inventory.class);
 
   private final int inventorySize;
   private final List<Item> items;

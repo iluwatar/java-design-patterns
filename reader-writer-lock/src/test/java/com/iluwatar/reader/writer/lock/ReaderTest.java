@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author hongshuwei@gmail.com
  */
-public class ReaderTest {
+class ReaderTest {
 
   private InMemoryAppender appender;
 
@@ -58,7 +58,7 @@ public class ReaderTest {
    * Verify that multiple readers can get the read lock concurrently
    */
   @Test
-  public void testRead() throws Exception {
+  void testRead() throws Exception {
 
     var executeService = Executors.newFixedThreadPool(2);
     var lock = new ReaderWriterLock();

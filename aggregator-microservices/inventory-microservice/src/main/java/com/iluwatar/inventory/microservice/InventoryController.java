@@ -23,8 +23,7 @@
 
 package com.iluwatar.inventory.microservice;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -38,7 +37,7 @@ public class InventoryController {
    *
    * @return product inventory.
    */
-  @RequestMapping(value = "/inventories", method = RequestMethod.GET)
+  @GetMapping("/inventories")
   public int getProductInventories() {
     return 5;
   }

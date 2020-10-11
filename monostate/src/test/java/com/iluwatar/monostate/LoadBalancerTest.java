@@ -43,7 +43,7 @@ import org.junit.jupiter.api.Test;
 public class LoadBalancerTest {
 
   @Test
-  public void testSameStateAmongstAllInstances() {
+  void testSameStateAmongstAllInstances() {
     final var firstBalancer = new LoadBalancer();
     final var secondBalancer = new LoadBalancer();
     firstBalancer.addServer(new Server("localhost", 8085, 6));
@@ -54,7 +54,7 @@ public class LoadBalancerTest {
   }
 
   @Test
-  public void testServe() {
+  void testServe() {
     final var server = mock(Server.class);
     when(server.getHost()).thenReturn("testhost");
     when(server.getPort()).thenReturn(1234);

@@ -24,16 +24,14 @@
 package com.iluwatar.doublebuffer;
 
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Scene class. Render the output frame.
  */
+@Slf4j
 public class Scene {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Scene.class);
 
   private final Buffer[] frameBuffers;
 

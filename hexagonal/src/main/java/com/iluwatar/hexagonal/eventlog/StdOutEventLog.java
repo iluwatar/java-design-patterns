@@ -24,15 +24,13 @@
 package com.iluwatar.hexagonal.eventlog;
 
 import com.iluwatar.hexagonal.domain.PlayerDetails;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Standard output event log.
  */
+@Slf4j
 public class StdOutEventLog implements LotteryEventLog {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(StdOutEventLog.class);
 
   @Override
   public void ticketSubmitted(PlayerDetails details) {

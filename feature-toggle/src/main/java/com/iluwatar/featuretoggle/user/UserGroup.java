@@ -38,7 +38,6 @@ public class UserGroup {
   private static final List<User> freeGroup = new ArrayList<>();
   private static final List<User> paidGroup = new ArrayList<>();
 
-
   /**
    * Add the passed {@link User} to the free user group list.
    *

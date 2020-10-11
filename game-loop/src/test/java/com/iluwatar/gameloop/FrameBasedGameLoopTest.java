@@ -45,8 +45,8 @@ public class FrameBasedGameLoopTest {
     gameLoop = null;
   }
 
-  @org.junit.jupiter.api.Test
-  public void testUpdate() {
+  @Test
+  void testUpdate() {
     gameLoop.update();
     assertEquals(0.5f, gameLoop.controller.getBulletPosition(), 0);
   }

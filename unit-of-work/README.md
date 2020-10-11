@@ -83,8 +83,8 @@ public interface IUnitOfWork<T> {
   void commit();
 }
 
+@Slf4j
 public class StudentRepository implements IUnitOfWork<Student> {
-  private static final Logger LOGGER = LoggerFactory.getLogger(StudentRepository.class);
 
   private final Map<String, List<Student>> context;
   private final StudentDatabase studentDatabase;

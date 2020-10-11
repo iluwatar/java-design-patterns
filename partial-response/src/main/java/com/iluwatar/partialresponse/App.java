@@ -24,8 +24,7 @@
 package com.iluwatar.partialresponse;
 
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Partial response pattern is a design pattern in which client specifies fields to fetch to
@@ -35,8 +34,8 @@ import org.slf4j.LoggerFactory;
  * <p>{@link VideoResource} act as server to serve video information.
  */
 
+@Slf4j
 public class App {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Method as act client and request to server for video details.

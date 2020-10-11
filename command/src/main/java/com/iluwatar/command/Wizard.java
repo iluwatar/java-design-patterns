@@ -25,14 +25,16 @@ package com.iluwatar.command;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Wizard is the invoker of the commands.
  */
+@Slf4j
 public class Wizard {
 
-  private final Deque<Runnable> undoStack = new LinkedList<>();
-  private final Deque<Runnable> redoStack = new LinkedList<>();
+  private final Deque<Command> undoStack = new LinkedList<>();
+  private final Deque<Command> redoStack = new LinkedList<>();
 
   public Wizard() {
   }

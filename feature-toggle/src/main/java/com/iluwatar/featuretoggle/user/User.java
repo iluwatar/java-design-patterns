@@ -23,22 +23,16 @@
 
 package com.iluwatar.featuretoggle.user;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * Used to demonstrate the purpose of the feature toggle. This class actually has nothing to do with
  * the pattern.
  */
+@RequiredArgsConstructor
 public class User {
 
   private final String name;
-
-  /**
-   * Default Constructor setting the username.
-   *
-   * @param name {@link String} to represent the name of the user.
-   */
-  public User(String name) {
-    this.name = name;
-  }
 
   /**
    * {@inheritDoc}

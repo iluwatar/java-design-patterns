@@ -23,27 +23,24 @@
 
 package com.iluwatar.image.microservice;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
-import org.slf4j.Logger;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 /**
  * Exposes the Image microservice's endpoints.
  */
+@Slf4j
 @RestController
 public class ImageController {
-  private static final Logger LOGGER = getLogger(ImageController.class);
 
   /**
    * An endpoint for a user to retrieve an image path.
    *
    * @return An image path
    */
-  @RequestMapping(value = "/image-path", method = RequestMethod.GET)
+  @GetMapping("/image-path")
   public String getImagePath() {
     LOGGER.info("Successfully found image path");
     return "/product-image.png";

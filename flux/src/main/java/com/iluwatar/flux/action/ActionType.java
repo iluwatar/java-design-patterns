@@ -28,6 +28,7 @@ package com.iluwatar.flux.action;
  */
 public enum ActionType {
 
-  MENU_ITEM_SELECTED, CONTENT_CHANGED
+  MENU_ITEM_SELECTED,
+  CONTENT_CHANGED
 
 }

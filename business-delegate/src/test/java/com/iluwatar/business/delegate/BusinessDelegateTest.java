@@ -35,18 +35,16 @@ import static org.mockito.Mockito.verify;
  * tiers. By using the pattern we gain loose coupling between the tiers. The Business Delegate
  * encapsulates knowledge about how to locate, connect to, and interact with the business objects
  * that make up the application.
- * 
+ *
  * <p>Some of the services the Business Delegate uses are instantiated directly, and some can be
  * retrieved through service lookups. The Business Delegate itself may contain business logic too
  * potentially tying together multiple service calls, exception handling, retrying etc.
  */
-public class BusinessDelegateTest {
+class BusinessDelegateTest {
 
   private EjbService ejbService;
 
   private JmsService jmsService;
-
-  private BusinessLookup businessLookup;
 
   private BusinessDelegate businessDelegate;
 
@@ -59,7 +57,7 @@ public class BusinessDelegateTest {
     ejbService = spy(new EjbService());
     jmsService = spy(new JmsService());
 
-    businessLookup = spy(new BusinessLookup());
+    BusinessLookup businessLookup = spy(new BusinessLookup());
     businessLookup.setEjbService(ejbService);
     businessLookup.setJmsService(jmsService);
 
@@ -73,7 +71,7 @@ public class BusinessDelegateTest {
    * service and makes the service call.
    */
   @Test
-  public void testBusinessDelegate() {
+  void testBusinessDelegate() {
 
     // setup a client object
     var client = new Client(businessDelegate);

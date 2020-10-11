@@ -37,17 +37,17 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class AdvancedWizardTest {
+class AdvancedWizardTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(Tobacco.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -56,7 +56,7 @@ public class AdvancedWizardTest {
    * through the constructor parameter
    */
   @Test
-  public void testSmokeEveryThing() throws Exception {
+  void testSmokeEveryThing() throws Exception {
 
     List<Tobacco> tobaccos = List.of(
         new OldTobyTobacco(),

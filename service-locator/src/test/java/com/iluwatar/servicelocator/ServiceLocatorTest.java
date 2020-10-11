@@ -37,13 +37,13 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class ServiceLocatorTest {
+class ServiceLocatorTest {
 
   /**
    * Verify if we just receive 'null' when requesting a non-existing service
    */
   @Test
-  public void testGetNonExistentService() {
+  void testGetNonExistentService() {
     assertNull(ServiceLocator.getService("fantastic/unicorn/service"));
     assertNull(ServiceLocator.getService("another/fantastic/unicorn/service"));
   }
@@ -52,7 +52,7 @@ public class ServiceLocatorTest {
    * Verify if we get the same cached instance when requesting the same service twice
    */
   @Test
-  public void testServiceCache() {
+  void testServiceCache() {
     final var serviceNames = List.of("jndi/serviceA", "jndi/serviceB");
 
     for (final var serviceName : serviceNames) {

@@ -55,7 +55,7 @@ public abstract class UnitTest<U extends Unit> {
   }
 
   @Test
-  public void testAccept() {
+  void testAccept() {
     final var children = new Unit[5];
     Arrays.setAll(children, (i) -> mock(Unit.class));
 

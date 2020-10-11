@@ -23,17 +23,17 @@
 
 package com.iluwatar.information.microservice;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Information Rest Controller
  */
-public class InformationControllerTest {
+class InformationControllerTest {
 
   @Test
-  public void shouldGetProductTitle() {
+  void shouldGetProductTitle() {
     var infoController = new InformationController();
     var title = infoController.getProductTitle();
     assertEquals("The Product Title.", title);

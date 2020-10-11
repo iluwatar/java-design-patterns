@@ -24,8 +24,7 @@
 package com.iluwatar.memento;
 
 import java.util.Stack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Memento pattern is a software design pattern that provides the ability to restore an object
@@ -44,9 +43,8 @@ import org.slf4j.LoggerFactory;
  * contains the state of the object. Later on the memento can be set back to the object restoring
  * the state.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

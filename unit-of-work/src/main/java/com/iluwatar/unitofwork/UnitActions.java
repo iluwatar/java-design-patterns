@@ -23,18 +23,15 @@
 
 package com.iluwatar.unitofwork;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum UnitActions {
   INSERT("INSERT"),
   DELETE("DELETE"),
   MODIFY("MODIFY");
 
   private final String actionValue;
-
-  UnitActions(String actionValue) {
-    this.actionValue = actionValue;
-  }
-
-  public String getActionValue() {
-    return actionValue;
-  }
 }

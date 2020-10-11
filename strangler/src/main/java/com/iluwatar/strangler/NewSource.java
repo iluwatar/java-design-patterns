@@ -24,16 +24,15 @@
 package com.iluwatar.strangler;
 
 import java.util.Arrays;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * New source. Completely covers functionalities of old source with new techniques
  * and also has some new features.
  */
+@Slf4j
 public class NewSource {
-  private static final Logger LOGGER = LoggerFactory.getLogger(NewSource.class);
-  private static final  String VERSION = "2.0";
+  private static final String VERSION = "2.0";
   public static final String SOURCE_MODULE = "Source module {}";
 
   public int accumulateSum(int... nums) {

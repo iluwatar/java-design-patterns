@@ -40,7 +40,7 @@ public class ConsumerTest {
   private static final int ITEM_COUNT = 5;
 
   @Test
-  public void testConsume() throws Exception {
+  void testConsume() throws Exception {
     final var queue = spy(new ItemQueue());
     for (var id = 0; id < ITEM_COUNT; id++) {
       queue.put(new Item("producer", id));

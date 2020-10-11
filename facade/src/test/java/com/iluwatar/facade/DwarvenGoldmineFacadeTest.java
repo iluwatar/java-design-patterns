@@ -41,17 +41,17 @@ import org.slf4j.LoggerFactory;
  *
  * @author Jeroen Meulemeester
  */
-public class DwarvenGoldmineFacadeTest {
+class DwarvenGoldmineFacadeTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -63,7 +63,7 @@ public class DwarvenGoldmineFacadeTest {
    * See if the workers are doing what's expected from them on each step.
    */
   @Test
-  public void testFullWorkDay() {
+  void testFullWorkDay() {
     final var goldMine = new DwarvenGoldmineFacade();
     goldMine.startNewDay();
 
@@ -108,7 +108,7 @@ public class DwarvenGoldmineFacadeTest {
     assertEquals(15, appender.getLogSize());
   }
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
     private final List<ILoggingEvent> log = new LinkedList<>();
 

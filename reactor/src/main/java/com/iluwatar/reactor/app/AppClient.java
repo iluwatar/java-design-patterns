@@ -35,16 +35,14 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Represents the clients of Reactor pattern. Multiple clients are run concurrently and send logging
  * requests to Reactor.
  */
+@Slf4j
 public class AppClient {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AppClient.class);
 
   private final ExecutorService service = Executors.newFixedThreadPool(4);
 

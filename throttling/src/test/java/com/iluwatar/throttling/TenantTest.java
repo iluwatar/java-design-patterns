@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 public class TenantTest {
 
   @Test
-  public void constructorTest() {
+  void constructorTest() {
     assertThrows(InvalidParameterException.class, () -> {
       new Tenant("FailTenant", -1, new CallsCount());
     });

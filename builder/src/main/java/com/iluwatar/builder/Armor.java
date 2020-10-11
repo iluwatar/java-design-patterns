@@ -23,18 +23,20 @@
 
 package com.iluwatar.builder;
 
+import lombok.AllArgsConstructor;
+
 /**
  * Armor enumeration.
  */
+@AllArgsConstructor
 public enum Armor {
 
-  CLOTHES("clothes"), LEATHER("leather"), CHAIN_MAIL("chain mail"), PLATE_MAIL("plate mail");
+  CLOTHES("clothes"),
+  LEATHER("leather"),
+  CHAIN_MAIL("chain mail"),
+  PLATE_MAIL("plate mail");
 
   private final String title;
-
-  Armor(String title) {
-    this.title = title;
-  }
 
   @Override
   public String toString() {
