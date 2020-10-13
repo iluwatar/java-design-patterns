@@ -1,14 +1,14 @@
 
-Pull request title
+Pull request title:
 
-- Clearly and concisely describes what it does
+- Clearly and concisely describe what it does
 - Refer to the issue that it solves, if available
 
 
-Pull request description
+Pull request description:
 
-- Describes the main changes that come with the pull request
-- Any relevant additional information is provided
+- Describe the main changes that come with the pull request
+- Ensure that any relevant additional information is provided
 
 
 
