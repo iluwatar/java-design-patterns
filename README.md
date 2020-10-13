@@ -29,7 +29,7 @@ are familiar with the patterns.
 
 This site showcases Java Design Patterns. The solutions have been developed by
 experienced programmers and architects from the open source community. The 
-patterns can be browsed by their high level descriptions or by looking at their
+patterns can be browsed by their high level descriptions, or by looking at their
 source code. The source code examples are well commented and can be thought as
 programming tutorials how to implement a specific pattern. We use the most
 popular battle-proven open source Java technologies.
@@ -42,20 +42,19 @@ and Do The Simplest Thing That Could Possibly Work principles. Complexity and
 patterns should only be introduced when they are needed for practical
 extensibility.
 
-Once you are familiar with these concepts you can start drilling down into the
+Once you are familiar with these concepts, you can start drilling down into the
 [available design patterns](https://java-design-patterns.com/patterns/) by any 
-of the following approaches
-
+of the following approaches:
  - Search for a specific pattern by name. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
  - Using tags such as `Performance`, `Gang of Four` or `Data access`.
  - Using pattern categories, `Creational`, `Behavioral`, and others.
 
-Hopefully you find the object oriented solutions presented on this site useful
+Hopefully, you will find the object oriented solutions presented on this site useful
 in your architectures and have as much fun learning them as we had developing them.
 
 # How to contribute
 
-If you are willing to contribute to the project you will find the relevant information in 
+If you are willing to contribute to the project, you will find the relevant information in 
 our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help 
 you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
