@@ -42,21 +42,4 @@ public class Goblin extends Target {
   public String toString() {
     return "Goblin";
   }
-
-  /**
-   * changeSize.
-   */
-  public void changeSize() {
-    var oldSize = getSize() == Size.NORMAL ? Size.SMALL : Size.NORMAL;
-    setSize(oldSize);
-  }
-
-  /**
-   * changeVisibility.
-   */
-  public void changeVisibility() {
-    var visible = getVisibility() == Visibility.INVISIBLE
-            ? Visibility.VISIBLE : Visibility.INVISIBLE;
-    setVisibility(visible);
-  }
 }
