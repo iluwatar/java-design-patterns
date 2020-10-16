@@ -13,11 +13,11 @@ public class Product {
   /**
    * Constructor.
    *
-   * @param id
-   * @param name
-   * @param price
-   * @param cost
-   * @param supplier
+   * @param id       product id
+   * @param name     product name
+   * @param price    product price
+   * @param cost     product cost
+   * @param supplier product supplier
    */
   public Product(Long id, String name, Double price, Double cost, String supplier) {
     this.id = id;
