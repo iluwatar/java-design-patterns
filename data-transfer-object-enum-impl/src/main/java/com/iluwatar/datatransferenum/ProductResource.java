@@ -62,7 +62,7 @@ public class ProductResource {
   }
 
   /**
-   * List of all products in an entity representation
+   * List of all products in an entity representation.
    *
    * @return : all the products entity that stored in the products list
    */
