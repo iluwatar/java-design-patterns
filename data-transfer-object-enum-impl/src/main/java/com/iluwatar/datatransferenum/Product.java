@@ -10,6 +10,29 @@ public class Product {
   private Double cost;
   private String supplier;
 
+  /**
+   * Constructor.
+   *
+   * @param id
+   * @param name
+   * @param price
+   * @param cost
+   * @param supplier
+   */
+  public Product(Long id, String name, Double price, Double cost, String supplier) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.cost = cost;
+    this.supplier = supplier;
+  }
+
+  /**
+   * Constructor.
+   */
+  public Product() {
+  }
+
   public Long getId() {
     return id;
   }

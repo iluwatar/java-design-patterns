@@ -16,7 +16,7 @@ public class ProductResource {
    *
    * @param products initialize resource with existing products. Act as database.
    */
-  public ProductResource(List<Product> products) {
+  public ProductResource(final List<Product> products) {
     this.products = products;
   }
 
@@ -61,6 +61,11 @@ public class ProductResource {
         .setCost(createProductDto.getCost()));
   }
 
+  /**
+   * List of all products in an entity representation
+   *
+   * @return : all the products entity that stored in the products list
+   */
   public List<Product> getProducts() {
     return products;
   }

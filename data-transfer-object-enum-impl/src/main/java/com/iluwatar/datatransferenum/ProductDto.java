@@ -8,10 +8,10 @@ package com.iluwatar.datatransferenum;
  * <p>Dto will not have any business logic in it.
  */
 public enum ProductDto {
-  NONE;
+  ;
 
   public enum Request {
-    NONE;
+    ;
 
     public static class Create implements Name, Price, Cost, Supplier {
       private String name;
