@@ -1,16 +1,17 @@
 package com.iluwatar.datatransferenum;
 
 /**
- * {@link ProductDto} is a data transfer object POJO. Instead of sending individual information to
+ * {@link ProductDto} is a data transfer object POJO.
+ * Instead of sending individual information to
  * client We can send related information together in POJO.
  *
  * <p>Dto will not have any business logic in it.
  */
 public enum ProductDto {
-  ;
+  NONE;
 
   public enum Request {
-    ;
+    NONE;
 
     public static class Create implements Name, Price, Cost, Supplier {
       private String name;
@@ -61,7 +62,7 @@ public enum ProductDto {
   }
 
   public enum Response {
-    ;
+    NONE;
 
     public static class Public implements Id, Name, Price {
       private Long id;
