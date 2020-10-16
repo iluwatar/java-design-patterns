@@ -6,7 +6,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * The Data Transfer Object pattern is a design pattern in which an data transfer object is used to
  * serve related information together to avoid multiple call for each piece of information.

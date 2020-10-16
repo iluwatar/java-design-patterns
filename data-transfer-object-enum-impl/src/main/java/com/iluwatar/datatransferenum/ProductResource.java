@@ -1,6 +1,5 @@
 package com.iluwatar.datatransferenum;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 
