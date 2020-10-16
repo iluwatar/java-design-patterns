@@ -62,7 +62,7 @@ public enum ProductDto {
   }
 
   public enum Response {
-    NONE;
+    ;
 
     public static class Public implements Id, Name, Price {
       private Long id;
@@ -214,6 +214,8 @@ public enum ProductDto {
      * The amount that it costs us to purchase this product
      * For the amount we sell a product for, see the {@link Price Price} parameter.
      * <b>This data is confidential</b>
+     *
+     * @return : cost of the product.
      */
     Double getCost();
   }

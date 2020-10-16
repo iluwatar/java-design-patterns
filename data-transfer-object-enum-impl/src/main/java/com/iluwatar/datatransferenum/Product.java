@@ -1,7 +1,7 @@
 package com.iluwatar.datatransferenum;
 
 /**
- * The entity class for product entity. This class act as entity in the demo.
+ * {@link Product} is a entity class for product entity. This class act as entity in the demo.
  */
 public class Product {
   private Long id;
