@@ -184,6 +184,8 @@ public enum ProductDto {
   private interface Id {
     /**
      * Unique identifier of the product.
+     *
+     * @return : id of the product.
      */
     Long getId();
   }
@@ -191,6 +193,8 @@ public enum ProductDto {
   private interface Name {
     /**
      * The name of the product.
+     *
+     * @return : name of the product.
      */
     String getName();
   }
@@ -199,6 +203,8 @@ public enum ProductDto {
     /**
      * The amount we sell a product for.
      * <b>This data is not confidential</b>
+     *
+     * @return : price of the product.
      */
     Double getPrice();
   }
@@ -216,6 +222,8 @@ public enum ProductDto {
     /**
      * The name of supplier of the product or its manufacturer.
      * <b>This data is highly confidential</b>
+     *
+     * @return : supplier of the product.
      */
     String getSupplier();
   }
