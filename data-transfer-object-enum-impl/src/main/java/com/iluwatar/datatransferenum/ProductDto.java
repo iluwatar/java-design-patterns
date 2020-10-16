@@ -10,9 +10,16 @@ package com.iluwatar.datatransferenum;
 public enum ProductDto {
   ;
 
+  /**
+   * This is Request class which consist of Create or any other request DTO's
+   * you might want to use in your API.
+   */
   public enum Request {
     ;
 
+    /**
+     * This is Create dto class for requesting create new product.
+     */
     public static final class Create implements Name, Price, Cost, Supplier {
       private String name;
       private Double price;
@@ -61,9 +68,16 @@ public enum ProductDto {
     }
   }
 
+  /**
+   * This is Response class which consist of any response DTO's
+   * you might want to provide to your clients.
+   */
   public enum Response {
     ;
 
+    /**
+     * This is Public dto class for API response with the lowest data security.
+     */
     public static final class Public implements Id, Name, Price {
       private Long id;
       private String name;
@@ -113,6 +127,9 @@ public enum ProductDto {
       }
     }
 
+    /**
+     * This is Private dto class for API response with the highest data security.
+     */
     public static final class Private implements Id, Name, Price, Cost {
       private Long id;
       private String name;
