@@ -3,7 +3,7 @@ package com.iluwatar.datatransferenum;
 /**
  * {@link Product} is a entity class for product entity. This class act as entity in the demo.
  */
-public class Product {
+public final class Product {
   private Long id;
   private String name;
   private Double price;

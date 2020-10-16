@@ -13,7 +13,7 @@ public enum ProductDto {
   public enum Request {
     ;
 
-    public static class Create implements Name, Price, Cost, Supplier {
+    public static final class Create implements Name, Price, Cost, Supplier {
       private String name;
       private Double price;
       private Double cost;
@@ -64,7 +64,7 @@ public enum ProductDto {
   public enum Response {
     ;
 
-    public static class Public implements Id, Name, Price {
+    public static final class Public implements Id, Name, Price {
       private Long id;
       private String name;
       private Double price;
@@ -113,7 +113,7 @@ public enum ProductDto {
       }
     }
 
-    public static class Private implements Id, Name, Price, Cost {
+    public static final class Private implements Id, Name, Price, Cost {
       private Long id;
       private String name;
       private Double price;
@@ -181,6 +181,9 @@ public enum ProductDto {
     }
   }
 
+  /**
+   * Use this interface whenever you want to provide the product Id in your DTO.
+   */
   private interface Id {
     /**
      * Unique identifier of the product.
@@ -190,6 +193,9 @@ public enum ProductDto {
     Long getId();
   }
 
+  /**
+   * Use this interface whenever you want to provide the product Name in your DTO.
+   */
   private interface Name {
     /**
      * The name of the product.
@@ -199,6 +205,9 @@ public enum ProductDto {
     String getName();
   }
 
+  /**
+   * Use this interface whenever you want to provide the product Price in your DTO.
+   */
   private interface Price {
     /**
      * The amount we sell a product for.
@@ -209,6 +218,9 @@ public enum ProductDto {
     Double getPrice();
   }
 
+  /**
+   * Use this interface whenever you want to provide the product Cost in your DTO.
+   */
   private interface Cost {
     /**
      * The amount that it costs us to purchase this product
@@ -220,6 +232,9 @@ public enum ProductDto {
     Double getCost();
   }
 
+  /**
+   * Use this interface whenever you want to provide the product Supplier in your DTO.
+   */
   private interface Supplier {
     /**
      * The name of supplier of the product or its manufacturer.
