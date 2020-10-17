@@ -40,8 +40,8 @@ Let's first introduce the dragon slaying strategy interface and its implementati
 ```java
 @FunctionalInterface
 public interface DragonSlayingStrategy {
-
-  void execute();
+	
+  String execute(Integer n);
 }
 
 public class MeleeStrategy implements DragonSlayingStrategy {
@@ -49,8 +49,8 @@ public class MeleeStrategy implements DragonSlayingStrategy {
   private static final Logger LOGGER = LoggerFactory.getLogger(MeleeStrategy.class);
 
   @Override
-  public void execute() {
-    LOGGER.info("With your Excalibur you sever the dragon's head!");
+  public String execute(Integer n) {
+    return "MeleeStrategy: With your Excalibur you cut dragon's leg "+n+" times!";
   }
 }
 
@@ -59,8 +59,8 @@ public class ProjectileStrategy implements DragonSlayingStrategy {
   private static final Logger LOGGER = LoggerFactory.getLogger(ProjectileStrategy.class);
 
   @Override
-  public void execute() {
-    LOGGER.info("You shoot the dragon with the magical crossbow and it falls dead on the ground!");
+  public String execute(Integer n) {
+    return "ProjectileStrategy: You shoot "+n+" arrows to the dragon's wings with your crossbow!";
   }
 }
 
@@ -69,8 +69,8 @@ public class SpellStrategy implements DragonSlayingStrategy {
   private static final Logger LOGGER = LoggerFactory.getLogger(SpellStrategy.class);
 
   @Override
-  public void execute() {
-    LOGGER.info("You cast the spell of disintegration and the dragon vaporizes in a pile of dust!");
+  public String execute(Integer n) {
+    return "SpellStrategy: You spend "+n+" seconds casting the explosion spell you kill the dragon!";
   }
 }
 ```
@@ -91,8 +91,8 @@ public class DragonSlayer {
     this.strategy = strategy;
   }
 
-  public void goToBattle() {
-    strategy.execute();
+  public String goToBattle(Integer n) {
+    return strategy.execute(n);
   }
 }
 ```
@@ -102,24 +102,45 @@ Finally here's the dragonslayer in action.
 ```java
     LOGGER.info("Green dragon spotted ahead!");
     var dragonSlayer = new DragonSlayer(new MeleeStrategy());
-    dragonSlayer.goToBattle();
+    LOGGER.info(dragonSlayer.goToBattle(3));
     LOGGER.info("Red dragon emerges.");
     dragonSlayer.changeStrategy(new ProjectileStrategy());
-    dragonSlayer.goToBattle();
+    LOGGER.info(dragonSlayer.goToBattle(2));
     LOGGER.info("Black dragon lands before you.");
     dragonSlayer.changeStrategy(new SpellStrategy());
-    dragonSlayer.goToBattle();
+    LOGGER.info(dragonSlayer.goToBattle(5));
 ```
 
 Program output:
 
 ```
     Green dragon spotted ahead!
-    With your Excalibur you sever the dragon's head!
+    With your Excalibur you cut dragon's leg 3 times!
     Red dragon emerges.
-    You shoot the dragon with the magical crossbow and it falls dead on the ground!
+    ProjectileStrategy: You shoot 2 arrows to the dragon's wings with your crossbow!
     Black dragon lands before you.
-    You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
+    You spend 5 seconds casting the explosion spell you kill the dragon!
+```
+
+We can achieve the same with less code with Java 8 using Lambda Functions instead of creating classes that implements the interface. In this case we would have the following code inside App.js:
+
+```java
+    LOGGER.info("************ Java 8 Strategy pattern ************");
+    LOGGER.info("Elder dragon spotted ahead!");
+    dragonSlayer = new DragonSlayer((n) -> {
+    	return "With your Excalibur you cut dragon's leg "+n+" times!";
+    });
+    LOGGER.info(dragonSlayer.goToBattle(2));
+    LOGGER.info("Elder dragon emerges.");
+    dragonSlayer.changeStrategy((n) -> {
+    	return "You shoot the dragon's wings with your crossbow "+n+" times!";
+    });
+    LOGGER.info(dragonSlayer.goToBattle(5));
+    LOGGER.info("Elder dragon falls near you throwing flames and you fall back!");
+    dragonSlayer.changeStrategy((n) -> {
+    	return "You spend "+n+" seconds casting the explosion spell you kill the dragon!";
+    });
+    LOGGER.info(dragonSlayer.goToBattle(11));
 ```
 
 ## Class diagram

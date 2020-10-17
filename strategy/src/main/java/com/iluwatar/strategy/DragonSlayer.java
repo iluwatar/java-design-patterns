@@ -38,7 +38,7 @@ public class DragonSlayer {
     this.strategy = strategy;
   }
 
-  public void goToBattle() {
-    strategy.execute();
+  public String goToBattle(Integer n) {
+    return strategy.execute(n);
   }
 }

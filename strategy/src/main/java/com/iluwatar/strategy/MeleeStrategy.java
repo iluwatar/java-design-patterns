@@ -34,7 +34,7 @@ public class MeleeStrategy implements DragonSlayingStrategy {
   private static final Logger LOGGER = LoggerFactory.getLogger(MeleeStrategy.class);
 
   @Override
-  public void execute() {
-    LOGGER.info("With your Excalibur you sever the dragon's head!");
+  public String execute(Integer n) {
+    return "MeleeStrategy: With your Excalibur you cut dragon's leg "+n+" times!";
   }
 }

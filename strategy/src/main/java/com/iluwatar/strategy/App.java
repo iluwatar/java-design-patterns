@@ -52,26 +52,29 @@ public class App {
     // GoF Strategy pattern
     LOGGER.info("Green dragon spotted ahead!");
     var dragonSlayer = new DragonSlayer(new MeleeStrategy());
-    dragonSlayer.goToBattle();
+    LOGGER.info(dragonSlayer.goToBattle(3));
     LOGGER.info("Red dragon emerges.");
     dragonSlayer.changeStrategy(new ProjectileStrategy());
-    dragonSlayer.goToBattle();
+    LOGGER.info(dragonSlayer.goToBattle(2));
     LOGGER.info("Black dragon lands before you.");
     dragonSlayer.changeStrategy(new SpellStrategy());
-    dragonSlayer.goToBattle();
+    LOGGER.info(dragonSlayer.goToBattle(5));
 
-    // Java 8 Strategy pattern
-    LOGGER.info("Green dragon spotted ahead!");
-    dragonSlayer = new DragonSlayer(
-        () -> LOGGER.info("With your Excalibur you severe the dragon's head!"));
-    dragonSlayer.goToBattle();
-    LOGGER.info("Red dragon emerges.");
-    dragonSlayer.changeStrategy(() -> LOGGER.info(
-        "You shoot the dragon with the magical crossbow and it falls dead on the ground!"));
-    dragonSlayer.goToBattle();
-    LOGGER.info("Black dragon lands before you.");
-    dragonSlayer.changeStrategy(() -> LOGGER.info(
-        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
-    dragonSlayer.goToBattle();
+    LOGGER.info("************ Java 8 Strategy pattern ************");
+    LOGGER.info("Elder dragon spotted ahead!");
+    dragonSlayer = new DragonSlayer((n) -> {
+    	return "With your Excalibur you cut dragon's leg "+n+" times!";
+    });
+    LOGGER.info(dragonSlayer.goToBattle(2));
+    LOGGER.info("Elder dragon emerges.");
+    dragonSlayer.changeStrategy((n) -> {
+    	return "You shoot the dragon's wings with your crossbow "+n+" times!";
+    });
+    LOGGER.info(dragonSlayer.goToBattle(5));
+    LOGGER.info("Elder dragon falls near you throwing flames and you fall back!");
+    dragonSlayer.changeStrategy((n) -> {
+    	return "You spend "+n+" seconds casting the explosion spell you kill the dragon!";
+    });
+    LOGGER.info(dragonSlayer.goToBattle(11));
   }
 }

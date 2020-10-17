@@ -34,8 +34,8 @@ public class SpellStrategy implements DragonSlayingStrategy {
   private static final Logger LOGGER = LoggerFactory.getLogger(SpellStrategy.class);
 
   @Override
-  public void execute() {
-    LOGGER.info("You cast the spell of disintegration and the dragon vaporizes in a pile of dust!");
+  public String execute(Integer n) {
+    return "SpellStrategy: You spend "+n+" seconds casting the explosion spell you kill the dragon!";
   }
 
 }
