@@ -9,6 +9,10 @@ tags:
  - Performance
 ---
 
+## Also known as
+
+Resource Pool
+
 ## Intent
 
 When objects are expensive to create and they are needed only for short periods of time it is 
