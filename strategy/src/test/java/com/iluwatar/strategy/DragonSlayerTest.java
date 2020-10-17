@@ -44,8 +44,8 @@ public class DragonSlayerTest {
     final var strategy = mock(DragonSlayingStrategy.class);
     final var dragonSlayer = new DragonSlayer(strategy);
 
-    dragonSlayer.goToBattle();
-    verify(strategy).execute();
+    dragonSlayer.goToBattle(3);
+    verify(strategy).execute(3);
     verifyNoMoreInteractions(strategy);
   }
 
@@ -57,14 +57,14 @@ public class DragonSlayerTest {
     final var initialStrategy = mock(DragonSlayingStrategy.class);
     final var dragonSlayer = new DragonSlayer(initialStrategy);
 
-    dragonSlayer.goToBattle();
-    verify(initialStrategy).execute();
+    dragonSlayer.goToBattle(3);
+    verify(initialStrategy).execute(3);
 
     final var newStrategy = mock(DragonSlayingStrategy.class);
     dragonSlayer.changeStrategy(newStrategy);
 
-    dragonSlayer.goToBattle();
-    verify(newStrategy).execute();
+    dragonSlayer.goToBattle(3);
+    verify(newStrategy).execute(3);
 
     verifyNoMoreInteractions(initialStrategy, newStrategy);
   }

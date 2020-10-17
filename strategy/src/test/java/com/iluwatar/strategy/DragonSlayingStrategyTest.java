@@ -53,15 +53,15 @@ public class DragonSlayingStrategyTest {
     return List.of(
         new Object[]{
             new MeleeStrategy(),
-            "With your Excalibur you sever the dragon's head!"
+            "MeleeStrategy: With your Excalibur you cut dragon's leg 3 times!"
         },
         new Object[]{
             new ProjectileStrategy(),
-            "You shoot the dragon with the magical crossbow and it falls dead on the ground!"
+            "ProjectileStrategy: You shoot 3 arrows to the dragon's wings with your crossbow!"
         },
         new Object[]{
             new SpellStrategy(),
-            "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"
+            "SpellStrategy: You spend 3 seconds casting the explosion spell you kill the dragon!"
         }
     );
   }
@@ -85,7 +85,7 @@ public class DragonSlayingStrategyTest {
   @ParameterizedTest
   @MethodSource("dataProvider")
   public void testExecute(DragonSlayingStrategy strategy, String expectedResult) {
-    strategy.execute();
+    strategy.execute(3);
     assertEquals(expectedResult, appender.getLastMessage());
     assertEquals(1, appender.getLogSize());
   }
