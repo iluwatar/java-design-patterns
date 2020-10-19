@@ -82,7 +82,7 @@ public interface Trampoline<T> {
    * @return Trampoline with more work
    */
   static <T> Trampoline<T> more(final Trampoline<Trampoline<T>> trampoline) {
-    return new Trampoline<>() {
+    return new Trampoline<T>() {
       @Override
       public boolean complete() {
         return false;
@@ -98,12 +98,12 @@ public interface Trampoline<T> {
         return trampoline(this);
       }
 
-      T trampoline(final Trampoline<T> trampoline) {
+      private T trampoline(final Trampoline<T> trampoline) {
         return Stream.iterate(trampoline, Trampoline::jump)
             .filter(Trampoline::complete)
             .findFirst()
             .map(Trampoline::result)
-            .orElseThrow();
+            .get();
       }
     };
   }

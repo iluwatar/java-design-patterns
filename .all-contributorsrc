@@ -1213,6 +1213,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ChFlick",
+      "name": "Christoph Flick",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4465376?v=4",
+      "profile": "http://christophflick.de",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 4,
