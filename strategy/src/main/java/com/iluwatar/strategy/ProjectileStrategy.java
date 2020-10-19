@@ -23,15 +23,15 @@
 
 package com.iluwatar.strategy;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 /**
  * Projectile strategy.
  */
 public class ProjectileStrategy implements DragonSlayingStrategy {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ProjectileStrategy.class);
+  //private static final Logger LOGGER = LoggerFactory.getLogger(ProjectileStrategy.class);
 
   @Override
   public String execute(Integer n) {
