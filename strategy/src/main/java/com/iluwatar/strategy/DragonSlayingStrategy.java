@@ -28,7 +28,7 @@ package com.iluwatar.strategy;
  */
 @FunctionalInterface
 public interface DragonSlayingStrategy {
-	
+  
   String execute(Integer n);
   
 }

@@ -23,18 +23,14 @@
 
 package com.iluwatar.strategy;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-
 /**
  * Projectile strategy.
  */
 public class ProjectileStrategy implements DragonSlayingStrategy {
 
-  //private static final Logger LOGGER = LoggerFactory.getLogger(ProjectileStrategy.class);
-
   @Override
   public String execute(Integer n) {
-    return "ProjectileStrategy: You shoot "+n+" arrows to the dragon's wings with your crossbow!";
+    return "ProjectileStrategy: You shoot " 
+      + n + " arrows to the dragon's wings with your crossbow!";
   }
 }

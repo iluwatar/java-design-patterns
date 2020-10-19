@@ -23,18 +23,13 @@
 
 package com.iluwatar.strategy;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-
 /**
  * Melee strategy.
  */
 public class MeleeStrategy implements DragonSlayingStrategy {
 
-  //private static final Logger LOGGER = LoggerFactory.getLogger(MeleeStrategy.class);
-
   @Override
   public String execute(Integer n) {
-    return "MeleeStrategy: With your Excalibur you cut dragon's leg "+n+" times!";
+    return "MeleeStrategy: With your Excalibur you cut dragon's leg " + n + " times!";
   }
 }

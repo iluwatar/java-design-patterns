@@ -63,17 +63,17 @@ public class App {
     LOGGER.info("************ Java 8 Strategy pattern ************");
     LOGGER.info("Elder dragon spotted ahead!");
     dragonSlayer = new DragonSlayer((n) -> {
-    	return "With your Excalibur you cut dragon's leg "+n+" times!";
+      return "With your Excalibur you cut dragon's leg " + n + " times!"; 
     });
     LOGGER.info(dragonSlayer.goToBattle(2));
     LOGGER.info("Elder dragon emerges.");
     dragonSlayer.changeStrategy((n) -> {
-    	return "You shoot the dragon's wings with your crossbow "+n+" times!";
+      return "You shoot the dragon's wings with your crossbow " + n + " times!";
     });
     LOGGER.info(dragonSlayer.goToBattle(5));
     LOGGER.info("Elder dragon falls near you throwing flames and you fall back!");
     dragonSlayer.changeStrategy((n) -> {
-    	return "You spend "+n+" seconds casting the explosion spell you kill the dragon!";
+      return "You spend " + n + " seconds casting the explosion spell you kill the dragon!";
     });
     LOGGER.info(dragonSlayer.goToBattle(11));
   }
