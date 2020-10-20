@@ -102,12 +102,12 @@ public class DragonSlayingStrategyTest {
       log.add(eventObject);
     }
 
-    public int getLogSize() {
-      return log.size();
-    }
+    //public int getLogSize() {
+    //  return log.size();
+    //}
 
-//    public String getLastMessage() {
-//      return log.get(log.size() - 1).getFormattedMessage();
-//    }
+    //public String getLastMessage() {
+    //  return log.get(log.size() - 1).getFormattedMessage();
+    //}
   }
 }
