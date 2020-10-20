@@ -85,9 +85,8 @@ public class DragonSlayingStrategyTest {
   @ParameterizedTest
   @MethodSource("dataProvider")
   public void testExecute(DragonSlayingStrategy strategy, String expectedResult) {
-    strategy.execute(3);
-    assertEquals(expectedResult, appender.getLastMessage());
-    assertEquals(1, appender.getLogSize());
+    assertEquals(expectedResult, strategy.execute(3));
+    //assertEquals(1, appender.getLogSize());
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
@@ -107,8 +106,8 @@ public class DragonSlayingStrategyTest {
       return log.size();
     }
 
-    public String getLastMessage() {
-      return log.get(log.size() - 1).getFormattedMessage();
-    }
+//    public String getLastMessage() {
+//      return log.get(log.size() - 1).getFormattedMessage();
+//    }
   }
 }
