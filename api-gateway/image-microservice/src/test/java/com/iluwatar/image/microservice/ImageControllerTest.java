@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
  */
 public class ImageControllerTest {
   @Test
-  public void testGetImagePath() {
+  void testGetImagePath() {
     var imageController = new ImageController();
     var imagePath = imageController.getImagePath();
     assertEquals("/product-image.png", imagePath);

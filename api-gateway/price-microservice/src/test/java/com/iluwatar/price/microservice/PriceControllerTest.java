@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
  */
 public class PriceControllerTest {
   @Test
-  public void testgetPrice() {
+  void testgetPrice() {
     var priceController = new PriceController();
     var price = priceController.getPrice();
     assertEquals("20", price);

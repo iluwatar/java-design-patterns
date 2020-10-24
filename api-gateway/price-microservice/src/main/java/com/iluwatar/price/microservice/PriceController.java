@@ -26,6 +26,7 @@ package com.iluwatar.price.microservice;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.slf4j.Logger;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +44,7 @@ public class PriceController {
    *
    * @return A product's price
    */
-  @RequestMapping(value = "/price", method = RequestMethod.GET)
+  @GetMapping(value = "/price")
   public String getPrice() {
     LOGGER.info("Successfully found price info");
     return "20";

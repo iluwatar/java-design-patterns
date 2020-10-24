@@ -23,12 +23,11 @@
 
 package com.iluwatar.image.microservice;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
 import org.slf4j.Logger;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 
 /**
@@ -43,7 +42,7 @@ public class ImageController {
    *
    * @return An image path
    */
-  @RequestMapping(value = "/image-path", method = RequestMethod.GET)
+  @GetMapping(value = "/image-path")
   public String getImagePath() {
     LOGGER.info("Successfully found image path");
     return "/product-image.png";
