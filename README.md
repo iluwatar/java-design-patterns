@@ -64,7 +64,7 @@ you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwata
 This project is licensed under the terms of the MIT license.
 
 # Contributors
-
+The website should be made a bit more attractive. Headings should be designed properly & something more should be added like any article displaying discount or any exciting offers about the programming books. 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
