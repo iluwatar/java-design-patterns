@@ -631,7 +631,7 @@ public class Commander {
       }
     }
     if (queueItems == 0) {
-      LOG.trace("Queue is empty, returning..");
+      LOG.trace("Queue is empty, returning...");
     } else {
       Thread.sleep(queueTaskTime / 3);
       tryDoingTasksInQueue();
