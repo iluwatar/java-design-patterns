@@ -34,14 +34,14 @@ public class Candy {
     REWARD_FRUIT
   }
 
-  String name;
+  String nameOfInstance;
   Candy parent;
   String parentName;
   private int points;
   private final Type type;
 
-  Candy(String name, String parentName, Type type, int points) {
-    this.name = name;
+  Candy(String nameOfInstance, String parentName, Type type, int points) {
+    this.nameOfInstance = nameOfInstance;
     this.parent = null;
     this.type = type;
     this.points = points;
