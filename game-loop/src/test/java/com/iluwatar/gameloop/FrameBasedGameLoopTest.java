@@ -23,10 +23,10 @@
 
 package com.iluwatar.gameloop;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * FrameBasedGameLoop unit test class.
@@ -35,19 +35,19 @@ public class FrameBasedGameLoopTest {
 
   private FrameBasedGameLoop gameLoop;
 
-  @Before
+  @BeforeEach
   public void setup() {
     gameLoop = new FrameBasedGameLoop();
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     gameLoop = null;
   }
 
-  @Test
+  @org.junit.jupiter.api.Test
   public void testUpdate() {
     gameLoop.update();
-    Assert.assertEquals(0.5f, gameLoop.controller.getBulletPosition(), 0);
+    assertEquals(0.5f, gameLoop.controller.getBulletPosition(), 0);
   }
 }
