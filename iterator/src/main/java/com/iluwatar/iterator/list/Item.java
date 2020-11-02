@@ -38,11 +38,11 @@ public class Item {
 
   @Override
   public String toString() {
-    return name;
+    return this.name;
   }
 
   public ItemType getType() {
-    return type;
+    return this.type;
   }
 
   public final void setType(ItemType type) {
