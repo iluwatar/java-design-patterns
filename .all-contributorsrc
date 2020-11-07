@@ -1231,6 +1231,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "dsibilio",
+      "name": "Domenico Sibilio",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/24280982?v=4",
+      "profile": "https://www.linkedin.com/in/domenico-sibilio/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 4,
