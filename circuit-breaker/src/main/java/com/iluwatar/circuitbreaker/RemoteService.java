@@ -24,22 +24,11 @@
 package com.iluwatar.circuitbreaker;
 
 /**
- * The Circuit breaker interface.
+ * The Remote service interface, used by {@link CircuitBreaker} for fetching response from remote
+ * services.
  */
-public interface CircuitBreaker {
+public interface RemoteService {
 
-  // Success response. Reset everything to defaults
-  void recordSuccess();
-
-  // Failure response. Handle accordingly with response and change state if required.
-  void recordFailure(String response);
-
-  // Get the current state of circuit breaker
-  String getState();
-
-  // Set the specific state manually.
-  void setState(State state);
-
-  // Attempt to fetch response from the remote service.
-  String attemptRequest() throws RemoteServiceException;
+  //Fetch response from remote service.
+  String call() throws RemoteServiceException;
 }
