@@ -98,7 +98,7 @@ Now on the client code we can create different types of cars using the factory c
 var car1 = CarsFactory.getCar(CarType.FORD);
 var car2 = CarsFactory.getCar(CarType.FERRARI);
 LOGGER.info(car1.getDescription());
-LOGGER.info(car2.getDescription());;
+LOGGER.info(car2.getDescription());
 ```
 
 Program output:
