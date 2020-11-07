@@ -1240,6 +1240,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "akashchandwani",
+      "name": "Akash Chandwani",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3483277?v=4",
+      "profile": "https://github.com/akashchandwani",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 4,
