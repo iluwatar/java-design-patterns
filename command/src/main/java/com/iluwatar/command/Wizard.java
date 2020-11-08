@@ -25,15 +25,11 @@ package com.iluwatar.command;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Wizard is the invoker of the commands.
  */
 public class Wizard {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
 
   private final Deque<Runnable> undoStack = new LinkedList<>();
   private final Deque<Runnable> redoStack = new LinkedList<>();
