@@ -41,8 +41,6 @@ Here's the sample code with wizard and goblin. Let's start from the `Wizard` cla
 ```java
 public class Wizard {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
-
   private final Deque<Command> undoStack = new LinkedList<>();
   private final Deque<Command> redoStack = new LinkedList<>();
 
