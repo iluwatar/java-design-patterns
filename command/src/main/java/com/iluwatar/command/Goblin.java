@@ -23,10 +23,15 @@
 
 package com.iluwatar.command;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Goblin is the target of the spells.
  */
 public class Goblin extends Target {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(Goblin.class);
 
   public Goblin() {
     setSize(Size.NORMAL);
@@ -37,5 +42,4 @@ public class Goblin extends Target {
   public String toString() {
     return "Goblin";
   }
-
 }

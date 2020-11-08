@@ -35,20 +35,18 @@ public class Wizard {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
 
-  private final Deque<Command> undoStack = new LinkedList<>();
-  private final Deque<Command> redoStack = new LinkedList<>();
+  private final Deque<Runnable> undoStack = new LinkedList<>();
+  private final Deque<Runnable> redoStack = new LinkedList<>();
 
   public Wizard() {
-    // comment to ignore sonar issue: LEVEL critical
   }
 
   /**
    * Cast spell.
    */
-  public void castSpell(Command command, Target target) {
-    LOGGER.info("{} casts {} at {}", this, command, target);
-    command.execute(target);
-    undoStack.offerLast(command);
+  public void castSpell(Runnable runnable) {
+    runnable.run();
+    undoStack.offerLast(runnable);
   }
 
   /**
@@ -58,8 +56,7 @@ public class Wizard {
     if (!undoStack.isEmpty()) {
       var previousSpell = undoStack.pollLast();
       redoStack.offerLast(previousSpell);
-      LOGGER.info("{} undoes {}", this, previousSpell);
-      previousSpell.undo();
+      previousSpell.run();
     }
   }
 
@@ -70,8 +67,7 @@ public class Wizard {
     if (!redoStack.isEmpty()) {
       var previousSpell = redoStack.pollLast();
       undoStack.offerLast(previousSpell);
-      LOGGER.info("{} redoes {}", this, previousSpell);
-      previousSpell.redo();
+      previousSpell.run();
     }
   }
 
