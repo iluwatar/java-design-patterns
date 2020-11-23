@@ -95,7 +95,7 @@ captain.row();
 
 ## 클레스 다이어그램
 
-![alt text](https://github.com/warp125/java-design-patterns/blob/master/ko/adapter/etc/adapter.urm.png?raw=true)
+![alt text](https://github.com/warp125/java-design-patterns/blob/master/adapter/etc/adapter.urm.png?raw=true)
 
 ## 적용 가능성
 
