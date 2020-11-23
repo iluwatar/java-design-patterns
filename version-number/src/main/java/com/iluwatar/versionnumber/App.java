@@ -53,17 +53,17 @@ public class App {
       BookDuplicateException,
       BookNotFoundException,
       VersionMismatchException {
-    long bookId = 1;
+    var bookId = 1;
 
-    BookRepository bookRepository = new BookRepository();
-    Book book = new Book();
+    var bookRepository = new BookRepository();
+    var book = new Book();
     book.setId(bookId);
     bookRepository.add(book); // adding a book with empty title and author
     LOGGER.info("An empty book with version {} was added to repository", book.getVersion());
 
     // Alice and Bob took the book concurrently
-    final Book aliceBook = bookRepository.get(bookId);
-    final Book bobBook = bookRepository.get(bookId);
+    final var aliceBook = bookRepository.get(bookId);
+    final var bobBook = bookRepository.get(bookId);
 
     aliceBook.setTitle("Kama Sutra"); // Alice has updated book title
     bookRepository.update(aliceBook); // and successfully saved book in database

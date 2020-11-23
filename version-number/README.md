@@ -78,7 +78,7 @@ public class BookRepository {
       throw new BookNotFoundException("Not found book with id: " + book.getId());
     }
 
-    Book latestBook = collection.get(book.getId());
+    var latestBook = collection.get(book.getId());
     if (book.getVersion() != latestBook.getVersion()) {
       throw new VersionMismatchException(
         "Tried to update stale version " + book.getVersion()
@@ -107,10 +107,10 @@ public class BookRepository {
 Here's the concurrency control in action:
 
 ```java
-long bookId = 1;
+var bookId = 1;
 // Alice and Bob took the book concurrently
-final Book aliceBook = bookRepository.get(bookId);
-final Book bobBook = bookRepository.get(bookId);
+final var aliceBook = bookRepository.get(bookId);
+final var bobBook = bookRepository.get(bookId);
 
 aliceBook.setTitle("Kama Sutra"); // Alice has updated book title
 bookRepository.update(aliceBook); // and successfully saved book in database

@@ -33,17 +33,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookRepositoryTest {
   @Test
   void testBookRepository() throws BookDuplicateException, BookNotFoundException, VersionMismatchException {
-    final long bookId = 1;
+    final var bookId = 1;
 
-    BookRepository bookRepository = new BookRepository();
-    Book book = new Book();
+    var bookRepository = new BookRepository();
+    var book = new Book();
     book.setId(bookId);
     bookRepository.add(book);
 
     assertEquals(0, book.getVersion());
 
-    final Book aliceBook = bookRepository.get(bookId);
-    final Book bobBook = bookRepository.get(bookId);
+    final var aliceBook = bookRepository.get(bookId);
+    final var bobBook = bookRepository.get(bookId);
 
     assertEquals(aliceBook.getTitle(), bobBook.getTitle());
     assertEquals(aliceBook.getAuthor(), bobBook.getAuthor());

@@ -56,7 +56,7 @@ public class BookRepository {
       throw new BookNotFoundException("Not found book with id: " + book.getId());
     }
 
-    Book latestBook = collection.get(book.getId());
+    var latestBook = collection.get(book.getId());
     if (book.getVersion() != latestBook.getVersion()) {
       throw new VersionMismatchException(
         "Tried to update stale version " + book.getVersion()
