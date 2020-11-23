@@ -1249,6 +1249,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "manannikov",
+      "name": "Pavlo Manannikov",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7019769?v=4",
+      "profile": "http://www.linkedin.com/in/manannikov",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
