@@ -8,7 +8,7 @@ tags:
 - Gang of Four
 ---
 
-## 동의어
+## 또한 ~으로 알려진
 
 Wrapper
 
