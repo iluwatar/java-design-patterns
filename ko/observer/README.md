@@ -136,7 +136,7 @@ The hobbits are facing sunny weather now
 
 ## 클래스 다이어그램
 
-![alt text](./etc/observer.png "Observer")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/observer/etc/observer.png)
 
 ## 적용 가능성
 
