@@ -25,7 +25,7 @@ tags:
 
 Wikipedia 말에 의하면
 
-> 팩토리는 다른 객체를 생성하기위한 객체입니다. 공식적으로 팩토리는 다양한 프로토 타입 또는 클래스의 객체를 반환하는 함수 또는 메서드입니다.
+> factory는 다른 객체를 생성하기위한 객체입니다. 공식적으로 factory는 다양한 프로토 타입 또는 클래스의 객체를 반환하는 함수 또는 메서드입니다.
 
 **프로그램 코드 예제**
 
@@ -77,7 +77,7 @@ public enum CarType {
 }
 ```
 
-그런 다음 팩토리 클래스 `CarsFactory` 캡슐화 된 자동차 객체를 만드는 정적 메서드 `getCar` 가 있습니다.
+그런 다음 factory 클래스 `CarsFactory` 캡슐화 된 자동차 객체를 만드는 정적 메서드 `getCar` 가 있습니다.
 
 ```java
 public class CarsFactory {
@@ -88,7 +88,7 @@ public class CarsFactory {
 }
 ```
 
-이제 클라이언트 코드에서 팩토리 클래스를 사용하여 다양한 유형의 자동차를 만들 수 있습니다.
+이제 클라이언트 코드에서 factory 클래스를 사용하여 다양한 유형의 자동차를 만들 수 있습니다.
 
 ```java
 var car1 = CarsFactory.getCar(CarType.FORD);
