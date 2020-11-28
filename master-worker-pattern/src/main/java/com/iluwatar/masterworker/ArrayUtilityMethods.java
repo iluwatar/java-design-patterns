@@ -47,8 +47,8 @@ public class ArrayUtilityMethods {
     if (a1.length != a2.length) {
       return false;
     } else {
-      boolean answer = false;
-      for (int i = 0; i < a1.length; i++) {
+      var answer = false;
+      for (var i = 0; i < a1.length; i++) {
         if (a1[i] == a2[i]) {
           answer = true;
         } else {
@@ -69,8 +69,8 @@ public class ArrayUtilityMethods {
     if (m1.length != m2.length) {
       return false;
     } else {
-      boolean answer = false;
-      for (int i = 0; i < m1.length; i++) {
+      var answer = false;
+      for (var i = 0; i < m1.length; i++) {
         if (arraysSame(m1[i], m2[i])) {
           answer = true;
         } else {
@@ -88,9 +88,9 @@ public class ArrayUtilityMethods {
    * @return it (int[][]).
    */
   public static int[][] createRandomIntMatrix(int rows, int columns) {
-    int[][] matrix = new int[rows][columns];
-    for (int i = 0; i < rows; i++) {
-      for (int j = 0; j < columns; j++) {
+    var matrix = new int[rows][columns];
+    for (var i = 0; i < rows; i++) {
+      for (var j = 0; j < columns; j++) {
         //filling cells in matrix
         matrix[i][j] = RANDOM.nextInt(10);
       }
@@ -104,9 +104,9 @@ public class ArrayUtilityMethods {
 
   public static void printMatrix(int[][] matrix) {
     //prints out int[][]
-    for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix[0].length; j++) {
-        LOGGER.info(matrix[i][j] + " ");
+    for (var ints : matrix) {
+      for (var j = 0; j < matrix[0].length; j++) {
+        LOGGER.info(ints[j] + " ");
       }
       LOGGER.info("");
     }

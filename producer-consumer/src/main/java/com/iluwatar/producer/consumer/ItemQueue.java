@@ -31,7 +31,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class ItemQueue {
 
-  private BlockingQueue<Item> queue;
+  private final BlockingQueue<Item> queue;
 
   public ItemQueue() {
 

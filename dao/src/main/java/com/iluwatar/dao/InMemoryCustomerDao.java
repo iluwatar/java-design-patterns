@@ -36,7 +36,7 @@ import java.util.stream.Stream;
  */
 public class InMemoryCustomerDao implements CustomerDao {
 
-  private Map<Integer, Customer> idToCustomer = new HashMap<>();
+  private final Map<Integer, Customer> idToCustomer = new HashMap<>();
 
   /**
    * An eagerly evaluated stream of customers stored in memory.

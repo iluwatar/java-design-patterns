@@ -37,7 +37,7 @@ import uk.org.lidalia.slf4jtest.TestLoggerFactory;
  */
 public class ConfigureForDosVisitorTest {
 
-  private TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForDosVisitor.class);
+  private final TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForDosVisitor.class);
   
   @Test
   public void testVisitForZoom() {    

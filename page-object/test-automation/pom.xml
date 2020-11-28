@@ -29,7 +29,7 @@
   <parent>
     <artifactId>page-object</artifactId>
     <groupId>com.iluwatar</groupId>
-    <version>1.23.0-SNAPSHOT</version>
+    <version>1.24.0-SNAPSHOT</version>
   </parent>
   <artifactId>test-automation</artifactId>
   <dependencies>

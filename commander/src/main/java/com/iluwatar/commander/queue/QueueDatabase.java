@@ -35,7 +35,7 @@ import java.util.List;
 
 public class QueueDatabase extends Database<QueueTask> {
 
-  private Queue<QueueTask> data;
+  private final Queue<QueueTask> data;
   public List<Exception> exceptionsList;
 
   public QueueDatabase(Exception... exc) {

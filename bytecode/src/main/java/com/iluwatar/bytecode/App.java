@@ -58,12 +58,14 @@ public class App {
     var vm = new VirtualMachine();
     vm.getWizards()[0] = wizard;
 
-    interpretInstruction("LITERAL 0", vm);
-    interpretInstruction("LITERAL 0", vm);
+    String literal = "LITERAL 0";
+
+    interpretInstruction(literal, vm);
+    interpretInstruction(literal, vm);
     interpretInstruction("GET_HEALTH", vm);
-    interpretInstruction("LITERAL 0", vm);
+    interpretInstruction(literal, vm);
     interpretInstruction("GET_AGILITY", vm);
-    interpretInstruction("LITERAL 0", vm);
+    interpretInstruction(literal, vm);
     interpretInstruction("GET_WISDOM ", vm);
     interpretInstruction("ADD", vm);
     interpretInstruction("LITERAL 2", vm);

@@ -23,15 +23,20 @@
 
 package com.iluwatar.price.microservice;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
+import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 
 /**
  * Exposes the Price microservice's endpoints.
  */
 @RestController
 public class PriceController {
+  private static final Logger LOGGER = getLogger(PriceController.class);
 
   /**
    * An endpoint for a user to retrieve a product's price.
@@ -40,6 +45,7 @@ public class PriceController {
    */
   @RequestMapping(value = "/price", method = RequestMethod.GET)
   public String getPrice() {
+    LOGGER.info("Successfully found price info");
     return "20";
   }
 }

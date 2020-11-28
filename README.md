@@ -6,8 +6,9 @@
 
 ![Java CI with Maven](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI%20with%20Maven/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=ncloc)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-104-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -30,7 +31,7 @@ This site showcases Java Design Patterns. The solutions have been developed by
 experienced programmers and architects from the open source community. The 
 patterns can be browsed by their high level descriptions or by looking at their
 source code. The source code examples are well commented and can be thought as
-programming tutorials how to implement a specific pattern. We use the most
+programming tutorials on how to implement a specific pattern. We use the most
 popular battle-proven open source Java technologies.
 
 Before you dive into the material, you should be familiar with various
@@ -190,7 +191,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/giorgosmav21"><img src="https://avatars2.githubusercontent.com/u/22855493?v=4" width="100px;" alt=""/><br /><sub><b>George Mavroeidis</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=giorgosmav21" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/hbothra15"><img src="https://avatars1.githubusercontent.com/u/7418012?v=4" width="100px;" alt=""/><br /><sub><b>Hemant Bothra</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=hbothra15" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/hbothra15"><img src="https://avatars1.githubusercontent.com/u/7418012?v=4" width="100px;" alt=""/><br /><sub><b>Hemant Bothra</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=hbothra15" title="Code">💻</a> <a href="#design-hbothra15" title="Design">🎨</a></td>
     <td align="center"><a href="https://www.kevinpeters.net/about/"><img src="https://avatars1.githubusercontent.com/u/12736734?v=4" width="100px;" alt=""/><br /><sub><b>Kevin Peters</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=igeligel" title="Code">💻</a></td>
     <td align="center"><a href="https://llorllale.github.io/"><img src="https://avatars1.githubusercontent.com/u/2019896?v=4" width="100px;" alt=""/><br /><sub><b>George Aristy</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=llorllale" title="Code">💻</a></td>
   </tr>
@@ -223,6 +224,59 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://www.linkedin.com/in/varunu28/"><img src="https://avatars0.githubusercontent.com/u/7676016?v=4" width="100px;" alt=""/><br /><sub><b>Varun Upadhyay</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=varunu28" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/PalAditya"><img src="https://avatars2.githubusercontent.com/u/25523604?v=4" width="100px;" alt=""/><br /><sub><b>Aditya Pal</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=PalAditya" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/grzesiekkedzior"><img src="https://avatars3.githubusercontent.com/u/23739158?v=4" width="100px;" alt=""/><br /><sub><b>grzesiekkedzior</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=grzesiekkedzior" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Agrzesiekkedzior" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/sivasubramanim"><img src="https://avatars2.githubusercontent.com/u/51107434?v=4" width="100px;" alt=""/><br /><sub><b>Sivasubramani M</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=sivasubramanim" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/d4gg4d"><img src="https://avatars2.githubusercontent.com/u/99457?v=4" width="100px;" alt=""/><br /><sub><b>Sami Airaksinen</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=d4gg4d" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/vertti"><img src="https://avatars0.githubusercontent.com/u/557751?v=4" width="100px;" alt=""/><br /><sub><b>Janne Sinivirta</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=vertti" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Bobo1239"><img src="https://avatars1.githubusercontent.com/u/2302947?v=4" width="100px;" alt=""/><br /><sub><b>Boris-Chengbiao Zhou</b></sub></a><br /><a href="#content-Bobo1239" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://jahhein.github.io"><img src="https://avatars2.githubusercontent.com/u/10779515?v=4" width="100px;" alt=""/><br /><sub><b>Jacob Hein</b></sub></a><br /><a href="#content-Jahhein" title="Content">🖋</a></td>
+    <td align="center"><a href="https://github.com/iamrichardjones"><img src="https://avatars3.githubusercontent.com/u/14842151?v=4" width="100px;" alt=""/><br /><sub><b>Richard Jones</b></sub></a><br /><a href="#content-iamrichardjones" title="Content">🖋</a></td>
+    <td align="center"><a href="https://rachelcarmena.github.io"><img src="https://avatars0.githubusercontent.com/u/22792183?v=4" width="100px;" alt=""/><br /><sub><b>Rachel M. Carmena</b></sub></a><br /><a href="#content-rachelcarmena" title="Content">🖋</a></td>
+    <td align="center"><a href="https://zd-zero.github.io"><img src="https://avatars0.githubusercontent.com/u/21978370?v=4" width="100px;" alt=""/><br /><sub><b>Zaerald Denze Lungos</b></sub></a><br /><a href="#content-zd-zero" title="Content">🖋</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://webpro.nl"><img src="https://avatars1.githubusercontent.com/u/456426?v=4" width="100px;" alt=""/><br /><sub><b>Lars Kappert</b></sub></a><br /><a href="#content-webpro" title="Content">🖋</a></td>
+    <td align="center"><a href="https://xiaod.info"><img src="https://avatars2.githubusercontent.com/u/21277644?v=4" width="100px;" alt=""/><br /><sub><b>Mike Liu</b></sub></a><br /><a href="#translation-xiaod-dev" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/charlesfinley"><img src="https://avatars1.githubusercontent.com/u/6307904?v=4" width="100px;" alt=""/><br /><sub><b>Matt Dolan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=charlesfinley" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Acharlesfinley" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/MananS77"><img src="https://avatars3.githubusercontent.com/u/21033516?v=4" width="100px;" alt=""/><br /><sub><b>Manan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3AMananS77" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/nishant"><img src="https://avatars2.githubusercontent.com/u/15331971?v=4" width="100px;" alt=""/><br /><sub><b>Nishant Arora</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=nishant" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/raja-peeyush-kumar-singh"><img src="https://avatars0.githubusercontent.com/u/5496024?v=4" width="100px;" alt=""/><br /><sub><b>Peeyush</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=raja-peeyush-kumar-singh" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/ravening"><img src="https://avatars1.githubusercontent.com/u/10645273?v=4" width="100px;" alt=""/><br /><sub><b>Rakesh</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ravening" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Aravening" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/vINCENT8888801"><img src="https://avatars0.githubusercontent.com/u/8037883?v=4" width="100px;" alt=""/><br /><sub><b>Wei Seng</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=vINCENT8888801" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/ashish-trivedi-218379135/"><img src="https://avatars3.githubusercontent.com/u/23194128?v=4" width="100px;" alt=""/><br /><sub><b>Ashish Trivedi</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ashishtrivedi16" title="Code">💻</a></td>
+    <td align="center"><a href="https://rayyounghong.com"><img src="https://avatars1.githubusercontent.com/u/41055099?v=4" width="100px;" alt=""/><br /><sub><b>洪月阳</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=RayYH" title="Code">💻</a></td>
+    <td align="center"><a href="https://xdvrx1.github.io/"><img src="https://avatars0.githubusercontent.com/u/47092464?v=4" width="100px;" alt=""/><br /><sub><b>xdvrx1</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Axdvrx1" title="Reviewed Pull Requests">👀</a> <a href="#ideas-xdvrx1" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://subho.xyz"><img src="https://avatars0.githubusercontent.com/u/13291222?v=4" width="100px;" alt=""/><br /><sub><b>Subhrodip Mohanta</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ohbus" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Aohbus" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/nahteb"><img src="https://avatars3.githubusercontent.com/u/13121570?v=4" width="100px;" alt=""/><br /><sub><b>Bethan Palmer</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=nahteb" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/ToxicDreamz"><img src="https://avatars0.githubusercontent.com/u/45225562?v=4" width="100px;" alt=""/><br /><sub><b>Toxic Dreamz</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ToxicDreamz" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.edycutjong.com"><img src="https://avatars1.githubusercontent.com/u/1098102?v=4" width="100px;" alt=""/><br /><sub><b>Edy Cu Tjong</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=edycutjong" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/mkrzywanski"><img src="https://avatars0.githubusercontent.com/u/15279585?v=4" width="100px;" alt=""/><br /><sub><b>Michał Krzywański</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mkrzywanski" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://www.stefan-birkner.de"><img src="https://avatars1.githubusercontent.com/u/711349?v=4" width="100px;" alt=""/><br /><sub><b>Stefan Birkner</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=stefanbirkner" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/fedorskvorcov"><img src="https://avatars3.githubusercontent.com/u/43882212?v=4" width="100px;" alt=""/><br /><sub><b>Fedor Skvorcov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=fedorskvorcov" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/samilAyoub"><img src="https://avatars0.githubusercontent.com/u/61546990?v=4" width="100px;" alt=""/><br /><sub><b>samilAyoub</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=samilAyoub" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/vdlald"><img src="https://avatars0.githubusercontent.com/u/29997701?v=4" width="100px;" alt=""/><br /><sub><b>Vladislav Golubinov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=vdlald" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/swarajsaaj"><img src="https://avatars2.githubusercontent.com/u/6285049?v=4" width="100px;" alt=""/><br /><sub><b>Swaraj</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=swarajsaaj" title="Code">💻</a></td>
+    <td align="center"><a href="http://christophflick.de"><img src="https://avatars0.githubusercontent.com/u/4465376?v=4" width="100px;" alt=""/><br /><sub><b>Christoph Flick</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ChFlick" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/Ascenio"><img src="https://avatars1.githubusercontent.com/u/7662016?v=4" width="100px;" alt=""/><br /><sub><b>Ascênio</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3AAscenio" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/domenico-sibilio/"><img src="https://avatars2.githubusercontent.com/u/24280982?v=4" width="100px;" alt=""/><br /><sub><b>Domenico Sibilio</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dsibilio" title="Documentation">📖</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/akashchandwani"><img src="https://avatars2.githubusercontent.com/u/3483277?v=4" width="100px;" alt=""/><br /><sub><b>Akash Chandwani</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Aakashchandwani" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="http://www.linkedin.com/in/manannikov"><img src="https://avatars2.githubusercontent.com/u/7019769?v=4" width="100px;" alt=""/><br /><sub><b>Pavlo Manannikov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=manannikov" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/eimanip"><img src="https://avatars0.githubusercontent.com/u/20307301?v=4" width="100px;" alt=""/><br /><sub><b>Eiman</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=eimanip" title="Code">💻</a></td>
   </tr>
 </table>
 

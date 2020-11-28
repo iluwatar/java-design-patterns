@@ -37,12 +37,12 @@ public class SimpleObjectTest {
   SimpleObject simpleObject;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     simpleObject = new SimpleObject();
   }
   
   @Test
-  public void testName() throws Exception {
+  public void testName() {
     // given
     String name = "Foobar";
     assertNull(simpleObject.getName());

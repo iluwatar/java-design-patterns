@@ -68,7 +68,7 @@ public class SimpleTrollTest {
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender(Class clazz) {
       ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);

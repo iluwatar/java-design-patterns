@@ -33,11 +33,11 @@ import com.iluwatar.specification.property.Size;
  */
 public abstract class AbstractCreature implements Creature {
 
-  private String name;
-  private Size size;
-  private Movement movement;
-  private Color color;
-  private Mass mass;
+  private final String name;
+  private final Size size;
+  private final Movement movement;
+  private final Color color;
+  private final Mass mass;
 
   /**
    * Constructor.

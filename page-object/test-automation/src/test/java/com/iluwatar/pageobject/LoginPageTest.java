@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
  */
 public class LoginPageTest {
 
-  private LoginPage loginPage = new LoginPage(new WebClient());
+  private final LoginPage loginPage = new LoginPage(new WebClient());
 
   @BeforeEach
   public void setUp() {

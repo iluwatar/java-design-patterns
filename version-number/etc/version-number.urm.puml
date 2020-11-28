@@ -1,0 +1,32 @@
+@startuml
+package com.iluwatar.versionnumber {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Book {
+    - author : String
+    - id : long
+    - title : String
+    - version : long
+    + Book()
+    + Book(book : Book)
+    + getAuthor() : String
+    + getId() : long
+    + getTitle() : String
+    + getVersion() : long
+    + setAuthor(author : String)
+    + setId(id : long)
+    + setTitle(title : String)
+    + setVersion(version : long)
+  }
+  class BookRepository {
+    - collection : Map<Long, Book>
+    + BookRepository()
+    + add(book : Book)
+    + get(bookId : long) : Book
+    + update(book : Book)
+  }
+}
+@enduml

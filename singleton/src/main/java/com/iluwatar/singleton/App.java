@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  * <p>One of the risks of this pattern is that bugs resulting from setting a singleton up in a
  * distributed environment can be tricky to debug, since it will work fine if you debug with a
  * single classloader. Additionally, these problems can crop up a while after the implementation of
- * a singleton, since they may start out synchronous and only become async with time, so you it may
+ * a singleton, since they may start out synchronous and only become async with time, so it may
  * not be clear why you are seeing certain changes in behaviour.</p>
  *
  * <p>There are many ways to implement the Singleton. The first one is the eagerly initialized

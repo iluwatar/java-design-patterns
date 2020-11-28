@@ -31,7 +31,7 @@ import javax.inject.Inject;
  */
 public class GuiceWizard implements Wizard {
 
-  private Tobacco tobacco;
+  private final Tobacco tobacco;
 
   @Inject
   public GuiceWizard(Tobacco tobacco) {

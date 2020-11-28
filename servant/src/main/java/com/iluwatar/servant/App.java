@@ -39,8 +39,8 @@ public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  private static Servant jenkins = new Servant("Jenkins");
-  private static Servant travis = new Servant("Travis");
+  private static final Servant jenkins = new Servant("Jenkins");
+  private static final Servant travis = new Servant("Travis");
 
   /**
    * Program entry point.

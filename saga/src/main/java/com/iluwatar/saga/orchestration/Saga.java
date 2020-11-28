@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class Saga {
 
-  private List<Chapter> chapters;
+  private final List<Chapter> chapters;
 
 
   private Saga() {

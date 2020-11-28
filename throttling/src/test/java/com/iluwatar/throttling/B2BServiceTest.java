@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
  */
 public class B2BServiceTest {
 
-  private CallsCount callsCount = new CallsCount();
+  private final CallsCount callsCount = new CallsCount();
 
   @Test
   public void dummyCustomerApiTest() {

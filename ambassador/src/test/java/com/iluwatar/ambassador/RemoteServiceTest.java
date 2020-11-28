@@ -37,7 +37,7 @@ class RemoteServiceTest {
   void testFailedCall() {
     var remoteService = new RemoteService(new StaticRandomProvider(0.21));
     var result = remoteService.doRemoteFunction(10);
-    assertEquals(RemoteServiceInterface.FAILURE, result);
+    assertEquals(RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue(), result);
   }
 
   @Test
@@ -48,7 +48,7 @@ class RemoteServiceTest {
   }
 
   private static class StaticRandomProvider implements RandomProvider {
-    private double value;
+    private final double value;
 
     StaticRandomProvider(double value) {
       this.value = value;

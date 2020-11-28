@@ -30,6 +30,9 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 /**
  * This class tests the Distributed Logging service by starting a Reactor and then sending it
  * concurrent logging requests using multiple clients.
@@ -50,8 +53,12 @@ public class ReactorTest {
     var app = new App(new ThreadPoolDispatcher(2));
     app.start();
 
+    assertNotNull(app);
+
     var client = new AppClient();
     client.start();
+
+    assertNotNull(client);
 
     // allow clients to send requests. Artificial delay.
     try {
@@ -78,8 +85,12 @@ public class ReactorTest {
     var app = new App(new SameThreadDispatcher());
     app.start();
 
+    assertNotNull(app);
+
     var client = new AppClient();
     client.start();
+
+    assertNotNull(client);
 
     // allow clients to send requests. Artificial delay.
     try {

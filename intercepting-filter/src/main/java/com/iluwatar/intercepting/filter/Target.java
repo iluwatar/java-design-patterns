@@ -46,9 +46,9 @@ public class Target extends JFrame { //NOSONAR
 
   private static final long serialVersionUID = 1L;
 
-  private JTable jt;
-  private DefaultTableModel dtm;
-  private JButton del;
+  private final JTable jt;
+  private final DefaultTableModel dtm;
+  private final JButton del;
 
   /**
    * Constructor.

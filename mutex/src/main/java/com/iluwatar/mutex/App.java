@@ -38,10 +38,10 @@ public class App {
    * main method.
    */
   public static void main(String[] args) {
-    Mutex mutex = new Mutex();
-    Jar jar = new Jar(1000, mutex);
-    Thief peter = new Thief("Peter", jar);
-    Thief john = new Thief("John", jar);
+    var mutex = new Mutex();
+    var jar = new Jar(1000, mutex);
+    var peter = new Thief("Peter", jar);
+    var john = new Thief("John", jar);
     peter.start();
     john.start();
   }

@@ -10,29 +10,35 @@ tags:
 ---
 
 ## Also known as
+
 Dependents, Publish-Subscribe
 
 ## Intent
-Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified 
-and updated automatically.
+
+Define a one-to-many dependency between objects so that when one object changes state, all its 
+dependents are notified and updated automatically.
 
 ## Explanation
 
 Real world example
 
-> In a land far away lives the races of hobbits and orcs. Both of them are mostly outdoors so they closely follow the changes in weather. One could say that they are constantly observing the weather.        
+> In a land far away lives the races of hobbits and orcs. Both of them are mostly outdoors so they 
+> closely follow the changes in weather. One could say that they are constantly observing the 
+> weather.
 
 In plain words
 
-> Register as an observer to receive state changes in the object.   
+> Register as an observer to receive state changes in the object.
 
 Wikipedia says
 
-> The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
+> The observer pattern is a software design pattern in which an object, called the subject, 
+> maintains a list of its dependents, called observers, and notifies them automatically of any state 
+> changes, usually by calling one of their methods.
 
 **Programmatic Example**
 
-Let's first introduce the weather observer interface and our races, orcs and hobbits.
+Let's first introduce the `WeatherObserver` interface and our races, `Orcs` and `Hobbits`.
 
 ```java
 public interface WeatherObserver {
@@ -46,22 +52,7 @@ public class Orcs implements WeatherObserver {
 
   @Override
   public void update(WeatherType currentWeather) {
-    switch (currentWeather) {
-      case COLD:
-        LOGGER.info("The orcs are freezing cold.");
-        break;
-      case RAINY:
-        LOGGER.info("The orcs are dripping wet.");
-        break;
-      case SUNNY:
-        LOGGER.info("The sun hurts the orcs' eyes.");
-        break;
-      case WINDY:
-        LOGGER.info("The orc smell almost vanishes in the wind.");
-        break;
-      default:
-        break;
-    }
+    LOGGER.info("The orcs are facing " + currentWeather.getDescription() + " weather now");
   }
 }
 
@@ -72,26 +63,13 @@ public class Hobbits implements WeatherObserver {
   @Override
   public void update(WeatherType currentWeather) {
     switch (currentWeather) {
-      case COLD:
-        LOGGER.info("The hobbits are shivering in the cold weather.");
-        break;
-      case RAINY:
-        LOGGER.info("The hobbits look for cover from the rain.");
-        break;
-      case SUNNY:
-        LOGGER.info("The happy hobbits bade in the warm sun.");
-        break;
-      case WINDY:
-        LOGGER.info("The hobbits hold their hats tightly in the windy weather.");
-        break;
-      default:
-        break;
+      LOGGER.info("The hobbits are facing " + currentWeather.getDescription() + " weather now");
     }
   }
 }
 ```
 
-Then here's the weather that is constantly changing.
+Then here's the `Weather` that is constantly changing.
 
 ```java
 public class Weather {
@@ -99,7 +77,7 @@ public class Weather {
   private static final Logger LOGGER = LoggerFactory.getLogger(Weather.class);
 
   private WeatherType currentWeather;
-  private List<WeatherObserver> observers;
+  private final List<WeatherObserver> observers;
 
   public Weather() {
     observers = new ArrayList<>();
@@ -138,38 +116,47 @@ Here's the full example in action.
     var weather = new Weather();
     weather.addObserver(new Orcs());
     weather.addObserver(new Hobbits());
+    weather.timePasses();
+    weather.timePasses();
+    weather.timePasses();
+    weather.timePasses();
+```
 
-    weather.timePasses();
-    // The weather changed to rainy.
-    // The orcs are dripping wet.
-    // The hobbits look for cover from the rain.
-    weather.timePasses();
-    // The weather changed to windy.
-    // The orc smell almost vanishes in the wind.
-    // The hobbits hold their hats tightly in the windy weather.
-    weather.timePasses();
-    // The weather changed to cold.
-    // The orcs are freezing cold.
-    // The hobbits are shivering in the cold weather.
-    weather.timePasses();
-    // The weather changed to sunny.
-    // The sun hurts the orcs' eyes.
-    // The happy hobbits bade in the warm sun.
+Program output:
+
+```
+The weather changed to rainy.
+The orcs are facing rainy weather now
+The hobbits are facing rainy weather now
+The weather changed to windy.
+The orcs are facing windy weather now
+The hobbits are facing windy weather now
+The weather changed to cold.
+The orcs are facing cold weather now
+The hobbits are facing cold weather now
+The weather changed to sunny.
+The orcs are facing sunny weather now
+The hobbits are facing sunny weather now
 ```
 
 ## Class diagram
+
 ![alt text](./etc/observer.png "Observer")
 
 ## Applicability
-Use the Observer pattern in any of the following situations
 
-* When an abstraction has two aspects, one dependent on the other. Encapsulating these aspects in separate objects lets you vary and reuse them independently
-* When a change to one object requires changing others, and you don't know how many objects need to be changed
-* When an object should be able to notify other objects without making assumptions about who these objects are. In other words, you don't want these objects tightly coupled
+Use the Observer pattern in any of the following situations:
+
+* When an abstraction has two aspects, one dependent on the other. Encapsulating these aspects in 
+separate objects lets you vary and reuse them independently.
+* When a change to one object requires changing others, and you don't know how many objects need to 
+be changed.
+* When an object should be able to notify other objects without making assumptions about who these 
+objects are. In other words, you don't want these objects tightly coupled.
 
 ## Typical Use Case
 
-* Changing in one object leads to a change in other objects
+* Changing in one object leads to a change in other objects.
 
 ## Real world examples
 

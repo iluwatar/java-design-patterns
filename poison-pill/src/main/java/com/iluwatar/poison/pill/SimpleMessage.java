@@ -32,7 +32,7 @@ import java.util.Map;
  */
 public class SimpleMessage implements Message {
 
-  private Map<Headers, String> headers = new HashMap<>();
+  private final Map<Headers, String> headers = new HashMap<>();
   private String body;
 
   @Override

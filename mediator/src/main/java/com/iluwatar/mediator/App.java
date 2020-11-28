@@ -55,10 +55,10 @@ public class App {
 
     // create party and members
     Party party = new PartyImpl();
-    Hobbit hobbit = new Hobbit();
-    Wizard wizard = new Wizard();
-    Rogue rogue = new Rogue();
-    Hunter hunter = new Hunter();
+    var hobbit = new Hobbit();
+    var wizard = new Wizard();
+    var rogue = new Rogue();
+    var hunter = new Hunter();
 
     // add party members
     party.addMember(hobbit);

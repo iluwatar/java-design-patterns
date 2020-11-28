@@ -33,9 +33,9 @@ public class Event implements IEvent, Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Event.class);
 
-  private int eventId;
-  private int eventTime;
-  private boolean isSynchronous;
+  private final int eventId;
+  private final int eventTime;
+  private final boolean isSynchronous;
   private Thread thread;
   private boolean isComplete = false;
   private ThreadCompleteListener eventListener;
