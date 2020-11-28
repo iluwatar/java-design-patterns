@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-138-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-139-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -276,6 +276,7 @@ This project is licensed under the terms of the MIT license.
   <tr>
     <td align="center"><a href="https://github.com/akashchandwani"><img src="https://avatars2.githubusercontent.com/u/3483277?v=4" width="100px;" alt=""/><br /><sub><b>Akash Chandwani</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Aakashchandwani" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="http://www.linkedin.com/in/manannikov"><img src="https://avatars2.githubusercontent.com/u/7019769?v=4" width="100px;" alt=""/><br /><sub><b>Pavlo Manannikov</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=manannikov" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/eimanip"><img src="https://avatars0.githubusercontent.com/u/20307301?v=4" width="100px;" alt=""/><br /><sub><b>Eiman</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=eimanip" title="Code">💻</a></td>
   </tr>
 </table>
 
