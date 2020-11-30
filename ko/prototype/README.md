@@ -79,7 +79,7 @@ System.out.println(cloned.getName()); // Dolly
 
 ## 실제 사례
 
-- [java.lang.Object#clone()](http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#clone%28%29)
+- [java.lang.Object#clone()](https://github.com/iluwatar/java-design-patterns/blob/master/prototype/etc/prototype.urm.png)
 
 ## 크레딧
 
