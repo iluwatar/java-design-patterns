@@ -48,7 +48,7 @@ assertEquals(enumIvoryTower1, enumIvoryTower2); // true
 
 ## 클래스 다이어그램
 
-![alt text](./etc/singleton.urm.png "Singleton pattern class diagram")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/singleton/etc/singleton.urm.png)
 
 ## 적용 가능성
 
