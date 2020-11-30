@@ -1268,6 +1268,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "OrangePants-R",
+      "name": "Rocky",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/42976136?v=4",
+      "profile": "https://github.com/OrangePants-R",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 4,
