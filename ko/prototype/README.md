@@ -66,7 +66,7 @@ System.out.println(cloned.getName()); // Dolly
 
 ## 클래스 다이어그램
 
-![alt text](./etc/prototype.urm.png "Prototype pattern class diagram")
+![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/prototype/etc/prototype.urm.png)
 
 ## 적용 가능성
 
