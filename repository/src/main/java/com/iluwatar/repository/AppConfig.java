@@ -23,7 +23,6 @@
 
 package com.iluwatar.repository;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 import javax.sql.DataSource;
@@ -89,7 +88,7 @@ public class AppConfig {
    * Get transaction manager.
    */
   @Bean
-  public JpaTransactionManager transactionManager() throws SQLException {
+  public JpaTransactionManager transactionManager() {
     var transactionManager = new JpaTransactionManager();
     transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
     return transactionManager;

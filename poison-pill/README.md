@@ -10,14 +10,17 @@ tags:
 ---
 
 ## Intent
-Poison Pill is known predefined data item that allows to provide graceful shutdown for separate distributed consumption 
-process.
+
+Poison Pill is known predefined data item that allows to provide graceful shutdown for separate 
+distributed consumption process.
 
 ## Explanation
 
 Real world example
 
-> Let's think about a message queue with one producer and one consumer. The producer keeps pushing new messages in the queue and the consumer keeps reading them. Finally when it's time to gracefully shut down the producer sends the poison pill message.             
+> Let's think about a message queue with one producer and one consumer. The producer keeps pushing 
+> new messages in the queue and the consumer keeps reading them. Finally when it's time to 
+> gracefully shut down the producer sends the poison pill message.             
 
 In plain words
 
@@ -25,43 +28,13 @@ In plain words
 
 **Programmatic Example**
 
-Let's define the message structure first.
+Let's define the message structure first. There's interface `Message` and implementation 
+`SimpleMessage`.
 
 ```java
 public interface Message {
 
-  Message POISON_PILL = new Message() {
-
-    @Override
-    public void addHeader(Headers header, String value) {
-      throw poison();
-    }
-
-    @Override
-    public String getHeader(Headers header) {
-      throw poison();
-    }
-
-    @Override
-    public Map<Headers, String> getHeaders() {
-      throw poison();
-    }
-
-    @Override
-    public void setBody(String body) {
-      throw poison();
-    }
-
-    @Override
-    public String getBody() {
-      throw poison();
-    }
-
-    private RuntimeException poison() {
-      return new UnsupportedOperationException("Poison");
-    }
-
-  };
+  ...
 
   enum Headers {
     DATE, SENDER
@@ -110,7 +83,9 @@ public class SimpleMessage implements Message {
 }
 ```
 
-Next we define the types related to the message queue.
+To pass messages we are using message queues. Here we define the types related to the message queue: 
+`MqPublishPoint`, `MqSubscribePoint` and `MessageQueue`. `SimpleMessageQueue` implements all these 
+interfaces.
 
 ```java
 public interface MqPublishPoint {
@@ -146,29 +121,15 @@ public class SimpleMessageQueue implements MessageQueue {
 }
 ```
 
-Now we need to create the message producer and consumer.
+Next we need message `Producer` and `Consumer`. Internally they use the message queues from above.
+It's important to notice that when `Producer` stops, it sends out the poison pill to inform 
+`Consumer` that the messaging has finished. 
 
 ```java
 public class Producer {
+  
+  ... 
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
-
-  private final MqPublishPoint queue;
-  private final String name;
-  private boolean isStopped;
-
-  /**
-   * Constructor.
-   */
-  public Producer(String name, MqPublishPoint queue) {
-    this.name = name;
-    this.queue = queue;
-    this.isStopped = false;
-  }
-
-  /**
-   * Send message to queue.
-   */
   public void send(String body) {
     if (isStopped) {
       throw new IllegalStateException(String.format(
@@ -187,9 +148,6 @@ public class Producer {
     }
   }
 
-  /**
-   * Stop system by sending poison pill.
-   */
   public void stop() {
     isStopped = true;
     try {
@@ -203,19 +161,8 @@ public class Producer {
 
 public class Consumer {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Consumer.class);
+  ...
 
-  private final MqSubscribePoint queue;
-  private final String name;
-
-  public Consumer(String name, MqSubscribePoint queue) {
-    this.name = name;
-    this.queue = queue;
-  }
-
-  /**
-   * Consume message.
-   */
   public void consume() {
     while (true) {
       try {
@@ -255,13 +202,24 @@ Finally we are ready to present the whole example in action.
     }).start();
 ```
 
+Program output:
+
+```
+Message [hand shake] from [PRODUCER_1] received by [CONSUMER_1]
+Message [some very important information] from [PRODUCER_1] received by [CONSUMER_1]
+Message [bye!] from [PRODUCER_1] received by [CONSUMER_1]
+Consumer CONSUMER_1 receive request to terminate.
+```
+
 ## Class diagram
+
 ![alt text](./etc/poison-pill.png "Poison Pill")
 
 ## Applicability
-Use the Poison Pill idiom when
 
-* Need to send signal from one thread/process to another to terminate
+Use the Poison Pill idiom when:
+
+* There's a need to send signal from one thread/process to another to terminate.
 
 ## Real world examples
 

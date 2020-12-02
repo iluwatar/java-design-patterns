@@ -60,7 +60,7 @@ public class PersonSpecifications {
    */
   public static class NameEqualSpec implements Specification<Person> {
 
-    public String name;
+    public final String name;
 
     public NameEqualSpec(String name) {
       this.name = name;

@@ -24,11 +24,11 @@ Use the Event Sourcing pattern when
 
 ## Real world examples
 
-* [The Lmax Architecture] (https://martinfowler.com/articles/lmax.html)
+* [The Lmax Architecture](https://martinfowler.com/articles/lmax.html)
 
 ## Credits
 
-* [Martin Fowler - Event Sourcing] (https://martinfowler.com/eaaDev/EventSourcing.html)
-* [Event Sourcing | Microsoft Docs] (https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
-* [Reference 3: Introducing Event Sourcing] (https://msdn.microsoft.com/en-us/library/jj591559.aspx)
+* [Martin Fowler - Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html)
+* [Event Sourcing in Microsoft's documentation](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
+* [Reference 3: Introducing Event Sourcing](https://msdn.microsoft.com/en-us/library/jj591559.aspx)
 * [Event Sourcing pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)

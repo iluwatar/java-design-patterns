@@ -25,14 +25,17 @@ package com.iluwatar.queue.load.leveling;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  * Test case for submitting Message to Blocking Queue by TaskGenerator and retrieve the message by
  * ServiceExecutor.
  */
-public class TaskGenSrvExeTest {
+class TaskGenSrvExeTest {
 
   @Test
-  public void taskGeneratorTest() {
+  void taskGeneratorTest() {
     var msgQueue = new MessageQueue();
 
     // Create a task generator thread with 1 job to submit.
@@ -40,10 +43,14 @@ public class TaskGenSrvExeTest {
     var taskGenThr = new Thread(taskRunnable);
     taskGenThr.start();
 
+    assertNotNull(taskGenThr);
+
     // Create a service executor thread.
     var srvRunnable = new ServiceExecutor(msgQueue);
     var srvExeThr = new Thread(srvRunnable);
     srvExeThr.start();
+
+    assertNotNull(srvExeThr);
   }
 
 }

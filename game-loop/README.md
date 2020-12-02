@@ -8,31 +8,39 @@ tags:
  - Game programming
 ---  
   
-## Intent  
-A game loop runs continuously during gameplay. Each turn of the loop, it processes user input without blocking, updates 
-the game state, and renders the game. It tracks the passage of time to control the rate of gameplay.
+## Intent
+  
+A game loop runs continuously during gameplay. Each turn of the loop, it processes user input 
+without blocking, updates the game state, and renders the game. It tracks the passage of time to 
+control the rate of gameplay.
 
 This pattern decouples progression of game time from user input and processor speed.
 
-## Applicability  
+## Applicability
+  
 This pattern is used in every game engine. 
 
 ## Explanation
+
 Real world example
 
-> Game loop is the main process of all the game rendering threads. It's present in all modern games. It drives input process, internal status update, rendering, AI and all the other processes.
+> Game loop is the main process of all the game rendering threads. It's present in all modern games. 
+> It drives input process, internal status update, rendering, AI and all the other processes.
 
 In plain words
 
-> Game Loop pattern ensures that game time progresses in equal speed in all different hardware setups. 
+> Game Loop pattern ensures that game time progresses in equal speed in all different hardware 
+> setups. 
 
 Wikipedia says
 
-> The central component of any game, from a programming standpoint, is the game loop. The game loop allows the game to run smoothly regardless of a user's input or lack thereof.
+> The central component of any game, from a programming standpoint, is the game loop. The game loop 
+> allows the game to run smoothly regardless of a user's input, or lack thereof.
 
 **Programmatic Example**
 
-Let's start with something simple. Here's a bullet that will move in our game. For demonstration it's enough that it has 1-dimensional position.
+Let's start with something simple. Here's `Bullet` class. Bullets will move in our game. For 
+demonstration purposes it's enough that it has 1-dimensional position.
 
 ```java
 public class Bullet {
@@ -53,7 +61,7 @@ public class Bullet {
 }
 ```
 
-GameController is responsible for moving objects in the game. Including the aforementioned bullet.
+`GameController` is responsible for moving objects in the game, including the aforementioned bullet.
 
 ```java
 public class GameController {
@@ -75,7 +83,8 @@ public class GameController {
 }
 ```
 
-Now we introduce the game loop. Or actually in this demo we have 3 different game loops.
+Now we introduce the game loop. Or actually in this demo we have 3 different game loops. Let's see
+the base class `GameLoop` first.
 
 ```java
 public enum GameStatus {
@@ -100,7 +109,7 @@ public abstract class GameLoop {
 
   public void run() {
     status = GameStatus.RUNNING;
-    gameThread = new Thread(() -> processGameLoop());
+    gameThread = new Thread(this::processGameLoop);
     gameThread.start();
   }
 
@@ -128,7 +137,11 @@ public abstract class GameLoop {
 
   protected abstract void processGameLoop();
 }
+```
 
+Here's the first game loop implementation, `FrameBasedGameLoop`:
+
+```java
 public class FrameBasedGameLoop extends GameLoop {
 
   @Override
@@ -144,59 +157,9 @@ public class FrameBasedGameLoop extends GameLoop {
     controller.moveBullet(0.5f);
   }
 }
-
-public class VariableStepGameLoop extends GameLoop {
-
-  @Override
-  protected void processGameLoop() {
-    var lastFrameTime = System.currentTimeMillis();
-    while (isGameRunning()) {
-      processInput();
-      var currentFrameTime = System.currentTimeMillis();
-      var elapsedTime = currentFrameTime - lastFrameTime;
-      update(elapsedTime);
-      lastFrameTime = currentFrameTime;
-      render();
-    }
-  }
-
-  protected void update(Long elapsedTime) {
-    controller.moveBullet(0.5f * elapsedTime / 1000);
-  }
-}
-
-public class FixedStepGameLoop extends GameLoop {
-
-  private static final long MS_PER_FRAME = 20;
-
-  @Override
-  protected void processGameLoop() {
-    var previousTime = System.currentTimeMillis();
-    var lag = 0L;
-    while (isGameRunning()) {
-      var currentTime = System.currentTimeMillis();
-      var elapsedTime = currentTime - previousTime;
-      previousTime = currentTime;
-      lag += elapsedTime;
-
-      processInput();
-
-      while (lag >= MS_PER_FRAME) {
-        update();
-        lag -= MS_PER_FRAME;
-      }
-
-      render();
-    }
-  }
-
-  protected void update() {
-    controller.moveBullet(0.5f * MS_PER_FRAME / 1000);
-  }
-}
 ```
 
-Finally we can show all these game loops in action.
+Finally, we show all the game loops in action.
 
 ```java
     try {
@@ -226,10 +189,66 @@ Finally we can show all these game loops in action.
     }
 ```
 
+Program output:
+
+```java
+Start frame-based game loop:
+Current bullet position: 0.5
+Current bullet position: 1.0
+Current bullet position: 1.5
+Current bullet position: 2.0
+Current bullet position: 2.5
+Current bullet position: 3.0
+Current bullet position: 3.5
+Current bullet position: 4.0
+Current bullet position: 4.5
+Current bullet position: 5.0
+Current bullet position: 5.5
+Current bullet position: 6.0
+Stop frame-based game loop.
+Start variable-step game loop:
+Current bullet position: 6.5
+Current bullet position: 0.038
+Current bullet position: 0.084
+Current bullet position: 0.145
+Current bullet position: 0.1805
+Current bullet position: 0.28
+Current bullet position: 0.32
+Current bullet position: 0.42549998
+Current bullet position: 0.52849996
+Current bullet position: 0.57799995
+Current bullet position: 0.63199997
+Current bullet position: 0.672
+Current bullet position: 0.778
+Current bullet position: 0.848
+Current bullet position: 0.8955
+Current bullet position: 0.9635
+Stop variable-step game loop.
+Start fixed-step game loop:
+Current bullet position: 0.0
+Current bullet position: 1.086
+Current bullet position: 0.059999995
+Current bullet position: 0.12999998
+Current bullet position: 0.24000004
+Current bullet position: 0.33999994
+Current bullet position: 0.36999992
+Current bullet position: 0.43999985
+Current bullet position: 0.5399998
+Current bullet position: 0.65999967
+Current bullet position: 0.68999964
+Current bullet position: 0.7299996
+Current bullet position: 0.79999954
+Current bullet position: 0.89999944
+Current bullet position: 0.98999935
+Stop variable-step game loop.
+```
+
 ## Class diagram
+
 ![alt text](./etc/game-loop.urm.png "Game Loop pattern class diagram")
 
-## Credits  
+## Credits
+  
 * [Game Programming Patterns - Game Loop](http://gameprogrammingpatterns.com/game-loop.html)
 * [Game Programming Patterns](https://www.amazon.com/gp/product/0990582906/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0990582906&linkId=1289749a703b3fe0e24cd8d604d7c40b)
 * [Game Engine Architecture, Third Edition](https://www.amazon.com/gp/product/1138035459/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1138035459&linkId=94502746617211bc40e0ef49d29333ac)

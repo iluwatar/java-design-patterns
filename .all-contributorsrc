@@ -946,7 +946,8 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/23739158?v=4",
       "profile": "https://github.com/grzesiekkedzior",
       "contributions": [
-        "code"
+        "code",
+        "review"
       ]
     },
     {
@@ -1082,7 +1083,8 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/10645273?v=4",
       "profile": "https://github.com/ravening",
       "contributions": [
-        "code"
+        "code",
+        "review"
       ]
     },
     {
@@ -1139,6 +1141,150 @@
       "profile": "https://github.com/nahteb",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "ToxicDreamz",
+      "name": "Toxic Dreamz",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/45225562?v=4",
+      "profile": "https://github.com/ToxicDreamz",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "edycutjong",
+      "name": "Edy Cu Tjong",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1098102?v=4",
+      "profile": "http://www.edycutjong.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "mkrzywanski",
+      "name": "Michał Krzywański",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/15279585?v=4",
+      "profile": "https://github.com/mkrzywanski",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "stefanbirkner",
+      "name": "Stefan Birkner",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/711349?v=4",
+      "profile": "https://www.stefan-birkner.de",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "fedorskvorcov",
+      "name": "Fedor Skvorcov",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/43882212?v=4",
+      "profile": "https://github.com/fedorskvorcov",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "samilAyoub",
+      "name": "samilAyoub",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/61546990?v=4",
+      "profile": "https://github.com/samilAyoub",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "vdlald",
+      "name": "Vladislav Golubinov",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/29997701?v=4",
+      "profile": "https://github.com/vdlald",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "swarajsaaj",
+      "name": "Swaraj",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6285049?v=4",
+      "profile": "https://github.com/swarajsaaj",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ChFlick",
+      "name": "Christoph Flick",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4465376?v=4",
+      "profile": "http://christophflick.de",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Ascenio",
+      "name": "Ascênio",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/7662016?v=4",
+      "profile": "https://github.com/Ascenio",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "dsibilio",
+      "name": "Domenico Sibilio",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/24280982?v=4",
+      "profile": "https://www.linkedin.com/in/domenico-sibilio/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "akashchandwani",
+      "name": "Akash Chandwani",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3483277?v=4",
+      "profile": "https://github.com/akashchandwani",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "manannikov",
+      "name": "Pavlo Manannikov",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7019769?v=4",
+      "profile": "http://www.linkedin.com/in/manannikov",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "eimanip",
+      "name": "Eiman",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/20307301?v=4",
+      "profile": "https://github.com/eimanip",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "OrangePants-R",
+      "name": "Rocky",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/42976136?v=4",
+      "profile": "https://github.com/OrangePants-R",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "ibrahimAlii",
+      "name": "Ibrahim ali abdelghany",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/21141301?v=4",
+      "profile": "https://ibrahimalii.github.io/",
+      "contributions": [
+        "review"
       ]
     }
   ],

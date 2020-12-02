@@ -23,9 +23,13 @@
 
 package com.iluwatar.model.view.presenter;
 
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -80,7 +84,7 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
    */
   public FileSelectorJFrame() {
     super("File Loader");
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.setLayout(null);
     this.setBounds(100, 100, 500, 200);
 
@@ -119,8 +123,8 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
      */
     this.area = new JTextArea(100, 100);
     var pane = new JScrollPane(area);
-    pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-    pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+    pane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    pane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
     panel.add(pane);
     this.area.setEditable(false);
     pane.setBounds(150, 100, 250, 80);

@@ -43,6 +43,6 @@ public class AiComponent implements Component {
 
   @Override
   public void render() {
-
+    // Do Nothing.
   }
 }

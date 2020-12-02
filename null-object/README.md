@@ -9,20 +9,20 @@ tags:
 ---
 
 ## Intent
-In most object-oriented languages, such as Java or C#, references
-may be null. These references need to be checked to ensure they are not null
-before invoking any methods, because methods typically cannot be invoked on
-null references. Instead of using a null reference to convey absence of an
-object (for instance, a non-existent customer), one uses an object which
-implements the expected interface, but whose method body is empty. The
-advantage of this approach over a working default implementation is that a Null
-Object is very predictable and has no side effects: it does nothing.
+
+In most object-oriented languages, such as Java or C#, references may be null. These references need 
+to be checked to ensure they are not null before invoking any methods, because methods typically 
+cannot be invoked on null references. Instead of using a null reference to convey absence of an
+object (for instance, a non-existent customer), one uses an object which implements the expected 
+interface, but whose method body is empty. The advantage of this approach over a working default 
+implementation is that a Null Object is very predictable and has no side effects: it does nothing.
 
 ## Explanation
 
 Real world example
 
-> We are building a binary tree from nodes. There are ordinary nodes and "empty" nodes. Traversing the tree normally should not cause errors, so we use null object pattern where necessary.            
+> We are building a binary tree from nodes. There are ordinary nodes and "empty" nodes. Traversing 
+> the tree normally should not cause errors, so we use null object pattern where necessary.            
 
 In plain words
 
@@ -30,11 +30,13 @@ In plain words
 
 Wikipedia says
 
-> In object-oriented computer programming, a null object is an object with no referenced value or with defined neutral ("null") behavior. The null object design pattern describes the uses of such objects and their behavior (or lack thereof).
+> In object-oriented computer programming, a null object is an object with no referenced value or 
+> with defined neutral ("null") behavior. The null object design pattern describes the uses of such 
+> objects and their behavior (or lack thereof).
 
 **Programmatic Example**
 
-Here's the definitions for node interface and its implementations.
+Here's the definition of `Node` interface.
 
 ```java
 public interface Node {
@@ -49,7 +51,12 @@ public interface Node {
 
   void walk();
 }
+```
 
+We have two implementations of `Node`. The normal implementation `NodeImpl` and `NullNode` for
+empty nodes.
+
+```java
 public class NodeImpl implements Node {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(NodeImpl.class);
@@ -135,7 +142,6 @@ public final class NullNode implements Node {
     // Do nothing
   }
 }
-
 ```
 
 Then we can construct and traverse the binary tree without errors as follows.
@@ -152,18 +158,24 @@ Then we can construct and traverse the binary tree without errors as follows.
             )
         );
     root.walk();
-    
-    // 1
-    // 11
-    // 111
-    // 12
-    // 122
+```
+
+Program output:
+
+```
+1
+11
+111
+12
+122
 ```
 
 ## Class diagram
+
 ![alt text](./etc/null-object.png "Null Object")
 
 ## Applicability
+
 Use the Null Object pattern when
 
 * You want to avoid explicit null checks and keep the algorithm elegant and easy to read.

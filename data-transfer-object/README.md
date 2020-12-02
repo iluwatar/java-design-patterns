@@ -9,13 +9,16 @@ tags:
 ---
 
 ## Intent
-Pass data with multiple attributes in one shot from client to server, to avoid multiple calls to remote server. 
+
+Pass data with multiple attributes in one shot from client to server, to avoid multiple calls to 
+remote server. 
 
 ## Explanation
 
 Real world example
 
-> We need to fetch information about customers from remote database. Instead of querying the attributes one at a time, we use DTOs to transfer all the relevant attributes in a single shot.     
+> We need to fetch information about customers from remote database. Instead of querying the 
+> attributes one at a time, we use DTOs to transfer all the relevant attributes in a single shot.     
 
 In plain words
 
@@ -23,16 +26,17 @@ In plain words
 
 Wikipedia says
 
-> In the field of programming a data transfer object (DTO) is an object that carries data between processes. The 
-motivation for its use is that communication between processes is usually done resorting to remote interfaces 
-(e.g., web services), where each call is an expensive operation. Because the majority of the cost of each call is 
-related to the round-trip time between the client and the server, one way of reducing the number of calls is to use an 
-object (the DTO) that aggregates the data that would have been transferred by the several calls, but that is served by 
-one call only.
+> In the field of programming a data transfer object (DTO) is an object that carries data between 
+> processes. The motivation for its use is that communication between processes is usually done 
+> resorting to remote interfaces (e.g. web services), where each call is an expensive operation. 
+> Because the majority of the cost of each call is related to the round-trip time between the client 
+> and the server, one way of reducing the number of calls is to use an object (the DTO) that 
+> aggregates the data that would have been transferred by the several calls, but that is served by 
+> one call only.
 
 **Programmatic Example**
 
-Let's first introduce our simple customer DTO class.
+Let's first introduce our simple `CustomerDTO` class.
 
 ```java
 public class CustomerDto {
@@ -60,7 +64,7 @@ public class CustomerDto {
 }
 ```
 
-Customer resource class acts as the server for customer information.
+`CustomerResource` class acts as the server for customer information.
 
 ```java
 public class CustomerResource {
@@ -94,10 +98,12 @@ Now fetching customer information is easy since we have the DTOs.
 ```
 
 ## Class diagram
+
 ![alt text](./etc/data-transfer-object.urm.png "data-transfer-object")
 
 ## Applicability
-Use the Data Transfer Object pattern when
+
+Use the Data Transfer Object pattern when:
 
 * The client is asking for multiple information. And the information is related.
 * When you want to boost the performance to get resources.
