@@ -81,7 +81,7 @@ public enum CarType {
 }
 ```
 Then we have the static method `getCar` to create car objects encapsulated in the factory class 
-`CarSimpleFactory`.
+`CarsFactory`.
 
 ```java
 public class CarsFactory {
