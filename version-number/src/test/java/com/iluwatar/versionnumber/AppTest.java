@@ -21,25 +21,26 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.circuitbreaker;
+package com.iluwatar.versionnumber;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
- * The Circuit breaker interface.
+ * Application test
  */
-public interface CircuitBreaker {
+class AppTest {
 
-  // Success response. Reset everything to defaults
-  void recordSuccess();
+  /**
+   * Issue: Add at least one assertion to this test case.
+   *
+   * Solution: Inserted assertion to check whether the execution of the main method in {@link App#main(String[])}
+   * throws an exception.
+   */
 
-  // Failure response. Handle accordingly with response and change state if required.
-  void recordFailure(String response);
-
-  // Get the current state of circuit breaker
-  String getState();
-
-  // Set the specific state manually.
-  void setState(State state);
-
-  // Attempt to fetch response from the remote service.
-  String attemptRequest() throws RemoteServiceException;
+  @Test
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
+  }
 }

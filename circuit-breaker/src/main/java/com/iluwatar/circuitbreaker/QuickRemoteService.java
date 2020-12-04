@@ -21,37 +21,15 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.command;
+package com.iluwatar.circuitbreaker;
 
 /**
- * InvisibilitySpell is a concrete command.
+ * A quick response remote service, that responds healthy without any delay or failure.
  */
-public class InvisibilitySpell implements Command {
-
-  private Target target;
+public class QuickRemoteService implements RemoteService {
 
   @Override
-  public void execute(Target target) {
-    target.setVisibility(Visibility.INVISIBLE);
-    this.target = target;
-  }
-
-  @Override
-  public void undo() {
-    if (target != null) {
-      target.setVisibility(Visibility.VISIBLE);
-    }
-  }
-
-  @Override
-  public void redo() {
-    if (target != null) {
-      target.setVisibility(Visibility.INVISIBLE);
-    }
-  }
-
-  @Override
-  public String toString() {
-    return "Invisibility spell";
+  public String call() throws RemoteServiceException {
+    return "Quick Service is working";
   }
 }

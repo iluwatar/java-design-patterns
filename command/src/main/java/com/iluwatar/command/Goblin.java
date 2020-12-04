@@ -37,5 +37,4 @@ public class Goblin extends Target {
   public String toString() {
     return "Goblin";
   }
-
 }

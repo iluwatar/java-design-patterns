@@ -29,6 +29,7 @@ name: Java PR Builder
 on:
   pull_request:
     branches: [ master ]
+    types: [ opened, reopened, synchronize, labeled, unlabeled ]
 
 jobs:
   build:
@@ -36,20 +37,26 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Code
+      uses: actions/checkout@v2
+    
     - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - uses: actions/cache@v2
+    
+    - name: Cache Maven Dependecies
+      uses: actions/cache@v2
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
+    
     # Some tests need screen access
     - name: Install xvfb
       run: sudo apt-get install -y xvfb
+    
     # This worflow is only for building Pull Requests, the master branch runs Sonar analysis on the main repository.
     # SonarQube scan does not work for forked repositories.
     # See https://jira.sonarsource.com/browse/MMF-1371

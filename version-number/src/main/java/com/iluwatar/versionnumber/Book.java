@@ -21,25 +21,58 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.circuitbreaker;
+package com.iluwatar.versionnumber;
 
-/**
- * The Circuit breaker interface.
- */
-public interface CircuitBreaker {
+public class Book {
+  private long id;
+  private String title = "";
+  private String author = "";
 
-  // Success response. Reset everything to defaults
-  void recordSuccess();
+  private long version = 0; // version number
 
-  // Failure response. Handle accordingly with response and change state if required.
-  void recordFailure(String response);
+  public Book() {
 
-  // Get the current state of circuit breaker
-  String getState();
+  }
 
-  // Set the specific state manually.
-  void setState(State state);
+  /**
+   * We need this copy constructor to copy book representation in {@link BookRepository}.
+   */
+  public Book(Book book) {
+    this.id = book.id;
+    this.title = book.title;
+    this.author = book.author;
+    this.version = book.version;
+  }
 
-  // Attempt to fetch response from the remote service.
-  String attemptRequest() throws RemoteServiceException;
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public String getAuthor() {
+    return author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+
+  public long getVersion() {
+    return version;
+  }
+
+  public void setVersion(long version) {
+    this.version = version;
+  }
 }
