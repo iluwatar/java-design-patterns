@@ -1268,6 +1268,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "OrangePants-R",
+      "name": "Rocky",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/42976136?v=4",
+      "profile": "https://github.com/OrangePants-R",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "ibrahimAlii",
+      "name": "Ibrahim ali abdelghany",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/21141301?v=4",
+      "profile": "https://ibrahimalii.github.io/",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 4,
