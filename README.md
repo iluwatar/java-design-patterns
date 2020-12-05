@@ -119,7 +119,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://amarnath510.github.io/portfolio"><img src="https://avatars0.githubusercontent.com/u/4599623?v=4" width="100px;" alt=""/><br /><sub><b>Amarnath Chandana</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Amarnath510" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Anurag870"><img src="https://avatars1.githubusercontent.com/u/6295975?v=4" width="100px;" alt=""/><br /><sub><b>Anurag870</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Anurag870" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Anurag870"><img src="https://avatars1.githubusercontent.com/u/6295975?v=4" width="100px;" alt=""/><br /><sub><b>Anurag870</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Anurag870" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=Anurag870" title="Documentation">📖</a></td>
     <td align="center"><a href="http://theerroris.me"><img src="https://avatars0.githubusercontent.com/u/1685953?v=4" width="100px;" alt=""/><br /><sub><b>Wes Gilleland</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Deathnerd" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Harshrajsinh"><img src="https://avatars2.githubusercontent.com/u/22811531?v=4" width="100px;" alt=""/><br /><sub><b>Harshraj Thakor</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Harshrajsinh" title="Code">💻</a></td>
   </tr>
