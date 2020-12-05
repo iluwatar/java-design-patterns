@@ -56,10 +56,10 @@ public class CommandTest {
     var wizard = new Wizard();
     var goblin = new Goblin();
 
-    wizard.castSpell(new ShrinkSpell(), goblin);
+    wizard.castSpell(goblin::changeSize);
     verifyGoblin(goblin, GOBLIN, Size.SMALL, Visibility.VISIBLE);
 
-    wizard.castSpell(new InvisibilitySpell(), goblin);
+    wizard.castSpell(goblin::changeVisibility);
     verifyGoblin(goblin, GOBLIN, Size.SMALL, Visibility.INVISIBLE);
 
     wizard.undoLastSpell();

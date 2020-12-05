@@ -52,13 +52,13 @@ public class SimpleObjectsTest {
   SimpleObjects simpleObjects;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     simpleObjects = new SimpleObjects();
     simpleObjects.container = mockContainer;
   }
   
   @Test
-  public void testCreate() throws Exception {
+  public void testCreate() {
 
     // given
     final SimpleObject simpleObject = new SimpleObject();
@@ -85,7 +85,7 @@ public class SimpleObjectsTest {
   }
   
   @Test
-  public void testListAll() throws Exception {
+  public void testListAll() {
 
     // given
     final List<SimpleObject> all = Lists.newArrayList();

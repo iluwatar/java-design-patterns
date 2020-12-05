@@ -9,36 +9,47 @@ tags:
 ---
 
 ## Intent
-Separate the construction of a complex object from its
-representation so that the same construction process can create different
-representations.
+
+Separate the construction of a complex object from its representation so that the same construction 
+process can create different representations.
 
 ## Explanation
 
 Real world example
 
-> Imagine a character generator for a role playing game. The easiest option is to let computer create the character for you. But if you want to select the character details like profession, gender, hair color etc. the character generation becomes a step-by-step process that completes when all the selections are ready.
+> Imagine a character generator for a role-playing game. The easiest option is to let the computer 
+> create the character for you. If you want to manually select the character details like 
+> profession, gender, hair color etc. the character generation becomes a step-by-step process that 
+> completes when all the selections are ready.
 
 In plain words
 
-> Allows you to create different flavors of an object while avoiding constructor pollution. Useful when there could be several flavors of an object. Or when there are a lot of steps involved in creation of an object.
+> Allows you to create different flavors of an object while avoiding constructor pollution. Useful 
+> when there could be several flavors of an object. Or when there are a lot of steps involved in 
+> creation of an object.
 
 Wikipedia says
 
-> The builder pattern is an object creation software design pattern with the intentions of finding a solution to the telescoping constructor anti-pattern.
+> The builder pattern is an object creation software design pattern with the intentions of finding 
+> a solution to the telescoping constructor anti-pattern.
 
-Having said that let me add a bit about what telescoping constructor anti-pattern is. At one point or the other we have all seen a constructor like below:
+Having said that let me add a bit about what telescoping constructor anti-pattern is. At one point 
+or the other, we have all seen a constructor like below:
 
 ```java
 public Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
 }
 ```
 
-As you can see the number of constructor parameters can quickly get out of hand and it might become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in future. This is called telescoping constructor anti-pattern.
+As you can see the number of constructor parameters can quickly get out of hand, and it may become 
+difficult to understand the arrangement of parameters. Plus this parameter list could keep on 
+growing if you would want to add more options in the future. This is called telescoping constructor 
+anti-pattern.
 
 **Programmatic Example**
 
-The sane alternative is to use the Builder pattern. First of all we have our hero that we want to create
+The sane alternative is to use the Builder pattern. First of all we have our hero that we want to 
+create:
 
 ```java
 public final class Hero {
@@ -60,7 +71,7 @@ public final class Hero {
 }
 ```
 
-And then we have the builder
+Then we have the builder:
 
 ```java
   public static class Builder {
@@ -105,20 +116,22 @@ And then we have the builder
   }
 ```
 
-And then it can be used as:
+Then it can be used as:
 
 ```java
 var mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
 ```
 
 ## Class diagram
+
 ![alt text](./etc/builder.urm.png "Builder class diagram")
 
 ## Applicability
+
 Use the Builder pattern when
 
-* the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
-* the construction process must allow different representations for the object that's constructed
+* The algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
+* The construction process must allow different representations for the object that's constructed
 
 ## Real world examples
 

@@ -14,23 +14,25 @@ CompletableFuture
 
 ## Intent
 
-A Promise represents a proxy for a value not necessarily known when the promise is created. It allows you to associate 
-dependent promises to an asynchronous action's eventual success value or failure reason. Promises are a way to write 
-async code that still appears as though it is executing in a synchronous way.
+A Promise represents a proxy for a value not necessarily known when the promise is created. It 
+allows you to associate dependent promises to an asynchronous action's eventual success value or 
+failure reason. Promises are a way to write async code that still appears as though it is executing 
+in a synchronous way.
 
 ## Explanation
 
-The Promise object is used for asynchronous computations. A Promise represents an operation that hasn't completed yet, 
-but is expected in the future.
+The Promise object is used for asynchronous computations. A Promise represents an operation that 
+hasn't completed yet, but is expected in the future.
 
 Promises provide a few advantages over callback objects:
- * Functional composition and error handling
- * Prevents callback hell and provides callback aggregation
+ * Functional composition and error handling.
+ * Prevents callback hell and provides callback aggregation.
 
 Real world example
 
-> We are developing a software solution that downloads files and calculates the number of lines and character 
-frequencies in those files. Promise is an ideal solution to make the code concise and easy to understand.
+> We are developing a software solution that downloads files and calculates the number of lines and 
+> character frequencies in those files. Promise is an ideal solution to make the code concise and 
+> easy to understand.
 
 In plain words
 
@@ -38,14 +40,15 @@ In plain words
 
 Wikipedia says
 
-> In computer science, future, promise, delay, and deferred refer to constructs used for synchronizing program 
-execution in some concurrent programming languages. They describe an object that acts as a proxy for a result that is 
-initially unknown, usually because the computation of its value is not yet complete.
+> In computer science, future, promise, delay, and deferred refer to constructs used for 
+> synchronizing program execution in some concurrent programming languages. They describe an object 
+> that acts as a proxy for a result that is initially unknown, usually because the computation of 
+> its value is not yet complete.
 
 **Programmatic Example**
 
-In the example a file is downloaded and its line count is calculated. The calculated line count is then consumed and 
-printed on console.
+In the example a file is downloaded and its line count is calculated. The calculated line count is 
+then consumed and printed on console.
 
 Let's first introduce a support class we need for implementation. Here's `PromiseSupport`.
 
@@ -195,7 +198,7 @@ public class Promise<T> extends PromiseSupport<T> {
 
   public <V> Promise<V> thenApply(Function<? super T, V> func) {
     Promise<V> dest = new Promise<>();
-    fulfillmentAction = new TransformAction<V>(this, dest, func);
+    fulfillmentAction = new TransformAction<>(this, dest, func);
     return dest;
   }
 
@@ -246,8 +249,8 @@ public class Promise<T> extends PromiseSupport<T> {
 }
 ```
 
-Now we can show the full example in action. Here's how to download and count the number of lines in a file using
-`Promise`.
+Now we can show the full example in action. Here's how to download and count the number of lines in 
+a file using `Promise`.
 
 ```java
   countLines().thenAccept(
@@ -280,8 +283,8 @@ Now we can show the full example in action. Here's how to download and count the
 
 ## Applicability
 
-Promise pattern is applicable in concurrent programming when some work needs to be done asynchronously
-and:
+Promise pattern is applicable in concurrent programming when some work needs to be done 
+asynchronously and:
 
 * Code maintainability and readability suffers due to callback hell.
 * You need to compose promises and need better error handling for asynchronous tasks.

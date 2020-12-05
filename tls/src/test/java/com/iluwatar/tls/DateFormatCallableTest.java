@@ -66,18 +66,18 @@ public class DateFormatCallableTest {
   /**
    * Expected number of date values in the date value list created by the run of DateFormatRunnalbe
    */
-  private int expectedCounterDateValues = 5;
+  private final int expectedCounterDateValues = 5;
 
   /**
    * Expected number of exceptions in the exception list created by the run of DateFormatRunnalbe.
    */
-  private int expectedCounterExceptions = 0;
+  private final int expectedCounterExceptions = 0;
 
   /**
    * Expected content of the list containing the date values created by the run of
    * DateFormatRunnalbe
    */
-  private List<String> expectedDateValues =
+  private final List<String> expectedDateValues =
       List.of("15.11.2015", "15.11.2015", "15.11.2015", "15.11.2015", "15.11.2015");
 
   /**

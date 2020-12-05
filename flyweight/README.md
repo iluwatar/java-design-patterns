@@ -10,25 +10,32 @@ tags:
 ---
 
 ## Intent
-Use sharing to support large numbers of fine-grained objects
-efficiently.
+
+Use sharing to support large numbers of fine-grained objects efficiently.
 
 ## Explanation
+
 Real world example
 
-> Alchemist's shop has shelves full of magic potions. Many of the potions are the same so there is no need to create new object for each of them. Instead one object instance can represent multiple shelf items so memory footprint remains small.
+> Alchemist's shop has shelves full of magic potions. Many of the potions are the same so there is 
+> no need to create new object for each of them. Instead one object instance can represent multiple 
+> shelf items so memory footprint remains small.
 
 In plain words
 
-> It is used to minimize memory usage or computational expenses by sharing as much as possible with similar objects.
+> It is used to minimize memory usage or computational expenses by sharing as much as possible with 
+> similar objects.
 
 Wikipedia says
 
-> In computer programming, flyweight is a software design pattern. A flyweight is an object that minimizes memory use by sharing as much data as possible with other similar objects; it is a way to use objects in large numbers when a simple repeated representation would use an unacceptable amount of memory.
+> In computer programming, flyweight is a software design pattern. A flyweight is an object that 
+> minimizes memory use by sharing as much data as possible with other similar objects; it is a way 
+> to use objects in large numbers when a simple repeated representation would use an unacceptable 
+> amount of memory.
 
 **Programmatic example**
 
-Translating our alchemist shop example from above. First of all we have different potion types
+Translating our alchemist shop example from above. First of all we have different potion types:
 
 ```java
 public interface Potion {
@@ -60,7 +67,7 @@ public class InvisibilityPotion implements Potion {
 }
 ```
 
-Then the actual Flyweight object which is the factory for creating potions
+Then the actual Flyweight class `PotionFactory`, which is the factory for creating potions.
 
 ```java
 public class PotionFactory {
@@ -96,7 +103,7 @@ public class PotionFactory {
 }
 ```
 
-And it can be used as below
+And it can be used as below:
 
 ```java
 var factory = new PotionFactory();
@@ -108,19 +115,33 @@ factory.createPotion(PotionType.HOLY_WATER).drink(); // You feel blessed. (Potio
 factory.createPotion(PotionType.HEALING).drink(); // You feel healed. (Potion=648129364)
 ```
 
+Program output:
+
+```java
+You become invisible. (Potion=6566818)
+You feel healed. (Potion=648129364)
+You become invisible. (Potion=6566818)
+You feel blessed. (Potion=1104106489)
+You feel blessed. (Potion=1104106489)
+You feel healed. (Potion=648129364)
+```
+
 ## Class diagram
+
 ![alt text](./etc/flyweight.urm.png "Flyweight pattern class diagram")
 
 ## Applicability
-The Flyweight pattern's effectiveness depends heavily on how
-and where it's used. Apply the Flyweight pattern when all of the following are
-true
 
-* an application uses a large number of objects
-* storage costs are high because of the sheer quantity of objects
-* most object state can be made extrinsic
-* many groups of objects may be replaced by relatively few shared objects once extrinsic state is removed
-* the application doesn't depend on object identity. Since flyweight objects may be shared, identity tests will return true for conceptually distinct objects.
+The Flyweight pattern's effectiveness depends heavily on how and where it's used. Apply the 
+Flyweight pattern when all of the following are true:
+
+* An application uses a large number of objects.
+* Storage costs are high because of the sheer quantity of objects.
+* Most object state can be made extrinsic.
+* Many groups of objects may be replaced by relatively few shared objects once extrinsic state is 
+removed.
+* The application doesn't depend on object identity. Since flyweight objects may be shared, identity 
+tests will return true for conceptually distinct objects.
 
 ## Real world examples
 

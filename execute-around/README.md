@@ -9,15 +9,18 @@ tags:
 ---
 
 ## Intent
-Execute Around idiom frees the user from certain actions that should always be executed before and after the business 
-method. A good example of this is resource allocation and deallocation leaving the user to specify only what to do with 
-the resource.
+
+Execute Around idiom frees the user from certain actions that should always be executed before and 
+after the business method. A good example of this is resource allocation and deallocation leaving 
+the user to specify only what to do with the resource.
 
 ## Explanation
 
 Real world example
 
-> We need to provide a class that can be used to write text strings to files. To make it easy for the user we let our service class open and close the file automatically, the user only has to specify what is written into which file.       
+> We need to provide a class that can be used to write text strings to files. To make it easy for 
+> the user we let our service class open and close the file automatically, the user only has to 
+> specify what is written into which file.       
 
 In plain words
 
@@ -25,7 +28,9 @@ In plain words
 
 [Stack Overflow](https://stackoverflow.com/questions/341971/what-is-the-execute-around-idiom) says
 
-> Basically it's the pattern where you write a method to do things which are always required, e.g. resource allocation and clean-up, and make the caller pass in "what we want to do with the resource".
+> Basically it's the pattern where you write a method to do things which are always required, e.g. 
+> resource allocation and clean-up, and make the caller pass in "what we want to do with the 
+> resource".
 
 **Programmatic Example**
 
@@ -61,12 +66,15 @@ To utilize the file writer the following code is needed.
 ```
 
 ## Class diagram
+
 ![alt text](./etc/execute-around.png "Execute Around")
 
 ## Applicability
+
 Use the Execute Around idiom when
 
-* you use an API that requires methods to be called in pairs such as open/close or allocate/deallocate.
+* You use an API that requires methods to be called in pairs such as open/close or 
+allocate/deallocate.
 
 ## Credits
 

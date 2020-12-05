@@ -49,7 +49,7 @@ public class Audio {
 
   private volatile Thread updateThread = null;
 
-  private PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
+  private final PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
 
   // Visible only for testing purposes
   Audio() {

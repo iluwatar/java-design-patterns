@@ -34,7 +34,7 @@ public enum Role {
 
   Borrower(BorrowerRole.class), Investor(InvestorRole.class);
 
-  private Class<? extends CustomerRole> typeCst;
+  private final Class<? extends CustomerRole> typeCst;
 
   Role(Class<? extends CustomerRole> typeCst) {
     this.typeCst = typeCst;

@@ -28,7 +28,7 @@ package com.iluwatar.business.delegate;
  */
 public class Client {
 
-  private BusinessDelegate businessDelegate;
+  private final BusinessDelegate businessDelegate;
 
   public Client(BusinessDelegate businessDelegate) {
     this.businessDelegate = businessDelegate;

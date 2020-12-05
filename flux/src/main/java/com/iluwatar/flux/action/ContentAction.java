@@ -28,7 +28,7 @@ package com.iluwatar.flux.action;
  */
 public class ContentAction extends Action {
 
-  private Content content;
+  private final Content content;
 
   public ContentAction(Content content) {
     super(ActionType.CONTENT_CHANGED);

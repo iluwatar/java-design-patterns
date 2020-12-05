@@ -31,7 +31,7 @@ public enum Pixel {
   WHITE(0),
   BLACK(1);
 
-  private int color;
+  private final int color;
 
   Pixel(int color) {
     this.color = color;

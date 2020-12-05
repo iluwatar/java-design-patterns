@@ -30,10 +30,10 @@ import java.util.Objects;
  */
 public class UserDto {
 
-  private String firstName;
-  private String lastName;
-  private boolean isActive;
-  private String email;
+  private final String firstName;
+  private final String lastName;
+  private final boolean isActive;
+  private final String email;
 
   /**
    * Constructor.

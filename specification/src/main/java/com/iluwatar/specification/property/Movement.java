@@ -30,7 +30,7 @@ public enum Movement {
 
   WALKING("walking"), SWIMMING("swimming"), FLYING("flying");
 
-  private String title;
+  private final String title;
 
   Movement(String title) {
     this.title = title;

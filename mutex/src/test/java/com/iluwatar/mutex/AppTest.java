@@ -25,15 +25,15 @@ package com.iluwatar.mutex;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * Application Test Entrypoint
  */
-public class AppTest {
+class AppTest {
+
   @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

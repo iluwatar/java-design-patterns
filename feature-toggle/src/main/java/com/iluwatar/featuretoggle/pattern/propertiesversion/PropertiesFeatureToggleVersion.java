@@ -42,7 +42,7 @@ import java.util.Properties;
  */
 public class PropertiesFeatureToggleVersion implements Service {
 
-  private boolean isEnhanced;
+  private final boolean isEnhanced;
 
   /**
    * Creates an instance of {@link PropertiesFeatureToggleVersion} using the passed {@link

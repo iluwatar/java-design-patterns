@@ -36,10 +36,10 @@ public class App {
    */
   public static void main(String[] args) {
 
-    var data1 = new Data(1, "data1", Data.DataType.type1);
-    var data2 = new Data(2, "data2", Data.DataType.type2);
-    var data3 = new Data(3, "data3", Data.DataType.type3);
-    var data4 = new Data(4, "data4", Data.DataType.type1);
+    var data1 = new Data(1, "data1", Data.DataType.TYPE_1);
+    var data2 = new Data(2, "data2", Data.DataType.TYPE_2);
+    var data3 = new Data(3, "data3", Data.DataType.TYPE_3);
+    var data4 = new Data(4, "data4", Data.DataType.TYPE_1);
 
     var shard1 = new Shard(1);
     var shard2 = new Shard(2);

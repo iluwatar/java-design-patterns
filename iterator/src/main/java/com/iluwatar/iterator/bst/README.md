@@ -1,8 +1,11 @@
 # BSTIterator
-An implementation of the Iterator design pattern, for the Binary Search Tree
-data structure. A great explanation of BSTs can be found in this [video tutorial](https://www.youtube.com/watch?v=i_Q0v_Ct5lY).
 
-### What it Does
+An implementation of the Iterator design pattern, for the Binary Search Tree data structure. A great 
+explanation of BSTs can be found in this 
+[video tutorial](https://www.youtube.com/watch?v=i_Q0v_Ct5lY).
+
+### What It Does
+
 This iterator assumes that the given binary search tree inserts nodes of smaller 
 value to the left, and nodes of larger value to the right of current node. Accordingly, 
 this iterator will return nodes according to "In Order" binary tree traversal. 
@@ -12,6 +15,7 @@ return values in order: 1, 3, 4, 6, 7, 8, 10, 13, 14.
 ![BST](../../../../../../../etc/bst.jpg "Binary Search Tree")  
 
 ### How It's Done
+
 **The trivial solution** to a binary search tree iterator would be to construct a List (or similar 
 linear data structure) when you construct the BSTIterator. This would require traversing the entire
 BST, adding each node value to your list as you go. The downside to the trivial solution is twofold.
@@ -80,7 +84,4 @@ In Big O terms, here are the costs for our improved solution, where h is the hei
 * Extra Space: O(h)
 
 As you can see, this solution more evenly distributes the work. It yields the same amortized 
-runtime for `next()`, reduces the run time of the constructor, and uses less extra space. 
-
-
- 
+runtime for `next()`, reduces the run time of the constructor, and uses less extra space.

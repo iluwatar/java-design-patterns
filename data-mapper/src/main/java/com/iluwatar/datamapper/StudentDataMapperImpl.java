@@ -33,7 +33,7 @@ import java.util.Optional;
 public final class StudentDataMapperImpl implements StudentDataMapper {
 
   /* Note: Normally this would be in the form of an actual database */
-  private List<Student> students = new ArrayList<>();
+  private final List<Student> students = new ArrayList<>();
 
   @Override
   public Optional<Student> find(int studentId) {

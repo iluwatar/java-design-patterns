@@ -34,7 +34,7 @@ import java.util.Optional;
  */
 public class InMemoryTicketRepository implements LotteryTicketRepository {
 
-  private static Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
+  private static final Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();
 
   @Override
   public Optional<LotteryTicket> findById(LotteryTicketId id) {

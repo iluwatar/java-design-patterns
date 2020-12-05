@@ -29,8 +29,8 @@ package com.iluwatar.saga.orchestration;
  * @param <K> incoming value
  */
 public class ChapterResult<K> {
-  private K value;
-  private State state;
+  private final K value;
+  private final State state;
 
   public K getValue() {
     return value;

@@ -31,7 +31,7 @@ package com.iluwatar.iterator.bst;
  */
 public class TreeNode<T extends Comparable<T>> {
 
-  private T val;
+  private final T val;
   private TreeNode<T> left;
   private TreeNode<T> right;
 

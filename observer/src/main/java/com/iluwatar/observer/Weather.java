@@ -37,7 +37,7 @@ public class Weather {
   private static final Logger LOGGER = LoggerFactory.getLogger(Weather.class);
 
   private WeatherType currentWeather;
-  private List<WeatherObserver> observers;
+  private final List<WeatherObserver> observers;
 
   public Weather() {
     observers = new ArrayList<>();

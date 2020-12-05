@@ -29,10 +29,10 @@ import java.util.Objects;
  * User class.
  */
 public class User {
-  private String firstName;
-  private String lastName;
-  private boolean isActive;
-  private String userId;
+  private final String firstName;
+  private final String lastName;
+  private final boolean isActive;
+  private final String userId;
 
   /**
    * Constructor.

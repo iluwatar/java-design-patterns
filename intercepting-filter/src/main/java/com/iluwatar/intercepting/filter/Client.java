@@ -51,11 +51,11 @@ public class Client extends JFrame { // NOSONAR
   private static final long serialVersionUID = 1L;
 
   private transient FilterManager filterManager;
-  private JLabel jl;
-  private JTextField[] jtFields;
-  private JTextArea[] jtAreas;
-  private JButton clearButton;
-  private JButton processButton;
+  private final JLabel jl;
+  private final JTextField[] jtFields;
+  private final JTextArea[] jtAreas;
+  private final JButton clearButton;
+  private final JButton processButton;
 
   /**
    * Constructor.

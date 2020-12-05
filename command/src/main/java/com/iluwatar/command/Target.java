@@ -62,4 +62,21 @@ public abstract class Target {
   public void printStatus() {
     LOGGER.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
   }
+
+  /**
+   * Changes the size of the target.
+   */
+  public void changeSize() {
+    var oldSize = getSize() == Size.NORMAL ? Size.SMALL : Size.NORMAL;
+    setSize(oldSize);
+  }
+
+  /**
+   * Changes the visibility of the target.
+   */
+  public void changeVisibility() {
+    var visible = getVisibility() == Visibility.INVISIBLE
+            ? Visibility.VISIBLE : Visibility.INVISIBLE;
+    setVisibility(visible);
+  }
 }

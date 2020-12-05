@@ -9,13 +9,17 @@ tags:
 ---
 
 ## Intent
-Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
+
+Represent an operation to be performed on the elements of an object structure. Visitor lets you 
+define a new operation without changing the classes of the elements on which it operates.
 
 ## Explanation
 
 Real world example
 
-> Consider a tree structure with army units. Commander has two sergeants under it and each sergeant has three soldiers under them. Given that the hierarchy implements the visitor pattern, we can easily create new objects that interact with the commander, sergeants, soldiers or all of them. 
+> Consider a tree structure with army units. Commander has two sergeants under it and each sergeant 
+> has three soldiers under them. Given that the hierarchy implements the visitor pattern, we can 
+> easily create new objects that interact with the commander, sergeants, soldiers or all of them. 
 
 In plain words
 
@@ -23,7 +27,10 @@ In plain words
 
 Wikipedia says
 
-> In object-oriented programming and software engineering, the visitor design pattern is a way of separating an algorithm from an object structure on which it operates. A practical result of this separation is the ability to add new operations to existing object structures without modifying the structures.
+> In object-oriented programming and software engineering, the visitor design pattern is a way of 
+> separating an algorithm from an object structure on which it operates. A practical result of this 
+> separation is the ability to add new operations to existing object structures without modifying 
+> the structures.
 
 **Programmatic Example**
 
@@ -32,7 +39,7 @@ Given the army unit example from above, we first have the Unit and UnitVisitor b
 ```java
 public abstract class Unit {
 
-  private Unit[] children;
+  private final Unit[] children;
 
   public Unit(Unit... children) {
     this.children = children;
@@ -111,7 +118,7 @@ public class Soldier extends Unit {
 }
 ```
 
-And then some concrete visitors.
+Here are then some concrete visitors.
 
 ```java
 public class CommanderVisitor implements UnitVisitor {
@@ -175,32 +182,39 @@ public class SoldierVisitor implements UnitVisitor {
 }
 ```
 
-Finally we can show the power of visitors in action.
+Finally, we can show the power of visitors in action.
 
 ```java
 commander.accept(new SoldierVisitor());
-// Greetings soldier
-// Greetings soldier
-// Greetings soldier
-// Greetings soldier
-// Greetings soldier
-// Greetings soldier
 commander.accept(new SergeantVisitor());
-// Hello sergeant
-// Hello sergeant
 commander.accept(new CommanderVisitor());
-// Good to see you commander
+```
+
+Program output:
+
+```
+Greetings soldier
+Greetings soldier
+Greetings soldier
+Greetings soldier
+Greetings soldier
+Greetings soldier
+Hello sergeant
+Hello sergeant
+Good to see you commander
 ```
 
 ## Class diagram
+
 ![alt text](./etc/visitor_1.png "Visitor")
 
 ## Applicability
+
 Use the Visitor pattern when
 
-* An object structure contains many classes of objects with differing interfaces, and you want to perform operations on these objects that depend on their concrete classes
-* Many distinct and unrelated operations need to be performed on objects in an object structure, and you want to avoid "polluting" their classes with these operations. Visitor lets you keep related operations together by defining them in one class. When the object structure is shared by many applications, use Visitor to put operations in just those applications that need them
-* The classes defining the object structure rarely change, but you often want to define new operations over the structure. Changing the object structure classes requires redefining the interface to all visitors, which is potentially costly. If the object structure classes change often, then it's probably better to define the operations in those classes
+* An object structure contains many classes of objects with differing interfaces, and you want to perform operations on these objects that depend on their concrete classes.
+* Many distinct and unrelated operations need to be performed on objects in an object structure, and you want to avoid "polluting" their classes with these operations. Visitor lets you keep related operations together by defining them in one class. When the object structure is shared by many applications, use Visitor to put operations in just those applications that need them.
+* The classes defining the object structure rarely change, but you often want to define new operations over the structure. Changing the object structure classes requires redefining the interface to all visitors, which is potentially costly. If the object structure classes change often, then it's probably better to define the operations in those classes.
 
 ## Real world examples
 

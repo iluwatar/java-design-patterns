@@ -23,15 +23,20 @@
 
 package com.iluwatar.image.microservice;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
+import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 
 /**
  * Exposes the Image microservice's endpoints.
  */
 @RestController
 public class ImageController {
+  private static final Logger LOGGER = getLogger(ImageController.class);
 
   /**
    * An endpoint for a user to retrieve an image path.
@@ -40,6 +45,7 @@ public class ImageController {
    */
   @RequestMapping(value = "/image-path", method = RequestMethod.GET)
   public String getImagePath() {
+    LOGGER.info("Successfully found image path");
     return "/product-image.png";
   }
 }

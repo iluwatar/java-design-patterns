@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class DisjunctionSelector<T> extends AbstractSelector<T> {
 
-  private List<AbstractSelector<T>> leafComponents;
+  private final List<AbstractSelector<T>> leafComponents;
 
   @SafeVarargs
   DisjunctionSelector(AbstractSelector<T>... selectors) {

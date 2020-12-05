@@ -25,16 +25,15 @@ package com.iluwatar.nullobject;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
- * 
  * Application test
- *
  */
-public class AppTest {
+class AppTest {
 
   @Test
-  public void test() {
-    String[] args = {};
-    App.main(args);
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

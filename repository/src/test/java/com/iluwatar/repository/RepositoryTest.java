@@ -48,12 +48,12 @@ public class RepositoryTest {
   @Resource
   private PersonRepository repository;
 
-  private Person peter = new Person("Peter", "Sagan", 17);
-  private Person nasta = new Person("Nasta", "Kuzminova", 25);
-  private Person john = new Person("John", "lawrence", 35);
-  private Person terry = new Person("Terry", "Law", 36);
+  private final Person peter = new Person("Peter", "Sagan", 17);
+  private final Person nasta = new Person("Nasta", "Kuzminova", 25);
+  private final Person john = new Person("John", "lawrence", 35);
+  private final Person terry = new Person("Terry", "Law", 36);
 
-  private List<Person> persons = List.of(peter, nasta, john, terry);
+  private final List<Person> persons = List.of(peter, nasta, john, terry);
 
   /**
    * Prepare data for test
