@@ -1296,6 +1296,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "omk13",
+      "name": "Omar Karazoun",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/59054172?v=4",
+      "profile": "https://github.com/omk13",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
