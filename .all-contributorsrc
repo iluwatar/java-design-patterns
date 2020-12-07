@@ -1305,6 +1305,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "jeff303",
+      "name": "Jeff Evans",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3521562?v=4",
+      "profile": "https://github.com/jeff303",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
