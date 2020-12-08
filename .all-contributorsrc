@@ -315,7 +315,8 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/6295975?v=4",
       "profile": "https://github.com/Anurag870",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -1294,6 +1295,24 @@
       "profile": "https://github.com/gkulkarni2020",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "omk13",
+      "name": "Omar Karazoun",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/59054172?v=4",
+      "profile": "https://github.com/omk13",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jeff303",
+      "name": "Jeff Evans",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3521562?v=4",
+      "profile": "https://github.com/jeff303",
+      "contributions": [
+        "code"
       ]
     }
   ],

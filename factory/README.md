@@ -98,7 +98,7 @@ Now on the client code we can create different types of cars using the factory c
 var car1 = CarsFactory.getCar(CarType.FORD);
 var car2 = CarsFactory.getCar(CarType.FERRARI);
 LOGGER.info(car1.getDescription());
-LOGGER.info(car2.getDescription());;
+LOGGER.info(car2.getDescription());
 ```
 
 Program output:
@@ -119,8 +119,8 @@ and manage it.
 
 Pros
 
-* Allows keeping all objects creation in one place and avoid of spreading 'new' key value across codebase.
-* Allows to writs loosely coupled code. Some of its main advantages include better testability, easy-to-understand code, swappable components, scalability and isolated features.
+* Allows keeping all objects creation in one place and avoid of spreading 'new' keyword across codebase.
+* Allows to write loosely coupled code. Some of its main advantages include better testability, easy-to-understand code, swappable components, scalability and isolated features.
 
 Cons
 
