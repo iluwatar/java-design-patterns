@@ -195,6 +195,7 @@
         <module>strangler</module>
         <module>arrange-act-assert</module>
         <module>transaction-script</module>
+        <module>registry</module>
         <module>filterer</module>
         <module>factory</module>
         <module>separated-interface</module>
