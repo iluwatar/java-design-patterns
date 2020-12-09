@@ -140,6 +140,10 @@ Use the Iterator pattern
 * To support multiple traversals of aggregate objects.
 * To provide a uniform interface for traversing different aggregate structures.
 
+## Tutorials
+
+* [How to Use Iterator?](http://www.tutorialspoint.com/java/java_using_iterator.htm)
+
 ## Real world examples
 
 * [java.util.Iterator](http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)

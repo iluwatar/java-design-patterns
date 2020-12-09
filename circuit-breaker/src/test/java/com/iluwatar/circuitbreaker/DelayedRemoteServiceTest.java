@@ -21,39 +21,39 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.command;
+package com.iluwatar.circuitbreaker;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
- * ShrinkSpell is a concrete command.
+ * Monitoring Service test
  */
-public class ShrinkSpell implements Command {
+public class DelayedRemoteServiceTest {
 
-  private Size oldSize;
-  private Target target;
-
-  @Override
-  public void execute(Target target) {
-    oldSize = target.getSize();
-    target.setSize(Size.SMALL);
-    this.target = target;
+  /**
+   * Testing immediate response of the delayed service.
+   *
+   * @throws RemoteServiceException
+   */
+  @Test
+  public void testDefaultConstructor() throws RemoteServiceException {
+    Assertions.assertThrows(RemoteServiceException.class, () -> {
+      var obj = new DelayedRemoteService();
+      obj.call();
+    });
   }
 
-  @Override
-  public void undo() {
-    if (oldSize != null && target != null) {
-      var temp = target.getSize();
-      target.setSize(oldSize);
-      oldSize = temp;
-    }
-  }
-
-  @Override
-  public void redo() {
-    undo();
-  }
-
-  @Override
-  public String toString() {
-    return "Shrink spell";
+  /**
+   * Testing server started in past (2 seconds ago) and with a simulated delay of 1 second.
+   *
+   * @throws RemoteServiceException
+   */
+  @Test
+  public void testParameterizedConstructor() throws RemoteServiceException {
+      var obj = new DelayedRemoteService(System.nanoTime()-2000*1000*1000,1);
+      assertEquals("Delayed service is working",obj.call());
   }
 }

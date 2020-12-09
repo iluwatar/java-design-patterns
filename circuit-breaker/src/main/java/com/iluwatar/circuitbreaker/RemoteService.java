@@ -23,19 +23,12 @@
 
 package com.iluwatar.circuitbreaker;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
-
 /**
- * Monitoring Service test
+ * The Remote service interface, used by {@link CircuitBreaker} for fetching response from remote
+ * services.
  */
-public class DelayedServiceTest {
+public interface RemoteService {
 
-  //Improves code coverage
-  @Test
-  public void testDefaultConstructor() {
-    var obj = new DelayedService();
-    assertEquals(obj.response(System.nanoTime()), "Delayed service is down");
-  }
+  //Fetch response from remote service.
+  String call() throws RemoteServiceException;
 }
