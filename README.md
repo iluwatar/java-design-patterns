@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-147-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-148-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Introduction
@@ -289,6 +289,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://viveksb007.github.io"><img src="https://avatars1.githubusercontent.com/u/12713808?v=4" width="100px;" alt=""/><br /><sub><b>Vivek Singh</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=viveksb007" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/siavashsoleymani"><img src="https://avatars2.githubusercontent.com/u/18074419?v=4" width="100px;" alt=""/><br /><sub><b>siavash</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=siavashsoleymani" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/ruchpeanuts"><img src="https://avatars0.githubusercontent.com/u/29301900?v=4" width="100px;" alt=""/><br /><sub><b>ruchpeanuts</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ruchpeanuts" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/warp125"><img src="https://avatars1.githubusercontent.com/u/48073115?v=4" width="100px;" alt=""/><br /><sub><b>warp125</b></sub></a><br /><a href="#translation-warp125" title="Translation">🌍</a></td>
   </tr>
 </table>
 
