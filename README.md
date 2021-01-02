@@ -14,7 +14,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
-Read in different language : [![FR](/assets/flags/FR.png)**FR**](/fr/README.md)
+Read in different language : [![FR] (/assets/flags/FR.png) **FR**](/fr/README.md)
 <br/>
 
 # Introduction
