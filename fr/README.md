@@ -2,7 +2,7 @@
     afin qu'on puisse avoir un affichage agréable comme sur un 
     site web par exemple -->
 
-# Les patternes de conceptions implémentés en Java
+# Les patrons de conception implémentés en Java
 
 ![Java CI with Maven](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI%20with%20Maven/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
