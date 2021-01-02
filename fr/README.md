@@ -52,8 +52,8 @@ dans vos architectures et ayez autant de plaisir à les apprendre que nous en av
 # Comment contribuer
 
 Si vous souhaitez contribuer au projet, vous trouverez les informations pertinentes dans
-notre [wiki développeur] (https://github.com/iluwatar/java-design-patterns/wiki). Nous aiderons
-vous et répondez à vos questions dans le [Gitter chatroom] (https://gitter.im/iluwatar/java-design-patterns).
+notre [wiki développeur](https://github.com/iluwatar/java-design-patterns/wiki). Nous aiderons
+vous et répondez à vos questions dans le [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
 # Licence
 
