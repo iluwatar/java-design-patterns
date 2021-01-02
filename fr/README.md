@@ -21,7 +21,7 @@ peut utiliser pour résoudre un problème lors d'une conception d'une applicatio
 Le patron de conception (design pattern) est là pour accélérer le processus de 
 développement en fournissant des paradigmes éprouvés.
 
-La réutilisation de patterne de conception aide à prévenir des problèmes subtiles mais
+La réutilisation de patron de conception aide à prévenir des problèmes subtiles mais
 qui sont à l'origine de problèmes majeures, comme cette pratique augmente la lisibilitée
 du code par les développeurs/architectes familiers avec l'utilisation de ces concepts.
 
