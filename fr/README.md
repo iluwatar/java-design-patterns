@@ -43,8 +43,8 @@ Une fois que vous êtes familiarisé avec ces concepts, vous pouvez commencer à
 des approches suivantes
 
  - Recherchez un modèle spécifique par son nom. Vous n'en trouvez pas? Veuillez signaler un nouveau modèle [ici](https://github.com/iluwatar/java-design-patterns/issues).
- - Utilisation de balises telles que «Performance», «Gang of Four» ou «Data access».
- - Utilisation des catégories de modèles, «Créatif», «Comportemental» et autres.
+ - Utilisation de balises telles que `Performance`, `Gang of Four` ou `Data access`.
+ - Utilisation des catégories de modèles, `Créatif`, `Comportemental` et autres.
 
 J'espère que les solutions orientées objet présentées sur ce site vous seront utiles
 dans vos architectures et ayez autant de plaisir à les apprendre que nous en avons eu à les développer.
