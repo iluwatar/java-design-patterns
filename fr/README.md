@@ -18,7 +18,7 @@
 Le patron de conception est la meilleure formatalisation qu'un programmeur
 peut utiliser pour résoudre un problème lors d'une conception d'une application/system.
 
-Le patterne de conception (design pattern) est là pour accélérer le processus de 
+Le patron de conception (design pattern) est là pour accélérer le processus de 
 développement en fournissant des paradigmes éprouvés.
 
 La réutilisation de patterne de conception aide à prévenir des problèmes subtiles mais
