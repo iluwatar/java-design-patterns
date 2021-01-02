@@ -15,7 +15,7 @@
 
 # Introduction
 
-Le patterne de conception est la meilleure formatalisation qu'un programmeur
+Le patron de conception est la meilleure formatalisation qu'un programmeur
 peut utiliser pour résoudre un problème lors d'une conception d'une application/system.
 
 Le patterne de conception (design pattern) est là pour accélérer le processus de 
