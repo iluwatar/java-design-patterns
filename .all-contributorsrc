@@ -1350,6 +1350,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "tkhadir",
+      "name": "KHADIR Tayeb",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/45130488?v=4",
+      "profile": "http://libkhadir.fr",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 4,
