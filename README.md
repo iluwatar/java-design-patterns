@@ -13,6 +13,12 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-148-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+<br/>
+
+Read in different language : [![CN](/assets/flags/CN.png)**CN**](/zh/README.md),[![KR](/assets/flags/KR.png)**KR**](/ko/README.md),[![FR](/assets/flags/FR.png)**FR**](/fr/README.md),
+
+<br/>
+
 # Introduction
 
 Design patterns are the best formalized practices a programmer can use to
