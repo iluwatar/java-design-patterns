@@ -1,0 +1,119 @@
+@startuml
+left to right direction
+package com.iluwatar.specialcase {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface ApplicationServices {
+    + loggedInUserPurchase(String, String) : ReceiptViewModel {abstract}
+  }
+  class ApplicationServicesImpl {
+    - domain : DomainServicesImpl
+    + ApplicationServicesImpl()
+    - isDownForMaintenance() : boolean
+    + loggedInUserPurchase(userName : String, itemName : String) : ReceiptViewModel
+  }
+  class Db {
+    - instance : Db {static}
+    - itemName2Product : Map<String, Product>
+    - user2Account : Map<User, Account>
+    - userName2User : Map<String, User>
+    + Db()
+    + findAccountByUser(user : User) : Account
+    + findProductByItemName(itemName : String) : Product
+    + findUserByUserName(userName : String) : User
+    + getInstance() : Db {static}
+    + seedItem(itemName : String, price : Double)
+    + seedUser(userName : String, amount : Double)
+  }
+  class Account {
+    - amount : Double
+    + Account(this$0 : Double)
+    + getAmount() : Double
+    + withdraw(price : Double) : MoneyTransaction
+  }
+  class Product {
+    - price : Double
+    + Product(this$0 : Double)
+    + getPrice() : Double
+  }
+  class User {
+    - userName : String
+    + User(this$0 : String)
+    + getUserName() : String
+    + purchase(item : Product) : ReceiptDto
+  }
+  interface DomainServices {
+  }
+  class DomainServicesImpl {
+    + DomainServicesImpl()
+    - purchase(user : User, account : Account, itemName : String) : ReceiptViewModel
+    + purchase(userName : String, itemName : String) : ReceiptViewModel
+  }
+  class DownForMaintenance {
+    - LOGGER : Logger {static}
+    + DownForMaintenance()
+    + show()
+  }
+  class InsufficientFunds {
+    - LOGGER : Logger {static}
+    - amount : Double
+    - itemName : String
+    - userName : String
+    + InsufficientFunds(userName : String, amount : Double, itemName : String)
+    + show()
+  }
+  class InvalidUser {
+    - LOGGER : Logger {static}
+    - userName : String
+    + InvalidUser(userName : String)
+    + show()
+  }
+  class MaintenanceLock {
+    - LOGGER : Logger {static}
+    - instance : MaintenanceLock {static}
+    - lock : boolean
+    + MaintenanceLock()
+    + getInstance() : MaintenanceLock {static}
+    + isLock() : boolean
+    + setLock(lock : boolean)
+  }
+  class MoneyTransaction {
+    - amount : Double
+    - price : Double
+    + MoneyTransaction(amount : Double, price : Double)
+  }
+  class OutOfStock {
+    - LOGGER : Logger {static}
+    - itemName : String
+    - userName : String
+    + OutOfStock(userName : String, itemName : String)
+    + show()
+  }
+  class ReceiptDto {
+    - LOGGER : Logger {static}
+    - price : Double
+    + ReceiptDto(price : Double)
+    + getPrice() : Double
+    + show()
+  }
+  interface ReceiptViewModel {
+    + show() {abstract}
+  }
+}
+User --+ Db
+Product --+ Db
+MaintenanceLock -->  "-instance" MaintenanceLock
+Db -->  "-instance" Db
+ApplicationServicesImpl -->  "-domain" DomainServicesImpl
+Account --+ Db
+ApplicationServicesImpl ..|> ApplicationServices 
+DomainServicesImpl ..|> DomainServices 
+DownForMaintenance ..|> ReceiptViewModel 
+InsufficientFunds ..|> ReceiptViewModel 
+InvalidUser ..|> ReceiptViewModel 
+OutOfStock ..|> ReceiptViewModel 
+ReceiptDto ..|> ReceiptViewModel 
+@enduml
