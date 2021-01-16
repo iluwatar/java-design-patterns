@@ -15,7 +15,7 @@
 
 <br/>
 
-Read in different language : [![CN](/assets/flags/CN.png)**CN**](/zh/README.md),[![KR](/assets/flags/KR.png)**KR**](/ko/README.md),[![FR](/assets/flags/FR.png)**FR**](/fr/README.md),
+Read in different language : [![CN](/assets/flags/CN.png)**CN**](/zh/README.md),[![KR](/assets/flags/KR.png)**KR**](/ko/README.md),[![FR](/assets/flags/FR.png)**FR**](/fr/README.md),[![TR](/assets/flags/TR.png)**TR**](/tr/README.md),
 
 <br/>
 
