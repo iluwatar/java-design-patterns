@@ -1368,6 +1368,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "demirhalil",
+      "name": "Halil Demir",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/22895118?v=4",
+      "profile": "https://github.com/demirhalil",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 4,
