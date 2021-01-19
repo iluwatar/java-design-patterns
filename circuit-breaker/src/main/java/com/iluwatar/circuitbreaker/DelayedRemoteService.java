@@ -27,7 +27,9 @@ package com.iluwatar.circuitbreaker;
  * This simulates the remote service It responds only after a certain timeout period (default set to
  * 20 seconds).
  */
-public class DelayedService {
+public class DelayedRemoteService implements RemoteService {
+
+  private final long serverStartTime;
   private final int delay;
 
   /**
@@ -35,22 +37,23 @@ public class DelayedService {
    *
    * @param delay the delay after which service would behave properly, in seconds
    */
-  public DelayedService(int delay) {
+  public DelayedRemoteService(long serverStartTime, int delay) {
+    this.serverStartTime = serverStartTime;
     this.delay = delay;
   }
 
-  public DelayedService() {
-    this.delay = 60;
+  public DelayedRemoteService() {
+    this.serverStartTime = System.nanoTime();
+    this.delay = 20;
   }
 
   /**
    * Responds based on delay, current time and server start time if the service is down / working.
    *
-   * @param serverStartTime Time at which actual server was started which makes calls to this
-   *                        service
    * @return The state of the service
    */
-  public String response(long serverStartTime) {
+  @Override
+  public String call() throws RemoteServiceException {
     var currentTime = System.nanoTime();
     //Since currentTime and serverStartTime are both in nanoseconds, we convert it to
     //seconds by diving by 10e9 and ensure floating point division by multiplying it
@@ -58,9 +61,8 @@ public class DelayedService {
     //send the reply
     if ((currentTime - serverStartTime) * 1.0 / (1000 * 1000 * 1000) < delay) {
       //Can use Thread.sleep() here to block and simulate a hung server
-      return "Delayed service is down";
-    } else {
-      return "Delayed service is working";
+      throw new RemoteServiceException("Delayed service is down");
     }
+    return "Delayed service is working";
   }
 }

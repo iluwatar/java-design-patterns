@@ -33,8 +33,6 @@ tags:
 
 以巨魔的为例。首先我有有一个简单的巨魔，实现了巨魔接口。
 
-程序mple. First of all we have a simple troll implementing the troll interface
-
 ```java
 public interface Troll {
   void attack();

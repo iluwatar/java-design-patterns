@@ -1,0 +1,129 @@
+@startuml
+package com.iluwatar.datatransferenum {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Product {
+    - cost : Double
+    - id : Long
+    - name : String
+    - price : Double
+    - supplier : String
+    + Product()
+    + getCost() : Double
+    + getId() : Long
+    + getName() : String
+    + getPrice() : Double
+    + getSupplier() : String
+    + setCost(cost : Double) : Product
+    + setId(id : Long) : Product
+    + setName(name : String) : Product
+    + setPrice(price : Double) : Product
+    + setSupplier(supplier : String) : Product
+    + toString() : String
+  }
+  enum ProductDTO {
+    + valueOf(name : String) : ProductDTO {static}
+    + values() : ProductDTO[] {static}
+  }
+  -interface Cost {
+    + getCost() : Double {abstract}
+  }
+  -interface Id {
+    + getId() : Long {abstract}
+  }
+  -interface Name {
+    + getName() : String {abstract}
+  }
+  -interface Price {
+    + getPrice() : Double {abstract}
+  }
+  enum Request {
+    + valueOf(name : String) : Request {static}
+    + values() : Request[] {static}
+  }
+  class Create {
+    - cost : Double
+    - name : String
+    - price : Double
+    - supplier : String
+    + Create()
+    + getCost() : Double
+    + getName() : String
+    + getPrice() : Double
+    + getSupplier() : String
+    + setCost(cost : Double) : Create
+    + setName(name : String) : Create
+    + setPrice(price : Double) : Create
+    + setSupplier(supplier : String) : Create
+  }
+  enum Response {
+    + valueOf(name : String) : Response {static}
+    + values() : Response[] {static}
+  }
+  class Private {
+    - cost : Double
+    - id : Long
+    - name : String
+    - price : Double
+    + Private()
+    + getCost() : Double
+    + getId() : Long
+    + getName() : String
+    + getPrice() : Double
+    + setCost(cost : Double) : Private
+    + setId(id : Long) : Private
+    + setName(name : String) : Private
+    + setPrice(price : Double) : Private
+    + toString() : String
+  }
+  class Public {
+    - id : Long
+    - name : String
+    - price : Double
+    + Public()
+    + getId() : Long
+    + getName() : String
+    + getPrice() : Double
+    + setId(id : Long) : Public
+    + setName(name : String) : Public
+    + setPrice(price : Double) : Public
+    + toString() : String
+  }
+  -interface Supplier {
+    + getSupplier() : String {abstract}
+  }
+  class ProductResource {
+    - products : List<Product>
+    + ProductResource(products : List<Product>)
+    + getAllProductsForAdmin() : List<Private>
+    + getAllProductsForCustomer() : List<Public>
+    + getProducts() : List<Product>
+    + save(createProductDTO : Create)
+  }
+}
+Create ..+ Request
+Request ..+ ProductDTO
+Private ..+ Response
+Supplier ..+ ProductDTO
+Name ..+ ProductDTO
+ProductResource -->  "-products" Product
+Public ..+ Response
+Id ..+ ProductDTO
+Price ..+ ProductDTO
+Response ..+ ProductDTO
+Cost ..+ ProductDTO
+Create ..|> Name 
+Create ..|> Price 
+Create ..|> Cost 
+Create ..|> Supplier 
+Private ..|> Id 
+Private ..|> Name 
+Private ..|> Price 
+Private ..|> Cost 
+Public ..|> Id 
+Public ..|> Name 
+Public ..|> Price 
+@enduml
