@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.datatransfer;
+package com.iluwatar.datatransfer.customer;
 
 /**
  * {@link CustomerDto} is a data transfer object POJO. Instead of sending individual information to
