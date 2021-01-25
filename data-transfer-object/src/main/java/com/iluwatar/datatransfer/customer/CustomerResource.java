@@ -21,24 +21,50 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.datatransferenum;
+package com.iluwatar.datatransfer.customer;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import java.util.List;
 
-
-import org.junit.jupiter.api.Test;
-
-class AppTest {
+/**
+ * The resource class which serves customer information. This class act as server in the demo. Which
+ * has all customer details.
+ */
+public class CustomerResource {
+  private final List<CustomerDto> customers;
 
   /**
-   * Issue: Add at least one assertion to this test case.
-   * <p>
-   * Solution: Inserted assertion to check whether the execution of the main method in {@link App#main(String[])}
-   * throws an exception.
+   * Initialise resource with existing customers.
+   *
+   * @param customers initialize resource with existing customers. Act as database.
    */
+  public CustomerResource(List<CustomerDto> customers) {
+    this.customers = customers;
+  }
 
-  @Test
-  void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[] {}));
+  /**
+   * Get all customers.
+   *
+   * @return : all customers in list.
+   */
+  public List<CustomerDto> getAllCustomers() {
+    return customers;
+  }
+
+  /**
+   * Save new customer.
+   *
+   * @param customer save new customer to list.
+   */
+  public void save(CustomerDto customer) {
+    customers.add(customer);
+  }
+
+  /**
+   * Delete customer with given id.
+   *
+   * @param customerId delete customer with id {@code customerId}
+   */
+  public void delete(String customerId) {
+    customers.removeIf(customer -> customer.getId().equals(customerId));
   }
 }

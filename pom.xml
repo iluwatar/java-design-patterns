@@ -199,7 +199,6 @@
         <module>filterer</module>
         <module>factory</module>
         <module>separated-interface</module>
-        <module>data-transfer-object-enum-impl</module>
         <module>special-case</module>
     </modules>
 
