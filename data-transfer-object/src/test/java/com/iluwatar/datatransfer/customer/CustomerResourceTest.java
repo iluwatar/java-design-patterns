@@ -21,13 +21,16 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.datatransfer;
+package com.iluwatar.datatransfer.customer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.iluwatar.datatransfer.customer.CustomerDto;
+import com.iluwatar.datatransfer.customer.CustomerResource;
 import org.junit.jupiter.api.Test;
 
 /**
