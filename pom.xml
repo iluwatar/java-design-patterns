@@ -141,8 +141,6 @@
         <module>module</module>
         <module>monad</module>
         <module>mute-idiom</module>
-        <module>mutex</module>
-        <module>semaphore</module>
         <module>hexagonal</module>
         <module>abstract-document</module>
         <module>aggregator-microservices</module>

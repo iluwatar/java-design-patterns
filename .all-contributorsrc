@@ -1377,6 +1377,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "rohit10000",
+      "name": "Rohit Singh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20845565?v=4",
+      "profile": "https://github.com/rohit10000",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
