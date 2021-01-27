@@ -38,16 +38,13 @@ public class Db {
    *
    * @return singleton instance of Db class
    */
-  public static Db getInstance() {
+  public static synchronized Db getInstance() {
     if (instance == null) {
-      synchronized (Db.class) {
-        if (instance == null) {
-          instance = new Db();
-          instance.userName2User = new HashMap<>();
-          instance.user2Account = new HashMap<>();
-          instance.itemName2Product = new HashMap<>();
-        }
-      }
+      Db newInstance = new Db();
+      newInstance.userName2User = new HashMap<>();
+      newInstance.user2Account = new HashMap<>();
+      newInstance.itemName2Product = new HashMap<>();
+      instance = newInstance;
     }
     return instance;
   }
