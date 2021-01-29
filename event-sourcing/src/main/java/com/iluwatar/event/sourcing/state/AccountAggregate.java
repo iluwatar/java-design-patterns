@@ -26,6 +26,7 @@ package com.iluwatar.event.sourcing.state;
 import com.iluwatar.event.sourcing.domain.Account;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * This is the static accounts map holder class. This class holds the state of the accounts.
@@ -55,11 +56,10 @@ public class AccountAggregate {
    * @return the copy of the account or null if not found
    */
   public static Account getAccount(int accountNo) {
-    Account account = accounts.get(accountNo);
-    if (account == null) {
-      return null;
-    }
-    return account.copy();
+    return Optional.of(accountNo)
+        .map(accounts::get)
+        .map(Account::copy)
+        .orElse(null);
   }
 
   /**

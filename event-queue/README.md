@@ -5,9 +5,7 @@ folder: event-queue
 permalink: /patterns/event-queue/
 categories: Concurrency
 tags:
- - Java
- - Difficulty Intermediate
- - Queue
+ - Game programming
 ---
 
 ## Intent
@@ -17,6 +15,7 @@ It puts all the requests in a queue and process them asynchronously.
 Gives the resource for the event when it is the next in the queue and in same time
 removes it from the queue.
 
+## Class diagram
 ![alt text](./etc/model.png "Event Queue")
 
 ## Applicability

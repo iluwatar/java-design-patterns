@@ -1,0 +1,58 @@
+@startuml
+package com.iluwatar.bridge {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface Enchantment {
+    + apply() {abstract}
+    + onActivate() {abstract}
+    + onDeactivate() {abstract}
+  }
+  class FlyingEnchantment {
+    - LOGGER : Logger {static}
+    + FlyingEnchantment()
+    + apply()
+    + onActivate()
+    + onDeactivate()
+  }
+  class Hammer {
+    - LOGGER : Logger {static}
+    - enchantment : Enchantment
+    + Hammer(enchantment : Enchantment)
+    + getEnchantment() : Enchantment
+    + swing()
+    + unwield()
+    + wield()
+  }
+  class SoulEatingEnchantment {
+    - LOGGER : Logger {static}
+    + SoulEatingEnchantment()
+    + apply()
+    + onActivate()
+    + onDeactivate()
+  }
+  class Sword {
+    - LOGGER : Logger {static}
+    - enchantment : Enchantment
+    + Sword(enchantment : Enchantment)
+    + getEnchantment() : Enchantment
+    + swing()
+    + unwield()
+    + wield()
+  }
+  interface Weapon {
+    + getEnchantment() : Enchantment {abstract}
+    + swing() {abstract}
+    + unwield() {abstract}
+    + wield() {abstract}
+  }
+}
+Sword -->  "-enchantment" Enchantment
+Hammer -->  "-enchantment" Enchantment
+FlyingEnchantment ..|> Enchantment 
+Hammer ..|> Weapon 
+SoulEatingEnchantment ..|> Enchantment 
+Sword ..|> Weapon 
+@enduml

@@ -23,6 +23,9 @@
 
 package com.iluwatar.hexagonal.domain;
 
+import static com.iluwatar.hexagonal.domain.LotteryConstants.PRIZE_AMOUNT;
+import static com.iluwatar.hexagonal.domain.LotteryConstants.SERVICE_BANK_ACCOUNT;
+
 import com.google.inject.Inject;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
@@ -60,23 +63,21 @@ public class LotteryAdministration {
    * Draw lottery numbers.
    */
   public LotteryNumbers performLottery() {
-    LotteryNumbers numbers = LotteryNumbers.createRandom();
-    Map<LotteryTicketId, LotteryTicket> tickets = getAllSubmittedTickets();
-    for (LotteryTicketId id : tickets.keySet()) {
-      LotteryTicketCheckResult result = LotteryUtils.checkTicketForPrize(repository, id, numbers);
-      if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.WIN_PRIZE)) {
-        boolean transferred = wireTransfers.transferFunds(LotteryConstants.PRIZE_AMOUNT,
-            LotteryConstants.SERVICE_BANK_ACCOUNT, tickets.get(id).getPlayerDetails()
-                .getBankAccount());
-        if (transferred) {
-          notifications
-              .ticketWon(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+    var numbers = LotteryNumbers.createRandom();
+    var tickets = getAllSubmittedTickets();
+    for (var id : tickets.keySet()) {
+      var lotteryTicket = tickets.get(id);
+      var playerDetails = lotteryTicket.getPlayerDetails();
+      var playerAccount = playerDetails.getBankAccount();
+      var result = LotteryUtils.checkTicketForPrize(repository, id, numbers).getResult();
+      if (result == LotteryTicketCheckResult.CheckResult.WIN_PRIZE) {
+        if (wireTransfers.transferFunds(PRIZE_AMOUNT, SERVICE_BANK_ACCOUNT, playerAccount)) {
+          notifications.ticketWon(playerDetails, PRIZE_AMOUNT);
         } else {
-          notifications
-              .prizeError(tickets.get(id).getPlayerDetails(), LotteryConstants.PRIZE_AMOUNT);
+          notifications.prizeError(playerDetails, PRIZE_AMOUNT);
         }
-      } else if (result.getResult().equals(LotteryTicketCheckResult.CheckResult.NO_PRIZE)) {
-        notifications.ticketDidNotWin(tickets.get(id).getPlayerDetails());
+      } else if (result == LotteryTicketCheckResult.CheckResult.NO_PRIZE) {
+        notifications.ticketDidNotWin(playerDetails);
       }
     }
     return numbers;

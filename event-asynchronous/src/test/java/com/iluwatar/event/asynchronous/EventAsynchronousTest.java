@@ -23,28 +23,26 @@
 
 package com.iluwatar.event.asynchronous;
 
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- *
  * Application test
- *
  */
 public class EventAsynchronousTest {
   private static final Logger LOGGER = LoggerFactory.getLogger(EventAsynchronousTest.class);
 
   @Test
   public void testAsynchronousEvent() {
-    EventManager eventManager = new EventManager();
+    var eventManager = new EventManager();
     try {
-      int aEventId = eventManager.createAsync(60);
+      var aEventId = eventManager.createAsync(60);
       eventManager.start(aEventId);
       assertEquals(1, eventManager.getEventPool().size());
       assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
@@ -58,9 +56,9 @@ public class EventAsynchronousTest {
 
   @Test
   public void testSynchronousEvent() {
-    EventManager eventManager = new EventManager();
+    var eventManager = new EventManager();
     try {
-      int sEventId = eventManager.create(60);
+      var sEventId = eventManager.create(60);
       eventManager.start(sEventId);
       assertEquals(1, eventManager.getEventPool().size());
       assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
@@ -76,9 +74,9 @@ public class EventAsynchronousTest {
   @Test
   public void testUnsuccessfulSynchronousEvent() {
     assertThrows(InvalidOperationException.class, () -> {
-      EventManager eventManager = new EventManager();
+      var eventManager = new EventManager();
       try {
-        int sEventId = eventManager.create(60);
+        var sEventId = eventManager.create(60);
         eventManager.start(sEventId);
         sEventId = eventManager.create(60);
         eventManager.start(sEventId);
@@ -90,20 +88,18 @@ public class EventAsynchronousTest {
 
   @Test
   public void testFullSynchronousEvent() {
-    EventManager eventManager = new EventManager();
+    var eventManager = new EventManager();
     try {
-      int eventTime = 1;
+      var eventTime = 1;
 
-      int sEventId = eventManager.create(eventTime);
+      var sEventId = eventManager.create(eventTime);
       assertEquals(1, eventManager.getEventPool().size());
       eventManager.start(sEventId);
 
-      long currentTime = System.currentTimeMillis();
-      long endTime = currentTime + (eventTime + 2 * 1000); // +2 to give a bit of buffer time for event to
-                                                           // complete
-      // properly.
-      while (System.currentTimeMillis() < endTime) {
-      }
+      var currentTime = System.currentTimeMillis();
+      // +2 to give a bit of buffer time for event to complete properly.
+      var endTime = currentTime + (eventTime + 2 * 1000);
+      while (System.currentTimeMillis() < endTime) ;
 
       assertTrue(eventManager.getEventPool().isEmpty());
 
@@ -115,24 +111,23 @@ public class EventAsynchronousTest {
 
   @Test
   public void testFullAsynchronousEvent() {
-    EventManager eventManager = new EventManager();
+    var eventManager = new EventManager();
     try {
-      int eventTime = 1;
+      var eventTime = 1;
 
-      int aEventId1 = eventManager.createAsync(eventTime);
-      int aEventId2 = eventManager.createAsync(eventTime);
-      int aEventId3 = eventManager.createAsync(eventTime);
+      var aEventId1 = eventManager.createAsync(eventTime);
+      var aEventId2 = eventManager.createAsync(eventTime);
+      var aEventId3 = eventManager.createAsync(eventTime);
       assertEquals(3, eventManager.getEventPool().size());
 
       eventManager.start(aEventId1);
       eventManager.start(aEventId2);
       eventManager.start(aEventId3);
 
-      long currentTime = System.currentTimeMillis();
-      long endTime = currentTime + (eventTime + 2 * 1000); // +2 to give a bit of buffer time for event to complete
-                                                           // properly.
-      while (System.currentTimeMillis() < endTime) {
-      }
+      var currentTime = System.currentTimeMillis();
+      // +2 to give a bit of buffer time for event to complete properly.
+      var endTime = currentTime + (eventTime + 2 * 1000);
+      while (System.currentTimeMillis() < endTime) ;
 
       assertTrue(eventManager.getEventPool().isEmpty());
 

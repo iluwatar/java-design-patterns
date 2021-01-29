@@ -30,9 +30,9 @@ import java.util.Stack;
  */
 public class VirtualMachine {
 
-  private Stack<Integer> stack = new Stack<>();
+  private final Stack<Integer> stack = new Stack<>();
 
-  private Wizard[] wizards = new Wizard[2];
+  private final Wizard[] wizards = new Wizard[2];
 
   /**
    * Constructor.

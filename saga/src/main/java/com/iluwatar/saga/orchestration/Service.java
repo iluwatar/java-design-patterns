@@ -27,8 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Common abstraction class representing services.
- * implementing a general contract @see {@link OrchestrationChapter}
+ * Common abstraction class representing services. implementing a general contract @see {@link
+ * OrchestrationChapter}
  *
  * @param <K> type of incoming param
  */

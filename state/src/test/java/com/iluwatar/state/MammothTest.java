@@ -23,19 +23,18 @@
 
 package com.iluwatar.state;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Date: 12/29/15 - 8:27 PM
@@ -62,27 +61,27 @@ public class MammothTest {
    */
   @Test
   public void testTimePasses() {
-    final Mammoth mammoth = new Mammoth();
+    final var mammoth = new Mammoth();
 
     mammoth.observe();
     assertEquals("The mammoth is calm and peaceful.", appender.getLastMessage());
-    assertEquals(1 , appender.getLogSize());
+    assertEquals(1, appender.getLogSize());
 
     mammoth.timePasses();
     assertEquals("The mammoth gets angry!", appender.getLastMessage());
-    assertEquals(2 , appender.getLogSize());
+    assertEquals(2, appender.getLogSize());
 
     mammoth.observe();
     assertEquals("The mammoth is furious!", appender.getLastMessage());
-    assertEquals(3 , appender.getLogSize());
+    assertEquals(3, appender.getLogSize());
 
     mammoth.timePasses();
     assertEquals("The mammoth calms down.", appender.getLastMessage());
-    assertEquals(4 , appender.getLogSize());
+    assertEquals(4, appender.getLogSize());
 
     mammoth.observe();
     assertEquals("The mammoth is calm and peaceful.", appender.getLastMessage());
-    assertEquals(5 , appender.getLogSize());
+    assertEquals(5, appender.getLogSize());
 
   }
 
@@ -91,13 +90,13 @@ public class MammothTest {
    */
   @Test
   public void testToString() {
-    final String toString = new Mammoth().toString();
+    final var toString = new Mammoth().toString();
     assertNotNull(toString);
     assertEquals("The mammoth", toString);
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {
       ((Logger) LoggerFactory.getLogger("root")).addAppender(this);

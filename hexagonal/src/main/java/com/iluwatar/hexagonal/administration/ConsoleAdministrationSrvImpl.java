@@ -50,7 +50,7 @@ public class ConsoleAdministrationSrvImpl implements ConsoleAdministrationSrv {
 
   @Override
   public void performLottery() {
-    LotteryNumbers numbers = administration.performLottery();
+    var numbers = administration.performLottery();
     logger.info("The winning numbers: {}", numbers.getNumbersAsString());
     logger.info("Time to reset the database for next round, eh?");
   }

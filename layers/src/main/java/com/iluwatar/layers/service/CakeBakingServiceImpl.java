@@ -35,9 +35,7 @@ import com.iluwatar.layers.entity.CakeTopping;
 import com.iluwatar.layers.exception.CakeBakingException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -52,7 +50,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CakeBakingServiceImpl implements CakeBakingService {
 
-  private AbstractApplicationContext context;
+  private final AbstractApplicationContext context;
 
   public CakeBakingServiceImpl() {
     this.context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -60,65 +58,61 @@ public class CakeBakingServiceImpl implements CakeBakingService {
 
   @Override
   public void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException {
-    List<CakeTopping> allToppings = getAvailableToppingEntities();
-    List<CakeTopping> matchingToppings =
+    var allToppings = getAvailableToppingEntities();
+    var matchingToppings =
         allToppings.stream().filter(t -> t.getName().equals(cakeInfo.cakeToppingInfo.name))
             .collect(Collectors.toList());
     if (matchingToppings.isEmpty()) {
       throw new CakeBakingException(String.format("Topping %s is not available",
           cakeInfo.cakeToppingInfo.name));
     }
-    List<CakeLayer> allLayers = getAvailableLayerEntities();
+    var allLayers = getAvailableLayerEntities();
     Set<CakeLayer> foundLayers = new HashSet<>();
-    for (CakeLayerInfo info : cakeInfo.cakeLayerInfos) {
-      Optional<CakeLayer> found =
-          allLayers.stream().filter(layer -> layer.getName().equals(info.name)).findFirst();
-      if (!found.isPresent()) {
+    for (var info : cakeInfo.cakeLayerInfos) {
+      var found = allLayers.stream().filter(layer -> layer.getName().equals(info.name)).findFirst();
+      if (found.isEmpty()) {
         throw new CakeBakingException(String.format("Layer %s is not available", info.name));
       } else {
         foundLayers.add(found.get());
       }
     }
-    CakeToppingDao toppingBean = context.getBean(CakeToppingDao.class);
-    Optional<CakeTopping> topping = toppingBean.findById(
-        matchingToppings.iterator().next().getId());
-    CakeDao cakeBean = context.getBean(CakeDao.class);
+    var toppingBean = context.getBean(CakeToppingDao.class);
+    var topping = toppingBean.findById(matchingToppings.iterator().next().getId());
+    var cakeBean = context.getBean(CakeDao.class);
     if (topping.isPresent()) {
-      Cake cake = new Cake();
+      var cake = new Cake();
       cake.setTopping(topping.get());
       cake.setLayers(foundLayers);
       cakeBean.save(cake);
       topping.get().setCake(cake);
       toppingBean.save(topping.get());
-      CakeLayerDao layerBean = context.getBean(CakeLayerDao.class);
-      for (CakeLayer layer : foundLayers) {
+      var layerBean = context.getBean(CakeLayerDao.class);
+      for (var layer : foundLayers) {
         layer.setCake(cake);
         layerBean.save(layer);
       }
     } else {
       throw new CakeBakingException(String.format("Topping %s is not available",
-              cakeInfo.cakeToppingInfo.name));
+          cakeInfo.cakeToppingInfo.name));
     }
   }
 
   @Override
   public void saveNewTopping(CakeToppingInfo toppingInfo) {
-    CakeToppingDao bean = context.getBean(CakeToppingDao.class);
+    var bean = context.getBean(CakeToppingDao.class);
     bean.save(new CakeTopping(toppingInfo.name, toppingInfo.calories));
   }
 
   @Override
   public void saveNewLayer(CakeLayerInfo layerInfo) {
-    CakeLayerDao bean = context.getBean(CakeLayerDao.class);
+    var bean = context.getBean(CakeLayerDao.class);
     bean.save(new CakeLayer(layerInfo.name, layerInfo.calories));
   }
 
   private List<CakeTopping> getAvailableToppingEntities() {
-    CakeToppingDao bean = context.getBean(CakeToppingDao.class);
+    var bean = context.getBean(CakeToppingDao.class);
     List<CakeTopping> result = new ArrayList<>();
-    Iterator<CakeTopping> iterator = bean.findAll().iterator();
-    while (iterator.hasNext()) {
-      CakeTopping topping = iterator.next();
+    for (CakeTopping topping : bean.findAll()) {
       if (topping.getCake() == null) {
         result.add(topping);
       }
@@ -128,11 +122,9 @@ public class CakeBakingServiceImpl implements CakeBakingService {
 
   @Override
   public List<CakeToppingInfo> getAvailableToppings() {
-    CakeToppingDao bean = context.getBean(CakeToppingDao.class);
+    var bean = context.getBean(CakeToppingDao.class);
     List<CakeToppingInfo> result = new ArrayList<>();
-    Iterator<CakeTopping> iterator = bean.findAll().iterator();
-    while (iterator.hasNext()) {
-      CakeTopping next = iterator.next();
+    for (CakeTopping next : bean.findAll()) {
       if (next.getCake() == null) {
         result.add(new CakeToppingInfo(next.getId(), next.getName(), next.getCalories()));
       }
@@ -141,11 +133,9 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   }
 
   private List<CakeLayer> getAvailableLayerEntities() {
-    CakeLayerDao bean = context.getBean(CakeLayerDao.class);
+    var bean = context.getBean(CakeLayerDao.class);
     List<CakeLayer> result = new ArrayList<>();
-    Iterator<CakeLayer> iterator = bean.findAll().iterator();
-    while (iterator.hasNext()) {
-      CakeLayer next = iterator.next();
+    for (CakeLayer next : bean.findAll()) {
       if (next.getCake() == null) {
         result.add(next);
       }
@@ -155,11 +145,9 @@ public class CakeBakingServiceImpl implements CakeBakingService {
 
   @Override
   public List<CakeLayerInfo> getAvailableLayers() {
-    CakeLayerDao bean = context.getBean(CakeLayerDao.class);
+    var bean = context.getBean(CakeLayerDao.class);
     List<CakeLayerInfo> result = new ArrayList<>();
-    Iterator<CakeLayer> iterator = bean.findAll().iterator();
-    while (iterator.hasNext()) {
-      CakeLayer next = iterator.next();
+    for (CakeLayer next : bean.findAll()) {
       if (next.getCake() == null) {
         result.add(new CakeLayerInfo(next.getId(), next.getName(), next.getCalories()));
       }
@@ -169,19 +157,17 @@ public class CakeBakingServiceImpl implements CakeBakingService {
 
   @Override
   public List<CakeInfo> getAllCakes() {
-    CakeDao cakeBean = context.getBean(CakeDao.class);
+    var cakeBean = context.getBean(CakeDao.class);
     List<CakeInfo> result = new ArrayList<>();
-    Iterator<Cake> iterator = cakeBean.findAll().iterator();
-    while (iterator.hasNext()) {
-      Cake cake = iterator.next();
-      CakeToppingInfo cakeToppingInfo =
+    for (Cake cake : cakeBean.findAll()) {
+      var cakeToppingInfo =
           new CakeToppingInfo(cake.getTopping().getId(), cake.getTopping().getName(), cake
               .getTopping().getCalories());
       List<CakeLayerInfo> cakeLayerInfos = new ArrayList<>();
-      for (CakeLayer layer : cake.getLayers()) {
+      for (var layer : cake.getLayers()) {
         cakeLayerInfos.add(new CakeLayerInfo(layer.getId(), layer.getName(), layer.getCalories()));
       }
-      CakeInfo cakeInfo = new CakeInfo(cake.getId(), cakeToppingInfo, cakeLayerInfos);
+      var cakeInfo = new CakeInfo(cake.getId(), cakeToppingInfo, cakeLayerInfos);
       result.add(cakeInfo);
     }
     return result;

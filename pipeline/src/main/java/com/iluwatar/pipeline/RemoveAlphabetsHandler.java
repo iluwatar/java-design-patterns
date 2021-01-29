@@ -23,6 +23,7 @@
 
 package com.iluwatar.pipeline;
 
+import java.util.function.IntPredicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,18 +37,14 @@ class RemoveAlphabetsHandler implements Handler<String, String> {
 
   @Override
   public String process(String input) {
-    StringBuilder inputWithoutAlphabets = new StringBuilder();
+    var inputWithoutAlphabets = new StringBuilder();
+    var isAlphabetic = (IntPredicate) Character::isAlphabetic;
+    input.chars()
+        .filter(isAlphabetic.negate())
+        .mapToObj(x -> (char) x)
+        .forEachOrdered(inputWithoutAlphabets::append);
 
-    for (int index = 0; index < input.length(); index++) {
-      char currentCharacter = input.charAt(index);
-      if (Character.isAlphabetic(currentCharacter)) {
-        continue;
-      }
-
-      inputWithoutAlphabets.append(currentCharacter);
-    }
-
-    String inputWithoutAlphabetsStr = inputWithoutAlphabets.toString();
+    var inputWithoutAlphabetsStr = inputWithoutAlphabets.toString();
     LOGGER.info(
         String.format(
             "Current handler: %s, input is %s of type %s, output is %s, of type %s",

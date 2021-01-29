@@ -28,10 +28,15 @@ package com.iluwatar.event.aggregator;
  */
 public enum Weekday {
 
-  MONDAY("Monday"), TUESDAY("Tuesday"), WEDNESDAY("Wednesday"), THURSDAY("Thursday"), FRIDAY(
-      "Friday"), SATURDAY("Saturday"), SUNDAY("Sunday");
+  MONDAY("Monday"),
+  TUESDAY("Tuesday"),
+  WEDNESDAY("Wednesday"),
+  THURSDAY("Thursday"),
+  FRIDAY("Friday"),
+  SATURDAY("Saturday"),
+  SUNDAY("Sunday");
 
-  private String description;
+  private final String description;
 
   Weekday(String description) {
     this.description = description;

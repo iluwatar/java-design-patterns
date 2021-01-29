@@ -43,19 +43,15 @@ public class SavePersonApiHandler extends AbstractDynamoDbHandler<Person>
   private static final Integer BAD_REQUEST_STATUS_CODE = 400;
 
   @Override
-  public APIGatewayProxyResponseEvent handleRequest(
-      APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent, Context context) {
-    APIGatewayProxyResponseEvent apiGatewayProxyResponseEvent;
-    Person person;
+  public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent req, Context ctx) {
     try {
-      person = getObjectMapper().readValue(apiGatewayProxyRequestEvent.getBody(), Person.class);
+      var objectMapper = getObjectMapper();
+      var person = objectMapper.readValue(req.getBody(), Person.class);
       getDynamoDbMapper().save(person);
-      apiGatewayProxyResponseEvent = apiGatewayProxyResponseEvent(CREATED_STATUS_CODE, person);
+      return apiGatewayProxyResponseEvent(CREATED_STATUS_CODE, person);
     } catch (IOException ioException) {
       LOG.error("unable to parse body", ioException);
-      apiGatewayProxyResponseEvent = apiGatewayProxyResponseEvent(BAD_REQUEST_STATUS_CODE, null);
+      return apiGatewayProxyResponseEvent(BAD_REQUEST_STATUS_CODE, null);
     }
-
-    return apiGatewayProxyResponseEvent;
   }
 }

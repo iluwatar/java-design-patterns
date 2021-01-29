@@ -37,6 +37,8 @@ import java.io.FileNotFoundException;
  */
 public class App {
 
+  private static final String ERROR = "Error";
+  private static final String MESSAGE = "Message";
   public static FileLoggerModule fileLoggerModule;
   public static ConsoleLoggerModule consoleLoggerModule;
 
@@ -65,18 +67,16 @@ public class App {
 
   /**
    * Following method is main executor.
-   *
-   * @param args for providing default program arguments
    */
-  public static void execute(final String... args) {
+  public static void execute() {
 
     /* Send logs on file system */
-    fileLoggerModule.printString("Message");
-    fileLoggerModule.printErrorString("Error");
+    fileLoggerModule.printString(MESSAGE);
+    fileLoggerModule.printErrorString(ERROR);
 
     /* Send logs on console */
-    consoleLoggerModule.printString("Message");
-    consoleLoggerModule.printErrorString("Error");
+    consoleLoggerModule.printString(MESSAGE);
+    consoleLoggerModule.printErrorString(ERROR);
   }
 
   /**
@@ -88,7 +88,7 @@ public class App {
    */
   public static void main(final String... args) throws FileNotFoundException {
     prepare();
-    execute(args);
+    execute();
     unprepare();
   }
 }

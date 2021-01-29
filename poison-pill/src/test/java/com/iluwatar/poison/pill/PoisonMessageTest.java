@@ -23,11 +23,11 @@
 
 package com.iluwatar.poison.pill;
 
-import org.junit.jupiter.api.Test;
-
 import static com.iluwatar.poison.pill.Message.Headers;
 import static com.iluwatar.poison.pill.Message.POISON_PILL;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/27/15 - 10:30 PM

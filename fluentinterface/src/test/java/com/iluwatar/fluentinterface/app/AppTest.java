@@ -25,14 +25,15 @@ package com.iluwatar.fluentinterface.app;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
  * Application Test Entry
  */
-public class AppTest {
+class AppTest {
 
   @Test
-  public void test() {
-    String[] args = {};
-    App.main(args);
+  void shouldExecuteWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

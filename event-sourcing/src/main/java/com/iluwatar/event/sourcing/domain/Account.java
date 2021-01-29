@@ -104,7 +104,7 @@ public class Account {
    * @return the account
    */
   public Account copy() {
-    Account account = new Account(accountNo, owner);
+    var account = new Account(accountNo, owner);
     account.setMoney(money);
     return account;
   }
@@ -135,7 +135,7 @@ public class Account {
   }
 
   private void handleWithdrawal(BigDecimal money, boolean realTime) {
-    if (this.money.compareTo(money) == -1) {
+    if (this.money.compareTo(money) < 0) {
       throw new RuntimeException("Insufficient Account Balance");
     }
 

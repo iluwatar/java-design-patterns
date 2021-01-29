@@ -1,0 +1,70 @@
+@startuml
+package com.iluwatar.model.view.controller {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum Fatigue {
+    + ALERT {static}
+    + SLEEPING {static}
+    + TIRED {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Fatigue {static}
+    + values() : Fatigue[] {static}
+  }
+  class GiantController {
+    - giant : GiantModel
+    - view : GiantView
+    + GiantController(giant : GiantModel, view : GiantView)
+    + getFatigue() : Fatigue
+    + getHealth() : Health
+    + getNourishment() : Nourishment
+    + setFatigue(fatigue : Fatigue)
+    + setHealth(health : Health)
+    + setNourishment(nourishment : Nourishment)
+    + updateView()
+  }
+  class GiantModel {
+    - fatigue : Fatigue
+    - health : Health
+    - nourishment : Nourishment
+    ~ GiantModel(health : Health, fatigue : Fatigue, nourishment : Nourishment)
+    + getFatigue() : Fatigue
+    + getHealth() : Health
+    + getNourishment() : Nourishment
+    + setFatigue(fatigue : Fatigue)
+    + setHealth(health : Health)
+    + setNourishment(nourishment : Nourishment)
+    + toString() : String
+  }
+  class GiantView {
+    - LOGGER : Logger {static}
+    + GiantView()
+    + displayGiant(giant : GiantModel)
+  }
+  enum Health {
+    + DEAD {static}
+    + HEALTHY {static}
+    + WOUNDED {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Health {static}
+    + values() : Health[] {static}
+  }
+  enum Nourishment {
+    + HUNGRY {static}
+    + SATURATED {static}
+    + STARVING {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Nourishment {static}
+    + values() : Nourishment[] {static}
+  }
+}
+GiantModel -->  "-nourishment" Nourishment
+GiantController -->  "-giant" GiantModel
+GiantModel -->  "-fatigue" Fatigue
+GiantModel -->  "-health" Health
+GiantController -->  "-view" GiantView
+@enduml

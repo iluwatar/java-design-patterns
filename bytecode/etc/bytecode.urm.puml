@@ -1,0 +1,69 @@
+@startuml
+package com.iluwatar.bytecode {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    - interpretInstruction(instruction : String, vm : VirtualMachine) {static}
+    + main(args : String[]) {static}
+  }
+  enum Instruction {
+    + ADD {static}
+    + DIVIDE {static}
+    + GET_AGILITY {static}
+    + GET_HEALTH {static}
+    + GET_WISDOM {static}
+    + LITERAL {static}
+    + PLAY_SOUND {static}
+    + SET_AGILITY {static}
+    + SET_HEALTH {static}
+    + SET_WISDOM {static}
+    + SPAWN_PARTICLES {static}
+    - value : int
+    + getInstruction(value : int) : Instruction {static}
+    + getIntValue() : int
+    + valueOf(name : String) : Instruction {static}
+    + values() : Instruction[] {static}
+  }
+  class VirtualMachine {
+    - stack : Stack<Integer>
+    - wizards : Wizard[]
+    + VirtualMachine()
+    + execute(bytecode : int[])
+    + getAgility(wizard : int) : int
+    + getHealth(wizard : int) : int
+    + getStack() : Stack<Integer>
+    + getWisdom(wizard : int) : int
+    + getWizards() : Wizard[]
+    + setAgility(wizard : int, amount : int)
+    + setHealth(wizard : int, amount : int)
+    + setWisdom(wizard : int, amount : int)
+  }
+  class Wizard {
+    - LOGGER : Logger {static}
+    - agility : int
+    - health : int
+    - numberOfPlayedSounds : int
+    - numberOfSpawnedParticles : int
+    - wisdom : int
+    + Wizard()
+    + getAgility() : int
+    + getHealth() : int
+    + getNumberOfPlayedSounds() : int
+    + getNumberOfSpawnedParticles() : int
+    + getWisdom() : int
+    + playSound()
+    + setAgility(agility : int)
+    + setHealth(health : int)
+    + setWisdom(wisdom : int)
+    + spawnParticles()
+  }
+}
+package com.iluwatar.bytecode.util {
+  class InstructionConverterUtil {
+    + InstructionConverterUtil()
+    + convertToByteCode(instructions : String) : int[] {static}
+    - isValidInstruction(instruction : String) : boolean {static}
+    - isValidInt(value : String) : boolean {static}
+  }
+}
+@enduml

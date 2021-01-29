@@ -23,21 +23,20 @@
 
 package com.iluwatar.delegation.simple;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import com.iluwatar.delegation.simple.printers.CanonPrinter;
 import com.iluwatar.delegation.simple.printers.EpsonPrinter;
 import com.iluwatar.delegation.simple.printers.HpPrinter;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test for Delegation Pattern
@@ -60,7 +59,7 @@ public class DelegateTest {
 
   @Test
   public void testCanonPrinter() throws Exception {
-    PrinterController printerController = new PrinterController(new CanonPrinter());
+    var printerController = new PrinterController(new CanonPrinter());
     printerController.print(MESSAGE);
 
     assertEquals("Canon Printer : Test Message Printed", appender.getLastMessage());
@@ -68,7 +67,7 @@ public class DelegateTest {
 
   @Test
   public void testHpPrinter() throws Exception {
-    PrinterController printerController = new PrinterController(new HpPrinter());
+    var printerController = new PrinterController(new HpPrinter());
     printerController.print(MESSAGE);
 
     assertEquals("HP Printer : Test Message Printed", appender.getLastMessage());
@@ -76,7 +75,7 @@ public class DelegateTest {
 
   @Test
   public void testEpsonPrinter() throws Exception {
-    PrinterController printerController = new PrinterController(new EpsonPrinter());
+    var printerController = new PrinterController(new EpsonPrinter());
     printerController.print(MESSAGE);
 
     assertEquals("Epson Printer : Test Message Printed", appender.getLastMessage());
@@ -87,7 +86,7 @@ public class DelegateTest {
    */
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {
       ((Logger) LoggerFactory.getLogger("root")).addAppender(this);

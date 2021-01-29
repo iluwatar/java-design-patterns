@@ -24,7 +24,6 @@
 package com.iluwatar.hexagonal.administration;
 
 import com.google.inject.Guice;
-import com.google.inject.Injector;
 import com.iluwatar.hexagonal.domain.LotteryAdministration;
 import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
@@ -46,17 +45,16 @@ public class ConsoleAdministration {
    */
   public static void main(String[] args) {
     MongoConnectionPropertiesLoader.load();
-    Injector injector = Guice.createInjector(new LotteryModule());
-    LotteryAdministration administration = injector.getInstance(LotteryAdministration.class);
-    LotteryService service = injector.getInstance(LotteryService.class);
+    var injector = Guice.createInjector(new LotteryModule());
+    var administration = injector.getInstance(LotteryAdministration.class);
+    var service = injector.getInstance(LotteryService.class);
     SampleData.submitTickets(service, 20);
-    ConsoleAdministrationSrv consoleAdministration =
-        new ConsoleAdministrationSrvImpl(administration, LOGGER);
-    try (Scanner scanner = new Scanner(System.in)) {
-      boolean exit = false;
+    var consoleAdministration = new ConsoleAdministrationSrvImpl(administration, LOGGER);
+    try (var scanner = new Scanner(System.in)) {
+      var exit = false;
       while (!exit) {
         printMainMenu();
-        String cmd = readString(scanner);
+        var cmd = readString(scanner);
         if ("1".equals(cmd)) {
           consoleAdministration.getAllSubmittedTickets();
         } else if ("2".equals(cmd)) {

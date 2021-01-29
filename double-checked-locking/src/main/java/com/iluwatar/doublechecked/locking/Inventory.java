@@ -24,7 +24,6 @@
 package com.iluwatar.doublechecked.locking;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -60,8 +59,8 @@ public class Inventory {
       try {
         if (items.size() < inventorySize) {
           items.add(item);
-          LOGGER.info("{}: items.size()={}, inventorySize={}", Thread.currentThread(), items
-              .size(), inventorySize);
+          var thread = Thread.currentThread();
+          LOGGER.info("{}: items.size()={}, inventorySize={}", thread, items.size(), inventorySize);
           return true;
         }
       } finally {
@@ -77,7 +76,7 @@ public class Inventory {
    * @return All the items of the inventory, as an unmodifiable list
    */
   public final List<Item> getItems() {
-    return Collections.unmodifiableList(items);
+    return List.copyOf(items);
   }
 
 }

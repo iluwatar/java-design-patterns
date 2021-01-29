@@ -25,7 +25,6 @@ package com.iluwatar.cqrs.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +41,7 @@ public class HibernateUtil {
   private static SessionFactory buildSessionFactory() {
 
     // configures settings from hibernate.cfg.xml
-    final StandardServiceRegistry registry =
-        new StandardServiceRegistryBuilder().configure().build();
+    final var registry = new StandardServiceRegistryBuilder().configure().build();
     try {
       return new MetadataSources(registry).buildMetadata().buildSessionFactory();
     } catch (Exception ex) {

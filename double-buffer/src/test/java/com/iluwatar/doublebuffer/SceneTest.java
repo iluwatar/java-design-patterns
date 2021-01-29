@@ -23,11 +23,9 @@
 
 package com.iluwatar.doublebuffer;
 
+import java.util.ArrayList;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 
 /**
  * Scene unit tests.
@@ -41,8 +39,8 @@ public class SceneTest {
       var field1 = Scene.class.getDeclaredField("current");
       field1.setAccessible(true);
       field1.set(scene, 0);
-      FrameBuffer[] frameBuffers = new FrameBuffer[2];
-      FrameBuffer frameBuffer = new FrameBuffer();
+      var frameBuffers = new FrameBuffer[2];
+      var frameBuffer = new FrameBuffer();
       frameBuffer.draw(0, 0);
       frameBuffers[0] = frameBuffer;
       var field2 = Scene.class.getDeclaredField("frameBuffers");

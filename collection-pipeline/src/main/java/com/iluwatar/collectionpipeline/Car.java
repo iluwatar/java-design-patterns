@@ -87,10 +87,7 @@ public class Car {
     } else if (!model.equals(other.model)) {
       return false;
     }
-    if (year != other.year) {
-      return false;
-    }
-    return true;
+    return year == other.year;
   }
 
   public String getMake() {

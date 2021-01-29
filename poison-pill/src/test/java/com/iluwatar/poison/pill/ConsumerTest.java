@@ -23,19 +23,18 @@
 
 package com.iluwatar.poison.pill;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
+import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import java.time.LocalDateTime;
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Date: 12/27/15 - 9:45 PM
@@ -58,15 +57,15 @@ public class ConsumerTest {
 
   @Test
   public void testConsume() throws Exception {
-    final Message[] messages = new Message[]{
+    final var messages = List.of(
         createMessage("you", "Hello!"),
         createMessage("me", "Hi!"),
         Message.POISON_PILL,
-        createMessage("late_for_the_party", "Hello? Anyone here?"),
-    };
+        createMessage("late_for_the_party", "Hello? Anyone here?")
+    );
 
-    final MessageQueue queue = new SimpleMessageQueue(messages.length);
-    for (final Message message : messages) {
+    final var queue = new SimpleMessageQueue(messages.size());
+    for (final var message : messages) {
       queue.put(message);
     }
 
@@ -85,7 +84,7 @@ public class ConsumerTest {
    * @return The message instance
    */
   private static Message createMessage(final String sender, final String message) {
-    final SimpleMessage msg = new SimpleMessage();
+    final var msg = new SimpleMessage();
     msg.addHeader(Message.Headers.SENDER, sender);
     msg.addHeader(Message.Headers.DATE, LocalDateTime.now().toString());
     msg.setBody(message);
@@ -93,7 +92,7 @@ public class ConsumerTest {
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender(Class clazz) {
       ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
@@ -106,7 +105,7 @@ public class ConsumerTest {
     }
 
     public boolean logContains(String message) {
-      return log.stream().anyMatch(event -> event.getFormattedMessage().equals(message));
+      return log.stream().map(ILoggingEvent::getFormattedMessage).anyMatch(message::equals);
     }
   }
 

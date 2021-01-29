@@ -38,12 +38,12 @@ public class MongoConnectionPropertiesLoader {
    * Try to load connection properties from file. Fall back to default connection properties.
    */
   public static void load() {
-    String host = DEFAULT_HOST;
-    int port = DEFAULT_PORT;
-    String path = System.getProperty("hexagonal.properties.path");
-    Properties properties = new Properties();
+    var host = DEFAULT_HOST;
+    var port = DEFAULT_PORT;
+    var path = System.getProperty("hexagonal.properties.path");
+    var properties = new Properties();
     if (path != null) {
-      try (FileInputStream fin = new FileInputStream(path)) {
+      try (var fin = new FileInputStream(path)) {
         properties.load(fin);
         host = properties.getProperty("mongo-host");
         port = Integer.parseInt(properties.getProperty("mongo-port"));

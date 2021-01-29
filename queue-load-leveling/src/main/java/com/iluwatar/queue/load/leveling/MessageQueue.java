@@ -40,7 +40,7 @@ public class MessageQueue {
 
   // Default constructor when called creates Blocking Queue object. 
   public MessageQueue() {
-    this.blkQueue = new ArrayBlockingQueue<Message>(1024);
+    this.blkQueue = new ArrayBlockingQueue<>(1024);
   }
 
   /**
@@ -62,13 +62,11 @@ public class MessageQueue {
    * them. Retrieves and removes the head of this queue, or returns null if this queue is empty.
    */
   public Message retrieveMsg() {
-    Message retrievedMsg = null;
     try {
-      retrievedMsg = blkQueue.poll();
+      return blkQueue.poll();
     } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }
-
-    return retrievedMsg;
+    return null;
   }
 }

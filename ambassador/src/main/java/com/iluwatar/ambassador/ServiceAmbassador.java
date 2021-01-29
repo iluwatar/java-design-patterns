@@ -23,6 +23,7 @@
 
 package com.iluwatar.ambassador;
 
+import static com.iluwatar.ambassador.RemoteServiceStatus.FAILURE;
 import static java.lang.Thread.sleep;
 
 import org.slf4j.Logger;
@@ -58,14 +59,14 @@ public class ServiceAmbassador implements RemoteServiceInterface {
 
   private long safeCall(int value) {
     var retries = 0;
-    var result = (long) FAILURE;
+    var result = FAILURE.getRemoteServiceStatusValue();
 
     for (int i = 0; i < RETRIES; i++) {
       if (retries >= RETRIES) {
-        return FAILURE;
+        return FAILURE.getRemoteServiceStatusValue();
       }
 
-      if ((result = checkLatency(value)) == FAILURE) {
+      if ((result = checkLatency(value)) == FAILURE.getRemoteServiceStatusValue()) {
         LOGGER.info("Failed to reach remote: (" + (i + 1) + ")");
         retries++;
         try {

@@ -44,13 +44,13 @@ public class SizeSelectorTest {
    */
   @Test
   public void testMovement() {
-    final Creature normalCreature = mock(Creature.class);
+    final var normalCreature = mock(Creature.class);
     when(normalCreature.getSize()).thenReturn(Size.NORMAL);
 
-    final Creature smallCreature = mock(Creature.class);
+    final var smallCreature = mock(Creature.class);
     when(smallCreature.getSize()).thenReturn(Size.SMALL);
 
-    final SizeSelector normalSelector = new SizeSelector(Size.NORMAL);
+    final var normalSelector = new SizeSelector(Size.NORMAL);
     assertTrue(normalSelector.test(normalCreature));
     assertFalse(normalSelector.test(smallCreature));
   }

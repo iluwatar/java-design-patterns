@@ -32,6 +32,7 @@ public interface OrchestrationChapter<K> {
 
   /**
    * method get name.
+   *
    * @return service name.
    */
   String getName();

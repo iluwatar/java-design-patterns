@@ -38,7 +38,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,8 +60,8 @@ public class JsonFileJournal {
   public JsonFileJournal() {
     file = new File("Journal.json");
     if (file.exists()) {
-      try (BufferedReader input = new BufferedReader(
-          new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
+      try (var input = new BufferedReader(
+          new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
         String line;
         while ((line = input.readLine()) != null) {
           events.add(line);
@@ -81,7 +81,7 @@ public class JsonFileJournal {
    * @param domainEvent the domain event
    */
   public void write(DomainEvent domainEvent) {
-    Gson gson = new Gson();
+    var gson = new Gson();
     JsonElement jsonElement;
     if (domainEvent instanceof AccountCreateEvent) {
       jsonElement = gson.toJsonTree(domainEvent, AccountCreateEvent.class);
@@ -93,9 +93,9 @@ public class JsonFileJournal {
       throw new RuntimeException("Journal Event not recegnized");
     }
 
-    try (Writer output = new BufferedWriter(
-        new OutputStreamWriter(new FileOutputStream(file, true), "UTF-8"))) {
-      String eventString = jsonElement.toString();
+    try (var output = new BufferedWriter(
+        new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8))) {
+      var eventString = jsonElement.toString();
       output.write(eventString + "\r\n");
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -120,13 +120,13 @@ public class JsonFileJournal {
     if (index >= events.size()) {
       return null;
     }
-    String event = events.get(index);
+    var event = events.get(index);
     index++;
 
-    JsonParser parser = new JsonParser();
-    JsonElement jsonElement = parser.parse(event);
-    String eventClassName = jsonElement.getAsJsonObject().get("eventClassName").getAsString();
-    Gson gson = new Gson();
+    var parser = new JsonParser();
+    var jsonElement = parser.parse(event);
+    var eventClassName = jsonElement.getAsJsonObject().get("eventClassName").getAsString();
+    var gson = new Gson();
     DomainEvent domainEvent;
     if (eventClassName.equals("AccountCreateEvent")) {
       domainEvent = gson.fromJson(jsonElement, AccountCreateEvent.class);

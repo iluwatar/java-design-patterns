@@ -27,12 +27,11 @@ import org.junit.Test;
 
 public class InvestorRoleTest {
 
-    @Test
-    public void investTest() {
-        InvestorRole investorRole = new InvestorRole();
-        investorRole.setName("test");
-        investorRole.setAmountToInvest(10);
-        String res = "Investor test has invested 10 dollars";
-        Assert.assertEquals(investorRole.invest(), res);
-    }
+  @Test
+  public void investTest() {
+    var investorRole = new InvestorRole();
+    investorRole.setName("test");
+    investorRole.setAmountToInvest(10);
+    Assert.assertEquals(investorRole.invest(), "Investor test has invested 10 dollars");
+  }
 }

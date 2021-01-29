@@ -1,0 +1,12 @@
+@startuml
+package com.iluwatar.inventory.microservice {
+  class InventoryApplication {
+    + InventoryApplication()
+    + main(args : String[]) {static}
+  }
+  class InventoryController {
+    + InventoryController()
+    + getProductInventories() : int
+  }
+}
+@enduml

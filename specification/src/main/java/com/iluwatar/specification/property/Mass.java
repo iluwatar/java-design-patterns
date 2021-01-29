@@ -28,8 +28,8 @@ package com.iluwatar.specification.property;
  */
 public class Mass {
 
-  private double value;
-  private String title;
+  private final double value;
+  private final String title;
 
   public Mass(double value) {
     this.value = value;

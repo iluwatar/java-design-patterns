@@ -37,9 +37,9 @@ import java.util.List;
  */
 public class MagicServiceImpl implements MagicService {
 
-  private WizardDao wizardDao;
-  private SpellbookDao spellbookDao;
-  private SpellDao spellDao;
+  private final WizardDao wizardDao;
+  private final SpellbookDao spellbookDao;
+  private final SpellDao spellDao;
 
   /**
    * Constructor.

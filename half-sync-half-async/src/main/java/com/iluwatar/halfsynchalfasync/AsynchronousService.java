@@ -48,7 +48,7 @@ public class AsynchronousService {
    * tasks should be performed in the background which does not affect the performance of main
    * thread.
    */
-  private ExecutorService service;
+  private final ExecutorService service;
 
   /**
    * Creates an asynchronous service using {@code workQueue} as communication channel between

@@ -3,11 +3,11 @@ layout: pattern
 title: Queue based load leveling
 folder: queue-load-leveling
 permalink: /patterns/queue-load-leveling/
-categories: Other
+categories: Concurrency
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
  - Performance
+ - Cloud distributed
 ---
 
 ## Intent
@@ -16,8 +16,8 @@ intermittent heavy loads that may otherwise cause the service to fail or the tas
 This pattern can help to minimize the impact of peaks in demand on availability and responsiveness 
 for both the task and the service.
 
+## Class diagram
 ![alt text](./etc/queue-load-leveling.gif "queue-load-leveling")
-
 
 ## Applicability
 
@@ -33,4 +33,4 @@ for both the task and the service.
 
 ## Credits
 
-* [Microsoft Cloud Design Patterns: Queue-Based Load Leveling Pattern](https://msdn.microsoft.com/en-us/library/dn589783.aspx)
+* [Queue-Based Load Leveling pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling)

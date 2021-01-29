@@ -33,7 +33,7 @@ import java.util.List;
  */
 public abstract class Store {
 
-  private List<View> views = new LinkedList<>();
+  private final List<View> views = new LinkedList<>();
 
   public abstract void onAction(Action action);
 
@@ -42,6 +42,6 @@ public abstract class Store {
   }
 
   protected void notifyChange() {
-    views.stream().forEach(view -> view.storeChanged(this));
+    views.forEach(view -> view.storeChanged(this));
   }
 }

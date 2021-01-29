@@ -3,10 +3,9 @@ layout: pattern
 title: Data Locality
 folder: data-locality
 permalink: /patterns/data-locality/
-categories: Other
+categories: Behavioral
 tags:
- - Java
- - Difficulty-Intermediate
+ - Game programming
  - Performance
 ---
 
@@ -15,6 +14,8 @@ Accelerate memory access by arranging data to take advantage of CPU caching.
 
 Modern CPUs have caches to speed up memory access. These can access memory adjacent to recently accessed memory much quicker. Take advantage of that to improve performance by increasing data locality keeping data in contiguous memory in the order that you process it.
 
+## Class diagram
+![alt text](./etc/data-locality.urm.png "Data Locality pattern class diagram")
 
 ## Applicability
 

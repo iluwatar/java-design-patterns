@@ -31,8 +31,7 @@ import com.gargoylesoftware.htmlunit.WebClient;
 public abstract class Page {
 
   /**
-   * Application Under Test path
-   * This directory location is where html web pages are located
+   * Application Under Test path This directory location is where html web pages are located
    */
   public static final String AUT_PATH = "src/main/resources/sample-ui/";
 

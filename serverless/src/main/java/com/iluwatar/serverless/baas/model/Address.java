@@ -26,6 +26,7 @@ package com.iluwatar.serverless.baas.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Address class Created by dheeraj.mummarareddy on 3/4/18.
@@ -96,30 +97,30 @@ public class Address implements Serializable {
       return false;
     }
 
-    Address address = (Address) o;
+    var address = (Address) o;
 
-    if (addressLineOne != null ? !addressLineOne.equals(address.addressLineOne) :
-        address.addressLineOne != null) {
-      return false;
-    }
-
-    if (addressLineTwo != null ? !addressLineTwo.equals(address.addressLineTwo) :
-        address.addressLineTwo != null) {
+    if (!Objects.equals(addressLineOne, address.addressLineOne)) {
       return false;
     }
 
-    if (city != null ? !city.equals(address.city) : address.city != null) {
+    if (!Objects.equals(addressLineTwo, address.addressLineTwo)) {
       return false;
     }
-    if (state != null ? !state.equals(address.state) : address.state != null) {
+
+    if (!Objects.equals(city, address.city)) {
       return false;
     }
-    return zipCode != null ? zipCode.equals(address.zipCode) : address.zipCode == null;
+
+    if (!Objects.equals(state, address.state)) {
+      return false;
+    }
+
+    return Objects.equals(zipCode, address.zipCode);
   }
 
   @Override
   public int hashCode() {
-    int result = addressLineOne != null ? addressLineOne.hashCode() : 0;
+    var result = addressLineOne != null ? addressLineOne.hashCode() : 0;
     result = 31 * result + (addressLineTwo != null ? addressLineTwo.hashCode() : 0);
     result = 31 * result + (city != null ? city.hashCode() : 0);
     result = 31 * result + (state != null ? state.hashCode() : 0);

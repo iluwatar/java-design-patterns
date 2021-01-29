@@ -33,9 +33,9 @@ public class Event implements IEvent, Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Event.class);
 
-  private int eventId;
-  private int eventTime;
-  private boolean isSynchronous;
+  private final int eventId;
+  private final int eventTime;
+  private final boolean isSynchronous;
   private Thread thread;
   private boolean isComplete = false;
   private ThreadCompleteListener eventListener;
@@ -82,8 +82,8 @@ public class Event implements IEvent, Runnable {
 
   @Override
   public void run() {
-    long currentTime = System.currentTimeMillis();
-    long endTime = currentTime + (eventTime * 1000);
+    var currentTime = System.currentTimeMillis();
+    var endTime = currentTime + (eventTime * 1000);
     while (System.currentTimeMillis() < endTime) {
       try {
         Thread.sleep(1000); // Sleep for 1 second.

@@ -72,7 +72,7 @@ public class AccountCreateEvent extends DomainEvent {
 
   @Override
   public void process() {
-    Account account = AccountAggregate.getAccount(accountNo);
+    var account = AccountAggregate.getAccount(accountNo);
     if (account != null) {
       throw new RuntimeException("Account already exists");
     }

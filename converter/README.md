@@ -3,25 +3,25 @@ layout: pattern
 title: Converter
 folder: converter
 permalink: /patterns/converter/
-categories: Business Tier
+categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
-The purpose of the Converter Pattern is to provide a generic, common way of bidirectional
-conversion between corresponding types, allowing a clean implementation in which the types do not
-need to be aware of each other. Moreover, the Converter Pattern introduces bidirectional collection
-mapping, reducing a boilerplate code to minimum.
 
-![alt text](./etc/converter.png "Converter Pattern")
+The purpose of the Converter pattern is to provide a generic, common way of bidirectional
+conversion between corresponding types, allowing a clean implementation in which the types do not
+need to be aware of each other. Moreover, the Converter pattern introduces bidirectional collection
+mapping, reducing a boilerplate code to minimum.
 
 ## Explanation
 
 Real world example
 
-> In real world applications it is often the case that database layer consists of entities that need to be mapped into DTOs for use on the business logic layer. Similar mapping is done for potentially huge amount of classes and we need a generic way to achieve this.
+> In real world applications it is often the case that database layer consists of entities that need 
+> to be mapped into DTOs for use on the business logic layer. Similar mapping is done for 
+> potentially huge amount of classes and we need a generic way to achieve this.
 
 In plain words
 
@@ -29,7 +29,8 @@ In plain words
 
 **Programmatic Example**
 
-We need a generic solution for the mapping problem. To achieve this, let's introduce a generic converter.
+We need a generic solution for the mapping problem. To achieve this, let's introduce a generic 
+converter.
 
 ```java
 public class Converter<T, U> {
@@ -66,28 +67,41 @@ The specialized converters inherit from this base class as follows.
 public class UserConverter extends Converter<UserDto, User> {
 
   public UserConverter() {
-    super(userDto -> new User(userDto.getFirstName(), userDto.getLastName(), userDto.isActive(),
-            userDto.getEmail()),
-        user -> new UserDto(user.getFirstName(), user.getLastName(), user.isActive(),
-            user.getUserId()));
+    super(UserConverter::convertToEntity, UserConverter::convertToDto);
   }
+
+  private static UserDto convertToDto(User user) {
+    return new UserDto(user.getFirstName(), user.getLastName(), user.isActive(), user.getUserId());
+  }
+
+  private static User convertToEntity(UserDto dto) {
+    return new User(dto.getFirstName(), dto.getLastName(), dto.isActive(), dto.getEmail());
+  }
+
 }
 ```
 
-Now mapping between User and UserDto becomes trivial.
+Now mapping between `User` and `UserDto` becomes trivial.
 
 ```java
-Converter<UserDto, User> userConverter = new UserConverter();
-UserDto dtoUser = new UserDto("John", "Doe", true, "whatever[at]wherever.com");
-User user = userConverter.convertFromDto(dtoUser);
+var userConverter = new UserConverter();
+var dtoUser = new UserDto("John", "Doe", true, "whatever[at]wherever.com");
+var user = userConverter.convertFromDto(dtoUser);
 ```
 
+## Class diagram
+
+![alt text](./etc/converter.png "Converter Pattern")
+
 ## Applicability
+
 Use the Converter Pattern in the following situations:
 
-* When you have types that logically correspond which other and you need to convert entities between them
-* When you want to provide different ways of types conversions depending on a context
-* Whenever you introduce a DTO (Data transfer object), you will probably need to convert it into the domain equivalence
+* When you have types that logically correspond with each other and you need to convert entities 
+between them.
+* When you want to provide different ways of types conversions depending on the context.
+* Whenever you introduce a DTO (Data transfer object), you will probably need to convert it into the 
+domain equivalence.
 
 ## Credits
 

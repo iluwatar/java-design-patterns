@@ -41,14 +41,14 @@ public class MenuView implements View {
 
   @Override
   public void storeChanged(Store store) {
-    MenuStore menuStore = (MenuStore) store;
+    var menuStore = (MenuStore) store;
     selected = menuStore.getSelected();
     render();
   }
 
   @Override
   public void render() {
-    for (MenuItem item : MenuItem.values()) {
+    for (var item : MenuItem.values()) {
       if (selected.equals(item)) {
         LOGGER.info("* {}", item);
       } else {

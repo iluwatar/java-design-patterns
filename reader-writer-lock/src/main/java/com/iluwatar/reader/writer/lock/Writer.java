@@ -34,11 +34,11 @@ public class Writer implements Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Writer.class);
 
-  private Lock writeLock;
+  private final Lock writeLock;
 
-  private String name;
+  private final String name;
 
-  private long writingTime;
+  private final long writingTime;
 
   /**
    * Create new Writer who writes for 250ms.

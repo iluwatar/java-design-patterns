@@ -23,30 +23,32 @@
 
 package com.iluwatar.partialresponse;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * tests {@link FieldJsonMapper}.
  */
-public class FieldJsonMapperTest {
-  private FieldJsonMapper mapper;
+class FieldJsonMapperTest {
+  private static FieldJsonMapper mapper;
 
-  @Before
-  public void setUp() {
+  @BeforeAll
+  static void setUp() {
     mapper = new FieldJsonMapper();
   }
 
   @Test
-  public void shouldReturnJsonForSpecifiedFieldsInVideo() throws Exception {
-    String[] fields = new String[]{"id", "title", "length"};
-    Video video = new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|", "Hideaki Anno", "Japanese");
+  void shouldReturnJsonForSpecifiedFieldsInVideo() throws Exception {
+    var fields = new String[]{"id", "title", "length"};
+    var video = new Video(
+        2, "Godzilla Resurgence", 120,
+        "Action & drama movie|", "Hideaki Anno", "Japanese"
+    );
 
-    String jsonFieldResponse = mapper.toJson(video, fields);
+    var jsonFieldResponse = mapper.toJson(video, fields);
 
-    String expectedDetails = "{\"id\": 2,\"title\": \"Godzilla Resurgence\",\"length\": 120}";
-    assertEquals(expectedDetails, jsonFieldResponse);
+    var expectedDetails = "{\"id\": 2,\"title\": \"Godzilla Resurgence\",\"length\": 120}";
+    Assertions.assertEquals(expectedDetails, jsonFieldResponse);
   }
 }

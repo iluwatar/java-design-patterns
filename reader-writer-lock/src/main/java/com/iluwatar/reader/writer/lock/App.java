@@ -23,11 +23,9 @@
 
 package com.iluwatar.reader.writer.lock;
 
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,19 +56,21 @@ public class App {
    */
   public static void main(String[] args) {
 
-    ExecutorService executeService = Executors.newFixedThreadPool(10);
-    ReaderWriterLock lock = new ReaderWriterLock();
+    var executeService = Executors.newFixedThreadPool(10);
+    var lock = new ReaderWriterLock();
 
     // Start writers
-    IntStream.range(0, 5)
-        .forEach(i -> executeService.submit(new Writer("Writer " + i, lock.writeLock(),
-            ThreadLocalRandom.current().nextLong(5000))));
+    for (var i = 0; i < 5; i++) {
+      var writingTime = ThreadLocalRandom.current().nextLong(5000);
+      executeService.submit(new Writer("Writer " + i, lock.writeLock(), writingTime));
+    }
     LOGGER.info("Writers added...");
 
     // Start readers
-    IntStream.range(0, 5)
-        .forEach(i -> executeService.submit(new Reader("Reader " + i, lock.readLock(),
-            ThreadLocalRandom.current().nextLong(10))));
+    for (var i = 0; i < 5; i++) {
+      var readingTime = ThreadLocalRandom.current().nextLong(10);
+      executeService.submit(new Reader("Reader " + i, lock.readLock(), readingTime));
+    }
     LOGGER.info("Readers added...");
 
     try {
@@ -81,9 +81,10 @@ public class App {
     }
 
     // Start readers
-    IntStream.range(6, 10)
-        .forEach(i -> executeService.submit(new Reader("Reader " + i, lock.readLock(),
-            ThreadLocalRandom.current().nextLong(10))));
+    for (var i = 6; i < 10; i++) {
+      var readingTime = ThreadLocalRandom.current().nextLong(10);
+      executeService.submit(new Reader("Reader " + i, lock.readLock(), readingTime));
+    }
     LOGGER.info("More readers added...");
 
 

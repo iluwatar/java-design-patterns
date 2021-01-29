@@ -23,14 +23,12 @@
 
 package com.iluwatar.stepbuilder;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 9:21 PM
@@ -44,7 +42,7 @@ public class CharacterStepBuilderTest {
    */
   @Test
   public void testBuildWizard() {
-    final Character character = CharacterStepBuilder.newBuilder()
+    final var character = CharacterStepBuilder.newBuilder()
         .name("Merlin")
         .wizardClass("alchemist")
         .withSpell("poison")
@@ -58,7 +56,7 @@ public class CharacterStepBuilderTest {
     assertEquals("poison", character.getSpell());
     assertNotNull(character.toString());
 
-    final List<String> abilities = character.getAbilities();
+    final var abilities = character.getAbilities();
     assertNotNull(abilities);
     assertEquals(2, abilities.size());
     assertTrue(abilities.contains("invisibility"));
@@ -72,7 +70,7 @@ public class CharacterStepBuilderTest {
    */
   @Test
   public void testBuildPoorWizard() {
-    final Character character = CharacterStepBuilder.newBuilder()
+    final var character = CharacterStepBuilder.newBuilder()
         .name("Merlin")
         .wizardClass("alchemist")
         .noSpell()
@@ -91,7 +89,7 @@ public class CharacterStepBuilderTest {
    */
   @Test
   public void testBuildWeakWizard() {
-    final Character character = CharacterStepBuilder.newBuilder()
+    final var character = CharacterStepBuilder.newBuilder()
         .name("Merlin")
         .wizardClass("alchemist")
         .withSpell("poison")
@@ -112,7 +110,7 @@ public class CharacterStepBuilderTest {
    */
   @Test
   public void testBuildWarrior() {
-    final Character character = CharacterStepBuilder.newBuilder()
+    final var character = CharacterStepBuilder.newBuilder()
         .name("Cuauhtemoc")
         .fighterClass("aztec")
         .withWeapon("spear")
@@ -126,7 +124,7 @@ public class CharacterStepBuilderTest {
     assertEquals("spear", character.getWeapon());
     assertNotNull(character.toString());
 
-    final List<String> abilities = character.getAbilities();
+    final var abilities = character.getAbilities();
     assertNotNull(abilities);
     assertEquals(2, abilities.size());
     assertTrue(abilities.contains("speed"));
@@ -140,7 +138,7 @@ public class CharacterStepBuilderTest {
    */
   @Test
   public void testBuildPoorWarrior() {
-    final Character character = CharacterStepBuilder.newBuilder()
+    final var character = CharacterStepBuilder.newBuilder()
         .name("Poor warrior")
         .fighterClass("none")
         .noWeapon()
@@ -160,7 +158,7 @@ public class CharacterStepBuilderTest {
    */
   @Test
   public void testBuildWeakWarrior() {
-    final Character character = CharacterStepBuilder.newBuilder()
+    final var character = CharacterStepBuilder.newBuilder()
         .name("Weak warrior")
         .fighterClass("none")
         .withWeapon("Slingshot")

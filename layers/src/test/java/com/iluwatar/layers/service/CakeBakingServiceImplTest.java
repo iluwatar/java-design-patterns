@@ -44,19 +44,19 @@ public class CakeBakingServiceImplTest {
 
   @Test
   public void testLayers() {
-    final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
+    final var service = new CakeBakingServiceImpl();
 
-    final List<CakeLayerInfo> initialLayers = service.getAvailableLayers();
+    final var initialLayers = service.getAvailableLayers();
     assertNotNull(initialLayers);
     assertTrue(initialLayers.isEmpty());
 
     service.saveNewLayer(new CakeLayerInfo("Layer1", 1000));
     service.saveNewLayer(new CakeLayerInfo("Layer2", 2000));
 
-    final List<CakeLayerInfo> availableLayers = service.getAvailableLayers();
+    final var availableLayers = service.getAvailableLayers();
     assertNotNull(availableLayers);
     assertEquals(2, availableLayers.size());
-    for (final CakeLayerInfo layer : availableLayers) {
+    for (final var layer : availableLayers) {
       assertNotNull(layer.id);
       assertNotNull(layer.name);
       assertNotNull(layer.toString());
@@ -67,19 +67,19 @@ public class CakeBakingServiceImplTest {
 
   @Test
   public void testToppings() {
-    final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
+    final var service = new CakeBakingServiceImpl();
 
-    final List<CakeToppingInfo> initialToppings = service.getAvailableToppings();
+    final var initialToppings = service.getAvailableToppings();
     assertNotNull(initialToppings);
     assertTrue(initialToppings.isEmpty());
 
     service.saveNewTopping(new CakeToppingInfo("Topping1", 1000));
     service.saveNewTopping(new CakeToppingInfo("Topping2", 2000));
 
-    final List<CakeToppingInfo> availableToppings = service.getAvailableToppings();
+    final var availableToppings = service.getAvailableToppings();
     assertNotNull(availableToppings);
     assertEquals(2, availableToppings.size());
-    for (final CakeToppingInfo topping : availableToppings) {
+    for (final var topping : availableToppings) {
       assertNotNull(topping.id);
       assertNotNull(topping.name);
       assertNotNull(topping.toString());
@@ -90,20 +90,20 @@ public class CakeBakingServiceImplTest {
 
   @Test
   public void testBakeCakes() throws CakeBakingException {
-    final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
+    final var service = new CakeBakingServiceImpl();
 
-    final List<CakeInfo> initialCakes = service.getAllCakes();
+    final var initialCakes = service.getAllCakes();
     assertNotNull(initialCakes);
     assertTrue(initialCakes.isEmpty());
 
-    final CakeToppingInfo topping1 = new CakeToppingInfo("Topping1", 1000);
-    final CakeToppingInfo topping2 = new CakeToppingInfo("Topping2", 2000);
+    final var topping1 = new CakeToppingInfo("Topping1", 1000);
+    final var topping2 = new CakeToppingInfo("Topping2", 2000);
     service.saveNewTopping(topping1);
     service.saveNewTopping(topping2);
 
-    final CakeLayerInfo layer1 = new CakeLayerInfo("Layer1", 1000);
-    final CakeLayerInfo layer2 = new CakeLayerInfo("Layer2", 2000);
-    final CakeLayerInfo layer3 = new CakeLayerInfo("Layer3", 2000);
+    final var layer1 = new CakeLayerInfo("Layer1", 1000);
+    final var layer2 = new CakeLayerInfo("Layer2", 2000);
+    final var layer3 = new CakeLayerInfo("Layer3", 2000);
     service.saveNewLayer(layer1);
     service.saveNewLayer(layer2);
     service.saveNewLayer(layer3);
@@ -111,10 +111,10 @@ public class CakeBakingServiceImplTest {
     service.bakeNewCake(new CakeInfo(topping1, List.of(layer1, layer2)));
     service.bakeNewCake(new CakeInfo(topping2, Collections.singletonList(layer3)));
 
-    final List<CakeInfo> allCakes = service.getAllCakes();
+    final var allCakes = service.getAllCakes();
     assertNotNull(allCakes);
     assertEquals(2, allCakes.size());
-    for (final CakeInfo cakeInfo : allCakes) {
+    for (final var cakeInfo : allCakes) {
       assertNotNull(cakeInfo.id);
       assertNotNull(cakeInfo.cakeToppingInfo);
       assertNotNull(cakeInfo.cakeLayerInfos);
@@ -127,14 +127,14 @@ public class CakeBakingServiceImplTest {
 
   @Test
   public void testBakeCakeMissingTopping() {
-    final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
+    final var service = new CakeBakingServiceImpl();
 
-    final CakeLayerInfo layer1 = new CakeLayerInfo("Layer1", 1000);
-    final CakeLayerInfo layer2 = new CakeLayerInfo("Layer2", 2000);
+    final var layer1 = new CakeLayerInfo("Layer1", 1000);
+    final var layer2 = new CakeLayerInfo("Layer2", 2000);
     service.saveNewLayer(layer1);
     service.saveNewLayer(layer2);
 
-    final CakeToppingInfo missingTopping = new CakeToppingInfo("Topping1", 1000);
+    final var missingTopping = new CakeToppingInfo("Topping1", 1000);
     assertThrows(CakeBakingException.class, () -> {
       service.bakeNewCake(new CakeInfo(missingTopping, List.of(layer1, layer2)));
     });
@@ -142,19 +142,19 @@ public class CakeBakingServiceImplTest {
 
   @Test
   public void testBakeCakeMissingLayer() {
-    final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
+    final var service = new CakeBakingServiceImpl();
 
-    final List<CakeInfo> initialCakes = service.getAllCakes();
+    final var initialCakes = service.getAllCakes();
     assertNotNull(initialCakes);
     assertTrue(initialCakes.isEmpty());
 
-    final CakeToppingInfo topping1 = new CakeToppingInfo("Topping1", 1000);
+    final var topping1 = new CakeToppingInfo("Topping1", 1000);
     service.saveNewTopping(topping1);
 
-    final CakeLayerInfo layer1 = new CakeLayerInfo("Layer1", 1000);
+    final var layer1 = new CakeLayerInfo("Layer1", 1000);
     service.saveNewLayer(layer1);
 
-    final CakeLayerInfo missingLayer = new CakeLayerInfo("Layer2", 2000);
+    final var missingLayer = new CakeLayerInfo("Layer2", 2000);
     assertThrows(CakeBakingException.class, () -> {
       service.bakeNewCake(new CakeInfo(topping1, List.of(layer1, missingLayer)));
     });
@@ -162,19 +162,19 @@ public class CakeBakingServiceImplTest {
 
   @Test
   public void testBakeCakesUsedLayer() throws CakeBakingException {
-    final CakeBakingServiceImpl service = new CakeBakingServiceImpl();
+    final var service = new CakeBakingServiceImpl();
 
-    final List<CakeInfo> initialCakes = service.getAllCakes();
+    final var initialCakes = service.getAllCakes();
     assertNotNull(initialCakes);
     assertTrue(initialCakes.isEmpty());
 
-    final CakeToppingInfo topping1 = new CakeToppingInfo("Topping1", 1000);
-    final CakeToppingInfo topping2 = new CakeToppingInfo("Topping2", 2000);
+    final var topping1 = new CakeToppingInfo("Topping1", 1000);
+    final var topping2 = new CakeToppingInfo("Topping2", 2000);
     service.saveNewTopping(topping1);
     service.saveNewTopping(topping2);
 
-    final CakeLayerInfo layer1 = new CakeLayerInfo("Layer1", 1000);
-    final CakeLayerInfo layer2 = new CakeLayerInfo("Layer2", 2000);
+    final var layer1 = new CakeLayerInfo("Layer1", 1000);
+    final var layer2 = new CakeLayerInfo("Layer2", 2000);
     service.saveNewLayer(layer1);
     service.saveNewLayer(layer2);
 

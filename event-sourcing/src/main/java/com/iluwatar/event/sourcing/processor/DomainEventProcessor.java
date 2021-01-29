@@ -57,13 +57,8 @@ public class DomainEventProcessor {
    */
   public void recover() {
     DomainEvent domainEvent;
-    while (true) {
-      domainEvent = processorJournal.readNext();
-      if (domainEvent == null) {
-        break;
-      } else {
-        domainEvent.process();
-      }
+    while ((domainEvent = processorJournal.readNext()) != null) {
+      domainEvent.process();
     }
   }
 }

@@ -46,7 +46,7 @@ public class ServiceExecutor implements Runnable {
   public void run() {
     try {
       while (!Thread.currentThread().isInterrupted()) {
-        Message msg = msgQueue.retrieveMsg();
+        var msg = msgQueue.retrieveMsg();
 
         if (null != msg) {
           LOGGER.info(msg.toString() + " is served.");

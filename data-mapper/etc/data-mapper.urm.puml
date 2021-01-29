@@ -1,0 +1,43 @@
+@startuml
+package com.iluwatar.datamapper {
+  class App {
+    - STUDENT_STRING : String {static}
+    - log : Logger {static}
+    - App()
+    + main(args : String[]) {static}
+  }
+  class Student {
+    - grade : char
+    - name : String
+    - serialVersionUID : long {static}
+    - studentId : int
+    + Student(studentId : int, name : String, grade : char)
+    + equals(inputObject : Object) : boolean
+    + getGrade() : char
+    + getName() : String
+    + getStudentId() : int
+    + hashCode() : int
+    + setGrade(grade : char)
+    + setName(name : String)
+    + setStudentId(studentId : int)
+    + toString() : String
+  }
+  interface StudentDataMapper {
+    + delete(Student) {abstract}
+    + find(int) : Optional<Student> {abstract}
+    + insert(Student) {abstract}
+    + update(Student) {abstract}
+  }
+  class StudentDataMapperImpl {
+    - students : List<Student>
+    + StudentDataMapperImpl()
+    + delete(studentToBeDeleted : Student)
+    + find(studentId : int) : Optional<Student>
+    + getStudents() : List<Student>
+    + insert(studentToBeInserted : Student)
+    + update(studentToBeUpdated : Student)
+  }
+}
+StudentDataMapperImpl -->  "-students" Student
+StudentDataMapperImpl ..|> StudentDataMapper 
+@enduml

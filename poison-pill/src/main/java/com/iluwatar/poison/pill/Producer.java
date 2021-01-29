@@ -57,7 +57,7 @@ public class Producer {
       throw new IllegalStateException(String.format(
           "Producer %s was stopped and fail to deliver requested message [%s].", body, name));
     }
-    Message msg = new SimpleMessage();
+    var msg = new SimpleMessage();
     msg.addHeader(Headers.DATE, new Date().toString());
     msg.addHeader(Headers.SENDER, name);
     msg.setBody(body);

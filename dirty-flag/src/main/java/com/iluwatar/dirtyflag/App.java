@@ -23,9 +23,7 @@
 
 package com.iluwatar.dirtyflag;
 
-import java.util.List;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,18 +59,15 @@ public class App {
    * Program execution point.
    */
   public void run() {
-
-    final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+    final var executorService = Executors.newSingleThreadScheduledExecutor();
     executorService.scheduleAtFixedRate(new Runnable() {
       final World world = new World();
 
       @Override
       public void run() {
-        List<String> countries = world.fetch();
+        var countries = world.fetch();
         LOGGER.info("Our world currently has the following countries:-");
-        for (String country : countries) {
-          LOGGER.info("\t" + country);
-        }
+        countries.stream().map(country -> "\t" + country).forEach(LOGGER::info);
       }
     }, 0, 15, TimeUnit.SECONDS); // Run at every 15 seconds.
   }
@@ -83,8 +78,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    App app = new App();
-
+    var app = new App();
     app.run();
   }
 

@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
 public class AppTest {
   private static final Logger LOGGER = LoggerFactory.getLogger(AppTest.class);
 
-  private List<Car> cars = CarFactory.createCars();
+  private final List<Car> cars = CarFactory.createCars();
 
   @Test
   public void testGetModelsAfter2000UsingFor() {

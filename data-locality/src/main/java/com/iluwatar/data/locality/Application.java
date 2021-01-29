@@ -46,7 +46,7 @@ public class Application {
    */
   public static void main(String[] args) {
     LOGGER.info("Start Game Application using Data-Locality pattern");
-    GameEntity gameEntity = new GameEntity(NUM_ENTITIES);
+    var gameEntity = new GameEntity(NUM_ENTITIES);
     gameEntity.start();
     gameEntity.update();
   }

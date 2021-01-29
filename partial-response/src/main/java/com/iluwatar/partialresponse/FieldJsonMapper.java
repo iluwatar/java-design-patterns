@@ -38,13 +38,16 @@ public class FieldJsonMapper {
    * @return json of required fields from video
    */
   public String toJson(Video video, String[] fields) throws Exception {
-    StringBuilder json = new StringBuilder().append("{");
+    var json = new StringBuilder().append("{");
 
-    for (int i = 0, fieldsLength = fields.length; i < fieldsLength; i++) {
+    var i = 0;
+    var fieldsLength = fields.length;
+    while (i < fieldsLength) {
       json.append(getString(video, Video.class.getDeclaredField(fields[i])));
       if (i != fieldsLength - 1) {
         json.append(",");
       }
+      i++;
     }
     json.append("}");
     return json.toString();
@@ -52,7 +55,7 @@ public class FieldJsonMapper {
 
   private String getString(Video video, Field declaredField) throws IllegalAccessException {
     declaredField.setAccessible(true);
-    Object value = declaredField.get(video);
+    var value = declaredField.get(video);
     if (declaredField.get(video) instanceof Integer) {
       return "\"" + declaredField.getName() + "\"" + ": " + value;
     }

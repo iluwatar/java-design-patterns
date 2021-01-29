@@ -1,0 +1,31 @@
+@startuml
+package com.iluwatar.partialresponse {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class FieldJsonMapper {
+    + FieldJsonMapper()
+    - getString(video : Video, declaredField : Field) : String
+    + toJson(video : Video, fields : String[]) : String
+  }
+  class Video {
+    - description : String
+    - director : String
+    - id : Integer
+    - language : String
+    - length : Integer
+    - title : String
+    + Video(id : Integer, title : String, len : Integer, desc : String, director : String, lang : String)
+    + toString() : String
+  }
+  class VideoResource {
+    - fieldJsonMapper : FieldJsonMapper
+    - videos : Map<Integer, Video>
+    + VideoResource(fieldJsonMapper : FieldJsonMapper, videos : Map<Integer, Video>)
+    + getDetails(id : Integer, fields : String[]) : String
+  }
+}
+VideoResource -->  "-fieldJsonMapper" FieldJsonMapper
+@enduml

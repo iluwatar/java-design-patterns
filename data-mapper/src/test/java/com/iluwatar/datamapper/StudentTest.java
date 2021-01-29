@@ -23,12 +23,10 @@
 
 package com.iluwatar.datamapper;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests {@link Student}.
@@ -36,8 +34,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public final class StudentTest {
 
   /**
-   * This API tests the equality behaviour of Student object
-   * Object Equality should work as per logic defined in equals method
+   * This API tests the equality behaviour of Student object Object Equality should work as per
+   * logic defined in equals method
    *
    * @throws Exception if any execution error during test
    */
@@ -45,9 +43,9 @@ public final class StudentTest {
   public void testEquality() throws Exception {
 
     /* Create some students */
-    final Student firstStudent = new Student(1, "Adam", 'A');
-    final Student secondStudent = new Student(2, "Donald", 'B');
-    final Student secondSameStudent = new Student(2, "Donald", 'B');
+    final var firstStudent = new Student(1, "Adam", 'A');
+    final var secondStudent = new Student(2, "Donald", 'B');
+    final var secondSameStudent = new Student(2, "Donald", 'B');
 
     /* Check equals functionality: should return 'true' */
     assertEquals(firstStudent, firstStudent);

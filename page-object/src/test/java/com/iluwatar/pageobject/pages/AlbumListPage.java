@@ -26,7 +26,6 @@ package com.iluwatar.pageobject.pages;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -79,8 +78,8 @@ public class AlbumListPage extends Page {
    */
   public AlbumPage selectAlbum(String albumTitle) {
     // uses XPath to find list of html anchor tags with the class album in it
-    List<HtmlAnchor> albumLinks = (List<HtmlAnchor>) page.getByXPath("//tr[@class='album']//a");
-    for (HtmlAnchor anchor : albumLinks) {
+    var albumLinks = (List<HtmlAnchor>) page.getByXPath("//tr[@class='album']//a");
+    for (var anchor : albumLinks) {
       if (anchor.getTextContent().equals(albumTitle)) {
         try {
           anchor.click();

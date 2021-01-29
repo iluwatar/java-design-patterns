@@ -1,0 +1,159 @@
+@startuml
+package com.iluwatar.servicelayer.hibernate {
+  class HibernateUtil {
+    - LOGGER : Logger {static}
+    - sessionFactory : SessionFactory {static}
+    - HibernateUtil()
+    + dropSession() {static}
+    + getSessionFactory() : SessionFactory {static}
+  }
+}
+package com.iluwatar.servicelayer.common {
+  abstract class BaseEntity {
+    + BaseEntity()
+    + getId() : Long {abstract}
+    + getName() : String {abstract}
+    + setId(Long) {abstract}
+    + setName(String) {abstract}
+  }
+  interface Dao<E extends BaseEntity> {
+    + delete(E extends BaseEntity) {abstract}
+    + find(Long) : E extends BaseEntity {abstract}
+    + findAll() : List<E extends BaseEntity> {abstract}
+    + merge(E extends BaseEntity) : E extends BaseEntity {abstract}
+    + persist(E extends BaseEntity) {abstract}
+  }
+  abstract class DaoBaseImpl<E extends BaseEntity> {
+    # persistentClass : Class<E extends BaseEntity>
+    + DaoBaseImpl<E extends BaseEntity>()
+    + delete(entity : E extends BaseEntity)
+    + find(id : Long) : E extends BaseEntity
+    + findAll() : List<E extends BaseEntity>
+    # getSessionFactory() : SessionFactory
+    + merge(entity : E extends BaseEntity) : E extends BaseEntity
+    + persist(entity : E extends BaseEntity)
+  }
+}
+package com.iluwatar.servicelayer.magic {
+  interface MagicService {
+    + findAllSpellbooks() : List<Spellbook> {abstract}
+    + findAllSpells() : List<Spell> {abstract}
+    + findAllWizards() : List<Wizard> {abstract}
+    + findWizardsWithSpell(String) : List<Wizard> {abstract}
+    + findWizardsWithSpellbook(String) : List<Wizard> {abstract}
+  }
+  class MagicServiceImpl {
+    - spellDao : SpellDao
+    - spellbookDao : SpellbookDao
+    - wizardDao : WizardDao
+    + MagicServiceImpl(wizardDao : WizardDao, spellbookDao : SpellbookDao, spellDao : SpellDao)
+    + findAllSpellbooks() : List<Spellbook>
+    + findAllSpells() : List<Spell>
+    + findAllWizards() : List<Wizard>
+    + findWizardsWithSpell(name : String) : List<Wizard>
+    + findWizardsWithSpellbook(name : String) : List<Wizard>
+  }
+}
+package com.iluwatar.servicelayer.wizard {
+  class Wizard {
+    - id : Long
+    - name : String
+    - spellbooks : Set<Spellbook>
+    + Wizard()
+    + Wizard(name : String)
+    + addSpellbook(spellbook : Spellbook)
+    + getId() : Long
+    + getName() : String
+    + getSpellbooks() : Set<Spellbook>
+    + setId(id : Long)
+    + setName(name : String)
+    + setSpellbooks(spellbooks : Set<Spellbook>)
+    + toString() : String
+  }
+  interface WizardDao {
+    + findByName(String) : Wizard {abstract}
+  }
+  class WizardDaoImpl {
+    + WizardDaoImpl()
+    + findByName(name : String) : Wizard
+  }
+}
+package com.iluwatar.servicelayer.spellbook {
+  class Spellbook {
+    - id : Long
+    - name : String
+    - spells : Set<Spell>
+    - wizards : Set<Wizard>
+    + Spellbook()
+    + Spellbook(name : String)
+    + addSpell(spell : Spell)
+    + getId() : Long
+    + getName() : String
+    + getSpells() : Set<Spell>
+    + getWizards() : Set<Wizard>
+    + setId(id : Long)
+    + setName(name : String)
+    + setSpells(spells : Set<Spell>)
+    + setWizards(wizards : Set<Wizard>)
+    + toString() : String
+  }
+  interface SpellbookDao {
+    + findByName(String) : Spellbook {abstract}
+  }
+  class SpellbookDaoImpl {
+    + SpellbookDaoImpl()
+    + findByName(name : String) : Spellbook
+  }
+}
+package com.iluwatar.servicelayer.spell {
+  class Spell {
+    - id : Long
+    - name : String
+    - spellbook : Spellbook
+    + Spell()
+    + Spell(name : String)
+    + getId() : Long
+    + getName() : String
+    + getSpellbook() : Spellbook
+    + setId(id : Long)
+    + setName(name : String)
+    + setSpellbook(spellbook : Spellbook)
+    + toString() : String
+  }
+  interface SpellDao {
+    + findByName(String) : Spell {abstract}
+  }
+  class SpellDaoImpl {
+    + SpellDaoImpl()
+    + findByName(name : String) : Spell
+  }
+}
+package com.iluwatar.servicelayer.app {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + initData() {static}
+    + main(args : String[]) {static}
+    + queryData() {static}
+  }
+}
+MagicServiceImpl -->  "-wizardDao" WizardDao
+MagicServiceImpl -->  "-spellbookDao" SpellbookDao
+MagicServiceImpl -->  "-spellDao" SpellDao
+Spellbook -->  "-spells" Spell
+Spellbook -->  "-wizards" Wizard
+DaoBaseImpl ..|> Dao 
+MagicServiceImpl ..|> MagicService 
+Spell --|> BaseEntity 
+SpellDao --|> Dao 
+SpellDaoImpl ..|> SpellDao 
+SpellDaoImpl --|> DaoBaseImpl 
+Spellbook --|> BaseEntity 
+SpellbookDao --|> Dao 
+SpellbookDaoImpl ..|> SpellbookDao 
+SpellbookDaoImpl --|> DaoBaseImpl 
+Wizard --|> BaseEntity 
+WizardDao --|> Dao 
+WizardDaoImpl ..|> WizardDao 
+WizardDaoImpl --|> DaoBaseImpl 
+@enduml

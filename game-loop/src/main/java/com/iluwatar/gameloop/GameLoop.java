@@ -36,7 +36,7 @@ public abstract class GameLoop {
 
   protected volatile GameStatus status;
 
-  protected GameController controller;
+  protected final GameController controller;
 
   private Thread gameThread;
 
@@ -53,7 +53,7 @@ public abstract class GameLoop {
    */
   public void run() {
     status = GameStatus.RUNNING;
-    gameThread = new Thread(() -> processGameLoop());
+    gameThread = new Thread(this::processGameLoop);
     gameThread.start();
   }
 
@@ -70,7 +70,7 @@ public abstract class GameLoop {
    * @return {@code true} if the game is running.
    */
   public boolean isGameRunning() {
-    return status == GameStatus.RUNNING ? true : false;
+    return status == GameStatus.RUNNING;
   }
 
   /**
@@ -80,7 +80,7 @@ public abstract class GameLoop {
    */
   protected void processInput() {
     try {
-      int lag = new Random().nextInt(200) + 50;
+      var lag = new Random().nextInt(200) + 50;
       Thread.sleep(lag);
     } catch (InterruptedException e) {
       logger.error(e.getMessage());

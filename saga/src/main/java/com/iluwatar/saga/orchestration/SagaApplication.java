@@ -27,23 +27,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This pattern is used in distributed services to perform
- * a group of operations atomically.
- * This is an analog of transaction in a database but in terms
- * of microservices architecture this is executed
- * in a distributed environment
+ * This pattern is used in distributed services to perform a group of operations atomically. This is
+ * an analog of transaction in a database but in terms of microservices architecture this is
+ * executed in a distributed environment
  *
  * <p>A saga is a sequence of local transactions in a certain context.
- * If one transaction fails for some reason,
- * the saga executes compensating transactions(rollbacks)
+ * If one transaction fails for some reason, the saga executes compensating transactions(rollbacks)
  * to undo the impact of the preceding transactions.
  *
  * <p>In this approach, there is an orchestrator @see {@link SagaOrchestrator}
- * that manages all the transactions and directs
- * the participant services to execute local transactions based on events.
- * The major difference with choreography saga is an ability to handle crashed services
- * (otherwise in choreography services very hard to prevent a saga
- * if one of them has been crashed)
+ * that manages all the transactions and directs the participant services to execute local
+ * transactions based on events. The major difference with choreography saga is an ability to handle
+ * crashed services (otherwise in choreography services very hard to prevent a saga if one of them
+ * has been crashed)
  *
  * @see Saga
  * @see SagaOrchestrator
@@ -56,7 +52,7 @@ public class SagaApplication {
    * method to show common saga logic.
    */
   public static void main(String[] args) {
-    SagaOrchestrator sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
+    var sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
 
     Saga.Result goodOrder = sagaOrchestrator.execute("good_order");
     Saga.Result badOrder = sagaOrchestrator.execute("bad_order");
@@ -77,11 +73,10 @@ public class SagaApplication {
   }
 
   private static ServiceDiscoveryService serviceDiscovery() {
-    return
-        new ServiceDiscoveryService()
-            .discover(new OrderService())
-            .discover(new FlyBookingService())
-            .discover(new HotelBookingService())
-            .discover(new WithdrawMoneyService());
+    return new ServiceDiscoveryService()
+        .discover(new OrderService())
+        .discover(new FlyBookingService())
+        .discover(new HotelBookingService())
+        .discover(new WithdrawMoneyService());
   }
 }

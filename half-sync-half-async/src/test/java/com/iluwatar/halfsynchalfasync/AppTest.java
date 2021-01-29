@@ -25,17 +25,15 @@ package com.iluwatar.halfsynchalfasync;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.ExecutionException;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
- * 
  * Application test
- *
  */
-public class AppTest {
+class AppTest {
 
   @Test
-  public void test() {
-    App.main(null);
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(null));
   }
 }

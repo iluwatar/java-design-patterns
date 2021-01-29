@@ -6,22 +6,22 @@ permalink: /patterns/reactor/
 pumlformat: svg
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Expert
- - I/O
+ - Performance
+ - Reactive
 ---
 
 ## Intent
 The Reactor design pattern handles service requests that are delivered concurrently to an application by one or more clients. The application can register specific handlers for processing which are called by reactor on specific events. Dispatching of event handlers is performed by an initiation dispatcher, which manages the registered event handlers. Demultiplexing of service requests is performed by a synchronous event demultiplexer.
 
+## Class diagram
 ![Reactor](./etc/reactor.png "Reactor")
 
 ## Applicability
 Use Reactor pattern when
 
-* a server application needs to handle concurrent service requests from multiple clients.
-* a server application needs to be available for receiving requests from new clients even when handling older client requests.
-* a server must maximize throughput, minimize latency and use CPU efficiently without blocking.
+* A server application needs to handle concurrent service requests from multiple clients.
+* A server application needs to be available for receiving requests from new clients even when handling older client requests.
+* A server must maximize throughput, minimize latency and use CPU efficiently without blocking.
 
 ## Real world examples
 
@@ -30,6 +30,6 @@ Use Reactor pattern when
 ## Credits
 
 * [Douglas C. Schmidt - Reactor](https://www.dre.vanderbilt.edu/~schmidt/PDF/Reactor.pdf)
-* [Pattern Oriented Software Architecture Vol I-V](http://www.amazon.com/Pattern-Oriented-Software-Architecture-Volume-Patterns/dp/0471958697)
+* [Pattern Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://www.amazon.com/gp/product/0471606952/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0471606952&linkCode=as2&tag=javadesignpat-20&linkId=889e4af72dca8261129bf14935e0f8dc)
 * [Doug Lea - Scalable IO in Java](http://gee.cs.oswego.edu/dl/cpjslides/nio.pdf)
 * [Netty](http://netty.io/)

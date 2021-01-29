@@ -23,10 +23,10 @@
 
 package com.iluwatar.servant;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/28/15 - 9:40 PM
@@ -37,14 +37,14 @@ public class KingTest {
 
   @Test
   public void testHungrySoberUncomplimentedKing() {
-    final King king = new King();
+    final var king = new King();
     king.changeMood();
     assertFalse(king.getMood());
   }
 
   @Test
   public void testFedSoberUncomplimentedKing() {
-    final King king = new King();
+    final var king = new King();
     king.getFed();
     king.changeMood();
     assertFalse(king.getMood());
@@ -52,7 +52,7 @@ public class KingTest {
 
   @Test
   public void testHungryDrunkUncomplimentedKing() {
-    final King king = new King();
+    final var king = new King();
     king.getDrink();
     king.changeMood();
     assertFalse(king.getMood());
@@ -60,7 +60,7 @@ public class KingTest {
 
   @Test
   public void testHungrySoberComplimentedKing() {
-    final King king = new King();
+    final var king = new King();
     king.receiveCompliments();
     king.changeMood();
     assertFalse(king.getMood());
@@ -68,7 +68,7 @@ public class KingTest {
 
   @Test
   public void testFedDrunkUncomplimentedKing() {
-    final King king = new King();
+    final var king = new King();
     king.getFed();
     king.getDrink();
     king.changeMood();
@@ -77,7 +77,7 @@ public class KingTest {
 
   @Test
   public void testFedSoberComplimentedKing() {
-    final King king = new King();
+    final var king = new King();
     king.getFed();
     king.receiveCompliments();
     king.changeMood();
@@ -86,7 +86,7 @@ public class KingTest {
 
   @Test
   public void testFedDrunkComplimentedKing() {
-    final King king = new King();
+    final var king = new King();
     king.getFed();
     king.getDrink();
     king.receiveCompliments();

@@ -25,6 +25,7 @@ package com.iluwatar.data.locality.game.component.manager;
 
 import com.iluwatar.data.locality.game.component.Component;
 import com.iluwatar.data.locality.game.component.RenderComponent;
+import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +40,7 @@ public class RenderComponentManager {
 
   private final int numEntities;
 
-  private static final Component[] RENDER_COMPONENTS = new RenderComponent[MAX_ENTITIES];
+  private final Component[] renderComponents = new RenderComponent[MAX_ENTITIES];
 
   public RenderComponentManager(int numEntities) {
     this.numEntities = numEntities;
@@ -50,9 +51,7 @@ public class RenderComponentManager {
    */
   public void start() {
     LOGGER.info("Start Render Game Component ");
-    for (int i = 0; i < numEntities; i++) {
-      RENDER_COMPONENTS[i] = new RenderComponent();
-    }
+    IntStream.range(0, numEntities).forEach(i -> renderComponents[i] = new RenderComponent());
   }
 
 
@@ -62,10 +61,8 @@ public class RenderComponentManager {
   public void render() {
     LOGGER.info("Update Render Game Component ");
     // Process Render.
-    for (int i = 0; i < numEntities; i++) {
-      if (RENDER_COMPONENTS.length > i && RENDER_COMPONENTS[i] != null) {
-        RENDER_COMPONENTS[i].render();
-      }
-    }
+    IntStream.range(0, numEntities)
+        .filter(i -> renderComponents.length > i && renderComponents[i] != null)
+        .forEach(i -> renderComponents[i].render());
   }
 }

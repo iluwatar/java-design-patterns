@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class TreasureChest {
 
-  private List<Item> items;
+  private final List<Item> items;
 
   /**
    * Constructor.

@@ -23,10 +23,11 @@
 
 package com.iluwatar.retry;
 
-import org.junit.jupiter.api.Test;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for {@link Retry}.
@@ -34,15 +35,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author George Aristy (george.aristy@gmail.com)
  */
 public class RetryExponentialBackoffTest {
-    /**
-     * Should contain all errors thrown.
-     */
+  /**
+   * Should contain all errors thrown.
+   */
   @Test
-  public void errors() throws Exception {
-    final BusinessException e = new BusinessException("unhandled");
-    final RetryExponentialBackoff<String> retry = new RetryExponentialBackoff<>(
-        () -> { 
-          throw e; 
+  public void errors() {
+    final var e = new BusinessException("unhandled");
+    final var retry = new RetryExponentialBackoff<String>(
+        () -> {
+          throw e;
         },
         2,
         0
@@ -53,22 +54,19 @@ public class RetryExponentialBackoffTest {
       //ignore
     }
 
-    assertThat(
-        retry.errors(),
-        hasItem(e)
-    );
+    assertThat(retry.errors(), hasItem(e));
   }
 
-    /**
-     * No exceptions will be ignored, hence final number of attempts should be 1 even if we're asking
-     * it to attempt twice.
-     */
+  /**
+   * No exceptions will be ignored, hence final number of attempts should be 1 even if we're asking
+   * it to attempt twice.
+   */
   @Test
   public void attempts() {
-    final BusinessException e = new BusinessException("unhandled");
-    final RetryExponentialBackoff<String> retry = new RetryExponentialBackoff<>(
-        () -> { 
-          throw e; 
+    final var e = new BusinessException("unhandled");
+    final var retry = new RetryExponentialBackoff<String>(
+        () -> {
+          throw e;
         },
         2,
         0
@@ -79,22 +77,19 @@ public class RetryExponentialBackoffTest {
       //ignore
     }
 
-    assertThat(
-        retry.attempts(),
-        is(1)
-    );
+    assertThat(retry.attempts(), is(1));
   }
 
-    /**
-     * Final number of attempts should be equal to the number of attempts asked because we are
-     * asking it to ignore the exception that will be thrown.
-     */
+  /**
+   * Final number of attempts should be equal to the number of attempts asked because we are asking
+   * it to ignore the exception that will be thrown.
+   */
   @Test
-  public void ignore() throws Exception {
-    final BusinessException e = new CustomerNotFoundException("customer not found");
-    final RetryExponentialBackoff<String> retry = new RetryExponentialBackoff<>(
-        () -> { 
-          throw e; 
+  public void ignore() {
+    final var e = new CustomerNotFoundException("customer not found");
+    final var retry = new RetryExponentialBackoff<String>(
+        () -> {
+          throw e;
         },
         2,
         0,
@@ -106,9 +101,6 @@ public class RetryExponentialBackoffTest {
       //ignore
     }
 
-    assertThat(
-        retry.attempts(),
-        is(2)
-    );
+    assertThat(retry.attempts(), is(2));
   }
 }

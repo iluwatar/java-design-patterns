@@ -43,13 +43,13 @@ public class RingApp {
   public static void main(String[] args) {
 
     Map<Integer, Instance> instanceMap = new HashMap<>();
-    MessageManager messageManager = new RingMessageManager(instanceMap);
+    var messageManager = new RingMessageManager(instanceMap);
 
-    RingInstance instance1 = new RingInstance(messageManager, 1, 1);
-    RingInstance instance2 = new RingInstance(messageManager, 2, 1);
-    RingInstance instance3 = new RingInstance(messageManager, 3, 1);
-    RingInstance instance4 = new RingInstance(messageManager, 4, 1);
-    RingInstance instance5 = new RingInstance(messageManager, 5, 1);
+    var instance1 = new RingInstance(messageManager, 1, 1);
+    var instance2 = new RingInstance(messageManager, 2, 1);
+    var instance3 = new RingInstance(messageManager, 3, 1);
+    var instance4 = new RingInstance(messageManager, 4, 1);
+    var instance5 = new RingInstance(messageManager, 5, 1);
 
     instanceMap.put(1, instance1);
     instanceMap.put(2, instance2);
@@ -59,11 +59,11 @@ public class RingApp {
 
     instance2.onMessage(new Message(MessageType.HEARTBEAT_INVOKE, ""));
 
-    final Thread thread1 = new Thread(instance1);
-    final Thread thread2 = new Thread(instance2);
-    final Thread thread3 = new Thread(instance3);
-    final Thread thread4 = new Thread(instance4);
-    final Thread thread5 = new Thread(instance5);
+    final var thread1 = new Thread(instance1);
+    final var thread2 = new Thread(instance2);
+    final var thread3 = new Thread(instance3);
+    final var thread4 = new Thread(instance4);
+    final var thread5 = new Thread(instance5);
 
     thread1.start();
     thread2.start();

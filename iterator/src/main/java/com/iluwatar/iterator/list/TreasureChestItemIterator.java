@@ -24,16 +24,15 @@
 package com.iluwatar.iterator.list;
 
 import com.iluwatar.iterator.Iterator;
-import java.util.List;
 
 /**
  * TreasureChestItemIterator.
  */
 public class TreasureChestItemIterator implements Iterator<Item> {
 
-  private TreasureChest chest;
+  private final TreasureChest chest;
   private int idx;
-  private ItemType type;
+  private final ItemType type;
 
   /**
    * Constructor.
@@ -59,10 +58,9 @@ public class TreasureChestItemIterator implements Iterator<Item> {
   }
 
   private int findNextIdx() {
-    List<Item> items = chest.getItems();
-    boolean found = false;
-    int tempIdx = idx;
-    while (!found) {
+    var items = chest.getItems();
+    var tempIdx = idx;
+    while (true) {
       tempIdx++;
       if (tempIdx >= items.size()) {
         tempIdx = -1;

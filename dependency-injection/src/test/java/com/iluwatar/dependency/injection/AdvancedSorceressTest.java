@@ -23,12 +23,13 @@
 
 package com.iluwatar.dependency.injection;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.iluwatar.dependency.injection.utils.InMemoryAppender;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
@@ -52,27 +53,29 @@ public class AdvancedSorceressTest {
   }
 
   /**
-   * Test if the {@link AdvancedSorceress} smokes whatever instance of {@link Tobacco} is passed to her
-   * through the setter's parameter
+   * Test if the {@link AdvancedSorceress} smokes whatever instance of {@link Tobacco} is passed to
+   * her through the setter's parameter
    */
   @Test
   public void testSmokeEveryThing() throws Exception {
 
-    final Tobacco[] tobaccos = {
-        new OldTobyTobacco(), new RivendellTobacco(), new SecondBreakfastTobacco()
-    };
+    List<Tobacco> tobaccos = List.of(
+        new OldTobyTobacco(),
+        new RivendellTobacco(),
+        new SecondBreakfastTobacco()
+    );
 
-    for (final Tobacco tobacco : tobaccos) {
-      final AdvancedSorceress advancedSorceress = new AdvancedSorceress();
+    // Verify if the sorceress is smoking the correct tobacco ...
+    tobaccos.forEach(tobacco -> {
+      final var advancedSorceress = new AdvancedSorceress();
       advancedSorceress.setTobacco(tobacco);
       advancedSorceress.smoke();
-      // Verify if the sorceress is smoking the correct tobacco ...
-      assertEquals("AdvancedSorceress smoking " + tobacco.getClass().getSimpleName(), appender.getLastMessage());
-
-    }
+      String lastMessage = appender.getLastMessage();
+      assertEquals("AdvancedSorceress smoking " + tobacco.getClass().getSimpleName(), lastMessage);
+    });
 
     // ... and nothing else is happening.
-    assertEquals(tobaccos.length, appender.getLogSize());
+    assertEquals(tobaccos.size(), appender.getLogSize());
 
   }
 }

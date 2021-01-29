@@ -4,7 +4,8 @@ target
 .classpath
 .project
 *.class
-# Package Files #
+
+### Package Files ###
 *.jar
 *.war
 *.ear
@@ -13,7 +14,8 @@ target
 *.swp
 datanucleus.log
 /bin/
-/bin/
-/bin/
 *.log
 event-sourcing/Journal.json
+
+### Checkstyle ###
+.checkstyle

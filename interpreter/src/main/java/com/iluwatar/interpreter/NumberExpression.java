@@ -28,7 +28,7 @@ package com.iluwatar.interpreter;
  */
 public class NumberExpression extends Expression {
 
-  private int number;
+  private final int number;
 
   public NumberExpression(int number) {
     this.number = number;

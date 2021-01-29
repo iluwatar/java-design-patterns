@@ -85,7 +85,7 @@ public final class Student implements Serializable {
       isEqual = true;
     } else if (inputObject != null && getClass() == inputObject.getClass()) {
 
-      final Student inputStudent = (Student) inputObject;
+      final var inputStudent = (Student) inputObject;
 
       /* If student id matched */
       if (this.getStudentId() == inputStudent.getStudentId()) {

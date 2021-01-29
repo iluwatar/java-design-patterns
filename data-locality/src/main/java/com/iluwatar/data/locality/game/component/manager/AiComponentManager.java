@@ -25,6 +25,7 @@ package com.iluwatar.data.locality.game.component.manager;
 
 import com.iluwatar.data.locality.game.component.AiComponent;
 import com.iluwatar.data.locality.game.component.Component;
+import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +40,7 @@ public class AiComponentManager {
 
   private final int numEntities;
 
-  private static final Component[] AI_COMPONENTS = new AiComponent[MAX_ENTITIES];
+  private final Component[] aiComponents = new AiComponent[MAX_ENTITIES];
 
   public AiComponentManager(int numEntities) {
     this.numEntities = numEntities;
@@ -50,9 +51,7 @@ public class AiComponentManager {
    */
   public void start() {
     LOGGER.info("Start AI Game Component");
-    for (int i = 0; i < numEntities; i++) {
-      AI_COMPONENTS[i] = new AiComponent();
-    }
+    IntStream.range(0, numEntities).forEach(i -> aiComponents[i] = new AiComponent());
   }
 
   /**
@@ -60,10 +59,8 @@ public class AiComponentManager {
    */
   public void update() {
     LOGGER.info("Update AI Game Component");
-    for (int i = 0; i < numEntities; i++) {
-      if (AI_COMPONENTS.length > i && AI_COMPONENTS[i] != null) {
-        AI_COMPONENTS[i].update();
-      }
-    }
+    IntStream.range(0, numEntities)
+        .filter(i -> aiComponents.length > i && aiComponents[i] != null)
+        .forEach(i -> aiComponents[i].update());
   }
 }

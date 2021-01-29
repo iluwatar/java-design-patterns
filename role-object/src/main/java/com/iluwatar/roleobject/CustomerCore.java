@@ -36,7 +36,7 @@ import java.util.Optional;
  */
 public class CustomerCore extends Customer {
 
-  private Map<Role, CustomerRole> roles;
+  private final Map<Role, CustomerRole> roles;
 
   public CustomerCore() {
     roles = new HashMap<>();
@@ -73,7 +73,7 @@ public class CustomerCore extends Customer {
 
   @Override
   public String toString() {
-    String roles = Arrays.toString(this.roles.keySet().toArray());
+    var roles = Arrays.toString(this.roles.keySet().toArray());
     return "Customer{roles=" + roles + "}";
   }
 }

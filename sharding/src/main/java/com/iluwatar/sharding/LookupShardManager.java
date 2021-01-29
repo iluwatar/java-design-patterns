@@ -39,7 +39,7 @@ public class LookupShardManager extends ShardManager {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(LookupShardManager.class);
 
-  private Map<Integer, Integer> lookupMap = new HashMap<>();
+  private final Map<Integer, Integer> lookupMap = new HashMap<>();
 
   @Override
   public int storeData(Data data) {
@@ -58,8 +58,7 @@ public class LookupShardManager extends ShardManager {
       return lookupMap.get(key);
     } else {
       var shardCount = shardMap.size();
-      var allocatedShardId = new Random().nextInt(shardCount - 1) + 1;
-      return allocatedShardId;
+      return new Random().nextInt(shardCount - 1) + 1;
     }
   }
 

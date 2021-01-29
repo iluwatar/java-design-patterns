@@ -24,7 +24,6 @@
 package com.iluwatar.fluentinterface.fluentiterable;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -102,11 +101,8 @@ public interface FluentIterable<E> extends Iterable<E> {
    * @return a list with all objects of the given iterator
    */
   static <E> List<E> copyToList(Iterable<E> iterable) {
-    List<E> copy = new ArrayList<>();
-    Iterator<E> iterator = iterable.iterator();
-    while (iterator.hasNext()) {
-      copy.add(iterator.next());
-    }
+    var copy = new ArrayList<E>();
+    iterable.forEach(copy::add);
     return copy;
   }
 }

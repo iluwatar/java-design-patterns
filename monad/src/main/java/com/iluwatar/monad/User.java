@@ -28,10 +28,10 @@ package com.iluwatar.monad;
  */
 public class User {
 
-  private String name;
-  private int age;
-  private Sex sex;
-  private String email;
+  private final String name;
+  private final int age;
+  private final Sex sex;
+  private final String email;
 
   /**
    * Constructor.

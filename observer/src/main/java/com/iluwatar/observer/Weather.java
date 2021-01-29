@@ -37,7 +37,7 @@ public class Weather {
   private static final Logger LOGGER = LoggerFactory.getLogger(Weather.class);
 
   private WeatherType currentWeather;
-  private List<WeatherObserver> observers;
+  private final List<WeatherObserver> observers;
 
   public Weather() {
     observers = new ArrayList<>();
@@ -56,14 +56,14 @@ public class Weather {
    * Makes time pass for weather.
    */
   public void timePasses() {
-    WeatherType[] enumValues = WeatherType.values();
+    var enumValues = WeatherType.values();
     currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
     LOGGER.info("The weather changed to {}.", currentWeather);
     notifyObservers();
   }
 
   private void notifyObservers() {
-    for (WeatherObserver obs : observers) {
+    for (var obs : observers) {
       obs.update(currentWeather);
     }
   }

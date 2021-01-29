@@ -23,6 +23,8 @@
 
 package com.iluwatar.factorykit.factorykit;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.iluwatar.factorykit.Axe;
 import com.iluwatar.factorykit.Spear;
 import com.iluwatar.factorykit.Sword;
@@ -32,10 +34,8 @@ import com.iluwatar.factorykit.WeaponType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-  /**
- *  Test Factory Kit Pattern
+/**
+ * Test Factory Kit Pattern
  */
 public class FactoryKitTest {
 
@@ -51,30 +51,33 @@ public class FactoryKitTest {
   }
 
   /**
-   * Testing {@link WeaponFactory} to produce a SPEAR asserting that the Weapon is an instance of {@link Spear}
+   * Testing {@link WeaponFactory} to produce a SPEAR asserting that the Weapon is an instance of
+   * {@link Spear}
    */
   @Test
   public void testSpearWeapon() {
-    Weapon weapon = factory.create(WeaponType.SPEAR);
+    var weapon = factory.create(WeaponType.SPEAR);
     verifyWeapon(weapon, Spear.class);
   }
 
   /**
-   * Testing {@link WeaponFactory} to produce a AXE asserting that the Weapon is an instance of {@link Axe}
+   * Testing {@link WeaponFactory} to produce a AXE asserting that the Weapon is an instance of
+   * {@link Axe}
    */
   @Test
   public void testAxeWeapon() {
-    Weapon weapon = factory.create(WeaponType.AXE);
+    var weapon = factory.create(WeaponType.AXE);
     verifyWeapon(weapon, Axe.class);
   }
 
 
   /**
-   * Testing {@link WeaponFactory} to produce a SWORD asserting that the Weapon is an instance of {@link Sword}
+   * Testing {@link WeaponFactory} to produce a SWORD asserting that the Weapon is an instance of
+   * {@link Sword}
    */
   @Test
   public void testWeapon() {
-    Weapon weapon = factory.create(WeaponType.SWORD);
+    var weapon = factory.create(WeaponType.SWORD);
     verifyWeapon(weapon, Sword.class);
   }
 

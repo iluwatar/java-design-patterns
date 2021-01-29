@@ -30,7 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class LotteryTicketId {
 
-  private static AtomicInteger numAllocated = new AtomicInteger(0);
+  private static final AtomicInteger numAllocated = new AtomicInteger(0);
   private final int id;
 
   public LotteryTicketId() {
@@ -59,10 +59,9 @@ public class LotteryTicketId {
       return false;
     }
 
-    LotteryTicketId that = (LotteryTicketId) o;
+    var that = (LotteryTicketId) o;
 
     return id == that.id;
-
   }
 
   @Override

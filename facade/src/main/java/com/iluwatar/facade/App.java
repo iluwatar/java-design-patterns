@@ -42,7 +42,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    DwarvenGoldmineFacade facade = new DwarvenGoldmineFacade();
+    var facade = new DwarvenGoldmineFacade();
     facade.startNewDay();
     facade.digOutGold();
     facade.endDay();

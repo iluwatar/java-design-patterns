@@ -29,8 +29,8 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * Common abstraction class representing services.
- * implementing a general contract @see {@link ChoreographyChapter}
+ * Common abstraction class representing services. implementing a general contract @see {@link
+ * ChoreographyChapter}
  */
 public abstract class Service implements ChoreographyChapter {
   protected static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
@@ -43,9 +43,9 @@ public abstract class Service implements ChoreographyChapter {
 
   @Override
   public Saga execute(Saga saga) {
-    Saga nextSaga = saga;
+    var nextSaga = saga;
     Object nextVal;
-    String chapterName = saga.getCurrent().getName();
+    var chapterName = saga.getCurrent().getName();
     if (chapterName.equals(getName())) {
       if (saga.isForward()) {
         nextSaga = process(saga);
@@ -67,7 +67,7 @@ public abstract class Service implements ChoreographyChapter {
 
       nextSaga.setCurrentValue(nextVal);
     }
-    Saga finalNextSaga = nextSaga;
+    var finalNextSaga = nextSaga;
 
     return sd.find(chapterName).map(ch -> ch.execute(finalNextSaga))
         .orElseThrow(serviceNotFoundException(chapterName));
@@ -80,7 +80,7 @@ public abstract class Service implements ChoreographyChapter {
 
   @Override
   public Saga process(Saga saga) {
-    Object inValue = saga.getCurrentValue();
+    var inValue = saga.getCurrentValue();
     LOGGER.info("The chapter '{}' has been started. "
             + "The data {} has been stored or calculated successfully",
         getName(), inValue);
@@ -91,7 +91,7 @@ public abstract class Service implements ChoreographyChapter {
 
   @Override
   public Saga rollback(Saga saga) {
-    Object inValue = saga.getCurrentValue();
+    var inValue = saga.getCurrentValue();
     LOGGER.info("The Rollback for a chapter '{}' has been started. "
             + "The data {} has been rollbacked successfully",
         getName(), inValue);

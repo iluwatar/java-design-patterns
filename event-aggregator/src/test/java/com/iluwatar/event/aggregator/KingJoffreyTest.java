@@ -23,18 +23,18 @@
 
 package com.iluwatar.event.aggregator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/12/15 - 3:04 PM
@@ -60,22 +60,21 @@ public class KingJoffreyTest {
    */
   @Test
   public void testOnEvent() {
-    final KingJoffrey kingJoffrey = new KingJoffrey();
+    final var kingJoffrey = new KingJoffrey();
 
-    for (int i = 0; i < Event.values().length; ++i) {
+    IntStream.range(0, Event.values().length).forEach(i -> {
       assertEquals(i, appender.getLogSize());
-      Event event = Event.values()[i];
+      var event = Event.values()[i];
       kingJoffrey.onEvent(event);
-
-      final String expectedMessage = "Received event from the King's Hand: " + event.toString();
+      final var expectedMessage = "Received event from the King's Hand: " + event.toString();
       assertEquals(expectedMessage, appender.getLastMessage());
       assertEquals(i + 1, appender.getLogSize());
-    }
+    });
 
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender(Class<?> clazz) {
       ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);

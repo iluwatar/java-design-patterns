@@ -30,7 +30,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
-
 import java.io.IOException;
 
 /**
@@ -83,7 +82,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage changeAlbumTitle(String albumTitle) {
-    HtmlTextInput albumTitleInputTextField = (HtmlTextInput) page.getElementById("albumTitle");
+    var albumTitleInputTextField = (HtmlTextInput) page.getElementById("albumTitle");
     albumTitleInputTextField.setText(albumTitle);
     return this;
   }
@@ -96,7 +95,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage changeArtist(String artist) {
-    HtmlTextInput artistInputTextField = (HtmlTextInput) page.getElementById("albumArtist");
+    var artistInputTextField = (HtmlTextInput) page.getElementById("albumArtist");
     artistInputTextField.setText(artist);
     return this;
   }
@@ -109,8 +108,8 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage changeAlbumYear(int year) {
-    HtmlSelect albumYearSelectOption = (HtmlSelect) page.getElementById("albumYear");
-    HtmlOption yearOption = albumYearSelectOption.getOptionByValue(Integer.toString(year));
+    var albumYearSelectOption = (HtmlSelect) page.getElementById("albumYear");
+    var yearOption = albumYearSelectOption.getOptionByValue(Integer.toString(year));
     albumYearSelectOption.setSelectedAttribute(yearOption, true);
     return this;
   }
@@ -123,7 +122,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage changeAlbumRating(String albumRating) {
-    HtmlTextInput albumRatingInputTextField = (HtmlTextInput) page.getElementById("albumRating");
+    var albumRatingInputTextField = (HtmlTextInput) page.getElementById("albumRating");
     albumRatingInputTextField.setText(albumRating);
     return this;
   }
@@ -135,7 +134,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage changeNumberOfSongs(int numberOfSongs) {
-    HtmlNumberInput numberOfSongsNumberField = (HtmlNumberInput) page.getElementById("numberOfSongs");
+    var numberOfSongsNumberField = (HtmlNumberInput) page.getElementById("numberOfSongs");
     numberOfSongsNumberField.setText(Integer.toString(numberOfSongs));
     return this;
   }
@@ -147,7 +146,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumListPage}
    */
   public AlbumListPage cancelChanges() {
-    HtmlSubmitInput cancelButton = (HtmlSubmitInput) page.getElementById("cancelButton");
+    var cancelButton = (HtmlSubmitInput) page.getElementById("cancelButton");
     try {
       cancelButton.click();
     } catch (IOException e) {
@@ -163,7 +162,7 @@ public class AlbumPage extends Page {
    * @return {@link AlbumPage}
    */
   public AlbumPage saveChanges() {
-    HtmlSubmitInput saveButton = (HtmlSubmitInput) page.getElementById("saveButton");
+    var saveButton = (HtmlSubmitInput) page.getElementById("saveButton");
     try {
       saveButton.click();
     } catch (IOException e) {

@@ -105,7 +105,7 @@ public final class CharacterStepBuilder {
     private String wizardClass;
     private String weapon;
     private String spell;
-    private List<String> abilities = new ArrayList<>();
+    private final List<String> abilities = new ArrayList<>();
 
     @Override
     public ClassStep name(String name) {
@@ -165,7 +165,7 @@ public final class CharacterStepBuilder {
 
     @Override
     public Character build() {
-      Character character = new Character(name);
+      var character = new Character(name);
 
       if (fighterClass != null) {
         character.setFighterClass(fighterClass);

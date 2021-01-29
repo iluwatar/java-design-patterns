@@ -36,7 +36,7 @@ public class ApplicationExceptionTest {
 
   @Test
   public void testCause() {
-    final Exception cause = new Exception();
+    final var cause = new Exception();
     assertSame(cause, new ApplicationException(cause).getCause());
   }
 

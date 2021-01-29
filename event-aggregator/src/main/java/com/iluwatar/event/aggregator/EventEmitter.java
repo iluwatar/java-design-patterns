@@ -31,7 +31,7 @@ import java.util.List;
  */
 public abstract class EventEmitter {
 
-  private List<EventObserver> observers;
+  private final List<EventObserver> observers;
 
   public EventEmitter() {
     observers = new LinkedList<>();
@@ -47,9 +47,7 @@ public abstract class EventEmitter {
   }
 
   protected void notifyObservers(Event e) {
-    for (EventObserver obs : observers) {
-      obs.onEvent(e);
-    }
+    observers.forEach(obs -> obs.onEvent(e));
   }
 
   public abstract void timePasses(Weekday day);

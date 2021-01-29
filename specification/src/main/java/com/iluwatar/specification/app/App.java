@@ -32,14 +32,14 @@ import com.iluwatar.specification.creature.Shark;
 import com.iluwatar.specification.creature.Troll;
 import com.iluwatar.specification.property.Color;
 import com.iluwatar.specification.property.Movement;
-import com.iluwatar.specification.selector.AbstractSelector;
 import com.iluwatar.specification.selector.ColorSelector;
 import com.iluwatar.specification.selector.MassEqualSelector;
 import com.iluwatar.specification.selector.MassGreaterThanSelector;
 import com.iluwatar.specification.selector.MassSmallerThanOrEqSelector;
 import com.iluwatar.specification.selector.MovementSelector;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
+import java.util.function.Predicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,57 +63,47 @@ public class App {
    */
   public static void main(String[] args) {
     // initialize creatures list
-    List<Creature> creatures = List.of(new Goblin(), new Octopus(), new Dragon(), new Shark(),
-        new Troll(), new KillerBee());
+    var creatures = List.of(
+        new Goblin(),
+        new Octopus(),
+        new Dragon(),
+        new Shark(),
+        new Troll(),
+        new KillerBee()
+    );
     // so-called "hard-coded" specification
     LOGGER.info("Demonstrating hard-coded specification :");
     // find all walking creatures
     LOGGER.info("Find all walking creatures");
-    List<Creature> walkingCreatures =
-        creatures.stream().filter(new MovementSelector(Movement.WALKING))
-            .collect(Collectors.toList());
-    walkingCreatures.forEach(c -> LOGGER.info(c.toString()));
+    print(creatures, new MovementSelector(Movement.WALKING));
     // find all dark creatures
     LOGGER.info("Find all dark creatures");
-    List<Creature> darkCreatures =
-        creatures.stream().filter(new ColorSelector(Color.DARK)).collect(Collectors.toList());
-    darkCreatures.forEach(c -> LOGGER.info(c.toString()));
-
+    print(creatures, new ColorSelector(Color.DARK));
     LOGGER.info("\n");
     // so-called "parameterized" specification
     LOGGER.info("Demonstrating parameterized specification :");
     // find all creatures heavier than 500kg
     LOGGER.info("Find all creatures heavier than 600kg");
-    List<Creature> heavyCreatures =
-        creatures.stream().filter(new MassGreaterThanSelector(600.0))
-            .collect(Collectors.toList());
-    heavyCreatures.forEach(c -> LOGGER.info(c.toString()));
+    print(creatures, new MassGreaterThanSelector(600.0));
     // find all creatures heavier than 500kg
     LOGGER.info("Find all creatures lighter than or weighing exactly 500kg");
-    List<Creature> lightCreatures =
-        creatures.stream().filter(new MassSmallerThanOrEqSelector(500.0))
-            .collect(Collectors.toList());
-    lightCreatures.forEach(c -> LOGGER.info(c.toString()));
-
+    print(creatures, new MassSmallerThanOrEqSelector(500.0));
     LOGGER.info("\n");
     // so-called "composite" specification
     LOGGER.info("Demonstrating composite specification :");
     // find all red and flying creatures
     LOGGER.info("Find all red and flying creatures");
-    List<Creature> redAndFlyingCreatures =
-        creatures.stream()
-            .filter(new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING)))
-            .collect(Collectors.toList());
-    redAndFlyingCreatures.forEach(c -> LOGGER.info(c.toString()));
+    var redAndFlying = new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING));
+    print(creatures, redAndFlying);
     // find all creatures dark or red, non-swimming, and heavier than or equal to 400kg
     LOGGER.info("Find all scary creatures");
-    AbstractSelector<Creature> scaryCreaturesSelector = new ColorSelector(Color.DARK)
+    var scaryCreaturesSelector = new ColorSelector(Color.DARK)
         .or(new ColorSelector(Color.RED)).and(new MovementSelector(Movement.SWIMMING).not())
         .and(new MassGreaterThanSelector(400.0).or(new MassEqualSelector(400.0)));
-    List<Creature> scaryCreatures =
-        creatures.stream()
-            .filter(scaryCreaturesSelector)
-            .collect(Collectors.toList());
-    scaryCreatures.forEach(c -> LOGGER.info(c.toString()));
+    print(creatures, scaryCreaturesSelector);
+  }
+
+  private static void print(List<? extends Creature> creatures, Predicate<Creature> selector) {
+    creatures.stream().filter(selector).map(Objects::toString).forEach(LOGGER::info);
   }
 }

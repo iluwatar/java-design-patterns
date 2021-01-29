@@ -23,6 +23,7 @@
 
 package com.iluwatar.roleobject;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -32,6 +33,7 @@ public abstract class Customer {
 
   /**
    * Add specific role @see {@link Role}.
+   *
    * @param role to add
    * @return true if the operation has been successful otherwise false
    */
@@ -39,6 +41,7 @@ public abstract class Customer {
 
   /**
    * Check specific role @see {@link Role}.
+   *
    * @param role to check
    * @return true if the role exists otherwise false
    */
@@ -47,6 +50,7 @@ public abstract class Customer {
 
   /**
    * Remove specific role @see {@link Role}.
+   *
    * @param role to remove
    * @return true if the operation has been successful otherwise false
    */
@@ -54,6 +58,7 @@ public abstract class Customer {
 
   /**
    * Get specific instance associated with this role @see {@link Role}.
+   *
    * @param role         to get
    * @param expectedRole instance class expected to get
    * @return optional with value if the instance exists and corresponds expected class
@@ -67,14 +72,13 @@ public abstract class Customer {
 
   /**
    * Create {@link Customer} with given roles.
+   *
    * @param role roles
    * @return Customer
    */
   public static Customer newCustomer(Role... role) {
-    Customer customer = newCustomer();
-    for (Role r : role) {
-      customer.addRole(r);
-    }
+    var customer = newCustomer();
+    Arrays.stream(role).forEach(customer::addRole);
     return customer;
   }
 

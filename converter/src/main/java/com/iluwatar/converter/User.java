@@ -29,10 +29,10 @@ import java.util.Objects;
  * User class.
  */
 public class User {
-  private String firstName;
-  private String lastName;
-  private boolean isActive;
-  private String userId;
+  private final String firstName;
+  private final String lastName;
+  private final boolean isActive;
+  private final String userId;
 
   /**
    * Constructor.
@@ -73,7 +73,7 @@ public class User {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    User user = (User) o;
+    var user = (User) o;
     return isActive == user.isActive && Objects.equals(firstName, user.firstName) && Objects
         .equals(lastName, user.lastName) && Objects.equals(userId, user.userId);
   }

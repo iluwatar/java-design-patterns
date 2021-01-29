@@ -28,7 +28,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
 import java.util.ArrayList;
-import java.util.List;
 import org.bson.Document;
 
 /**
@@ -107,30 +106,31 @@ public class MongoBank implements WireTransfers {
 
   @Override
   public void setFunds(String bankAccount, int amount) {
-    Document search = new Document("_id", bankAccount);
-    Document update = new Document("_id", bankAccount).append("funds", amount);
-    accountsCollection
-        .updateOne(search, new Document("$set", update), new UpdateOptions().upsert(true));
+    var search = new Document("_id", bankAccount);
+    var update = new Document("_id", bankAccount).append("funds", amount);
+    var updateOptions = new UpdateOptions().upsert(true);
+    accountsCollection.updateOne(search, new Document("$set", update), updateOptions);
   }
 
   @Override
   public int getFunds(String bankAccount) {
-    Document search = new Document("_id", bankAccount);
-    List<Document> results = accountsCollection.find(search).limit(1).into(new ArrayList<>());
-    if (results.size() > 0) {
-      return results.get(0).getInteger("funds");
-    } else {
-      return 0;
-    }
+    return accountsCollection
+        .find(new Document("_id", bankAccount))
+        .limit(1)
+        .into(new ArrayList<>())
+        .stream()
+        .findFirst()
+        .map(x -> x.getInteger("funds"))
+        .orElse(0);
   }
 
   @Override
   public boolean transferFunds(int amount, String sourceAccount, String destinationAccount) {
-    int sourceFunds = getFunds(sourceAccount);
+    var sourceFunds = getFunds(sourceAccount);
     if (sourceFunds < amount) {
       return false;
     } else {
-      int destFunds = getFunds(destinationAccount);
+      var destFunds = getFunds(destinationAccount);
       setFunds(sourceAccount, sourceFunds - amount);
       setFunds(destinationAccount, destFunds + amount);
       return true;

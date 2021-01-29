@@ -23,13 +23,14 @@
 
 package com.iluwatar.servicelocator;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 19:07 PM
@@ -52,12 +53,10 @@ public class ServiceLocatorTest {
    */
   @Test
   public void testServiceCache() {
-    final String[] serviceNames = new String[]{
-        "jndi/serviceA", "jndi/serviceB"
-    };
+    final var serviceNames = List.of("jndi/serviceA", "jndi/serviceB");
 
-    for (final String serviceName : serviceNames) {
-      final Service service = ServiceLocator.getService(serviceName);
+    for (final var serviceName : serviceNames) {
+      final var service = ServiceLocator.getService(serviceName);
       assertNotNull(service);
       assertEquals(serviceName, service.getName());
       assertTrue(service.getId() > 0); // The id is generated randomly, but the minimum value is '1'

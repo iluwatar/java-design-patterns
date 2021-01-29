@@ -39,7 +39,7 @@ public class WithdrawMoneyService extends Service {
 
   @Override
   public Saga process(Saga saga) {
-    Object inValue = saga.getCurrentValue();
+    var inValue = saga.getCurrentValue();
 
     if (inValue.equals("bad_order")) {
       LOGGER.info("The chapter '{}' has been started. But the exception has been raised."

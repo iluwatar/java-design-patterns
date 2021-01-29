@@ -28,7 +28,7 @@ package com.iluwatar.flux.action;
  */
 public abstract class Action {
 
-  private ActionType type;
+  private final ActionType type;
 
   public Action(ActionType type) {
     this.type = type;

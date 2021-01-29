@@ -23,9 +23,8 @@
 
 package com.iluwatar.interpreter;
 
-import org.junit.jupiter.params.provider.Arguments;
-
 import java.util.stream.Stream;
+import org.junit.jupiter.params.provider.Arguments;
 
 /**
  * Date: 12/14/15 - 12:08 PM
@@ -41,7 +40,7 @@ public class PlusExpressionTest extends ExpressionTest<PlusExpression> {
    */
   @Override
   public Stream<Arguments> expressionProvider() {
-    return prepareParameters((f, s) -> f + s);
+    return prepareParameters(Integer::sum);
   }
 
   /**

@@ -29,7 +29,7 @@ package com.iluwatar.adapter;
  */
 public class FishingBoatAdapter implements RowingBoat {
 
-  private FishingBoat boat;
+  private final FishingBoat boat;
 
   public FishingBoatAdapter() {
     boat = new FishingBoat();

@@ -39,13 +39,13 @@ public class MassSelectorTest {
    */
   @Test
   public void testMass() {
-    final Creature lightCreature = mock(Creature.class);
+    final var lightCreature = mock(Creature.class);
     when(lightCreature.getMass()).thenReturn(new Mass(50.0));
 
-    final Creature heavyCreature = mock(Creature.class);
+    final var heavyCreature = mock(Creature.class);
     when(heavyCreature.getMass()).thenReturn(new Mass(2500.0));
 
-    final MassSmallerThanOrEqSelector lightSelector = new MassSmallerThanOrEqSelector(500.0);
+    final var lightSelector = new MassSmallerThanOrEqSelector(500.0);
     assertTrue(lightSelector.test(lightCreature));
     assertFalse(lightSelector.test(heavyCreature));
   }

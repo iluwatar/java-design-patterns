@@ -1,0 +1,100 @@
+@startuml
+package com.iluwatar.builder {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum Armor {
+    + CHAIN_MAIL {static}
+    + CLOTHES {static}
+    + LEATHER {static}
+    + PLATE_MAIL {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Armor {static}
+    + values() : Armor[] {static}
+  }
+  enum HairColor {
+    + BLACK {static}
+    + BLOND {static}
+    + BROWN {static}
+    + RED {static}
+    + WHITE {static}
+    + toString() : String
+    + valueOf(name : String) : HairColor {static}
+    + values() : HairColor[] {static}
+  }
+  enum HairType {
+    + BALD {static}
+    + CURLY {static}
+    + LONG_CURLY {static}
+    + LONG_STRAIGHT {static}
+    + SHORT {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : HairType {static}
+    + values() : HairType[] {static}
+  }
+  class Hero {
+    - armor : Armor
+    - hairColor : HairColor
+    - hairType : HairType
+    - name : String
+    - profession : Profession
+    - weapon : Weapon
+    - Hero(builder : Builder)
+    + getArmor() : Armor
+    + getHairColor() : HairColor
+    + getHairType() : HairType
+    + getName() : String
+    + getProfession() : Profession
+    + getWeapon() : Weapon
+    + toString() : String
+  }
+  class Builder {
+    - armor : Armor
+    - hairColor : HairColor
+    - hairType : HairType
+    - name : String
+    - profession : Profession
+    - weapon : Weapon
+    + Builder(profession : Profession, name : String)
+    + build() : Hero
+    + withArmor(armor : Armor) : Builder
+    + withHairColor(hairColor : HairColor) : Builder
+    + withHairType(hairType : HairType) : Builder
+    + withWeapon(weapon : Weapon) : Builder
+  }
+  enum Profession {
+    + MAGE {static}
+    + PRIEST {static}
+    + THIEF {static}
+    + WARRIOR {static}
+    + toString() : String
+    + valueOf(name : String) : Profession {static}
+    + values() : Profession[] {static}
+  }
+  enum Weapon {
+    + AXE {static}
+    + BOW {static}
+    + DAGGER {static}
+    + SWORD {static}
+    + WARHAMMER {static}
+    + toString() : String
+    + valueOf(name : String) : Weapon {static}
+    + values() : Weapon[] {static}
+  }
+}
+Hero -->  "-profession" Profession
+Builder ..+ Hero
+Hero -->  "-armor" Armor
+Builder -->  "-hairColor" HairColor
+Builder -->  "-weapon" Weapon
+Builder -->  "-hairType" HairType
+Hero -->  "-hairColor" HairColor
+Builder -->  "-profession" Profession
+Hero -->  "-weapon" Weapon
+Hero -->  "-hairType" HairType
+Builder -->  "-armor" Armor
+@enduml

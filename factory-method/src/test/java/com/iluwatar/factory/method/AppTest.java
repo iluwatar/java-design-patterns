@@ -25,15 +25,15 @@ package com.iluwatar.factory.method;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * Tests that Factory Method example runs without errors.
  */
-public class AppTest {
+class AppTest {
+
   @Test
-  public void test() throws IOException {
-    String[] args = {};
-    App.main(args);
+  void shouldExecuteWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

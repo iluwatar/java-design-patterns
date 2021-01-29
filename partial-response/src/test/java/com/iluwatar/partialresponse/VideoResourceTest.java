@@ -23,59 +23,57 @@
 
 package com.iluwatar.partialresponse;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Matchers;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.when;
 
 /**
  * tests {@link VideoResource}.
  */
-@RunWith(MockitoJUnitRunner.class)
-public class VideoResourceTest {
+@ExtendWith(MockitoExtension.class)
+class VideoResourceTest {
   @Mock
-  private FieldJsonMapper fieldJsonMapper;
+  private static FieldJsonMapper fieldJsonMapper;
 
-  private VideoResource resource;
+  private static VideoResource resource;
 
-  @Before
-  public void setUp() {
-    Map<Integer, Video> videos = Map.of(
-            1, new Video(1, "Avatar", 178, "epic science fiction film",
-                    "James Cameron", "English"),
-            2, new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|",
-                    "Hideaki Anno", "Japanese"),
-            3, new Video(3, "Interstellar", 169, "Adventure & Sci-Fi",
-                    "Christopher Nolan", "English"));
+  @BeforeAll
+  static void setUp() {
+    var videos = Map.of(
+        1, new Video(1, "Avatar", 178, "epic science fiction film",
+            "James Cameron", "English"),
+        2, new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|",
+            "Hideaki Anno", "Japanese"),
+        3, new Video(3, "Interstellar", 169, "Adventure & Sci-Fi",
+            "Christopher Nolan", "English"));
     resource = new VideoResource(fieldJsonMapper, videos);
   }
 
   @Test
-  public void shouldGiveVideoDetailsById() throws Exception {
-    String actualDetails = resource.getDetails(1);
+  void shouldGiveVideoDetailsById() throws Exception {
+    var actualDetails = resource.getDetails(1);
 
-    String expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178,\"description\": "
+    var expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178,\"description\": "
         + "\"epic science fiction film\",\"director\": \"James Cameron\",\"language\": \"English\",}";
-    assertEquals(expectedDetails, actualDetails);
+    Assertions.assertEquals(expectedDetails, actualDetails);
   }
 
   @Test
-  public void shouldGiveSpecifiedFieldsInformationOfVideo() throws Exception {
-    String[] fields = new String[]{"id", "title", "length"};
+  void shouldGiveSpecifiedFieldsInformationOfVideo() throws Exception {
+    var fields = new String[]{"id", "title", "length"};
 
-    String expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178}";
-    when(fieldJsonMapper.toJson(any(Video.class), eq(fields))).thenReturn(expectedDetails);
+    var expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178}";
+    Mockito.when(fieldJsonMapper.toJson(Matchers.any(Video.class), Matchers.eq(fields))).thenReturn(expectedDetails);
 
-    String actualFieldsDetails = resource.getDetails(2, fields);
+    var actualFieldsDetails = resource.getDetails(2, fields);
 
-    assertEquals(expectedDetails, actualFieldsDetails);
+    Assertions.assertEquals(expectedDetails, actualFieldsDetails);
   }
 }

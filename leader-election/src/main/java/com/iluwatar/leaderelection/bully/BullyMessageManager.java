@@ -51,8 +51,8 @@ public class BullyMessageManager extends AbstractMessageManager {
    */
   @Override
   public boolean sendHeartbeatMessage(int leaderId) {
-    Instance leaderInstance = instanceMap.get(leaderId);
-    boolean alive = leaderInstance.isAlive();
+    var leaderInstance = instanceMap.get(leaderId);
+    var alive = leaderInstance.isAlive();
     return alive;
   }
 
@@ -65,13 +65,12 @@ public class BullyMessageManager extends AbstractMessageManager {
    */
   @Override
   public boolean sendElectionMessage(int currentId, String content) {
-    List<Integer> candidateList = findElectionCandidateInstanceList(currentId);
+    var candidateList = findElectionCandidateInstanceList(currentId);
     if (candidateList.isEmpty()) {
       return true;
     } else {
-      Message electionMessage = new Message(MessageType.ELECTION_INVOKE, "");
-      candidateList.stream()
-          .forEach((i) -> instanceMap.get(i).onMessage(electionMessage));
+      var electionMessage = new Message(MessageType.ELECTION_INVOKE, "");
+      candidateList.stream().forEach((i) -> instanceMap.get(i).onMessage(electionMessage));
       return false;
     }
   }
@@ -85,7 +84,7 @@ public class BullyMessageManager extends AbstractMessageManager {
    */
   @Override
   public boolean sendLeaderMessage(int currentId, int leaderId) {
-    Message leaderMessage = new Message(MessageType.LEADER, String.valueOf(leaderId));
+    var leaderMessage = new Message(MessageType.LEADER, String.valueOf(leaderId));
     instanceMap.keySet()
         .stream()
         .filter((i) -> i != currentId)
@@ -100,8 +99,8 @@ public class BullyMessageManager extends AbstractMessageManager {
    */
   @Override
   public void sendHeartbeatInvokeMessage(int currentId) {
-    Instance nextInstance = this.findNextInstance(currentId);
-    Message heartbeatInvokeMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");
+    var nextInstance = this.findNextInstance(currentId);
+    var heartbeatInvokeMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");
     nextInstance.onMessage(heartbeatInvokeMessage);
   }
 

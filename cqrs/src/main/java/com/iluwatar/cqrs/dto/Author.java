@@ -80,7 +80,7 @@ public class Author {
     if (!(obj instanceof Author)) {
       return false;
     }
-    Author other = (Author) obj;
+    var other = (Author) obj;
     return username.equals(other.getUsername()) && email.equals(other.getEmail()) && name
         .equals(other.getName());
 

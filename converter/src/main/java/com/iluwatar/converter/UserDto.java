@@ -30,10 +30,10 @@ import java.util.Objects;
  */
 public class UserDto {
 
-  private String firstName;
-  private String lastName;
-  private boolean isActive;
-  private String email;
+  private final String firstName;
+  private final String lastName;
+  private final boolean isActive;
+  private final String email;
 
   /**
    * Constructor.
@@ -74,7 +74,7 @@ public class UserDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserDto userDto = (UserDto) o;
+    var userDto = (UserDto) o;
     return isActive == userDto.isActive && Objects.equals(firstName, userDto.firstName) && Objects
         .equals(lastName, userDto.lastName) && Objects.equals(email, userDto.email);
   }

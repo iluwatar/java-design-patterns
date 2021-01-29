@@ -56,7 +56,7 @@ public class App {
    *
    * @param args command line args
    */
-  public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
+  public static void main(String[] args) throws IOException, ParseException {
     var givenTime = 50; //50ms
     var toWin = 500; //points
     var pointsWon = 0;

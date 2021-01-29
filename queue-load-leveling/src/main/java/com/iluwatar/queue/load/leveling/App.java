@@ -78,17 +78,17 @@ public class App {
 
     try {
       // Create a MessageQueue object.
-      MessageQueue msgQueue = new MessageQueue();
+      var msgQueue = new MessageQueue();
 
       LOGGER.info("Submitting TaskGenerators and ServiceExecutor threads.");
 
       // Create three TaskGenerator threads. Each of them will submit different number of jobs.
-      final Runnable taskRunnable1 = new TaskGenerator(msgQueue, 5);
-      final Runnable taskRunnable2 = new TaskGenerator(msgQueue, 1);
-      final Runnable taskRunnable3 = new TaskGenerator(msgQueue, 2);
+      final var taskRunnable1 = new TaskGenerator(msgQueue, 5);
+      final var taskRunnable2 = new TaskGenerator(msgQueue, 1);
+      final var taskRunnable3 = new TaskGenerator(msgQueue, 2);
 
       // Create e service which should process the submitted jobs.
-      final Runnable srvRunnable = new ServiceExecutor(msgQueue);
+      final var srvRunnable = new ServiceExecutor(msgQueue);
 
       // Create a ThreadPool of 2 threads and
       // submit all Runnable task for execution to executor..

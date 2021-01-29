@@ -29,7 +29,7 @@ package com.iluwatar.featuretoggle.user;
  */
 public class User {
 
-  private String name;
+  private final String name;
 
   /**
    * Default Constructor setting the username.

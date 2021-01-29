@@ -1,0 +1,23 @@
+@startuml
+package com.iluwatar.callback {
+  class App {
+    - LOGGER : Logger {static}
+    - App()
+    + main(args : String[]) {static}
+  }
+  interface Callback {
+    + call() {abstract}
+  }
+  class SimpleTask {
+    - LOGGER : Logger {static}
+    + SimpleTask()
+    + execute()
+  }
+  abstract class Task {
+    + Task()
+    + execute() {abstract}
+    ~ executeWith(callback : Callback)
+  }
+}
+SimpleTask --|> Task 
+@enduml

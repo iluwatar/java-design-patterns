@@ -63,12 +63,11 @@ public class TaskGenerator implements Task, Runnable {
    * submission TaskGenerator thread will sleep for 1 second.
    */
   public void run() {
-
-    int count = this.msgCount;
+    var count = this.msgCount;
 
     try {
       while (count > 0) {
-        String statusMsg = "Message-" + count + " submitted by " + Thread.currentThread().getName();
+        var statusMsg = "Message-" + count + " submitted by " + Thread.currentThread().getName();
         this.submit(new Message(statusMsg));
 
         LOGGER.info(statusMsg);

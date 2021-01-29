@@ -57,7 +57,7 @@ public class PriorityMessageQueue<T extends Comparable> {
       return null;
     }
 
-    final T root = queue[0];
+    final var root = queue[0];
     queue[0] = queue[size - 1];
     size--;
     maxHeapifyDown();
@@ -83,10 +83,10 @@ public class PriorityMessageQueue<T extends Comparable> {
 
 
   private void maxHeapifyDown() {
-    int index = 0;
+    var index = 0;
     while (hasLeftChild(index)) {
 
-      int smallerIndex = leftChildIndex(index);
+      var smallerIndex = leftChildIndex(index);
 
       if (hasRightChild(index) && right(index).compareTo(left(index)) > 0) {
         smallerIndex = rightChildIndex(index);
@@ -106,7 +106,7 @@ public class PriorityMessageQueue<T extends Comparable> {
   }
 
   private void maxHeapifyUp() {
-    int index = size - 1;
+    var index = size - 1;
     while (hasParent(index) && parent(index).compareTo(queue[index]) < 0) {
       swap(parentIndex(index), index);
       index = parentIndex(index);
@@ -154,7 +154,7 @@ public class PriorityMessageQueue<T extends Comparable> {
   }
 
   private void swap(int fpos, int tpos) {
-    T tmp = queue[fpos];
+    var tmp = queue[fpos];
     queue[fpos] = queue[tpos];
     queue[tpos] = tmp;
   }
@@ -170,7 +170,7 @@ public class PriorityMessageQueue<T extends Comparable> {
    * For debug .. print current state of queue
    */
   public void print() {
-    for (int i = 0; i <= size / 2; i++) {
+    for (var i = 0; i <= size / 2; i++) {
       LOGGER.info(" PARENT : " + queue[i] + " LEFT CHILD : "
           + left(i) + " RIGHT CHILD :" + right(i));
     }

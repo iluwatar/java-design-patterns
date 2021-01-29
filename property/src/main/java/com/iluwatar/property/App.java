@@ -49,36 +49,36 @@ public class App {
    */
   public static void main(String[] args) {
     /* set up */
-    Prototype charProto = new Character();
+    var charProto = new Character();
     charProto.set(Stats.STRENGTH, 10);
     charProto.set(Stats.AGILITY, 10);
     charProto.set(Stats.ARMOR, 10);
     charProto.set(Stats.ATTACK_POWER, 10);
 
-    Character mageProto = new Character(Type.MAGE, charProto);
+    var mageProto = new Character(Type.MAGE, charProto);
     mageProto.set(Stats.INTELLECT, 15);
     mageProto.set(Stats.SPIRIT, 10);
 
-    Character warProto = new Character(Type.WARRIOR, charProto);
+    var warProto = new Character(Type.WARRIOR, charProto);
     warProto.set(Stats.RAGE, 15);
     warProto.set(Stats.ARMOR, 15); // boost default armor for warrior
 
-    Character rogueProto = new Character(Type.ROGUE, charProto);
+    var rogueProto = new Character(Type.ROGUE, charProto);
     rogueProto.set(Stats.ENERGY, 15);
     rogueProto.set(Stats.AGILITY, 15); // boost default agility for rogue
 
     /* usage */
-    Character mag = new Character("Player_1", mageProto);
+    var mag = new Character("Player_1", mageProto);
     mag.set(Stats.ARMOR, 8);
     LOGGER.info(mag.toString());
 
-    Character warrior = new Character("Player_2", warProto);
+    var warrior = new Character("Player_2", warProto);
     LOGGER.info(warrior.toString());
 
-    Character rogue = new Character("Player_3", rogueProto);
+    var rogue = new Character("Player_3", rogueProto);
     LOGGER.info(rogue.toString());
 
-    Character rogueDouble = new Character("Player_4", rogue);
+    var rogueDouble = new Character("Player_4", rogue);
     rogueDouble.set(Stats.ATTACK_POWER, 12);
     LOGGER.info(rogueDouble.toString());
   }

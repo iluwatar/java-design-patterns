@@ -30,12 +30,12 @@ package com.iluwatar.front.controller;
 public class FrontController {
 
   public void handleRequest(String request) {
-    Command command = getCommand(request);
+    var command = getCommand(request);
     command.process();
   }
 
   private Command getCommand(String request) {
-    Class<?> commandClass = getCommandClass(request);
+    var commandClass = getCommandClass(request);
     try {
       return (Command) commandClass.newInstance();
     } catch (Exception e) {
@@ -44,12 +44,10 @@ public class FrontController {
   }
 
   private static Class<?> getCommandClass(String request) {
-    Class<?> result;
     try {
-      result = Class.forName("com.iluwatar.front.controller." + request + "Command");
+      return Class.forName("com.iluwatar.front.controller." + request + "Command");
     } catch (ClassNotFoundException e) {
-      result = UnknownCommand.class;
+      return UnknownCommand.class;
     }
-    return result;
   }
 }

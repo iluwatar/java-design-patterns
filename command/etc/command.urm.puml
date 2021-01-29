@@ -1,0 +1,58 @@
+@startuml
+package com.iluwatar.command {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Goblin {
+    + Goblin()
+    + toString() : String
+    + changeSize()
+    + changeVisibility()
+  }
+  enum Size {
+    + NORMAL {static}
+    + SMALL {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Size {static}
+    + values() : Size[] {static}
+  }
+  abstract class Target {
+    - LOGGER : Logger {static}
+    - size : Size
+    - visibility : Visibility
+    + Target()
+    + getSize() : Size
+    + getVisibility() : Visibility
+    + printStatus()
+    + setSize(size : Size)
+    + setVisibility(visibility : Visibility)
+    + toString() : String {abstract}
+  }
+  enum Visibility {
+    + INVISIBLE {static}
+    + VISIBLE {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Visibility {static}
+    + values() : Visibility[] {static}
+  }
+  class Wizard {
+    - LOGGER : Logger {static}
+    - redoStack : Deque<Runnable>
+    - undoStack : Deque<Runnable>
+    + Wizard()
+    + castSpell(Runnable : runnable)
+    + redoLastSpell()
+    + toString() : String
+    + undoLastSpell()
+  }
+}
+Target -->  "-size" Size
+Wizard -->  "-changeSize" Goblin
+Wizard -->  "-changeVisibility" Goblin
+Target -->  "-visibility" Visibility
+Goblin --|> Target
+App --> "castSpell" Wizard
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+package com.iluwatar.price.microservice {
+  class PriceApplication {
+    + PriceApplication()
+    + main(args : String[]) {static}
+  }
+  class PriceController {
+    + PriceController()
+    + getPrice() : String
+  }
+}
+@enduml

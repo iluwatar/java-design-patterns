@@ -23,20 +23,20 @@
 
 package com.iluwatar.flux.store;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
+
 import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.action.ContentAction;
 import com.iluwatar.flux.action.MenuAction;
 import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.view.View;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * Date: 12/12/15 - 10:18 PM
@@ -46,10 +46,10 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 public class ContentStoreTest {
 
   @Test
-  public void testOnAction() throws Exception {
-    final ContentStore contentStore = new ContentStore();
+  public void testOnAction() {
+    final var contentStore = new ContentStore();
 
-    final View view = mock(View.class);
+    final var view = mock(View.class);
     contentStore.registerView(view);
 
     verifyZeroInteractions(view);

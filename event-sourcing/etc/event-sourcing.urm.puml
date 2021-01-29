@@ -1,0 +1,107 @@
+@startuml
+package com.iluwatar.event.sourcing.processor {
+  class DomainEventProcessor {
+    - processorJournal : JsonFileJournal
+    + DomainEventProcessor()
+    + process(domainEvent : DomainEvent)
+    + recover()
+    + reset()
+  }
+  class JsonFileJournal {
+    - events : List<String>
+    - file : File
+    - index : int
+    + JsonFileJournal()
+    + readNext() : DomainEvent
+    + reset()
+    + write(domainEvent : DomainEvent)
+  }
+}
+package com.iluwatar.event.sourcing.event {
+  class AccountCreateEvent {
+    - accountNo : int
+    - owner : String
+    + AccountCreateEvent(sequenceId : long, createdTime : long, accountNo : int, owner : String)
+    + getAccountNo() : int
+    + getOwner() : String
+    + process()
+  }
+  abstract class DomainEvent {
+    - createdTime : long
+    - eventClassName : String
+    - realTime : boolean
+    - sequenceId : long
+    + DomainEvent(sequenceId : long, createdTime : long, eventClassName : String)
+    + getCreatedTime() : long
+    + getEventClassName() : String
+    + getSequenceId() : long
+    + isRealTime() : boolean
+    + process() {abstract}
+    + setRealTime(realTime : boolean)
+  }
+  class MoneyDepositEvent {
+    - accountNo : int
+    - money : BigDecimal
+    + MoneyDepositEvent(sequenceId : long, createdTime : long, accountNo : int, money : BigDecimal)
+    + getAccountNo() : int
+    + getMoney() : BigDecimal
+    + process()
+  }
+  class MoneyTransferEvent {
+    - accountNoFrom : int
+    - accountNoTo : int
+    - money : BigDecimal
+    + MoneyTransferEvent(sequenceId : long, createdTime : long, money : BigDecimal, accountNoFrom : int, accountNoTo : int)
+    + getAccountNoFrom() : int
+    + getAccountNoTo() : int
+    + getMoney() : BigDecimal
+    + process()
+  }
+}
+package com.iluwatar.event.sourcing.app {
+  class App {
+    + ACCOUNT_OF_DAENERYS : int {static}
+    + ACCOUNT_OF_JON : int {static}
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.event.sourcing.state {
+  class AccountAggregate {
+    - accounts : Map<Integer, Account> {static}
+    - AccountAggregate()
+    + getAccount(accountNo : int) : Account {static}
+    + putAccount(account : Account) {static}
+    + resetState() {static}
+  }
+}
+package com.iluwatar.event.sourcing.domain {
+  class Account {
+    - LOGGER : Logger {static}
+    - MSG : String {static}
+    - accountNo : int
+    - money : BigDecimal
+    - owner : String
+    + Account(accountNo : int, owner : String)
+    + copy() : Account
+    - depositMoney(money : BigDecimal)
+    + getAccountNo() : int
+    + getMoney() : BigDecimal
+    + getOwner() : String
+    - handleDeposit(money : BigDecimal, realTime : boolean)
+    + handleEvent(accountCreateEvent : AccountCreateEvent)
+    + handleEvent(moneyDepositEvent : MoneyDepositEvent)
+    + handleTransferFromEvent(moneyTransferEvent : MoneyTransferEvent)
+    + handleTransferToEvent(moneyTransferEvent : MoneyTransferEvent)
+    - handleWithdrawal(money : BigDecimal, realTime : boolean)
+    + setMoney(money : BigDecimal)
+    + toString() : String
+    - withdrawMoney(money : BigDecimal)
+  }
+}
+DomainEventProcessor -->  "-processorJournal" JsonFileJournal
+AccountCreateEvent --|> DomainEvent 
+MoneyDepositEvent --|> DomainEvent 
+MoneyTransferEvent --|> DomainEvent 
+@enduml

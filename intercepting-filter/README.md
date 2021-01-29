@@ -5,17 +5,15 @@ folder: intercepting-filter
 permalink: /patterns/intercepting-filter/
 categories: Behavioral
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent
 Provide pluggable filters to conduct necessary pre-processing and
 post-processing to requests from a client to a target
- 
+
+## Class diagram 
 ![alt text](./etc/intercepting-filter.png "Intercepting Filter")
-
-
 
 ## Applicability
 Use the Intercepting Filter pattern when
@@ -25,6 +23,7 @@ Use the Intercepting Filter pattern when
 * you want a modular approach to configuring pre-processing and post-processing schemes
 
 ## Tutorials
+
 * [Introduction to Intercepting Filter Pattern in Java](https://www.baeldung.com/intercepting-filter-pattern-in-java)
 
 ## Real world examples

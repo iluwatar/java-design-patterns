@@ -34,7 +34,7 @@ import java.util.Hashtable;
 
 public class PaymentDatabase extends Database<PaymentRequest> {
 
-  private Hashtable<String, PaymentRequest> data;
+  private final Hashtable<String, PaymentRequest> data;
 
   public PaymentDatabase() {
     this.data = new Hashtable<>();

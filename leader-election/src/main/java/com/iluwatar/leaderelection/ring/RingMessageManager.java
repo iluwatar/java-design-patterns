@@ -49,8 +49,8 @@ public class RingMessageManager extends AbstractMessageManager {
    */
   @Override
   public boolean sendHeartbeatMessage(int leaderId) {
-    Instance leaderInstance = instanceMap.get(leaderId);
-    boolean alive = leaderInstance.isAlive();
+    var leaderInstance = instanceMap.get(leaderId);
+    var alive = leaderInstance.isAlive();
     return alive;
   }
 
@@ -64,8 +64,8 @@ public class RingMessageManager extends AbstractMessageManager {
    */
   @Override
   public boolean sendElectionMessage(int currentId, String content) {
-    Instance nextInstance = this.findNextInstance(currentId);
-    Message electionMessage = new Message(MessageType.ELECTION, content);
+    var nextInstance = this.findNextInstance(currentId);
+    var electionMessage = new Message(MessageType.ELECTION, content);
     nextInstance.onMessage(electionMessage);
     return true;
   }
@@ -79,8 +79,8 @@ public class RingMessageManager extends AbstractMessageManager {
    */
   @Override
   public boolean sendLeaderMessage(int currentId, int leaderId) {
-    Instance nextInstance = this.findNextInstance(currentId);
-    Message leaderMessage = new Message(MessageType.LEADER, String.valueOf(leaderId));
+    var nextInstance = this.findNextInstance(currentId);
+    var leaderMessage = new Message(MessageType.LEADER, String.valueOf(leaderId));
     nextInstance.onMessage(leaderMessage);
     return true;
   }
@@ -92,8 +92,8 @@ public class RingMessageManager extends AbstractMessageManager {
    */
   @Override
   public void sendHeartbeatInvokeMessage(int currentId) {
-    Instance nextInstance = this.findNextInstance(currentId);
-    Message heartbeatInvokeMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");
+    var nextInstance = this.findNextInstance(currentId);
+    var heartbeatInvokeMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");
     nextInstance.onMessage(heartbeatInvokeMessage);
   }
 

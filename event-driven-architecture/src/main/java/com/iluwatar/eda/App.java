@@ -52,11 +52,11 @@ public class App {
    */
   public static void main(String[] args) {
 
-    EventDispatcher dispatcher = new EventDispatcher();
+    var dispatcher = new EventDispatcher();
     dispatcher.registerHandler(UserCreatedEvent.class, new UserCreatedEventHandler());
     dispatcher.registerHandler(UserUpdatedEvent.class, new UserUpdatedEventHandler());
 
-    User user = new User("iluwatar");
+    var user = new User("iluwatar");
     dispatcher.dispatch(new UserCreatedEvent(user));
     dispatcher.dispatch(new UserUpdatedEvent(user));
   }

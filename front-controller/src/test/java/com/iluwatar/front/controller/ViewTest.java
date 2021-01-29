@@ -23,16 +23,14 @@
 
 package com.iluwatar.front.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.iluwatar.front.controller.utils.InMemoryAppender;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/13/15 - 1:39 PM
@@ -54,11 +52,11 @@ public class ViewTest {
   }
 
   static List<Object[]> dataProvider() {
-    final List<Object[]> parameters = new ArrayList<>();
-    parameters.add(new Object[]{new ArcherView(), "Displaying archers"});
-    parameters.add(new Object[]{new CatapultView(), "Displaying catapults"});
-    parameters.add(new Object[]{new ErrorView(), "Error 500"});
-    return parameters;
+    return List.of(
+        new Object[]{new ArcherView(), "Displaying archers"},
+        new Object[]{new CatapultView(), "Displaying catapults"},
+        new Object[]{new ErrorView(), "Error 500"}
+    );
   }
 
   /**

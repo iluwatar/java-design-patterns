@@ -23,18 +23,41 @@
 
 package concreteextensions;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
 import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 import units.SoldierUnit;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by Srdjan on 03-May-17.
  */
-public class SoldierTest {
-  @Test
-  public void soldierReady() throws Exception {
-    final Soldier soldier = new Soldier(new SoldierUnit("SoldierUnitTest"));
+class SoldierTest {
 
+  @Test
+  void soldierReady() {
+
+    Logger soldierLogger = (Logger) LoggerFactory.getLogger(Soldier.class);
+
+    ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
+    listAppender.start();
+
+    soldierLogger.addAppender(listAppender);
+
+    final var soldier = new Soldier(new SoldierUnit("SoldierUnitTest"));
     soldier.soldierReady();
+
+    List<ILoggingEvent> logsList = listAppender.list;
+    assertEquals("[Soldier] " + soldier.getUnit().getName() + " is ready!", logsList.get(0)
+            .getMessage());
+    assertEquals(Level.INFO, logsList.get(0)
+            .getLevel());
   }
 
 }

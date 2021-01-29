@@ -33,7 +33,7 @@ public abstract class Task {
   /**
    * Execute with callback.
    */
-  final void executeWith(final Callback callback) {
+  final void executeWith(Callback callback) {
     execute();
     Optional.ofNullable(callback).ifPresent(Callback::call);
   }

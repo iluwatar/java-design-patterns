@@ -33,8 +33,8 @@ import java.util.Hashtable;
 
 public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
 
-  final Hashtable<Integer, Bubble> bubbles;
-  final QuadTree quadTree;
+  private final Hashtable<Integer, Bubble> bubbles;
+  private final QuadTree quadTree;
 
   SpatialPartitionBubbles(Hashtable<Integer, Bubble> bubbles, QuadTree quadTree) {
     this.bubbles = bubbles;
@@ -44,8 +44,8 @@ public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
   void handleCollisionsUsingQt(Bubble b) {
     // finding points within area of a square drawn with centre same as
     // centre of bubble and length = radius of bubble
-    Rect rect = new Rect(b.coordinateX, b.coordinateY, 2 * b.radius, 2 * b.radius);
-    ArrayList<Point> quadTreeQueryResult = new ArrayList<Point>();
+    var rect = new Rect(b.coordinateX, b.coordinateY, 2 * b.radius, 2 * b.radius);
+    var quadTreeQueryResult = new ArrayList<Point>();
     this.quadTree.query(rect, quadTreeQueryResult);
     //handling these collisions
     b.handleCollision(quadTreeQueryResult, this.bubbles);

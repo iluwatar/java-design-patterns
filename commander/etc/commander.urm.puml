@@ -1,0 +1,329 @@
+@startuml
+package com.iluwatar.commander.queue {
+  class Queue<T> {
+    - front : Queue.Node<T>
+    - rear : Queue.Node<T>
+    - size : int
+    ~ Queue<T>()
+    ~ dequeue() : T
+    ~ enqueue(obj : T)
+    ~ isEmpty() : boolean
+    ~ peek() : T
+  }
+  ~class Node<V> {
+    ~ next : Queue.Node<V>
+    ~ value : V
+    ~ Node<V>(obj : V, b : Queue.Node<V>)
+  }
+  class QueueDatabase {
+    - data : Queue<QueueTask>
+    + exceptionsList : List<Exception>
+    + QueueDatabase(exc : Exception[])
+    + add(t : QueueTask) : QueueTask
+    + dequeue() : QueueTask
+    + get(taskId : String) : QueueTask
+    + peek() : QueueTask
+  }
+  class QueueTask {
+    + firstAttemptTime : long
+    + messageType : int
+    + order : Order
+    + taskType : TaskType
+    + QueueTask(o : Order, t : TaskType, messageType : int)
+    + getType() : String
+  }
+  enum TaskType {
+    + EmployeeDb {static}
+    + Messaging {static}
+    + Payment {static}
+    + valueOf(name : String) : TaskType {static}
+    + values() : TaskType[] {static}
+  }
+}
+package com.iluwatar.commander.messagingservice {
+  class MessagingDatabase {
+    - data : Hashtable<String, MessageRequest>
+    + MessagingDatabase()
+    + add(r : MessageRequest) : MessageRequest
+    + get(requestId : String) : MessageRequest
+  }
+  class MessagingService {
+    - LOGGER : Logger {static}
+    + MessagingService(db : MessagingDatabase, exc : Exception[])
+    + receiveRequest(parameters : Object[]) : String
+    ~ sendMessage(m : MessageToSend) : String
+    # updateDb(parameters : Object[]) : String
+  }
+  ~class MessageRequest {
+    ~ msg : MessageToSend
+    ~ reqId : String
+    ~ MessageRequest(this$0 : String, reqId : MessageToSend)
+  }
+  ~enum MessageToSend {
+    + PaymentFail {static}
+    + PaymentSuccessful {static}
+    + PaymentTrying {static}
+    + valueOf(name : String) : MessageToSend {static}
+    + values() : MessageToSend[] {static}
+  }
+}
+package com.iluwatar.commander {
+  class AppEmployeeDbFailCases {
+    - employeeTime : long
+    - messageTime : long
+    - numOfRetries : int
+    - paymentTime : long
+    - queueTaskTime : long
+    - queueTime : long
+    - retryDuration : long
+    + AppEmployeeDbFailCases()
+    ~ employeeDatabaseUnavailableCase()
+    ~ employeeDbSuccessCase()
+    + main(args : String[]) {static}
+  }
+  class AppMessagingFailCases {
+    - employeeTime : long
+    - messageTime : long
+    - numOfRetries : int
+    - paymentTime : long
+    - queueTaskTime : long
+    - queueTime : long
+    - retryDuration : long
+    + AppMessagingFailCases()
+    + main(args : String[]) {static}
+    ~ messagingDatabaseUnavailableCasePaymentError()
+    ~ messagingDatabaseUnavailableCasePaymentFailure()
+    ~ messagingDatabaseUnavailableCasePaymentSuccess()
+    ~ messagingSuccessCase()
+  }
+  class AppPaymentFailCases {
+    - employeeTime : long
+    - messageTime : long
+    - numOfRetries : int
+    - paymentTime : long
+    - queueTaskTime : long
+    - queueTime : long
+    - retryDuration : long
+    + AppPaymentFailCases()
+    + main(args : String[]) {static}
+    ~ paymentDatabaseUnavailableCase()
+    ~ paymentNotPossibleCase()
+    ~ paymentSuccessCase()
+  }
+  class AppQueueFailCases {
+    - employeeTime : long
+    - messageTime : long
+    - numOfRetries : int
+    - paymentTime : long
+    - queueTaskTime : long
+    - queueTime : long
+    - retryDuration : long
+    + AppQueueFailCases()
+    + main(args : String[]) {static}
+    ~ queueEmployeeDbTaskDatabaseUnavailableCase()
+    ~ queueMessageTaskDatabaseUnavailableCase()
+    ~ queuePaymentTaskDatabaseUnavailableCase()
+    ~ queueSuccessCase()
+  }
+  class AppShippingFailCases {
+    - employeeTime : long
+    - messageTime : long
+    - numOfRetries : int
+    - paymentTime : long
+    - queueTaskTime : long
+    - queueTime : long
+    - retryDuration : long
+    + AppShippingFailCases()
+    ~ itemUnavailableCase()
+    + main(args : String[]) {static}
+    ~ shippingDatabaseUnavailableCase()
+    ~ shippingNotPossibleCase()
+    ~ shippingSuccessCase()
+  }
+  class Commander {
+    - LOG : Logger {static}
+    - employeeDb : EmployeeHandle
+    - employeeTime : long
+    - finalSiteMsgShown : boolean
+    - messageTime : long
+    - messagingService : MessagingService
+    - numOfRetries : int
+    - paymentService : PaymentService
+    - paymentTime : long
+    - queue : QueueDatabase
+    - queueItems : int
+    - queueTaskTime : long
+    - queueTime : long
+    - retryDuration : long
+    - shippingService : ShippingService
+    ~ Commander(empDb : EmployeeHandle, paymentService : PaymentService, shippingService : ShippingService, messagingService : MessagingService, qdb : QueueDatabase, numOfRetries : int, retryDuration : long, queueTime : long, queueTaskTime : long, paymentTime : long, messageTime : long, employeeTime : long)
+    - doTasksInQueue()
+    - employeeHandleIssue(order : Order)
+    ~ placeOrder(order : Order)
+    - sendPaymentFailureMessage(order : Order)
+    - sendPaymentPossibleErrorMsg(order : Order)
+    - sendPaymentRequest(order : Order)
+    - sendShippingRequest(order : Order)
+    - sendSuccessMessage(order : Order)
+    - tryDequeue()
+    - tryDoingTasksInQueue()
+    - updateQueue(qt : QueueTask)
+  }
+  abstract class Database<T> {
+    + Database<T>()
+    + add(T) : T {abstract}
+    + get(String) : T {abstract}
+  }
+  class Order {
+    - ALL_CHARS : String {static}
+    - RANDOM : Random {static}
+    - USED_IDS : Hashtable<String, Boolean> {static}
+    ~ addedToEmployeeHandle : boolean
+    ~ createdTime : long
+    + id : String
+    ~ item : String
+    ~ messageSent : MessageSent
+    ~ paid : PaymentStatus
+    ~ price : float
+    ~ user : User
+    ~ Order(user : User, item : String, price : float)
+    - createUniqueId() : String
+  }
+  ~enum MessageSent {
+    + NoneSent {static}
+    + PaymentFail {static}
+    + PaymentSuccessful {static}
+    + PaymentTrying {static}
+    + valueOf(name : String) : MessageSent {static}
+    + values() : MessageSent[] {static}
+  }
+  ~enum PaymentStatus {
+    + Done {static}
+    + NotDone {static}
+    + Trying {static}
+    + valueOf(name : String) : PaymentStatus {static}
+    + values() : PaymentStatus[] {static}
+  }
+  class Retry<T> {
+    - RANDOM : Random {static}
+    - attempts : AtomicInteger
+    - errors : List<Exception>
+    - handleError : Retry.HandleErrorIssue<T>
+    - maxAttempts : int
+    - maxDelay : long
+    - op : Operation
+    - test : Predicate<Exception>
+    ~ Retry<T>(op : Operation, handleError : Retry.HandleErrorIssue<T>, maxAttempts : int, maxDelay : long, ignoreTests : Predicate<Exception>[])
+    + perform(list : List<Exception>, obj : T)
+  }
+  interface HandleErrorIssue<T> {
+    + handleIssue(T, Exception) {abstract}
+  }
+  interface Operation {
+    + operation(List<Exception>) {abstract}
+  }
+  abstract class Service {
+    - ALL_CHARS : String {static}
+    - RANDOM : Random {static}
+    - USED_IDS : Hashtable<String, Boolean> {static}
+    # database : Database<T>
+    + exceptionsList : ArrayList<Exception>
+    # Service(db : Database<T>, exc : Exception[])
+    # generateId() : String
+    + receiveRequest(Object[]) : String {abstract}
+    # updateDb(Object[]) : String {abstract}
+  }
+  class User {
+    ~ address : String
+    ~ name : String
+    ~ User(name : String, address : String)
+  }
+}
+package com.iluwatar.commander.shippingservice {
+  class ShippingDatabase {
+    - data : Hashtable<String, ShippingRequest>
+    + ShippingDatabase()
+    + add(r : ShippingRequest) : ShippingRequest
+    + get(trasnactionId : String) : ShippingRequest
+  }
+  class ShippingService {
+    + ShippingService(db : ShippingDatabase, exc : Exception[])
+    + receiveRequest(parameters : Object[]) : String
+    # updateDb(parameters : Object[]) : String
+  }
+  ~class ShippingRequest {
+    ~ address : String
+    ~ item : String
+    ~ transactionId : String
+    ~ ShippingRequest(transactionId : String, item : String, address : String)
+  }
+}
+package com.iluwatar.commander.paymentservice {
+  class PaymentDatabase {
+    - data : Hashtable<String, PaymentRequest>
+    + PaymentDatabase()
+    + add(r : PaymentRequest) : PaymentRequest
+    + get(requestId : String) : PaymentRequest
+  }
+  class PaymentService {
+    + PaymentService(db : PaymentDatabase, exc : Exception[])
+    + receiveRequest(parameters : Object[]) : String
+    # updateDb(parameters : Object[]) : String
+  }
+  ~class PaymentRequest {
+    ~ paid : boolean
+    ~ payment : float
+    ~ transactionId : String
+    ~ PaymentRequest(this$0 : String, transactionId : float)
+  }
+}
+package com.iluwatar.commander.employeehandle {
+  class EmployeeDatabase {
+    - data : Hashtable<String, Order>
+    + EmployeeDatabase()
+    + add(o : Order) : Order
+    + get(orderId : String) : Order
+  }
+  class EmployeeHandle {
+    + EmployeeHandle(db : EmployeeDatabase, exc : Exception[])
+    + receiveRequest(parameters : Object[]) : String
+    # updateDb(parameters : Object[]) : String
+  }
+}
+Order -->  "-messageSent" MessageSent
+MessageSent ..+ Order
+MessageToSend ..+ MessagingService
+Retry -->  "-op" Operation
+Operation ..+ Retry
+Service -->  "-database" Database
+Node -->  "-next" Node
+PaymentRequest --+ PaymentService
+Commander -->  "-messagingService" MessagingService
+ShippingRequest ..+ ShippingService
+Commander -->  "-shippingService" ShippingService
+Commander -->  "-paymentService" PaymentService
+MessageRequest --+ MessagingService
+Commander -->  "-employeeDb" EmployeeHandle
+HandleErrorIssue ..+ Retry
+Retry -->  "-handleError" HandleErrorIssue
+QueueTask -->  "-taskType" TaskType
+TaskType ..+ QueueTask
+Order -->  "-user" User
+MessageRequest -->  "-msg" MessageToSend
+QueueTask -->  "-order" Order
+Commander -->  "-queue" QueueDatabase
+QueueDatabase -->  "-data" Queue
+Queue -->  "-front" Node
+Node ..+ Queue
+Order -->  "-paid" PaymentStatus
+PaymentStatus ..+ Order
+EmployeeDatabase --|> Database 
+EmployeeHandle --|> Service 
+MessagingDatabase --|> Database 
+MessagingService --|> Service 
+PaymentDatabase --|> Database 
+PaymentService --|> Service 
+QueueDatabase --|> Database 
+ShippingDatabase --|> Database 
+ShippingService --|> Service 
+@enduml

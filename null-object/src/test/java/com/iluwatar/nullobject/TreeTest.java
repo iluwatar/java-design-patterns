@@ -23,21 +23,20 @@
 
 package com.iluwatar.nullobject;
 
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.core.AppenderBase;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.slf4j.LoggerFactory;
-
-import java.util.LinkedList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
 /**
  * Date: 12/26/15 - 11:44 PM
@@ -75,12 +74,12 @@ public class TreeTest {
   private static final Node TREE_ROOT;
 
   static {
-    final NodeImpl level1B = new NodeImpl("level1_b", NullNode.getInstance(), NullNode.getInstance());
-    final NodeImpl level2B = new NodeImpl("level2_b", NullNode.getInstance(), NullNode.getInstance());
-    final NodeImpl level3A = new NodeImpl("level3_a", NullNode.getInstance(), NullNode.getInstance());
-    final NodeImpl level3B = new NodeImpl("level3_b", NullNode.getInstance(), NullNode.getInstance());
-    final NodeImpl level2A = new NodeImpl("level2_a", level3A, level3B);
-    final NodeImpl level1A = new NodeImpl("level1_a", level2A, level2B);
+    final var level1B = new NodeImpl("level1_b", NullNode.getInstance(), NullNode.getInstance());
+    final var level2B = new NodeImpl("level2_b", NullNode.getInstance(), NullNode.getInstance());
+    final var level3A = new NodeImpl("level3_a", NullNode.getInstance(), NullNode.getInstance());
+    final var level3B = new NodeImpl("level3_b", NullNode.getInstance(), NullNode.getInstance());
+    final var level2A = new NodeImpl("level2_a", level3A, level3B);
+    final var level1A = new NodeImpl("level1_a", level2A, level2B);
     TREE_ROOT = new NodeImpl("root", level1A, level1B);
   }
 
@@ -112,17 +111,17 @@ public class TreeTest {
 
   @Test
   public void testGetLeft() {
-    final Node level1 = TREE_ROOT.getLeft();
+    final var level1 = TREE_ROOT.getLeft();
     assertNotNull(level1);
     assertEquals("level1_a", level1.getName());
     assertEquals(5, level1.getTreeSize());
 
-    final Node level2 = level1.getLeft();
+    final var level2 = level1.getLeft();
     assertNotNull(level2);
     assertEquals("level2_a", level2.getName());
     assertEquals(3, level2.getTreeSize());
 
-    final Node level3 = level2.getLeft();
+    final var level3 = level2.getLeft();
     assertNotNull(level3);
     assertEquals("level3_a", level3.getName());
     assertEquals(1, level3.getTreeSize());
@@ -132,7 +131,7 @@ public class TreeTest {
 
   @Test
   public void testGetRight() {
-    final Node level1 = TREE_ROOT.getRight();
+    final var level1 = TREE_ROOT.getRight();
     assertNotNull(level1);
     assertEquals("level1_b", level1.getName());
     assertEquals(1, level1.getTreeSize());
@@ -140,8 +139,8 @@ public class TreeTest {
     assertSame(NullNode.getInstance(), level1.getLeft());
   }
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {
       ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
@@ -154,7 +153,7 @@ public class TreeTest {
     }
 
     public boolean logContains(String message) {
-      return log.stream().anyMatch(event -> event.getMessage().equals(message));
+      return log.stream().map(ILoggingEvent::getMessage).anyMatch(message::equals);
     }
 
     public int getLogSize() {

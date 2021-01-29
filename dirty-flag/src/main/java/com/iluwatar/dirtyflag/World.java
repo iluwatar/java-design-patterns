@@ -34,7 +34,7 @@ import java.util.List;
 public class World {
 
   private List<String> countries;
-  private DataFetcher df;
+  private final DataFetcher df;
 
   public World() {
     this.countries = new ArrayList<String>();
@@ -47,10 +47,8 @@ public class World {
    * @return List of strings
    */
   public List<String> fetch() {
-    List<String> data = df.fetch();
-
+    var data = df.fetch();
     countries = data.isEmpty() ? countries : data;
-
     return countries;
   }
 }

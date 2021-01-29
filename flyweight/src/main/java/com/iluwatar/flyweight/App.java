@@ -43,7 +43,7 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    AlchemistShop alchemistShop = new AlchemistShop();
+    var alchemistShop = new AlchemistShop();
     alchemistShop.enumerate();
   }
 }

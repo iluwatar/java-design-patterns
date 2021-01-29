@@ -30,8 +30,10 @@ import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Utilities for creating sample lottery tickets.
@@ -83,26 +85,28 @@ public class SampleData {
         new PlayerDetails("xavier@google.com", "143-947", "+375245"),
         new PlayerDetails("harriet@google.com", "842-404", "+131243252")
     );
-    InMemoryBank wireTransfers = new InMemoryBank();
-    for (PlayerDetails player : PLAYERS) {
-      wireTransfers.setFunds(player.getBankAccount(),
-          RANDOM.nextInt(LotteryConstants.PLAYER_MAX_BALANCE));
-    }
+    var wireTransfers = new InMemoryBank();
+    PLAYERS.stream()
+        .map(PlayerDetails::getBankAccount)
+        .map(e -> new SimpleEntry<>(e, RANDOM.nextInt(LotteryConstants.PLAYER_MAX_BALANCE)))
+        .collect(Collectors.toMap(SimpleEntry::getKey, SimpleEntry::getValue))
+        .forEach(wireTransfers::setFunds);
   }
 
   /**
    * Inserts lottery tickets into the database based on the sample data.
    */
   public static void submitTickets(LotteryService lotteryService, int numTickets) {
-    for (int i = 0; i < numTickets; i++) {
-      LotteryTicket ticket = new LotteryTicket(new LotteryTicketId(),
-          getRandomPlayerDetails(), LotteryNumbers.createRandom());
+    for (var i = 0; i < numTickets; i++) {
+      var randomPlayerDetails = getRandomPlayerDetails();
+      var lotteryNumbers = LotteryNumbers.createRandom();
+      var lotteryTicketId = new LotteryTicketId();
+      var ticket = new LotteryTicket(lotteryTicketId, randomPlayerDetails, lotteryNumbers);
       lotteryService.submitTicket(ticket);
     }
   }
 
   private static PlayerDetails getRandomPlayerDetails() {
-    int idx = RANDOM.nextInt(PLAYERS.size());
-    return PLAYERS.get(idx);
+    return PLAYERS.get(RANDOM.nextInt(PLAYERS.size()));
   }
 }

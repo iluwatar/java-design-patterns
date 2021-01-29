@@ -1,0 +1,41 @@
+@startuml
+package com.iluwatar.nullobject {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface Node {
+    + getLeft() : Node {abstract}
+    + getName() : String {abstract}
+    + getRight() : Node {abstract}
+    + getTreeSize() : int {abstract}
+    + walk() {abstract}
+  }
+  class NodeImpl {
+    - LOGGER : Logger {static}
+    - left : Node
+    - name : String
+    - right : Node
+    + NodeImpl(name : String, left : Node, right : Node)
+    + getLeft() : Node
+    + getName() : String
+    + getRight() : Node
+    + getTreeSize() : int
+    + walk()
+  }
+  class NullNode {
+    - instance : NullNode {static}
+    - NullNode()
+    + getInstance() : NullNode {static}
+    + getLeft() : Node
+    + getName() : String
+    + getRight() : Node
+    + getTreeSize() : int
+    + walk()
+  }
+}
+NullNode -->  "-instance" NullNode
+NodeImpl -->  "-left" Node
+NodeImpl ..|> Node 
+NullNode ..|> Node 
+@enduml

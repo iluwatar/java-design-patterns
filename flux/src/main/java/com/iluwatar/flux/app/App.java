@@ -54,13 +54,13 @@ public class App {
   public static void main(String[] args) {
 
     // initialize and wire the system
-    MenuStore menuStore = new MenuStore();
+    var menuStore = new MenuStore();
     Dispatcher.getInstance().registerStore(menuStore);
-    ContentStore contentStore = new ContentStore();
+    var contentStore = new ContentStore();
     Dispatcher.getInstance().registerStore(contentStore);
-    MenuView menuView = new MenuView();
+    var menuView = new MenuView();
     menuStore.registerView(menuView);
-    ContentView contentView = new ContentView();
+    var contentView = new ContentView();
     contentStore.registerView(contentView);
 
     // render initial view

@@ -3,12 +3,9 @@ layout: pattern
 title: Saga
 folder: saga
 permalink: /patterns/saga/
-categories: Behavioral
+categories: Concurrency
 tags:
- - Java
- - Difficulty-Expert
- - Idiom
- - Distributed communication
+ - Cloud distributed
 ---
 
 ## Also known as
@@ -35,12 +32,18 @@ In this approach, there is a Saga orchestrator that manages all the transactions
 the participant services to execute local transactions based on events. 
 This orchestrator can also be though of as a Saga Manager.
 
+## Class diagram
+![alt text](./etc/saga.urm.png "Saga pattern class diagram")
+
 ## Applicability
 Use the Saga pattern, if:
+
 - you need to perform a group of operations related to different microservices atomically
 - you need to rollback changes in different places in case of failure one of the operation
 - you need to take care of data consistency in different places including different databases
 - you can not use 2PC(two phase commit)
 
 ## Credits
+
 - [Pattern: Saga](https://microservices.io/patterns/data/saga.html)
+- [Saga distributed transactions pattern](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/saga/saga)

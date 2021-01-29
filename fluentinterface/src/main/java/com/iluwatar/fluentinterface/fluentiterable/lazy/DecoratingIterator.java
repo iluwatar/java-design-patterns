@@ -65,7 +65,7 @@ public abstract class DecoratingIterator<E> implements Iterator<E> {
     if (next == null) {
       return fromIterator.next();
     } else {
-      final E result = next;
+      final var result = next;
       next = null;
       return result;
     }

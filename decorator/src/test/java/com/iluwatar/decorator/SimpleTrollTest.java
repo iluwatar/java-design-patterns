@@ -23,18 +23,17 @@
 
 package com.iluwatar.decorator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for {@link SimpleTroll}
@@ -55,7 +54,7 @@ public class SimpleTrollTest {
 
   @Test
   public void testTrollActions() {
-    final SimpleTroll troll = new SimpleTroll();
+    final var troll = new SimpleTroll();
     assertEquals(10, troll.getAttackPower());
 
     troll.attack();
@@ -69,7 +68,7 @@ public class SimpleTrollTest {
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender(Class clazz) {
       ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
