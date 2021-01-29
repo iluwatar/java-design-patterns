@@ -33,7 +33,7 @@ public abstract class RequestHandler {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(RequestHandler.class);
 
-  private RequestHandler next;
+  private final RequestHandler next;
 
   public RequestHandler(RequestHandler next) {
     this.next = next;

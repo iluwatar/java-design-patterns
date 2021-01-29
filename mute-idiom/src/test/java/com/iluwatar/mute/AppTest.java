@@ -25,14 +25,15 @@ package com.iluwatar.mute;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
  * Tests that Mute idiom example runs without errors.
- *
  */
-public class AppTest {
+class AppTest {
 
   @Test
-  public void test() throws Exception {
-    App.main(null);
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

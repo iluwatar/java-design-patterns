@@ -45,7 +45,7 @@ public class QueueManager {
 
 
   /**
-   * recive message from queue.
+   * Receive message from queue.
    */
   public Message receiveMessage() {
     if (messagePriorityMessageQueue.isEmpty()) {

@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class ConjunctionSelector<T> extends AbstractSelector<T> {
 
-  private List<AbstractSelector<T>> leafComponents;
+  private final List<AbstractSelector<T>> leafComponents;
 
   @SafeVarargs
   ConjunctionSelector(AbstractSelector<T>... selectors) {

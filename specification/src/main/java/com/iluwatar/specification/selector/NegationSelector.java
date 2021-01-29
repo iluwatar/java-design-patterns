@@ -30,7 +30,7 @@ package com.iluwatar.specification.selector;
  */
 public class NegationSelector<T> extends AbstractSelector<T> {
 
-  private AbstractSelector<T> component;
+  private final AbstractSelector<T> component;
 
   NegationSelector(AbstractSelector<T> selector) {
     this.component = selector;

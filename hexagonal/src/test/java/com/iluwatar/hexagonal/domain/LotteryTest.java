@@ -43,7 +43,7 @@ import org.junit.jupiter.api.Test;
  */
 class LotteryTest {
 
-  private Injector injector;
+  private final Injector injector;
   @Inject
   private LotteryAdministration administration;
   @Inject

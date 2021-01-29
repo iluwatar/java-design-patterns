@@ -35,8 +35,8 @@ import java.util.List;
  */
 public class UserGroup {
 
-  private static List<User> freeGroup = new ArrayList<>();
-  private static List<User> paidGroup = new ArrayList<>();
+  private static final List<User> freeGroup = new ArrayList<>();
+  private static final List<User> paidGroup = new ArrayList<>();
 
 
   /**

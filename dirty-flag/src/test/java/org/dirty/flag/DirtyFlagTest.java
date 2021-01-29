@@ -23,29 +23,27 @@
 
 package org.dirty.flag;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.iluwatar.dirtyflag.DataFetcher;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
  * Application test
  */
-public class DirtyFlagTest {
+class DirtyFlagTest {
 
   @Test
-  public void testIsDirty() {
+  void testIsDirty() {
     var df = new DataFetcher();
     var countries = df.fetch();
-    assertFalse(countries.isEmpty());
+    Assertions.assertFalse(countries.isEmpty());
   }
 
   @Test
-  public void testIsNotDirty() {
+  void testIsNotDirty() {
     var df = new DataFetcher();
     df.fetch();
     var countries = df.fetch();
-    assertTrue(countries.isEmpty());
+    Assertions.assertTrue(countries.isEmpty());
   }
 }

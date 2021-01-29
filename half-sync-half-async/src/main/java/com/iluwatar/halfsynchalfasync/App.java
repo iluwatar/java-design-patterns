@@ -95,7 +95,7 @@ public class App {
    * ArithmeticSumTask.
    */
   static class ArithmeticSumTask implements AsyncTask<Long> {
-    private long numberOfElements;
+    private final long numberOfElements;
 
     public ArithmeticSumTask(long numberOfElements) {
       this.numberOfElements = numberOfElements;

@@ -105,7 +105,7 @@ public final class CharacterStepBuilder {
     private String wizardClass;
     private String weapon;
     private String spell;
-    private List<String> abilities = new ArrayList<>();
+    private final List<String> abilities = new ArrayList<>();
 
     @Override
     public ClassStep name(String name) {

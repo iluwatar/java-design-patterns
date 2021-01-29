@@ -134,7 +134,7 @@ public class NioDatagramChannel extends AbstractNioChannel {
    */
   public static class DatagramPacket {
     private SocketAddress sender;
-    private ByteBuffer data;
+    private final ByteBuffer data;
     private SocketAddress receiver;
 
     /**

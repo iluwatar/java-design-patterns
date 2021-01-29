@@ -71,7 +71,7 @@ public class Data {
   }
 
   enum DataType {
-    type1, type2, type3
+    TYPE_1, TYPE_2, TYPE_3
   }
 
   @Override

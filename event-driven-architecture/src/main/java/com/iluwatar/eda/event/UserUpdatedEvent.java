@@ -32,7 +32,7 @@ import com.iluwatar.eda.model.User;
  */
 public class UserUpdatedEvent extends AbstractEvent {
 
-  private User user;
+  private final User user;
 
   public UserUpdatedEvent(User user) {
     this.user = user;

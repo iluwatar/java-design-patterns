@@ -54,25 +54,27 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    OliphauntPool pool = new OliphauntPool();
+    var pool = new OliphauntPool();
     LOGGER.info(pool.toString());
-    Oliphaunt oliphaunt1 = pool.checkOut();
-    LOGGER.info("Checked out {}", oliphaunt1);
+    var oliphaunt1 = pool.checkOut();
+    String checkedOut = "Checked out {}";
+
+    LOGGER.info(checkedOut, oliphaunt1);
     LOGGER.info(pool.toString());
-    Oliphaunt oliphaunt2 = pool.checkOut();
-    LOGGER.info("Checked out {}", oliphaunt2);
-    Oliphaunt oliphaunt3 = pool.checkOut();
-    LOGGER.info("Checked out {}", oliphaunt3);
+    var oliphaunt2 = pool.checkOut();
+    LOGGER.info(checkedOut, oliphaunt2);
+    var oliphaunt3 = pool.checkOut();
+    LOGGER.info(checkedOut, oliphaunt3);
     LOGGER.info(pool.toString());
     LOGGER.info("Checking in {}", oliphaunt1);
     pool.checkIn(oliphaunt1);
     LOGGER.info("Checking in {}", oliphaunt2);
     pool.checkIn(oliphaunt2);
     LOGGER.info(pool.toString());
-    Oliphaunt oliphaunt4 = pool.checkOut();
-    LOGGER.info("Checked out {}", oliphaunt4);
-    Oliphaunt oliphaunt5 = pool.checkOut();
-    LOGGER.info("Checked out {}", oliphaunt5);
+    var oliphaunt4 = pool.checkOut();
+    LOGGER.info(checkedOut, oliphaunt4);
+    var oliphaunt5 = pool.checkOut();
+    LOGGER.info(checkedOut, oliphaunt5);
     LOGGER.info(pool.toString());
   }
 }

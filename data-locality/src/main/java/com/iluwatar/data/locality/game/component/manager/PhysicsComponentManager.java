@@ -40,7 +40,7 @@ public class PhysicsComponentManager {
 
   private final int numEntities;
 
-  private static final Component[] PHYSICS_COMPONENTS = new PhysicsComponent[MAX_ENTITIES];
+  private final Component[] physicsComponents = new PhysicsComponent[MAX_ENTITIES];
 
   public PhysicsComponentManager(int numEntities) {
     this.numEntities = numEntities;
@@ -51,7 +51,7 @@ public class PhysicsComponentManager {
    */
   public void start() {
     LOGGER.info("Start Physics Game Component ");
-    IntStream.range(0, numEntities).forEach(i -> PHYSICS_COMPONENTS[i] = new PhysicsComponent());
+    IntStream.range(0, numEntities).forEach(i -> physicsComponents[i] = new PhysicsComponent());
   }
 
 
@@ -62,7 +62,7 @@ public class PhysicsComponentManager {
     LOGGER.info("Update Physics Game Component ");
     // Process physics.
     IntStream.range(0, numEntities)
-        .filter(i -> PHYSICS_COMPONENTS.length > i && PHYSICS_COMPONENTS[i] != null)
-        .forEach(i -> PHYSICS_COMPONENTS[i].update());
+        .filter(i -> physicsComponents.length > i && physicsComponents[i] != null)
+        .forEach(i -> physicsComponents[i].update());
   }
 }

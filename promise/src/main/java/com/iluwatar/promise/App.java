@@ -81,7 +81,7 @@ public class App {
    * @throws InterruptedException if main thread is interrupted.
    * @throws ExecutionException   if an execution error occurs.
    */
-  public static void main(String[] args) throws InterruptedException, ExecutionException {
+  public static void main(String[] args) throws InterruptedException {
     var app = new App();
     try {
       app.promiseUsage();

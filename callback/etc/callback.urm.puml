@@ -8,11 +8,6 @@ package com.iluwatar.callback {
   interface Callback {
     + call() {abstract}
   }
-  class LambdasApp {
-    - LOGGER : Logger {static}
-    - LambdasApp()
-    + main(args : String[]) {static}
-  }
   class SimpleTask {
     - LOGGER : Logger {static}
     + SimpleTask()

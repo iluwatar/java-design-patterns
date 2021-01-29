@@ -32,7 +32,7 @@ import com.iluwatar.eda.event.UserUpdatedEvent;
  */
 public class User {
 
-  private String username;
+  private final String username;
 
   public User(String username) {
     this.username = username;

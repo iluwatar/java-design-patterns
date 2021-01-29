@@ -59,8 +59,8 @@ public class ReaderWriterLock implements ReadWriteLock {
    */
   private final Set<Object> globalMutex = new HashSet<>();
 
-  private ReadLock readerLock = new ReadLock();
-  private WriteLock writerLock = new WriteLock();
+  private final ReadLock readerLock = new ReadLock();
+  private final WriteLock writerLock = new WriteLock();
 
   @Override
   public Lock readLock() {

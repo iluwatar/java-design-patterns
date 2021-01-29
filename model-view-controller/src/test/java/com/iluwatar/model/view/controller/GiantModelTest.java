@@ -23,9 +23,9 @@
 
 package com.iluwatar.model.view.controller;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/20/15 - 2:10 PM
@@ -39,12 +39,13 @@ public class GiantModelTest {
    */
   @Test
   public void testSetHealth() {
-    final GiantModel model = new GiantModel(Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
+    final var model = new GiantModel(Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
     assertEquals(Health.HEALTHY, model.getHealth());
-    for (final Health health : Health.values()) {
+    var messageFormat = "The giant looks %s, alert and saturated.";
+    for (final var health : Health.values()) {
       model.setHealth(health);
       assertEquals(health, model.getHealth());
-      assertEquals("The giant looks " + health.toString() + ", alert and saturated.", model.toString());
+      assertEquals(String.format(messageFormat, health), model.toString());
     }
   }
 
@@ -53,12 +54,13 @@ public class GiantModelTest {
    */
   @Test
   public void testSetFatigue() {
-    final GiantModel model = new GiantModel(Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
+    final var model = new GiantModel(Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
     assertEquals(Fatigue.ALERT, model.getFatigue());
-    for (final Fatigue fatigue : Fatigue.values()) {
+    var messageFormat = "The giant looks healthy, %s and saturated.";
+    for (final var fatigue : Fatigue.values()) {
       model.setFatigue(fatigue);
       assertEquals(fatigue, model.getFatigue());
-      assertEquals("The giant looks healthy, " + fatigue.toString() + " and saturated.", model.toString());
+      assertEquals(String.format(messageFormat, fatigue), model.toString());
     }
   }
 
@@ -67,12 +69,13 @@ public class GiantModelTest {
    */
   @Test
   public void testSetNourishment() {
-    final GiantModel model = new GiantModel(Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
+    final var model = new GiantModel(Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
     assertEquals(Nourishment.SATURATED, model.getNourishment());
-    for (final Nourishment nourishment : Nourishment.values()) {
+    var messageFormat = "The giant looks healthy, alert and %s.";
+    for (final var nourishment : Nourishment.values()) {
       model.setNourishment(nourishment);
       assertEquals(nourishment, model.getNourishment());
-      assertEquals("The giant looks healthy, alert and " + nourishment.toString() + ".", model.toString());
+      assertEquals(String.format(messageFormat, nourishment), model.toString());
     }
   }
 
