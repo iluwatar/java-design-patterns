@@ -1,0 +1,13 @@
+@startuml
+package com.iluwatar.monitor {
+  class Main {
+    + main(args : String[]) {static}
+  }
+  class Bank {
+    - accounts : int[]
+    + Bank(accountNum : int , baseAmount int)
+    + transfer(accountA int , accountB : int , amount int) {synchronized}
+    + getBalance() : int {synchronized}
+  }
+}
+@enduml
