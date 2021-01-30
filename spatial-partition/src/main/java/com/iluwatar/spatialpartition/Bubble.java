@@ -60,7 +60,7 @@ public class Bubble extends Point<Bubble> {
 
   void pop(HashMap<Integer, Bubble> allBubbles) {
     LOGGER.info("Bubble ", this.id,
-        " popped at (", this.getCoordinateX(), ",", this.getCoordinateY(), ")!");
+        " popped at (", this.coordinateX, ",", this.coordinateY, ")!");
     allBubbles.remove(this.id);
   }
 

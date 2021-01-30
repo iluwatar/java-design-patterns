@@ -118,7 +118,7 @@ public class App {
       bubbles1.put(i, b);
       bubbles2.put(i, b);
       LOGGER.info(BUBBLE, i, " with radius ", b.radius,
-          " added at (", b.getCoordinateX(), ",", b.getCoordinateY() + ")");
+          " added at (", b.coordinateX, ",", b.coordinateY + ")");
     }
 
     var start1 = System.currentTimeMillis();
