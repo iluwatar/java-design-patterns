@@ -117,8 +117,8 @@ public class App {
       var b = new Bubble(rand.nextInt(300), rand.nextInt(300), i, rand.nextInt(2) + 1);
       bubbles1.put(i, b);
       bubbles2.put(i, b);
-      LOGGER.info(BUBBLE + i + " with radius " + b.radius
-          + " added at (" + b.coordinateX + "," + b.coordinateY + ")");
+      LOGGER.info(BUBBLE, i, " with radius ", b.radius,
+          " added at (", b.getCoordinateX(), ",", b.getCoordinateY() + ")");
     }
 
     var start1 = System.currentTimeMillis();
@@ -127,8 +127,8 @@ public class App {
     var start2 = System.currentTimeMillis();
     App.withSpatialPartition(300, 300, 20, bubbles2);
     var end2 = System.currentTimeMillis();
-    LOGGER.info("Without spatial partition takes " + (end1 - start1) + "ms");
-    LOGGER.info("With spatial partition takes " + (end2 - start2) + "ms");
+    LOGGER.info("Without spatial partition takes ", (end1 - start1), "ms");
+    LOGGER.info("With spatial partition takes ", (end2 - start2), "ms");
   }
 }
 
