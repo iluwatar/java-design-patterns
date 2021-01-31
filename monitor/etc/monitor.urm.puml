@@ -1,13 +1,12 @@
 @startuml
-package com.iluwatar.monitor {
-  class Main {
-    + main(args : String[]) {static}
-  }
-  class Bank {
+Main - Bank : use
+class Main{
+    + main(args : String[]) : void
+}
+class Bank{
     - accounts : int[]
-    + Bank(accountNum : int , baseAmount int)
-    + transfer(accountA int , accountB : int , amount int) {synchronized}
-    + getBalance() : int {synchronized}
-  }
+    + Bank (accountNum : int , baseAccount : int)
+    + transfer(accountA : int , accountB : int , amount : int) : void {synchronized}
+    - getBalance() : void {synchronized}
 }
 @enduml
