@@ -47,7 +47,7 @@ class Bank {
         }
     }
 
-    public synchronized int getBalance() {
+    private synchronized int getBalance() {
         int balance = 0;
         for (int account : accounts) {
             balance += account;
