@@ -49,7 +49,7 @@ remote calls.
 
 The service architecture is as follows:
 
-![alt text](./etc/ServiceDiagram.PNG "Service Diagram")
+![alt text](./etc/ServiceDiagram.png "Service Diagram")
 
 In terms of code, the end user application is:
 
@@ -292,7 +292,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
 How does the above pattern prevent failures? Let's understand via this finite state machine 
 implemented by it.
 
-![alt text](./etc/StateDiagram.PNG "State Diagram")
+![alt text](./etc/StateDiagram.png "State Diagram")
 
 - We initialize the Circuit Breaker object with certain parameters: `timeout`, `failureThreshold` and `retryTimePeriod` which help determine how resilient the API is.
 - Initially, we are in the `closed` state and nos remote calls to the API have occurred.
