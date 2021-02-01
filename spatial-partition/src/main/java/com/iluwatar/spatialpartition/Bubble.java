@@ -24,7 +24,7 @@
 package com.iluwatar.spatialpartition;
 
 import java.util.Collection;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,13 +58,13 @@ public class Bubble extends Point<Bubble> {
         <= (this.radius + b.radius) * (this.radius + b.radius);
   }
 
-  void pop(Hashtable<Integer, Bubble> allBubbles) {
-    LOGGER.info("Bubble " + this.id
-        + " popped at (" + this.coordinateX + "," + this.coordinateY + ")!");
+  void pop(HashMap<Integer, Bubble> allBubbles) {
+    LOGGER.info("Bubble ", this.id,
+        " popped at (", this.coordinateX, ",", this.coordinateY, ")!");
     allBubbles.remove(this.id);
   }
 
-  void handleCollision(Collection<? extends Point> toCheck, Hashtable<Integer, Bubble> allBubbles) {
+  void handleCollision(Collection<? extends Point> toCheck, HashMap<Integer, Bubble> allBubbles) {
     var toBePopped = false; //if any other bubble collides with it, made true
     for (var point : toCheck) {
       var otherId = point.id;
