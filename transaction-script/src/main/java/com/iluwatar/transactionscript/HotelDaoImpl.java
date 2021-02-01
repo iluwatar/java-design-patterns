@@ -49,7 +49,7 @@ public class HotelDaoImpl implements HotelDao {
   public Stream<Room> getAll() throws Exception {
     try {
       var connection = getConnection();
-      var statement = connection.prepareStatement("SELECT * FROM ROOMS");
+      var statement = connection.prepareStatement("SELECT * FROM ROOMS"); // NOSONAR
       var resultSet = statement.executeQuery(); // NOSONAR
       return StreamSupport.stream(new Spliterators.AbstractSpliterator<Room>(Long.MAX_VALUE,
           Spliterator.ORDERED) {

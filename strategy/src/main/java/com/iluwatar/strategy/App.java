@@ -45,7 +45,7 @@ public class App {
   
   /**
    * Program entry point.
-   * 
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
@@ -60,7 +60,7 @@ public class App {
     dragonSlayer.changeStrategy(new SpellStrategy());
     dragonSlayer.goToBattle();
 
-    // Java 8 Strategy pattern
+    // Java 8 functional implementation Strategy pattern
     LOGGER.info("Green dragon spotted ahead!");
     dragonSlayer = new DragonSlayer(
         () -> LOGGER.info("With your Excalibur you severe the dragon's head!"));
@@ -72,6 +72,17 @@ public class App {
     LOGGER.info("Black dragon lands before you.");
     dragonSlayer.changeStrategy(() -> LOGGER.info(
         "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+    dragonSlayer.goToBattle();
+
+    // Java 8 lambda implementation with enum Strategy pattern
+    LOGGER.info("Green dragon spotted ahead!");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.MeleeStrategy);
+    dragonSlayer.goToBattle();
+    LOGGER.info("Red dragon emerges.");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.ProjectileStrategy);
+    dragonSlayer.goToBattle();
+    LOGGER.info("Black dragon lands before you.");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.SpellStrategy);
     dragonSlayer.goToBattle();
   }
 }

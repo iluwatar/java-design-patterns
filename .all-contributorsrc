@@ -315,7 +315,8 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/6295975?v=4",
       "profile": "https://github.com/Anurag870",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -1294,6 +1295,105 @@
       "profile": "https://github.com/gkulkarni2020",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "omk13",
+      "name": "Omar Karazoun",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/59054172?v=4",
+      "profile": "https://github.com/omk13",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jeff303",
+      "name": "Jeff Evans",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3521562?v=4",
+      "profile": "https://github.com/jeff303",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "viveksb007",
+      "name": "Vivek Singh",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/12713808?v=4",
+      "profile": "https://viveksb007.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "siavashsoleymani",
+      "name": "siavash",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/18074419?v=4",
+      "profile": "https://github.com/siavashsoleymani",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ruchpeanuts",
+      "name": "ruchpeanuts",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/29301900?v=4",
+      "profile": "https://github.com/ruchpeanuts",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "warp125",
+      "name": "warp125",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/48073115?v=4",
+      "profile": "https://github.com/warp125",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "tkhadir",
+      "name": "KHADIR Tayeb",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/45130488?v=4",
+      "profile": "http://libkhadir.fr",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "ignite1771",
+      "name": "ignite1771",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/59446563?v=4",
+      "profile": "https://github.com/ignite1771",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "demirhalil",
+      "name": "Halil Demir",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/22895118?v=4",
+      "profile": "https://github.com/demirhalil",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "rohit10000",
+      "name": "Rohit Singh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20845565?v=4",
+      "profile": "https://github.com/rohit10000",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "byoungju94",
+      "name": "byoungju94",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42516378?v=4",
+      "profile": "https://github.com/byoungju94",
+      "contributions": [
+        "code"
       ]
     }
   ],

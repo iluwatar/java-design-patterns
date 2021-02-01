@@ -67,7 +67,7 @@ public class DbCustomerDao implements CustomerDao {
   public Stream<Customer> getAll() throws Exception {
     try {
       var connection = getConnection();
-      var statement = connection.prepareStatement("SELECT * FROM CUSTOMERS");
+      var statement = connection.prepareStatement("SELECT * FROM CUSTOMERS"); // NOSONAR
       var resultSet = statement.executeQuery(); // NOSONAR
       return StreamSupport.stream(new Spliterators.AbstractSpliterator<Customer>(Long.MAX_VALUE,
           Spliterator.ORDERED) {
