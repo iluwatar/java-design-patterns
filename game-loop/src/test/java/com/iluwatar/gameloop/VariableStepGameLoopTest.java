@@ -23,11 +23,9 @@
 
 package com.iluwatar.gameloop;
 
-import java.lang.reflect.InvocationTargetException;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * VariableStepGameLoop unit test class.
@@ -36,19 +34,19 @@ public class VariableStepGameLoopTest {
 
   private VariableStepGameLoop gameLoop;
 
-  @Before
+  @BeforeEach
   public void setup() {
     gameLoop = new VariableStepGameLoop();
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     gameLoop = null;
   }
 
-  @Test
+  @org.junit.jupiter.api.Test
   public void testUpdate() {
     gameLoop.update(20L);
-    Assert.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
+    Assertions.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
   }
 }
