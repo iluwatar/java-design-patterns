@@ -118,7 +118,7 @@ public class HalflingThief {
 ```
 
 ## 类图
-![alt text](../../template-method/etc/template-method_1.png "Template Method")
+![alt text](../../template-method/etc/template_method_urm.png "Template Method")
 
 ## 适用性
 
