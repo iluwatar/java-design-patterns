@@ -24,7 +24,7 @@
 package com.iluwatar.spatialpartition;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 /**
  * This class extends the generic SpatialPartition abstract class and is used in our example to keep
@@ -33,10 +33,10 @@ import java.util.Hashtable;
 
 public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
 
-  private final Hashtable<Integer, Bubble> bubbles;
+  private final HashMap<Integer, Bubble> bubbles;
   private final QuadTree quadTree;
 
-  SpatialPartitionBubbles(Hashtable<Integer, Bubble> bubbles, QuadTree quadTree) {
+  SpatialPartitionBubbles(HashMap<Integer, Bubble> bubbles, QuadTree quadTree) {
     this.bubbles = bubbles;
     this.quadTree = quadTree;
   }
@@ -44,7 +44,7 @@ public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
   void handleCollisionsUsingQt(Bubble b) {
     // finding points within area of a square drawn with centre same as
     // centre of bubble and length = radius of bubble
-    var rect = new Rect(b.coordinateX, b.coordinateY, 2 * b.radius, 2 * b.radius);
+    var rect = new Rect(b.coordinateX, b.coordinateY, 2D * b.radius, 2D * b.radius);
     var quadTreeQueryResult = new ArrayList<Point>();
     this.quadTree.query(rect, quadTreeQueryResult);
     //handling these collisions
