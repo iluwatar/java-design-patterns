@@ -21,11 +21,9 @@ public class Main {
             }
         };
         ExecutorService executorService = Executors.newFixedThreadPool(5);
-        executorService.execute(runnable);
-        executorService.execute(runnable);
-        executorService.execute(runnable);
-        executorService.execute(runnable);
-        executorService.execute(runnable);
+        for (int i = 0; i < 5; i++) {
+            executorService.execute(runnable);
+        }
     }
 }
 
