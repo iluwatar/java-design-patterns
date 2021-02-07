@@ -1395,6 +1395,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "moustafafarhat",
+      "name": "Moustafa Farhat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38836727?v=4",
+      "profile": "https://github.com/moustafafarhat",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 4,
