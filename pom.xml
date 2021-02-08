@@ -25,6 +25,7 @@
     <inceptionYear>2014-2019</inceptionYear>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
         <hibernate.version>5.2.18.Final</hibernate.version>
         <spring.version>5.0.13.RELEASE</spring.version>
         <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
@@ -425,7 +426,7 @@
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>3.7.0.1746</version>
+                    <version>${sonar-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
