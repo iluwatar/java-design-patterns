@@ -24,13 +24,18 @@
 package com.iluwatar.parameter.object;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParameterObjectTest {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(ParameterObjectTest.class);
+
   @Test
   public void testForDefaultSortBy() {
+    //Creating parameter object with default value for SortBy set
     ParameterObject params = ParameterObject.newBuilder()
         .withType("sneakers")
         .sortOrder(SortOrder.DESC)
@@ -38,10 +43,13 @@ class ParameterObjectTest {
 
     assertEquals(ParameterObject.DEFAULT_SORT_BY, params.getSortBy(),
         "Default SortBy is not set.");
+    LOGGER.info("SortBy Default parameter value is set during object creation as no value is "
+        + "passed.");
   }
 
   @Test
   public void testForDefaultSortOrder() {
+    //Creating parameter object with default value for SortOrder set
     ParameterObject params = ParameterObject.newBuilder()
         .withType("sneakers")
         .sortBy("brand")
@@ -49,6 +57,7 @@ class ParameterObjectTest {
 
     assertEquals(ParameterObject.DEFAULT_SORT_ORDER, params.getSortOrder(),
         "Default SortOrder is not set.");
+    LOGGER.info("SortOrder Default parameter value is set during object creation as no value is "
+        + "passed.");
   }
 }
-

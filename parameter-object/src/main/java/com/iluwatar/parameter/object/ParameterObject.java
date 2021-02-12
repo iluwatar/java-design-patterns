@@ -24,17 +24,22 @@
 package com.iluwatar.parameter.object;
 
 public class ParameterObject {
+
+  //Default values are defined here.
   public static final String DEFAULT_SORT_BY = "price";
   public static final SortOrder DEFAULT_SORT_ORDER = SortOrder.ASC;
 
   private String type;
+
+  //Default values are assigned here.
   private String sortBy = DEFAULT_SORT_BY;
   private SortOrder sortOrder = DEFAULT_SORT_ORDER;
 
   private ParameterObject(Builder builder) {
-    type = builder.type;
-    sortBy = builder.sortBy != null && !builder.sortBy.isBlank() ? builder.sortBy : sortBy;
-    sortOrder = builder.sortOrder != null ? builder.sortOrder : sortOrder;
+    setType(builder.type);
+    //Overriding default values on object creation only when builder object has a valid value.
+    setSortBy(builder.sortBy != null && !builder.sortBy.isBlank() ? builder.sortBy : sortBy);
+    setSortOrder(builder.sortOrder != null ? builder.sortOrder : sortOrder);
   }
 
   public static Builder newBuilder() {
