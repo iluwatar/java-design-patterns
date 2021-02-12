@@ -4,6 +4,7 @@ target
 .classpath
 .project
 *.class
+.factorypath
 
 ### Package Files ###
 *.jar
