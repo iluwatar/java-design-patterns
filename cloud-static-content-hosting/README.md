@@ -83,7 +83,7 @@ the content globally.
   
     index.html
 
-    ```html
+    ```
     <!doctype html>
     <head>
         <title>My Static Web Site</title>
@@ -94,8 +94,8 @@ the content globally.
     ```
 
     error.html
-    
-    ```html
+
+    ```
     <!doctype html>
     <head>
         <title>My Static Web Site</title>
