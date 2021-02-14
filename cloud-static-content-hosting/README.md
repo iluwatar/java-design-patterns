@@ -82,6 +82,7 @@ the content globally.
    * First create the content, at least `index.html` and `error.html` documents.
   
     index.html
+
     ```html
     <!doctype html>
     <head>
@@ -93,6 +94,7 @@ the content globally.
     ```
 
     error.html
+    
     ```html
     <!doctype html>
     <head>
