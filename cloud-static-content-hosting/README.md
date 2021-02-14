@@ -38,9 +38,6 @@ Wikipedia says
 
 **Programmatic Example**
 
-```
-```
-
 ## Applicability
 
 Use the Static Content Hosting pattern when you want to:
