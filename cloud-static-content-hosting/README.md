@@ -80,32 +80,8 @@ the content globally.
 9. Upload content to the bucket.
 
    * First create the content, at least `index.html` and `error.html` documents.
-   * index.html
-
-    ```html
-    <!doctype html>
-    <head>
-        <title>My Static Web Site</title>
-    </head>
-    <body>
-        <h1>I'm the index.html</h1>
-    </body>
-    ```
-
-   * error.html
-    
-    ```html
-    <!doctype html>
-    <head>
-        <title>My Static Web Site</title>
-    </head>
-    <body>
-        <h1>I'm the index.html</h1>
-    </body>
-    ```
-
-    * Upload the content to your bucket as described [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-copy)
-    * E.g. `aws s3 cp index.html s3://my-static-website-jh34jsjmg` and `aws s3 cp error.html s3://my-static-website-jh34jsjmg`
+   * Upload the content to your bucket as described [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-copy)
+   * E.g. `aws s3 cp index.html s3://my-static-website-jh34jsjmg` and `aws s3 cp error.html s3://my-static-website-jh34jsjmg`
 
 10. Next we need to set the bucket policy to allow read access.
 
