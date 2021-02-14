@@ -61,4 +61,4 @@ jobs:
     # SonarQube scan does not work for forked repositories.
     # See https://jira.sonarsource.com/browse/MMF-1371
     - name: Build with Maven
-      run: xvfb-run mvn clean verify
+      run: xvfb-run ./mvnw clean verify
