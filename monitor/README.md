@@ -5,8 +5,7 @@ folder: monitor
 permalink: /patterns/monitor/
 categories: Concurrency
 tags:
- - Thread-safe
- - Mutual exclusion
+ - Performance
 ---
 
 ## Intent
