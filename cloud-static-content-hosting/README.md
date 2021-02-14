@@ -55,13 +55,13 @@ the content globally.
 
 4. Create IAM user that has only the necessary rights for this application.
 
-* Click `Users`
-* Click `Add user`. Choose `User name` as you wish and `Access type` should be `Programmatic access`. Click `Next: Permissions`.
-* Choose `Attach existing policies directly`. Select `AmazonS3FullAccess` and `CloudFrontFullAccess`. Click `Next: Tags`.
-* No tags are necessarily needed, so just click `Next: Review`.
-* Review the presented information and if all seems good click `Create user`.
-* You are presented with `Access key ID` and `Secret access key` which you will need to complete this example, so store them safely.
-* Click `Close`.
+   * Click `Users`
+   * Click `Add user`. Choose `User name` as you wish and `Access type` should be `Programmatic access`. Click `Next: Permissions`.
+   * Choose `Attach existing policies directly`. Select `AmazonS3FullAccess` and `CloudFrontFullAccess`. Click `Next: Tags`.
+   * No tags are necessarily needed, so just click `Next: Review`.
+   * Review the presented information and if all seems good click `Create user`.
+   * You are presented with `Access key ID` and `Secret access key` which you will need to complete this example, so store them safely.
+   * Click `Close`.
 
 5. [Install AWS Command Line Interface (AWS CLI)](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv1.html) to gain programmic access to AWS cloud.
 
@@ -69,83 +69,83 @@ the content globally.
 
 7. Create AWS S3 bucket for the web site content. Note that the S3 bucket names must be globally unique.
 
-* The syntax is `aws s3 mb <bucket name>` as described in the [instructions](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-buckets-creating)
-* For example `aws s3 mb s3://my-static-website-jh34jsjmg`
-* Verify that the bucket was successfully created with command `aws s3 ls` which list the existing buckets
+   * The syntax is `aws s3 mb <bucket name>` as described in the [instructions](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-buckets-creating)
+   * For example `aws s3 mb s3://my-static-website-jh34jsjmg`
+   * Verify that the bucket was successfully created with command `aws s3 ls` which list the existing buckets
 
 8. Configure the bucket as a web site with command `aws s3 website` as described in the [instructions](https://docs.aws.amazon.com/cli/latest/reference/s3/website.html).
 
-* E.g. `aws s3 website s3://my-static-website-jh34jsjmg --index-document index.html --error-document error.html`
+   * E.g. `aws s3 website s3://my-static-website-jh34jsjmg --index-document index.html --error-document error.html`
 
 9. Upload content to the bucket.
 
-* First create the content, at least `index.html` and `error.html` documents.
+   * First create the content, at least `index.html` and `error.html` documents.
   
-index.html
-```html
-<!doctype html>
-<head>
-    <title>My Static Web Site</title>
-</head>
-<body>
-    <h1>I'm the index.html</h1>
-</body>
-```
+    index.html
+    ```html
+    <!doctype html>
+    <head>
+        <title>My Static Web Site</title>
+    </head>
+    <body>
+        <h1>I'm the index.html</h1>
+    </body>
+    ```
 
-error.html
-```html
-<!doctype html>
-<head>
-    <title>My Static Web Site</title>
-</head>
-<body>
-    <h1>I'm the index.html</h1>
-</body>
-```
+    error.html
+    ```html
+    <!doctype html>
+    <head>
+        <title>My Static Web Site</title>
+    </head>
+    <body>
+        <h1>I'm the index.html</h1>
+    </body>
+    ```
 
-* Upload the content to your bucket as described [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-copy)
-* E.g. `aws s3 cp index.html s3://my-static-website-jh34jsjmg` and `aws s3 cp error.html s3://my-static-website-jh34jsjmg`
+    * Upload the content to your bucket as described [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-copy)
+    * E.g. `aws s3 cp index.html s3://my-static-website-jh34jsjmg` and `aws s3 cp error.html s3://my-static-website-jh34jsjmg`
 
 10. Next we need to set the bucket policy to allow read access.
 
-* Create `policy.json` with the following contents (note that you need to replace the bucket name with your own).
+    * Create `policy.json` with the following contents (note that you need to replace the bucket name with your own).
 
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::my-static-website-jh34jsjmg/*"
-        }
-    ]
-}
-```
+    ```json
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "PublicReadGetObject",
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::my-static-website-jh34jsjmg/*"
+            }
+        ]
+    }
+    ```
 
-* Set the bucket policy according to these [instructions](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-policy.html)
-* E.g. `aws s3api put-bucket-policy --bucket my-static-website-jh34jsjmg --policy file://policy.json`
+    * Set the bucket policy according to these [instructions](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-policy.html)
+    * E.g. `aws s3api put-bucket-policy --bucket my-static-website-jh34jsjmg --policy file://policy.json`
 
 11. Test the web site in your browser.
 
-* The web site URL format is `http://<bucket-name>.s3-website-<region-name>.amazonaws.com`
-* E.g. this web site was created in `eu-west-1` region with name `my-static-website-jh34jsjmg` so it can be accessed via url `http://my-static-website-jh34jsjmg.s3-website-eu-west-1.amazonaws.com`
+    * The web site URL format is `http://<bucket-name>.s3-website-<region-name>.amazonaws.com`
+    * E.g. this web site was created in `eu-west-1` region with name `my-static-website-jh34jsjmg` so it can be accessed via url `http://my-static-website-jh34jsjmg.s3-website-eu-west-1.amazonaws.com`
 
 12. Create CloudFormation distribution for the web site.
 
-* The syntax is described in [this reference](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html)
-* E.g. the easiest way is to call `aws cloudfront create-distribution --origin-domain-name my-static-website-jh34jsjmg.s3.amazonaws.com --default-root-object index.html`
-* There's also JSON syntax e.g. `--distribution-config file://dist-config.json` to pass distribution configuration arguments in file
-* The output of the call will show you the exact distribution settings including the generated CloudFront domain name you can use for testing e.g. `d2k3xwnaqa8nqx.cloudfront.net` 
-* CloudFormation distribution deployment takes some time, but once it's completed your web site is served from data centers all around the globe!
+    * The syntax is described in [this reference](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html)
+    * E.g. the easiest way is to call `aws cloudfront create-distribution --origin-domain-name my-static-website-jh34jsjmg.s3.amazonaws.com --default-root-object index.html`
+    * There's also JSON syntax e.g. `--distribution-config file://dist-config.json` to pass distribution configuration arguments in file
+    * The output of the call will show you the exact distribution settings including the generated CloudFront domain name you can use for testing e.g. `d2k3xwnaqa8nqx.cloudfront.net` 
+    * CloudFormation distribution deployment takes some time, but once it's completed your web site is served from data centers all around the globe!
 
 13. That's it! You have implemented a static web site with content distribution network serving it lightning fast all around the world.
 
-* To update the web site you need to update the objects in S3 bucket and invalidate the objects in the CloudFront distribution
-* To do it from AWS CLI see [this reference](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-invalidation.html)
-* Some further development you might want to do is serve the content over https and add a domain name for your site
+    * To update the web site you need to update the objects in S3 bucket and invalidate the objects in the CloudFront distribution
+    * To do it from AWS CLI see [this reference](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-invalidation.html)
+    * Some further development you might want to do is serve the content over https and add a domain name for your site
 
 ## Applicability
 
