@@ -80,10 +80,9 @@ the content globally.
 9. Upload content to the bucket.
 
    * First create the content, at least `index.html` and `error.html` documents.
-  
-    index.html
+   * index.html
 
-    ```
+    ```html
     <!doctype html>
     <head>
         <title>My Static Web Site</title>
@@ -93,9 +92,9 @@ the content globally.
     </body>
     ```
 
-    error.html
-
-    ```
+   * error.html
+    
+    ```html
     <!doctype html>
     <head>
         <title>My Static Web Site</title>
