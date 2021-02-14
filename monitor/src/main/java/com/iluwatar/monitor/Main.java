@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -31,6 +32,7 @@ public class Main {
 class Bank {
 
     private int[] accounts;
+    Logger logger = Logger.getLogger("monitor");
 
     public Bank(int accountNum, int baseAmount) {
         accounts = new int[accountNum];
@@ -41,7 +43,7 @@ class Bank {
         if (accounts[accountA] >= amount) {
             accounts[accountB] += amount;
             accounts[accountA] -= amount;
-            System.out.println("Transferred from account :" + accountA + " to account :" + accountB + " , amount :" + amount + " . balance :" + getBalance());
+            logger.info("Transferred from account :" + accountA + " to account :" + accountB + " , amount :" + amount + " . balance :" + getBalance());
         }
     }
 
