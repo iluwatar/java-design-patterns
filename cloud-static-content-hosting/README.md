@@ -82,7 +82,7 @@ the content globally.
 * First create the content, at least `index.html` and `error.html` documents.
   
 index.html
-```
+```html
 <!doctype html>
 <head>
     <title>My Static Web Site</title>
@@ -93,7 +93,7 @@ index.html
 ```
 
 error.html
-```
+```html
 <!doctype html>
 <head>
     <title>My Static Web Site</title>
@@ -110,7 +110,7 @@ error.html
 
 * Create `policy.json` with the following contents (note that you need to replace the bucket name with your own).
 
-```
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
