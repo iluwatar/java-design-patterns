@@ -42,6 +42,8 @@ Wikipedia says
 
 **Example**
 
+![alt text](./etc/static-content-hosting.png "Static Content Hosting")
+
 In this example we create a static web site using AWS S3 and utilize AWS Cloudfront to distribute
 the content globally.
 
@@ -131,6 +133,19 @@ error.html
 * The web site URL format is `http://<bucket-name>.s3-website-<region-name>.amazonaws.com`
 * E.g. this web site was created in `eu-west-1` region with name `my-static-website-jh34jsjmg` so it can be accessed via url `http://my-static-website-jh34jsjmg.s3-website-eu-west-1.amazonaws.com`
 
+12. Create CloudFormation distribution for the web site.
+
+* The syntax is described in [this reference](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html)
+* E.g. the easiest way is to call `aws cloudfront create-distribution --origin-domain-name my-static-website-jh34jsjmg.s3.amazonaws.com --default-root-object index.html`
+* There's also JSON syntax e.g. `--distribution-config file://dist-config.json` to pass distribution configuration arguments in file
+* The output of the call will show you the exact distribution settings including the generated CloudFront domain name you can use for testing e.g. `d2k3xwnaqa8nqx.cloudfront.net` 
+* CloudFormation distribution deployment takes some time, but once it's completed your web site is served from data centers all around the globe!
+
+13. That's it! You have implemented a static web site with content distribution network serving it lightning fast all around the world.
+
+* To update the web site you need to update the objects in S3 bucket and invalidate the objects in the CloudFront distribution
+* To do it from AWS CLI see [this reference](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-invalidation.html)
+* Some further development you might want to do is serve the content over https and add a domain name for your site
 
 ## Applicability
 
