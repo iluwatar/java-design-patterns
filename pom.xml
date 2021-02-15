@@ -45,7 +45,7 @@
         <junit-vintage.version>${junit.version}.2</junit-vintage.version>
         <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
         <compiler.version>3.8.1</compiler.version>
-        <jacoco.version>0.8.4</jacoco.version>
+        <jacoco.version>0.8.6</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.24.0</camel.version>
         <guava.version>19.0</guava.version>
