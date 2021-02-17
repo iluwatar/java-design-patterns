@@ -25,11 +25,13 @@ package com.iluwatar.parameter.object;
 
 public class SearchService {
 
-  /* Below two methods of name `search` is overloaded so that we can send a default value for
-  * one of the criteria and call the final api. A default SortOrder is sent in the first method
-  * and a default SortBy is sent in the second method. So two separate method definitions are
-  * needed for having default values for one argument in each case. Hence multiple overloaded
-  * methods are needed as the number of argument increases. */
+  /**
+   * Below two methods of name `search` is overloaded so that we can send a default value for
+   * one of the criteria and call the final api. A default SortOrder is sent in the first method
+   * and a default SortBy is sent in the second method. So two separate method definitions are
+   * needed for having default values for one argument in each case. Hence multiple overloaded
+   * methods are needed as the number of argument increases.
+   */
   public String search(String type, String sortBy) {
     return getQuerySummary(type, sortBy, SortOrder.ASC);
   }
@@ -39,16 +41,20 @@ public class SearchService {
   }
 
 
-  /* The need for multiple method definitions can be avoided by the Parameter Object pattern.
-  * Below is the example where only one method is required and all the logic for having default
-  * values are abstracted into the Parameter Object at the time of object creation */
+  /**
+   * The need for multiple method definitions can be avoided by the Parameter Object pattern.
+   * Below is the example where only one method is required and all the logic for having default
+   * values are abstracted into the Parameter Object at the time of object creation.
+   */
   public String search(ParameterObject parameterObject) {
     return getQuerySummary(parameterObject.getType(), parameterObject.getSortBy(),
         parameterObject.getSortOrder());
   }
 
   private String getQuerySummary(String type, String sortBy, SortOrder sortOrder) {
-    return "Requesting shoes of type \"" + type + "\" sorted by \"" + sortBy + "\" in \""
-        + sortOrder.getValue() + "ending\" order...";
+    return String.format("Requesting shoes of type \"%s\" sorted by \"%s\" in \"%sending\" order..",
+        type,
+        sortBy,
+        sortOrder.getValue());
   }
 }

@@ -45,8 +45,9 @@ class SearchServiceTest {
     searchService = new SearchService();
   }
 
-
-  //Testing parameter object against the overloaded method to verify if the behaviour is same.
+  /**
+   *  Testing parameter object against the overloaded method to verify if the behaviour is same.
+   */
   @Test
   public void testDefaultParametersMatch() {
     assertEquals(searchService.search(parameterObject), searchService.search("sneakers",

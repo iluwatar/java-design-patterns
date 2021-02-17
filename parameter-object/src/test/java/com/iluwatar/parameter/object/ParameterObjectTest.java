@@ -43,8 +43,8 @@ class ParameterObjectTest {
 
     assertEquals(ParameterObject.DEFAULT_SORT_BY, params.getSortBy(),
         "Default SortBy is not set.");
-    LOGGER.info("SortBy Default parameter value is set during object creation as no value is "
-        + "passed.");
+    LOGGER.info("{} Default parameter value is set during object creation as no value is passed."
+        , "SortBy");
   }
 
   @Test
@@ -57,7 +57,7 @@ class ParameterObjectTest {
 
     assertEquals(ParameterObject.DEFAULT_SORT_ORDER, params.getSortOrder(),
         "Default SortOrder is not set.");
-    LOGGER.info("SortOrder Default parameter value is set during object creation as no value is "
-        + "passed.");
+    LOGGER.info("{} Default parameter value is set during object creation as no value is passed."
+        , "SortOrder");
   }
 }

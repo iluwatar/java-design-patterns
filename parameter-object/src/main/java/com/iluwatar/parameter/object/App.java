@@ -34,8 +34,7 @@ import org.slf4j.LoggerFactory;
  * method overloading as a solution for default parameter values reveals itself when a method
  * accepts multiple parameters. Creating an overloaded method for each possible combination of
  * parameters might be cumbersome. To deal with this issue, the Parameter Object pattern is used.
- *
- * <p>The Parameter Object is simply a wrapper object for all parameters of a method.
+ * The Parameter Object is simply a wrapper object for all parameters of a method.
  * It is nothing more than just a regular POJO. The advantage of the Parameter Object over a
  * regular method parameter list is the fact that class fields can have default values.
  * Once the wrapper class is created for the method parameter list, a corresponding builder class
