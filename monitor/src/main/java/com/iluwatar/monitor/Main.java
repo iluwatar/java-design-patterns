@@ -3,20 +3,18 @@ package com.iluwatar.monitor;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Logger;
 
 public class Main {
 
     public static void main(String[] args) {
-        AtomicReference<Bank> bank = new AtomicReference<>();
-        bank.set(new Bank(4, 1000));
+        var bank = new Bank(4, 1000);
         Runnable runnable = () -> {
             try {
                 Thread.sleep((long) (Math.random() * 1000));
                 Random random = new Random();
                 for (int i = 0; i < 1000000; i++)
-                    bank.get().transfer(random.nextInt(4), random.nextInt(4), (int) (Math.random() * 1000));
+                    bank.transfer(random.nextInt(4), random.nextInt(4), (int) (Math.random() * 1000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
