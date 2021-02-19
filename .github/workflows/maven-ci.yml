@@ -1,6 +1,6 @@
 #
 # The MIT License
-# Copyright © 2014-2019 Ilkka Seppälä
+# Copyright © 2014-2021 Ilkka Seppälä
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -73,7 +73,7 @@ jobs:
     # SonarQube scan does not work for forked repositories try changing it to xvfb-run mvn clean verify
     # See https://jira.sonarsource.com/browse/MMF-1371
     - name: Build with Maven and run SonarQube analysis
-      run: xvfb-run mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+      run: xvfb-run ./mvnw clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
       env:
         # These two env variables are needed for sonar analysis
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
