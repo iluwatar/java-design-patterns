@@ -36,7 +36,7 @@ import java.util.logging.Logger;
  * <p>Bank is a simple class that transfers money from an account to another account using
  * {@link Bank#transfer}. It can also return the balance of the bank account stored in the bank.</p>
  *
- * <p>In Main class uses ThreadPool to run some threads for do some transactions</p>
+ * <p>Main class uses ThreadPool to run threads that do transactions on the bank accounts.</p>
  *
  */
 
