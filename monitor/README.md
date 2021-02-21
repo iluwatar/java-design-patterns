@@ -9,7 +9,8 @@ tags:
 ---
 
 ## Intent
-Monitor pattern is used to create thread-safe object . In the concurrent application to prevent conflict between threads .
+Monitor pattern is used to create thread-safe objects and prevent conflicts between threads in concurrent applications.
+
 ## Explanation
 
 In plain words
