@@ -61,7 +61,7 @@ public class Main {
     }
 }
 
-//We call this class as monitor !
+// Bank class implements the Monitor pattern
 class Bank {
 
     private int[] accounts;
