@@ -30,8 +30,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * <p>The Monitor pattern is use in concurrent algorithm and a good way to achieve mutual exclusive
- * and a good solution to prevent critical section </p>
+ * <p>The Monitor pattern is used in concurrent algorithms to achieve mutual exclusion.</p>
  *
  * <p>Bank is a simple class that transfers money from an account to another account using
  * {@link Bank#transfer}. It can also return the balance of the bank account stored in the bank.</p>
