@@ -4,7 +4,7 @@
 
 # Design patterns implemented in Java
 
-![Java CI with Maven](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI%20with%20Maven/badge.svg)
+![Java CI](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=ncloc)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
@@ -15,7 +15,7 @@
 
 <br/>
 
-Read in different language : [![CN](/assets/flags/CN.png)**CN**](/zh/README.md),[![KR](/assets/flags/KR.png)**KR**](/ko/README.md),[![FR](/assets/flags/FR.png)**FR**](/fr/README.md),[![TR](/assets/flags/TR.png)**TR**](/tr/README.md),[![AR](/assets/flags/AR.png)**AR**](/ar/README.md),
+Read in different language : [![CN](/assets/flags/CN.png)**CN**](/zh/README.md), [![KR](/assets/flags/KR.png)**KR**](/ko/README.md), [![FR](/assets/flags/FR.png)**FR**](/fr/README.md), [![TR](/assets/flags/TR.png)**TR**](/tr/README.md), [![AR](/assets/flags/AR.png)**AR**](/ar/README.md)
 
 <br/>
 
