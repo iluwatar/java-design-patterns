@@ -15,7 +15,7 @@ Monitor pattern is used to create thread-safe objects and prevent conflicts betw
 
 In plain words
 
-> Monitor pattern is used when we have critical section or race condition on shared resource in your application so we have to use mutual exclusion to solve this problem ! one of the ways to achieve mutual exclusion is Monitor pattern that invented by Tony Hoare.
+> Monitor pattern is used to enforce single-threaded access to data. Only one thread at a time is allowed to execute code within the monitor object.
 
 Wikipedia says
 
