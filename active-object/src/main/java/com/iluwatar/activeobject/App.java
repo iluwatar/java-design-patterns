@@ -2,6 +2,7 @@ package com.iluwatar.activeobject;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -39,6 +40,12 @@ public class App {
 				
 			});
 		}
+		try {
+			e.awaitTermination(1, TimeUnit.SECONDS);
+		} catch (InterruptedException e1) {
+			LOGGER.log(Level.SEVERE, e1.getMessage());
+		}
+		System.exit(1);
 	}
 
 }
