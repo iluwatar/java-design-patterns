@@ -30,9 +30,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
- * @author Noam Greenshtain
- * 
  * The Active Object pattern helps to solve synchronization difficulties without using 
  * 'synchronized' methods.The active object will contain a thread-safe data structure 
  * (such as BlockingQueue) and use to synchronize method calls by moving the logic of the method
@@ -42,7 +39,7 @@ import org.slf4j.LoggerFactory;
  */
 public class App implements Runnable{
   
-  private final Logger LOGGER = LoggerFactory.getLogger(ActiveCounter.class.getName());
+  private final Logger logger = LoggerFactory.getLogger(ActiveCounter.class.getName());
   
   private final int WORKERS = 20;
 
@@ -52,32 +49,32 @@ public class App implements Runnable{
    * @param args command line args
    */
   public static void main(String[] args) {  
-	var app = new App();
-	app.run();
+    var app = new App();
+    app.run();
   }
   
   @Override
   public void run() {
-	ActiveCounter counter = new ActiveCounter();
-	ExecutorService e = Executors.newCachedThreadPool();
-	for (int i = 0;i < WORKERS;i++) {
-	  e.execute(new Runnable() {      
-	    @Override
-	    public void run() {
-	      try {
-	        counter.incremenet();
-	        counter.printVal();
-	       } catch (InterruptedException e) {
-	        LOGGER.error(e.getMessage());
-	      }
-	    }    
-	  });
-	}
-	try {
-	  e.awaitTermination(1, TimeUnit.SECONDS);
-	} catch (InterruptedException e1) {
-	  LOGGER.error(e1.getMessage());
-	}
-	System.exit(1); 
+    ActiveCounter counter = new ActiveCounter();
+    ExecutorService e = Executors.newCachedThreadPool();
+    for (int i = 0;i < WORKERS;i++) {
+      e.execute(new Runnable() {      
+        @Override
+        public void run() {
+          try {
+            counter.incremenet();
+            counter.printVal();
+           } catch (InterruptedException e) {
+            logger.error(e.getMessage());
+          }
+        }    
+      });
+    }
+    try {
+      e.awaitTermination(1, TimeUnit.SECONDS);
+    } catch (InterruptedException e1) {
+      logger.error(e1.getMessage());
+    }
+    System.exit(1); 
   }
 }

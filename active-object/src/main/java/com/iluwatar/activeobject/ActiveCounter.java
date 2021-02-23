@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ActiveCounter {
   
-  private final Logger LOGGER = LoggerFactory.getLogger(ActiveCounter.class.getName());
+  private final Logger logger = LoggerFactory.getLogger(ActiveCounter.class.getName());
 
   private Integer val;
 
@@ -24,14 +24,14 @@ public class ActiveCounter {
   public ActiveCounter() {
     this.requests = new LinkedBlockingQueue<Runnable>();
     this.val = 0;
-    new Thread (new Runnable() {
+    new Thread(new Runnable() {
         @Override
         public void run() {
           while (true) {
             try {
               requests.take().run();
             } catch (InterruptedException e) { 
-              LOGGER.error(e.getMessage());
+              logger.error(e.getMessage());
             }
           }
         }
@@ -41,14 +41,14 @@ public class ActiveCounter {
 
   /**
    * Zerorizes val property.
-   * @throws InterruptedException
+   * @throws InterruptedException due to firing a new Runnable.
    */
   public void zerorize() throws InterruptedException {
     requests.put(new Runnable() {
         @Override
         public void run() { 
           val = 0; 
-          LOGGER.info("val has been set to 0.");
+          logger.info("val has been set to 0.");
         }
       }
     );
@@ -56,14 +56,14 @@ public class ActiveCounter {
 
   /**
    * Incremented val property by one.
-   * @throws InterruptedException
+   * @throws InterruptedException due to firing a new Runnable.
    */
   public void incremenet() throws InterruptedException {
     requests.put(new Runnable() {
         @Override
         public void run() { 
           val++; 
-          LOGGER.info("val has been incremented.");
+          logger.info("val has been incremented.");
         }
       }
     );
@@ -71,13 +71,13 @@ public class ActiveCounter {
 
   /**
    * Logging the current value of val property.
-   * @throws InterruptedException
+   * @throws InterruptedException due to firing a new Runnable.
    */
   public void printVal() throws InterruptedException {
     requests.put(new Runnable() {
         @Override
         public void run() { 
-          LOGGER.info(val.toString());
+          logger.info(val.toString());
         }
       }
     );
