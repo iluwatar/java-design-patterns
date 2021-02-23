@@ -1,0 +1,20 @@
+@startuml
+package com.iluwatar.activeobject {
+  class ActiveCounter {
+    - logger : Logger
+    - requests : BlockingQueue<Runnable>
+    - val : Integer
+    + ActiveCounter()
+    + incremenet()
+    + printVal()
+    + zerorize()
+  }
+  class App {
+    - logger : Logger
+    - workers : int
+    + App()
+    + main(args : String[]) {static}
+    + run()
+  }
+}
+@enduml

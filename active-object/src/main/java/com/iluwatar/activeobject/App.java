@@ -61,12 +61,12 @@ public class App implements Runnable {
       e.execute(new Runnable() {      
         @Override
         public void run() {
-         try {
+          try {
             counter.incremenet();
             counter.printVal();
-           } catch (InterruptedException e) {
+          } catch (InterruptedException e) {
             logger.error(e.getMessage());
-         }
+          }
         }    
       });
     }
