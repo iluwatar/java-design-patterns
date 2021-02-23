@@ -3,9 +3,13 @@ package com.iluwatar.activeobject;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ActiveCounter {
 	
-    private int val;
+	private final static Logger LOGGER = LoggerFactory.getLogger(ActiveCounter.class.getName());
+    private Integer val;
     private BlockingQueue<Runnable> requests;
 
     public ActiveCounter() {
@@ -32,7 +36,7 @@ public class ActiveCounter {
                 @Override
                 public void run() { 
                     val = 0; 
-                    System.out.println("val has been set to 0.");
+                    LOGGER.info("val has been set to 0.");
                 }
             }
         );
@@ -43,7 +47,7 @@ public class ActiveCounter {
                 @Override
                 public void run() { 
                     val++; 
-                    System.out.println("val has been incremented.");
+                    LOGGER.info("val has been incremented.");
                 }
             }
         );
@@ -53,7 +57,7 @@ public class ActiveCounter {
     	requests.put(new Runnable() {
                 @Override
                 public void run() { 
-                    System.out.println(val);
+                	LOGGER.info(val.toString());
                 }
             }
         );

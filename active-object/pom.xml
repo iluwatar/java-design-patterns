@@ -42,22 +42,24 @@
 		</dependency>
 	</dependencies>
 	<build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-			<executions>
-				<execution>
-					<configuration>
-						<archive>
-							<manifest>
-								<mainClass>com.iluwatar.activeobject.App</mainClass>
-							</manifest>
-						</archive>
-					</configuration>
-				</execution>
-			</executions>
-      </plugin>
-    </plugins>
-  </build>
+		<plugins>
+			<!-- Maven assembly plugin is invoked with default setting which we have 
+				in parent pom and specifying the class having main method -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>com.iluwatar.activeobject.App</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
