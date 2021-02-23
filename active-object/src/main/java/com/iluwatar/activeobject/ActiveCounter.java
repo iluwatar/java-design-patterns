@@ -4,6 +4,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 /**
  * ActiveCounter class is the active object example.
  * @author Noam Greenshtain
@@ -11,12 +12,15 @@ import org.slf4j.LoggerFactory;
  */
 public class ActiveCounter {
   
-  private final static Logger LOGGER = LoggerFactory.getLogger(ActiveCounter.class.getName());
+  private final Logger LOGGER = LoggerFactory.getLogger(ActiveCounter.class.getName());
 
   private Integer val;
 
   private BlockingQueue<Runnable> requests;
 
+  /**
+   * Builder and initialization.
+   */
   public ActiveCounter() {
     this.requests = new LinkedBlockingQueue<Runnable>();
     this.val = 0;
@@ -26,14 +30,15 @@ public class ActiveCounter {
           while (true) {
             try {
               requests.take().run();
-            } catch (InterruptedException e) {   
-              
+            } catch (InterruptedException e) { 
+              LOGGER.error(e.getMessage());
             }
           }
         }
       }
     ).start();
   }
+
   /**
    * Zerorizes val property.
    * @throws InterruptedException
@@ -48,6 +53,7 @@ public class ActiveCounter {
       }
     );
   }
+
   /**
    * Incremented val property by one.
    * @throws InterruptedException
@@ -62,6 +68,7 @@ public class ActiveCounter {
       }
     );
   }
+
   /**
    * Logging the current value of val property.
    * @throws InterruptedException
