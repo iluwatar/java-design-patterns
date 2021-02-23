@@ -37,11 +37,11 @@ import org.slf4j.LoggerFactory;
  * 
  * <p>In this example, we fire 20 threads to modify a value in the target class.
  */
-public class App implements Runnable{
+public class App implements Runnable {
   
   private final Logger logger = LoggerFactory.getLogger(ActiveCounter.class.getName());
   
-  private final int WORKERS = 20;
+  private final int workers = 20;
 
   /**
    * Program entry point.
@@ -57,16 +57,16 @@ public class App implements Runnable{
   public void run() {
     ActiveCounter counter = new ActiveCounter();
     ExecutorService e = Executors.newCachedThreadPool();
-    for (int i = 0;i < WORKERS;i++) {
+    for (int i = 0;i < workers;i++) {
       e.execute(new Runnable() {      
         @Override
         public void run() {
-          try {
+         try {
             counter.incremenet();
             counter.printVal();
            } catch (InterruptedException e) {
             logger.error(e.getMessage());
-          }
+         }
         }    
       });
     }
