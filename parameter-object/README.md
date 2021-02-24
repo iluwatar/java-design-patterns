@@ -131,8 +131,8 @@ public class ParameterObject {
 
 ## Applicability
 
-This pattern shows us the way to have Default Parameters for a method in Java as the language doesn't Default Parameters feature out of the box. 
+This pattern shows us the way to have default parameters for a method in Java as the language doesn't default parameters feature out of the box. 
 
 ## Credits
 
-Reference Article: http://dolszewski.com/java/java-default-parameters
+- [Does Java have default parameters?](http://dolszewski.com/java/java-default-parameters)

@@ -76,6 +76,12 @@ public class ParameterObject {
     this.sortOrder = sortOrder;
   }
 
+  @Override
+  public String toString() {
+    return String.format("ParameterObject[type='%s', sortBy='%s', sortOrder='%s']",
+        type, sortBy, sortOrder);
+  }
+
   public static final class Builder {
 
     private String type;

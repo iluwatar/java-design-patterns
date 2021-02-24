@@ -56,7 +56,7 @@ public class App {
         .withType("sneakers")
         .sortBy("brand")
         .build();
-
+    LOGGER.info(params.toString());
     LOGGER.info(new SearchService().search(params));
   }
 }
