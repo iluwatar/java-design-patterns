@@ -66,7 +66,7 @@ public abstract class ActiveCreature {
     requests.put(new Runnable() {
         @Override
         public void run() { 
-          logger.info("{} has started to roam and the wastelands.",name());
+        	logger.info("{} has started to in the wastelands.",name());
         }
       }
     );
