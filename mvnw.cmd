@@ -1,21 +1,25 @@
-@REM ----------------------------------------------------------------------------
-@REM Licensed to the Apache Software Foundation (ASF) under one
-@REM or more contributor license agreements.  See the NOTICE file
-@REM distributed with this work for additional information
-@REM regarding copyright ownership.  The ASF licenses this file
-@REM to you under the Apache License, Version 2.0 (the
-@REM "License"); you may not use this file except in compliance
-@REM with the License.  You may obtain a copy of the License at
 @REM
-@REM    http://www.apache.org/licenses/LICENSE-2.0
+@REM The MIT License
+@REM Copyright © 2014-2021 Ilkka Seppälä
 @REM
-@REM Unless required by applicable law or agreed to in writing,
-@REM software distributed under the License is distributed on an
-@REM "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-@REM KIND, either express or implied.  See the License for the
-@REM specific language governing permissions and limitations
-@REM under the License.
-@REM ----------------------------------------------------------------------------
+@REM Permission is hereby granted, free of charge, to any person obtaining a copy
+@REM of this software and associated documentation files (the "Software"), to deal
+@REM in the Software without restriction, including without limitation the rights
+@REM to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+@REM copies of the Software, and to permit persons to whom the Software is
+@REM furnished to do so, subject to the following conditions:
+@REM
+@REM The above copyright notice and this permission notice shall be included in
+@REM all copies or substantial portions of the Software.
+@REM
+@REM THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+@REM IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+@REM FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+@REM AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+@REM LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+@REM OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+@REM THE SOFTWARE.
+@REM
 
 @REM ----------------------------------------------------------------------------
 @REM Maven Start Up Batch script
