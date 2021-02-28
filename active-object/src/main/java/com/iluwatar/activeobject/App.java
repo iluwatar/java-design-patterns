@@ -23,9 +23,6 @@
 
 package com.iluwatar.activeobject;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,9 +36,9 @@ import org.slf4j.LoggerFactory;
  */
 public class App implements Runnable {
   
-  private final Logger logger = LoggerFactory.getLogger(ActiveCounter.class.getName());
+  private final Logger logger = LoggerFactory.getLogger(ActiveCreature.class.getName());
   
-  private final int workers = 20;
+  private final Integer creatures = 3;
 
   /**
    * Program entry point.
@@ -55,25 +52,16 @@ public class App implements Runnable {
   
   @Override
   public void run() {
-    ActiveCounter counter = new ActiveCounter();
-    ExecutorService e = Executors.newCachedThreadPool();
-    for (int i = 0;i < workers;i++) {
-      e.execute(new Runnable() {      
-        @Override
-        public void run() {
-          try {
-            counter.incremenet();
-            counter.printVal();
-          } catch (InterruptedException e) {
-            logger.error(e.getMessage());
-          }
-        }    
-      });
-    }
+    ActiveCreature creature;
     try {
-      e.awaitTermination(1, TimeUnit.SECONDS);
-    } catch (InterruptedException e1) {
-      logger.error(e1.getMessage());
+      for (int i = 0;i < creatures;i++) {
+        creature = new Orc(Orc.class.getSimpleName().toString() + i);
+        creature.eat();
+        creature.roam();
+      }
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      logger.error(e.getMessage());
     }
     Runtime.getRuntime().exit(1);
   }

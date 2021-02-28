@@ -2,30 +2,31 @@ package com.iluwatar.activeobject;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * ActiveCounter class is the active object example.
+ * ActiveCreature class is the base of the active object example.
  * @author Noam Greenshtain
  *
  */
-public class ActiveCounter {
+public abstract class ActiveCreature {
   
-  private final Logger logger = LoggerFactory.getLogger(ActiveCounter.class.getName());
-
-  private Integer val;
+  private final Logger logger = LoggerFactory.getLogger(ActiveCreature.class.getName());
 
   private BlockingQueue<Runnable> requests;
+  
+  private String name;
   
   private Thread thread;
 
   /**
    * Constructor and initialization.
    */
-  public ActiveCounter() {
+  public ActiveCreature(String name) {
+    this.name = name;
     this.requests = new LinkedBlockingQueue<Runnable>();
-    this.val = 0;
     thread = new Thread(new Runnable() {
         @Override
         public void run() {
@@ -43,46 +44,35 @@ public class ActiveCounter {
   }
 
   /**
-   * Zerorizes val property.
+   * Eats the porridge.
    * @throws InterruptedException due to firing a new Runnable.
    */
-  public void zerorize() throws InterruptedException {
+  public void eat() throws InterruptedException {
     requests.put(new Runnable() {
         @Override
         public void run() { 
-          val = 0; 
-          logger.info("val has been set to 0.");
+          logger.info("{} is eating!",name());
+          logger.info("{} has finished eating!",name());
         }
       }
     );
   }
 
   /**
-   * Incremented val property by one.
+   * Roam in the wastelands.
    * @throws InterruptedException due to firing a new Runnable.
    */
-  public void incremenet() throws InterruptedException {
+  public void roam() throws InterruptedException {
     requests.put(new Runnable() {
         @Override
         public void run() { 
-          val++; 
-          logger.info("val has been incremented.");
+          logger.info("{} has started to roam and the wastelands.",name());
         }
       }
     );
   }
-
-  /**
-   * Logging the current value of val property.
-   * @throws InterruptedException due to firing a new Runnable.
-   */
-  public void printVal() throws InterruptedException {
-    requests.put(new Runnable() {
-        @Override
-        public void run() { 
-          logger.info(val.toString());
-        }
-      }
-    );
-  }   
+  
+  public String name() {
+    return this.name;
+  }
 }
