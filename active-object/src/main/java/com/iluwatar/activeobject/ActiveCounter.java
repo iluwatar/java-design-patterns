@@ -17,14 +17,16 @@ public class ActiveCounter {
   private Integer val;
 
   private BlockingQueue<Runnable> requests;
+  
+  private Thread thread;
 
   /**
-   * Builder and initialization.
+   * Constructor and initialization.
    */
   public ActiveCounter() {
     this.requests = new LinkedBlockingQueue<Runnable>();
     this.val = 0;
-    new Thread(new Runnable() {
+    thread = new Thread(new Runnable() {
         @Override
         public void run() {
           while (true) {
@@ -36,7 +38,8 @@ public class ActiveCounter {
           }
         }
       }
-    ).start();
+    );
+    thread.start();
   }
 
   /**

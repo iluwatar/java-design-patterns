@@ -75,6 +75,6 @@ public class App implements Runnable {
     } catch (InterruptedException e1) {
       logger.error(e1.getMessage());
     }
-    System.exit(1); 
+    Runtime.getRuntime().exit(1);
   }
 }
