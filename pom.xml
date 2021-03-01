@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The MIT License Copyright © 2014-2019 Ilkka Seppälä Permission is hereby
-	granted, free of charge, to any person obtaining a copy of this software
-	and associated documentation files (the "Software"), to deal in the Software
-	without restriction, including without limitation the rights to use, copy,
-	modify, merge, publish, distribute, sublicense, and/or sell copies of the
-	Software, and to permit persons to whom the Software is furnished to do so,
-	subject to the following conditions: The above copyright notice and this
-	permission notice shall be included in all copies or substantial portions
-	of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
-	KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-	MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-	NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-	DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-	ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-	DEALINGS IN THE SOFTWARE. -->
+<!--
+
+    The MIT License
+    Copyright © 2014-2021 Ilkka Seppälä
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.23.0-SNAPSHOT</version>
+    <version>1.24.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <inceptionYear>2014-2019</inceptionYear>
+    <inceptionYear>2014-2021</inceptionYear>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
         <hibernate.version>5.2.18.Final</hibernate.version>
         <spring.version>5.0.13.RELEASE</spring.version>
         <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
@@ -35,11 +45,11 @@
         <junit-vintage.version>${junit.version}.2</junit-vintage.version>
         <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
         <compiler.version>3.8.1</compiler.version>
-        <jacoco.version>0.8.4</jacoco.version>
+        <jacoco.version>0.8.6</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <camel.version>2.24.0</camel.version>
         <guava.version>19.0</guava.version>
-        <mockito.version>1.10.19</mockito.version>
+        <mockito.version>3.5.6</mockito.version>
         <htmlunit.version>2.22</htmlunit.version>
         <guice.version>4.0</guice.version>
         <mongo-java-driver.version>3.12.1</mongo-java-driver.version>
@@ -52,8 +62,15 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.2</annotation-api.version>
-        <system-rules.version>1.19.0</system-rules.version>
-        <urm.version>1.4.8</urm.version>
+        <system-lambda.version>1.1.0</system-lambda.version>
+        <urm.version>2.0.0</urm.version>
+        <mockito-junit-jupiter.version>3.5.0</mockito-junit-jupiter.version>
+        <!-- SonarCloud -->
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>iluwatar</sonar.organization>
+        <sonar.projectKey>iluwatar_java-design-patterns</sonar.projectKey>
+        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+        <sonar.projectName>Java Design Patterns</sonar.projectName>
     </properties>
     <modules>
         <module>abstract-factory</module>
@@ -82,6 +99,7 @@
         <module>state</module>
         <module>strategy</module>
         <module>template-method</module>
+        <module>version-number</module>
         <module>visitor</module>
         <module>double-checked-locking</module>
         <module>servant</module>
@@ -133,8 +151,6 @@
         <module>module</module>
         <module>monad</module>
         <module>mute-idiom</module>
-        <module>mutex</module>
-        <module>semaphore</module>
         <module>hexagonal</module>
         <module>abstract-document</module>
         <module>aggregator-microservices</module>
@@ -184,7 +200,15 @@
         <module>combinator</module>
         <module>update-method</module>
         <module>leader-followers</module>
+        <module>strangler</module>
         <module>arrange-act-assert</module>
+        <module>transaction-script</module>
+        <module>registry</module>
+        <module>filterer</module>
+        <module>factory</module>
+        <module>separated-interface</module>
+        <module>special-case</module>
+        <module>parameter-object</module>
     </modules>
 
     <repositories>
@@ -196,6 +220,18 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>1.9.7</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy-agent</artifactId>
+                <version>1.9.7</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
@@ -328,8 +364,8 @@
             </dependency>
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
-                <artifactId>system-rules</artifactId>
-                <version>${system-rules.version}</version>
+                <artifactId>system-lambda</artifactId>
+                <version>${system-lambda.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -368,10 +404,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M3</version>
-                    <configuration>
-                        <argLine>-Xmx1024M ${argLine}</argLine>
-                    </configuration>
+                    <version>3.0.0-M5</version>
                 </plugin>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
@@ -399,6 +432,11 @@
                             </configuration>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -462,7 +500,7 @@
                     </properties>
                     <skipExistingHeaders>true</skipExistingHeaders>
                     <headerDefinitions>
-                        <headerDefinition>${projectRoot}${file.separator}license-plugin-header-style.xml</headerDefinition>
+                        <headerDefinition>license-plugin-header-style.xml</headerDefinition>
                     </headerDefinitions>
                     <mapping>
                         <java>SLASHSTAR_CUSTOM_STYLE</java>
@@ -528,14 +566,4 @@
 
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>
-        </plugins>
-    </reporting>
-
 </project>

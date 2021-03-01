@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,9 +30,9 @@ import com.iluwatar.iterator.Iterator;
  */
 public class TreasureChestItemIterator implements Iterator<Item> {
 
-  private TreasureChest chest;
+  private final TreasureChest chest;
   private int idx;
-  private ItemType type;
+  private final ItemType type;
 
   /**
    * Constructor.

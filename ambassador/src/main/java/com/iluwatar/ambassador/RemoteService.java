@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -62,7 +62,7 @@ public class RemoteService implements RemoteServiceInterface {
    *
    * @param value integer value to be multiplied.
    * @return if waitTime is less than {@link RemoteService#THRESHOLD}, it returns value * 10,
-   *     otherwise {@link RemoteServiceInterface#FAILURE}.
+   *     otherwise {@link RemoteServiceStatus#FAILURE}.
    */
   @Override
   public long doRemoteFunction(int value) {
@@ -74,6 +74,7 @@ public class RemoteService implements RemoteServiceInterface {
     } catch (InterruptedException e) {
       LOGGER.error("Thread sleep state interrupted", e);
     }
-    return waitTime <= THRESHOLD ? value * 10 : FAILURE;
+    return waitTime <= THRESHOLD ? value * 10
+            : RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue();
   }
 }

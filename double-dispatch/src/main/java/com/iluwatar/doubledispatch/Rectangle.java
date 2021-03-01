@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,10 @@ package com.iluwatar.doubledispatch;
  */
 public class Rectangle {
 
-  private int left;
-  private int top;
-  private int right;
-  private int bottom;
+  private final int left;
+  private final int top;
+  private final int right;
+  private final int bottom;
 
   /**
    * Constructor.

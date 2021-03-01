@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -60,7 +60,7 @@ public class CashAAATest {
     //Act
     cash.plus(4);
     //Assert
-    assertEquals(cash.count(), 7);
+    assertEquals(7, cash.count());
   }
 
   @Test
@@ -71,7 +71,7 @@ public class CashAAATest {
     var result = cash.minus(5);
     //Assert
     assertTrue(result);
-    assertEquals(cash.count(), 3);
+    assertEquals(3, cash.count());
   }
 
   @Test
@@ -82,7 +82,7 @@ public class CashAAATest {
     var result = cash.minus(6);
     //Assert
     assertFalse(result);
-    assertEquals(cash.count(), 1);
+    assertEquals(1, cash.count());
   }
 
   @Test
@@ -94,6 +94,6 @@ public class CashAAATest {
     var result = cash.minus(3);
     //Assert
     assertTrue(result);
-    assertEquals(cash.count(), 8);
+    assertEquals(8, cash.count());
   }
 }

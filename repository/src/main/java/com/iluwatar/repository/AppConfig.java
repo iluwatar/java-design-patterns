@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 
 package com.iluwatar.repository;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 import javax.sql.DataSource;
@@ -89,7 +88,7 @@ public class AppConfig {
    * Get transaction manager.
    */
   @Bean
-  public JpaTransactionManager transactionManager() throws SQLException {
+  public JpaTransactionManager transactionManager() {
     var transactionManager = new JpaTransactionManager();
     transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
     return transactionManager;

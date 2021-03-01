@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,11 +33,11 @@ import java.util.Random;
 public class Order { //can store all transactions ids also
 
   enum PaymentStatus {
-    NotDone, Trying, Done
+    NOT_DONE, TRYING, DONE
   }
 
   enum MessageSent {
-    NoneSent, PaymentFail, PaymentTrying, PaymentSuccessful
+    NONE_SENT, PAYMENT_FAIL, PAYMENT_TRYING, PAYMENT_SUCCESSFUL
   }
 
   final User user;
@@ -65,8 +65,8 @@ public class Order { //can store all transactions ids also
     }
     this.id = id;
     USED_IDS.put(this.id, true);
-    this.paid = PaymentStatus.Trying;
-    this.messageSent = MessageSent.NoneSent;
+    this.paid = PaymentStatus.TRYING;
+    this.messageSent = MessageSent.NONE_SENT;
     this.addedToEmployeeHandle = false;
   }
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -51,11 +51,11 @@ public class Client extends JFrame { // NOSONAR
   private static final long serialVersionUID = 1L;
 
   private transient FilterManager filterManager;
-  private JLabel jl;
-  private JTextField[] jtFields;
-  private JTextArea[] jtAreas;
-  private JButton clearButton;
-  private JButton processButton;
+  private final JLabel jl;
+  private final JTextField[] jtFields;
+  private final JTextArea[] jtAreas;
+  private final JButton clearButton;
+  private final JButton processButton;
 
   /**
    * Constructor.

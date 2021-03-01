@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,11 +34,11 @@ public class Reader implements Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Reader.class);
 
-  private Lock readLock;
+  private final Lock readLock;
 
-  private String name;
+  private final String name;
 
-  private long readingTime;
+  private final long readingTime;
 
   /**
    * Create new Reader.

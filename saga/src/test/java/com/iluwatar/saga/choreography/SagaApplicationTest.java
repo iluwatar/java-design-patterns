@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.choreography;
 
 import com.iluwatar.saga.orchestration.SagaApplication;
 import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 
 /***
@@ -31,7 +34,7 @@ import org.junit.Test;
  */
 public class SagaApplicationTest {
   @Test
-  public void mainTest() {
-    SagaApplication.main(new String[]{});
+  public void shouldExecuteWithoutException() {
+    assertDoesNotThrow(() -> SagaApplication.main(new String[]{}));
   }
 }

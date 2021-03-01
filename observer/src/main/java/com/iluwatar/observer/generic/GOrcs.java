@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,21 +36,6 @@ public class GOrcs implements Race {
 
   @Override
   public void update(GWeather weather, WeatherType weatherType) {
-    switch (weatherType) {
-      case COLD:
-        LOGGER.info("The orcs are freezing cold.");
-        break;
-      case RAINY:
-        LOGGER.info("The orcs are dripping wet.");
-        break;
-      case SUNNY:
-        LOGGER.info("The sun hurts the orcs' eyes.");
-        break;
-      case WINDY:
-        LOGGER.info("The orc smell almost vanishes in the wind.");
-        break;
-      default:
-        break;
-    }
+    LOGGER.info("The orcs are facing " + weatherType.getDescription() + " weather now");
   }
 }

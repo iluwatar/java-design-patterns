@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,13 @@
 
 package com.iluwatar.model.view.presenter;
 
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -48,37 +52,22 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
   /**
    * The "OK" button for loading the file.
    */
-  private JButton ok;
+  private final JButton ok;
 
   /**
    * The cancel button.
    */
-  private JButton cancel;
-
-  /**
-   * The information label.
-   */
-  private JLabel info;
-
-  /**
-   * The contents label.
-   */
-  private JLabel contents;
+  private final JButton cancel;
 
   /**
    * The text field for giving the name of the file that we want to open.
    */
-  private JTextField input;
+  private final JTextField input;
 
   /**
    * A text area that will keep the contents of the file opened.
    */
-  private JTextArea area;
-
-  /**
-   * The panel that will hold our widgets.
-   */
-  private JPanel panel;
+  private final JTextArea area;
 
   /**
    * The Presenter component that the frame will interact with.
@@ -95,14 +84,14 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
    */
   public FileSelectorJFrame() {
     super("File Loader");
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.setLayout(null);
     this.setBounds(100, 100, 500, 200);
 
     /*
      * Add the panel.
      */
-    this.panel = new JPanel();
+    var panel = new JPanel();
     panel.setLayout(null);
     this.add(panel);
     panel.setBounds(0, 0, 500, 200);
@@ -111,32 +100,32 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
     /*
      * Add the info label.
      */
-    this.info = new JLabel("File Name :");
-    this.panel.add(info);
+    var info = new JLabel("File Name :");
+    panel.add(info);
     info.setBounds(30, 10, 100, 30);
 
     /*
      * Add the contents label.
      */
-    this.contents = new JLabel("File contents :");
-    this.panel.add(contents);
-    this.contents.setBounds(30, 100, 120, 30);
+    var contents = new JLabel("File contents :");
+    panel.add(contents);
+    contents.setBounds(30, 100, 120, 30);
 
     /*
      * Add the text field.
      */
     this.input = new JTextField(100);
-    this.panel.add(input);
+    panel.add(input);
     this.input.setBounds(150, 15, 200, 20);
 
     /*
      * Add the text area.
      */
     this.area = new JTextArea(100, 100);
-    JScrollPane pane = new JScrollPane(area);
-    pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-    pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-    this.panel.add(pane);
+    var pane = new JScrollPane(area);
+    pane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    pane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
+    panel.add(pane);
     this.area.setEditable(false);
     pane.setBounds(150, 100, 250, 80);
 
@@ -144,7 +133,7 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
      * Add the OK button.
      */
     this.ok = new JButton("OK");
-    this.panel.add(ok);
+    panel.add(ok);
     this.ok.setBounds(250, 50, 100, 25);
     this.ok.addActionListener(this);
 
@@ -152,7 +141,7 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
      * Add the cancel button.
      */
     this.cancel = new JButton("Cancel");
-    this.panel.add(this.cancel);
+    panel.add(this.cancel);
     this.cancel.setBounds(380, 50, 100, 25);
     this.cancel.addActionListener(this);
 

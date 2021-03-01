@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ public enum Content {
   PRODUCTS("Products - This page lists the company's products."), COMPANY(
       "Company - This page displays information about the company.");
 
-  private String title;
+  private final String title;
 
   Content(String title) {
     this.title = title;

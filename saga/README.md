@@ -46,3 +46,4 @@ Use the Saga pattern, if:
 ## Credits
 
 - [Pattern: Saga](https://microservices.io/patterns/data/saga.html)
+- [Saga distributed transactions pattern](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/saga/saga)

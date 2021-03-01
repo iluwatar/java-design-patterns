@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -85,18 +85,21 @@ public class Validator<T> {
   }
 
   /**
-   * Extension for the {@link Validator#validate(Function, Predicate, String)} method, dedicated for
-   * objects, that need to be projected before requested validation.
+   * Extension for the {@link Validator#validate(Predicate, String)} method, dedicated for objects,
+   * that need to be projected before requested validation.
    *
    * @param projection function that gets an objects, and returns projection representing element to
    *                   be validated.
-   * @param validation see {@link Validator#validate(Function, Predicate, String)}
-   * @param message    see {@link Validator#validate(Function, Predicate, String)}
-   * @param <U>        see {@link Validator#validate(Function, Predicate, String)}
+   * @param validation see {@link Validator#validate(Predicate, String)}
+   * @param message    see {@link Validator#validate(Predicate, String)}
+   * @param <U>        see {@link Validator#validate(Predicate, String)}
    * @return this
    */
-  public <U> Validator<T> validate(Function<T, U> projection, Predicate<U> validation,
-                                   String message) {
+  public <U> Validator<T> validate(
+      Function<T, U> projection,
+      Predicate<U> validation,
+      String message
+  ) {
     return validate(projection.andThen(validation::test)::apply, message);
   }
 
@@ -110,7 +113,7 @@ public class Validator<T> {
     if (exceptions.isEmpty()) {
       return obj;
     }
-    IllegalStateException e = new IllegalStateException();
+    var e = new IllegalStateException();
     exceptions.forEach(e::addSuppressed);
     throw e;
   }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -104,7 +104,7 @@ public class VirtualMachineTest {
     bytecode[2] = LITERAL.getIntValue();
     bytecode[3] = 50;                        // health amount
     bytecode[4] = SET_HEALTH.getIntValue();
-    bytecode[5] = LITERAL.getIntValue();;
+    bytecode[5] = LITERAL.getIntValue();
     bytecode[6] = wizardNumber;
     bytecode[7] = GET_HEALTH.getIntValue();
 

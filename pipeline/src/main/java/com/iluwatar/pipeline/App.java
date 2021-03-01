@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -59,8 +59,9 @@ public class App {
       then is expected to receive an input of char[] array since that is the type being returned
       by the previous handler, ConvertToCharArrayHandler.
      */
-    new Pipeline<>(new RemoveAlphabetsHandler())
+    var filters = new Pipeline<>(new RemoveAlphabetsHandler())
         .addHandler(new RemoveDigitsHandler())
         .addHandler(new ConvertToCharArrayHandler());
+    filters.execute("GoYankees123!");
   }
 }

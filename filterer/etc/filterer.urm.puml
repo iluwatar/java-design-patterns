@@ -1,0 +1,96 @@
+@startuml
+package com.iluwatar.filterer.domain {
+  interface Filterer<G, E> {
+    + by(Predicate<? super E>) : G {abstract}
+  }
+}
+package com.iluwatar.filterer {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    - filteringSimpleProbableThreats() {static}
+    - filteringSimpleThreats() {static}
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.filterer.threat {
+  interface ProbabilisticThreatAwareSystem {
+    + filtered() : Filterer<? extends ProbabilisticThreatAwareSystem, ? extends ProbableThreat> {abstract}
+    + threats() : List<? extends ProbableThreat> {abstract}
+  }
+  interface ProbableThreat {
+    + probability() : double {abstract}
+  }
+  class SimpleProbabilisticThreatAwareSystem {
+    - systemId : String
+    - threats : ImmutableList<ProbableThreat>
+    + SimpleProbabilisticThreatAwareSystem(systemId : String, threats : List<ProbableThreat>)
+    + equals(o : Object) : boolean
+    + filtered() : Filterer<? extends ProbabilisticThreatAwareSystem, ? extends ProbableThreat>
+    - filteredGroup(predicate : Predicate<? super ProbableThreat>) : ProbabilisticThreatAwareSystem
+    - filteredItems(predicate : Predicate<? super ProbableThreat>) : List<ProbableThreat>
+    + hashCode() : int
+    + systemId() : String
+    + threats() : List<? extends ProbableThreat>
+    + toString() : String
+  }
+  class SimpleProbableThreat {
+    - probability : double
+    + SimpleProbableThreat(name : String, id : int, threatType : ThreatType, probability : double)
+    + equals(o : Object) : boolean
+    + hashCode() : int
+    + probability() : double
+    + toString() : String
+  }
+  class SimpleThreat {
+    - id : int
+    - name : String
+    - threatType : ThreatType
+    + SimpleThreat(threatType : ThreatType, id : int, name : String)
+    + id() : int
+    + name() : String
+    + toString() : String
+    + type() : ThreatType
+  }
+  class SimpleThreatAwareSystem {
+    - issues : ImmutableList<Threat>
+    - systemId : String
+    + SimpleThreatAwareSystem(systemId : String, issues : List<Threat>)
+    + equals(o : Object) : boolean
+    + filtered() : Filterer<? extends ThreatAwareSystem, ? extends Threat>
+    - filteredGroup(predicate : Predicate<? super Threat>) : ThreatAwareSystem
+    - filteredItems(predicate : Predicate<? super Threat>) : List<Threat>
+    + hashCode() : int
+    + systemId() : String
+    + threats() : List<? extends Threat>
+    + toString() : String
+  }
+  interface Threat {
+    + id() : int {abstract}
+    + name() : String {abstract}
+    + type() : ThreatType {abstract}
+  }
+  interface ThreatAwareSystem {
+    + filtered() : Filterer<? extends ThreatAwareSystem, ? extends Threat> {abstract}
+    + systemId() : String {abstract}
+    + threats() : List<? extends Threat> {abstract}
+  }
+  enum ThreatType {
+    + ROOTKIT {static}
+    + TROJAN {static}
+    + WORM {static}
+    + valueOf(name : String) : ThreatType {static}
+    + values() : ThreatType[] {static}
+  }
+}
+SimpleThreatAwareSystem -->  "-issues" Threat
+SimpleThreat -->  "-threatType" ThreatType
+SimpleProbabilisticThreatAwareSystem -->  "-threats" ProbableThreat
+ProbabilisticThreatAwareSystem --|> ThreatAwareSystem 
+ProbableThreat --|> Threat 
+SimpleProbabilisticThreatAwareSystem ..|> ProbabilisticThreatAwareSystem 
+SimpleProbableThreat ..|> ProbableThreat 
+SimpleProbableThreat --|> SimpleThreat 
+SimpleThreat ..|> Threat 
+SimpleThreatAwareSystem ..|> ThreatAwareSystem 
+@enduml

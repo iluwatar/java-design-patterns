@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,7 @@ public class RenderComponentManager {
 
   private final int numEntities;
 
-  private static final Component[] RENDER_COMPONENTS = new RenderComponent[MAX_ENTITIES];
+  private final Component[] renderComponents = new RenderComponent[MAX_ENTITIES];
 
   public RenderComponentManager(int numEntities) {
     this.numEntities = numEntities;
@@ -51,7 +51,7 @@ public class RenderComponentManager {
    */
   public void start() {
     LOGGER.info("Start Render Game Component ");
-    IntStream.range(0, numEntities).forEach(i -> RENDER_COMPONENTS[i] = new RenderComponent());
+    IntStream.range(0, numEntities).forEach(i -> renderComponents[i] = new RenderComponent());
   }
 
 
@@ -62,7 +62,7 @@ public class RenderComponentManager {
     LOGGER.info("Update Render Game Component ");
     // Process Render.
     IntStream.range(0, numEntities)
-        .filter(i -> RENDER_COMPONENTS.length > i && RENDER_COMPONENTS[i] != null)
-        .forEach(i -> RENDER_COMPONENTS[i].render());
+        .filter(i -> renderComponents.length > i && renderComponents[i] != null)
+        .forEach(i -> renderComponents[i].render());
   }
 }

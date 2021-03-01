@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,14 +40,14 @@ public class AbstractDocumentTest {
   private static final String KEY = "key";
   private static final String VALUE = "value";
 
-  private class DocumentImplementation extends AbstractDocument {
+  private static class DocumentImplementation extends AbstractDocument {
 
     DocumentImplementation(Map<String, Object> properties) {
       super(properties);
     }
   }
 
-  private DocumentImplementation document = new DocumentImplementation(new HashMap<>());
+  private final DocumentImplementation document = new DocumentImplementation(new HashMap<>());
 
   @Test
   public void shouldPutAndGetValue() {

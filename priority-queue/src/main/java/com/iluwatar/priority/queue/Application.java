@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,19 +37,18 @@ public class Application {
    */
   public static void main(String[] args) throws Exception {
 
-    var queueManager = new QueueManager(100);
+    var queueManager = new QueueManager(10);
 
     // push some message to queue
     // Low Priority message
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < 10; i++) {
       queueManager.publishMessage(new Message("Low Message Priority", 0));
     }
 
     // High Priority message
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < 10; i++) {
       queueManager.publishMessage(new Message("High Message Priority", 1));
     }
-
 
     // run worker
     var worker = new Worker(queueManager);

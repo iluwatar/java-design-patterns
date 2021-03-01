@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -105,7 +105,7 @@ public final class CharacterStepBuilder {
     private String wizardClass;
     private String weapon;
     private String spell;
-    private List<String> abilities = new ArrayList<>();
+    private final List<String> abilities = new ArrayList<>();
 
     @Override
     public ClassStep name(String name) {

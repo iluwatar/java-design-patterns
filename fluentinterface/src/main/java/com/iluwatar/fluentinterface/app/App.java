@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,6 @@
  */
 
 package com.iluwatar.fluentinterface.app;
-
-import static java.lang.String.valueOf;
 
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.lazy.LazyFluentIterable;
@@ -94,7 +92,7 @@ public class App {
         .filter(positives())
         .first(4)
         .last(2)
-        .map(number -> "String[" + valueOf(number) + "]")
+        .map(number -> "String[" + number + "]")
         .asList();
     prettyPrint("The lazy list contains the last two of the first four positive numbers "
         + "mapped to Strings: ", lastTwoOfFirstFourStringMapped);

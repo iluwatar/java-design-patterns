@@ -1,0 +1,61 @@
+@startuml
+
+package com.iluwatar.strangler {
+    class App {
+        + main(args : String[]) {static}
+    }
+
+    class OldArithmetic {
+        - LOGGER : Logger {static}
+        - VERSION : String {static}
+        - source : OldSource
+        + sum(nums : int...)
+        + mul(nums : int...)
+    }
+
+    class HalfArithmetic {
+        - LOGGER : Logger {static}
+        - VERSION : String {static}
+        - oldSource : OldSource
+        - newSource : HalfSource
+        + sum(nums : int...)
+        + mul(nums : int...)
+        + ifHasZero(nums : int...)
+    }
+
+    class NewArithmetic {
+        - LOGGER : Logger {static}
+        - VERSION : String {static}
+        - source : NewSource
+        + sum(nums : int...)
+        + mul(nums : int...)
+        + ifHasZero(nums : int...)
+    }
+
+    class OldSource {
+        - LOGGER : Logger {static}
+        - VERSION : String {static}
+        + accumulateSum(nums : int...)
+        + accumulateMul(nums : int...)
+    }
+
+    class HalfSource {
+        - LOGGER : Logger {static}
+        - VERSION : String {static}
+        + accumulateSum(nums : int...)
+        + ifNonZero(nums : int...)
+    }
+
+    class NewSource {
+        - LOGGER : Logger {static}
+        - VERSION : String {static}
+        + accumulateSum(nums : int...)
+        + accumulateMul(nums : int...)
+        + ifNonZero(nums : int...)
+    }
+}
+OldArithmetic o--> OldSource
+HalfArithmetic o--> OldSource
+HalfArithmetic o--> HalfSource
+NewArithmetic o--> NewSource
+@enduml

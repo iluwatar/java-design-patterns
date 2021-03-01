@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,12 +36,15 @@ public class MongoEventLog implements LotteryEventLog {
 
   private static final String DEFAULT_DB = "lotteryDB";
   private static final String DEFAULT_EVENTS_COLLECTION = "events";
+  private static final String EMAIL = "email";
+  private static final String PHONE = "phone";
+  public static final String MESSAGE = "message";
 
   private MongoClient mongoClient;
   private MongoDatabase database;
   private MongoCollection<Document> eventsCollection;
 
-  private StdOutEventLog stdOutEventLog = new StdOutEventLog();
+  private final StdOutEventLog stdOutEventLog = new StdOutEventLog();
 
   /**
    * Constructor.
@@ -107,41 +110,41 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void ticketSubmitted(PlayerDetails details) {
-    var document = new Document("email", details.getEmail());
-    document.put("phone", details.getPhoneNumber());
+    var document = new Document(EMAIL, details.getEmail());
+    document.put(PHONE, details.getPhoneNumber());
     document.put("bank", details.getBankAccount());
     document
-        .put("message", "Lottery ticket was submitted and bank account was charged for 3 credits.");
+        .put(MESSAGE, "Lottery ticket was submitted and bank account was charged for 3 credits.");
     eventsCollection.insertOne(document);
     stdOutEventLog.ticketSubmitted(details);
   }
 
   @Override
   public void ticketSubmitError(PlayerDetails details) {
-    var document = new Document("email", details.getEmail());
-    document.put("phone", details.getPhoneNumber());
+    var document = new Document(EMAIL, details.getEmail());
+    document.put(PHONE, details.getPhoneNumber());
     document.put("bank", details.getBankAccount());
-    document.put("message", "Lottery ticket could not be submitted because lack of funds.");
+    document.put(MESSAGE, "Lottery ticket could not be submitted because lack of funds.");
     eventsCollection.insertOne(document);
     stdOutEventLog.ticketSubmitError(details);
   }
 
   @Override
   public void ticketDidNotWin(PlayerDetails details) {
-    var document = new Document("email", details.getEmail());
-    document.put("phone", details.getPhoneNumber());
+    var document = new Document(EMAIL, details.getEmail());
+    document.put(PHONE, details.getPhoneNumber());
     document.put("bank", details.getBankAccount());
-    document.put("message", "Lottery ticket was checked and unfortunately did not win this time.");
+    document.put(MESSAGE, "Lottery ticket was checked and unfortunately did not win this time.");
     eventsCollection.insertOne(document);
     stdOutEventLog.ticketDidNotWin(details);
   }
 
   @Override
   public void ticketWon(PlayerDetails details, int prizeAmount) {
-    var document = new Document("email", details.getEmail());
-    document.put("phone", details.getPhoneNumber());
+    var document = new Document(EMAIL, details.getEmail());
+    document.put(PHONE, details.getPhoneNumber());
     document.put("bank", details.getBankAccount());
-    document.put("message", String
+    document.put(MESSAGE, String
         .format("Lottery ticket won! The bank account was deposited with %d credits.",
             prizeAmount));
     eventsCollection.insertOne(document);
@@ -150,10 +153,10 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void prizeError(PlayerDetails details, int prizeAmount) {
-    var document = new Document("email", details.getEmail());
-    document.put("phone", details.getPhoneNumber());
+    var document = new Document(EMAIL, details.getEmail());
+    document.put(PHONE, details.getPhoneNumber());
     document.put("bank", details.getBankAccount());
-    document.put("message", String
+    document.put(MESSAGE, String
         .format("Lottery ticket won! Unfortunately the bank credit transfer of %d failed.",
             prizeAmount));
     eventsCollection.insertOne(document);

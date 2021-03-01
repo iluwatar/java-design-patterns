@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,11 +39,11 @@ import java.util.List;
  */
 public class Result {
   // A list to collect the date values created in one thread
-  private List<Date> dateList = new ArrayList<>();
+  private final List<Date> dateList = new ArrayList<>();
 
   // A list to collect Exceptions thrown in one threads (should be none in
   // this example)
-  private List<String> exceptionList = new ArrayList<>();
+  private final List<String> exceptionList = new ArrayList<>();
 
   /**
    * Get list of date values collected within a thread execution.

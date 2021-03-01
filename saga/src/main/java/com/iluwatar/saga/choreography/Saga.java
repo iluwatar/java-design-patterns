@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class Saga {
 
-  private List<Chapter> chapters;
+  private final List<Chapter> chapters;
   private int pos;
   private boolean forward;
   private boolean finished;
@@ -153,7 +153,7 @@ public class Saga {
    * outcoming parameter).
    */
   public static class Chapter {
-    private String name;
+    private final String name;
     private ChapterResult result;
     private Object inValue;
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,7 @@ public class AiComponentManager {
 
   private final int numEntities;
 
-  private static final Component[] AI_COMPONENTS = new AiComponent[MAX_ENTITIES];
+  private final Component[] aiComponents = new AiComponent[MAX_ENTITIES];
 
   public AiComponentManager(int numEntities) {
     this.numEntities = numEntities;
@@ -51,7 +51,7 @@ public class AiComponentManager {
    */
   public void start() {
     LOGGER.info("Start AI Game Component");
-    IntStream.range(0, numEntities).forEach(i -> AI_COMPONENTS[i] = new AiComponent());
+    IntStream.range(0, numEntities).forEach(i -> aiComponents[i] = new AiComponent());
   }
 
   /**
@@ -60,7 +60,7 @@ public class AiComponentManager {
   public void update() {
     LOGGER.info("Update AI Game Component");
     IntStream.range(0, numEntities)
-        .filter(i -> AI_COMPONENTS.length > i && AI_COMPONENTS[i] != null)
-        .forEach(i -> AI_COMPONENTS[i].update());
+        .filter(i -> aiComponents.length > i && aiComponents[i] != null)
+        .forEach(i -> aiComponents[i].update());
   }
 }

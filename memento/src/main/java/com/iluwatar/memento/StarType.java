@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,11 +27,13 @@ package com.iluwatar.memento;
  * StarType enumeration.
  */
 public enum StarType {
+  SUN("sun"),
+  RED_GIANT("red giant"),
+  WHITE_DWARF("white dwarf"),
+  SUPERNOVA("supernova"),
+  DEAD("dead star");
 
-  SUN("sun"), RED_GIANT("red giant"), WHITE_DWARF("white dwarf"), SUPERNOVA("supernova"), DEAD(
-      "dead star"), UNDEFINED("");
-
-  private String title;
+  private final String title;
 
   StarType(String title) {
     this.title = title;

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,10 +43,10 @@ public class PartyImplTest {
    */
   @Test
   public void testPartyAction() {
-    final PartyMember partyMember1 = mock(PartyMember.class);
-    final PartyMember partyMember2 = mock(PartyMember.class);
+    final var partyMember1 = mock(PartyMember.class);
+    final var partyMember2 = mock(PartyMember.class);
 
-    final PartyImpl party = new PartyImpl();
+    final var party = new PartyImpl();
     party.addMember(partyMember1);
     party.addMember(partyMember2);
 
@@ -58,7 +58,6 @@ public class PartyImplTest {
     verify(partyMember2).partyAction(Action.GOLD);
 
     verifyNoMoreInteractions(partyMember1, partyMember2);
-
   }
 
 }

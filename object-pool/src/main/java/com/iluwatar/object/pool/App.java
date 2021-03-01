@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -57,12 +57,14 @@ public class App {
     var pool = new OliphauntPool();
     LOGGER.info(pool.toString());
     var oliphaunt1 = pool.checkOut();
-    LOGGER.info("Checked out {}", oliphaunt1);
+    String checkedOut = "Checked out {}";
+
+    LOGGER.info(checkedOut, oliphaunt1);
     LOGGER.info(pool.toString());
     var oliphaunt2 = pool.checkOut();
-    LOGGER.info("Checked out {}", oliphaunt2);
+    LOGGER.info(checkedOut, oliphaunt2);
     var oliphaunt3 = pool.checkOut();
-    LOGGER.info("Checked out {}", oliphaunt3);
+    LOGGER.info(checkedOut, oliphaunt3);
     LOGGER.info(pool.toString());
     LOGGER.info("Checking in {}", oliphaunt1);
     pool.checkIn(oliphaunt1);
@@ -70,9 +72,9 @@ public class App {
     pool.checkIn(oliphaunt2);
     LOGGER.info(pool.toString());
     var oliphaunt4 = pool.checkOut();
-    LOGGER.info("Checked out {}", oliphaunt4);
+    LOGGER.info(checkedOut, oliphaunt4);
     var oliphaunt5 = pool.checkOut();
-    LOGGER.info("Checked out {}", oliphaunt5);
+    LOGGER.info(checkedOut, oliphaunt5);
     LOGGER.info(pool.toString());
   }
 }

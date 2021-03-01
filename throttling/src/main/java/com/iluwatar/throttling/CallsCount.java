@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@
 package com.iluwatar.throttling;
 
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import org.slf4j.Logger;
@@ -38,7 +37,7 @@ import org.slf4j.LoggerFactory;
 public final class CallsCount {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(CallsCount.class);
-  private Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
+  private final Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
 
   /**
    * Add a new tenant to the map.

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -116,7 +116,7 @@ public class LotteryNumbers {
    */
   private static class RandomNumberGenerator {
 
-    private PrimitiveIterator.OfInt randomIterator;
+    private final PrimitiveIterator.OfInt randomIterator;
 
     /**
      * Initialize a new random number generator that generates random numbers in the range [min,
