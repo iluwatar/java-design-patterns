@@ -1,19 +1,54 @@
+################## Eclipse ######################
 target
 .metadata
 .settings
 .classpath
 .project
 *.class
-# Package Files #
+tmp/
+*.tmp
+*.bak
+*~.nib
+local.properties
+.loadpath
+.recommenders
+
+#######  Java annotation processor (APT) ########
+.factorypath
+
+################ Package Files ##################
 *.jar
 *.war
 *.ear
-.idea
-*.iml
 *.swp
 datanucleus.log
 /bin/
-/bin/
-/bin/
 *.log
 event-sourcing/Journal.json
+
+################## Checkstyle ###################
+.checkstyle
+
+##################### STS #######################
+.apt_generated
+.springBeans
+.sts4-cache
+
+################# IntelliJ IDEA #################
+.idea
+*.iws
+*.iml
+*.ipr
+
+################### NetBeans ####################
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+#################### VS Code ####################
+.vscode/

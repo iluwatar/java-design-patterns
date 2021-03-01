@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -82,7 +82,7 @@ public interface Trampoline<T> {
    * @return Trampoline with more work
    */
   static <T> Trampoline<T> more(final Trampoline<Trampoline<T>> trampoline) {
-    return new Trampoline<>() {
+    return new Trampoline<T>() {
       @Override
       public boolean complete() {
         return false;
@@ -103,7 +103,7 @@ public interface Trampoline<T> {
             .filter(Trampoline::complete)
             .findFirst()
             .map(Trampoline::result)
-            .orElseThrow();
+            .get();
       }
     };
   }
