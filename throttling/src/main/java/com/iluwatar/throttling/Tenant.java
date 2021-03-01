@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,8 @@ import java.security.InvalidParameterException;
  */
 public class Tenant {
 
-  private String name;
-  private int allowedCallsPerSecond;
+  private final String name;
+  private final int allowedCallsPerSecond;
 
   /**
    * Constructor.

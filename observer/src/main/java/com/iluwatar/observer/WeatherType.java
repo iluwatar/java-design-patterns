@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,20 @@ package com.iluwatar.observer;
  */
 public enum WeatherType {
 
-  SUNNY, RAINY, WINDY, COLD;
+  SUNNY("Sunny"),
+  RAINY("Rainy"),
+  WINDY("Windy"),
+  COLD("Cold");
+
+  private final String description;
+
+  WeatherType(String description) {
+    this.description = description;
+  }
+
+  public String getDescription() {
+    return this.description;
+  }
 
   @Override
   public String toString() {

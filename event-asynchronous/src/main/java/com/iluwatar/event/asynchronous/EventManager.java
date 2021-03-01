@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,8 +43,8 @@ public class EventManager implements ThreadCompleteListener {
   public static final int MAX_ID = MAX_RUNNING_EVENTS;
   public static final int MAX_EVENT_TIME = 1800; // in seconds / 30 minutes.
   private int currentlyRunningSyncEvent = -1;
-  private Random rand;
-  private Map<Integer, Event> eventPool;
+  private final Random rand;
+  private final Map<Integer, Event> eventPool;
 
   private static final String DOES_NOT_EXIST = " does not exist.";
 

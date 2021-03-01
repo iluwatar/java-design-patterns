@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,15 @@
 
 package com.iluwatar.caching;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
  * Application test
  */
-public class CachingTest {
+class CachingTest {
   private App app;
 
   /**
@@ -47,22 +49,26 @@ public class CachingTest {
   }
 
   @Test
-  public void testReadAndWriteThroughStrategy() {
+  void testReadAndWriteThroughStrategy() {
+	assertNotNull(app);
     app.useReadAndWriteThroughStrategy();
   }
 
   @Test
-  public void testReadThroughAndWriteAroundStrategy() {
+  void testReadThroughAndWriteAroundStrategy() {
+	assertNotNull(app);
     app.useReadThroughAndWriteAroundStrategy();
   }
 
   @Test
-  public void testReadThroughAndWriteBehindStrategy() {
+  void testReadThroughAndWriteBehindStrategy() {
+	assertNotNull(app);
     app.useReadThroughAndWriteBehindStrategy();
   }
 
   @Test
-  public void testCacheAsideStrategy() {
+  void testCacheAsideStrategy() {
+	assertNotNull(app);
     app.useCacheAsideStategy();
   }
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,11 +34,11 @@ public class Writer implements Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Writer.class);
 
-  private Lock writeLock;
+  private final Lock writeLock;
 
-  private String name;
+  private final String name;
 
-  private long writingTime;
+  private final long writingTime;
 
   /**
    * Create new Writer who writes for 250ms.

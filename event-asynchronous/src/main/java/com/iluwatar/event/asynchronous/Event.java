@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,9 +33,9 @@ public class Event implements IEvent, Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Event.class);
 
-  private int eventId;
-  private int eventTime;
-  private boolean isSynchronous;
+  private final int eventId;
+  private final int eventTime;
+  private final boolean isSynchronous;
   private Thread thread;
   private boolean isComplete = false;
   private ThreadCompleteListener eventListener;

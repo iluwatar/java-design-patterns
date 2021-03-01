@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,9 +46,9 @@ class CandyGameTest {
   @Test
   void continueRoundTest() {
     var matrix = new Cell[2][2];
-    var c1 = new Candy("green jelly", "jelly", Type.crushableCandy, 5);
-    var c2 = new Candy("purple jelly", "jelly", Type.crushableCandy, 5);
-    var c3 = new Candy("green apple", "apple", Type.rewardFruit, 10);
+    var c1 = new Candy("green jelly", "jelly", Type.CRUSHABLE_CANDY, 5);
+    var c2 = new Candy("purple jelly", "jelly", Type.CRUSHABLE_CANDY, 5);
+    var c3 = new Candy("green apple", "apple", Type.REWARD_FRUIT, 10);
     matrix[0][0] = new Cell(c1, 0, 0);
     matrix[0][1] = new Cell(c2, 1, 0);
     matrix[1][0] = new Cell(c3, 0, 1);

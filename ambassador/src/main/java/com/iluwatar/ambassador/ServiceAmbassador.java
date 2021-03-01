@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 
 package com.iluwatar.ambassador;
 
+import static com.iluwatar.ambassador.RemoteServiceStatus.FAILURE;
 import static java.lang.Thread.sleep;
 
 import org.slf4j.Logger;
@@ -58,14 +59,14 @@ public class ServiceAmbassador implements RemoteServiceInterface {
 
   private long safeCall(int value) {
     var retries = 0;
-    var result = (long) FAILURE;
+    var result = FAILURE.getRemoteServiceStatusValue();
 
     for (int i = 0; i < RETRIES; i++) {
       if (retries >= RETRIES) {
-        return FAILURE;
+        return FAILURE.getRemoteServiceStatusValue();
       }
 
-      if ((result = checkLatency(value)) == FAILURE) {
+      if ((result = checkLatency(value)) == FAILURE.getRemoteServiceStatusValue()) {
         LOGGER.info("Failed to reach remote: (" + (i + 1) + ")");
         retries++;
         try {

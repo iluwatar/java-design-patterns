@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -103,10 +103,7 @@ public class HeroStat {
     if (luck != other.luck) {
       return false;
     }
-    if (strength != other.strength) {
-      return false;
-    }
-    return true;
+    return strength == other.strength;
   }
 
   // The clone() method should not be public. Just don't override it.

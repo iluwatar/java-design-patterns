@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,11 +33,11 @@ import com.iluwatar.specification.property.Size;
  */
 public abstract class AbstractCreature implements Creature {
 
-  private String name;
-  private Size size;
-  private Movement movement;
-  private Color color;
-  private Mass mass;
+  private final String name;
+  private final Size size;
+  private final Movement movement;
+  private final Color color;
+  private final Mass mass;
 
   /**
    * Constructor.

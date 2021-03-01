@@ -20,12 +20,14 @@ callbacks or waiting until everything is done.
 ## Applicability
 Use async method invocation pattern when
 
-* you have multiple independent tasks that can run in parallel
-* you need to improve the performance of a group of sequential tasks
-* you have limited amount of processing capacity or long running tasks and the
+* You have multiple independent tasks that can run in parallel
+* You need to improve the performance of a group of sequential tasks
+* You have limited amount of processing capacity or long running tasks and the
   caller should not wait the tasks to be ready
 
 ## Real world examples
 
-* [FutureTask](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/FutureTask.html), [CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html) and [ExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html) (Java)
-* [Task-based Asynchronous Pattern](https://msdn.microsoft.com/en-us/library/hh873175.aspx) (.NET)
+* [FutureTask](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/FutureTask.html)
+* [CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)
+* [ExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html)
+* [Task-based Asynchronous Pattern](https://msdn.microsoft.com/en-us/library/hh873175.aspx)

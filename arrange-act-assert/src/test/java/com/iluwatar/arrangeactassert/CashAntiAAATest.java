@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,16 +44,16 @@ public class CashAntiAAATest {
     var cash = new Cash(3);
     //test plus
     cash.plus(4);
-    assertEquals(cash.count(), 7);
+    assertEquals(7, cash.count());
     //test minus
     cash = new Cash(8);
     assertTrue(cash.minus(5));
-    assertEquals(cash.count(), 3);
+    assertEquals(3, cash.count());
     assertFalse(cash.minus(6));
-    assertEquals(cash.count(), 3);
+    assertEquals(3, cash.count());
     //test update
     cash.plus(5);
     assertTrue(cash.minus(5));
-    assertEquals(cash.count(), 3);
+    assertEquals(3, cash.count());
   }
 }

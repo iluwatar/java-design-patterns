@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,6 +47,7 @@ public class Promise<T> extends PromiseSupport<T> {
    * Creates a promise that will be fulfilled in future.
    */
   public Promise() {
+    // Empty constructor
   }
 
   /**
@@ -140,7 +141,7 @@ public class Promise<T> extends PromiseSupport<T> {
    */
   public <V> Promise<V> thenApply(Function<? super T, V> func) {
     Promise<V> dest = new Promise<>();
-    fulfillmentAction = new TransformAction<V>(this, dest, func);
+    fulfillmentAction = new TransformAction<>(this, dest, func);
     return dest;
   }
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,27 +23,27 @@
 
 package com.iluwatar.masterworker;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 /**
-* Testing utility methods in {@link ArrayUtilityMethods} class.
-*/
+ * Testing utility methods in {@link ArrayUtilityMethods} class.
+ */
 
 class ArrayUtilityMethodsTest {
 
   @Test
   void arraysSameTest() {
-    int[] arr1 = new int[] {1,4,2,6};
-    int[] arr2 = new int[] {1,4,2,6};
+    var arr1 = new int[]{1, 4, 2, 6};
+    var arr2 = new int[]{1, 4, 2, 6};
     assertTrue(ArrayUtilityMethods.arraysSame(arr1, arr2));
   }
 
   @Test
   void matricesSameTest() {
-    int[][] matrix1 = new int[][] {{1,4,2,6},{5,8,6,7}};
-    int[][] matrix2 = new int[][] {{1,4,2,6},{5,8,6,7}};
+    var matrix1 = new int[][]{{1, 4, 2, 6}, {5, 8, 6, 7}};
+    var matrix2 = new int[][]{{1, 4, 2, 6}, {5, 8, 6, 7}};
     assertTrue(ArrayUtilityMethods.matricesSame(matrix1, matrix2));
   }
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,7 @@ public class Audio {
 
   private volatile Thread updateThread = null;
 
-  private PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
+  private final PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
 
   // Visible only for testing purposes
   Audio() {

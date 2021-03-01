@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ import java.util.Optional;
  * The class representing a service discovery pattern.
  */
 public class ServiceDiscoveryService {
-  private Map<String, OrchestrationChapter<?>> services;
+  private final Map<String, OrchestrationChapter<?>> services;
 
   public Optional<OrchestrationChapter> find(String service) {
     return Optional.ofNullable(services.getOrDefault(service, null));

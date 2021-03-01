@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,12 +37,16 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-
-    Node root =
-        new NodeImpl("1", new NodeImpl("11", new NodeImpl("111", NullNode.getInstance(),
-            NullNode.getInstance()), NullNode.getInstance()), new NodeImpl("12",
-            NullNode.getInstance(), new NodeImpl("122", NullNode.getInstance(),
-            NullNode.getInstance())));
+    var root = new NodeImpl("1",
+        new NodeImpl("11",
+            new NodeImpl("111", NullNode.getInstance(), NullNode.getInstance()),
+            NullNode.getInstance()
+        ),
+        new NodeImpl("12",
+            NullNode.getInstance(),
+            new NodeImpl("122", NullNode.getInstance(), NullNode.getInstance())
+        )
+    );
 
     root.walk();
   }

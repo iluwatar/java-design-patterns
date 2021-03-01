@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,9 +43,11 @@ public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Executes the App.
+   * Program entry point.
+   *
+   * @param args command line args
    */
-  public App() {
+  public static void main(String[] args) {
     LOGGER.info("Constructing parts and car");
 
     var wheelProperties = Map.of(
@@ -75,14 +77,4 @@ public class App {
         p.getPrice().orElse(null))
     );
   }
-
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    new App();
-  }
-
 }

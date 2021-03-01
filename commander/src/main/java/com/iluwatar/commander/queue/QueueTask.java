@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ public class QueueTask {
    */
 
   public enum TaskType {
-    Messaging, Payment, EmployeeDb
+    MESSAGING, PAYMENT, EMPLOYEE_DB
   }
 
   public Order order;
@@ -68,7 +68,7 @@ public class QueueTask {
    * @return String representing type of task
    */
   public String getType() {
-    if (!this.taskType.equals(TaskType.Messaging)) {
+    if (!this.taskType.equals(TaskType.MESSAGING)) {
       return this.taskType.toString();
     } else {
       if (this.messageType == 0) {

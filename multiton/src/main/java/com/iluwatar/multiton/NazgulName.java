@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,13 @@ package com.iluwatar.multiton;
  * Each Nazgul has different {@link NazgulName}.
  */
 public enum NazgulName {
-
-  KHAMUL, MURAZOR, DWAR, JI_INDUR, AKHORAHIL, HOARMURATH, ADUNAPHEL, REN, UVATHA;
-
+  KHAMUL,
+  MURAZOR,
+  DWAR,
+  JI_INDUR,
+  AKHORAHIL,
+  HOARMURATH,
+  ADUNAPHEL,
+  REN,
+  UVATHA
 }

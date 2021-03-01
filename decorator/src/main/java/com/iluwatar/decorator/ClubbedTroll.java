@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ public class ClubbedTroll implements Troll {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);
 
-  private Troll decorated;
+  private final Troll decorated;
 
   public ClubbedTroll(Troll decorated) {
     this.decorated = decorated;

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -228,8 +228,8 @@ public class NioReactor {
    * A command that changes the interested operations of the key provided.
    */
   class ChangeKeyOpsCommand implements Runnable {
-    private SelectionKey key;
-    private int interestedOps;
+    private final SelectionKey key;
+    private final int interestedOps;
 
     public ChangeKeyOpsCommand(SelectionKey key, int interestedOps) {
       this.key = key;

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,12 +41,12 @@ public class ArrayTransposeWorker extends Worker {
   @Override
   ArrayResult executeOperation() {
     //number of rows in result matrix is equal to number of columns in input matrix and vice versa
-    ArrayInput arrayInput = (ArrayInput) this.getReceivedData();
-    final int rows = arrayInput.data[0].length;
-    final int cols = arrayInput.data.length;
-    int[][] resultData = new int[rows][cols];
-    for (int i = 0; i < cols; i++) {
-      for (int j = 0; j < rows; j++) {
+    var arrayInput = (ArrayInput) this.getReceivedData();
+    final var rows = arrayInput.data[0].length;
+    final var cols = arrayInput.data.length;
+    var resultData = new int[rows][cols];
+    for (var i = 0; i < cols; i++) {
+      for (var j = 0; j < rows; j++) {
         //flipping element positions along diagonal
         resultData[j][i] = arrayInput.data[i][j];
       }

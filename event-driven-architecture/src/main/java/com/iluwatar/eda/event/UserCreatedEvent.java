@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@ import com.iluwatar.eda.model.User;
  */
 public class UserCreatedEvent extends AbstractEvent {
 
-  private User user;
+  private final User user;
 
   public UserCreatedEvent(User user) {
     this.user = user;

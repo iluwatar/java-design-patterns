@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ import java.util.List;
  * A Person class that has the list of cars that the person owns and use.
  */
 public class Person {
-  private List<Car> cars;
+  private final List<Car> cars;
 
   /**
    * Constructor to create an instance of person.
