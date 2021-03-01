@@ -4,18 +4,18 @@
 
 # Design patterns implemented in Java
 
-![Java CI with Maven](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI%20with%20Maven/badge.svg)
+![Java CI](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=ncloc)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-154-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-155-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
 
-Read in different language : [![CN](/assets/flags/CN.png)**CN**](/zh/README.md),[![KR](/assets/flags/KR.png)**KR**](/ko/README.md),[![FR](/assets/flags/FR.png)**FR**](/fr/README.md),[![TR](/assets/flags/TR.png)**TR**](/tr/README.md),[![AR](/assets/flags/AR.png)**AR**](/ar/README.md),
+Read in different language : [![CN](/assets/flags/CN.png)**CN**](/zh/README.md), [![KR](/assets/flags/KR.png)**KR**](/ko/README.md), [![FR](/assets/flags/FR.png)**FR**](/fr/README.md), [![TR](/assets/flags/TR.png)**TR**](/tr/README.md), [![AR](/assets/flags/AR.png)**AR**](/ar/README.md)
 
 <br/>
 
@@ -306,6 +306,7 @@ This project is licensed under the terms of the MIT license.
   <tr>
     <td align="center"><a href="https://github.com/byoungju94"><img src="https://avatars.githubusercontent.com/u/42516378?v=4?s=100" width="100px;" alt=""/><br /><sub><b>byoungju94</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=byoungju94" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/moustafafarhat"><img src="https://avatars.githubusercontent.com/u/38836727?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Moustafa Farhat</b></sub></a><br /><a href="#translation-moustafafarhat" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/richardmr36"><img src="https://avatars.githubusercontent.com/u/19147333?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Martel Richard</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=richardmr36" title="Code">💻</a></td>
   </tr>
 </table>
 
