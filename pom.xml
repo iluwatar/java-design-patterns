@@ -208,6 +208,7 @@
         <module>factory</module>
         <module>separated-interface</module>
         <module>special-case</module>
+        <module>parameter-object</module>
     </modules>
 
     <repositories>
