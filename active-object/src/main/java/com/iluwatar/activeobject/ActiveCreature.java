@@ -30,11 +30,14 @@ public abstract class ActiveCreature {
     thread = new Thread(new Runnable() {
         @Override
         public void run() {
-          while (true) {
+          boolean infinite = true;
+          while (infinite) {
             try {
               requests.take().run();
             } catch (InterruptedException e) { 
               logger.error(e.getMessage());
+              infinite = false;
+              Thread.currentThread().interrupt();
             }
           }
         }
@@ -66,7 +69,7 @@ public abstract class ActiveCreature {
     requests.put(new Runnable() {
         @Override
         public void run() { 
-          logger.info("{} has started to in the wastelands.",name());
+          logger.info("{} has started to roam in the wastelands.",name());
         }
       }
     );

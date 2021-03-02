@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * The Active Object pattern helps to solve synchronization difficulties without using 
- * 'synchronized' methods.The active object will contain a thread-safe data structure 
+ * 'synchronized' methods. The active object will contain a thread-safe data structure 
  * (such as BlockingQueue) and use to synchronize method calls by moving the logic of the method
  * into an invocator(usually a Runnable) and store it in the DSA.
  * 
@@ -38,12 +38,12 @@ public class App implements Runnable {
   
   private final Logger logger = LoggerFactory.getLogger(ActiveCreature.class.getName());
   
-  private final Integer creatures = 3;
+  private static final int NUM_CREATURES = 3;
 
   /**
    * Program entry point.
    *
-   * @param args command line args
+   * @param args command line arguments.
    */
   public static void main(String[] args) {  
     var app = new App();
@@ -54,7 +54,7 @@ public class App implements Runnable {
   public void run() {
     ActiveCreature creature;
     try {
-      for (int i = 0;i < creatures;i++) {
+      for (int i = 0;i < NUM_CREATURES;i++) {
         creature = new Orc(Orc.class.getSimpleName().toString() + i);
         creature.eat();
         creature.roam();
@@ -62,7 +62,8 @@ public class App implements Runnable {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
       logger.error(e.getMessage());
+    } finally {
+      Runtime.getRuntime().exit(1);
     }
-    Runtime.getRuntime().exit(1);
   }
 }
