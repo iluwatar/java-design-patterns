@@ -58,9 +58,9 @@ public abstract class ActiveCreature {
    * @throws InterruptedException due to firing a new Runnable.
    */
   public void roam() throws InterruptedException {
-    requests.put(() -> {
-      logger.info("{} has started to roam in the wastelands.",name());
-    });
+    requests.put(() ->
+        logger.info("{} has started to roam in the wastelands.",name())
+    );
   }
   
   public String name() {
