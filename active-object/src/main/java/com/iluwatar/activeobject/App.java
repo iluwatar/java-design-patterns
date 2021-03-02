@@ -62,6 +62,7 @@ public class App implements Runnable {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
       logger.error(e.getMessage());
+      Thread.currentThread().interrupt();
     } finally {
       Runtime.getRuntime().exit(1);
     }
