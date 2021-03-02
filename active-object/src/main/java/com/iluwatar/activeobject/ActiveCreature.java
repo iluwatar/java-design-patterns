@@ -24,25 +24,21 @@ public abstract class ActiveCreature {
   /**
    * Constructor and initialization.
    */
-  public ActiveCreature(String name) {
+  protected ActiveCreature(String name) {
     this.name = name;
-    this.requests = new LinkedBlockingQueue<Runnable>();
-    thread = new Thread(new Runnable() {
-        @Override
-        public void run() {
-          boolean infinite = true;
-          while (infinite) {
-            try {
-              requests.take().run();
-            } catch (InterruptedException e) { 
-              logger.error(e.getMessage());
-              infinite = false;
-              Thread.currentThread().interrupt();
-            }
-          }
+    this.requests = new LinkedBlockingQueue<>();
+    thread = new Thread(() -> {
+      boolean infinite = true;
+      while (infinite) {
+        try {
+          requests.take().run();
+        } catch (InterruptedException e) { 
+          logger.error(e.getMessage());
+          infinite = false;
+          Thread.currentThread().interrupt();
         }
       }
-    );
+    });
     thread.start();
   }
 
@@ -51,14 +47,10 @@ public abstract class ActiveCreature {
    * @throws InterruptedException due to firing a new Runnable.
    */
   public void eat() throws InterruptedException {
-    requests.put(new Runnable() {
-        @Override
-        public void run() { 
-          logger.info("{} is eating!",name());
-          logger.info("{} has finished eating!",name());
-        }
-      }
-    );
+    requests.put(() -> {
+      logger.info("{} is eating!",name());
+      logger.info("{} has finished eating!",name());
+    });
   }
 
   /**
@@ -66,13 +58,9 @@ public abstract class ActiveCreature {
    * @throws InterruptedException due to firing a new Runnable.
    */
   public void roam() throws InterruptedException {
-    requests.put(new Runnable() {
-        @Override
-        public void run() { 
-          logger.info("{} has started to roam in the wastelands.",name());
-        }
-      }
-    );
+    requests.put(() -> {
+      logger.info("{} has started to roam in the wastelands.",name());
+    });
   }
   
   public String name() {

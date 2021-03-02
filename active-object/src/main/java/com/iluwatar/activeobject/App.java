@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
  */
 public class App implements Runnable {
   
-  private final Logger logger = LoggerFactory.getLogger(ActiveCreature.class.getName());
+  private final Logger logger = LoggerFactory.getLogger(App.class.getName());
   
   private static final int NUM_CREATURES = 3;
 
@@ -55,7 +55,7 @@ public class App implements Runnable {
     ActiveCreature creature;
     try {
       for (int i = 0;i < NUM_CREATURES;i++) {
-        creature = new Orc(Orc.class.getSimpleName().toString() + i);
+        creature = new Orc(Orc.class.getSimpleName() + i);
         creature.eat();
         creature.roam();
       }
