@@ -10,18 +10,17 @@ tags:
 
 
 ## Intent
-The active object design pattern decouples method execution from method invocation for objects that each reside in their own thread of control.The goal is to introduce concurrency, by using asynchronous method invocation and a scheduler for handling requests.(https://en.wikipedia.org/wiki/Active_object)
+The active object design pattern decouples method execution from method invocation for objects that each reside in their thread of control. The goal is to introduce concurrency, by using asynchronous method invocation and a scheduler for handling requests.
 
 ## Explanation
 
 The class that implements the active object pattern will contain a self-synchronization mechanism without using 'synchronized' methods.
 
-Real world example
+Real-world example
 
->The Orcs are known for their wildeness and untamelable soul. It seems like they have their own thread of control based on prevous behaviour.
+>The Orcs are known for their wildness and untameable soul. It seems like they have their own thread of control based on previous behavior.
 
-On order to implement a creature which has its own thread of control mechanism and expose its API only and not the execution itself,
-we can use the Active Object pattern.
+To implement a creature that has its own thread of control mechanism and expose its API only and not the execution itself, we can use the Active Object pattern.
 
 
 **Programmatic Example**
@@ -96,7 +95,7 @@ public class Orc extends ActiveCreature {
 }
 ```
 
-Now, we can create multiple creatures such as Orcs, tell them to eat and roam and they will execure it on their own thread of control:
+Now, we can create multiple creatures such as Orcs, tell them to eat and roam and they will execute it on their own thread of control:
 ```java
   public static void main(String[] args) {  
     var app = new App();
@@ -122,4 +121,4 @@ Now, we can create multiple creatures such as Orcs, tell them to eat and roam an
 
 ## Class diagram
 
-![alt text](./etc/active-object.urm.png "Abstract Factory class diagram")
+![alt text](./etc/active-object.urm.png "Active Object class diagram")
