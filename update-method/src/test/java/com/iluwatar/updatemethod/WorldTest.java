@@ -27,9 +27,9 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class WorldTest {
+class WorldTest {
 
   private static World world;
 
@@ -44,19 +44,19 @@ public class WorldTest {
   }
 
   @Test
-  public void testRun() {
+  void testRun() {
     world.run();
-    assertEquals(true, world.isRunning);
+    assertTrue(world.isRunning);
   }
 
   @Test
-  public void testStop() {
+  void testStop() {
     world.stop();
-    assertEquals(false, world.isRunning);
+    assertFalse(world.isRunning);
   }
 
   @Test
-  public void testAddEntity() {
+  void testAddEntity() {
     var entity = new Skeleton(1);
     world.addEntity(entity);
     assertEquals(entity, world.entities.get(0));

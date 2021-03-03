@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StatueTest {
+class StatueTest {
 
   private static Statue statue;
 
@@ -44,14 +44,14 @@ public class StatueTest {
   }
 
   @Test
-  public void testUpdateForPendingShoot() {
+  void testUpdateForPendingShoot() {
     statue.frames = 10;
     statue.update();
     assertEquals(11, statue.frames);
   }
 
   @Test
-  public void testUpdateForShooting() {
+  void testUpdateForShooting() {
     statue.frames = 19;
     statue.update();
     assertEquals(0, statue.frames);

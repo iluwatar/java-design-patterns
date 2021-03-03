@@ -30,16 +30,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * test to check general logic
  */
-public class SagaOrchestratorTest {
+class SagaOrchestratorTest {
 
   @Test
-  public void execute() {
+  void execute() {
     SagaOrchestrator sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
     Saga.Result badOrder = sagaOrchestrator.execute("bad_order");
     Saga.Result crashedOrder = sagaOrchestrator.execute("crashed_order");
 
-    assertEquals(badOrder, Saga.Result.ROLLBACK);
-    assertEquals(crashedOrder, Saga.Result.CRASHED);
+    assertEquals(Saga.Result.ROLLBACK, badOrder);
+    assertEquals(Saga.Result.CRASHED, crashedOrder);
   }
 
   private static Saga newSaga() {

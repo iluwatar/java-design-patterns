@@ -28,8 +28,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SkeletonTest {
+
+class SkeletonTest {
 
   private static Skeleton skeleton;
 
@@ -44,7 +47,7 @@ public class SkeletonTest {
   }
 
   @Test
-  public void testUpdateForPatrollingLeft() {
+  void testUpdateForPatrollingLeft() {
     skeleton.patrollingLeft = true;
     skeleton.setPosition(50);
     skeleton.update();
@@ -52,7 +55,7 @@ public class SkeletonTest {
   }
 
   @Test
-  public void testUpdateForPatrollingRight() {
+  void testUpdateForPatrollingRight() {
     skeleton.patrollingLeft = false;
     skeleton.setPosition(50);
     skeleton.update();
@@ -60,20 +63,20 @@ public class SkeletonTest {
   }
 
   @Test
-  public void testUpdateForReverseDirectionFromLeftToRight() {
+  void testUpdateForReverseDirectionFromLeftToRight() {
     skeleton.patrollingLeft = true;
     skeleton.setPosition(1);
     skeleton.update();
     assertEquals(0, skeleton.getPosition());
-    assertEquals(false, skeleton.patrollingLeft);
+    assertFalse(skeleton.patrollingLeft);
   }
 
   @Test
-  public void testUpdateForReverseDirectionFromRightToLeft() {
+  void testUpdateForReverseDirectionFromRightToLeft() {
     skeleton.patrollingLeft = false;
     skeleton.setPosition(99);
     skeleton.update();
     assertEquals(100, skeleton.getPosition());
-    assertEquals(true, skeleton.patrollingLeft);
+    assertTrue(skeleton.patrollingLeft);
   }
 }

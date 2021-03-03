@@ -35,18 +35,18 @@ import java.util.List;
 /**
  * test to test orchestration logic
  */
-public class SagaOrchestratorInternallyTest {
+class SagaOrchestratorInternallyTest {
 
   private final List<String> records = new ArrayList<>();
 
   @Test
-  public void executeTest() {
+  void executeTest() {
     var sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
     var result = sagaOrchestrator.execute(1);
-    assertEquals(result, Result.ROLLBACK);
+    assertEquals(Result.ROLLBACK, result);
     assertArrayEquals(
-        records.toArray(new String[]{}),
-        new String[]{"+1", "+2", "+3", "+4", "-4", "-3", "-2", "-1"});
+            new String[]{"+1", "+2", "+3", "+4", "-4", "-3", "-2", "-1"},
+            records.toArray(new String[]{}));
   }
 
   private static Saga newSaga() {

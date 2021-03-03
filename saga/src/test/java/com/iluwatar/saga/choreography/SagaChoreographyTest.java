@@ -30,18 +30,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * test to check choreography saga
  */
-public class SagaChoreographyTest {
+class SagaChoreographyTest {
 
 
   @Test
-  public void executeTest() {
+  void executeTest() {
     var sd = serviceDiscovery();
     var service = sd.findAny();
     var badOrderSaga = service.execute(newSaga("bad_order"));
     var goodOrderSaga = service.execute(newSaga("good_order"));
 
-    assertEquals(badOrderSaga.getResult(), Saga.SagaResult.ROLLBACKED);
-    assertEquals(goodOrderSaga.getResult(), Saga.SagaResult.FINISHED);
+    assertEquals(Saga.SagaResult.ROLLBACKED, badOrderSaga.getResult());
+    assertEquals(Saga.SagaResult.FINISHED, goodOrderSaga.getResult());
   }
 
   private static Saga newSaga(Object value) {
