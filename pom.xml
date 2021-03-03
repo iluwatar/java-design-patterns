@@ -41,8 +41,8 @@
         <spring-data.version>2.0.14.RELEASE</spring-data.version>
         <h2.version>1.4.190</h2.version>
         <junit.version>4.12</junit.version>
-        <junit-jupiter.version>5.5.2</junit-jupiter.version>
-        <junit-vintage.version>${junit.version}.2</junit-vintage.version>
+        <junit-jupiter.version>5.7.1</junit-jupiter.version>
+        <junit-vintage.version>${junit-jupiter.version}</junit-vintage.version>
         <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
         <compiler.version>3.8.1</compiler.version>
         <jacoco.version>0.8.6</jacoco.version>
@@ -273,12 +273,6 @@
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-stream</artifactId>
                 <version>${camel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
