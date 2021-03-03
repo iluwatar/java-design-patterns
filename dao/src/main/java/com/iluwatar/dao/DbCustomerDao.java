@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -67,7 +67,7 @@ public class DbCustomerDao implements CustomerDao {
   public Stream<Customer> getAll() throws Exception {
     try {
       var connection = getConnection();
-      var statement = connection.prepareStatement("SELECT * FROM CUSTOMERS");
+      var statement = connection.prepareStatement("SELECT * FROM CUSTOMERS"); // NOSONAR
       var resultSet = statement.executeQuery(); // NOSONAR
       return StreamSupport.stream(new Spliterators.AbstractSpliterator<Customer>(Long.MAX_VALUE,
           Spliterator.ORDERED) {
