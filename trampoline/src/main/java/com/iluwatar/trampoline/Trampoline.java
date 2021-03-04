@@ -98,7 +98,7 @@ public interface Trampoline<T> {
         return trampoline(this);
       }
 
-      private T trampoline(final Trampoline<T> trampoline) {
+      T trampoline(final Trampoline<T> trampoline) {
         return Stream.iterate(trampoline, Trampoline::jump)
             .filter(Trampoline::complete)
             .findFirst()
