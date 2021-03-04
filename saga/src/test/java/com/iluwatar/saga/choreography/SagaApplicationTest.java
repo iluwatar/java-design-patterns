@@ -23,10 +23,10 @@
 
 package com.iluwatar.saga.choreography;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import com.iluwatar.saga.orchestration.SagaApplication;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 
 /***
