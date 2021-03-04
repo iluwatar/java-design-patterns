@@ -23,9 +23,9 @@
 
 package com.iluwatar.spatialpartition;
 
+import java.security.SecureRandom;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
 
 public class Bubble extends Point<Bubble> {
   private static final Logger LOGGER = LoggerFactory.getLogger(Bubble.class);
-  private static final Random RANDOM = new Random();
+  private static final SecureRandom RANDOM = new SecureRandom();
 
   final int radius;
 
