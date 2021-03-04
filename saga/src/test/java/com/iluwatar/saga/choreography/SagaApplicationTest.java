@@ -33,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
  * empty test
  */
 class SagaApplicationTest {
+
   @Test
   void shouldExecuteWithoutException() {
     assertDoesNotThrow(() -> SagaApplication.main(new String[]{}));
