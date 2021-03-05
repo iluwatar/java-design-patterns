@@ -23,45 +23,45 @@
 
 package com.iluwatar.subclasssandbox;
 
-import com.github.stefanbirkner.systemlambda.Statement;
-import org.junit.Assert;
-import org.junit.Test;
-
 import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOutNormalized;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.github.stefanbirkner.systemlambda.Statement;
+import org.junit.jupiter.api.Test;
 
 /**
  * GroundDive unit tests.
  */
-public class GroundDiveTest {
+class GroundDiveTest {
 
   @Test
-  public void testMove() throws Exception {
+  void testMove() throws Exception {
     var groundDive = new GroundDive();
     groundDive.move(1.0, 1.0, 1.0);
     var outputLog = getLogContent(() -> groundDive.move(1.0, 1.0, 1.0));
     var expectedLog = "Move to ( 1.0, 1.0, 1.0 )";
-    Assert.assertEquals(outputLog, expectedLog);
+    assertEquals(outputLog, expectedLog);
   }
 
   @Test
-  public void testPlaySound() throws Exception {
+  void testPlaySound() throws Exception {
     var groundDive = new GroundDive();
     var outputLog = getLogContent(() -> groundDive.playSound("SOUND_NAME", 1));
     var expectedLog = "Play SOUND_NAME with volumn 1";
-    Assert.assertEquals(outputLog, expectedLog);
+    assertEquals(outputLog, expectedLog);
   }
 
   @Test
-  public void testSpawnParticles() throws Exception {
+  void testSpawnParticles() throws Exception {
     var groundDive = new GroundDive();
     final var outputLog = getLogContent(
             () -> groundDive.spawnParticles("PARTICLE_TYPE", 100));
     final var expectedLog = "Spawn 100 particle with type PARTICLE_TYPE";
-    Assert.assertEquals(outputLog, expectedLog);
+    assertEquals(outputLog, expectedLog);
   }
 
   @Test
-  public void testActivate() throws Exception {
+  void testActivate() throws Exception {
     var groundDive = new GroundDive();
     var logs = tapSystemOutNormalized(groundDive::activate)
             .split("\n");
@@ -72,10 +72,10 @@ public class GroundDiveTest {
     final var expectedLog2 = "Play GROUNDDIVE_SOUND with volumn 5";
     final var log3 = getLogContent(logs[2]);
     final var expectedLog3 = "Spawn 20 particle with type GROUNDDIVE_PARTICLE";
-    Assert.assertEquals(logs.length, expectedSize);
-    Assert.assertEquals(log1, expectedLog1);
-    Assert.assertEquals(log2, expectedLog2);
-    Assert.assertEquals(log3, expectedLog3);
+    assertEquals(logs.length, expectedSize);
+    assertEquals(log1, expectedLog1);
+    assertEquals(log2, expectedLog2);
+    assertEquals(log3, expectedLog3);
   }
 
   private String getLogContent(Statement statement) throws Exception {

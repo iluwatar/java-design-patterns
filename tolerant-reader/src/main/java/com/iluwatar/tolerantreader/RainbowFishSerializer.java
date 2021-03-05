@@ -68,7 +68,7 @@ public final class RainbowFishSerializer {
     var map = Map.of(
         "name", rainbowFish.getName(),
         "age", String.format("%d", rainbowFish.getAge()),
-            "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
+            LENGTH_METERS, String.format("%d", rainbowFish.getLengthMeters()),
             WEIGHT_TONS, String.format("%d", rainbowFish.getWeightTons()),
         "angry", Boolean.toString(rainbowFish.getAngry()),
         "hungry", Boolean.toString(rainbowFish.getHungry()),
@@ -95,7 +95,7 @@ public final class RainbowFishSerializer {
     return new RainbowFish(
         map.get("name"),
         Integer.parseInt(map.get("age")),
-        Integer.parseInt(map.get("lengthMeters")),
+        Integer.parseInt(map.get(LENGTH_METERS)),
         Integer.parseInt(map.get(WEIGHT_TONS))
     );
   }
