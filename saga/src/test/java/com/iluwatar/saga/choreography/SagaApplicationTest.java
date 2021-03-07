@@ -26,7 +26,8 @@ package com.iluwatar.saga.choreography;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import com.iluwatar.saga.orchestration.SagaApplication;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 /***
  * empty test

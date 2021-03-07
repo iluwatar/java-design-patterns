@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class OliphauntPoolTest {
+class OliphauntPoolTest {
 
   /**
    * Use the same object 100 times subsequently. This should not take much time since the heavy

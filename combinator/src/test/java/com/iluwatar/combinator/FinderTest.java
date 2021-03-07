@@ -25,6 +25,8 @@ package com.iluwatar.combinator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
 class FinderTest {
 
   @Test

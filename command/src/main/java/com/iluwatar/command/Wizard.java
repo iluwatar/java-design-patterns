@@ -33,8 +33,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Wizard {
 
-  private final Deque<Command> undoStack = new LinkedList<>();
-  private final Deque<Command> redoStack = new LinkedList<>();
+  private final Deque<Runnable> undoStack = new LinkedList<>();
+  private final Deque<Runnable> redoStack = new LinkedList<>();
 
   public Wizard() {
   }

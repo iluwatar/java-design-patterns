@@ -23,25 +23,25 @@
 
 package com.iluwatar.gameloop;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * VariableStepGameLoop unit test class.
  */
-public class VariableStepGameLoopTest {
+class VariableStepGameLoopTest {
 
   private VariableStepGameLoop gameLoop;
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     gameLoop = new VariableStepGameLoop();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     gameLoop = null;
   }
 

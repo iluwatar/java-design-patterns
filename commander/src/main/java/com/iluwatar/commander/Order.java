@@ -24,9 +24,8 @@
 package com.iluwatar.commander;
 
 import java.security.SecureRandom;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * Order class holds details of the order.
@@ -54,7 +53,7 @@ public class Order { //can store all transactions ids also
   final long createdTime;
   private static final SecureRandom RANDOM = new SecureRandom();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-  private static final Map<String, Boolean> USED_IDS = new Hashtable<>();
+  private static final Map<String, Boolean> USED_IDS = new HashMap<>();
   PaymentStatus paid;
   MessageSent messageSent; //to avoid sending error msg on page and text more than once
   boolean addedToEmployeeHandle; //to avoid creating more to enqueue

@@ -43,7 +43,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests Promise class.
  */
-public class PromiseTest {
+class PromiseTest {
 
   private Executor executor;
   private Promise<Integer> promise;
@@ -208,7 +208,8 @@ public class PromiseTest {
     var promise = new Promise<Integer>();
     promise.fulfill(NumberCrunchingTask.CRUNCHED_NUMBER);
 
-    promise.get(1000, TimeUnit.SECONDS);
+    Integer result = promise.get(1000, TimeUnit.SECONDS);
+    assertEquals(NumberCrunchingTask.CRUNCHED_NUMBER, result);
   }
 
   @SuppressWarnings("unchecked")

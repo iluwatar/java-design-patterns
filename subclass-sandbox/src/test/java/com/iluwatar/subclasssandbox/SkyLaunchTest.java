@@ -24,9 +24,9 @@
 package com.iluwatar.subclasssandbox;
 
 import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOutNormalized;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.github.stefanbirkner.systemlambda.Statement;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 /**

@@ -23,14 +23,17 @@
 
 package com.iluwatar.gameloop;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * GameLoop unit test class.
  */
-public class GameLoopTest {
+class GameLoopTest {
 
   private GameLoop gameLoop;
 
@@ -38,7 +41,7 @@ public class GameLoopTest {
    * Create mock implementation of GameLoop.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     gameLoop = new GameLoop() {
       @Override
       protected void processGameLoop() {
@@ -47,7 +50,7 @@ public class GameLoopTest {
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     gameLoop = null;
   }
 
@@ -65,7 +68,6 @@ public class GameLoopTest {
 
   @Test
   void testIsGameRunning() {
-    Assert.assertFalse(gameLoop.isGameRunning());
+    assertFalse(gameLoop.isGameRunning());
   }
-
 }

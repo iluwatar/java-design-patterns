@@ -23,13 +23,13 @@
 
 package com.iluwatar.combinator;
 
-import static com.iluwatar.combinator.Finders.*;
-
 import static com.iluwatar.combinator.Finders.advancedFinder;
 import static com.iluwatar.combinator.Finders.expandedFinder;
 import static com.iluwatar.combinator.Finders.filteredFinder;
 import static com.iluwatar.combinator.Finders.specializedFinder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class FindersTest {
 

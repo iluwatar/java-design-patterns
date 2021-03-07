@@ -539,10 +539,10 @@ public class Commander {
       var qt = queue.peek(); //this should probably be cloned here
       //this is why we have retry for doTasksInQueue
       LOG.trace("Order " + qt.order.id + ": Started doing task of type " + qt.getType());
-      if (qt.firstAttemptTime == -1) {
-        qt.firstAttemptTime = System.currentTimeMillis();
+      if (qt.getFirstAttemptTime() == -1) {
+        qt.setFirstAttemptTime(System.currentTimeMillis());
       }
-      if (System.currentTimeMillis() - qt.firstAttemptTime >= queueTaskTime) {
+      if (System.currentTimeMillis() - qt.getFirstAttemptTime() >= queueTaskTime) {
         tryDequeue();
         LOG.trace("Order " + qt.order.id + ": This queue task of type " + qt.getType()
             + " does not need to be done anymore (timeout), dequeue..");

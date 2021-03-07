@@ -26,7 +26,8 @@ package com;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import com.iluwatar.leaderfollowers.App;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Application test
