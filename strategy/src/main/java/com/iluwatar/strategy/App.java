@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +45,7 @@ public class App {
   
   /**
    * Program entry point.
-   * 
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
@@ -76,5 +76,28 @@ public class App {
       return "You spend " + n + " seconds casting the explosion spell you kill the dragon!";
     });
     LOGGER.info(dragonSlayer.goToBattle(11));
+    LOGGER.info("Green dragon spotted ahead!");
+    dragonSlayer = new DragonSlayer(
+        () -> LOGGER.info("With your Excalibur you severe the dragon's head!"));
+    dragonSlayer.goToBattle();
+    LOGGER.info("Red dragon emerges.");
+    dragonSlayer.changeStrategy(() -> LOGGER.info(
+        "You shoot the dragon with the magical crossbow and it falls dead on the ground!"));
+    dragonSlayer.goToBattle();
+    LOGGER.info("Black dragon lands before you.");
+    dragonSlayer.changeStrategy(() -> LOGGER.info(
+        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+    dragonSlayer.goToBattle();
+
+    // Java 8 lambda implementation with enum Strategy pattern
+    LOGGER.info("Green dragon spotted ahead!");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.MeleeStrategy);
+    dragonSlayer.goToBattle();
+    LOGGER.info("Red dragon emerges.");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.ProjectileStrategy);
+    dragonSlayer.goToBattle();
+    LOGGER.info("Black dragon lands before you.");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.SpellStrategy);
+    dragonSlayer.goToBattle();
   }
 }

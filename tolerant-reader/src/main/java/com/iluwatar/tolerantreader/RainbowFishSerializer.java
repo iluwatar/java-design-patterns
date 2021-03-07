@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -68,7 +68,7 @@ public final class RainbowFishSerializer {
     var map = Map.of(
         "name", rainbowFish.getName(),
         "age", String.format("%d", rainbowFish.getAge()),
-            "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
+            LENGTH_METERS, String.format("%d", rainbowFish.getLengthMeters()),
             WEIGHT_TONS, String.format("%d", rainbowFish.getWeightTons()),
         "angry", Boolean.toString(rainbowFish.getAngry()),
         "hungry", Boolean.toString(rainbowFish.getHungry()),
@@ -95,7 +95,7 @@ public final class RainbowFishSerializer {
     return new RainbowFish(
         map.get("name"),
         Integer.parseInt(map.get("age")),
-        Integer.parseInt(map.get("lengthMeters")),
+        Integer.parseInt(map.get(LENGTH_METERS)),
         Integer.parseInt(map.get(WEIGHT_TONS))
     );
   }

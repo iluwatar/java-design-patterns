@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,30 +23,31 @@
 
 package com;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.iluwatar.leaderfollowers.Task;
 import com.iluwatar.leaderfollowers.TaskSet;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for TaskSet
  */
-public class TaskSetTest {
+class TaskSetTest {
 
     @Test
-    public void testAddTask() throws InterruptedException {
+    void testAddTask() throws InterruptedException {
         var taskSet = new TaskSet();
         taskSet.addTask(new Task(10));
-        Assert.assertTrue(taskSet.getSize() == 1);
+        assertEquals(1, taskSet.getSize());
     }
 
     @Test
-    public void testGetTask() throws InterruptedException {
+    void testGetTask() throws InterruptedException {
         var taskSet = new TaskSet();
         taskSet.addTask(new Task(100));
         Task task = taskSet.getTask();
-        Assert.assertTrue(task.getTime() == 100);
-        Assert.assertTrue(taskSet.getSize() == 0);
+        assertEquals(100, task.getTime());
+        assertEquals(0, taskSet.getSize());
     }
 
 }

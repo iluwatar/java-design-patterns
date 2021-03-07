@@ -1,7 +1,7 @@
 <!--
 
     The MIT License
-    Copyright © 2014-2019 Ilkka Seppälä
+    Copyright © 2014-2021 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -37,10 +37,6 @@
   <groupId>org.junit.jupiter</groupId>
   <artifactId>junit-jupiter-engine</artifactId>
   <scope>test</scope>
- </dependency>
- <dependency>
- <groupId>junit</groupId>
-  <artifactId>junit</artifactId>
  </dependency>
  </dependencies>
  <build>

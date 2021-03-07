@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,11 @@
 
 package com.iluwatar.combinator;
 
-import org.junit.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class CombinatorAppTest {
+import org.junit.jupiter.api.Test;
+
+class CombinatorAppTest {
 
   /**
    * Issue: Add at least one assertion to this test case.
@@ -37,7 +37,7 @@ public class CombinatorAppTest {
    */
 
   @Test
-  public void shouldExecuteApplicationWithoutException() {
+  void shouldExecuteApplicationWithoutException() {
     assertDoesNotThrow(() -> CombinatorApp.main(new String[]{}));
   }
 }
