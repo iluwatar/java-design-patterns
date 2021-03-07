@@ -71,7 +71,7 @@
         <byte-buddy.version>1.10.21</byte-buddy.version>
         <javassist.version>3.27.0-GA</javassist.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+        <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
         <directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
         <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
