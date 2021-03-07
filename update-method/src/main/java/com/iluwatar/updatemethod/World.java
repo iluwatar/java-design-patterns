@@ -23,9 +23,9 @@
 
 package com.iluwatar.updatemethod;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,7 +66,7 @@ public class World {
    */
   private void processInput() {
     try {
-      int lag = new Random().nextInt(200) + 50;
+      int lag = new SecureRandom().nextInt(200) + 50;
       Thread.sleep(lag);
     } catch (InterruptedException e) {
       LOGGER.error(e.getMessage());
