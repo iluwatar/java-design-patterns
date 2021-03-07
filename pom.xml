@@ -27,11 +27,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
     <version>1.24.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <inceptionYear>2014-2021</inceptionYear>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
@@ -65,6 +68,14 @@
         <system-lambda.version>1.1.0</system-lambda.version>
         <urm.version>2.0.0</urm.version>
         <mockito-junit-jupiter.version>3.5.0</mockito-junit-jupiter.version>
+        <byte-buddy.version>1.10.21</byte-buddy.version>
+        <javassist.version>3.27.0-GA</javassist.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+        <directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
+        <license-maven-plugin.version>3.0</license-maven-plugin.version>
+        <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
+
         <!-- SonarCloud -->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>iluwatar</sonar.organization>
@@ -72,6 +83,7 @@
         <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
         <sonar.projectName>Java Design Patterns</sonar.projectName>
     </properties>
+
     <modules>
         <module>abstract-factory</module>
         <module>tls</module>
@@ -223,13 +235,13 @@
             <dependency>
                 <groupId>net.bytebuddy</groupId>
                 <artifactId>byte-buddy</artifactId>
-                <version>1.9.7</version>
+                <version>${byte-buddy.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>net.bytebuddy</groupId>
                 <artifactId>byte-buddy-agent</artifactId>
-                <version>1.9.7</version>
+                <version>${byte-buddy.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -354,7 +366,7 @@
             <dependency>
                 <groupId>org.javassist</groupId>
                 <artifactId>javassist</artifactId>
-                <version>3.26.0-GA</version>
+                <version>${javassist.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
@@ -395,16 +407,19 @@
                         <target>11</target>
                     </configuration>
                 </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M5</version>
+                    <version>${maven-surefire-plugin.version}</version>
                 </plugin>
+
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
                 </plugin>
+
                 <!-- Maven assembly plugin template for all child project to follow -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -427,6 +442,7 @@
                         </execution>
                     </executions>
                 </plugin>
+
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
@@ -439,7 +455,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${maven-checkstyle-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -465,7 +481,7 @@
             <plugin>
                 <groupId>org.commonjava.maven.plugins</groupId>
                 <artifactId>directory-maven-plugin</artifactId>
-                <version>0.3.1</version>
+                <version>${directory-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>directories</id>
@@ -483,10 +499,11 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>3.0</version>
+                <version>${license-maven-plugin.version}</version>
                 <configuration>
                     <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
                     <properties>
@@ -537,7 +554,7 @@
             <plugin>
                 <groupId>com.iluwatar.urm</groupId>
                 <artifactId>urm-maven-plugin</artifactId>
-                <version>1.4.8</version>
+                <version>${urm-maven-plugin.version}</version>
                 <configuration>
                     <!-- if outputDirectory is not set explicitly it will default to your build dir -->
                     <outputDirectory>${project.basedir}/etc</outputDirectory>
@@ -557,7 +574,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>
