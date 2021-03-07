@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,34 +23,33 @@
 
 package com.iluwatar.gameloop;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 public class GameControllerTest {
 
   private GameController controller;
 
-  @Before
+  @BeforeEach
   public void setup() {
     controller = new GameController();
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     controller = null;
   }
 
-  @Test
+  @org.junit.jupiter.api.Test
   public void testMoveBullet() {
     controller.moveBullet(1.5f);
-    Assert.assertEquals(1.5f, controller.bullet.getPosition(), 0);
+    Assertions.assertEquals(1.5f, controller.bullet.getPosition(), 0);
   }
 
-  @Test
+  @org.junit.jupiter.api.Test
   public void testGetBulletPosition() {
-    Assert.assertEquals(controller.bullet.getPosition(), controller.getBulletPosition(), 0);
+    Assertions.assertEquals(controller.bullet.getPosition(), controller.getBulletPosition(), 0);
   }
 
 }

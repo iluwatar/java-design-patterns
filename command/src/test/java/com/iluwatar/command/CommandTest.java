@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -56,10 +56,10 @@ public class CommandTest {
     var wizard = new Wizard();
     var goblin = new Goblin();
 
-    wizard.castSpell(new ShrinkSpell(), goblin);
+    wizard.castSpell(goblin::changeSize);
     verifyGoblin(goblin, GOBLIN, Size.SMALL, Visibility.VISIBLE);
 
-    wizard.castSpell(new InvisibilitySpell(), goblin);
+    wizard.castSpell(goblin::changeVisibility);
     verifyGoblin(goblin, GOBLIN, Size.SMALL, Visibility.INVISIBLE);
 
     wizard.undoLastSpell();

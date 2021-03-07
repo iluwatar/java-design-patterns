@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,11 @@
 
 package com.iluwatar.arrangeactassert;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Arrange/Act/Assert (AAA) is a pattern for organizing unit tests. It is a way to structure your
@@ -51,10 +51,11 @@ import org.junit.Test;
  * change and one reason to fail. In a large and complicated code base, tests that honor the single
  * responsibility principle are much easier to troubleshoot.
  */
-public class CashAAATest {
+
+class CashAAATest {
 
   @Test
-  public void testPlus() {
+  void testPlus() {
     //Arrange
     var cash = new Cash(3);
     //Act
@@ -64,7 +65,7 @@ public class CashAAATest {
   }
 
   @Test
-  public void testMinus() {
+  void testMinus() {
     //Arrange
     var cash = new Cash(8);
     //Act
@@ -75,7 +76,7 @@ public class CashAAATest {
   }
 
   @Test
-  public void testInsufficientMinus() {
+  void testInsufficientMinus() {
     //Arrange
     var cash = new Cash(1);
     //Act
@@ -86,7 +87,7 @@ public class CashAAATest {
   }
 
   @Test
-  public void testUpdate() {
+  void testUpdate() {
     //Arrange
     var cash = new Cash(5);
     //Act

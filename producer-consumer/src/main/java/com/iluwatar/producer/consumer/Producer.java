@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 
 package com.iluwatar.producer.consumer;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 /**
  * Class responsible for producing unit of work that can be expressed as {@link Item} and submitted
@@ -31,7 +31,7 @@ import java.util.Random;
  */
 public class Producer {
 
-  private static final Random RANDOM = new Random();
+  private static final SecureRandom RANDOM = new SecureRandom();
 
   private final ItemQueue queue;
 

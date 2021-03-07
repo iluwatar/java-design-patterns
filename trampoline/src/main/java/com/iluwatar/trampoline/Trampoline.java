@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -98,7 +98,7 @@ public interface Trampoline<T> {
         return trampoline(this);
       }
 
-      private T trampoline(final Trampoline<T> trampoline) {
+      T trampoline(final Trampoline<T> trampoline) {
         return Stream.iterate(trampoline, Trampoline::jump)
             .filter(Trampoline::complete)
             .findFirst()

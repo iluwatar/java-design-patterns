@@ -105,4 +105,4 @@ domain equivalence.
 
 ## Credits
 
-* [Converter](http://www.xsolve.pl/blog/converter-pattern-in-java-8/)
+* [Converter Pattern in Java 8](http://www.xsolve.pl/blog/converter-pattern-in-java-8/)
