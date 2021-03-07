@@ -23,7 +23,7 @@
 
 package com.iluwatar.masterworker;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +35,7 @@ public class ArrayUtilityMethods {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ArrayUtilityMethods.class);
 
-  private static final Random RANDOM = new Random();
+  private static final SecureRandom RANDOM = new SecureRandom();
 
   /**
    * Method arraysSame compares 2 arrays @param a1 and @param a2 and @return whether their values

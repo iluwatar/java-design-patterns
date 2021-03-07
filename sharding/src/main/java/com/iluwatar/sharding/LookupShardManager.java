@@ -23,9 +23,9 @@
 
 package com.iluwatar.sharding;
 
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +58,7 @@ public class LookupShardManager extends ShardManager {
       return lookupMap.get(key);
     } else {
       var shardCount = shardMap.size();
-      return new Random().nextInt(shardCount - 1) + 1;
+      return new SecureRandom().nextInt(shardCount - 1) + 1;
     }
   }
 

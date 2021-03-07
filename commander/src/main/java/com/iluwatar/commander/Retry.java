@@ -23,10 +23,10 @@
 
 package com.iluwatar.commander;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
@@ -56,7 +56,7 @@ public class Retry<T> {
     void handleIssue(T obj, Exception e);
   }
 
-  private static final Random RANDOM = new Random();
+  private static final SecureRandom RANDOM = new SecureRandom();
 
   private final Operation op;
   private final HandleErrorIssue<T> handleError;

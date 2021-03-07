@@ -23,20 +23,20 @@
 
 package com;
 
-import com.iluwatar.leaderfollowers.App;
-import org.junit.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import com.iluwatar.leaderfollowers.App;
+import org.junit.jupiter.api.Test;
 
 /**
  *
  * Application test
  *
  */
-public class AppTest {
+class AppTest {
 
     @Test
-    public void shouldExecuteApplicationWithoutException() {
+    void shouldExecuteApplicationWithoutException() {
         assertDoesNotThrow(() -> App.main(new String[]{}));
     }
 
