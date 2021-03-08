@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
  */
 public class App implements Runnable {
   
-  private final Logger logger = LoggerFactory.getLogger(App.class.getName());
+  private final static Logger logger = LoggerFactory.getLogger(App.class.getName());
   
   private static final int NUM_CREATURES = 3;
 
@@ -68,7 +68,7 @@ public class App implements Runnable {
       Thread.currentThread().interrupt();
     } finally {
       for (int i = 0;i < NUM_CREATURES;i++) {
-        creatures.get(i).kill(0);;
+        creatures.get(i).kill(0);
       }
     }
   }

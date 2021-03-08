@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class ActiveCreature {
   
-  private final Logger logger = LoggerFactory.getLogger(ActiveCreature.class.getName());
+  private final static Logger logger = LoggerFactory.getLogger(ActiveCreature.class.getName());
 
   private BlockingQueue<Runnable> requests;
   
@@ -37,7 +37,7 @@ public abstract class ActiveCreature {
           requests.take().run();
         } catch (InterruptedException e) {
           if (this.status != 0) {
-            logger.error("Thread was interrupted. -->" + e.getMessage()); 
+            logger.error("Thread was interrupted. --> {}", e.getMessage()); 
           }
           infinite = false;
           Thread.currentThread().interrupt();
