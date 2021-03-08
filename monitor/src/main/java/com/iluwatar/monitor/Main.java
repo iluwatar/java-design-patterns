@@ -29,20 +29,19 @@ import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 /**
- *
  * <p>The Monitor pattern is used in concurrent algorithms to achieve mutual exclusion.</p>
  *
  * <p>Bank is a simple class that transfers money from an account to another account using
  * {@link Bank#transfer}. It can also return the balance of the bank account stored in the bank.</p>
  *
  * <p>Main class uses ThreadPool to run threads that do transactions on the bank accounts.</p>
- *
  */
 
 public class Main {
 
     public static void main(String[] args) {
-        var bank = new Bank(4, 1000);
+        Logger logger = Logger.getLogger("monitor");
+        var bank = new Bank(4, 1000, logger);
         Runnable runnable = () -> {
             try {
                 Thread.sleep((long) (Math.random() * 1000));
@@ -50,7 +49,7 @@ public class Main {
                 for (int i = 0; i < 1000000; i++)
                     bank.transfer(random.nextInt(4), random.nextInt(4), (int) (Math.random() * 1000));
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.info(e.getMessage());
             }
         };
         ExecutorService executorService = Executors.newFixedThreadPool(5);
@@ -64,9 +63,10 @@ public class Main {
 class Bank {
 
     private int[] accounts;
-    Logger logger = Logger.getLogger("monitor");
+    Logger logger;
 
-    public Bank(int accountNum, int baseAmount) {
+    public Bank(int accountNum, int baseAmount, Logger logger) {
+        this.logger = logger;
         accounts = new int[accountNum];
         Arrays.fill(accounts, baseAmount);
     }
