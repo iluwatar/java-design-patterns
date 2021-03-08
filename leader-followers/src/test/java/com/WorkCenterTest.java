@@ -23,43 +23,45 @@
 
 package com;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import com.iluwatar.leaderfollowers.TaskHandler;
 import com.iluwatar.leaderfollowers.TaskSet;
 import com.iluwatar.leaderfollowers.WorkCenter;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for WorkCenter
  */
-public class WorkCenterTest {
+class WorkCenterTest {
 
   @Test
-  public void testCreateWorkers() {
+  void testCreateWorkers() {
     var taskSet = new TaskSet();
     var taskHandler = new TaskHandler();
     var workCenter = new WorkCenter();
     workCenter.createWorkers(5, taskSet, taskHandler);
-    Assert.assertEquals(workCenter.getWorkers().size(), 5);
-    Assert.assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
+    assertEquals(5, workCenter.getWorkers().size());
+    assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
   }
 
   @Test
-  public void testNullLeader() {
+  void testNullLeader() {
     var workCenter = new WorkCenter();
     workCenter.promoteLeader();
-    Assert.assertNull(workCenter.getLeader());
+    assertNull(workCenter.getLeader());
   }
 
   @Test
-  public void testPromoteLeader() {
+  void testPromoteLeader() {
     var taskSet = new TaskSet();
     var taskHandler = new TaskHandler();
     var workCenter = new WorkCenter();
     workCenter.createWorkers(5, taskSet, taskHandler);
     workCenter.removeWorker(workCenter.getLeader());
     workCenter.promoteLeader();
-    Assert.assertEquals(workCenter.getWorkers().size(), 4);
-    Assert.assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
+    assertEquals(4, workCenter.getWorkers().size());
+    assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
   }
 }

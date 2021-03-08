@@ -23,24 +23,25 @@
 
 package com.iluwatar.saga.choreography;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * test to check choreography saga
  */
-public class SagaChoreographyTest {
+class SagaChoreographyTest {
 
 
   @Test
-  public void executeTest() {
+  void executeTest() {
     var sd = serviceDiscovery();
     var service = sd.findAny();
     var badOrderSaga = service.execute(newSaga("bad_order"));
     var goodOrderSaga = service.execute(newSaga("good_order"));
 
-    Assert.assertEquals(badOrderSaga.getResult(), Saga.SagaResult.ROLLBACKED);
-    Assert.assertEquals(goodOrderSaga.getResult(), Saga.SagaResult.FINISHED);
+    assertEquals(Saga.SagaResult.ROLLBACKED, badOrderSaga.getResult());
+    assertEquals(Saga.SagaResult.FINISHED, goodOrderSaga.getResult());
   }
 
   private static Saga newSaga(Object value) {

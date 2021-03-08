@@ -23,11 +23,11 @@
 
 package com.iluwatar.combinator;
 
-import org.junit.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class CombinatorAppTest {
+import org.junit.jupiter.api.Test;
+
+class CombinatorAppTest {
 
   /**
    * Issue: Add at least one assertion to this test case.
@@ -37,7 +37,7 @@ public class CombinatorAppTest {
    */
 
   @Test
-  public void shouldExecuteApplicationWithoutException() {
+  void shouldExecuteApplicationWithoutException() {
     assertDoesNotThrow(() -> CombinatorApp.main(new String[]{}));
   }
 }

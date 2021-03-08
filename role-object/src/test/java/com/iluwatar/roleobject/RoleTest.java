@@ -23,15 +23,17 @@
 
 package com.iluwatar.roleobject;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class RoleTest {
+import org.junit.jupiter.api.Test;
+
+class RoleTest {
 
   @Test
-  public void instanceTest() {
+  void instanceTest() {
     var instance = Role.Borrower.instance();
-    Assert.assertTrue(instance.isPresent());
-    Assert.assertEquals(instance.get().getClass(), BorrowerRole.class);
+    assertTrue(instance.isPresent());
+    assertEquals(instance.get().getClass(), BorrowerRole.class);
   }
 }
