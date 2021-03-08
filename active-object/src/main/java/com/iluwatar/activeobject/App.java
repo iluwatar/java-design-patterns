@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
  */
 public class App implements Runnable {
   
-  private final static Logger logger = LoggerFactory.getLogger(App.class.getName());
+  private static final Logger logger = LoggerFactory.getLogger(App.class.getName());
   
   private static final int NUM_CREATURES = 3;
 

@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class ActiveCreature {
   
-  private final static Logger logger = LoggerFactory.getLogger(ActiveCreature.class.getName());
+  private static final Logger logger = LoggerFactory.getLogger(ActiveCreature.class.getName());
 
   private BlockingQueue<Runnable> requests;
   
