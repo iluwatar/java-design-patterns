@@ -23,6 +23,9 @@
 
 package com.iluwatar.activeobject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,19 +55,21 @@ public class App implements Runnable {
   
   @Override
   public void run() {
-    ActiveCreature creature;
+    List<ActiveCreature> creatures = new ArrayList<>();
     try {
       for (int i = 0;i < NUM_CREATURES;i++) {
-        creature = new Orc(Orc.class.getSimpleName() + i);
-        creature.eat();
-        creature.roam();
+        creatures.add(new Orc(Orc.class.getSimpleName() + i));
+        creatures.get(i).eat();
+        creatures.get(i).roam();
       }
       Thread.sleep(1000);
     } catch (InterruptedException e) {
       logger.error(e.getMessage());
       Thread.currentThread().interrupt();
     } finally {
-      Runtime.getRuntime().exit(1);
+      for (int i = 0;i < NUM_CREATURES;i++) {
+        creatures.get(i).kill(0);;
+      }
     }
   }
 }
