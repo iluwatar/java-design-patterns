@@ -23,17 +23,19 @@
 
 package com.iluwatar.doublebuffer;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.Arrays;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * FrameBuffer unit test.
  */
-public class FrameBufferTest {
+class FrameBufferTest {
 
   @Test
-  public void testClearAll() {
+  void testClearAll() {
     try {
       var field = FrameBuffer.class.getDeclaredField("pixels");
       var pixels = new Pixel[FrameBuffer.HEIGHT * FrameBuffer.WIDTH];
@@ -43,14 +45,14 @@ public class FrameBufferTest {
       field.setAccessible(true);
       field.set(frameBuffer, pixels);
       frameBuffer.clearAll();
-      Assert.assertEquals(Pixel.WHITE, frameBuffer.getPixels()[0]);
+      assertEquals(Pixel.WHITE, frameBuffer.getPixels()[0]);
     } catch (NoSuchFieldException | IllegalAccessException e) {
-      Assert.fail("Fail to modify field access.");
+      fail("Fail to modify field access.");
     }
   }
 
   @Test
-  public void testClear() {
+  void testClear() {
     try {
       var field = FrameBuffer.class.getDeclaredField("pixels");
       var pixels = new Pixel[FrameBuffer.HEIGHT * FrameBuffer.WIDTH];
@@ -60,21 +62,21 @@ public class FrameBufferTest {
       field.setAccessible(true);
       field.set(frameBuffer, pixels);
       frameBuffer.clear(0, 0);
-      Assert.assertEquals(Pixel.WHITE, frameBuffer.getPixels()[0]);
+      assertEquals(Pixel.WHITE, frameBuffer.getPixels()[0]);
     } catch (NoSuchFieldException | IllegalAccessException e) {
-      Assert.fail("Fail to modify field access.");
+      fail("Fail to modify field access.");
     }
   }
 
   @Test
-  public void testDraw() {
+  void testDraw() {
     var frameBuffer = new FrameBuffer();
     frameBuffer.draw(0, 0);
-    Assert.assertEquals(Pixel.BLACK, frameBuffer.getPixels()[0]);
+    assertEquals(Pixel.BLACK, frameBuffer.getPixels()[0]);
   }
 
   @Test
-  public void testGetPixels() {
+  void testGetPixels() {
     try {
       var field = FrameBuffer.class.getDeclaredField("pixels");
       var pixels = new Pixel[FrameBuffer.HEIGHT * FrameBuffer.WIDTH];
@@ -83,9 +85,9 @@ public class FrameBufferTest {
       var frameBuffer = new FrameBuffer();
       field.setAccessible(true);
       field.set(frameBuffer, pixels);
-      Assert.assertEquals(pixels, frameBuffer.getPixels());
+      assertEquals(pixels, frameBuffer.getPixels());
     } catch (NoSuchFieldException | IllegalAccessException e) {
-      Assert.fail("Fail to modify field access.");
+      fail("Fail to modify field access.");
     }
   }
 

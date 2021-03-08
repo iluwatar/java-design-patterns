@@ -30,17 +30,14 @@ import static org.mockito.Mockito.when;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  * Unit tests for LambdaInfoApiHandler
  */
-@RunWith(MockitoJUnitRunner.class)
-public class LambdaInfoApiHandlerTest {
+class LambdaInfoApiHandlerTest {
 
   @Test
-  public void handleRequestWithMockContext() {
+  void handleRequestWithMockContext() {
     var lambdaInfoApiHandler = new LambdaInfoApiHandler();
     var context = mock(Context.class);
     when(context.getAwsRequestId()).thenReturn("mock aws request id");

@@ -23,15 +23,15 @@
 
 package com.iluwatar.saga.orchestration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * empty test
  */
-public class SagaApplicationTest {
+class SagaApplicationTest {
 
   @Test
-  public void mainTest() {
+  void mainTest() {
     SagaApplication.main(new String[]{});
   }
 }
