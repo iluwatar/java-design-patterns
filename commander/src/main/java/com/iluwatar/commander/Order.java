@@ -23,8 +23,8 @@
 
 package com.iluwatar.commander;
 
+import java.security.SecureRandom;
 import java.util.Hashtable;
-import java.util.Random;
 
 /**
  * Order class holds details of the order.
@@ -45,7 +45,7 @@ public class Order { //can store all transactions ids also
   public final String id;
   final float price;
   final long createdTime;
-  private static final Random RANDOM = new Random();
+  private static final SecureRandom RANDOM = new SecureRandom();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<String, Boolean>();
   PaymentStatus paid;

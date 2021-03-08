@@ -23,18 +23,19 @@
 
 package com.iluwatar.saga.choreography;
 
-import com.iluwatar.saga.orchestration.SagaApplication;
-import org.junit.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import com.iluwatar.saga.orchestration.SagaApplication;
+import org.junit.jupiter.api.Test;
 
 
 /***
  * empty test
  */
-public class SagaApplicationTest {
+class SagaApplicationTest {
+
   @Test
-  public void shouldExecuteWithoutException() {
+  void shouldExecuteWithoutException() {
     assertDoesNotThrow(() -> SagaApplication.main(new String[]{}));
   }
 }
