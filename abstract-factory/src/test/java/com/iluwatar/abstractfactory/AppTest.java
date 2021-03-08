@@ -30,14 +30,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * Tests that Abstract Factory example runs without errors.
+ * Issue: Add at least one assertion to this test case.
+ *
+ * Solution: Inserted assertion to check whether the execution of the main method in {@link App}
+ * throws an exception.
  */
 class AppTest {
     
   @Test
   void shouldExecuteApplicationWithoutException() {
 
-	  Exception exception = assertThrows(SecurityException.class,() -> App.main(new String[]{}));
-	  //assertEquals(exception.st, 1);
+	  assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }
