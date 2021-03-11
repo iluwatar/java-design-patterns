@@ -50,53 +50,11 @@
 		</dependency>
 		<dependency>
 			<groupId>androidx.databinding</groupId>
-			<artifactId>databinding-compiler</artifactId>
-			<version>7.0.0-alpha08</version>
-		</dependency>
-		<dependency>
-			<groupId>androidx.databinding</groupId>
 			<artifactId>library</artifactId>
 			<version>3.2.0-alpha11</version>
 			<type>aar</type>
 		</dependency>
-		<dependency>
-			<groupId>androidx.databinding</groupId>
-			<artifactId>baseLibrary</artifactId>
-			<version>3.2.0-alpha11</version>
-		</dependency>
-		<dependency>
-			<groupId>androidx.collection</groupId>
-			<artifactId>collection</artifactId>
-			<version>1.0.0-alpha1</version>
-		</dependency>
-		<dependency>
-			<groupId>androidx.annotation</groupId>
-			<artifactId>annotation</artifactId>
-			<version>1.0.0-alpha1</version>
-		</dependency>
-		<dependency>
-			<groupId>androidx.lifecycle</groupId>
-			<artifactId>lifecycle-runtime</artifactId>
-			<version>2.0.0-alpha1</version>
-		</dependency>
-		<dependency>
-			<groupId>androidx.arch.core</groupId>
-			<artifactId>core-common</artifactId>
-			<version>2.0.0-alpha1</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>androidx.lifecycle</groupId>
-			<artifactId>lifecycle-common</artifactId>
-			<version>2.0.0-alpha1</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.android.material</groupId>
-			<artifactId>material</artifactId>
-			<version>1.0.0</version>
-			<type>aar</type>
-		</dependency>
+		
 	</dependencies>
 
 	<build>
