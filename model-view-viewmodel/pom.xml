@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The MIT License Copyright © 2014-2021 Ilkka Seppälä Permission is hereby 
+	granted, free of charge, to any person obtaining a copy of this software 
+	and associated documentation files (the "Software"), to deal in the Software 
+	without restriction, including without limitation the rights to use, copy, 
+	modify, merge, publish, distribute, sublicense, and/or sell copies of the 
+	Software, and to permit persons to whom the Software is furnished to do so, 
+	subject to the following conditions: The above copyright notice and this 
+	permission notice shall be included in all copies or substantial portions 
+	of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY 
+	KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+	MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN 
+	NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
+	DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+	ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+	DEALINGS IN THE SOFTWARE. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.iluwatar</groupId>
+		<artifactId>java-design-patterns</artifactId>
+		<version>1.24.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>model-view-viewmodel</artifactId>
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<version>4.1.1.4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.16</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>androidx.appcompat</groupId>
+			<artifactId>appcompat</artifactId>
+			<version>1.2.0</version>
+			<type>aar</type>
+		</dependency>
+		<dependency>
+			<groupId>androidx.databinding</groupId>
+			<artifactId>databinding-compiler</artifactId>
+			<version>7.0.0-alpha08</version>
+		</dependency>
+		<dependency>
+			<groupId>androidx.databinding</groupId>
+			<artifactId>library</artifactId>
+			<version>3.2.0-alpha11</version>
+			<type>aar</type>
+		</dependency>
+		<dependency>
+			<groupId>androidx.databinding</groupId>
+			<artifactId>baseLibrary</artifactId>
+			<version>3.2.0-alpha11</version>
+		</dependency>
+		<dependency>
+			<groupId>androidx.collection</groupId>
+			<artifactId>collection</artifactId>
+			<version>1.0.0-alpha1</version>
+		</dependency>
+		<dependency>
+			<groupId>androidx.annotation</groupId>
+			<artifactId>annotation</artifactId>
+			<version>1.0.0-alpha1</version>
+		</dependency>
+		<dependency>
+			<groupId>androidx.lifecycle</groupId>
+			<artifactId>lifecycle-runtime</artifactId>
+			<version>2.0.0-alpha1</version>
+		</dependency>
+		<dependency>
+			<groupId>androidx.arch.core</groupId>
+			<artifactId>core-common</artifactId>
+			<version>2.0.0-alpha1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>androidx.lifecycle</groupId>
+			<artifactId>lifecycle-common</artifactId>
+			<version>2.0.0-alpha1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.android.material</groupId>
+			<artifactId>material</artifactId>
+			<version>1.0.0</version>
+			<type>aar</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<!-- use the copy resources instead of resources, which adds it to 
+							the eclipse buildpath -->
+						<phase>initialize</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.basedir}/res</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/src/templates/res</directory>
+									<targetPath>${project.basedir}/res</targetPath>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+				<version>4.0.0-rc.2</version>
+				<extensions>true</extensions>
+				<configuration>
+					<manifest>
+						<debuggable>true</debuggable>
+					</manifest>
+				</configuration>
+				<executions>
+					<execution>
+						<id>manifestUpdate</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>manifest-update</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>alignApk</id>
+						<phase>package</phase>
+						<goals>
+							<goal>zipalign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<!-- via this activation the profile is automatically used when the release 
+				is done with the maven release plugin -->
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jarsigner-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>signing</id>
+								<goals>
+									<goal>sign</goal>
+									<goal>verify</goal>
+								</goals>
+								<phase>package</phase>
+								<inherited>true</inherited>
+								<configuration>
+									<removeExistingSignatures>true</removeExistingSignatures>
+									<archiveDirectory />
+									<includes>
+										<include>${project.build.directory}/${project.artifactId}.apk</include>
+									</includes>
+									<keystore>${sign.keystore}</keystore>
+									<alias>${sign.alias}</alias>
+									<storepass>${sign.storepass}</storepass>
+									<keypass>${sign.keypass}</keypass>
+									<verbose>false</verbose>
+									<arguments>
+										<argument>-sigalg</argument>
+										<argument>MD5withRSA</argument>
+										<argument>-digestalg</argument>
+										<argument>SHA1</argument>
+									</arguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- the signed apk then needs to be zipaligned and we activate proguard 
+						and we run the manifest update -->
+					<plugin>
+						<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+						<artifactId>android-maven-plugin</artifactId>
+						<inherited>true</inherited>
+						<configuration>
+							<release>true</release>
+							<sign>
+								<debug>false</debug>
+							</sign>
+							<zipalign>
+								<skip>false</skip>
+								<verbose>true</verbose>
+								<inputApk>${project.build.directory}/${project.artifactId}.apk</inputApk>
+								<outputApk>${project.build.directory}/${project.artifactId}-signed-aligned.apk
+								</outputApk>
+							</zipalign>
+							<manifest>
+								<debuggable>false</debuggable>
+								<versionCodeAutoIncrement>true</versionCodeAutoIncrement>
+							</manifest>
+							<!-- Change to true to skip Proguard -->
+							<proguard>
+								<skip>false</skip>
+								<config>proguard.conf</config>
+							</proguard>
+						</configuration>
+						<executions>
+							<execution>
+								<id>manifestUpdate</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>manifest-update</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>alignApk</id>
+								<phase>package</phase>
+								<goals>
+									<goal>zipalign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<configuration>
+							<artifacts>
+								<artifact>
+									<file>${project.build.directory}/${project.artifactId}-signed-aligned.apk</file>
+									<type>apk</type>
+									<classifier>signed-aligned</classifier>
+								</artifact>
+								<artifact>
+									<file>${project.build.directory}/proguard/mapping.txt</file>
+									<type>map</type>
+									<classifier>release</classifier>
+								</artifact>
+							</artifacts>
+						</configuration>
+						<executions>
+							<execution>
+								<id>attach-signed-aligned</id>
+								<phase>package</phase>
+								<goals>
+									<goal>attach-artifact</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>2.3.2</version>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
