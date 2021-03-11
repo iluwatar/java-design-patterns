@@ -23,14 +23,14 @@
 
 package com.iluwatar.doublebuffer;
 
-import org.junit.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * App unit test.
  */
-public class AppTest {
+class AppTest {
 
   /**
    * Issue: Add at least one assertion to this test case.
@@ -40,7 +40,7 @@ public class AppTest {
    */
 
   @Test
-  public void shouldExecuteApplicationWithoutException() {
+  void shouldExecuteApplicationWithoutException() {
     assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 

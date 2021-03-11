@@ -27,20 +27,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/30/15 - 18:35 PM
  *
  * @author Jeroen Meulemeester
  */
-public class RainbowFishV2Test {
+class RainbowFishV2Test {
 
   /**
    * Verify if the getters of a {@link RainbowFish} return the expected values
    */
   @Test
-  public void testValues() {
+  void testValues() {
     final var fish = new RainbowFishV2("name", 1, 2, 3, false, true, false);
     assertEquals("name", fish.getName());
     assertEquals(1, fish.getAge());

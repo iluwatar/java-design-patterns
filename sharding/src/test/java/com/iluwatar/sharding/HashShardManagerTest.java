@@ -23,22 +23,22 @@
 
 package com.iluwatar.sharding;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for HashShardManager class.
  */
-public class HashShardManagerTest {
+class HashShardManagerTest {
 
   private HashShardManager hashShardManager;
 
   /**
    * Initialize hashShardManager instance.
    */
-  @Before
+  @BeforeEach
   public void setup() {
     hashShardManager = new HashShardManager();
     var shard1 = new Shard(1);
@@ -49,16 +49,11 @@ public class HashShardManagerTest {
     hashShardManager.addNewShard(shard3);
   }
 
-  @After
-  public void tearDown() {
-
-  }
-
   @Test
-  public void testStoreData() {
+  void testStoreData() {
     var data = new Data(1, "test", Data.DataType.TYPE_1);
     hashShardManager.storeData(data);
-    Assert.assertEquals(data, hashShardManager.getShardById(1).getDataById(1));
+    assertEquals(data, hashShardManager.getShardById(1).getDataById(1));
   }
 
 }
