@@ -23,8 +23,8 @@
 
 package com.iluwatar.spatialpartition;
 
+import java.security.SecureRandom;
 import java.util.HashMap;
-import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -112,7 +112,7 @@ public class App {
   public static void main(String[] args) {
     var bubbles1 = new HashMap<Integer, Bubble>();
     var bubbles2 = new HashMap<Integer, Bubble>();
-    var rand = new Random();
+    var rand = new SecureRandom();
     for (int i = 0; i < 10000; i++) {
       var b = new Bubble(rand.nextInt(300), rand.nextInt(300), i, rand.nextInt(2) + 1);
       bubbles1.put(i, b);

@@ -26,9 +26,9 @@ package com.iluwatar.typeobject;
 import com.iluwatar.typeobject.Candy.Type;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -38,7 +38,7 @@ import org.json.simple.parser.ParseException;
  */
 
 public class CellPool {
-  private static final Random RANDOM = new Random();
+  private static final SecureRandom RANDOM = new SecureRandom();
   public static final String FRUIT = "fruit";
   public static final String CANDY = "candy";
   List<Cell> pool;

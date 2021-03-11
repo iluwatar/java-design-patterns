@@ -23,16 +23,17 @@
 
 package com.iluwatar.partialresponse;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Map;
 
 /**
  * tests {@link VideoResource}.
@@ -44,8 +45,8 @@ class VideoResourceTest {
 
   private static VideoResource resource;
 
-  @BeforeAll
-  static void setUp() {
+  @BeforeEach
+  void setUp() {
     var videos = Map.of(
         1, new Video(1, "Avatar", 178, "epic science fiction film",
             "James Cameron", "English"),
@@ -70,7 +71,7 @@ class VideoResourceTest {
     var fields = new String[]{"id", "title", "length"};
 
     var expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178}";
-    Mockito.when(fieldJsonMapper.toJson(Matchers.any(Video.class), Matchers.eq(fields))).thenReturn(expectedDetails);
+    Mockito.when(fieldJsonMapper.toJson(any(Video.class), eq(fields))).thenReturn(expectedDetails);
 
     var actualFieldsDetails = resource.getDetails(2, fields);
 
