@@ -54,7 +54,6 @@
 			<version>3.2.0-alpha11</version>
 			<type>aar</type>
 		</dependency>
-		
 	</dependencies>
 
 	<build>
