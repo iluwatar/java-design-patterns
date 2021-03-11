@@ -41,19 +41,6 @@
 			<version>1.18.16</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>androidx.appcompat</groupId>
-			<artifactId>appcompat</artifactId>
-			<version>1.2.0</version>
-			<type>aar</type>
-		</dependency>
-		<dependency>
-			<groupId>androidx.databinding</groupId>
-			<artifactId>library</artifactId>
-			<version>3.2.0-alpha11</version>
-			<type>aar</type>
-		</dependency>
 	</dependencies>
 
 	<build>
