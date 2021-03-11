@@ -23,7 +23,7 @@
 
 package com.iluwatar.gameloop;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,7 +80,7 @@ public abstract class GameLoop {
    */
   protected void processInput() {
     try {
-      var lag = new Random().nextInt(200) + 50;
+      var lag = new SecureRandom().nextInt(200) + 50;
       Thread.sleep(lag);
     } catch (InterruptedException e) {
       logger.error(e.getMessage());

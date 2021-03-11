@@ -23,16 +23,17 @@
 
 package com.iluwatar.roleobject;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InvestorRoleTest {
+import org.junit.jupiter.api.Test;
+
+class InvestorRoleTest {
 
   @Test
-  public void investTest() {
+  void investTest() {
     var investorRole = new InvestorRole();
     investorRole.setName("test");
     investorRole.setAmountToInvest(10);
-    Assert.assertEquals(investorRole.invest(), "Investor test has invested 10 dollars");
+    assertEquals("Investor test has invested 10 dollars", investorRole.invest());
   }
 }

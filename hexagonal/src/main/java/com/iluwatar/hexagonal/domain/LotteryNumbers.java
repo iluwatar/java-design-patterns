@@ -24,10 +24,10 @@
 package com.iluwatar.hexagonal.domain;
 
 import com.google.common.base.Joiner;
+import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.PrimitiveIterator;
-import java.util.Random;
 import java.util.Set;
 
 /**
@@ -126,7 +126,7 @@ public class LotteryNumbers {
      * @param max the max value (inclusive)
      */
     public RandomNumberGenerator(int min, int max) {
-      randomIterator = new Random().ints(min, max + 1).iterator();
+      randomIterator = new SecureRandom().ints(min, max + 1).iterator();
     }
 
     /**
