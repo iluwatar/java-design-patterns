@@ -23,9 +23,12 @@
 
 package com.iluwatar.business.delegate;
 
+import lombok.Setter;
+
 /**
  * Class for performing service lookups.
  */
+@Setter
 public class BusinessLookup {
 
   private EjbService ejbService;
@@ -44,13 +47,5 @@ public class BusinessLookup {
     } else {
       return jmsService;
     }
-  }
-
-  public void setJmsService(JmsService jmsService) {
-    this.jmsService = jmsService;
-  }
-
-  public void setEjbService(EjbService ejbService) {
-    this.ejbService = ejbService;
   }
 }

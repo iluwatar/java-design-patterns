@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
 public class SimpleMessageTest {
 
   @Test
-  public void testGetHeaders() {
+  void testGetHeaders() {
     final var message = new SimpleMessage();
     assertNotNull(message.getHeaders());
     assertTrue(message.getHeaders().isEmpty());
@@ -52,7 +52,7 @@ public class SimpleMessageTest {
   }
 
   @Test
-  public void testUnModifiableHeaders() {
+  void testUnModifiableHeaders() {
     final var message = new SimpleMessage();
     final var headers = message.getHeaders();
     assertThrows(UnsupportedOperationException.class, () -> {

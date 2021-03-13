@@ -23,15 +23,13 @@
 
 package com.iluwatar.bridge;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * SoulEatingEnchantment.
  */
+@Slf4j
 public class SoulEatingEnchantment implements Enchantment {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SoulEatingEnchantment.class);
 
   @Override
   public void onActivate() {

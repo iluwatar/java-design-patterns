@@ -21,14 +21,13 @@
  * THE SOFTWARE.
  */
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class defining Guard.
  */
+@Slf4j
 public class Guard implements Permission {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Guard.class);
 
   protected void enter() {
     LOGGER.info("You can enter");

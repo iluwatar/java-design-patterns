@@ -46,10 +46,10 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class MagicServiceImplTest {
+class MagicServiceImplTest {
 
   @Test
-  public void testFindAllWizards() {
+  void testFindAllWizards() {
     final var wizardDao = mock(WizardDao.class);
     final var spellbookDao = mock(SpellbookDao.class);
     final var spellDao = mock(SpellDao.class);
@@ -63,7 +63,7 @@ public class MagicServiceImplTest {
   }
 
   @Test
-  public void testFindAllSpellbooks() {
+  void testFindAllSpellbooks() {
     final var wizardDao = mock(WizardDao.class);
     final var spellbookDao = mock(SpellbookDao.class);
     final var spellDao = mock(SpellDao.class);
@@ -77,7 +77,7 @@ public class MagicServiceImplTest {
   }
 
   @Test
-  public void testFindAllSpells() {
+  void testFindAllSpells() {
     final var wizardDao = mock(WizardDao.class);
     final var spellbookDao = mock(SpellbookDao.class);
     final var spellDao = mock(SpellDao.class);
@@ -91,7 +91,7 @@ public class MagicServiceImplTest {
   }
 
   @Test
-  public void testFindWizardsWithSpellbook() {
+  void testFindWizardsWithSpellbook() {
     final var bookname = "bookname";
     final var spellbook = mock(Spellbook.class);
     final var wizards = Set.of(
@@ -122,7 +122,7 @@ public class MagicServiceImplTest {
   }
 
   @Test
-  public void testFindWizardsWithSpell() throws Exception {
+  void testFindWizardsWithSpell() throws Exception {
     final var wizards = Set.of(
         mock(Wizard.class),
         mock(Wizard.class),

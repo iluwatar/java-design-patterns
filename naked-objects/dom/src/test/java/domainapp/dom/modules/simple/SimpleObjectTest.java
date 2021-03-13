@@ -40,7 +40,7 @@ public class SimpleObjectTest {
   public void setUp() {
     simpleObject = new SimpleObject();
   }
-  
+
   @Test
   public void testName() {
     // given

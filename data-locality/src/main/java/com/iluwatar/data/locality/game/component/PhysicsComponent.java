@@ -23,15 +23,13 @@
 
 package com.iluwatar.data.locality.game.component;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation of Physics Component of Game.
  */
+@Slf4j
 public class PhysicsComponent implements Component {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(PhysicsComponent.class);
 
   /**
    * update physics component of game.

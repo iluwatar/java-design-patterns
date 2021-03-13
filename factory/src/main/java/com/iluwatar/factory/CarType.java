@@ -24,22 +24,19 @@
 package com.iluwatar.factory;
 
 import java.util.function.Supplier;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+/**
+ * Enumeration for different types of cars.
+ */
+@RequiredArgsConstructor
+@Getter
 public enum CarType {
-  
-  /**
-   * Enumeration for different types of cars.
-   */
-  FORD(Ford::new), 
+
+  FORD(Ford::new),
   FERRARI(Ferrari::new);
-  
-  private final Supplier<Car> constructor; 
-  
-  CarType(Supplier<Car> constructor) {
-    this.constructor = constructor;
-  }
-  
-  public Supplier<Car> getConstructor() {
-    return this.constructor;
-  }
+
+  private final Supplier<Car> constructor;
+
 }

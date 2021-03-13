@@ -34,22 +34,20 @@ import org.junit.jupiter.api.Test;
  *
  * @author George Aristy (george.aristy@gmail.com)
  */
-public class FindCustomerTest {
+class FindCustomerTest {
   /**
    * Returns the given result with no exceptions.
    */
   @Test
-  public void noExceptions() throws Exception {
+  void noExceptions() throws Exception {
     assertThat(new FindCustomer("123").perform(), is("123"));
   }
 
   /**
    * Throws the given exception.
-   *
-   * @throws Exception the expected exception
    */
   @Test
-  public void oneException() {
+  void oneException() {
     var findCustomer = new FindCustomer("123", new BusinessException("test"));
     assertThrows(BusinessException.class, findCustomer::perform);
   }
@@ -60,7 +58,7 @@ public class FindCustomerTest {
    * @throws Exception not an expected exception
    */
   @Test
-  public void resultAfterExceptions() throws Exception {
+  void resultAfterExceptions() throws Exception {
     final var op = new FindCustomer(
         "123",
         new CustomerNotFoundException("not found"),

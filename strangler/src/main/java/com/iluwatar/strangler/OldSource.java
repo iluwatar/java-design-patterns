@@ -23,14 +23,13 @@
 
 package com.iluwatar.strangler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Old source with techniques out of date.
  */
+@Slf4j
 public class OldSource {
-  private static final Logger LOGGER = LoggerFactory.getLogger(OldSource.class);
   private static final String VERSION = "1.0";
 
   /**

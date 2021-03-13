@@ -96,7 +96,7 @@ public class DateFormatCallableTestIncorrectDateFormat {
    * same exception
    */
   @Test
-  public void testExceptions() {
+  void testExceptions() {
     assertEquals(expectedExceptions, result.getExceptionList());
   }
 
@@ -105,7 +105,7 @@ public class DateFormatCallableTestIncorrectDateFormat {
    * deliver no date values
    */
   @Test
-  public void testCounterDateValues() {
+  void testCounterDateValues() {
     assertEquals(expectedCounterDateValues, result.getDateList().size());
   }
 
@@ -114,7 +114,7 @@ public class DateFormatCallableTestIncorrectDateFormat {
    * deliver 5 exceptions
    */
   @Test
-  public void testCounterExceptions() {
+  void testCounterExceptions() {
     assertEquals(expectedCounterExceptions, result.getExceptionList().size());
   }
 }

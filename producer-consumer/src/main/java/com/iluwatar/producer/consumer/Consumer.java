@@ -23,15 +23,13 @@
 
 package com.iluwatar.producer.consumer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class responsible for consume the {@link Item} produced by {@link Producer}.
  */
+@Slf4j
 public class Consumer {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Consumer.class);
 
   private final ItemQueue queue;
 

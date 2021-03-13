@@ -23,16 +23,14 @@
 
 package com.iluwatar.lazy.loading;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Same as HolderNaive but with added synchronization. This implementation is thread safe, but each
  * {@link #getHeavy()} call costs additional synchronization overhead.
  */
+@Slf4j
 public class HolderThreadSafe {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(HolderThreadSafe.class);
 
   private Heavy heavy;
 

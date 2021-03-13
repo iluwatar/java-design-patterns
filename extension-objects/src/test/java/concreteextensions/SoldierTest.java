@@ -55,9 +55,9 @@ class SoldierTest {
 
     List<ILoggingEvent> logsList = listAppender.list;
     assertEquals("[Soldier] " + soldier.getUnit().getName() + " is ready!", logsList.get(0)
-            .getMessage());
+        .getMessage());
     assertEquals(Level.INFO, logsList.get(0)
-            .getLevel());
+        .getLevel());
   }
 
 }

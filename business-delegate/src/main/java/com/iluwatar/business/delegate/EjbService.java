@@ -23,15 +23,13 @@
 
 package com.iluwatar.business.delegate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Service EJB implementation.
  */
+@Slf4j
 public class EjbService implements BusinessService {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(EjbService.class);
 
   @Override
   public void doProcessing() {

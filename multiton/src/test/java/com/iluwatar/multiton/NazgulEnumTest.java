@@ -23,7 +23,7 @@
 
 package com.iluwatar.multiton;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,11 +34,11 @@ import org.junit.jupiter.api.Test;
 class NazgulEnumTest {
 
   /**
-   * Check that multiple calls to any one of the instances in the multiton returns 
+   * Check that multiple calls to any one of the instances in the multiton returns
    * only that one particular instance, and do that for all instances in multiton
    */
   @Test
-  public void testTheSameObjectIsReturnedWithMultipleCalls() {
+  void testTheSameObjectIsReturnedWithMultipleCalls() {
     for (var i = 0; i < NazgulEnum.values().length; i++) {
       var instance1 = NazgulEnum.values()[i];
       var instance2 = NazgulEnum.values()[i];

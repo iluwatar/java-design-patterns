@@ -24,8 +24,7 @@
 package com.iluwatar.async.method.invocation;
 
 import java.util.concurrent.Callable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This application demonstrates the async method invocation pattern. Key parts of the pattern are
@@ -55,9 +54,8 @@ import org.slf4j.LoggerFactory;
  * @see java.util.concurrent.CompletableFuture
  * @see java.util.concurrent.ExecutorService
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

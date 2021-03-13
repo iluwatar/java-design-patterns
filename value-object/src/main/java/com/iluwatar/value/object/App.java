@@ -23,8 +23,7 @@
 
 package com.iluwatar.value.object;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A Value Object are objects which follow value semantics rather than reference semantics. This
@@ -40,9 +39,8 @@ import org.slf4j.LoggerFactory;
  * <p>For more specific and strict rules to implement value objects check the rules from Stephen
  * Colebourne's term VALJO : http://blog.joda.org/2014/03/valjos-value-java-objects.html
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * This practice creates three HeroStats(Value object) and checks equality between those.

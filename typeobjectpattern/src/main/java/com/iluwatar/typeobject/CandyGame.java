@@ -26,17 +26,15 @@ package com.iluwatar.typeobject;
 import com.iluwatar.typeobject.Candy.Type;
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The CandyGame class contains the rules for the continuation of the game and has the game matrix
  * (field 'cells') and totalPoints gained during the game.
  */
 
+@Slf4j
 public class CandyGame {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(CandyGame.class);
 
   Cell[][] cells;
   CellPool pool;

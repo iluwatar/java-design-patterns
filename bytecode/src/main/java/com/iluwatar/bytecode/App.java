@@ -24,8 +24,7 @@
 package com.iluwatar.bytecode;
 
 import com.iluwatar.bytecode.util.InstructionConverterUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The intention of Bytecode pattern is to give behavior the flexibility of data by encoding it as
@@ -40,8 +39,8 @@ import org.slf4j.LoggerFactory;
  * ensure the behavior being defined can’t break the game, you need to sandbox it from the rest of
  * the codebase.
  */
+@Slf4j
 public class App {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Main app method.

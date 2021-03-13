@@ -23,14 +23,14 @@
 
 package com.iluwatar.leaderfollowers;
 
-import java.util.Objects;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.EqualsAndHashCode;
+import lombok.extern.slf4j.Slf4j;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Slf4j
 public class Worker implements Runnable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
-
+  @EqualsAndHashCode.Include
   private final long id;
   private final WorkCenter workCenter;
   private final TaskSet taskSet;
@@ -72,25 +72,10 @@ public class Worker implements Runnable {
         workCenter.addWorker(this);
       } catch (InterruptedException e) {
         LOGGER.warn("Worker interrupted");
+        Thread.currentThread().interrupt();
         return;
       }
     }
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof Worker)) {
-      return false;
-    }
-    var worker = (Worker) o;
-    return id == worker.id;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id);
-  }
 }

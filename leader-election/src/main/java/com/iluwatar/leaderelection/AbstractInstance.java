@@ -25,15 +25,13 @@ package com.iluwatar.leaderelection;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract class of all the instance implementation classes.
  */
+@Slf4j
 public abstract class AbstractInstance implements Instance, Runnable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AbstractInstance.class);
 
   protected static final int HEARTBEAT_INTERVAL = 5000;
   private static final String INSTANCE = "Instance ";

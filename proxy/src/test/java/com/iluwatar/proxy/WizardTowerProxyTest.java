@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for {@link WizardTowerProxy}
  */
-public class WizardTowerProxyTest {
+class WizardTowerProxyTest {
 
   private InMemoryAppender appender;
 
@@ -50,7 +50,7 @@ public class WizardTowerProxyTest {
   }
 
   @Test
-  public void testEnter() throws Exception {
+  void testEnter() {
     final var wizards = List.of(
         new Wizard("Gandalf"),
         new Wizard("Dumbledore"),

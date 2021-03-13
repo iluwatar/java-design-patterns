@@ -59,9 +59,8 @@ public class CustomerRegistryTest {
   }
 
   @Test
-  public void shouldReturnNullWhenQueriedCustomerIsNotInRegistry() {
+  void shouldReturnNullWhenQueriedCustomerIsNotInRegistry() {
     Customer customerWithId5 = customerRegistry.getCustomer("5");
     assertNull(customerWithId5);
   }
-
 }

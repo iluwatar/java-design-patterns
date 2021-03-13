@@ -24,15 +24,13 @@
 package com.iluwatar.reader.writer.lock;
 
 import java.util.concurrent.locks.Lock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Reader class, read when it acquired the read lock.
  */
+@Slf4j
 public class Reader implements Runnable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Reader.class);
 
   private final Lock readLock;
 

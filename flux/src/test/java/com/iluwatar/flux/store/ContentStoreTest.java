@@ -46,7 +46,7 @@ import org.junit.jupiter.api.Test;
 public class ContentStoreTest {
 
   @Test
-  public void testOnAction() {
+  void testOnAction() {
     final var contentStore = new ContentStore();
 
     final var view = mock(View.class);

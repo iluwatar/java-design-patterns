@@ -45,7 +45,7 @@ import org.junit.jupiter.api.Test;
 public class MenuViewTest {
 
   @Test
-  public void testStoreChanged() {
+  void testStoreChanged() {
     final var store = mock(MenuStore.class);
     when(store.getSelected()).thenReturn(MenuItem.HOME);
 
@@ -57,7 +57,7 @@ public class MenuViewTest {
   }
 
   @Test
-  public void testItemClicked() {
+  void testItemClicked() {
     final var store = mock(Store.class);
     Dispatcher.getInstance().registerStore(store);
 

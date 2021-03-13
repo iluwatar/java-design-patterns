@@ -29,16 +29,15 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class implements the Event Queue pattern.
  *
  * @author mkuprivecz
  */
+@Slf4j
 public class Audio {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Audio.class);
   private static final Audio INSTANCE = new Audio();
 
   private static final int MAX_PENDING = 16;

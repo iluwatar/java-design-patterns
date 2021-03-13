@@ -46,6 +46,7 @@ public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
 
   @Inject
   FixtureScripts fixtureScripts;
+
   @Inject
   SimpleObjects simpleObjects;
 

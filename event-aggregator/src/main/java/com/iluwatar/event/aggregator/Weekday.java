@@ -23,9 +23,12 @@
 
 package com.iluwatar.event.aggregator;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * Weekday enumeration.
  */
+@RequiredArgsConstructor
 public enum Weekday {
 
   MONDAY("Monday"),
@@ -38,10 +41,7 @@ public enum Weekday {
 
   private final String description;
 
-  Weekday(String description) {
-    this.description = description;
-  }
-
+  @Override
   public String toString() {
     return description;
   }

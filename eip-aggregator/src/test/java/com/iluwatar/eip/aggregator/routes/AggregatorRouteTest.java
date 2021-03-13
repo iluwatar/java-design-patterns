@@ -49,7 +49,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ActiveProfiles("test")
 @EnableAutoConfiguration
 @ComponentScan
-public class AggregatorRouteTest {
+class AggregatorRouteTest {
 
   @EndpointInject(uri = "{{entry}}")
   private ProducerTemplate entry;
@@ -64,7 +64,7 @@ public class AggregatorRouteTest {
    */
   @Test
   @DirtiesContext
-  public void testSplitter() throws Exception {
+  void testSplitter() throws Exception {
 
     // Three items in one entry message
     entry.sendBody("TEST1");

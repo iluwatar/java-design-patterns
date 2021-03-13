@@ -23,8 +23,7 @@
 
 package com.iluwatar.multiton;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Whereas Singleton design pattern introduces single globally accessible object the Multiton
@@ -38,9 +37,8 @@ import org.slf4j.LoggerFactory;
  * <p>In the enum implementation {@link NazgulEnum} is the multiton. It is static and mutable
  * because of the way java supports enums.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

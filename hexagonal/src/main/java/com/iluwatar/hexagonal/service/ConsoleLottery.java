@@ -29,15 +29,13 @@ import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import java.util.Scanner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Console interface for lottery players.
  */
+@Slf4j
 public class ConsoleLottery {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleLottery.class);
 
   /**
    * Program entry point.

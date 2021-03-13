@@ -26,16 +26,14 @@ package com.iluwatar.updatemethod;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Random;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The game world class. Maintain all the objects existed in the game frames.
  */
+@Slf4j
 public class World {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(World.class);
 
   protected List<Entity> entities;
 
@@ -70,6 +68,7 @@ public class World {
       Thread.sleep(lag);
     } catch (InterruptedException e) {
       LOGGER.error(e.getMessage());
+      Thread.currentThread().interrupt();
     }
   }
 

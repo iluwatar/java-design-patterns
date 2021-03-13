@@ -28,7 +28,7 @@ package com.iluwatar.event.aggregator;
  *
  * @author Jeroen Meulemeester
  */
-public class ScoutTest extends EventEmitterTest<Scout> {
+class ScoutTest extends EventEmitterTest<Scout> {
 
   /**
    * Create a new test instance, using the correct object factory

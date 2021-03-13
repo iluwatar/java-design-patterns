@@ -23,17 +23,16 @@
 
 package com.iluwatar.arrangeactassert;
 
+import lombok.AllArgsConstructor;
+
 /**
  * Arrange/Act/Assert (AAA) is a unit test pattern. In this simple example, we have a ({@link Cash})
  * object for plus, minus and counting amount.
  */
+@AllArgsConstructor
 public class Cash {
 
   private int amount;
-
-  Cash(int amount) {
-    this.amount = amount;
-  }
 
   //plus
   void plus(int addend) {

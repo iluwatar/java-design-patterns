@@ -24,8 +24,7 @@
 package com.iluwatar.interpreter;
 
 import java.util.Stack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Interpreter pattern is a design pattern that specifies how to evaluate sentences in a
@@ -36,9 +35,8 @@ import org.slf4j.LoggerFactory;
  * <p>In this example we use the Interpreter pattern to break sentences into expressions ({@link
  * Expression}) that can be evaluated and as a whole form the result.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

@@ -35,7 +35,7 @@ import org.mockito.MockitoAnnotations;
 /**
  * Test API Gateway Pattern
  */
-public class ApiGatewayTest {
+class ApiGatewayTest {
 
   @InjectMocks
   private ApiGateway apiGateway;
@@ -55,7 +55,7 @@ public class ApiGatewayTest {
    * Tests getting the data for a desktop client
    */
   @Test
-  public void testGetProductDesktop() {
+  void testGetProductDesktop() {
     var imagePath = "/product-image.png";
     var price = "20";
     when(imageClient.getImagePath()).thenReturn(imagePath);
@@ -71,7 +71,7 @@ public class ApiGatewayTest {
    * Tests getting the data for a mobile client
    */
   @Test
-  public void testGetProductMobile() {
+  void testGetProductMobile() {
     var price = "20";
     when(priceClient.getPrice()).thenReturn(price);
 

@@ -28,5 +28,6 @@ package com.iluwatar.business.delegate;
  */
 public enum ServiceType {
 
-  EJB, JMS
+  EJB,
+  JMS
 }

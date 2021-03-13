@@ -24,16 +24,14 @@
 package com.iluwatar.lazy.loading;
 
 import java.util.function.Supplier;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This lazy loader is thread safe and more efficient than {@link HolderThreadSafe}. It utilizes
  * Java 8 functional interface {@link Supplier} as {@link Heavy} factory.
  */
+@Slf4j
 public class Java8Holder {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Java8Holder.class);
 
   private Supplier<Heavy> heavy = this::createAndCacheHeavy;
 

@@ -25,8 +25,7 @@ package com.iluwatar.tls;
 
 import java.util.Calendar;
 import java.util.concurrent.Executors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ThreadLocal pattern
@@ -58,9 +57,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author Thomas Bauer, 2017
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

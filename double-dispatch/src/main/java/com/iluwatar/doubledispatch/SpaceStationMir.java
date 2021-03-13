@@ -24,15 +24,13 @@
 package com.iluwatar.doubledispatch;
 
 import com.iluwatar.doubledispatch.constants.AppConstants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Space station Mir game object.
  */
+@Slf4j
 public class SpaceStationMir extends GameObject {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SpaceStationMir.class);
 
   public SpaceStationMir(int left, int top, int right, int bottom) {
     super(left, top, right, bottom);

@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class OrcKingTest {
+class OrcKingTest {
 
   /**
    * All possible requests
@@ -45,7 +45,7 @@ public class OrcKingTest {
   );
 
   @Test
-  public void testMakeRequest() {
+  void testMakeRequest() {
     final var king = new OrcKing();
 
     REQUESTS.forEach(request -> {

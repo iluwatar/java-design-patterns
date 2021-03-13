@@ -32,10 +32,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests MessageAggregationStrategy
  */
-public class MessageAggregationStrategyTest {
+class MessageAggregationStrategyTest {
 
   @Test
-  public void testAggregate() {
+  void testAggregate() {
     var mas = new MessageAggregationStrategy();
     var oldExchange = new DefaultExchange((CamelContext) null);
     oldExchange.getIn().setBody("TEST1");
@@ -49,7 +49,7 @@ public class MessageAggregationStrategyTest {
   }
 
   @Test
-  public void testAggregateOldNull() {
+  void testAggregateOldNull() {
     var mas = new MessageAggregationStrategy();
 
     var newExchange = new DefaultExchange((CamelContext) null);

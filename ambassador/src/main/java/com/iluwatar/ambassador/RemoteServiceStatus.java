@@ -33,8 +33,7 @@ package com.iluwatar.ambassador;
  */
 
 public enum RemoteServiceStatus {
-  FAILURE(-1)
-  ;
+  FAILURE(-1);
 
   private final long remoteServiceStatusValue;
 

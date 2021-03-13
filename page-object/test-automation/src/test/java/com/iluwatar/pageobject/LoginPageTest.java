@@ -42,7 +42,7 @@ public class LoginPageTest {
   }
 
   @Test
-  public void testLogin() {
+  void testLogin() {
     var albumListPage = loginPage
         .enterUsername("admin")
         .enterPassword("password")

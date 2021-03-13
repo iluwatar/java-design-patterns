@@ -23,8 +23,7 @@
 
 package com.iluwatar.sharding;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ShardManager with hash strategy. The purpose of this strategy is to reduce the
@@ -32,9 +31,8 @@ import org.slf4j.LoggerFactory;
  * in a way that achieves a balance between the size of each shard and the average
  * load that each shard will encounter.
  */
+@Slf4j
 public class HashShardManager extends ShardManager {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(HashShardManager.class);
 
   @Override
   public int storeData(Data data) {

@@ -24,22 +24,15 @@
 package com.iluwatar.datatransfer.customer;
 
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 /**
  * The resource class which serves customer information. This class act as server in the demo. Which
  * has all customer details.
  */
+@RequiredArgsConstructor
 public class CustomerResource {
   private final List<CustomerDto> customers;
-
-  /**
-   * Initialise resource with existing customers.
-   *
-   * @param customers initialize resource with existing customers. Act as database.
-   */
-  public CustomerResource(List<CustomerDto> customers) {
-    this.customers = customers;
-  }
 
   /**
    * Get all customers.

@@ -23,19 +23,18 @@
 
 package com.iluwatar.flux.action;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * Content items.
  */
+@RequiredArgsConstructor
 public enum Content {
 
-  PRODUCTS("Products - This page lists the company's products."), COMPANY(
-      "Company - This page displays information about the company.");
+  PRODUCTS("Products - This page lists the company's products."),
+  COMPANY("Company - This page displays information about the company.");
 
   private final String title;
-
-  Content(String title) {
-    this.title = title;
-  }
 
   @Override
   public String toString() {

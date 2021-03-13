@@ -26,8 +26,7 @@ package com.iluwatar.queue.load.leveling;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Many solutions in the cloud involve running tasks that invoke services. In this environment, if a
@@ -58,9 +57,8 @@ import org.slf4j.LoggerFactory;
  * MessageQueue. The service executor class {@link ServiceExecutor} will pick up one task at a time
  * from the Queue and execute them.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   //Executor shut down time limit.
   private static final int SHUTDOWN_TIME = 15;

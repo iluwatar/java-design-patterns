@@ -40,7 +40,7 @@ public class DragonSlayerTest {
    * Verify if the dragon slayer uses the strategy during battle.
    */
   @Test
-  public void testGoToBattle() {
+  void testGoToBattle() {
     final var strategy = mock(DragonSlayingStrategy.class);
     final var dragonSlayer = new DragonSlayer(strategy);
 
@@ -53,7 +53,7 @@ public class DragonSlayerTest {
    * Verify if the dragon slayer uses the new strategy during battle after a change of strategy.
    */
   @Test
-  public void testChangeStrategy() {
+  void testChangeStrategy() {
     final var initialStrategy = mock(DragonSlayingStrategy.class);
     final var dragonSlayer = new DragonSlayer(initialStrategy);
 
