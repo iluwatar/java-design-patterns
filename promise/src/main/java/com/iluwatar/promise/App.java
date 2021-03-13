@@ -29,8 +29,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Promise object is used for asynchronous computations. A Promise represents an operation that
@@ -60,9 +59,8 @@ import org.slf4j.LoggerFactory;
  *
  * @see CompletableFuture
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private static final String DEFAULT_URL =
       "https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/promise/README.md";

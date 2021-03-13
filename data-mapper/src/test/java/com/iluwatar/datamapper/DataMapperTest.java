@@ -37,13 +37,13 @@ import org.junit.jupiter.api.Test;
  * Data Mapper itself is even unknown to the domain layer.
  * <p>
  */
-public class DataMapperTest {
+class DataMapperTest {
 
   /**
    * This test verify that first data mapper is able to perform all CRUD operations on Student
    */
   @Test
-  public void testFirstDataMapper() {
+  void testFirstDataMapper() {
 
     /* Create new data mapper of first type */
     final var mapper = new StudentDataMapperImpl();

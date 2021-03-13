@@ -24,15 +24,13 @@
 package com.iluwatar.resource.acquisition.is.initialization;
 
 import java.io.Closeable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * TreasureChest resource.
  */
+@Slf4j
 public class TreasureChest implements Closeable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(TreasureChest.class);
 
   public TreasureChest() {
     LOGGER.info("Treasure chest opens.");

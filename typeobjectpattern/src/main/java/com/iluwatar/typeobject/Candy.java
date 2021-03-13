@@ -23,10 +23,15 @@
 
 package com.iluwatar.typeobject;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * The Candy class has a field type, which represents the 'type' of candy. The objects are created
  * by parsing the candy.json file.
  */
+@Getter(AccessLevel.PACKAGE)
 public class Candy {
 
   enum Type {
@@ -37,6 +42,8 @@ public class Candy {
   String name;
   Candy parent;
   String parentName;
+
+  @Setter
   private int points;
   private final Type type;
 
@@ -48,15 +55,4 @@ public class Candy {
     this.parentName = parentName;
   }
 
-  int getPoints() {
-    return this.points;
-  }
-
-  void setPoints(int a) {
-    this.points = a;
-  }
-
-  Type getType() {
-    return this.type;
-  }
 }

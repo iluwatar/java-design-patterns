@@ -26,7 +26,7 @@ package com.iluwatar.object.pool;
 import org.junit.jupiter.api.Test;
 
 /**
- * 
+ *
  * Application test
  *
  */

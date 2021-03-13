@@ -32,8 +32,7 @@ import com.iluwatar.iterator.bst.BstIterator;
 import com.iluwatar.iterator.bst.TreeNode;
 import com.iluwatar.iterator.list.ItemType;
 import com.iluwatar.iterator.list.TreasureChest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Iterator pattern is a design pattern in which an iterator is used to traverse a container and
@@ -43,9 +42,8 @@ import org.slf4j.LoggerFactory;
  * ({@link TreasureChest}). This way the collection can change its internal implementation without
  * affecting its clients.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private static final TreasureChest TREASURE_CHEST = new TreasureChest();
 

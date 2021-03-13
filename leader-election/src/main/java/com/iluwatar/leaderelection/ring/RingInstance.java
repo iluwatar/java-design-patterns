@@ -27,10 +27,8 @@ import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation with token ring algorithm. The instances in the system are organized as a ring.
@@ -43,9 +41,8 @@ import org.slf4j.LoggerFactory;
  * smallest ID to be the new leader, and then send a leader message to other instances to inform the
  * result.
  */
+@Slf4j
 public class RingInstance extends AbstractInstance {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(RingInstance.class);
   private static final String INSTANCE = "Instance ";
 
   /**

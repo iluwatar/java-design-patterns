@@ -26,6 +26,7 @@ package com.iluwatar.event.sourcing.event;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
 import java.util.Optional;
+import lombok.Getter;
 
 /**
  * This is the class that implements money deposit event. Holds the necessary info for a money
@@ -34,6 +35,7 @@ import java.util.Optional;
  *
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
+@Getter
 public class MoneyDepositEvent extends DomainEvent {
 
   private final BigDecimal money;
@@ -51,24 +53,6 @@ public class MoneyDepositEvent extends DomainEvent {
     super(sequenceId, createdTime, "MoneyDepositEvent");
     this.money = money;
     this.accountNo = accountNo;
-  }
-
-  /**
-   * Gets money.
-   *
-   * @return the money
-   */
-  public BigDecimal getMoney() {
-    return money;
-  }
-
-  /**
-   * Gets account no.
-   *
-   * @return the account no
-   */
-  public int getAccountNo() {
-    return accountNo;
   }
 
   @Override

@@ -23,15 +23,13 @@
 
 package com.iluwatar.templatemethod;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * SubtleMethod implementation of {@link StealingMethod}.
  */
+@Slf4j
 public class SubtleMethod extends StealingMethod {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SubtleMethod.class);
 
   @Override
   protected String pickTarget() {

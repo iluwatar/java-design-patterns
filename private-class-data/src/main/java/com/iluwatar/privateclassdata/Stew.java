@@ -23,15 +23,13 @@
 
 package com.iluwatar.privateclassdata;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Mutable stew class.
  */
+@Slf4j
 public class Stew {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Stew.class);
 
   private int numPotatoes;
   private int numCarrots;

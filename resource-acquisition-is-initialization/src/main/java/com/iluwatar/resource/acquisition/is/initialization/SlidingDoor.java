@@ -23,15 +23,13 @@
 
 package com.iluwatar.resource.acquisition.is.initialization;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * SlidingDoor resource.
  */
+@Slf4j
 public class SlidingDoor implements AutoCloseable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SlidingDoor.class);
 
   public SlidingDoor() {
     LOGGER.info("Sliding door opens.");

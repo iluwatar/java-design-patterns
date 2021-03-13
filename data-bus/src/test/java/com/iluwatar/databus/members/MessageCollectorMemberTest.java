@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
-public class MessageCollectorMemberTest {
+class MessageCollectorMemberTest {
 
   @Test
-  public void collectMessageFromMessageData() {
+  void collectMessageFromMessageData() {
     //given
     final var message = "message";
     final var messageData = new MessageData(message);
@@ -51,7 +51,7 @@ public class MessageCollectorMemberTest {
   }
 
   @Test
-  public void collectIgnoresMessageFromOtherDataTypes() {
+  void collectIgnoresMessageFromOtherDataTypes() {
     //given
     final var startingData = new StartingData(LocalDateTime.now());
     final var collector = new MessageCollectorMember("collector");

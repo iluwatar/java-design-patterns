@@ -29,7 +29,6 @@ package com.iluwatar.business.delegate;
 public class BusinessDelegate {
 
   private BusinessLookup lookupService;
-  private BusinessService businessService;
   private ServiceType serviceType;
 
   public void setLookupService(BusinessLookup businessLookup) {
@@ -41,7 +40,7 @@ public class BusinessDelegate {
   }
 
   public void doTask() {
-    businessService = lookupService.getBusinessService(serviceType);
+    BusinessService businessService = lookupService.getBusinessService(serviceType);
     businessService.doProcessing();
   }
 }

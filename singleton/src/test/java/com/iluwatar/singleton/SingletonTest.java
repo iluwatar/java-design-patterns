@@ -49,7 +49,7 @@ import org.junit.jupiter.api.Test;
  * @author Jeroen Meulemeester
  * @author Richard Jones
  */
-public abstract class SingletonTest<S> {
+abstract class SingletonTest<S> {
 
   /**
    * The singleton's getInstance method.
@@ -69,7 +69,7 @@ public abstract class SingletonTest<S> {
    * Test the singleton in a non-concurrent setting.
    */
   @Test
-  public void testMultipleCallsReturnTheSameObjectInSameThread() {
+  void testMultipleCallsReturnTheSameObjectInSameThread() {
     // Create several instances in the same calling thread
     var instance1 = this.singletonInstanceMethod.get();
     var instance2 = this.singletonInstanceMethod.get();
@@ -84,7 +84,7 @@ public abstract class SingletonTest<S> {
    * Test singleton instance in a concurrent setting.
    */
   @Test
-  public void testMultipleCallsReturnTheSameObjectInDifferentThreads() throws Exception {
+  void testMultipleCallsReturnTheSameObjectInDifferentThreads() throws Exception {
     assertTimeout(ofMillis(10000), () -> {
       // Create 10000 tasks and inside each callable instantiate the singleton class
       final var tasks = IntStream.range(0, 10000)

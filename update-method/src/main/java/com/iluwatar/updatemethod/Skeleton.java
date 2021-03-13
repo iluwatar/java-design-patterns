@@ -51,9 +51,9 @@ public class Skeleton extends Entity {
    * Constructor of Skeleton.
    *
    * @param id id of skeleton
-   * @param postition position of skeleton
+   * @param position position of skeleton
    */
-  public Skeleton(int id, int postition) {
+  public Skeleton(int id, int position) {
     super(id);
     this.position = position;
     patrollingLeft = false;
@@ -72,7 +72,7 @@ public class Skeleton extends Entity {
         patrollingLeft = true;
       }
     }
-    logger.info("Skeleton " + id + " is on position " + position + ".");
+    logger.info("Skeleton {} is on position {}.", id, position);
   }
 }
 

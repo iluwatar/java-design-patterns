@@ -37,10 +37,10 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class ServantTest {
+class ServantTest {
 
   @Test
-  public void testFeed() {
+  void testFeed() {
     final var royalty = mock(Royalty.class);
     final var servant = new Servant("test");
     servant.feed(royalty);
@@ -49,7 +49,7 @@ public class ServantTest {
   }
 
   @Test
-  public void testGiveWine() {
+  void testGiveWine() {
     final var royalty = mock(Royalty.class);
     final var servant = new Servant("test");
     servant.giveWine(royalty);
@@ -58,7 +58,7 @@ public class ServantTest {
   }
 
   @Test
-  public void testGiveCompliments() {
+  void testGiveCompliments() {
     final var royalty = mock(Royalty.class);
     final var servant = new Servant("test");
     servant.giveCompliments(royalty);
@@ -67,7 +67,7 @@ public class ServantTest {
   }
 
   @Test
-  public void testCheckIfYouWillBeHanged() {
+  void testCheckIfYouWillBeHanged() {
     final var goodMoodRoyalty = mock(Royalty.class);
     when(goodMoodRoyalty.getMood()).thenReturn(true);
 

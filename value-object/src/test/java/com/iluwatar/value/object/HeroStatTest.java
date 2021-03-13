@@ -33,17 +33,17 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit test for HeroStat.
  */
-public class HeroStatTest {
+class HeroStatTest {
 
   /**
    * Tester for equals() and hashCode() methods of a class. Using guava's EqualsTester.
    *
    * @see <a href="http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/EqualsTester.html">
-   *     http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/EqualsTester.html
-   *     </a>
+   * http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/EqualsTester.html
+   * </a>
    */
   @Test
-  public void testEquals() {
+  void testEquals() {
     var heroStatA = HeroStat.valueOf(3, 9, 2);
     var heroStatB = HeroStat.valueOf(3, 9, 2);
     new EqualsTester().addEqualityGroup(heroStatA, heroStatB).testEquals();
@@ -54,7 +54,7 @@ public class HeroStatTest {
    * different.
    */
   @Test
-  public void testToString() {
+  void testToString() {
     var heroStatA = HeroStat.valueOf(3, 9, 2);
     var heroStatB = HeroStat.valueOf(3, 9, 2);
     var heroStatC = HeroStat.valueOf(3, 9, 8);

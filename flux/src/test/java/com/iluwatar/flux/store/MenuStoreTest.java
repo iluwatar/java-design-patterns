@@ -46,7 +46,7 @@ import org.junit.jupiter.api.Test;
 public class MenuStoreTest {
 
   @Test
-  public void testOnAction() {
+  void testOnAction() {
     final var menuStore = new MenuStore();
 
     final var view = mock(View.class);

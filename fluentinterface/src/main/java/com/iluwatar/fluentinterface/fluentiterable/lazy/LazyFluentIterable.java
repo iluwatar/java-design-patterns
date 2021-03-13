@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import lombok.RequiredArgsConstructor;
 
 /**
  * This is a lazy implementation of the FluentIterable interface. It evaluates all chained
@@ -37,18 +38,10 @@ import java.util.function.Predicate;
  *
  * @param <E> the type of the objects the iteration is about
  */
+@RequiredArgsConstructor
 public class LazyFluentIterable<E> implements FluentIterable<E> {
 
   private final Iterable<E> iterable;
-
-  /**
-   * This constructor creates a new LazyFluentIterable. It wraps the given iterable.
-   *
-   * @param iterable the iterable this FluentIterable works on.
-   */
-  protected LazyFluentIterable(Iterable<E> iterable) {
-    this.iterable = iterable;
-  }
 
   /**
    * This constructor can be used to implement anonymous subclasses of the LazyFluentIterable.

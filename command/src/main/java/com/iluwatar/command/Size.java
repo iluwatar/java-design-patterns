@@ -23,18 +23,18 @@
 
 package com.iluwatar.command;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * Enumeration for target size.
  */
+@RequiredArgsConstructor
 public enum Size {
 
-  SMALL("small"), NORMAL("normal");
+  SMALL("small"),
+  NORMAL("normal");
 
   private final String title;
-
-  Size(String title) {
-    this.title = title;
-  }
 
   @Override
   public String toString() {

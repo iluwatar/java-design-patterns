@@ -40,7 +40,7 @@ import org.junit.jupiter.api.Test;
 public class ProducerTest {
 
   @Test
-  public void testProduce() {
+  void testProduce() {
     assertTimeout(ofMillis(6000), () -> {
       final var queue = mock(ItemQueue.class);
       final var producer = new Producer("producer", queue);

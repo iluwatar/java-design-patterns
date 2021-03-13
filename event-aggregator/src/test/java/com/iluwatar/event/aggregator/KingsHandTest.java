@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class KingsHandTest extends EventEmitterTest<KingsHand> {
+class KingsHandTest extends EventEmitterTest<KingsHand> {
 
   /**
    * Create a new test instance, using the correct object factory
@@ -53,7 +53,7 @@ public class KingsHandTest extends EventEmitterTest<KingsHand> {
    * just a mocked observer.
    */
   @Test
-  public void testPassThrough() throws Exception {
+  void testPassThrough() throws Exception {
     final var observer = mock(EventObserver.class);
     final var kingsHand = new KingsHand(observer);
 

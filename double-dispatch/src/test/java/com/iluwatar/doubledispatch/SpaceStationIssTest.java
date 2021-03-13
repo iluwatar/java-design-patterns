@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
+class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
 
   @Override
   final SpaceStationIss getTestedObject() {
@@ -44,7 +44,7 @@ public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
    * Test the constructor parameters
    */
   @Test
-  public void testConstructor() {
+  void testConstructor() {
     final var iss = new SpaceStationIss(1, 2, 3, 4);
     assertEquals(1, iss.getLeft());
     assertEquals(2, iss.getTop());
@@ -59,7 +59,7 @@ public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
    * Test what happens we collide with an asteroid
    */
   @Test
-  public void testCollideFlamingAsteroid() {
+  void testCollideFlamingAsteroid() {
     testCollision(
         new FlamingAsteroid(1, 1, 3, 4),
         false, true,
@@ -71,7 +71,7 @@ public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
    * Test what happens we collide with an meteoroid
    */
   @Test
-  public void testCollideMeteoroid() {
+  void testCollideMeteoroid() {
     testCollision(
         new Meteoroid(1, 1, 3, 4),
         false, false,
@@ -83,7 +83,7 @@ public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
    * Test what happens we collide with ISS
    */
   @Test
-  public void testCollideSpaceStationIss() {
+  void testCollideSpaceStationIss() {
     testCollision(
         new SpaceStationIss(1, 1, 3, 4),
         true, false,
@@ -95,7 +95,7 @@ public class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
    * Test what happens we collide with MIR
    */
   @Test
-  public void testCollideSpaceStationMir() {
+  void testCollideSpaceStationMir() {
     testCollision(
         new SpaceStationMir(1, 1, 3, 4),
         true, false,

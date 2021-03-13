@@ -26,17 +26,16 @@ package com.iluwatar.ambassador;
 import static com.iluwatar.ambassador.RemoteServiceStatus.FAILURE;
 import static java.lang.Thread.sleep;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ServiceAmbassador provides an interface for a ({@link Client}) to access ({@link RemoteService}).
  * The interface adds logging, latency testing and usage of the service in a safe way that will not
  * add stress to the remote service when connectivity issues occur.
  */
+@Slf4j
 public class ServiceAmbassador implements RemoteServiceInterface {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceAmbassador.class);
   private static final int RETRIES = 3;
   private static final int DELAY_MS = 3000;
 
@@ -53,7 +52,7 @@ public class ServiceAmbassador implements RemoteServiceInterface {
     var result = RemoteService.getRemoteService().doRemoteFunction(value);
     var timeTaken = System.currentTimeMillis() - startTime;
 
-    LOGGER.info("Time taken (ms): " + timeTaken);
+    LOGGER.info("Time taken (ms): {}", timeTaken);
     return result;
   }
 
@@ -67,12 +66,13 @@ public class ServiceAmbassador implements RemoteServiceInterface {
       }
 
       if ((result = checkLatency(value)) == FAILURE.getRemoteServiceStatusValue()) {
-        LOGGER.info("Failed to reach remote: (" + (i + 1) + ")");
+        LOGGER.info("Failed to reach remote: ({})", i + 1);
         retries++;
         try {
           sleep(DELAY_MS);
         } catch (InterruptedException e) {
           LOGGER.error("Thread sleep state interrupted", e);
+          Thread.currentThread().interrupt();
         }
       } else {
         break;

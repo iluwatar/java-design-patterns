@@ -38,7 +38,6 @@ import com.iluwatar.flux.action.ContentAction;
 import com.iluwatar.flux.action.MenuAction;
 import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.store.Store;
-import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -67,13 +66,13 @@ public class DispatcherTest {
   }
 
   @Test
-  public void testGetInstance() {
+  void testGetInstance() {
     assertNotNull(Dispatcher.getInstance());
     assertSame(Dispatcher.getInstance(), Dispatcher.getInstance());
   }
 
   @Test
-  public void testMenuItemSelected() {
+  void testMenuItemSelected() {
     final var dispatcher = Dispatcher.getInstance();
 
     final var store = mock(Store.class);

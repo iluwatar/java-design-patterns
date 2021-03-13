@@ -24,8 +24,7 @@
 package com.iluwatar.collectionpipeline;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * In imperative-style programming, it is common to use for and while loops for most kinds of data
@@ -35,9 +34,8 @@ import org.slf4j.LoggerFactory;
  * create sophisticated programs where data flow from upstream to downstream and is passed through a
  * series of transformations.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

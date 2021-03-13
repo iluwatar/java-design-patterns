@@ -23,16 +23,14 @@
 
 package com.iluwatar.acyclicvisitor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ConfigureForUnixVisitor class implements zoom's visit method for Unix manufacturer, unlike
  * traditional visitor pattern, this class may selectively implement visit for other modems.
  */
+@Slf4j
 public class ConfigureForUnixVisitor implements ZoomVisitor {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ConfigureForUnixVisitor.class);
 
   @Override
   public void visit(Zoom zoom) {

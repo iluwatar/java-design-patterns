@@ -41,7 +41,7 @@ import org.junit.jupiter.api.Test;
 public class ContentViewTest {
 
   @Test
-  public void testStoreChanged() {
+  void testStoreChanged() {
     final var store = mock(ContentStore.class);
     when(store.getContent()).thenReturn(Content.PRODUCTS);
 

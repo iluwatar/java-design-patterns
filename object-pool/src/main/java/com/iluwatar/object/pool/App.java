@@ -23,8 +23,7 @@
 
 package com.iluwatar.object.pool;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * When it is necessary to work with a large number of objects that are particularly expensive to
@@ -44,9 +43,8 @@ import org.slf4j.LoggerFactory;
  * ObjectPool}. {@link Oliphaunt}s can be checked out from the pool and later returned to it. The
  * pool tracks created instances and their status (available, inUse).
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

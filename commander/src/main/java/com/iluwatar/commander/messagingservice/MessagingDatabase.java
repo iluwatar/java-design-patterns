@@ -24,20 +24,16 @@
 package com.iluwatar.commander.messagingservice;
 
 import com.iluwatar.commander.Database;
-import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.messagingservice.MessagingService.MessageRequest;
 import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * The MessagingDatabase is where the MessageRequest is added.
  */
 
 public class MessagingDatabase extends Database<MessageRequest> {
-  private final Hashtable<String, MessageRequest> data;
-
-  public MessagingDatabase() {
-    this.data = new Hashtable<>();
-  }
+  private final Map<String, MessageRequest> data = new Hashtable<>();
 
   @Override
   public MessageRequest add(MessageRequest r) {

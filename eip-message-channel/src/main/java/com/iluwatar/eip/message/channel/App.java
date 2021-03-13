@@ -23,10 +23,9 @@
 
 package com.iluwatar.eip.message.channel;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * When two applications communicate with each other using a messaging system they first need to
@@ -48,9 +47,8 @@ import org.slf4j.LoggerFactory;
  * Channel is established from the Direct component to console output. No actual messages are sent,
  * only the established routes are printed to standard output.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

@@ -23,8 +23,7 @@
 
 package com.iluwatar.circuitbreaker;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
@@ -55,9 +54,8 @@ import org.slf4j.LoggerFactory;
  * recovers, it goes back to the closed state and the cycle continues.
  * </p>
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

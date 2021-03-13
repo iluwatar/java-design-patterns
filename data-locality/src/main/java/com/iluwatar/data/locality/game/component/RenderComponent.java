@@ -23,15 +23,13 @@
 
 package com.iluwatar.data.locality.game.component;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation of Render Component of Game.
  */
+@Slf4j
 public class RenderComponent implements Component {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(RenderComponent.class);
 
   @Override
   public void update() {

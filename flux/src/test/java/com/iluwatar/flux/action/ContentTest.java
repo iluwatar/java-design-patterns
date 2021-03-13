@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
 public class ContentTest {
 
   @Test
-  public void testToString() {
+  void testToString() {
     for (final var content : Content.values()) {
       final var toString = content.toString();
       assertNotNull(toString);

@@ -38,17 +38,17 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class GuiceWizardTest {
+class GuiceWizardTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(Tobacco.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -57,7 +57,7 @@ public class GuiceWizardTest {
    * through the constructor parameter
    */
   @Test
-  public void testSmokeEveryThingThroughConstructor() throws Exception {
+  void testSmokeEveryThingThroughConstructor() throws Exception {
 
     List<Tobacco> tobaccos = List.of(
         new OldTobyTobacco(),
@@ -82,7 +82,7 @@ public class GuiceWizardTest {
    * through the Guice google inject framework
    */
   @Test
-  public void testSmokeEveryThingThroughInjectionFramework() throws Exception {
+  void testSmokeEveryThingThroughInjectionFramework() throws Exception {
 
     List<Class<? extends Tobacco>> tobaccos = List.of(
         OldTobyTobacco.class,

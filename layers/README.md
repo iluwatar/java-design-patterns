@@ -82,9 +82,8 @@ public interface View {
 
 }
 
+@Slf4j
 public class CakeViewImpl implements View {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(CakeViewImpl.class);
 
   private final CakeBakingService cakeBakingService;
 

@@ -26,10 +26,9 @@ package com.iluwatar.repository;
 import java.util.List;
 import java.util.Properties;
 import javax.sql.DataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -42,9 +41,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
  */
 @EnableJpaRepositories
 @SpringBootConfiguration
+@Slf4j
 public class AppConfig {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
 
   /**
    * Creation of H2 db.

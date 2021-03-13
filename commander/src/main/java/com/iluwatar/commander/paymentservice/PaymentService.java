@@ -25,6 +25,7 @@ package com.iluwatar.commander.paymentservice;
 
 import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
+import lombok.RequiredArgsConstructor;
 
 /**
  * The PaymentService class receives request from the {@link com.iluwatar.commander.Commander} and
@@ -33,16 +34,11 @@ import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 public class PaymentService extends Service {
 
-  class PaymentRequest {
-    String transactionId;
-    float payment;
+  @RequiredArgsConstructor
+  static class PaymentRequest {
+    final String transactionId;
+    final float payment;
     boolean paid;
-
-    PaymentRequest(String transactionId, float payment) {
-      this.transactionId = transactionId;
-      this.payment = payment;
-      this.paid = false;
-    }
   }
 
   public PaymentService(PaymentDatabase db, Exception... exc) {

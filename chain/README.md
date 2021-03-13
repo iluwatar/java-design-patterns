@@ -68,8 +68,8 @@ public enum RequestType {
 Then the request handler hierarchy
 
 ```java
+@Slf4j
 public abstract class RequestHandler {
-  private static final Logger LOGGER = LoggerFactory.getLogger(RequestHandler.class);
   private final RequestHandler next;
 
   public RequestHandler(RequestHandler next) {

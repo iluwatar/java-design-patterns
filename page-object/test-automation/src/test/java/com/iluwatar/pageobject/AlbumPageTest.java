@@ -42,7 +42,7 @@ public class AlbumPageTest {
   }
 
   @Test
-  public void testSaveAlbum() {
+  void testSaveAlbum() {
 
     var albumPageAfterChanges = albumPage
         .changeAlbumTitle("25")
@@ -57,7 +57,7 @@ public class AlbumPageTest {
   }
 
   @Test
-  public void testCancelChanges() {
+  void testCancelChanges() {
     var albumListPage = albumPage.cancelChanges();
     albumListPage.navigateToPage();
     assertTrue(albumListPage.isAt());

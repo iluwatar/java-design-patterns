@@ -47,6 +47,5 @@ public class App {
     king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle"));
     king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner"));
     king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax"));
-
   }
 }

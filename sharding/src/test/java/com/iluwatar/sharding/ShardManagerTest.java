@@ -85,7 +85,7 @@ class ShardManagerTest {
     assertEquals(shard, tmpShard);
   }
 
-  class TestShardManager extends ShardManager {
+  static class TestShardManager extends ShardManager {
 
     @Override
     public int storeData(Data data) {

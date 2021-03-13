@@ -39,6 +39,7 @@ Wikipedia says
 Here's the sample code with wizard and goblin. Let's start from the `Wizard` class.
 
 ```java
+@Slf4j
 public class Wizard {
 
   private final Deque<Command> undoStack = new LinkedList<>();
@@ -77,9 +78,8 @@ public class Wizard {
 Next, we have the goblin who's the target of the spells.
 
 ```java
+@Slf4j
 public abstract class Target {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Target.class);
 
   private Size size;
 

@@ -23,29 +23,24 @@
 
 package com.iluwatar.filterer.threat;
 
-import com.google.common.collect.ImmutableList;
 import com.iluwatar.filterer.domain.Filterer;
-
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 /**
  * {@inheritDoc}
  */
+@ToString
+@EqualsAndHashCode
+@RequiredArgsConstructor
 public class SimpleProbabilisticThreatAwareSystem implements ProbabilisticThreatAwareSystem {
 
   private final String systemId;
-  private final ImmutableList<ProbableThreat> threats;
-
-  public SimpleProbabilisticThreatAwareSystem(
-          final String systemId,
-          final List<ProbableThreat> threats
-  ) {
-    this.systemId = systemId;
-    this.threats = ImmutableList.copyOf(threats);
-  }
+  private final List<ProbableThreat> threats;
 
   /**
    * {@inheritDoc}
@@ -72,42 +67,15 @@ public class SimpleProbabilisticThreatAwareSystem implements ProbabilisticThreat
   }
 
   private ProbabilisticThreatAwareSystem filteredGroup(
-          final Predicate<? super ProbableThreat> predicate
-  ) {
+      final Predicate<? super ProbableThreat> predicate) {
     return new SimpleProbabilisticThreatAwareSystem(this.systemId, filteredItems(predicate));
   }
 
   private List<ProbableThreat> filteredItems(
-          final Predicate<? super ProbableThreat> predicate
-  ) {
+      final Predicate<? super ProbableThreat> predicate) {
     return this.threats.stream()
-            .filter(predicate)
-            .collect(Collectors.toList());
+        .filter(predicate)
+        .collect(Collectors.toUnmodifiableList());
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    var that = (SimpleProbabilisticThreatAwareSystem) o;
-    return systemId.equals(that.systemId)
-            && threats.equals(that.threats);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(systemId, threats);
-  }
-
-  @Override
-  public String toString() {
-    return "SimpleProbabilisticThreatAwareSystem{"
-            + "systemId='" + systemId + '\''
-            + ", threats=" + threats
-            + '}';
-  }
 }

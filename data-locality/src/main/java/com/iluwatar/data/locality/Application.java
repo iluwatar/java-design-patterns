@@ -24,8 +24,7 @@
 package com.iluwatar.data.locality;
 
 import com.iluwatar.data.locality.game.GameEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Use the Data Locality pattern is when you have a performance problem. Take advantage of that to
@@ -35,9 +34,8 @@ import org.slf4j.LoggerFactory;
  * <p>Example:  Game loop that processes a bunch of game entities. Those entities are decomposed
  * into different domains  — AI, physics, and rendering — using the Component pattern.
  */
+@Slf4j
 public class Application {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
   private static final int NUM_ENTITIES = 5;
 

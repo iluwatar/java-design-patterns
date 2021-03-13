@@ -38,7 +38,7 @@ public class MassSelectorTest {
    * Verify if the mass selector gives the correct results.
    */
   @Test
-  public void testMass() {
+  void testMass() {
     final var lightCreature = mock(Creature.class);
     when(lightCreature.getMass()).thenReturn(new Mass(50.0));
 

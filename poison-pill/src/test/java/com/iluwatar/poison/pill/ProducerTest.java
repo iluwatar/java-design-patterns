@@ -43,7 +43,7 @@ import org.mockito.ArgumentCaptor;
 public class ProducerTest {
 
   @Test
-  public void testSend() throws Exception {
+  void testSend() throws Exception {
     final var publishPoint = mock(MqPublishPoint.class);
     final var producer = new Producer("producer", publishPoint);
     verifyZeroInteractions(publishPoint);
@@ -63,7 +63,7 @@ public class ProducerTest {
   }
 
   @Test
-  public void testStop() throws Exception {
+  void testStop() throws Exception {
     final var publishPoint = mock(MqPublishPoint.class);
     final var producer = new Producer("producer", publishPoint);
     verifyZeroInteractions(publishPoint);

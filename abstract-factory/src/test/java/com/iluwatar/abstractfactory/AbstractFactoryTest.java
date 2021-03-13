@@ -31,12 +31,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Test for abstract factory.
  */
-public class AbstractFactoryTest {
+class AbstractFactoryTest {
 
   private final App app = new App();
 
   @Test
-  public void king() {
+  void king() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
@@ -51,7 +51,7 @@ public class AbstractFactoryTest {
   }
 
   @Test
-  public void castle() {
+  void castle() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
@@ -66,7 +66,7 @@ public class AbstractFactoryTest {
   }
 
   @Test
-  public void army() {
+  void army() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
@@ -81,7 +81,7 @@ public class AbstractFactoryTest {
   }
 
   @Test
-  public void createElfKingdom() {
+  void createElfKingdom() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
@@ -97,7 +97,7 @@ public class AbstractFactoryTest {
   }
 
   @Test
-  public void createOrcKingdom() {
+  void createOrcKingdom() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
     final var kingdom = app.getKingdom();
 

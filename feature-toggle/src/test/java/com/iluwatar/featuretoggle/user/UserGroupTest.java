@@ -32,24 +32,24 @@ import org.junit.jupiter.api.Test;
 /**
  * Test User Group specific feature
  */
-public class UserGroupTest {
+class UserGroupTest {
 
   @Test
-  public void testAddUserToFreeGroup() {
+  void testAddUserToFreeGroup() {
     var user = new User("Free User");
     UserGroup.addUserToFreeGroup(user);
     assertFalse(UserGroup.isPaid(user));
   }
 
   @Test
-  public void testAddUserToPaidGroup() {
+  void testAddUserToPaidGroup() {
     var user = new User("Paid User");
     UserGroup.addUserToPaidGroup(user);
     assertTrue(UserGroup.isPaid(user));
   }
 
   @Test
-  public void testAddUserToPaidWhenOnFree() {
+  void testAddUserToPaidWhenOnFree() {
     var user = new User("Paid User");
     UserGroup.addUserToFreeGroup(user);
     assertThrows(IllegalArgumentException.class, () -> {
@@ -58,7 +58,7 @@ public class UserGroupTest {
   }
 
   @Test
-  public void testAddUserToFreeWhenOnPaid() {
+  void testAddUserToFreeWhenOnPaid() {
     var user = new User("Free User");
     UserGroup.addUserToPaidGroup(user);
     assertThrows(IllegalArgumentException.class, () -> {

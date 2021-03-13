@@ -23,19 +23,19 @@
 
 package com.iluwatar.bytecode;
 
-import org.junit.jupiter.api.Test;
-
 import static com.iluwatar.bytecode.Instruction.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.Test;
+
 /**
- * Test for {@Link VirtualMachine}
+ * Test for {@link VirtualMachine}
  */
-public class VirtualMachineTest {
+class VirtualMachineTest {
 
   @Test
-  public void testLiteral() {
+  void testLiteral() {
     var bytecode = new int[2];
     bytecode[0] = LITERAL.getIntValue();
     bytecode[1] = 10;
@@ -48,7 +48,7 @@ public class VirtualMachineTest {
   }
 
   @Test
-  public void testSetHealth() {
+  void testSetHealth() {
     var wizardNumber = 0;
     var bytecode = new int[5];
     bytecode[0] = LITERAL.getIntValue();
@@ -64,7 +64,7 @@ public class VirtualMachineTest {
   }
 
   @Test
-  public void testSetAgility() {
+  void testSetAgility() {
     var wizardNumber = 0;
     var bytecode = new int[5];
     bytecode[0] = LITERAL.getIntValue();
@@ -80,7 +80,7 @@ public class VirtualMachineTest {
   }
 
   @Test
-  public void testSetWisdom() {
+  void testSetWisdom() {
     var wizardNumber = 0;
     var bytecode = new int[5];
     bytecode[0] = LITERAL.getIntValue();
@@ -96,7 +96,7 @@ public class VirtualMachineTest {
   }
 
   @Test
-  public void testGetHealth() {
+  void testGetHealth() {
     var wizardNumber = 0;
     var bytecode = new int[8];
     bytecode[0] = LITERAL.getIntValue();
@@ -115,7 +115,7 @@ public class VirtualMachineTest {
   }
 
   @Test
-  public void testPlaySound() {
+  void testPlaySound() {
     var wizardNumber = 0;
     var bytecode = new int[3];
     bytecode[0] = LITERAL.getIntValue();
@@ -130,7 +130,7 @@ public class VirtualMachineTest {
   }
 
   @Test
-  public void testSpawnParticles() {
+  void testSpawnParticles() {
     var wizardNumber = 0;
     var bytecode = new int[3];
     bytecode[0] = LITERAL.getIntValue();
@@ -145,7 +145,7 @@ public class VirtualMachineTest {
   }
 
   @Test
-  public void testInvalidInstruction() {
+  void testInvalidInstruction() {
     var bytecode = new int[1];
     bytecode[0] = 999;
     var vm = new VirtualMachine();

@@ -34,14 +34,14 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
+class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
 
   public SpellDaoImplTest() {
     super(Spell::new, new SpellDaoImpl());
   }
 
   @Test
-  public void testFindByName() {
+  void testFindByName() {
     final var dao = getDao();
     final var allSpells = dao.findAll();
     for (final var spell : allSpells) {
