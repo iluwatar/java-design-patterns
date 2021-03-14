@@ -79,12 +79,12 @@ public abstract class ActiveCreature{
     return this.name;
   }
 }
-
 ```
 
 We can see that any class that will extend the ActiveCreature class will have its own thread of control to execute and invocate methods.
 
 For example, the Orc class:
+
 ```java
 public class Orc extends ActiveCreature {
 
@@ -96,6 +96,7 @@ public class Orc extends ActiveCreature {
 ```
 
 Now, we can create multiple creatures such as Orcs, tell them to eat and roam and they will execute it on their own thread of control:
+
 ```java
   public static void main(String[] args) {  
     var app = new App();
@@ -121,4 +122,4 @@ Now, we can create multiple creatures such as Orcs, tell them to eat and roam an
 
 ## Class diagram
 
-![alt text](./etc/active-object.urm.png "Active Object class diagram")
+![alt text](./etc/active-object.urm.PNG "Active Object class diagram")
