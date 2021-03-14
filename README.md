@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-156-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-157-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -308,6 +308,9 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/moustafafarhat"><img src="https://avatars.githubusercontent.com/u/38836727?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Moustafa Farhat</b></sub></a><br /><a href="#translation-moustafafarhat" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/richardmr36"><img src="https://avatars.githubusercontent.com/u/19147333?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Martel Richard</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=richardmr36" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/va1m"><img src="https://avatars.githubusercontent.com/u/17025445?v=4?s=100" width="100px;" alt=""/><br /><sub><b>va1m</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=va1m" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/noamgrinch"><img src="https://avatars.githubusercontent.com/u/31648669?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Noam Greenshtain</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=noamgrinch" title="Code">💻</a></td>
   </tr>
 </table>
 
