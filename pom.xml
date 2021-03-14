@@ -221,6 +221,7 @@
         <module>separated-interface</module>
         <module>special-case</module>
         <module>parameter-object</module>
+        <module>active-object</module>
     </modules>
 
     <repositories>
