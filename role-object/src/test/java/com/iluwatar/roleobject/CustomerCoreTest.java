@@ -74,7 +74,6 @@ class CustomerCoreTest {
     assertFalse(invRole.isPresent());
   }
 
-
   @Test
   void toStringTest() {
     var core = new CustomerCore();
@@ -87,8 +86,6 @@ class CustomerCoreTest {
 
     core = new CustomerCore();
     assertEquals("Customer{roles=[]}", core.toString());
-
-
   }
 
 }

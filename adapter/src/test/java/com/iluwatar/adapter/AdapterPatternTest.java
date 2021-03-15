@@ -23,18 +23,19 @@
 
 package com.iluwatar.adapter;
 
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 /**
  * Test class
  */
-public class AdapterPatternTest {
+class AdapterPatternTest {
 
   private Map<String, Object> beans;
 
@@ -64,7 +65,7 @@ public class AdapterPatternTest {
    * by the client ({@link Captain} ).
    */
   @Test
-  public void testAdapter() {
+  void testAdapter() {
     var captain = (Captain) beans.get(ROWING_BEAN);
 
     // when captain moves

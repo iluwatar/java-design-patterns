@@ -60,7 +60,7 @@ public class BallItemTest {
   }
 
   @Test
-  public void testClick() {
+  void testClick() {
     final var ballThread = mock(BallThread.class);
     final var ballItem = new BallItem();
     ballItem.setTwin(ballThread);
@@ -78,7 +78,7 @@ public class BallItemTest {
   }
 
   @Test
-  public void testDoDraw() {
+  void testDoDraw() {
     final var ballItem = new BallItem();
     final var ballThread = mock(BallThread.class);
     ballItem.setTwin(ballThread);
@@ -92,7 +92,7 @@ public class BallItemTest {
   }
 
   @Test
-  public void testMove() {
+  void testMove() {
     final var ballItem = new BallItem();
     final var ballThread = mock(BallThread.class);
     ballItem.setTwin(ballThread);

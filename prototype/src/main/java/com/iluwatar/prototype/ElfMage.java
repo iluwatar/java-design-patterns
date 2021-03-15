@@ -23,16 +23,17 @@
 
 package com.iluwatar.prototype;
 
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+
 /**
  * ElfMage.
  */
+@EqualsAndHashCode(callSuper = true)
+@RequiredArgsConstructor
 public class ElfMage extends Mage {
 
   private final String helpType;
-
-  public ElfMage(String helpType) {
-    this.helpType = helpType;
-  }
 
   public ElfMage(ElfMage elfMage) {
     super(elfMage);
@@ -49,21 +50,4 @@ public class ElfMage extends Mage {
     return "Elven mage helps in " + helpType;
   }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!super.equals(obj)) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    var other = (ElfMage) obj;
-    if (helpType == null) {
-      return other.helpType == null;
-    }
-    return helpType.equals(other.helpType);
-  }
 }

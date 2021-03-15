@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 public class PipelineTest {
 
   @Test
-  public void testAddHandlersToPipeline() {
+  void testAddHandlersToPipeline() {
     var filters = new Pipeline<>(new RemoveAlphabetsHandler())
         .addHandler(new RemoveDigitsHandler())
         .addHandler(new ConvertToCharArrayHandler());

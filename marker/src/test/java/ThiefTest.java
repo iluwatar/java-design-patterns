@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
  */
 public class ThiefTest {
   @Test
-  public void testThief() {
+  void testThief() {
     var thief = new Thief();
     assertThat(thief, not(instanceOf(Permission.class)));
   }

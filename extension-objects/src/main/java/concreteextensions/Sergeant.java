@@ -24,29 +24,24 @@
 package concreteextensions;
 
 import abstractextensions.SergeantExtension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import units.SergeantUnit;
 
 /**
  * Class defining Sergeant.
  */
+@Getter
+@RequiredArgsConstructor
+@Slf4j
 public class Sergeant implements SergeantExtension {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Sergeant.class);
-
   private final SergeantUnit unit;
-
-  public Sergeant(SergeantUnit sergeantUnit) {
-    this.unit = sergeantUnit;
-  }
 
   @Override
   public void sergeantReady() {
     LOGGER.info("[Sergeant] " + unit.getName() + " is ready!");
   }
 
-  public SergeantUnit getUnit() {
-    return unit;
-  }
 }

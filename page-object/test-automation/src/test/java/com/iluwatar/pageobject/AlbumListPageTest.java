@@ -42,7 +42,7 @@ public class AlbumListPageTest {
   }
 
   @Test
-  public void testSelectAlbum() {
+  void testSelectAlbum() {
     var albumPage = albumListPage.selectAlbum("21");
     albumPage.navigateToPage();
     assertTrue(albumPage.isAt());

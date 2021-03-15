@@ -26,28 +26,18 @@ package com.iluwatar.unitofwork;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * {@link StudentRepository} Student database repository. supports unit of work for student data.
  */
+@Slf4j
+@RequiredArgsConstructor
 public class StudentRepository implements IUnitOfWork<Student> {
-  private static final Logger LOGGER = LoggerFactory.getLogger(StudentRepository.class);
 
   private final Map<String, List<Student>> context;
   private final StudentDatabase studentDatabase;
-
-  /**
-   * Constructor.
-   *
-   * @param context         set of operations to be perform during commit.
-   * @param studentDatabase Database for student records.
-   */
-  public StudentRepository(Map<String, List<Student>> context, StudentDatabase studentDatabase) {
-    this.context = context;
-    this.studentDatabase = studentDatabase;
-  }
 
   @Override
   public void registerNew(Student student) {

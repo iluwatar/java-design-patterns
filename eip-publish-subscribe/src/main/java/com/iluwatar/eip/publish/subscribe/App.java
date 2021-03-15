@@ -23,10 +23,9 @@
 
 package com.iluwatar.eip.publish.subscribe;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * There are well-established patterns for implementing broadcasting. The Observer pattern describes
@@ -45,9 +44,8 @@ import org.slf4j.LoggerFactory;
  * <p>In this example we use Apache Camel to establish a Publish-Subscribe Channel from
  * "direct-origin" to "mock:foo", "mock:bar" and "stream:out".
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

@@ -102,9 +102,8 @@ Next we present a runnable `Worker` class that the thread pool will utilize to h
 peeling and coffee making.
 
 ```java
+@Slf4j
 public class Worker implements Runnable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
   private final Task task;
 

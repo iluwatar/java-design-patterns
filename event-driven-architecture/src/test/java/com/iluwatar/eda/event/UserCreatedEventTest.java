@@ -31,14 +31,14 @@ import org.junit.jupiter.api.Test;
 /**
  * {@link UserCreatedEventTest} tests and verifies {@link AbstractEvent} behaviour.
  */
-public class UserCreatedEventTest {
+class UserCreatedEventTest {
 
   /**
    * This unit test should correctly return the {@link AbstractEvent} class type when calling the
    * {@link AbstractEvent#getType() getType} method.
    */
   @Test
-  public void testGetEventType() {
+  void testGetEventType() {
     var user = new User("iluwatar");
     var userCreatedEvent = new UserCreatedEvent(user);
     assertEquals(UserCreatedEvent.class, userCreatedEvent.getType());

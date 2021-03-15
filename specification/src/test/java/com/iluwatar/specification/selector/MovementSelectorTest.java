@@ -43,7 +43,7 @@ public class MovementSelectorTest {
    * Verify if the movement selector gives the correct results.
    */
   @Test
-  public void testMovement() {
+  void testMovement() {
     final var swimmingCreature = mock(Creature.class);
     when(swimmingCreature.getMovement()).thenReturn(Movement.SWIMMING);
 

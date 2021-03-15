@@ -36,7 +36,7 @@ import org.mockito.MockitoAnnotations;
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
-public class DataBusTest {
+class DataBusTest {
 
   @Mock
   private Member member;
@@ -45,12 +45,12 @@ public class DataBusTest {
   private DataType event;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     MockitoAnnotations.initMocks(this);
   }
 
   @Test
-  public void publishedEventIsReceivedBySubscribedMember() {
+  void publishedEventIsReceivedBySubscribedMember() {
     //given
     final var dataBus = DataBus.getInstance();
     dataBus.subscribe(member);
@@ -61,7 +61,7 @@ public class DataBusTest {
   }
 
   @Test
-  public void publishedEventIsNotReceivedByMemberAfterUnsubscribing() {
+  void publishedEventIsNotReceivedByMemberAfterUnsubscribing() {
     //given
     final var dataBus = DataBus.getInstance();
     dataBus.subscribe(member);

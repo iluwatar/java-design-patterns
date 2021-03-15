@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for submitting and retrieving messages from Blocking Queue.
  */
-public class MessageQueueTest {
+class MessageQueueTest {
 
   @Test
-  public void messageQueueTest() {
+  void messageQueueTest() {
 
     var msgQueue = new MessageQueue();
 

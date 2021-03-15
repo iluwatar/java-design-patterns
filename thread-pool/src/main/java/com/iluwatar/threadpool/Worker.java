@@ -23,16 +23,14 @@
 
 package com.iluwatar.threadpool;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Worker implements {@link Runnable} and thus can be executed by {@link
  * java.util.concurrent.ExecutorService}.
  */
+@Slf4j
 public class Worker implements Runnable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
   private final Task task;
 

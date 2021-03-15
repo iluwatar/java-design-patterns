@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
 public class MenuItemTest {
 
   @Test
-  public void testToString() {
+  void testToString() {
     for (final var menuItem : MenuItem.values()) {
       final var toString = menuItem.toString();
       assertNotNull(toString);

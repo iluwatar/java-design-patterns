@@ -34,20 +34,20 @@ import org.junit.jupiter.api.Test;
  */
 class TaskSetTest {
 
-    @Test
-    void testAddTask() throws InterruptedException {
-        var taskSet = new TaskSet();
-        taskSet.addTask(new Task(10));
-        assertEquals(1, taskSet.getSize());
-    }
+  @Test
+  void testAddTask() throws InterruptedException {
+    var taskSet = new TaskSet();
+    taskSet.addTask(new Task(10));
+    assertEquals(1, taskSet.getSize());
+  }
 
-    @Test
-    void testGetTask() throws InterruptedException {
-        var taskSet = new TaskSet();
-        taskSet.addTask(new Task(100));
-        Task task = taskSet.getTask();
-        assertEquals(100, task.getTime());
-        assertEquals(0, taskSet.getSize());
-    }
+  @Test
+  void testGetTask() throws InterruptedException {
+    var taskSet = new TaskSet();
+    taskSet.addTask(new Task(100));
+    Task task = taskSet.getTask();
+    assertEquals(100, task.getTime());
+    assertEquals(0, taskSet.getSize());
+  }
 
 }

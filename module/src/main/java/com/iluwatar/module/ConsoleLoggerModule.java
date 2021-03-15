@@ -24,8 +24,7 @@
 package com.iluwatar.module;
 
 import java.io.PrintStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The ConsoleLoggerModule is responsible for showing logs on System Console.
@@ -33,9 +32,8 @@ import org.slf4j.LoggerFactory;
  * <p>The below example demonstrates a Console logger module, which can print simple and error
  * messages in two designated formats
  */
+@Slf4j
 public final class ConsoleLoggerModule {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleLoggerModule.class);
 
   private static ConsoleLoggerModule singleton = null;
 

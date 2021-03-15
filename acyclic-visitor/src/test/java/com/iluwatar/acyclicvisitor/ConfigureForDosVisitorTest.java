@@ -35,34 +35,34 @@ import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 /**
  * ConfigureForDosVisitor test class
  */
-public class ConfigureForDosVisitorTest {
+class ConfigureForDosVisitorTest {
 
   private final TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForDosVisitor.class);
-  
+
   @Test
-  public void testVisitForZoom() {    
+  void testVisitForZoom() {
     var conDos = new ConfigureForDosVisitor();
     var zoom = new Zoom();
-    
+
     conDos.visit(zoom);
-    
+
     assertThat(logger.getLoggingEvents())
         .extracting("level", "message")
         .contains(tuple(INFO, zoom + " used with Dos configurator."));
   }
-  
+
   @Test
-  public void testVisitForHayes() {
+  void testVisitForHayes() {
     var conDos = new ConfigureForDosVisitor();
     var hayes = new Hayes();
-    
+
     conDos.visit(hayes);
-    
+
     assertThat(logger.getLoggingEvents())
         .extracting("level", "message")
         .contains(tuple(INFO, hayes + " used with Dos configurator."));
   }
-  
+
   @AfterEach
   public void clearLoggers() {
     TestLoggerFactory.clear();

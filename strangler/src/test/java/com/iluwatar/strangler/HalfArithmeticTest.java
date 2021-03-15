@@ -23,9 +23,10 @@
 
 package com.iluwatar.strangler;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test methods in HalfArithmetic
@@ -34,17 +35,17 @@ class HalfArithmeticTest {
   private static final HalfArithmetic arithmetic = new HalfArithmetic(new HalfSource(), new OldSource());
 
   @Test
-  public void testSum() {
+  void testSum() {
     assertEquals(0, arithmetic.sum(-1, 0, 1));
   }
 
   @Test
-  public void testMul() {
+  void testMul() {
     assertEquals(0, arithmetic.mul(-1, 0, 1));
   }
 
   @Test
-  public void testIfHasZero() {
+  void testIfHasZero() {
     assertTrue(arithmetic.ifHasZero(-1, 0, 1));
   }
 }

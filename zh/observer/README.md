@@ -42,9 +42,8 @@ public interface WeatherObserver {
   void update(WeatherType currentWeather);
 }
 
+@Slf4j
 public class Orcs implements WeatherObserver {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Orcs.class);
 
   @Override
   public void update(WeatherType currentWeather) {
@@ -52,9 +51,8 @@ public class Orcs implements WeatherObserver {
   }
 }
 
+@Slf4j
 public class Hobbits implements WeatherObserver {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Hobbits.class);
 
   @Override
   public void update(WeatherType currentWeather) {
@@ -67,9 +65,8 @@ public class Hobbits implements WeatherObserver {
 然后这里是不断变化的天气。
 
 ```java
+@Slf4j
 public class Weather {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Weather.class);
 
   private WeatherType currentWeather;
   private final List<WeatherObserver> observers;

@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
 
 class CarsFactoryTest {
 
-	@Test
-	void shouldReturnFerrariInstance() {
-		final var ferrari = CarsFactory.getCar(CarType.FERRARI);
-		assertTrue(ferrari instanceof Ferrari);
-	}
+  @Test
+  void shouldReturnFerrariInstance() {
+    final var ferrari = CarsFactory.getCar(CarType.FERRARI);
+    assertTrue(ferrari instanceof Ferrari);
+  }
 
 }

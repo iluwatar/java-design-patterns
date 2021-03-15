@@ -24,15 +24,13 @@
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * GHobbits.
  */
+@Slf4j
 public class GHobbits implements Race {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(GHobbits.class);
 
   @Override
   public void update(GWeather weather, WeatherType weatherType) {

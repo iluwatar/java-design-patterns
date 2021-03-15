@@ -40,7 +40,7 @@ public class HalflingThiefTest {
    * Verify if the thief uses the provided stealing method
    */
   @Test
-  public void testSteal() {
+  void testSteal() {
     final var method = mock(StealingMethod.class);
     final var thief = new HalflingThief(method);
 
@@ -54,7 +54,7 @@ public class HalflingThiefTest {
    * Verify if the thief uses the provided stealing method, and the new method after changing it
    */
   @Test
-  public void testChangeMethod() {
+  void testChangeMethod() {
     final var initialMethod = mock(StealingMethod.class);
     final var thief = new HalflingThief(initialMethod);
 

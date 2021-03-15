@@ -26,17 +26,15 @@ package com.iluwatar.servicelayer.hibernate;
 import com.iluwatar.servicelayer.spell.Spell;
 import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.wizard.Wizard;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Produces the Hibernate {@link SessionFactory}.
  */
+@Slf4j
 public final class HibernateUtil {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(HibernateUtil.class);
 
   /**
    * The cached session factory.

@@ -23,15 +23,13 @@
 
 package com.iluwatar.lazy.loading;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Simple implementation of the lazy loading idiom. However, this is not thread safe.
  */
+@Slf4j
 public class HolderNaive {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(HolderNaive.class);
 
   private Heavy heavy;
 

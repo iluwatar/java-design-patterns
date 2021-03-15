@@ -34,10 +34,10 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class QueenTest {
+class QueenTest {
 
   @Test
-  public void testNotFlirtyUncomplemented() {
+  void testNotFlirtyUncomplemented() {
     final var queen = new Queen();
     queen.setFlirtiness(false);
     queen.changeMood();
@@ -45,7 +45,7 @@ public class QueenTest {
   }
 
   @Test
-  public void testNotFlirtyComplemented() {
+  void testNotFlirtyComplemented() {
     final var queen = new Queen();
     queen.setFlirtiness(false);
     queen.receiveCompliments();
@@ -54,14 +54,14 @@ public class QueenTest {
   }
 
   @Test
-  public void testFlirtyUncomplemented() {
+  void testFlirtyUncomplemented() {
     final var queen = new Queen();
     queen.changeMood();
     assertFalse(queen.getMood());
   }
 
   @Test
-  public void testFlirtyComplemented() {
+  void testFlirtyComplemented() {
     final var queen = new Queen();
     queen.receiveCompliments();
     queen.changeMood();

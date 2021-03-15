@@ -49,9 +49,8 @@ public interface WizardTower {
   void enter(Wizard wizard);
 }
 
+@Slf4j
 public class IvoryTower implements WizardTower {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(IvoryTower.class);
 
   public void enter(Wizard wizard) {
     LOGGER.info("{} enters the tower.", wizard);
@@ -81,9 +80,8 @@ public class Wizard {
 Then we have the `WizardTowerProxy` to add access control to `WizardTower`.
 
 ```java
+@Slf4j
 public class WizardTowerProxy implements WizardTower {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(WizardTowerProxy.class);
 
   private static final int NUM_WIZARDS_ALLOWED = 3;
 

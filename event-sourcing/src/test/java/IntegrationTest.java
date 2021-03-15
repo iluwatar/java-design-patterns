@@ -40,7 +40,7 @@ import org.junit.jupiter.api.Test;
  * <p>
  * Created by Serdar Hamzaogullari on 19.08.2017.
  */
-public class IntegrationTest {
+class IntegrationTest {
 
   /**
    * The Domain event processor.
@@ -51,7 +51,7 @@ public class IntegrationTest {
    * Initialize.
    */
   @BeforeEach
-  public void initialize() {
+  void initialize() {
     eventProcessor = new DomainEventProcessor();
   }
 
@@ -59,7 +59,7 @@ public class IntegrationTest {
    * Test state recovery.
    */
   @Test
-  public void testStateRecovery() {
+  void testStateRecovery() {
     eventProcessor.reset();
 
     eventProcessor.process(new AccountCreateEvent(

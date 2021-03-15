@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for {@link IvoryTower}
  */
-public class IvoryTowerTest {
+class IvoryTowerTest {
 
   private InMemoryAppender appender;
 
@@ -50,7 +50,7 @@ public class IvoryTowerTest {
   }
 
   @Test
-  public void testEnter() {
+  void testEnter() {
     final var wizards = List.of(
         new Wizard("Gandalf"),
         new Wizard("Dumbledore"),

@@ -35,36 +35,36 @@ class FindersTest {
 
   @Test
   void advancedFinderTest() {
-    var res = advancedFinder("it was","kingdom","sea").find(text());
+    var res = advancedFinder("it was", "kingdom", "sea").find(text());
     assertEquals(1, res.size());
-    assertEquals("It was many and many a year ago,", res.get(0));
+    assertEquals( "It was many and many a year ago,", res.get(0));
   }
 
   @Test
   void filteredFinderTest() {
     var res = filteredFinder(" was ", "many", "child").find(text());
     assertEquals(1, res.size());
-    assertEquals("But we loved with a love that was more than love-", res.get(0));
+    assertEquals( "But we loved with a love that was more than love-", res.get(0));
   }
 
   @Test
   void specializedFinderTest() {
-    var res = specializedFinder("love","heaven").find(text());
+    var res = specializedFinder("love", "heaven").find(text());
     assertEquals(1, res.size());
-    assertEquals("With a love that the winged seraphs of heaven", res.get(0));
+    assertEquals( "With a love that the winged seraphs of heaven", res.get(0));
   }
 
   @Test
   void expandedFinderTest() {
-    var res = expandedFinder("It was","kingdom").find(text());
+    var res = expandedFinder("It was", "kingdom").find(text());
     assertEquals(3, res.size());
-    assertEquals("It was many and many a year ago,", res.get(0));
-    assertEquals("In a kingdom by the sea,", res.get(1));
-    assertEquals("In this kingdom by the sea;", res.get(2));
+    assertEquals( "It was many and many a year ago,", res.get(0));
+    assertEquals( "In a kingdom by the sea,", res.get(1));
+    assertEquals( "In this kingdom by the sea;", res.get(2));
   }
 
 
-  private String text(){
+  private String text() {
     return
         "It was many and many a year ago,\n"
             + "In a kingdom by the sea,\n"

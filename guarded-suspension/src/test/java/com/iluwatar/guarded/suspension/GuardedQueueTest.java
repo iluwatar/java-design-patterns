@@ -36,7 +36,7 @@ public class GuardedQueueTest {
   private volatile Integer value;
 
   @Test
-  public void testGet() {
+  void testGet() {
     var g = new GuardedQueue();
     var executorService = Executors.newFixedThreadPool(2);
     executorService.submit(() -> value = g.get());
@@ -51,7 +51,7 @@ public class GuardedQueueTest {
   }
 
   @Test
-  public void testPut() {
+  void testPut() {
     var g = new GuardedQueue();
     g.put(12);
     assertEquals(Integer.valueOf(12), g.get());

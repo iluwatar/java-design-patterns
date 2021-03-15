@@ -23,15 +23,13 @@
 
 package com.iluwatar.data.locality.game.component;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation of AI component for Game.
  */
+@Slf4j
 public class AiComponent implements Component {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AiComponent.class);
 
   /**
    * Update ai component.

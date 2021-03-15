@@ -24,15 +24,13 @@
 package com.iluwatar.facade;
 
 import java.util.Arrays;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * DwarvenMineWorker is one of the goldmine subsystems.
  */
+@Slf4j
 public abstract class DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenMineWorker.class);
 
   public void goToSleep() {
     LOGGER.info("{} goes to sleep.", name());

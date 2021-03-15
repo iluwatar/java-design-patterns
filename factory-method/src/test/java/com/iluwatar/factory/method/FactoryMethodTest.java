@@ -40,14 +40,14 @@ import org.junit.jupiter.api.Test;
  * implementation it is referring to.
  * </p>
  */
-public class FactoryMethodTest {
+class FactoryMethodTest {
 
   /**
    * Testing {@link OrcBlacksmith} to produce a SPEAR asserting that the Weapon is an instance of
    * {@link OrcWeapon}.
    */
   @Test
-  public void testOrcBlacksmithWithSpear() {
+  void testOrcBlacksmithWithSpear() {
     var blacksmith = new OrcBlacksmith();
     var weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
     verifyWeapon(weapon, WeaponType.SPEAR, OrcWeapon.class);
@@ -58,7 +58,7 @@ public class FactoryMethodTest {
    * {@link OrcWeapon}.
    */
   @Test
-  public void testOrcBlacksmithWithAxe() {
+  void testOrcBlacksmithWithAxe() {
     var blacksmith = new OrcBlacksmith();
     var weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
     verifyWeapon(weapon, WeaponType.AXE, OrcWeapon.class);
@@ -69,7 +69,7 @@ public class FactoryMethodTest {
    * of {@link ElfWeapon}.
    */
   @Test
-  public void testElfBlacksmithWithShortSword() {
+  void testElfBlacksmithWithShortSword() {
     var blacksmith = new ElfBlacksmith();
     var weapon = blacksmith.manufactureWeapon(WeaponType.SHORT_SWORD);
     verifyWeapon(weapon, WeaponType.SHORT_SWORD, ElfWeapon.class);
@@ -80,7 +80,7 @@ public class FactoryMethodTest {
    * {@link ElfWeapon}.
    */
   @Test
-  public void testElfBlacksmithWithSpear() {
+  void testElfBlacksmithWithSpear() {
     var blacksmith = new ElfBlacksmith();
     var weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
     verifyWeapon(weapon, WeaponType.SPEAR, ElfWeapon.class);

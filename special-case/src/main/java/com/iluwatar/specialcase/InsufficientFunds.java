@@ -23,12 +23,10 @@
 
 package com.iluwatar.specialcase;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class InsufficientFunds implements ReceiptViewModel {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(InsufficientFunds.class);
 
   private String userName;
   private Double amount;

@@ -31,8 +31,7 @@ import com.iluwatar.datatransfer.product.ProductResource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Data Transfer Object pattern is a design pattern in which an data transfer object is used to
@@ -50,9 +49,8 @@ import org.slf4j.LoggerFactory;
  * thought as a traditional example and the second is an enum based implementation.
  *
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Method as act client and request to server for details.

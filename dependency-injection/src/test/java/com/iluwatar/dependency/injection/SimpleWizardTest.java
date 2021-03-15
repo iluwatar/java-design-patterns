@@ -35,17 +35,17 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class SimpleWizardTest {
+class SimpleWizardTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(Tobacco.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -54,7 +54,7 @@ public class SimpleWizardTest {
    * OldTobyTobacco}
    */
   @Test
-  public void testSmoke() {
+  void testSmoke() {
     final var simpleWizard = new SimpleWizard();
     simpleWizard.smoke();
     assertEquals("SimpleWizard smoking OldTobyTobacco", appender.getLastMessage());

@@ -34,14 +34,14 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class WizardDaoImplTest extends BaseDaoTest<Wizard, WizardDaoImpl> {
+class WizardDaoImplTest extends BaseDaoTest<Wizard, WizardDaoImpl> {
 
   public WizardDaoImplTest() {
     super(Wizard::new, new WizardDaoImpl());
   }
 
   @Test
-  public void testFindByName() {
+  void testFindByName() {
     final var dao = getDao();
     final var allWizards = dao.findAll();
     for (final var spell : allWizards) {

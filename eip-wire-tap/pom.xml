@@ -60,13 +60,7 @@
             <artifactId>jaxb-api</artifactId>
         </dependency>
 
-
         <!-- Testing -->
-        <dependency>
-            <groupId>com.github.sbrannen</groupId>
-            <artifactId>spring-test-junit5</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>

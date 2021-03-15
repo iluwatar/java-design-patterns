@@ -23,15 +23,18 @@
 
 package com.iluwatar.bytecode;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class represent game objects which properties can be changed by instructions interpreted by
  * virtual machine.
  */
+@Setter
+@Getter
+@Slf4j
 public class Wizard {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
 
   private int health;
 
@@ -40,30 +43,6 @@ public class Wizard {
 
   private int numberOfPlayedSounds;
   private int numberOfSpawnedParticles;
-
-  public int getHealth() {
-    return health;
-  }
-
-  public void setHealth(int health) {
-    this.health = health;
-  }
-
-  public int getAgility() {
-    return agility;
-  }
-
-  public void setAgility(int agility) {
-    this.agility = agility;
-  }
-
-  public int getWisdom() {
-    return wisdom;
-  }
-
-  public void setWisdom(int wisdom) {
-    this.wisdom = wisdom;
-  }
 
   public void playSound() {
     LOGGER.info("Playing sound");
@@ -75,11 +54,4 @@ public class Wizard {
     numberOfSpawnedParticles++;
   }
 
-  public int getNumberOfPlayedSounds() {
-    return numberOfPlayedSounds;
-  }
-
-  public int getNumberOfSpawnedParticles() {
-    return numberOfSpawnedParticles;
-  }
 }

@@ -41,7 +41,7 @@ import org.junit.jupiter.api.Test;
 public class FilterManagerTest {
 
   @Test
-  public void testFilterRequest() {
+  void testFilterRequest() {
     final var target = mock(Target.class);
     final var filterManager = new FilterManager();
     assertEquals("RUNNING...", filterManager.filterRequest(mock(Order.class)));
@@ -49,7 +49,7 @@ public class FilterManagerTest {
   }
 
   @Test
-  public void testAddFilter() {
+  void testAddFilter() {
     final var target = mock(Target.class);
     final var filterManager = new FilterManager();
 

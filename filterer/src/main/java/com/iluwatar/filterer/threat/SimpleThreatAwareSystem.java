@@ -23,27 +23,25 @@
 
 package com.iluwatar.filterer.threat;
 
-import com.google.common.collect.ImmutableList;
 import com.iluwatar.filterer.domain.Filterer;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 /**
  * {@inheritDoc}
  */
+@ToString
+@EqualsAndHashCode
+@RequiredArgsConstructor
 public class SimpleThreatAwareSystem implements ThreatAwareSystem {
 
   private final String systemId;
-  private final ImmutableList<Threat> issues;
-
-  public SimpleThreatAwareSystem(final String systemId, final List<Threat> issues) {
-    this.systemId = systemId;
-    this.issues = ImmutableList.copyOf(issues);
-  }
+  private final List<Threat> issues;
 
   /**
    * {@inheritDoc}
@@ -75,33 +73,8 @@ public class SimpleThreatAwareSystem implements ThreatAwareSystem {
 
   private List<Threat> filteredItems(Predicate<? super Threat> predicate) {
     return this.issues.stream()
-            .filter(predicate)
-            .collect(Collectors.toList());
+        .filter(predicate)
+        .collect(Collectors.toUnmodifiableList());
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    var that = (SimpleThreatAwareSystem) o;
-    return systemId.equals(that.systemId)
-            && issues.equals(that.issues);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(systemId, issues);
-  }
-
-  @Override
-  public String toString() {
-    return "SimpleThreatAwareSystem{"
-            + "systemId='" + systemId
-            + '\'' + ", issues=" + issues
-            + '}';
-  }
 }

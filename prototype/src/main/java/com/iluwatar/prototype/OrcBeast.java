@@ -23,16 +23,17 @@
 
 package com.iluwatar.prototype;
 
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+
 /**
  * OrcBeast.
  */
+@EqualsAndHashCode(callSuper = false)
+@RequiredArgsConstructor
 public class OrcBeast extends Beast {
 
   private final String weapon;
-
-  public OrcBeast(String weapon) {
-    this.weapon = weapon;
-  }
 
   public OrcBeast(OrcBeast orcBeast) {
     super(orcBeast);
@@ -48,24 +49,5 @@ public class OrcBeast extends Beast {
   public String toString() {
     return "Orcish wolf attacks with " + weapon;
   }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!super.equals(obj)) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    var other = (OrcBeast) obj;
-    if (weapon == null) {
-      return other.weapon == null;
-    }
-    return weapon.equals(other.weapon);
-  }
-
 
 }

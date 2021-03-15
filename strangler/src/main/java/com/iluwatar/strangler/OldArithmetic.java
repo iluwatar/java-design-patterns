@@ -23,15 +23,14 @@
 
 package com.iluwatar.strangler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Old version system depends on old version source ({@link OldSource}).
  */
+@Slf4j
 public class OldArithmetic {
-  private static final Logger LOGGER = LoggerFactory.getLogger(OldArithmetic.class);
-  private static final  String VERSION = "1.0";
+  private static final String VERSION = "1.0";
 
   private final OldSource source;
 

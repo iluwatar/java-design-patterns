@@ -23,15 +23,13 @@
 
 package com.iluwatar.state;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Peaceful state.
  */
+@Slf4j
 public class PeacefulState implements State {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(PeacefulState.class);
 
   private final Mammoth mammoth;
 

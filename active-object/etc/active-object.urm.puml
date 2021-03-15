@@ -1,0 +1,25 @@
+@startuml
+package com.iluwatar.activeobject {
+  abstract class ActiveCreature {
+    - logger : Logger
+    - name : String
+    - requests : BlockingQueue<Runnable>
+    - thread : Thread
+    + ActiveCreature(name : String)
+    + eat()
+    + name() : String
+    + roam()
+  }
+  class App {
+    - creatures : Integer
+    - logger : Logger
+    + App()
+    + main(args : String[]) {static}
+    + run()
+  }
+  class Orc {
+    + Orc(name : String)
+  }
+}
+Orc --|> ActiveCreature 
+@enduml

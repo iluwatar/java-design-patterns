@@ -134,7 +134,7 @@ public class DateFormatCallableTestMultiThread {
    * 15.12.2015 by each thread
    */
   @Test
-  public void testDateValues() {
+  void testDateValues() {
     for (var createdDateValue : createdDateValues) {
       assertEquals(expectedDateValues, createdDateValue);
     }
@@ -145,7 +145,7 @@ public class DateFormatCallableTestMultiThread {
    * deliver 5 date values by each thread
    */
   @Test
-  public void testCounterDateValues() {
+  void testCounterDateValues() {
     for (var value : result) {
       assertEquals(expectedCounterDateValues, value.getDateList().size());
     }
@@ -156,7 +156,7 @@ public class DateFormatCallableTestMultiThread {
    * deliver no exceptions
    */
   @Test
-  public void testCounterExceptions() {
+  void testCounterExceptions() {
     for (var value : result) {
       assertEquals(expectedCounterExceptions, value.getExceptionList().size());
     }

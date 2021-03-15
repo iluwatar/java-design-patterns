@@ -23,21 +23,17 @@
 
 package com.iluwatar.chain;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * RequestHandler.
  */
+@Slf4j
+@AllArgsConstructor
 public abstract class RequestHandler {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(RequestHandler.class);
-
   private final RequestHandler next;
-
-  public RequestHandler(RequestHandler next) {
-    this.next = next;
-  }
 
   /**
    * Request handler.

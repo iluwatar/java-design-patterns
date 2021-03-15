@@ -23,9 +23,12 @@
 
 package com.iluwatar.prototype;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * ElfWarlord.
  */
+@EqualsAndHashCode
 public class ElfWarlord extends Warlord {
 
   private final String helpType;
@@ -47,23 +50,5 @@ public class ElfWarlord extends Warlord {
   @Override
   public String toString() {
     return "Elven warlord helps in " + helpType;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!super.equals(obj)) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    var other = (ElfWarlord) obj;
-    if (helpType == null) {
-      return other.helpType == null;
-    }
-    return helpType.equals(other.helpType);
   }
 }
