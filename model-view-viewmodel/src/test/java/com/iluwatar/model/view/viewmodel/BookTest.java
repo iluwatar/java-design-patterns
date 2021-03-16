@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +36,7 @@ class BookTest {
 
   BookViewModel bvm;
   Book testBook;
+  List<Book> testBookList;
   
   @BeforeEach
   void setUp() {
@@ -42,20 +44,18 @@ class BookTest {
     testBook = new Book("Head First Design Patterns: A Brain-Friendly Guide",
     		"Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
     		"Head First Design Patterns Description");
+    testBookList = bvm.getBookList();
   }
 
   @Test
   void testBookModel() {
 	assertNotNull(testBook);
-    assertEquals(testBook.getName(),"Head First Design Patterns: A Brain-Friendly Guide");
-    assertEquals(testBook.getAuthor(),"Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson");
-    assertEquals(testBook.getDescription(), "Head First Design Patterns Description");
   }
   
   @Test
   void testLoadData() {
-    assertNotNull(bvm.getBookList());
-    assertTrue(bvm.getBookList().get(0).toString().contains("Head First Design Patterns"));
+    assertNotNull(testBookList);
+    assertTrue(testBookList.get(0).toString().contains("Head First Design Patterns"));
   }
 
   @Test
@@ -68,14 +68,12 @@ class BookTest {
 
   @Test
   void testDeleteData() {
-    bvm.setSelectedBook(new Book("Head First Design Patterns: A Brain-Friendly Guide",
-        "Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
-        "Head First Design Patterns Description"));
+    bvm.setSelectedBook(testBook);
     assertNotNull(bvm.getSelectedBook());
-    assertTrue(bvm.getBookList().get(0).toString().contains("Head First Design Patterns"));
+    assertTrue(testBookList.get(0).toString().contains("Head First Design Patterns"));
     bvm.deleteBook();
     assertNull(bvm.getSelectedBook());
-    assertFalse(bvm.getBookList().get(0).toString().contains("Head First Design Patterns"));
+    assertFalse(testBookList.get(0).toString().contains("Head First Design Patterns"));
   }
 
 }
