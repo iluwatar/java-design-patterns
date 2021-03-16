@@ -222,6 +222,7 @@
         <module>special-case</module>
         <module>parameter-object</module>
         <module>active-object</module>
+        <module>model-view-viewmodel</module>
     </modules>
 
     <repositories>
