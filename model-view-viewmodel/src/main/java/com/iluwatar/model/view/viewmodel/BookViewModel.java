@@ -5,8 +5,6 @@ import java.util.List;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
-import org.zkoss.zul.Messagebox;
-
 
 public class BookViewModel {
   
@@ -34,7 +32,7 @@ public class BookViewModel {
   @Command
   @NotifyChange({"selectedBook","bookList"})
   public void deleteBook() {
-    if (getSelectedBook() != null) {
+    if (selectedBook != null) {
       getBookList().remove(selectedBook);
     }
   }

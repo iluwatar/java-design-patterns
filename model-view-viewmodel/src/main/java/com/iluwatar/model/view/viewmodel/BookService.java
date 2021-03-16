@@ -1,6 +1,5 @@
 package com.iluwatar.model.view.viewmodel;
 
-import com.iluwatar.model.view.viewmodel.Book;
 import java.util.List;
 
 public interface BookService {
