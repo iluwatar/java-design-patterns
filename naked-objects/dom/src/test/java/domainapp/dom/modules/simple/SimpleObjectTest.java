@@ -23,35 +23,35 @@
 
 package domainapp.dom.modules.simple;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for SimpleObject
  */
 public class SimpleObjectTest {
 
-  SimpleObject simpleObject;
+    SimpleObject simpleObject;
 
-  @Before
-  public void setUp() {
-    simpleObject = new SimpleObject();
-  }
+    @BeforeEach
+    public void setUp() {
+        simpleObject = new SimpleObject();
+    }
 
-  @Test
-  public void testName() {
-    // given
-    String name = "Foobar";
-    assertNull(simpleObject.getName());
+    @Test
+    public void testName() {
+        // given
+        String name = "Foobar";
+        assertNull(simpleObject.getName());
 
-    // when
-    simpleObject.setName(name);
+        // when
+        simpleObject.setName(name);
 
-    // then
-    assertEquals(name, simpleObject.getName());
-  }
+        // then
+        assertEquals(name, simpleObject.getName());
+    }
 
 }
