@@ -23,6 +23,9 @@
 
 package com.iluwatar.model.view.viewmodel;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -31,12 +34,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import com.google.common.testing.EqualsTester;
 
 class BookTest {
 
   BookViewModel bvm;
   Book testBook;
   List<Book> testBookList;
+  Book testBookTwo;
+  Book testBookThree;
   
   @BeforeEach
   void setUp() {
@@ -45,11 +51,28 @@ class BookTest {
     		"Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
     		"Head First Design Patterns Description");
     testBookList = bvm.getBookList();
+    testBookTwo = new Book("Head First Design Patterns: A Brain-Friendly Guide",
+	  		"Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
+	  		"Head First Design Patterns Description");
+    testBookThree = new Book("Design Patterns: Elements of Reusable Object-Oriented Software",
+            "Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides",
+            "Design Patterns Description");
   }
 
   @Test
   void testBookModel() {
 	assertNotNull(testBook);
+  }
+  
+  @Test
+  void testEquals() {
+    new EqualsTester().addEqualityGroup(testBook, testBookTwo).testEquals();
+  }
+
+  @Test
+  void testToString() {
+    assertThat(testBook.toString(), is(testBookTwo.toString()));
+    assertThat(testBook.toString(), is(not(testBookThree.toString())));
   }
   
   @Test
