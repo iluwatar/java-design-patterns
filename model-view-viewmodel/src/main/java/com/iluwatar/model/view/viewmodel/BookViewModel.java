@@ -34,6 +34,7 @@ public class BookViewModel {
   public void deleteBook() {
     if (selectedBook != null) {
       getBookList().remove(selectedBook);
+      selectedBook = null;
     }
   }
 

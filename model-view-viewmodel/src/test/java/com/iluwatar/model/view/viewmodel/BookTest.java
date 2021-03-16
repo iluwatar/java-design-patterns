@@ -26,13 +26,31 @@ package com.iluwatar.model.view.viewmodel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BookTest {
 
-  BookViewModel bvm = new BookViewModel();
+  BookViewModel bvm;
+  Book testBook;
+  
+  @BeforeEach
+  void setUp() {
+    bvm = new BookViewModel();
+    testBook = new Book("Head First Design Patterns: A Brain-Friendly Guide",
+    		"Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
+    		"Head First Design Patterns Description");
+  }
+
+  @Test
+  void testBookModel() {
+	assertNotNull(testBook);
+    assertEquals(testBook.getName(),"Head First Design Patterns: A Brain-Friendly Guide");
+    assertEquals(testBook.getAuthor(),"Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson");
+    assertEquals(testBook.getDescription(), "Head First Design Patterns Description");
+  }
   
   @Test
   void testLoadData() {
@@ -42,11 +60,10 @@ class BookTest {
 
   @Test
   void testSelectedData() {
-    bvm.setSelectedBook(new Book("Head First Design Patterns: A Brain-Friendly Guide",
-        "Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
-        "Head First Design Patterns Description"));
+	bvm.setSelectedBook(testBook);
     assertNotNull(bvm.getSelectedBook());
-    assertEquals("Book(name=Head First Design Patterns: A Brain-Friendly Guide, author=Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson, description=Head First Design Patterns Description)", bvm.getSelectedBook().toString());
+    assertEquals(testBook.toString(), bvm.getSelectedBook().toString());
+    assertTrue(true, bvm.getSelectedBook().toString());
   }
 
   @Test
@@ -54,8 +71,10 @@ class BookTest {
     bvm.setSelectedBook(new Book("Head First Design Patterns: A Brain-Friendly Guide",
         "Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
         "Head First Design Patterns Description"));
+    assertNotNull(bvm.getSelectedBook());
     assertTrue(bvm.getBookList().get(0).toString().contains("Head First Design Patterns"));
     bvm.deleteBook();
+    assertNull(bvm.getSelectedBook());
     assertFalse(bvm.getBookList().get(0).toString().contains("Head First Design Patterns"));
   }
 
