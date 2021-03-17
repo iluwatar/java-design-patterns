@@ -78,7 +78,7 @@ class BookTest {
   @Test
   void testHashCode() {
     assertTrue(testBook.equals(testBookTwo) && testBookTwo.equals(testBook));
-    assertTrue(testBook.hashCode() == testBookTwo.hashCode());
+    assertEquals(testBook.hashCode(), testBookTwo.hashCode());
   }
   
   @Test
