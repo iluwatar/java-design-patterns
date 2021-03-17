@@ -6,8 +6,9 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
   private List<Book> designPatternBooks = new ArrayList<>();
 
-  /** Implement.
-  * Details pending.
+  /** Initializes Book Data.
+  * To be used and passed along in load method
+  * In this case, list design pattern books are initialized to be loaded.
   */
   public BookServiceImpl() {
     designPatternBooks.add(new Book(

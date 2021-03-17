@@ -27,7 +27,9 @@ public class BookViewModel {
   }
   
   /** Deleting a book.
-   * Details pending.
+   * When event is triggered on click of Delete button, 
+   * this method will be notified with the selected entry that will be referenced
+   * and used to delete the selected book from the list of books. 
    */
   @Command
   @NotifyChange({"selectedBook","bookList"})

@@ -76,6 +76,12 @@ class BookTest {
   }
   
   @Test
+  void testHashCode() {
+    assertTrue(testBook.equals(testBookTwo) && testBookTwo.equals(testBook));
+    assertTrue(testBook.hashCode() == testBookTwo.hashCode());
+  }
+  
+  @Test
   void testLoadData() {
     assertNotNull(testBookList);
     assertTrue(testBookList.get(0).toString().contains("Head First Design Patterns"));
