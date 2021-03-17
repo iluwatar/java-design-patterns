@@ -70,7 +70,8 @@ public class App {
     final var asyncResult1 = executor.startProcess(lazyval(10, 500));
     final var asyncResult2 = executor.startProcess(lazyval("test", 300));
     final var asyncResult3 = executor.startProcess(lazyval(50L, 700));
-    final var asyncResult4 = executor.startProcess(lazyval(20, 400), callback("Deploying lunar rover"));
+    final var asyncResult4 = executor.startProcess(lazyval(20, 400),
+        callback("Deploying lunar rover"));
     final var asyncResult5 =
         executor.startProcess(lazyval("callback", 600), callback("Deploying lunar rover"));
 
