@@ -14,7 +14,7 @@ Model–View–Binder
 
 ## Intent
 
-To apply "Separation of Concerns" to separate the logic from the UI components and allow developers to work on UI without affecting the logic and vice versa.
+To apply "[Separation of Concerns](https://java-design-patterns.com/principles/#separation-of-concerns)" to separate the logic from the UI components and allow developers to work on UI without affecting the logic and vice versa.
 
 ## Explanation
 
@@ -23,88 +23,6 @@ Wikipedia says
 > Model–view–viewmodel (MVVM) is a software architectural pattern that facilitates the separation of the development of the graphical user interface (the view) – be it via a markup language or GUI code – from the development of the business logic or back-end logic (the model) so that the view is not dependent on any specific model platform. 
 
 **Programmatic Example**
-
-Android Implementation:
-
-To enable Data Binding:
-Add following lines to build.gradle:
-```
-
-    dataBinding {
-        enabled = true
-    }
-
-```
-   
-> ViewModel will hold the business logic and expose the data from model to View
-
-```java
-public class BookViewModel extends BaseObservable {
-
-    private DesignPatternBook mDesignPatternBooks;
-    private Context mContext;
-
-    public BookViewModel(DesignPatternBook designPatternBooks, Context context) {
-        this.mDesignPatternBooks = designPatternBooks;
-        this.mContext = context;
-    }
-
-    @Bindable
-    public String getName() {
-        return mDesignPatternBooks.getName();
-    }
-
-    @Bindable
-    public String getAuthor() {
-        return mDesignPatternBooks.getAuthor();
-    }
-}
-```
-> View will have no logic, only UI elements
-
-```xml
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-
-        <variable
-            name="bvm"
-            type="com.iluwatar.mvvm.BookViewModel" />
-    </data>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/book_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="3dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{bvm.name}"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/author"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{bvm.author}" />
-
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-</layout>
-```
 
 Zkoss implementation:
 
@@ -181,6 +99,12 @@ public class BookViewModel {
 </zk>
 ```
 
+Note: 
+* To deploy this, go to model-view-viewmodel folder and run: 
+* mvn clean install
+* mvn jetty:run -Djetty.http.port=9911
+* In browser, http://localhost:9911/model-view-viewmodel/
+
 ## Class diagram
 
 ![alt text](./etc/model-view-viewmodel.png "MVVM pattern class diagram")
@@ -219,9 +143,3 @@ public class BookViewModel {
 * [GeeksforGeeks  MVVM Intro](https://www.geeksforgeeks.org/introduction-to-model-view-view-model-mvvm/)
 * [ZK MVVM Book](http://books.zkoss.org/zk-mvvm-book/9.5/)
 * [Microsoft MVVM](https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern)
-
-Note: 
-* To deploy this, go to model-view-viewmodel folder and run: 
-* mvn clean install
-* mvn jetty:run -Djetty.http.port=9911
-* In browser, http://localhost:9911/model-view-viewmodel/

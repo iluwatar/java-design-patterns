@@ -74,7 +74,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.16</version>
+			<version>1.18.14</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -85,7 +85,7 @@
         <dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-testlib</artifactId>
-			<version>23.0</version>
+			<version>19.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
