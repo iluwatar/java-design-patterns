@@ -28,11 +28,14 @@ Android Implementation:
 
 To enable Data Binding:
 Add following lines to build.gradle:
+```
 
     dataBinding {
         enabled = true
     }
-    
+
+```
+   
 > ViewModel will hold the business logic and expose the data from model to View
 
 ```java
