@@ -10,7 +10,7 @@ tags:
 
 ## Also known as
 
-model–view–binder
+Model–View–Binder
 
 ## Intent
 
