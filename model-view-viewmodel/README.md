@@ -199,7 +199,7 @@ public class BookViewModel {
 
 * Android Apps
 * .NET framework applications
-* JavaScript Frameworks
+* JavaScript applications
 
 ## Real world examples
 
