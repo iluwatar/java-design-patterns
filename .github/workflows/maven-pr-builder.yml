@@ -29,7 +29,7 @@ name: Java PR Builder
 on:
   pull_request:
     branches: [ master ]
-    types: [ opened, reopened, synchronize ]
+    types: [ opened, reopened, synchronize, labeled, unlabeled ]
 
 jobs:
   build:
