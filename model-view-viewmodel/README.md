@@ -198,7 +198,7 @@ public class BookViewModel {
 ## Typical Use Case
 
 * Android Apps
-* .Net Frameworks
+* .NET framework applications
 * JavaScript Frameworks
 
 ## Real world examples
