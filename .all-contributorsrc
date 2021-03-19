@@ -1431,6 +1431,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "qfxl",
+      "name": "yonghong Xu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/14086462?v=4",
+      "profile": "https://xuyonghong.cn/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 4,
