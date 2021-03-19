@@ -62,7 +62,7 @@ public class BookViewModel {
 
 > View will have no logic, only UI elements
 
-```zul
+```xml
 <zk>
 <window title="List of Books" border="normal" width="600px" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.iluwatar.model.view.viewmodel.BookViewModel')">
     <vbox hflex="true">
