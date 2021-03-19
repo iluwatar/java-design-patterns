@@ -75,8 +75,7 @@
         <directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
         <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
-        <zk.version>9.0.0</zk.version>
-		<commons-io>2.6</commons-io>
+		<commons-io.version>2.6</commons-io.version>
 
         <!-- SonarCloud -->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -332,11 +331,6 @@
                 <version>${guava.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava-testlib</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>net.sourceforge.htmlunit</groupId>
                 <artifactId>htmlunit</artifactId>
                 <version>${htmlunit.version}</version>
@@ -377,34 +371,13 @@
                 <version>${system-lambda.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-			<groupId>org.zkoss.zk</groupId>
-			<artifactId>zkbind</artifactId>
-			<version>${zk.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.zkoss.zk</groupId>
-			<artifactId>zul</artifactId>
-			<version>${zk.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.zkoss.zk</groupId>
-			<artifactId>zkplus</artifactId>
-			<version>${zk.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.zkoss.zk</groupId>
-			<artifactId>zhtml</artifactId>
-			<version>${zk.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>${commons-io}</version>
-		</dependency>
-        </dependencies>
+		    <dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>${commons-io.version}</version>
+		        </dependency>
+            </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
