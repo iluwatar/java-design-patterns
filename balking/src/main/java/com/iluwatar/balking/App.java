@@ -32,10 +32,11 @@ import lombok.extern.slf4j.Slf4j;
  * then the method will return without doing anything. Objects that use this pattern are generally
  * only in a state that is prone to balking temporarily but for an unknown amount of time
  *
- * <p>In this example implementation, {@link WashingMachine} is an object that has two states in which
- * it can be: ENABLED and WASHING. If the machine is ENABLED, the state changes to WASHING using a
- * thread-safe method. On the other hand, if it already has been washing and any other thread
- * executes {@link WashingMachine#wash()} it won't do that and returns without doing anything.
+ * <p>In this example implementation, {@link WashingMachine} is an object that has two states in
+ * which it can be: ENABLED and WASHING. If the machine is ENABLED, the state changes to WASHING
+ * using a thread-safe method. On the other hand, if it already has been washing and any other
+ * thread executes {@link WashingMachine#wash()} it won't do that and returns without doing
+ * anything.
  */
 @Slf4j
 public class App {
