@@ -5,53 +5,42 @@ package com.iluwatar.business.delegate {
     + main(args : String[]) {static}
   }
   class BusinessDelegate {
-    - businessService : BusinessService
     - lookupService : BusinessLookup
-    - serviceType : ServiceType
     + BusinessDelegate()
-    + doTask()
-    + setLookupService(businessLookup : BusinessLookup)
-    + setServiceType(serviceType : ServiceType)
+    + playbackMovie(movie : String)
+    + setLookupService(lookupService : BusinessLookup)
   }
   class BusinessLookup {
-    - ejbService : EjbService
-    - jmsService : JmsService
+    - netflixService : NetflixService
+    - youTubeService : YouTubeService
     + BusinessLookup()
-    + getBusinessService(serviceType : ServiceType) : BusinessService
-    + setEjbService(ejbService : EjbService)
-    + setJmsService(jmsService : JmsService)
+    + getBusinessService(movie : String) : VideoStreamingService
+    + setNetflixService(netflixService : NetflixService)
+    + setYouTubeService(youTubeService : YouTubeService)
   }
-  interface BusinessService {
+  class MobileClient {
+    - businessDelegate : BusinessDelegate
+    + MobileClient(businessDelegate : BusinessDelegate)
+    + playbackMovie(movie : String)
+  }
+  class NetflixService {
+    - LOGGER : Logger {static}
+    + NetflixService()
+    + doProcessing()
+  }
+  interface VideoStreamingService {
     + doProcessing() {abstract}
   }
-  class Client {
-    - businessDelegate : BusinessDelegate
-    + Client(businessDelegate : BusinessDelegate)
-    + doTask()
-  }
-  class EjbService {
+  class YouTubeService {
     - LOGGER : Logger {static}
-    + EjbService()
+    + YouTubeService()
     + doProcessing()
-  }
-  class JmsService {
-    - LOGGER : Logger {static}
-    + JmsService()
-    + doProcessing()
-  }
-  enum ServiceType {
-    + EJB {static}
-    + JMS {static}
-    + valueOf(name : String) : ServiceType {static}
-    + values() : ServiceType[] {static}
   }
 }
-BusinessLookup -->  "-ejbService" EjbService
-BusinessDelegate -->  "-serviceType" ServiceType
-Client -->  "-businessDelegate" BusinessDelegate
-BusinessDelegate -->  "-businessService" BusinessService
+BusinessLookup -->  "-netflixService" NetflixService
+BusinessLookup -->  "-youTubeService" YouTubeService
+MobileClient -->  "-businessDelegate" BusinessDelegate
 BusinessDelegate -->  "-lookupService" BusinessLookup
-BusinessLookup -->  "-jmsService" JmsService
-EjbService ..|> BusinessService 
-JmsService ..|> BusinessService 
+NetflixService ..|> VideoStreamingService 
+YouTubeService ..|> VideoStreamingService 
 @enduml

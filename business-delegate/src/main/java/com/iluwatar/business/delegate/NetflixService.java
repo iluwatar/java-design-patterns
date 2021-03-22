@@ -26,13 +26,13 @@ package com.iluwatar.business.delegate;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Service EJB implementation.
+ * NetflixService implementation.
  */
 @Slf4j
-public class EjbService implements BusinessService {
+public class NetflixService implements VideoStreamingService {
 
   @Override
   public void doProcessing() {
-    LOGGER.info("EjbService is now processing");
+    LOGGER.info("NetflixService is now processing");
   }
 }
