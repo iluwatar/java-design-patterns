@@ -24,9 +24,17 @@
 package com.iluwatar.business.delegate;
 
 /**
- * Interface for service implementations.
+ * MobileClient utilizes BusinessDelegate to call the business tier.
  */
-public interface BusinessService {
+public class MobileClient {
 
-  void doProcessing();
+  private final BusinessDelegate businessDelegate;
+
+  public MobileClient(BusinessDelegate businessDelegate) {
+    this.businessDelegate = businessDelegate;
+  }
+
+  public void playbackMovie(String movie) {
+    businessDelegate.playbackMovie(movie);
+  }
 }

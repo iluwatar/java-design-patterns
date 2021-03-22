@@ -23,6 +23,7 @@
 
 package com.iluwatar.business.delegate;
 
+import java.util.Locale;
 import lombok.Setter;
 
 /**
@@ -31,21 +32,21 @@ import lombok.Setter;
 @Setter
 public class BusinessLookup {
 
-  private EjbService ejbService;
+  private NetflixService netflixService;
 
-  private JmsService jmsService;
+  private YouTubeService youTubeService;
 
   /**
-   * Gets service instance based on service type.
+   * Gets service instance based on given movie search string.
    *
-   * @param serviceType Type of service instance to be returned.
+   * @param movie Search string for the movie.
    * @return Service instance.
    */
-  public BusinessService getBusinessService(ServiceType serviceType) {
-    if (serviceType.equals(ServiceType.EJB)) {
-      return ejbService;
+  public VideoStreamingService getBusinessService(String movie) {
+    if (movie.toLowerCase(Locale.ROOT).contains("die hard")) {
+      return netflixService;
     } else {
-      return jmsService;
+      return youTubeService;
     }
   }
 }

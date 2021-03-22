@@ -23,11 +23,16 @@
 
 package com.iluwatar.business.delegate;
 
-/**
- * Enumeration for service types.
- */
-public enum ServiceType {
+import lombok.extern.slf4j.Slf4j;
 
-  EJB,
-  JMS
+/**
+ * YouTubeService implementation.
+ */
+@Slf4j
+public class YouTubeService implements VideoStreamingService {
+
+  @Override
+  public void doProcessing() {
+    LOGGER.info("YouTubeService is now processing");
+  }
 }
