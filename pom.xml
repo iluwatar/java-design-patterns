@@ -75,6 +75,7 @@
         <directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
         <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
+	<commons-io.version>2.6</commons-io.version>
 
         <!-- SonarCloud -->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -222,6 +223,7 @@
         <module>special-case</module>
         <module>parameter-object</module>
         <module>active-object</module>
+        <module>model-view-viewmodel</module>
     </modules>
 
     <repositories>
@@ -369,9 +371,13 @@
                 <version>${system-lambda.version}</version>
                 <scope>test</scope>
             </dependency>
-        </dependencies>
+		    <dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>${commons-io.version}</version>
+		        </dependency>
+            </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
