@@ -23,6 +23,7 @@
 
 package com.iluwatar.bytecode;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -31,16 +32,15 @@ import lombok.extern.slf4j.Slf4j;
  * This class represent game objects which properties can be changed by instructions interpreted by
  * virtual machine.
  */
+@AllArgsConstructor
 @Setter
 @Getter
 @Slf4j
 public class Wizard {
 
   private int health;
-
   private int agility;
   private int wisdom;
-
   private int numberOfPlayedSounds;
   private int numberOfSpawnedParticles;
 
@@ -53,5 +53,4 @@ public class Wizard {
     LOGGER.info("Spawning particles");
     numberOfSpawnedParticles++;
   }
-
 }

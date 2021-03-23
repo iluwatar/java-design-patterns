@@ -49,33 +49,21 @@ public class App {
    */
   public static void main(String[] args) {
 
-    var wizard = new Wizard();
-    wizard.setHealth(45);
-    wizard.setAgility(7);
-    wizard.setWisdom(11);
+    var vm = new VirtualMachine(
+        new Wizard(45, 7, 11, 0, 0),
+        new Wizard(36, 18, 8, 0, 0));
 
-    var vm = new VirtualMachine();
-    vm.getWizards()[0] = wizard;
-
-    String literal = "LITERAL 0";
-
-    interpretInstruction(literal, vm);
-    interpretInstruction(literal, vm);
-    interpretInstruction("GET_HEALTH", vm);
-    interpretInstruction(literal, vm);
-    interpretInstruction("GET_AGILITY", vm);
-    interpretInstruction(literal, vm);
-    interpretInstruction("GET_WISDOM ", vm);
-    interpretInstruction("ADD", vm);
-    interpretInstruction("LITERAL 2", vm);
-    interpretInstruction("DIVIDE", vm);
-    interpretInstruction("ADD", vm);
-    interpretInstruction("SET_HEALTH", vm);
-  }
-
-  private static void interpretInstruction(String instruction, VirtualMachine vm) {
-    vm.execute(InstructionConverterUtil.convertToByteCode(instruction));
-    var stack = vm.getStack();
-    LOGGER.info(instruction + String.format("%" + (12 - instruction.length()) + "s", "") + stack);
+    vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("GET_HEALTH"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("GET_AGILITY"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("GET_WISDOM"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("ADD"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 2"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("DIVIDE"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("ADD"));
+    vm.execute(InstructionConverterUtil.convertToByteCode("SET_HEALTH"));
   }
 }
