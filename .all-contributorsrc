@@ -1440,6 +1440,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jinishavora",
+      "name": "jinishavora",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40777762?v=4",
+      "profile": "https://www.linkedin.com/in/jinisha-vora",
+      "contributions": [
+        "review",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,

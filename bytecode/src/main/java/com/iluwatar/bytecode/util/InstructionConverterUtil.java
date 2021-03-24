@@ -73,6 +73,4 @@ public class InstructionConverterUtil {
       return false;
     }
   }
-
-
 }

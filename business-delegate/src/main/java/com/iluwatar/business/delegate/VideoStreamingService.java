@@ -24,17 +24,9 @@
 package com.iluwatar.business.delegate;
 
 /**
- * Client utilizes BusinessDelegate to call the business tier.
+ * Interface for video streaming service implementations.
  */
-public class Client {
+public interface VideoStreamingService {
 
-  private final BusinessDelegate businessDelegate;
-
-  public Client(BusinessDelegate businessDelegate) {
-    this.businessDelegate = businessDelegate;
-  }
-
-  public void doTask() {
-    businessDelegate.doTask();
-  }
+  void doProcessing();
 }

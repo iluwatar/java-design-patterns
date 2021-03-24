@@ -21,18 +21,17 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.business.delegate;
+package com.iluwatar.model.view.viewmodel;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-/**
- * Service JMS implementation.
- */
-@Slf4j
-public class JmsService implements BusinessService {
+@AllArgsConstructor
+@Data
+public class Book {
 
-  @Override
-  public void doProcessing() {
-    LOGGER.info("JmsService is now processing");
-  }
+  private String name;
+  private String author;
+  private String description;
+
 }
