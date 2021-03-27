@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.roleobject;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BorrowerRoleTest {
+import org.junit.jupiter.api.Test;
+
+class BorrowerRoleTest {
 
   @Test
-  public void borrowTest() {
+  void borrowTest() {
     var borrowerRole = new BorrowerRole();
     borrowerRole.setName("test");
-    Assert.assertEquals(borrowerRole.borrow(), "Borrower test wants to get some money.");
+    assertEquals("Borrower test wants to get some money.", borrowerRole.borrow());
   }
 }

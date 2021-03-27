@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,7 @@
 
 package com.iluwatar.combinator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -41,12 +40,8 @@ import org.slf4j.LoggerFactory;
  * {@link Finder#and(Finder)}
  * Using them the became possible to get more complex functions {@link Finders}
  */
+@Slf4j
 public class CombinatorApp {
-
-  /**
-   * Logger.
-   */
-  private static final Logger LOGGER = LoggerFactory.getLogger(CombinatorApp.class);
 
   /**
    * main.
@@ -63,13 +58,12 @@ public class CombinatorApp {
     res = finder.find(text());
     LOGGER.info("the result of specialized(and) query[{}] is {}", queriesAnd, res);
 
-    finder = Finders.advancedFinder("it was","kingdom","sea");
+    finder = Finders.advancedFinder("it was", "kingdom", "sea");
     res = finder.find(text());
     LOGGER.info("the result of advanced query is {}", res);
 
     res = Finders.filteredFinder(" was ", "many", "child").find(text());
     LOGGER.info("the result of filtered query is {}", res);
-
 
   }
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,88 +24,27 @@
 package com.iluwatar.datamapper;
 
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Class defining Student.
  */
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
+@Getter
+@Setter
+@AllArgsConstructor
 public final class Student implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
+  @EqualsAndHashCode.Include
   private int studentId;
   private String name;
   private char grade;
 
-
-  /**
-   * Use this constructor to create a Student with all details.
-   *
-   * @param studentId as unique student id
-   * @param name      as student name
-   * @param grade     as respective grade of student
-   */
-  public Student(final int studentId, final String name, final char grade) {
-    this.studentId = studentId;
-    this.name = name;
-    this.grade = grade;
-  }
-
-  public int getStudentId() {
-    return studentId;
-  }
-
-  public void setStudentId(final int studentId) {
-    this.studentId = studentId;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(final String name) {
-    this.name = name;
-  }
-
-  public char getGrade() {
-    return grade;
-  }
-
-  public void setGrade(final char grade) {
-    this.grade = grade;
-  }
-
-  @Override
-  public boolean equals(final Object inputObject) {
-
-    boolean isEqual = false;
-
-    /* Check if both objects are same */
-    if (this == inputObject) {
-
-      isEqual = true;
-    } else if (inputObject != null && getClass() == inputObject.getClass()) {
-
-      final var inputStudent = (Student) inputObject;
-
-      /* If student id matched */
-      if (this.getStudentId() == inputStudent.getStudentId()) {
-
-        isEqual = true;
-      }
-    }
-
-    return isEqual;
-  }
-
-  @Override
-  public int hashCode() {
-
-    /* Student id is assumed to be unique */
-    return this.getStudentId();
-  }
-
-  @Override
-  public String toString() {
-    return "Student [studentId=" + studentId + ", name=" + name + ", grade=" + grade + "]";
-  }
 }

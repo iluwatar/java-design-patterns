@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,14 @@
 
 package com.iluwatar.layers.entity;
 
-import com.iluwatar.layers.entity.Cake;
-import com.iluwatar.layers.entity.CakeLayer;
-import com.iluwatar.layers.entity.CakeTopping;
-import org.junit.jupiter.api.Test;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.HashSet;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/15/15 - 8:02 PM
@@ -44,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CakeTest {
 
   @Test
-  public void testSetId() {
+  void testSetId() {
     final var cake = new Cake();
     assertNull(cake.getId());
 
@@ -54,7 +50,7 @@ public class CakeTest {
   }
 
   @Test
-  public void testSetTopping() {
+  void testSetTopping() {
     final var cake = new Cake();
     assertNull(cake.getTopping());
 
@@ -64,21 +60,21 @@ public class CakeTest {
   }
 
   @Test
-  public void testSetLayers() {
+  void testSetLayers() {
     final var cake = new Cake();
     assertNotNull(cake.getLayers());
     assertTrue(cake.getLayers().isEmpty());
 
     final var expectedLayers = Set.of(
-            new CakeLayer("layer1", 1000),
-            new CakeLayer("layer2", 2000),
-            new CakeLayer("layer3", 3000));
+        new CakeLayer("layer1", 1000),
+        new CakeLayer("layer2", 2000),
+        new CakeLayer("layer3", 3000));
     cake.setLayers(expectedLayers);
     assertEquals(expectedLayers, cake.getLayers());
   }
 
   @Test
-  public void testAddLayer() {
+  void testAddLayer() {
     final var cake = new Cake();
     assertNotNull(cake.getLayers());
     assertTrue(cake.getLayers().isEmpty());
@@ -101,7 +97,7 @@ public class CakeTest {
   }
 
   @Test
-  public void testToString() {
+  void testToString() {
     final var topping = new CakeTopping("topping", 20);
     topping.setId(2345L);
 
@@ -114,7 +110,7 @@ public class CakeTest {
     cake.addLayer(layer);
 
     final var expected = "id=1234 topping=id=2345 name=topping calories=20 "
-            + "layers=[id=3456 name=layer calories=100]";
+        + "layers=[id=3456 name=layer calories=100]";
     assertEquals(expected, cake.toString());
 
   }

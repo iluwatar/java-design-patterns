@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,9 +31,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Created by Srdjan on 03-May-17.
  */
-public class SoldierUnitTest {
+class SoldierUnitTest {
+
   @Test
-  public void getUnitExtension() {
+  void getUnitExtension() {
     final var unit = new SoldierUnit("SoldierUnitName");
 
     assertNotNull(unit.getUnitExtension("SoldierExtension"));

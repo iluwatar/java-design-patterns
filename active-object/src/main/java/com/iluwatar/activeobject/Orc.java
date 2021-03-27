@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,20 +21,17 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.business.delegate;
+package com.iluwatar.activeobject;
 
 /**
- * Client utilizes BusinessDelegate to call the business tier.
+ * An implementation of the ActiveCreature class.
+ * @author Noam Greenshtain
+ *
  */
-public class Client {
+public class Orc extends ActiveCreature {
 
-  private final BusinessDelegate businessDelegate;
-
-  public Client(BusinessDelegate businessDelegate) {
-    this.businessDelegate = businessDelegate;
+  public Orc(String name) {
+    super(name);
   }
 
-  public void doTask() {
-    businessDelegate.doTask();
-  }
 }

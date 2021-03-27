@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,7 +44,7 @@ public class LotteryUtils {
   ) {
     var optional = repository.findById(id);
     if (optional.isPresent()) {
-      if (optional.get().getNumbers().equals(winningNumbers)) {
+      if (optional.get().getLotteryNumbers().equals(winningNumbers)) {
         return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 1000);
       } else {
         return new LotteryTicketCheckResult(CheckResult.NO_PRIZE);

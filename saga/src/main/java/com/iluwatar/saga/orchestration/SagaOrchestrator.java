@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,16 +28,15 @@ import static com.iluwatar.saga.orchestration.Saga.Result.CRASHED;
 import static com.iluwatar.saga.orchestration.Saga.Result.FINISHED;
 import static com.iluwatar.saga.orchestration.Saga.Result.ROLLBACK;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
  * The orchestrator that manages all the transactions and directs the participant services to
  * execute local transactions based on events.
  */
+@Slf4j
 public class SagaOrchestrator {
-  private static final Logger LOGGER = LoggerFactory.getLogger(SagaOrchestrator.class);
   private final Saga saga;
   private final ServiceDiscoveryService sd;
   private final CurrentState state;

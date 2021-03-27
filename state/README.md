@@ -48,9 +48,8 @@ public interface State {
   void observe();
 }
 
+@Slf4j
 public class PeacefulState implements State {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(PeacefulState.class);
 
   private final Mammoth mammoth;
 
@@ -69,9 +68,8 @@ public class PeacefulState implements State {
   }
 }
 
+@Slf4j
 public class AngryState implements State {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AngryState.class);
 
   private final Mammoth mammoth;
 

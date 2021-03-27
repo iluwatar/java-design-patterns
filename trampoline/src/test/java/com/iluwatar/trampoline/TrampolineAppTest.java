@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,11 +30,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Test for trampoline pattern.
  */
-public class TrampolineAppTest {
-
+class TrampolineAppTest {
 
   @Test
-  public void testTrampolineWithFactorialFunction() {
+  void testTrampolineWithFactorialFunction() {
     long result = TrampolineApp.loop(10, 1).result();
     assertEquals(3_628_800, result);
   }

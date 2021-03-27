@@ -51,9 +51,8 @@ public interface Troll {
   void fleeBattle();
 }
 
+@Slf4j
 public class SimpleTroll implements Troll {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SimpleTroll.class);
 
   @Override
   public void attack() {
@@ -75,9 +74,8 @@ public class SimpleTroll implements Troll {
 Next we want to add club for the troll. We can do it dynamically by using a decorator:
 
 ```java
+@Slf4j
 public class ClubbedTroll implements Troll {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);
 
   private final Troll decorated;
 

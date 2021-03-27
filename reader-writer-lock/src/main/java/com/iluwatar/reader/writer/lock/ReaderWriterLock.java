@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class responsible for control the access for reader or writer
@@ -38,9 +37,8 @@ import org.slf4j.LoggerFactory;
  * <p>Allows multiple readers to hold the lock at same time, but if any writer holds the lock then
  * readers wait. If reader holds the lock then writer waits. This lock is not fair.
  */
+@Slf4j
 public class ReaderWriterLock implements ReadWriteLock {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderWriterLock.class);
 
 
   private final Object readerMutex = new Object();

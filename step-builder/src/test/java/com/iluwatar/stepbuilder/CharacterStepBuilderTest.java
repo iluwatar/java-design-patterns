@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@ public class CharacterStepBuilderTest {
    * Build a new wizard {@link Character} and verify if it has the expected attributes
    */
   @Test
-  public void testBuildWizard() {
+  void testBuildWizard() {
     final var character = CharacterStepBuilder.newBuilder()
         .name("Merlin")
         .wizardClass("alchemist")
@@ -69,7 +69,7 @@ public class CharacterStepBuilderTest {
    * expected attributes
    */
   @Test
-  public void testBuildPoorWizard() {
+  void testBuildPoorWizard() {
     final var character = CharacterStepBuilder.newBuilder()
         .name("Merlin")
         .wizardClass("alchemist")
@@ -88,7 +88,7 @@ public class CharacterStepBuilderTest {
    * Build a new wizard {@link Character} and verify if it has the expected attributes
    */
   @Test
-  public void testBuildWeakWizard() {
+  void testBuildWeakWizard() {
     final var character = CharacterStepBuilder.newBuilder()
         .name("Merlin")
         .wizardClass("alchemist")
@@ -104,12 +104,11 @@ public class CharacterStepBuilderTest {
 
   }
 
-
   /**
    * Build a new warrior {@link Character} and verify if it has the expected attributes
    */
   @Test
-  public void testBuildWarrior() {
+  void testBuildWarrior() {
     final var character = CharacterStepBuilder.newBuilder()
         .name("Cuauhtemoc")
         .fighterClass("aztec")
@@ -137,7 +136,7 @@ public class CharacterStepBuilderTest {
    * expected attributes
    */
   @Test
-  public void testBuildPoorWarrior() {
+  void testBuildPoorWarrior() {
     final var character = CharacterStepBuilder.newBuilder()
         .name("Poor warrior")
         .fighterClass("none")
@@ -157,7 +156,7 @@ public class CharacterStepBuilderTest {
    * has the expected attributes
    */
   @Test
-  public void testBuildWeakWarrior() {
+  void testBuildWeakWarrior() {
     final var character = CharacterStepBuilder.newBuilder()
         .name("Weak warrior")
         .fighterClass("none")

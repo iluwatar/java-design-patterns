@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ import org.junit.jupiter.api.Test;
 public class LoadBalancerTest {
 
   @Test
-  public void testSameStateAmongstAllInstances() {
+  void testSameStateAmongstAllInstances() {
     final var firstBalancer = new LoadBalancer();
     final var secondBalancer = new LoadBalancer();
     firstBalancer.addServer(new Server("localhost", 8085, 6));
@@ -54,7 +54,7 @@ public class LoadBalancerTest {
   }
 
   @Test
-  public void testServe() {
+  void testServe() {
     final var server = mock(Server.class);
     when(server.getHost()).thenReturn("testhost");
     when(server.getPort()).thenReturn(1234);

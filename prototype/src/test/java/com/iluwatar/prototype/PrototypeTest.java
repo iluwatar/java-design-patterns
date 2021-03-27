@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  * @param <P> Prototype
  * @author Jeroen Meulemeester
  */
-public class PrototypeTest<P extends Prototype> {
+class PrototypeTest<P extends Prototype> {
   static Collection<Object[]> dataProvider() {
     return List.of(
         new Object[]{new OrcBeast("axe"), "Orcish wolf attacks with axe"},
@@ -53,7 +53,7 @@ public class PrototypeTest<P extends Prototype> {
 
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testPrototype(P testedPrototype, String expectedToString) {
+  void testPrototype(P testedPrototype, String expectedToString) {
     assertEquals(expectedToString, testedPrototype.toString());
 
     final var clone = testedPrototype.copy();

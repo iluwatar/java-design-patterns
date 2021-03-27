@@ -1,0 +1,43 @@
+@startuml
+package com.iluwatar.model.view.viewmodel {
+  class Book {
+    - author : String
+    - description : String
+    - name : String
+    + Book(name : String, author : String, description : String)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getAuthor() : String
+    + getDescription() : String
+    + getName() : String
+    + hashCode() : int
+    + setAuthor(author : String)
+    + setDescription(description : String)
+    + setName(name : String)
+    + toString() : String
+  }
+  interface BookService {
+    + load() : List<Book> {abstract}
+  }
+  class BookServiceImpl {
+    - designPatternBooks : List<Book>
+    + BookServiceImpl()
+    + load() : List<Book>
+  }
+  class BookViewModel {
+    - bookList : List<Book>
+    - bookService : BookService
+    - selectedBook : Book
+    + BookViewModel()
+    + deleteBook()
+    + getBookList() : List<Book>
+    + getSelectedBook() : Book
+    + setSelectedBook(selectedBook : Book)
+  }
+}
+BookViewModel -->  "-bookService" BookService
+BookServiceImpl -->  "-designPatternBooks" Book
+BookViewModel -->  "-bookList" Book
+BookViewModel -->  "-selectedBook" Book
+BookServiceImpl ..|> BookService 
+@enduml

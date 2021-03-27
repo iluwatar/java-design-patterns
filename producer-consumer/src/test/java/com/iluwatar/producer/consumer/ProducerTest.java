@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,7 @@ import org.junit.jupiter.api.Test;
 public class ProducerTest {
 
   @Test
-  public void testProduce() {
+  void testProduce() {
     assertTimeout(ofMillis(6000), () -> {
       final var queue = mock(ItemQueue.class);
       final var producer = new Producer("producer", queue);

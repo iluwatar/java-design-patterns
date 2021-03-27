@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 public class QueueManagerTest {
 
   @Test
-  public void publishMessage() {
+  void publishMessage() {
     var queueManager = new QueueManager(2);
     var testMessage = new Message("Test Message", 1);
     queueManager.publishMessage(testMessage);
@@ -42,7 +42,7 @@ public class QueueManagerTest {
   }
 
   @Test
-  public void receiveMessage() {
+  void receiveMessage() {
     var queueManager = new QueueManager(2);
     var testMessage1 = new Message("Test Message 1", 1);
     queueManager.publishMessage(testMessage1);

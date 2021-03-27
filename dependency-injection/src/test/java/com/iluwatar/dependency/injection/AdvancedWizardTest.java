@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,17 +37,17 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class AdvancedWizardTest {
+class AdvancedWizardTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(Tobacco.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -56,7 +56,7 @@ public class AdvancedWizardTest {
    * through the constructor parameter
    */
   @Test
-  public void testSmokeEveryThing() throws Exception {
+  void testSmokeEveryThing() throws Exception {
 
     List<Tobacco> tobaccos = List.of(
         new OldTobyTobacco(),

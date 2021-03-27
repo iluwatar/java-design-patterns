@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,7 @@ import com.iluwatar.cqrs.commandes.CommandServiceImpl;
 import com.iluwatar.cqrs.constants.AppConstants;
 import com.iluwatar.cqrs.queries.QueryServiceImpl;
 import com.iluwatar.cqrs.util.HibernateUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * CQRS : Command Query Responsibility Segregation. A pattern used to separate query services from
@@ -41,8 +40,8 @@ import org.slf4j.LoggerFactory;
  * data model to persist(insert,update,delete) objects to a database. And a query side that uses
  * native queries to get data from the database and return objects as DTOs (Data transfer Objects).
  */
+@Slf4j
 public class App {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

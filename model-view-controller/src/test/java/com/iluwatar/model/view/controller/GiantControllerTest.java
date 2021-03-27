@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@ public class GiantControllerTest {
    * Verify if the controller passes the health level through to the model and vice versa
    */
   @Test
-  public void testSetHealth() {
+  void testSetHealth() {
     final var model = mock(GiantModel.class);
     final var view = mock(GiantView.class);
     final var controller = new GiantController(model, view);
@@ -65,7 +65,7 @@ public class GiantControllerTest {
    * Verify if the controller passes the fatigue level through to the model and vice versa
    */
   @Test
-  public void testSetFatigue() {
+  void testSetFatigue() {
     final var model = mock(GiantModel.class);
     final var view = mock(GiantView.class);
     final var controller = new GiantController(model, view);
@@ -89,7 +89,7 @@ public class GiantControllerTest {
    * Verify if the controller passes the nourishment level through to the model and vice versa
    */
   @Test
-  public void testSetNourishment() {
+  void testSetNourishment() {
     final var model = mock(GiantModel.class);
     final var view = mock(GiantView.class);
     final var controller = new GiantController(model, view);
@@ -110,7 +110,7 @@ public class GiantControllerTest {
   }
 
   @Test
-  public void testUpdateView() {
+  void testUpdateView() {
     final var model = mock(GiantModel.class);
     final var view = mock(GiantView.class);
     final var controller = new GiantController(model, view);

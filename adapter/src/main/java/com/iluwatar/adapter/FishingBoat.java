@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,14 @@
 
 package com.iluwatar.adapter;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Device class (adaptee in the pattern). We want to reuse this class. Fishing boat moves by
  * sailing.
  */
+@Slf4j
 final class FishingBoat {
-
-  private static final Logger LOGGER = getLogger(FishingBoat.class);
 
   void sail() {
     LOGGER.info("The fishing boat is sailing");

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,23 +26,19 @@ package com.iluwatar.databus.data;
 import com.iluwatar.databus.AbstractDataType;
 import com.iluwatar.databus.DataType;
 import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * An event raised when applications starts, containing the start time of the application.
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
+@RequiredArgsConstructor
+@Getter
 public class StartingData extends AbstractDataType {
 
   private final LocalDateTime when;
-
-  public StartingData(LocalDateTime when) {
-    this.when = when;
-  }
-
-  public LocalDateTime getWhen() {
-    return when;
-  }
 
   public static DataType of(final LocalDateTime when) {
     return new StartingData(when);

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,15 @@
 
 package com.iluwatar.unitofwork;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum UnitActions {
   INSERT("INSERT"),
   DELETE("DELETE"),
   MODIFY("MODIFY");
 
   private final String actionValue;
-
-  UnitActions(String actionValue) {
-    this.actionValue = actionValue;
-  }
-
-  public String getActionValue() {
-    return actionValue;
-  }
 }

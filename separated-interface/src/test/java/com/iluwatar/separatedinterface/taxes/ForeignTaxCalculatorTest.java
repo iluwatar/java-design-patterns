@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,16 +26,16 @@ package com.iluwatar.separatedinterface.taxes;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ForeignTaxCalculatorTest {
+class ForeignTaxCalculatorTest {
 
   private ForeignTaxCalculator target;
 
   @Test
-  public void testTaxCalculation(){
+  void testTaxCalculation() {
     target = new ForeignTaxCalculator();
 
-    var tax=target.calculate(100.0);
-    Assertions.assertEquals(tax,60.0);
+    var tax = target.calculate(100.0);
+    Assertions.assertEquals(tax, 60.0);
   }
 
 }

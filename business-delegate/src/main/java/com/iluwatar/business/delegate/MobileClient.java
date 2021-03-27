@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,17 @@
 package com.iluwatar.business.delegate;
 
 /**
- * Interface for service implementations.
+ * MobileClient utilizes BusinessDelegate to call the business tier.
  */
-public interface BusinessService {
+public class MobileClient {
 
-  void doProcessing();
+  private final BusinessDelegate businessDelegate;
+
+  public MobileClient(BusinessDelegate businessDelegate) {
+    this.businessDelegate = businessDelegate;
+  }
+
+  public void playbackMovie(String movie) {
+    businessDelegate.playbackMovie(movie);
+  }
 }

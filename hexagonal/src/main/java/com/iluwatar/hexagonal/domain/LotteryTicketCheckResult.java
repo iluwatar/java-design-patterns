@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,16 @@
 
 package com.iluwatar.hexagonal.domain;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 /**
  * Represents lottery ticket check result.
  */
+@Getter
+@EqualsAndHashCode
+@RequiredArgsConstructor
 public class LotteryTicketCheckResult {
 
   /**
@@ -37,64 +44,15 @@ public class LotteryTicketCheckResult {
     TICKET_NOT_SUBMITTED
   }
 
-  private final CheckResult checkResult;
+  private final CheckResult result;
   private final int prizeAmount;
 
   /**
    * Constructor.
    */
   public LotteryTicketCheckResult(CheckResult result) {
-    checkResult = result;
+    this.result = result;
     prizeAmount = 0;
   }
 
-  /**
-   * Constructor.
-   */
-  public LotteryTicketCheckResult(CheckResult result, int amount) {
-    checkResult = result;
-    prizeAmount = amount;
-  }
-
-  /**
-   * Get result.
-   *
-   * @return check result
-   */
-  public CheckResult getResult() {
-    return checkResult;
-  }
-
-  /**
-   * Get prize amount.
-   *
-   * @return prize amount
-   */
-  public int getPrizeAmount() {
-    return prizeAmount;
-  }
-
-  @Override
-  public int hashCode() {
-    final var prime = 31;
-    var result = 1;
-    result = prime * result + ((checkResult == null) ? 0 : checkResult.hashCode());
-    result = prime * result + prizeAmount;
-    return result;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    var other = (LotteryTicketCheckResult) obj;
-    return checkResult == other.checkResult && prizeAmount == other.prizeAmount;
-  }
 }

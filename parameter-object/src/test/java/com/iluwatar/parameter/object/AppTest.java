@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,20 +21,21 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.business.delegate;
+package com.iluwatar.parameter.object;
 
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Service JMS implementation.
+ * Application test
  */
-public class JmsService implements BusinessService {
+class AppTest {
+  private static final Logger LOGGER = LoggerFactory.getLogger(AppTest.class);
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(JmsService.class);
-
-  @Override
-  public void doProcessing() {
-    LOGGER.info("JmsService is now processing");
+  @Test
+  void shouldExecuteApplicationWithoutException() {
+    App.main(new String[]{});
+    LOGGER.info("Executed successfully without exception.");
   }
 }

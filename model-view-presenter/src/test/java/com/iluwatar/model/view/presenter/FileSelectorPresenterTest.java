@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -67,7 +67,7 @@ public class FileSelectorPresenterTest {
    * Tests if the Presenter was successfully connected with the View.
    */
   @Test
-  public void wiring() {
+  void wiring() {
     presenter.start();
 
     assertNotNull(stub.getPresenter());
@@ -78,7 +78,7 @@ public class FileSelectorPresenterTest {
    * Tests if the name of the file changes.
    */
   @Test
-  public void updateFileNameToLoader() {
+  void updateFileNameToLoader() {
     var expectedFile = "Stamatis";
     stub.setFileName(expectedFile);
 
@@ -93,7 +93,7 @@ public class FileSelectorPresenterTest {
    * empty string.
    */
   @Test
-  public void fileConfirmationWhenNameIsNull() {
+  void fileConfirmationWhenNameIsNull() {
     stub.setFileName(null);
 
     presenter.start();
@@ -108,7 +108,7 @@ public class FileSelectorPresenterTest {
    * Tests if we receive a confirmation when we attempt to open a file that it doesn't exist.
    */
   @Test
-  public void fileConfirmationWhenFileDoesNotExist() {
+  void fileConfirmationWhenFileDoesNotExist() {
     stub.setFileName("RandomName.txt");
 
     presenter.start();
@@ -123,7 +123,7 @@ public class FileSelectorPresenterTest {
    * Tests if we can open the file, when it exists.
    */
   @Test
-  public void fileConfirmationWhenFileExists() {
+  void fileConfirmationWhenFileExists() {
     stub.setFileName("etc/data/test.txt");
     presenter.start();
     presenter.fileNameChanged();
@@ -137,7 +137,7 @@ public class FileSelectorPresenterTest {
    * Tests if the view closes after cancellation.
    */
   @Test
-  public void cancellation() {
+  void cancellation() {
     presenter.start();
     presenter.cancelled();
 

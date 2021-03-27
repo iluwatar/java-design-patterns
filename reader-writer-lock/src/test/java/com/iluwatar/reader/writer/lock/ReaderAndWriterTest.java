@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author hongshuwei@gmail.com
  */
-public class ReaderAndWriterTest {
+class ReaderAndWriterTest {
 
   private InMemoryAppender appender;
 
@@ -57,7 +57,7 @@ public class ReaderAndWriterTest {
    * Verify reader and writer can only get the lock to read and write orderly
    */
   @Test
-  public void testReadAndWrite() throws Exception {
+  void testReadAndWrite() throws Exception {
 
     var lock = new ReaderWriterLock();
 
@@ -87,7 +87,7 @@ public class ReaderAndWriterTest {
    * Verify reader and writer can only get the lock to read and write orderly
    */
   @Test
-  public void testWriteAndRead() throws Exception {
+  void testWriteAndRead() throws Exception {
 
     var executeService = Executors.newFixedThreadPool(2);
     var lock = new ReaderWriterLock();

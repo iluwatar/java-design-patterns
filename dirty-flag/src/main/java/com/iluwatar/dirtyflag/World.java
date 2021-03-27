@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ public class World {
   private final DataFetcher df;
 
   public World() {
-    this.countries = new ArrayList<String>();
+    this.countries = new ArrayList<>();
     this.df = new DataFetcher();
   }
 

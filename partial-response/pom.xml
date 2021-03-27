@@ -2,7 +2,7 @@
 <!--
 
     The MIT License
-    Copyright © 2014-2019 Ilkka Seppälä
+    Copyright © 2014-2021 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -35,12 +35,6 @@
 
     <artifactId>partial-response</artifactId>
     <dependencies>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>5.4.0</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>

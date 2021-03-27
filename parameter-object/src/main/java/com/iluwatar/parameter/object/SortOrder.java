@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,12 +21,19 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.business.delegate;
+package com.iluwatar.parameter.object;
 
-/**
- * Enumeration for service types.
- */
-public enum ServiceType {
+public enum SortOrder {
+  ASC("asc"),
+  DESC("desc");
 
-  EJB, JMS
+  private String value;
+
+  SortOrder(String value) {
+    this.value = value;
+  }
+
+  public String getValue() {
+    return value;
+  }
 }

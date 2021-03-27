@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,16 +35,14 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Represents the clients of Reactor pattern. Multiple clients are run concurrently and send logging
  * requests to Reactor.
  */
+@Slf4j
 public class AppClient {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AppClient.class);
 
   private final ExecutorService service = Executors.newFixedThreadPool(4);
 

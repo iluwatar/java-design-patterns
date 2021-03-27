@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,10 +32,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests MessageAggregationStrategy
  */
-public class MessageAggregationStrategyTest {
+class MessageAggregationStrategyTest {
 
   @Test
-  public void testAggregate() {
+  void testAggregate() {
     var mas = new MessageAggregationStrategy();
     var oldExchange = new DefaultExchange((CamelContext) null);
     oldExchange.getIn().setBody("TEST1");
@@ -49,7 +49,7 @@ public class MessageAggregationStrategyTest {
   }
 
   @Test
-  public void testAggregateOldNull() {
+  void testAggregateOldNull() {
     var mas = new MessageAggregationStrategy();
 
     var newExchange = new DefaultExchange((CamelContext) null);

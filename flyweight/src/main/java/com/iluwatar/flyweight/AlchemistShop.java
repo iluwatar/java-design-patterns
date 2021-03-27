@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,15 +24,13 @@
 package com.iluwatar.flyweight;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * AlchemistShop holds potions on its shelves. It uses PotionFactory to provide the potions.
  */
+@Slf4j
 public class AlchemistShop {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AlchemistShop.class);
 
   private final List<Potion> topShelf;
   private final List<Potion> bottomShelf;

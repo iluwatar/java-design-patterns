@@ -105,7 +105,7 @@ Program output:
 
 ```java
 This is Ford.
-This Ferrari.
+This is Ferrari.
 ```
 
 ## Class Diagram

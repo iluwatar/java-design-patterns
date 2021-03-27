@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,7 @@ package com.iluwatar.observer;
 import com.iluwatar.observer.generic.GHobbits;
 import com.iluwatar.observer.generic.GOrcs;
 import com.iluwatar.observer.generic.GWeather;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Observer pattern is a software design pattern in which an object, called the subject,
@@ -40,9 +39,8 @@ import org.slf4j.LoggerFactory;
  * <p>In this example {@link Weather} has a state that can be observed. The {@link Orcs} and {@link
  * Hobbits} register as observers and receive notifications when the {@link Weather} changes.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

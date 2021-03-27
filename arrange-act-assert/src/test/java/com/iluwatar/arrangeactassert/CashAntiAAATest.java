@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,23 +23,24 @@
 
 package com.iluwatar.arrangeactassert;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * ({@link CashAAATest}) is an anti-example of AAA pattern. This test is functionally correct, but
- * with the addition of new feature, it needs refactoring. There are an awful lot of steps in that
+ * with the addition of a new feature, it needs refactoring. There are an awful lot of steps in that
  * test method, but it verifies the class' important behavior in just eleven lines. It violates the
  * single responsibility principle. If this test method failed after a small code change, it might
  * take some digging to discover why.
  */
-public class CashAntiAAATest {
+
+class CashAntiAAATest {
 
   @Test
-  public void testCash() {
+  void testCash() {
     //initialize
     var cash = new Cash(3);
     //test plus

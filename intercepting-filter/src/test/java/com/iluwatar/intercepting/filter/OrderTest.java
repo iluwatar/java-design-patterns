@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,35 +37,35 @@ public class OrderTest {
   private static final String EXPECTED_VALUE = "test";
 
   @Test
-  public void testSetName() {
+  void testSetName() {
     final var order = new Order();
     order.setName(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getName());
   }
 
   @Test
-  public void testSetContactNumber() {
+  void testSetContactNumber() {
     final var order = new Order();
     order.setContactNumber(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getContactNumber());
   }
 
   @Test
-  public void testSetAddress() {
+  void testSetAddress() {
     final var order = new Order();
     order.setAddress(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getAddress());
   }
 
   @Test
-  public void testSetDepositNumber() {
+  void testSetDepositNumber() {
     final var order = new Order();
     order.setDepositNumber(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getDepositNumber());
   }
 
   @Test
-  public void testSetOrder() {
+  void testSetOrder() {
     final var order = new Order();
     order.setOrderItem(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getOrderItem());

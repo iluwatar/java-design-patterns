@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,15 +30,13 @@ import com.gargoylesoftware.htmlunit.html.HtmlSelect;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Page Object encapsulating the Album Page (album-page.html)
  */
+@Slf4j
 public class AlbumPage extends Page {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AlbumPage.class);
   private static final String ALBUM_PAGE_HTML_FILE = "album-page.html";
   private static final String PAGE_URL = "file:" + AUT_PATH + ALBUM_PAGE_HTML_FILE;
 

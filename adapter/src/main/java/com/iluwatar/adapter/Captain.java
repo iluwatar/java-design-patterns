@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,23 +23,19 @@
 
 package com.iluwatar.adapter;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * The Captain uses {@link RowingBoat} to sail. <br> This is the client in the pattern.
  */
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public final class Captain {
 
   private RowingBoat rowingBoat;
-
-  public Captain() {
-  }
-
-  public Captain(final RowingBoat boat) {
-    this.rowingBoat = boat;
-  }
-
-  void setRowingBoat(final RowingBoat boat) {
-    this.rowingBoat = boat;
-  }
 
   void row() {
     rowingBoat.row();

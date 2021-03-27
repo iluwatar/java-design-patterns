@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ public class DefaultCircuitBreakerTest {
 
   //long timeout, int failureThreshold, long retryTimePeriod
   @Test
-  public void testEvaluateState() {
+  void testEvaluateState() {
     var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 100);
     //Right now, failureCount<failureThreshold, so state should be closed
     assertEquals(circuitBreaker.getState(), "CLOSED");
@@ -57,7 +57,7 @@ public class DefaultCircuitBreakerTest {
   }
 
   @Test
-  public void testSetStateForBypass() {
+  void testSetStateForBypass() {
     var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 2000 * 1000 * 1000);
     //Right now, failureCount<failureThreshold, so state should be closed
     //Bypass it and set it to open
@@ -66,7 +66,7 @@ public class DefaultCircuitBreakerTest {
   }
 
   @Test
-  public void testApiResponses() throws RemoteServiceException {
+  void testApiResponses() throws RemoteServiceException {
     RemoteService mockService = new RemoteService() {
       @Override
       public String call() throws RemoteServiceException {
@@ -79,6 +79,5 @@ public class DefaultCircuitBreakerTest {
     var serviceStartTime = System.nanoTime() - 60 * 1000 * 1000 * 1000;
     var response = circuitBreaker.attemptRequest();
     assertEquals(response, "Remote Success");
-
   }
 }

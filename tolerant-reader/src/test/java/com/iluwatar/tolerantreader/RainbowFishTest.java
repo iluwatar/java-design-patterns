@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,22 +23,22 @@
 
 package com.iluwatar.tolerantreader;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/30/15 - 18:34 PM
  *
  * @author Jeroen Meulemeester
  */
-public class RainbowFishTest {
+class RainbowFishTest {
 
   /**
    * Verify if the getters of a {@link RainbowFish} return the expected values
    */
   @Test
-  public void testValues() {
+  void testValues() {
     final var fish = new RainbowFish("name", 1, 2, 3);
     assertEquals("name", fish.getName());
     assertEquals(1, fish.getAge());

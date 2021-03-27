@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -134,7 +134,7 @@ public class DateFormatCallableTestMultiThread {
    * 15.12.2015 by each thread
    */
   @Test
-  public void testDateValues() {
+  void testDateValues() {
     for (var createdDateValue : createdDateValues) {
       assertEquals(expectedDateValues, createdDateValue);
     }
@@ -145,7 +145,7 @@ public class DateFormatCallableTestMultiThread {
    * deliver 5 date values by each thread
    */
   @Test
-  public void testCounterDateValues() {
+  void testCounterDateValues() {
     for (var value : result) {
       assertEquals(expectedCounterDateValues, value.getDateList().size());
     }
@@ -156,7 +156,7 @@ public class DateFormatCallableTestMultiThread {
    * deliver no exceptions
    */
   @Test
-  public void testCounterExceptions() {
+  void testCounterExceptions() {
     for (var value : result) {
       assertEquals(expectedCounterExceptions, value.getExceptionList().size());
     }

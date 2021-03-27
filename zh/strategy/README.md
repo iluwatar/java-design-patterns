@@ -40,9 +40,8 @@ public interface DragonSlayingStrategy {
   void execute();
 }
 
+@Slf4j
 public class MeleeStrategy implements DragonSlayingStrategy {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(MeleeStrategy.class);
 
   @Override
   public void execute() {
@@ -50,9 +49,8 @@ public class MeleeStrategy implements DragonSlayingStrategy {
   }
 }
 
+@Slf4j
 public class ProjectileStrategy implements DragonSlayingStrategy {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ProjectileStrategy.class);
 
   @Override
   public void execute() {
@@ -60,9 +58,8 @@ public class ProjectileStrategy implements DragonSlayingStrategy {
   }
 }
 
+@Slf4j
 public class SpellStrategy implements DragonSlayingStrategy {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SpellStrategy.class);
 
   @Override
   public void execute() {

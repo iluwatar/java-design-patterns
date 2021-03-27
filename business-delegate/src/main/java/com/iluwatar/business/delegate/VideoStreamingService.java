@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,10 @@
 
 package com.iluwatar.business.delegate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- * Service EJB implementation.
+ * Interface for video streaming service implementations.
  */
-public class EjbService implements BusinessService {
+public interface VideoStreamingService {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(EjbService.class);
-
-  @Override
-  public void doProcessing() {
-    LOGGER.info("EjbService is now processing");
-  }
+  void doProcessing();
 }

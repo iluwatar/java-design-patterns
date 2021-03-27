@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,13 +33,13 @@ import com.iluwatar.specification.property.Mass;
 import com.iluwatar.specification.property.Movement;
 import org.junit.jupiter.api.Test;
 
-public class CompositeSelectorsTest {
+class CompositeSelectorsTest {
 
   /**
    * Verify if the conjunction selector gives the correct results.
    */
   @Test
-  public void testAndComposition() {
+  void testAndComposition() {
     final var swimmingHeavyCreature = mock(Creature.class);
     when(swimmingHeavyCreature.getMovement()).thenReturn(Movement.SWIMMING);
     when(swimmingHeavyCreature.getMass()).thenReturn(new Mass(100.0));
@@ -58,7 +58,7 @@ public class CompositeSelectorsTest {
    * Verify if the disjunction selector gives the correct results.
    */
   @Test
-  public void testOrComposition() {
+  void testOrComposition() {
     final var swimmingHeavyCreature = mock(Creature.class);
     when(swimmingHeavyCreature.getMovement()).thenReturn(Movement.SWIMMING);
     when(swimmingHeavyCreature.getMass()).thenReturn(new Mass(100.0));
@@ -77,7 +77,7 @@ public class CompositeSelectorsTest {
    * Verify if the negation selector gives the correct results.
    */
   @Test
-  public void testNotComposition() {
+  void testNotComposition() {
     final var swimmingHeavyCreature = mock(Creature.class);
     when(swimmingHeavyCreature.getMovement()).thenReturn(Movement.SWIMMING);
     when(swimmingHeavyCreature.getMass()).thenReturn(new Mass(100.0));

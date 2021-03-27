@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,7 @@
 
 package com.iluwatar.decorator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Decorator pattern is a more flexible alternative to subclassing. The Decorator class
@@ -36,9 +35,8 @@ import org.slf4j.LoggerFactory;
  * battle. Then we decorate the {@link SimpleTroll} with a {@link ClubbedTroll} and perform the
  * attack again. You can see how the behavior changes after the decoration.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

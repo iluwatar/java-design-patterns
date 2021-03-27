@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,20 @@
 
 package com.iluwatar.transactionscript;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+import javax.sql.DataSource;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.sql.DataSource;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Tests {@link Hotel}
  */
-public class HotelTest {
+class HotelTest {
 
   private static final String H2_DB_URL = "jdbc:h2:~/test";
 
@@ -54,20 +55,20 @@ public class HotelTest {
   }
 
   @Test
-  public void bookingRoomShouldChangeBookedStatusToTrue() throws Exception {
+  void bookingRoomShouldChangeBookedStatusToTrue() throws Exception {
     hotel.bookRoom(1);
     assertTrue(dao.getById(1).get().isBooked());
   }
 
   @Test()
-  public void bookingRoomWithInvalidIdShouldRaiseException() {
+  void bookingRoomWithInvalidIdShouldRaiseException() {
     assertThrows(Exception.class, () -> {
       hotel.bookRoom(getNonExistingRoomId());
     });
   }
 
   @Test()
-  public void bookingRoomAgainShouldRaiseException() {
+  void bookingRoomAgainShouldRaiseException() {
     assertThrows(Exception.class, () -> {
       hotel.bookRoom(1);
       hotel.bookRoom(1);
@@ -75,12 +76,12 @@ public class HotelTest {
   }
 
   @Test
-  public void NotBookingRoomShouldNotChangeBookedStatus() throws Exception {
+  void NotBookingRoomShouldNotChangeBookedStatus() throws Exception {
     assertFalse(dao.getById(1).get().isBooked());
   }
 
   @Test
-  public void cancelRoomBookingShouldChangeBookedStatus() throws Exception {
+  void cancelRoomBookingShouldChangeBookedStatus() throws Exception {
     hotel.bookRoom(1);
     assertTrue(dao.getById(1).get().isBooked());
     hotel.cancelRoomBooking(1);
@@ -88,14 +89,14 @@ public class HotelTest {
   }
 
   @Test
-  public void cancelRoomBookingWithInvalidIdShouldRaiseException() {
+  void cancelRoomBookingWithInvalidIdShouldRaiseException() {
     assertThrows(Exception.class, () -> {
       hotel.cancelRoomBooking(getNonExistingRoomId());
     });
   }
 
   @Test
-  public void cancelRoomBookingForUnbookedRoomShouldRaiseException() {
+  void cancelRoomBookingForUnbookedRoomShouldRaiseException() {
     assertThrows(Exception.class, () -> {
       hotel.cancelRoomBooking(1);
     });

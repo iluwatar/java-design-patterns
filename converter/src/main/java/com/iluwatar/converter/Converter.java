@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Generic converter, thanks to Java8 features not only provides a way of generic bidirectional
@@ -36,21 +37,11 @@ import java.util.stream.Collectors;
  * @param <T> DTO representation's type
  * @param <U> Domain representation's type
  */
+@RequiredArgsConstructor
 public class Converter<T, U> {
 
   private final Function<T, U> fromDto;
   private final Function<U, T> fromEntity;
-
-  /**
-   * Constructor.
-   *
-   * @param fromDto    Function that converts given dto entity into the domain entity.
-   * @param fromEntity Function that converts given domain entity into the dto entity.
-   */
-  public Converter(final Function<T, U> fromDto, final Function<U, T> fromEntity) {
-    this.fromDto = fromDto;
-    this.fromEntity = fromEntity;
-  }
 
   /**
    * Converts DTO to Entity.

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,6 @@ package com.iluwatar.pageobject;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.iluwatar.pageobject.pages.AlbumListPage;
 import com.iluwatar.pageobject.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,7 +43,7 @@ public class LoginPageTest {
   }
 
   @Test
-  public void testLogin() {
+  void testLogin() {
     var albumListPage = loginPage
         .enterUsername("admin")
         .enterPassword("password")

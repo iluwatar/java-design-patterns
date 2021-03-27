@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,7 @@
 
 package com.iluwatar.prototype;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Prototype pattern is a creational design pattern in software development. It is used when the
@@ -36,9 +35,8 @@ import org.slf4j.LoggerFactory;
  * <p>In this example we have a factory class ({@link HeroFactoryImpl}) producing objects by
  * cloning the existing ones. The factory's prototype objects are given as constructor parameters.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

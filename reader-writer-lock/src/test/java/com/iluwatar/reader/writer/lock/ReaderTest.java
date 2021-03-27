@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author hongshuwei@gmail.com
  */
-public class ReaderTest {
+class ReaderTest {
 
   private InMemoryAppender appender;
 
@@ -58,7 +58,7 @@ public class ReaderTest {
    * Verify that multiple readers can get the read lock concurrently
    */
   @Test
-  public void testRead() throws Exception {
+  void testRead() throws Exception {
 
     var executeService = Executors.newFixedThreadPool(2);
     var lock = new ReaderWriterLock();
