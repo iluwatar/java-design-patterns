@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,7 @@ package com.iluwatar.servicelocator;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The service cache implementation which will cache services that are being created. On first hit,
@@ -36,9 +35,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author saifasif
  */
+@Slf4j
 public class ServiceCache {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceCache.class);
 
   private final Map<String, Service> serviceCache;
 

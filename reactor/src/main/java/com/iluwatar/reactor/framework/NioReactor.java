@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,8 +32,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class acts as Synchronous Event De-multiplexer and Initiation Dispatcher of Reactor pattern.
@@ -50,9 +49,8 @@ import org.slf4j.LoggerFactory;
  * possible edge cases which are required in a real application. This implementation is meant to
  * demonstrate the fundamental concepts that lie behind Reactor pattern.
  */
+@Slf4j
 public class NioReactor {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(NioReactor.class);
 
   private final Selector selector;
   private final Dispatcher dispatcher;

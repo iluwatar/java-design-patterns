@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,22 @@
 
 package com.iluwatar.sharding;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for RangeShardManager class.
  */
-public class RangeShardManagerTest {
+class RangeShardManagerTest {
 
   private RangeShardManager rangeShardManager;
 
   /**
    * Initialize rangeShardManager instance.
    */
-  @Before
+  @BeforeEach
   public void setup() {
     rangeShardManager = new RangeShardManager();
     var shard1 = new Shard(1);
@@ -49,10 +50,10 @@ public class RangeShardManagerTest {
   }
 
   @Test
-  public void testStoreData() {
-    var data = new Data(1, "test", Data.DataType.type1);
+  void testStoreData() {
+    var data = new Data(1, "test", Data.DataType.TYPE_1);
     rangeShardManager.storeData(data);
-    Assert.assertEquals(data, rangeShardManager.getShardById(1).getDataById(1));
+    assertEquals(data, rangeShardManager.getShardById(1).getDataById(1));
   }
 
 }

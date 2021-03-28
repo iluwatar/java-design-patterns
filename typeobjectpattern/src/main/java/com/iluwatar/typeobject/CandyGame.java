@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,17 +26,15 @@ package com.iluwatar.typeobject;
 import com.iluwatar.typeobject.Candy.Type;
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The CandyGame class contains the rules for the continuation of the game and has the game matrix
  * (field 'cells') and totalPoints gained during the game.
  */
 
+@Slf4j
 public class CandyGame {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(CandyGame.class);
 
   Cell[][] cells;
   CellPool pool;
@@ -104,13 +102,13 @@ public class CandyGame {
 
   boolean continueRound() {
     for (var i = 0; i < this.cells.length; i++) {
-      if (this.cells[cells.length - 1][i].candy.getType().equals(Type.rewardFruit)) {
+      if (this.cells[cells.length - 1][i].candy.getType().equals(Type.REWARD_FRUIT)) {
         return true;
       }
     }
     for (var i = 0; i < this.cells.length; i++) {
       for (var j = 0; j < this.cells.length; j++) {
-        if (!this.cells[i][j].candy.getType().equals(Type.rewardFruit)) {
+        if (!this.cells[i][j].candy.getType().equals(Type.REWARD_FRUIT)) {
           var adj = adjacentCells(i, j);
           for (Cell cell : adj) {
             if (this.cells[i][j].candy.name.equals(cell.candy.name)) {
@@ -136,7 +134,7 @@ public class CandyGame {
       for (var i = 0; i < this.cells.length; i++) {
         var points = 0;
         var j = this.cells.length - 1;
-        while (this.cells[j][i].candy.getType().equals(Type.rewardFruit)) {
+        while (this.cells[j][i].candy.getType().equals(Type.REWARD_FRUIT)) {
           points = this.cells[j][i].candy.getPoints();
           this.cells[j][i].crush(pool, this.cells);
           handleChange(points);

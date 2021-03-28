@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,15 +23,15 @@
 
 package com.iluwatar.leaderelection.bully;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageType;
-import org.junit.jupiter.api.Test;
-
-import java.lang.reflect.Field;
 import java.util.Queue;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * BullyInstance unit test.
@@ -39,7 +39,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BullyinstanceTest {
 
   @Test
-  public void testOnMessage() {
+  void testOnMessage() {
     try {
       final var bullyInstance = new BullyInstance(null, 1, 1);
       var bullyMessage = new Message(MessageType.HEARTBEAT, "");
@@ -55,7 +55,7 @@ public class BullyinstanceTest {
   }
 
   @Test
-  public void testIsAlive() {
+  void testIsAlive() {
     try {
       final var bullyInstance = new BullyInstance(null, 1, 1);
       var instanceClass = AbstractInstance.class;
@@ -69,7 +69,7 @@ public class BullyinstanceTest {
   }
 
   @Test
-  public void testSetAlive() {
+  void testSetAlive() {
     final var bullyInstance = new BullyInstance(null, 1, 1);
     bullyInstance.setAlive(false);
     assertFalse(bullyInstance.isAlive());

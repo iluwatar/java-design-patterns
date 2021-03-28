@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,22 +23,18 @@
 
 package com.iluwatar.combinator;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
-
-public class FinderTest {
+class FinderTest {
 
   @Test
-  public void contains() {
+  void contains() {
     var example = "the first one \nthe second one \n";
 
     var result = Finder.contains("second").find(example);
-    Assert.assertEquals(result.size(),1);
-    Assert.assertEquals(result.get(0),"the second one ");
+    assertEquals(1, result.size());
+    assertEquals( "the second one ", result.get(0));
   }
-
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,12 +23,12 @@
 
 package com.iluwatar.mediator;
 
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/19/15 - 10:00 PM
@@ -42,7 +42,7 @@ public class PartyImplTest {
    * other member gets it. Also check members don't get their own actions.
    */
   @Test
-  public void testPartyAction() {
+  void testPartyAction() {
     final var partyMember1 = mock(PartyMember.class);
     final var partyMember2 = mock(PartyMember.class);
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.roleobject;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class ApplicationRoleObjectTest {
+import org.junit.jupiter.api.Test;
+
+class ApplicationRoleObjectTest {
 
   @Test
-  public void mainTest() {
-    ApplicationRoleObject.main(new String[]{});
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> ApplicationRoleObject.main(new String[]{}));
   }
 }

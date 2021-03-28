@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,15 +25,13 @@ package com.iluwatar.eda.handler;
 
 import com.iluwatar.eda.event.UserCreatedEvent;
 import com.iluwatar.eda.framework.Handler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Handles the {@link UserCreatedEvent} message.
  */
+@Slf4j
 public class UserCreatedEventHandler implements Handler<UserCreatedEvent> {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(UserCreatedEventHandler.class);
 
   @Override
   public void onEvent(UserCreatedEvent event) {

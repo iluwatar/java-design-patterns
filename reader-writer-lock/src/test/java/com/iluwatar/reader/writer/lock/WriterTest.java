@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author hongshuwei@gmail.com
  */
-public class WriterTest {
+class WriterTest {
 
   private InMemoryAppender appender;
 
@@ -58,7 +58,7 @@ public class WriterTest {
    * Verify that multiple writers will get the lock in order.
    */
   @Test
-  public void testWrite() throws Exception {
+  void testWrite() throws Exception {
 
     var executeService = Executors.newFixedThreadPool(2);
     var lock = new ReaderWriterLock();

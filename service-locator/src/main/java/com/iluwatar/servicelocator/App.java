@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,19 +37,22 @@ package com.iluwatar.servicelocator;
  */
 public class App {
 
+  public static final String JNDI_SERVICE_A = "jndi/serviceA";
+  public static final String JNDI_SERVICE_B = "jndi/serviceB";
+
   /**
    * Program entry point.
    *
    * @param args command line args
    */
   public static void main(String[] args) {
-    var service = ServiceLocator.getService("jndi/serviceA");
+    var service = ServiceLocator.getService(JNDI_SERVICE_A);
     service.execute();
-    service = ServiceLocator.getService("jndi/serviceB");
+    service = ServiceLocator.getService(JNDI_SERVICE_B);
     service.execute();
-    service = ServiceLocator.getService("jndi/serviceA");
+    service = ServiceLocator.getService(JNDI_SERVICE_A);
     service.execute();
-    service = ServiceLocator.getService("jndi/serviceA");
+    service = ServiceLocator.getService(JNDI_SERVICE_A);
     service.execute();
   }
 }

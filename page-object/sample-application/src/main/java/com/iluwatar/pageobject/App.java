@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,7 @@ package com.iluwatar.pageobject;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Page Object pattern wraps an UI component with an application specific API allowing you to
@@ -49,9 +48,8 @@ import org.slf4j.LoggerFactory;
  * example is just to provide a simple version that showcase the intentions of this pattern and how
  * this pattern is used in order to understand it.
  */
+@Slf4j
 public final class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private App() {
   }

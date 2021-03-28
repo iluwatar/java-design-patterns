@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,10 @@
 
 package com.iluwatar.strategy;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
+ *
  * <p>The Strategy pattern (also known as the policy pattern) is a software design pattern that
  * enables an algorithm's behavior to be selected at runtime.</p>
  *
@@ -37,15 +36,14 @@ import org.slf4j.LoggerFactory;
  *
  * <p>In this example ({@link DragonSlayingStrategy}) encapsulates an algorithm. The containing
  * object ({@link DragonSlayer}) can alter its behavior by changing its strategy.</p>
- * 
+ *
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-  
   /**
    * Program entry point.
-   * 
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
@@ -60,7 +58,7 @@ public class App {
     dragonSlayer.changeStrategy(new SpellStrategy());
     dragonSlayer.goToBattle();
 
-    // Java 8 Strategy pattern
+    // Java 8 functional implementation Strategy pattern
     LOGGER.info("Green dragon spotted ahead!");
     dragonSlayer = new DragonSlayer(
         () -> LOGGER.info("With your Excalibur you severe the dragon's head!"));
@@ -72,6 +70,17 @@ public class App {
     LOGGER.info("Black dragon lands before you.");
     dragonSlayer.changeStrategy(() -> LOGGER.info(
         "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+    dragonSlayer.goToBattle();
+
+    // Java 8 lambda implementation with enum Strategy pattern
+    LOGGER.info("Green dragon spotted ahead!");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.MeleeStrategy);
+    dragonSlayer.goToBattle();
+    LOGGER.info("Red dragon emerges.");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.ProjectileStrategy);
+    dragonSlayer.goToBattle();
+    LOGGER.info("Black dragon lands before you.");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.SpellStrategy);
     dragonSlayer.goToBattle();
   }
 }

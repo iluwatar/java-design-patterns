@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,43 +24,34 @@
 package com.iluwatar.commander.queue;
 
 import com.iluwatar.commander.Order;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /**
  * QueueTask object is the object enqueued in queue.
  */
-
+@RequiredArgsConstructor
 public class QueueTask {
 
   /**
    * TaskType is the type of task to be done.
    */
-
   public enum TaskType {
-    Messaging, Payment, EmployeeDb
+    MESSAGING,
+    PAYMENT,
+    EMPLOYEE_DB
   }
 
-  public Order order;
-  public TaskType taskType;
-  public int messageType; //0-fail, 1-error, 2-success
+  public final Order order;
+  public final TaskType taskType;
+  public final int messageType; //0-fail, 1-error, 2-success
+  
   /*we could have varargs Object instead to pass in any parameter instead of just message type
   but keeping it simple here*/
-  public long firstAttemptTime; //when first time attempt made to do task
-
-  /**
-   * QueueTask constructor.
-   *
-   * @param o           is the order for which the queuetask is being created
-   * @param t           is the type of task to be done
-   * @param messageType if it is a message, which type of message - this could have instead been
-   *                    object varargs, and contained all additional details related to tasktype.
-   */
-
-  public QueueTask(Order o, TaskType t, int messageType) {
-    this.order = o;
-    this.taskType = t;
-    this.messageType = messageType;
-    this.firstAttemptTime = -1;
-  }
+  @Getter
+  @Setter
+  private long firstAttemptTime = -1L; //when first time attempt made to do task
 
   /**
    * getType method.
@@ -68,7 +59,7 @@ public class QueueTask {
    * @return String representing type of task
    */
   public String getType() {
-    if (!this.taskType.equals(TaskType.Messaging)) {
+    if (!this.taskType.equals(TaskType.MESSAGING)) {
       return this.taskType.toString();
     } else {
       if (this.messageType == 0) {

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,12 @@
 
 package com.iluwatar.specification.property;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Mass property.
  */
+@EqualsAndHashCode
 public class Mass {
 
   private final double value;
@@ -57,11 +60,4 @@ public class Mass {
     return title;
   }
 
-  @Override
-  public final boolean equals(Object obj) {
-    if (!(obj instanceof Mass)) {
-      return false;
-    }
-    return ((Mass) obj).value == this.value;
-  }
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,6 +46,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   private static final String DEFAULT_DB = "lotteryDB";
   private static final String DEFAULT_TICKETS_COLLECTION = "lotteryTickets";
   private static final String DEFAULT_COUNTERS_COLLECTION = "counters";
+  private static final String TICKET_ID = "ticketId";
 
   private MongoClient mongoClient;
   private MongoDatabase database;
@@ -93,7 +94,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   }
 
   private void initCounters() {
-    var doc = new Document("_id", "ticketId").append("seq", 1);
+    var doc = new Document("_id", TICKET_ID).append("seq", 1);
     countersCollection.insertOne(doc);
   }
 
@@ -103,7 +104,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
    * @return next ticket id
    */
   public int getNextId() {
-    var find = new Document("_id", "ticketId");
+    var find = new Document("_id", TICKET_ID);
     var increase = new Document("seq", 1);
     var update = new Document("$inc", increase);
     var result = countersCollection.findOneAndUpdate(find, update);
@@ -131,7 +132,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   @Override
   public Optional<LotteryTicket> findById(LotteryTicketId id) {
     return ticketsCollection
-        .find(new Document("ticketId", id.getId()))
+        .find(new Document(TICKET_ID, id.getId()))
         .limit(1)
         .into(new ArrayList<>())
         .stream()
@@ -142,11 +143,11 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   @Override
   public Optional<LotteryTicketId> save(LotteryTicket ticket) {
     var ticketId = getNextId();
-    var doc = new Document("ticketId", ticketId);
+    var doc = new Document(TICKET_ID, ticketId);
     doc.put("email", ticket.getPlayerDetails().getEmail());
     doc.put("bank", ticket.getPlayerDetails().getBankAccount());
     doc.put("phone", ticket.getPlayerDetails().getPhoneNumber());
-    doc.put("numbers", ticket.getNumbers().getNumbersAsString());
+    doc.put("numbers", ticket.getLotteryNumbers().getNumbersAsString());
     ticketsCollection.insertOne(doc);
     return Optional.of(new LotteryTicketId(ticketId));
   }
@@ -173,7 +174,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
         .map(Integer::parseInt)
         .collect(Collectors.toSet());
     var lotteryNumbers = LotteryNumbers.create(numbers);
-    var ticketId = new LotteryTicketId(doc.getInteger("ticketId"));
+    var ticketId = new LotteryTicketId(doc.getInteger(TICKET_ID));
     return new LotteryTicket(ticketId, playerDetails, lotteryNumbers);
   }
 }

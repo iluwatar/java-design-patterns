@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,13 +35,13 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests {@link InMemoryCustomerDao}.
  */
-public class InMemoryCustomerDaoTest {
+class InMemoryCustomerDaoTest {
 
   private InMemoryCustomerDao dao;
   private static final Customer CUSTOMER = new Customer(1, "Freddy", "Krueger");
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     dao = new InMemoryCustomerDao();
     assertTrue(dao.add(CUSTOMER));
   }
@@ -51,10 +51,10 @@ public class InMemoryCustomerDaoTest {
    * customer.
    */
   @Nested
-  public class NonExistingCustomer {
+  class NonExistingCustomer {
 
     @Test
-    public void addingShouldResultInSuccess() throws Exception {
+    void addingShouldResultInSuccess() throws Exception {
       try (var allCustomers = dao.getAll()) {
         assumeTrue(allCustomers.count() == 1);
       }
@@ -68,7 +68,7 @@ public class InMemoryCustomerDaoTest {
     }
 
     @Test
-    public void deletionShouldBeFailureAndNotAffectExistingCustomers() throws Exception {
+    void deletionShouldBeFailureAndNotAffectExistingCustomers() throws Exception {
       final var nonExistingCustomer = new Customer(2, "Robert", "Englund");
       var result = dao.delete(nonExistingCustomer);
 
@@ -77,7 +77,7 @@ public class InMemoryCustomerDaoTest {
     }
 
     @Test
-    public void updationShouldBeFailureAndNotAffectExistingCustomers() throws Exception {
+    void updationShouldBeFailureAndNotAffectExistingCustomers() throws Exception {
       final var nonExistingId = getNonExistingCustomerId();
       final var newFirstname = "Douglas";
       final var newLastname = "MacArthur";
@@ -89,7 +89,7 @@ public class InMemoryCustomerDaoTest {
     }
 
     @Test
-    public void retrieveShouldReturnNoCustomer() throws Exception {
+    void retrieveShouldReturnNoCustomer() throws Exception {
       assertFalse(dao.getById(getNonExistingCustomerId()).isPresent());
     }
   }
@@ -99,10 +99,10 @@ public class InMemoryCustomerDaoTest {
    * customer.
    */
   @Nested
-  public class ExistingCustomer {
+  class ExistingCustomer {
 
     @Test
-    public void addingShouldResultInFailureAndNotAffectExistingCustomers() throws Exception {
+    void addingShouldResultInFailureAndNotAffectExistingCustomers() throws Exception {
       var result = dao.add(CUSTOMER);
 
       assertFalse(result);
@@ -111,7 +111,7 @@ public class InMemoryCustomerDaoTest {
     }
 
     @Test
-    public void deletionShouldBeSuccessAndCustomerShouldBeNonAccessible() throws Exception {
+    void deletionShouldBeSuccessAndCustomerShouldBeNonAccessible() throws Exception {
       var result = dao.delete(CUSTOMER);
 
       assertTrue(result);
@@ -120,7 +120,7 @@ public class InMemoryCustomerDaoTest {
     }
 
     @Test
-    public void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation() throws
+    void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation() throws
         Exception {
       final var newFirstname = "Bernard";
       final var newLastname = "Montgomery";
@@ -135,7 +135,7 @@ public class InMemoryCustomerDaoTest {
     }
 
     @Test
-    public void retriveShouldReturnTheCustomer() {
+    void retriveShouldReturnTheCustomer() {
       var optionalCustomer = dao.getById(CUSTOMER.getId());
 
       assertTrue(optionalCustomer.isPresent());

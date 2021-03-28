@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,7 +43,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests Promise class.
  */
-public class PromiseTest {
+class PromiseTest {
 
   private Executor executor;
   private Promise<Integer> promise;
@@ -56,7 +55,7 @@ public class PromiseTest {
   }
 
   @Test
-  public void promiseIsFulfilledWithTheResultantValueOfExecutingTheTask()
+  void promiseIsFulfilledWithTheResultantValueOfExecutingTheTask()
       throws InterruptedException, ExecutionException {
     promise.fulfillInAsync(new NumberCrunchingTask(), executor);
 
@@ -66,8 +65,8 @@ public class PromiseTest {
   }
 
   @Test
-  public void promiseIsFulfilledWithAnExceptionIfTaskThrowsAnException()
-      throws InterruptedException, TimeoutException {
+  void promiseIsFulfilledWithAnExceptionIfTaskThrowsAnException()
+      throws InterruptedException {
     testWaitingForeverForPromiseToBeFulfilled();
     testWaitingSomeTimeForPromiseToBeFulfilled();
   }
@@ -120,7 +119,7 @@ public class PromiseTest {
   }
 
   @Test
-  public void dependentPromiseIsFulfilledAfterTheConsumerConsumesTheResultOfThisPromise()
+  void dependentPromiseIsFulfilledAfterTheConsumerConsumesTheResultOfThisPromise()
       throws InterruptedException, ExecutionException {
     var dependentPromise = promise
         .fulfillInAsync(new NumberCrunchingTask(), executor)
@@ -132,7 +131,7 @@ public class PromiseTest {
   }
 
   @Test
-  public void dependentPromiseIsFulfilledWithAnExceptionIfConsumerThrowsAnException()
+  void dependentPromiseIsFulfilledWithAnExceptionIfConsumerThrowsAnException()
       throws InterruptedException {
     var dependentPromise = promise
         .fulfillInAsync(new NumberCrunchingTask(), executor)
@@ -160,7 +159,7 @@ public class PromiseTest {
   }
 
   @Test
-  public void dependentPromiseIsFulfilledAfterTheFunctionTransformsTheResultOfThisPromise()
+  void dependentPromiseIsFulfilledAfterTheFunctionTransformsTheResultOfThisPromise()
       throws InterruptedException, ExecutionException {
     var dependentPromise = promise
         .fulfillInAsync(new NumberCrunchingTask(), executor)
@@ -176,7 +175,7 @@ public class PromiseTest {
   }
 
   @Test
-  public void dependentPromiseIsFulfilledWithAnExceptionIfTheFunctionThrowsException()
+  void dependentPromiseIsFulfilledWithAnExceptionIfTheFunctionThrowsException()
       throws InterruptedException {
     var dependentPromise = promise
         .fulfillInAsync(new NumberCrunchingTask(), executor)
@@ -204,17 +203,18 @@ public class PromiseTest {
   }
 
   @Test
-  public void fetchingAnAlreadyFulfilledPromiseReturnsTheFulfilledValueImmediately()
+  void fetchingAnAlreadyFulfilledPromiseReturnsTheFulfilledValueImmediately()
       throws ExecutionException {
     var promise = new Promise<Integer>();
     promise.fulfill(NumberCrunchingTask.CRUNCHED_NUMBER);
 
-    promise.get(1000, TimeUnit.SECONDS);
+    Integer result = promise.get(1000, TimeUnit.SECONDS);
+    assertEquals(NumberCrunchingTask.CRUNCHED_NUMBER, result);
   }
 
   @SuppressWarnings("unchecked")
   @Test
-  public void exceptionHandlerIsCalledWhenPromiseIsFulfilledExceptionally() {
+  void exceptionHandlerIsCalledWhenPromiseIsFulfilledExceptionally() {
     var promise = new Promise<>();
     var exceptionHandler = mock(Consumer.class);
     promise.onError(exceptionHandler);

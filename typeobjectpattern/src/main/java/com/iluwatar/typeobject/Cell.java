@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,27 +24,19 @@
 package com.iluwatar.typeobject;
 
 import com.iluwatar.typeobject.Candy.Type;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 /**
  * The Cell object is what the game matrix is made of and contains the candy which is to be crushed
  * or collected as reward.
  */
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cell {
   Candy candy;
   int positionX;
   int positionY;
-
-  Cell(Candy candy, int positionX, int positionY) {
-    this.candy = candy;
-    this.positionX = positionX;
-    this.positionY = positionY;
-  }
-
-  Cell() {
-    this.candy = null;
-    this.positionX = 0;
-    this.positionY = 0;
-  }
 
   void crush(CellPool pool, Cell[][] cellMatrix) {
     //take out from this position and put back in pool
@@ -74,8 +66,8 @@ public class Cell {
   }
 
   int interact(Cell c, CellPool pool, Cell[][] cellMatrix) {
-    if (this.candy.getType().equals(Type.rewardFruit) || c.candy.getType()
-        .equals(Type.rewardFruit)) {
+    if (this.candy.getType().equals(Type.REWARD_FRUIT) || c.candy.getType()
+        .equals(Type.REWARD_FRUIT)) {
       return 0;
     } else {
       if (this.candy.name.equals(c.candy.name)) {

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,8 @@ import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation with token ring algorithm. The instances in the system are organized as a ring.
@@ -43,9 +41,9 @@ import org.slf4j.LoggerFactory;
  * smallest ID to be the new leader, and then send a leader message to other instances to inform the
  * result.
  */
+@Slf4j
 public class RingInstance extends AbstractInstance {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(RingInstance.class);
+  private static final String INSTANCE = "Instance ";
 
   /**
    * Constructor of RingInstance.
@@ -64,15 +62,15 @@ public class RingInstance extends AbstractInstance {
     try {
       var isLeaderAlive = messageManager.sendHeartbeatMessage(this.leaderId);
       if (isLeaderAlive) {
-        LOGGER.info("Instance " + localId + "- Leader is alive. Start next heartbeat in 5 second.");
+        LOGGER.info(INSTANCE + localId + "- Leader is alive. Start next heartbeat in 5 second.");
         Thread.sleep(HEARTBEAT_INTERVAL);
         messageManager.sendHeartbeatInvokeMessage(this.localId);
       } else {
-        LOGGER.info("Instance " + localId + "- Leader is not alive. Start election.");
+        LOGGER.info(INSTANCE + localId + "- Leader is not alive. Start election.");
         messageManager.sendElectionMessage(this.localId, String.valueOf(this.localId));
       }
     } catch (InterruptedException e) {
-      LOGGER.info("Instance " + localId + "- Interrupted.");
+      LOGGER.info(INSTANCE + localId + "- Interrupted.");
     }
   }
 
@@ -85,14 +83,14 @@ public class RingInstance extends AbstractInstance {
   @Override
   protected void handleElectionMessage(Message message) {
     var content = message.getContent();
-    LOGGER.info("Instance " + localId + " - Election Message: " + content);
+    LOGGER.info(INSTANCE + localId + " - Election Message: " + content);
     var candidateList = Arrays.stream(content.trim().split(","))
         .map(Integer::valueOf)
         .sorted()
         .collect(Collectors.toList());
     if (candidateList.contains(localId)) {
       var newLeaderId = candidateList.get(0);
-      LOGGER.info("Instance " + localId + " - New leader should be " + newLeaderId + ".");
+      LOGGER.info(INSTANCE + localId + " - New leader should be " + newLeaderId + ".");
       messageManager.sendLeaderMessage(localId, newLeaderId);
     } else {
       content += "," + localId;
@@ -108,11 +106,11 @@ public class RingInstance extends AbstractInstance {
   protected void handleLeaderMessage(Message message) {
     var newLeaderId = Integer.valueOf(message.getContent());
     if (this.leaderId != newLeaderId) {
-      LOGGER.info("Instance " + localId + " - Update leaderID");
+      LOGGER.info(INSTANCE + localId + " - Update leaderID");
       this.leaderId = newLeaderId;
       messageManager.sendLeaderMessage(localId, newLeaderId);
     } else {
-      LOGGER.info("Instance " + localId + " - Leader update done. Start heartbeat.");
+      LOGGER.info(INSTANCE + localId + " - Leader update done. Start heartbeat.");
       messageManager.sendHeartbeatInvokeMessage(localId);
     }
   }
@@ -122,14 +120,17 @@ public class RingInstance extends AbstractInstance {
    */
   @Override
   protected void handleLeaderInvokeMessage() {
+    // Not used in Ring instance.
   }
 
   @Override
   protected void handleHeartbeatMessage(Message message) {
+    // Not used in Ring instance.
   }
 
   @Override
   protected void handleElectionInvokeMessage() {
+    // Not used in Ring instance.
   }
 
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,15 @@
 
 package com.iluwatar.callback;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Callback pattern is more native for functional languages where functions are treated as
  * first-class citizens. Prior to Java 8 callbacks can be simulated using simple (alike command)
  * interfaces.
  */
+@Slf4j
 public final class App {
-
-  private static final Logger LOGGER = getLogger(App.class);
 
   private App() {
   }

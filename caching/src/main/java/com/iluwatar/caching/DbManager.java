@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,7 @@ import com.mongodb.client.model.UpdateOptions;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 
 /**
@@ -41,6 +42,7 @@ import org.bson.Document;
  * underlying data storage (connect()) or a simple Java data structure to (temporarily) store the
  * data/objects during runtime (createVirtualDB()).</p>
  */
+@Slf4j
 public final class DbManager {
 
   private static MongoClient mongoClient;
@@ -83,7 +85,7 @@ public final class DbManager {
       try {
         connect();
       } catch (ParseException e) {
-        e.printStackTrace();
+        LOGGER.error("Error connecting to MongoDB", e);
       }
     }
     var iterable = db
@@ -110,7 +112,7 @@ public final class DbManager {
       try {
         connect();
       } catch (ParseException e) {
-        e.printStackTrace();
+        LOGGER.error("Error connecting to MongoDB", e);
       }
     }
     db.getCollection(CachingConstants.USER_ACCOUNT).insertOne(
@@ -132,7 +134,7 @@ public final class DbManager {
       try {
         connect();
       } catch (ParseException e) {
-        e.printStackTrace();
+        LOGGER.error("Error connecting to MongoDB", e);
       }
     }
     db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
@@ -153,7 +155,7 @@ public final class DbManager {
       try {
         connect();
       } catch (ParseException e) {
-        e.printStackTrace();
+        LOGGER.error("Error connecting to MongoDB", e);
       }
     }
     db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(

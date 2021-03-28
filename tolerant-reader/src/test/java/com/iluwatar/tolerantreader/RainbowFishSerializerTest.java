@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,26 +25,32 @@ package com.iluwatar.tolerantreader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.File;
-import org.junit.Rule;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Date: 12/30/15 - 18:39 PM
  *
  * @author Jeroen Meulemeester
  */
-@EnableRuleMigrationSupport
-public class RainbowFishSerializerTest {
+
+class RainbowFishSerializerTest {
 
   /**
    * Create a temporary folder, used to generate files in during this test
    */
-  @Rule
-  public final TemporaryFolder testFolder = new TemporaryFolder();
+  @TempDir
+  static Path testFolder;
+
+  @BeforeEach
+  void beforeEach() {
+    assertTrue(Files.isDirectory(testFolder));
+  }
 
   /**
    * Rainbow fish version 1 used during the tests
@@ -60,11 +66,11 @@ public class RainbowFishSerializerTest {
    * Verify if a fish, written as version 1 can be read back as version 1
    */
   @Test
-  public void testWriteV1ReadV1() throws Exception {
-    final var outputFile = this.testFolder.newFile();
-    RainbowFishSerializer.writeV1(V1, outputFile.getPath());
+  void testWriteV1ReadV1() throws Exception {
+    final var outputPath = Files.createFile(testFolder.resolve("outputFile"));
+    RainbowFishSerializer.writeV1(V1, outputPath.toString());
 
-    final var fish = RainbowFishSerializer.readV1(outputFile.getPath());
+    final var fish = RainbowFishSerializer.readV1(outputPath.toString());
     assertNotSame(V1, fish);
     assertEquals(V1.getName(), fish.getName());
     assertEquals(V1.getAge(), fish.getAge());
@@ -77,11 +83,11 @@ public class RainbowFishSerializerTest {
    * Verify if a fish, written as version 2 can be read back as version 1
    */
   @Test
-  public void testWriteV2ReadV1() throws Exception {
-    final var outputFile = this.testFolder.newFile();
-    RainbowFishSerializer.writeV2(V2, outputFile.getPath());
+  void testWriteV2ReadV1() throws Exception {
+    final var outputPath = Files.createFile(testFolder.resolve("outputFile2"));
+    RainbowFishSerializer.writeV2(V2, outputPath.toString());
 
-    final var fish = RainbowFishSerializer.readV1(outputFile.getPath());
+    final var fish = RainbowFishSerializer.readV1(outputPath.toString());
     assertNotSame(V2, fish);
     assertEquals(V2.getName(), fish.getName());
     assertEquals(V2.getAge(), fish.getAge());

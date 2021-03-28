@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,10 +34,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for {@link ClubbedTroll}
  */
-public class ClubbedTrollTest {
+class ClubbedTrollTest {
 
   @Test
-  public void testClubbedTroll() {
+  void testClubbedTroll() {
     // Create a normal troll first, but make sure we can spy on it later on.
     final var simpleTroll = spy(new SimpleTroll());
 

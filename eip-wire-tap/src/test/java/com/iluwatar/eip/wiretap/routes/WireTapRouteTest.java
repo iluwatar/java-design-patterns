@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ActiveProfiles("test")
 @EnableAutoConfiguration
 @ComponentScan
-public class WireTapRouteTest {
+class WireTapRouteTest {
 
   @EndpointInject(uri = "{{entry}}")
   private ProducerTemplate entry;
@@ -67,7 +67,7 @@ public class WireTapRouteTest {
    */
   @Test
   @DirtiesContext
-  public void testWireTap() throws Exception {
+  void testWireTap() throws Exception {
     entry.sendBody("TEST");
 
     endpoint.expectedMessageCount(1);

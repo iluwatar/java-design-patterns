@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,16 @@
 
 package com.iluwatar.arrangeactassert;
 
+import lombok.AllArgsConstructor;
+
 /**
  * Arrange/Act/Assert (AAA) is a unit test pattern. In this simple example, we have a ({@link Cash})
  * object for plus, minus and counting amount.
  */
+@AllArgsConstructor
 public class Cash {
 
   private int amount;
-
-  Cash(int amount) {
-    this.amount = amount;
-  }
 
   //plus
   void plus(int addend) {

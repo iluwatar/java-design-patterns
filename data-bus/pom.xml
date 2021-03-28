@@ -2,7 +2,7 @@
 <!--
 
     The MIT License
-    Copyright © 2014-2019 Ilkka Seppälä
+    Copyright © 2014-2021 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -27,13 +27,10 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-    <properties>
-        <lombok.version>1.16.14</lombok.version>
-    </properties>
     <parent>
         <groupId>com.iluwatar</groupId>
         <artifactId>java-design-patterns</artifactId>
-        <version>1.23.0-SNAPSHOT</version>
+        <version>1.24.0-SNAPSHOT</version>
     </parent>
     <artifactId>data-bus</artifactId>
     <dependencies>

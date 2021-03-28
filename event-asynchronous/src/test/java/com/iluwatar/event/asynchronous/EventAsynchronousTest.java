@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,11 +35,11 @@ import org.slf4j.LoggerFactory;
 /**
  * Application test
  */
-public class EventAsynchronousTest {
+class EventAsynchronousTest {
   private static final Logger LOGGER = LoggerFactory.getLogger(EventAsynchronousTest.class);
 
   @Test
-  public void testAsynchronousEvent() {
+  void testAsynchronousEvent() {
     var eventManager = new EventManager();
     try {
       var aEventId = eventManager.createAsync(60);
@@ -55,7 +55,7 @@ public class EventAsynchronousTest {
   }
 
   @Test
-  public void testSynchronousEvent() {
+  void testSynchronousEvent() {
     var eventManager = new EventManager();
     try {
       var sEventId = eventManager.create(60);
@@ -72,7 +72,7 @@ public class EventAsynchronousTest {
   }
 
   @Test
-  public void testUnsuccessfulSynchronousEvent() {
+  void testUnsuccessfulSynchronousEvent() {
     assertThrows(InvalidOperationException.class, () -> {
       var eventManager = new EventManager();
       try {
@@ -87,7 +87,7 @@ public class EventAsynchronousTest {
   }
 
   @Test
-  public void testFullSynchronousEvent() {
+  void testFullSynchronousEvent() {
     var eventManager = new EventManager();
     try {
       var eventTime = 1;
@@ -110,7 +110,7 @@ public class EventAsynchronousTest {
   }
 
   @Test
-  public void testFullAsynchronousEvent() {
+  void testFullAsynchronousEvent() {
     var eventManager = new EventManager();
     try {
       var eventTime = 1;

@@ -9,6 +9,7 @@ tags:
 ---
 
 ## Intent
+
 Private Class Data design pattern seeks to reduce exposure of attributes by limiting their 
 visibility. It reduces the number of class attributes by encapsulating them in single Data object.
 
@@ -36,8 +37,8 @@ Taking our stew example from above. First we have a `Stew` class where its data 
 private class data, making the stew's ingredient mutable to class methods. 
 
 ```java
+@Slf4j
 public class Stew {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Stew.class);
   private int numPotatoes;
   private int numCarrots;
   private int numMeat;
@@ -98,8 +99,8 @@ public class StewData {
     return numPeppers;
   }
 }
+@Slf4j
 public class ImmutableStew {
-  private static final Logger LOGGER = LoggerFactory.getLogger(ImmutableStew.class);
   private final StewData data;
   public ImmutableStew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     data = new StewData(numPotatoes, numCarrots, numMeat, numPeppers);
@@ -124,9 +125,11 @@ immutableStew.mix();  // Mixing the immutable stew we find: 2 potatoes, 4 carrot
 ```
 
 ## Class diagram
+
 ![alt text](./etc/private-class-data.png "Private Class Data")
 
 ## Applicability
+
 Use the Private Class Data pattern when
 
-* You want to prevent write access to class data members
+* You want to prevent write access to class data members.

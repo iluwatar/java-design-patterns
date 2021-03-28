@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@ import org.junit.jupiter.api.Test;
  * objects are held by a client object (app). The client decides which commands to execute at which
  * points. To execute a command, it passes the command object to the invoker object.
  */
-public class CommandTest {
+class CommandTest {
 
   private static final String GOBLIN = "Goblin";
 
@@ -51,15 +51,15 @@ public class CommandTest {
    * wizard keeps track of the spells undone, so they can be redone.
    */
   @Test
-  public void testCommand() {
+  void testCommand() {
 
     var wizard = new Wizard();
     var goblin = new Goblin();
 
-    wizard.castSpell(new ShrinkSpell(), goblin);
+    wizard.castSpell(goblin::changeSize);
     verifyGoblin(goblin, GOBLIN, Size.SMALL, Visibility.VISIBLE);
 
-    wizard.castSpell(new InvisibilitySpell(), goblin);
+    wizard.castSpell(goblin::changeVisibility);
     verifyGoblin(goblin, GOBLIN, Size.SMALL, Visibility.INVISIBLE);
 
     wizard.undoLastSpell();

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,14 +34,14 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
+class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
 
   public SpellDaoImplTest() {
     super(Spell::new, new SpellDaoImpl());
   }
 
   @Test
-  public void testFindByName() {
+  void testFindByName() {
     final var dao = getDao();
     final var allSpells = dao.findAll();
     for (final var spell : allSpells) {

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,7 @@ package com.iluwatar.module;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The FileLoggerModule is responsible for showing logs on File System.
@@ -35,9 +34,8 @@ import org.slf4j.LoggerFactory;
  * <p>The below example demonstrates a File logger module, which can print simple and error
  * messages in two designated files
  */
+@Slf4j
 public final class FileLoggerModule {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(FileLoggerModule.class);
 
   private static FileLoggerModule singleton = null;
 

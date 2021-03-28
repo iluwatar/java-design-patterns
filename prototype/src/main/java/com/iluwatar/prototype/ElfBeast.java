@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +23,17 @@
 
 package com.iluwatar.prototype;
 
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+
 /**
  * ElfBeast.
  */
+@EqualsAndHashCode(callSuper = true)
+@RequiredArgsConstructor
 public class ElfBeast extends Beast {
 
   private final String helpType;
-
-  public ElfBeast(String helpType) {
-    this.helpType = helpType;
-  }
 
   public ElfBeast(ElfBeast elfBeast) {
     super(elfBeast);
@@ -47,24 +48,6 @@ public class ElfBeast extends Beast {
   @Override
   public String toString() {
     return "Elven eagle helps in " + helpType;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!super.equals(obj)) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    var other = (ElfBeast) obj;
-    if (helpType == null) {
-      return other.helpType == null;
-    }
-    return helpType.equals(other.helpType);
   }
 
 }

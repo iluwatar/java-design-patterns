@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for creating and checking the Message.
  */
-public class MessageTest {
+class MessageTest {
 
   @Test
-  public void messageTest() {
+  void messageTest() {
 
     // Parameterized constructor test.
     var testMsg = "Message Test";

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,16 @@
 
 package com.iluwatar.observer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Hobbits.
  */
+@Slf4j
 public class Hobbits implements WeatherObserver {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Hobbits.class);
 
   @Override
   public void update(WeatherType currentWeather) {
-    LOGGER.info("The hobbits are facing " + currentWeather.getDescription() + " weather now");
+    LOGGER.info("The hobbits are facing {} weather now", currentWeather.getDescription());
   }
 }

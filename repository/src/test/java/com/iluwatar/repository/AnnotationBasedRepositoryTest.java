@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {AppConfig.class})
-public class AnnotationBasedRepositoryTest {
+class AnnotationBasedRepositoryTest {
 
   @Resource
   private PersonRepository repository;
@@ -64,13 +64,13 @@ public class AnnotationBasedRepositoryTest {
   }
 
   @Test
-  public void testFindAll() {
+  void testFindAll() {
     var actuals = Lists.newArrayList(repository.findAll());
     assertTrue(actuals.containsAll(persons) && persons.containsAll(actuals));
   }
 
   @Test
-  public void testSave() {
+  void testSave() {
     var terry = repository.findByName("Terry");
     terry.setSurname("Lee");
     terry.setAge(47);
@@ -82,7 +82,7 @@ public class AnnotationBasedRepositoryTest {
   }
 
   @Test
-  public void testDelete() {
+  void testDelete() {
     var terry = repository.findByName("Terry");
     repository.delete(terry);
 
@@ -91,12 +91,12 @@ public class AnnotationBasedRepositoryTest {
   }
 
   @Test
-  public void testCount() {
+  void testCount() {
     assertEquals(4, repository.count());
   }
 
   @Test
-  public void testFindAllByAgeBetweenSpec() {
+  void testFindAllByAgeBetweenSpec() {
     var persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));
 
     assertEquals(3, persons.size());
@@ -104,7 +104,7 @@ public class AnnotationBasedRepositoryTest {
   }
 
   @Test
-  public void testFindOneByNameEqualSpec() {
+  void testFindOneByNameEqualSpec() {
     var actual = repository.findOne(new PersonSpecifications.NameEqualSpec("Terry"));
     assertTrue(actual.isPresent());
     assertEquals(terry, actual.get());

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,15 +26,13 @@ package com.iluwatar.flux.view;
 import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.store.ContentStore;
 import com.iluwatar.flux.store.Store;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ContentView is a concrete view.
  */
+@Slf4j
 public class ContentView implements View {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ContentView.class);
 
   private Content content = Content.PRODUCTS;
 

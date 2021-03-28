@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +55,7 @@ public abstract class UnitTest<U extends Unit> {
   }
 
   @Test
-  public void testAccept() {
+  void testAccept() {
     final var children = new Unit[5];
     Arrays.setAll(children, (i) -> mock(Unit.class));
 
