@@ -25,6 +25,7 @@ package com.iluwatar.caching;
 
 import java.text.ParseException;
 import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * AppManager helps to bridge the gap in communication between the main class and the application's
@@ -33,6 +34,7 @@ import java.util.Optional;
  * Depending on the chosen caching policy, AppManager will call the appropriate function in the
  * CacheStore class.
  */
+@Slf4j
 public final class AppManager {
 
   private static CachingPolicy cachingPolicy;
@@ -50,7 +52,7 @@ public final class AppManager {
       try {
         DbManager.connect();
       } catch (ParseException e) {
-        e.printStackTrace();
+        LOGGER.error("Error connecting to MongoDB", e);
       }
     } else {
       DbManager.createVirtualDb();
