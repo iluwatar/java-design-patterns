@@ -29,10 +29,10 @@
   <parent>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.24.0-SNAPSHOT</version>
+    <version>1.24.0</version>
   </parent>
   <artifactId>dirty-flag</artifactId>
-  <version>1.24.0-SNAPSHOT</version>
+  <version>1.24.0</version>
   <name>dirty-flag</name>
   <url>http://maven.apache.org</url>
   <properties>
