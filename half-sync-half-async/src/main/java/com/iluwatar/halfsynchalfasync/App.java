@@ -24,8 +24,7 @@
 package com.iluwatar.halfsynchalfasync;
 
 import java.util.concurrent.LinkedBlockingQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This application demonstrates Half-Sync/Half-Async pattern. Key parts of the pattern are {@link
@@ -60,9 +59,8 @@ import org.slf4j.LoggerFactory;
  * tasks are executed. Our implementation is just one simple way of implementing this pattern, there
  * are many variants possible as described in its applications.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

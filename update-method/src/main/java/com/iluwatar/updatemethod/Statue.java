@@ -57,7 +57,7 @@ public class Statue extends Entity {
 
   @Override
   public void update() {
-    if (++ frames == delay) {
+    if (++frames == delay) {
       shootLightning();
       frames = 0;
     }

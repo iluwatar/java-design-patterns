@@ -23,62 +23,21 @@
 
 package com.iluwatar.hexagonal.domain;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
 /**
  * Immutable value object representing lottery ticket.
  */
+@Getter
+@ToString
+@RequiredArgsConstructor
 public class LotteryTicket {
 
-  private LotteryTicketId id;
+  private final LotteryTicketId id;
   private final PlayerDetails playerDetails;
   private final LotteryNumbers lotteryNumbers;
-
-  /**
-   * Constructor.
-   */
-  public LotteryTicket(LotteryTicketId id, PlayerDetails details, LotteryNumbers numbers) {
-    this.id = id;
-    playerDetails = details;
-    lotteryNumbers = numbers;
-  }
-
-  /**
-   * Get player details.
-   *
-   * @return player details
-   */
-  public PlayerDetails getPlayerDetails() {
-    return playerDetails;
-  }
-
-  /**
-   * Get lottery numbers.
-   *
-   * @return lottery numbers
-   */
-  public LotteryNumbers getNumbers() {
-    return lotteryNumbers;
-  }
-
-  /**
-   * Get ticket id.
-   *
-   * @return id
-   */
-  public LotteryTicketId getId() {
-    return id;
-  }
-
-  /**
-   * Set ticket id.
-   */
-  public void setId(LotteryTicketId id) {
-    this.id = id;
-  }
-
-  @Override
-  public String toString() {
-    return playerDetails.toString() + " " + lotteryNumbers.toString();
-  }
 
   @Override
   public int hashCode() {
@@ -114,4 +73,5 @@ public class LotteryTicket {
       return playerDetails.equals(other.playerDetails);
     }
   }
+
 }

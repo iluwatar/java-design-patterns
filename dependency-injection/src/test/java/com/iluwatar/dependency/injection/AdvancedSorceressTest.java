@@ -38,17 +38,17 @@ import org.junit.jupiter.api.Test;
  * @author Stanislav Kapinus
  */
 
-public class AdvancedSorceressTest {
+class AdvancedSorceressTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(Tobacco.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -57,7 +57,7 @@ public class AdvancedSorceressTest {
    * her through the setter's parameter
    */
   @Test
-  public void testSmokeEveryThing() throws Exception {
+  void testSmokeEveryThing() throws Exception {
 
     List<Tobacco> tobaccos = List.of(
         new OldTobyTobacco(),

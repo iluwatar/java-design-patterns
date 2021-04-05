@@ -31,10 +31,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for {@link Wizard}
  */
-public class WizardTest {
+class WizardTest {
 
   @Test
-  public void testToString() {
+  void testToString() {
     List.of("Gandalf", "Dumbledore", "Oz", "Merlin")
         .forEach(name -> assertEquals(name, new Wizard(name).toString()));
   }

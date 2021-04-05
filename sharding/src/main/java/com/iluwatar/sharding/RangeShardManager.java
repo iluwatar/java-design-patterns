@@ -23,16 +23,14 @@
 
 package com.iluwatar.sharding;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ShardManager with range strategy. This strategy groups related items together in the same shard,
  * and orders them by shard key.
  */
+@Slf4j
 public class RangeShardManager extends ShardManager {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(RangeShardManager.class);
 
   @Override
   public int storeData(Data data) {

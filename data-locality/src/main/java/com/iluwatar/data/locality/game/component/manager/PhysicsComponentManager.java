@@ -26,15 +26,13 @@ package com.iluwatar.data.locality.game.component.manager;
 import com.iluwatar.data.locality.game.component.Component;
 import com.iluwatar.data.locality.game.component.PhysicsComponent;
 import java.util.stream.IntStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Physics component Manager for Game.
  */
+@Slf4j
 public class PhysicsComponentManager {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(PhysicsComponentManager.class);
 
   private static final int MAX_ENTITIES = 10000;
 

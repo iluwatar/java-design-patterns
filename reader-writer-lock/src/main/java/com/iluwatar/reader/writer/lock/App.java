@@ -26,8 +26,7 @@ package com.iluwatar.reader.writer.lock;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * In a multiple thread applications, the threads may try to synchronize the shared resources
@@ -45,9 +44,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author hongshuwei@gmail.com
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

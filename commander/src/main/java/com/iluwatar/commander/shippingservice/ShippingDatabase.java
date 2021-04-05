@@ -24,9 +24,9 @@
 package com.iluwatar.commander.shippingservice;
 
 import com.iluwatar.commander.Database;
-import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.shippingservice.ShippingService.ShippingRequest;
 import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * ShippingDatabase is where the ShippingRequest objects are added.
@@ -34,11 +34,7 @@ import java.util.Hashtable;
 
 public class ShippingDatabase extends Database<ShippingRequest> {
 
-  private final Hashtable<String, ShippingRequest> data;
-
-  public ShippingDatabase() {
-    this.data = new Hashtable<>();
-  }
+  private final Map<String, ShippingRequest> data = new Hashtable<>();
 
   @Override
   public ShippingRequest add(ShippingRequest r) {

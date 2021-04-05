@@ -37,33 +37,33 @@ import org.junit.jupiter.api.Test;
 public class PoisonMessageTest {
 
   @Test
-  public void testAddHeader() {
+  void testAddHeader() {
     assertThrows(UnsupportedOperationException.class, () -> {
       POISON_PILL.addHeader(Headers.SENDER, "sender");
     });
   }
 
   @Test
-  public void testGetHeader() {
+  void testGetHeader() {
     assertThrows(UnsupportedOperationException.class, () -> {
       POISON_PILL.getHeader(Headers.SENDER);
     });
   }
 
   @Test
-  public void testGetHeaders() {
+  void testGetHeaders() {
     assertThrows(UnsupportedOperationException.class, POISON_PILL::getHeaders);
   }
 
   @Test
-  public void testSetBody() {
+  void testSetBody() {
     assertThrows(UnsupportedOperationException.class, () -> {
       POISON_PILL.setBody("Test message.");
     });
   }
 
   @Test
-  public void testGetBody() {
+  void testGetBody() {
     assertThrows(UnsupportedOperationException.class, POISON_PILL::getBody);
   }
 

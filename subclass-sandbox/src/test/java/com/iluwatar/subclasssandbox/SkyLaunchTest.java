@@ -54,7 +54,7 @@ class SkyLaunchTest {
   void testSpawnParticles() throws Exception {
     var skyLaunch = new SkyLaunch();
     var outputLog = getLogContent(
-            () -> skyLaunch.spawnParticles("PARTICLE_TYPE", 100));
+        () -> skyLaunch.spawnParticles("PARTICLE_TYPE", 100));
     var expectedLog = "Spawn 100 particle with type PARTICLE_TYPE";
     assertEquals(outputLog, expectedLog);
   }
@@ -63,7 +63,7 @@ class SkyLaunchTest {
   void testActivate() throws Exception {
     var skyLaunch = new SkyLaunch();
     var logs = tapSystemOutNormalized(skyLaunch::activate)
-            .split("\n");
+        .split("\n");
     final var expectedSize = 3;
     final var log1 = getLogContent(logs[0]);
     final var expectedLog1 = "Move to ( 0.0, 0.0, 20.0 )";

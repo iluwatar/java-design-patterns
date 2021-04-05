@@ -88,7 +88,7 @@ class MongoTicketRepositoryTest {
     assertEquals("foo@bar.com", ticket.getPlayerDetails().getEmail());
     assertEquals("123-123", ticket.getPlayerDetails().getBankAccount());
     assertEquals("07001234", ticket.getPlayerDetails().getPhoneNumber());
-    assertEquals(original.getNumbers(), ticket.getNumbers());
+    assertEquals(original.getLotteryNumbers(), ticket.getLotteryNumbers());
     // clear the collection
     repository.deleteAll();
     assertEquals(0, repository.getTicketsCollection().count());

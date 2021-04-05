@@ -28,16 +28,14 @@ import com.iluwatar.reactor.framework.ChannelHandler;
 import com.iluwatar.reactor.framework.NioDatagramChannel.DatagramPacket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Logging server application logic. It logs the incoming requests on standard console and returns a
  * canned acknowledgement back to the remote peer.
  */
+@Slf4j
 public class LoggingHandler implements ChannelHandler {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(LoggingHandler.class);
 
   private static final byte[] ACK = "Data logged successfully".getBytes();
 

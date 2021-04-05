@@ -27,26 +27,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * FrameBasedGameLoop unit test class.
  */
-public class FrameBasedGameLoopTest {
+class FrameBasedGameLoopTest {
 
   private FrameBasedGameLoop gameLoop;
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     gameLoop = new FrameBasedGameLoop();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     gameLoop = null;
   }
 
-  @org.junit.jupiter.api.Test
-  public void testUpdate() {
+  @Test
+  void testUpdate() {
     gameLoop.update();
     assertEquals(0.5f, gameLoop.controller.getBulletPosition(), 0);
   }

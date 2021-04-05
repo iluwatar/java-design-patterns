@@ -23,8 +23,7 @@
 
 package com.iluwatar.servicelocator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is a single service implementation of a sample service. This is the actual service that will
@@ -33,9 +32,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author saifasif
  */
+@Slf4j
 public class ServiceImpl implements Service {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
 
   private final String serviceName;
   private final int id;

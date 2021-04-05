@@ -33,11 +33,10 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import javax.sql.DataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class HotelDaoImpl implements HotelDao {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private final DataSource dataSource;
 

@@ -49,7 +49,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ActiveProfiles("test")
 @EnableAutoConfiguration
 @ComponentScan
-public class WireTapRouteTest {
+class WireTapRouteTest {
 
   @EndpointInject(uri = "{{entry}}")
   private ProducerTemplate entry;
@@ -67,7 +67,7 @@ public class WireTapRouteTest {
    */
   @Test
   @DirtiesContext
-  public void testWireTap() throws Exception {
+  void testWireTap() throws Exception {
     entry.sendBody("TEST");
 
     endpoint.expectedMessageCount(1);

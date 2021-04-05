@@ -23,15 +23,13 @@
 
 package com.iluwatar.nullobject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation for binary tree's normal nodes.
  */
+@Slf4j
 public class NodeImpl implements Node {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(NodeImpl.class);
 
   private final String name;
   private final Node left;

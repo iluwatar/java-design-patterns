@@ -23,15 +23,13 @@
 
 package com.iluwatar.proxy;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The proxy controlling access to the {@link IvoryTower}.
  */
+@Slf4j
 public class WizardTowerProxy implements WizardTower {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(WizardTowerProxy.class);
 
   private static final int NUM_WIZARDS_ALLOWED = 3;
 

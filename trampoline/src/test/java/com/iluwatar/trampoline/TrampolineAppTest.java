@@ -30,11 +30,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Test for trampoline pattern.
  */
-public class TrampolineAppTest {
-
+class TrampolineAppTest {
 
   @Test
-  public void testTrampolineWithFactorialFunction() {
+  void testTrampolineWithFactorialFunction() {
     long result = TrampolineApp.loop(10, 1).result();
     assertEquals(3_628_800, result);
   }

@@ -23,8 +23,7 @@
 
 package com.iluwatar.factorykit;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Factory-kit is a creational pattern which defines a factory of immutable content with separated
@@ -38,9 +37,8 @@ import org.slf4j.LoggerFactory;
  * an input representing an instance of {@link WeaponType} that needs to be mapped explicitly with
  * desired class type in the factory instance.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

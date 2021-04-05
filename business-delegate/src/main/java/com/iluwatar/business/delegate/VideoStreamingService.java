@@ -23,18 +23,10 @@
 
 package com.iluwatar.business.delegate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- * Service EJB implementation.
+ * Interface for video streaming service implementations.
  */
-public class EjbService implements BusinessService {
+public interface VideoStreamingService {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(EjbService.class);
-
-  @Override
-  public void doProcessing() {
-    LOGGER.info("EjbService is now processing");
-  }
+  void doProcessing();
 }

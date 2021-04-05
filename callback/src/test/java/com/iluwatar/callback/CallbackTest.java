@@ -38,7 +38,7 @@ public class CallbackTest {
   private Integer callingCount = 0;
 
   @Test
-  public void test() {
+  void test() {
     Callback callback = () -> callingCount++;
 
     var task = new SimpleTask();

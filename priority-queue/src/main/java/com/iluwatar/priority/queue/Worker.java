@@ -23,15 +23,13 @@
 
 package com.iluwatar.priority.queue;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Message Worker.
  */
+@Slf4j
 public class Worker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
   private final QueueManager queueManager;
 

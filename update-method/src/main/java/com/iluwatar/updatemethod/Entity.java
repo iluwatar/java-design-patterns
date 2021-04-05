@@ -23,6 +23,8 @@
 
 package com.iluwatar.updatemethod;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +37,8 @@ public abstract class Entity {
 
   protected int id;
 
+  @Getter
+  @Setter
   protected int position;
 
   public Entity(int id) {
@@ -44,11 +48,4 @@ public abstract class Entity {
 
   public abstract void update();
 
-  public int getPosition() {
-    return position;
-  }
-
-  public void setPosition(int position) {
-    this.position = position;
-  }
 }

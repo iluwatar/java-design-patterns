@@ -23,29 +23,21 @@
 
 package com.iluwatar.filterer.threat;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 /**
  * Represents a simple threat.
  */
+@ToString
+@EqualsAndHashCode
+@RequiredArgsConstructor
 public class SimpleThreat implements Threat {
 
   private final ThreatType threatType;
   private final int id;
   private final String name;
-
-  /**
-   * Constructor.
-   *
-   * @param threatType {@link ThreatType}.
-   * @param id         threat id.
-   * @param name       threat name.
-   */
-  public SimpleThreat(final ThreatType threatType, final int id, String name) {
-    this.threatType = threatType;
-    this.id = id;
-    this.name = name;
-  }
 
   /**
    * {@inheritDoc}
@@ -71,31 +63,4 @@ public class SimpleThreat implements Threat {
     return threatType;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    var that = (SimpleThreat) o;
-    return id == that.id
-            && threatType == that.threatType
-            && Objects.equals(name, that.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(threatType, id, name);
-  }
-
-  @Override
-  public String toString() {
-    return "SimpleThreat{"
-            + "threatType=" + threatType
-            + ", id=" + id
-            + ", name='" + name + '\''
-            + '}';
-  }
 }

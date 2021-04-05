@@ -23,15 +23,13 @@
 
 package com.iluwatar.dependency.injection;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Tobacco abstraction.
  */
+@Slf4j
 public abstract class Tobacco {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Tobacco.class);
 
   public void smoke(Wizard wizard) {
     LOGGER.info("{} smoking {}", wizard.getClass().getSimpleName(),

@@ -21,20 +21,22 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.business.delegate;
+package com.iluwatar.activeobject;
 
-/**
- * Client utilizes BusinessDelegate to call the business tier.
- */
-public class Client {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-  private final BusinessDelegate businessDelegate;
+import org.junit.jupiter.api.Test;
+class ActiveCreatureTest {
+	
+	@Test
+	void executionTest() throws InterruptedException {
+		ActiveCreature orc = new Orc("orc1");
+		assertEquals("orc1",orc.name());
+		assertEquals(0,orc.getStatus());
+		orc.eat();
+		orc.roam();
+		orc.kill(0);
+	}
+	
 
-  public Client(BusinessDelegate businessDelegate) {
-    this.businessDelegate = businessDelegate;
-  }
-
-  public void doTask() {
-    businessDelegate.doTask();
-  }
 }

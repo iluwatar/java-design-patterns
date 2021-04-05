@@ -32,7 +32,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class SagaChoreographyTest {
 
-
   @Test
   void executeTest() {
     var sd = serviceDiscovery();

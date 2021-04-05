@@ -26,18 +26,16 @@ package com.iluwatar.commander.employeehandle;
 import com.iluwatar.commander.Database;
 import com.iluwatar.commander.Order;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
-import java.util.Hashtable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The Employee Database is where orders which have encountered some issue(s) are added.
  */
 
 public class EmployeeDatabase extends Database<Order> {
-  private final Hashtable<String, Order> data;
-
-  public EmployeeDatabase() {
-    this.data = new Hashtable<>();
-  }
+  private final Map<String, Order> data = new HashMap<>();
 
   @Override
   public Order add(Order o) throws DatabaseUnavailableException {

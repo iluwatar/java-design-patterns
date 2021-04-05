@@ -42,6 +42,6 @@ class ApplicationTest {
 
   @Test
   void shouldExecuteGameApplicationWithoutException() {
-    assertDoesNotThrow(() -> Application.main(new String[] {}));
+    assertDoesNotThrow(() -> Application.main(new String[]{}));
   }
 }

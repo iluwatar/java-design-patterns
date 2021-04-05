@@ -26,7 +26,6 @@ package com.iluwatar.pageobject;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.iluwatar.pageobject.pages.AlbumListPage;
 import com.iluwatar.pageobject.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,7 +43,7 @@ public class LoginPageTest {
   }
 
   @Test
-  public void testLogin() {
+  void testLogin() {
     var albumListPage = loginPage
         .enterUsername("admin")
         .enterPassword("password")

@@ -24,32 +24,32 @@
 package com.iluwatar.acyclicvisitor;
 
 
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.mock;
-
 import org.junit.jupiter.api.Test;
+
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  * Zoom test class
  */
-public class ZoomTest {
-  
+class ZoomTest {
+
   @Test
-  public void testAcceptForDos() {  
+  void testAcceptForDos() {
     var zoom = new Zoom();
     var mockVisitor = mock(ConfigureForDosVisitor.class);
-    
+
     zoom.accept(mockVisitor);
-    verify((ZoomVisitor)mockVisitor).visit(eq(zoom));
+    verify((ZoomVisitor) mockVisitor).visit(eq(zoom));
   }
-  
+
   @Test
-  public void testAcceptForUnix() {
+  void testAcceptForUnix() {
     var zoom = new Zoom();
     var mockVisitor = mock(ConfigureForUnixVisitor.class);
-    
+
     zoom.accept(mockVisitor);
-    verify((ZoomVisitor)mockVisitor).visit(eq(zoom));
+    verify((ZoomVisitor) mockVisitor).visit(eq(zoom));
   }
 }

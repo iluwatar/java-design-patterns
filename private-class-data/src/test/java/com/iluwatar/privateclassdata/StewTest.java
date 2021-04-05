@@ -53,7 +53,7 @@ public class StewTest {
    * Verify if mixing the stew doesn't change the internal state
    */
   @Test
-  public void testMix() {
+  void testMix() {
     final var stew = new ImmutableStew(1, 2, 3, 4);
     final var expectedMessage = "Mixing the immutable stew we find: 1 potatoes, "
         + "2 carrots, 3 meat and 4 peppers";

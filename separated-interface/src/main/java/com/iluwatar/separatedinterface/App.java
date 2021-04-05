@@ -26,8 +26,7 @@ package com.iluwatar.separatedinterface;
 import com.iluwatar.separatedinterface.invoice.InvoiceGenerator;
 import com.iluwatar.separatedinterface.taxes.DomesticTaxCalculator;
 import com.iluwatar.separatedinterface.taxes.ForeignTaxCalculator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>The Separated Interface pattern encourages to separate the interface definition and
@@ -38,9 +37,8 @@ import org.slf4j.LoggerFactory;
  * {@link com.iluwatar.separatedinterface.invoice.TaxCalculator} implementations located in separate
  * packages, to receive different responses for both of the implementations.</p>
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   public static final double PRODUCT_COST = 50.0;
 

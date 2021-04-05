@@ -40,7 +40,7 @@ import org.junit.jupiter.api.Test;
 public class CharacterTest {
 
   @Test
-  public void testPrototypeStats() throws Exception {
+  void testPrototypeStats() throws Exception {
     final var prototype = new Character();
 
     for (final var stat : Stats.values()) {
@@ -60,7 +60,7 @@ public class CharacterTest {
   }
 
   @Test
-  public void testCharacterStats() {
+  void testCharacterStats() {
     final var prototype = new Character();
     Arrays.stream(Stats.values()).forEach(stat -> prototype.set(stat, stat.ordinal()));
 
@@ -73,7 +73,7 @@ public class CharacterTest {
   }
 
   @Test
-  public void testToString() {
+  void testToString() {
     final var prototype = new Character();
     prototype.set(Stats.ARMOR, 1);
     prototype.set(Stats.AGILITY, 2);
@@ -91,7 +91,7 @@ public class CharacterTest {
   }
 
   @Test
-  public void testName() {
+  void testName() {
     final var prototype = new Character();
     prototype.set(Stats.ARMOR, 1);
     prototype.set(Stats.INTELLECT, 2);
@@ -107,7 +107,7 @@ public class CharacterTest {
   }
 
   @Test
-  public void testType() {
+  void testType() {
     final var prototype = new Character();
     prototype.set(Stats.ARMOR, 1);
     prototype.set(Stats.INTELLECT, 2);

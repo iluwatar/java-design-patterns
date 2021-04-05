@@ -24,15 +24,13 @@
 package com.iluwatar.poison.pill;
 
 import com.iluwatar.poison.pill.Message.Headers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class responsible for receiving and handling submitted to the queue messages.
  */
+@Slf4j
 public class Consumer {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Consumer.class);
 
   private final MqSubscribePoint queue;
   private final String name;

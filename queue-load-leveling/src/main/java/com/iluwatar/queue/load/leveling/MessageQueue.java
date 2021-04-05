@@ -25,16 +25,14 @@ package com.iluwatar.queue.load.leveling;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * MessageQueue class. In this class we will create a Blocking Queue and submit/retrieve all the
  * messages from it.
  */
+@Slf4j
 public class MessageQueue {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private final BlockingQueue<Message> blkQueue;
 

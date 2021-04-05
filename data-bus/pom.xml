@@ -27,13 +27,10 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-    <properties>
-        <lombok.version>1.16.14</lombok.version>
-    </properties>
     <parent>
         <groupId>com.iluwatar</groupId>
         <artifactId>java-design-patterns</artifactId>
-        <version>1.24.0-SNAPSHOT</version>
+        <version>1.25.0-SNAPSHOT</version>
     </parent>
     <artifactId>data-bus</artifactId>
     <dependencies>

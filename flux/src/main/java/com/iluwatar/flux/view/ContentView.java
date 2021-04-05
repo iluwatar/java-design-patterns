@@ -26,15 +26,13 @@ package com.iluwatar.flux.view;
 import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.store.ContentStore;
 import com.iluwatar.flux.store.Store;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ContentView is a concrete view.
  */
+@Slf4j
 public class ContentView implements View {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ContentView.class);
 
   private Content content = Content.PRODUCTS;
 

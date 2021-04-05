@@ -23,15 +23,13 @@
 
 package com.iluwatar.front.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * View for archers.
  */
+@Slf4j
 public class ArcherView implements View {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ArcherView.class);
 
   @Override
   public void display() {

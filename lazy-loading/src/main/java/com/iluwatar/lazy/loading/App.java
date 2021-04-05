@@ -23,8 +23,7 @@
 
 package com.iluwatar.lazy.loading;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Lazy loading idiom defers object creation until needed.
@@ -34,9 +33,8 @@ import org.slf4j.LoggerFactory;
  * <p>Additional information and lazy loading flavours are described in
  * http://martinfowler.com/eaaCatalog/lazyLoad.html
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

@@ -34,10 +34,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for {@link ClubbedTroll}
  */
-public class ClubbedTrollTest {
+class ClubbedTrollTest {
 
   @Test
-  public void testClubbedTroll() {
+  void testClubbedTroll() {
     // Create a normal troll first, but make sure we can spy on it later on.
     final var simpleTroll = spy(new SimpleTroll());
 
