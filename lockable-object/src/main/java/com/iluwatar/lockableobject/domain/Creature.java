@@ -4,6 +4,7 @@ import com.iluwatar.lockableobject.Lockable;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
+import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +22,7 @@ public abstract class Creature {
   private int damage;
   Set<Lockable> instruments;
 
-  protected Creature(String name) {
+  protected Creature(@NonNull String name) {
     this.name = name;
     this.instruments = new HashSet<>();
   }
@@ -32,7 +33,7 @@ public abstract class Creature {
    * @param lockable as the Lockable to lock.
    * @return true of Lockable was locked by this creature.
    */
-  public boolean acquire(Lockable lockable) {
+  public boolean acquire(@NonNull Lockable lockable) {
     if (lockable.lock(this)) {
       instruments.add(lockable);
       return true;
@@ -46,6 +47,7 @@ public abstract class Creature {
     for (Lockable lockable : instruments) {
       lockable.unlock(this);
     }
+    this.instruments.clear();
   }
 
   /**
@@ -53,7 +55,7 @@ public abstract class Creature {
    *
    * @param creature as the foe to be attacked.
    */
-  public synchronized void attack(Creature creature) throws InterruptedException {
+  public synchronized void attack(@NonNull Creature creature) throws InterruptedException {
     creature.hit(getDamage());
   }
 

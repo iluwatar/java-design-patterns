@@ -24,7 +24,7 @@ class FeindTest {
     extend.join();
     Assertions.assertTrue(sword.isLocked());
 
-    sword.unlock(elf);
+    sword.unlock(elf.isAlive() ? elf : orc);
     Assertions.assertNull(sword.getLocker());
   }
 
