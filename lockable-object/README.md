@@ -145,7 +145,7 @@ public abstract class Creature {
   private int damage;
   Set<Lockable> instruments;
 
-  public Creature(String name) {
+  protected Creature(String name) {
     this.name = name;
     this.instruments = new HashSet<>();
   }
@@ -177,13 +177,8 @@ public abstract class Creature {
    *
    * @param creature as the foe to be attacked.
    */
-  public synchronized void attack(Creature creature) {
+  public synchronized void attack(Creature creature) throws InterruptedException {
     creature.hit(getDamage());
-    try {
-      wait(new Random().nextInt(50)); // cool down
-    } catch (InterruptedException e) {
-      LOGGER.error(String.valueOf(e));
-    }
   }
 
   /**

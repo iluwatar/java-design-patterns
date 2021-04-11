@@ -1,7 +1,7 @@
 package com.iluwatar.lockableobject.domain;
 
 import com.iluwatar.lockableobject.Lockable;
-import java.util.Random;
+import java.security.SecureRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +10,7 @@ public class Feind implements Runnable {
 
   private final Creature creature;
   private final Lockable target;
-  private final Random random;
+  private final SecureRandom random;
   private static final Logger LOGGER = LoggerFactory.getLogger(Feind.class.getName());
 
   /**
@@ -22,7 +22,7 @@ public class Feind implements Runnable {
   public Feind(Creature feind, Lockable target) {
     this.creature = feind;
     this.target = target;
-    this.random = new Random();
+    this.random = new SecureRandom();
   }
 
   @Override
@@ -32,7 +32,7 @@ public class Feind implements Runnable {
         fightForTheSword(creature, target.getLocker(), target);
       } catch (InterruptedException e) {
         LOGGER.error(e.getMessage());
-        throw new RuntimeException(e);
+        Thread.currentThread().interrupt();
       }
     } else {
       LOGGER.info("{} has acquired the sword!", target.getLocker().getName());
@@ -55,6 +55,9 @@ public class Feind implements Runnable {
         reacher.attack(holder);
       } else {
         holder.attack(reacher);
+      }
+      synchronized (this) {
+        wait(new SecureRandom().nextInt(50)); // cool down
       }
     }
     if (reacher.isAlive()) {

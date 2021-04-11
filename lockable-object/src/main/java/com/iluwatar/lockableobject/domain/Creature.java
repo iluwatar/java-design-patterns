@@ -2,7 +2,6 @@ package com.iluwatar.lockableobject.domain;
 
 import com.iluwatar.lockableobject.Lockable;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 import lombok.Data;
 import org.slf4j.Logger;
@@ -56,12 +55,6 @@ public abstract class Creature {
    */
   public synchronized void attack(Creature creature) throws InterruptedException {
     creature.hit(getDamage());
-    try {
-      wait(new Random().nextInt(50)); // cool down
-    } catch (InterruptedException e) {
-      LOGGER.error(String.valueOf(e));
-      throw e;
-    }
   }
 
   /**
