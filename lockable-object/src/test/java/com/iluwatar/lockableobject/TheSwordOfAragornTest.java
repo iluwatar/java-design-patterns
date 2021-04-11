@@ -5,10 +5,10 @@ import com.iluwatar.lockableobject.domain.Human;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TheSwordOfAragornTest {
+class TheSwordOfAragornTest {
 
   @Test
-  public void basicSwordTest() {
+  void basicSwordTest() {
     Lockable sword = new SwordOfAragorn();
     Assertions.assertNotNull(sword.getName());
     Assertions.assertNull(sword.getLocker());

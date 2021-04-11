@@ -6,10 +6,10 @@ import com.iluwatar.lockableobject.domain.Orc;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CreatureTest {
+class CreatureTest {
 
   @Test
-  public void testFight(){
+  void testFight() throws InterruptedException {
     Creature elf = new Elf("Elf test");
     Creature orc = new Orc("Orc test");
     killCreature(elf, orc);
@@ -20,7 +20,7 @@ public class CreatureTest {
   }
   
   @Test
-  public void testAcqusition(){
+  void testAcqusition() throws InterruptedException {
     Creature elf = new Elf("Elf test");
     Creature orc = new Orc("Orc test");
     Lockable sword = new SwordOfAragorn();
@@ -32,7 +32,7 @@ public class CreatureTest {
     Assertions.assertEquals(orc, sword.getLocker());
   }
 
-  private void killCreature(Creature source, Creature target){
+  void killCreature(Creature source, Creature target) throws InterruptedException {
     while(target.isAlive()){
       source.attack(target);
     }

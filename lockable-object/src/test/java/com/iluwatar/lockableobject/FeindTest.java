@@ -7,10 +7,10 @@ import com.iluwatar.lockableobject.domain.Orc;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class FeindTest {
+class FeindTest {
 
   @Test
-  public void testBaseCase() throws InterruptedException {
+  void testBaseCase() throws InterruptedException {
     Lockable sword = new SwordOfAragorn();
     Creature orc = new Orc("Ghandar");
     Thread base = new Thread(new Feind(orc, sword));

@@ -8,22 +8,31 @@ import org.slf4j.LoggerFactory;
 /** A Feind is a creature that all it wants is to posses a Lockable object. */
 public class Feind implements Runnable {
 
-  private final Creature feind;
+  private final Creature creature;
   private final Lockable target;
+  private final Random random;
   private static final Logger LOGGER = LoggerFactory.getLogger(Feind.class.getName());
 
+  /**
+   * public constructor.
+   *
+   * @param feind as the creature to lock to he lockable.
+   * @param target as the target object.
+   */
   public Feind(Creature feind, Lockable target) {
-    this.feind = feind;
+    this.creature = feind;
     this.target = target;
+    this.random = new Random();
   }
 
   @Override
   public void run() {
-    if (!feind.acquire(target)) {
+    if (!creature.acquire(target)) {
       try {
-        fightForTheSword(feind, target.getLocker(), target);
+        fightForTheSword(creature, target.getLocker(), target);
       } catch (InterruptedException e) {
         LOGGER.error(e.getMessage());
+        throw new RuntimeException(e);
       }
     } else {
       LOGGER.info("{} has acquired the sword!", target.getLocker().getName());
@@ -40,7 +49,6 @@ public class Feind implements Runnable {
    */
   private void fightForTheSword(Creature reacher, Creature holder, Lockable sword)
       throws InterruptedException {
-    Random random = new Random();
     LOGGER.info("A duel between {} and {} has been started!", reacher.getName(), holder.getName());
     while (this.target.isLocked() && reacher.isAlive() && holder.isAlive()) {
       if (random.nextBoolean()) {

@@ -180,7 +180,7 @@ public abstract class Creature {
   public synchronized void attack(Creature creature) {
     creature.hit(getDamage());
     try {
-      Thread.sleep(new Random().nextInt(50)); // cool down
+      wait(new Random().nextInt(50)); // cool down
     } catch (InterruptedException e) {
       LOGGER.error(String.valueOf(e));
     }
@@ -239,10 +239,10 @@ public class App {
     }
     int totalFiends = WORKERS * MULTIPLICATION_FACTOR;
     ExecutorService service = Executors.newFixedThreadPool(totalFiends);
-    for (int i = 0; i < totalFiends; i++) {
+    for (int i = 0; i < totalFiends; i = i + MULTIPLICATION_FACTOR) {
       service.submit(new Feind(creatures.get(i), sword));
-      service.submit(new Feind(creatures.get(++i), sword));
-      service.submit(new Feind(creatures.get(++i), sword));
+      service.submit(new Feind(creatures.get(i + 1), sword));
+      service.submit(new Feind(creatures.get(i + 2), sword));
     }
     Thread.sleep(WAIT_TIME);
     LOGGER.info("The master of the sword is now {}.", sword.getLocker().getName());
