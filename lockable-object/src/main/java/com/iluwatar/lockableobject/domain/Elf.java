@@ -11,7 +11,7 @@ public class Elf extends Creature {
   public Elf(String name) {
     super(name);
     setType(CreatureType.ELF);
-    setDamage(40);
-    setHealth(90);
+    setDamage(CreatureStats.ELF_DAMAGE.getValue());
+    setHealth(CreatureStats.ELF_HEALTH.getValue());
   }
 }

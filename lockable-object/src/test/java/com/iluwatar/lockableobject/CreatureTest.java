@@ -26,6 +26,7 @@ class CreatureTest {
     Lockable sword = new SwordOfAragorn();
     Assertions.assertTrue(elf.acquire(sword));
     Assertions.assertEquals(elf.getName(),sword.getLocker().getName());
+    Assertions.assertTrue(elf.getInstruments().contains(sword));
     Assertions.assertFalse(orc.acquire(sword));
     killCreature(orc, elf);
     Assertions.assertTrue(orc.acquire(sword));

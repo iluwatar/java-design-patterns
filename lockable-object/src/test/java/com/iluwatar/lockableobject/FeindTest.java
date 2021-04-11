@@ -23,6 +23,9 @@ class FeindTest {
     extend.start();
     extend.join();
     Assertions.assertTrue(sword.isLocked());
+
+    sword.unlock(elf);
+    Assertions.assertNull(sword.getLocker());
   }
 
 }

@@ -10,7 +10,7 @@ public class Orc extends Creature {
   public Orc(String name) {
     super(name);
     setType(CreatureType.ORC);
-    setDamage(50);
-    setHealth(70);
+    setDamage(CreatureStats.ORC_DAMAGE.getValue());
+    setHealth(CreatureStats.ORC_HEALTH.getValue());
   }
 }

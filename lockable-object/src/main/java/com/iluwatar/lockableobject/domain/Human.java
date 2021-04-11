@@ -11,7 +11,7 @@ public class Human extends Creature {
   public Human(String name) {
     super(name);
     setType(CreatureType.HUMAN);
-    setDamage(60);
-    setHealth(60);
+    setDamage(CreatureStats.HUMAN_DAMAGE.getValue());
+    setHealth(CreatureStats.HUMAN_HEALTH.getValue());
   }
 }
