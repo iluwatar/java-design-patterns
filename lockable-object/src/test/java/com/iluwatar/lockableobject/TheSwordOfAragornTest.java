@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class TheSwordOfAragornTest {
 
   @Test
-  public void test() {
+  public void basicSwordTest() {
     Lockable sword = new SwordOfAragorn();
     Assertions.assertNotNull(sword.getName());
     Assertions.assertNull(sword.getLocker());
