@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,10 +20,10 @@ import org.slf4j.LoggerFactory;
  *
  * @author Noam Greenshtain
  */
-public class App {
+public class App implements Runnable {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class.getName());
-  private static final int WAIT_TIME = 2000;
+  private static final int WAIT_TIME = 2;
   private static final int WORKERS = 2;
   private static final int MULTIPLICATION_FACTOR = 3;
 
@@ -32,7 +33,13 @@ public class App {
    * @param args as arguments for the main method.
    * @throws InterruptedException in case of interruption for one of the threads.
    */
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args) {
+    var app = new App();
+    app.run();
+  }
+
+  @Override
+  public void run() {
     Lockable sword = new SwordOfAragorn();
     List<Creature> creatures = new ArrayList<>();
     for (int i = 0; i < WORKERS; i++) {
@@ -47,8 +54,14 @@ public class App {
       service.submit(new Feind(creatures.get(i + 1), sword));
       service.submit(new Feind(creatures.get(i + 2), sword));
     }
-    Thread.sleep(WAIT_TIME);
-    LOGGER.info("The master of the sword is now {}.", sword.getLocker().getName());
-    service.shutdown();
+    try {
+      if (!service.awaitTermination(WAIT_TIME, TimeUnit.SECONDS)) {
+        LOGGER.info("The master of the sword is now {}.", sword.getLocker().getName());
+      }
+    } catch (Exception e) {
+      LOGGER.error(e.getMessage());
+    } finally {
+      service.shutdown();
+    }
   }
 }
