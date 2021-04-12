@@ -2,6 +2,7 @@ package com.iluwatar.lockableobject.domain;
 
 import com.iluwatar.lockableobject.Lockable;
 import java.security.SecureRandom;
+import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +20,7 @@ public class Feind implements Runnable {
    * @param feind as the creature to lock to he lockable.
    * @param target as the target object.
    */
-  public Feind(Creature feind, Lockable target) {
+  public Feind(@NonNull Creature feind,@NonNull Lockable target) {
     this.creature = feind;
     this.target = target;
     this.random = new SecureRandom();

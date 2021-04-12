@@ -65,6 +65,9 @@ public abstract class Creature {
    * @param damage as the damage that was taken.
    */
   public synchronized void hit(int damage) {
+    if (damage < 0) {
+      throw new IllegalArgumentException("Damage cannot be a negative number");
+    }
     if (isAlive()) {
       setHealth(getHealth() - damage);
       if (!isAlive()) {
