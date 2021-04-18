@@ -3,8 +3,9 @@ package com.iluwatar.lockableobject.domain;
 import com.iluwatar.lockableobject.Lockable;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,8 @@ import org.slf4j.LoggerFactory;
  * An abstract class of a creature that wanders across the wasteland. It can attack, get hit and
  * acquire a Lockable object.
  */
-@Data
+@Getter
+@Setter
 public abstract class Creature {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Creature.class.getName());
@@ -55,7 +57,7 @@ public abstract class Creature {
    *
    * @param creature as the foe to be attacked.
    */
-  public synchronized void attack(@NonNull Creature creature) throws InterruptedException {
+  public synchronized void attack(@NonNull Creature creature) {
     creature.hit(getDamage());
   }
 
@@ -84,4 +86,5 @@ public abstract class Creature {
   public synchronized boolean isAlive() {
     return getHealth() > 0;
   }
+
 }
