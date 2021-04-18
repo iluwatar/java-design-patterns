@@ -1,0 +1,52 @@
+@startuml
+package com.iluwatar.compositeentity {
+  class App {
+     - LOGGER : Logger {static}
+     + App()
+     + main(args : String[]) {static}
+  }
+  class CompositeEntity{
+      - console : ConsoleCoarseGrainedObject
+      + CompositeEntity()
+      + setData(message: String, signal: String)
+      + getData()
+    }
+  abstract CoarseGrainedObject{
+    - dependentObjects : DependentObject[]
+    + CoarseGrainedObject()
+    + setData(data: T[])
+    + getData()
+  }
+  abstract DependentObject{
+      - data : T
+      + DependentObject()
+      + setData(data: T)
+      + getData()
+  }
+  class ConsoleCoarseGrainedObject{
+      - dependentObjects : DependentObject[]
+      + ConsoleCoarseGrainedObject()
+      + setData(data: String[])
+      + getData()
+  }
+  class MessageDependentObject{
+          - data : String
+          + MessageDependentObject()
+          + setData(data: String)
+          + getData()
+  }
+  class SignalDependentObject{
+            - data : String
+            + SignalDependentObject()
+            + setData(data: String)
+            + getData()
+  }
+
+  MessageDependentObject --|> DependentObject
+  SignalDependentObject  --|> DependentObject
+  ConsoleCoarseGrainedObject --|> CoarseGrainedObject
+  CompositeEntity -right-> ConsoleCoarseGrainedObject
+  CoarseGrainedObject "1" o--> "0.." DependentObject
+  App .right.> CompositeEntity
+}
+@enduml
