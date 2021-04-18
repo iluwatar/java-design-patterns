@@ -15,20 +15,22 @@ class PersistenceTest {
     @Test
     void dependentObjectChangedForPersistenceTest() {
         MessageDependentObject dependentObject = new MessageDependentObject();
-        console.consoleDependentObjects[0] = dependentObject;
+        console.init();
+        console.dependentObjects[0] = dependentObject;
         String message = "Danger";
-        assertNull(console.consoleDependentObjects[0].getData());
+        assertNull(console.dependentObjects[0].getData());
         dependentObject.setData(message);
-        assertEquals(message, console.consoleDependentObjects[0].getData());
+        assertEquals(message, console.dependentObjects[0].getData());
     }
 
     @Test
     void coarseGrainedObjectChangedForPersistenceTest() {
         MessageDependentObject dependentObject = new MessageDependentObject();
-        console.consoleDependentObjects[0] = dependentObject;
+        console.init();
+        console.dependentObjects[0] = dependentObject;
         String message = "Danger";
-        assertNull(console.consoleDependentObjects[0].getData());
-        console.setData(message, "");
+        assertNull(console.dependentObjects[0].getData());
+        console.setData(message);
         assertEquals(message, dependentObject.getData());
     }
 }

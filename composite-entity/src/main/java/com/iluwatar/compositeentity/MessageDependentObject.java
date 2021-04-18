@@ -6,15 +6,13 @@ package com.iluwatar.compositeentity;
 
 public class MessageDependentObject extends DependentObject<String> {
 
-  private String message;
-
   @Override
   public void setData(String message) {
-    this.message = message;
+    this.data = message;
   }
 
   @Override
   public String getData() {
-    return message;
+    return data;
   }
 }

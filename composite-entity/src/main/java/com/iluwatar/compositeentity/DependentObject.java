@@ -8,7 +8,7 @@ package com.iluwatar.compositeentity;
 
 public abstract class DependentObject<T> {
 
-  private T data;
+  T data;
 
   public void setData(T message) {
     this.data = message;

@@ -14,8 +14,7 @@ public abstract class CoarseGrainedObject<T> {
   DependentObject<T>[] dependentObjects;
 
   public void setData(T... data) {
-    IntStream.range(0, dependentObjects.length)
-        .forEach(i -> dependentObjects[i].setData(data[i]));
+    IntStream.range(0, data.length).forEach(i -> dependentObjects[i].setData(data[i]));
   }
 
   public T[] getData() {

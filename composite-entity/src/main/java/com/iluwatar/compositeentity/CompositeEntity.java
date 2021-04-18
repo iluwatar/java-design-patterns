@@ -16,4 +16,8 @@ public class CompositeEntity {
   public String[] getData() {
     return console.getData();
   }
+
+  public void init() {
+    console.init();
+  }
 }

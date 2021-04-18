@@ -30,10 +30,10 @@ Composite Entity Pattern.
 ```java
 public abstract class DependentObject<T> {
 
-  private T data;
+  T data;
 
-  public void setData(T data) {
-    this.data = data;
+  public void setData(T message) {
+    this.data = message;
   }
 
   public T getData() {
@@ -46,12 +46,11 @@ public abstract class CoarseGrainedObject<T> {
   DependentObject<T>[] dependentObjects;
 
   public void setData(T... data) {
-    IntStream.range(0, dependentObjects.length)
-        .forEach(i -> dependentObjects[i].setData(data[i]));
+    IntStream.range(0, data.length).forEach(i -> dependentObjects[i].setData(data[i]));
   }
 
   public T[] getData() {
-    return null;
+    return (T[]) Arrays.stream(dependentObjects).map(DependentObject::getData).toArray();
   }
 }
 
@@ -61,8 +60,6 @@ The specialized composite entity `console` inherit from this base class as follo
 
 ```java
 public class MessageDependentObject extends DependentObject<String> {
-
-  private String data;
 
   public void setData(String data) {
     this.data = data;
@@ -75,8 +72,6 @@ public class MessageDependentObject extends DependentObject<String> {
 
 public class SignalDependentObject extends DependentObject<String> {
 
-  private String data;
-
   public void setData(String data) {
     this.data = data;
   }
@@ -88,21 +83,25 @@ public class SignalDependentObject extends DependentObject<String> {
 
 public class ConsoleCoarseGrainedObject extends CoarseGrainedObject<String> {
 
-  DependentObject<String>[] dependentObjects = new DependentObject[]{
-      new MessageDependentObject(), new SignalDependentObject()};
-
   /**
    * A specific setData method, the number of parameters is allowed to be one or two.
    */
+  @Override
   public void setData(String... data) {
-    dependentObjects[0].setData(data[0]);
-    if (data.length == 2) {
-      dependentObjects[1].setData(data[1]);
-    }
+    super.setData(data);
   }
 
+  @Override
   public String[] getData() {
-    return new String[]{dependentObjects[0].getData(), dependentObjects[1].getData()};
+    super.getData();
+    return new String[]{
+        dependentObjects[0].getData(), dependentObjects[1].getData()
+    };
+  }
+
+  public void init() {
+    dependentObjects = new DependentObject[]{
+        new MessageDependentObject(), new SignalDependentObject()};
   }
 }
 
@@ -123,9 +122,12 @@ public class CompositeEntity {
 Now managing the assignment of message and signal objects with the composite entity `console`.
 
 ```java
- var console = new CompositeEntity();
- console.setData("No Danger", "Green Light");
- Arrays.stream(console.getData()).forEach(LOGGER::info);
+var console = new CompositeEntity();
+console.init();
+console.setData("No Danger", "Green Light");
+Arrays.stream(console.getData()).forEach(LOGGER::info);
+console.setData("Danger", "Red Light");
+Arrays.stream(console.getData()).forEach(LOGGER::info);
 ```
 
 ## Class diagram

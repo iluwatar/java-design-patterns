@@ -1,8 +1,7 @@
 @startuml
 package com.iluwatar.compositeentity {
   class App {
-     - LOGGER : Logger {static}
-     + App()
+     + App(message: String, signal: String)
      + main(args : String[]) {static}
   }
   class CompositeEntity{
@@ -10,12 +9,14 @@ package com.iluwatar.compositeentity {
       + CompositeEntity()
       + setData(message: String, signal: String)
       + getData()
+      + init()
     }
   abstract CoarseGrainedObject{
     - dependentObjects : DependentObject[]
     + CoarseGrainedObject()
     + setData(data: T[])
     + getData()
+    + init()
   }
   abstract DependentObject{
       - data : T
@@ -24,19 +25,17 @@ package com.iluwatar.compositeentity {
       + getData()
   }
   class ConsoleCoarseGrainedObject{
-      - dependentObjects : DependentObject[]
       + ConsoleCoarseGrainedObject()
       + setData(data: String[])
       + getData()
+      + init()
   }
   class MessageDependentObject{
-          - data : String
           + MessageDependentObject()
           + setData(data: String)
           + getData()
   }
   class SignalDependentObject{
-            - data : String
             + SignalDependentObject()
             + setData(data: String)
             + getData()

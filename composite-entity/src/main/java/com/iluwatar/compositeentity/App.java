@@ -1,8 +1,7 @@
 package com.iluwatar.compositeentity;
 
 import java.util.Arrays;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -10,9 +9,21 @@ import org.slf4j.LoggerFactory;
  * manage a set of interrelated persistent objects rather than representing them as individual
  * fine-grained entity beans, and also a composite entity bean represents a graph of objects.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
+  /**
+   * An instance that a console manages two related objects.
+   */
+  public App(String message, String signal) {
+    var console = new CompositeEntity();
+    console.init();
+    console.setData(message, signal);
+    Arrays.stream(console.getData()).forEach(LOGGER::info);
+    console.setData("Danger", "Red Light");
+    Arrays.stream(console.getData()).forEach(LOGGER::info);
+  }
 
   /**
    * Program entry point.
@@ -20,11 +31,8 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    var console = new CompositeEntity();
-    console.setData("No Danger", "Green Light");
-    Arrays.stream(console.getData()).forEach(LOGGER::info);
 
-    console.setData("Danger", "Red Light");
-    Arrays.stream(console.getData()).forEach(LOGGER::info);
+    App app = new App("No Danger", "Green Light");
+
   }
 }
