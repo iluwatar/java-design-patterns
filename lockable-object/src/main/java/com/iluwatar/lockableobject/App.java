@@ -31,7 +31,6 @@ public class App implements Runnable {
    * main method.
    *
    * @param args as arguments for the main method.
-   * @throws InterruptedException in case of interruption for one of the threads.
    */
   public static void main(String[] args) {
     var app = new App();

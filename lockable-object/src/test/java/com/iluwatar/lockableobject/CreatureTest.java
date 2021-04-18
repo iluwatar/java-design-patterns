@@ -71,4 +71,9 @@ class CreatureTest {
       source.attack(target);
     }
   }
+
+  @Test
+  void invalidDamageTest(){
+    Assertions.assertThrows(IllegalArgumentException.class, () -> elf.hit(-50));
+  }
 }
