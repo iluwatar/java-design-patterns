@@ -57,8 +57,9 @@ public class App implements Runnable {
       if (!service.awaitTermination(WAIT_TIME, TimeUnit.SECONDS)) {
         LOGGER.info("The master of the sword is now {}.", sword.getLocker().getName());
       }
-    } catch (Exception e) {
+    } catch (InterruptedException e) {
       LOGGER.error(e.getMessage());
+      Thread.currentThread().interrupt();
     } finally {
       service.shutdown();
     }

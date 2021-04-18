@@ -18,4 +18,10 @@ class TheSwordOfAragornTest {
     Assertions.assertEquals(human, sword.getLocker());
     Assertions.assertTrue(sword.isLocked());
   }
+
+  @Test
+  void invalidLockerTest(){
+    Lockable sword = new SwordOfAragorn();
+    Assertions.assertThrows(NullPointerException.class, () -> sword.lock(null));
+  }
 }
