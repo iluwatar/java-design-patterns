@@ -10,7 +10,7 @@ tags:
 
 
 ## Intent
-The main purpose of the lockable design pattern is to solve concurrency problems by handling the request of using the object with synchronization mechanism that ensures that there is only one user that uses the target object.
+The lockable object design pattern ensures that there is only one user using the target object. Compared to the built-in synchronization mechanisms such as using the `synchronized` keyword, this pattern can lock objects for an undetermined time and is not tied to the duration of the request.
 
 ## Explanation
 

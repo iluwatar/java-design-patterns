@@ -6,6 +6,7 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,9 +16,9 @@ import org.slf4j.LoggerFactory;
  */
 @Getter
 @Setter
+@Slf4j
 public abstract class Creature {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Creature.class.getName());
   private String name;
   private CreatureType type;
   private int health;

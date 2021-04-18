@@ -1,16 +1,16 @@
 package com.iluwatar.lockableobject;
 
 import com.iluwatar.lockableobject.domain.Creature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * An implementation of a Lockable object.
- * This is the the Sword of Aragorn and every creature wants to posses it!
+ * An implementation of a Lockable object. This is the the Sword of Aragorn and every creature wants
+ * to posses it!
  */
+@Slf4j
 public class SwordOfAragorn implements Lockable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(SwordOfAragorn.class.getName());
   private Creature locker;
   private final Object synchronizer;
   private static final String NAME = "The Sword of Aragorn";
@@ -26,10 +26,7 @@ public class SwordOfAragorn implements Lockable {
   }
 
   @Override
-  public boolean lock(Creature creature) {
-    if (creature == null) {
-      throw new NullPointerException("id must not be null.");
-    }
+  public boolean lock(@NonNull Creature creature) {
     synchronized (synchronizer) {
       LOGGER.info("{} is now trying to acquire {}!", creature.getName(), this.getName());
       if (!isLocked()) {
@@ -45,7 +42,7 @@ public class SwordOfAragorn implements Lockable {
   }
 
   @Override
-  public void unlock(Creature creature) {
+  public void unlock(@NonNull Creature creature) {
     synchronized (synchronizer) {
       if (locker != null && locker.getName().equals(creature.getName())) {
         locker = null;

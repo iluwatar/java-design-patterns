@@ -1,5 +1,6 @@
 package com.iluwatar.lockableobject.domain;
 
+/** Attribute constants of each Creature implementation. */
 public enum CreatureStats {
   ELF_HEALTH(90),
   ELF_DAMAGE(40),

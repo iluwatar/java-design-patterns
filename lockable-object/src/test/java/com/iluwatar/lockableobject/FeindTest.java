@@ -30,12 +30,12 @@ class FeindTest {
 
   @Test
   void testBaseCase() throws InterruptedException {
-    Thread base = new Thread(new Feind(orc, sword));
+    var base = new Thread(new Feind(orc, sword));
     Assertions.assertNull(sword.getLocker());
     base.start();
     base.join();
     Assertions.assertEquals(orc, sword.getLocker());
-    Thread extend = new Thread(new Feind(elf, sword));
+    var extend = new Thread(new Feind(elf, sword));
     extend.start();
     extend.join();
     Assertions.assertTrue(sword.isLocked());
