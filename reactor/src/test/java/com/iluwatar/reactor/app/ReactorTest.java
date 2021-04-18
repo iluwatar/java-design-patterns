@@ -30,6 +30,8 @@ import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class tests the Distributed Logging service by starting a Reactor and then sending it
@@ -38,6 +40,7 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class ReactorTest {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(ReactorTest.class);
   /**
    * Test the application using pooled thread dispatcher.
    *
