@@ -10,8 +10,8 @@ public abstract class DependentObject<T> {
 
   private T data;
 
-  public void setData(T data) {
-    this.data = data;
+  public void setData(T message) {
+    this.data = message;
   }
 
   public T getData() {

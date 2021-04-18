@@ -1,5 +1,6 @@
 package com.iluwatar.compositeentity;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 /**
@@ -18,6 +19,6 @@ public abstract class CoarseGrainedObject<T> {
   }
 
   public T[] getData() {
-    return null;
+    return (T[]) Arrays.stream(dependentObjects).map(DependentObject::getData).toArray();
   }
 }
