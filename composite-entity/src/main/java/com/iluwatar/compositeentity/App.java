@@ -32,7 +32,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    App app = new App("No Danger", "Green Light");
+    new App("No Danger", "Green Light");
 
   }
 }

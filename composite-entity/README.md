@@ -61,35 +61,13 @@ The specialized composite entity `console` inherit from this base class as follo
 ```java
 public class MessageDependentObject extends DependentObject<String> {
 
-  public void setData(String data) {
-    this.data = data;
-  }
-
-  public String getData() {
-    return data;
-  }
 }
 
 public class SignalDependentObject extends DependentObject<String> {
 
-  public void setData(String data) {
-    this.data = data;
-  }
-
-  public String getData() {
-    return data;
-  }
 }
 
 public class ConsoleCoarseGrainedObject extends CoarseGrainedObject<String> {
-
-  /**
-   * A specific setData method, the number of parameters is allowed to be one or two.
-   */
-  @Override
-  public void setData(String... data) {
-    super.setData(data);
-  }
 
   @Override
   public String[] getData() {

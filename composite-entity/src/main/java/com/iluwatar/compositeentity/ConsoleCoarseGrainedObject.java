@@ -6,10 +6,6 @@ package com.iluwatar.compositeentity;
 
 public class ConsoleCoarseGrainedObject extends CoarseGrainedObject<String> {
 
-  /**
-   * A specific setData method, the number of parameters is allowed to be one or two.
-   */
-
   @Override
   public String[] getData() {
     return new String[]{
