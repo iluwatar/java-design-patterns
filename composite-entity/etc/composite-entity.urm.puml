@@ -16,7 +16,6 @@ package com.iluwatar.compositeentity {
     + CoarseGrainedObject()
     + setData(data: T[])
     + getData()
-    + init()
   }
   abstract DependentObject{
       - data : T
@@ -26,19 +25,14 @@ package com.iluwatar.compositeentity {
   }
   class ConsoleCoarseGrainedObject{
       + ConsoleCoarseGrainedObject()
-      + setData(data: String[])
       + getData()
       + init()
   }
   class MessageDependentObject{
           + MessageDependentObject()
-          + setData(data: String)
-          + getData()
   }
   class SignalDependentObject{
             + SignalDependentObject()
-            + setData(data: String)
-            + getData()
   }
 
   MessageDependentObject --|> DependentObject

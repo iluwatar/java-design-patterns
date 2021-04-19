@@ -6,13 +6,4 @@ package com.iluwatar.compositeentity;
 
 public class SignalDependentObject extends DependentObject<String> {
 
-  @Override
-  public void setData(String signal) {
-    this.data = signal;
-  }
-
-  @Override
-  public String getData() {
-    return data;
-  }
 }
