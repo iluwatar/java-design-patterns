@@ -8,34 +8,31 @@ tags:
  - Gang of Four
 ---
 
-## Also known as
+## 동의어
 
-Policy
+정책(Policy) 패턴
 
-## Intent
+## 의도
 
-Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets 
-the algorithm vary independently from clients that use it.
+알고리즘군을 정의하고 각 알고리즘을 캡슐화하고 상호 변경 가능하게 만듭니다. 전략(Strategy) 패턴을 사용하면 알고리즘이 이를 사용하는 클라이언트와 독립적일 수 있습니다.
 
-## Explanation
+## 설명
 
-Real world example
+실제 예제
 
-> Slaying dragons is a dangerous job. With experience it becomes easier. Veteran 
-> dragonslayers have developed different fighting strategies against different types of dragons.         
+> 드래곤을 사냥하는 것은 위험한 일입니다. 경험이 쌓이면 쉬워집니다. 베테랑 사냥꾼들은 서로 다른 유형의 드래곤에 대해 서로 다른 전투 전략을 개발했습니다.
 
-In plain words
+평범한 말로는
 
-> Strategy pattern allows choosing the best suited algorithm at runtime.   
+> 전략(Strategy) 패턴을 사용하면 런타임에 가장 적합한 알고리즘을 선택할 수 있습니다.   
 
-Wikipedia says
+Wikipedia는
 
-> In computer programming, the strategy pattern (also known as the policy pattern) is a behavioral 
-> software design pattern that enables selecting an algorithm at runtime.
+> 컴퓨터 프로그래밍에서 전략 패턴(정책 패턴이라고도 함)은 런타임에 알고리즘을 선택할 수 있는 행동 소프트웨어 디자인 패턴입니다.
 
-**Programmatic Example**
+**프로그래밍 예**
 
-Let's first introduce the dragon slaying strategy interface and its implementations.
+먼저 드래곤 사냥 전략 인터페이스와 그 구현을 살펴봅니다.
 
 ```java
 @FunctionalInterface
@@ -72,8 +69,7 @@ public class SpellStrategy implements DragonSlayingStrategy {
 }
 ```
 
-And here is the mighty dragonslayer, who is able to pick his fighting strategy based on the 
-opponent.
+그리고 여기 상대하는 드래곤에 따라 자신의 전투 전략을 선택할 수 있는 강력한 드래곤 슬레이어가 있습니다.
 
 ```java
 public class DragonSlayer {
@@ -94,7 +90,7 @@ public class DragonSlayer {
 }
 ```
 
-Finally here's the dragonslayer in action.
+마지막으로 여기 드래곤 슬레이어가 행동합니다.
 
 ```java
     LOGGER.info("Green dragon spotted ahead!");
@@ -108,7 +104,7 @@ Finally here's the dragonslayer in action.
     dragonSlayer.goToBattle();
 ```
 
-Program output:
+프로그램 출력:
 
 ```
     Green dragon spotted ahead!
@@ -119,7 +115,7 @@ Program output:
     You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
 ```
 
-What's more, the new feature Lambda Expressions in Java 8 provides another approach for the implementation:
+또한 Java 8의 새로운 기능인 Lambda Expressions은 구현을 위한 또 다른 접근 방식을 제공합니다:
 
 ```java
 public class LambdaStrategy {
@@ -148,7 +144,7 @@ public class LambdaStrategy {
 }
 ```
 
-And here's the dragonslayer in action.
+그리고 여기 드래곤 슬레이어가 행동합니다.
 
 ```java
     LOGGER.info("Green dragon spotted ahead!");
@@ -162,28 +158,28 @@ And here's the dragonslayer in action.
     dragonSlayer.goToBattle();
 ```
 
-Program output is the same as above one.
+프로그램 출력은 위와 동일합니다.
 
-## Class diagram
+## 클래스 다이어그램
 
 ![alt text](./etc/strategy_urm.png "Strategy")
 
-## Applicability
+## 적용 가능성
 
-Use the Strategy pattern when
+다음과 같은 경우 전략(Strategy) 패턴을 사용합니다.
 
-* Many related classes differ only in their behavior. Strategies provide a way to configure a class either one of many behaviors
-* You need different variants of an algorithm. for example, you might define algorithms reflecting different space/time trade-offs. Strategies can be used when these variants are implemented as a class hierarchy of algorithms
-* An algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex, algorithm-specific data structures
-* A class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move related conditional branches into their own Strategy class
+* 비슷한 클래스들이 동작 만 다른 경우가 많이 있습니다. 전략 패턴은 여러 동작 중 하나를 클래스로 구성하는 방법을 제공합니다.
+* 알고리즘의 다양한 변형이 필요합니다. 예를 들어 다양한 공간 / 시간 절충을 반영하는 알고리즘을 정의할 수 있습니다. 이러한 변형이 알고리즘의 클래스 계층 구조로 구현될 때 전략 패턴을 사용할 수 있습니다.
+* 알고리즘은 클라이언트가 알 필요 없는 데이터를 사용합니다. 전략 패턴을 사용하여 복잡한 알고리즘 별 데이터 구조가 노출되지 않도록 합니다.
+* 클래스는 많은 동작을 정의하며 이러한 동작은 작업에서 여러 조건문으로 나타납니다. 많은 조건부 대신 관련 조건부 분기를 자체 전략 클래스로 이동하세요.
 
-## Tutorial 
+## 튜토리얼 
 
-* [Strategy Pattern Tutorial](https://www.journaldev.com/1754/strategy-design-pattern-in-java-example-tutorial)
+* [전략 패턴 튜토리얼](https://www.journaldev.com/1754/strategy-design-pattern-in-java-example-tutorial)
 
-## Credits
+## 크레딧
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](https://www.amazon.com/gp/product/1937785467/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1937785467&linkCode=as2&tag=javadesignpat-20&linkId=7e4e2fb7a141631491534255252fd08b)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
+* [디자인 패턴: 재사용 가능한 객체 지향 소프트웨어의 요소](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
+* [자바의 함수형 프로그래밍: Java 8 Lambda 표현식의 강력한 기능 활용](https://www.amazon.com/gp/product/1937785467/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1937785467&linkCode=as2&tag=javadesignpat-20&linkId=7e4e2fb7a141631491534255252fd08b)
+* [헤드 퍼스트 디자인 패턴: 두뇌 친화적인 가이드](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+* [패턴으로 리팩토링](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
