@@ -7,6 +7,8 @@ categories: Behavioral
 tags:
  - Decoupling
 ---
+## Also known as
+Application Model
 
 ## Intent
 Presentation Model pulls the state and behavior of the view out into a model class that is part of the presentation. The Presentation Model coordinates with the domain layer and provides an interface to the view that minimizes decision making in the view. The view either stores all its state in the Presentation Model or synchronizes its state with Presentation Model frequently
