@@ -16,9 +16,9 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    RunnableSocket server = new RunnableSocket("Server");
+    var server = new RunnableSocket("Server");
     server.start();
-    RunnableSocket client = new RunnableSocket("Client");
+    var client = new RunnableSocket("Client");
     client.start();
   }
 }

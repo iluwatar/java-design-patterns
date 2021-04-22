@@ -20,8 +20,8 @@ public class Client {
     Socket socket = null;
     OutputStream os = null;
     try {
-      InetAddress serverIp = InetAddress.getByName("127.0.0.1");
-      int port = 12345;
+      var serverIp = InetAddress.getByName("127.0.0.1");
+      var port = 12345;
       socket = new Socket(serverIp, port);
       os = socket.getOutputStream();
       os.write("Hello, java design pattern!".getBytes());

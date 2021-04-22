@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Server side.
  */
+@Slf4j
 public class Server {
 
   /**
@@ -31,7 +33,7 @@ public class Server {
       while ((len = is.read(buffer)) != -1) {
         baos.write(buffer, 0, len);
       }
-      System.out.println(baos.toString());
+      LOGGER.info(baos.toString());
     } catch (IOException e) {
       e.printStackTrace();
     } finally {
