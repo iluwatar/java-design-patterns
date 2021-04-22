@@ -60,8 +60,8 @@ public class View {
    * initialize the GUI.
    */
   public void createView() {
-    JFrame frame = new JFrame("Album");
-    Box b1 = Box.createHorizontalBox();
+    var frame = new JFrame("Album");
+    var b1 = Box.createHorizontalBox();
 
     frame.add(b1);
     albumList = new JList<>(model.getAlbumList());
@@ -74,7 +74,7 @@ public class View {
     });
     b1.add(albumList);
 
-    Box b2 = Box.createVerticalBox();
+    var b2 = Box.createVerticalBox();
     b1.add(b2);
 
     txtArtist = new TextField();

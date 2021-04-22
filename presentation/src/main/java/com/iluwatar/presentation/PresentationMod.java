@@ -14,7 +14,7 @@ public class PresentationMod {
    * @return a instance of DsAlbum which store the data.
    */
   public static DsAlbum albumDataSet() {
-    DsAlbum result = new DsAlbum();
+    var result = new DsAlbum();
     result.addAlbums(1, "HQ", "Roy Harper", false, null);
     result.addAlbums(2, "The Rough Dancer and Cyclical Night", "Astor Piazzola", false, null);
     result.addAlbums(3, "The Black Light", "Calexico", false, null);
@@ -29,7 +29,7 @@ public class PresentationMod {
   public PresentationMod(DsAlbum data) {
     this.data = data;
     this.selectedAlbumNumber = 1;
-    this.selectedAlbum = data.albums.get(0);
+    this.selectedAlbum = data.getAlbums().get(0);
   }
 
   /**
@@ -39,7 +39,7 @@ public class PresentationMod {
    */
   public void setSelectedAlbumNumber(int selectedAlbumNumber) {
     this.selectedAlbumNumber = selectedAlbumNumber;
-    this.selectedAlbum = data.albums.get(this.selectedAlbumNumber - 1);
+    this.selectedAlbum = data.getAlbums().get(this.selectedAlbumNumber - 1);
   }
 
   public String getTitle() {
@@ -93,9 +93,9 @@ public class PresentationMod {
    * @return the names of all the albums.
    */
   public String[] getAlbumList() {
-    String[] result = new String[data.albums.size()];
-    for (int i = 0; i < result.length; i++) {
-      result[i] = data.albums.get(i).title;
+    var result = new String[data.getAlbums().size()];
+    for (var i = 0; i < result.length; i++) {
+      result[i] = data.getAlbums().get(i).title;
     }
     return result;
   }

@@ -2,13 +2,15 @@ package com.iluwatar.presentation;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Data;
 
 /**
  * a class used to deal with albums.
  */
+@Data
 public class DsAlbum {
-  public List<Album> albums;
-  public List<Album> albumsCache;
+  private List<Album> albums;
+  private List<Album> albumsCache;
 
   /**
    * a constructor method.
