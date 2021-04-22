@@ -29,7 +29,7 @@ public class RunnableSocket implements Runnable {
       Server.main(new String[]{});
       try {
         Thread.sleep(1000, 100);
-      } catch (InterruptedException e) {
+      } catch (Exception e) {
         e.printStackTrace();
       }
     }
