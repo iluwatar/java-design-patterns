@@ -4,7 +4,7 @@ package com.iluwatar.clientserver;
  * Multithreading to simulate client-server communication.
  */
 public class RunnableSocket implements Runnable {
-  private Thread t;
+  private Thread thread;
   private String role;
 
   RunnableSocket(String role) {
@@ -15,9 +15,9 @@ public class RunnableSocket implements Runnable {
    * start a thread.
    */
   public void start() {
-    if (t == null) {
-      t = new Thread(this, role);
-      t.start();
+    if (thread == null) {
+      thread = new Thread(this, role);
+      thread.start();
     }
   }
 
