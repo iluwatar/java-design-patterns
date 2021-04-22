@@ -12,7 +12,6 @@ public class Feind implements Runnable {
   private final Creature creature;
   private final Lockable target;
   private final SecureRandom random;
-  private static final int COOL_DOWN = 50;
   private static final Logger LOGGER = LoggerFactory.getLogger(Feind.class.getName());
 
   /**
@@ -52,14 +51,13 @@ public class Feind implements Runnable {
   private void fightForTheSword(Creature reacher, @NonNull Creature holder, Lockable sword)
       throws InterruptedException {
     LOGGER.info("A duel between {} and {} has been started!", reacher.getName(), holder.getName());
+    boolean randBool;
     while (this.target.isLocked() && reacher.isAlive() && holder.isAlive()) {
-      if (random.nextBoolean()) {
+      randBool = random.nextBoolean();
+      if (randBool) {
         reacher.attack(holder);
       } else {
         holder.attack(reacher);
-      }
-      synchronized (this) {
-        wait(new SecureRandom().nextInt(COOL_DOWN)); // cool down
       }
     }
     if (reacher.isAlive()) {
