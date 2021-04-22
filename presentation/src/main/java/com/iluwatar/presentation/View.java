@@ -57,7 +57,7 @@ public class View {
   }
 
   /**
-   * create the GUI
+   * initialize the GUI.
    */
   public void createView() {
     JFrame frame = new JFrame("Album");
