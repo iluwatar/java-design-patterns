@@ -2,7 +2,7 @@ package com.iluwatar.presentation;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-public class ViewTest {
+class ViewTest {
   String[] albumList = {"HQ", "The Rough Dancer and Cyclical Night", "The Black Light", "Symphony No.5"};
 
   @Test

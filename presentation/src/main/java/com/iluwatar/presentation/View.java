@@ -9,11 +9,12 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 
-
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Generates the GUI of albums.
  */
+@Slf4j
 public class View {
   PresentationMod model;
 
@@ -39,6 +40,7 @@ public class View {
    * save the data to PresentationModel.
    */
   public void saveToPMod() {
+    LOGGER.info("save data to PresentationModel");
     model.setArtist(txtArtist.getText());
     model.setTitle(txtTitle.getText());
     model.setIsClassical(chkClassical.isSelected());
@@ -49,6 +51,7 @@ public class View {
    * load the data from PresentationModel.
    */
   public void loadFromPMod() {
+    LOGGER.info("load data from PresentationModel");
     txtArtist.setText(model.getArtist());
     txtTitle.setText(model.getTitle());
     chkClassical.setSelected(model.getIsClassical());

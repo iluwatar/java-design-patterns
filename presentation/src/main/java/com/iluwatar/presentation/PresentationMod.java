@@ -1,8 +1,11 @@
 package com.iluwatar.presentation;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * The class between view and albums, it is used to control the data.
  */
+@Slf4j
 public class PresentationMod {
   private final DsAlbum data;
   private int selectedAlbumNumber;
@@ -19,7 +22,6 @@ public class PresentationMod {
     result.addAlbums(2, "The Rough Dancer and Cyclical Night", "Astor Piazzola", false, null);
     result.addAlbums(3, "The Black Light", "Calexico", false, null);
     result.addAlbums(4, "Symphony No.5", "CBSO", true, "Sibelius");
-    result.acceptChanges();
     return result;
   }
 
@@ -38,6 +40,8 @@ public class PresentationMod {
    * @param selectedAlbumNumber the number of album which is shown on the view.
    */
   public void setSelectedAlbumNumber(int selectedAlbumNumber) {
+    LOGGER.info("Change select number from {} to {}",
+            this.selectedAlbumNumber, selectedAlbumNumber);
     this.selectedAlbumNumber = selectedAlbumNumber;
     this.selectedAlbum = data.getAlbums().get(this.selectedAlbumNumber - 1);
   }
@@ -47,6 +51,7 @@ public class PresentationMod {
   }
 
   public void setTitle(String value) {
+    LOGGER.info("Change album title from {} to {}", selectedAlbum.title, value);
     selectedAlbum.title = value;
   }
 
@@ -60,6 +65,7 @@ public class PresentationMod {
    * @param value the name want artist to be.
    */
   public void setArtist(String value) {
+    LOGGER.info("Change album artist from {} to {}", selectedAlbum.artist, value);
     selectedAlbum.artist = value;
   }
 
@@ -71,6 +77,7 @@ public class PresentationMod {
   }
 
   public void setIsClassical(boolean value) {
+    LOGGER.info("Change album isClassical from {} to {}", selectedAlbum.isClassical, value);
     selectedAlbum.isClassical = value;
   }
 
@@ -83,7 +90,10 @@ public class PresentationMod {
    */
   public void setComposer(String value) {
     if (selectedAlbum.isClassical) {
+      LOGGER.info("Change album composer from {} to {}", selectedAlbum.composer, value);
       selectedAlbum.composer = value;
+    } else {
+      LOGGER.info("Composer can not be changed");
     }
   }
 
