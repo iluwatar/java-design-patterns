@@ -2,8 +2,6 @@ package com.iluwatar.presentation;
 
 /**
  * The class between view and albums, it is used to control the data.
- *
- * @author EdisonE3
  */
 public class PresentationMod {
   private final DsAlbum data;

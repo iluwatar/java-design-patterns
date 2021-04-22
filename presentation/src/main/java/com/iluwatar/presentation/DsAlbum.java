@@ -5,8 +5,6 @@ import java.util.List;
 
 /**
  * a class used to deal with albums.
- *
- * @author EdisonE3
  */
 public class DsAlbum {
   public List<Album> albums;

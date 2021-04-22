@@ -2,8 +2,6 @@ package com.iluwatar.presentation;
 
 /**
  *A class used to store the information of album.
- *
- * @author EdisonE3
  */
 public class Album {
   int rowId;

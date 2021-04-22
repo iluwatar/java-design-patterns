@@ -13,8 +13,6 @@ import javax.swing.JList;
 
 /**
  * Generates the GUI of albums.
- *
- * @author EdisonE3
  */
 public class View {
   PresentationMod model;
