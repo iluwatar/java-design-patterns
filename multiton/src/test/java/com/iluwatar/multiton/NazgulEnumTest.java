@@ -25,7 +25,8 @@ package com.iluwatar.multiton;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 /**
  * @author anthony
@@ -37,15 +38,14 @@ class NazgulEnumTest {
    * Check that multiple calls to any one of the instances in the multiton returns
    * only that one particular instance, and do that for all instances in multiton
    */
-  @Test
-  void testTheSameObjectIsReturnedWithMultipleCalls() {
-    for (var i = 0; i < NazgulEnum.values().length; i++) {
-      var instance1 = NazgulEnum.values()[i];
-      var instance2 = NazgulEnum.values()[i];
-      var instance3 = NazgulEnum.values()[i];
-      assertSame(instance1, instance2);
-      assertSame(instance1, instance3);
-      assertSame(instance2, instance3);
-    }
+  @ParameterizedTest
+  @EnumSource
+  void testTheSameObjectIsReturnedWithMultipleCalls(NazgulEnum nazgulEnum) {
+    var instance1 = nazgulEnum;
+    var instance2 = nazgulEnum;
+    var instance3 = nazgulEnum;
+    assertSame(instance1, instance2);
+    assertSame(instance1, instance3);
+    assertSame(instance2, instance3);
   }
 }
