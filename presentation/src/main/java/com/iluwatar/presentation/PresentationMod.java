@@ -65,7 +65,6 @@ public class PresentationMod {
 
   /**
    * Gets a boolean value which represents whether the album is classical.
-   *
    */
   public boolean getIsClassical() {
     return selectedAlbum.isClassical;
@@ -81,7 +80,6 @@ public class PresentationMod {
 
   /**
    * Sets the name of composer when the album is classical.
-   *
    */
   public void setComposer(String value) {
     if (selectedAlbum.isClassical) {

@@ -84,7 +84,4 @@ public class PresentationTest {
         model.setComposer(testComposer);
         assertEquals(testComposer, model.getComposer());
     }
-
-
-
 }
