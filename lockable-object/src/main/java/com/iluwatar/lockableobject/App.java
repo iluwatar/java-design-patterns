@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App implements Runnable {
 
-  private static final int WAIT_TIME = 3;
+  private static final int WAIT_TIME = 2;
   private static final int WORKERS = 2;
   private static final int MULTIPLICATION_FACTOR = 3;
 
