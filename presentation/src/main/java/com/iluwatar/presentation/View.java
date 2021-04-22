@@ -38,14 +38,14 @@ public class View {
     createView();
   }
 
-  private void saveToPMod() {
+  public void saveToPMod() {
     model.setArtist(txtArtist.getText());
     model.setTitle(txtTitle.getText());
     model.setIsClassical(chkClassical.isSelected());
     model.setComposer(txtComposer.getText());
   }
 
-  private void loadFromPMod() {
+  public void loadFromPMod() {
     txtArtist.setText(model.getArtist());
     txtTitle.setText(model.getTitle());
     chkClassical.setSelected(model.getIsClassical());
