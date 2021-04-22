@@ -121,9 +121,8 @@ public class Soldier extends Unit {
 Here are then some concrete visitors.
 
 ```java
+@Slf4j
 public class CommanderVisitor implements UnitVisitor {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(CommanderVisitor.class);
 
   @Override
   public void visitSoldier(Soldier soldier) {
@@ -141,9 +140,8 @@ public class CommanderVisitor implements UnitVisitor {
   }
 }
 
+@Slf4j
 public class SergeantVisitor implements UnitVisitor {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SergeantVisitor.class);
 
   @Override
   public void visitSoldier(Soldier soldier) {
@@ -161,9 +159,8 @@ public class SergeantVisitor implements UnitVisitor {
   }
 }
 
+@Slf4j
 public class SoldierVisitor implements UnitVisitor {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SoldierVisitor.class);
 
   @Override
   public void visitSoldier(Soldier soldier) {

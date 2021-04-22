@@ -58,9 +58,8 @@ public class Tenant {
   }
 }
 
+@Slf4j
 public final class CallsCount {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(CallsCount.class);
   private final Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
 
   public void addTenant(String tenantName) {

@@ -23,29 +23,30 @@
 
 package com.iluwatar.gameloop;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * VariableStepGameLoop unit test class.
  */
-public class VariableStepGameLoopTest {
+class VariableStepGameLoopTest {
 
   private VariableStepGameLoop gameLoop;
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     gameLoop = new VariableStepGameLoop();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     gameLoop = null;
   }
 
-  @org.junit.jupiter.api.Test
-  public void testUpdate() {
+  @Test
+  void testUpdate() {
     gameLoop.update(20L);
     Assertions.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
   }

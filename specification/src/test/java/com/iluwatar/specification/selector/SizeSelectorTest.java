@@ -43,7 +43,7 @@ public class SizeSelectorTest {
    * Verify if the size selector gives the correct results
    */
   @Test
-  public void testMovement() {
+  void testMovement() {
     final var normalCreature = mock(Creature.class);
     when(normalCreature.getSize()).thenReturn(Size.NORMAL);
 

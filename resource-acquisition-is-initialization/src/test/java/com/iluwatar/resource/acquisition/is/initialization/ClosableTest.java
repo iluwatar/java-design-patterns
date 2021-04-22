@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Jeroen Meulemeester
  */
-public class ClosableTest {
+class ClosableTest {
 
   private InMemoryAppender appender;
 
@@ -55,7 +55,7 @@ public class ClosableTest {
   }
 
   @Test
-  public void testOpenClose() {
+  void testOpenClose() {
     try (final var ignored = new SlidingDoor(); final var ignored1 = new TreasureChest()) {
       assertTrue(appender.logContains("Sliding door opens."));
       assertTrue(appender.logContains("Treasure chest opens."));

@@ -21,20 +21,17 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.business.delegate;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.activeobject;
 
 /**
- * Service JMS implementation.
+ * An implementation of the ActiveCreature class.
+ * @author Noam Greenshtain
+ *
  */
-public class JmsService implements BusinessService {
+public class Orc extends ActiveCreature {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(JmsService.class);
-
-  @Override
-  public void doProcessing() {
-    LOGGER.info("JmsService is now processing");
+  public Orc(String name) {
+    super(name);
   }
+
 }

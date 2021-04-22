@@ -37,14 +37,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import javax.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.isis.viewer.wicket.viewer.IsisWicketApplication;
 import org.apache.isis.viewer.wicket.viewer.integration.wicket.AuthenticatedWebSessionForIsis;
 import org.apache.wicket.Session;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.request.http.WebRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -63,9 +62,8 @@ import org.slf4j.LoggerFactory;
  * &lt;/filter&gt;
  * </pre>
  */
+@Slf4j
 public class SimpleApplication extends IsisWicketApplication {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SimpleApplication.class);
   private static final long serialVersionUID = 1L;
 
   /**

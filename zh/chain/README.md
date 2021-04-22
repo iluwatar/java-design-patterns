@@ -61,8 +61,8 @@ public enum RequestType {
 然后是请求处理器的层次结构
 
 ```java
+@Slf4j
 public abstract class RequestHandler {
-  private static final Logger LOGGER = LoggerFactory.getLogger(RequestHandler.class);
   private final RequestHandler next;
 
   public RequestHandler(RequestHandler next) {

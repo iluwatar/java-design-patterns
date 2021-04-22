@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests {@link Student}.
  */
-public final class StudentTest {
+final class StudentTest {
 
   /**
    * This API tests the equality behaviour of Student object Object Equality should work as per
@@ -40,7 +40,7 @@ public final class StudentTest {
    * @throws Exception if any execution error during test
    */
   @Test
-  public void testEquality() throws Exception {
+  void testEquality() throws Exception {
 
     /* Create some students */
     final var firstStudent = new Student(1, "Adam", 'A');

@@ -24,15 +24,13 @@
 package com.iluwatar.layers.view;
 
 import com.iluwatar.layers.service.CakeBakingService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * View implementation for displaying cakes.
  */
+@Slf4j
 public class CakeViewImpl implements View {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(CakeViewImpl.class);
 
   private final CakeBakingService cakeBakingService;
 

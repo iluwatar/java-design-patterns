@@ -23,21 +23,17 @@
 
 package com.iluwatar.decorator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Decorator that adds a club for the troll.
  */
+@Slf4j
+@RequiredArgsConstructor
 public class ClubbedTroll implements Troll {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);
-
   private final Troll decorated;
-
-  public ClubbedTroll(Troll decorated) {
-    this.decorated = decorated;
-  }
 
   @Override
   public void attack() {

@@ -23,13 +23,13 @@
 
 package com.iluwatar.filterer.threat;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+import org.junit.jupiter.api.Test;
+
 class SimpleProbabilisticThreatAwareSystemTest {
+
   @Test
   void shouldFilterByProbability() {
     //given
@@ -38,11 +38,11 @@ class SimpleProbabilisticThreatAwareSystemTest {
     List<ProbableThreat> probableThreats = List.of(trojan, rootkit);
 
     var simpleProbabilisticThreatAwareSystem =
-            new SimpleProbabilisticThreatAwareSystem("System-1", probableThreats);
+        new SimpleProbabilisticThreatAwareSystem("System-1", probableThreats);
 
     //when
     var filtered = simpleProbabilisticThreatAwareSystem.filtered()
-            .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
+        .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
 
     //then
     assertEquals(filtered.threats().size(), 1);

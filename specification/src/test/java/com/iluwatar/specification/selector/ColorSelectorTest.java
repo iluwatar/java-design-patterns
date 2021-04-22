@@ -37,13 +37,13 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class ColorSelectorTest {
+class ColorSelectorTest {
 
   /**
    * Verify if the color selector gives the correct results
    */
   @Test
-  public void testColor() {
+  void testColor() {
     final var greenCreature = mock(Creature.class);
     when(greenCreature.getColor()).thenReturn(Color.GREEN);
 

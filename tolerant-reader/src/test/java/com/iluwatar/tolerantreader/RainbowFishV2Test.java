@@ -46,9 +46,9 @@ class RainbowFishV2Test {
     assertEquals(1, fish.getAge());
     assertEquals(2, fish.getLengthMeters());
     assertEquals(3, fish.getWeightTons());
-    assertFalse(fish.getSleeping());
-    assertTrue(fish.getHungry());
-    assertFalse(fish.getAngry());
+    assertFalse(fish.isSleeping());
+    assertTrue(fish.isHungry());
+    assertFalse(fish.isAngry());
   }
 
 }

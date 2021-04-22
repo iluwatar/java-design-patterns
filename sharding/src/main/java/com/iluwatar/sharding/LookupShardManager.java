@@ -26,18 +26,16 @@ package com.iluwatar.sharding;
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Random;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ShardManager with lookup strategy. In this strategy the sharding logic implements
  * a map that routes a request for data to the shard that contains that data by using
  * the shard key.
  */
+@Slf4j
 public class LookupShardManager extends ShardManager {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(LookupShardManager.class);
 
   private final Map<Integer, Integer> lookupMap = new HashMap<>();
 

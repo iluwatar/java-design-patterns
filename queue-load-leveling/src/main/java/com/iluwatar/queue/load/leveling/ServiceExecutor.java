@@ -23,16 +23,14 @@
 
 package com.iluwatar.queue.load.leveling;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ServiceExecuotr class. This class will pick up Messages one by one from the Blocking Queue and
  * process them.
  */
+@Slf4j
 public class ServiceExecutor implements Runnable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private final MessageQueue msgQueue;
 

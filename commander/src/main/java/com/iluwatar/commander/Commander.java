@@ -174,7 +174,7 @@ public class Commander {
         if (!l.isEmpty()) {
           if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
             LOG.debug("Order " + order.id + ": Error in connecting to payment service,"
-                    + " trying again..");
+                + " trying again..");
           } else {
             LOG.debug("Order " + order.id + ": Error in creating payment request..");
           }
@@ -195,8 +195,8 @@ public class Commander {
         if (PaymentDetailsErrorException.class.isAssignableFrom(err.getClass())) {
           if (!finalSiteMsgShown) {
             LOG.info("There was an error in payment. Your account/card details "
-                    + "may have been incorrect. "
-                    + "Meanwhile, your order has been converted to COD and will be shipped.");
+                + "may have been incorrect. "
+                + "Meanwhile, your order has been converted to COD and will be shipped.");
             finalSiteMsgShown = true;
           }
           LOG.error("Order " + order.id + ": Payment details incorrect, failed..");
@@ -206,14 +206,14 @@ public class Commander {
           if (o.messageSent.equals(MessageSent.NONE_SENT)) {
             if (!finalSiteMsgShown) {
               LOG.info("There was an error in payment. We are on it, and will get back to you "
-                      + "asap. Don't worry, your order has been placed and will be shipped.");
+                  + "asap. Don't worry, your order has been placed and will be shipped.");
               finalSiteMsgShown = true;
             }
             LOG.warn("Order " + order.id + ": Payment error, going to queue..");
             sendPaymentPossibleErrorMsg(o);
           }
           if (o.paid.equals(PaymentStatus.TRYING) && System
-                  .currentTimeMillis() - o.createdTime < paymentTime) {
+              .currentTimeMillis() - o.createdTime < paymentTime) {
             var qt = new QueueTask(o, TaskType.PAYMENT, -1);
             updateQueue(qt);
           }
@@ -475,7 +475,7 @@ public class Commander {
   }
 
   private void handlePaymentPossibleErrorMsgRetryOperation(Order order, List<Exception> l)
-          throws Exception {
+      throws Exception {
     if (!l.isEmpty()) {
       if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
         LOG.debug("Order " + order.id + ": Error in connecting to messaging service "
@@ -539,10 +539,10 @@ public class Commander {
       var qt = queue.peek(); //this should probably be cloned here
       //this is why we have retry for doTasksInQueue
       LOG.trace("Order " + qt.order.id + ": Started doing task of type " + qt.getType());
-      if (qt.firstAttemptTime == -1) {
-        qt.firstAttemptTime = System.currentTimeMillis();
+      if (qt.getFirstAttemptTime() == -1) {
+        qt.setFirstAttemptTime(System.currentTimeMillis());
       }
-      if (System.currentTimeMillis() - qt.firstAttemptTime >= queueTaskTime) {
+      if (System.currentTimeMillis() - qt.getFirstAttemptTime() >= queueTaskTime) {
         tryDequeue();
         LOG.trace("Order " + qt.order.id + ": This queue task of type " + qt.getType()
             + " does not need to be done anymore (timeout), dequeue..");

@@ -25,8 +25,7 @@ package com.iluwatar.spatialpartition;
 
 import java.security.SecureRandom;
 import java.util.HashMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>The idea behind the <b>Spatial Partition</b> design pattern is to enable efficient location
@@ -57,8 +56,8 @@ import org.slf4j.LoggerFactory;
  * speed of the game.</p>
  */
 
+@Slf4j
 public class App {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   private static final String BUBBLE = "Bubble ";
 
   static void noSpatialPartition(int numOfMovements, HashMap<Integer, Bubble> bubbles) {

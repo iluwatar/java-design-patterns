@@ -147,7 +147,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
     doc.put("email", ticket.getPlayerDetails().getEmail());
     doc.put("bank", ticket.getPlayerDetails().getBankAccount());
     doc.put("phone", ticket.getPlayerDetails().getPhoneNumber());
-    doc.put("numbers", ticket.getNumbers().getNumbersAsString());
+    doc.put("numbers", ticket.getLotteryNumbers().getNumbersAsString());
     ticketsCollection.insertOne(doc);
     return Optional.of(new LotteryTicketId(ticketId));
   }

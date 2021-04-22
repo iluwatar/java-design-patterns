@@ -23,8 +23,7 @@
 
 package com.iluwatar.information.microservice;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -38,7 +37,7 @@ public class InformationController {
    *
    * @return product inventory.
    */
-  @RequestMapping(value = "/information", method = RequestMethod.GET)
+  @GetMapping("/information")
   public String getProductTitle() {
     return "The Product Title.";
   }

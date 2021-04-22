@@ -24,8 +24,7 @@
 package com.iluwatar.repository;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -43,9 +42,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * also performed. Underneath we have configured in-memory H2 database for which schema is created
  * and dropped on each run.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

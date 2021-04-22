@@ -30,10 +30,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for creating and checking the Message.
  */
-public class MessageTest {
+class MessageTest {
 
   @Test
-  public void messageTest() {
+  void messageTest() {
 
     // Parameterized constructor test.
     var testMsg = "Message Test";

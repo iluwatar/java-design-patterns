@@ -36,9 +36,10 @@ import org.junit.jupiter.api.Test;
 /**
  * tests {@link CustomerResource}.
  */
-public class CustomerResourceTest {
+class CustomerResourceTest {
+
   @Test
-  public void shouldGetAllCustomers() {
+  void shouldGetAllCustomers() {
     var customers = List.of(new CustomerDto("1", "Melody", "Yates"));
     var customerResource = new CustomerResource(customers);
     var allCustomers = customerResource.getAllCustomers();
@@ -50,7 +51,7 @@ public class CustomerResourceTest {
   }
 
   @Test
-  public void shouldSaveCustomer() {
+  void shouldSaveCustomer() {
     var customer = new CustomerDto("1", "Rita", "Reynolds");
     var customerResource = new CustomerResource(new ArrayList<>());
 
@@ -63,7 +64,7 @@ public class CustomerResourceTest {
   }
 
   @Test
-  public void shouldDeleteCustomer() {
+  void shouldDeleteCustomer() {
     var customer = new CustomerDto("1", "Terry", "Nguyen");
     var customers = new ArrayList<>(List.of(customer));
     var customerResource = new CustomerResource(customers);

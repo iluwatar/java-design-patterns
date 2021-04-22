@@ -26,8 +26,7 @@ package com.iluwatar.leaderelection.bully;
 import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Impelemetation with bully algorithm. Each instance should have a sequential id and is able to
@@ -38,9 +37,8 @@ import org.slf4j.LoggerFactory;
  * it will return an alive message (in this sample return true) and then send election message with
  * its ID. If not, the original instance will send leader message to all the other instances.
  */
+@Slf4j
 public class BullyInstance extends AbstractInstance {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(BullyInstance.class);
   private static final String INSTANCE = "Instance ";
 
   /**

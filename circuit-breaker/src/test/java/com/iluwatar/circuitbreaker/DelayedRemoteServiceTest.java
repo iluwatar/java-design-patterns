@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Monitoring Service test
  */
-public class DelayedRemoteServiceTest {
+class DelayedRemoteServiceTest {
 
   /**
    * Testing immediate response of the delayed service.
@@ -39,7 +39,7 @@ public class DelayedRemoteServiceTest {
    * @throws RemoteServiceException
    */
   @Test
-  public void testDefaultConstructor() throws RemoteServiceException {
+  void testDefaultConstructor() throws RemoteServiceException {
     Assertions.assertThrows(RemoteServiceException.class, () -> {
       var obj = new DelayedRemoteService();
       obj.call();

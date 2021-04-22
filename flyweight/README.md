@@ -42,24 +42,24 @@ public interface Potion {
   void drink();
 }
 
+@Slf4j
 public class HealingPotion implements Potion {
-  private static final Logger LOGGER = LoggerFactory.getLogger(HealingPotion.class);
   @Override
   public void drink() {
     LOGGER.info("You feel healed. (Potion={})", System.identityHashCode(this));
   }
 }
 
+@Slf4j
 public class HolyWaterPotion implements Potion {
-  private static final Logger LOGGER = LoggerFactory.getLogger(HolyWaterPotion.class);
   @Override
   public void drink() {
     LOGGER.info("You feel blessed. (Potion={})", System.identityHashCode(this));
   }
 }
 
+@Slf4j
 public class InvisibilityPotion implements Potion {
-  private static final Logger LOGGER = LoggerFactory.getLogger(InvisibilityPotion.class);
   @Override
   public void drink() {
     LOGGER.info("You become invisible. (Potion={})", System.identityHashCode(this));

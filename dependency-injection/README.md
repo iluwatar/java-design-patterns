@@ -37,9 +37,8 @@ Wikipedia says
 Let's first introduce the `Tobacco` interface and the concrete brands.
 
 ```java
+@Slf4j
 public abstract class Tobacco {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Tobacco.class);
 
   public void smoke(Wizard wizard) {
     LOGGER.info("{} smoking {}", wizard.getClass().getSimpleName(),

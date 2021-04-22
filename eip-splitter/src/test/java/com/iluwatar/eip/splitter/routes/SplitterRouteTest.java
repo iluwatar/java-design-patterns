@@ -47,7 +47,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ActiveProfiles("test")
 @EnableAutoConfiguration
 @ComponentScan
-public class SplitterRouteTest {
+class SplitterRouteTest {
 
   @EndpointInject(uri = "{{entry}}")
   private ProducerTemplate entry;
@@ -62,7 +62,7 @@ public class SplitterRouteTest {
    */
   @Test
   @DirtiesContext
-  public void testSplitter() throws Exception {
+  void testSplitter() throws Exception {
 
     // Three items in one entry message
     entry.sendBody(new String[]{"TEST1", "TEST2", "TEST3"});

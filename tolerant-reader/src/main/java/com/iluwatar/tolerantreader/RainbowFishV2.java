@@ -23,9 +23,12 @@
 
 package com.iluwatar.tolerantreader;
 
+import lombok.Getter;
+
 /**
  * RainbowFishV2 is the evolved schema.
  */
+@Getter
 public class RainbowFishV2 extends RainbowFish {
 
   private static final long serialVersionUID = 1L;
@@ -49,15 +52,4 @@ public class RainbowFishV2 extends RainbowFish {
     this.angry = angry;
   }
 
-  public boolean getSleeping() {
-    return sleeping;
-  }
-
-  public boolean getHungry() {
-    return hungry;
-  }
-
-  public boolean getAngry() {
-    return angry;
-  }
 }

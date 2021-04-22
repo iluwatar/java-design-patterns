@@ -1132,7 +1132,8 @@
       "profile": "http://subho.xyz",
       "contributions": [
         "code",
-        "review"
+        "review",
+        "maintenance"
       ]
     },
     {
@@ -1411,6 +1412,43 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/19147333?v=4",
       "profile": "https://github.com/richardmr36",
       "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "va1m",
+      "name": "va1m",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17025445?v=4",
+      "profile": "https://github.com/va1m",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "noamgrinch",
+      "name": "Noam Greenshtain",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31648669?v=4",
+      "profile": "https://github.com/noamgrinch",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "qfxl",
+      "name": "yonghong Xu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/14086462?v=4",
+      "profile": "https://xuyonghong.cn/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "jinishavora",
+      "name": "jinishavora",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40777762?v=4",
+      "profile": "https://www.linkedin.com/in/jinisha-vora",
+      "contributions": [
+        "review",
         "code"
       ]
     }

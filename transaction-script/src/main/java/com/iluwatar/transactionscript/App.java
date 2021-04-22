@@ -67,7 +67,7 @@ public class App {
 
     // Print room booking status
     getRoomStatus(dao);
-  
+
     var hotel = new Hotel(dao);
 
     // Book rooms

@@ -1,0 +1,34 @@
+<zk>
+<window title="List of Books" border="normal" width="600px" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.iluwatar.model.view.viewmodel.BookViewModel')">
+    <vbox hflex="true">
+        <listbox model="@bind(vm.bookList)" selectedItem="@bind(vm.selectedBook)" height="400px" mold="paging">
+            <listhead>
+                <listheader label="Book Name"/>
+                <listheader label="Author"/>               
+            </listhead>
+            <template name="model" var="book">
+                <listitem >
+                    <listcell label="@bind(book.name)"/>
+                    <listcell label="@bind(book.author)"/>
+                </listitem>
+            </template>
+        </listbox>
+    </vbox>
+    <toolbar>
+        <button label="Delete" onClick="@command('deleteBook')" disabled="@load(empty vm.selectedBook)" />
+    </toolbar>
+    <hbox style="margin-top:20px" visible="@bind(not empty vm.selectedBook)">
+		<vbox>
+			<hlayout>
+				Book Name : <label value="@bind(vm.selectedBook.name)" style="font-weight:bold"/>
+			</hlayout>
+			<hlayout>
+				Book Author : <label value="@bind(vm.selectedBook.author)" style="font-weight:bold"/>
+			</hlayout>
+			<hlayout>
+				Book Description : <label value="@bind(vm.selectedBook.description)" style="font-weight:bold"/>
+			</hlayout>
+		</vbox>
+	</hbox>
+</window>
+</zk>

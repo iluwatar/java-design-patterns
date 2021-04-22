@@ -23,16 +23,14 @@
 
 package com.iluwatar.monostate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Server class. Each Server sits behind a LoadBalancer which delegates the call to the servers
  * in a simplistic Round Robin fashion.
  */
+@Slf4j
 public class Server {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Server.class);
 
   public final String host;
   public final int port;

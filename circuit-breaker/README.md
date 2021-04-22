@@ -54,6 +54,7 @@ The service architecture is as follows:
 In terms of code, the end user application is:
 
 ```java
+@Slf4j
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);

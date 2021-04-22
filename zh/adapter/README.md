@@ -41,8 +41,8 @@ public interface RowingBoat {
   void row();
 }
 
+@Slf4j
 public class FishingBoat {
-  private static final Logger LOGGER = LoggerFactory.getLogger(FishingBoat.class);
   public void sail() {
     LOGGER.info("The fishing boat is sailing");
   }
@@ -68,9 +68,8 @@ public class Captain {
 现在海盗来了，我们的船长需要逃跑但是只有一个渔船可用。我们需要创建一个可以让船长使用其划船技能来操作渔船的适配器。
 
 ```java
+@Slf4j
 public class FishingBoatAdapter implements RowingBoat {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(FishingBoatAdapter.class);
 
   private final FishingBoat boat;
 

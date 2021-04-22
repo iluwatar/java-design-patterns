@@ -48,9 +48,8 @@ interface RemoteServiceInterface {
 A remote services represented as a singleton.
 
 ```java
+@Slf4j
 public class RemoteService implements RemoteServiceInterface {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(RemoteService.class);
     private static RemoteService service = null;
 
     static synchronized RemoteService getRemoteService() {
@@ -80,9 +79,8 @@ public class RemoteService implements RemoteServiceInterface {
 A service ambassador adding additional features such as logging, latency checks
 
 ```java
+@Slf4j
 public class ServiceAmbassador implements RemoteServiceInterface {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceAmbassador.class);
   private static final int RETRIES = 3;
   private static final int DELAY_MS = 3000;
 
@@ -132,9 +130,8 @@ public class ServiceAmbassador implements RemoteServiceInterface {
 A client has a local service ambassador used to interact with the remote service:
 
 ```java
+@Slf4j
 public class Client {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
   private final ServiceAmbassador serviceAmbassador = new ServiceAmbassador();
 
   long useService(int value) {

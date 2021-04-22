@@ -34,10 +34,10 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class WeekdayTest {
+class WeekdayTest {
 
   @Test
-  public void testToString() {
+  void testToString() {
     Arrays.stream(Weekday.values()).forEach(weekday -> {
       final String toString = weekday.toString();
       assertNotNull(toString);

@@ -23,16 +23,17 @@
 
 package com.iluwatar.inventory.microservice;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test Inventory Rest Controller
  */
-public class InventoryControllerTest {
+class InventoryControllerTest {
+
   @Test
-  public void testGetProductInventories() {
+  void testGetProductInventories() {
     var inventoryController = new InventoryController();
     var numberOfInventories = inventoryController.getProductInventories();
     assertEquals(5, numberOfInventories);

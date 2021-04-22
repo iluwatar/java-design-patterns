@@ -23,11 +23,10 @@
 
 package com.iluwatar.transactionscript;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Hotel {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private final HotelDaoImpl hotelDao;
 
@@ -65,7 +64,7 @@ public class Hotel {
    * @throws Exception if any error
    */
   public void cancelRoomBooking(int roomNumber) throws Exception {
-  
+
     var room = hotelDao.getById(roomNumber);
 
     if (room.isEmpty()) {

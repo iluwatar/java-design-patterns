@@ -23,12 +23,10 @@
 
 package com.iluwatar.strategy;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class LambdaStrategy {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(LambdaStrategy.class);
 
   public enum Strategy implements DragonSlayingStrategy {
     MeleeStrategy(() -> LOGGER.info(

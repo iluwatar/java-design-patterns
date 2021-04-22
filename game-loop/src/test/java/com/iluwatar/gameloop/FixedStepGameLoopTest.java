@@ -47,7 +47,7 @@ public class FixedStepGameLoopTest {
   }
 
   @Test
-  public void testUpdate() {
+  void testUpdate() {
     gameLoop.update();
     assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
   }

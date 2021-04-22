@@ -23,17 +23,15 @@
 
 package com.iluwatar.gameloop;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A game loop runs continuously during gameplay. Each turn of the loop, it processes
  * user input without blocking, updates the game state, and renders the game. It tracks
  * the passage of time to control the rate of gameplay.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Each type of game loop will run for 2 seconds.

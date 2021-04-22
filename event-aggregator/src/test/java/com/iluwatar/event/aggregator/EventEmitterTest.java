@@ -41,7 +41,7 @@ import org.junit.jupiter.api.Test;
  * @param <E> Type of Event Emitter
  * @author Jeroen Meulemeester
  */
-public abstract class EventEmitterTest<E extends EventEmitter> {
+abstract class EventEmitterTest<E extends EventEmitter> {
 
   /**
    * Factory used to create a new instance of the test object with a default observer
@@ -81,7 +81,7 @@ public abstract class EventEmitterTest<E extends EventEmitter> {
    * is executed twice, once without a default emitter and once with
    */
   @Test
-  public void testAllDays() {
+  void testAllDays() {
     testAllDaysWithoutDefaultObserver(specialDay, event);
     testAllDaysWithDefaultObserver(specialDay, event);
   }

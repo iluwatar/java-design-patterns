@@ -28,7 +28,7 @@ package com.iluwatar.event.aggregator;
  *
  * @author Jeroen Meulemeester
  */
-public class LordBaelishTest extends EventEmitterTest<LordBaelish> {
+class LordBaelishTest extends EventEmitterTest<LordBaelish> {
 
   /**
    * Create a new test instance, using the correct object factory

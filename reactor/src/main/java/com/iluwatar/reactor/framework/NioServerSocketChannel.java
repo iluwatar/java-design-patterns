@@ -30,16 +30,14 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A wrapper over {@link NioServerSocketChannel} which can read and write data on a {@link
  * SocketChannel}.
  */
+@Slf4j
 public class NioServerSocketChannel extends AbstractNioChannel {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(NioServerSocketChannel.class);
 
   private final int port;
 

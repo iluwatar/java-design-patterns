@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 public class MonadTest {
 
   @Test
-  public void testForInvalidName() {
+  void testForInvalidName() {
     var tom = new User(null, 21, Sex.MALE, "tom@foo.bar");
     assertThrows(
         IllegalStateException.class,
@@ -46,7 +46,7 @@ public class MonadTest {
   }
 
   @Test
-  public void testForInvalidAge() {
+  void testForInvalidAge() {
     var john = new User("John", 17, Sex.MALE, "john@qwe.bar");
     assertThrows(
         IllegalStateException.class,
@@ -58,7 +58,7 @@ public class MonadTest {
   }
 
   @Test
-  public void testForValid() {
+  void testForValid() {
     var sarah = new User("Sarah", 42, Sex.FEMALE, "sarah@det.org");
     var validated = Validator.of(sarah)
         .validate(User::getName, Objects::nonNull, "name cannot be null")
