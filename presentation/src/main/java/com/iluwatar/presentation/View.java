@@ -56,6 +56,9 @@ public class View {
     txtComposer.setText(model.getComposer());
   }
 
+  /**
+   * create the GUI
+   */
   public void createView() {
     JFrame frame = new JFrame("Album");
     Box b1 = Box.createHorizontalBox();
