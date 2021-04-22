@@ -23,9 +23,6 @@ public class DsAlbum {
    */
   public void addAlbums(int rowId, String title, String artist,
                         boolean isClassical, String composer) {
-    if (albumsCache == null) {
-      return;
-    }
     this.albumsCache.add(new Album(rowId, title, artist, isClassical, composer));
   }
 
