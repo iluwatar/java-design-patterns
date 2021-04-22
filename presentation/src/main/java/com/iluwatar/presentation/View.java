@@ -112,7 +112,6 @@ public class View {
     b2.add(apply);
     b2.add(cancel);
 
-    //设置窗口的关闭动作、标题、大小位置以及可见性等
     frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     frame.setBounds(200, 200, 500, 300);
     frame.setVisible(true);
