@@ -49,7 +49,7 @@ public class App implements Runnable {
     var sword = new SwordOfAragorn();
     // Creation of creatures.
     List<Creature> creatures = new ArrayList<>();
-    for (int i = 0; i < WORKERS; i++) {
+    for (var i = 0; i < WORKERS; i++) {
       creatures.add(new Elf(String.format("Elf %s", i)));
       creatures.add(new Orc(String.format("Orc %s", i)));
       creatures.add(new Human(String.format("Human %s", i)));
@@ -57,7 +57,7 @@ public class App implements Runnable {
     int totalFiends = WORKERS * MULTIPLICATION_FACTOR;
     ExecutorService service = Executors.newFixedThreadPool(totalFiends);
     // Attach every creature and the sword is a Fiend to fight for the sword.
-    for (int i = 0; i < totalFiends; i = i + MULTIPLICATION_FACTOR) {
+    for (var i = 0; i < totalFiends; i = i + MULTIPLICATION_FACTOR) {
       service.submit(new Feind(creatures.get(i), sword));
       service.submit(new Feind(creatures.get(i + 1), sword));
       service.submit(new Feind(creatures.get(i + 2), sword));
