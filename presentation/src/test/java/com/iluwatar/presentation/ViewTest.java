@@ -8,6 +8,7 @@ public class ViewTest {
   @Test
   void testSave(){
     View view = new View();
+    view.createView();
     view.txtArtist.setText("testArtist");
     view.saveToPMod();
     assertEquals("testArtist", view.model.getArtist());
@@ -16,6 +17,7 @@ public class ViewTest {
   @Test
   void testLoad(){
     View view = new View();
+    view.createView();
     view.model.setSelectedAlbumNumber(2);
     view.loadFromPMod();
     assertEquals(albumList[1], view.model.getTitle());

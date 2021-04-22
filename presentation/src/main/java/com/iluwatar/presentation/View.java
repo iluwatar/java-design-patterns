@@ -33,7 +33,6 @@ public class View {
   public View() {
     model = new PresentationMod(PresentationMod.albumDataSet());
     notLoadView = true;
-    createView();
   }
 
   /**
@@ -57,7 +56,7 @@ public class View {
     txtComposer.setText(model.getComposer());
   }
 
-  private void createView() {
+  public void createView() {
     JFrame frame = new JFrame("Album");
     Box b1 = Box.createHorizontalBox();
 
