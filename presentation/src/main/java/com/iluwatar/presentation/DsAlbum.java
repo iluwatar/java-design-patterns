@@ -1,6 +1,7 @@
 package com.iluwatar.presentation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * a class used to deal with albums.
@@ -8,8 +9,8 @@ import java.util.ArrayList;
  * @author EdisonE3
  */
 public class DsAlbum {
-  public ArrayList<Album> albums;
-  public ArrayList<Album> albumsCache;
+  public List<Album> albums;
+  public List<Album> albumsCache;
 
   /**
    * a constructor method.

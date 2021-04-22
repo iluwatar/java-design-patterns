@@ -45,7 +45,7 @@ public class PresentationTest {
         PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
         final int selectId = 2;
         model.setSelectedAlbumNumber(selectId);
-        assertEquals(model.getTitle(), albumList[selectId-1]);
+        assertEquals(albumList[selectId-1], model.getTitle());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class PresentationTest {
         PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
         String testTitle = "TestTile";
         model.setTitle(testTitle);
-        assertEquals(model.getTitle(), testTitle);
+        assertEquals(testTitle, model.getTitle());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class PresentationTest {
         PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
         String testArtist = "TestArtist";
         model.setArtist(testArtist);
-        assertEquals(model.getArtist(), testArtist);
+        assertEquals(testArtist, model.getArtist());
     }
 
     @Test
@@ -78,11 +78,11 @@ public class PresentationTest {
 
         model.setIsClassical(false);
         model.setComposer(testComposer);
-        assertEquals(model.getComposer(), "");
+        assertEquals("", model.getComposer());
 
         model.setIsClassical(true);
         model.setComposer(testComposer);
-        assertEquals(model.getComposer(), testComposer);
+        assertEquals(testComposer, model.getComposer());
     }
 
 
