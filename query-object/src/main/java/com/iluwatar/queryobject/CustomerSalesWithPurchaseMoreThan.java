@@ -17,9 +17,9 @@ public class CustomerSalesWithPurchaseMoreThan implements QueryObject<Customer> 
   @Override
   public Predicate<Customer> query() {
     return (customer) -> customer.orders.stream().mapToDouble(
-                customerOrder -> customerOrder.orderDetails.stream().mapToDouble(
-                        orderDetail -> orderDetail.unitPrice * orderDetail.quantity
-                ).sum()
+        customerOrder -> customerOrder.orderDetails.stream().mapToDouble(
+            orderDetail -> orderDetail.unitPrice * orderDetail.quantity
+        ).sum()
     ).sum() > amount;
   }
 }
