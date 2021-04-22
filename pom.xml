@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-
     The MIT License
     Copyright © 2014-2021 Ilkka Seppälä
-
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
-
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
-
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,16 +17,15 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
-
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.24.0-SNAPSHOT</version>
+    <version>1.25.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <inceptionYear>2014-2021</inceptionYear>
@@ -46,7 +41,6 @@
         <junit.version>4.12</junit.version>
         <junit-jupiter.version>5.7.1</junit-jupiter.version>
         <junit-vintage.version>${junit-jupiter.version}</junit-vintage.version>
-        <sping-test-junit5.version>1.0.2</sping-test-junit5.version>
         <compiler.version>3.8.1</compiler.version>
         <jacoco.version>0.8.6</jacoco.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
@@ -68,6 +62,7 @@
         <system-lambda.version>1.1.0</system-lambda.version>
         <urm.version>2.0.0</urm.version>
         <mockito-junit-jupiter.version>3.5.0</mockito-junit-jupiter.version>
+        <lombok.version>1.18.14</lombok.version>
         <byte-buddy.version>1.10.21</byte-buddy.version>
         <javassist.version>3.27.0-GA</javassist.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
@@ -75,6 +70,7 @@
         <directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
         <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
+	<commons-io.version>2.6</commons-io.version>
 
         <!-- SonarCloud -->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -221,7 +217,9 @@
         <module>separated-interface</module>
         <module>special-case</module>
         <module>parameter-object</module>
-
+        <module>active-object</module>
+        <module>model-view-viewmodel</module>
+        <module>query-object</module>
     </modules>
 
     <repositories>
@@ -318,12 +316,6 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>com.github.sbrannen</groupId>
-                <artifactId>spring-test-junit5</artifactId>
-                <version>${sping-test-junit5.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${mockito.version}</version>
@@ -375,9 +367,13 @@
                 <version>${system-lambda.version}</version>
                 <scope>test</scope>
             </dependency>
-        </dependencies>
+		    <dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>${commons-io.version}</version>
+		        </dependency>
+            </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -393,6 +389,12 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
             <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
