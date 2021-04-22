@@ -38,6 +38,9 @@ public class View {
     createView();
   }
 
+  /**
+   * save the data to PresentationModel.
+   */
   public void saveToPMod() {
     model.setArtist(txtArtist.getText());
     model.setTitle(txtTitle.getText());
@@ -45,6 +48,9 @@ public class View {
     model.setComposer(txtComposer.getText());
   }
 
+  /**
+   * load the data from PresentationModel.
+   */
   public void loadFromPMod() {
     txtArtist.setText(model.getArtist());
     txtTitle.setText(model.getTitle());
