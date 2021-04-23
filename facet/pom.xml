@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>compose-method</artifactId>
+    <artifactId>facet</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
