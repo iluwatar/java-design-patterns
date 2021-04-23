@@ -2,6 +2,7 @@ package com.iluwatar.collectingparameter;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The intention of the collecting parameter pattern is to help reduce the bulky method which needs
@@ -10,6 +11,7 @@ import java.util.List;
  * In this example, we want to collect information from the {@link Apple} and throw the weightInfo
  * and typeInfo to the {@link Apple} object to collect their weight and type.
  */
+@Slf4j
 public class App {
   /**
    * Program entry point.
@@ -38,7 +40,7 @@ public class App {
       apple.writeWeightTo(weightInfo);
     }
     for (String message : weightInfo) {
-      System.out.print(message);
+      LOGGER.info(message);
     }
   }
 
@@ -53,7 +55,7 @@ public class App {
       apple.writeTypeTo(typeInfo);
     }
     for (String message : typeInfo) {
-      System.out.print(message);
+      LOGGER.info(message);
     }
   }
 }
