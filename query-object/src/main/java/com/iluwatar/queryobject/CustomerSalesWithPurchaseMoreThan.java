@@ -8,7 +8,7 @@ import java.util.function.Predicate;
  * total spending according to all its orders is larger than a given amount.
  */
 public class CustomerSalesWithPurchaseMoreThan implements QueryObject<Customer> {
-  public double amount;
+  public final double amount;
 
   public CustomerSalesWithPurchaseMoreThan(double amount) {
     this.amount = amount;
@@ -16,7 +16,7 @@ public class CustomerSalesWithPurchaseMoreThan implements QueryObject<Customer> 
 
   @Override
   public Predicate<Customer> query() {
-    return (customer) -> customer.orders.stream().mapToDouble(
+    return customer -> customer.orders.stream().mapToDouble(
         customerOrder -> customerOrder.orderDetails.stream().mapToDouble(
             orderDetail -> orderDetail.unitPrice * orderDetail.quantity
         ).sum()

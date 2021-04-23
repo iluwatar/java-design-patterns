@@ -6,8 +6,8 @@ package com.iluwatar.queryobject;
  * similarly.
  */
 public class CustomerOrderDetail {
-  public int quantity;
-  public double unitPrice;
+  public final int quantity;
+  public final double unitPrice;
 
   public CustomerOrderDetail(int quantity, double unitPrice) {
     this.quantity = quantity;

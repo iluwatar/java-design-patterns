@@ -10,7 +10,7 @@ import java.util.Collection;
  * its owner customer.
  */
 public class Customer {
-  public String name;
+  public final String name;
   public final Collection<CustomerOrder> orders;
 
   public Customer(String name, Collection<CustomerOrder> orders) {

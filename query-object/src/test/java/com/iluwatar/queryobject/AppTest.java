@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 /**
  * Application Test Entry
  */
-public class AppTest {
+class AppTest {
 
     /**
      * Issue: Add at least one assertion to this test case.

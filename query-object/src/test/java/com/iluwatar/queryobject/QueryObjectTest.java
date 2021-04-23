@@ -9,10 +9,10 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class QueryObjectTest {
+class QueryObjectTest {
     private Repository<Customer> repos;
     @BeforeEach
-    public void setUp(){
+    void setUp(){
         repos = new Repository<>(new Dataset<>(
                 Arrays.asList(
                         new Customer(
@@ -58,30 +58,42 @@ public class QueryObjectTest {
         ).entities);
     }
 
+    /**
+     * Test perform the query with single condition
+     */
     @Test
-    public void testWithSingleCondition(){
+    void testWithSingleCondition(){
         var condition = new CustomersWithOrdersAmountMoreThan(2);
         var result = repos.query(condition);
         assertEquals(1, result.size());
     }
 
+    /**
+     * Test perform the query with multiple same conditions
+     */
     @Test
-    public void testWithDuplicatedCondition(){
+    void testWithDuplicatedCondition(){
         var condition = new CustomersWithOrdersAmountMoreThan(2);
         var result = repos.query(condition, condition);
         assertEquals(1, result.size());
     }
 
+    /**
+     * Test combining multiple conjunctive query objects
+     */
     @Test
-    public void testWithMultipleConditions(){
+    void testWithMultipleConditions(){
         var condition1 = new CustomersWithOrdersAmountMoreThan(2);
         var condition2 = new CustomerSalesWithPurchaseMoreThan(200);
         var result = repos.query(condition1, condition2);
         assertEquals(0, result.size());
     }
 
+    /**
+     * Test combining multiple conjunctive query objects
+     */
     @Test
-    public void testWithMultipleConditions2(){
+    void testWithMultipleConditions2(){
         var condition1 = new CustomersWithOrdersAmountMoreThan(2);
         var condition2 = new CustomerSalesWithPurchaseMoreThan(100);
         var result = repos.query(condition1, condition2);

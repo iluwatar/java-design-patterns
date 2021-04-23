@@ -25,8 +25,8 @@ public class App {
    */
   public static void main(String[] args) {
 
-    Dataset<Customer> customerDataset = new Dataset<Customer>(
-            Arrays.<Customer>asList(
+    Dataset<Customer> customerDataset = new Dataset(
+            Arrays.asList(
                     new Customer(
                             "Customer 1",
                             Arrays.asList(
@@ -64,27 +64,37 @@ public class App {
 
     LOGGER.info("Created dataset with 2 customers.");
 
-    Repository<Customer> customerRepository = new Repository<Customer>(customerDataset.entities);
+    Repository<Customer> customerRepository = new Repository<>(customerDataset.entities);
     double purchaseAmount = 200;
     QueryObject<Customer> queryObject = new CustomerSalesWithPurchaseMoreThan(purchaseAmount);
 
-    LOGGER.info("Created query to find all the customers that have spent more than "
-            + purchaseAmount + ".");
+    LOGGER.info(
+            String.format(
+                    "Created query to find all the customers that have spent more than %f.",
+                    purchaseAmount));
 
     Collection<Customer> resultCustomers = customerRepository.query(queryObject);
-    for (var results : resultCustomers) {
-      LOGGER.info(results.name + " has more than " + purchaseAmount + " purchase amount!");
+    for (var result : resultCustomers) {
+      LOGGER.info(
+              String.format(
+                      "%s has more than %f purchase amount!",
+              result.name, purchaseAmount));
     }
 
-    int orderNumber = 1;
+    var orderNumber = 1;
     queryObject = new CustomersWithOrdersAmountMoreThan(orderNumber);
 
-    LOGGER.info("Created query to find all the customers that have made more than "
-            + orderNumber + " orders.");
+    LOGGER.info(
+            String.format(
+                    "Created query to find all the customers that have made more than %d orders.",
+            orderNumber));
 
     resultCustomers = customerRepository.query(queryObject);
     for (var results : resultCustomers) {
-      LOGGER.info(results.name + " has more than " + orderNumber + " orders!");
+      LOGGER.info(
+              String.format(
+                      "%s has more than %d orders!",
+                      results.name, orderNumber));
     }
   }
 }
