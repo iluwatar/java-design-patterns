@@ -17,7 +17,7 @@ public class GiantModelTest {
     final var model = new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT,
         Nourishment.SATURATED);
     assertEquals(Health.HEALTHY, model.getHealth());
-    var messageFormat = "The giant looks %s, alert and saturated.";
+    var messageFormat = "Giant giant1, The giant looks %s, alert and saturated.";
     for (final var health : Health.values()) {
       model.setHealth(health);
       assertEquals(health, model.getHealth());
@@ -33,7 +33,7 @@ public class GiantModelTest {
     final var model = new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT,
         Nourishment.SATURATED);
     assertEquals(Fatigue.ALERT, model.getFatigue());
-    var messageFormat = "The giant looks healthy, %s and saturated.";
+    var messageFormat = "Giant giant1, The giant looks healthy, %s and saturated.";
     for (final var fatigue : Fatigue.values()) {
       model.setFatigue(fatigue);
       assertEquals(fatigue, model.getFatigue());
@@ -49,7 +49,7 @@ public class GiantModelTest {
     final var model = new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT,
         Nourishment.SATURATED);
     assertEquals(Nourishment.SATURATED, model.getNourishment());
-    var messageFormat = "The giant looks healthy, alert and %s.";
+    var messageFormat = "Giant giant1, The giant looks healthy, alert and %s.";
     for (final var nourishment : Nourishment.values()) {
       model.setNourishment(nourishment);
       assertEquals(nourishment, model.getNourishment());
