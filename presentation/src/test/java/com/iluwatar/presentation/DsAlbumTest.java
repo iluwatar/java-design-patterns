@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DsAlbumTest {
+class DsAlbumTest {
   @Test
   void testAdd_true(){
     DsAlbum dsAlbum = new DsAlbum();
