@@ -40,7 +40,7 @@ public class View {
    * save the data to PresentationModel.
    */
   public void saveToPMod() {
-    LOGGER.info("save data to PresentationModel");
+    LOGGER.info("Save data to PresentationModel");
     model.setArtist(txtArtist.getText());
     model.setTitle(txtTitle.getText());
     model.setIsClassical(chkClassical.isSelected());
@@ -51,7 +51,7 @@ public class View {
    * load the data from PresentationModel.
    */
   public void loadFromPMod() {
-    LOGGER.info("load data from PresentationModel");
+    LOGGER.info("Load data from PresentationModel");
     txtArtist.setText(model.getArtist());
     txtTitle.setText(model.getTitle());
     chkClassical.setSelected(model.getIsClassical());

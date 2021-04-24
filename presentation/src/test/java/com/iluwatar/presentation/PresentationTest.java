@@ -41,7 +41,7 @@ class PresentationTest {
     }
 
     @Test
-    void testSetSelectedAlbumNumber(){
+    void testSetSelectedAlbumNumber_1(){
         PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
         final int selectId = 2;
         model.setSelectedAlbumNumber(selectId);
@@ -49,7 +49,15 @@ class PresentationTest {
     }
 
     @Test
-    void testSetTitle(){
+    void testSetSelectedAlbumNumber_2(){
+        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+        final int selectId = 4;
+        model.setSelectedAlbumNumber(selectId);
+        assertEquals(albumList[selectId-1], model.getTitle());
+    }
+
+    @Test
+    void testSetTitle_1(){
         PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
         String testTitle = "TestTile";
         model.setTitle(testTitle);
@@ -57,9 +65,25 @@ class PresentationTest {
     }
 
     @Test
-    void testSetArtist(){
+    void testSetTitle_2(){
+        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+        String testTitle = "";
+        model.setTitle(testTitle);
+        assertEquals(testTitle, model.getTitle());
+    }
+
+    @Test
+    void testSetArtist_1(){
         PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
         String testArtist = "TestArtist";
+        model.setArtist(testArtist);
+        assertEquals(testArtist, model.getArtist());
+    }
+
+    @Test
+    void testSetArtist_2(){
+        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+        String testArtist = "";
         model.setArtist(testArtist);
         assertEquals(testArtist, model.getArtist());
     }
@@ -72,13 +96,19 @@ class PresentationTest {
     }
 
     @Test
-    void testSetComposer(){
+    void testSetComposer_false(){
         PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
         String testComposer = "TestComposer";
 
         model.setIsClassical(false);
         model.setComposer(testComposer);
         assertEquals("", model.getComposer());
+    }
+
+    @Test
+    void testSetComposer_true(){
+        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+        String testComposer = "TestComposer";
 
         model.setIsClassical(true);
         model.setComposer(testComposer);
