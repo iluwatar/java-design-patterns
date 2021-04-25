@@ -9,7 +9,7 @@ import com.iluwatar.model.view.controller.Nourishment;
  */
 public class GiantModel {
 
-  private final com.iluwatar.model.view.controller.GiantModel giantModel;
+  private final com.iluwatar.model.view.controller.GiantModel model;
   private final String name;
 
   /**
@@ -22,7 +22,7 @@ public class GiantModel {
    */
   GiantModel(String name, Health health, Fatigue fatigue, Nourishment nourishment) {
     this.name = name;
-    this.giantModel = new com.iluwatar.model.view.controller.GiantModel(health, fatigue,
+    this.model = new com.iluwatar.model.view.controller.GiantModel(health, fatigue,
         nourishment);
   }
 
@@ -32,7 +32,7 @@ public class GiantModel {
    * @return the health
    */
   Health getHealth() {
-    return giantModel.getHealth();
+    return model.getHealth();
   }
 
   /**
@@ -41,7 +41,7 @@ public class GiantModel {
    * @param health the health
    */
   void setHealth(Health health) {
-    giantModel.setHealth(health);
+    model.setHealth(health);
   }
 
   /**
@@ -50,11 +50,11 @@ public class GiantModel {
    * @return the fatigue
    */
   Fatigue getFatigue() {
-    return giantModel.getFatigue();
+    return model.getFatigue();
   }
 
   void setFatigue(Fatigue fatigue) {
-    giantModel.setFatigue(fatigue);
+    model.setFatigue(fatigue);
   }
 
   /**
@@ -63,7 +63,7 @@ public class GiantModel {
    * @return the nourishment
    */
   Nourishment getNourishment() {
-    return giantModel.getNourishment();
+    return model.getNourishment();
   }
 
   /**
@@ -72,13 +72,13 @@ public class GiantModel {
    * @param nourishment the nourishment
    */
   void setNourishment(Nourishment nourishment) {
-    giantModel.setNourishment(nourishment);
+    model.setNourishment(nourishment);
   }
 
   @Override
   public String toString() {
     return String
         .format("Giant %s, The giant looks %s, %s and %s.", name,
-            giantModel.getHealth(), giantModel.getFatigue(), giantModel.getNourishment());
+            model.getHealth(), model.getFatigue(), model.getNourishment());
   }
 }
