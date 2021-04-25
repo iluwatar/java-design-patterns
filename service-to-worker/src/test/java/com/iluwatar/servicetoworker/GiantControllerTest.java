@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type Giant controller test.
  */
-public class GiantControllerTest {
+class GiantControllerTest {
 
   /**
    * Test set command.

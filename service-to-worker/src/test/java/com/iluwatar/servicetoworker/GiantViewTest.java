@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type Giant view test.
  */
-public class GiantViewTest {
+class GiantViewTest {
 
   /**
    * Test dispaly giant.

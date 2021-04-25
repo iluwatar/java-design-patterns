@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type Dispatcher test.
  */
-public class DispatcherTest {
+class DispatcherTest {
 
   /**
    * Test perform action.

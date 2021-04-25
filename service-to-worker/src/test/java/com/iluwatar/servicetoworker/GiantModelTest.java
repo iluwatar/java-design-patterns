@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type Giant model test.
  */
-public class GiantModelTest {
+class GiantModelTest {
 
   /**
    * Verify if the health value is set properly though the constructor and setter

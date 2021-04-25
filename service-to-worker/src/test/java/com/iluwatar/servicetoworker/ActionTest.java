@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type Action test.
  */
-public class ActionTest {
+class ActionTest {
 
   /**
    * Verify if the health value is set properly though the constructor and setter
