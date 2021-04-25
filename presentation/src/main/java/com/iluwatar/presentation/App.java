@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
  * a class used to start this demo.
  */
 @Slf4j
-class App {
+public class App {
   /**
    * main method.
    *

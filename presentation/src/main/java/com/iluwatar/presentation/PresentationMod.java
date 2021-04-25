@@ -26,15 +26,15 @@ public class PresentationMod {
    * @return a instance of DsAlbum which store the data.
    */
   public static DsAlbum albumDataSet() {
-    String[] titleList = {"HQ", "The Rough Dancer and Cyclical Night",
-                          "The Black Light", "Symphony No.5"};
-    String[] artistList = {"Roy Harper", "Astor Piazzola",
-                           "The Black Light", "CBSO"};
-    boolean[] isClassicalList = {false, false, false, true};
-    String[] composerList = {null, null, null, "Sibelius"};
+    var titleList = new String[]{"HQ", "The Rough Dancer and Cyclical Night",
+                                 "The Black Light", "Symphony No.5"};
+    var artistList = new String[]{"Roy Harper", "Astor Piazzola",
+                                  "The Black Light", "CBSO"};
+    var isClassicalList = new boolean[]{false, false, false, true};
+    var composerList = new String[]{null, null, null, "Sibelius"};
 
     var result = new DsAlbum();
-    for (int i = 1; i <= titleList.length; i++) {
+    for (var i = 1; i <= titleList.length; i++) {
       result.addAlbums(titleList[i - 1], artistList[i - 1],
               isClassicalList[i - 1], composerList[i - 1]);
     }

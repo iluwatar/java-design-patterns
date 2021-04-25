@@ -106,8 +106,8 @@ public class View {
     txtArtist = new TextField();
     txtTitle = new TextField();
 
-    final int widthTxt = 200;
-    final int heightTxt = 50;
+    final var widthTxt = 200;
+    final var heightTxt = 50;
     txtArtist.setSize(widthTxt, heightTxt);
     txtTitle.setSize(widthTxt, heightTxt);
 
@@ -147,10 +147,10 @@ public class View {
     b2.add(apply);
     b2.add(cancel);
 
-    final int x = 200;
-    final int y = 200;
-    final int width = 500;
-    final int height = 300;
+    final var x = 200;
+    final var y = 200;
+    final var width = 500;
+    final var height = 300;
     frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     frame.setBounds(x, y, width, height);
     frame.setVisible(true);
