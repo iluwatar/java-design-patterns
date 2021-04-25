@@ -10,10 +10,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class Album {
   /**
-   *  the id of the row.
-   */
-  private int rowId;
-  /**
    * the title of the album.
    */
   private String title;

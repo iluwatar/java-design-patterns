@@ -9,31 +9,54 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * Generates the GUI of albums.
  */
+@Getter
 @Slf4j
 public class View {
-  PresentationMod model;
+  /**
+   * the model that controls this view.
+   */
+  private final PresentationMod model;
 
-  TextField txtTitle;
-  TextField txtArtist;
-  JCheckBox chkClassical;
-  TextField txtComposer;
-  JList<String> albumList;
-  JButton apply;
-  JButton cancel;
-
-  boolean notLoadView;
+  /**
+   * the filed to show and modify title.
+    */
+  private TextField txtTitle;
+  /**
+   * the filed to show and modify the name of artist.
+   */
+  private TextField txtArtist;
+  /**
+   * the checkbox for is classical.
+   */
+  private JCheckBox chkClassical;
+  /**
+   * the filed to show and modify composer.
+   */
+  private TextField txtComposer;
+  /**
+   * a list to show all the name of album.
+   */
+  private JList<String> albumList;
+  /**
+   * a button to apply of all the change.
+   */
+  private JButton apply;
+  /**
+   * roll back the change.
+   */
+  private JButton cancel;
 
   /**
    * constructor method.
    */
   public View() {
     model = new PresentationMod(PresentationMod.albumDataSet());
-    notLoadView = true;
   }
 
   /**
@@ -70,7 +93,7 @@ public class View {
     albumList = new JList<>(model.getAlbumList());
     albumList.addMouseListener(new MouseAdapter() {
       @Override
-      public void mouseClicked(MouseEvent e) {
+      public void mouseClicked(final MouseEvent e) {
         model.setSelectedAlbumNumber(albumList.getSelectedIndex() + 1);
         loadFromPMod();
       }
@@ -82,8 +105,11 @@ public class View {
 
     txtArtist = new TextField();
     txtTitle = new TextField();
-    txtArtist.setSize(200, 50);
-    txtTitle.setSize(200, 50);
+
+    final int widthTxt = 200;
+    final int heightTxt = 50;
+    txtArtist.setSize(widthTxt, heightTxt);
+    txtTitle.setSize(widthTxt, heightTxt);
 
     chkClassical = new JCheckBox();
     txtComposer = new TextField();
@@ -93,13 +119,13 @@ public class View {
         txtComposer.setText("");
       }
     });
-    txtComposer.setSize(200, 50);
+    txtComposer.setSize(widthTxt, heightTxt);
     txtComposer.setEditable(model.getIsClassical());
 
     apply = new JButton("Apply");
     apply.addMouseListener(new MouseAdapter() {
       @Override
-      public void mouseClicked(MouseEvent e) {
+      public void mouseClicked(final MouseEvent e) {
         saveToPMod();
         loadFromPMod();
       }
@@ -107,7 +133,7 @@ public class View {
     cancel = new JButton("Cancel");
     cancel.addMouseListener(new MouseAdapter() {
       @Override
-      public void mouseClicked(MouseEvent e) {
+      public void mouseClicked(final MouseEvent e) {
         loadFromPMod();
       }
     });
@@ -121,8 +147,12 @@ public class View {
     b2.add(apply);
     b2.add(cancel);
 
+    final int x = 200;
+    final int y = 200;
+    final int width = 500;
+    final int height = 300;
     frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    frame.setBounds(200, 200, 500, 300);
+    frame.setBounds(x, y, width, height);
     frame.setVisible(true);
   }
 

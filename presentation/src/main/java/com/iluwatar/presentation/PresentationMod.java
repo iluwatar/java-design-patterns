@@ -26,48 +26,69 @@ public class PresentationMod {
    * @return a instance of DsAlbum which store the data.
    */
   public static DsAlbum albumDataSet() {
+    String[] titleList = {"HQ", "The Rough Dancer and Cyclical Night",
+                          "The Black Light", "Symphony No.5"};
+    String[] artistList = {"Roy Harper", "Astor Piazzola",
+                           "The Black Light", "CBSO"};
+    boolean[] isClassicalList = {false, false, false, true};
+    String[] composerList = {null, null, null, "Sibelius"};
+
     var result = new DsAlbum();
-    result.addAlbums(1, "HQ", "Roy Harper",
-            false, null);
-    result.addAlbums(2, "The Rough Dancer and Cyclical Night",
-            "Astor Piazzola", false, null);
-    result.addAlbums(3, "The Black Light", "Calexico",
-            false, null);
-    result.addAlbums(4, "Symphony No.5", "CBSO",
-            true, "Sibelius");
+    for (int i = 1; i <= titleList.length; i++) {
+      result.addAlbums(titleList[i - 1], artistList[i - 1],
+              isClassicalList[i - 1], composerList[i - 1]);
+    }
     return result;
   }
 
   /**
    * constructor method.
+   *
+   * @param dataOfAlbums the data of all the albums
    */
-  public PresentationMod(final DsAlbum data) {
-    this.data = data;
+  public PresentationMod(final DsAlbum dataOfAlbums) {
+    this.data = dataOfAlbums;
     this.selectedAlbumNumber = 1;
-    this.selectedAlbum = data.getAlbums().get(0);
+    this.selectedAlbum = this.data.getAlbums().get(0);
   }
 
   /**
    * Changes the value of selectedAlbumNumber.
    *
-   * @param selectedAlbumNumber the number of album which is shown on the view.
+   * @param albumNumber the number of album which is shown on the view.
    */
-  public void setSelectedAlbumNumber(int selectedAlbumNumber) {
+  public void setSelectedAlbumNumber(final int albumNumber) {
     LOGGER.info("Change select number from {} to {}",
-            this.selectedAlbumNumber, selectedAlbumNumber);
-    this.selectedAlbumNumber = selectedAlbumNumber;
+            this.selectedAlbumNumber, albumNumber);
+    this.selectedAlbumNumber = albumNumber;
     this.selectedAlbum = data.getAlbums().get(this.selectedAlbumNumber - 1);
   }
 
+  /**
+   * get the title of selected album.
+   *
+   * @return the tile of selected album.
+   */
   public String getTitle() {
     return selectedAlbum.getTitle();
   }
 
-  public void setTitle(String value) {
-    LOGGER.info("Change album title from {} to {}", selectedAlbum.getTitle(), value);
+  /**
+   * set the title of selected album.
+   *
+   * @param value the title which user want to user.
+   */
+  public void setTitle(final String value) {
+    LOGGER.info("Change album title from {} to {}",
+            selectedAlbum.getTitle(), value);
     selectedAlbum.setTitle(value);
   }
 
+  /**
+   * get the artist of selected album.
+   *
+   * @return the artist of selected album.
+   */
   public String getArtist() {
     return selectedAlbum.getArtist();
   }
@@ -77,33 +98,50 @@ public class PresentationMod {
    *
    * @param value the name want artist to be.
    */
-  public void setArtist(String value) {
-    LOGGER.info("Change album artist from {} to {}", selectedAlbum.getArtist(), value);
+  public void setArtist(final String value) {
+    LOGGER.info("Change album artist from {} to {}",
+            selectedAlbum.getArtist(), value);
     selectedAlbum.setArtist(value);
   }
 
   /**
    * Gets a boolean value which represents whether the album is classical.
+   *
+   * @return is the album classical.
    */
   public boolean getIsClassical() {
     return selectedAlbum.isClassical();
   }
 
-  public void setIsClassical(boolean value) {
-    LOGGER.info("Change album isClassical from {} to {}", selectedAlbum.isClassical(), value);
+  /**
+   * set the isClassical of album.
+   *
+   * @param value is the album classical.
+   */
+  public void setIsClassical(final boolean value) {
+    LOGGER.info("Change album isClassical from {} to {}",
+            selectedAlbum.isClassical(), value);
     selectedAlbum.setClassical(value);
   }
 
+  /**
+   * get is classical of the selected album.
+   *
+   * @return is the album classical.
+   */
   public String getComposer() {
     return selectedAlbum.isClassical() ? selectedAlbum.getComposer() : "";
   }
 
   /**
    * Sets the name of composer when the album is classical.
+   *
+   * @param value the name of composer.
    */
-  public void setComposer(String value) {
+  public void setComposer(final String value) {
     if (selectedAlbum.isClassical()) {
-      LOGGER.info("Change album composer from {} to {}", selectedAlbum.getComposer(), value);
+      LOGGER.info("Change album composer from {} to {}",
+              selectedAlbum.getComposer(), value);
       selectedAlbum.setComposer(value);
     } else {
       LOGGER.info("Composer can not be changed");
@@ -122,6 +160,4 @@ public class PresentationMod {
     }
     return result;
   }
-
-
 }

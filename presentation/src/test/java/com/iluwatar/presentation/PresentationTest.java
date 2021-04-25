@@ -31,87 +31,87 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PresentationTest {
-    String[] albumList = {"HQ", "The Rough Dancer and Cyclical Night", "The Black Light", "Symphony No.5"};
+  String[] albumList = {"HQ", "The Rough Dancer and Cyclical Night", "The Black Light", "Symphony No.5"};
 
-    @Test
-    void testCreateAlbumList(){
-        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
-        String[] list = model.getAlbumList();
-        assertEquals(Arrays.toString(albumList), Arrays.toString(list));
-    }
+  @Test
+  void testCreateAlbumList() {
+    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    String[] list = model.getAlbumList();
+    assertEquals(Arrays.toString(albumList), Arrays.toString(list));
+  }
 
-    @Test
-    void testSetSelectedAlbumNumber_1(){
-        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
-        final int selectId = 2;
-        model.setSelectedAlbumNumber(selectId);
-        assertEquals(albumList[selectId-1], model.getTitle());
-    }
+  @Test
+  void testSetSelectedAlbumNumber_1() {
+    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    final int selectId = 2;
+    model.setSelectedAlbumNumber(selectId);
+    assertEquals(albumList[selectId - 1], model.getTitle());
+  }
 
-    @Test
-    void testSetSelectedAlbumNumber_2(){
-        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
-        final int selectId = 4;
-        model.setSelectedAlbumNumber(selectId);
-        assertEquals(albumList[selectId-1], model.getTitle());
-    }
+  @Test
+  void testSetSelectedAlbumNumber_2() {
+    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    final int selectId = 4;
+    model.setSelectedAlbumNumber(selectId);
+    assertEquals(albumList[selectId - 1], model.getTitle());
+  }
 
-    @Test
-    void testSetTitle_1(){
-        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
-        String testTitle = "TestTile";
-        model.setTitle(testTitle);
-        assertEquals(testTitle, model.getTitle());
-    }
+  @Test
+  void testSetTitle_1() {
+    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    String testTitle = "TestTile";
+    model.setTitle(testTitle);
+    assertEquals(testTitle, model.getTitle());
+  }
 
-    @Test
-    void testSetTitle_2(){
-        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
-        String testTitle = "";
-        model.setTitle(testTitle);
-        assertEquals(testTitle, model.getTitle());
-    }
+  @Test
+  void testSetTitle_2() {
+    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    String testTitle = "";
+    model.setTitle(testTitle);
+    assertEquals(testTitle, model.getTitle());
+  }
 
-    @Test
-    void testSetArtist_1(){
-        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
-        String testArtist = "TestArtist";
-        model.setArtist(testArtist);
-        assertEquals(testArtist, model.getArtist());
-    }
+  @Test
+  void testSetArtist_1() {
+    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    String testArtist = "TestArtist";
+    model.setArtist(testArtist);
+    assertEquals(testArtist, model.getArtist());
+  }
 
-    @Test
-    void testSetArtist_2(){
-        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
-        String testArtist = "";
-        model.setArtist(testArtist);
-        assertEquals(testArtist, model.getArtist());
-    }
+  @Test
+  void testSetArtist_2() {
+    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    String testArtist = "";
+    model.setArtist(testArtist);
+    assertEquals(testArtist, model.getArtist());
+  }
 
-    @Test
-    void testSetIsClassical(){
-        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
-        model.setIsClassical(true);
-        assertTrue(model.getIsClassical());
-    }
+  @Test
+  void testSetIsClassical() {
+    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    model.setIsClassical(true);
+    assertTrue(model.getIsClassical());
+  }
 
-    @Test
-    void testSetComposer_false(){
-        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
-        String testComposer = "TestComposer";
+  @Test
+  void testSetComposer_false() {
+    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    String testComposer = "TestComposer";
 
-        model.setIsClassical(false);
-        model.setComposer(testComposer);
-        assertEquals("", model.getComposer());
-    }
+    model.setIsClassical(false);
+    model.setComposer(testComposer);
+    assertEquals("", model.getComposer());
+  }
 
-    @Test
-    void testSetComposer_true(){
-        PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
-        String testComposer = "TestComposer";
+  @Test
+  void testSetComposer_true() {
+    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    String testComposer = "TestComposer";
 
-        model.setIsClassical(true);
-        model.setComposer(testComposer);
-        assertEquals(testComposer, model.getComposer());
-    }
+    model.setIsClassical(true);
+    model.setComposer(testComposer);
+    assertEquals(testComposer, model.getComposer());
+  }
 }

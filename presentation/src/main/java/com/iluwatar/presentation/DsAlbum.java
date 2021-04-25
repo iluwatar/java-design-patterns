@@ -28,20 +28,19 @@ public class DsAlbum {
   /**
    * a method used to add a new album to album list.
    *
-   * @param rowId       the id of the row.
    * @param title       the title of the album.
    * @param artist      the artist name of the album.
    * @param isClassical is the album classical, true or false.
    * @param composer    only when the album is classical,
    *                    composer can have content.
    */
-  public void addAlbums(final int rowId, final String title,
+  public void addAlbums(final String title,
                         final String artist, final boolean isClassical,
                         final String composer) {
     if (isClassical) {
-      this.albums.add(new Album(rowId, title, artist, true, composer));
+      this.albums.add(new Album(title, artist, true, composer));
     } else {
-      this.albums.add(new Album(rowId, title, artist, false, ""));
+      this.albums.add(new Album(title, artist, false, ""));
     }
   }
 }
