@@ -7,18 +7,18 @@ import org.slf4j.Logger;
  */
 public class RunnableSocket implements Runnable {
   /**
-   * Thread of Class
+   * Thread of Class.
    */
   private Thread thread;
   /**
-   * Role of the Thread
+   * Role of the Thread.
    */
   private final String role;
 
   /**
-   *  Logger
+   *  Logger.
    */
-  private static Logger log;
+  private static final Logger LOGG = null;
 
   /* default */RunnableSocket(final String role) {
     this.role = role;
@@ -43,7 +43,7 @@ public class RunnableSocket implements Runnable {
       try {
         Thread.sleep(1000, 100);
       } catch (InterruptedException e) {
-        log.error("Ops!", e);
+        LOGG.error("Ops!", e);
       }
     }
   }

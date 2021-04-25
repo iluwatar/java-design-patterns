@@ -1,11 +1,11 @@
 package com.iluwatar.clientserver;
 
-import org.slf4j.Logger;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import org.slf4j.Logger;
+
 
 
 /**
@@ -14,11 +14,11 @@ import java.net.Socket;
 
 public final class Client {
   /**
-   *  Logger
+   *  Logger.
    */
   private static Logger log;
   /**
-   * Port number
+   * Port number.
    */
   private static int port = 12_345;
 

@@ -15,9 +15,9 @@ import org.slf4j.Logger;
 public final class Server {
 
   /**
-   *  Logger
+   *  Logger.
    */
-  private static Logger log;
+  private static final Logger LOGG = null;
 
   private Server(){}
 
@@ -45,14 +45,14 @@ public final class Server {
       }
       LOGGER.info(baos.toString("UTF-8"));
     } catch (IOException e) {
-      log.error("Ops!", e);
+      LOGG.error("Ops!", e);
     } finally {
       try {
         inputStream.close();
         socket.close();
         serverSocket.close();
       } catch (IOException e) {
-        log.error("Ops!", e);
+        LOGG.error("Ops!", e);
       }
     }
   }
