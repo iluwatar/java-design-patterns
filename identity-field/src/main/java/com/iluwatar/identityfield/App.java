@@ -41,14 +41,14 @@ public class App {
   public static void main(String[] args) {
     List<Person> pearsonList = new LinkedList<>();
 
-    for (int i = 0; i < 5; i++) {
-      Person temp = new Person(i, "pearson");
+    for (var i = 0; i < 5; i++) {
+      Person person = new Person(i, "pearson");
       String t = "pearson" + Integer.toString(i);
-      temp.setName(t);
-      pearsonList.add(temp);
+      person.setName(t);
+      pearsonList.add(person);
     }
 
-    for (int i = 0; i < 5; i++) {
+    for (var i = 0; i < 5; i++) {
       LOGGER.info(pearsonList.get(i).getId() + "");
       LOGGER.info(pearsonList.get(i).getName());
 
