@@ -1,9 +1,9 @@
 ---
 layout: pattern
 title: Presentation-Abstraction-Control
-folder: page-object
-permalink: /patterns/page-object/
-categories: Structural
+folder: presentation-abstraction-control
+permalink: /patterns/presentation-abstraction-control/
+categories: Architectural
 tags:
 - Decoupling
 ---
