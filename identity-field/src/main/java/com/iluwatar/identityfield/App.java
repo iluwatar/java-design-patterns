@@ -39,7 +39,7 @@ public class App {
    * @param args the input arguments
    */
   public static void main(String[] args) {
-    List<Person> pearsonList = new LinkedList<Person>();
+    List<Person> pearsonList = new LinkedList<>();
 
     for (int i = 0; i < 5; i++) {
       Person temp = new Person(i, "pearson");

@@ -39,13 +39,13 @@ public class AppTest {
    */
   @Test
   public void AppTest() {
-    List<Person> pearsonList = new LinkedList<Person>();
+    List<Person> pearsonList = new LinkedList<>();
 
     for (int i = 0; i < 5; i++) {
-      Person temp = new Person(i, "pearson");
+      Person person = new Person(i, "pearson");
       String t = "pearson" + Integer.toString(i);
-      temp.setName(t);
-      pearsonList.add(temp);
+      person.setName(t);
+      pearsonList.add(person);
     }
 
     Assert.assertEquals(0, pearsonList.get(0).getId());
