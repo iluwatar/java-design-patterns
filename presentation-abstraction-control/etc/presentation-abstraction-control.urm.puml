@@ -1,0 +1,86 @@
+@startuml
+package com.iluwatar.pac {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class StudentAverageGradeAbstraction {
+    - avg : float
+    + StudentAverageGradeAbstraction()
+    + getAvg() : float
+    + updateAvg(studentCourseAbstraction : StudentCourseAbstraction)
+  }
+  class StudentAverageGradeControl {
+    - studentAverageGradeAbstraction : StudentAverageGradeAbstraction
+    - studentAverageGradePresentation : StudentAverageGradePresentation
+    - studentStatusControl : StudentStatusControl
+    + StudentAverageGradeControl(studentStatusControl : StudentStatusControl)
+    + getAvg() : float
+    + present()
+    + updatePreAndAbstraction(studentCourseAbstraction : StudentCourseAbstraction)
+  }
+  class StudentAverageGradePresentation {
+    - LOGGER : Logger {static}
+    + StudentAverageGradePresentation()
+    + present(avg : double)
+  }
+  class StudentCourseAbstraction {
+    - map : Map<String, Float>
+    + StudentCourseAbstraction()
+    + addGrade(name : String, grade : float)
+    + changeGrade(name : String, grade : float) : int
+    + getGrade(name : String) : float
+    + getGrades() : Object[]
+    + getNames() : Object[]
+  }
+  class StudentCourseControl {
+    - studentAbstraction : StudentCourseAbstraction
+    - studentCoursePresentation : StudentCoursePresentation
+    - studentStatusControl : StudentStatusControl
+    + StudentCourseControl(studentStatusControl : StudentStatusControl)
+    + addCourseGrade(name : String, grade : float)
+    + changeCourseGrade(name : String, grade : float) : boolean
+    + getCourseGrade(name : String) : float
+    + getStudentAbstraction() : StudentCourseAbstraction
+    + present()
+  }
+  class StudentCoursePresentation {
+    - LOGGER : Logger {static}
+    + StudentCoursePresentation()
+    + present(abstraction : StudentCourseAbstraction) {static}
+  }
+  class StudentStatusAbstraction {
+    - pass : boolean
+    + StudentStatusAbstraction()
+    + getPass() : boolean
+    + setPass(avg : float)
+  }
+  class StudentStatusControl {
+    - studentAverageGradeControl : StudentAverageGradeControl
+    - studentCourseControl : StudentCourseControl
+    - studentStatusAbstraction : StudentStatusAbstraction
+    - studentStatusPresentation : StudentStatusPresentation
+    + StudentStatusControl()
+    + getStatus() : boolean
+    + getStudentAverageGradeControl() : StudentAverageGradeControl
+    + getStudentCourseControl() : StudentCourseControl
+    + present()
+    + update(studentCourseAbstraction : StudentCourseAbstraction)
+    + updateStatus(averageGrade : float)
+  }
+  class StudentStatusPresentation {
+    - LOGGER : Logger {static}
+    + StudentStatusPresentation()
+    + present(pass : boolean)
+  }
+}
+StudentCourseControl -->  "-studentAbstraction" StudentCourseAbstraction
+StudentStatusControl -->  "-studentStatusAbstraction" StudentStatusAbstraction
+StudentCourseControl -->  "-studentCoursePresentation" StudentCoursePresentation
+StudentAverageGradeControl -->  "-studentAverageGradePresentation" StudentAverageGradePresentation
+StudentStatusControl -->  "-studentStatusPresentation" StudentStatusPresentation
+StudentAverageGradeControl -->  "-studentAverageGradeAbstraction" StudentAverageGradeAbstraction
+StudentCourseControl -->  "-studentStatusControl" StudentStatusControl
+StudentAverageGradeControl -->  "-studentStatusControl" StudentStatusControl
+@enduml
