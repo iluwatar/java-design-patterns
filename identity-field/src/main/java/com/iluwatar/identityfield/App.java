@@ -42,7 +42,7 @@ public class App {
     List<Person> pearsonList = new LinkedList<>();
 
     for (var i = 0; i < 5; i++) {
-      var person = new Person(i, "pearson");
+      Person person = new Person(i, "pearson");
       String t = "pearson" + i;
       person.setName(t);
       pearsonList.add(person);
