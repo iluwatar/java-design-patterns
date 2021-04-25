@@ -1,15 +1,33 @@
 package com.iluwatar.presentation;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  *A class used to store the information of album.
  */
+@Data
 @AllArgsConstructor
 public class Album {
-  int rowId;
-  String title;
-  String artist;
-  boolean isClassical;
-  String composer;
+  /**
+   *  the id of the row.
+   */
+  private int rowId;
+  /**
+   * the title of the album.
+   */
+  private String title;
+  /**
+   * the artist name of the album.
+   */
+  private String artist;
+  /**
+   * is the album classical, true or false.
+   */
+  private boolean isClassical;
+  /**
+   * only when the album is classical,
+   * composer can have content.
+   */
+  private String composer;
 }

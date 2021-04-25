@@ -7,8 +7,17 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class PresentationMod {
+  /**
+   * the data of all albums that will be shown.
+   */
   private final DsAlbum data;
+  /**
+   * the no of selected album.
+   */
   private int selectedAlbumNumber;
+  /**
+   * the selected album.
+   */
   private Album selectedAlbum;
 
   /**
@@ -18,17 +27,21 @@ public class PresentationMod {
    */
   public static DsAlbum albumDataSet() {
     var result = new DsAlbum();
-    result.addAlbums(1, "HQ", "Roy Harper", false, null);
-    result.addAlbums(2, "The Rough Dancer and Cyclical Night", "Astor Piazzola", false, null);
-    result.addAlbums(3, "The Black Light", "Calexico", false, null);
-    result.addAlbums(4, "Symphony No.5", "CBSO", true, "Sibelius");
+    result.addAlbums(1, "HQ", "Roy Harper",
+            false, null);
+    result.addAlbums(2, "The Rough Dancer and Cyclical Night",
+            "Astor Piazzola", false, null);
+    result.addAlbums(3, "The Black Light", "Calexico",
+            false, null);
+    result.addAlbums(4, "Symphony No.5", "CBSO",
+            true, "Sibelius");
     return result;
   }
 
   /**
    * constructor method.
    */
-  public PresentationMod(DsAlbum data) {
+  public PresentationMod(final DsAlbum data) {
     this.data = data;
     this.selectedAlbumNumber = 1;
     this.selectedAlbum = data.getAlbums().get(0);
@@ -47,16 +60,16 @@ public class PresentationMod {
   }
 
   public String getTitle() {
-    return selectedAlbum.title;
+    return selectedAlbum.getTitle();
   }
 
   public void setTitle(String value) {
-    LOGGER.info("Change album title from {} to {}", selectedAlbum.title, value);
-    selectedAlbum.title = value;
+    LOGGER.info("Change album title from {} to {}", selectedAlbum.getTitle(), value);
+    selectedAlbum.setTitle(value);
   }
 
   public String getArtist() {
-    return selectedAlbum.artist;
+    return selectedAlbum.getArtist();
   }
 
   /**
@@ -65,33 +78,33 @@ public class PresentationMod {
    * @param value the name want artist to be.
    */
   public void setArtist(String value) {
-    LOGGER.info("Change album artist from {} to {}", selectedAlbum.artist, value);
-    selectedAlbum.artist = value;
+    LOGGER.info("Change album artist from {} to {}", selectedAlbum.getArtist(), value);
+    selectedAlbum.setArtist(value);
   }
 
   /**
    * Gets a boolean value which represents whether the album is classical.
    */
   public boolean getIsClassical() {
-    return selectedAlbum.isClassical;
+    return selectedAlbum.isClassical();
   }
 
   public void setIsClassical(boolean value) {
-    LOGGER.info("Change album isClassical from {} to {}", selectedAlbum.isClassical, value);
-    selectedAlbum.isClassical = value;
+    LOGGER.info("Change album isClassical from {} to {}", selectedAlbum.isClassical(), value);
+    selectedAlbum.setClassical(value);
   }
 
   public String getComposer() {
-    return selectedAlbum.isClassical ? selectedAlbum.composer : "";
+    return selectedAlbum.isClassical() ? selectedAlbum.getComposer() : "";
   }
 
   /**
    * Sets the name of composer when the album is classical.
    */
   public void setComposer(String value) {
-    if (selectedAlbum.isClassical) {
-      LOGGER.info("Change album composer from {} to {}", selectedAlbum.composer, value);
-      selectedAlbum.composer = value;
+    if (selectedAlbum.isClassical()) {
+      LOGGER.info("Change album composer from {} to {}", selectedAlbum.getComposer(), value);
+      selectedAlbum.setComposer(value);
     } else {
       LOGGER.info("Composer can not be changed");
     }
@@ -105,7 +118,7 @@ public class PresentationMod {
   public String[] getAlbumList() {
     var result = new String[data.getAlbums().size()];
     for (var i = 0; i < result.length; i++) {
-      result[i] = data.getAlbums().get(i).title;
+      result[i] = data.getAlbums().get(i).getTitle();
     }
     return result;
   }

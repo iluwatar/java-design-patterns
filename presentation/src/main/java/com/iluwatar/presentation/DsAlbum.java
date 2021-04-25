@@ -8,10 +8,14 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * a class used to deal with albums.
+ *
  */
 @Slf4j
 @Getter
 public class DsAlbum {
+  /**
+   * albums a list of albums.
+   */
   private final List<Album> albums;
 
   /**
@@ -28,10 +32,12 @@ public class DsAlbum {
    * @param title       the title of the album.
    * @param artist      the artist name of the album.
    * @param isClassical is the album classical, true or false.
-   * @param composer    only when the album is classical, composer can have content.
+   * @param composer    only when the album is classical,
+   *                    composer can have content.
    */
-  public void addAlbums(int rowId, String title, String artist,
-                        boolean isClassical, String composer) {
+  public void addAlbums(final int rowId, final String title,
+                        final String artist, final boolean isClassical,
+                        final String composer) {
     if (isClassical) {
       this.albums.add(new Album(rowId, title, artist, true, composer));
     } else {
