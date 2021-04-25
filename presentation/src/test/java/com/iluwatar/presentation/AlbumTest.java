@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AlbumTest {
+class AlbumTest {
   @Test
   void testSetTitle(){
     Album album = new Album("a", "b", false, "");
