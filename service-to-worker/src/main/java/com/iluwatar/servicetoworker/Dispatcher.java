@@ -27,7 +27,7 @@ public class Dispatcher {
    *
    * @param action the action
    */
-  public void addAction(Action action) {
+  void addAction(Action action) {
     actions.add(action);
   }
 
@@ -41,6 +41,11 @@ public class Dispatcher {
     actions.get(actionIndex).updateModel(s);
   }
 
+  /**
+   * Update view.
+   *
+   * @param giantModel the giant model
+   */
   public void updateView(GiantModel giantModel) {
     giantView.displayGiant(giantModel);
   }

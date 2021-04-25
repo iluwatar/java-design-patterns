@@ -26,27 +26,52 @@ public class GiantModel {
         nourishment);
   }
 
-  public Health getHealth() {
+  /**
+   * Gets health.
+   *
+   * @return the health
+   */
+  Health getHealth() {
     return giantModel.getHealth();
   }
 
-  public void setHealth(Health health) {
+  /**
+   * Sets health.
+   *
+   * @param health the health
+   */
+  void setHealth(Health health) {
     giantModel.setHealth(health);
   }
 
-  public Fatigue getFatigue() {
+  /**
+   * Gets fatigue.
+   *
+   * @return the fatigue
+   */
+  Fatigue getFatigue() {
     return giantModel.getFatigue();
   }
 
-  public void setFatigue(Fatigue fatigue) {
+  void setFatigue(Fatigue fatigue) {
     giantModel.setFatigue(fatigue);
   }
 
-  public Nourishment getNourishment() {
+  /**
+   * Gets nourishment.
+   *
+   * @return the nourishment
+   */
+  Nourishment getNourishment() {
     return giantModel.getNourishment();
   }
 
-  public void setNourishment(Nourishment nourishment) {
+  /**
+   * Sets nourishment.
+   *
+   * @param nourishment the nourishment
+   */
+  void setNourishment(Nourishment nourishment) {
     giantModel.setNourishment(nourishment);
   }
 

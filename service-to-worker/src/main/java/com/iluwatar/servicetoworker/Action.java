@@ -22,7 +22,7 @@ public class Action {
   }
 
   /**
-   * Update model.
+   * Update model based on command.
    *
    * @param command the command
    */

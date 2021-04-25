@@ -18,7 +18,7 @@ public class GiantController {
   }
 
   /**
-   * Sets command.
+   * Sets command to control the dispatcher.
    *
    * @param s     the s
    * @param index the index
@@ -28,7 +28,8 @@ public class GiantController {
   }
 
   /**
-   * Update view.
+   * Update view. This is a simple implementation, in fact, View can be implemented in a concrete
+   * way
    *
    * @param giantModel the giant model
    */

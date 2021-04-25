@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 public class GiantView {
 
   /**
-   * Display giant.
+   * Display the GiantModel simply.
    *
    * @param giant the giant
    */

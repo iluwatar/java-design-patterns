@@ -20,21 +20,21 @@ public class Command {
    * @param health      the health
    * @param nourishment the nourishment
    */
-  Command(Fatigue fatigue, Health health, Nourishment nourishment) {
+  public Command(Fatigue fatigue, Health health, Nourishment nourishment) {
     this.fatigue = fatigue;
     this.health = health;
     this.nourishment = nourishment;
   }
 
-  public Nourishment getNourishment() {
+  Nourishment getNourishment() {
     return nourishment;
   }
 
-  public Health getHealth() {
+  Health getHealth() {
     return health;
   }
 
-  public Fatigue getFatigue() {
+  Fatigue getFatigue() {
     return fatigue;
   }
 }
