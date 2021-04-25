@@ -1,12 +1,14 @@
 package com.iluwatar.presentation;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *A class used to store the information of album.
  */
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 public class Album {
   /**
