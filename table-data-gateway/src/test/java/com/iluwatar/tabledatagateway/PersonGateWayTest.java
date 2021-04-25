@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 /**
  * The type Person gate way test.
  */
-public class PersonGateWayTest {
+class PersonGateWayTest {
   /**
    * Test find.
    */
   @Test
-  public void testFind() {
+void testFind() {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Natasha", "Romanoff", "F", 28);
     assertEquals("Natasha", personGateWay.find(0).getFirstName());
@@ -26,7 +26,7 @@ public class PersonGateWayTest {
    * Test find by first name.
    */
   @Test
-  public void testFindByFirstName() {
+void testFindByFirstName() {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Natasha", "Romanoff", "F", 28);
     assertEquals("Natasha", personGateWay.findByFirstName("Natasha").get(0).getFirstName());
@@ -39,7 +39,7 @@ public class PersonGateWayTest {
    * Test update.
    */
   @Test
-  public void testUpdate() {
+void testUpdate() {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Tony", "Stark", "M", 36);
     personGateWay.update(0, "Natasha", "Romanoff", "F", 28);
@@ -53,7 +53,7 @@ public class PersonGateWayTest {
    * Test insert.
    */
   @Test
-  public void testInsert() {
+void testInsert() {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Natasha", "Romanoff", "F", 28);
     assertEquals("Natasha", personGateWay.find(0).getFirstName());
@@ -66,7 +66,7 @@ public class PersonGateWayTest {
    * Test delete.
    */
   @Test
-  public void testDelete() {
+void testDelete() {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Natasha", "Romanoff", "F", 28);
     personGateWay.delete(0);

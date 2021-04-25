@@ -1,6 +1,7 @@
 package com.iluwatar.tabledatagateway;
 
 import java.util.ArrayList;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -13,7 +14,6 @@ public class PersonGateWay {
    */
   private final ArrayList<Person> personTable = new ArrayList<>();
 
-
   /**
    * Find person.
    *
@@ -22,11 +22,8 @@ public class PersonGateWay {
    */
   public Person find(int id) {
     if (id >= personTable.size() || id < 0) {
-      LOGGER.info("The input ID is wrong!");
       return null;
     }
-
-    LOGGER.info("Find person by id");
     return personTable.get(id);
   }
 
@@ -36,15 +33,14 @@ public class PersonGateWay {
    * @param firstName the first name
    * @return the array list
    */
-  public ArrayList<Person> findByFirstName(String firstName) {
-    ArrayList<Person> result = new ArrayList<>();
+  public List<Person> findByFirstName(String firstName) {
+    List<Person> result = new ArrayList<>();
     personTable.forEach(
         x -> {
           if (x.getFirstName().equals(firstName)) {
             result.add(x);
           }
         });
-    LOGGER.info("Find person by firstname");
     return result;
   }
 
@@ -91,7 +87,6 @@ public class PersonGateWay {
    */
   public boolean delete(int id) {
     if (id >= personTable.size() || id < 0) {
-      LOGGER.info("The input ID is wrong!");
       return false;
     }
 
