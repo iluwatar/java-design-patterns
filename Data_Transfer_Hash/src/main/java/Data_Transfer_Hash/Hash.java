@@ -15,5 +15,4 @@ public class Hash {
     {
         return  this.hash.get(k);
     }
-    
 }
