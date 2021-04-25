@@ -1,13 +1,26 @@
 package com.iluwatar.clientserver;
 
+import org.slf4j.Logger;
+
 /**
  * Multithreading to simulate client-server communication.
  */
 public class RunnableSocket implements Runnable {
+  /**
+   * Thread of Class
+   */
   private Thread thread;
-  private String role;
+  /**
+   * Role of the Thread
+   */
+  private final String role;
 
-  RunnableSocket(String role) {
+  /**
+   *  Logger
+   */
+  private static Logger log;
+
+  /* default */RunnableSocket(final String role) {
     this.role = role;
   }
 
@@ -23,14 +36,14 @@ public class RunnableSocket implements Runnable {
 
   @Override
   public void run() {
-    if (this.role.equals("Client")) {
+    if ("Client".equals(this.role)) {
       Client.main(new String[]{});
     } else {
       Server.main(new String[]{});
       try {
         Thread.sleep(1000, 100);
-      } catch (Exception e) {
-        e.printStackTrace();
+      } catch (InterruptedException e) {
+        log.error("Ops!", e);
       }
     }
   }

@@ -1,5 +1,7 @@
 package com.iluwatar.clientserver;
 
+import org.slf4j.Logger;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
@@ -10,36 +12,48 @@ import java.net.Socket;
  * Client Side.
  */
 
-public class Client {
+public final class Client {
+  /**
+   *  Logger
+   */
+  private static Logger log;
+  /**
+   * Port number
+   */
+  private static int port = 12_345;
+
+  private Client(){}
+
   /**
    * class Client.
    *
    * @param args no args
    */
-  public static void main(String[] args) {
+
+
+  public static void main(final String[] args) {
     Socket socket = null;
-    OutputStream os = null;
+    OutputStream outputStream = null;
     try {
-      var serverIp = InetAddress.getByName("127.0.0.1");
-      var port = 12345;
+      final var serverIp = InetAddress.getByName("localhost");
       socket = new Socket(serverIp, port);
-      os = socket.getOutputStream();
-      os.write("Hello, java design pattern!".getBytes());
-    } catch (Exception e) {
-      e.printStackTrace();
+      outputStream = socket.getOutputStream();
+      outputStream.write("Hello, java design pattern!".getBytes("UTF-8"));
+    } catch (IOException e) {
+      log.error("Ops!", e);
     } finally {
       if (socket != null) {
         try {
           socket.close();
         } catch (IOException e) {
-          e.printStackTrace();
+          log.error("Ops!", e);
         }
       }
-      if (os != null) {
+      if (outputStream != null) {
         try {
-          os.close();
+          outputStream.close();
         } catch (IOException e) {
-          e.printStackTrace();
+          log.error("Ops!", e);
         }
       }
     }

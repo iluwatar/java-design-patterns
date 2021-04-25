@@ -41,7 +41,7 @@ public class App {
    *
    * @param args command line args
    */
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
 
     var king = new OrcKing();
     king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle"));

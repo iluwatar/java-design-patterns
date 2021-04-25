@@ -6,64 +6,53 @@ import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 /**
  * Server side.
  */
 @Slf4j
-public class Server {
+public final class Server {
+
+  /**
+   *  Logger
+   */
+  private static Logger log;
+
+  private Server(){}
 
   /**
    * class Server.
    *
    * @param args no args
    */
-  public static void main(String[] args) {
+
+  public static void main(final String[] args) {
     ServerSocket serverSocket = null;
     Socket socket = null;
-    InputStream is = null;
-    ByteArrayOutputStream baos = null;
+    InputStream inputStream = null;
+    ByteArrayOutputStream baos;
     try {
-      serverSocket = new ServerSocket(12345);
+      serverSocket = new ServerSocket(12_345);
       socket = serverSocket.accept();
-      is = socket.getInputStream();
+      inputStream = socket.getInputStream();
       baos = new ByteArrayOutputStream();
-      byte[] buffer = new byte[1024];
-      int len;
-      while ((len = is.read(buffer)) != -1) {
+      final byte[] buffer = new byte[1024];
+      int len = inputStream.read(buffer);
+      while (len != -1) {
+        len = inputStream.read(buffer);
         baos.write(buffer, 0, len);
       }
-      LOGGER.info(baos.toString());
+      LOGGER.info(baos.toString("UTF-8"));
     } catch (IOException e) {
-      e.printStackTrace();
+      log.error("Ops!", e);
     } finally {
-      if (is != null) {
-        try {
-          is.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-      if (socket != null) {
-        try {
-          socket.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-      if (is != null) {
-        try {
-          is.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-      if (serverSocket != null) {
-        try {
-          serverSocket.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
+      try {
+        inputStream.close();
+        socket.close();
+        serverSocket.close();
+      } catch (IOException e) {
+        log.error("Ops!", e);
       }
     }
   }

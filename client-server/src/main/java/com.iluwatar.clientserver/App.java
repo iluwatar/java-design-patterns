@@ -8,17 +8,19 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-public class App {
+public final class App {
+
+  private App(){}
 
   /**
    * Program entry point.
    *
    * @param args command line args
    */
-  public static void main(String[] args) {
-    var server = new RunnableSocket("Server");
+  public static void main(final String[] args) {
+    final var server = new RunnableSocket("Server");
     server.start();
-    var client = new RunnableSocket("Client");
+    final var client = new RunnableSocket("Client");
     client.start();
   }
 }
