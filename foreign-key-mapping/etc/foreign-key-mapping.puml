@@ -1,0 +1,25 @@
+@startuml
+package com.iluwatar.foreignkey {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Album {
+    - id : long
+    - title : string
+    - artist : Artist
+    + Album(ID:long, title:string, artist:Artist)
+    + getTitle():string
+    + setTitle(title:string)
+    + getArtist() : Artist
+    + setArtist(artist:Artist)
+  }
+ class Artist {
+    - id : long
+    - name : string
+    + Artist(ID:long,name:String)
+    + getName():string
+    + setName(name:string)
+  }
+Artist -->  "foreign-key" Album
+@enduml
