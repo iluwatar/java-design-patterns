@@ -8,9 +8,7 @@ public class Business {
         
     }
     public Object get(String k,Hash hash)
-    {
-        
-        
+    {  
         return  hash.get(k);
     }
 }
