@@ -224,6 +224,8 @@
         <module>parameter-object</module>
         <module>active-object</module>
         <module>model-view-viewmodel</module>
+        <module>gate-keeper</module>
+
     </modules>
 
     <repositories>
