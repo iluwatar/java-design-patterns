@@ -23,9 +23,10 @@
 
 package com.iluwatar.identityfield;
 
-import org.junit.Assert;
-import org.junit.Test;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * The type Pearson test.
@@ -37,10 +38,10 @@ public class PersonTest {
   @Test
   public void PearsonTest() {
     Person temp = new Person(1, "pearson");
-    Assert.assertEquals("pearson", temp.getName());
+    assertEquals("pearson", temp.getName());
     String t = "pearson" + Integer.toString(1);
     temp.setName(t);
-    Assert.assertEquals("pearson1", temp.getName());
+    assertEquals("pearson1", temp.getName());
 
   }
 }

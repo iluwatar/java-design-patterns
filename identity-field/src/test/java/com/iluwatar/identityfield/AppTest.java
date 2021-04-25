@@ -26,8 +26,10 @@ package com.iluwatar.identityfield;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
@@ -48,15 +50,17 @@ public class AppTest {
       pearsonList.add(person);
     }
 
-    Assert.assertEquals(0, pearsonList.get(0).getId());
-    Assert.assertEquals(1, pearsonList.get(1).getId());
-    Assert.assertEquals(2, pearsonList.get(2).getId());
-    Assert.assertEquals(3, pearsonList.get(3).getId());
-    Assert.assertEquals(4, pearsonList.get(4).getId());
-    Assert.assertEquals("pearson0", pearsonList.get(0).getName());
-    Assert.assertEquals("pearson1", pearsonList.get(1).getName());
-    Assert.assertEquals("pearson2", pearsonList.get(2).getName());
-    Assert.assertEquals("pearson3", pearsonList.get(3).getName());
-    Assert.assertEquals("pearson4", pearsonList.get(4).getName());
+    assertEquals(0, pearsonList.get(0).getId());
+    assertEquals("pearson0", pearsonList.get(0).getName());
+    assertEquals(1, pearsonList.get(1).getId());
+    assertEquals("pearson1", pearsonList.get(1).getName());
+    assertEquals(2, pearsonList.get(2).getId());
+    assertEquals("pearson2", pearsonList.get(2).getName());
+    assertEquals(3, pearsonList.get(3).getId());
+    assertEquals("pearson3", pearsonList.get(3).getName());
+    assertEquals(4, pearsonList.get(4).getId());
+    assertEquals("pearson4", pearsonList.get(4).getName());
+
+
   }
 }
