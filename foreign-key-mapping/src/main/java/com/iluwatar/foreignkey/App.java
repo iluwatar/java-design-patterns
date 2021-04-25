@@ -38,6 +38,9 @@ public class App {
    * The entry point of application.
    *
    * @param args the input arguments
+   *
+   * Initialize artist and store it in one linked list, initialize album and store it in another linked list.
+   * Artist is the foreign key of the album, so you can access artist through the foreign key.
    */
   public static void main(String[] args) {
     List<Artist> artistList = new LinkedList<Artist>();

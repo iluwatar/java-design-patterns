@@ -37,12 +37,16 @@ public class App {
    * The entry point of application.
    *
    * @param args the input arguments
+   *
+   * Take the ID in the person class as the identity field,
+   * initialize the person and store it in the linked list,
+   * and then access the ID through the getid method
    */
   public static void main(String[] args) {
     List<Person> pearsonList = new LinkedList<>();
 
     for (var i = 0; i < 5; i++) {
-      Person person = new Person(i, "pearson");
+      var person = new Person(i, "pearson");
       String t = "pearson" + Integer.toString(i);
       person.setName(t);
       pearsonList.add(person);
