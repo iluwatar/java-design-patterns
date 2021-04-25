@@ -29,6 +29,8 @@ import org.junit.Test;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
  * The type App test.
  */
@@ -38,24 +40,6 @@ public class AppTest {
    */
   @Test
   public void AppTest() {
-    List<Artist> artistList = new LinkedList<Artist>();
-    List<Album> albumList = new LinkedList<Album>();
-    for (int i = 0; i < 5; i++) {
-      Artist temp = new Artist(i, "artist");
-      String t = "artist" + Integer.toString(i);
-      temp.setName(t);
-      artistList.add(temp);
-    }
-    for (int i = 0; i < 5; i++) {
-      Album temp = new Album(i, "artist", artistList.get(i));
-      albumList.add(temp);
-    }
-
-    Assert.assertEquals("artist0", albumList.get(0).getArtist().getName());
-    Assert.assertEquals("artist1", albumList.get(1).getArtist().getName());
-    Assert.assertEquals("artist2", albumList.get(2).getArtist().getName());
-    Assert.assertEquals("artist3", albumList.get(3).getArtist().getName());
-    Assert.assertEquals("artist4", albumList.get(4).getArtist().getName());
-
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

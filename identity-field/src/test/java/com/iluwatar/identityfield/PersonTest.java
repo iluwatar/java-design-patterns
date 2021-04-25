@@ -38,6 +38,7 @@ public class PersonTest {
   @Test
   public void PearsonTest() {
     Person temp = new Person(1, "pearson");
+    assertEquals(1, temp.getId());
     assertEquals("pearson", temp.getName());
     String t = "pearson" + Integer.toString(1);
     temp.setName(t);

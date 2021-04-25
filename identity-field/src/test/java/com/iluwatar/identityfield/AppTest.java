@@ -29,6 +29,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -41,26 +42,7 @@ public class AppTest {
    */
   @Test
   public void AppTest() {
-    List<Person> pearsonList = new LinkedList<>();
-
-    for (int i = 0; i < 5; i++) {
-      Person person = new Person(i, "pearson");
-      String t = "pearson" + Integer.toString(i);
-      person.setName(t);
-      pearsonList.add(person);
-    }
-
-    assertEquals(0, pearsonList.get(0).getId());
-    assertEquals("pearson0", pearsonList.get(0).getName());
-    assertEquals(1, pearsonList.get(1).getId());
-    assertEquals("pearson1", pearsonList.get(1).getName());
-    assertEquals(2, pearsonList.get(2).getId());
-    assertEquals("pearson2", pearsonList.get(2).getName());
-    assertEquals(3, pearsonList.get(3).getId());
-    assertEquals("pearson3", pearsonList.get(3).getName());
-    assertEquals(4, pearsonList.get(4).getId());
-    assertEquals("pearson4", pearsonList.get(4).getName());
-
+    assertDoesNotThrow(() -> App.main(new String[]{}));
 
   }
 }
