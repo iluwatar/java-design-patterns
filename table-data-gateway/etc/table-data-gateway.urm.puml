@@ -1,0 +1,28 @@
+@startuml
+package com.iluwatar.tabledatagateway {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Person {
+    - id : int
+    - firstName : String
+    - lastName : String
+    - gender : String
+    - age : int
+    + Person(id : int, firstName : String, lastName : String, gender : String, age : int)
+    + getAndSetMethods()
+  }
+  class PersonGateWay {
+    - personTable : ArrayList<>()
+    + PersonGateWay()
+    + find(id : int)
+    + findByFirstName(firstName : String)
+    + update(id : int, firstName : String, lastName : String, gender : String, age : int)
+    + insert(firstName : String, lastName : String, gender : String, age : int)
+    + delete(id : int)
+  }
+  PersonGateWay o-- Person
+  App ..> PersonGateWay
+}
+@enduml
