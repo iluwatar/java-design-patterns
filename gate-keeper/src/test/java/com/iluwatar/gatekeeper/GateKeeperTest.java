@@ -11,7 +11,7 @@ import com.iluwatar.gatekeeper.utils.InMemoryAppender;
 
 import java.util.List;
 
-public class GateKeeperTest {
+class GateKeeperTest {
     private InMemoryAppender appender;
 
     @BeforeEach

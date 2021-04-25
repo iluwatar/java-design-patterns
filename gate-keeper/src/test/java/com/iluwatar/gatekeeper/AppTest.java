@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Created by anditty on 2021/4/22 2:41 下午
  */
-class Apptest {
+class AppTest {
     @Test
     void shouldExecuteWithoutExceptions() {
         assertDoesNotThrow(() -> App.main(new String[]{}));

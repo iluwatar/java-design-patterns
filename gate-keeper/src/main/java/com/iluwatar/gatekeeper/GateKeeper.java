@@ -48,10 +48,6 @@ public class GateKeeper {
    * @return if the request meet the requirements.
    */
   public boolean checkRequest(Request request) {
-    if (request.getAction().equals("login")) {
-      return true;
-    } else {
-      return false;
-    }
+    return request.getAction().equals("login");
   }
 }
