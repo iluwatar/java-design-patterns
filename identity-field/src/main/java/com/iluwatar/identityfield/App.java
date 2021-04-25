@@ -55,7 +55,6 @@ public class App {
     for (var i = 0; i < 5; i++) {
       LOGGER.info(pearsonList.get(i).getId() + "");
       LOGGER.info(pearsonList.get(i).getName());
-
     }
   }
 }
