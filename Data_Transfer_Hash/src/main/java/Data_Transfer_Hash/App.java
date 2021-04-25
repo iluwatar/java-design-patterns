@@ -21,11 +21,6 @@ public class App
         presentation.get("a", hash);
         System.out.println("Presentation heard "+presentation.get("a", hash));
         presentation.get("b", hash);
-        System.out.println("Presentation heard "+presentation.get("b", hash));
-
-        
-        
+        System.out.println("Presentation heard "+presentation.get("b", hash));    
     }
-
-    
 }
