@@ -1,0 +1,16 @@
+@startuml
+package com.iluwatar.foreignkey {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Person {
+    - id : long
+    - name : string
+    + Person(id : long,  name:string)
+    + getName():string
+    + setName(name:string)
+    + getId() : long
+  }
+
+@enduml
