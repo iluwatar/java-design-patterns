@@ -3,6 +3,9 @@ package com.iluwatar.servicetoworker;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.iluwatar.model.view.controller.Fatigue;
+import com.iluwatar.model.view.controller.Health;
+import com.iluwatar.model.view.controller.Nourishment;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -14,7 +17,7 @@ class DispatcherTest {
    * Test perform action.
    */
   @Test
-  public void testPerformAction() {
+  void testPerformAction() {
     final var model = new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT,
         Nourishment.SATURATED);
     Action action = new Action(model);
@@ -36,7 +39,7 @@ class DispatcherTest {
   }
 
   @Test
-  public void testUpdateView() {
+  void testUpdateView() {
     final var model = new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT,
         Nourishment.SATURATED);
     GiantView giantView = new GiantView();

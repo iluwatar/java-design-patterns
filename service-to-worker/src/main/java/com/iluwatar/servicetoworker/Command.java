@@ -1,5 +1,9 @@
 package com.iluwatar.servicetoworker;
 
+import com.iluwatar.model.view.controller.Fatigue;
+import com.iluwatar.model.view.controller.Health;
+import com.iluwatar.model.view.controller.Nourishment;
+
 /**
  * The type Command.
  */

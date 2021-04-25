@@ -1,5 +1,9 @@
 package com.iluwatar.servicetoworker;
 
+import com.iluwatar.model.view.controller.Fatigue;
+import com.iluwatar.model.view.controller.Health;
+import com.iluwatar.model.view.controller.Nourishment;
+
 /**
  * The front controller intercepts all requests and performs common functions using decorators. The
  * front controller passes request information to the dispatcher, which uses the request and an

@@ -2,6 +2,9 @@ package com.iluwatar.servicetoworker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.iluwatar.model.view.controller.Fatigue;
+import com.iluwatar.model.view.controller.Health;
+import com.iluwatar.model.view.controller.Nourishment;
 import org.junit.jupiter.api.Test;
 
 /**
