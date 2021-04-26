@@ -6,17 +6,17 @@ import com.iluwatar.lockableobject.domain.Creature;
 public interface Lockable {
 
   /**
-   * checks if the object is locked.
+   * Checks if the object is locked.
    *
    * @return true if it is locked.
    */
   boolean isLocked();
 
   /**
-   * locks the object with creature as the locker.
+   * locks the object with the creature as the locker.
    *
    * @param creature as the locker.
-   * @return true if object was locked successfully.
+   * @return true if the object was locked successfully.
    */
   boolean lock(Creature creature);
 

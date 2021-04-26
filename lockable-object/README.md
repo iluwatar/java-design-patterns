@@ -10,36 +10,45 @@ tags:
 
 
 ## Intent
+
 The lockable object design pattern ensures that there is only one user using the target object. Compared to the built-in synchronization mechanisms such as using the `synchronized` keyword, this pattern can lock objects for an undetermined time and is not tied to the duration of the request.
 
 ## Explanation
 
-The class will contain methods for locking and unlocking the object for single use only, while using thread-safety logic.
 
 Real-world example
 
->The Sword Of Aragorn is a legendary object that only one creature can posses at the time. Every creature in the middle earth wants to posses is, so  as long as it's not locked, every creature while fight for it.
+>The Sword Of Aragorn is a legendary object that only one creature can possess at the time.
+>Every creature in the middle earth wants to possess is, so as long as it's not locked, every creature will fight for it.
+
+Under the hood
+
+>In this particular module, the SwordOfAragorn.java is a class that implements the Lockable interface.
+It reaches the goal of the Lockable-Object pattern by implementing unlock() and unlock() methods using
+thread-safety logic. The thread-safety logic is implemented with the built-in monitor mechanism of Java.
+The SwordOfAaragorn.java has an Object property called "synchronizer". In every crucial concurrency code block,
+it's synchronizing the block by using the synchronizer.
 
 
 
 **Programmatic Example**
 
 ```java
-/** This interface describes the methods to be supported by a lockable-object. */
+/** This interface describes the methods to be supported by a lockable object. */
 public interface Lockable {
 
   /**
-   * checks if the object is locked.
+   * Checks if the object is locked.
    *
    * @return true if it is locked.
    */
   boolean isLocked();
 
   /**
-   * locks the object with creature as the locker.
+   * locks the object with the creature as the locker.
    *
    * @param creature as the locker.
-   * @return true if object was locked successfully.
+   * @return true if the object was locked successfully.
    */
   boolean lock(Creature creature);
 
@@ -74,7 +83,6 @@ For example, the SwordOfAragorn class:
 ```java
 public class SwordOfAragorn implements Lockable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(SwordOfAragorn.class.getName());
   private Creature locker;
   private final Object synchronizer;
   private static final String NAME = "The Sword of Aragorn";
@@ -90,10 +98,7 @@ public class SwordOfAragorn implements Lockable {
   }
 
   @Override
-  public boolean lock(Creature creature) {
-    if (creature == null) {
-      throw new NullPointerException("id must not be null.");
-    }
+  public boolean lock(@NonNull Creature creature) {
     synchronized (synchronizer) {
       LOGGER.info("{} is now trying to acquire {}!", creature.getName(), this.getName());
       if (!isLocked()) {
@@ -109,7 +114,7 @@ public class SwordOfAragorn implements Lockable {
   }
 
   @Override
-  public void unlock(Creature creature) {
+  public void unlock(@NonNull Creature creature) {
     synchronized (synchronizer) {
       if (locker != null && locker.getName().equals(creature.getName())) {
         locker = null;
@@ -138,14 +143,13 @@ According to our context, there are creatures that are looking for the sword, so
 ```java
 public abstract class Creature {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Creature.class.getName());
   private String name;
   private CreatureType type;
   private int health;
   private int damage;
   Set<Lockable> instruments;
 
-  protected Creature(String name) {
+  protected Creature(@NonNull String name) {
     this.name = name;
     this.instruments = new HashSet<>();
   }
@@ -156,7 +160,7 @@ public abstract class Creature {
    * @param lockable as the Lockable to lock.
    * @return true of Lockable was locked by this creature.
    */
-  public boolean acquire(Lockable lockable) {
+  public boolean acquire(@NonNull Lockable lockable) {
     if (lockable.lock(this)) {
       instruments.add(lockable);
       return true;
@@ -170,6 +174,7 @@ public abstract class Creature {
     for (Lockable lockable : instruments) {
       lockable.unlock(this);
     }
+    this.instruments.clear();
   }
 
   /**
@@ -177,7 +182,7 @@ public abstract class Creature {
    *
    * @param creature as the foe to be attacked.
    */
-  public synchronized void attack(Creature creature) throws InterruptedException {
+  public synchronized void attack(@NonNull Creature creature) {
     creature.hit(getDamage());
   }
 
@@ -187,6 +192,9 @@ public abstract class Creature {
    * @param damage as the damage that was taken.
    */
   public synchronized void hit(int damage) {
+    if (damage < 0) {
+      throw new IllegalArgumentException("Damage cannot be a negative number");
+    }
     if (isAlive()) {
       setHealth(getHealth() - damage);
       if (!isAlive()) {
@@ -203,18 +211,18 @@ public abstract class Creature {
   public synchronized boolean isAlive() {
     return getHealth() > 0;
   }
+
 }
 ```
 
-As mentioned before, we have classes that extend the Creature class, such as Elf, Orc and Human.
+As mentioned before, we have classes that extend the Creature class, such as Elf, Orc,  and Human.
 
 Finally, the following program will simulate a battle for the sword:
 
 ```java
-public class App {
+public class App implements Runnable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class.getName());
-  private static final int WAIT_TIME = 2000;
+  private static final int WAIT_TIME = 3;
   private static final int WORKERS = 2;
   private static final int MULTIPLICATION_FACTOR = 3;
 
@@ -222,30 +230,56 @@ public class App {
    * main method.
    *
    * @param args as arguments for the main method.
-   * @throws InterruptedException in case of interruption for one of the threads.
    */
-  public static void main(String[] args) throws InterruptedException {
-    Lockable sword = new SwordOfAragorn();
+  public static void main(String[] args) {
+    var app = new App();
+    app.run();
+  }
+
+  @Override
+  public void run() {
+    // The target object for this example.
+    var sword = new SwordOfAragorn();
+    // Creation of creatures.
     List<Creature> creatures = new ArrayList<>();
-    for (int i = 0; i < WORKERS; i++) {
+    for (var i = 0; i < WORKERS; i++) {
       creatures.add(new Elf(String.format("Elf %s", i)));
       creatures.add(new Orc(String.format("Orc %s", i)));
       creatures.add(new Human(String.format("Human %s", i)));
     }
     int totalFiends = WORKERS * MULTIPLICATION_FACTOR;
     ExecutorService service = Executors.newFixedThreadPool(totalFiends);
-    for (int i = 0; i < totalFiends; i = i + MULTIPLICATION_FACTOR) {
+    // Attach every creature and the sword is a Fiend to fight for the sword.
+    for (var i = 0; i < totalFiends; i = i + MULTIPLICATION_FACTOR) {
       service.submit(new Feind(creatures.get(i), sword));
       service.submit(new Feind(creatures.get(i + 1), sword));
       service.submit(new Feind(creatures.get(i + 2), sword));
     }
-    Thread.sleep(WAIT_TIME);
-    LOGGER.info("The master of the sword is now {}.", sword.getLocker().getName());
-    service.shutdown();
+    // Wait for program to terminate.
+    try {
+      if (!service.awaitTermination(WAIT_TIME, TimeUnit.SECONDS)) {
+        LOGGER.info("The master of the sword is now {}.", sword.getLocker().getName());
+      }
+    } catch (InterruptedException e) {
+      LOGGER.error(e.getMessage());
+      Thread.currentThread().interrupt();
+    } finally {
+      service.shutdown();
+    }
   }
 }
 ```
 
+## Applicability
+
+The Lockable Object pattern is ideal for non distributed applications, that needs to be thread-safe
+and keeping their domain models in memory(in contrast to persisted models such as databases).
+
 ## Class diagram
 
 ![alt text](./etc/lockable-object.urm.png "Lockable Object class diagram")
+
+
+## Credits
+
+* [Lockable Object - Chapter 10.3, J2EE Design Patterns, O'Reilly](http://ommolketab.ir/aaf-lib/axkwht7wxrhvgs2aqkxse8hihyu9zv.pdf)
