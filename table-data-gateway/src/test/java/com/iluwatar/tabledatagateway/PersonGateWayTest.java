@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * The type Person gate way test.
+ * CS304 Issue link: github.com/iluwatar/java-design-patterns/issues/1318
  */
 class PersonGateWayTest {
   /**

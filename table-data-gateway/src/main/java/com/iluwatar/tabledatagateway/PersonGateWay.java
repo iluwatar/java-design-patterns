@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * The type Person gate way.
+ * CS304 Issue link: github.com/iluwatar/java-design-patterns/issues/1318
  */
 @Slf4j
 public class PersonGateWay {

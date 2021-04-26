@@ -2,6 +2,7 @@ package com.iluwatar.tabledatagateway;
 
 /**
  * The type Person.
+ * CS304 Issue link: github.com/iluwatar/java-design-patterns/issues/1318
  */
 public class Person {
 

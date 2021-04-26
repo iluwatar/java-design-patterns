@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
  * <p>In this example {@link PersonGateWay} contains methods that can be changed.
  * First the {@link PersonGateWay} insert some person and find them by name or id.
  * Then the {@link PersonGateWay} update the person and delete them.
+ * CS304 Issue link: github.com/iluwatar/java-design-patterns/issues/1318
+ *
  */
 @Slf4j
 public class App {
