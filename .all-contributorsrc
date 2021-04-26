@@ -1451,6 +1451,15 @@
         "review",
         "code"
       ]
+    },
+    {
+      "login": "eas5",
+      "name": "Elvys Soares",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50836521?v=4",
+      "profile": "https://github.com/eas5",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
