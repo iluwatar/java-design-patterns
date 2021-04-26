@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * The type App test.
- * CS304 Issue link: github.com/iluwatar/java-design-patterns/issues/1318
  */
 class AppTest {
   /**
