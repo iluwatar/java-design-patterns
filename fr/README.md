@@ -15,11 +15,12 @@
 
 # Introduction
 
-Les patrons de conception sont les meilleures pratiques formalisées
-qu’un programmeur peut utiliser pour résoudre des problèmes courants
-lors de la conception d’une application ou d’un système.
+Les patrons de conception (design patterns) sont les meilleures 
+pratiques formalisées qu’un programmeur peut utiliser pour résoudre
+des problèmes courants lors de la conception d’une application 
+ou d’un système.
 
-Les patrons de conception (design patterns) peuvent accélérer le processus de
+Les patrons de conception peuvent accélérer le processus de
 développement en fournissant des paradigmes éprouvés.
 
 La réutilisation de patrons de conception aide à se prémunir des problèmes subtils
@@ -28,8 +29,8 @@ du code pour les développeurs et architectes familiers de ces concepts.
 
 # Commencer
 
-Ce site présente des patrons de conception Java. Les solutions ont été développées par des
-développeurs et architectes expérimentés de la communauté open source.
+Ce site présente des patrons de conception Java. Les solutions ont été développées 
+par des développeurs et architectes expérimentés de la communauté open source.
 Les modèles peuvent être parcourus par leurs descriptions de haut niveau ou
 en regardant leur code source.
 Les exemples de code source sont bien commentés et peuvent être considérés
@@ -39,27 +40,30 @@ Nous utilisons les technologies Java open source les plus populaires et éprouv�
 Avant de vous plonger dans le contenu, vous devriez vous familiariser avec divers
 [Principes de conception de logiciels](https://java-design-patterns.com/principles/).
 
-Toutes les conceptions doivent être aussi simples que possible. Vous devriez commencer par KISS, YAGNI,
-et faire la chose la plus simple qui pourrait éventuellement fonctionner principes. Complexité et
-les modèles ne devraient être introduits que lorsqu’ils sont nécessaires pour
-extensibilité.
+Tous les modèles doivent être aussi simples que possible.
+Vous devriez commencer par les principes KISS, YAGNI et 
+Faites La Chose La Plus Simple Qui Fonctionne.
+La complexité et les modèles ne devraient être introduits
+que lorsqu’ils sont nécessaires pour une extensibilité pratique.
 
-Une fois que vous êtes familiarisé avec ces concepts, vous pouvez commencer à explorer
-[modèles de conception disponibles](https://java-design-patterns.com/patterns/) par tout
-des approches suivantes
+Une fois que vous êtes familiarisé avec ces concepts, vous pouvez commencer à explorer les
+[modèles de conception disponibles](https://java-design-patterns.com/patterns/)
+par n’importe laquelle les approches suivantes&nbsp:
 
-- Recherchez un modèle spécifique par son nom. Vous n’en trouvez pas&nbsp;? Veuillez signaler un nouveau modèle [ici](https://github.com/iluwatar/java-design-patterns/issues).
+- Recherchez un modèle spécifique par son nom.
+  Vous n’en trouvez pas&nbsp;? Veuillez signaler un nouveau modèle [ici](https://github.com/iluwatar/java-design-patterns/issues).
 - Utilisation de balises telles que `Performance`, `Gang of Four` ou `Data access`.
-- Utilisation des catégories de modèles, `Créatif`, `Comportemental` et autres.
+- Utilisation des catégories de modèles, `Creational`, `Behavioral` et autres.
 
-J’espère que les solutions orientées objet présentées sur ce site vous seront utiles
-dans vos architectures et ayez autant de plaisir à les apprendre que nous en avons eu à les développer.
+Nous espérons que vous trouverez les solutions orientées objet présentées
+sur ce site utiles dans vos architectures et que vous aurez autant 
+de plaisir à les apprendre que nous en avons eu à les développer.
 
 # Comment contribuer
 
 Si vous souhaitez contribuer au projet, vous trouverez les informations pertinentes dans
-notre [wiki développeur](https://github.com/iluwatar/java-design-patterns/wiki). Nous aiderons
-vous et répondez à vos questions dans le [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
+notre [wiki développeur](https://github.com/iluwatar/java-design-patterns/wiki).
+Nous vous aiderons répondrons à vos questions dans le [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
 # Licence
 
