@@ -25,6 +25,7 @@ package com.iluwatar.foreignkey;
 
 /**
  * The type Artist.
+ * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1296
  */
 public class Artist {
   private long id;

@@ -27,6 +27,7 @@ package com.iluwatar.foreignkey;
 
 /**
  * The type Album.
+ * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1296
  */
 
 class Album {

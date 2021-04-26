@@ -28,13 +28,14 @@ import org.junit.Test;
 
 /**
  * The type Album test.
+ * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1296
  */
 public class AlbumTest {
   /**
    * Album test.
    */
   @Test
-  public void AlbumTest() {
+  public void ClassTest() {
     Artist temp = new Artist(1, "artist");
     Artist temp2 = new Artist(1, "artist");
     String t = "artist" + 1;

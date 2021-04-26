@@ -28,13 +28,14 @@ import org.junit.Test;
 
 /**
  * The type Artist test.
+ * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1296
  */
 public class ArtistTest {
   /**
    * Artist test.
    */
   @Test
-  public void ArtistTest() {
+  public void ClassTest() {
     Artist temp = new Artist(1, "artist");
     Assert.assertEquals("artist", temp.getName());
     String t = "artist" + Integer.toString(1);

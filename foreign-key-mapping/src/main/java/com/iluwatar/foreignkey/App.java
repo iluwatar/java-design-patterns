@@ -31,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * The type App.
+ * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1296
  */
 @Slf4j
 public class App {
