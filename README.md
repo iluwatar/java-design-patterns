@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-160-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-161-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -314,6 +314,9 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://xuyonghong.cn/"><img src="https://avatars.githubusercontent.com/u/14086462?v=4?s=100" width="100px;" alt=""/><br /><sub><b>yonghong Xu</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=qfxl" title="Documentation">📖</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/jinisha-vora"><img src="https://avatars.githubusercontent.com/u/40777762?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jinishavora</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Ajinishavora" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=jinishavora" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/eas5"><img src="https://avatars.githubusercontent.com/u/50836521?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Elvys Soares</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=eas5" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/zWeBrain"><img src="https://avatars.githubusercontent.com/u/46642512?v=4?s=100" width="100px;" alt=""/><br /><sub><b>zWeBrain</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=zWeBrain" title="Code">💻</a></td>
   </tr>
 </table>
 
