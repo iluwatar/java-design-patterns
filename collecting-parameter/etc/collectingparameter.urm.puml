@@ -1,0 +1,17 @@
+@startuml
+package com.iluwatar.adapter {
+  class App {
+    -List<String> weightInfo
+    -List<String> typeInfo
+    - App()
+    + main(args : String[]) {static}
+  }
+  class Apple{
+    -weight
+    -type
+    +Apple()
+    +writeWeightTo(List<String> weightInfo)
+    +writeTypeTo(List<String> typeInfo)
+  }
+App ..|> Apple
+@enduml
