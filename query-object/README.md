@@ -3,7 +3,8 @@ layout: pattern
 title: Query Object Pattern
 folder: query-object
 permalink: /patterns/query-object/
-categories: Integration
+categories: Behavioral
+
 tags:
  - Data access
 ---
