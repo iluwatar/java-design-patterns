@@ -16,7 +16,7 @@ public final class Client {
   /**
    *  Logger.
    */
-  private static Logger log;
+  private static final Logger LOGG = null;
   /**
    * Port number.
    */
@@ -32,28 +32,30 @@ public final class Client {
 
 
   public static void main(final String[] args) {
-    Socket socket = null;
-    OutputStream outputStream = null;
+    Socket socket = null;//NOPMD
+    OutputStream outputStream = null;//NOPMD
     try {
       final var serverIp = InetAddress.getByName("localhost");
       socket = new Socket(serverIp, port);
       outputStream = socket.getOutputStream();
-      outputStream.write("Hello, java design pattern!".getBytes("UTF-8"));
+      outputStream.write("Hello, java design pattern!".getBytes("UTF-8"));//NOPMD//NOPMD
     } catch (IOException e) {
-      log.error("Ops!", e);
+      LOGG.error("Ops!", e);
     } finally {
       if (socket != null) {
         try {
           socket.close();
         } catch (IOException e) {
-          log.error("Ops!", e);
+          e.printStackTrace();//NOPMD
+//          log.error("Ops!", e);
         }
       }
       if (outputStream != null) {
         try {
           outputStream.close();
         } catch (IOException e) {
-          log.error("Ops!", e);
+//          log.error("Ops!", e);
+          e.printStackTrace();//NOPMD
         }
       }
     }

@@ -28,9 +28,9 @@ public final class Server {
    */
 
   public static void main(final String[] args) {
-    ServerSocket serverSocket = null;
-    Socket socket = null;
-    InputStream inputStream = null;
+    ServerSocket serverSocket = null;//NOPMD
+    Socket socket = null;//NOPMD
+    InputStream inputStream = null;//NOPMD
     ByteArrayOutputStream baos;
     try {
       serverSocket = new ServerSocket(12_345);
