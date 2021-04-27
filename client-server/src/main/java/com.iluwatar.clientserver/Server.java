@@ -40,8 +40,8 @@ public final class Server {
       final byte[] buffer = new byte[1024];
       int len = inputStream.read(buffer);
       while (len != -1) {
-        len = inputStream.read(buffer);
         baos.write(buffer, 0, len);
+        len = inputStream.read(buffer);
       }
       LOGGER.info(baos.toString("UTF-8"));
     } catch (IOException e) {

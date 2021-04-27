@@ -9,11 +9,11 @@ public class RunnableSocket implements Runnable {
   /**
    * Thread of Class.
    */
-  private Thread thread;
+  private transient Thread thread;
   /**
    * Role of the Thread.
    */
-  private final String role;
+  private final transient String role;
 
   /**
    *  Logger.
