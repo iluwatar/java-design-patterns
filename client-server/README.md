@@ -21,7 +21,7 @@ Real world example
 
 In plain words
 
-> Server dispatch resources and clients request them.
+> In the client-server pattern the server provides services to multiple clients.
 
 Wikipedia says
 
