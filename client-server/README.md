@@ -5,7 +5,7 @@ folder: client-server
 permalink: /patterns/client-server/
 categories: Architectural
 tags:
- - Architectural
+ - Decoupling
 ---
 
 ## Intent
