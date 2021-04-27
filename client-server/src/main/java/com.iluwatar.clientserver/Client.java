@@ -32,13 +32,13 @@ public final class Client {
 
 
   public static void main(final String[] args) {
-    Socket socket = null;//NOPMD
-    OutputStream outputStream = null;//NOPMD
+    Socket socket = null; //NOPMD
+    OutputStream outputStream = null; //NOPMD
     try {
       final var serverIp = InetAddress.getByName("localhost");
       socket = new Socket(serverIp, port);
       outputStream = socket.getOutputStream();
-      outputStream.write("Hello, java design pattern!".getBytes("UTF-8"));//NOPMD//NOPMD
+      outputStream.write("Hello, java design pattern!".getBytes("UTF-8")); //NOPMD//NOPMD
     } catch (IOException e) {
       LOGG.error("Ops!", e);
     } finally {
@@ -46,16 +46,16 @@ public final class Client {
         try {
           socket.close();
         } catch (IOException e) {
-          e.printStackTrace();//NOPMD
-//          log.error("Ops!", e);
+          e.printStackTrace(); //NOPMD
+          //  log.error("Ops!", e);
         }
       }
       if (outputStream != null) {
         try {
           outputStream.close();
         } catch (IOException e) {
-//          log.error("Ops!", e);
-          e.printStackTrace();//NOPMD
+          // log.error("Ops!", e);
+          e.printStackTrace(); //NOPMD
         }
       }
     }
