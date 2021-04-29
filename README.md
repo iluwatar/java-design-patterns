@@ -317,7 +317,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/zWeBrain"><img src="https://avatars.githubusercontent.com/u/46642512?v=4?s=100" width="100px;" alt=""/><br /><sub><b>zWeBrain</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=zWeBrain" title="Code">💻</a></td>
-    <td align="center"><a href="https://al-assad.github.io/notion/"><img src="https://avatars.githubusercontent.com/u/22493821?v=4?s=100" width="100px;" alt=""/><br /><sub><b>余林颖</b></sub></a><br /><a href="#translation-Al-assad" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://al-assad.github.io/notion/"><img src="https://avatars.githubusercontent.com/u/22493821?v=4?s=100" width="100px;" alt=""/><br /><sub><b>余林颖</b></sub></a><br /><a href="#translation-Al-assad" title="Translation">🌍</a> <a href="#projectManagement-Al-assad" title="Project Management">📆</a></td>
   </tr>
 </table>
 
