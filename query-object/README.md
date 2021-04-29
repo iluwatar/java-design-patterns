@@ -4,7 +4,6 @@ title: Query Object Pattern
 folder: query-object
 permalink: /patterns/query-object/
 categories: Behavioral
-
 tags:
  - Data access
 ---
