@@ -1469,6 +1469,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Al-assad",
+      "name": "余林颖",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22493821?v=4",
+      "profile": "https://al-assad.github.io/notion/",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 4,
