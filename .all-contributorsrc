@@ -1478,6 +1478,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "STudio26",
+      "name": "Alain",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6988911?v=4",
+      "profile": "https://github.com/STudio26",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 4,
