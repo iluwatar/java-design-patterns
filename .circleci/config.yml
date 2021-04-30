@@ -26,7 +26,7 @@ version: 2
 jobs:
   sonar-pr:
     docker:
-      - image: circleci/openjdk:11-node
+      - image: cimg/openjdk:11.0-node
     steps:
     - checkout
     - restore_cache:
