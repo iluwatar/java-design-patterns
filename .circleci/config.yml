@@ -31,6 +31,8 @@ jobs:
     - checkout
     - restore_cache:
         key: jdp-sonar-pr-{{ checksum "pom.xml" }}
+    - run: sudo apt-get update
+    - run: sudo apt-get install -y xvfb
     - run: |
         if [ -n "${CIRCLE_PR_NUMBER}" ]; then
           MAVEN_OPTS="-Xmx3000m" xvfb-run ./mvnw -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
