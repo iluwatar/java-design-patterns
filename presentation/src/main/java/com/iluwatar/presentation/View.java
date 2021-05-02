@@ -55,16 +55,16 @@ public class View {
   /**
    * the value of the text field size.
    */
-  final static int widthTxt = 200;
-  final static int heightTxt = 50;
+  static final int widthTxt = 200;
+  static final int heightTxt = 50;
 
   /**
    * the value of the GUI size and location.
    */
-  final static int locationX = 200;
-  final static int locationY = 200;
-  final static int width = 500;
-  final static int height = 300;
+  static final int locationX = 200;
+  static final int locationY = 200;
+  static final int width = 500;
+  static final int height = 300;
 
   /**
    * constructor method.
