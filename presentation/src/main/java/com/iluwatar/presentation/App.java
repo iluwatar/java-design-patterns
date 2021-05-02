@@ -3,7 +3,8 @@ package com.iluwatar.presentation;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * a class used to start this demo.
+ * The Presentation model pattern is used to divide the presentation and controlling.
+ * This demo is a used to information of some albums with GUI.
  */
 @Slf4j
 public final class App {

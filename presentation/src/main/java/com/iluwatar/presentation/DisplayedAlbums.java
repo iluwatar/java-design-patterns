@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Getter
-public class DsAlbum {
+public class DisplayedAlbums {
   /**
    * albums a list of albums.
    */
@@ -21,7 +21,7 @@ public class DsAlbum {
   /**
    * a constructor method.
    */
-  public DsAlbum() {
+  public DisplayedAlbums() {
     this.albums = new ArrayList<>();
   }
 

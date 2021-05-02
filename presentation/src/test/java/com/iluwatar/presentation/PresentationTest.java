@@ -35,14 +35,14 @@ class PresentationTest {
 
   @Test
   void testCreateAlbumList() {
-    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    PresentationModel model = new PresentationModel(PresentationModel.albumDataSet());
     String[] list = model.getAlbumList();
     assertEquals(Arrays.toString(albumList), Arrays.toString(list));
   }
 
   @Test
   void testSetSelectedAlbumNumber_1() {
-    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    PresentationModel model = new PresentationModel(PresentationModel.albumDataSet());
     final int selectId = 2;
     model.setSelectedAlbumNumber(selectId);
     assertEquals(albumList[selectId - 1], model.getTitle());
@@ -50,7 +50,7 @@ class PresentationTest {
 
   @Test
   void testSetSelectedAlbumNumber_2() {
-    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    PresentationModel model = new PresentationModel(PresentationModel.albumDataSet());
     final int selectId = 4;
     model.setSelectedAlbumNumber(selectId);
     assertEquals(albumList[selectId - 1], model.getTitle());
@@ -58,7 +58,7 @@ class PresentationTest {
 
   @Test
   void testSetTitle_1() {
-    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    PresentationModel model = new PresentationModel(PresentationModel.albumDataSet());
     String testTitle = "TestTile";
     model.setTitle(testTitle);
     assertEquals(testTitle, model.getTitle());
@@ -66,7 +66,7 @@ class PresentationTest {
 
   @Test
   void testSetTitle_2() {
-    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    PresentationModel model = new PresentationModel(PresentationModel.albumDataSet());
     String testTitle = "";
     model.setTitle(testTitle);
     assertEquals(testTitle, model.getTitle());
@@ -74,7 +74,7 @@ class PresentationTest {
 
   @Test
   void testSetArtist_1() {
-    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    PresentationModel model = new PresentationModel(PresentationModel.albumDataSet());
     String testArtist = "TestArtist";
     model.setArtist(testArtist);
     assertEquals(testArtist, model.getArtist());
@@ -82,7 +82,7 @@ class PresentationTest {
 
   @Test
   void testSetArtist_2() {
-    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    PresentationModel model = new PresentationModel(PresentationModel.albumDataSet());
     String testArtist = "";
     model.setArtist(testArtist);
     assertEquals(testArtist, model.getArtist());
@@ -90,14 +90,14 @@ class PresentationTest {
 
   @Test
   void testSetIsClassical() {
-    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    PresentationModel model = new PresentationModel(PresentationModel.albumDataSet());
     model.setIsClassical(true);
     assertTrue(model.getIsClassical());
   }
 
   @Test
   void testSetComposer_false() {
-    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    PresentationModel model = new PresentationModel(PresentationModel.albumDataSet());
     String testComposer = "TestComposer";
 
     model.setIsClassical(false);
@@ -107,7 +107,7 @@ class PresentationTest {
 
   @Test
   void testSetComposer_true() {
-    PresentationMod model = new PresentationMod(PresentationMod.albumDataSet());
+    PresentationModel model = new PresentationModel(PresentationModel.albumDataSet());
     String testComposer = "TestComposer";
 
     model.setIsClassical(true);

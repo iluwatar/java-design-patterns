@@ -11,64 +11,39 @@ tags:
 Application Model
 
 ## Intent
-Presentation Model pulls the state and behavior of the view out into a model class that is part of the presentation. The Presentation Model coordinates with the domain layer and provides an interface to the view that minimizes decision making in the view. The view either stores all its state in the Presentation Model or synchronizes its state with Presentation Model frequently
+Presentation Model pulls the state and behavior of the view out into a model class that is part of the presentation.  
 
 ## Explanation
 
-Example
+Real world example
 
-> When we need to write a program with GUI,  there is no need for us to put all presentation behavior in the view class. Because it will test become harder. So we can use Presentation Model Pattern to separate the behavior and view. The view only need to load the data and states from other class and show these data on the screen according to the states.
+> When we need to write a program with GUI, there is no need for us to put all presentation behavior in the view class. Because it will test become harder. So we can use Presentation Model Pattern to separate the behavior and view. The view only need to load the data and states from other class and show these data on the screen according to the states.  
+
+In plain words
+
+> a pattern that used to divide the presentation and controlling.
 
 Code Example
 
 Class `view` is the GUI of albums. Methods `saveToPMod` and `loadFromPMod` are used to achieve synchronization.
 
 ```java
-/**
- * Generates the GUI of albums.
- */
-@Getter
-@Slf4j
 public class View {
   /**
    * the model that controls this view.
    */
-  private final PresentationMod model;
+  private final PresentationModel model;
 
-  /**
-   * the filed to show and modify title.
-    */
   private TextField txtTitle;
-  /**
-   * the filed to show and modify the name of artist.
-   */
   private TextField txtArtist;
-  /**
-   * the checkbox for is classical.
-   */
   private JCheckBox chkClassical;
-  /**
-   * the filed to show and modify composer.
-   */
   private TextField txtComposer;
-  /**
-   * a list to show all the name of album.
-   */
   private JList<String> albumList;
-  /**
-   * a button to apply of all the change.
-   */
   private JButton apply;
-  /**
-   * roll back the change.
-   */
   private JButton cancel;
 
-  /**
-   * constructor method.
-   */
   public View() {
-    model = new PresentationMod(PresentationMod.albumDataSet());
+    model = new PresentationModel(PresentationModel.albumDataSet());
   }
 
   /**
@@ -94,102 +69,19 @@ public class View {
     txtComposer.setText(model.getComposer());
   }
 
-  /**
-   * initialize the GUI.
-   */
   public void createView() {
-    var frame = new JFrame("Album");
-    var b1 = Box.createHorizontalBox();
-
-    frame.add(b1);
-    albumList = new JList<>(model.getAlbumList());
-    albumList.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(final MouseEvent e) {
-        model.setSelectedAlbumNumber(albumList.getSelectedIndex() + 1);
-        loadFromPMod();
-      }
-    });
-    b1.add(albumList);
-
-    var b2 = Box.createVerticalBox();
-    b1.add(b2);
-
-    txtArtist = new TextField();
-    txtTitle = new TextField();
-
-    final var widthTxt = 200;
-    final var heightTxt = 50;
-    txtArtist.setSize(widthTxt, heightTxt);
-    txtTitle.setSize(widthTxt, heightTxt);
-
-    chkClassical = new JCheckBox();
-    txtComposer = new TextField();
-    chkClassical.addActionListener(itemEvent -> {
-      txtComposer.setEditable(chkClassical.isSelected());
-      if (!chkClassical.isSelected()) {
-        txtComposer.setText("");
-      }
-    });
-    txtComposer.setSize(widthTxt, heightTxt);
-    txtComposer.setEditable(model.getIsClassical());
-
-    apply = new JButton("Apply");
-    apply.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(final MouseEvent e) {
-        saveToPMod();
-        loadFromPMod();
-      }
-    });
-    cancel = new JButton("Cancel");
-    cancel.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(final MouseEvent e) {
-        loadFromPMod();
-      }
-    });
-
-    b2.add(txtArtist);
-    b2.add(txtTitle);
-
-    b2.add(chkClassical);
-    b2.add(txtComposer);
-
-    b2.add(apply);
-    b2.add(cancel);
-
-    final var x = 200;
-    final var y = 200;
-    final var width = 500;
-    final var height = 300;
-    frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    frame.setBounds(x, y, width, height);
-    frame.setVisible(true);
+    // the detail of GUI information like size, listenser and so on.
   }
-
 }
-
 ```
 
 Class `Album` is to store information of a album.
 
 ```java
-@Setter
-@Getter
-@AllArgsConstructor
 public class Album {
-  /**
-   * the title of the album.
-   */
+    
   private String title;
-  /**
-   * the artist name of the album.
-   */
   private String artist;
-  /**
-   * is the album classical, true or false.
-   */
   private boolean isClassical;
   /**
    * only when the album is classical,
@@ -200,36 +92,16 @@ public class Album {
 
 ```
 
-Class `DsAlbum` is store the information of all the albums that will be shown on GUI.
+Class `DisplatedAlbums` is store the information of all the albums that will be displayed on GUI.
 
 ```java
-/**
- * a class used to deal with albums.
- */
-@Slf4j
-@Getter
-public class DsAlbum {
-  /**
-   * albums a list of albums.
-   */
+public class DisplayedAlbums {
   private final List<Album> albums;
 
-  /**
-   * a constructor method.
-   */
-  public DsAlbum() {
+  public DisplayedAlbums() {
     this.albums = new ArrayList<>();
   }
 
-  /**
-   * a method used to add a new album to album list.
-   *
-   * @param title       the title of the album.
-   * @param artist      the artist name of the album.
-   * @param isClassical is the album classical, true or false.
-   * @param composer    only when the album is classical,
-   *                    composer can have content.
-   */
   public void addAlbums(final String title,
                         final String artist, final boolean isClassical,
                         final String composer) {
@@ -240,57 +112,18 @@ public class DsAlbum {
     }
   }
 }
-
 ```
 
  Class `PresentationMod` is used to control all the action of GUI.
 
 ```java
-/**
- * The class between view and albums, it is used to control the data.
- */
-@Slf4j
-public class PresentationMod {
-  /**
-   * the data of all albums that will be shown.
-   */
-  private final DsAlbum data;
-  /**
-   * the no of selected album.
-   */
+public class PresentationModel {
+  private final DisplayedAlbums data;
+  
   private int selectedAlbumNumber;
-  /**
-   * the selected album.
-   */
   private Album selectedAlbum;
 
-  /**
-   * Generates a set of data for testing.
-   *
-   * @return a instance of DsAlbum which store the data.
-   */
-  public static DsAlbum albumDataSet() {
-    var titleList = new String[]{"HQ", "The Rough Dancer and Cyclical Night",
-                                 "The Black Light", "Symphony No.5"};
-    var artistList = new String[]{"Roy Harper", "Astor Piazzola",
-                                  "The Black Light", "CBSO"};
-    var isClassicalList = new boolean[]{false, false, false, true};
-    var composerList = new String[]{null, null, null, "Sibelius"};
-
-    var result = new DsAlbum();
-    for (var i = 1; i <= titleList.length; i++) {
-      result.addAlbums(titleList[i - 1], artistList[i - 1],
-              isClassicalList[i - 1], composerList[i - 1]);
-    }
-    return result;
-  }
-
-  /**
-   * constructor method.
-   *
-   * @param dataOfAlbums the data of all the albums
-   */
-  public PresentationMod(final DsAlbum dataOfAlbums) {
+  public PresentationModel(final DisplayedAlbums dataOfAlbums) {
     this.data = dataOfAlbums;
     this.selectedAlbumNumber = 1;
     this.selectedAlbum = this.data.getAlbums().get(0);
@@ -308,89 +141,17 @@ public class PresentationMod {
     this.selectedAlbum = data.getAlbums().get(this.selectedAlbumNumber - 1);
   }
 
-  /**
-   * get the title of selected album.
-   *
-   * @return the tile of selected album.
-   */
   public String getTitle() {
     return selectedAlbum.getTitle();
   }
+  // other get methods are like this, which are used to get information of selected album.
 
-  /**
-   * set the title of selected album.
-   *
-   * @param value the title which user want to user.
-   */
   public void setTitle(final String value) {
     LOGGER.info("Change album title from {} to {}",
             selectedAlbum.getTitle(), value);
     selectedAlbum.setTitle(value);
   }
-
-  /**
-   * get the artist of selected album.
-   *
-   * @return the artist of selected album.
-   */
-  public String getArtist() {
-    return selectedAlbum.getArtist();
-  }
-
-  /**
-   * set the name of artist.
-   *
-   * @param value the name want artist to be.
-   */
-  public void setArtist(final String value) {
-    LOGGER.info("Change album artist from {} to {}",
-            selectedAlbum.getArtist(), value);
-    selectedAlbum.setArtist(value);
-  }
-
-  /**
-   * Gets a boolean value which represents whether the album is classical.
-   *
-   * @return is the album classical.
-   */
-  public boolean getIsClassical() {
-    return selectedAlbum.isClassical();
-  }
-
-  /**
-   * set the isClassical of album.
-   *
-   * @param value is the album classical.
-   */
-  public void setIsClassical(final boolean value) {
-    LOGGER.info("Change album isClassical from {} to {}",
-            selectedAlbum.isClassical(), value);
-    selectedAlbum.setClassical(value);
-  }
-
-  /**
-   * get is classical of the selected album.
-   *
-   * @return is the album classical.
-   */
-  public String getComposer() {
-    return selectedAlbum.isClassical() ? selectedAlbum.getComposer() : "";
-  }
-
-  /**
-   * Sets the name of composer when the album is classical.
-   *
-   * @param value the name of composer.
-   */
-  public void setComposer(final String value) {
-    if (selectedAlbum.isClassical()) {
-      LOGGER.info("Change album composer from {} to {}",
-              selectedAlbum.getComposer(), value);
-      selectedAlbum.setComposer(value);
-    } else {
-      LOGGER.info("Composer can not be changed");
-    }
-  }
+  // other set methods are like this, which are used to get information of selected album.
 
   /**
    * Gets a list of albums.
@@ -405,7 +166,6 @@ public class PresentationMod {
     return result;
   }
 }
-
 ```
 
 We can run class `App` to start this demo. the checkbox is the album classical; the first text field is the name of album artist; the second is the name of album title; the last one is the name of the composer:

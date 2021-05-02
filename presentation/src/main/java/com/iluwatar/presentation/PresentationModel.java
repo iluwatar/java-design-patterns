@@ -6,11 +6,11 @@ import lombok.extern.slf4j.Slf4j;
  * The class between view and albums, it is used to control the data.
  */
 @Slf4j
-public class PresentationMod {
+public class PresentationModel {
   /**
    * the data of all albums that will be shown.
    */
-  private final DsAlbum data;
+  private final DisplayedAlbums data;
   /**
    * the no of selected album.
    */
@@ -25,7 +25,7 @@ public class PresentationMod {
    *
    * @return a instance of DsAlbum which store the data.
    */
-  public static DsAlbum albumDataSet() {
+  public static DisplayedAlbums albumDataSet() {
     var titleList = new String[]{"HQ", "The Rough Dancer and Cyclical Night",
                                  "The Black Light", "Symphony No.5"};
     var artistList = new String[]{"Roy Harper", "Astor Piazzola",
@@ -33,7 +33,7 @@ public class PresentationMod {
     var isClassicalList = new boolean[]{false, false, false, true};
     var composerList = new String[]{null, null, null, "Sibelius"};
 
-    var result = new DsAlbum();
+    var result = new DisplayedAlbums();
     for (var i = 1; i <= titleList.length; i++) {
       result.addAlbums(titleList[i - 1], artistList[i - 1],
               isClassicalList[i - 1], composerList[i - 1]);
@@ -46,7 +46,7 @@ public class PresentationMod {
    *
    * @param dataOfAlbums the data of all the albums
    */
-  public PresentationMod(final DsAlbum dataOfAlbums) {
+  public PresentationModel(final DisplayedAlbums dataOfAlbums) {
     this.data = dataOfAlbums;
     this.selectedAlbumNumber = 1;
     this.selectedAlbum = this.data.getAlbums().get(0);
