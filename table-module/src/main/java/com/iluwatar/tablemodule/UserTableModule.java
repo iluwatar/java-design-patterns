@@ -44,7 +44,7 @@ public class UserTableModule {
     try {
       var result = 0;
       connection = dataSource.getConnection();
-      String sql = "select count(*) from USERS where username=? and password=?";
+      var sql = "select count(*) from USERS where username=? and password=?";
       preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setString(1, username);
       preparedStatement.setString(2, password);
@@ -75,7 +75,7 @@ public class UserTableModule {
   public int registerUser(final User user) throws SQLException {
     try {
       connection = dataSource.getConnection();
-      String sql = "insert into USERS (username, password) values (?,?)";
+      var    sql = "insert into USERS (username, password) values (?,?)";
       preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setString(1, user.getUsername());
       preparedStatement.setString(2, user.getPassword());

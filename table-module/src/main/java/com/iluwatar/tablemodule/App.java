@@ -22,7 +22,6 @@ import org.h2.jdbcx.JdbcDataSource;
 @Slf4j
 public final class App {
   private static final String DB_URL = "jdbc:h2:~/test";
-  private static UserTableModule userTableModule;
 
   /**
    * Private constructor.
@@ -40,7 +39,7 @@ public final class App {
   public static void main(final String[] args) throws SQLException {
     final var dataSource = createDataSource();
     createSchema(dataSource);
-    userTableModule = new UserTableModule(dataSource);
+    var userTableModule = new UserTableModule(dataSource);
 
     //Initialize two users.
     var user1 = new User(1, "123456", "123456");
