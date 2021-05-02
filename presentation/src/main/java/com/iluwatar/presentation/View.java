@@ -61,8 +61,8 @@ public class View {
   /**
    * the value of the GUI size and location.
    */
-  final int x = 200;
-  final int y = 200;
+  final int locationX = 200;
+  final int locationY = 200;
   final int width = 500;
   final int height = 300;
 
@@ -160,7 +160,7 @@ public class View {
     b2.add(cancel);
 
     frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    frame.setBounds(x, y, width, height);
+    frame.setBounds(locationX, locationY, width, height);
     frame.setVisible(true);
   }
 
