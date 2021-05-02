@@ -55,16 +55,16 @@ public class View {
   /**
    * the value of the text field size.
    */
-  static final int widthTxt = 200;
-  static final int heightTxt = 50;
+  static final int WIDTH_TXT = 200;
+  static final int HEIGHT_TXT = 50;
 
   /**
    * the value of the GUI size and location.
    */
-  static final int locationX = 200;
-  static final int locationY = 200;
-  static final int width = 500;
-  static final int height = 300;
+  static final int LOCATION_X = 200;
+  static final int LOCATION_Y = 200;
+  static final int WIDTH = 500;
+  static final int HEIGHT = 300;
 
   /**
    * constructor method.
@@ -120,8 +120,8 @@ public class View {
     txtArtist = new TextField();
     txtTitle = new TextField();
 
-    txtArtist.setSize(widthTxt, heightTxt);
-    txtTitle.setSize(widthTxt, heightTxt);
+    txtArtist.setSize(WIDTH_TXT, HEIGHT_TXT);
+    txtTitle.setSize(WIDTH_TXT, HEIGHT_TXT);
 
     chkClassical = new JCheckBox();
     txtComposer = new TextField();
@@ -131,7 +131,7 @@ public class View {
         txtComposer.setText("");
       }
     });
-    txtComposer.setSize(widthTxt, heightTxt);
+    txtComposer.setSize(WIDTH_TXT, HEIGHT_TXT);
     txtComposer.setEditable(model.getIsClassical());
 
     apply = new JButton("Apply");
@@ -160,7 +160,7 @@ public class View {
     b2.add(cancel);
 
     frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    frame.setBounds(locationX, locationY, width, height);
+    frame.setBounds(LOCATION_X, LOCATION_Y, WIDTH, HEIGHT);
     frame.setVisible(true);
   }
 
