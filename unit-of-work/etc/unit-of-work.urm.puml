@@ -1,0 +1,48 @@
+@startuml
+package com.iluwatar.unitofwork {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface IUnitOfWork<T> {
+    + DELETE : String {static}
+    + INSERT : String {static}
+    + MODIFY : String {static}
+    + commit() {abstract}
+    + registerDeleted(T) {abstract}
+    + registerModified(T) {abstract}
+    + registerNew(T) {abstract}
+  }
+  class Student {
+    - address : String
+    - id : Integer
+    - name : String
+    + Student(id : Integer, name : String, address : String)
+    + getAddress() : String
+    + getId() : Integer
+    + getName() : String
+  }
+  class StudentDatabase {
+    + StudentDatabase()
+    + delete(student : Student)
+    + insert(student : Student)
+    + modify(student : Student)
+  }
+  class StudentRepository {
+    - LOGGER : Logger {static}
+    - context : Map<String, List<Student>>
+    - studentDatabase : StudentDatabase
+    + StudentRepository(context : Map<String, List<Student>>, studentDatabase : StudentDatabase)
+    + commit()
+    - commitDelete()
+    - commitInsert()
+    - commitModify()
+    - register(student : Student, operation : String)
+    + registerDeleted(student : Student)
+    + registerModified(student : Student)
+    + registerNew(student : Student)
+  }
+}
+StudentRepository -->  "-studentDatabase" StudentDatabase
+StudentRepository ..|> IUnitOfWork 
+@enduml

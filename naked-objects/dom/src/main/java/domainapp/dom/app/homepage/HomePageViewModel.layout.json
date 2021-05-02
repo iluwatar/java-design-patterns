@@ -1,0 +1,27 @@
+{
+  "columns": [
+    {
+      "span": 0,
+      "memberGroups": {}
+    },
+    {
+      "span": 0,
+      "memberGroups": {}
+    },
+    {
+      "span": 0,
+      "memberGroups": {}
+    },
+    {
+      "span": 12,
+      "collections": {
+        "objects": {
+          "collectionLayout": {
+            "render": "EAGERLY"
+          }
+        }
+      }
+    }
+  ],
+  "actions": {}
+}

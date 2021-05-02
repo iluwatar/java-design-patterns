@@ -1,0 +1,78 @@
+@startuml
+package com.iluwatar.masterworker.system.systemmaster {
+  class ArrayTransposeMaster {
+    + ArrayTransposeMaster(numOfWorkers : int)
+    ~ aggregateData() : ArrayResult
+    ~ setWorkers(num : int) : ArrayList<Worker>
+  }
+  abstract class Master {
+    - allResultData : Hashtable<Integer, Result<T>>
+    - expectedNumResults : int
+    - finalResult : Result<T>
+    - numOfWorkers : int
+    - workers : ArrayList<Worker>
+    ~ Master(numOfWorkers : int)
+    ~ aggregateData() : Result<T> {abstract}
+    - collectResult(data : Result<T>, workerId : int)
+    - divideWork(input : Input<T>)
+    + doWork(input : Input<T>)
+    ~ getAllResultData() : Hashtable<Integer, Result<T>>
+    ~ getExpectedNumResults() : int
+    + getFinalResult() : Result<T>
+    ~ getWorkers() : ArrayList<Worker>
+    + receiveData(data : Result<T>, w : Worker)
+    ~ setWorkers(int) : ArrayList<Worker> {abstract}
+  }
+}
+package com.iluwatar.masterworker.system {
+  class ArrayTransposeMasterWorker {
+    + ArrayTransposeMasterWorker()
+    ~ setMaster(numOfWorkers : int) : Master
+  }
+  abstract class MasterWorker {
+    - master : Master
+    + MasterWorker(numOfWorkers : int)
+    + getResult(input : Input<T>) : Result<T>
+    ~ setMaster(int) : Master {abstract}
+  }
+}
+package com.iluwatar.masterworker {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class ArrayInput {
+    + ArrayInput(data : int[][])
+    + divideData(num : int) : ArrayList<Input<T>>
+    ~ makeDivisions(data : int[][], num : int) : int[] {static}
+  }
+  class ArrayResult {
+    + ArrayResult(data : int[][])
+  }
+  class ArrayUtilityMethods {
+    - LOGGER : Logger {static}
+    - RANDOM : Random {static}
+    + ArrayUtilityMethods()
+    + arraysSame(a1 : int[], a2 : int[]) : boolean {static}
+    + createRandomIntMatrix(rows : int, columns : int) : int[][] {static}
+    + matricesSame(m1 : int[][], m2 : int[][]) : boolean {static}
+    + printMatrix(matrix : int[][]) {static}
+  }
+  abstract class Input<T> {
+    + data : T
+    + Input<T>(data : T)
+    + divideData(int) : ArrayList<Input<T>> {abstract}
+  }
+  abstract class Result<T> {
+    + data : T
+    + Result<T>(data : T)
+  }
+}
+Master -->  "-finalResult" Result
+MasterWorker -->  "-master" Master
+ArrayInput --|> Input 
+ArrayResult --|> Result 
+ArrayTransposeMasterWorker --|> MasterWorker 
+ArrayTransposeMaster --|> Master 
+@enduml

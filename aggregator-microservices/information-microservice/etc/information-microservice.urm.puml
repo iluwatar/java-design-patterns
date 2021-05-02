@@ -1,0 +1,12 @@
+@startuml
+package com.iluwatar.information.microservice {
+  class InformationApplication {
+    + InformationApplication()
+    + main(args : String[]) {static}
+  }
+  class InformationController {
+    + InformationController()
+    + getProductTitle() : String
+  }
+}
+@enduml

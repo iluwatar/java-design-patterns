@@ -1,0 +1,76 @@
+/*
+ * The MIT License
+ * Copyright © 2014-2021 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+package com.iluwatar.datamapper;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * Implementation of Actions on Students Data.
+ */
+public final class StudentDataMapperImpl implements StudentDataMapper {
+
+  /* Note: Normally this would be in the form of an actual database */
+  private final List<Student> students = new ArrayList<>();
+
+  @Override
+  public Optional<Student> find(int studentId) {
+    return this.getStudents().stream().filter(x -> x.getStudentId() == studentId).findFirst();
+  }
+
+  @Override
+  public void update(Student studentToBeUpdated) throws DataMapperException {
+    String name = studentToBeUpdated.getName();
+    Integer index = Optional.of(studentToBeUpdated)
+        .map(Student::getStudentId)
+        .flatMap(this::find)
+        .map(students::indexOf)
+        .orElseThrow(() -> new DataMapperException("Student [" + name + "] is not found"));
+    students.set(index, studentToBeUpdated);
+  }
+
+  @Override
+  public void insert(Student studentToBeInserted) throws DataMapperException {
+    Optional<Student> student = find(studentToBeInserted.getStudentId());
+    if (student.isPresent()) {
+      String name = studentToBeInserted.getName();
+      throw new DataMapperException("Student already [" + name + "] exists");
+    }
+
+    students.add(studentToBeInserted);
+  }
+
+  @Override
+  public void delete(Student studentToBeDeleted) throws DataMapperException {
+    if (!students.remove(studentToBeDeleted)) {
+      String name = studentToBeDeleted.getName();
+      throw new DataMapperException("Student [" + name + "] is not found");
+    }
+  }
+
+  public List<Student> getStudents() {
+    return this.students;
+  }
+}

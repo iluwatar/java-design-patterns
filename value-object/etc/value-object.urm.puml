@@ -1,0 +1,22 @@
+@startuml
+package com.iluwatar.value.object {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class HeroStat {
+    - intelligence : int
+    - luck : int
+    - strength : int
+    - HeroStat(strength : int, intelligence : int, luck : int)
+    + equals(obj : Object) : boolean
+    + getIntelligence() : int
+    + getLuck() : int
+    + getStrength() : int
+    + hashCode() : int
+    + toString() : String
+    + valueOf(strength : int, intelligence : int, luck : int) : HeroStat {static}
+  }
+}
+@enduml

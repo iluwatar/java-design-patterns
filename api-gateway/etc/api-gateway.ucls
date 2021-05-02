@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.iluwatar.api.gateway.ApiGateway" project="api-gateway" 
+    file="/api-gateway/api-gateway-service/src/main/java/com/iluwatar/api/gateway/ApiGateway.java" binary="false" corner="BOTTOM_RIGHT">
+    <position height="-1" width="-1" x="125" y="87"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.iluwatar.api.gateway.DesktopProduct" project="api-gateway" 
+    file="/api-gateway/api-gateway-service/src/main/java/com/iluwatar/api/gateway/DesktopProduct.java" binary="false" corner="BOTTOM_RIGHT">
+    <position height="-1" width="-1" x="388" y="109"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="3" language="java" name="com.iluwatar.api.gateway.ImageClient" project="api-gateway" 
+    file="/api-gateway/api-gateway-service/src/main/java/com/iluwatar/api/gateway/ImageClient.java" binary="false" corner="BOTTOM_RIGHT">
+    <position height="81" width="129" x="13" y="197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" name="com.iluwatar.api.gateway.ImageClientImpl" project="api-gateway" 
+    file="/api-gateway/api-gateway-service/src/main/java/com/iluwatar/api/gateway/ImageClientImpl.java" binary="false" corner="BOTTOM_RIGHT">
+    <position height="99" width="129" x="13" y="325"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.iluwatar.api.gateway.MobileProduct" project="api-gateway" 
+    file="/api-gateway/api-gateway-service/src/main/java/com/iluwatar/api/gateway/MobileProduct.java" binary="false" corner="BOTTOM_RIGHT">
+    <position height="-1" width="-1" x="376" y="293"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="6" language="java" name="com.iluwatar.api.gateway.PriceClient" project="api-gateway" 
+    file="/api-gateway/api-gateway-service/src/main/java/com/iluwatar/api/gateway/PriceClient.java" binary="false" corner="BOTTOM_RIGHT">
+    <position height="-1" width="-1" x="222" y="231"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="com.iluwatar.api.gateway.PriceClientImpl" project="api-gateway" 
+    file="/api-gateway/api-gateway-service/src/main/java/com/iluwatar/api/gateway/PriceClientImpl.java" binary="false" corner="BOTTOM_RIGHT">
+    <position height="-1" width="-1" x="223" y="374"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="8">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="9" name="imageClient"/>      
+      <multiplicity id="10" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="11">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <association id="12">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="13" name="priceClient"/>      
+      <multiplicity id="14" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="15">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

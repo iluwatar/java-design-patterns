@@ -1,0 +1,40 @@
+@startuml
+package com.iluwatar.lazy.loading {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Heavy {
+    - LOGGER : Logger {static}
+    + Heavy()
+  }
+  class HolderNaive {
+    - LOGGER : Logger {static}
+    - heavy : Heavy
+    + HolderNaive()
+    + getHeavy() : Heavy
+  }
+  class HolderThreadSafe {
+    - LOGGER : Logger {static}
+    - heavy : Heavy
+    + HolderThreadSafe()
+    + getHeavy() : Heavy
+  }
+  class Java8Holder {
+    - LOGGER : Logger {static}
+    - heavy : Supplier<Heavy>
+    + Java8Holder()
+    - createAndCacheHeavy() : Heavy
+    + getHeavy() : Heavy
+  }
+  ~class HeavyFactory {
+    - heavyInstance : Heavy
+    ~ HeavyFactory()
+    + get() : Heavy
+  }
+}
+HolderThreadSafe -->  "-heavy" Heavy
+HolderNaive -->  "-heavy" Heavy
+HeavyFactory -->  "-heavyInstance" Heavy
+@enduml

@@ -1,0 +1,54 @@
+@startuml
+package com.iluwatar.retry {
+  class App {
+    - LOG : Logger {static}
+    - op : BusinessOperation<String> {static}
+    + App()
+    - errorNoRetry() {static}
+    - errorWithRetry() {static}
+    - errorWithRetryExponentialBackoff() {static}
+    + main(args : String[]) {static}
+    - noErrors() {static}
+  }
+  interface BusinessOperation<T> {
+    + perform() : T {abstract}
+  }
+  class FindCustomer {
+    - customerId : String
+    - errors : Deque<BusinessException>
+    + FindCustomer(customerId : String, errors : BusinessException[])
+    + perform() : String
+  }
+  class Retry<T> {
+    - attempts : AtomicInteger
+    - delay : long
+    - errors : List<Exception>
+    - maxAttempts : int
+    - op : BusinessOperation<T>
+    - test : Predicate<Exception>
+    + Retry<T>(op : BusinessOperation<T>, maxAttempts : int, delay : long, ignoreTests : Predicate<Exception>[])
+    + attempts() : int
+    + errors() : List<Exception>
+    + perform() : T
+  }
+  class RetryExponentialBackoff<T> {
+    - RANDOM : Random {static}
+    - attempts : AtomicInteger
+    - errors : List<Exception>
+    - maxAttempts : int
+    - maxDelay : long
+    - op : BusinessOperation<T>
+    - test : Predicate<Exception>
+    + RetryExponentialBackoff<T>(op : BusinessOperation<T>, maxAttempts : int, maxDelay : long, ignoreTests : Predicate<Exception>[])
+    + attempts() : int
+    + errors() : List<Exception>
+    + perform() : T
+  }
+}
+RetryExponentialBackoff -->  "-op" BusinessOperation
+Retry -->  "-op" BusinessOperation
+App -->  "-op" BusinessOperation
+FindCustomer ..|> BusinessOperation 
+Retry ..|> BusinessOperation 
+RetryExponentialBackoff ..|> BusinessOperation 
+@enduml

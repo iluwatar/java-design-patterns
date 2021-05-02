@@ -1,0 +1,65 @@
+@startuml
+package com.iluwatar.flyweight {
+  class AlchemistShop {
+    - LOGGER : Logger {static}
+    - bottomShelf : List<Potion>
+    - topShelf : List<Potion>
+    + AlchemistShop()
+    + enumerate()
+    + getBottomShelf() : List<Potion>
+    + getTopShelf() : List<Potion>
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class HealingPotion {
+    - LOGGER : Logger {static}
+    + HealingPotion()
+    + drink()
+  }
+  class HolyWaterPotion {
+    - LOGGER : Logger {static}
+    + HolyWaterPotion()
+    + drink()
+  }
+  class InvisibilityPotion {
+    - LOGGER : Logger {static}
+    + InvisibilityPotion()
+    + drink()
+  }
+  class PoisonPotion {
+    - LOGGER : Logger {static}
+    + PoisonPotion()
+    + drink()
+  }
+  interface Potion {
+    + drink() {abstract}
+  }
+  class PotionFactory {
+    - potions : Map<PotionType, Potion>
+    + PotionFactory()
+    ~ createPotion(type : PotionType) : Potion
+  }
+  enum PotionType {
+    + HEALING {static}
+    + HOLY_WATER {static}
+    + INVISIBILITY {static}
+    + POISON {static}
+    + STRENGTH {static}
+    + valueOf(name : String) : PotionType {static}
+    + values() : PotionType[] {static}
+  }
+  class StrengthPotion {
+    - LOGGER : Logger {static}
+    + StrengthPotion()
+    + drink()
+  }
+}
+AlchemistShop -->  "-topShelf" Potion
+HealingPotion ..|> Potion 
+HolyWaterPotion ..|> Potion 
+InvisibilityPotion ..|> Potion 
+PoisonPotion ..|> Potion 
+StrengthPotion ..|> Potion 
+@enduml
