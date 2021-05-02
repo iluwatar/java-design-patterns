@@ -1,9 +1,0 @@
-@startuml
-package com.iluwatar.pageobject {
-  class App {
-    - LOGGER : Logger {static}
-    - App()
-    + main(args : String[]) {static}
-  }
-}
-@enduml

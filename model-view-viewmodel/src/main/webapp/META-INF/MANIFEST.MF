@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Specification-Title: ZK Application
-Specification-Version: 1.0
-Specification-Vendor: 
-Implementation-Title: 
-Implementation-URL: http://your-website/
-Implementation-Version: 1.0
-Implementation-Vendor: 
