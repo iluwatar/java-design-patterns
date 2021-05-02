@@ -1,69 +1,46 @@
 @startuml
 package com.iluwatar.tablemodule {
   class App {
-    - H2_DB_URL : String {static}
+    - DB_URL : String {static}
     - LOGGER : Logger {static}
-    + App()
-    - addRooms(roomDao : RoomDaoImpl) {static}
+    - userTableModule : UserTableModule
+    - App()
     - createDataSource() : DataSource {static}
     - createSchema(dataSource : DataSource) {static}
     - deleteSchema(dataSource : DataSource) {static}
-    - generateSampleRooms() : List<Room> {static}
-    - getRoomStatus(dao : RoomDaoImpl) {static}
     + main(args : String[]) {static}
   }
-  class Room {
-    - booked : boolean
+  class User {
     - id : int
-    - price : int
-    - roomType : String
-    + Room(id : int, roomType : String, price : int, booked : boolean)
+    - password : String
+    - username : String
+    + User(id : int, username : String, password : String)
     # canEqual(other : Object) : boolean
     + equals(o : Object) : boolean
     + getId() : int
-    + getPrice() : int
-    + getRoomType() : String
+    + getPassword() : String
+    + getUsername() : String
     + hashCode() : int
-    + isBooked() : boolean
-    + setBooked(booked : boolean)
     + setId(id : int)
-    + setPrice(price : int)
-    + setRoomType(roomType : String)
+    + setPassword(password : String)
+    + setUsername(username : String)
     + toString() : String
   }
-  interface RoomDao {
-    + add(Room) : Boolean {abstract}
-    + delete(Room) : Boolean {abstract}
-    + getAll() : Stream<Room> {abstract}
-    + getById(int) : Optional<Room> {abstract}
-    + update(Room) : Boolean {abstract}
-  }
-  class RoomDaoImpl {
-    - LOGGER : Logger {static}
-    - dataSource : DataSource
-    + RoomDaoImpl(dataSource : DataSource)
-    + add(room : Room) : Boolean
-    - createRoom(resultSet : ResultSet) : Room
-    + delete(room : Room) : Boolean
-    + getAll() : Stream<Room>
-    + getById(id : int) : Optional<Room>
-    - getConnection() : Connection
-    - mutedClose(connection : Connection, statement : PreparedStatement, resultSet : ResultSet)
-    + update(room : Room) : Boolean
-  }
-  class RoomSchemaSql {
+  class UserSchemaSql {
     + CREATE_SCHEMA_SQL : String {static}
     + DELETE_SCHEMA_SQL : String {static}
-    - RoomSchemaSql()
+    - UserSchemaSql()
   }
-  class RoomTableModule {
+  class UserTableModule {
     - LOGGER : Logger {static}
-    - roomDao : RoomDao
-    + RoomTableModule(roomDaoImpl : RoomDaoImpl)
-    + bookRoom(roomNumber : int)
-    + cancelRoomBooking(roomNumber : int)
+    - connection : Connection
+    - dataSource : DataSource
+    - preparedStatement : PreparedStatement
+    - resultSet : ResultSet
+    + UserTableModule(userDataSource : DataSource)
+    + login(username : String, password : String) : int
+    + registerUser(user : User) : int
   }
 }
-RoomTableModule -->  "-roomDao" RoomDao
-RoomDaoImpl ..|> RoomDao 
+App -->  "-userTableModule" UserTableModule
 @enduml
