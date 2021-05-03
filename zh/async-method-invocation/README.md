@@ -8,7 +8,7 @@ tags:
  - Reactive
 ---
 
-## 作用
+## 含义
 
 异步方法是一种调用线程在等待任务结果时候不会被阻塞的模式。该模式提供了对多个任务的并行处理，并通过回调或等待，在所有任务完成后在提供结果读取。
 
@@ -144,7 +144,7 @@ public static void main(String[] args) throws Exception {
 
 ![alt text](../../async-method-invocation/etc/async-method-invocation.png "Async Method Invocation")
 
-## 适用性
+## 适用场景
 
 在以下场景可以使用异步调用模式
 
