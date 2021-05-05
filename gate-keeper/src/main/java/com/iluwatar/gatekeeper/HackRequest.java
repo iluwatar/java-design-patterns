@@ -3,6 +3,9 @@ package com.iluwatar.gatekeeper;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Hack request with dangerous request.
+ */
 @Getter
 @Setter
 

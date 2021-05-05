@@ -1,11 +1,10 @@
 ---
 layout: pattern
-title: GateKeeper
 folder: gate-keeper
 permalink: /patterns/gate-keeper/
 categories: Cloud
 tags:
- - Data access
+ - Cloud distributed
 ---
 
 ## Intent
@@ -111,7 +110,7 @@ gateKeeper.validateAndForwardRequest(badRequest);
 
 Program output:
 
-```java
+```
 ----------------------------
 Start the request: login
 Accept the request!

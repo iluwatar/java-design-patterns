@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public class LoginRequst extends Request {
-  private String account;
-  private String password;
+  private final String account;
+  private final String password;
 
   /**
    * Construction method.
