@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,70 +20,79 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.PrintStream;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.IntStream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
 /**
  * Date: 12/12/15 - 3:04 PM
  *
  * @author Jeroen Meulemeester
  */
-public class KingJoffreyTest {
+class KingJoffreyTest {
 
-  /**
-   * The mocked standard out {@link PrintStream}, required since {@link KingJoffrey} does nothing
-   * except for writing to std-out using {@link System#out}
-   */
-  private final PrintStream stdOutMock = mock(PrintStream.class);
+  private InMemoryAppender appender;
 
-  /**
-   * Keep the original std-out so it can be restored after the test
-   */
-  private final PrintStream stdOutOrig = System.out;
-
-  /**
-   * Inject the mocked std-out {@link PrintStream} into the {@link System} class before each test
-   */
-  @Before
-  public void setUp() {
-    System.setOut(this.stdOutMock);
+  @BeforeEach
+  void setUp() {
+    appender = new InMemoryAppender(KingJoffrey.class);
   }
 
-  /**
-   * Removed the mocked std-out {@link PrintStream} again from the {@link System} class
-   */
-  @After
-  public void tearDown() {
-    System.setOut(this.stdOutOrig);
+  @AfterEach
+  void tearDown() {
+    appender.stop();
   }
 
   /**
    * Test if {@link KingJoffrey} tells us what event he received
    */
   @Test
-  public void testOnEvent() {
-    final KingJoffrey kingJoffrey = new KingJoffrey();
+  void testOnEvent() {
+    final var kingJoffrey = new KingJoffrey();
 
-    for (final Event event : Event.values()) {
-      verifyZeroInteractions(this.stdOutMock);
+    IntStream.range(0, Event.values().length).forEach(i -> {
+      assertEquals(i, appender.getLogSize());
+      var event = Event.values()[i];
       kingJoffrey.onEvent(event);
+      final var expectedMessage = "Received event from the King's Hand: " + event.toString();
+      assertEquals(expectedMessage, appender.getLastMessage());
+      assertEquals(i + 1, appender.getLogSize());
+    });
 
-      final String expectedMessage = "Received event from the King's Hand: " + event.toString();
-      verify(this.stdOutMock, times(1)).println(expectedMessage);
-      verifyNoMoreInteractions(this.stdOutMock);
+  }
+
+  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private final List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender(Class<?> clazz) {
+      ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
+      start();
     }
 
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public String getLastMessage() {
+      return log.get(log.size() - 1).getFormattedMessage();
+    }
+
+    public int getLogSize() {
+      return log.size();
+    }
   }
 
 }

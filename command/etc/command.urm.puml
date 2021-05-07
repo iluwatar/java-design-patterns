@@ -1,29 +1,25 @@
 @startuml
 package com.iluwatar.command {
-  class InvisibilitySpell {
-    - target : Target
-    + InvisibilitySpell()
-    + execute(target : Target)
-    + redo()
-    + toString() : String
-    + undo()
-  }
   class App {
     + App()
     + main(args : String[]) {static}
   }
-  abstract class Command {
-    + Command()
-    + execute(Target) {abstract}
-    + redo() {abstract}
-    + toString() : String {abstract}
-    + undo() {abstract}
-  }
   class Goblin {
     + Goblin()
     + toString() : String
+    + changeSize()
+    + changeVisibility()
+  }
+  enum Size {
+    + NORMAL {static}
+    + SMALL {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Size {static}
+    + values() : Size[] {static}
   }
   abstract class Target {
+    - LOGGER : Logger {static}
     - size : Size
     - visibility : Visibility
     + Target()
@@ -34,51 +30,29 @@ package com.iluwatar.command {
     + setVisibility(visibility : Visibility)
     + toString() : String {abstract}
   }
-  class Wizard {
-    - redoStack : Deque<Command>
-    - undoStack : Deque<Command>
-    + Wizard()
-    + castSpell(command : Command, target : Target)
-    + redoLastSpell()
-    + toString() : String
-    + undoLastSpell()
-  }
-  class ShrinkSpell {
-    - oldSize : Size
-    - target : Target
-    + ShrinkSpell()
-    + execute(target : Target)
-    + redo()
-    + toString() : String
-    + undo()
-  }
-  enum Size {
-    + LARGE {static}
-    + NORMAL {static}
-    + SMALL {static}
-    + UNDEFINED {static}
-    - title : String
-    + toString() : String
-    + valueOf(name : String) : Size {static}
-    + values() : Size[] {static}
-  }
   enum Visibility {
     + INVISIBLE {static}
-    + UNDEFINED {static}
     + VISIBLE {static}
     - title : String
     + toString() : String
     + valueOf(name : String) : Visibility {static}
     + values() : Visibility[] {static}
   }
+  class Wizard {
+    - LOGGER : Logger {static}
+    - redoStack : Deque<Runnable>
+    - undoStack : Deque<Runnable>
+    + Wizard()
+    + castSpell(Runnable : runnable)
+    + redoLastSpell()
+    + toString() : String
+    + undoLastSpell()
+  }
 }
 Target -->  "-size" Size
-Wizard -->  "-undoStack" Command
-ShrinkSpell -->  "-oldSize" Size
-InvisibilitySpell -->  "-target" Target
-ShrinkSpell -->  "-target" Target
+Wizard -->  "-changeSize" Goblin
+Wizard -->  "-changeVisibility" Goblin
 Target -->  "-visibility" Visibility
-InvisibilitySpell --|> Command 
-Goblin --|> Target 
-ShrinkSpell --|> Command 
+Goblin --|> Target
+App --> "castSpell" Wizard
 @enduml

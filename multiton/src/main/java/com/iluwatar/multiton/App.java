@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,35 +20,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.multiton;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 
  * Whereas Singleton design pattern introduces single globally accessible object the Multiton
  * pattern defines many globally accessible objects. The client asks for the correct instance from
  * the Multiton by passing an enumeration as parameter.
- * <p>
- * In this example {@link Nazgul} is the Multiton and we can ask single {@link Nazgul} from it using
- * {@link NazgulName}. The {@link Nazgul}s are statically initialized and stored in concurrent hash
- * map.
  *
+ * <p>There is more than one way to implement the multiton design pattern. In the first example
+ * {@link Nazgul} is the Multiton and we can ask single {@link Nazgul} from it using {@link
+ * NazgulName}. The {@link Nazgul}s are statically initialized and stored in concurrent hash map.
+ *
+ * <p>In the enum implementation {@link NazgulEnum} is the multiton. It is static and mutable
+ * because of the way java supports enums.
  */
+@Slf4j
 public class App {
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
-    System.out.println("KHAMUL=" + Nazgul.getInstance(NazgulName.KHAMUL));
-    System.out.println("MURAZOR=" + Nazgul.getInstance(NazgulName.MURAZOR));
-    System.out.println("DWAR=" + Nazgul.getInstance(NazgulName.DWAR));
-    System.out.println("JI_INDUR=" + Nazgul.getInstance(NazgulName.JI_INDUR));
-    System.out.println("AKHORAHIL=" + Nazgul.getInstance(NazgulName.AKHORAHIL));
-    System.out.println("HOARMURATH=" + Nazgul.getInstance(NazgulName.HOARMURATH));
-    System.out.println("ADUNAPHEL=" + Nazgul.getInstance(NazgulName.ADUNAPHEL));
-    System.out.println("REN=" + Nazgul.getInstance(NazgulName.REN));
-    System.out.println("UVATHA=" + Nazgul.getInstance(NazgulName.UVATHA));
+    // eagerly initialized multiton
+    LOGGER.info("KHAMUL={}", Nazgul.getInstance(NazgulName.KHAMUL));
+    LOGGER.info("MURAZOR={}", Nazgul.getInstance(NazgulName.MURAZOR));
+    LOGGER.info("DWAR={}", Nazgul.getInstance(NazgulName.DWAR));
+    LOGGER.info("JI_INDUR={}", Nazgul.getInstance(NazgulName.JI_INDUR));
+    LOGGER.info("AKHORAHIL={}", Nazgul.getInstance(NazgulName.AKHORAHIL));
+    LOGGER.info("HOARMURATH={}", Nazgul.getInstance(NazgulName.HOARMURATH));
+    LOGGER.info("ADUNAPHEL={}", Nazgul.getInstance(NazgulName.ADUNAPHEL));
+    LOGGER.info("REN={}", Nazgul.getInstance(NazgulName.REN));
+    LOGGER.info("UVATHA={}", Nazgul.getInstance(NazgulName.UVATHA));
+
+    // enum multiton
+    LOGGER.info("KHAMUL={}", NazgulEnum.KHAMUL);
+    LOGGER.info("MURAZOR={}", NazgulEnum.MURAZOR);
+    LOGGER.info("DWAR={}", NazgulEnum.DWAR);
+    LOGGER.info("JI_INDUR={}", NazgulEnum.JI_INDUR);
+    LOGGER.info("AKHORAHIL={}", NazgulEnum.AKHORAHIL);
+    LOGGER.info("HOARMURATH={}", NazgulEnum.HOARMURATH);
+    LOGGER.info("ADUNAPHEL={}", NazgulEnum.ADUNAPHEL);
+    LOGGER.info("REN={}", NazgulEnum.REN);
+    LOGGER.info("UVATHA={}", NazgulEnum.UVATHA);
   }
 }

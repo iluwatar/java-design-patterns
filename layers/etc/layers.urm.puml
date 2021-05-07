@@ -1,7 +1,21 @@
 @startuml
-package com.iluwatar.layers {
-  interface View {
-    + render() {abstract}
+package com.iluwatar.layers.dto {
+  class CakeInfo {
+    + cakeLayerInfos : List<CakeLayerInfo>
+    + cakeToppingInfo : CakeToppingInfo
+    + id : Optional<Long>
+    + CakeInfo(cakeToppingInfo : CakeToppingInfo, cakeLayerInfos : List<CakeLayerInfo>)
+    + CakeInfo(id : Long, cakeToppingInfo : CakeToppingInfo, cakeLayerInfos : List<CakeLayerInfo>)
+    + calculateTotalCalories() : int
+    + toString() : String
+  }
+  class CakeLayerInfo {
+    + calories : int
+    + id : Optional<Long>
+    + name : String
+    + CakeLayerInfo(id : Long, name : String, calories : int)
+    + CakeLayerInfo(name : String, calories : int)
+    + toString() : String
   }
   class CakeToppingInfo {
     + calories : int
@@ -9,6 +23,22 @@ package com.iluwatar.layers {
     + name : String
     + CakeToppingInfo(id : Long, name : String, calories : int)
     + CakeToppingInfo(name : String, calories : int)
+    + toString() : String
+  }
+}
+package com.iluwatar.layers.entity {
+  class Cake {
+    - id : Long
+    - layers : Set<CakeLayer>
+    - topping : CakeTopping
+    + Cake()
+    + addLayer(layer : CakeLayer)
+    + getId() : Long
+    + getLayers() : Set<CakeLayer>
+    + getTopping() : CakeTopping
+    + setId(id : Long)
+    + setLayers(layers : Set<CakeLayer>)
+    + setTopping(topping : CakeTopping)
     + toString() : String
   }
   class CakeLayer {
@@ -28,31 +58,6 @@ package com.iluwatar.layers {
     + setName(name : String)
     + toString() : String
   }
-  class CakeLayerInfo {
-    + calories : int
-    + id : Optional<Long>
-    + name : String
-    + CakeLayerInfo(id : Long, name : String, calories : int)
-    + CakeLayerInfo(name : String, calories : int)
-    + toString() : String
-  }
-  class CakeViewImpl {
-    - cakeBakingService : CakeBakingService
-    + CakeViewImpl(cakeBakingService : CakeBakingService)
-    + render()
-  }
-  class CakeBakingServiceImpl {
-    - context : AbstractApplicationContext
-    + CakeBakingServiceImpl()
-    + bakeNewCake(cakeInfo : CakeInfo)
-    + getAllCakes() : List<CakeInfo>
-    - getAvailableLayerEntities() : List<CakeLayer>
-    + getAvailableLayers() : List<CakeLayerInfo>
-    - getAvailableToppingEntities() : List<CakeTopping>
-    + getAvailableToppings() : List<CakeToppingInfo>
-    + saveNewLayer(layerInfo : CakeLayerInfo)
-    + saveNewTopping(toppingInfo : CakeToppingInfo)
-  }
   class CakeTopping {
     - cake : Cake
     - calories : int
@@ -70,22 +75,35 @@ package com.iluwatar.layers {
     + setName(name : String)
     + toString() : String
   }
-  class Cake {
-    - id : Long
-    - layers : Set<CakeLayer>
-    - topping : CakeTopping
-    + Cake()
-    + addLayer(layer : CakeLayer)
-    + getId() : Long
-    + getLayers() : Set<CakeLayer>
-    + getTopping() : CakeTopping
-    + setId(id : Long)
-    + setLayers(layers : Set<CakeLayer>)
-    + setTopping(topping : CakeTopping)
-    + toString() : String
+}
+package com.iluwatar.layers.view {
+  class CakeViewImpl {
+    - LOGGER : Logger {static}
+    - cakeBakingService : CakeBakingService
+    + CakeViewImpl(cakeBakingService : CakeBakingService)
+    + render()
+  }
+  interface View {
+    + render() {abstract}
+  }
+}
+package com.iluwatar.layers.app {
+  class App {
+    - cakeBakingService : CakeBakingService {static}
+    + App()
+    - initializeData(cakeBakingService : CakeBakingService) {static}
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.layers.dao {
+  interface CakeDao {
+  }
+  interface CakeLayerDao {
   }
   interface CakeToppingDao {
   }
+}
+package com.iluwatar.layers.service {
   interface CakeBakingService {
     + bakeNewCake(CakeInfo) {abstract}
     + getAllCakes() : List<CakeInfo> {abstract}
@@ -94,32 +112,25 @@ package com.iluwatar.layers {
     + saveNewLayer(CakeLayerInfo) {abstract}
     + saveNewTopping(CakeToppingInfo) {abstract}
   }
-  class App {
-    - cakeBakingService : CakeBakingService {static}
-    + App()
-    - initializeData(cakeBakingService : CakeBakingService) {static}
-    + main(args : String[]) {static}
-  }
-  interface CakeDao {
-  }
-  interface CakeLayerDao {
-  }
-  class CakeInfo {
-    + cakeLayerInfos : List<CakeLayerInfo>
-    + cakeToppingInfo : CakeToppingInfo
-    + id : Optional<Long>
-    + CakeInfo(cakeToppingInfo : CakeToppingInfo, cakeLayerInfos : List<CakeLayerInfo>)
-    + CakeInfo(id : Long, cakeToppingInfo : CakeToppingInfo, cakeLayerInfos : List<CakeLayerInfo>)
-    + calculateTotalCalories() : int
-    + toString() : String
+  class CakeBakingServiceImpl {
+    - context : AbstractApplicationContext
+    + CakeBakingServiceImpl()
+    + bakeNewCake(cakeInfo : CakeInfo)
+    + getAllCakes() : List<CakeInfo>
+    - getAvailableLayerEntities() : List<CakeLayer>
+    + getAvailableLayers() : List<CakeLayerInfo>
+    - getAvailableToppingEntities() : List<CakeTopping>
+    + getAvailableToppings() : List<CakeToppingInfo>
+    + saveNewLayer(layerInfo : CakeLayerInfo)
+    + saveNewTopping(toppingInfo : CakeToppingInfo)
   }
 }
-CakeViewImpl -->  "-cakeBakingService" CakeBakingService
-CakeInfo -->  "-cakeToppingInfo" CakeToppingInfo
 CakeInfo -->  "-cakeLayerInfos" CakeLayerInfo
+CakeInfo -->  "-cakeToppingInfo" CakeToppingInfo
+CakeViewImpl -->  "-cakeBakingService" CakeBakingService
 App -->  "-cakeBakingService" CakeBakingService
-CakeLayer -->  "-cake" Cake
 Cake -->  "-topping" CakeTopping
-CakeViewImpl ..|> View 
+CakeLayer -->  "-cake" Cake
 CakeBakingServiceImpl ..|> CakeBakingService 
+CakeViewImpl ..|> View 
 @enduml

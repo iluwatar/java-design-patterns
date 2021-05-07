@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.caching;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- *
  * Data structure/implementation of the application's cache. The data structure consists of a hash
  * table attached with a doubly linked-list. The linked-list helps in capturing and maintaining the
  * LRU data in the cache. When a data is queried (from the cache), added (to the cache), or updated,
  * the data is moved to the front of the list to depict itself as the most-recently-used data. The
  * LRU data is always at the end of the list.
- *
  */
+@Slf4j
 public class LruCache {
 
-  class Node {
+  static class Node {
     String userId;
     UserAccount userAccount;
     Node previous;
@@ -60,11 +61,11 @@ public class LruCache {
   }
 
   /**
-   * Get user account
+   * Get user account.
    */
   public UserAccount get(String userId) {
     if (cache.containsKey(userId)) {
-      Node node = cache.get(userId);
+      var node = cache.get(userId);
       remove(node);
       setHead(node);
       return node.userAccount;
@@ -104,18 +105,18 @@ public class LruCache {
   }
 
   /**
-   * Set user account
+   * Set user account.
    */
   public void set(String userId, UserAccount userAccount) {
     if (cache.containsKey(userId)) {
-      Node old = cache.get(userId);
+      var old = cache.get(userId);
       old.userAccount = userAccount;
       remove(old);
       setHead(old);
     } else {
-      Node newNode = new Node(userId, userAccount);
+      var newNode = new Node(userId, userAccount);
       if (cache.size() >= capacity) {
-        System.out.println("# Cache is FULL! Removing " + end.userId + " from cache...");
+        LOGGER.info("# Cache is FULL! Removing {} from cache...", end.userId);
         cache.remove(end.userId); // remove LRU data from cache.
         remove(end);
         setHead(newNode);
@@ -131,12 +132,12 @@ public class LruCache {
   }
 
   /**
-   * Invalidate cache for user
+   * Invalidate cache for user.
    */
   public void invalidate(String userId) {
-    Node toBeRemoved = cache.remove(userId);
+    var toBeRemoved = cache.remove(userId);
     if (toBeRemoved != null) {
-      System.out.println("# " + userId + " has been updated! Removing older version from cache...");
+      LOGGER.info("# {} has been updated! Removing older version from cache...", userId);
       remove(toBeRemoved);
     }
   }
@@ -150,7 +151,7 @@ public class LruCache {
   }
 
   /**
-   * Clear cache
+   * Clear cache.
    */
   public void clear() {
     head = null;
@@ -162,8 +163,8 @@ public class LruCache {
    * Returns cache data in list form.
    */
   public List<UserAccount> getCacheDataInListForm() {
-    ArrayList<UserAccount> listOfCacheData = new ArrayList<>();
-    Node temp = head;
+    var listOfCacheData = new ArrayList<UserAccount>();
+    var temp = head;
     while (temp != null) {
       listOfCacheData.add(temp.userAccount);
       temp = temp.next;
@@ -172,12 +173,12 @@ public class LruCache {
   }
 
   /**
-   * Set cache capacity
+   * Set cache capacity.
    */
   public void setCapacity(int newCapacity) {
     if (capacity > newCapacity) {
       clear(); // Behavior can be modified to accommodate for decrease in cache size. For now, we'll
-               // just clear the cache.
+      // just clear the cache.
     } else {
       this.capacity = newCapacity;
     }

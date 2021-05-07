@@ -1,89 +1,58 @@
 @startuml
 package com.iluwatar.bridge {
-  class FlyingMagicWeapon {
-    + FlyingMagicWeapon(imp : FlyingMagicWeaponImpl)
-    + fly()
-    + getImp() : FlyingMagicWeaponImpl
-    + swing()
-    + unwield()
-    + wield()
-  }
-  class Stormbringer {
-    + Stormbringer()
-    + eatSoulImp()
-    + swingImp()
-    + unwieldImp()
-    + wieldImp()
-  }
-  abstract class FlyingMagicWeaponImpl {
-    + FlyingMagicWeaponImpl()
-    + flyImp() {abstract}
-  }
-  class SoulEatingMagicWeapon {
-    + SoulEatingMagicWeapon(imp : SoulEatingMagicWeaponImpl)
-    + eatSoul()
-    + getImp() : SoulEatingMagicWeaponImpl
-    + swing()
-    + unwield()
-    + wield()
-  }
-  abstract class MagicWeaponImpl {
-    + MagicWeaponImpl()
-    + swingImp() {abstract}
-    + unwieldImp() {abstract}
-    + wieldImp() {abstract}
-  }
-  abstract class SoulEatingMagicWeaponImpl {
-    + SoulEatingMagicWeaponImpl()
-    + eatSoulImp() {abstract}
-  }
-  class Excalibur {
-    + Excalibur()
-    + blindImp()
-    + swingImp()
-    + unwieldImp()
-    + wieldImp()
-  }
-  class Mjollnir {
-    + Mjollnir()
-    + flyImp()
-    + swingImp()
-    + unwieldImp()
-    + wieldImp()
-  }
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
-  abstract class MagicWeapon {
-    # imp : MagicWeaponImpl
-    + MagicWeapon(imp : MagicWeaponImpl)
-    + getImp() : MagicWeaponImpl
+  interface Enchantment {
+    + apply() {abstract}
+    + onActivate() {abstract}
+    + onDeactivate() {abstract}
+  }
+  class FlyingEnchantment {
+    - LOGGER : Logger {static}
+    + FlyingEnchantment()
+    + apply()
+    + onActivate()
+    + onDeactivate()
+  }
+  class Hammer {
+    - LOGGER : Logger {static}
+    - enchantment : Enchantment
+    + Hammer(enchantment : Enchantment)
+    + getEnchantment() : Enchantment
+    + swing()
+    + unwield()
+    + wield()
+  }
+  class SoulEatingEnchantment {
+    - LOGGER : Logger {static}
+    + SoulEatingEnchantment()
+    + apply()
+    + onActivate()
+    + onDeactivate()
+  }
+  class Sword {
+    - LOGGER : Logger {static}
+    - enchantment : Enchantment
+    + Sword(enchantment : Enchantment)
+    + getEnchantment() : Enchantment
+    + swing()
+    + unwield()
+    + wield()
+  }
+  interface Weapon {
+    + getEnchantment() : Enchantment {abstract}
     + swing() {abstract}
     + unwield() {abstract}
     + wield() {abstract}
   }
-  abstract class BlindingMagicWeaponImpl {
-    + BlindingMagicWeaponImpl()
-    + blindImp() {abstract}
-  }
-  class BlindingMagicWeapon {
-    + BlindingMagicWeapon(imp : BlindingMagicWeaponImpl)
-    + blind()
-    + getImp() : BlindingMagicWeaponImpl
-    + swing()
-    + unwield()
-    + wield()
-  }
 }
-MagicWeapon -->  "-imp" MagicWeaponImpl
-FlyingMagicWeapon --|> MagicWeapon 
-Stormbringer --|> SoulEatingMagicWeaponImpl 
-FlyingMagicWeaponImpl --|> MagicWeaponImpl 
-SoulEatingMagicWeapon --|> MagicWeapon 
-SoulEatingMagicWeaponImpl --|> MagicWeaponImpl 
-Excalibur --|> BlindingMagicWeaponImpl 
-Mjollnir --|> FlyingMagicWeaponImpl 
-BlindingMagicWeaponImpl --|> MagicWeaponImpl 
-BlindingMagicWeapon --|> MagicWeapon 
+Sword -->  "-enchantment" Enchantment
+Hammer -->  "-enchantment" Enchantment
+FlyingEnchantment ..|> Enchantment 
+Hammer ..|> Weapon 
+SoulEatingEnchantment ..|> Enchantment 
+Sword ..|> Weapon 
 @enduml

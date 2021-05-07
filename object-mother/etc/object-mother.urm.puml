@@ -1,0 +1,45 @@
+@startuml
+package com.iluwatar.objectmother {
+  class King {
+    ~ isDrunk : boolean
+    ~ isHappy : boolean
+    + King()
+    + flirt(queen : Queen)
+    + isHappy() : boolean
+    + makeDrunk()
+    + makeHappy()
+    + makeSober()
+    + makeUnhappy()
+  }
+  class Queen {
+    - isDrunk : boolean
+    - isFlirty : boolean
+    - isHappy : boolean
+    + Queen()
+    + getFlirted(king : King) : boolean
+    + isFlirty() : boolean
+    + makeDrunk()
+    + makeHappy()
+    + makeSober()
+    + makeUnhappy()
+    + setFlirtiness(flirtiness : boolean)
+  }
+  interface Royalty {
+    + makeDrunk() {abstract}
+    + makeHappy() {abstract}
+    + makeSober() {abstract}
+    + makeUnhappy() {abstract}
+  }
+  class RoyaltyObjectMother {
+    + RoyaltyObjectMother()
+    + createDrunkKing() : King {static}
+    + createFlirtyQueen() : Queen {static}
+    + createHappyDrunkKing() : King {static}
+    + createHappyKing() : King {static}
+    + createNotFlirtyQueen() : Queen {static}
+    + createSoberUnhappyKing() : King {static}
+  }
+}
+King ..|> Royalty 
+Queen ..|> Royalty 
+@enduml

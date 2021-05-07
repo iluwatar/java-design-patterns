@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,33 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
- * GHobbits
- *
+ * GHobbits.
  */
+@Slf4j
 public class GHobbits implements Race {
+
   @Override
   public void update(GWeather weather, WeatherType weatherType) {
-    switch (weatherType) {
-      case COLD:
-        System.out.println("The hobbits are shivering in the cold weather.");
-        break;
-      case RAINY:
-        System.out.println("The hobbits look for cover from the rain.");
-        break;
-      case SUNNY:
-        System.out.println("The happy hobbits bade in the warm sun.");
-        break;
-      case WINDY:
-        System.out.println("The hobbits hold their hats tightly in the windy weather.");
-        break;
-      default:
-        break;
-    }
+    LOGGER.info("The hobbits are facing " + weatherType.getDescription() + " weather now");
   }
 }

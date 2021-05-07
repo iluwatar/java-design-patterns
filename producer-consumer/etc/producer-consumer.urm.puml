@@ -1,6 +1,12 @@
 @startuml
 package com.iluwatar.producer.consumer {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
   class Consumer {
+    - LOGGER : Logger {static}
     - name : String
     - queue : ItemQueue
     + Consumer(name : String, queue : ItemQueue)
@@ -13,22 +19,19 @@ package com.iluwatar.producer.consumer {
     + getId() : int
     + getProducer() : String
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class Producer {
-    - itemId : int
-    - name : String
-    - queue : ItemQueue
-    + Producer(name : String, queue : ItemQueue)
-    + produce()
-  }
   class ItemQueue {
     - queue : BlockingQueue<Item>
     + ItemQueue()
     + put(item : Item)
     + take() : Item
+  }
+  class Producer {
+    - RANDOM : Random {static}
+    - itemId : int
+    - name : String
+    - queue : ItemQueue
+    + Producer(name : String, queue : ItemQueue)
+    + produce()
   }
 }
 Consumer -->  "-queue" ItemQueue

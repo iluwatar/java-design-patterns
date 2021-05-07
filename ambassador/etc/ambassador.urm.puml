@@ -1,0 +1,47 @@
+@startuml
+package com.iluwatar.ambassador.util {
+  interface RandomProvider {
+    + random() : double {abstract}
+  }
+}
+package com.iluwatar.ambassador {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Client {
+    - LOGGER : Logger {static}
+    - serviceAmbassador : ServiceAmbassador
+    + Client()
+    ~ useService(value : int) : long
+  }
+  class RemoteService {
+    - LOGGER : Logger {static}
+    - THRESHOLD : int {static}
+    - randomProvider : RandomProvider
+    - service : RemoteService {static}
+    - RemoteService()
+    ~ RemoteService(randomProvider : RandomProvider)
+    + doRemoteFunction(value : int) : long
+    ~ getRemoteService() : RemoteService {static}
+  }
+  ~interface RemoteServiceInterface {
+    + FAILURE : int {static}
+    + doRemoteFunction(int) : long {abstract}
+  }
+  class ServiceAmbassador {
+    - DELAY_MS : int {static}
+    - LOGGER : Logger {static}
+    - RETRIES : int {static}
+    ~ ServiceAmbassador()
+    - checkLatency(value : int) : long
+    + doRemoteFunction(value : int) : long
+    - safeCall(value : int) : long
+  }
+}
+RemoteService -->  "-service" RemoteService
+Client -->  "-serviceAmbassador" ServiceAmbassador
+RemoteService -->  "-randomProvider" RandomProvider
+RemoteService ..|> RemoteServiceInterface 
+ServiceAmbassador ..|> RemoteServiceInterface 
+@enduml

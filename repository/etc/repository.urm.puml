@@ -1,27 +1,12 @@
 @startuml
 package com.iluwatar.repository {
-  class PersonSpecifications {
-    + PersonSpecifications()
-  }
-  class NameEqualSpec {
-    + name : String
-    + NameEqualSpec(name : String)
-    + toPredicate(root : Root<Person>, query : CriteriaQuery<?>, cb : CriteriaBuilder) : Predicate
-  }
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
-  interface PersonRepository {
-    + findByName(String) : Person {abstract}
-  }
-  class AgeBetweenSpec {
-    - from : int
-    - to : int
-    + AgeBetweenSpec(from : int, to : int)
-    + toPredicate(root : Root<Person>, query : CriteriaQuery<?>, cb : CriteriaBuilder) : Predicate
-  }
   class AppConfig {
+    - LOGGER : Logger {static}
     + AppConfig()
     + dataSource() : DataSource
     + entityManagerFactory() : LocalContainerEntityManagerFactoryBean
@@ -48,9 +33,24 @@ package com.iluwatar.repository {
     + setSurname(surname : String)
     + toString() : String
   }
+  interface PersonRepository {
+    + findByName(String) : Person {abstract}
+  }
+  class PersonSpecifications {
+    + PersonSpecifications()
+  }
+  class AgeBetweenSpec {
+    - from : int
+    - to : int
+    + AgeBetweenSpec(from : int, to : int)
+    + toPredicate(root : Root<Person>, query : CriteriaQuery<?>, cb : CriteriaBuilder) : Predicate
+  }
+  class NameEqualSpec {
+    + name : String
+    + NameEqualSpec(name : String)
+    + toPredicate(root : Root<Person>, query : CriteriaQuery<?>, cb : CriteriaBuilder) : Predicate
+  }
 }
-App --+ PersonSpecifications
-AppConfig --+ PersonSpecifications
 NameEqualSpec ..+ PersonSpecifications
 AgeBetweenSpec ..+ PersonSpecifications
 @enduml

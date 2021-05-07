@@ -3,11 +3,9 @@ layout: pattern
 title: MonoState
 folder: monostate
 permalink: /patterns/monostate/
-pumlid: HSV14OGm20NGLjO23FVj1YEZsGaa0nzjVxrvUszfLdlkaju_9p3ZI-HybwFXp2r3l0w364eTIgtdpM2d7r-yxXBji7Ko86v1ol60TDW8C8G4zLr9rp9J-ny0
 categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
+ - Instantiation
 ---
 
 ## Also known as
@@ -16,6 +14,7 @@ Borg
 ## Intent
 Enforces a behaviour like sharing the same state amongst all instances.
 
+## Class diagram
 ![alt text](./etc/monostate.png "MonoState")
 
 ## Applicability
@@ -27,9 +26,9 @@ Use the Monostate pattern when
 
 ## Typical Use Case
 
-* the logging class
-* managing a connection to a database
-* file manager
+* The logging class
+* Managing a connection to a database
+* File manager
 
 ## Real world examples
 

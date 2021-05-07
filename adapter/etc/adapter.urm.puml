@@ -1,35 +1,31 @@
 @startuml
 package com.iluwatar.adapter {
-  interface BattleShip {
-    + fire() {abstract}
-    + move() {abstract}
-  }
-  class BattleFishingBoat {
-    - boat : FishingBoat
-    + BattleFishingBoat()
-    + fire()
-    + move()
-  }
   class App {
-    + App()
+    - App()
     + main(args : String[]) {static}
   }
   class Captain {
-    - battleship : BattleShip
+    - rowingBoat : RowingBoat
     + Captain()
-    + Captain(battleship : BattleShip)
-    + fire()
-    + move()
-    + setBattleship(battleship : BattleShip)
+    + Captain(boat : RowingBoat)
+    ~ row()
+    ~ setRowingBoat(boat : RowingBoat)
   }
-  class FishingBoat {
-    + FishingBoat()
-    + fish()
-    + sail()
+  ~class FishingBoat {
+    - LOGGER : Logger {static}
+    ~ FishingBoat()
+    ~ sail()
+  }
+  class FishingBoatAdapter {
+    - boat : FishingBoat
+    + FishingBoatAdapter()
+    + row()
+  }
+  interface RowingBoat {
+    + row() {abstract}
   }
 }
-BattleFishingBoat -->  "-boat" FishingBoat
-Captain -->  "-battleship" BattleShip
-BattleFishingBoat ..|> BattleShip 
-Captain ..|> BattleShip 
+FishingBoatAdapter -->  "-boat" FishingBoat
+Captain -->  "-rowingBoat" RowingBoat
+FishingBoatAdapter ..|> RowingBoat 
 @enduml

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="com.iluwatar.iterator.TreasureChest" project="iterator" 
+  <class id="1" language="java" name="com.iluwatar.iterator.list.TreasureChest" project="iterator"
     file="/iterator/src/main/java/com/iluwatar/iterator/TreasureChest.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="124" width="195" x="1" y="237"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="com.iluwatar.iterator.Item" project="iterator" 
+  <class id="2" language="java" name="com.iluwatar.iterator.list.Item" project="iterator"
     file="/iterator/src/main/java/com/iluwatar/iterator/Item.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="160" width="157" x="195" y="401"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="3" language="java" name="com.iluwatar.iterator.ItemType" project="iterator" 
+  <enumeration id="3" language="java" name="com.iluwatar.iterator.list.ItemType" project="iterator"
     file="/iterator/src/main/java/com/iluwatar/iterator/ItemType.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="160" width="145" x="388" y="601"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -28,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <interface id="4" language="java" name="com.iluwatar.iterator.ItemIterator" project="iterator" 
+  <interface id="4" language="java" name="com.iluwatar.iterator.list.ItemIterator" project="iterator"
     file="/iterator/src/main/java/com/iluwatar/iterator/ItemIterator.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="106" width="131" x="236" y="237"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="5" language="java" name="com.iluwatar.iterator.TreasureChestItemIterator" project="iterator" 
+  <class id="5" language="java" name="com.iluwatar.iterator.list.TreasureChestItemIterator" project="iterator"
     file="/iterator/src/main/java/com/iluwatar/iterator/TreasureChestItemIterator.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="160" width="323" x="236" y="37"/>    

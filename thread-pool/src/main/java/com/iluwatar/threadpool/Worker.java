@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.threadpool;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 
- * Worker implements {@link Runnable} and thus can be executed by {@link ExecutorService}
- *
+ * Worker implements {@link Runnable} and thus can be executed by {@link
+ * java.util.concurrent.ExecutorService}.
  */
+@Slf4j
 public class Worker implements Runnable {
 
   private final Task task;
@@ -37,8 +40,7 @@ public class Worker implements Runnable {
 
   @Override
   public void run() {
-    System.out.println(String.format("%s processing %s", Thread.currentThread().getName(),
-        task.toString()));
+    LOGGER.info("{} processing {}", Thread.currentThread().getName(), task.toString());
     try {
       Thread.sleep(task.getTimeMs());
     } catch (InterruptedException e) {

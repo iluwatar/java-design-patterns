@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,30 +20,69 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.resource.acquisition.is.initialization;
 
-import org.junit.Test;
-import org.mockito.InOrder;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.mockito.Mockito.inOrder;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
 /**
  * Date: 12/28/15 - 9:31 PM
  *
  * @author Jeroen Meulemeester
  */
-public class ClosableTest extends StdOutTest {
+class ClosableTest {
+
+  private InMemoryAppender appender;
+
+  @BeforeEach
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @AfterEach
+  public void tearDown() {
+    appender.stop();
+  }
 
   @Test
-  public void testOpenClose() throws Exception {
-    final InOrder inOrder = inOrder(getStdOutMock());
-    try (final SlidingDoor door = new SlidingDoor(); final TreasureChest chest = new TreasureChest()) {
-      inOrder.verify(getStdOutMock()).println("Sliding door opens.");
-      inOrder.verify(getStdOutMock()).println("Treasure chest opens.");
+  void testOpenClose() {
+    try (final var ignored = new SlidingDoor(); final var ignored1 = new TreasureChest()) {
+      assertTrue(appender.logContains("Sliding door opens."));
+      assertTrue(appender.logContains("Treasure chest opens."));
     }
-    inOrder.verify(getStdOutMock()).println("Treasure chest closes.");
-    inOrder.verify(getStdOutMock()).println("Sliding door closes.");
-    inOrder.verifyNoMoreInteractions();
+    assertTrue(appender.logContains("Treasure chest closes."));
+    assertTrue(appender.logContains("Sliding door closes."));
+  }
+
+  /**
+   * Logging Appender Implementation
+   */
+  public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private final List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender() {
+      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public boolean logContains(String message) {
+      return log.stream().anyMatch(event -> event.getMessage().equals(message));
+    }
   }
 
 }

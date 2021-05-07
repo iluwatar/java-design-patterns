@@ -1,0 +1,138 @@
+@startuml
+package com.iluwatar.serverless.faas.api {
+  class LambdaInfoApiHandler {
+    - LOG : Logger {static}
+    - SUCCESS_STATUS_CODE : Integer {static}
+    + LambdaInfoApiHandler()
+    + handleRequest(input : Map<String, Object>, context : Context) : ApiGatewayResponse<T extends Serializable>
+    - headers() : Map<String, String>
+    - lambdaInfo(context : Context) : LambdaInfo
+  }
+}
+package com.iluwatar.serverless.baas.model {
+  class Address {
+    - addressLineOne : String
+    - addressLineTwo : String
+    - city : String
+    - serialVersionUID : long {static}
+    - state : String
+    - zipCode : String
+    + Address()
+    + equals(o : Object) : boolean
+    + getAddressLineOne() : String
+    + getAddressLineTwo() : String
+    + getCity() : String
+    + getState() : String
+    + getZipCode() : String
+    + hashCode() : int
+    + setAddressLineOne(addressLineOne : String)
+    + setAddressLineTwo(addressLineTwo : String)
+    + setCity(city : String)
+    + setState(state : String)
+    + setZipCode(zipCode : String)
+    + toString() : String
+  }
+  class Person {
+    - address : Address
+    - firstName : String
+    - id : String
+    - lastName : String
+    - serialVersionUID : long {static}
+    + Person()
+    + equals(o : Object) : boolean
+    + getAddress() : Address
+    + getFirstName() : String
+    + getId() : String
+    + getLastName() : String
+    + hashCode() : int
+    + setAddress(address : Address)
+    + setFirstName(firstName : String)
+    + setId(id : String)
+    + setLastName(lastName : String)
+    + toString() : String
+  }
+}
+package com.iluwatar.serverless.faas {
+  class ApiGatewayResponse<T extends Serializable> {
+    - body : String
+    - headers : Map<String, String>
+    - isBase64Encoded : Boolean
+    - serialVersionUID : long {static}
+    - statusCode : Integer
+    + ApiGatewayResponse<T extends Serializable>(statusCode : Integer, body : String, headers : Map<String, String>, isBase64Encoded : Boolean)
+    + getBody() : String
+    + getHeaders() : Map<String, String>
+    + getStatusCode() : Integer
+    + isBase64Encoded() : Boolean
+  }
+  class ApiGatewayResponseBuilder<T extends Serializable> {
+    - OBJECT_MAPPER : ObjectMapper {static}
+    - body : T extends Serializable
+    - headers : Map<String, String>
+    - isBase64Encoded : Boolean
+    - statusCode : Integer
+    + ApiGatewayResponseBuilder<T extends Serializable>()
+    + base64Encoded(isBase64Encoded : Boolean) : ApiGatewayResponseBuilder<T extends Serializable>
+    + body(body : T extends Serializable) : ApiGatewayResponseBuilder<T extends Serializable>
+    + build() : ApiGatewayResponse<T extends Serializable>
+    + headers(headers : Map<String, String>) : ApiGatewayResponseBuilder<T extends Serializable>
+    + statusCode(statusCode : Integer) : ApiGatewayResponseBuilder<T extends Serializable>
+  }
+  class LambdaInfo {
+    - awsRequestId : String
+    - functionName : String
+    - functionVersion : String
+    - logGroupName : String
+    - logStreamName : String
+    - memoryLimitInMb : Integer
+    - serialVersionUID : long {static}
+    + LambdaInfo()
+    + equals(o : Object) : boolean
+    + getAwsRequestId() : String
+    + getFunctionName() : String
+    + getFunctionVersion() : String
+    + getLogGroupName() : String
+    + getLogStreamName() : String
+    + getMemoryLimitInMb() : Integer
+    + hashCode() : int
+    + setAwsRequestId(awsRequestId : String)
+    + setFunctionName(functionName : String)
+    + setFunctionVersion(functionVersion : String)
+    + setLogGroupName(logGroupName : String)
+    + setLogStreamName(logStreamName : String)
+    + setMemoryLimitInMb(memoryLimitInMb : Integer)
+    + toString() : String
+  }
+}
+package com.iluwatar.serverless.baas.api {
+  abstract class AbstractDynamoDbHandler<T extends Serializable> {
+    - dynamoDbMapper : DynamoDBMapper
+    - objectMapper : ObjectMapper
+    + AbstractDynamoDbHandler<T extends Serializable>()
+    # apiGatewayProxyResponseEvent(statusCode : Integer, body : T extends Serializable) : APIGatewayProxyResponseEvent
+    # getDynamoDbMapper() : DynamoDBMapper
+    # getObjectMapper() : ObjectMapper
+    # headers() : Map<String, String>
+    - initAmazonDynamoDb()
+    + setDynamoDbMapper(dynamoDbMapper : DynamoDBMapper)
+  }
+  class FindPersonApiHandler {
+    - LOG : Logger {static}
+    - SUCCESS_STATUS_CODE : Integer {static}
+    + FindPersonApiHandler()
+    + handleRequest(apiGatewayProxyRequestEvent : APIGatewayProxyRequestEvent, context : Context) : APIGatewayProxyResponseEvent
+  }
+  class SavePersonApiHandler {
+    - BAD_REQUEST_STATUS_CODE : Integer {static}
+    - CREATED_STATUS_CODE : Integer {static}
+    - LOG : Logger {static}
+    + SavePersonApiHandler()
+    + handleRequest(apiGatewayProxyRequestEvent : APIGatewayProxyRequestEvent, context : Context) : APIGatewayProxyResponseEvent
+  }
+}
+ApiGatewayResponseBuilder ..+ ApiGatewayResponse
+Person -->  "-address" Address
+Access ..+ JsonProperty
+FindPersonApiHandler --|> AbstractDynamoDbHandler 
+SavePersonApiHandler --|> AbstractDynamoDbHandler 
+@enduml

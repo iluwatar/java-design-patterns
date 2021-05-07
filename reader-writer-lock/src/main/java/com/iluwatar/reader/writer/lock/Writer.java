@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.reader.writer.lock;
 
 import java.util.concurrent.locks.Lock;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Writer class, write when it acquired the write lock
+ * Writer class, write when it acquired the write lock.
  */
+@Slf4j
 public class Writer implements Runnable {
 
-  private Lock writeLock;
+  private final Lock writeLock;
 
-  private String name;
+  private final String name;
 
+  private final long writingTime;
+
+  /**
+   * Create new Writer who writes for 250ms.
+   *
+   * @param name      - Name of the thread owning the writer
+   * @param writeLock - Lock for this writer
+   */
   public Writer(String name, Lock writeLock) {
+    this(name, writeLock, 250L);
+  }
+
+  /**
+   * Create new Writer.
+   *
+   * @param name        - Name of the thread owning the writer
+   * @param writeLock   - Lock for this writer
+   * @param writingTime - amount of time (in milliseconds) for this reader to engage writing
+   */
+  public Writer(String name, Lock writeLock, long writingTime) {
     this.name = name;
     this.writeLock = writeLock;
+    this.writingTime = writingTime;
   }
 
 
@@ -45,18 +68,19 @@ public class Writer implements Runnable {
     try {
       write();
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.info("InterruptedException when writing", e);
+      Thread.currentThread().interrupt();
     } finally {
       writeLock.unlock();
     }
   }
 
   /**
-   * Simulate the write operation
+   * Simulate the write operation.
    */
   public void write() throws InterruptedException {
-    System.out.println(name + " begin");
-    Thread.sleep(250);
-    System.out.println(name + " finish");
+    LOGGER.info("{} begin", name);
+    Thread.sleep(writingTime);
+    LOGGER.info("{} finished after writing {}ms", name, writingTime);
   }
 }

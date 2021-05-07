@@ -37,6 +37,7 @@ package com.iluwatar.featuretoggle.pattern.propertiesversion {
 }
 package com.iluwatar.featuretoggle {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }

@@ -117,7 +117,7 @@
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </class>  
+  </class>
   <enumeration id="14" language="java" name="com.iluwatar.property.Color" project="specification" 
     file="/specification/src/main/java/com/iluwatar/property/Color.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1416" y="223"/>    
@@ -126,7 +126,7 @@
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </enumeration>  
+  </enumeration>
   <generalization id="15">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="8"/>  
@@ -186,13 +186,13 @@
   <generalization id="33">    
     <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="34">    
+  </generalization>
+  <association id="34">
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="35" name="m"/>      
-      <multiplicity id="36" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+      <attribute id="35" name="m"/>
+      <multiplicity id="36" minimum="0" maximum="1"/>
+    </end>
+    <end type="TARGET" refId="12" navigable="true"/>
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="37">    
@@ -202,7 +202,7 @@
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
-  </association>  
+  </association>
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

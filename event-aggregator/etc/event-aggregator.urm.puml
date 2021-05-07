@@ -1,9 +1,17 @@
 @startuml
 package com.iluwatar.event.aggregator {
-  class LordVarys {
-    + LordVarys()
-    + LordVarys(obs : EventObserver)
-    + timePasses(day : Weekday)
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum Event {
+    + STARK_SIGHTED {static}
+    + TRAITOR_DETECTED {static}
+    + WARSHIPS_APPROACHING {static}
+    - description : String
+    + toString() : String
+    + valueOf(name : String) : Event {static}
+    + values() : Event[] {static}
   }
   abstract class EventEmitter {
     - observers : List<EventObserver>
@@ -13,17 +21,13 @@ package com.iluwatar.event.aggregator {
     + registerObserver(obs : EventObserver)
     + timePasses(Weekday) {abstract}
   }
-  class KingJoffrey {
-    + KingJoffrey()
-    + onEvent(e : Event)
-  }
-  class LordBaelish {
-    + LordBaelish()
-    + LordBaelish(obs : EventObserver)
-    + timePasses(day : Weekday)
-  }
   interface EventObserver {
     + onEvent(Event) {abstract}
+  }
+  class KingJoffrey {
+    - LOGGER : Logger {static}
+    + KingJoffrey()
+    + onEvent(e : Event)
   }
   class KingsHand {
     + KingsHand()
@@ -31,14 +35,20 @@ package com.iluwatar.event.aggregator {
     + onEvent(e : Event)
     + timePasses(day : Weekday)
   }
+  class LordBaelish {
+    + LordBaelish()
+    + LordBaelish(obs : EventObserver)
+    + timePasses(day : Weekday)
+  }
+  class LordVarys {
+    + LordVarys()
+    + LordVarys(obs : EventObserver)
+    + timePasses(day : Weekday)
+  }
   class Scout {
     + Scout()
     + Scout(obs : EventObserver)
     + timePasses(day : Weekday)
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
   enum Weekday {
     + FRIDAY {static}
@@ -53,21 +63,12 @@ package com.iluwatar.event.aggregator {
     + valueOf(name : String) : Weekday {static}
     + values() : Weekday[] {static}
   }
-  enum Event {
-    + STARK_SIGHTED {static}
-    + TRAITOR_DETECTED {static}
-    + WARSHIPS_APPROACHING {static}
-    - description : String
-    + toString() : String
-    + valueOf(name : String) : Event {static}
-    + values() : Event[] {static}
-  }
 }
 EventEmitter -->  "-observers" EventObserver
-LordVarys --|> EventEmitter 
 KingJoffrey ..|> EventObserver 
-LordBaelish --|> EventEmitter 
 KingsHand ..|> EventObserver 
 KingsHand --|> EventEmitter 
+LordBaelish --|> EventEmitter 
+LordVarys --|> EventEmitter 
 Scout --|> EventEmitter 
 @enduml

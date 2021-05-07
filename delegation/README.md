@@ -3,11 +3,9 @@ layout: pattern
 title: Delegation
 folder: delegation
 permalink: /patterns/delegation/
-pumlid: JSV14GCX20NGLf82LkxfXbN69OFeu2VRVdBCxRsdUhLiac6F2rZxHHHybwwuyimjKQT37ANEGMfvCpZepHy-ccpjVYm697pJuFq3DJ7f39rEWlhNaZ7Aoc5V
-categories: Behavioral
+categories: Structural
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Also known as
@@ -17,6 +15,7 @@ Proxy Pattern
 It is a technique where an object expresses certain behavior to the outside but in 
 reality delegates responsibility for implementing that behaviour to an associated object. 
 
+## Class diagram
 ![alt text](./etc/delegation.png "Delegate")
 
 ## Applicability

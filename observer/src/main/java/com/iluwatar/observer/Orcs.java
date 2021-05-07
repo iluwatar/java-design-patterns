@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,32 +20,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.observer;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 
- * Orcs
- *
+ * Orcs.
  */
+@Slf4j
 public class Orcs implements WeatherObserver {
 
   @Override
   public void update(WeatherType currentWeather) {
-    switch (currentWeather) {
-      case COLD:
-        System.out.println("The orcs are freezing cold.");
-        break;
-      case RAINY:
-        System.out.println("The orcs are dripping wet.");
-        break;
-      case SUNNY:
-        System.out.println("The sun hurts the orcs' eyes.");
-        break;
-      case WINDY:
-        System.out.println("The orc smell almost vanishes in the wind.");
-        break;
-      default:
-        break;
-    }
+    LOGGER.info("The orcs are facing " + currentWeather.getDescription() + " weather now");
   }
 }

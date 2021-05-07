@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,23 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.chain;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 
- * RequestHandler
- *
+ * RequestHandler.
  */
+@Slf4j
+@AllArgsConstructor
 public abstract class RequestHandler {
 
-  private RequestHandler next;
-
-  public RequestHandler(RequestHandler next) {
-    this.next = next;
-  }
+  private final RequestHandler next;
 
   /**
-   * Request handler
+   * Request handler.
    */
   public void handleRequest(Request req) {
     if (next != null) {
@@ -45,7 +45,7 @@ public abstract class RequestHandler {
   }
 
   protected void printHandling(Request req) {
-    System.out.println(this + " handling request \"" + req + "\"");
+    LOGGER.info("{} handling request \"{}\"", this, req);
   }
 
   @Override

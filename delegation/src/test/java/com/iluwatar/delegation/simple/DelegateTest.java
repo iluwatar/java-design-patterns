@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,46 +20,91 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.delegation.simple;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
 import com.iluwatar.delegation.simple.printers.CanonPrinter;
 import com.iluwatar.delegation.simple.printers.EpsonPrinter;
 import com.iluwatar.delegation.simple.printers.HpPrinter;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.contrib.java.lang.system.SystemOutRule;
+import java.util.LinkedList;
+import java.util.List;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
-import static org.junit.Assert.assertEquals;
+/**
+ * Test for Delegation Pattern
+ */
+class DelegateTest {
 
-public class DelegateTest {
+  private InMemoryAppender appender;
+
+  @BeforeEach
+  void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @AfterEach
+  void tearDown() {
+    appender.stop();
+  }
 
   private static final String MESSAGE = "Test Message Printed";
 
-  @Rule
-  public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
-
   @Test
-  public void testCanonPrinter() throws Exception {
-    PrinterController printerController = new PrinterController(new CanonPrinter());
+  void testCanonPrinter() throws Exception {
+    var printerController = new PrinterController(new CanonPrinter());
     printerController.print(MESSAGE);
 
-    assertEquals("Canon Printer : Test Message Printed", systemOutRule.getLog());
+    assertEquals("Canon Printer : Test Message Printed", appender.getLastMessage());
   }
 
   @Test
-  public void testHpPrinter() throws Exception {
-    PrinterController printerController = new PrinterController(new HpPrinter());
+  void testHpPrinter() throws Exception {
+    var printerController = new PrinterController(new HpPrinter());
     printerController.print(MESSAGE);
 
-    assertEquals("HP Printer : Test Message Printed", systemOutRule.getLog());
+    assertEquals("HP Printer : Test Message Printed", appender.getLastMessage());
   }
 
   @Test
-  public void testEpsonPrinter() throws Exception {
-    PrinterController printerController = new PrinterController(new EpsonPrinter());
+  void testEpsonPrinter() throws Exception {
+    var printerController = new PrinterController(new EpsonPrinter());
     printerController.print(MESSAGE);
 
-    assertEquals("Epson Printer : Test Message Printed", systemOutRule.getLog());
+    assertEquals("Epson Printer : Test Message Printed", appender.getLastMessage());
+  }
+
+  /**
+   * Logging Appender
+   */
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+
+    private final List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender() {
+      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public String getLastMessage() {
+      return log.get(log.size() - 1).getFormattedMessage();
+    }
+
+    public int getLogSize() {
+      return log.size();
+    }
   }
 
 }

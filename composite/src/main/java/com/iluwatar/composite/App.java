@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.composite;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Composite pattern is a partitioning design pattern. The Composite pattern describes that a
@@ -28,29 +31,28 @@ package com.iluwatar.composite;
  * of a composite is to "compose" objects into tree structures to represent part-whole hierarchies.
  * Implementing the Composite pattern lets clients treat individual objects and compositions
  * uniformly.
- * <p>
- * In this example we have sentences composed of words composed of letters. All of the objects can
- * be treated through the same interface ({@link LetterComposite}).
- * 
+ *
+ * <p>In this example we have sentences composed of words composed of letters. All of the objects
+ * can be treated through the same interface ({@link LetterComposite}).
+ *
  */
+@Slf4j
 public class App {
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
-    System.out.println("Message from the orcs: ");
+    LOGGER.info("Message from the orcs: ");
 
-    LetterComposite orcMessage = new Messenger().messageFromOrcs();
+    var orcMessage = new Messenger().messageFromOrcs();
     orcMessage.print();
 
-    System.out.println("\n");
+    LOGGER.info("\nMessage from the elves: ");
 
-    System.out.println("Message from the elves: ");
-
-    LetterComposite elfMessage = new Messenger().messageFromElves();
+    var elfMessage = new Messenger().messageFromElves();
     elfMessage.print();
   }
 }

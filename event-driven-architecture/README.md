@@ -3,17 +3,15 @@ layout: pattern
 title: Event Driven Architecture
 folder: event-driven-architecture
 permalink: /patterns/event-driven-architecture/
-pumlid: TOhH3SCW30LNQGS0_tSRnrZ15H1adfFromBzkfFktZQaHT7mzgh0N1yYvoUVXXf7B7Mv1dGWozN9MZmCTlhopQdeidEaoO3wMDHvRI6zzvwAssPYbsfGGRYIGlxN7DxpZDv-
 categories: Architectural
 tags:
- - Java
- - Difficulty-Intermediate
  - Reactive
 ---
 
 ## Intent
 Send and notify state changes of your objects to other applications using an Event-driven Architecture.
 
+## Class diagram
 ![alt text](./etc/eda.png "Event Driven Architecture")
 
 ## Applicability
@@ -32,7 +30,7 @@ Use an Event-driven architecture when
 
 ## Credits
 
-* [Event-driven architecture - Wikipedia](http://www.computerweekly.com/feature/Write-through-write-around-write-back-Cache-explained)
+* [Event-driven architecture - Wikipedia](https://en.wikipedia.org/wiki/Event-driven_architecture)
 * [Fundamental Components of an Event-Driven Architecture](http://giocc.com/fundamental-components-of-an-event-driven-architecture.html)
 * [Real World Applications/Event Driven Applications](https://wiki.haskell.org/Real_World_Applications/Event_Driven_Applications)
 * [Event-driven architecture definition](http://searchsoa.techtarget.com/definition/event-driven-architecture)

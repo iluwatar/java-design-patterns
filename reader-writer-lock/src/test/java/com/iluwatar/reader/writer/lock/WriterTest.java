@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,34 +20,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.reader.writer.lock;
 
-import static org.mockito.Mockito.inOrder;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.spy;
 
-import java.util.concurrent.ExecutorService;
+import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import org.junit.Test;
-import org.mockito.InOrder;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author hongshuwei@gmail.com
  */
-public class WriterTest extends StdOutTest {
+class WriterTest {
+
+  private InMemoryAppender appender;
+
+  @BeforeEach
+  public void setUp() {
+    appender = new InMemoryAppender(Writer.class);
+  }
+
+  @AfterEach
+  public void tearDown() {
+    appender.stop();
+  }
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(WriterTest.class);
 
   /**
    * Verify that multiple writers will get the lock in order.
    */
   @Test
-  public void testWrite() throws Exception {
+  void testWrite() throws Exception {
 
-    ExecutorService executeService = Executors.newFixedThreadPool(2);
-    ReaderWriterLock lock = new ReaderWriterLock();
+    var executeService = Executors.newFixedThreadPool(2);
+    var lock = new ReaderWriterLock();
 
-    Writer writer1 = spy(new Writer("Writer 1", lock.writeLock()));
-    Writer writer2 = spy(new Writer("Writer 2", lock.writeLock()));
+    var writer1 = spy(new Writer("Writer 1", lock.writeLock()));
+    var writer2 = spy(new Writer("Writer 2", lock.writeLock()));
 
     executeService.submit(writer1);
     // Let write1 execute first
@@ -58,15 +75,14 @@ public class WriterTest extends StdOutTest {
     try {
       executeService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      System.out.println("Error waiting for ExecutorService shutdown");
+      LOGGER.error("Error waiting for ExecutorService shutdown", e);
     }
     // Write operation will hold the write lock 250 milliseconds, so here we verify that when two
     // writer execute concurrently, the second writer can only writes only when the first one is
     // finished.
-    final InOrder inOrder = inOrder(getStdOutMock());
-    inOrder.verify(getStdOutMock()).println("Writer 1 begin");
-    inOrder.verify(getStdOutMock()).println("Writer 1 finish");
-    inOrder.verify(getStdOutMock()).println("Writer 2 begin");
-    inOrder.verify(getStdOutMock()).println("Writer 2 finish");
+    assertTrue(appender.logContains("Writer 1 begin"));
+    assertTrue(appender.logContains("Writer 1 finish"));
+    assertTrue(appender.logContains("Writer 2 begin"));
+    assertTrue(appender.logContains("Writer 2 finish"));
   }
 }

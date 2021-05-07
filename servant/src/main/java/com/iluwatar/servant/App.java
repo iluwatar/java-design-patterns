@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,26 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servant;
 
-import java.util.ArrayList;
+import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
  * Servant offers some functionality to a group of classes without defining that functionality in
  * each of them. A Servant is a class whose instance provides methods that take care of a desired
  * service, while objects for which the servant does something, are taken as parameters.
- * <p>
- * In this example {@link Servant} is serving {@link King} and {@link Queen}.
  *
+ * <p>In this example {@link Servant} is serving {@link King} and {@link Queen}.
  */
+@Slf4j
 public class App {
 
-  static Servant jenkins = new Servant("Jenkins");
-  static Servant travis = new Servant("Travis");
+  private static final Servant jenkins = new Servant("Jenkins");
+  private static final Servant travis = new Servant("Travis");
 
   /**
-   * Program entry point
+   * Program entry point.
    */
   public static void main(String[] args) {
     scenario(jenkins, 1);
@@ -47,15 +49,13 @@ public class App {
   }
 
   /**
-   * Can add a List with enum Actions for variable scenarios
+   * Can add a List with enum Actions for variable scenarios.
    */
   public static void scenario(Servant servant, int compliment) {
-    King k = new King();
-    Queen q = new Queen();
+    var k = new King();
+    var q = new Queen();
 
-    ArrayList<Royalty> guests = new ArrayList<>();
-    guests.add(k);
-    guests.add(q);
+    var guests = List.of(k, q);
 
     // feed
     servant.feed(k);
@@ -67,15 +67,13 @@ public class App {
     servant.giveCompliments(guests.get(compliment));
 
     // outcome of the night
-    for (Royalty r : guests) {
-      r.changeMood();
-    }
+    guests.forEach(Royalty::changeMood);
 
     // check your luck
     if (servant.checkIfYouWillBeHanged(guests)) {
-      System.out.println(servant.name + " will live another day");
+      LOGGER.info("{} will live another day", servant.name);
     } else {
-      System.out.println("Poor " + servant.name + ". His days are numbered");
+      LOGGER.info("Poor {}. His days are numbered", servant.name);
     }
   }
 }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.templatemethod;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 
  * HitAndRunMethod implementation of {@link StealingMethod}.
- *
  */
+@Slf4j
 public class HitAndRunMethod extends StealingMethod {
 
   @Override
@@ -36,11 +38,11 @@ public class HitAndRunMethod extends StealingMethod {
 
   @Override
   protected void confuseTarget(String target) {
-    System.out.println("Approach the " + target + " from behind.");
+    LOGGER.info("Approach the {} from behind.", target);
   }
 
   @Override
   protected void stealTheItem(String target) {
-    System.out.println("Grab the handbag and run away fast!");
+    LOGGER.info("Grab the handbag and run away fast!");
   }
 }

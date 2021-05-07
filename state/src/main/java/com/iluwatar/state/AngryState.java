@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.state;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 
  * Angry state.
- *
  */
+@Slf4j
 public class AngryState implements State {
 
-  private Mammoth mammoth;
+  private final Mammoth mammoth;
 
   public AngryState(Mammoth mammoth) {
     this.mammoth = mammoth;
@@ -37,12 +39,12 @@ public class AngryState implements State {
 
   @Override
   public void observe() {
-    System.out.println(String.format("%s is furious!", mammoth));
+    LOGGER.info("{} is furious!", mammoth);
   }
 
   @Override
   public void onEnterState() {
-    System.out.println(String.format("%s gets angry!", mammoth));
+    LOGGER.info("{} gets angry!", mammoth);
   }
 
 }

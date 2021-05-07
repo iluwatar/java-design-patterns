@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.strategy;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 
  * Spell strategy.
- *
  */
+@Slf4j
 public class SpellStrategy implements DragonSlayingStrategy {
 
   @Override
   public void execute() {
-    System.out
-        .println("You cast the spell of disintegration and the dragon vaporizes in a pile of dust!");
+    LOGGER.info("You cast the spell of disintegration and the dragon vaporizes in a pile of dust!");
   }
 
 }

@@ -1,5 +1,10 @@
 @startuml
 package com.iluwatar.value.object {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
   class HeroStat {
     - intelligence : int
     - luck : int
@@ -12,10 +17,6 @@ package com.iluwatar.value.object {
     + hashCode() : int
     + toString() : String
     + valueOf(strength : int, intelligence : int, luck : int) : HeroStat {static}
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
 }
 @enduml

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,28 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.templatemethod;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InOrder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.PrintStream;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+import java.util.LinkedList;
+import java.util.List;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
 /**
  * Date: 12/30/15 - 18:12 PM
  *
+ * @param <M> Type of StealingMethod
  * @author Jeroen Meulemeester
  */
 public abstract class StealingMethodTest<M extends StealingMethod> {
+
+  private InMemoryAppender appender;
+
+  @BeforeEach
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @AfterEach
+  public void tearDown() {
+    appender.stop();
+  }
 
   /**
    * The tested stealing method
@@ -69,17 +82,6 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
   private final String expectedStealMethod;
 
   /**
-   * The mocked standard out {@link PrintStream}, required since some actions don't have any
-   * influence on accessible objects, except for writing to std-out using {@link System#out}
-   */
-  private final PrintStream stdOutMock = mock(PrintStream.class);
-
-  /**
-   * Keep the original std-out so it can be restored after the test
-   */
-  private final PrintStream stdOutOrig = System.out;
-
-  /**
    * Create a new test for the given stealing method, together with the expected results
    *
    * @param method                The tested stealing method
@@ -99,26 +101,10 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
   }
 
   /**
-   * Inject the mocked std-out {@link PrintStream} into the {@link System} class before each test
-   */
-  @Before
-  public void setUp() {
-    System.setOut(this.stdOutMock);
-  }
-
-  /**
-   * Removed the mocked std-out {@link PrintStream} again from the {@link System} class
-   */
-  @After
-  public void tearDown() {
-    System.setOut(this.stdOutOrig);
-  }
-
-  /**
    * Verify if the thief picks the correct target
    */
   @Test
-  public void testPickTarget() {
+  void testPickTarget() {
     assertEquals(expectedTarget, this.method.pickTarget());
   }
 
@@ -126,39 +112,62 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
    * Verify if the target confusing step goes as planned
    */
   @Test
-  public void testConfuseTarget() {
-    verifyZeroInteractions(this.stdOutMock);
+  void testConfuseTarget() {
+    assertEquals(0, appender.getLogSize());
 
     this.method.confuseTarget(this.expectedTarget);
-    verify(this.stdOutMock).println(this.expectedConfuseMethod);
-    verifyNoMoreInteractions(this.stdOutMock);
+    assertEquals(this.expectedConfuseMethod, appender.getLastMessage());
+    assertEquals(1, appender.getLogSize());
   }
 
   /**
    * Verify if the stealing step goes as planned
    */
   @Test
-  public void testStealTheItem() {
-    verifyZeroInteractions(this.stdOutMock);
+  void testStealTheItem() {
+    assertEquals(0, appender.getLogSize());
 
     this.method.stealTheItem(this.expectedTarget);
-    verify(this.stdOutMock).println(this.expectedStealMethod);
-    verifyNoMoreInteractions(this.stdOutMock);
+    assertEquals(this.expectedStealMethod, appender.getLastMessage());
+    assertEquals(1, appender.getLogSize());
   }
 
   /**
    * Verify if the complete steal process goes as planned
    */
   @Test
-  public void testSteal() {
-    final InOrder inOrder = inOrder(this.stdOutMock);
-
+  void testSteal() {
     this.method.steal();
 
-    inOrder.verify(this.stdOutMock).println(this.expectedTargetResult);
-    inOrder.verify(this.stdOutMock).println(this.expectedConfuseMethod);
-    inOrder.verify(this.stdOutMock).println(this.expectedStealMethod);
-    inOrder.verifyNoMoreInteractions();
+    assertTrue(appender.logContains(this.expectedTargetResult));
+    assertTrue(appender.logContains(this.expectedConfuseMethod));
+    assertTrue(appender.logContains(this.expectedStealMethod));
+    assertEquals(3, appender.getLogSize());
   }
 
+  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+    private final List<ILoggingEvent> log = new LinkedList<>();
+
+    public InMemoryAppender() {
+      ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
+      start();
+    }
+
+    @Override
+    protected void append(ILoggingEvent eventObject) {
+      log.add(eventObject);
+    }
+
+    public int getLogSize() {
+      return log.size();
+    }
+
+    public String getLastMessage() {
+      return log.get(log.size() - 1).getFormattedMessage();
+    }
+
+    public boolean logContains(String message) {
+      return log.stream().anyMatch(event -> event.getFormattedMessage().equals(message));
+    }
+  }
 }

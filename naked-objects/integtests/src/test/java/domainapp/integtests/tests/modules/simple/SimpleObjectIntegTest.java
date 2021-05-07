@@ -1,120 +1,119 @@
 /*
- *  Licensed to the Apache Software Foundation (ASF) under one
- *  or more contributor license agreements.  See the NOTICE file
- *  distributed with this work for additional information
- *  regarding copyright ownership.  The ASF licenses this file
- *  to you under the Apache License, Version 2.0 (the
- *  "License"); you may not use this file except in compliance
- *  with the License.  You may obtain a copy of the License at
+ * The MIT License
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
- *        http://www.apache.org/licenses/LICENSE-2.0
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- *  Unless required by applicable law or agreed to in writing,
- *  software distributed under the License is distributed on an
- *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- *  KIND, either express or implied.  See the License for the
- *  specific language governing permissions and limitations
- *  under the License.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
+
 package domainapp.integtests.tests.modules.simple;
 
-import javax.inject.Inject;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.fixturescripts.FixtureScripts;
-import org.apache.isis.applib.services.wrapper.DisabledException;
-import org.apache.isis.applib.services.wrapper.InvalidException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.fixture.scenarios.RecreateSimpleObjects;
 import domainapp.integtests.tests.SimpleAppIntegTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import javax.inject.Inject;
+import org.apache.isis.applib.DomainObjectContainer;
+import org.apache.isis.applib.fixturescripts.FixtureScripts;
+import org.apache.isis.applib.services.wrapper.DisabledException;
+import org.apache.isis.applib.services.wrapper.InvalidException;
+import org.junit.Before;
+import org.junit.Test;
 
+/**
+ * Test Fixtures with Simple Objects
+ */
 public class SimpleObjectIntegTest extends SimpleAppIntegTest {
 
   @Inject
   FixtureScripts fixtureScripts;
+  @Inject
+  DomainObjectContainer container;
 
   RecreateSimpleObjects fs;
   SimpleObject simpleObjectPojo;
   SimpleObject simpleObjectWrapped;
 
+  private static final String NEW_NAME = "new name";
+
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     // given
     fs = new RecreateSimpleObjects().setNumber(1);
     fixtureScripts.runFixtureScript(fs, null);
 
     simpleObjectPojo = fs.getSimpleObjects().get(0);
 
-    assertThat(simpleObjectPojo).isNotNull();
+    assertNotNull(simpleObjectPojo);
     simpleObjectWrapped = wrap(simpleObjectPojo);
   }
 
-  public static class Name extends SimpleObjectIntegTest {
-
-    @Test
-    public void accessible() throws Exception {
-      // when
-      final String name = simpleObjectWrapped.getName();
-      // then
-      assertThat(name).isEqualTo(fs.names.get(0));
-    }
-
-    @Test
-    public void cannotBeUpdatedDirectly() throws Exception {
-
-      // expect
-      expectedExceptions.expect(DisabledException.class);
-
-      // when
-      simpleObjectWrapped.setName("new name");
-    }
+  @Test
+  public void testNameAccessible() {
+    /* when */
+    final var name = simpleObjectWrapped.getName();
+    // then
+    assertEquals(fs.names.get(0), name);
   }
 
-  public static class UpdateName extends SimpleObjectIntegTest {
+  @Test
+  public void testNameCannotBeUpdatedDirectly() {
 
-    @Test
-    public void happyCase() throws Exception {
+    // expect
+    expectedExceptions.expect(DisabledException.class);
 
-      // when
-      simpleObjectWrapped.updateName("new name");
-
-      // then
-      assertThat(simpleObjectWrapped.getName()).isEqualTo("new name");
-    }
-
-    @Test
-    public void failsValidation() throws Exception {
-
-      // expect
-      expectedExceptions.expect(InvalidException.class);
-      expectedExceptions.expectMessage("Exclamation mark is not allowed");
-
-      // when
-      simpleObjectWrapped.updateName("new name!");
-    }
+    // when
+    simpleObjectWrapped.setName(NEW_NAME);
   }
 
-  public static class Title extends SimpleObjectIntegTest {
+  @Test
+  public void testUpdateName() {
 
-    @Inject
-    DomainObjectContainer container;
+    // when
+    simpleObjectWrapped.updateName(NEW_NAME);
 
-    @Test
-    public void interpolatesName() throws Exception {
+    // then
+    assertEquals(NEW_NAME, simpleObjectWrapped.getName());
+  }
 
-      // given
-      final String name = simpleObjectWrapped.getName();
+  @Test
+  public void testUpdateNameFailsValidation() {
 
-      // when
-      final String title = container.titleOf(simpleObjectWrapped);
+    // expect
+    expectedExceptions.expect(InvalidException.class);
+    expectedExceptions.expectMessage("Exclamation mark is not allowed");
 
-      // then
-      assertThat(title).isEqualTo("Object: " + name);
-    }
+    // when
+    simpleObjectWrapped.updateName(NEW_NAME + "!");
+  }
+
+  @Test
+  public void testInterpolatesName() {
+
+    // given
+    final var name = simpleObjectWrapped.getName();
+
+    // when
+    final var title = container.titleOf(simpleObjectWrapped);
+
+    // then
+    assertEquals("Object: " + name, title);
   }
 }

@@ -1,50 +1,53 @@
 @startuml
 package com.iluwatar.front.controller {
-  class ArcherView {
-    + ArcherView()
-    + display()
-  }
-  interface View {
-    + display() {abstract}
-  }
-  class CatapultView {
-    + CatapultView()
-    + display()
+  class App {
+    + App()
+    + main(args : String[]) {static}
   }
   class ArcherCommand {
     + ArcherCommand()
     + process()
   }
-  class App {
-    + App()
-    + main(args : String[]) {static}
-  }
-  class FrontController {
-    + FrontController()
-    - getCommand(request : String) : Command
-    - getCommandClass(request : String) : Class<T> {static}
-    + handleRequest(request : String)
-  }
-  class UnknownCommand {
-    + UnknownCommand()
-    + process()
-  }
-  class ErrorView {
-    + ErrorView()
+  class ArcherView {
+    - LOGGER : Logger {static}
+    + ArcherView()
     + display()
   }
   class CatapultCommand {
     + CatapultCommand()
     + process()
   }
+  class CatapultView {
+    - LOGGER : Logger {static}
+    + CatapultView()
+    + display()
+  }
   interface Command {
     + process() {abstract}
   }
+  class ErrorView {
+    - LOGGER : Logger {static}
+    + ErrorView()
+    + display()
+  }
+  class FrontController {
+    + FrontController()
+    - getCommand(request : String) : Command
+    - getCommandClass(request : String) : Class<?> {static}
+    + handleRequest(request : String)
+  }
+  class UnknownCommand {
+    + UnknownCommand()
+    + process()
+  }
+  interface View {
+    + display() {abstract}
+  }
 }
-ArcherView ..|> View 
-CatapultView ..|> View 
 ArcherCommand ..|> Command 
-UnknownCommand ..|> Command 
-ErrorView ..|> View 
+ArcherView ..|> View 
 CatapultCommand ..|> Command 
+CatapultView ..|> View 
+ErrorView ..|> View 
+UnknownCommand ..|> Command 
 @enduml

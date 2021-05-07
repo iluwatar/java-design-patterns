@@ -4,21 +4,21 @@ package com.iluwatar.monostate {
     + App()
     + main(args : String[]) {static}
   }
+  class LoadBalancer {
+    - SERVERS : List<Server> {static}
+    - lastServedId : int {static}
+    + LoadBalancer()
+    + addServer(server : Server)
+    + getLastServedId() : int
+    + getNoOfServers() : int
+    + serverRequest(request : Request)
+  }
   class Request {
     + value : String
     + Request(value : String)
   }
-  class LoadBalancer {
-    - id : int {static}
-    - lastServedId : int {static}
-    - servers : List<Server> {static}
-    + LoadBalancer()
-    + addServer(server : Server)
-    + getLastServedId() : int {static}
-    + getNoOfServers() : int
-    + serverRequest(request : Request)
-  }
   class Server {
+    - LOGGER : Logger {static}
     + host : String
     + id : int
     + port : int
@@ -28,5 +28,5 @@ package com.iluwatar.monostate {
     + serve(request : Request)
   }
 }
-LoadBalancer -->  "-servers" Server
+LoadBalancer -->  "-SERVERS" Server
 @enduml

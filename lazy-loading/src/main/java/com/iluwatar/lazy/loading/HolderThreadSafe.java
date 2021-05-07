@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.lazy.loading;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 
  * Same as HolderNaive but with added synchronization. This implementation is thread safe, but each
  * {@link #getHeavy()} call costs additional synchronization overhead.
- *
  */
+@Slf4j
 public class HolderThreadSafe {
 
   private Heavy heavy;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public HolderThreadSafe() {
-    System.out.println("HolderThreadSafe created");
+    LOGGER.info("HolderThreadSafe created");
   }
 
   /**
-   * Get heavy object
+   * Get heavy object.
    */
   public synchronized Heavy getHeavy() {
     if (heavy == null) {

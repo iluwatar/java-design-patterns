@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.decorator;
 
 /**
- * 
- * Troll implements {@link Hostile} interface directly.
- *
+ * Interface for trolls.
  */
-public class Troll implements Hostile {
+public interface Troll {
 
-  @Override
-  public void attack() {
-    System.out.println("The troll swings at you with a club!");
-  }
+  void attack();
 
-  @Override
-  public int getAttackPower() {
-    return 10;
-  }
+  int getAttackPower();
 
-  @Override
-  public void fleeBattle() {
-    System.out.println("The troll shrieks in horror and runs away!");
-  }
+  void fleeBattle();
+
 }

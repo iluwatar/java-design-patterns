@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,34 +20,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.reader.writer.lock;
 
-import static org.mockito.Mockito.inOrder;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.spy;
 
-import java.util.concurrent.ExecutorService;
+import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import org.junit.Test;
-import org.mockito.InOrder;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author hongshuwei@gmail.com
  */
-public class ReaderTest extends StdOutTest {
+class ReaderTest {
+
+  private InMemoryAppender appender;
+
+  @BeforeEach
+  public void setUp() {
+    appender = new InMemoryAppender(Reader.class);
+  }
+
+  @AfterEach
+  public void tearDown() {
+    appender.stop();
+  }
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderTest.class);
 
   /**
    * Verify that multiple readers can get the read lock concurrently
    */
   @Test
-  public void testRead() throws Exception {
+  void testRead() throws Exception {
 
-    ExecutorService executeService = Executors.newFixedThreadPool(2);
-    ReaderWriterLock lock = new ReaderWriterLock();
+    var executeService = Executors.newFixedThreadPool(2);
+    var lock = new ReaderWriterLock();
 
-    Reader reader1 = spy(new Reader("Reader 1", lock.readLock()));
-    Reader reader2 = spy(new Reader("Reader 2", lock.readLock()));
+    var reader1 = spy(new Reader("Reader 1", lock.readLock()));
+    var reader2 = spy(new Reader("Reader 2", lock.readLock()));
 
     executeService.submit(reader1);
     Thread.sleep(150);
@@ -57,16 +74,14 @@ public class ReaderTest extends StdOutTest {
     try {
       executeService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      System.out.println("Error waiting for ExecutorService shutdown");
+      LOGGER.error("Error waiting for ExecutorService shutdown", e);
     }
 
     // Read operation will hold the read lock 250 milliseconds, so here we prove that multiple reads
     // can be performed in the same time.
-    final InOrder inOrder = inOrder(getStdOutMock());
-    inOrder.verify(getStdOutMock()).println("Reader 1 begin");
-    inOrder.verify(getStdOutMock()).println("Reader 2 begin");
-    inOrder.verify(getStdOutMock()).println("Reader 1 finish");
-    inOrder.verify(getStdOutMock()).println("Reader 2 finish");
-
+    assertTrue(appender.logContains("Reader 1 begin"));
+    assertTrue(appender.logContains("Reader 2 begin"));
+    assertTrue(appender.logContains("Reader 1 finish"));
+    assertTrue(appender.logContains("Reader 2 finish"));
   }
 }

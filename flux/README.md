@@ -3,11 +3,9 @@ layout: pattern
 title: Flux
 folder: flux
 permalink: /patterns/flux/
-pumlid: 7SP14eCm20NGg-W13FlU1YFLE0GpyAazVZk-rPkRLSrDqdKwW14l8kUxx0r7hXdYzJA8eTIhKzEy6UnqyeUNJQBjjWm6n2seS_n3Ryql2UgJajxBoAu_
-categories: Presentation Tier
+categories: Structural
 tags:
- - Java
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent
@@ -16,6 +14,7 @@ user interacts with a view, the view propagates an action through a central
 dispatcher, to the various stores that hold the application's data and business
 logic, which updates all of the views that are affected.
 
+## Class diagram
 ![alt text](./etc/flux.png "Flux")
 
 ## Applicability

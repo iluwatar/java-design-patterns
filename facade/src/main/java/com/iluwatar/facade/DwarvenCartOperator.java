@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.facade;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 
  * DwarvenCartOperator is one of the goldmine subsystems.
- *
  */
+@Slf4j
 public class DwarvenCartOperator extends DwarvenMineWorker {
 
   @Override
   public void work() {
-    System.out.println(name() + " moves gold chunks out of the mine.");
+    LOGGER.info("{} moves gold chunks out of the mine.", name());
   }
 
   @Override

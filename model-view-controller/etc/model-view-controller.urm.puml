@@ -1,17 +1,17 @@
 @startuml
 package com.iluwatar.model.view.controller {
-  class GiantModel {
-    - fatigue : Fatigue
-    - health : Health
-    - nourishment : Nourishment
-    ~ GiantModel(health : Health, fatigue : Fatigue, nourishment : Nourishment)
-    + getFatigue() : Fatigue
-    + getHealth() : Health
-    + getNourishment() : Nourishment
-    + setFatigue(fatigue : Fatigue)
-    + setHealth(health : Health)
-    + setNourishment(nourishment : Nourishment)
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum Fatigue {
+    + ALERT {static}
+    + SLEEPING {static}
+    + TIRED {static}
+    - title : String
     + toString() : String
+    + valueOf(name : String) : Fatigue {static}
+    + values() : Fatigue[] {static}
   }
   class GiantController {
     - giant : GiantModel
@@ -25,13 +25,23 @@ package com.iluwatar.model.view.controller {
     + setNourishment(nourishment : Nourishment)
     + updateView()
   }
+  class GiantModel {
+    - fatigue : Fatigue
+    - health : Health
+    - nourishment : Nourishment
+    ~ GiantModel(health : Health, fatigue : Fatigue, nourishment : Nourishment)
+    + getFatigue() : Fatigue
+    + getHealth() : Health
+    + getNourishment() : Nourishment
+    + setFatigue(fatigue : Fatigue)
+    + setHealth(health : Health)
+    + setNourishment(nourishment : Nourishment)
+    + toString() : String
+  }
   class GiantView {
+    - LOGGER : Logger {static}
     + GiantView()
     + displayGiant(giant : GiantModel)
-  }
-  class App {
-    + App()
-    + main(args : String[]) {static}
   }
   enum Health {
     + DEAD {static}
@@ -50,15 +60,6 @@ package com.iluwatar.model.view.controller {
     + toString() : String
     + valueOf(name : String) : Nourishment {static}
     + values() : Nourishment[] {static}
-  }
-  enum Fatigue {
-    + ALERT {static}
-    + SLEEPING {static}
-    + TIRED {static}
-    - title : String
-    + toString() : String
-    + valueOf(name : String) : Fatigue {static}
-    + values() : Fatigue[] {static}
   }
 }
 GiantModel -->  "-nourishment" Nourishment

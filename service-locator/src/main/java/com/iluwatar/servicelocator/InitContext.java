@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelocator;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * For JNDI lookup of services from the web.xml. Will match name of the service name that is being
@@ -28,6 +31,7 @@ package com.iluwatar.servicelocator;
  *
  * @author saifasif
  */
+@Slf4j
 public class InitContext {
 
   /**
@@ -39,10 +43,10 @@ public class InitContext {
    */
   public Object lookup(String serviceName) {
     if (serviceName.equals("jndi/serviceA")) {
-      System.out.println("Looking up service A and creating new service for A");
+      LOGGER.info("Looking up service A and creating new service for A");
       return new ServiceImpl("jndi/serviceA");
     } else if (serviceName.equals("jndi/serviceB")) {
-      System.out.println("Looking up service B and creating new service for B");
+      LOGGER.info("Looking up service B and creating new service for B");
       return new ServiceImpl("jndi/serviceB");
     } else {
       return null;

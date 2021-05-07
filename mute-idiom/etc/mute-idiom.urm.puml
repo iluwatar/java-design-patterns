@@ -1,9 +1,7 @@
 @startuml
 package com.iluwatar.mute {
-  interface CheckedRunnable {
-    + run() {abstract}
-  }
   class App {
+    - LOGGER : Logger {static}
     + App()
     - acquireResource() : Resource {static}
     - closeResource(resource : Resource) {static}
@@ -11,6 +9,9 @@ package com.iluwatar.mute {
     - useOfLoggedMute() {static}
     - useOfMute() {static}
     - utilizeResource(resource : Resource) {static}
+  }
+  interface CheckedRunnable {
+    + run() {abstract}
   }
   class Mute {
     - Mute()

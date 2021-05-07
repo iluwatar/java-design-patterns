@@ -1,0 +1,69 @@
+@startuml
+package com.iluwatar.circuitbreaker {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface CircuitBreaker {
+    + attemptRequest() : String {abstract}
+    + getState() : String {abstract}
+    + recordFailure(String) {abstract}
+    + recordSuccess() {abstract}
+    + setState(State) {abstract}
+  }
+  class DefaultCircuitBreaker {
+    ~ failureCount : int
+    - failureThreshold : int
+    - futureTime : long
+    - lastFailureResponse : String
+    ~ lastFailureTime : long
+    - retryTimePeriod : long
+    - service : RemoteService
+    - state : State
+    - timeout : long
+    ~ DefaultCircuitBreaker(serviceToCall : RemoteService, timeout : long, failureThreshold : int, retryTimePeriod : long)
+    + attemptRequest() : String
+    # evaluateState()
+    + getState() : String
+    + recordFailure(response : String)
+    + recordSuccess()
+    + setState(state : State)
+  }
+  class DelayedRemoteService {
+    - delay : int
+    - serverStartTime : long
+    + DelayedRemoteService()
+    + DelayedRemoteService(serverStartTime : long, delay : int)
+    + call() : String
+  }
+  class MonitoringService {
+    - delayedService : CircuitBreaker
+    - quickService : CircuitBreaker
+    + MonitoringService(delayedService : CircuitBreaker, quickService : CircuitBreaker)
+    + delayedServiceResponse() : String
+    + localResourceResponse() : String
+    + quickServiceResponse() : String
+  }
+  class QuickRemoteService {
+    + QuickRemoteService()
+    + call() : String
+  }
+  interface RemoteService {
+    + call() : String {abstract}
+  }
+  enum State {
+    + CLOSED {static}
+    + HALF_OPEN {static}
+    + OPEN {static}
+    + valueOf(name : String) : State {static}
+    + values() : State[] {static}
+  }
+}
+DefaultCircuitBreaker -->  "-state" State
+MonitoringService -->  "-delayedService" CircuitBreaker
+DefaultCircuitBreaker -->  "-service" RemoteService
+DefaultCircuitBreaker ..|> CircuitBreaker 
+DelayedRemoteService ..|> RemoteService 
+QuickRemoteService ..|> RemoteService 
+@enduml
