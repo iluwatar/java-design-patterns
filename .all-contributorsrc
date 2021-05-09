@@ -1496,6 +1496,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "JackieNim",
+      "name": "JackieNim",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4138836?v=4",
+      "profile": "https://github.com/JackieNim",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
