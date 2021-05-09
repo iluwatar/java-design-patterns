@@ -2,8 +2,9 @@
 layout: pattern
 title: Dirty Flag
 folder: dirty-flag
-permalink: /patterns/dirty-flag/
+permalink: /patterns/dirty-flag/zh
 categories: Behavioral
+language: zh
 tags:
  - Game programming
  - Performance

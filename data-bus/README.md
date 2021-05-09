@@ -5,6 +5,7 @@ folder: data-bus
 permalink: /patterns/data-bus/
 
 categories: Architectural
+language: en
 tags:
  - Decoupling
 ---

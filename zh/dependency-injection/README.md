@@ -2,8 +2,9 @@
 layout: pattern
 title: Dependency Injection
 folder: dependency-injection
-permalink: /patterns/dependency-injection/
+permalink: /patterns/dependency-injection/zh
 categories: Creational
+language: zh
 tags:
  - Decoupling
 ---

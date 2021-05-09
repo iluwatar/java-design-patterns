@@ -4,6 +4,7 @@ title: Proxy
 folder: proxy
 permalink: /patterns/proxy/
 categories: Structural
+language: en
 tags:
  - Gang Of Four
  - Decoupling

@@ -4,6 +4,7 @@ title: Facade
 folder: facade
 permalink: /patterns/facade/
 categories: Structural
+language: en
 tags:
  - Gang Of Four
  - Decoupling

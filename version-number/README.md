@@ -7,7 +7,7 @@ description: Entity versioning with version number
 
 categories:
  - Concurrency
-
+language: en
 tags:
  - Data access
  - Microservices

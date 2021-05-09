@@ -4,6 +4,7 @@ title: Step Builder
 folder: step-builder
 permalink: /patterns/step-builder/
 categories: Creational
+language: en
 tags:
  - Instantiation
 ---

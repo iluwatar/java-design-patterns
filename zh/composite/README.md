@@ -2,8 +2,9 @@
 layout: pattern
 title: Composite
 folder: composite
-permalink: /patterns/composite/
+permalink: /patterns/composite/zh
 categories: Structural
+language: zh
 tags:
  - Gang of Four
 ---

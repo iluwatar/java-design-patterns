@@ -4,6 +4,7 @@ title: Specification
 folder: specification
 permalink: /patterns/specification/
 categories: Behavioral
+language: en
 tags:
  - Data access
 ---

@@ -4,6 +4,7 @@ title: Page Object
 folder: page-object
 permalink: /patterns/page-object/
 categories: Structural
+language: en
 tags:
 - Decoupling
 ---

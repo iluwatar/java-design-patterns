@@ -2,8 +2,9 @@
 layout: pattern
 title: API Gateway
 folder: api-gateway
-permalink: /patterns/api-gateway/
+permalink: /patterns/api-gateway/zh
 categories: Architectural
+language: zh
 tags:
   - Cloud distributed
   - Decoupling

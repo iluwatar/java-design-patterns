@@ -2,8 +2,9 @@
 layout: pattern
 title: Private Class Data
 folder: private-class-data
-permalink: /patterns/private-class-data/
+permalink: /patterns/private-class-data/zh
 categories: Idiom
+language: zh
 tags:
  - Data access
 ---

@@ -4,6 +4,7 @@ title: Multiton
 folder: multiton
 permalink: /patterns/multiton/
 categories: Creational
+language: en
 tags:
  - Instantiation
 ---

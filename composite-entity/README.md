@@ -4,6 +4,7 @@ title: Composite Entity
 folder: composite-entity
 permalink: /patterns/composite-entity/
 categories: Structural
+language: en
 tags:
  - Enterprise Integration Pattern
 ---

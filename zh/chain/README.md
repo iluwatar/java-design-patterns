@@ -2,8 +2,9 @@
 layout: pattern
 title: Chain of responsibility
 folder: chain
-permalink: /patterns/chain/
+permalink: /patterns/chain/zh
 categories: Behavioral
+language: zh
 tags:
  - Gang of Four
 ---

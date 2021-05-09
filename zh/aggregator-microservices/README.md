@@ -2,8 +2,9 @@
 layout: pattern
 title: Aggregator Microservices
 folder: aggregator-microservices
-permalink: /patterns/aggregator-microservices/
+permalink: /patterns/aggregator-microservices/zh
 categories: Architectural
+language: zh
 tags:
 - Cloud distributed
 - Decoupling

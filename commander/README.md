@@ -4,6 +4,7 @@ title: Commander
 folder: commander
 permalink: /patterns/commander/
 categories: Concurrency
+language: en
 tags:
  - Cloud distributed
 ---

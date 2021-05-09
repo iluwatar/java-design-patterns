@@ -2,8 +2,9 @@
 layout: pattern
 title: Callback
 folder: callback
-permalink: /patterns/callback/
+permalink: /patterns/callback/zh
 categories: Idiom
+language: zh
 tags:
  - Reactive
 ---
