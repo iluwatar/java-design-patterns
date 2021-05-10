@@ -3,9 +3,9 @@ layout: pattern
 title: Compose-method
 folder: compose-method
 permalink: /patterns/compose-method/
-categories: Structural
+categories: Idiom
 tags:
- - Gang of Four
+ - Decoupling
 ---
 
 ## Intent
@@ -28,7 +28,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Refactoring to Patterns: Simplification | Compose Method | InformIT
+[Refactoring to Patterns: Simplification | Compose Method | InformIT](https://www.informit.com/articles/article.aspx?p=1398607)
 
 The original method is relative hard to understand the meaning. 
 ```java

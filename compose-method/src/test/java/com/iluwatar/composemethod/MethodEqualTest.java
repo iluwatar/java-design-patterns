@@ -6,12 +6,19 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MethodEqualTest {
+/**
+ * to test whether the two methods are equal.
+ */
+class MethodEqualTest {//NOPMD
+
   @Test
-  void methodsEqual() {
-    Node head = new Node();
-    Random random = new Random();
-    int nodes = random.nextInt(10);
+  /**
+   * test two methods are equal.
+   */
+  public void methodsEqual() {
+    final Node head = new Node();
+    final Random random = new Random();
+    final int nodes = random.nextInt(10);
     Node tail = head;
 
     //for each node to initialize the integer list.
@@ -20,13 +27,13 @@ public class MethodEqualTest {
       head.nums[j] = random.nextInt(20) - 10;
     }
     for (int i = 0; i < nodes; i++) {
-      tail.next = new Node();
+      tail.next = new Node();//NOPMD
       tail = tail.next;
-      tail.nums = new int[random.nextInt(10)];
+      tail.nums = new int[random.nextInt(10)];//NOPMD
       for (int j = 0; j < tail.nums.length; j++) {
         tail.nums[j] = random.nextInt(20) - 10;
       }
     }
-    assertEquals(AddImpl.addPositiveNodesRefined(tail), AddImpl.addPositiveNodesOriginal(tail));
+    assertEquals(AddImpl.addPositiveNodesRefined(tail), AddImpl.addPositiveNodesOriginal(tail), "Two results are equals.");
   }
 }

@@ -1,7 +1,6 @@
 @startuml
 package com.iluwatar.composemethod {
   class AddImpl {
-    - DEFAULT_NUMBER : int {static}
     + AddImpl()
     + addPositiveNodesOriginal(head : Node) : int {static}
     + addPositiveNodesRefined(head : Node) : int {static}

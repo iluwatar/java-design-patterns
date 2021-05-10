@@ -3,7 +3,10 @@ package com.iluwatar.composemethod;
 /**
  * implement adding.
  */
-public class AddImpl {
+public class AddImpl { //NOPMD
+  /**
+   * default added number.
+   */
   private static final int DEFAULT_NUMBER = 0;
 
   /**
@@ -12,7 +15,7 @@ public class AddImpl {
    * @param head the head of the list.
    * @return the sum of positive numbers.
    */
-  public static int addPositiveNodesOriginal(Node head) {
+  public static int addPositiveNodesOriginal(final Node head) {
     Node tail = head;
     int rtn = 0;
     while (tail != null) {
@@ -34,7 +37,7 @@ public class AddImpl {
    * @param head the head of the list.
    * @return the sum of the positive number.
    */
-  public static int addPositiveNodesRefined(Node head) {
+  public static int addPositiveNodesRefined(final Node head) {
     Node tail = head;
     int rtn = 0;
     while (nodeDetect(tail)) {
@@ -50,7 +53,7 @@ public class AddImpl {
    * @param tail the current node.
    * @return the next node of the current node.
    */
-  public static Node nextNode(Node tail) {
+  public static Node nextNode(final Node tail) {
     return tail.next;
   }
 
@@ -60,18 +63,33 @@ public class AddImpl {
    * @param tail the current node.
    * @return the added result.
    */
-  public static int numberGrowth(Node tail) {
-    if (!lengthDetect(tail)) {
-      return DEFAULT_NUMBER;
+  public static int numberGrowth(final Node tail) {
+    int result;
+    if (lengthDetect(tail)) {
+      result = grow(tail.nums); //NOPMD
+    } else {
+      result = DEFAULT_NUMBER; //NOPMD
     }
-    return grow(tail.nums);
+    return result;
   }
 
-  public static boolean nodeDetect(Node tail) {
+  /**
+   * check whether the node is null.
+   *
+   * @param tail current node.
+   * @return whether it is null.
+   */
+  public static boolean nodeDetect(final Node tail) {
     return tail != null;
   }
 
-  public static boolean lengthDetect(Node tail) {
+  /**
+   * check the length of list is positive.
+   *
+   * @param tail the current node.
+   * @return whether its list is positive.
+   */
+  public static boolean lengthDetect(final Node tail) {
     return tail.nums.length > 0;
   }
 
@@ -81,10 +99,11 @@ public class AddImpl {
    * @param nums the list of numbers.
    * @return the sum of the numbers.
    */
-  public static int grow(int[] nums) {
+  public static int grow(int[] nums) { //NOPMD
     int rtn = 0;
-    for (int i = 0; i < nums.length; i++) {
-      rtn += numGrow(nums[i]);
+    for (final int x :
+            nums) {
+      rtn += numGrow(x);
     }
     return rtn;
   }
@@ -95,14 +114,23 @@ public class AddImpl {
    * @param adder the number for judgement.
    * @return if number is positive, return it. Otherwise, return default number.
    */
-  public static int numGrow(int adder) {
+  public static int numGrow(final int adder) {
+    int result;
     if (isPositive(adder)) {
-      return adder;
+      result = adder;
+    } else {
+      result = DEFAULT_NUMBER;
     }
-    return DEFAULT_NUMBER;
+    return result;
   }
 
-  public static boolean isPositive(int a) {
-    return a > 0;
+  /**
+   * check the number is positive.
+   *
+   * @param adder the number.
+   * @return whethr is positive.
+   */
+  public static boolean isPositive(final int adder) {
+    return adder > 0;
   }
 }
