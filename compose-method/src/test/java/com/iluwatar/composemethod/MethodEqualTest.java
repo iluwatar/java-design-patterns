@@ -15,7 +15,7 @@ class MethodEqualTest {//NOPMD
   /**
    * test two methods are equal.
    */
-  public void methodsEqual() {
+  void methodsEqual() {
     final Node head = new Node();
     final Random random = new Random();
     final int nodes = random.nextInt(10);
