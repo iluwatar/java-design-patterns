@@ -13,7 +13,7 @@ class AppTest {//NOPMD
   /**
    * no exception to execute.
    */
-  public void shouldExecuteWithoutException() {
+  void shouldExecuteWithoutException() {
     assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }
