@@ -321,6 +321,9 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/STudio26"><img src="https://avatars.githubusercontent.com/u/6988911?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alain</b></sub></a><br /><a href="#translation-STudio26" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/DEV-VRUPER"><img src="https://avatars.githubusercontent.com/u/30525467?v=4?s=100" width="100px;" alt=""/><br /><sub><b>VR</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=DEV-VRUPER" title="Documentation">📖</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/JackieNim"><img src="https://avatars.githubusercontent.com/u/4138836?v=4?s=100" width="100px;" alt=""/><br /><sub><b>JackieNim</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=JackieNim" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
