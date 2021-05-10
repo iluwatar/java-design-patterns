@@ -13,7 +13,7 @@ class PublicMethodTest {//NOPMD
   /**
    * test next node.
    */
-  public void nextTest() {
+  void nextTest() {
     final Node node1 = new Node();
     final Node node2 = new Node();
     node1.next = node2;
@@ -26,7 +26,7 @@ class PublicMethodTest {//NOPMD
   /**
    * test next node is null.
    */
-  public void nextNullTest() {
+  void nextNullTest() {
     final Node node1 = new Node();
     Node tail = node1;
     tail = AddImpl.nextNode(tail);
@@ -37,63 +37,63 @@ class PublicMethodTest {//NOPMD
   /**
    * test number for growth.
    */
-  public void growthTest() {
+  void growthTest() {
     final Node node1 = new Node();
     node1.nums = new int[]{1};
-    assertEquals(AddImpl.numberGrowth(node1), 1, "correctly added.");
+    assertEquals(1, AddImpl.numberGrowth(node1), "correctly added.");
   }
 
   @Test
   /**
    * test null number list.
    */
-  public void nullGrowthTest() {
+  void nullGrowthTest() {
     final Node node1 = new Node();
     node1.nums = new int[0];
-    assertEquals(AddImpl.numberGrowth(node1), 0, "check empty list.");
+    assertEquals(0, AddImpl.numberGrowth(node1), "check empty list.");
   }
 
   @Test
   /**
    * test add method.
    */
-  public void originalTest() {
+  void originalTest() {
     final Node head = new Node();
     head.nums = new int[]{1};
-    assertEquals(AddImpl.addPositiveNodesOriginal(head), 1, "correct added.");
+    assertEquals(1, AddImpl.addPositiveNodesOriginal(head), "correct added.");
   }
 
   @Test
   /**
    * test null node.
    */
-  public void nullOriginalTest() {
-    assertEquals(AddImpl.addPositiveNodesOriginal(null), 0, "check when the node is null.");
+  void nullOriginalTest() {
+    assertEquals(0, AddImpl.addPositiveNodesOriginal(null), "check when the node is null.");
   }
 
   @Test
   /**
    * test refined method.
    */
-  public void refinedTest() {
+  void refinedTest() {
     final Node head = new Node();
     head.nums = new int[]{1};
-    assertEquals(AddImpl.addPositiveNodesRefined(head), 1, "check the calculation of the method.");
+    assertEquals(1, AddImpl.addPositiveNodesRefined(head), "check the calculation of the method.");
   }
 
   @Test
   /**
    * test null node.
    */
-  public void nullRefinedTest() {
-    assertEquals(AddImpl.addPositiveNodesRefined(null), 0, "check when the node is null.");
+  void nullRefinedTest() {
+    assertEquals(0, AddImpl.addPositiveNodesRefined(null), "check when the node is null.");
   }
 
   @Test
   /**
    * test node detect.
    */
-  public void detectTest() {
+  void detectTest() {
     final Node head = new Node();
     assertTrue(AddImpl.nodeDetect(head), "node is not null.");
   }
@@ -102,7 +102,7 @@ class PublicMethodTest {//NOPMD
   /**
    * test null node.
    */
-  public void detectNullTest() {
+  void detectNullTest() {
     assertFalse(AddImpl.nodeDetect(null), "the node is null.");
   }
 
@@ -110,7 +110,7 @@ class PublicMethodTest {//NOPMD
   /**
    * number list length detect.
    */
-  public void lengthTest() {
+  void lengthTest() {
     final Node head = new Node();
     head.nums = new int[]{1};
     assertTrue(AddImpl.lengthDetect(head), "the length of the list is not null.");
@@ -120,7 +120,7 @@ class PublicMethodTest {//NOPMD
   /**
    * number list null detect.
    */
-  public void zeroLengthDetect() {
+  void zeroLengthDetect() {
     final Node head = new Node();
     head.nums = new int[0];
     assertFalse(AddImpl.lengthDetect(head), "the length of list of the node is 0.");
@@ -130,44 +130,44 @@ class PublicMethodTest {//NOPMD
   /**
    * grow test.
    */
-  public void growTest() {
+  void growTest() {
     final Node head = new Node();
     head.nums = new int[]{1, 2};
-    assertEquals(AddImpl.grow(head.nums), 3, "correctly added.");
+    assertEquals(3, AddImpl.grow(head.nums), "correctly added.");
   }
 
   @Test
   /**
    * null list grow test.
    */
-  public void nullGrowTest() {
+  void nullGrowTest() {
     final int[] nums = new int[0];
-    assertEquals(AddImpl.grow(nums), 0, "correct result when list length is 0.");
+    assertEquals(0, AddImpl.grow(nums), "correct result when list length is 0.");
   }
 
   @Test
   /**
    * adder test.
    */
-  public void adderTest() {
+  void adderTest() {
     int num = 7;//NOPMD
-    assertEquals(AddImpl.numGrow(num), 7, "number is positive.");
+    assertEquals(7, AddImpl.numGrow(num), "number is positive.");
   }
 
   @Test
   /**
    * null adder test.
    */
-  public void negativeAdderTest() {
+  void negativeAdderTest() {
     final int num = -9;
-    assertEquals(AddImpl.numGrow(num), 0, "number is negative");
+    assertEquals(0, AddImpl.numGrow(num), "number is negative");
   }
 
   @Test
   /**
    * positive detect test.
    */
-  public void positiveTest() {
+  void positiveTest() {
     int num = 7;//NOPMD
     assertTrue(AddImpl.isPositive(num), "number is positive.");
   }
@@ -176,7 +176,7 @@ class PublicMethodTest {//NOPMD
   /**
    * negetive test.
    */
-  public void negativeTest() {
+  void negativeTest() {
     final int num = -9;
     assertFalse(AddImpl.isPositive(num), "number is negative.");
   }
