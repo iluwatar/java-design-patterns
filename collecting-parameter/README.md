@@ -3,13 +3,14 @@ layout: pattern
 title: Collecting parameter
 folder: collecting-parameter
 permalink: /patterns/collecting-parameter/
-categories: Structural
+categories: Idiom
+tags: Decoupling
 ---
 
 ## Intent
 A Collecting Parameter is an object that you pass to methods in order to collect information from those methods. This pattern is often coupled with Composed Method
 
-In the CollectingParameter idiom a collection (list, map, etc.) is passed repeatedly as a parameter to a method which adds items to the collection.
+In the Collecting Parameter idiom, a collection (list, map, etc.) is passed repeatedly as a parameter to a method that adds items to the collection.
 
 ## Explanation
 
@@ -23,7 +24,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Consider that we need to collect information of a group of apples.
+Consider that we need to collect information about a group of apples.
 
 First we have class `Apple` with weight and name information
 
@@ -61,7 +62,7 @@ public class App {
 }
 ```
 
-Some times the way we want to accumulate the information in the object might be very complicated, or we want to collect information from different kinds of objects .We can use collecting parameter pattern to simplify it.
+Sometimes the way we want to accumulate the information in the object might be very complicated, or we want to collect information from different kinds of objects. We can use the collecting parameter pattern to simplify it.
 
 First modify the `Apple.java`:
 ```java
@@ -150,8 +151,8 @@ Use the collecting parameter pattern when
 ## Consequences:
 Collecting parameter pattern can:
 
-*	Helps transform bulky methods into smaller, simpler methods.
-*   make resulting code run faster.
+* Helps transform bulky methods into smaller, simpler methods.
+* Make the resulting code run faster.
 ## Real world examples
 
 * [junit.framework.TestResult](http://junit.sourceforge.net/junit3.8.1/javadoc/junit/framework/TestResult.html)

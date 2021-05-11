@@ -6,8 +6,8 @@ import java.util.List;
  * Apple, the class need to collect information from.
  */
 public class Apple {
-  int weight;
-  String type;
+  final int weight;
+  final String type;
 
   public Apple(int weight, String type) {
     this.weight = weight;
