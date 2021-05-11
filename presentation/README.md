@@ -4,6 +4,7 @@ title: Presentation
 folder: presentation
 permalink: /patterns/presentation/
 categories: Behavioral
+language: en
 tags:
  - Decoupling
 ---
