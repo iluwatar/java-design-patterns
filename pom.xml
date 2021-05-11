@@ -219,6 +219,7 @@
         <module>parameter-object</module>
         <module>active-object</module>
         <module>model-view-viewmodel</module>
+	<module>composite-entity</module>
         <module>query-object</module>
     </modules>
 
