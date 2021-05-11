@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class AppleTest {
+class AppleTest {
   @Test
   void writeWeightToTest() {
     List<String> info = new ArrayList<>();
