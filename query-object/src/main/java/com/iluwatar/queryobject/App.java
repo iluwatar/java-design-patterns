@@ -24,8 +24,34 @@ public class App {
    * @param args The command line argument. In this example it is not used.
    */
   public static void main(String[] args) {
+    final Dataset<Customer> customerDataset = initializeDataset();
+    LOGGER.info("Created dataset with {} customers.", customerDataset.entities.size());
+    final Repository<Customer> customerRepository = new Repository<>(customerDataset.entities);
+    final double purchaseAmount = 200;
+    QueryObject<Customer> queryObject = new CustomerSalesWithPurchaseMoreThan(purchaseAmount);
+    LOGGER.info(
+            "Created query to find all the customers that have spent more than {}.",
+            purchaseAmount);
 
-    Dataset<Customer> customerDataset = new Dataset(
+    Collection<Customer> resultCustomers = customerRepository.query(queryObject);
+    resultCustomers.forEach(
+        res -> LOGGER.info("{} has more than {} purchase amount!", res.name, purchaseAmount)
+    );
+    final var orderNumber = 1;
+    queryObject = new CustomersWithOrdersAmountMoreThan(orderNumber);
+
+    LOGGER.info(
+            "Created query to find all the customers that have made more than {} orders.",
+            orderNumber);
+
+    resultCustomers = customerRepository.query(queryObject);
+    resultCustomers.forEach(
+        res -> LOGGER.info("{} has more than {} orders!", res.name, orderNumber)
+    );
+  }
+
+  private static Dataset<Customer> initializeDataset() {
+    return new Dataset(
             Arrays.asList(
                     new Customer(
                             "Customer 1",
@@ -61,40 +87,5 @@ public class App {
                     )
             )
     );
-
-    LOGGER.info("Created dataset with 2 customers.");
-
-    Repository<Customer> customerRepository = new Repository<>(customerDataset.entities);
-    double purchaseAmount = 200;
-    QueryObject<Customer> queryObject = new CustomerSalesWithPurchaseMoreThan(purchaseAmount);
-
-    LOGGER.info(
-            String.format(
-                    "Created query to find all the customers that have spent more than %f.",
-                    purchaseAmount));
-
-    Collection<Customer> resultCustomers = customerRepository.query(queryObject);
-    for (var result : resultCustomers) {
-      LOGGER.info(
-              String.format(
-                      "%s has more than %f purchase amount!",
-              result.name, purchaseAmount));
-    }
-
-    var orderNumber = 1;
-    queryObject = new CustomersWithOrdersAmountMoreThan(orderNumber);
-
-    LOGGER.info(
-            String.format(
-                    "Created query to find all the customers that have made more than %d orders.",
-            orderNumber));
-
-    resultCustomers = customerRepository.query(queryObject);
-    for (var results : resultCustomers) {
-      LOGGER.info(
-              String.format(
-                      "%s has more than %d orders!",
-                      results.name, orderNumber));
-    }
   }
 }
