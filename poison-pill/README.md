@@ -4,6 +4,7 @@ title: Poison Pill
 folder: poison-pill
 permalink: /patterns/poison-pill/
 categories: Behavioral
+language: en
 tags:
  - Cloud distributed
  - Reactive

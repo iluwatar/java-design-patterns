@@ -2,8 +2,9 @@
 layout: pattern
 title: Template method
 folder: template-method
-permalink: /patterns/template-method/
+permalink: /patterns/template-method/zh
 categories: Behavioral
+language: zh
 tags:
  - Gang of Four
 ---

@@ -4,6 +4,7 @@ title: Leader/Followers
 folder: leader-followers
 permalink: /patterns/leader-followers/
 categories: Concurrency
+language: en
 tags:
  - Performance
 ---

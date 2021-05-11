@@ -4,6 +4,7 @@ title: Event Driven Architecture
 folder: event-driven-architecture
 permalink: /patterns/event-driven-architecture/
 categories: Architectural
+language: en
 tags:
  - Reactive
 ---

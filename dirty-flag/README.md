@@ -4,6 +4,7 @@ title: Dirty Flag
 folder: dirty-flag
 permalink: /patterns/dirty-flag/
 categories: Behavioral
+language: en
 tags:
  - Game programming
  - Performance

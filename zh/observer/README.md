@@ -2,8 +2,9 @@
 layout: pattern
 title: Observer
 folder: observer
-permalink: /patterns/observer/
+permalink: /patterns/observer/zh
 categories: Behavioral
+language: zh
 tags:
  - Gang Of Four
  - Reactive

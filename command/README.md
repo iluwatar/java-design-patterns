@@ -4,6 +4,7 @@ title: Command
 folder: command
 permalink: /patterns/command/
 categories: Behavioral
+language: en
 tags:
  - Gang of Four
 ---

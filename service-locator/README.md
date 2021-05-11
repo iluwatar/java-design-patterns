@@ -4,6 +4,7 @@ title: Service Locator
 folder: service-locator
 permalink: /patterns/service-locator/
 categories: Architectural
+language: en
 tags:
  - Game programming
  - Performance

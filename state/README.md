@@ -4,6 +4,7 @@ title: State
 folder: state
 permalink: /patterns/state/
 categories: Behavioral
+language: en
 tags:
  - Gang of Four
 ---

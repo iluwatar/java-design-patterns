@@ -2,8 +2,9 @@
 layout: pattern
 title: Producer Consumer
 folder: producer-consumer
-permalink: /patterns/producer-consumer/
+permalink: /patterns/producer-consumer/zh
 categories: Concurrency
+language: zh
 tags:
  - Reactive
 ---

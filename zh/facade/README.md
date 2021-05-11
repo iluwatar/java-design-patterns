@@ -2,8 +2,9 @@
 layout: pattern
 title: Facade
 folder: facade
-permalink: /patterns/facade/
+permalink: /patterns/facade/zh
 categories: Structural
+language: zh
 tags:
  - Gang Of Four
  - Decoupling

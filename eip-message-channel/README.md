@@ -4,6 +4,7 @@ title: EIP Message Channel
 folder: eip-message-channel
 permalink: /patterns/eip-message-channel/
 categories: Integration
+language: en
 tags:
  - Enterprise Integration Pattern
 ---

@@ -4,6 +4,7 @@ title: Active Object
 folder: active-object
 permalink: /patterns/active-object/
 categories: Concurrency
+language: en
 tags:
  - Performance
 ---

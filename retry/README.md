@@ -4,6 +4,7 @@ title: Retry
 folder: retry
 permalink: /patterns/retry/
 categories: Behavioral
+language: en
 tags:
   - Performance
   - Cloud distributed

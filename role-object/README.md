@@ -4,6 +4,7 @@ title: Role Object
 folder: role-object
 permalink: /patterns/role-object/
 categories: Structural
+language: en
 tags:
  - Extensibility
 ---

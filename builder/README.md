@@ -4,6 +4,7 @@ title: Builder
 folder: builder
 permalink: /patterns/builder/
 categories: Creational
+language: en
 tags:
  - Gang of Four
 ---

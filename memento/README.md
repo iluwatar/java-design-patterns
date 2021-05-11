@@ -4,6 +4,7 @@ title: Memento
 folder: memento
 permalink: /patterns/memento/
 categories: Behavioral
+language: en
 tags:
  - Gang of Four
 ---

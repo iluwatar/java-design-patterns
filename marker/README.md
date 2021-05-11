@@ -4,6 +4,7 @@ title: Marker Interface
 folder: marker
 permalink: /patterns/marker/
 categories: Structural
+language: en
 tags:
  - Decoupling
 ---

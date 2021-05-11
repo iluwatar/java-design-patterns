@@ -4,6 +4,7 @@ title: Abstract Document
 folder: abstract-document
 permalink: /patterns/abstract-document/
 categories: Structural
+language: en
 tags: 
  - Extensibility
 ---

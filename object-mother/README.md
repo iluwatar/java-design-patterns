@@ -4,6 +4,7 @@ title: Object Mother
 folder: object-mother
 permalink: /patterns/object-mother/
 categories: Creational
+language: en
 tags:
  - Instantiation
 ---

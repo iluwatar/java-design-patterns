@@ -4,6 +4,7 @@ title: Data Access Object
 folder: dao
 permalink: /patterns/dao/
 categories: Architectural
+language: en
 tags:
  - Data access
 ---

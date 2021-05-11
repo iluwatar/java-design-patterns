@@ -4,6 +4,7 @@ title: Visitor
 folder: visitor
 permalink: /patterns/visitor/
 categories: Behavioral
+language: en
 tags:
  - Gang of Four
 ---

@@ -4,6 +4,7 @@ title: Flux
 folder: flux
 permalink: /patterns/flux/
 categories: Structural
+language: en
 tags:
  - Decoupling
 ---

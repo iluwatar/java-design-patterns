@@ -4,6 +4,7 @@ title: Saga
 folder: saga
 permalink: /patterns/saga/
 categories: Concurrency
+language: en
 tags:
  - Cloud distributed
 ---

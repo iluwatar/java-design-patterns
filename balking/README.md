@@ -4,6 +4,7 @@ title: Balking
 folder: balking
 permalink: /patterns/balking/
 categories: Concurrency
+language: en
 tags:
  - Decoupling
 ---

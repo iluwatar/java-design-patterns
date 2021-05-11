@@ -4,6 +4,7 @@ title: Special Case
 folder: special-case
 permalink: /patterns/special-case/
 categories: Behavioral
+language: en
 tags:
  - Extensibility
 ---

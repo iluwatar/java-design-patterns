@@ -4,6 +4,7 @@ title: Abstract Factory
 folder: abstract-factory
 permalink: /patterns/abstract-factory/
 categories: Creational
+language: en
 tags:
  - Gang of Four
 ---

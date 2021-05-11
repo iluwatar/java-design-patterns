@@ -4,6 +4,7 @@ title: Decorator
 folder: decorator
 permalink: /patterns/decorator/
 categories: Structural
+language: en
 tags:
  - Gang Of Four
  - Extensibility

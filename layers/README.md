@@ -5,6 +5,7 @@ folder: layers
 permalink: /patterns/layers/
 pumlformat: svg
 categories: Architectural
+language: en
 tags:
  - Decoupling
 ---

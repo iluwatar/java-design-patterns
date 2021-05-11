@@ -2,8 +2,9 @@
 layout: pattern
 title: Data Transfer Object
 folder: data-transfer-object
-permalink: /patterns/data-transfer-object/
+permalink: /patterns/data-transfer-object/zh
 categories: Architectural
+language: zh
 tags:
  - Performance
 ---
