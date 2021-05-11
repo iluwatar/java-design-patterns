@@ -225,6 +225,7 @@
         <module>active-object</module>
         <module>model-view-viewmodel</module>
         <module>composite-entity</module>
+        <module>presentation</module>
     </modules>
 
     <repositories>

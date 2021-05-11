@@ -1,0 +1,59 @@
+@startuml
+package com.iluwatar.presentation {
+  class Album {
+    ~ artist : String
+    ~ composer : String
+    ~ isClassical : boolean
+    ~ rowId : int
+    ~ title : String
+    + Album(rowId : int, title : String, artist : String, isClassical : boolean, composer : String)
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class DsAlbum {
+    + albums : List<Album>
+    + albumsCache : List<Album>
+    + DsAlbum()
+    + acceptChanges()
+    + addAlbums(rowId : int, title : String, artist : String, isClassical : boolean, composer : String)
+  }
+  class PresentationMod {
+    - data : DsAlbum
+    - selectedAlbum : Album
+    - selectedAlbumNumber : int
+    + PresentationMod(data : DsAlbum)
+    + albumDataSet() : DsAlbum {static}
+    + getAlbumList() : String[]
+    + getArtist() : String
+    + getComposer() : String
+    + getIsClassical() : boolean
+    + getTitle() : String
+    + setArtist(value : String)
+    + setComposer(value : String)
+    + setIsClassical(value : boolean)
+    + setSelectedAlbumNumber(selectedAlbumNumber : int)
+    + setTitle(value : String)
+  }
+  class View {
+    ~ albumList : JList<String>
+    ~ apply : JButton
+    ~ cancel : JButton
+    ~ chkClassical : JCheckBox
+    ~ model : PresentationMod
+    ~ notLoadView : boolean
+    ~ txtArtist : TextField
+    ~ txtComposer : TextField
+    ~ txtTitle : TextField
+    + View()
+    + createView()
+    + loadFromPMod()
+    + saveToPMod()
+  }
+}
+PresentationMod -->  "-selectedAlbum" Album
+View -->  "-model" PresentationMod
+DsAlbum -->  "-albums" Album
+PresentationMod -->  "-data" DsAlbum
+@enduml
