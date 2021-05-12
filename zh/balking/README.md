@@ -8,7 +8,7 @@ tags:
  - Decoupling
 ---
 
-## 作用
+## 含义
 
 阻止模式用于防止一个对象在不完整或不适当的状态下执行某段代码。
 
@@ -112,7 +112,7 @@ public interface DelayProvider {
 
 ![alt text](../../balking/etc/balking.png "Balking")
 
-## 适用性
+## 适用场景
 
 在以下情况下可以使用阻止模式：
 
@@ -124,6 +124,6 @@ public interface DelayProvider {
 * [Guarded Suspension Pattern](https://java-design-patterns.com/patterns/guarded-suspension/)
 * [Double Checked Locking Pattern](https://java-design-patterns.com/patterns/double-checked-locking/)
 
-## 鸣谢
+## 引用
 
 * [Patterns in Java: A Catalog of Reusable Design Patterns Illustrated with UML, 2nd Edition, Volume 1](https://www.amazon.com/gp/product/0471227293/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0471227293&linkId=0e39a59ffaab93fb476036fecb637b99)

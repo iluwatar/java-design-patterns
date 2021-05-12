@@ -1487,6 +1487,33 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "DEV-VRUPER",
+      "name": "VR",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30525467?v=4",
+      "profile": "https://github.com/DEV-VRUPER",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "JackieNim",
+      "name": "JackieNim",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4138836?v=4",
+      "profile": "https://github.com/JackieNim",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "EdisonE3",
+      "name": "EdisonE3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52118917?v=4",
+      "profile": "https://github.com/EdisonE3",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,

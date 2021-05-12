@@ -8,7 +8,7 @@ tags:
  - Decoupling
 ---
 
-## 作用
+## 含义
 
 业务委托模式（译者：国内也有翻译成业务代表模式）在表现层和业务层之间增加了一个抽象层。通过使用该模式，我们获得了各层之间的松散耦合，并封装了关于如何定位、连接和与构成应用程序的业务对象进行交互的知识。
 
@@ -154,7 +154,7 @@ public class MobileClient {
 
 * [Business Delegate Pattern at TutorialsPoint](https://www.tutorialspoint.com/design_pattern/business_delegate_pattern.htm)
 
-## 鸣谢
+## 引用
 
 * [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://www.amazon.com/gp/product/0130648841/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0130648841&linkId=a0100de2b28c71ede8db1757fb2b5947)
