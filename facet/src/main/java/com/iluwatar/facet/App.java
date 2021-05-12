@@ -4,6 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * use client and administrator to check whether it can successfully secure.
+ * for client, it want to execute the secured method. Then the facet will ask
+ * the sentry to validate the execution. But because of the identity is user,
+ * it requirement is illegal. So the result is null. For admin to execute the
+ * secured method. It will be executed.
  */
 @Slf4j
 public class App {
@@ -13,11 +17,11 @@ public class App {
    * @param args command line args.
    */
   public static void main(String[] args) {
-    Sentry clientSentry = new DefaultSentry(new CurrentContext());
-    Facet clientFacet = Facet.create(clientSentry, new Class[]{SecurityMethods.class});
+    var clientSentry = new DefaultSentry(new CurrentContext());
+    var clientFacet = Facet.create(clientSentry, new Class[]{SecurityMethods.class});
     clientFacet.setUser(new Client());
-    Sentry administratorSentry = new DefaultSentry(new CurrentContext());
-    Facet administratorFacet =
+    var administratorSentry = new DefaultSentry(new CurrentContext());
+    var administratorFacet =
             Facet.create(administratorSentry, new Class[]{SecurityMethods.class});
     administratorFacet.setUser(new Administrator());
     LOGGER.info("client invoke result: {}",

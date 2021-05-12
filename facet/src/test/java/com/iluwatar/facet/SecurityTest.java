@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class securityTest {
+class SecurityTest {
   @Test
   void administratorSecurityTest() {
     Sentry administratorSentry = new DefaultSentry(new CurrentContext());
     Facet administratorFacet = Facet.create(administratorSentry, new Class[]{SecurityMethods.class});
     administratorFacet.setUser(new Administrator());
-    assertSame(administratorFacet.invokeSecurityMethod(SecurityMethods.class), "Administrator create something.");
+    assertSame("Administrator create something.", administratorFacet.invokeSecurityMethod(SecurityMethods.class));
   }
 
   @Test

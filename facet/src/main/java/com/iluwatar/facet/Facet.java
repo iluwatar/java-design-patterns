@@ -4,7 +4,7 @@ package com.iluwatar.facet;
  * implements a set of interfaces and it is exposed to user.
  */
 public class Facet {
-  private Sentry sentry;
+  private final Sentry sentry;
   private Class[] classes;
   private User user;
 
@@ -16,13 +16,13 @@ public class Facet {
    * @return created facet.
    */
   public static Facet create(Sentry sentry, Class[] classes) {
-    Facet facet = new Facet();
-    facet.sentry = sentry;
-    facet.classes = classes.clone();
+    Facet facet = new Facet(sentry, classes);
     return facet;
   }
 
-  private Facet() {
+  private Facet(Sentry sentry, Class[] classes) {
+    this.sentry = sentry;
+    this.classes = classes;
   }
 
   public static Class[] query(Facet facet) {

@@ -3,9 +3,9 @@ layout: pattern
 title: Facet
 folder: facet
 permalink: /patterns/facet/
-categories: Creational
+categories: Behavioural
 tags:
- - Gang of Four
+ - Security
 ---
 
 ## Intent
