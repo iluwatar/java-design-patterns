@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
+
 /**
  * Table Module pattern is a domain logic pattern.
  * In Table Module a single class encapsulates all the domain logic for all
@@ -37,15 +38,16 @@ public final class App {
    * @throws SQLException if any error occurs.
    */
   public static void main(final String[] args) throws SQLException {
+    // Create data source and create the user table.
     final var dataSource = createDataSource();
     createSchema(dataSource);
     var userTableModule = new UserTableModule(dataSource);
 
-    //Initialize two users.
+    // Initialize two users.
     var user1 = new User(1, "123456", "123456");
     var user2 = new User(2, "test", "password");
 
-    //Login and register using the instance of userTableModule.
+    // Login and register using the instance of userTableModule.
     userTableModule.registerUser(user1);
     userTableModule.login(user1.getUsername(), user1.getPassword());
     userTableModule.login(user2.getUsername(), user2.getPassword());
@@ -59,7 +61,7 @@ public final class App {
           throws SQLException {
     try (var connection = dataSource.getConnection();
          var statement = connection.createStatement()) {
-      statement.execute(UserSchemaSql.DELETE_SCHEMA_SQL);
+      statement.execute(UserTableModule.DELETE_SCHEMA_SQL);
     }
   }
 
@@ -67,7 +69,7 @@ public final class App {
           throws SQLException {
     try (var connection = dataSource.getConnection();
          var statement = connection.createStatement()) {
-      statement.execute(UserSchemaSql.CREATE_SCHEMA_SQL);
+      statement.execute(UserTableModule.CREATE_SCHEMA_SQL);
     }
   }
 

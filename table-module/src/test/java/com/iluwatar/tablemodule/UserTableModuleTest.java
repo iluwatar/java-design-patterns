@@ -9,17 +9,24 @@ import javax.sql.DataSource;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserTableModuleTest {
   private static final String DB_URL = "jdbc:h2:~/test";
+
+  private static DataSource createDataSource() {
+    var dataSource = new JdbcDataSource();
+    dataSource.setURL(DB_URL);
+    return dataSource;
+  }
 
   @BeforeEach
   void setUp() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL);
          var statement = connection.createStatement()) {
-      statement.execute(UserSchemaSql.DELETE_SCHEMA_SQL);
-      statement.execute(UserSchemaSql.CREATE_SCHEMA_SQL);
+      statement.execute(UserTableModule.DELETE_SCHEMA_SQL);
+      statement.execute(UserTableModule.CREATE_SCHEMA_SQL);
     }
   }
 
@@ -27,7 +34,7 @@ class UserTableModuleTest {
   void tearDown() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL);
          var statement = connection.createStatement()) {
-      statement.execute(UserSchemaSql.DELETE_SCHEMA_SQL);
+      statement.execute(UserTableModule.DELETE_SCHEMA_SQL);
     }
   }
 
@@ -67,11 +74,5 @@ class UserTableModuleTest {
     var userTableModule = new UserTableModule(dataSource);
     var user = new User(1, "123456", "123456");
     assertEquals(1, userTableModule.registerUser(user));
-  }
-
-  private static DataSource createDataSource() {
-    var dataSource = new JdbcDataSource();
-    dataSource.setURL(DB_URL);
-    return dataSource;
   }
 }

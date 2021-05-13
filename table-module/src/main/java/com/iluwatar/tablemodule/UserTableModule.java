@@ -1,7 +1,5 @@
 package com.iluwatar.tablemodule;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.DataSource;
@@ -16,10 +14,18 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class UserTableModule {
+  /**
+   * Public element for creating schema.
+   */
+  public static final String CREATE_SCHEMA_SQL =
+          "CREATE TABLE IF NOT EXISTS USERS (ID NUMBER, USERNAME VARCHAR(30) "
+                  + "UNIQUE,PASSWORD VARCHAR(30))";
+  /**
+   * Public element for deleting schema.
+   */
+  public static final String DELETE_SCHEMA_SQL = "DROP TABLE USERS IF EXISTS";
   private final DataSource dataSource;
-  private Connection connection = null;
-  private ResultSet resultSet = null;
-  private PreparedStatement preparedStatement = null;
+
 
   /**
    * Public constructor.
@@ -41,11 +47,13 @@ public class UserTableModule {
    */
   public int login(final String username, final String password)
           throws SQLException {
-    try {
+    var sql = "select count(*) from USERS where username=? and password=?";
+    ResultSet resultSet = null;
+    try (var connection = dataSource.getConnection();
+         var preparedStatement =
+                 connection.prepareStatement(sql)
+    ) {
       var result = 0;
-      connection = dataSource.getConnection();
-      var sql = "select count(*) from USERS where username=? and password=?";
-      preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setString(1, username);
       preparedStatement.setString(2, password);
       resultSet = preparedStatement.executeQuery();
@@ -59,9 +67,9 @@ public class UserTableModule {
       }
       return result;
     } finally {
-      connection.close();
-      preparedStatement.close();
-      resultSet.close();
+      if (resultSet != null) {
+        resultSet.close();
+      }
     }
   }
 
@@ -73,18 +81,16 @@ public class UserTableModule {
    * @throws SQLException if any error
    */
   public int registerUser(final User user) throws SQLException {
-    try {
-      connection = dataSource.getConnection();
-      var    sql = "insert into USERS (username, password) values (?,?)";
-      preparedStatement = connection.prepareStatement(sql);
+    var sql = "insert into USERS (username, password) values (?,?)";
+    try (var connection = dataSource.getConnection();
+         var preparedStatement =
+                 connection.prepareStatement(sql)
+    ) {
       preparedStatement.setString(1, user.getUsername());
       preparedStatement.setString(2, user.getPassword());
       var result = preparedStatement.executeUpdate();
       LOGGER.info("Register successfully!");
       return result;
-    } finally {
-      connection.close();
-      preparedStatement.close();
     }
   }
 }

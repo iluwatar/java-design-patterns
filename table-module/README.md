@@ -3,7 +3,7 @@ layout: pattern
 title: Table Module
 folder: table-module
 permalink: /patterns/table-module/
-categories: Behavioral
+categories: Structural
 tags:
  - Data access
 ---
@@ -81,6 +81,7 @@ public class UserTableModule {
 In the class `App`, we use an instance of the `UserTableModule` to handle user login and registration.
 
 ```java
+// Create data source and create the user table.
 final var dataSource = createDataSource();
 createSchema(dataSource);
 userTableModule = new UserTableModule(dataSource);
@@ -99,6 +100,16 @@ userTableModule.login(user2.getUsername(), user2.getPassword());
 deleteSchema(dataSource);
 ```
 
+The program output:
+
+```java
+12:22:13.095 [main] INFO com.iluwatar.tablemodule.UserTableModule - Register successfully!
+12:22:13.117 [main] INFO com.iluwatar.tablemodule.UserTableModule - Login successfully!
+12:22:13.128 [main] INFO com.iluwatar.tablemodule.UserTableModule - Fail to login!
+12:22:13.136 [main] INFO com.iluwatar.tablemodule.UserTableModule - Register successfully!
+12:22:13.144 [main] INFO com.iluwatar.tablemodule.UserTableModule - Login successfully!
+```
+
 ## Class diagram
 
 ![](./etc/table-module.urm.png "table module")
@@ -108,7 +119,7 @@ deleteSchema(dataSource);
 Use the Table Module Pattern when
 
 - Domain logic is simple and data is in tabular form.
-- The application only use a few shared common table-oriented data structures.
+- The application only uses a few shared common table-oriented data structures.
 
 ## Related patterns
 
@@ -121,4 +132,3 @@ Use the Table Module Pattern when
 * [Table Module Pattern](http://wiki3.cosc.canterbury.ac.nz/index.php/Table_module_pattern)
 * [Patterns of Enterprise Application Architecture](https://www.amazon.com/gp/product/0321127420/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0321127420&linkId=18acc13ba60d66690009505577c45c04)
 * [Architecture patterns: domain model and friends](https://inviqa.com/blog/architecture-patterns-domain-model-and-friends)
-
