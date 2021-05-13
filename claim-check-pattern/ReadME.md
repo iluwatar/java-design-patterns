@@ -2,12 +2,14 @@
 layout: pattern 
 title: Claim Check Pattern
 folder: Claim-Check-Pattern 
-permalink: /patterns/claim-check-pattern/ # the permalink to the pattern, to keep this uniform please stick to /patterns/FOLDER/
-description: # short meta description that shows in Google search result
+permalink: /patterns/claim-check-pattern/ 
+description: Cloud Architecture
 categories: 
- - creational
+ - name: Cloud
+   icon: "fa fa-cloud"
 tags:
- - ever
+ - Cloud distributed
+ - Microservices
 ---
 
 ## Name
