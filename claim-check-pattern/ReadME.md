@@ -4,8 +4,7 @@ title: Claim Check Pattern
 folder: Claim-Check-Pattern 
 permalink: /patterns/claim-check-pattern/ 
 description: Cloud Architecture
-categories: 
- - name: Cloud
+categories: Cloud
 tags:
  - Cloud distributed
  - Microservices
