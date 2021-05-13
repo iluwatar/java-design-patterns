@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,9 @@
 
 package com.iluwatar.eip.publish.subscribe;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * There are well-established patterns for implementing broadcasting. The Observer pattern describes
@@ -45,9 +44,8 @@ import org.slf4j.LoggerFactory;
  * <p>In this example we use Apache Camel to establish a Publish-Subscribe Channel from
  * "direct-origin" to "mock:foo", "mock:bar" and "stream:out".
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.

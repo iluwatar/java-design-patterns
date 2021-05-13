@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,6 @@ package com.iluwatar.repository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 import org.junit.jupiter.api.Test;
@@ -41,7 +40,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {AppConfig.class})
-public class AppConfigTest {
+class AppConfigTest {
 
   @Autowired
   DataSource dataSource;
@@ -50,7 +49,7 @@ public class AppConfigTest {
    * Test for bean instance
    */
   @Test
-  public void testDataSource() {
+  void testDataSource() {
     assertNotNull(dataSource);
   }
 
@@ -59,7 +58,7 @@ public class AppConfigTest {
    */
   @Test
   @Transactional
-  public void testQuery() throws SQLException {
+  void testQuery() throws SQLException {
     var resultSet = dataSource.getConnection().createStatement().executeQuery("SELECT 1");
     var expected = "1";
     String result = null;

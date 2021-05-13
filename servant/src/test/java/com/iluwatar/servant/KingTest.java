@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,17 +33,17 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class KingTest {
+class KingTest {
 
   @Test
-  public void testHungrySoberUncomplimentedKing() {
+  void testHungrySoberUncomplimentedKing() {
     final var king = new King();
     king.changeMood();
     assertFalse(king.getMood());
   }
 
   @Test
-  public void testFedSoberUncomplimentedKing() {
+  void testFedSoberUncomplimentedKing() {
     final var king = new King();
     king.getFed();
     king.changeMood();
@@ -51,7 +51,7 @@ public class KingTest {
   }
 
   @Test
-  public void testHungryDrunkUncomplimentedKing() {
+  void testHungryDrunkUncomplimentedKing() {
     final var king = new King();
     king.getDrink();
     king.changeMood();
@@ -59,7 +59,7 @@ public class KingTest {
   }
 
   @Test
-  public void testHungrySoberComplimentedKing() {
+  void testHungrySoberComplimentedKing() {
     final var king = new King();
     king.receiveCompliments();
     king.changeMood();
@@ -67,7 +67,7 @@ public class KingTest {
   }
 
   @Test
-  public void testFedDrunkUncomplimentedKing() {
+  void testFedDrunkUncomplimentedKing() {
     final var king = new King();
     king.getFed();
     king.getDrink();
@@ -76,7 +76,7 @@ public class KingTest {
   }
 
   @Test
-  public void testFedSoberComplimentedKing() {
+  void testFedSoberComplimentedKing() {
     final var king = new King();
     king.getFed();
     king.receiveCompliments();
@@ -85,7 +85,7 @@ public class KingTest {
   }
 
   @Test
-  public void testFedDrunkComplimentedKing() {
+  void testFedDrunkComplimentedKing() {
     final var king = new King();
     king.getFed();
     king.getDrink();
@@ -95,7 +95,7 @@ public class KingTest {
   }
 
   @Test
-  public void testHungryDrunkComplimentedKing() {
+  void testHungryDrunkComplimentedKing() {
     final King king = new King();
     king.getDrink();
     king.receiveCompliments();

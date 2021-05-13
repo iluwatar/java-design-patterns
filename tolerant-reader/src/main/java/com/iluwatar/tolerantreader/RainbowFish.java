@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,10 +24,14 @@
 package com.iluwatar.tolerantreader;
 
 import java.io.Serializable;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * RainbowFish is the initial schema.
  */
+@Getter
+@RequiredArgsConstructor
 public class RainbowFish implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -36,31 +40,5 @@ public class RainbowFish implements Serializable {
   private final int age;
   private final int lengthMeters;
   private final int weightTons;
-
-  /**
-   * Constructor.
-   */
-  public RainbowFish(String name, int age, int lengthMeters, int weightTons) {
-    this.name = name;
-    this.age = age;
-    this.lengthMeters = lengthMeters;
-    this.weightTons = weightTons;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getAge() {
-    return age;
-  }
-
-  public int getLengthMeters() {
-    return lengthMeters;
-  }
-
-  public int getWeightTons() {
-    return weightTons;
-  }
 
 }

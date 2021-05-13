@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,19 @@
 
 package com.iluwatar.spatialpartition;
 
+import java.security.SecureRandom;
 import java.util.Collection;
-import java.util.Hashtable;
-import java.util.Random;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.HashMap;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Bubble class extends Point. In this example, we create several bubbles in the field, let them
  * move and keep track of which ones have popped and which ones remain.
  */
 
+@Slf4j
 public class Bubble extends Point<Bubble> {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Bubble.class);
-  private static final Random RANDOM = new Random();
+  private static final SecureRandom RANDOM = new SecureRandom();
 
   final int radius;
 
@@ -58,13 +57,13 @@ public class Bubble extends Point<Bubble> {
         <= (this.radius + b.radius) * (this.radius + b.radius);
   }
 
-  void pop(Hashtable<Integer, Bubble> allBubbles) {
-    LOGGER.info("Bubble " + this.id
-        + " popped at (" + this.coordinateX + "," + this.coordinateY + ")!");
+  void pop(HashMap<Integer, Bubble> allBubbles) {
+    LOGGER.info("Bubble ", this.id,
+        " popped at (", this.coordinateX, ",", this.coordinateY, ")!");
     allBubbles.remove(this.id);
   }
 
-  void handleCollision(Collection<? extends Point> toCheck, Hashtable<Integer, Bubble> allBubbles) {
+  void handleCollision(Collection<? extends Point> toCheck, HashMap<Integer, Bubble> allBubbles) {
     var toBePopped = false; //if any other bubble collides with it, made true
     for (var point : toCheck) {
       var otherId = point.id;

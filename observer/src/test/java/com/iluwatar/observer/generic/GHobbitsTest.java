@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,10 +38,10 @@ public class GHobbitsTest extends ObserverTest<GHobbits> {
   @Override
   public Collection<Object[]> dataProvider() {
     return List.of(
-            new Object[]{WeatherType.SUNNY, "The hobbits are facing Sunny weather now"},
-            new Object[]{WeatherType.RAINY, "The hobbits are facing Rainy weather now"},
-            new Object[]{WeatherType.WINDY, "The hobbits are facing Windy weather now"},
-            new Object[]{WeatherType.COLD, "The hobbits are facing Cold weather now"}
+        new Object[]{WeatherType.SUNNY, "The hobbits are facing Sunny weather now"},
+        new Object[]{WeatherType.RAINY, "The hobbits are facing Rainy weather now"},
+        new Object[]{WeatherType.WINDY, "The hobbits are facing Windy weather now"},
+        new Object[]{WeatherType.COLD, "The hobbits are facing Cold weather now"}
     );
   }
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,7 @@ public class HalflingThiefTest {
    * Verify if the thief uses the provided stealing method
    */
   @Test
-  public void testSteal() {
+  void testSteal() {
     final var method = mock(StealingMethod.class);
     final var thief = new HalflingThief(method);
 
@@ -54,7 +54,7 @@ public class HalflingThiefTest {
    * Verify if the thief uses the provided stealing method, and the new method after changing it
    */
   @Test
-  public void testChangeMethod() {
+  void testChangeMethod() {
     final var initialMethod = mock(StealingMethod.class);
     final var thief = new HalflingThief(initialMethod);
 

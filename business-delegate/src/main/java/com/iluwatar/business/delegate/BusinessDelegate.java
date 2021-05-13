@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +23,18 @@
 
 package com.iluwatar.business.delegate;
 
+import lombok.Setter;
+
 /**
  * BusinessDelegate separates the presentation and business tiers.
  */
+@Setter
 public class BusinessDelegate {
 
   private BusinessLookup lookupService;
-  private BusinessService businessService;
-  private ServiceType serviceType;
 
-  public void setLookupService(BusinessLookup businessLookup) {
-    this.lookupService = businessLookup;
-  }
-
-  public void setServiceType(ServiceType serviceType) {
-    this.serviceType = serviceType;
-  }
-
-  public void doTask() {
-    businessService = lookupService.getBusinessService(serviceType);
-    businessService.doProcessing();
+  public void playbackMovie(String movie) {
+    VideoStreamingService videoStreamingService = lookupService.getBusinessService(movie);
+    videoStreamingService.doProcessing();
   }
 }

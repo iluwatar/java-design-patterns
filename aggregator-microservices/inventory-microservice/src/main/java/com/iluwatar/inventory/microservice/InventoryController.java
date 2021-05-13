@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,7 @@
 
 package com.iluwatar.inventory.microservice;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -38,7 +37,7 @@ public class InventoryController {
    *
    * @return product inventory.
    */
-  @RequestMapping(value = "/inventories", method = RequestMethod.GET)
+  @GetMapping("/inventories")
   public int getProductInventories() {
     return 5;
   }

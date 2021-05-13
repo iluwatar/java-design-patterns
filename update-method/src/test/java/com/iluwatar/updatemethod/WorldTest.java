@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,41 +23,44 @@
 
 package com.iluwatar.updatemethod;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-public class WorldTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-  private World world;
+class WorldTest {
 
-  @Before
-  public void setup() {
+  private static World world;
+
+  @BeforeAll
+  public static void setup() {
     world = new World();
   }
 
-  @After
-  public void tearDown() {
+  @AfterAll
+  public static void tearDown() {
     world = null;
   }
 
   @Test
-  public void testRun() {
+  void testRun() {
     world.run();
-    Assert.assertEquals(true, world.isRunning);
+    assertTrue(world.isRunning);
   }
 
   @Test
-  public void testStop() {
+  void testStop() {
     world.stop();
-    Assert.assertEquals(false, world.isRunning);
+    assertFalse(world.isRunning);
   }
 
   @Test
-  public void testAddEntity() {
+  void testAddEntity() {
     var entity = new Skeleton(1);
     world.addEntity(entity);
-    Assert.assertEquals(entity, world.entities.get(0));
+    assertEquals(entity, world.entities.get(0));
   }
 }

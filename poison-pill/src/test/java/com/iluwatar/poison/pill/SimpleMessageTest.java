@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
 public class SimpleMessageTest {
 
   @Test
-  public void testGetHeaders() {
+  void testGetHeaders() {
     final var message = new SimpleMessage();
     assertNotNull(message.getHeaders());
     assertTrue(message.getHeaders().isEmpty());
@@ -52,7 +52,7 @@ public class SimpleMessageTest {
   }
 
   @Test
-  public void testUnModifiableHeaders() {
+  void testUnModifiableHeaders() {
     final var message = new SimpleMessage();
     final var headers = message.getHeaders();
     assertThrows(UnsupportedOperationException.class, () -> {

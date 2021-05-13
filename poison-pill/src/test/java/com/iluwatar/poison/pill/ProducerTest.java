@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ import org.mockito.ArgumentCaptor;
 public class ProducerTest {
 
   @Test
-  public void testSend() throws Exception {
+  void testSend() throws Exception {
     final var publishPoint = mock(MqPublishPoint.class);
     final var producer = new Producer("producer", publishPoint);
     verifyZeroInteractions(publishPoint);
@@ -63,7 +63,7 @@ public class ProducerTest {
   }
 
   @Test
-  public void testStop() throws Exception {
+  void testStop() throws Exception {
     final var publishPoint = mock(MqPublishPoint.class);
     final var producer = new Producer("producer", publishPoint);
     verifyZeroInteractions(publishPoint);

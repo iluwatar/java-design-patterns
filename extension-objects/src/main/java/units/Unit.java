@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,24 +24,20 @@
 package units;
 
 import abstractextensions.UnitExtension;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Class defining Unit, other units will extend this class.
  */
+@Setter
+@Getter
 public class Unit {
 
   private String name;
   protected UnitExtension unitExtension = null;
 
   public Unit(String name) {
-    this.name = name;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
     this.name = name;
   }
 

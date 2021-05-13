@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Monitoring Service test
  */
-public class DelayedRemoteServiceTest {
+class DelayedRemoteServiceTest {
 
   /**
    * Testing immediate response of the delayed service.
@@ -39,7 +39,7 @@ public class DelayedRemoteServiceTest {
    * @throws RemoteServiceException
    */
   @Test
-  public void testDefaultConstructor() throws RemoteServiceException {
+  void testDefaultConstructor() throws RemoteServiceException {
     Assertions.assertThrows(RemoteServiceException.class, () -> {
       var obj = new DelayedRemoteService();
       obj.call();

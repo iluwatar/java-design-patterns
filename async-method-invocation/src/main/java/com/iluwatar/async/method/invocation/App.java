@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,14 +24,15 @@
 package com.iluwatar.async.method.invocation;
 
 import java.util.concurrent.Callable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * This application demonstrates the async method invocation pattern. Key parts of the pattern are
- * <code>AsyncResult</code> which is an intermediate container for an asynchronously evaluated
- * value, <code>AsyncCallback</code> which can be provided to be executed on task completion and
- * <code>AsyncExecutor</code> that manages the execution of the async tasks.
+ * In this example, we are launching space rockets and deploying lunar rovers.
+ *
+ * <p>The application demonstrates the async method invocation pattern. The key parts of the
+ * pattern are <code>AsyncResult</code> which is an intermediate container for an asynchronously
+ * evaluated value, <code>AsyncCallback</code> which can be provided to be executed on task
+ * completion and <code>AsyncExecutor</code> that manages the execution of the async tasks.
  *
  * <p>The main method shows example flow of async invocations. The main thread starts multiple
  * tasks with variable durations and then continues its own work. When the main thread has done it's
@@ -55,9 +56,8 @@ import org.slf4j.LoggerFactory;
  * @see java.util.concurrent.CompletableFuture
  * @see java.util.concurrent.ExecutorService
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -70,13 +70,14 @@ public class App {
     final var asyncResult1 = executor.startProcess(lazyval(10, 500));
     final var asyncResult2 = executor.startProcess(lazyval("test", 300));
     final var asyncResult3 = executor.startProcess(lazyval(50L, 700));
-    final var asyncResult4 = executor.startProcess(lazyval(20, 400), callback("Callback result 4"));
+    final var asyncResult4 = executor.startProcess(lazyval(20, 400),
+        callback("Deploying lunar rover"));
     final var asyncResult5 =
-        executor.startProcess(lazyval("callback", 600), callback("Callback result 5"));
+        executor.startProcess(lazyval("callback", 600), callback("Deploying lunar rover"));
 
     // emulate processing in the current thread while async tasks are running in their own threads
-    Thread.sleep(350); // Oh boy I'm working hard here
-    log("Some hard work done");
+    Thread.sleep(350); // Oh boy, we are working hard here
+    log("Mission command is sipping coffee");
 
     // wait for completion of the tasks
     final var result1 = executor.endProcess(asyncResult1);
@@ -86,9 +87,9 @@ public class App {
     asyncResult5.await();
 
     // log the results of the tasks, callbacks log immediately when complete
-    log("Result 1: " + result1);
-    log("Result 2: " + result2);
-    log("Result 3: " + result3);
+    log("Space rocket <" + result1 + "> launch complete");
+    log("Space rocket <" + result2 + "> launch complete");
+    log("Space rocket <" + result3 + "> launch complete");
   }
 
   /**
@@ -101,7 +102,7 @@ public class App {
   private static <T> Callable<T> lazyval(T value, long delayMillis) {
     return () -> {
       Thread.sleep(delayMillis);
-      log("Task completed with: " + value);
+      log("Space rocket <" + value + "> launched successfully");
       return value;
     };
   }
@@ -117,7 +118,7 @@ public class App {
       if (ex.isPresent()) {
         log(name + " failed: " + ex.map(Exception::getMessage).orElse(""));
       } else {
-        log(name + ": " + value);
+        log(name + " <" + value + ">");
       }
     };
   }

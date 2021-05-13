@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,19 @@
 
 package com.iluwatar.sharding;
 
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ShardManager with lookup strategy. In this strategy the sharding logic implements
  * a map that routes a request for data to the shard that contains that data by using
  * the shard key.
  */
+@Slf4j
 public class LookupShardManager extends ShardManager {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(LookupShardManager.class);
 
   private final Map<Integer, Integer> lookupMap = new HashMap<>();
 
@@ -58,7 +56,7 @@ public class LookupShardManager extends ShardManager {
       return lookupMap.get(key);
     } else {
       var shardCount = shardMap.size();
-      return new Random().nextInt(shardCount - 1) + 1;
+      return new SecureRandom().nextInt(shardCount - 1) + 1;
     }
   }
 

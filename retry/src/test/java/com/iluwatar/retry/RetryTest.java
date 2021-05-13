@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,12 +34,13 @@ import org.junit.jupiter.api.Test;
  *
  * @author George Aristy (george.aristy@gmail.com)
  */
-public class RetryTest {
+class RetryTest {
+
   /**
    * Should contain all errors thrown.
    */
   @Test
-  public void errors() {
+  void errors() {
     final var e = new BusinessException("unhandled");
     final var retry = new Retry<String>(
         () -> {
@@ -62,7 +63,7 @@ public class RetryTest {
    * it to attempt twice.
    */
   @Test
-  public void attempts() {
+  void attempts() {
     final var e = new BusinessException("unhandled");
     final var retry = new Retry<String>(
         () -> {
@@ -85,7 +86,7 @@ public class RetryTest {
    * it to ignore the exception that will be thrown.
    */
   @Test
-  public void ignore() {
+  void ignore() {
     final var e = new CustomerNotFoundException("customer not found");
     final var retry = new Retry<String>(
         () -> {

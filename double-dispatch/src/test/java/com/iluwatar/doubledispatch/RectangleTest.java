@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,13 +32,13 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit test for Rectangle
  */
-public class RectangleTest {
+class RectangleTest {
 
   /**
    * Test if the values passed through the constructor matches the values fetched from the getters
    */
   @Test
-  public void testConstructor() {
+  void testConstructor() {
     final var rectangle = new Rectangle(1, 2, 3, 4);
     assertEquals(1, rectangle.getLeft());
     assertEquals(2, rectangle.getTop());
@@ -51,7 +51,7 @@ public class RectangleTest {
    * #toString()}
    */
   @Test
-  public void testToString() throws Exception {
+  void testToString() throws Exception {
     final var rectangle = new Rectangle(1, 2, 3, 4);
     assertEquals("[1,2,3,4]", rectangle.toString());
   }
@@ -60,7 +60,7 @@ public class RectangleTest {
    * Test if the {@link Rectangle} class can detect if it intersects with another rectangle.
    */
   @Test
-  public void testIntersection() {
+  void testIntersection() {
     assertTrue(new Rectangle(0, 0, 1, 1).intersectsWith(new Rectangle(0, 0, 1, 1)));
     assertTrue(new Rectangle(0, 0, 1, 1).intersectsWith(new Rectangle(-1, -5, 7, 8)));
     assertFalse(new Rectangle(0, 0, 1, 1).intersectsWith(new Rectangle(2, 2, 3, 3)));

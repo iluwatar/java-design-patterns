@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Data structure/implementation of the application's cache. The data structure consists of a hash
@@ -37,11 +36,10 @@ import org.slf4j.LoggerFactory;
  * the data is moved to the front of the list to depict itself as the most-recently-used data. The
  * LRU data is always at the end of the list.
  */
+@Slf4j
 public class LruCache {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(LruCache.class);
-
-  class Node {
+  static class Node {
     String userId;
     UserAccount userAccount;
     Node previous;

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,19 @@
 
 package com.iluwatar.aggregator.microservices;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
 /**
  * Test Aggregation of domain objects
  */
-public class AggregatorTest {
+class AggregatorTest {
 
   @InjectMocks
   private Aggregator aggregator;
@@ -55,7 +55,7 @@ public class AggregatorTest {
    * Tests getting the data for a desktop client
    */
   @Test
-  public void testGetProduct() {
+  void testGetProduct() {
     var title = "The Product Title.";
     var inventories = 5;
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,26 +29,25 @@ import com.iluwatar.databus.data.MessageData;
 import com.iluwatar.databus.data.StartingData;
 import com.iluwatar.databus.data.StoppingData;
 import java.time.LocalDateTime;
-import java.util.logging.Logger;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Receiver of Data-Bus events.
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
+@Getter
+@Slf4j
+@RequiredArgsConstructor
 public class StatusMember implements Member {
-
-  private static final Logger LOGGER = Logger.getLogger(StatusMember.class.getName());
 
   private final int id;
 
   private LocalDateTime started;
 
   private LocalDateTime stopped;
-
-  public StatusMember(int id) {
-    this.id = id;
-  }
 
   @Override
   public void accept(final DataType data) {
@@ -61,21 +60,14 @@ public class StatusMember implements Member {
 
   private void handleEvent(StartingData data) {
     started = data.getWhen();
-    LOGGER.info(String.format("Receiver #%d sees application started at %s", id, started));
+    LOGGER.info("Receiver {} sees application started at {}", id, started);
   }
 
   private void handleEvent(StoppingData data) {
     stopped = data.getWhen();
-    LOGGER.info(String.format("Receiver #%d sees application stopping at %s", id, stopped));
-    LOGGER.info(String.format("Receiver #%d sending goodbye message", id));
+    LOGGER.info("Receiver {} sees application stopping at {}", id, stopped);
+    LOGGER.info("Receiver {} sending goodbye message", id);
     data.getDataBus().publish(MessageData.of(String.format("Goodbye cruel world from #%d!", id)));
   }
 
-  public LocalDateTime getStarted() {
-    return started;
-  }
-
-  public LocalDateTime getStopped() {
-    return stopped;
-  }
 }

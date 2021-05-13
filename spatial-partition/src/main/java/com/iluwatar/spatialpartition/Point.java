@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 package com.iluwatar.spatialpartition;
 
 import java.util.Collection;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 /**
  * The abstract Point class which will be extended by any object in the field whose location has to
@@ -64,5 +64,5 @@ public abstract class Point<T> {
    * @param toCheck contains the objects which need to be checked
    * @param all     contains hashtable of all points on field at this time
    */
-  abstract void handleCollision(Collection<? extends Point> toCheck, Hashtable<Integer, T> all);
+  abstract void handleCollision(Collection<? extends Point> toCheck, HashMap<Integer, T> all);
 }

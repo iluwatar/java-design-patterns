@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +23,15 @@
 
 package com.iluwatar.proxy;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * Wizard.
  */
+@RequiredArgsConstructor
 public class Wizard {
 
   private final String name;
-
-  public Wizard(String name) {
-    this.name = name;
-  }
 
   @Override
   public String toString() {

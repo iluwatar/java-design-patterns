@@ -38,9 +38,8 @@ Let's take our goldmine example from above. Here we have the dwarven mine worker
 there's a base class `DwarvenMineWorker`:
 
 ```java
+@Slf4j
 public abstract class DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenMineWorker.class);
 
   public void goToSleep() {
     LOGGER.info("{} goes to sleep.", name());
@@ -99,9 +98,8 @@ Then we have the concrete dwarf classes `DwarvenTunnelDigger`, `DwarvenGoldDigge
 `DwarvenCartOperator`:
 
 ```java
+@Slf4j
 public class DwarvenTunnelDigger extends DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenTunnelDigger.class);
 
   @Override
   public void work() {
@@ -114,9 +112,8 @@ public class DwarvenTunnelDigger extends DwarvenMineWorker {
   }
 }
 
+@Slf4j
 public class DwarvenGoldDigger extends DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenGoldDigger.class);
 
   @Override
   public void work() {
@@ -129,9 +126,8 @@ public class DwarvenGoldDigger extends DwarvenMineWorker {
   }
 }
 
+@Slf4j
 public class DwarvenCartOperator extends DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenCartOperator.class);
 
   @Override
   public void work() {

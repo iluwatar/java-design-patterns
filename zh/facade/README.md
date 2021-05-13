@@ -31,9 +31,8 @@ tags:
 使用上面金矿的例子。这里我们有矮人的矿工等级制度。
 
 ```java
+@Slf4j
 public abstract class DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenMineWorker.class);
 
   public void goToSleep() {
     LOGGER.info("{} goes to sleep.", name());
@@ -87,9 +86,8 @@ public abstract class DwarvenMineWorker {
   }
 }
 
+@Slf4j
 public class DwarvenTunnelDigger extends DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenTunnelDigger.class);
 
   @Override
   public void work() {
@@ -102,9 +100,8 @@ public class DwarvenTunnelDigger extends DwarvenMineWorker {
   }
 }
 
+@Slf4j
 public class DwarvenGoldDigger extends DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenGoldDigger.class);
 
   @Override
   public void work() {
@@ -117,9 +114,8 @@ public class DwarvenGoldDigger extends DwarvenMineWorker {
   }
 }
 
+@Slf4j
 public class DwarvenCartOperator extends DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenCartOperator.class);
 
   @Override
   public void work() {

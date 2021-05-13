@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,24 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.roleobject;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class CustomerCoreTest {
+class CustomerCoreTest {
 
   @Test
-  public void addRole() {
+  void addRole() {
     var core = new CustomerCore();
     assertTrue(core.addRole(Role.Borrower));
   }
 
   @Test
-  public void hasRole() {
+  void hasRole() {
     var core = new CustomerCore();
     core.addRole(Role.Borrower);
     assertTrue(core.hasRole(Role.Borrower));
@@ -45,7 +46,7 @@ public class CustomerCoreTest {
   }
 
   @Test
-  public void remRole() {
+  void remRole() {
     var core = new CustomerCore();
     core.addRole(Role.Borrower);
 
@@ -59,7 +60,7 @@ public class CustomerCoreTest {
   }
 
   @Test
-  public void getRole() {
+  void getRole() {
     var core = new CustomerCore();
     core.addRole(Role.Borrower);
 
@@ -73,21 +74,18 @@ public class CustomerCoreTest {
     assertFalse(invRole.isPresent());
   }
 
-
   @Test
-  public void toStringTest() {
+  void toStringTest() {
     var core = new CustomerCore();
     core.addRole(Role.Borrower);
-    assertEquals(core.toString(), "Customer{roles=[Borrower]}");
+    assertEquals("Customer{roles=[Borrower]}", core.toString());
 
     core = new CustomerCore();
     core.addRole(Role.Investor);
-    assertEquals(core.toString(), "Customer{roles=[Investor]}");
+    assertEquals("Customer{roles=[Investor]}", core.toString());
 
     core = new CustomerCore();
-    assertEquals(core.toString(), "Customer{roles=[]}");
-
-
+    assertEquals("Customer{roles=[]}", core.toString());
   }
 
 }

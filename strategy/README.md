@@ -44,9 +44,8 @@ public interface DragonSlayingStrategy {
   void execute();
 }
 
+@Slf4j
 public class MeleeStrategy implements DragonSlayingStrategy {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(MeleeStrategy.class);
 
   @Override
   public void execute() {
@@ -54,9 +53,8 @@ public class MeleeStrategy implements DragonSlayingStrategy {
   }
 }
 
+@Slf4j
 public class ProjectileStrategy implements DragonSlayingStrategy {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ProjectileStrategy.class);
 
   @Override
   public void execute() {
@@ -64,9 +62,8 @@ public class ProjectileStrategy implements DragonSlayingStrategy {
   }
 }
 
+@Slf4j
 public class SpellStrategy implements DragonSlayingStrategy {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SpellStrategy.class);
 
   @Override
   public void execute() {
@@ -121,6 +118,51 @@ Program output:
     Black dragon lands before you.
     You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
 ```
+
+What's more, the new feature Lambda Expressions in Java 8 provides another approach for the implementation:
+
+```java
+public class LambdaStrategy {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(LambdaStrategy.class);
+
+  public enum Strategy implements DragonSlayingStrategy {
+    MeleeStrategy(() -> LOGGER.info(
+        "With your Excalibur you severe the dragon's head!")),
+    ProjectileStrategy(() -> LOGGER.info(
+        "You shoot the dragon with the magical crossbow and it falls dead on the ground!")),
+    SpellStrategy(() -> LOGGER.info(
+        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+
+    private final DragonSlayingStrategy dragonSlayingStrategy;
+
+    Strategy(DragonSlayingStrategy dragonSlayingStrategy) {
+      this.dragonSlayingStrategy = dragonSlayingStrategy;
+    }
+
+    @Override
+    public void execute() {
+      dragonSlayingStrategy.execute();
+    }
+  }
+}
+```
+
+And here's the dragonslayer in action.
+
+```java
+    LOGGER.info("Green dragon spotted ahead!");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.MeleeStrategy);
+    dragonSlayer.goToBattle();
+    LOGGER.info("Red dragon emerges.");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.ProjectileStrategy);
+    dragonSlayer.goToBattle();
+    LOGGER.info("Black dragon lands before you.");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.SpellStrategy);
+    dragonSlayer.goToBattle();
+```
+
+Program output is the same as above one.
 
 ## Class diagram
 

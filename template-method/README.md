@@ -39,9 +39,8 @@ Wikipedia says
 Let's first introduce the template method class along with its concrete implementations.
 
 ```java
+@Slf4j
 public abstract class StealingMethod {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(StealingMethod.class);
 
   protected abstract String pickTarget();
 
@@ -57,9 +56,8 @@ public abstract class StealingMethod {
   }
 }
 
+@Slf4j
 public class SubtleMethod extends StealingMethod {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SubtleMethod.class);
 
   @Override
   protected String pickTarget() {
@@ -77,9 +75,8 @@ public class SubtleMethod extends StealingMethod {
   }
 }
 
+@Slf4j
 public class HitAndRunMethod extends StealingMethod {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(HitAndRunMethod.class);
 
   @Override
   protected String pickTarget() {

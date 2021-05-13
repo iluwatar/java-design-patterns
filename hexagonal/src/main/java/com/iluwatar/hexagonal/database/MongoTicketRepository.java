@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -147,7 +147,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
     doc.put("email", ticket.getPlayerDetails().getEmail());
     doc.put("bank", ticket.getPlayerDetails().getBankAccount());
     doc.put("phone", ticket.getPlayerDetails().getPhoneNumber());
-    doc.put("numbers", ticket.getNumbers().getNumbersAsString());
+    doc.put("numbers", ticket.getLotteryNumbers().getNumbersAsString());
     ticketsCollection.insertOne(doc);
     return Optional.of(new LotteryTicketId(ticketId));
   }

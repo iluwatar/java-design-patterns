@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@ package com.iluwatar.commander.shippingservice;
 
 import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
+import lombok.AllArgsConstructor;
 
 /**
  * ShippingService class receives request from {@link com.iluwatar.commander.Commander} class and
@@ -33,16 +34,11 @@ import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 public class ShippingService extends Service {
 
+  @AllArgsConstructor
   static class ShippingRequest {
     String transactionId;
     String item;
     String address;
-
-    ShippingRequest(String transactionId, String item, String address) {
-      this.transactionId = transactionId;
-      this.item = item;
-      this.address = address;
-    }
   }
 
   public ShippingService(ShippingDatabase db, Exception... exc) {

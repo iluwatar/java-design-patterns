@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +23,17 @@
 
 package com.iluwatar.prototype;
 
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+
 /**
  * OrcWarlord.
  */
+@EqualsAndHashCode(callSuper = true)
+@RequiredArgsConstructor
 public class OrcWarlord extends Warlord {
 
   private final String weapon;
-
-  public OrcWarlord(String weapon) {
-    this.weapon = weapon;
-  }
 
   public OrcWarlord(OrcWarlord orcWarlord) {
     super(orcWarlord);
@@ -49,21 +50,4 @@ public class OrcWarlord extends Warlord {
     return "Orcish warlord attacks with " + weapon;
   }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!super.equals(obj)) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    var other = (OrcWarlord) obj;
-    if (weapon == null) {
-      return other.weapon == null;
-    }
-    return weapon.equals(other.weapon);
-  }
 }

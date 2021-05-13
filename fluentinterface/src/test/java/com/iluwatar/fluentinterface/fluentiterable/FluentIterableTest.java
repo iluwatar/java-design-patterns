@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@ public abstract class FluentIterableTest {
   protected abstract FluentIterable<Integer> createFluentIterable(final Iterable<Integer> integers);
 
   @Test
-  public void testFirst() {
+  void testFirst() {
     final var integers = List.of(1, 2, 3, 10, 9, 8);
     final var first = createFluentIterable(integers).first();
     assertNotNull(first);
@@ -62,7 +62,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testFirstEmptyCollection() {
+  void testFirstEmptyCollection() {
     final var integers = Collections.<Integer>emptyList();
     final var first = createFluentIterable(integers).first();
     assertNotNull(first);
@@ -70,7 +70,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testFirstCount() {
+  void testFirstCount() {
     final var integers = List.of(1, 2, 3, 10, 9, 8);
     final var first4 = createFluentIterable(integers)
         .first(4)
@@ -86,7 +86,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testFirstCountLessItems() {
+  void testFirstCountLessItems() {
     final var integers = List.of(1, 2, 3);
     final var first4 = createFluentIterable(integers)
         .first(4)
@@ -101,7 +101,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testLast() {
+  void testLast() {
     final var integers = List.of(1, 2, 3, 10, 9, 8);
     final var last = createFluentIterable(integers).last();
     assertNotNull(last);
@@ -110,7 +110,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testLastEmptyCollection() {
+  void testLastEmptyCollection() {
     final var integers = Collections.<Integer>emptyList();
     final var last = createFluentIterable(integers).last();
     assertNotNull(last);
@@ -118,7 +118,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testLastCount() {
+  void testLastCount() {
     final var integers = List.of(1, 2, 3, 10, 9, 8);
     final var last4 = createFluentIterable(integers)
         .last(4)
@@ -133,7 +133,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testLastCountLessItems() {
+  void testLastCountLessItems() {
     final var integers = List.of(1, 2, 3);
     final var last4 = createFluentIterable(integers)
         .last(4)
@@ -148,7 +148,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testFilter() {
+  void testFilter() {
     final var integers = List.of(1, 2, 3, 10, 9, 8);
     final var evenItems = createFluentIterable(integers)
         .filter(i -> i % 2 == 0)
@@ -162,7 +162,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testMap() {
+  void testMap() {
     final var integers = List.of(1, 2, 3);
     final var longs = createFluentIterable(integers)
         .map(Integer::longValue)
@@ -176,7 +176,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testForEach() {
+  void testForEach() {
     final var integers = List.of(1, 2, 3);
 
     final Consumer<Integer> consumer = mock(Consumer.class);
@@ -190,7 +190,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  public void testSpliterator() throws Exception {
+  void testSpliterator() throws Exception {
     final var integers = List.of(1, 2, 3);
     final var split = createFluentIterable(integers).spliterator();
     assertNotNull(split);

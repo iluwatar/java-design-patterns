@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -88,7 +88,7 @@ class MongoTicketRepositoryTest {
     assertEquals("foo@bar.com", ticket.getPlayerDetails().getEmail());
     assertEquals("123-123", ticket.getPlayerDetails().getBankAccount());
     assertEquals("07001234", ticket.getPlayerDetails().getPhoneNumber());
-    assertEquals(original.getNumbers(), ticket.getNumbers());
+    assertEquals(original.getLotteryNumbers(), ticket.getLotteryNumbers());
     // clear the collection
     repository.deleteAll();
     assertEquals(0, repository.getTicketsCollection().count());

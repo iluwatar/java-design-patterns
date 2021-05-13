@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,7 @@ import com.iluwatar.throttling.timer.ThrottleTimerImpl;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Throttling pattern is a design pattern to throttle or limit the use of resources or even a
@@ -41,9 +40,8 @@ import org.slf4j.LoggerFactory;
  * ({@link Tenant}) is the Tenant POJO class with which many tenants can be created ({@link
  * B2BService}) is the service which is consumed by the tenants and is throttled.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Application entry point.

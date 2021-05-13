@@ -213,8 +213,8 @@ Example use cases
 
 ## Related patterns
 
-[Factory Method](https://java-design-patterns.com/patterns/factory-method/)
-[Factory Kit](https://java-design-patterns.com/patterns/factory-kit/)
+* [Factory Method](https://java-design-patterns.com/patterns/factory-method/)
+* [Factory Kit](https://java-design-patterns.com/patterns/factory-kit/)
 
 ## Credits
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,16 +24,16 @@
 package com.iluwatar.bytecode.util;
 
 import com.iluwatar.bytecode.Instruction;
-import com.iluwatar.bytecode.util.InstructionConverterUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test for {@Link InstructionConverterUtil}
+ * Test for {@link InstructionConverterUtil}
  */
-public class InstructionConverterUtilTest {
+class InstructionConverterUtilTest {
+
   @Test
-  public void testEmptyInstruction() {
+  void testEmptyInstruction() {
     var instruction = "";
 
     var bytecode = InstructionConverterUtil.convertToByteCode(instruction);
@@ -42,7 +42,7 @@ public class InstructionConverterUtilTest {
   }
 
   @Test
-  public void testInstructions() {
+  void testInstructions() {
     var instructions = "LITERAL 35 SET_HEALTH SET_WISDOM SET_AGILITY PLAY_SOUND"
         + " SPAWN_PARTICLES GET_HEALTH ADD DIVIDE";
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.orchestration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * empty test
  */
-public class SagaApplicationTest {
+class SagaApplicationTest {
 
   @Test
-  public void mainTest() {
+  void mainTest() {
     SagaApplication.main(new String[]{});
   }
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ public class StarTest {
    * Verify the stages of a dying sun, without going back in time
    */
   @Test
-  public void testTimePasses() {
+  void testTimePasses() {
     final var star = new Star(StarType.SUN, 1, 2);
     assertEquals("sun age: 1 years mass: 2 tons", star.toString());
 
@@ -65,7 +65,7 @@ public class StarTest {
    * Verify some stage of a dying sun, but go back in time to test the memento
    */
   @Test
-  public void testSetMemento() {
+  void testSetMemento() {
     final var star = new Star(StarType.SUN, 1, 2);
     final var firstMemento = star.getMemento();
     assertEquals("sun age: 1 years mass: 2 tons", star.toString());

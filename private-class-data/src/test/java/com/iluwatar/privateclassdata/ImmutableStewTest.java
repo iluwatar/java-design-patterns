@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@ public class ImmutableStewTest {
    * Verify if mixing the stew doesn't change the internal state
    */
   @Test
-  public void testMix() {
+  void testMix() {
     var stew = new Stew(1, 2, 3, 4);
     var expectedMessage = "Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers";
 
@@ -69,7 +69,7 @@ public class ImmutableStewTest {
    * Verify if tasting the stew actually removes one of each ingredient
    */
   @Test
-  public void testDrink() {
+  void testDrink() {
     final var stew = new Stew(1, 2, 3, 4);
     stew.mix();
 

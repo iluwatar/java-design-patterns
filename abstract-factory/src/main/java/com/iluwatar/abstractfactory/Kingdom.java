@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,35 +23,16 @@
 
 package com.iluwatar.abstractfactory;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Kingdom {
 
   private King king;
   private Castle castle;
   private Army army;
-
-  public King getKing() {
-    return king;
-  }
-
-  public Castle getCastle() {
-    return castle;
-  }
-
-  public Army getArmy() {
-    return army;
-  }
-
-  public void setKing(King king) {
-    this.king = king;
-  }
-
-  public void setCastle(Castle castle) {
-    this.castle = castle;
-  }
-
-  public void setArmy(Army army) {
-    this.army = army;
-  }
 
   /**
    * The factory of kingdom factories.

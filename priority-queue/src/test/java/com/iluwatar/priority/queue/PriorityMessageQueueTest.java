@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ public class PriorityMessageQueueTest {
 
 
   @Test
-  public void remove() {
+  void remove() {
     var stringPriorityMessageQueue = new PriorityMessageQueue<>(new String[2]);
     var pushMessage = "test";
     stringPriorityMessageQueue.add(pushMessage);
@@ -43,7 +43,7 @@ public class PriorityMessageQueueTest {
   }
 
   @Test
-  public void add() {
+  void add() {
     var stringPriorityMessageQueue = new PriorityMessageQueue<>(new Integer[2]);
     stringPriorityMessageQueue.add(1);
     stringPriorityMessageQueue.add(5);
@@ -53,7 +53,7 @@ public class PriorityMessageQueueTest {
   }
 
   @Test
-  public void isEmpty() {
+  void isEmpty() {
     var stringPriorityMessageQueue = new PriorityMessageQueue<>(new Integer[2]);
     assertTrue(stringPriorityMessageQueue.isEmpty());
     stringPriorityMessageQueue.add(1);
@@ -62,7 +62,7 @@ public class PriorityMessageQueueTest {
   }
 
   @Test
-  public void testEnsureSize() {
+  void testEnsureSize() {
     var stringPriorityMessageQueue = new PriorityMessageQueue<>(new Integer[2]);
     assertTrue(stringPriorityMessageQueue.isEmpty());
     stringPriorityMessageQueue.add(1);
