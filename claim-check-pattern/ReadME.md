@@ -6,7 +6,6 @@ permalink: /patterns/claim-check-pattern/
 description: Cloud Architecture
 categories: 
  - name: Cloud
-   icon: "fa fa-cloud"
 tags:
  - Cloud distributed
  - Microservices
