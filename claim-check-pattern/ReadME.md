@@ -73,7 +73,7 @@ I am using git bash for the following commands to execute.
 bin/windows/kafka-console-consumer.bat --topic usage-detail --from-beginning --bootstrap-server localhost:9092
 ```
 ### Storage Data
-The data is stored in windows C drive. Exact location is C:\Users\USERNAME\AppData\Local\claim-check-pattern. In this directory, folders with GUID name are  generated. Each folder contains input json file droped by usage-detail-sender service and output json file droped by usage-cost-processor service.
+The data is stored in the Windows **C** drive. Exact location is C:\Users\${USERNAME}\AppData\Local\claim-check-pattern. In this directory, folders with GUID names are generated. Each folder contains an input JSON file dropped by usage-detail-sender service and an output JSON file dropped by usage-cost-processor service.
 
 ### Workflow
 First usage-detail-sender create message, send message header to Kafka topic usage-detail and drop entire message to local file system. Kafka then sent this message header to usage-cost-processor service. It will read entire message with the help of header, do its operation and drop result to local system.
