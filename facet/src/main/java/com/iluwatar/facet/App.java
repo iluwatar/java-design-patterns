@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * use client and administrator to check whether it can successfully secure.
- * for client, it want to execute the secured method. Then the facet will ask
- * the sentry to validate the execution. But because of the identity is user,
+ * for the client, it wants to execute the secured method. Then the facet will ask
+ * the sentry to validate the execution. But because the identity is user,
  * it requirement is illegal. So the result is null. For admin to execute the
  * secured method. It will be executed.
  */
