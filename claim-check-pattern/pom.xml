@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.callusage</groupId>
-    <artifactId>usage-cost-stream-kafka</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.iluwatar</groupId>
+    <artifactId>claim-check-pattern</artifactId>
+    <version>1.25.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
