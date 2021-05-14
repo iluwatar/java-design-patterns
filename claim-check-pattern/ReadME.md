@@ -43,7 +43,7 @@ Use the Claim Check Pattern when
 ### Setup
 - Make sure your system is windows.
 - Run everything as administrator.
-- Install Java JDK and setup environmental variables.
+- Install Java JDK 11 and setup environmental variables.
 - Install git bash.
 - Download Apache kafka binaries and extract.
 - Install Spring Tool Suite 4 LTS
