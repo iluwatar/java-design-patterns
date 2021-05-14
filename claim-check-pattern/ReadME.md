@@ -76,7 +76,7 @@ bin/windows/kafka-console-consumer.bat --topic usage-detail --from-beginning --b
 The data is stored in the Windows **C** drive. Exact location is C:\Users\${USERNAME}\AppData\Local\claim-check-pattern. In this directory, folders with GUID names are generated. Each folder contains an input JSON file dropped by usage-detail-sender service and an output JSON file dropped by usage-cost-processor service.
 
 ### Workflow
-First usage-detail-sender create message, send message header to Kafka topic usage-detail and drop entire message to local file system. Kafka then sent this message header to usage-cost-processor service. It will read entire message with the help of header, do its operation and drop result to local system.
+First, usage-detail-sender creates a message, sends message header to Kafka topic usage-detail, and drops an entire message to the local file system. Kafka then sent this message header to the usage-cost-processor service. It will read the entire message with the help of the header, do its operation, and drop the result to the local system.
 
 
 ## Known uses
