@@ -28,6 +28,7 @@ package com.callusage.domain;
  * It is used by all services.
  * 
  */
+@Data
 public class Message<T> {
     private MessageHeader messageHeader;
     private MessageData<T> messageData;
