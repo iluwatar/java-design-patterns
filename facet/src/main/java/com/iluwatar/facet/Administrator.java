@@ -5,5 +5,6 @@ package com.iluwatar.facet;
  */
 public class Administrator implements User {
   public Administrator() {
+    //admin information.
   }
 }

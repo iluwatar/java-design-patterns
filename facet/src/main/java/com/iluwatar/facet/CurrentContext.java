@@ -6,7 +6,7 @@ package com.iluwatar.facet;
  */
 public class CurrentContext implements Context {
   @Override
-  public boolean validateInterface(Class interfaceClass) {
+  public boolean validateInterface(Class<? extends SecurityMethods> interfaceClass) {
     if (interfaceClass.equals(SecurityMethods.class)) {
       return AccessController.checkPermission(user);
     }

@@ -5,7 +5,7 @@ package com.iluwatar.facet;
  */
 public class Facet {
   private final Sentry sentry;
-  private Class[] classes;
+  private Class<? extends SecurityMethods>[] classes;
   private User user;
 
   /**
@@ -15,17 +15,16 @@ public class Facet {
    * @param classes set supported interfaces for this facet.
    * @return created facet.
    */
-  public static Facet create(Sentry sentry, Class[] classes) {
-    Facet facet = new Facet(sentry, classes);
-    return facet;
+  public static Facet create(Sentry sentry, Class<? extends SecurityMethods>[] classes) {
+    return new Facet(sentry, classes);
   }
 
-  private Facet(Sentry sentry, Class[] classes) {
+  private Facet(Sentry sentry, Class<? extends SecurityMethods>[] classes) {
     this.sentry = sentry;
     this.classes = classes;
   }
 
-  public static Class[] query(Facet facet) {
+  public static Class<? extends SecurityMethods>[] query(Facet facet) {
     return facet.classes;
   }
 
@@ -33,7 +32,7 @@ public class Facet {
     this.user = user;
   }
 
-  public static Facet narrow(Facet facet, Class[] interfaces) {
+  public static Facet narrow(Facet facet, Class<? extends SecurityMethods>[] interfaces) {
     facet.classes = interfaces.clone();
     return facet;
   }
@@ -44,12 +43,10 @@ public class Facet {
    * @param interfaceClass the interface for the class.
    * @return the result of this invoke.
    */
-  public String invokeSecurityMethod(Class interfaceClass) {
-    for (int j = 0; j < this.classes.length; j++) {
-      if (interfaceClass.equals(classes[j])) {
-        if (this.sentry.execute(this.user, interfaceClass)) {
-          return SecurityMethodsImplementation.delegate(user);
-        }
+  public String invokeSecurityMethod(Class<? extends SecurityMethods> interfaceClass) {
+    for (var j = 0; j < this.classes.length; j++) {
+      if (interfaceClass.equals(classes[j]) && this.sentry.execute(this.user, interfaceClass)) {
+        return SecurityMethodsImplementation.delegate(user);
       }
     }
     return null;

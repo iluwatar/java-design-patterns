@@ -4,6 +4,10 @@ package com.iluwatar.facet;
  * to control the permission.
  */
 public class AccessController {
+  private AccessController() {
+    throw new IllegalStateException("utility class");
+  }
+
   /**
    * check the permission to use the method.
    *

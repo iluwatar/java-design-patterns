@@ -18,15 +18,19 @@ public class App {
    */
   public static void main(String[] args) {
     var clientSentry = new DefaultSentry(new CurrentContext());
-    var clientFacet = Facet.create(clientSentry, new Class[]{SecurityMethods.class});
+    var clientFacet = Facet.create(clientSentry, new Class[0]);
+    Facet.narrow(clientFacet, new Class[]{SecurityMethods.class});
     clientFacet.setUser(new Client());
     var administratorSentry = new DefaultSentry(new CurrentContext());
     var administratorFacet =
-            Facet.create(administratorSentry, new Class[]{SecurityMethods.class});
+            Facet.create(administratorSentry, new Class[0]);
+    Facet.narrow(administratorFacet, new Class[]{SecurityMethods.class});
     administratorFacet.setUser(new Administrator());
     LOGGER.info("client invoke result: {}",
             clientFacet.invokeSecurityMethod(SecurityMethods.class));
     LOGGER.info("administrator invoke result: {}",
             administratorFacet.invokeSecurityMethod(SecurityMethods.class));
+    LOGGER.info("client classes: {}", Facet.query(clientFacet));
+    LOGGER.info("admin classes: {}", Facet.query(administratorFacet));
   }
 }

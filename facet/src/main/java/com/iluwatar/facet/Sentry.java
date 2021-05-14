@@ -5,7 +5,5 @@ package com.iluwatar.facet;
  * used to make the request and select one of it comprising objects to handle it.
  */
 public interface Sentry {
-  Context context = null;
-
-  public abstract boolean execute(User user, Class interfaceClass);
+  public abstract boolean execute(User user, Class<? extends SecurityMethods> interfaceClass);
 }

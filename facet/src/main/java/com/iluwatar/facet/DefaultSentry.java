@@ -5,7 +5,7 @@ package com.iluwatar.facet;
  * used to make the request and selects one of it comprising objects to handle it.
  */
 public class DefaultSentry implements Sentry {
-  private Context context;
+  private final Context context;
 
   public DefaultSentry(Context context) {
     this.context = context;
@@ -13,12 +13,8 @@ public class DefaultSentry implements Sentry {
 
 
   @Override
-  public boolean execute(User user, Class interfaceClass) {
+  public boolean execute(User user, Class<? extends SecurityMethods> interfaceClass) {
     this.context.setUser(user);
-    if (this.context.validateInterface(interfaceClass)) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.context.validateInterface(interfaceClass);
   }
 }

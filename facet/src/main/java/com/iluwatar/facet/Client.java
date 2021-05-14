@@ -5,5 +5,6 @@ package com.iluwatar.facet;
  */
 public class Client implements User {
   public Client() {
+    //client information.
   }
 }

@@ -4,6 +4,10 @@ package com.iluwatar.facet;
  * implementation of the secure method.
  */
 public class SecurityMethodsImplementation implements SecurityMethods {
+  private SecurityMethodsImplementation() {
+    throw new IllegalStateException("utility class");
+  }
+
   /**
    * the method to be secured.
    *
