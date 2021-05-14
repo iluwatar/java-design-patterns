@@ -22,7 +22,7 @@ tags:
 
 ## Explaination
 Real World Example
-> Suppose if you want build a photo processing system. You give image as input to process and create different photos of the same image. Once image is received by first microservice/rest api, it will store that in persistent storage. To create 10 different images, there are 10 microservices. First microservice will create message with header and body. Header contains next process to call, location of input data and body contains actual data(here it is image). First microservice will send 10 different headers to messaging platform and store entire message with data in persistent storage. Messageing platform will send respective message header to respective microservice. Then these microservices will read entire message from persistent storage. It will then perform its operation and again store entire message with new image. 
+> Suppose if you want to build a photo processing system. You give images as input to process and create different photos of the same image. Once the image is received by the first microservice/rest API, it will store that in persistent storage. To create 10 different images, there are 10 microservices. The first microservice will create a message with a header and body. The header contains the next process to call, the location of input data and the body contains actual data(here it is an image). The first microservice will send 10 different headers to the messaging platform and store the entire message with data in persistent storage. Messaging platform will send the respective message header to the respective microservice. Then these microservices will read the entire message from persistent storage. It will then perform its operation and again store the entire message with a new image. 
 
 
 
@@ -87,4 +87,3 @@ First usage-detail-sender create message, send message header to Kafka topic usa
 ## Credits
 - [Messaging Pattern - Claim Check](https://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html)
 - [Azure Architecture Pattern - Claim Check Pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/claim-check)
-
