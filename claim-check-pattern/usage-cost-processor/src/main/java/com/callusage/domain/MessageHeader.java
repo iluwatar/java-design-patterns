@@ -27,6 +27,7 @@ package com.callusage.domain;
  * This is header of Message class
  *
  */
+@Data
 public class MessageHeader {
 
     private String dataLocation;
