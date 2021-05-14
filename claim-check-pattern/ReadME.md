@@ -44,7 +44,7 @@ Use the Claim Check Pattern when
 - Make sure your system is windows.
 - Run everything as administrator.
 - Install Java JDK 11 and setup environmental variables.
-- Install git bash.
+- Install git.
 - Download Apache kafka binaries and extract.
 - Install Spring Tool Suite 4 LTS
 
