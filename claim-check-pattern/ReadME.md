@@ -37,7 +37,7 @@ Use the Claim Check Pattern when
 - processing data is huge and don't want to consume bandwidth
 - secure your data transfer
 - cloud platform - Azure Functions or AWS Lambda, Azure EventGrid or AWS Event Bridge, Azure Blob Storage or AWS S3 Bucket
-- each service must be independant. It means it will perform its operations and drop data to storage.
+- each service must be independent. It means it will perform its operations and drop data to storage.
 
 ## Tutorials
 ### Setup
