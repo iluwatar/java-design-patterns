@@ -63,10 +63,10 @@ public class AppClient {
    */
   public void start() throws IOException {
     LOGGER.info("Starting logging clients");
-    service.execute(new TcpLoggingClient("Client 1", 6666));
-    service.execute(new TcpLoggingClient("Client 2", 6667));
-    service.execute(new UdpLoggingClient("Client 3", 6668));
-    service.execute(new UdpLoggingClient("Client 4", 6668));
+    service.execute(new TcpLoggingClient("Client 1", 16666));
+    service.execute(new TcpLoggingClient("Client 2", 16667));
+    service.execute(new UdpLoggingClient("Client 3", 16668));
+    service.execute(new UdpLoggingClient("Client 4", 16669));
   }
 
   /**
@@ -114,7 +114,7 @@ public class AppClient {
 
     @Override
     public void run() {
-      try (Socket socket = new Socket(InetAddress.getLocalHost(), serverPort)) {
+      try (var socket = new Socket(InetAddress.getLocalHost(), serverPort)) {
         var outputStream = socket.getOutputStream();
         var writer = new PrintWriter(outputStream);
         sendLogRequests(writer, socket.getInputStream());
