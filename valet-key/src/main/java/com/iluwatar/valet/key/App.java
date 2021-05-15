@@ -7,9 +7,9 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    Application application = new Application();
-    Resource resource = new Resource();
-    User user = new User(null, application, resource);
+    var application = new Application();
+    var resource = new Resource();
+    var user = new User(null, application, resource);
     user.requestResource(true, 1);
   }
 }

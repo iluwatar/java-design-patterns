@@ -11,7 +11,7 @@ public class Application {
       LOGGER.info("the request is valid, generate token failed");
     }
 
-    int target = 1;
+    var target = 1;
     return new Token(request, target);
   }
 }

@@ -5,7 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class UserTest {
+/**
+ * User Test
+ */
+class UserTest {
   Application application = new Application();
   Resource resource = new Resource();
   User user = new User(null, application, resource);
@@ -22,6 +25,9 @@ public class UserTest {
     boolean request = false;
     int target = 2;
     assertFalse(user.requestResource(request, target));
+
+    request = true;
+    assertTrue(user.requestResource(request, target));
   }
 
 }
