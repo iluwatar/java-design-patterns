@@ -227,7 +227,6 @@
         <module>composite-entity</module>
         <module>presentation</module>
         <module>lockable-object</module>
-        <module>valet-key</module>
     </modules>
 
     <repositories>
