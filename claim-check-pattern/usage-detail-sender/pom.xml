@@ -3,35 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.callusage</groupId>
-		<artifactId>usage-cost-stream-kafka</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<groupId>com.iluwatar</groupId>
+	    <artifactId>claim-check-pattern</artifactId>
+	    <version>1.25.0-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>usage-detail-sender-kafka</artifactId>
 	<name>usage-detail-sender</name>
-	<description>Demo project for Spring Boot</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-binder-kafka</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.kafka</groupId>
-			<artifactId>spring-kafka</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -47,11 +30,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-test-support</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.kafka</groupId>
-			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

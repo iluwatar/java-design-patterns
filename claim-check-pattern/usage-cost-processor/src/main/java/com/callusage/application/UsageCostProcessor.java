@@ -23,7 +23,12 @@
 
 package com.callusage.application;
 
-import com.callusage.domain.*;
+
+import com.callusage.domain.Message;
+import com.callusage.domain.MessageData;
+import com.callusage.domain.MessageHeader;
+import com.callusage.domain.UsageCostDetail;
+import com.callusage.domain.UsageDetail;
 import com.callusage.interfaces.IPersistentCommonStorageUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -31,9 +36,27 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Processor;
 
 /**
+ * 
+ * Enum for storing call rates
+ *
+ */
+enum Rate{
+	RATE_PER_SECOND(0.1),
+	RATE_PER_MB(0.05);
+
+	private double rate;
+	Rate(double rate) {
+		this.rate = rate;
+	}
+	public double getRate() {
+		return this.rate;
+	}
+}
+/**
  * The class UsageCostProcessor will read messageHeader from 
  * Kafka topic usage-detail. It will calculate call price using call details
  * and drop data to persistent storage.
+ * ({@link IPersistentCommonStorageUtility})
  */
 @EnableBinding(Processor.class)
 public class UsageCostProcessor {
@@ -41,9 +64,9 @@ public class UsageCostProcessor {
 	@Autowired
 	IPersistentCommonStorageUtility persistentCommonStorageUtility;
 	
-	private double ratePerSecond = 0.1;
+	private double ratePerSecond = Rate.RATE_PER_SECOND.getRate();
 
-	private double ratePerMB = 0.05;
+	private double ratePerMB = Rate.RATE_PER_MB.getRate();
 
 	@StreamListener(Processor.INPUT)
 	public void processUsageCost(MessageHeader inputMessageHeader) {

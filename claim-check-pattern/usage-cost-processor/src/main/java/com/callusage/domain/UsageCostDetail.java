@@ -27,7 +27,6 @@ package com.callusage.domain;
  * This class is actual data stored by MessageBody of Message.
  *
  */
-@Data
 public class UsageCostDetail {
 
 	public UsageCostDetail() { }

@@ -23,25 +23,23 @@
 
 package com.callusage.utility;
 
-import java.beans.JavaBean;
+import com.callusage.domain.Message;
+import com.callusage.domain.MessageHeader;
+import com.callusage.domain.UsageDetail;
+import com.callusage.interfaces.IPersistentCommonStorageUtility;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import com.callusage.domain.Message;
-import com.callusage.domain.MessageHeader;
-import com.callusage.domain.UsageDetail;
-import com.callusage.interfaces.IPersistentCommonStorageUtility;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
+import org.springframework.stereotype.Service;
+
 /**
  * 
  * This is an implementation of persistent storage interface.

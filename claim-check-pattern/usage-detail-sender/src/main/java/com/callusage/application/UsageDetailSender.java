@@ -24,22 +24,21 @@
 
 package com.callusage.application;
 
-
-import java.util.Random;
-import java.util.UUID;
-
 import com.callusage.domain.Message;
 import com.callusage.domain.MessageData;
 import com.callusage.domain.MessageHeader;
 import com.callusage.domain.UsageDetail;
 import com.callusage.interfaces.IPersistentCommonStorageUtility;
+
+import java.util.Random;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+
 /**
  * 
  * This is the call details sender class which send message header to 
