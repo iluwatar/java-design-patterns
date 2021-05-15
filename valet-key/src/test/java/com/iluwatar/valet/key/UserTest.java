@@ -27,6 +27,7 @@ class UserTest {
     assertFalse(user.requestResource(request, target));
 
     request = true;
+    target = 1;
     assertTrue(user.requestResource(request, target));
   }
 
