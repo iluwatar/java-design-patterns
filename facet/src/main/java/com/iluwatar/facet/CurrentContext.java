@@ -1,7 +1,7 @@
 package com.iluwatar.facet;
 
 /**
- * current used context to abstract the logic for make access control decisions
+ * Current context used to abstract the logic for making access control decisions
  * on behalf of a Facet.
  */
 public class CurrentContext implements Context {

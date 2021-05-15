@@ -2,7 +2,7 @@ package com.iluwatar.facet;
 
 /**
  * The default sentry is to consider the interface and context being
- * used to make the request and selects one of it comprising objects to handle it.
+ * used to make the request and selects one of its comprising objects to handle it.
  */
 public class DefaultSentry implements Sentry {
   private final Context context;

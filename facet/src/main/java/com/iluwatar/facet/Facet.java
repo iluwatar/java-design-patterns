@@ -1,7 +1,7 @@
 package com.iluwatar.facet;
 
 /**
- * implements a set of interfaces and it is exposed to user.
+ * implements a set of interfaces and it is exposed to the user.
  */
 public class Facet {
   private final Sentry sentry;
