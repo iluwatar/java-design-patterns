@@ -29,7 +29,7 @@ Real World Example
 In Plain words
 > Split a large message into a claim check and a payload. Send the claim check to the messaging platform and store the payload to an external service. This pattern allows large messages to be processed while protecting the message bus and the client from being overwhelmed or slowed down. This pattern also helps to reduce costs, as storage is usually cheaper than resource units used by the messaging platform.([ref](https://docs.microsoft.com/en-us/azure/architecture/patterns/claim-check))
 
-## Class diagram
+## Architecture Diagram
 ![alt text](./etc/Claim-Check-Pattern.png "Claim Check Pattern")
 
 ## Applicability
@@ -43,6 +43,14 @@ Use the Claim Check Pattern when
 ## Consequences
 - This pattern is stateless pattern. Any compute API will not store any data.
 - You must have persistent storage and reliable messaging platform.
+
+## Class Diagrams
+
+### usage-detail-sender (Producer)
+![alt text](./etc/Usage-Detail-Sender_Class_Diagram.urm.png "Adapter class diagram")
+
+### usage-cost-processor (Consumer)
+![alt text](./etc/Usage-Cost-Processor_Class_Diagram.urm.png "Adapter class diagram")
 
 ## Tutorials
 

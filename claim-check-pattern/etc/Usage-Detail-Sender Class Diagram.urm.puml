@@ -1,0 +1,86 @@
+@startuml
+class UsageDetailSender [[java:com.callusage.application.UsageDetailSender]] {
+	-source: Source
+	-persistentcommonStorageUtility: IPersistentCommonStorageUtility
+	-{static} count: long
+	-users: String[]
+	+{static} setCount(count: long): void
+	+sendEvents(): void
+}
+
+
+class UsageDetailSenderApplication [[java:com.callusage.application.UsageDetailSenderApplication]] {
+	+{static} main(args: String[]): void
+}
+
+
+class "Message<T>" as Message_T_ [[java:com.callusage.domain.Message]] {
+	-messageHeader: MessageHeader
+	-messageData: MessageData<T>
+	+Message(messageHeader: MessageHeader, messageData: MessageData<T>)
+	+getMessageData(): MessageData<T>
+	+getMessageHeader(): MessageHeader
+	+toString(): String
+}
+
+
+class MessageHeader [[java:com.callusage.domain.MessageHeader]] {
+	-dataLocation: String
+	-dataFileName: String
+	-operataionName: String
+	+getDataLocation(): String
+	+setDataLocation(dataLocation: String): void
+	+getDataFileName(): String
+	+setDataFileName(dataFileName: String): void
+	+getOperataionName(): String
+	+setOperataionName(operataionName: String): void
+	+toString(): String
+}
+
+
+class "MessageData<T>" as MessageData_T_ [[java:com.callusage.domain.MessageData]] {
+	-data: T
+	+MessageData(data: T)
+	+getData(): T
+	+toString(): String
+}
+
+
+
+class UsageDetail [[java:com.callusage.domain.UsageDetail]] {
+	-userId: String
+	-duration: long
+	-data: long
+	+UsageDetail()
+	+getUserId(): String
+	+setUserId(userId: String): void
+	+getDuration(): long
+	+setDuration(duration: long): void
+	+getData(): long
+	+setData(data: long): void
+}
+
+
+
+interface IPersistentCommonStorageUtility [[java:com.callusage.interfaces.IPersistentCommonStorageUtility]] {
+	readMessageFromPersistentStorage(messageHeader: MessageHeader): Message
+	dropMessageToPersistentStorage(message: Message): void
+}
+
+
+class PersistentLocalStorageUtility [[java:com.callusage.utility.PersistentLocalStorageUtility]] {
+	+readMessageFromPersistentStorage(messageHeader: MessageHeader): Message
+	+dropMessageToPersistentStorage(message: Message): void
+}
+interface IPersistentCommonStorageUtility {
+}
+IPersistentCommonStorageUtility <|.. PersistentLocalStorageUtility
+
+
+
+Message_T_ "1" *-- "1" MessageHeader : has
+Message_T_ "1" *-- "1" MessageData_T_ : has
+MessageData_T_ "1" *-- "1" UsageDetail: has
+UsageDetailSender "1" *-- "1" IPersistentCommonStorageUtility : has
+UsageDetailSenderApplication - UsageDetailSender : triggers >
+@enduml
