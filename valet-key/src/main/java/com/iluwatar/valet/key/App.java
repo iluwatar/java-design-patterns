@@ -1,6 +1,6 @@
 package com.iluwatar.valet.key;
 
-public class App {
+public final class App {
   /**
    * Program entry point.
    *

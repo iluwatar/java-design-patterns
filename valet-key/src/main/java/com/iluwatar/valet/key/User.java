@@ -19,8 +19,12 @@ public class User {
    */
   public boolean requestResource(boolean validRequest, int target) {
     LOGGER.info("request a resource");
-    if (token == null || !token.isValid()) {
+    if (token == null){
       token = application.generateToken(validRequest);
+    }else {
+      if (!token.isValid()){
+        token = application.generateToken(validRequest);
+      }
     }
 
     return accessResource(target);
