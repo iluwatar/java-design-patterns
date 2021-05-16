@@ -23,28 +23,20 @@
 
 
 package com.callusage.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
  * 
  * MessageData is body of Message class.
  * This class stores all actual data.
  * @param <T>
  */
+@Data
+@AllArgsConstructor
 public class MessageData<T> {
 
     private T data;
 
-    public MessageData(T data) {
-        this.data = data;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    @Override
-    public String toString() {
-        return "MessageData{" +
-                "data=" + data +
-                '}';
-    }
 }

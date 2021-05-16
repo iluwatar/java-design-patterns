@@ -21,7 +21,21 @@
         <java.version>11</java.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
-
+    
+	<dependencies>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.20</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	
     <dependencyManagement>
         <dependencies>
             <dependency>
