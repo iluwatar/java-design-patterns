@@ -26,4 +26,4 @@ This pattern is one of those ones where you’ll know when you need it. If you h
 
 ## Credits  
   
-* [Game Programming Patterns - Double Buffer]([http://gameprogrammingpatterns.com/double-buffer.html](http://gameprogrammingpatterns.com/double-buffer.html))
+* [Game Programming Patterns - Double Buffer](http://gameprogrammingpatterns.com/double-buffer.html)
