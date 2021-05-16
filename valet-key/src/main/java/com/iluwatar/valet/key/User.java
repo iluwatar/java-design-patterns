@@ -14,17 +14,18 @@ public class User {
    * request a source in target database.
    *
    * @param validRequest is the request valid.
-   * @param target the target position of resource.
+   * @param target       the target position of resource.
    * @return is it access successfully.
    */
   public boolean requestResource(boolean validRequest, int target) {
     LOGGER.info("request a resource");
-    if (token == null){
+
+    if (token == null) {
       token = application.generateToken(validRequest);
-    }else {
-      if (!token.isValid()){
-        token = application.generateToken(validRequest);
-      }
+    }
+
+    if (!token.isValid()){
+      token = application.generateToken(validRequest);
     }
 
     return accessResource(target);

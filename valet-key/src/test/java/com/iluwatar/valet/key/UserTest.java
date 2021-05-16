@@ -21,13 +21,23 @@ class UserTest {
   }
 
   @Test
-  void testRequest_invalid() {
+  void testRequest_invalid_1(){
     boolean request = false;
+    int target = 1;
+    assertFalse(user.requestResource(request, target));
+  }
+
+  @Test
+  void testRequest_invalid_2(){
+    boolean request = true;
     int target = 2;
     assertFalse(user.requestResource(request, target));
+  }
 
-    request = false;
-    target = 1;
+  @Test
+  void testRequest_invalid_3() {
+    boolean request = false;
+    int target = 2;
     assertFalse(user.requestResource(request, target));
 
     request = true;
