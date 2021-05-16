@@ -41,8 +41,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 /**
  * 
- * This is the call details sender class which send message header to 
- * kafka topic and drop message to persistent store.
+ * This class is producer class which send message header to 
+ * Kafka topic and drop message to persistent store after each five seconds.
+ * Message header contains message location and body contains actual data 
+ * such as call duration and data.
  */
 @EnableScheduling
 @EnableBinding(Source.class)

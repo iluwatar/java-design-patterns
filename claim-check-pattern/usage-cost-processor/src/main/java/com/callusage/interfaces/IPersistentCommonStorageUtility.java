@@ -29,7 +29,8 @@ import com.callusage.domain.MessageHeader;
 /**
  * 
  * This is generic persistent storage interface.
- *
+ * It contains 2 methods. First one is to read message from storage.
+ * Second method is to drop message to storage.
  */
 public interface IPersistentCommonStorageUtility {
 

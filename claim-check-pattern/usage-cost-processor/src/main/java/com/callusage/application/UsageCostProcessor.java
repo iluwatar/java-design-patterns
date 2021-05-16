@@ -56,7 +56,6 @@ enum Rate{
  * The class UsageCostProcessor will read messageHeader from 
  * Kafka topic usage-detail. It will calculate call price using call details
  * and drop data to persistent storage.
- * ({@link IPersistentCommonStorageUtility})
  */
 @EnableBinding(Processor.class)
 public class UsageCostProcessor {

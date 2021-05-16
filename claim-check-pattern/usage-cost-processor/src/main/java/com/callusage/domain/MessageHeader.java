@@ -25,6 +25,7 @@ package com.callusage.domain;
 /**
  * 
  * This is header of Message class
+ * which contains message drop location.
  *
  */
 public class MessageHeader {

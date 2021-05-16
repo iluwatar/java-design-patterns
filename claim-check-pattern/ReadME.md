@@ -45,6 +45,10 @@ Use the Claim Check Pattern when
 - You must have persistent storage and reliable messaging platform.
 
 ## Tutorials
+
+### Workflow
+We are building call cost calculator system. Producer class will generate call usage details and send it to kafka topic after each 5 secs. Consumer class will read this data from kafka topic and calculate cost. It then store its result in storage. First, usage-detail-sender creates a message, sends message header to Kafka topic usage-detail, and drops an entire message to the local file system. Kafka then sent this message header to the usage-cost-processor service. It will read the entire message with the help of the header, perform its operation, and drop the result to the local system.
+
 ### Setup
 - Make sure your system is windows.
 - Run everything as administrator.
@@ -107,9 +111,6 @@ bin/kafka-console-consumer.sh --topic usage-detail --from-beginning --bootstrap-
 ```
 ### Storage Data
 The data is stored in the Windows **C** drive. Exact location is C:\Users\\${USERNAME}\AppData\Local\claim-check-pattern. In this directory, folders with GUID names are generated. Each folder contains an input JSON file dropped by usage-detail-sender service and an output JSON file dropped by usage-cost-processor service.
-
-### Workflow
-First, usage-detail-sender creates a message, sends message header to Kafka topic usage-detail, and drops an entire message to the local file system. Kafka then sent this message header to the usage-cost-processor service. It will read the entire message with the help of the header, do its operation, and drop the result to the local system.
 
 
 ## Known uses

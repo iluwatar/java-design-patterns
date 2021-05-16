@@ -45,7 +45,7 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * This is an implementation of persistent storage interface.
- *
+ * Here we are using Windows File System as persistent storage.
  */
 @Service
 public class PersistentLocalStorageUtility implements IPersistentCommonStorageUtility {

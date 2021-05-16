@@ -25,7 +25,7 @@
 package com.callusage.domain;
 /**
  * 
- * This is data which is stored in MessageBody of Message.
+ * This is actual data which is stored in MessageBody of Message.
  *
  */
 public class UsageDetail {
