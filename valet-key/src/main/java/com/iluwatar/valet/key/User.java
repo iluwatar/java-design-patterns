@@ -24,7 +24,7 @@ public class User {
       token = application.generateToken(validRequest);
     }
 
-    if (!token.isValid()){
+    if (!token.isValid()) {
       token = application.generateToken(validRequest);
     }
 
