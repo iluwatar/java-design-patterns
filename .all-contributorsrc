@@ -1514,6 +1514,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "tao-sun2",
+      "name": "Tao",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66189688?v=4",
+      "profile": "https://github.com/tao-sun2",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
