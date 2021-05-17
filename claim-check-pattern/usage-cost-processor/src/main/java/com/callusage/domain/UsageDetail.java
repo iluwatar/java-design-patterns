@@ -34,8 +34,6 @@ import lombok.Data;
 @Data
 public class UsageDetail {
 
-	public UsageDetail() { }
-
 	private String userId;
 
 	private long duration;

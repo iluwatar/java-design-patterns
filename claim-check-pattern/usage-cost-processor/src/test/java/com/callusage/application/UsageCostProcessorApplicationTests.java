@@ -11,6 +11,7 @@ public class UsageCostProcessorApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		UsageCostProcessorApplication.main(new String[] {});
 	}
 
 }

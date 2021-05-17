@@ -11,6 +11,7 @@ public class UsageDetailSenderApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		UsageDetailSenderApplication.main(new String[] {});
 	}
 
 }
