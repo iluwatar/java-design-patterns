@@ -30,7 +30,7 @@ public class App { //NOPMD
     var tail = head; //NOPMD
 
     //for each node to initialize the integer list.
-    int[] numbers = new int[random.nextInt(10)];
+    var numbers = new int[random.nextInt(10)];
     for (var j = 0; j < numbers.length; j++) {
       numbers[j] = random.nextInt(20) - 10;
     }
@@ -38,7 +38,7 @@ public class App { //NOPMD
     for (var i = 0; i < nodes; i++) {
       tail.setNext(new Node()); //NOPMD
       tail = tail.getNext();
-      int[] nums = new int[random.nextInt(10)]; //NOPMD
+      var nums = new int[random.nextInt(10)]; //NOPMD
       for (var j = 0; j < nums.length; j++) {
         nums[j] = random.nextInt(20) - 10;
       }
