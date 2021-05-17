@@ -227,6 +227,7 @@
         <module>composite-entity</module>
         <module>presentation</module>
         <module>lockable-object</module>
+        <module>claim-check-pattern</module>
     </modules>
 
     <repositories>
