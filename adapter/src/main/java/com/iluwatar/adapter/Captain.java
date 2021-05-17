@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,36 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.adapter;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
- * The Captain uses {@link BattleShip} to fight. <br>
- * This is the client in the pattern.
+ * The Captain uses {@link RowingBoat} to sail. <br> This is the client in the pattern.
  */
-public class Captain implements BattleShip {
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public final class Captain {
 
-  private BattleShip battleship;
+  private RowingBoat rowingBoat;
 
-  public Captain() {
-
-  }
-
-  public Captain(BattleShip battleship) {
-    this.battleship = battleship;
-  }
-
-  public void setBattleship(BattleShip battleship) {
-    this.battleship = battleship;
-  }
-
-  @Override
-  public void fire() {
-    battleship.fire();
-  }
-
-  @Override
-  public void move() {
-    battleship.move();
+  void row() {
+    rowingBoat.row();
   }
 
 }

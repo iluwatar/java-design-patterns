@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.visitor;
 
+import java.util.Arrays;
+
 /**
- * 
  * Interface for the nodes in hierarchy.
- * 
  */
 public abstract class Unit {
 
-  private Unit[] children;
+  private final Unit[] children;
 
   public Unit(Unit... children) {
     this.children = children;
   }
 
   /**
-   * Accept visitor
+   * Accept visitor.
    */
   public void accept(UnitVisitor visitor) {
-    for (Unit child : children) {
-      child.accept(visitor);
-    }
+    Arrays.stream(children).forEach(child -> child.accept(visitor));
   }
 }

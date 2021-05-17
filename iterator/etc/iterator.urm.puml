@@ -2,9 +2,46 @@
 package com.iluwatar.iterator {
   class App {
     - LOGGER : Logger {static}
+    - TREASURE_CHEST : TreasureChest {static}
     + App()
+    - buildIntegerBst() : TreeNode<Integer> {static}
+    - demonstrateBstIterator() {static}
+    - demonstrateTreasureChestIteratorForType(itemType : ItemType) {static}
     + main(args : String[]) {static}
   }
+  interface Iterator<T> {
+    + hasNext() : boolean {abstract}
+    + next() : T {abstract}
+  }
+}
+package com.iluwatar.iterator.bst {
+  class BstIterator<T extends Comparable<T>> {
+    - pathStack : ArrayDeque<TreeNode<T extends Comparable<T>>>
+    + BstIterator<T extends Comparable<T>>(root : TreeNode<T extends Comparable<T>>)
+    + hasNext() : boolean
+    + next() : TreeNode<T extends Comparable<T>>
+    - pushPathToNextSmallest(node : TreeNode<T extends Comparable<T>>)
+  }
+  class TreeNode<T extends Comparable<T>> {
+    - left : TreeNode<T extends Comparable<T>>
+    - right : TreeNode<T extends Comparable<T>>
+    - val : T extends Comparable<T>
+    + TreeNode<T extends Comparable<T>>(val : T extends Comparable<T>)
+    + getLeft() : TreeNode<T extends Comparable<T>>
+    - getParentNodeOfValueToBeInserted(valToInsert : T extends Comparable<T>) : TreeNode<T extends Comparable<T>>
+    + getRight() : TreeNode<T extends Comparable<T>>
+    + getVal() : T extends Comparable<T>
+    + insert(valToInsert : T extends Comparable<T>)
+    - insertNewChild(valToInsert : T extends Comparable<T>)
+    - isGreaterThan(val : T extends Comparable<T>) : boolean
+    - isLessThanOrEqualTo(val : T extends Comparable<T>) : boolean
+    - setLeft(left : TreeNode<T extends Comparable<T>>)
+    - setRight(right : TreeNode<T extends Comparable<T>>)
+    + toString() : String
+    - traverseOneLevelDown(value : T extends Comparable<T>) : TreeNode<T extends Comparable<T>>
+  }
+}
+package com.iluwatar.iterator.list {
   class Item {
     - name : String
     - type : ItemType
@@ -12,10 +49,6 @@ package com.iluwatar.iterator {
     + getType() : ItemType
     + setType(type : ItemType)
     + toString() : String
-  }
-  interface ItemIterator {
-    + hasNext() : boolean {abstract}
-    + next() : Item {abstract}
   }
   enum ItemType {
     + ANY {static}
@@ -29,7 +62,7 @@ package com.iluwatar.iterator {
     - items : List<Item>
     + TreasureChest()
     + getItems() : List<Item>
-    ~ iterator(itemType : ItemType) : ItemIterator
+    + iterator(itemType : ItemType) : Iterator<Item>
   }
   class TreasureChestItemIterator {
     - chest : TreasureChest
@@ -41,9 +74,12 @@ package com.iluwatar.iterator {
     + next() : Item
   }
 }
-Item -->  "-type" ItemType
-TreasureChest -->  "-items" Item
 TreasureChestItemIterator -->  "-type" ItemType
+TreeNode -->  "-left" TreeNode
 TreasureChestItemIterator -->  "-chest" TreasureChest
-TreasureChestItemIterator ..|> ItemIterator 
+TreasureChest -->  "-items" Item
+Item -->  "-type" ItemType
+App -->  "-TREASURE_CHEST" TreasureChest
+BstIterator ..|> Iterator 
+TreasureChestItemIterator ..|> Iterator 
 @enduml

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.halfsynchalfasync;
 
-import org.junit.Test;
-import org.mockito.InOrder;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
-
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 11:15 PM
@@ -37,18 +44,24 @@ import static org.mockito.Mockito.*;
  * @author Jeroen Meulemeester
  */
 public class AsynchronousServiceTest {
+  private AsynchronousService service;
+  private AsyncTask<Object> task;
+
+  @BeforeEach
+  public void setUp() {
+    service = new AsynchronousService(new LinkedBlockingQueue<>());
+    task = mock(AsyncTask.class);
+  }
 
   @Test
-  public void testPerfectExecution() throws Exception {
-    final AsynchronousService service = new AsynchronousService(new LinkedBlockingQueue<>());
-    final AsyncTask<Object> task = mock(AsyncTask.class);
-    final Object result = new Object();
+  void testPerfectExecution() throws Exception {
+    final var result = new Object();
     when(task.call()).thenReturn(result);
     service.execute(task);
 
     verify(task, timeout(2000)).onPostCall(eq(result));
 
-    final InOrder inOrder = inOrder(task);
+    final var inOrder = inOrder(task);
     inOrder.verify(task, times(1)).onPreCall();
     inOrder.verify(task, times(1)).call();
     inOrder.verify(task, times(1)).onPostCall(eq(result));
@@ -57,16 +70,14 @@ public class AsynchronousServiceTest {
   }
 
   @Test
-  public void testCallException() throws Exception {
-    final AsynchronousService service = new AsynchronousService(new LinkedBlockingQueue<>());
-    final AsyncTask<Object> task = mock(AsyncTask.class);
-    final IOException exception = new IOException();
+  void testCallException() throws Exception {
+    final var exception = new IOException();
     when(task.call()).thenThrow(exception);
     service.execute(task);
 
     verify(task, timeout(2000)).onError(eq(exception));
 
-    final InOrder inOrder = inOrder(task);
+    final var inOrder = inOrder(task);
     inOrder.verify(task, times(1)).onPreCall();
     inOrder.verify(task, times(1)).call();
     inOrder.verify(task, times(1)).onError(exception);
@@ -75,16 +86,14 @@ public class AsynchronousServiceTest {
   }
 
   @Test
-  public void testPreCallException() throws Exception {
-    final AsynchronousService service = new AsynchronousService(new LinkedBlockingQueue<>());
-    final AsyncTask<Object> task = mock(AsyncTask.class);
-    final IllegalStateException exception = new IllegalStateException();
+  void testPreCallException() {
+    final var exception = new IllegalStateException();
     doThrow(exception).when(task).onPreCall();
     service.execute(task);
 
     verify(task, timeout(2000)).onError(eq(exception));
 
-    final InOrder inOrder = inOrder(task);
+    final var inOrder = inOrder(task);
     inOrder.verify(task, times(1)).onPreCall();
     inOrder.verify(task, times(1)).onError(exception);
 

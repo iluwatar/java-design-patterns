@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,34 +20,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.business.delegate;
+
+import java.util.Locale;
+import lombok.Setter;
 
 /**
  * Class for performing service lookups.
  */
+@Setter
 public class BusinessLookup {
 
-  private EjbService ejbService;
+  private NetflixService netflixService;
 
-  private JmsService jmsService;
+  private YouTubeService youTubeService;
 
   /**
-   * @param serviceType Type of service instance to be returned.
+   * Gets service instance based on given movie search string.
+   *
+   * @param movie Search string for the movie.
    * @return Service instance.
    */
-  public BusinessService getBusinessService(ServiceType serviceType) {
-    if (serviceType.equals(ServiceType.EJB)) {
-      return ejbService;
+  public VideoStreamingService getBusinessService(String movie) {
+    if (movie.toLowerCase(Locale.ROOT).contains("die hard")) {
+      return netflixService;
     } else {
-      return jmsService;
+      return youTubeService;
     }
-  }
-
-  public void setJmsService(JmsService jmsService) {
-    this.jmsService = jmsService;
-  }
-
-  public void setEjbService(EjbService ejbService) {
-    this.ejbService = ejbService;
   }
 }

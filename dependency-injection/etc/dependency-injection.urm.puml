@@ -1,5 +1,11 @@
 @startuml
 package com.iluwatar.dependency.injection {
+  class AdvancedSorceress {
+    - tobacco : Tobacco
+    + AdvancedSorceress()
+    + setTobacco(tobacco : Tobacco)
+    + smoke()
+  }
   class AdvancedWizard {
     - tobacco : Tobacco
     + AdvancedWizard(tobacco : Tobacco)
@@ -37,9 +43,11 @@ package com.iluwatar.dependency.injection {
     + smoke() {abstract}
   }
 }
+AdvancedSorceress -->  "-tobacco" Tobacco
 SimpleWizard -->  "-tobacco" OldTobyTobacco
 AdvancedWizard -->  "-tobacco" Tobacco
 GuiceWizard -->  "-tobacco" Tobacco
+AdvancedSorceress ..|> Wizard 
 AdvancedWizard ..|> Wizard 
 GuiceWizard ..|> Wizard 
 OldTobyTobacco --|> Tobacco 

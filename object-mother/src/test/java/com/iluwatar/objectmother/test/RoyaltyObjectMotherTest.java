@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,67 +20,69 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.objectmother.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.iluwatar.objectmother.King;
 import com.iluwatar.objectmother.Queen;
-import com.iluwatar.objectmother.Royalty;
 import com.iluwatar.objectmother.RoyaltyObjectMother;
+import org.junit.jupiter.api.Test;
 
+/**
+ * Test Generation of Royalty Types using the object-mother
+ */
 public class RoyaltyObjectMotherTest {
-  
+
   @Test
-  public void unsuccessfulKingFlirt() {
-    King soberUnhappyKing = RoyaltyObjectMother.createSoberUnhappyKing();
-    Queen flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
+  void unsuccessfulKingFlirt() {
+    var soberUnhappyKing = RoyaltyObjectMother.createSoberUnhappyKing();
+    var flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
     soberUnhappyKing.flirt(flirtyQueen);
     assertFalse(soberUnhappyKing.isHappy());
   }
-  
+
   @Test
-  public void queenIsBlockingFlirtCauseDrunkKing() {
-    King drunkUnhappyKing = RoyaltyObjectMother.createDrunkKing();
-    Queen notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
+  void queenIsBlockingFlirtCauseDrunkKing() {
+    var drunkUnhappyKing = RoyaltyObjectMother.createDrunkKing();
+    var notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
     drunkUnhappyKing.flirt(notFlirtyQueen);
     assertFalse(drunkUnhappyKing.isHappy());
   }
-  
+
   @Test
-  public void queenIsBlockingFlirt() {
-    King soberHappyKing = RoyaltyObjectMother.createHappyKing();
-    Queen notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
+  void queenIsBlockingFlirt() {
+    var soberHappyKing = RoyaltyObjectMother.createHappyKing();
+    var notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
     soberHappyKing.flirt(notFlirtyQueen);
     assertFalse(soberHappyKing.isHappy());
   }
-  
+
   @Test
-  public void successfullKingFlirt() {
-    King soberHappyKing = RoyaltyObjectMother.createHappyKing();
-    Queen flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
+  void successfullKingFlirt() {
+    var soberHappyKing = RoyaltyObjectMother.createHappyKing();
+    var flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
     soberHappyKing.flirt(flirtyQueen);
     assertTrue(soberHappyKing.isHappy());
   }
-  
+
   @Test
-  public void testQueenType() {
-    Royalty flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
-    Royalty notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
+  void testQueenType() {
+    var flirtyQueen = RoyaltyObjectMother.createFlirtyQueen();
+    var notFlirtyQueen = RoyaltyObjectMother.createNotFlirtyQueen();
     assertEquals(flirtyQueen.getClass(), Queen.class);
     assertEquals(notFlirtyQueen.getClass(), Queen.class);
   }
-  
+
   @Test
-  public void testKingType() {
-    Royalty drunkKing = RoyaltyObjectMother.createDrunkKing();
-    Royalty happyDrunkKing = RoyaltyObjectMother.createHappyDrunkKing();
-    Royalty happyKing = RoyaltyObjectMother.createHappyKing();
-    Royalty soberUnhappyKing = RoyaltyObjectMother.createSoberUnhappyKing();
+  void testKingType() {
+    var drunkKing = RoyaltyObjectMother.createDrunkKing();
+    var happyDrunkKing = RoyaltyObjectMother.createHappyDrunkKing();
+    var happyKing = RoyaltyObjectMother.createHappyKing();
+    var soberUnhappyKing = RoyaltyObjectMother.createSoberUnhappyKing();
     assertEquals(drunkKing.getClass(), King.class);
     assertEquals(happyDrunkKing.getClass(), King.class);
     assertEquals(happyKing.getClass(), King.class);

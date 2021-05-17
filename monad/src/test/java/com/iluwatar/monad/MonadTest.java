@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,45 +20,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.monad;
 
-
-import junit.framework.Assert;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Objects;
+import org.junit.jupiter.api.Test;
 
+/**
+ * Test for Monad Pattern
+ */
 public class MonadTest {
 
-  @Rule
-  public ExpectedException thrown = ExpectedException.none();
-
   @Test
-  public void testForInvalidName() {
-    thrown.expect(IllegalStateException.class);
-    User tom = new User(null, 21, Sex.MALE, "tom@foo.bar");
-    Validator.of(tom).validate(User::getName, Objects::nonNull, "name cannot be null").get();
+  void testForInvalidName() {
+    var tom = new User(null, 21, Sex.MALE, "tom@foo.bar");
+    assertThrows(
+        IllegalStateException.class,
+        () -> Validator.of(tom)
+            .validate(User::getName, Objects::nonNull, "name cannot be null")
+            .get()
+    );
   }
 
   @Test
-  public void testForInvalidAge() {
-    thrown.expect(IllegalStateException.class);
-    User john = new User("John", 17, Sex.MALE, "john@qwe.bar");
-    Validator.of(john).validate(User::getName, Objects::nonNull, "name cannot be null")
-        .validate(User::getAge, age -> age > 21, "user is underaged")
-        .get();
+  void testForInvalidAge() {
+    var john = new User("John", 17, Sex.MALE, "john@qwe.bar");
+    assertThrows(
+        IllegalStateException.class,
+        () -> Validator.of(john)
+            .validate(User::getName, Objects::nonNull, "name cannot be null")
+            .validate(User::getAge, age -> age > 21, "user is underage")
+            .get()
+    );
   }
 
   @Test
-  public void testForValid() {
-    User sarah = new User("Sarah", 42, Sex.FEMALE, "sarah@det.org");
-    User validated = Validator.of(sarah).validate(User::getName, Objects::nonNull, "name cannot be null")
-        .validate(User::getAge, age -> age > 21, "user is underaged")
+  void testForValid() {
+    var sarah = new User("Sarah", 42, Sex.FEMALE, "sarah@det.org");
+    var validated = Validator.of(sarah)
+        .validate(User::getName, Objects::nonNull, "name cannot be null")
+        .validate(User::getAge, age -> age > 21, "user is underage")
         .validate(User::getSex, sex -> sex == Sex.FEMALE, "user is not female")
         .validate(User::getEmail, email -> email.contains("@"), "email does not contain @ sign")
         .get();
-    Assert.assertSame(validated, sarah);
+    assertSame(validated, sarah);
   }
 }

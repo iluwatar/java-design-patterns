@@ -60,8 +60,8 @@ package com.iluwatar.poison.pill {
   }
 }
 SimpleMessageQueue -->  "-queue" Message
-Consumer -->  "-queue" MqSubscribePoint
 Headers ..+ Message
+Consumer -->  "-queue" MqSubscribePoint
 Producer -->  "-queue" MqPublishPoint
 Message -->  "-POISON_PILL" Message
 MessageQueue --|> MqPublishPoint 

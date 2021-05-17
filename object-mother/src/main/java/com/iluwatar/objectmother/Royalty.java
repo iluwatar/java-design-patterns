@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.objectmother;
 
+/**
+ * Interface contracting Royalty Behaviour.
+ */
 public interface Royalty {
   void makeDrunk();
-  
+
   void makeSober();
-  
+
   void makeHappy();
-  
+
   void makeUnhappy();
 }

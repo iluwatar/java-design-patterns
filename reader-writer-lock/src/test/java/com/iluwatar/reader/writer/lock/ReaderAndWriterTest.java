@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,32 +23,30 @@
 
 package com.iluwatar.reader.writer.lock;
 
-import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.concurrent.ExecutorService;
+import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author hongshuwei@gmail.com
  */
-public class ReaderAndWriterTest {
+class ReaderAndWriterTest {
 
   private InMemoryAppender appender;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     appender = new InMemoryAppender();
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     appender.stop();
   }
@@ -59,14 +57,14 @@ public class ReaderAndWriterTest {
    * Verify reader and writer can only get the lock to read and write orderly
    */
   @Test
-  public void testReadAndWrite() throws Exception {
+  void testReadAndWrite() throws Exception {
 
-    ReaderWriterLock lock = new ReaderWriterLock();
+    var lock = new ReaderWriterLock();
 
-    Reader reader1 = new Reader("Reader 1", lock.readLock());
-    Writer writer1 = new Writer("Writer 1", lock.writeLock());
+    var reader1 = new Reader("Reader 1", lock.readLock());
+    var writer1 = new Writer("Writer 1", lock.writeLock());
 
-    ExecutorService executeService = Executors.newFixedThreadPool(2);
+    var executeService = Executors.newFixedThreadPool(2);
     executeService.submit(reader1);
     // Let reader1 execute first
     Thread.sleep(150);
@@ -89,13 +87,13 @@ public class ReaderAndWriterTest {
    * Verify reader and writer can only get the lock to read and write orderly
    */
   @Test
-  public void testWriteAndRead() throws Exception {
+  void testWriteAndRead() throws Exception {
 
-    ExecutorService executeService = Executors.newFixedThreadPool(2);
-    ReaderWriterLock lock = new ReaderWriterLock();
+    var executeService = Executors.newFixedThreadPool(2);
+    var lock = new ReaderWriterLock();
 
-    Reader reader1 = new Reader("Reader 1", lock.readLock());
-    Writer writer1 = new Writer("Writer 1", lock.writeLock());
+    var reader1 = new Reader("Reader 1", lock.readLock());
+    var writer1 = new Writer("Writer 1", lock.writeLock());
 
     executeService.submit(writer1);
     // Let writer1 execute first

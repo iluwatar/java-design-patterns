@@ -18,6 +18,16 @@ package com.iluwatar.abstractfactory {
     - setCastle(castle : Castle)
     - setKing(king : King)
   }
+  class FactoryMaker {
+    + FactoryMaker()
+    + makeFactory(type : KingdomType) : KingdomFactory {static}
+  }
+  enum KingdomType {
+    + ELF {static}
+    + ORC {static}
+    + valueOf(name : String) : KingdomType {static}
+    + values() : KingdomType[] {static}
+  }
   interface Army {
     + getDescription() : String {abstract}
   }
@@ -75,7 +85,9 @@ package com.iluwatar.abstractfactory {
     + createKing() : King
   }
 }
+KingdomType ..+ FactoryMaker
 App -->  "-castle" Castle
+FactoryMaker ..+ App
 App -->  "-king" King
 App -->  "-army" Army
 ElfArmy ..|> Army 

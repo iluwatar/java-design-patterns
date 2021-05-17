@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,24 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
 
+import lombok.RequiredArgsConstructor;
+
 /**
- * 
- * Weekday enumeration
- *
+ * Weekday enumeration.
  */
+@RequiredArgsConstructor
 public enum Weekday {
 
-  MONDAY("Monday"), TUESDAY("Tuesday"), WEDNESDAY("Wednesday"), THURSDAY("Thursday"), FRIDAY(
-      "Friday"), SATURDAY("Saturday"), SUNDAY("Sunday");
+  MONDAY("Monday"),
+  TUESDAY("Tuesday"),
+  WEDNESDAY("Wednesday"),
+  THURSDAY("Thursday"),
+  FRIDAY("Friday"),
+  SATURDAY("Saturday"),
+  SUNDAY("Sunday");
 
-  private String description;
+  private final String description;
 
-  Weekday(String description) {
-    this.description = description;
-  }
-
+  @Override
   public String toString() {
     return description;
   }

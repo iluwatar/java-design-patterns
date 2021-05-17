@@ -26,6 +26,7 @@ package com.iluwatar.producer.consumer {
     + take() : Item
   }
   class Producer {
+    - RANDOM : Random {static}
     - itemId : int
     - name : String
     - queue : ItemQueue

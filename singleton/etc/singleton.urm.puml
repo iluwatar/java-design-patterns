@@ -25,6 +25,7 @@ package com.iluwatar.singleton {
     + getInstance() : IvoryTower {static}
   }
   class ThreadSafeDoubleCheckLocking {
+    - flag : boolean {static}
     - instance : ThreadSafeDoubleCheckLocking {static}
     - ThreadSafeDoubleCheckLocking()
     + getInstance() : ThreadSafeDoubleCheckLocking {static}

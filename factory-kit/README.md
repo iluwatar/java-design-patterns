@@ -3,17 +3,15 @@ layout: pattern
 title: Factory Kit
 folder: factory-kit
 permalink: /patterns/factory-kit/
-pumlid: JST15i8m20N0g-W14lRU1YcsQ4BooCS-RwzBTpDNSscvQKQx7C1SDwBWi-w68--vD6Gur55bTBAM9uE3dlpcikcotSjaGCCNTLu_q8C58pxbPI25_Bzcz3gpjoy0
 categories: Creational
 tags:
- - Java
- - Difficulty-Beginner
- - Functional
+ - Extensibility
 ---
 
 ## Intent
 Define a factory of immutable content with separated builder and factory interfaces.
 
+## Class diagram
 ![alt text](./etc/factory-kit.png "Factory Kit")
 
 ## Applicability

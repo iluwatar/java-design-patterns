@@ -3,18 +3,16 @@ layout: pattern
 title: Double Dispatch
 folder: double-dispatch
 permalink: /patterns/double-dispatch/
-pumlid: NSbB3iCW303HgpG70Ezx6yTOWSeOv4zp_MRTtUZDCPGa6wV9gqTiVmCOtlKQqVDCPwEbmHgLreGXUMEWmGU_M1hxkBHiZ61JXud-1BILft1fmvz37JZetshQh3kd_000
-categories: Other
+categories: Idiom
 tags:
- - Java
- - Difficulty-Intermediate
- - Idiom
+ - Extensibility
 ---
 
 ## Intent
 Double Dispatch pattern is a way to create maintainable dynamic
 behavior based on receiver and parameter types.
 
+## Class diagram
 ![alt text](./etc/double-dispatch.png "Double Dispatch")
 
 ## Applicability

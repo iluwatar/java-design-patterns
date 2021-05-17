@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,37 +20,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.templatemethod;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.LoggerFactory;
-
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
 /**
  * Date: 12/30/15 - 18:12 PM
  *
+ * @param <M> Type of StealingMethod
  * @author Jeroen Meulemeester
  */
 public abstract class StealingMethodTest<M extends StealingMethod> {
 
   private InMemoryAppender appender;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     appender = new InMemoryAppender();
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     appender.stop();
   }
@@ -103,7 +104,7 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
    * Verify if the thief picks the correct target
    */
   @Test
-  public void testPickTarget() {
+  void testPickTarget() {
     assertEquals(expectedTarget, this.method.pickTarget());
   }
 
@@ -111,7 +112,7 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
    * Verify if the target confusing step goes as planned
    */
   @Test
-  public void testConfuseTarget() {
+  void testConfuseTarget() {
     assertEquals(0, appender.getLogSize());
 
     this.method.confuseTarget(this.expectedTarget);
@@ -123,7 +124,7 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
    * Verify if the stealing step goes as planned
    */
   @Test
-  public void testStealTheItem() {
+  void testStealTheItem() {
     assertEquals(0, appender.getLogSize());
 
     this.method.stealTheItem(this.expectedTarget);
@@ -135,7 +136,7 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
    * Verify if the complete steal process goes as planned
    */
   @Test
-  public void testSteal() {
+  void testSteal() {
     this.method.steal();
 
     assertTrue(appender.logContains(this.expectedTargetResult));
@@ -145,7 +146,7 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {
       ((Logger) LoggerFactory.getLogger("root")).addAppender(this);

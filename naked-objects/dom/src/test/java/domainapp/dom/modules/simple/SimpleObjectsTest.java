@@ -1,23 +1,35 @@
-/**
- * Licensed to the Apache Software Foundation (ASF) under one or more contributor license
- * agreements. See the NOTICE file distributed with this work for additional information regarding
- * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance with the License. You may obtain a
- * copy of the License at
+/*
+ * The MIT License
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
+
 package domainapp.dom.modules.simple;
 
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
 import com.google.common.collect.Lists;
-
+import java.util.List;
+import org.apache.isis.applib.DomainObjectContainer;
+import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
+import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2.Mode;
 import org.jmock.Expectations;
 import org.jmock.Sequence;
 import org.jmock.auto.Mock;
@@ -25,12 +37,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
-import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2.Mode;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Test for SimpleObjects
+ */
 public class SimpleObjectsTest {
 
   @Rule
@@ -42,61 +51,56 @@ public class SimpleObjectsTest {
   SimpleObjects simpleObjects;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     simpleObjects = new SimpleObjects();
     simpleObjects.container = mockContainer;
   }
 
-  public static class Create extends SimpleObjectsTest {
+  @Test
+  public void testCreate() {
 
-    @Test
-    public void happyCase() throws Exception {
+    // given
+    final SimpleObject simpleObject = new SimpleObject();
 
-      // given
-      final SimpleObject simpleObject = new SimpleObject();
+    final Sequence seq = context.sequence("create");
+    context.checking(new Expectations() {
+      {
+        oneOf(mockContainer).newTransientInstance(SimpleObject.class);
+        inSequence(seq);
+        will(returnValue(simpleObject));
 
-      final Sequence seq = context.sequence("create");
-      context.checking(new Expectations() {
-        {
-          oneOf(mockContainer).newTransientInstance(SimpleObject.class);
-          inSequence(seq);
-          will(returnValue(simpleObject));
+        oneOf(mockContainer).persistIfNotAlready(simpleObject);
+        inSequence(seq);
+      }
+    });
 
-          oneOf(mockContainer).persistIfNotAlready(simpleObject);
-          inSequence(seq);
-        }
-      });
+    // when
+    String objectName = "Foobar";
+    final SimpleObject obj = simpleObjects.create(objectName);
 
-      // when
-      final SimpleObject obj = simpleObjects.create("Foobar");
-
-      // then
-      assertThat(obj).isEqualTo(simpleObject);
-      assertThat(obj.getName()).isEqualTo("Foobar");
-    }
-
+    // then
+    assertEquals(simpleObject, obj);
+    assertEquals(objectName, obj.getName());
   }
 
-  public static class ListAll extends SimpleObjectsTest {
+  @Test
+  public void testListAll() {
 
-    @Test
-    public void happyCase() throws Exception {
+    // given
+    final List<SimpleObject> all = Lists.newArrayList();
 
-      // given
-      final List<SimpleObject> all = Lists.newArrayList();
+    context.checking(new Expectations() {
+      {
+        oneOf(mockContainer).allInstances(SimpleObject.class);
+        will(returnValue(all));
+      }
+    });
 
-      context.checking(new Expectations() {
-        {
-          oneOf(mockContainer).allInstances(SimpleObject.class);
-          will(returnValue(all));
-        }
-      });
+    // when
+    final List<SimpleObject> list = simpleObjects.listAll();
 
-      // when
-      final List<SimpleObject> list = simpleObjects.listAll();
-
-      // then
-      assertThat(list).isEqualTo(all);
-    }
+    // then
+    assertEquals(all, list);
   }
+
 }

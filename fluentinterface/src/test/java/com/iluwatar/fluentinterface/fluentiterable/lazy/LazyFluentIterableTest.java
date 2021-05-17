@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.fluentinterface.fluentiterable.lazy;
 
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
@@ -30,7 +31,7 @@ import com.iluwatar.fluentinterface.fluentiterable.FluentIterableTest;
  *
  * @author Jeroen Meulemeester
  */
-public class LazyFluentIterableTest extends FluentIterableTest {
+class LazyFluentIterableTest extends FluentIterableTest {
 
   @Override
   protected FluentIterable<Integer> createFluentIterable(Iterable<Integer> integers) {

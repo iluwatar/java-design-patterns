@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,30 +20,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 2:52 PM
  *
  * @author Jeroen Meulemeester
  */
-public class EventTest {
+class EventTest {
 
   /**
    * Verify if every event has a non-null, non-empty description
    */
   @Test
-  public void testToString() {
-    for (final Event event : Event.values()) {
-      final String toString = event.toString();
+  void testToString() {
+    Arrays.stream(Event.values()).map(Event::toString).forEach(toString -> {
       assertNotNull(toString);
       assertFalse(toString.trim().isEmpty());
-    }
+    });
   }
 
 }

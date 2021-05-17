@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,26 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.queue.load.leveling;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 /**
- *  Message class with only one parameter.
- *
-*/
+ * Message class with only one parameter.
+ */
+@Getter
+@RequiredArgsConstructor
 public class Message {
   private final String msg;
- 
-  // Parameter constructor.
-  public Message(String msg) {
-    super();
-    this.msg = msg;
-  }
 
-  // Get Method for attribute msg.
-  public String getMsg() {
-    return msg;
-  }
-  
   @Override
   public String toString() {
     return msg;

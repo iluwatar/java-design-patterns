@@ -2,8 +2,8 @@
 package com.iluwatar.servant {
   class App {
     - LOGGER : Logger {static}
-    ~ jenkins : Servant {static}
-    ~ travis : Servant {static}
+    - jenkins : Servant {static}
+    - travis : Servant {static}
     + App()
     + main(args : String[]) {static}
     + scenario(servant : Servant, compliment : int) {static}

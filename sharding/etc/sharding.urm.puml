@@ -1,0 +1,71 @@
+@startuml
+package com.iluwatar.sharding {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Data {
+    - key : int
+    - type : DataType
+    - value : String
+    + Data(key : int, value : String, type : DataType)
+    + getKey() : int
+    + getType() : DataType
+    + getValue() : String
+    + setKey(key : int)
+    + setType(type : DataType)
+    + setValue(value : String)
+    + toString() : String
+  }
+  ~enum DataType {
+    + type1 {static}
+    + type2 {static}
+    + type3 {static}
+    + valueOf(name : String) : DataType {static}
+    + values() : DataType[] {static}
+  }
+  class HashShardManager {
+    - LOGGER : Logger {static}
+    + HashShardManager()
+    # allocateShard(data : Data) : int
+    + storeData(data : Data) : int
+  }
+  class LookupShardManager {
+    - LOGGER : Logger {static}
+    - lookupMap : Map<Integer, Integer>
+    + LookupShardManager()
+    # allocateShard(data : Data) : int
+    + storeData(data : Data) : int
+  }
+  class RangeShardManager {
+    - LOGGER : Logger {static}
+    + RangeShardManager()
+    # allocateShard(data : Data) : int
+    + storeData(data : Data) : int
+  }
+  class Shard {
+    - dataStore : Map<Integer, Data>
+    - id : int
+    + Shard(id : int)
+    + clearData()
+    + getDataById(id : int) : Data
+    + getId() : int
+    + storeData(data : Data)
+  }
+  abstract class ShardManager {
+    - LOGGER : Logger {static}
+    # shardMap : Map<Integer, Shard>
+    + ShardManager()
+    + addNewShard(shard : Shard) : boolean
+    # allocateShard(Data) : int {abstract}
+    + getShardById(shardId : int) : Shard
+    + removeShardById(shardId : int) : boolean
+    + storeData(Data) : int {abstract}
+  }
+}
+DataType ..+ Data
+Data -->  "-type" DataType
+HashShardManager --|> ShardManager 
+LookupShardManager --|> ShardManager 
+RangeShardManager --|> ShardManager 
+@enduml

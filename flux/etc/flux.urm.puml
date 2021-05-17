@@ -100,14 +100,14 @@ package com.iluwatar.flux.dispatcher {
 }
 MenuAction -->  "-menuItem" MenuItem
 Action -->  "-type" ActionType
-Dispatcher -->  "-instance" Dispatcher
 MenuStore -->  "-selected" MenuItem
+Dispatcher -->  "-instance" Dispatcher
 ContentView -->  "-content" Content
 Dispatcher -->  "-stores" Store
 MenuView -->  "-selected" MenuItem
 Store -->  "-views" View
-ContentAction -->  "-content" Content
 ContentStore -->  "-content" Content
+ContentAction -->  "-content" Content
 ContentAction --|> Action 
 MenuAction --|> Action 
 ContentStore --|> Store 

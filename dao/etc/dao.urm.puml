@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.dao {
   class App {
+    - ALL_CUSTOMERS : String {static}
     - DB_URL : String {static}
     - log : Logger {static}
     + App()
@@ -40,6 +41,7 @@ package com.iluwatar.dao {
     - CustomerSchemaSql()
   }
   class DbCustomerDao {
+    - LOGGER : Logger {static}
     - dataSource : DataSource
     + DbCustomerDao(dataSource : DataSource)
     + add(customer : Customer) : boolean
@@ -48,7 +50,7 @@ package com.iluwatar.dao {
     + getAll() : Stream<Customer>
     + getById(id : int) : Optional<Customer>
     - getConnection() : Connection
-    - mutedClose(connection : Connection)
+    - mutedClose(connection : Connection, statement : PreparedStatement, resultSet : ResultSet)
     + update(customer : Customer) : boolean
   }
   class InMemoryCustomerDao {

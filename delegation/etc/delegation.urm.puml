@@ -18,7 +18,7 @@ package com.iluwatar.delegation.simple.printers {
 }
 package com.iluwatar.delegation.simple {
   class App {
-    + MESSAGE_TO_PRINT : String {static}
+    - MESSAGE_TO_PRINT : String {static}
     + App()
     + main(args : String[]) {static}
   }

@@ -33,7 +33,7 @@ package com.iluwatar.front.controller {
   class FrontController {
     + FrontController()
     - getCommand(request : String) : Command
-    - getCommandClass(request : String) : Class<T> {static}
+    - getCommandClass(request : String) : Class<?> {static}
     + handleRequest(request : String)
   }
   class UnknownCommand {

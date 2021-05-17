@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,42 +35,42 @@ import javax.swing.JRootPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
 /**
  * The Client class is responsible for handling the input and running them through filters inside
  * the {@link FilterManager}.
  *
- * This is where {@link Filter}s come to play as the client pre-processes the request before being
- * displayed in the {@link Target}.
- * 
- * @author joshzambales
+ * <p>This is where {@link Filter}s come to play as the client pre-processes the request before
+ * being displayed in the {@link Target}.
  *
+ * @author joshzambales
  */
-public class Client extends JFrame {
+public class Client extends JFrame { // NOSONAR
 
   private static final long serialVersionUID = 1L;
 
-  private FilterManager filterManager;
-  private JLabel jl;
-  private JTextField[] jtFields;
-  private JTextArea[] jtAreas;
-  private JButton clearButton;
-  private JButton processButton;
+  private transient FilterManager filterManager;
+  private final JLabel jl;
+  private final JTextField[] jtFields;
+  private final JTextArea[] jtAreas;
+  private final JButton clearButton;
+  private final JButton processButton;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Client() {
     super("Client System");
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setSize(300, 300);
     jl = new JLabel("RUNNING...");
     jtFields = new JTextField[3];
-    for (int i = 0; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
       jtFields[i] = new JTextField();
     }
     jtAreas = new JTextArea[2];
-    for (int i = 0; i < 2; i++) {
+    for (var i = 0; i < 2; i++) {
       jtAreas[i] = new JTextArea();
     }
     clearButton = new JButton("Clear");
@@ -81,7 +81,7 @@ public class Client extends JFrame {
 
   private void setup() {
     setLayout(new BorderLayout());
-    JPanel panel = new JPanel();
+    var panel = new JPanel();
     add(jl, BorderLayout.SOUTH);
     add(panel, BorderLayout.CENTER);
     panel.setLayout(new GridLayout(6, 2));
@@ -98,27 +98,12 @@ public class Client extends JFrame {
     panel.add(clearButton);
     panel.add(processButton);
 
-    clearButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        for (JTextArea i : jtAreas) {
-          i.setText("");
-        }
-        for (JTextField i : jtFields) {
-          i.setText("");
-        }
-      }
+    clearButton.addActionListener(e -> {
+      Arrays.stream(jtAreas).forEach(i -> i.setText(""));
+      Arrays.stream(jtFields).forEach(i -> i.setText(""));
     });
 
-    processButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        Order order =
-            new Order(jtFields[0].getText(), jtFields[1].getText(), jtAreas[0].getText(),
-                jtFields[2].getText(), jtAreas[1].getText());
-        jl.setText(sendRequest(order));
-      }
-    });
+    processButton.addActionListener(this::actionPerformed);
 
     JRootPane rootPane = SwingUtilities.getRootPane(processButton);
     rootPane.setDefaultButton(processButton);
@@ -131,5 +116,15 @@ public class Client extends JFrame {
 
   public String sendRequest(Order order) {
     return filterManager.filterRequest(order);
+  }
+
+  private void actionPerformed(ActionEvent e) {
+    var fieldText1 = jtFields[0].getText();
+    var fieldText2 = jtFields[1].getText();
+    var areaText1 = jtAreas[0].getText();
+    var fieldText3 = jtFields[2].getText();
+    var areaText2 = jtAreas[1].getText();
+    var order = new Order(fieldText1, fieldText2, areaText1, fieldText3, areaText2);
+    jl.setText(sendRequest(order));
   }
 }

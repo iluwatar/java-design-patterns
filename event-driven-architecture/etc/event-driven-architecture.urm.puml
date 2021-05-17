@@ -54,8 +54,8 @@ package com.iluwatar.eda {
     + main(args : String[]) {static}
   }
 }
-UserUpdatedEvent -->  "-user" User
 UserCreatedEvent -->  "-user" User
+UserUpdatedEvent -->  "-user" User
 AbstractEvent ..|> Event 
 UserCreatedEvent --|> AbstractEvent 
 UserUpdatedEvent --|> AbstractEvent 

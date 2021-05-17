@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,48 +20,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.proxy;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.iluwatar.proxy.utils.InMemoryAppender;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.Arrays;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import java.util.List;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link IvoryTower}
  */
-public class IvoryTowerTest {
+class IvoryTowerTest {
 
   private InMemoryAppender appender;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     appender = new InMemoryAppender(IvoryTower.class);
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     appender.stop();
   }
 
   @Test
-  public void testEnter() throws Exception {
-    final Wizard[] wizards = new Wizard[]{
+  void testEnter() {
+    final var wizards = List.of(
         new Wizard("Gandalf"),
         new Wizard("Dumbledore"),
         new Wizard("Oz"),
         new Wizard("Merlin")
-    };
+    );
 
-    IvoryTower tower = new IvoryTower();
-    for (Wizard wizard : wizards) {
-      tower.enter(wizard);
-    }
+    var tower = new IvoryTower();
+    wizards.forEach(tower::enter);
 
     assertTrue(appender.logContains("Gandalf enters the tower."));
     assertTrue(appender.logContains("Dumbledore enters the tower."));

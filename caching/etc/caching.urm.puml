@@ -1,4 +1,13 @@
 @startuml
+package com.iluwatar.caching.constants {
+  class CachingConstants {
+    + ADD_INFO : String {static}
+    + USER_ACCOUNT : String {static}
+    + USER_ID : String {static}
+    + USER_NAME : String {static}
+    + CachingConstants()
+  }
+}
 package com.iluwatar.caching {
   class App {
     - LOGGER : Logger {static}
@@ -23,7 +32,7 @@ package com.iluwatar.caching {
   }
   class CacheStore {
     - LOGGER : Logger {static}
-    ~ cache : LruCache {static}
+    - cache : LruCache {static}
     - CacheStore()
     + clearCache() {static}
     + flushCache() {static}
@@ -101,8 +110,8 @@ package com.iluwatar.caching {
     + toString() : String
   }
 }
-LruCache -->  "-head" Node
 Node --+ LruCache
+LruCache -->  "-head" Node
 Node -->  "-previous" Node
 AppManager -->  "-cachingPolicy" CachingPolicy
 Node -->  "-userAccount" UserAccount

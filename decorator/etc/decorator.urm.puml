@@ -7,8 +7,10 @@ package com.iluwatar.decorator {
   }
   class ClubbedTroll {
     - LOGGER : Logger {static}
+    - decorated : Troll
     + ClubbedTroll(decorated : Troll)
     + attack()
+    + fleeBattle()
     + getAttackPower() : int
   }
   class SimpleTroll {
@@ -23,16 +25,8 @@ package com.iluwatar.decorator {
     + fleeBattle() {abstract}
     + getAttackPower() : int {abstract}
   }
-  class TrollDecorator {
-    - decorated : Troll
-    + TrollDecorator(decorated : Troll)
-    + attack()
-    + fleeBattle()
-    + getAttackPower() : int
-  }
 }
-TrollDecorator -->  "-decorated" Troll
-ClubbedTroll --|> TrollDecorator 
+ClubbedTroll -->  "-decorated" Troll
+ClubbedTroll ..|> Troll 
 SimpleTroll ..|> Troll 
-TrollDecorator ..|> Troll 
 @enduml

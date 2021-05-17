@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,26 +20,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for lottery ticket id
  */
-public class LotteryTicketIdTest {
+class LotteryTicketIdTest {
 
   @Test
-  public void testEquals() {
-    LotteryTicketId ticketId1 = new LotteryTicketId();
-    LotteryTicketId ticketId2 = new LotteryTicketId();
-    LotteryTicketId ticketId3 = new LotteryTicketId();
-    assertFalse(ticketId1.equals(ticketId2));
-    assertFalse(ticketId2.equals(ticketId3));
-    LotteryTicketId ticketId4 = new LotteryTicketId(ticketId1.getId());
-    assertTrue(ticketId1.equals(ticketId4));
+  void testEquals() {
+    var ticketId1 = new LotteryTicketId();
+    var ticketId2 = new LotteryTicketId();
+    var ticketId3 = new LotteryTicketId();
+    assertNotEquals(ticketId1, ticketId2);
+    assertNotEquals(ticketId2, ticketId3);
+    var ticketId4 = new LotteryTicketId(ticketId1.getId());
+    assertEquals(ticketId1, ticketId4);
   }
 }

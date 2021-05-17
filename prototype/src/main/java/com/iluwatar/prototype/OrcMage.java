@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.prototype;
 
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+
 /**
- * 
- * OrcMage
- *
+ * OrcMage.
  */
+@EqualsAndHashCode(callSuper = true)
+@RequiredArgsConstructor
 public class OrcMage extends Mage {
 
-  public OrcMage() {}
+  private final String weapon;
+
+  public OrcMage(OrcMage orcMage) {
+    super(orcMage);
+    this.weapon = orcMage.weapon;
+  }
 
   @Override
-  public Mage clone() throws CloneNotSupportedException {
-    return new OrcMage();
+  public OrcMage copy() {
+    return new OrcMage(this);
   }
 
   @Override
   public String toString() {
-    return "Orcish mage";
+    return "Orcish mage attacks with " + weapon;
   }
 
 }

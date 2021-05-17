@@ -10,7 +10,6 @@ package com.iluwatar.servicelayer.hibernate {
 }
 package com.iluwatar.servicelayer.common {
   abstract class BaseEntity {
-    - version : Long
     + BaseEntity()
     + getId() : Long {abstract}
     + getName() : String {abstract}
@@ -30,7 +29,7 @@ package com.iluwatar.servicelayer.common {
     + delete(entity : E extends BaseEntity)
     + find(id : Long) : E extends BaseEntity
     + findAll() : List<E extends BaseEntity>
-    # getSession() : Session
+    # getSessionFactory() : SessionFactory
     + merge(entity : E extends BaseEntity) : E extends BaseEntity
     + persist(entity : E extends BaseEntity)
   }

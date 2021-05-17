@@ -2,16 +2,11 @@
 package com.iluwatar.callback {
   class App {
     - LOGGER : Logger {static}
-    + App()
+    - App()
     + main(args : String[]) {static}
   }
   interface Callback {
     + call() {abstract}
-  }
-  class LambdasApp {
-    - LOGGER : Logger {static}
-    + LambdasApp()
-    + main(args : String[]) {static}
   }
   class SimpleTask {
     - LOGGER : Logger {static}
@@ -21,7 +16,7 @@ package com.iluwatar.callback {
   abstract class Task {
     + Task()
     + execute() {abstract}
-    + executeWith(callback : Callback)
+    ~ executeWith(callback : Callback)
   }
 }
 SimpleTask --|> Task 

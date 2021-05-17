@@ -15,7 +15,7 @@ package com.iluwatar.object.pool {
     + toString() : String
   }
   class Oliphaunt {
-    - counter : int {static}
+    - counter : AtomicInteger {static}
     - id : int
     + Oliphaunt()
     + getId() : int

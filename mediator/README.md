@@ -3,12 +3,10 @@ layout: pattern
 title: Mediator
 folder: mediator
 permalink: /patterns/mediator/
-pumlid: FSV14SCm20J0Lk82BFxf1akCJKOW3JhizfDNVhkRUktP9AE_Bc2kDr7mKqx5bKSkYJeSuYXr66dFXy517xvvRxBqz7qo8E6BZDSFPDAKCO84zP-IOMMczIy0
 categories: Behavioral
 tags:
- - Java
  - Gang Of Four
- - Difficulty-Intermediate
+ - Decoupling
 ---
 
 ## Intent
@@ -16,6 +14,7 @@ Define an object that encapsulates how a set of objects interact.
 Mediator promotes loose coupling by keeping objects from referring to each
 other explicitly, and it lets you vary their interaction independently.
 
+## Class diagram
 ![alt text](./etc/mediator_1.png "Mediator")
 
 ## Applicability
@@ -35,4 +34,5 @@ Use the Mediator pattern when
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
+* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)

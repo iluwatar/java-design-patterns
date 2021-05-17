@@ -76,12 +76,12 @@ package com.iluwatar.stepbuilder {
   }
 }
 WeaponStep ..+ CharacterStepBuilder
-CharacterSteps ..+ CharacterStepBuilder
 AbilityStep ..+ CharacterStepBuilder
-SpellStep ..+ CharacterStepBuilder
 ClassStep ..+ CharacterStepBuilder
-NameStep ..+ CharacterStepBuilder
+CharacterSteps ..+ CharacterStepBuilder
+SpellStep ..+ CharacterStepBuilder
 BuildStep ..+ CharacterStepBuilder
+NameStep ..+ CharacterStepBuilder
 CharacterSteps ..|> NameStep 
 CharacterSteps ..|> ClassStep 
 CharacterSteps ..|> WeaponStep 

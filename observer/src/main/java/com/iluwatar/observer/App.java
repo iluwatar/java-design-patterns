@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,39 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.observer;
 
 import com.iluwatar.observer.generic.GHobbits;
 import com.iluwatar.observer.generic.GOrcs;
 import com.iluwatar.observer.generic.GWeather;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
  * The Observer pattern is a software design pattern in which an object, called the subject,
  * maintains a list of its dependents, called observers, and notifies them automatically of any
  * state changes, usually by calling one of their methods. It is mainly used to implement
  * distributed event handling systems. The Observer pattern is also a key part in the familiar
  * model–view–controller (MVC) architectural pattern. The Observer pattern is implemented in
  * numerous programming libraries and systems, including almost all GUI toolkits.
- * <p>
- * In this example {@link Weather} has a state that can be observed. The {@link Orcs} and
- * {@link Hobbits} register as observers and receive notifications when the {@link Weather} changes.
- * 
+ *
+ * <p>In this example {@link Weather} has a state that can be observed. The {@link Orcs} and {@link
+ * Hobbits} register as observers and receive notifications when the {@link Weather} changes.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
 
-    Weather weather = new Weather();
+    var weather = new Weather();
     weather.addObserver(new Orcs());
     weather.addObserver(new Hobbits());
 
@@ -63,13 +60,13 @@ public class App {
 
     // Generic observer inspired by Java Generics and Collection by Naftalin & Wadler
     LOGGER.info("--Running generic version--");
-    GWeather gWeather = new GWeather();
-    gWeather.addObserver(new GOrcs());
-    gWeather.addObserver(new GHobbits());
+    var genericWeather = new GWeather();
+    genericWeather.addObserver(new GOrcs());
+    genericWeather.addObserver(new GHobbits());
 
-    gWeather.timePasses();
-    gWeather.timePasses();
-    gWeather.timePasses();
-    gWeather.timePasses();
+    genericWeather.timePasses();
+    genericWeather.timePasses();
+    genericWeather.timePasses();
+    genericWeather.timePasses();
   }
 }

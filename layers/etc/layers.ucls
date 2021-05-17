@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <interface id="1" language="java" name="com.iluwatar.layers.CakeDao" project="layers" 
+  <interface id="1" language="java" name="com.iluwatar.layers.dao.CakeDao" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeDao.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="289" y="916"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="2" language="java" name="com.iluwatar.layers.CakeLayer" project="layers" 
+  <class id="2" language="java" name="com.iluwatar.layers.entity.CakeLayer" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeLayer.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1438" y="826"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="com.iluwatar.layers.CakeViewImpl" project="layers" 
+  <class id="3" language="java" name="com.iluwatar.layers.view.CakeViewImpl" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeViewImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="456" y="221"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -28,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="com.iluwatar.layers.CakeBakingException" project="layers" 
+  <class id="4" language="java" name="com.iluwatar.layers.exception.CakeBakingException" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeBakingException.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="143" y="502"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="com.iluwatar.layers.CakeBakingServiceImpl" project="layers" 
+  <class id="5" language="java" name="com.iluwatar.layers.service.CakeBakingServiceImpl" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeBakingServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="456" y="694"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="6" language="java" name="com.iluwatar.layers.CakeLayerDao" project="layers" 
+  <interface id="6" language="java" name="com.iluwatar.layers.dao.CakeLayerDao" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeLayerDao.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="456" y="918"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -55,7 +55,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="7" language="java" name="com.iluwatar.layers.View" project="layers" 
+  <interface id="7" language="java" name="com.iluwatar.layers.view.View" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/View.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="456" y="65"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -64,7 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="8" language="java" name="com.iluwatar.layers.CakeToppingInfo" project="layers" 
+  <class id="8" language="java" name="com.iluwatar.layers.dto.CakeToppingInfo" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeToppingInfo.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="817" y="530"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -73,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="com.iluwatar.layers.CakeInfo" project="layers" 
+  <class id="9" language="java" name="com.iluwatar.layers.dto.CakeInfo" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeInfo.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="883" y="265"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -82,7 +82,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="10" language="java" name="com.iluwatar.layers.CakeToppingDao" project="layers" 
+  <interface id="10" language="java" name="com.iluwatar.layers.dao.CakeToppingDao" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeToppingDao.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="633" y="918"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,7 +91,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="11" language="java" name="com.iluwatar.layers.CakeBakingService" project="layers" 
+  <interface id="11" language="java" name="com.iluwatar.layers.service.CakeBakingService" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeBakingService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="456" y="431"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,7 +100,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="12" language="java" name="com.iluwatar.layers.CakeLayerInfo" project="layers" 
+  <class id="12" language="java" name="com.iluwatar.layers.dto.CakeLayerInfo" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeLayerInfo.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1055" y="530"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -109,7 +109,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="com.iluwatar.layers.Cake" project="layers" 
+  <class id="13" language="java" name="com.iluwatar.layers.entity.Cake" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/Cake.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1160" y="826"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -118,7 +118,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="com.iluwatar.layers.CakeTopping" project="layers" 
+  <class id="14" language="java" name="com.iluwatar.layers.entity.CakeTopping" project="layers"
     file="/layers/src/main/java/com/iluwatar/layers/CakeTopping.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="876" y="826"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

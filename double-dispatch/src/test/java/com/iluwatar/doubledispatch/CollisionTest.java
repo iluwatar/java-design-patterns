@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.doubledispatch;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Objects;
 
-import static org.junit.Assert.assertEquals;
-
 /**
- * Date: 12/10/15 - 8:37 PM
+ * Date: 12/10/15 - 8:37 PM Test for Collision
  *
+ * @param <O> Type of GameObject
  * @author Jeroen Meulemeester
  */
 public abstract class CollisionTest<O extends GameObject> {
@@ -49,15 +51,14 @@ public abstract class CollisionTest<O extends GameObject> {
    * @param otherOnFire  Indicates if the other object should be burning after the collision
    * @param thisDamaged  Indicates if the test object should be damaged after the collision
    * @param thisOnFire   Indicates if the other object should be burning after the collision
-   * @param description  The expected description of the collision
    */
   void testCollision(final GameObject other, final boolean otherDamaged, final boolean otherOnFire,
-                     final boolean thisDamaged, final boolean thisOnFire, final String description) {
+                     final boolean thisDamaged, final boolean thisOnFire) {
 
     Objects.requireNonNull(other);
     Objects.requireNonNull(getTestedObject());
 
-    final O tested = getTestedObject();
+    final var tested = getTestedObject();
 
     tested.collision(other);
 
@@ -78,14 +79,14 @@ public abstract class CollisionTest<O extends GameObject> {
    * @param expectTargetOnFire The expected state of fire on the target object
    */
   private void testOnFire(final GameObject target, final GameObject other, final boolean expectTargetOnFire) {
-    final String targetName = target.getClass().getSimpleName();
-    final String otherName = other.getClass().getSimpleName();
+    final var targetName = target.getClass().getSimpleName();
+    final var otherName = other.getClass().getSimpleName();
 
-    final String errorMessage = expectTargetOnFire
+    final var errorMessage = expectTargetOnFire
         ? "Expected [" + targetName + "] to be on fire after colliding with [" + otherName + "] but it was not!"
         : "Expected [" + targetName + "] not to be on fire after colliding with [" + otherName + "] but it was!";
 
-    assertEquals(errorMessage, expectTargetOnFire, target.isOnFire());
+    assertEquals(expectTargetOnFire, target.isOnFire(), errorMessage);
   }
 
   /**
@@ -97,14 +98,14 @@ public abstract class CollisionTest<O extends GameObject> {
    * @param expectedDamage The expected state of damage on the target object
    */
   private void testDamaged(final GameObject target, final GameObject other, final boolean expectedDamage) {
-    final String targetName = target.getClass().getSimpleName();
-    final String otherName = other.getClass().getSimpleName();
+    final var targetName = target.getClass().getSimpleName();
+    final var otherName = other.getClass().getSimpleName();
 
-    final String errorMessage = expectedDamage
+    final var errorMessage = expectedDamage
         ? "Expected [" + targetName + "] to be damaged after colliding with [" + otherName + "] but it was not!"
         : "Expected [" + targetName + "] not to be damaged after colliding with [" + otherName + "] but it was!";
 
-    assertEquals(errorMessage, expectedDamage, target.isDamaged());
+    assertEquals(expectedDamage, target.isDamaged(), errorMessage);
   }
 
 }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,32 +20,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.observer;
 
 import com.iluwatar.observer.utils.InMemoryAppender;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
+import java.util.Collection;
 import java.util.function.Supplier;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/27/15 - 11:44 AM
- *
+ * Weather Observer Tests
+ * @param <O> Type of WeatherObserver
  * @author Jeroen Meulemeester
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class WeatherObserverTest<O extends WeatherObserver> {
 
   private InMemoryAppender appender;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     appender = new InMemoryAppender();
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     appender.stop();
   }
@@ -56,37 +64,26 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
   private final Supplier<O> factory;
 
   /**
-   * The weather type currently tested
-   */
-  private final WeatherType weather;
-
-  /**
-   * The expected response from the observer
-   */
-  private final String response;
-
-  /**
    * Create a new test instance using the given parameters
    *
-   * @param weather  The weather currently being tested
-   * @param response The expected response from the observer
    * @param factory  The factory, used to create an instance of the tested observer
    */
-  WeatherObserverTest(final WeatherType weather, final String response, final Supplier<O> factory) {
-    this.weather = weather;
-    this.response = response;
+  WeatherObserverTest(final Supplier<O> factory) {
     this.factory = factory;
   }
+
+  public abstract Collection<Object[]> dataProvider();
 
   /**
    * Verify if the weather has the expected influence on the observer
    */
-  @Test
-  public void testObserver() {
-    final O observer = this.factory.get();
+  @ParameterizedTest
+  @MethodSource("dataProvider")
+  public void testObserver(WeatherType weather, String response) {
+    final var observer = this.factory.get();
     assertEquals(0, appender.getLogSize());
 
-    observer.update(this.weather);
+    observer.update(weather);
     assertEquals(response, appender.getLastMessage());
     assertEquals(1, appender.getLogSize());
   }

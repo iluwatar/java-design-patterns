@@ -7,21 +7,32 @@ package com.iluwatar.prototype {
   }
   abstract class Beast {
     + Beast()
-    + clone() : Beast {abstract}
+    + Beast(source : Beast)
+    + copy() : Beast {abstract}
+    + equals(obj : Object) : boolean
   }
   class ElfBeast {
-    + ElfBeast()
-    + clone() : Beast
+    - helpType : String
+    + ElfBeast(elfBeast : ElfBeast)
+    + ElfBeast(helpType : String)
+    + copy() : ElfBeast
+    + equals(obj : Object) : boolean
     + toString() : String
   }
   class ElfMage {
-    + ElfMage()
-    + clone() : Mage
+    - helpType : String
+    + ElfMage(elfMage : ElfMage)
+    + ElfMage(helpType : String)
+    + copy() : ElfMage
+    + equals(obj : Object) : boolean
     + toString() : String
   }
   class ElfWarlord {
-    + ElfWarlord()
-    + clone() : Warlord
+    - helpType : String
+    + ElfWarlord(elfWarlord : ElfWarlord)
+    + ElfWarlord(helpType : String)
+    + copy() : ElfWarlord
+    + equals(obj : Object) : boolean
     + toString() : String
   }
   interface HeroFactory {
@@ -40,43 +51,55 @@ package com.iluwatar.prototype {
   }
   abstract class Mage {
     + Mage()
-    + clone() : Mage {abstract}
+    + Mage(source : Mage)
+    + copy() : Mage {abstract}
+    + equals(obj : Object) : boolean
   }
   class OrcBeast {
-    + OrcBeast()
-    + clone() : Beast
+    - weapon : String
+    + OrcBeast(orcBeast : OrcBeast)
+    + OrcBeast(weapon : String)
+    + copy() : OrcBeast
+    + equals(obj : Object) : boolean
     + toString() : String
   }
   class OrcMage {
-    + OrcMage()
-    + clone() : Mage
+    - weapon : String
+    + OrcMage(orcMage : OrcMage)
+    + OrcMage(weapon : String)
+    + copy() : OrcMage
+    + equals(obj : Object) : boolean
     + toString() : String
   }
   class OrcWarlord {
-    + OrcWarlord()
-    + clone() : Warlord
+    - weapon : String
+    + OrcWarlord(orcWarlord : OrcWarlord)
+    + OrcWarlord(weapon : String)
+    + copy() : OrcWarlord
+    + equals(obj : Object) : boolean
     + toString() : String
   }
-  abstract class Prototype {
-    + Prototype()
-    + clone() : Object {abstract}
+  interface Prototype {
+    + copy() : Object {abstract}
   }
   abstract class Warlord {
     + Warlord()
-    + clone() : Warlord {abstract}
+    + Warlord(source : Warlord)
+    + copy() : Warlord {abstract}
+    + equals(obj : Object) : boolean
   }
 }
 HeroFactoryImpl -->  "-beast" Beast
 HeroFactoryImpl -->  "-warlord" Warlord
 HeroFactoryImpl -->  "-mage" Mage
-Beast --|> Prototype 
+Beast ..|> Prototype 
 ElfBeast --|> Beast 
 ElfMage --|> Mage 
 ElfWarlord --|> Warlord 
 HeroFactoryImpl ..|> HeroFactory 
-Mage --|> Prototype 
+Mage ..|> Prototype 
 OrcBeast --|> Beast 
 OrcMage --|> Mage 
 OrcWarlord --|> Warlord 
-Warlord --|> Prototype 
+Warlord ..|> Prototype 
 @enduml

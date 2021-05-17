@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.price.microservice;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class PriceControllerTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/**
+ * Test for Price Rest Controller
+ */
+class PriceControllerTest {
+
   @Test
-  public void testgetPrice() {
-    PriceController priceController = new PriceController();
-
-    String price = priceController.getPrice();
-
-    Assert.assertEquals("20", price);
+  void testgetPrice() {
+    var priceController = new PriceController();
+    var price = priceController.getPrice();
+    assertEquals("20", price);
   }
 }

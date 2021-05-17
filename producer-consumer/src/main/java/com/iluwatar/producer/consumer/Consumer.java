@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.producer.consumer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Class responsible for consume the {@link Item} produced by {@link Producer}
+ * Class responsible for consume the {@link Item} produced by {@link Producer}.
  */
+@Slf4j
 public class Consumer {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Consumer.class);
 
   private final ItemQueue queue;
 
@@ -42,12 +41,12 @@ public class Consumer {
   }
 
   /**
-   * Consume item from the queue
+   * Consume item from the queue.
    */
   public void consume() throws InterruptedException {
-
-    Item item = queue.take();
-    LOGGER.info("Consumer [{}] consume item [{}] produced by [{}]", name, item.getId(), item.getProducer());
+    var item = queue.take();
+    LOGGER.info("Consumer [{}] consume item [{}] produced by [{}]", name,
+        item.getId(), item.getProducer());
 
   }
 }

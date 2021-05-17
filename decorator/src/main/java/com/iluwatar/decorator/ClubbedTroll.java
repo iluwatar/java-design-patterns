@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,30 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.decorator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Decorator that adds a club for the troll
+ * Decorator that adds a club for the troll.
  */
-public class ClubbedTroll extends TrollDecorator {
+@Slf4j
+@RequiredArgsConstructor
+public class ClubbedTroll implements Troll {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ClubbedTroll.class);
-
-  public ClubbedTroll(Troll decorated) {
-    super(decorated);
-  }
+  private final Troll decorated;
 
   @Override
   public void attack() {
-    super.attack();
+    decorated.attack();
     LOGGER.info("The troll swings at you with a club!");
   }
 
   @Override
   public int getAttackPower() {
-    return super.getAttackPower() + 10;
+    return decorated.getAttackPower() + 10;
+  }
+
+  @Override
+  public void fleeBattle() {
+    decorated.fleeBattle();
   }
 }

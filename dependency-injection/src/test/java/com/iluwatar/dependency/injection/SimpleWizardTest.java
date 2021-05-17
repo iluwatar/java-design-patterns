@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,31 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dependency.injection;
 
-import com.iluwatar.dependency.injection.utils.InMemoryAppender;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.assertEquals;
+import com.iluwatar.dependency.injection.utils.InMemoryAppender;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/10/15 - 8:26 PM
  *
  * @author Jeroen Meulemeester
  */
-public class SimpleWizardTest {
+class SimpleWizardTest {
 
   private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     appender = new InMemoryAppender(Tobacco.class);
   }
 
-  @After
-  public void tearDown() {
+  @AfterEach
+  void tearDown() {
     appender.stop();
   }
 
@@ -53,8 +54,8 @@ public class SimpleWizardTest {
    * OldTobyTobacco}
    */
   @Test
-  public void testSmoke() {
-    final SimpleWizard simpleWizard = new SimpleWizard();
+  void testSmoke() {
+    final var simpleWizard = new SimpleWizard();
     simpleWizard.smoke();
     assertEquals("SimpleWizard smoking OldTobyTobacco", appender.getLastMessage());
     assertEquals(1, appender.getLogSize());

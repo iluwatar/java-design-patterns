@@ -1,17 +1,17 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
- * <p>
+ * Copyright © 2014-2021 Ilkka Seppälä
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * <p>
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * <p>
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,29 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.pageobject;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.iluwatar.pageobject.pages.AlbumListPage;
 import com.iluwatar.pageobject.pages.AlbumPage;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
-
+/**
+ * Test Album Page Operations
+ */
 public class AlbumPageTest {
 
-  private AlbumPage albumPage = new AlbumPage(new WebClient());
+  private final AlbumPage albumPage = new AlbumPage(new WebClient());
 
-  @Before
+  @BeforeEach
   public void setUp() {
     albumPage.navigateToPage();
   }
 
   @Test
-  public void testSaveAlbum() {
+  void testSaveAlbum() {
 
-    AlbumPage albumPageAfterChanges = albumPage
+    var albumPageAfterChanges = albumPage
         .changeAlbumTitle("25")
         .changeArtist("Adele Laurie Blue Adkins")
         .changeAlbumYear(2015)
@@ -55,8 +58,8 @@ public class AlbumPageTest {
   }
 
   @Test
-  public void testCancelChanges() {
-    AlbumListPage albumListPage = albumPage.cancelChanges();
+  void testCancelChanges() {
+    var albumListPage = albumPage.cancelChanges();
     albumListPage.navigateToPage();
     assertTrue(albumListPage.isAt());
   }

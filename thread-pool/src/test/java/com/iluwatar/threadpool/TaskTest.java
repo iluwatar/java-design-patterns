@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.threadpool;
 
-import org.junit.Test;
+import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.function.Function;
+import java.util.function.IntFunction;
 import java.util.stream.Collectors;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import java.util.stream.IntStream;
+import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/30/15 - 18:22 PM
+ * Date: 12/30/15 - 18:22 PM Test for Tasks using a Thread Pool
  *
+ * @param <T> Type of Task
  * @author Jeroen Meulemeester
  */
 public abstract class TaskTest<T extends Task> {
@@ -58,7 +60,7 @@ public abstract class TaskTest<T extends Task> {
   /**
    * The task factory, used to create new test items
    */
-  private final Function<Integer, T> factory;
+  private final IntFunction<T> factory;
 
   /**
    * The expected time needed to run the task 1 single time, in milli seconds
@@ -71,7 +73,7 @@ public abstract class TaskTest<T extends Task> {
    * @param factory               The task factory, used to create new test items
    * @param expectedExecutionTime The expected time needed to run the task 1 time, in milli seconds
    */
-  public TaskTest(final Function<Integer, T> factory, final int expectedExecutionTime) {
+  public TaskTest(final IntFunction<T> factory, final int expectedExecutionTime) {
     this.factory = factory;
     this.expectedExecutionTime = expectedExecutionTime;
   }
@@ -80,30 +82,30 @@ public abstract class TaskTest<T extends Task> {
    * Verify if the generated id is unique for each task, even if the tasks are created in separate
    * threads
    */
-  @Test(timeout = 10000)
-  public void testIdGeneration() throws Exception {
-    final ExecutorService service = Executors.newFixedThreadPool(THREAD_COUNT);
+  @Test
+  void testIdGeneration() throws Exception {
+    assertTimeout(ofMillis(10000), () -> {
+      final var service = Executors.newFixedThreadPool(THREAD_COUNT);
 
-    final List<Callable<Integer>> tasks = new ArrayList<>();
-    for (int i = 0; i < TASK_COUNT; i++) {
-      tasks.add(() -> factory.apply(1).getId());
-    }
+      final var tasks = IntStream.range(0, TASK_COUNT)
+          .<Callable<Integer>>mapToObj(i -> () -> factory.apply(1).getId())
+          .collect(Collectors.toCollection(ArrayList::new));
 
-    final List<Integer> ids = service.invokeAll(tasks)
-        .stream()
-        .map(TaskTest::get)
-        .filter(Objects::nonNull)
-        .collect(Collectors.toList());
+      final var ids = service.invokeAll(tasks)
+          .stream()
+          .map(TaskTest::get)
+          .filter(Objects::nonNull)
+          .collect(Collectors.toList());
 
-    service.shutdownNow();
+      service.shutdownNow();
 
-    final long uniqueIdCount = ids.stream()
-        .distinct()
-        .count();
+      final var uniqueIdCount = ids.stream()
+          .distinct()
+          .count();
 
-    assertEquals(TASK_COUNT, ids.size());
-    assertEquals(TASK_COUNT, uniqueIdCount);
-
+      assertEquals(TASK_COUNT, ids.size());
+      assertEquals(TASK_COUNT, uniqueIdCount);
+    });
   }
 
   /**
@@ -111,8 +113,8 @@ public abstract class TaskTest<T extends Task> {
    * a given number of times
    */
   @Test
-  public void testTimeMs() {
-    for (int i = 0; i < 10; i++) {
+  void testTimeMs() {
+    for (var i = 0; i < 10; i++) {
       assertEquals(this.expectedExecutionTime * i, this.factory.apply(i).getTimeMs());
     }
   }
@@ -121,7 +123,7 @@ public abstract class TaskTest<T extends Task> {
    * Verify if the task has some sort of {@link T#toString()}, different from 'null'
    */
   @Test
-  public void testToString() {
+  void testToString() {
     assertNotNull(this.factory.apply(0).toString());
   }
 

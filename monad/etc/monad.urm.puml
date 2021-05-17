@@ -24,8 +24,8 @@ package com.iluwatar.monad {
   }
   class Validator<T> {
     - exceptions : List<Throwable>
-    - t : T
-    - Validator<T>(t : T)
+    - obj : T
+    - Validator<T>(obj : T)
     + get() : T
     + of(t : T) : Validator<T> {static}
     + validate(projection : Function<T, U>, validation : Predicate<U>, message : String) : Validator<T>

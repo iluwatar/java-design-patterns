@@ -11,6 +11,7 @@ package com.iluwatar.factory.method {
     + manufactureWeapon(WeaponType) : Weapon {abstract}
   }
   class ElfBlacksmith {
+    - ELFARSENAL : Map<WeaponType, ElfWeapon> {static}
     + ElfBlacksmith()
     + manufactureWeapon(weaponType : WeaponType) : Weapon
   }
@@ -21,6 +22,7 @@ package com.iluwatar.factory.method {
     + toString() : String
   }
   class OrcBlacksmith {
+    - ORCARSENAL : Map<WeaponType, OrcWeapon> {static}
     + OrcBlacksmith()
     + manufactureWeapon(weaponType : WeaponType) : Weapon
   }

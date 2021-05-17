@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,41 +20,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.decorator;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.LoggerFactory;
-
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests for {@link SimpleTroll}
  */
-public class SimpleTrollTest {
+class SimpleTrollTest {
 
   private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     appender = new InMemoryAppender(SimpleTroll.class);
   }
 
-  @After
-  public void tearDown() {
+  @AfterEach
+  void tearDown() {
     appender.stop();
   }
 
   @Test
-  public void testTrollActions() throws Exception {
-    final SimpleTroll troll = new SimpleTroll();
+  void testTrollActions() {
+    final var troll = new SimpleTroll();
     assertEquals(10, troll.getAttackPower());
 
     troll.attack();
@@ -68,9 +68,9 @@ public class SimpleTrollTest {
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
-    public InMemoryAppender(Class clazz) {
+    InMemoryAppender(Class clazz) {
       ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
       start();
     }
@@ -80,11 +80,11 @@ public class SimpleTrollTest {
       log.add(eventObject);
     }
 
-    public String getLastMessage() {
+    String getLastMessage() {
       return log.get(log.size() - 1).getMessage();
     }
 
-    public int getLogSize() {
+    int getLogSize() {
       return log.size();
     }
   }

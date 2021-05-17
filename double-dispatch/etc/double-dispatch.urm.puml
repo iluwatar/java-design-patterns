@@ -1,4 +1,10 @@
 @startuml
+package com.iluwatar.doubledispatch.constants {
+  class AppConstants {
+    + HITS : String {static}
+    + AppConstants()
+  }
+}
 package com.iluwatar.doubledispatch {
   class App {
     - LOGGER : Logger {static}

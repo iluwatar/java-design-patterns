@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servicelocator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is a single service implementation of a sample service. This is the actual service that will
@@ -32,15 +32,14 @@ import org.slf4j.LoggerFactory;
  *
  * @author saifasif
  */
+@Slf4j
 public class ServiceImpl implements Service {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
 
   private final String serviceName;
   private final int id;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public ServiceImpl(String serviceName) {
     // set the service name

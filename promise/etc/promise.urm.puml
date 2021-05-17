@@ -47,6 +47,7 @@ package com.iluwatar.promise {
   ~class PromiseSupport<T> {
     - COMPLETED : int {static}
     - FAILED : int {static}
+    - LOGGER : Logger {static}
     - RUNNING : int {static}
     - exception : Exception
     - lock : Object
@@ -70,8 +71,8 @@ package com.iluwatar.promise {
     + lowestFrequencyChar(charFrequency : Map<Character, Integer>) : Character {static}
   }
 }
-TransformAction -->  "-src" Promise
 TransformAction --+ Promise
+TransformAction -->  "-src" Promise
 ConsumeAction --+ Promise
 ConsumeAction -->  "-src" Promise
 Promise --|> PromiseSupport 

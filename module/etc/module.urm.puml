@@ -3,7 +3,7 @@ package com.iluwatar.module {
   class App {
     + consoleLoggerModule : ConsoleLoggerModule {static}
     + fileLoggerModule : FileLoggerModule {static}
-    - App()
+    + App()
     + execute(args : String[]) {static}
     + main(args : String[]) {static}
     + prepare() {static}

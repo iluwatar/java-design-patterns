@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,57 +20,78 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.iterator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static com.iluwatar.iterator.list.ItemType.ANY;
+import static com.iluwatar.iterator.list.ItemType.POTION;
+import static com.iluwatar.iterator.list.ItemType.RING;
+import static com.iluwatar.iterator.list.ItemType.WEAPON;
+
+import com.iluwatar.iterator.bst.BstIterator;
+import com.iluwatar.iterator.bst.TreeNode;
+import com.iluwatar.iterator.list.ItemType;
+import com.iluwatar.iterator.list.TreasureChest;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
  * The Iterator pattern is a design pattern in which an iterator is used to traverse a container and
  * access the container's elements. The Iterator pattern decouples algorithms from containers.
- * <p>
- * In this example the Iterator ({@link ItemIterator}) adds abstraction layer on top of a collection
+ *
+ * <p>In this example the Iterator ({@link Iterator}) adds abstraction layer on top of a collection
  * ({@link TreasureChest}). This way the collection can change its internal implementation without
  * affecting its clients.
- * 
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  private static final TreasureChest TREASURE_CHEST = new TreasureChest();
+
+  private static void demonstrateTreasureChestIteratorForType(ItemType itemType) {
+    LOGGER.info("------------------------");
+    LOGGER.info("Item Iterator for ItemType " + itemType + ": ");
+    var itemIterator = TREASURE_CHEST.iterator(itemType);
+    while (itemIterator.hasNext()) {
+      LOGGER.info(itemIterator.next().toString());
+    }
+  }
+
+  private static void demonstrateBstIterator() {
+    LOGGER.info("------------------------");
+    LOGGER.info("BST Iterator: ");
+    var root = buildIntegerBst();
+    var bstIterator = new BstIterator<>(root);
+    while (bstIterator.hasNext()) {
+      LOGGER.info("Next node: " + bstIterator.next().getVal());
+    }
+  }
+
+  private static TreeNode<Integer> buildIntegerBst() {
+    var root = new TreeNode<>(8);
+
+    root.insert(3);
+    root.insert(10);
+    root.insert(1);
+    root.insert(6);
+    root.insert(14);
+    root.insert(4);
+    root.insert(7);
+    root.insert(13);
+
+    return root;
+  }
 
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
-    TreasureChest chest = new TreasureChest();
+    demonstrateTreasureChestIteratorForType(RING);
+    demonstrateTreasureChestIteratorForType(POTION);
+    demonstrateTreasureChestIteratorForType(WEAPON);
+    demonstrateTreasureChestIteratorForType(ANY);
 
-    ItemIterator ringIterator = chest.iterator(ItemType.RING);
-    while (ringIterator.hasNext()) {
-      LOGGER.info(ringIterator.next().toString());
-    }
-
-    LOGGER.info("----------");
-
-    ItemIterator potionIterator = chest.iterator(ItemType.POTION);
-    while (potionIterator.hasNext()) {
-      LOGGER.info(potionIterator.next().toString());
-    }
-
-    LOGGER.info("----------");
-
-    ItemIterator weaponIterator = chest.iterator(ItemType.WEAPON);
-    while (weaponIterator.hasNext()) {
-      LOGGER.info(weaponIterator.next().toString());
-    }
-
-    LOGGER.info("----------");
-
-    ItemIterator it = chest.iterator(ItemType.ANY);
-    while (it.hasNext()) {
-      LOGGER.info(it.next().toString());
-    }
+    demonstrateBstIterator();
   }
 }

@@ -3,16 +3,15 @@ layout: pattern
 title: Module
 folder: module
 permalink: /patterns/module/
-pumlid: JShB3OGm303HLg20nFVjnYGM1CN6ycTfVtFSsnjfzY5jPgUqkLqHwXy0mxUU8wuyqidQ8q4IjJqCO-QBWGOtVh5qyd5AKOmW4mT6Nu2-ZiAekapH_hkcSTNa-GC0
-categories: Creational Pattern
+categories: Structural
 tags:
- - Java
- - Difficulty-Beginner
+ - Decoupling
 ---
 
 ## Intent
 Module pattern is used to implement the concept of software modules, defined by modular programming, in a programming language with incomplete direct support for the concept.
 
+## Class diagram
 ![alt text](./etc/module.png "Module")
 
 ## Applicability

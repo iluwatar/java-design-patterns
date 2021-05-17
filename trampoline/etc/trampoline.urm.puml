@@ -1,0 +1,18 @@
+@startuml
+package com.iluwatar.trampoline {
+  interface Trampoline<T> {
+    + complete() : boolean
+    + done(result : T) : Trampoline<T> {static}
+    + get() : T {abstract}
+    + jump() : Trampoline<T>
+    + more(trampoline : Trampoline<Trampoline<T>>) : Trampoline<T> {static}
+    + result() : T
+  }
+  class TrampolineApp {
+    - log : Logger {static}
+    + TrampolineApp()
+    + loop(times : int, prod : int) : Trampoline<Integer> {static}
+    + main(args : String[]) {static}
+  }
+}
+@enduml

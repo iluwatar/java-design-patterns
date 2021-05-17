@@ -6,9 +6,8 @@ package com.iluwatar.composite {
     + main(args : String[]) {static}
   }
   class Letter {
-    - c : char
+    - character : char
     + Letter(c : char)
-    # printThisAfter()
     # printThisBefore()
   }
   abstract class LetterComposite {
@@ -17,8 +16,8 @@ package com.iluwatar.composite {
     + add(letter : LetterComposite)
     + count() : int
     + print()
-    # printThisAfter() {abstract}
-    # printThisBefore() {abstract}
+    # printThisAfter()
+    # printThisBefore()
   }
   class Messenger {
     + Messenger()
@@ -28,11 +27,10 @@ package com.iluwatar.composite {
   class Sentence {
     + Sentence(words : List<Word>)
     # printThisAfter()
-    # printThisBefore()
   }
   class Word {
     + Word(letters : List<Letter>)
-    # printThisAfter()
+    + Word(letters : char[])
     # printThisBefore()
   }
 }

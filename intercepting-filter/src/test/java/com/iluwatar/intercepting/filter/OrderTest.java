@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/13/15 - 2:57 PM
@@ -36,38 +37,38 @@ public class OrderTest {
   private static final String EXPECTED_VALUE = "test";
 
   @Test
-  public void testSetName() throws Exception {
-    final Order order = new Order();
+  void testSetName() {
+    final var order = new Order();
     order.setName(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getName());
   }
 
   @Test
-  public void testSetContactNumber() throws Exception {
-    final Order order = new Order();
+  void testSetContactNumber() {
+    final var order = new Order();
     order.setContactNumber(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getContactNumber());
   }
 
   @Test
-  public void testSetAddress() throws Exception {
-    final Order order = new Order();
+  void testSetAddress() {
+    final var order = new Order();
     order.setAddress(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getAddress());
   }
 
   @Test
-  public void testSetDepositNumber() throws Exception {
-    final Order order = new Order();
+  void testSetDepositNumber() {
+    final var order = new Order();
     order.setDepositNumber(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getDepositNumber());
   }
 
   @Test
-  public void testSetOrder() throws Exception {
-    final Order order = new Order();
-    order.setOrder(EXPECTED_VALUE);
-    assertEquals(EXPECTED_VALUE, order.getOrder());
+  void testSetOrder() {
+    final var order = new Order();
+    order.setOrderItem(EXPECTED_VALUE);
+    assertEquals(EXPECTED_VALUE, order.getOrderItem());
   }
 
 }

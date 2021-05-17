@@ -1,9 +1,0 @@
-@startuml
-package com.iluwatar.publish.subscribe {
-  class App {
-    - LOGGER : Logger {static}
-    + App()
-    + main(args : String[]) {static}
-  }
-}
-@enduml

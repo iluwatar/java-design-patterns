@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.promise;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.promise;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -31,98 +29,85 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Utility to perform various operations.
+ */
+@Slf4j
 public class Utility {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Utility.class);
 
   /**
    * Calculates character frequency of the file provided.
+   *
    * @param fileLocation location of the file.
    * @return a map of character to its frequency, an empty map if file does not exist.
    */
-  public static Map<Character, Integer> characterFrequency(String fileLocation) {
-    Map<Character, Integer> characterToFrequency = new HashMap<>();
-    try (Reader reader = new FileReader(fileLocation);
-        BufferedReader bufferedReader = new BufferedReader(reader)) {
-      for (String line; (line = bufferedReader.readLine()) != null;) {
-        for (char c : line.toCharArray()) {
-          if (!characterToFrequency.containsKey(c)) {
-            characterToFrequency.put(c, 1);
-          } else {
-            characterToFrequency.put(c, characterToFrequency.get(c) + 1);
-          }
-        }
-      }
+  public static Map<Character, Long> characterFrequency(String fileLocation) {
+    try (var bufferedReader = new BufferedReader(new FileReader(fileLocation))) {
+      return bufferedReader.lines()
+          .flatMapToInt(String::chars)
+          .mapToObj(x -> (char) x)
+          .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     } catch (IOException ex) {
       ex.printStackTrace();
     }
-    return characterToFrequency;
+    return Collections.emptyMap();
   }
 
   /**
-   * @return the character with lowest frequency if it exists, {@code Optional.empty()} otherwise.
+   * Return the character with the lowest frequency, if exists.
+   *
+   * @return the character, {@code Optional.empty()} otherwise.
    */
-  public static Character lowestFrequencyChar(Map<Character, Integer> charFrequency) {
-    Character lowestFrequencyChar = null;
-    Iterator<Entry<Character, Integer>> iterator = charFrequency.entrySet().iterator();
-    Entry<Character, Integer> entry = iterator.next();
-    int minFrequency = entry.getValue();
-    lowestFrequencyChar = entry.getKey();
-
-    while (iterator.hasNext()) {
-      entry = iterator.next();
-      if (entry.getValue() < minFrequency) {
-        minFrequency = entry.getValue();
-        lowestFrequencyChar = entry.getKey();
-      }
-    }
-
-    return lowestFrequencyChar;
+  public static Character lowestFrequencyChar(Map<Character, Long> charFrequency) {
+    return charFrequency
+        .entrySet()
+        .stream()
+        .min(Comparator.comparingLong(Entry::getValue))
+        .map(Entry::getKey)
+        .orElseThrow();
   }
 
   /**
-   * @return number of lines in the file at provided location. 0 if file does not exist.
+   * Count the number of lines in a file.
+   *
+   * @return number of lines, 0 if file does not exist.
    */
   public static Integer countLines(String fileLocation) {
-    int lineCount = 0;
-    try (Reader reader = new FileReader(fileLocation);
-        BufferedReader bufferedReader = new BufferedReader(reader)) {
-      while (bufferedReader.readLine() != null) {
-        lineCount++;
-      }
+    try (var bufferedReader = new BufferedReader(new FileReader(fileLocation))) {
+      return (int) bufferedReader.lines().count();
     } catch (IOException ex) {
       ex.printStackTrace();
     }
-    return lineCount;
+    return 0;
   }
 
   /**
    * Downloads the contents from the given urlString, and stores it in a temporary directory.
+   *
    * @return the absolute path of the file downloaded.
    */
-  public static String downloadFile(String urlString) throws MalformedURLException, IOException {
+  public static String downloadFile(String urlString) throws IOException {
     LOGGER.info("Downloading contents from url: {}", urlString);
-    URL url = new URL(urlString);
-    File file = File.createTempFile("promise_pattern", null);
-    try (Reader reader = new InputStreamReader(url.openStream());
-        BufferedReader bufferedReader = new BufferedReader(reader);
-        FileWriter writer = new FileWriter(file)) {
-      for (String line; (line = bufferedReader.readLine()) != null; ) {
+    var url = new URL(urlString);
+    var file = File.createTempFile("promise_pattern", null);
+    try (var bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
+         var writer = new FileWriter(file)) {
+      String line;
+      while ((line = bufferedReader.readLine()) != null) {
         writer.write(line);
         writer.write("\n");
       }
       LOGGER.info("File downloaded at: {}", file.getAbsolutePath());
       return file.getAbsolutePath();
-    } catch (IOException ex) {
-      throw ex;
     }
   }
 }

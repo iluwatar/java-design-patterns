@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,44 +20,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.builder;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/6/15 - 11:01 PM
  *
  * @author Jeroen Meulemeester
  */
-public class HeroTest {
+class HeroTest {
 
   /**
    * Test if we get the expected exception when trying to create a hero without a profession
    */
-  @Test(expected = IllegalArgumentException.class)
-  public void testMissingProfession() throws Exception {
-    new Hero.Builder(null, "Sir without a job");
+  @Test
+  void testMissingProfession() {
+    assertThrows(IllegalArgumentException.class, () -> new Hero.Builder(null, "Sir without a job"));
   }
 
   /**
    * Test if we get the expected exception when trying to create a hero without a name
    */
-  @Test(expected = IllegalArgumentException.class)
-  public void testMissingName() throws Exception {
-    new Hero.Builder(Profession.THIEF, null);
+  @Test
+  void testMissingName() {
+    assertThrows(IllegalArgumentException.class, () -> new Hero.Builder(Profession.THIEF, null));
   }
 
   /**
    * Test if the hero build by the builder has the correct attributes, as requested
    */
   @Test
-  public void testBuildHero() throws Exception {
+  void testBuildHero() {
     final String heroName = "Sir Lancelot";
 
-    final Hero hero = new Hero.Builder(Profession.WARRIOR, heroName)
+    final var hero = new Hero.Builder(Profession.WARRIOR, heroName)
         .withArmor(Armor.CHAIN_MAIL)
         .withWeapon(Weapon.SWORD)
         .withHairType(HairType.LONG_CURLY)

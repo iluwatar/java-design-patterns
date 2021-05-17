@@ -1,22 +1,28 @@
 @startuml
+package com.iluwatar.abstractdocument.domain.enums {
+  enum Property {
+    + MODEL {static}
+    + PARTS {static}
+    + PRICE {static}
+    + TYPE {static}
+    + valueOf(name : String) : Property {static}
+    + values() : Property[] {static}
+  }
+}
 package com.iluwatar.abstractdocument.domain {
   class Car {
     + Car(properties : Map<String, Object>)
   }
   interface HasModel {
-    + PROPERTY : String {static}
     + getModel() : Optional<String>
   }
   interface HasParts {
-    + PROPERTY : String {static}
     + getParts() : Stream<Part>
   }
   interface HasPrice {
-    + PROPERTY : String {static}
     + getPrice() : Optional<Number>
   }
   interface HasType {
-    + PROPERTY : String {static}
     + getType() : Optional<String>
   }
   class Part {

@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.datamapper {
   class App {
+    - STUDENT_STRING : String {static}
     - log : Logger {static}
     - App()
     + main(args : String[]) {static}

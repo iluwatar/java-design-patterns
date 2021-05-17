@@ -6,6 +6,9 @@ package com.iluwatar.event.asynchronous {
     ~ interactiveMode : boolean
     + App()
     + main(args : String[]) {static}
+    - processOption1(eventManager : EventManager, s : Scanner)
+    - processOption2(eventManager : EventManager, s : Scanner)
+    - processOption3(eventManager : EventManager, s : Scanner)
     + quickRun()
     + run()
     + runInteractiveMode()
@@ -30,6 +33,7 @@ package com.iluwatar.event.asynchronous {
     + stop()
   }
   class EventManager {
+    - DOES_NOT_EXIST : String {static}
     + MAX_EVENT_TIME : int {static}
     + MAX_ID : int {static}
     + MAX_RUNNING_EVENTS : int {static}

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,49 +20,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.caching;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
- *
  * Application test
- *
  */
-public class CachingTest {
-  App app;
+class CachingTest {
+  private App app;
 
   /**
    * Setup of application test includes: initializing DB connection and cache size/capacity.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
-    AppManager.initDb(false); // VirtualDB (instead of MongoDB) was used in running the JUnit tests
-                              // to avoid Maven compilation errors. Set flag to true to run the
-                              // tests with MongoDB (provided that MongoDB is installed and socket
-                              // connection is open).
+    // VirtualDB (instead of MongoDB) was used in running the JUnit tests
+    // to avoid Maven compilation errors. Set flag to true to run the
+    // tests with MongoDB (provided that MongoDB is installed and socket
+    // connection is open).
+    AppManager.initDb(false);
     AppManager.initCacheCapacity(3);
     app = new App();
   }
 
   @Test
-  public void testReadAndWriteThroughStrategy() {
+  void testReadAndWriteThroughStrategy() {
+	assertNotNull(app);
     app.useReadAndWriteThroughStrategy();
   }
 
   @Test
-  public void testReadThroughAndWriteAroundStrategy() {
+  void testReadThroughAndWriteAroundStrategy() {
+	assertNotNull(app);
     app.useReadThroughAndWriteAroundStrategy();
   }
 
   @Test
-  public void testReadThroughAndWriteBehindStrategy() {
+  void testReadThroughAndWriteBehindStrategy() {
+	assertNotNull(app);
     app.useReadThroughAndWriteBehindStrategy();
   }
 
   @Test
-  public void testCacheAsideStrategy() {
+  void testCacheAsideStrategy() {
+	assertNotNull(app);
     app.useCacheAsideStategy();
   }
 }

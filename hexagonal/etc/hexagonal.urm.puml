@@ -2,6 +2,7 @@
 package com.iluwatar.hexagonal.sampledata {
   class SampleData {
     - PLAYERS : List<PlayerDetails> {static}
+    - RANDOM : Random {static}
     + SampleData()
     - getRandomPlayerDetails() : PlayerDetails {static}
     + submitTickets(lotteryService : LotteryService, numTickets : int) {static}
@@ -11,13 +12,24 @@ package com.iluwatar.hexagonal.service {
   class ConsoleLottery {
     - LOGGER : Logger {static}
     + ConsoleLottery()
-    - addFundsToLotteryAccount(bank : WireTransfers, scanner : Scanner) {static}
-    - checkTicket(service : LotteryService, scanner : Scanner) {static}
     + main(args : String[]) {static}
     - printMainMenu() {static}
-    - queryLotteryAccountFunds(bank : WireTransfers, scanner : Scanner) {static}
     - readString(scanner : Scanner) : String {static}
-    - submitTicket(service : LotteryService, scanner : Scanner) {static}
+  }
+  interface LotteryConsoleService {
+    + addFundsToLotteryAccount(WireTransfers, Scanner) {abstract}
+    + checkTicket(LotteryService, Scanner) {abstract}
+    + queryLotteryAccountFunds(WireTransfers, Scanner) {abstract}
+    + submitTicket(LotteryService, Scanner) {abstract}
+  }
+  class LotteryConsoleServiceImpl {
+    - logger : Logger
+    + LotteryConsoleServiceImpl(logger : Logger)
+    + addFundsToLotteryAccount(bank : WireTransfers, scanner : Scanner)
+    + checkTicket(service : LotteryService, scanner : Scanner)
+    + queryLotteryAccountFunds(bank : WireTransfers, scanner : Scanner)
+    - readString(scanner : Scanner) : String
+    + submitTicket(service : LotteryService, scanner : Scanner)
   }
 }
 package com.iluwatar.hexagonal.mongo {
@@ -39,10 +51,10 @@ package com.iluwatar.hexagonal.domain {
     + resetLottery()
   }
   class LotteryConstants {
-    + PLAYER_MAX_SALDO : int {static}
+    + PLAYER_MAX_BALANCE : int {static}
     + PRIZE_AMOUNT : int {static}
     + SERVICE_BANK_ACCOUNT : String {static}
-    + SERVICE_BANK_ACCOUNT_SALDO : int {static}
+    + SERVICE_BANK_ACCOUNT_BALANCE : int {static}
     + TICKET_PRIZE : int {static}
     - LotteryConstants()
   }
@@ -107,7 +119,7 @@ package com.iluwatar.hexagonal.domain {
   }
   class LotteryTicketId {
     - id : int
-    - numAllocated : int {static}
+    - numAllocated : AtomicInteger {static}
     + LotteryTicketId()
     + LotteryTicketId(id : int)
     + equals(o : Object) : boolean
@@ -138,7 +150,7 @@ package com.iluwatar.hexagonal.banking {
     + InMemoryBank()
     + getFunds(bankAccount : String) : int
     + setFunds(bankAccount : String, amount : int)
-    + transferFunds(amount : int, sourceBackAccount : String, destinationBankAccount : String) : boolean
+    + transferFunds(amount : int, sourceAccount : String, destinationAccount : String) : boolean
   }
   class MongoBank {
     - DEFAULT_ACCOUNTS_COLLECTION : String {static}
@@ -155,7 +167,7 @@ package com.iluwatar.hexagonal.banking {
     + getMongoClient() : MongoClient
     + getMongoDatabase() : MongoDatabase
     + setFunds(bankAccount : String, amount : int)
-    + transferFunds(amount : int, sourceBackAccount : String, destinationBankAccount : String) : boolean
+    + transferFunds(amount : int, sourceAccount : String, destinationAccount : String) : boolean
   }
   interface WireTransfers {
     + getFunds(String) : int {abstract}
@@ -195,8 +207,6 @@ package com.iluwatar.hexagonal.database {
     + findAll() : Map<LotteryTicketId, LotteryTicket>
     + findById(id : LotteryTicketId) : Optional<LotteryTicket>
     + getCountersCollection() : MongoCollection<Document>
-    + getMongoClient() : MongoClient
-    + getMongoDatabase() : MongoDatabase
     + getNextId() : int
     + getTicketsCollection() : MongoCollection<Document>
     - initCounters()
@@ -216,6 +226,19 @@ package com.iluwatar.hexagonal.administration {
     + main(args : String[]) {static}
     - printMainMenu() {static}
     - readString(scanner : Scanner) : String {static}
+  }
+  interface ConsoleAdministrationSrv {
+    + getAllSubmittedTickets() {abstract}
+    + performLottery() {abstract}
+    + resetLottery() {abstract}
+  }
+  class ConsoleAdministrationSrvImpl {
+    - administration : LotteryAdministration
+    - logger : Logger
+    + ConsoleAdministrationSrvImpl(administration : LotteryAdministration, logger : Logger)
+    + getAllSubmittedTickets()
+    + performLottery()
+    + resetLottery()
   }
 }
 package com.iluwatar.hexagonal.eventlog {
@@ -261,19 +284,22 @@ MongoEventLog -->  "-stdOutEventLog" StdOutEventLog
 LotteryService -->  "-wireTransfers" WireTransfers
 LotteryAdministration -->  "-notifications" LotteryEventLog
 LotteryAdministration -->  "-wireTransfers" WireTransfers
-LotteryService -->  "-notifications" LotteryEventLog
 LotteryTicket -->  "-id" LotteryTicketId
 LotteryAdministration -->  "-repository" LotteryTicketRepository
+LotteryService -->  "-notifications" LotteryEventLog
 LotteryTicket -->  "-lotteryNumbers" LotteryNumbers
 SampleData -->  "-PLAYERS" PlayerDetails
+ConsoleAdministrationSrvImpl -->  "-administration" LotteryAdministration
 RandomNumberGenerator ..+ LotteryNumbers
 LotteryService -->  "-repository" LotteryTicketRepository
 CheckResult ..+ LotteryTicketCheckResult
 LotteryTicketCheckResult -->  "-checkResult" CheckResult
+ConsoleAdministrationSrvImpl ..|> ConsoleAdministrationSrv 
 InMemoryBank ..|> WireTransfers 
 MongoBank ..|> WireTransfers 
 InMemoryTicketRepository ..|> LotteryTicketRepository 
 MongoTicketRepository ..|> LotteryTicketRepository 
 MongoEventLog ..|> LotteryEventLog 
 StdOutEventLog ..|> LotteryEventLog 
+LotteryConsoleServiceImpl ..|> LotteryConsoleService 
 @enduml

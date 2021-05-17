@@ -6,7 +6,6 @@ package com.iluwatar.flyweight {
     - topShelf : List<Potion>
     + AlchemistShop()
     + enumerate()
-    - fillShelves()
     + getBottomShelf() : List<Potion>
     + getTopShelf() : List<Potion>
   }

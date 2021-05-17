@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.specification.property;
 
 /**
- * 
  * Movement property.
- *
  */
 public enum Movement {
 
   WALKING("walking"), SWIMMING("swimming"), FLYING("flying");
 
-  private String title;
+  private final String title;
 
   Movement(String title) {
     this.title = title;

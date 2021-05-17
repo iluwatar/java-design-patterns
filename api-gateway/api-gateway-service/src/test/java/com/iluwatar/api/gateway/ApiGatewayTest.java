@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.api.gateway;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
-
-public class ApiGatewayTest {
+/**
+ * Test API Gateway Pattern
+ */
+class ApiGatewayTest {
 
   @InjectMocks
   private ApiGateway apiGateway;
@@ -42,7 +46,7 @@ public class ApiGatewayTest {
   @Mock
   private PriceClient priceClient;
 
-  @Before
+  @BeforeEach
   public void setup() {
     MockitoAnnotations.initMocks(this);
   }
@@ -51,13 +55,13 @@ public class ApiGatewayTest {
    * Tests getting the data for a desktop client
    */
   @Test
-  public void testGetProductDesktop() {
-    String imagePath = "/product-image.png";
-    String price = "20";
+  void testGetProductDesktop() {
+    var imagePath = "/product-image.png";
+    var price = "20";
     when(imageClient.getImagePath()).thenReturn(imagePath);
     when(priceClient.getPrice()).thenReturn(price);
 
-    DesktopProduct desktopProduct = apiGateway.getProductDesktop();
+    var desktopProduct = apiGateway.getProductDesktop();
 
     assertEquals(price, desktopProduct.getPrice());
     assertEquals(imagePath, desktopProduct.getImagePath());
@@ -67,11 +71,11 @@ public class ApiGatewayTest {
    * Tests getting the data for a mobile client
    */
   @Test
-  public void testGetProductMobile() {
-    String price = "20";
+  void testGetProductMobile() {
+    var price = "20";
     when(priceClient.getPrice()).thenReturn(price);
 
-    MobileProduct mobileProduct = apiGateway.getProductMobile();
+    var mobileProduct = apiGateway.getProductMobile();
 
     assertEquals(price, mobileProduct.getPrice());
   }

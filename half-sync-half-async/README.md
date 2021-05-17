@@ -3,11 +3,9 @@ layout: pattern
 title: Half-Sync/Half-Async
 folder: half-sync-half-async
 permalink: /patterns/half-sync-half-async/
-pumlid: RScv3SCm3030LU819FRPXg5fIm552tnYPFiyjRi3RkbAaYkdoQr5JBy369vrxz7oaSv6XmPhL3e6TCaJ0msU-CAoilTToyG8DdKOw5z0GzcAlvNAN_WZSD1brBHHPmxv0000
 categories: Concurrency
 tags:
- - Java
- - Difficulty-Intermediate
+ - Performance
 ---
 
 ## Intent
@@ -15,6 +13,7 @@ The Half-Sync/Half-Async pattern decouples synchronous I/O from
 asynchronous I/O in a system to simplify concurrent programming effort without
 degrading execution efficiency.
 
+## Class diagram
 ![Half-Sync/Half-Async class diagram](./etc/half-sync-half-async.png)
 
 ## Applicability
@@ -28,11 +27,11 @@ Use Half-Sync/Half-Async pattern when
 
 ## Real world examples
 
-* [BSD Unix networking subsystem](http://www.cs.wustl.edu/~schmidt/PDF/PLoP-95.pdf)
+* [BSD Unix networking subsystem](https://www.dre.vanderbilt.edu/~schmidt/PDF/PLoP-95.pdf)
 * [Real Time CORBA](http://www.omg.org/news/meetings/workshops/presentations/realtime2001/4-3_Pyarali_thread-pool.pdf)
 * [Android AsyncTask framework](http://developer.android.com/reference/android/os/AsyncTask.html)
 
 ## Credits
 
-* [Douglas C. Schmidt and Charles D. Cranor - Half Sync/Half Async](http://www.cs.wustl.edu/~schmidt/PDF/PLoP-95.pdf)
-* [Pattern Oriented Software Architecture Vol I-V](http://www.amazon.com/Pattern-Oriented-Software-Architecture-Volume-Patterns/dp/0471958697)
+* [Douglas C. Schmidt and Charles D. Cranor - Half Sync/Half Async](https://www.dre.vanderbilt.edu/~schmidt/PDF/PLoP-95.pdf)
+* [Pattern Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://www.amazon.com/gp/product/0471606952/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0471606952&linkCode=as2&tag=javadesignpat-20&linkId=889e4af72dca8261129bf14935e0f8dc)

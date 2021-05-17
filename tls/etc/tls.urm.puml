@@ -1,0 +1,25 @@
+@startuml
+package com.iluwatar.tls {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+    - printAndCountDates(res : Result) : int {static}
+    - printAndCountExceptions(res : Result) : int {static}
+  }
+  class DateFormatCallable {
+    - LOGGER : Logger {static}
+    - dateValue : String
+    - df : ThreadLocal<DateFormat>
+    + DateFormatCallable(inDateFormat : String, inDateValue : String)
+    + call() : Result
+  }
+  class Result {
+    - dateList : List<Date>
+    - exceptionList : List<String>
+    + Result()
+    + getDateList() : List<Date>
+    + getExceptionList() : List<String>
+  }
+}
+@enduml

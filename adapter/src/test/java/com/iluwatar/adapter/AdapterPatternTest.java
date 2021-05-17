@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.adapter;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,51 +34,45 @@ import static org.mockito.Mockito.verify;
 
 /**
  * Test class
- * 
  */
-public class AdapterPatternTest {
+class AdapterPatternTest {
 
   private Map<String, Object> beans;
 
-  private static final String BATTLESHIP_BEAN = "engineer";
+  private static final String FISHING_BEAN = "fisher";
 
-  private static final String CAPTAIN_BEAN = "captain";
+  private static final String ROWING_BEAN = "captain";
 
   /**
    * This method runs before the test execution and sets the bean objects in the beans Map.
    */
-  @Before
+  @BeforeEach
   public void setup() {
     beans = new HashMap<>();
 
-    BattleFishingBoat battleFishingBoat = spy(new BattleFishingBoat());
-    beans.put(BATTLESHIP_BEAN, battleFishingBoat);
+    var fishingBoatAdapter = spy(new FishingBoatAdapter());
+    beans.put(FISHING_BEAN, fishingBoatAdapter);
 
-    Captain captain = new Captain();
-    captain.setBattleship((BattleFishingBoat) beans.get(BATTLESHIP_BEAN));
-    beans.put(CAPTAIN_BEAN, captain);
+    var captain = new Captain();
+    captain.setRowingBoat((FishingBoatAdapter) beans.get(FISHING_BEAN));
+    beans.put(ROWING_BEAN, captain);
   }
 
   /**
-   * This test asserts that when we use the move() method on a captain bean(client), it is
-   * internally calling move method on the battleship object. The Adapter ({@link BattleFishingBoat}
-   * ) converts the interface of the target class ( {@link FishingBoat}) into a suitable one
-   * expected by the client ({@link Captain} ).
+   * This test asserts that when we use the row() method on a captain bean(client), it is internally
+   * calling sail method on the fishing boat object. The Adapter ({@link FishingBoatAdapter} )
+   * converts the interface of the target class ( {@link FishingBoat}) into a suitable one expected
+   * by the client ({@link Captain} ).
    */
   @Test
-  public void testAdapter() {
-    BattleShip captain = (BattleShip) beans.get(CAPTAIN_BEAN);
+  void testAdapter() {
+    var captain = (Captain) beans.get(ROWING_BEAN);
 
     // when captain moves
-    captain.move();
+    captain.row();
 
     // the captain internally calls the battleship object to move
-    BattleShip battleship = (BattleShip) beans.get(BATTLESHIP_BEAN);
-    verify(battleship).move();
-
-    // same with above with firing
-    captain.fire();
-    verify(battleship).fire();
-
+    var adapter = (RowingBoat) beans.get(FISHING_BEAN);
+    verify(adapter).row();
   }
 }
