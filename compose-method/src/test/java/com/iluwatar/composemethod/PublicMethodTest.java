@@ -16,7 +16,7 @@ class PublicMethodTest {//NOPMD
   void nextTest() {
     final Node node1 = new Node();
     final Node node2 = new Node();
-    node1.next = node2;
+    node1.setNext(node2);
     Node tail = node1;
     tail = AddImpl.nextNode(tail);
     assertEquals(tail, node2, "correctly point to the next node.");
@@ -39,7 +39,7 @@ class PublicMethodTest {//NOPMD
    */
   void growthTest() {
     final Node node1 = new Node();
-    node1.nums = new int[]{1};
+    node1.setNums(new int[]{1});
     assertEquals(1, AddImpl.numberGrowth(node1), "correctly added.");
   }
 
@@ -49,7 +49,7 @@ class PublicMethodTest {//NOPMD
    */
   void nullGrowthTest() {
     final Node node1 = new Node();
-    node1.nums = new int[0];
+    node1.setNums(new int[0]);
     assertEquals(0, AddImpl.numberGrowth(node1), "check empty list.");
   }
 
@@ -59,7 +59,7 @@ class PublicMethodTest {//NOPMD
    */
   void originalTest() {
     final Node head = new Node();
-    head.nums = new int[]{1};
+    head.setNums(new int[]{1});
     assertEquals(1, AddImpl.addPositiveNodesOriginal(head), "correct added.");
   }
 
@@ -77,7 +77,7 @@ class PublicMethodTest {//NOPMD
    */
   void refinedTest() {
     final Node head = new Node();
-    head.nums = new int[]{1};
+    head.setNums(new int[]{1});
     assertEquals(1, AddImpl.addPositiveNodesRefined(head), "check the calculation of the method.");
   }
 
@@ -112,7 +112,7 @@ class PublicMethodTest {//NOPMD
    */
   void lengthTest() {
     final Node head = new Node();
-    head.nums = new int[]{1};
+    head.setNums(new int[]{1});
     assertTrue(AddImpl.lengthDetect(head), "the length of the list is not null.");
   }
 
@@ -122,7 +122,7 @@ class PublicMethodTest {//NOPMD
    */
   void zeroLengthDetect() {
     final Node head = new Node();
-    head.nums = new int[0];
+    head.setNums(new int[0]);
     assertFalse(AddImpl.lengthDetect(head), "the length of list of the node is 0.");
   }
 
@@ -132,8 +132,8 @@ class PublicMethodTest {//NOPMD
    */
   void growTest() {
     final Node head = new Node();
-    head.nums = new int[]{1, 2};
-    assertEquals(3, AddImpl.grow(head.nums), "correctly added.");
+    head.setNums(new int[]{1, 2});
+    assertEquals(3, AddImpl.grow(head.getNums()), "correctly added.");
   }
 
   @Test

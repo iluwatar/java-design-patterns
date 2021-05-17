@@ -10,6 +10,13 @@ public class AddImpl { //NOPMD
   private static final int DEFAULT_NUMBER = 0;
 
   /**
+   * should not be initialized.
+   */
+  private AddImpl() {
+    throw new UnsupportedOperationException();
+  }
+
+  /**
    * original add method.
    *
    * @param head the head of the list.
@@ -17,16 +24,16 @@ public class AddImpl { //NOPMD
    */
   public static int addPositiveNodesOriginal(final Node head) {
     Node tail = head;
-    int rtn = 0;
+    var rtn = 0;
     while (tail != null) {
-      if (tail.nums.length > 0) {
-        for (int i = 0; i < tail.nums.length; i++) {
-          if (tail.nums[i] > 0) {
-            rtn += tail.nums[i];
+      if (tail.getNums().length > 0) {
+        for (var i = 0; i < tail.getNums().length; i++) {
+          if (tail.getNums()[i] > 0) {
+            rtn += tail.getNums()[i];
           }
         }
       }
-      tail = tail.next;
+      tail = tail.getNext();
     }
     return rtn;
   }
@@ -39,7 +46,7 @@ public class AddImpl { //NOPMD
    */
   public static int addPositiveNodesRefined(final Node head) {
     Node tail = head;
-    int rtn = 0;
+    var rtn = 0;
     while (nodeDetect(tail)) {
       rtn += numberGrowth(tail);
       tail = nextNode(tail);
@@ -54,7 +61,7 @@ public class AddImpl { //NOPMD
    * @return the next node of the current node.
    */
   public static Node nextNode(final Node tail) {
-    return tail.next;
+    return tail.getNext();
   }
 
   /**
@@ -66,7 +73,7 @@ public class AddImpl { //NOPMD
   public static int numberGrowth(final Node tail) {
     int result;
     if (lengthDetect(tail)) {
-      result = grow(tail.nums); //NOPMD
+      result = grow(tail.getNums()); //NOPMD
     } else {
       result = DEFAULT_NUMBER; //NOPMD
     }
@@ -90,7 +97,7 @@ public class AddImpl { //NOPMD
    * @return whether its list is positive.
    */
   public static boolean lengthDetect(final Node tail) {
-    return tail.nums.length > 0;
+    return tail.getNums().length > 0;
   }
 
   /**
@@ -100,7 +107,7 @@ public class AddImpl { //NOPMD
    * @return the sum of the numbers.
    */
   public static int grow(int[] nums) { //NOPMD
-    int rtn = 0;
+    var rtn = 0;
     for (final int x :
             nums) {
       rtn += numGrow(x);
