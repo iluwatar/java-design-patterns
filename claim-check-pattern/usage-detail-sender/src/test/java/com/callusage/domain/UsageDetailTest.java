@@ -25,7 +25,12 @@ public class UsageDetailTest {
 	@Test
 	public void testHashCode() {
 
-		assertNotNull(this.usageDetail.hashCode());
+		UsageDetail usageDetail1 = new UsageDetail();
+		usageDetail1.setData(1);
+		usageDetail1.setDuration(1);
+		usageDetail1.setUserId("Marry");
+		
+		assertEquals(this.usageDetail.hashCode(), usageDetail1.hashCode());
 	}
 
 	@Test

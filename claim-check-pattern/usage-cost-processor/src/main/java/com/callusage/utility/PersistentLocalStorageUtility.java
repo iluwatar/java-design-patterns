@@ -36,7 +36,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.springframework.stereotype.Service;
@@ -51,11 +50,10 @@ import org.springframework.stereotype.Service;
 public class PersistentLocalStorageUtility implements IPersistentCommonStorageUtility {
     @Override
     public Message readMessageFromPersistentStorage(MessageHeader messageHeader) {
-    	Gson gson = new Gson();
+    	var gson = new Gson();
     	Message<UsageDetail> message = null;
-    	Type typeToken = new TypeToken<Message<UsageDetail>>() { }.getType();
+    	var typeToken = new TypeToken<Message<UsageDetail>>() { }.getType();
     	try {
-    		//Files.createDirectories(Paths.get(messageHeader.getDataLocation()));
 			message = gson.fromJson(new BufferedReader(new FileReader(messageHeader.getDataLocation()+"\\"+messageHeader.getDataFileName())),
 					typeToken);
 		} catch (JsonSyntaxException | JsonIOException | IOException e) {
@@ -66,10 +64,10 @@ public class PersistentLocalStorageUtility implements IPersistentCommonStorageUt
 
     @Override
     public void dropMessageToPersistentStorage(Message message) {
-    	Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    	var gson = new GsonBuilder().setPrettyPrinting().create();
     	try {
     		Files.createDirectories(Paths.get(message.getMessageHeader().getDataLocation()));
-    		FileWriter fileWriter =  new FileWriter(message.getMessageHeader().getDataLocation()+"\\"+message.getMessageHeader().getDataFileName());
+    		var fileWriter =  new FileWriter(message.getMessageHeader().getDataLocation()+"\\"+message.getMessageHeader().getDataFileName());
 			gson.toJson(message,fileWriter);
 			fileWriter.flush();
 			fileWriter.close();

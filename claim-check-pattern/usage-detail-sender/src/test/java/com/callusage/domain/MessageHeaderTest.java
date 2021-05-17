@@ -20,7 +20,12 @@ public class MessageHeaderTest {
 
 	@Test
 	public void testHashCode() {
-		assertNotNull(this.messageHeader.hashCode());
+		MessageHeader messageHeader1 = new MessageHeader();
+		messageHeader1.setDataFileName("input.json");
+		messageHeader1.setDataLocation("C://tmp");
+		messageHeader1.setOperataionName("Cost Calculator");
+		
+		assertEquals(this.messageHeader.hashCode(), messageHeader1.hashCode());
 	}
 
 	@Test

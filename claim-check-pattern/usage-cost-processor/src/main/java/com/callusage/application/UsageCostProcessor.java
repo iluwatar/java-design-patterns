@@ -33,7 +33,9 @@ import com.callusage.interfaces.IPersistentCommonStorageUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
+
 import org.springframework.cloud.stream.messaging.Processor;
+import static org.springframework.cloud.stream.messaging.Processor.INPUT;
 
 /**
  * 
@@ -44,12 +46,12 @@ enum Rate{
 	RATE_PER_SECOND(0.1),
 	RATE_PER_MB(0.05);
 
-	private double rate;
-	Rate(double rate) {
-		this.rate = rate;
+	private double rateValue;
+	Rate(double rateValue) {
+		this.rateValue = rateValue;
 	}
-	public double getRate() {
-		return this.rate;
+	public double getRateValue() {
+		return this.rateValue;
 	}
 }
 /**
@@ -63,30 +65,30 @@ public class UsageCostProcessor {
 	@Autowired
 	IPersistentCommonStorageUtility persistentCommonStorageUtility;
 	
-	private double ratePerSecond = Rate.RATE_PER_SECOND.getRate();
+	private double ratePerSecond = Rate.RATE_PER_SECOND.getRateValue();
 
-	private double ratePerMB = Rate.RATE_PER_MB.getRate();
+	private double ratePerMB = Rate.RATE_PER_MB.getRateValue();
 
-	@StreamListener(Processor.INPUT)
+	@StreamListener(INPUT)
 	public void processUsageCost(MessageHeader inputMessageHeader) {
 		
 		Message<UsageDetail> inputMessage = this.persistentCommonStorageUtility.readMessageFromPersistentStorage(inputMessageHeader);
-		UsageDetail usageDetail = (UsageDetail)inputMessage.getMessageData().getData();
+		var usageDetail = inputMessage.getMessageData().getData();
 		
 		// Calculate call cost
-		UsageCostDetail usageCostDetail = new UsageCostDetail();
+		var usageCostDetail = new UsageCostDetail();
 		usageCostDetail.setUserId(usageDetail.getUserId());
 		usageCostDetail.setCallCost(usageDetail.getDuration() * this.ratePerSecond);
 		usageCostDetail.setDataCost(usageDetail.getData() * this.ratePerMB);
 
 		// Create message to drop
-		MessageHeader messageHeader = new MessageHeader();
+		var messageHeader = new MessageHeader();
 		messageHeader.setOperataionName(inputMessage.getMessageHeader().getOperataionName());
 		String dataLocation = inputMessage.getMessageHeader().getDataLocation();
 		messageHeader.setDataLocation(dataLocation);
 		messageHeader.setDataFileName("output.json");
-		MessageData<UsageCostDetail> messageData = new MessageData<UsageCostDetail>(usageCostDetail);
-		Message<UsageCostDetail> message = new Message<UsageCostDetail>(messageHeader,messageData);
+		MessageData<UsageCostDetail> messageData = new MessageData<>(usageCostDetail);
+		Message<UsageCostDetail> message = new Message<>(messageHeader,messageData);
 
 		// Drop message to common storage
 		

@@ -33,7 +33,22 @@ public class MessageTest {
 
 	@Test
 	public void testHashCode() {
-		assertNotNull(this.message.hashCode());
+		
+		MessageHeader messageHeader1 = new MessageHeader();
+		messageHeader1.setDataFileName("input.json");
+		messageHeader1.setDataLocation("C://tmp");
+		messageHeader1.setOperataionName("Cost Calculator");
+		
+		UsageDetail usageDetail1 = new UsageDetail();
+		usageDetail1.setData(1);
+		usageDetail1.setDuration(1);
+		usageDetail1.setUserId("Marry");
+		
+		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(usageDetail);
+		
+		Message message1 = new Message<UsageDetail>(messageHeader1, messageData1);
+		
+		assertEquals(this.message.hashCode(), message1.hashCode());
 	}
 
 	@Test

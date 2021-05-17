@@ -60,17 +60,6 @@ public class UsageDetailSenderTest {
 	}
 
 
-
-	@Test
-	public void testSetCount() {
-		
-		try {
-			UsageDetailSender.setCount(0);
-		}catch(Exception e) {
-		     fail("SetCount method failed: "+e.getStackTrace());
-		}
-	}
-
 	@Test
 	public void testSendEvents() {
 

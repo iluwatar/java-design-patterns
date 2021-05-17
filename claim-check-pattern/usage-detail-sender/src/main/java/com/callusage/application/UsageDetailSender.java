@@ -55,9 +55,9 @@ public class UsageDetailSender {
 
 	@Autowired
 	private IPersistentCommonStorageUtility persistentcommonStorageUtility;
-
-	public static void setCount(long count) {
-		UsageDetailSender.count = count;
+	
+	public static void incrementCount() {
+		count+=1;
 	}
 
 	private static long count = 1;
@@ -65,21 +65,21 @@ public class UsageDetailSender {
 
 	@Scheduled(fixedDelay = 5000)
 	public void sendEvents() {
-		UsageDetail usageDetail = new UsageDetail();
-		usageDetail.setUserId(this.users[new Random().nextInt(5)]+"-"+String.valueOf(count));
-		count+=1;
+		var usageDetail = new UsageDetail();
+		usageDetail.setUserId(this.users[new Random().nextInt(5)]+"-"+count);
+		incrementCount();
 		usageDetail.setDuration(new Random().nextInt(300));
 		usageDetail.setData(new Random().nextInt(700));
 		
-		MessageHeader messageHeader = new MessageHeader();
+		var messageHeader = new MessageHeader();
 		messageHeader.setDataLocation(System.getenv("LOCALAPPDATA")+"\\claim-check-pattern\\"+
 				UUID.randomUUID().toString());
 		messageHeader.setDataFileName("input.json");
 		messageHeader.setOperataionName("Call-Cost-Calculation");
 		
-		MessageData<UsageDetail> messageData = new MessageData<UsageDetail>(usageDetail);
+		MessageData<UsageDetail> messageData = new MessageData<>(usageDetail);
 		
-		Message<UsageDetail> message = new Message<UsageDetail>(messageHeader, messageData);
+		Message<UsageDetail> message = new Message<>(messageHeader, messageData);
 		
 		this.persistentcommonStorageUtility.dropMessageToPersistentStorage(message);
 		

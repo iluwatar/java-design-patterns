@@ -25,7 +25,14 @@ public class MessageDataTest {
 
 	@Test
 	public void testHashCode() {
-		assertNotNull(this.messageData.hashCode());
+		
+		UsageDetail usageDetail1 = new UsageDetail();
+		usageDetail1.setData(1);
+		usageDetail1.setDuration(1);
+		usageDetail1.setUserId("Marry");
+		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(this.usageDetail);
+
+		assertEquals(this.messageData.hashCode(), messageData1.hashCode());
 	}
 
 	@Test
@@ -45,6 +52,44 @@ public class MessageDataTest {
 	@Test
 	public void testEqualsObject() {
 		assertEquals(true,this.messageData.equals(this.messageData));
+	}
+	
+	@Test
+	public void testNotEqualsObject1() {
+		assertEquals(false,this.messageData.equals(new Object()));
+	}
+	
+	@Test
+	public void testNotEqualsObject2() {
+		UsageDetail usageDetail1 = new UsageDetail();
+		usageDetail1.setData(12);
+		usageDetail1.setDuration(1);
+		usageDetail1.setUserId("Marry");
+		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(usageDetail1);
+		
+		assertEquals(false,this.messageData.equals(messageData1));
+	}
+	
+	@Test
+	public void testNotEqualsObject3() {
+		UsageDetail usageDetail1 = new UsageDetail();
+		usageDetail1.setData(1);
+		usageDetail1.setDuration(12);
+		usageDetail1.setUserId("Marry");
+		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(usageDetail1);
+		
+		assertEquals(false,this.messageData.equals(messageData1));
+	}
+	
+	@Test
+	public void testNotEqualsObject4() {
+		UsageDetail usageDetail1 = new UsageDetail();
+		usageDetail1.setData(1);
+		usageDetail1.setDuration(1);
+		usageDetail1.setUserId("Marry Com");
+		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(usageDetail1);
+		
+		assertEquals(false,this.messageData.equals(messageData1));
 	}
 
 	@Test
