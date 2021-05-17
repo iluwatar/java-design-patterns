@@ -74,8 +74,11 @@ public class MessageTest {
 
 	@Test
 	public void testSetMessageData() {
+		try {
 			this.message.setMessageData(this.messageData);
-		
+		}catch(Exception e) {
+			fail("Setting message body failed: "+e.getMessage());
+		}
 	}
 
 	@Test

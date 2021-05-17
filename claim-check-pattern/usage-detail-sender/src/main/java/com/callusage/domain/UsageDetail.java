@@ -24,7 +24,6 @@
 
 package com.callusage.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**

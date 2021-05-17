@@ -54,7 +54,7 @@ public class UsageDetailSender {
 	private Source source;
 
 	@Autowired
-	private IPersistentCommonStorageUtility persistentcommonStorageUtility;
+	private IPersistentCommonStorageUtility<UsageDetail> persistentcommonStorageUtility;
 	
 	public static void incrementCount() {
 		count+=1;

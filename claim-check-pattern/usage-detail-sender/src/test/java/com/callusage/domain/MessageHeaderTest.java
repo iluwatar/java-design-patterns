@@ -1,125 +1,52 @@
 package com.callusage.domain;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
-import org.junit.Before;
+import java.util.Arrays;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
+
+@RunWith(Parameterized.class)
 public class MessageHeaderTest {
 
-	private MessageHeader messageHeader;
-	@Before
-	public void setUp() throws Exception {
-		this.messageHeader = new MessageHeader();
+	@Parameters(name = "{index}: fun({0},{1},\"{2}\")={3}")
+    public static Iterable<Object[]> data() {
+        return Arrays.asList(new Object[][] { 
+                 {"input1.json", "C://tmp", "Cost Calculator", false}, 
+                 {"input.json", "C://tmpp", "Cost Calculator", false},
+                 {"input.json", "C://tmp", "Cost Calculatorr", false},
+           });
+    }
+
+    private MessageHeader messageHeader;
+    
+    private String dataLocation;
+    private String dataFileName;
+    private String operataionName;
+    private boolean expected;
+    
+    public MessageHeaderTest(String dataLocation, String dataFileName, String operataionName, boolean expected) {
+    	this.dataFileName = dataFileName;
+    	this.dataLocation = dataLocation;
+    	this.operataionName = operataionName;
+    	this.expected = expected;
+    	
+    	this.messageHeader = new MessageHeader();
 		this.messageHeader.setDataFileName("input.json");
 		this.messageHeader.setDataLocation("C://tmp");
 		this.messageHeader.setOperataionName("Cost Calculator");
-	}
-
-	@Test
-	public void testHashCode() {
-		MessageHeader messageHeader1 = new MessageHeader();
-		messageHeader1.setDataFileName("input.json");
-		messageHeader1.setDataLocation("C://tmp");
-		messageHeader1.setOperataionName("Cost Calculator");
-		
-		assertEquals(this.messageHeader.hashCode(), messageHeader1.hashCode());
-	}
-
-	@Test
-	public void testGetDataLocation() {
-		assertNotNull(this.messageHeader.getDataLocation());
-	}
-
-	@Test
-	public void testGetDataFileName() {
-		assertNotNull(this.messageHeader.getDataFileName());
-	}
-
-	@Test
-	public void testGetOperataionName() {
-		assertNotNull(this.messageHeader.getOperataionName());
-	}
-
-	@Test
-	public void testSetDataLocation() {
-		try {
-			this.messageHeader.setDataLocation("C://tmp");
-		} catch (Exception e) {
-			fail("Setting data location failed: "+e.getMessage());
-		}
-	}
-
-	@Test
-	public void testSetDataFileName() {
-		try {
-			this.messageHeader.setDataFileName("input.json");
-		} catch (Exception e) {
-			fail("Setting data file name failed: "+e.getMessage());
-		}
-	}
-
-	@Test
-	public void testSetOperataionName() {
-		try {
-			this.messageHeader.setOperataionName("Cost Calculator");
-		} catch (Exception e) {
-			fail("Setting data location failed: "+e.getMessage());
-		}
-	}
-
-	@Test
-	public void testEqualsObject() {
-		assertEquals(true,this.messageHeader.equals(this.messageHeader));
-	}
-	@Test
+    }
+    
+    @Test
 	public void testNotEqualsObject() {
-		assertEquals(false,this.messageHeader.equals(null));
-	}
-	@Test
-	public void testNotEqualsObject1() {
-		assertEquals(false,this.messageHeader.equals(new Object()));
-	}
-	@Test
-	public void testNotEqualsObject2() {
 		MessageHeader tempMessageHeader = new MessageHeader();
-		tempMessageHeader.setDataFileName("input1.json");
-		tempMessageHeader.setDataLocation("C://tmp");
-		tempMessageHeader.setOperataionName("Cost Calculator");
+		tempMessageHeader.setDataFileName(this.dataFileName);
+		tempMessageHeader.setDataLocation(this.dataLocation);
+		tempMessageHeader.setOperataionName(this.operataionName);
 		assertEquals(false,this.messageHeader.equals(tempMessageHeader));
 	}
-	@Test
-	public void testNotEqualsObject3() {
-		MessageHeader tempMessageHeader = new MessageHeader();
-		tempMessageHeader.setDataFileName("input.json");
-		tempMessageHeader.setDataLocation("C://tmpp");
-		tempMessageHeader.setOperataionName("Cost Calculator");
-		assertEquals(false,this.messageHeader.equals(tempMessageHeader));
-	}
-	@Test
-	public void testNotEqualsObject4() {
-		MessageHeader tempMessageHeader = new MessageHeader();
-		tempMessageHeader.setDataFileName("input.json");
-		tempMessageHeader.setDataLocation("C://tmp");
-		tempMessageHeader.setOperataionName("Cost Calculatorr");
-		assertEquals(false,this.messageHeader.equals(tempMessageHeader));
-	}
-
-	@Test
-	public void testCanEqual() {
-		assertEquals(true,this.messageHeader.canEqual(this.messageHeader));
-	}
-
-	@Test
-	public void testToString() {
-		assertNotNull(this.messageHeader.toString());
-	}
-
-	@Test
-	public void testMessageHeader() {
-		assertNotNull(new MessageHeader());
-	}
-
+    
 }

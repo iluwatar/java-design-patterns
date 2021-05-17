@@ -4,107 +4,52 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class MessageDataTest {
-
+	
+	@Parameters(name = "{index}: fun({0},{1},\"{2}\")={3}")
+    public static Iterable<Object[]> data() {
+        return Arrays.asList(new Object[][] { 
+                 { 10, 1, "Sam", false }, { 1, 10, "Sam", false }, { 1, 1, "Sam Com", false }
+           });
+    }
+    private String userId;
+	private long duration;
+	private long data;
 	private UsageDetail usageDetail;
 	private MessageData<UsageDetail> messageData;
 	
-	@Before
-	public void setUp() throws Exception {
+	public MessageDataTest(long data, long duration, String userId, boolean expected) {
+		this.userId = userId;
+		this.data = data;
+		this.duration = duration;
 		
 		this.usageDetail = new UsageDetail();
+		this.usageDetail.setUserId("Sam");
 		this.usageDetail.setData(1);
 		this.usageDetail.setDuration(1);
-		this.usageDetail.setUserId("Marry");
 		
-		this.messageData = new MessageData<UsageDetail>(this.usageDetail);
-	}
-
-	@Test
-	public void testHashCode() {
-		
-		UsageDetail usageDetail1 = new UsageDetail();
-		usageDetail1.setData(1);
-		usageDetail1.setDuration(1);
-		usageDetail1.setUserId("Marry");
-		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(this.usageDetail);
-
-		assertEquals(this.messageData.hashCode(), messageData1.hashCode());
-	}
-
-	@Test
-	public void testGetData() {
-		assertNotNull(this.messageData.getData());
-	}
-
-	@Test
-	public void testSetData() {
-		try {
-			this.messageData.setData(this.usageDetail);
-		} catch (Exception e) {
-			fail("Setting data failed: "+e.getMessage());
-		}
-	}
-
-	@Test
-	public void testEqualsObject() {
-		assertEquals(true,this.messageData.equals(this.messageData));
+		this.messageData = new MessageData<>(this.usageDetail);
 	}
 	
 	@Test
-	public void testNotEqualsObject1() {
-		assertEquals(false,this.messageData.equals(new Object()));
-	}
-	
-	@Test
-	public void testNotEqualsObject2() {
+	public void testNotEqualsObject() {
 		UsageDetail usageDetail1 = new UsageDetail();
-		usageDetail1.setData(12);
-		usageDetail1.setDuration(1);
-		usageDetail1.setUserId("Marry");
-		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(usageDetail1);
-		
-		assertEquals(false,this.messageData.equals(messageData1));
-	}
-	
-	@Test
-	public void testNotEqualsObject3() {
-		UsageDetail usageDetail1 = new UsageDetail();
-		usageDetail1.setData(1);
-		usageDetail1.setDuration(12);
-		usageDetail1.setUserId("Marry");
-		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(usageDetail1);
-		
-		assertEquals(false,this.messageData.equals(messageData1));
-	}
-	
-	@Test
-	public void testNotEqualsObject4() {
-		UsageDetail usageDetail1 = new UsageDetail();
-		usageDetail1.setData(1);
-		usageDetail1.setDuration(1);
-		usageDetail1.setUserId("Marry Com");
+		usageDetail1.setData(this.data);
+		usageDetail1.setDuration(this.duration);
+		usageDetail1.setUserId(this.userId);
 		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(usageDetail1);
 		
 		assertEquals(false,this.messageData.equals(messageData1));
 	}
 
-	@Test
-	public void testCanEqual() {
-		assertEquals(true,this.messageData.canEqual(this.messageData));
-	}
-
-	@Test
-	public void testToString() {
-		assertNotNull(this.messageData.toString());
-	}
-
-	@Test
-	public void testMessageData() {
-		assertNotNull(new MessageData<UsageDetail>(this.usageDetail));
-	}
 
 }

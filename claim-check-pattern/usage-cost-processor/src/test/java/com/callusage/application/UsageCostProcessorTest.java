@@ -14,13 +14,16 @@ import org.mockito.MockitoAnnotations;
 import com.callusage.domain.Message;
 import com.callusage.domain.MessageData;
 import com.callusage.domain.MessageHeader;
+import com.callusage.domain.UsageCostDetail;
 import com.callusage.domain.UsageDetail;
 import com.callusage.interfaces.IPersistentCommonStorageUtility;
 
 public class UsageCostProcessorTest {
 	
 	@Mock
-	private IPersistentCommonStorageUtility persistentCommonStorageUtility;
+	private IPersistentCommonStorageUtility<UsageDetail> persistentCommonStorageUtilityForUsageDetail;
+	@Mock
+	private IPersistentCommonStorageUtility<UsageCostDetail> persistentCommonStorageUtilityForUsageCostDetail;
 	
 	@InjectMocks
 	private UsageCostProcessor usageCostProcessor;
@@ -28,7 +31,7 @@ public class UsageCostProcessorTest {
 	private MessageHeader messageHeader;
 	private UsageDetail usageDetail;
 	private Message<UsageDetail> messageUsageDetail;
-	private Message<UsageDetail> messageUsageCostDetail;
+	private Message<UsageCostDetail> messageUsageCostDetail;
 	
 	
 	@Before
@@ -51,20 +54,21 @@ public class UsageCostProcessorTest {
 
 		this.messageUsageCostDetail = new Message<>(messageHeader, null);
 		
+		
 	}
 
 	@Test
 	public void testProcessUsageCostNotThrowingAnyException() {
 		
-		when(this.persistentCommonStorageUtility.readMessageFromPersistentStorage(messageHeader))
+		when(this.persistentCommonStorageUtilityForUsageDetail.readMessageFromPersistentStorage(messageHeader))
 				.thenReturn(this.messageUsageDetail);
 		
-		doNothing().when(this.persistentCommonStorageUtility).dropMessageToPersistentStorage(messageUsageCostDetail);
+		doNothing().when(this.persistentCommonStorageUtilityForUsageCostDetail).dropMessageToPersistentStorage(messageUsageCostDetail);
 		
 		try {
 			this.usageCostProcessor.processUsageCost(messageHeader);
 		} catch (Exception e) {
-			fail("Exception thrown: "+e.getStackTrace());
+			fail("Exception thrown: "+e.getMessage());
 		}
 		
 		

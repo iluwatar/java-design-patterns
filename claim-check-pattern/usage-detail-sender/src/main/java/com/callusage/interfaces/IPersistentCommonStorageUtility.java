@@ -32,9 +32,9 @@ import com.callusage.domain.MessageHeader;
  * It contains 2 methods. First one is to read message from storage.
  * Second method is to drop message to storage.
  */
-public interface IPersistentCommonStorageUtility {
+public interface IPersistentCommonStorageUtility<T> {
 
-    public Message readMessageFromPersistentStorage(MessageHeader messageHeader);
-    public void dropMessageToPersistentStorage(Message message);
+    public Message<T> readMessageFromPersistentStorage(MessageHeader messageHeader);
+    public void dropMessageToPersistentStorage(Message<T> message);
 
 }

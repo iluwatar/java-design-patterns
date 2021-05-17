@@ -47,11 +47,11 @@ import org.springframework.stereotype.Service;
  * Here we are using Windows File System as persistent storage.
  */
 @Service
-public class PersistentLocalStorageUtility implements IPersistentCommonStorageUtility {
+public class PersistentLocalStorageUtility<T> implements IPersistentCommonStorageUtility<T> {
     @Override
-    public Message readMessageFromPersistentStorage(MessageHeader messageHeader) {
+    public Message<T> readMessageFromPersistentStorage(MessageHeader messageHeader) {
     	var gson = new Gson();
-    	Message<UsageDetail> message = null;
+    	Message<T> message = null;
     	var typeToken = new TypeToken<Message<UsageDetail>>() { }.getType();
     	try {
 			message = gson.fromJson(new BufferedReader(new FileReader(messageHeader.getDataLocation()+"\\"+messageHeader.getDataFileName())),
@@ -63,7 +63,7 @@ public class PersistentLocalStorageUtility implements IPersistentCommonStorageUt
     }
 
     @Override
-    public void dropMessageToPersistentStorage(Message message) {
+    public void dropMessageToPersistentStorage(Message<T> message) {
     	var gson = new GsonBuilder().setPrettyPrinting().create();
     	try {
     		Files.createDirectories(Paths.get(message.getMessageHeader().getDataLocation()));

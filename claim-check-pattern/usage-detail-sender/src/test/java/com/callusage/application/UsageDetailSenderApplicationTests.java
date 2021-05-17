@@ -1,5 +1,7 @@
 package com.callusage.application;
 
+import static org.junit.Assert.fail;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +13,11 @@ public class UsageDetailSenderApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		UsageDetailSenderApplication.main(new String[] {});
+		try {
+			UsageDetailSenderApplication.main(new String[] {});
+		} catch (Exception e) {
+			fail("UsageCostProcessorApplication failed: "+e.getStackTrace());
+		}
 	}
 
 }

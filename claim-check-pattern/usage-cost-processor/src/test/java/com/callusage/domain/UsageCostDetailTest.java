@@ -4,131 +4,50 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class UsageCostDetailTest {
 	
-	private UsageCostDetail usageCostDetail;
+	@Parameters(name = "{index}: fun({0},{1},\"{2}\")={3}")
+    public static Iterable<Object[]> data() {
+        return Arrays.asList(new Object[][] { 
+                 { 10, 1, "Sam", false }, { 1, 10, "Sam", false }, { 1, 1, "Sam Com", false }
+           });
+    }
 
-	@Before
-	public void setUp() throws Exception {
-		this.usageCostDetail = new UsageCostDetail();
+    private UsageCostDetail usageCostDetail;
+	private String userId;
+	private double callCost;
+	private double dataCost;
+    private boolean expected;
+    
+    public UsageCostDetailTest(double callCost, double dataCost, String userId, boolean expected) {
+    	this.userId = userId;
+    	this.callCost = callCost;
+    	this.dataCost = dataCost;
+    	this.expected = expected;
+    	this.usageCostDetail = new UsageCostDetail();
 		this.usageCostDetail.setUserId("Sam");
 		this.usageCostDetail.setCallCost(1.0);
 		this.usageCostDetail.setDataCost(1.0);
-		
-	}
-
-	@Test
-	public void testHashCode() {
-		
-		UsageCostDetail usageCostDetail1 = new UsageCostDetail();
-		usageCostDetail1.setUserId("Sam");
-		usageCostDetail1.setCallCost(1.0);
-		usageCostDetail1.setDataCost(1.0);
-		
-		assertEquals(this.usageCostDetail.hashCode(), usageCostDetail1.hashCode());
-	}
-
-	@Test
-	public void testGetUserId() {
-		assertEquals("Sam", this.usageCostDetail.getUserId());
-	}
-
-	@Test
-	public void testGetCallCost() {
-		assertEquals(1.0, this.usageCostDetail.getCallCost(),0);
-	}
-
-	@Test
-	public void testGetDataCost() {
-		assertEquals(1.0, this.usageCostDetail.getDataCost(),0);
-	}
-
-	@Test
-	public void testSetUserId() {
-		try {
-			this.usageCostDetail.setUserId("Marry");
-		} catch (Exception e) {
-			fail("Setting userid failed: "+e.getMessage());
-		}
-	}
-
-	@Test
-	public void testSetCallCost() {
-		try {
-			this.usageCostDetail.setCallCost(1.0);
-		} catch (Exception e) {
-			fail("Setting call cost failed: "+e.getMessage());
-		}
-	}
-
-	@Test
-	public void testSetDataCost() {
-		try {
-			this.usageCostDetail.setDataCost(1.0);
-		} catch (Exception e) {
-			fail("Setting data cost failed: "+e.getMessage());
-		}
-	}
-
-	@Test
-	public void testEqualsObject() {
-		assertEquals(true,this.usageCostDetail.equals(this.usageCostDetail));
-	}
-
-
+    }
+    
     @Test
     public void testNotEqualsObject() {
-        assertEquals(false,this.usageCostDetail.equals(null));
-    }
-    
-    @Test
-    public void testNotEqualsObject1() {
-        assertEquals(false,this.usageCostDetail.equals(new Object()));
-    }
-    
-    @Test
-    public void testNotEqualsObject2() {
     	UsageCostDetail tempusageCostDetail = new UsageCostDetail();
-        tempusageCostDetail.setCallCost(10);
-        tempusageCostDetail.setDataCost(1);
-        tempusageCostDetail.setUserId("Marry");
-        assertEquals(false,this.usageCostDetail.equals(tempusageCostDetail));
+        tempusageCostDetail.setCallCost(this.callCost);
+        tempusageCostDetail.setDataCost(this.dataCost);
+        tempusageCostDetail.setUserId(this.userId);
+        System.out.println(this.usageCostDetail.equals(tempusageCostDetail));
+        assertEquals(this.expected,this.usageCostDetail.equals(tempusageCostDetail));
     }
-    
-    @Test
-    public void testNotEqualsObject3() {
-    	UsageCostDetail tempusageCostDetail = new UsageCostDetail();
-        tempusageCostDetail.setCallCost(1);
-        tempusageCostDetail.setDataCost(10);
-        tempusageCostDetail.setUserId("Marry");
-        assertEquals(false,this.usageCostDetail.equals(tempusageCostDetail));
-    }
-    
-    @Test
-    public void testNotEqualsObject4() {
-    	UsageCostDetail tempusageCostDetail = new UsageCostDetail();
-        tempusageCostDetail.setCallCost(1);
-        tempusageCostDetail.setDataCost(1);
-        tempusageCostDetail.setUserId("Marry Com");
-        assertEquals(false,this.usageCostDetail.equals(tempusageCostDetail));
-    }
-    
-	@Test
-	public void testCanEqual() {
-		assertEquals(true,this.usageCostDetail.canEqual(this.usageCostDetail));
-	}
 
-	@Test
-	public void testToString() {
-		assertNotNull(this.usageCostDetail.toString());
-	}
-
-	@Test
-	public void testUsageCostDetail() {
-		assertNotNull(new UsageCostDetail());
-	}
-
+    
 }

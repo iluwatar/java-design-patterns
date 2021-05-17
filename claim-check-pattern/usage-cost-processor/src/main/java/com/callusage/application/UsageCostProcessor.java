@@ -63,7 +63,10 @@ enum Rate{
 public class UsageCostProcessor {
 	
 	@Autowired
-	IPersistentCommonStorageUtility persistentCommonStorageUtility;
+	IPersistentCommonStorageUtility<UsageDetail> persistentCommonStorageUtilityForUsageDetail;
+
+	@Autowired
+	IPersistentCommonStorageUtility<UsageCostDetail> persistentCommonStorageUtilityForUsageCostDetail;
 	
 	private double ratePerSecond = Rate.RATE_PER_SECOND.getRateValue();
 
@@ -72,7 +75,7 @@ public class UsageCostProcessor {
 	@StreamListener(INPUT)
 	public void processUsageCost(MessageHeader inputMessageHeader) {
 		
-		Message<UsageDetail> inputMessage = this.persistentCommonStorageUtility.readMessageFromPersistentStorage(inputMessageHeader);
+		Message<UsageDetail> inputMessage = this.persistentCommonStorageUtilityForUsageDetail.readMessageFromPersistentStorage(inputMessageHeader);
 		var usageDetail = inputMessage.getMessageData().getData();
 		
 		// Calculate call cost
@@ -92,6 +95,6 @@ public class UsageCostProcessor {
 
 		// Drop message to common storage
 		
-		persistentCommonStorageUtility.dropMessageToPersistentStorage(message);
+		this.persistentCommonStorageUtilityForUsageCostDetail.dropMessageToPersistentStorage(message);
 	}
 }
