@@ -27,7 +27,7 @@ public class App { //NOPMD
     final var head = new Node();
     LOGGER.info("head: {}", head);
     final SecureRandom random = new SecureRandom();
-    final int nodes = random.nextInt(10);
+    final var nodes = random.nextInt(10);
     var tail = head; //NOPMD
 
     //for each node to initialize the integer list.

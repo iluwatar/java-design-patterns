@@ -30,6 +30,8 @@ Wikipedia says
 
 [Refactoring to Patterns: Simplification | Compose Method | InformIT](https://www.informit.com/articles/article.aspx?p=1398607)
 
+This example we will refactor a complex method into the composed method pattern.
+
 The original method is relative hard to understand the meaning. 
 ```java
 public class List{
