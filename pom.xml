@@ -225,6 +225,7 @@
         <module>active-object</module>
         <module>model-view-viewmodel</module>
         <module>composite-entity</module>
+        <module>table-module</module>
         <module>presentation</module>
         <module>lockable-object</module>
     </modules>
