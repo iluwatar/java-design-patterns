@@ -26,14 +26,29 @@ public class Command {
     this.nourishment = nourishment;
   }
 
+  /**
+   * Gets nourishment from the Command object.
+   *
+   * @return the nourishment
+   */
   Nourishment getNourishment() {
     return nourishment;
   }
 
+  /**
+   * Gets health from the Command object.
+   *
+   * @return the health
+   */
   Health getHealth() {
     return health;
   }
 
+  /**
+   * Gets fatigue from the Command object.
+   *
+   * @return the fatigue
+   */
   Fatigue getFatigue() {
     return fatigue;
   }

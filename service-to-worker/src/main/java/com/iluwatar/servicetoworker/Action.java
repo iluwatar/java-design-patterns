@@ -5,7 +5,7 @@ import com.iluwatar.model.view.controller.Health;
 import com.iluwatar.model.view.controller.Nourishment;
 
 /**
- * The type Action (Worker), which can processed user input and perform a specific update on the
+ * The type Action (Worker), which can process user input and perform a specific update on the
  * model.
  */
 public class Action {
