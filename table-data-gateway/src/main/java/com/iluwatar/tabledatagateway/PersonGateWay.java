@@ -53,7 +53,8 @@ public class PersonGateWay {
    * @param gender    the gender
    * @param age       the age
    */
-  public void update(int id, String firstName, String lastName, String gender, int age) throws Exception {
+  public void update(int id, String firstName, String lastName, String gender, int age)
+          throws Exception {
     if (id >= personTable.size() || id < 0) {
       throw new Exception("The input ID is wrong!");
     }

@@ -3,7 +3,7 @@ package com.iluwatar.tabledatagateway;
 /**
  * The type Person.
  */
-public class Person implements PersonInterface{
+public class Person implements PersonInterface {
 
   private int id;
   private String firstName;
@@ -37,6 +37,7 @@ public class Person implements PersonInterface{
   public int getId() {
     return id;
   }
+
   /**
    * Sets id.
    *
