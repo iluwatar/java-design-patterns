@@ -51,7 +51,7 @@ public class App {
   }
 
   private static Dataset<Customer> initializeDataset() {
-    return new Dataset<Customer> (
+    return new Dataset<> (
             Arrays.asList(
                     new Customer(
                             "Customer 1",
