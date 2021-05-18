@@ -19,7 +19,7 @@ public class App {
    *
    * @param args Program runtime arguments.
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Tony", "Stark", "M", 36);
     personGateWay.insert("Thor", "Odinson", "M", 40);

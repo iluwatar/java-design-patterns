@@ -53,10 +53,12 @@ public class PersonGateWay {
    * @param gender    the gender
    * @param age       the age
    */
-  public void update(int id, String firstName, String lastName, String gender, int age) {
+  public void update(int id, String firstName, String lastName, String gender, int age) throws Exception {
     if (id >= personTable.size() || id < 0) {
-      LOGGER.info("The input ID is wrong!");
-      return;
+      throw new Exception("The input ID is wrong!");
+    }
+    if (age < 0) {
+      throw new Exception("The input age is wrong!");
     }
     personTable.get(id).setFirstName(firstName);
     personTable.get(id).setLastName(lastName);
@@ -73,7 +75,10 @@ public class PersonGateWay {
    * @param gender    the gender
    * @param age       the age
    */
-  public void insert(String firstName, String lastName, String gender, int age) {
+  public void insert(String firstName, String lastName, String gender, int age) throws Exception {
+    if (age < 0) {
+      throw new Exception("The input age is wrong!");
+    }
     int id = personTable.size();
     personTable.add(new Person(id, firstName, lastName, gender, age));
     LOGGER.info("Insert successfully");

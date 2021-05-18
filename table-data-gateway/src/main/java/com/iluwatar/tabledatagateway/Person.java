@@ -3,7 +3,7 @@ package com.iluwatar.tabledatagateway;
 /**
  * The type Person.
  */
-public class Person {
+public class Person implements PersonInterface{
 
   private int id;
   private String firstName;
@@ -33,10 +33,10 @@ public class Person {
    *
    * @return the id
    */
+  @Override
   public int getId() {
     return id;
   }
-
   /**
    * Sets id.
    *
@@ -51,6 +51,7 @@ public class Person {
    *
    * @return the first name
    */
+  @Override
   public String getFirstName() {
     return firstName;
   }
@@ -69,6 +70,7 @@ public class Person {
    *
    * @return the last name
    */
+  @Override
   public String getLastName() {
     return lastName;
   }
@@ -87,6 +89,7 @@ public class Person {
    *
    * @return the gender
    */
+  @Override
   public String getGender() {
     return gender;
   }
@@ -105,6 +108,7 @@ public class Person {
    *
    * @return the age
    */
+  @Override
   public int getAge() {
     return age;
   }

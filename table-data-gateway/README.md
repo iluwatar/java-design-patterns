@@ -10,6 +10,8 @@ tags:
 
 ## Intent
 Table Data Gateway is a design pattern in which an object acts as a gateway to a database table. The idea is to separate the responsibility of fetching items from a database from the actual usages of those objects. Users of the gateway are then insulated from changes to the way objects are stored in the database.
+
+The table gateway pattern provides an interface for changing objects in a database without being affected by the way the database is stored.
 ## Class diagram
 ![alt text](./etc/table-data-gateway.urm.png "Table Data Gateway pattern class diagram")
 

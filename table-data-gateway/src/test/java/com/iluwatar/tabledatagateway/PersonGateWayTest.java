@@ -13,7 +13,7 @@ class PersonGateWayTest {
    * Test find.
    */
   @Test
-void testFind() {
+void testFind() throws Exception {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Natasha", "Romanoff", "F", 28);
     assertEquals("Natasha", personGateWay.find(0).getFirstName());
@@ -26,7 +26,7 @@ void testFind() {
    * Test find by first name.
    */
   @Test
-void testFindByFirstName() {
+void testFindByFirstName() throws Exception {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Natasha", "Romanoff", "F", 28);
     assertEquals("Natasha", personGateWay.findByFirstName("Natasha").get(0).getFirstName());
@@ -39,7 +39,7 @@ void testFindByFirstName() {
    * Test update.
    */
   @Test
-void testUpdate() {
+void testUpdate() throws Exception {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Tony", "Stark", "M", 36);
     personGateWay.update(0, "Natasha", "Romanoff", "F", 28);
@@ -53,7 +53,7 @@ void testUpdate() {
    * Test insert.
    */
   @Test
-void testInsert() {
+void testInsert() throws Exception {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Natasha", "Romanoff", "F", 28);
     assertEquals("Natasha", personGateWay.find(0).getFirstName());
@@ -66,7 +66,7 @@ void testInsert() {
    * Test delete.
    */
   @Test
-void testDelete() {
+void testDelete() throws Exception {
     var personGateWay = new PersonGateWay();
     personGateWay.insert("Natasha", "Romanoff", "F", 28);
     personGateWay.delete(0);
