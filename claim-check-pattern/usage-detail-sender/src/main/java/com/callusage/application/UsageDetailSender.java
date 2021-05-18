@@ -30,7 +30,7 @@ import com.callusage.domain.MessageHeader;
 import com.callusage.domain.UsageDetail;
 import com.callusage.interfaces.IPersistentCommonStorageUtility;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -66,10 +66,10 @@ public class UsageDetailSender {
 	@Scheduled(fixedDelay = 5000)
 	public void sendEvents() {
 		var usageDetail = new UsageDetail();
-		usageDetail.setUserId(this.users[new Random().nextInt(5)]+"-"+count);
+		usageDetail.setUserId(this.users[new SecureRandom().nextInt(5)]+"-"+count);
 		incrementCount();
-		usageDetail.setDuration(new Random().nextInt(300));
-		usageDetail.setData(new Random().nextInt(700));
+		usageDetail.setDuration(new SecureRandom().nextInt(300));
+		usageDetail.setData(new SecureRandom().nextInt(700));
 		
 		var messageHeader = new MessageHeader();
 		messageHeader.setDataLocation(System.getenv("LOCALAPPDATA")+"\\claim-check-pattern\\"+

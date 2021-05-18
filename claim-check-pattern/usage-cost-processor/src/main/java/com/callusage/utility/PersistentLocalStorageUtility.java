@@ -32,6 +32,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -46,6 +49,7 @@ import org.springframework.stereotype.Service;
  * This is an implementation of persistent storage interface.
  * Here we are using Windows File System as persistent storage.
  */
+@Slf4j
 @Service
 public class PersistentLocalStorageUtility<T> implements IPersistentCommonStorageUtility<T> {
     @Override
@@ -57,7 +61,7 @@ public class PersistentLocalStorageUtility<T> implements IPersistentCommonStorag
 			message = gson.fromJson(new BufferedReader(new FileReader(messageHeader.getDataLocation()+"\\"+messageHeader.getDataFileName())),
 					typeToken);
 		} catch (JsonSyntaxException | JsonIOException | IOException e) {
-			e.printStackTrace();
+			LOGGER.error(e.getMessage());
 		}
         return message;
     }
@@ -72,7 +76,7 @@ public class PersistentLocalStorageUtility<T> implements IPersistentCommonStorag
 			fileWriter.flush();
 			fileWriter.close();
 		} catch (JsonIOException | IOException e) {
-			e.printStackTrace();
+			LOGGER.error(e.getMessage());
 		}
     }
 }
