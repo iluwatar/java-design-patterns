@@ -4,6 +4,7 @@ title: Queue based load leveling
 folder: queue-load-leveling
 permalink: /patterns/queue-load-leveling/
 categories: Concurrency
+language: en
 tags:
  - Decoupling
  - Performance

@@ -4,6 +4,7 @@ title: Pipeline
 folder: pipeline
 permalink: /patterns/pipeline/
 categories: Behavioral
+language: en
 tags:
  - Decoupling
 ---

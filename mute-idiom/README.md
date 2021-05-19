@@ -4,6 +4,7 @@ title: Mute Idiom
 folder: mute-idiom
 permalink: /patterns/mute-idiom/
 categories: Idiom
+language: en
 tags: 
  - Decoupling
 ---

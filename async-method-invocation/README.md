@@ -4,6 +4,7 @@ title: Async Method Invocation
 folder: async-method-invocation
 permalink: /patterns/async-method-invocation/
 categories: Concurrency
+language: en
 tags:
  - Reactive
 ---

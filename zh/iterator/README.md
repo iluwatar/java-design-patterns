@@ -2,8 +2,9 @@
 layout: pattern
 title: Iterator
 folder: iterator
-permalink: /patterns/iterator/
+permalink: /patterns/iterator/zh
 categories: Behavioral
+language: zh
 tags:
  - Gang of Four
 ---

@@ -2,8 +2,9 @@
 layout: pattern
 title: Adapter
 folder: adapter
-permalink: /patterns/adapter/
+permalink: /patterns/adapter/zh
 categories: Structural
+language: zh
 tags:
  - Gang of Four
 ---

@@ -4,6 +4,7 @@ title: Mediator
 folder: mediator
 permalink: /patterns/mediator/
 categories: Behavioral
+language: en
 tags:
  - Gang Of Four
  - Decoupling

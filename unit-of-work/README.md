@@ -5,6 +5,7 @@ folder: unit-of-work
 permalink: /patterns/unit-of-work/
 
 categories: Architectural
+language: en
 tags:
  - Data access
  - Performance

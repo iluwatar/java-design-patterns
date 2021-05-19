@@ -2,8 +2,9 @@
 layout: pattern
 title: Version Number
 folder: versionnumber
-permalink: /patterns/versionnumber/
+permalink: /patterns/versionnumber/zh
 description: Entity versioning with version number
+language: zh
 
 categories:
  - Concurrency

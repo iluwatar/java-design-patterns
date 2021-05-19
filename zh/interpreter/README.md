@@ -2,8 +2,9 @@
 layout: pattern
 title: Interpreter
 folder: interpreter
-permalink: /patterns/interpreter/
+permalink: /patterns/interpreter/zh
 categories: Behavioral
+language: zh
 tags:
  - Gang of Four
 ---

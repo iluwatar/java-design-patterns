@@ -4,6 +4,7 @@ title: Half-Sync/Half-Async
 folder: half-sync-half-async
 permalink: /patterns/half-sync-half-async/
 categories: Concurrency
+language: en
 tags:
  - Performance
 ---

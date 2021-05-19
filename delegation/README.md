@@ -4,6 +4,7 @@ title: Delegation
 folder: delegation
 permalink: /patterns/delegation/
 categories: Structural
+language: en
 tags:
  - Decoupling
 ---

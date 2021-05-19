@@ -2,8 +2,9 @@
 layout: pattern
 title: Ambassador
 folder: ambassador
-permalink: /patterns/ambassador/
+permalink: /patterns/ambassador/zh
 categories: Structural
+language: zh
 tags:
   - Decoupling
   - Cloud distributed

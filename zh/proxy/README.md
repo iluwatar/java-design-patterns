@@ -2,8 +2,9 @@
 layout: pattern
 title: Proxy
 folder: proxy
-permalink: /patterns/proxy/
+permalink: /patterns/proxy/zh
 categories: Structural
+language: zh
 tags:
  - Gang Of Four
  - Decoupling

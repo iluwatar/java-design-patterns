@@ -4,6 +4,7 @@ title: Flyweight
 folder: flyweight
 permalink: /patterns/flyweight/
 categories: Structural
+language: en
 tags:
  - Gang Of Four
  - Performance

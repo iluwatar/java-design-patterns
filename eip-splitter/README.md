@@ -4,6 +4,7 @@ title: EIP Splitter
 folder: eip-splitter
 permalink: /patterns/eip-splitter/
 categories: Integration
+language: en
 tags:
  - Enterprise Integration Pattern
 ---

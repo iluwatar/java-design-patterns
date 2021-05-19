@@ -2,8 +2,9 @@
 layout: pattern
 title: Command
 folder: command
-permalink: /patterns/command/
+permalink: /patterns/command/zh
 categories: Behavioral
+language: zh
 tags:
  - Gang of Four
 ---

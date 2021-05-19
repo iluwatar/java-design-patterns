@@ -4,6 +4,7 @@ title: Dependency Injection
 folder: dependency-injection
 permalink: /patterns/dependency-injection/
 categories: Creational
+language: en
 tags:
  - Decoupling
 ---

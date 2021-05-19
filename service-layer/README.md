@@ -4,6 +4,7 @@ title: Service Layer
 folder: service-layer
 permalink: /patterns/service-layer/
 categories: Architectural
+language: en
 tags:
  - Data access
 ---

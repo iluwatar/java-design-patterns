@@ -4,6 +4,7 @@ title: Leader Election
 folder: leader-election
 permalink: /patterns/leader-election/
 categories: Behavioral
+language: en
 tags:
  - Cloud distributed
 ---

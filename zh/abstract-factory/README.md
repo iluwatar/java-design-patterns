@@ -2,8 +2,9 @@
 layout: pattern
 title: Abstract Factory
 folder: abstract-factory
-permalink: /patterns/abstract-factory/
+permalink: /patterns/abstract-factory/zh
 categories: Creational
+language: zh
 tags:
  - Gang of Four
 ---

@@ -4,6 +4,7 @@ title: Value Object
 folder: value-object
 permalink: /patterns/value-object/
 categories: Creational
+language: en
 tags:
  - Instantiation
 ---

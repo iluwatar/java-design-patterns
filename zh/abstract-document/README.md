@@ -2,8 +2,9 @@
 layout: pattern
 title: Abstract Document
 folder: abstract-document
-permalink: /patterns/abstract-document/
+permalink: /patterns/abstract-document/zh
 categories: Structural
+language: zh
 tags: 
  - Extensibility
 ---
