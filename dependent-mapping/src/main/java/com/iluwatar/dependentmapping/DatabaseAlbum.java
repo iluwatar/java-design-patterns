@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Album.
+ * The type Db album.
  */
-class Album {
-  private final List<Track> tracks = new ArrayList<>();
+class DatabaseAlbum {
+  private final List<DataBaseTrack> tracks = new ArrayList<>();
   private final String name;
 
   /**
-   * Instantiates a new Album.
+   * Instantiates a new Db album.
    *
    * @param name the name
    */
-  Album(String name) {
+  DatabaseAlbum(String name) {
     this.name = name;
   }
 
@@ -24,7 +24,7 @@ class Album {
    *
    * @return the all track
    */
-  List<Track> getAllTrack() {
+  List<DataBaseTrack> getAllTrack() {
     return tracks;
   }
 
@@ -42,7 +42,7 @@ class Album {
    *
    * @param track the track
    */
-  void addTrack(Track track) {
+  void addTrack(DataBaseTrack track) {
     tracks.add(track);
   }
 }

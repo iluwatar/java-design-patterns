@@ -4,41 +4,59 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * The type Database test.
+ */
 public class DatabaseTest {
+  /**
+   * Add get tracks test.
+   */
   @Test
-  void addGetTracksTest(){
+  void addGetTracksTest() {
     Database database = new Database();
-    DBTrack dbTrack = new DBTrack("track");
-    database.addTracks(dbTrack);
-    assertEquals("track",database.getTracks("track").getName());
+    DataBaseTrack dataBaseTrack = new DataBaseTrack("track");
+    database.addTracks(dataBaseTrack);
+    assertEquals("track", database.getTracks("track").getName());
   }
+
+  /**
+   * Add get album test.
+   */
   @Test
-  void addGetAlbumTest(){
+  void addGetAlbumTest() {
     Database database = new Database();
-    DBAlbum dbAlbum = new DBAlbum("album");
-    database.addAlbum(dbAlbum);
-    assertEquals("album",database.getAlbum(0).getName());
+    DatabaseAlbum databaseAlbum = new DatabaseAlbum("album");
+    database.addAlbum(databaseAlbum);
+    assertEquals("album", database.getAlbum(0).getName());
   }
+
+  /**
+   * Remove album test.
+   */
   @Test
-  void removeAlbumTest(){
+  void removeAlbumTest() {
     Database database = new Database();
-    DBAlbum dbAlbum = new DBAlbum("album");
-    DBAlbum dbAlbum1 = new DBAlbum("album1");
-    database.addAlbum(dbAlbum);
-    database.addAlbum(dbAlbum1);
-    assertEquals("album",database.getAlbum(0).getName());
+    DatabaseAlbum databaseAlbum = new DatabaseAlbum("album");
+    DatabaseAlbum databaseAlbum1 = new DatabaseAlbum("album1");
+    database.addAlbum(databaseAlbum);
+    database.addAlbum(databaseAlbum1);
+    assertEquals("album", database.getAlbum(0).getName());
     database.removeAlbum(0);
-    assertEquals("album1",database.getAlbum(0).getName());
+    assertEquals("album1", database.getAlbum(0).getName());
   }
+
+  /**
+   * Get album index test.
+   */
   @Test
-  void getAlbumIndexTest(){
+  void getAlbumIndexTest() {
     Database database = new Database();
-    DBAlbum dbAlbum = new DBAlbum("album");
-    DBAlbum dbAlbum1 = new DBAlbum("album1");
-    database.addAlbum(dbAlbum);
-    database.addAlbum(dbAlbum1);
-    assertEquals(0,database.getAlbumIndex("album"));
-    assertEquals(1,database.getAlbumIndex("album1"));
-    assertEquals(-1,database.getAlbumIndex("not find"));
+    DatabaseAlbum databaseAlbum = new DatabaseAlbum("album");
+    DatabaseAlbum databaseAlbum1 = new DatabaseAlbum("album1");
+    database.addAlbum(databaseAlbum);
+    database.addAlbum(databaseAlbum1);
+    assertEquals(0, database.getAlbumIndex("album"));
+    assertEquals(1, database.getAlbumIndex("album1"));
+    assertEquals(-1, database.getAlbumIndex("not find"));
   }
 }

@@ -1,21 +1,20 @@
 package com.iluwatar.dependentmapping;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
 /**
- * The type Track test.
+ * The type DatabaseTrack test.
  */
-public class TrackTest {
+public class DataBaseTrackTest {
   /**
    * Make track.
    */
   @Test
   void makeTrack() {
-    Track track = new Track("track");
+    DataBaseTrack track = new DataBaseTrack("track");
     assertNotNull(track);
 
   }
@@ -25,7 +24,7 @@ public class TrackTest {
    */
   @Test
   void testGetName() {
-    Track track = new Track("track");
+    DataBaseTrack track = new DataBaseTrack("track");
     assertEquals("track", track.getName());
   }
 }

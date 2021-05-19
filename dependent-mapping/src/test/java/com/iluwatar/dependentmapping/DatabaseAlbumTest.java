@@ -1,22 +1,20 @@
 package com.iluwatar.dependentmapping;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
- * The type Album test.
+ * The type DatabaseAlbum test.
  */
-public class AlbumTest {
-
+public class DatabaseAlbumTest {
   /**
    * Make album.
    */
   @Test
   void makeAlbum() {
-    Album album = new Album("album");
+    DatabaseAlbum album = new DatabaseAlbum("album");
     assertNotNull(album);
 
   }
@@ -26,7 +24,7 @@ public class AlbumTest {
    */
   @Test
   void testGetName() {
-    Album album = new Album("album");
+    DatabaseAlbum album = new DatabaseAlbum("album");
     assertEquals("album", album.getName());
   }
 
@@ -35,13 +33,12 @@ public class AlbumTest {
    */
   @Test
   void testGetAddTracks() {
-    Album album = new Album("album");
-    Track track = new Track("track2");
-    Track track1 = new Track("track1");
+    DatabaseAlbum album = new DatabaseAlbum("album");
+    DataBaseTrack track = new DataBaseTrack("track2");
+    DataBaseTrack track1 = new DataBaseTrack("track1");
     album.addTrack(track);
     album.addTrack(track1);
     assertEquals(track, album.getAllTrack().get(0));
     assertEquals(track1, album.getAllTrack().get(1));
   }
-
 }

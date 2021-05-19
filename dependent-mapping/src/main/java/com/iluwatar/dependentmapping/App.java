@@ -2,32 +2,40 @@ package com.iluwatar.dependentmapping;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * The type App.
+ */
 @Slf4j
 public class App {
+  /**
+   * The entry point of application.
+   *
+   * @param args the input arguments
+   */
   public static void main(String[] args) {
     LOGGER.info("Making database.");
-    DBAlbum dbAlbum1 = new DBAlbum("album1");
-    DBAlbum dbAlbum2 = new DBAlbum("album2");
+    DatabaseAlbum databaseAlbum1 = new DatabaseAlbum("album1");
+    DatabaseAlbum databaseAlbum2 = new DatabaseAlbum("album2");
 
-    DBTrack dbTrack1 = new DBTrack("track1");
-    DBTrack dbTrack2 = new DBTrack("track2");
-    DBTrack dbTrack3 = new DBTrack("track3");
+    DataBaseTrack dataBaseTrack1 = new DataBaseTrack("track1");
+    DataBaseTrack dataBaseTrack2 = new DataBaseTrack("track2");
+    DataBaseTrack dataBaseTrack3 = new DataBaseTrack("track3");
 
-    dbAlbum1.addTrack(dbTrack1);
-    dbAlbum1.addTrack(dbTrack2);
-    dbAlbum2.addTrack(dbTrack3);
+    databaseAlbum1.addTrack(dataBaseTrack1);
+    databaseAlbum1.addTrack(dataBaseTrack2);
+    databaseAlbum2.addTrack(dataBaseTrack3);
 
     Database database = new Database();
-    database.addAlbum(dbAlbum1);
-    database.addAlbum(dbAlbum2);
-    database.addTracks(dbTrack1);
-    database.addTracks(dbTrack2);
-    database.addTracks(dbTrack3);
+    database.addAlbum(databaseAlbum1);
+    database.addAlbum(databaseAlbum2);
+    database.addTracks(dataBaseTrack1);
+    database.addTracks(dataBaseTrack2);
+    database.addTracks(dataBaseTrack3);
 
     AlbumMapper albumMapper = new AlbumMapper(database);
     LOGGER.info("Test loading album");
     Album album = albumMapper.loadAlbum(0);
-    for(Track track:album.getAllTrack()){
+    for (Track track : album.getAllTrack()) {
       LOGGER.info(track.getName());
     }
 
@@ -36,9 +44,9 @@ public class App {
     Track track4 = new Track("track4");
     album1.addTrack(track4);
     albumMapper.updateAlbum(album1);
-    DBAlbum changed = database.getAlbum(1);
-    for(DBTrack dbTrack:changed.getAllTrack()){
-      LOGGER.info(dbTrack.getName());
+    DatabaseAlbum changed = database.getAlbum(1);
+    for (DataBaseTrack dataBaseTrack : changed.getAllTrack()) {
+      LOGGER.info(dataBaseTrack.getName());
     }
   }
 }

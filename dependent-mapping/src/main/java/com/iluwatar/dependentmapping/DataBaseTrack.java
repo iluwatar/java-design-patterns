@@ -1,17 +1,17 @@
 package com.iluwatar.dependentmapping;
 
 /**
- * The type Track.
+ * The type Db track.
  */
-class Track {
+class DataBaseTrack {
   private final String name;
 
   /**
-   * Instantiates a new Track.
+   * Instantiates a new Db track.
    *
    * @param name the name
    */
-  Track(String name) {
+  DataBaseTrack(String name) {
     this.name = name;
   }
 

@@ -1,32 +1,54 @@
 package com.iluwatar.dependentmapping;
 
+/**
+ * The type Album mapper.
+ */
 class AlbumMapper {
   private final Database database;
-  AlbumMapper(Database database){
-    this.database=database;
+
+  /**
+   * Instantiates a new Album mapper.
+   *
+   * @param database the database
+   */
+  AlbumMapper(Database database) {
+    this.database = database;
   }
-  Album loadAlbum(int index){
-    DBAlbum album = database.getAlbum(index);
+
+  /**
+   * Load album.
+   *
+   * @param index the index
+   * @return the album
+   */
+  Album loadAlbum(int index) {
+    DatabaseAlbum album = database.getAlbum(index);
     Album result = new Album(album.getName());
-    for(DBTrack track:album.getAllTrack()){
+    for (DataBaseTrack track : album.getAllTrack()) {
       Track newTrack = new Track(track.getName());
       result.addTrack(newTrack);
     }
     return result;
   }
-  void updateAlbum(Album album){
+
+  /**
+   * Update album.
+   *
+   * @param album the album
+   */
+  void updateAlbum(Album album) {
     int index = database.getAlbumIndex(album.getName());
     database.removeAlbum(index);
-    DBAlbum dbAlbum=new DBAlbum(album.getName());
-    for(Track track: album.getAllTrack()){
+    DatabaseAlbum databaseAlbum = new DatabaseAlbum(album.getName());
+    for (Track track : album.getAllTrack()) {
       String trackName = track.getName();
-      DBTrack dbTrack = database.getTracks(trackName);
-      if (dbTrack == null) {
-        dbTrack = new DBTrack(trackName);
-        database.addTracks(dbTrack);
+      DataBaseTrack dataBaseTrack = database.getTracks(trackName);
+      if (dataBaseTrack == null) {
+        dataBaseTrack = new DataBaseTrack(trackName);
+        database.addTracks(dataBaseTrack);
       }
-      dbAlbum.addTrack(dbTrack);
-      database.addAlbum(dbAlbum);
+      databaseAlbum.addTrack(dataBaseTrack);
+      database.addAlbum(databaseAlbum);
     }
   }
 }
