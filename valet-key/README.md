@@ -3,9 +3,9 @@ layout: pattern
 title: Valet Key
 folder: valet-key
 permalink: /patterns/valet-key/
-categories: Behavioral
+categories: Cloud
 tags:
- - Data access
+ - Cloud Distribute
 ---
 
 ## Intent
