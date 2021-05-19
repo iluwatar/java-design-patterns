@@ -55,3 +55,7 @@ tutorials προγραμματισμού για το πώς να εφαρμόσ�
 Εάν είστε πρόθυμοι να συνεισφέρετε στο έργο, θα βρείτε σχετικές πληροφορίες στο
 το [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). Θα σας βοηθήσουμε
 και θα απαντήσουμε στις ερωτήσεις σας στο [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
+
+# Άδεια Χρήσης
+
+Αυτό το έργο διαθέτει άδεια σύμφωνα με τους όρους της άδειας χρήσης MIT.
