@@ -3,7 +3,15 @@ package com.iluwatar.dependentmapping;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The type App.
+ * Some objects naturally appear in the context of other objects. Tracks on an album may
+ * be loaded or saved whenever the underlying album is loaded or saved. If they aren't
+ * referenced to by any other table in the database, you can simplify the mapping procedure
+ * by having the album mapper perform the map-ping for the tracks as well - treating this
+ * mapping as a dependent mapping.
+ *
+ * <p>In this example {@link Database} contains methods that can be changed.
+ * First the {@link Database} loads some albums and tracks and output the track name.
+ * Then the {@link Database} updates the person and delete them and output the track name.
  */
 @Slf4j
 public class App {
