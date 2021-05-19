@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+	
 	<parent>
 		<groupId>com.iluwatar</groupId>
-	    <artifactId>claim-check-pattern</artifactId>
+		<artifactId>claim-check-pattern</artifactId>
 	    <version>1.25.0-SNAPSHOT</version>
-		<relativePath>..</relativePath>
 	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
 	<artifactId>usage-cost-processor-kafka</artifactId>
 	<name>usage-cost-processor</name>
-
+	<packaging>jar</packaging>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -27,6 +29,36 @@
 			<artifactId>spring-cloud-stream-test-support</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 	</dependencies>
+	
+	<build>
+	    <plugins>
+	      <plugin>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-maven-plugin</artifactId>
+	        <executions>
+	          <execution>
+	            <goals>
+	              <goal>repackage</goal>
+	            </goals>
+	          </execution>
+	        </executions>
+	      </plugin>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-assembly-plugin</artifactId>
+	        <executions>
+	          <execution>
+	            <configuration>
+	              <archive>
+	                <manifest>
+	                  <mainClass>com.iluwatar.consumer.callcostprocessor.application.UsageCostProcessorApplication</mainClass>
+	                </manifest>
+	              </archive>
+	            </configuration>
+	          </execution>
+	        </executions>
+	      </plugin>
+	    </plugins>
+  </build>
 </project>
