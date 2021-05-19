@@ -14,7 +14,7 @@ public class TrustRole {
   public void handleRequest(Request request) {
     if (request.getAction().equals("login")) {
       LOGGER.info("Handle login request.");
-      handleLogin((LoginRequst) request);
+      handleLogin((LoginRequest) request);
     }
   }
 
@@ -22,7 +22,7 @@ public class TrustRole {
    * Handle a login requests.
    * @param request The request from the client.
    */
-  public void handleLogin(LoginRequst request) {
+  public void handleLogin(LoginRequest request) {
     LOGGER.info("Link to the database and check account: "
             + request.getAccount() + " and password: " + request.getPassword() + ".");
   }

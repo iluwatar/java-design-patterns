@@ -40,7 +40,7 @@ public class App {
    * Program main entry point.
    */
   public static void main(String[] args) {
-    var goodRequest = new LoginRequst("login", "admin", "123456");
+    var goodRequest = new LoginRequest("login", "admin", "123456");
     var badRequest = new HackRequest("dangerous action");
     var gateKeeper = new GateKeeper();
     gateKeeper.validateAndForwardRequest(goodRequest);

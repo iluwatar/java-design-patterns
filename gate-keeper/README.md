@@ -1,7 +1,7 @@
 ---
 layout: pattern
-folder: gate-keeper
-permalink: /patterns/gate-keeper/
+folder: gatekeeper
+permalink: /patterns/gatekeeper/
 categories: Cloud
 tags:
  - Cloud distributed

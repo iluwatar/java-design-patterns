@@ -3,7 +3,8 @@ package com.iluwatar.gatekeeper;
 import lombok.Getter;
 
 @Getter
-public class LoginRequst extends Request {
+
+public class LoginRequest extends Request {
   private final String account;
   private final String password;
 
@@ -13,7 +14,7 @@ public class LoginRequst extends Request {
    * @param account the account of the login request.
    * @param password the password of the login request.
    */
-  public LoginRequst(String action, String account, String password) {
+  public LoginRequest(String action, String account, String password) {
     super(action);
     this.account = account;
     this.password = password;

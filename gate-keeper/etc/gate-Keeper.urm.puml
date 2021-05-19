@@ -16,10 +16,10 @@ package com.iluwatar.gatekeeper {
   class HackRequest {
     + HackRequest(action : String)
   }
-  class LoginRequst {
+  class LoginRequest {
     - account : String
     - password : String
-    + LoginRequst(action : String, account : String, password : String)
+    + LoginRequest(action : String, account : String, password : String)
     + getAccount() : String
     + getPassword() : String
   }
@@ -31,10 +31,10 @@ package com.iluwatar.gatekeeper {
   class TrustRole {
     - LOGGER : Logger {static}
     + TrustRole()
-    + handleLogin(request : LoginRequst)
+    + handleLogin(request : LoginRequest)
     + handleRequest(request : Request)
   }
 }
 HackRequest --|> Request 
-LoginRequst --|> Request 
+LoginRequest --|> Request 
 @enduml

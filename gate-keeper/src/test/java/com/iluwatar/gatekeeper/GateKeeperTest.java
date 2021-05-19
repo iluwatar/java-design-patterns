@@ -27,7 +27,7 @@ class GateKeeperTest {
     @Test
     void TestValidateAndForwardRequest(){
         final var requests= List.of(
-                new LoginRequst("login","account1","password1"),
+                new LoginRequest("login","account1","password1"),
                 new HackRequest("suspicious action")
         );
         var gateKeeper=new GateKeeper();
