@@ -32,7 +32,6 @@ import com.iluwatar.consumer.callcostprocessor.domain.Message;
 import com.iluwatar.consumer.callcostprocessor.domain.MessageHeader;
 import com.iluwatar.consumer.callcostprocessor.domain.UsageDetail;
 import com.iluwatar.consumer.callcostprocessor.interfaces.IPersistentCommonStorageUtility;
-import com.iluwatar.consumer.callcostprocessor.utility.PersistentLocalStorageUtility;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;

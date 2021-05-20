@@ -24,7 +24,6 @@
 
 package com.iluwatar.consumer.callcostprocessor.domain;
 
-import com.iluwatar.consumer.callcostprocessor.domain.MessageData;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

@@ -7,6 +7,9 @@ import org.junit.Test;
 
 import com.iluwatar.consumer.callcostprocessor.domain.MessageHeader;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
+
 public class MessageHeaderTestTest {
 
 	private MessageHeader messageHeader;
@@ -72,6 +75,11 @@ public class MessageHeaderTestTest {
 
 	@Test
 	public void testEqualsObject() {
+		
+		EqualsVerifier.forClass( MessageHeader.class )
+        .suppress( Warning.STRICT_INHERITANCE ).suppress(Warning.NONFINAL_FIELDS)
+        .verify();
+		
 		assertEquals(true,this.messageHeader.equals(this.messageHeader));
 	}
 	@Test

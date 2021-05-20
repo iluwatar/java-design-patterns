@@ -12,6 +12,9 @@ import com.iluwatar.consumer.callcostprocessor.domain.MessageData;
 import com.iluwatar.consumer.callcostprocessor.domain.MessageHeader;
 import com.iluwatar.consumer.callcostprocessor.domain.UsageDetail;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
+
 public class MessageTest {
 
 	private MessageHeader messageHeader;
@@ -88,6 +91,10 @@ public class MessageTest {
 
 	@Test
 	public void testEqualsObject() {
+		
+		EqualsVerifier.forClass( Message.class )
+        .suppress( Warning.STRICT_INHERITANCE ).suppress(Warning.NONFINAL_FIELDS)
+        .verify();
 		assertEquals(true,this.message.equals(this.message));
 	}
 	

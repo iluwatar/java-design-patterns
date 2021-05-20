@@ -7,6 +7,9 @@ import org.junit.Test;
 
 import com.iluwatar.consumer.callcostprocessor.domain.UsageCostDetail;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
+
 
 public class UsageCostDetailTestTest {
 	
@@ -75,6 +78,9 @@ public class UsageCostDetailTestTest {
 
 	@Test
 	public void testEqualsObject() {
+		EqualsVerifier.forClass( UsageCostDetail.class )
+        .suppress( Warning.STRICT_INHERITANCE ).suppress(Warning.NONFINAL_FIELDS)
+        .verify();
 		assertEquals(true,this.usageCostDetail.equals(this.usageCostDetail));
 	}
 

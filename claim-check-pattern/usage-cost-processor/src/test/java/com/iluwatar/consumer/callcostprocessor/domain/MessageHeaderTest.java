@@ -17,9 +17,9 @@ public class MessageHeaderTest {
 	@Parameters(name = "{index}: fun({0},{1},\"{2}\")={3}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][] { 
-                 {"input1.json", "C://tmp", "Cost Calculator", false}, 
-                 {"input.json", "C://tmpp", "Cost Calculator", false},
-                 {"input.json", "C://tmp", "Cost Calculatorr", false},
+            {"input1.json", "C://tmp", "Cost Calculator", false}, 
+            {"input.json", "C://tmpp", "Cost Calculator", false},
+            {"input.json", "C://tmp", "Cost Calculatorr", false},
            });
     }
 
@@ -48,7 +48,7 @@ public class MessageHeaderTest {
 		tempMessageHeader.setDataFileName(this.dataFileName);
 		tempMessageHeader.setDataLocation(this.dataLocation);
 		tempMessageHeader.setOperataionName(this.operataionName);
-		assertEquals(false,this.messageHeader.equals(tempMessageHeader));
+		assertEquals(this.expected,this.messageHeader.equals(tempMessageHeader));
 	}
     
 }

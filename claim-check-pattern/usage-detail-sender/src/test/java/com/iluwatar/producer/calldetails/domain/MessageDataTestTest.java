@@ -8,6 +8,9 @@ import org.junit.Test;
 import com.iluwatar.producer.calldetails.domain.MessageData;
 import com.iluwatar.producer.calldetails.domain.UsageDetail;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
+
 public class MessageDataTestTest {
 
 	private UsageDetail usageDetail;
@@ -52,6 +55,9 @@ public class MessageDataTestTest {
 
 	@Test
 	public void testEqualsObject() {
+		EqualsVerifier.forClass( MessageData.class )
+        .suppress( Warning.STRICT_INHERITANCE ).suppress(Warning.NONFINAL_FIELDS)
+        .verify();
 		assertEquals(true,this.messageData.equals(this.messageData));
 	}
 	

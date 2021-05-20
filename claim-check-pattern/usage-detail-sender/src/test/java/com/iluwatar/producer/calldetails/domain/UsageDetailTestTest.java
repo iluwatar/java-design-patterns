@@ -9,6 +9,9 @@ import org.junit.Test;
 
 import com.iluwatar.producer.calldetails.domain.UsageDetail;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
+
 public class UsageDetailTestTest {
 
 	private UsageDetail usageDetail;
@@ -79,6 +82,9 @@ public class UsageDetailTestTest {
 
 	@Test
 	public void testEqualsObject() {
+		EqualsVerifier.forClass( UsageDetail.class )
+        .suppress( Warning.STRICT_INHERITANCE ).suppress(Warning.NONFINAL_FIELDS)
+        .verify();
 		assertEquals(true,this.usageDetail.equals(this.usageDetail));
 	}
 	
