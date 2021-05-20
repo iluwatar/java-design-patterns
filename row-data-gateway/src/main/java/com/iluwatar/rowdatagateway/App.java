@@ -44,9 +44,9 @@ public final class App {
     var person2 = new Person(2, "Si", "Li");
     var person3 = new Person(1, "Wu", "Wang");
 
-    PersonGateway personGateway1 = new PersonGateway(person1, dataSource);
-    PersonGateway personGateway2 = new PersonGateway(person2, dataSource);
-    PersonGateway personGateway3 = new PersonGateway(person3, dataSource);
+    var personGateway1 = new PersonGateway(person1, dataSource);
+    var personGateway2 = new PersonGateway(person2, dataSource);
+    var personGateway3 = new PersonGateway(person3, dataSource);
 
     personGateway1.insert();
     personGateway2.insert();
