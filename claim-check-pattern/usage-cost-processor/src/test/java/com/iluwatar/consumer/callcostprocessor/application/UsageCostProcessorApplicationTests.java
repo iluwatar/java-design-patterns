@@ -18,7 +18,7 @@ public class UsageCostProcessorApplicationTests {
 		try {
 			UsageCostProcessorApplication.main(new String[] {});
 		} catch (Exception e) {
-			fail("UsageCostProcessorApplication failed: "+e.getStackTrace());
+			fail("UsageCostProcessorApplication failed : "+e.getStackTrace());
 		}
 	}
 
