@@ -5,14 +5,12 @@ folder: client-server
 permalink: /patterns/client-server/
 categories: Architectural
 tags:
- - Architectural
+ - Decoupling
 ---
 
 ## Intent
 
-- Centralized system with all data in a single place.
-- Cost efficient requires less maintenance cost and Data recovery is possible.
-- The capacity of the Client and Servers can be changed separately.
+Client-server pattern consists of two parties; a server and multiple clients. The server component will provide services to multiple client components. Clients request services from the server and the server provides relevant services to those clients.```
 
 
 ## Explanation
@@ -23,7 +21,7 @@ Real world example
 
 In plain words
 
-> Server dispatch resources and clients request them.
+> In the client-server pattern the server provides services to multiple clients.
 
 Wikipedia says
 
@@ -57,4 +55,3 @@ Use the Client-Server pattern when
 
 * [Client-Server Model](https://www.geeksforgeeks.org/client-server-model/)
 * [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-
