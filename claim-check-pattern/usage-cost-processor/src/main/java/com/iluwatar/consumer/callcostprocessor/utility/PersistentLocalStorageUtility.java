@@ -32,7 +32,7 @@ import com.iluwatar.consumer.callcostprocessor.domain.Message;
 import com.iluwatar.consumer.callcostprocessor.domain.MessageHeader;
 import com.iluwatar.consumer.callcostprocessor.domain.UsageDetail;
 import com.iluwatar.consumer.callcostprocessor.interfaces.IPersistentCommonStorageUtility;
-
+import com.iluwatar.consumer.callcostprocessor.utility.PersistentLocalStorageUtility;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -44,38 +44,38 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * 
  * This is an implementation of persistent storage interface.
  * Here we are using Windows File System as persistent storage.
  */
 @Slf4j
 @Service
 public class PersistentLocalStorageUtility<T> implements IPersistentCommonStorageUtility<T> {
-    @Override
+  @Override
     public Message<T> readMessageFromPersistentStorage(MessageHeader messageHeader) {
-    	var gson = new Gson();
-    	Message<T> message = null;
-    	var typeToken = new TypeToken<Message<UsageDetail>>() { }.getType();
-    	try {
-			message = gson.fromJson(new BufferedReader(new FileReader(messageHeader.getDataLocation() +"\\" +messageHeader.getDataFileName())),
-					typeToken);
-		} catch (JsonSyntaxException | JsonIOException | IOException e) {
-			LOGGER.error(e.getMessage());
-		}
-        return message;
+    var gson = new Gson();
+    Message<T> message = null;
+    var typeToken = new TypeToken<Message<UsageDetail>>() { }.getType();
+    try {
+      message = gson.fromJson(new BufferedReader(new FileReader(messageHeader.getDataLocation() 
+        + "\\" + messageHeader.getDataFileName())), typeToken);
+    } catch (JsonSyntaxException | JsonIOException | IOException e) {
+      LOGGER.error(e.getMessage());
     }
+    return message;
+  }
 
-    @Override
+  @Override
     public void dropMessageToPersistentStorage(Message<T> message) {
-    	var gson = new GsonBuilder().setPrettyPrinting().create();
-    	try {
-    		Files.createDirectories(Paths.get(message.getMessageHeader().getDataLocation()));
-    		var fileWriter =  new FileWriter(message.getMessageHeader().getDataLocation() +"\\" +message.getMessageHeader().getDataFileName());
-			gson.toJson(message,fileWriter);
-			fileWriter.flush();
-			fileWriter.close();
-		} catch (JsonIOException | IOException e) {
-			LOGGER.error(e.getMessage());
-		}
+    var gson = new GsonBuilder().setPrettyPrinting().create();
+    try {
+      Files.createDirectories(Paths.get(message.getMessageHeader().getDataLocation()));
+      var fileWriter =  new FileWriter(message.getMessageHeader().getDataLocation() 
+          + "\\" + message.getMessageHeader().getDataFileName());
+      gson.toJson(message, fileWriter);
+      fileWriter.flush();
+      fileWriter.close();
+    } catch (JsonIOException | IOException e) {
+      LOGGER.error(e.getMessage());
     }
+  }
 }

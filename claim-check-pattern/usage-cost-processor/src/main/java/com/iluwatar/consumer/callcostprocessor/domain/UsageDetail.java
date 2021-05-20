@@ -27,17 +27,16 @@ package com.iluwatar.consumer.callcostprocessor.domain;
 import lombok.Data;
 
 /**
- * 
  * This is actual data which is stored in MessageBody of Message.
  *
  */
 @Data
 public class UsageDetail {
 
-	private String userId;
+  private String userId;
 
-	private long duration;
+  private long duration;
 
-	private long data;
+  private long data;
 
 }

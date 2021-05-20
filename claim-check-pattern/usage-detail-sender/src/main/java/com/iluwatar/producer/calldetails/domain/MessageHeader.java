@@ -26,16 +26,16 @@ package com.iluwatar.producer.calldetails.domain;
 import lombok.Data;
 
 /**
- * 
  * This is header of Message class
  * which contains message drop location.
- *
  */
 @Data
 public class MessageHeader {
 
-    private String dataLocation;
-    private String dataFileName;
-    private String operataionName;
-        
+  private String dataLocation;
+  
+  private String dataFileName;
+  
+  private String operataionName;
+    
 }

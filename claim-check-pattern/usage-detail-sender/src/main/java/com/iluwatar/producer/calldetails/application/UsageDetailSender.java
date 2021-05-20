@@ -29,7 +29,6 @@ import com.iluwatar.producer.calldetails.domain.MessageData;
 import com.iluwatar.producer.calldetails.domain.MessageHeader;
 import com.iluwatar.producer.calldetails.domain.UsageDetail;
 import com.iluwatar.producer.calldetails.interfaces.IPersistentCommonStorageUtility;
-
 import java.security.SecureRandom;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 /**
- * 
  * This class is producer class which send message header to 
  * Kafka topic and drop message to persistent store after each five seconds.
  * Message header contains message location and body contains actual data 
@@ -50,39 +48,43 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableBinding(Source.class)
 public class UsageDetailSender {
 
-	@Autowired
-	private Source source;
+  @Autowired
+  private Source source;
 
-	@Autowired
-	private IPersistentCommonStorageUtility<UsageDetail> persistentcommonStorageUtility;
-	
-	public static void incrementCount() {
-		count += 1;
-	}
+  @Autowired
+  private IPersistentCommonStorageUtility<UsageDetail> persistentcommonStorageUtility;
+  
+  public static void incrementCount() {
+    count += 1;
+  }
 
-	private static long count = 1;
-	private String[] users = {"Sam", "Alex", "Jane", "Tony", "Cobb"};
+  private static long count = 1;
+  private String[] users = {"Sam", "Alex", "Jane", "Tony", "Cobb"};
 
-	@Scheduled(fixedDelay = 5000)
-	public void sendEvents() {
-		var usageDetail = new UsageDetail();
-		usageDetail.setUserId(this.users[new SecureRandom().nextInt(5)] +"-" +count);
-		incrementCount();
-		usageDetail.setDuration(new SecureRandom().nextInt(300));
-		usageDetail.setData(new SecureRandom().nextInt(700));
-		
-		var messageHeader = new MessageHeader();
-		messageHeader.setDataLocation(System.getenv("LOCALAPPDATA") + "\\claim-check-pattern\\" + 
-				UUID.randomUUID().toString());
-		messageHeader.setDataFileName("input.json");
-		messageHeader.setOperataionName("Call-Cost-Calculation");
-		
-		MessageData<UsageDetail> messageData = new MessageData<>(usageDetail);
-		
-		Message<UsageDetail> message = new Message<>(messageHeader, messageData);
-		
-		this.persistentcommonStorageUtility.dropMessageToPersistentStorage(message);
-		
-		this.source.output().send(MessageBuilder.withPayload(messageHeader).build());
-	}
+  /**  
+   * SendEvents method will send call details after each 5 seconds
+   *  to kafka topic usage-detail.
+   */
+  @Scheduled(fixedDelay = 5000)
+  public void sendEvents() {
+    var usageDetail = new UsageDetail();
+    usageDetail.setUserId(this.users[new SecureRandom().nextInt(5)] + "-" + count);
+    incrementCount();
+    usageDetail.setDuration(new SecureRandom().nextInt(300));
+    usageDetail.setData(new SecureRandom().nextInt(700));
+    
+    var messageHeader = new MessageHeader();
+    messageHeader.setDataLocation(System.getenv("LOCALAPPDATA") 
+        + "\\claim-check-pattern\\" + UUID.randomUUID().toString());
+    messageHeader.setDataFileName("input.json");
+    messageHeader.setOperataionName("Call-Cost-Calculation");
+    
+    MessageData<UsageDetail> messageData = new MessageData<>(usageDetail);
+    
+    Message<UsageDetail> message = new Message<>(messageHeader, messageData);
+    
+    this.persistentcommonStorageUtility.dropMessageToPersistentStorage(message);
+    
+    this.source.output().send(MessageBuilder.withPayload(messageHeader).build());
+  }
 }

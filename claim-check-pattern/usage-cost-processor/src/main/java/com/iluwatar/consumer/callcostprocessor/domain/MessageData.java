@@ -24,19 +24,20 @@
 
 package com.iluwatar.consumer.callcostprocessor.domain;
 
+import com.iluwatar.consumer.callcostprocessor.domain.MessageData;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * 
  * MessageData is body of Message class.
  * This class stores all actual data.
- * @param <T>
+ * @param <T> where T is actual data class.
  */
+
 @Data
 @AllArgsConstructor
 public class MessageData<T> {
 
-    private T data;
+  private T data;
 
 }

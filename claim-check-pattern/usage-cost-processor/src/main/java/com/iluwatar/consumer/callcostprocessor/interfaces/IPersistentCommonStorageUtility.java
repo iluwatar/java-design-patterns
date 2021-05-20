@@ -33,7 +33,8 @@ import com.iluwatar.consumer.callcostprocessor.domain.MessageHeader;
  */
 public interface IPersistentCommonStorageUtility<T> {
 
-    public Message<T> readMessageFromPersistentStorage(MessageHeader messageHeader);
-    public void dropMessageToPersistentStorage(Message<T> message);
+  public Message<T> readMessageFromPersistentStorage(MessageHeader messageHeader);
+  
+  public void dropMessageToPersistentStorage(Message<T> message);
 
 }

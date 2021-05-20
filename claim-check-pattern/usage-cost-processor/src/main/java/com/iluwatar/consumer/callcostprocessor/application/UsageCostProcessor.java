@@ -23,6 +23,7 @@
 
 package com.iluwatar.consumer.callcostprocessor.application;
 
+import static org.springframework.cloud.stream.messaging.Processor.INPUT;
 
 import com.iluwatar.consumer.callcostprocessor.domain.Message;
 import com.iluwatar.consumer.callcostprocessor.domain.MessageData;
@@ -30,72 +31,79 @@ import com.iluwatar.consumer.callcostprocessor.domain.MessageHeader;
 import com.iluwatar.consumer.callcostprocessor.domain.UsageCostDetail;
 import com.iluwatar.consumer.callcostprocessor.domain.UsageDetail;
 import com.iluwatar.consumer.callcostprocessor.interfaces.IPersistentCommonStorageUtility;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-
 import org.springframework.cloud.stream.messaging.Processor;
-import static org.springframework.cloud.stream.messaging.Processor.INPUT;
 
-/**
- * 
- * Enum for storing call rates
- *
- */
-enum Rate {
-	RATE_PER_SECOND(0.1),
-	RATE_PER_MB(0.05);
 
-	private double rateValue;
-	Rate(double rateValue) {
-		this.rateValue = rateValue;
-	}
-	public double getRateValue() {
-		return this.rateValue;
-	}
-}
 /**
  * The class UsageCostProcessor will read messageHeader from 
  * Kafka topic usage-detail. It will calculate call price using call details
  * and drop data to persistent storage.
  */
+
 @EnableBinding(Processor.class)
 public class UsageCostProcessor {
-	
-	@Autowired
-	IPersistentCommonStorageUtility<UsageDetail> persistentCommonStorageUtilityForUsageDetail;
+  
+  /** .
+  * Enum for storing call rates
+  */
+  enum Rate {
+    RATE_PER_SECOND(0.1),
+    RATE_PER_MB(0.05);
 
-	@Autowired
-	IPersistentCommonStorageUtility<UsageCostDetail> persistentCommonStorageUtilityForUsageCostDetail;
-	
-	private double ratePerSecond = Rate.RATE_PER_SECOND.getRateValue();
+    private double rateValue;
+    
+    Rate(double rateValue) {
+      this.rateValue = rateValue;
+    }
+    
+    public double getRateValue() {
+      return this.rateValue;
+    }
+  }
+  
+  @Autowired
+  IPersistentCommonStorageUtility<UsageDetail> persistentCommonStorageUtilityForUsageDetail;
 
-	private double ratePerMB = Rate.RATE_PER_MB.getRateValue();
+  @Autowired
+  IPersistentCommonStorageUtility<UsageCostDetail> persistentCommonStorageUtilityForUsageCostDetail;
+  
+  private double ratePerSecond = Rate.RATE_PER_SECOND.getRateValue();
 
-	@StreamListener(INPUT)
-	public void processUsageCost(MessageHeader inputMessageHeader) {
-		
-		Message<UsageDetail> inputMessage = this.persistentCommonStorageUtilityForUsageDetail.readMessageFromPersistentStorage(inputMessageHeader);
-		var usageDetail = inputMessage.getMessageData().getData();
-		
-		// Calculate call cost
-		var usageCostDetail = new UsageCostDetail();
-		usageCostDetail.setUserId(usageDetail.getUserId());
-		usageCostDetail.setCallCost(usageDetail.getDuration() * this.ratePerSecond);
-		usageCostDetail.setDataCost(usageDetail.getData() * this.ratePerMB);
+  private double ratePerMB = Rate.RATE_PER_MB.getRateValue();
 
-		// Create message to drop
-		var messageHeader = new MessageHeader();
-		messageHeader.setOperataionName(inputMessage.getMessageHeader().getOperataionName());
-		String dataLocation = inputMessage.getMessageHeader().getDataLocation();
-		messageHeader.setDataLocation(dataLocation);
-		messageHeader.setDataFileName("output.json");
-		MessageData<UsageCostDetail> messageData = new MessageData<>(usageCostDetail);
-		Message<UsageCostDetail> message = new Message<>(messageHeader,messageData);
+  /**
+   * This method will listen to usage-detail kafka topic.
+   * 
+   * @param inputMessageHeader where inputMessageHeaderwhere is received from kafka topic.
+   */
+  
+  @StreamListener(INPUT)
+  public void processUsageCost(MessageHeader inputMessageHeader) {
 
-		// Drop message to common storage
-		
-		this.persistentCommonStorageUtilityForUsageCostDetail.dropMessageToPersistentStorage(message);
-	}
+    Message<UsageDetail> inputMessage = this.persistentCommonStorageUtilityForUsageDetail
+        .readMessageFromPersistentStorage(inputMessageHeader);
+    var usageDetail = inputMessage.getMessageData().getData();
+    
+    // Calculate call cost
+    var usageCostDetail = new UsageCostDetail();
+    usageCostDetail.setUserId(usageDetail.getUserId());
+    usageCostDetail.setCallCost(usageDetail.getDuration() * this.ratePerSecond);
+    usageCostDetail.setDataCost(usageDetail.getData() * this.ratePerMB);
+
+    // Create message to drop
+    var messageHeader = new MessageHeader();
+    messageHeader.setOperataionName(inputMessage.getMessageHeader().getOperataionName());
+    String dataLocation = inputMessage.getMessageHeader().getDataLocation();
+    messageHeader.setDataLocation(dataLocation);
+    messageHeader.setDataFileName("output.json");
+    MessageData<UsageCostDetail> messageData = new MessageData<>(usageCostDetail);
+    Message<UsageCostDetail> message = new Message<>(messageHeader,messageData);
+
+    // Drop message to common storage
+    
+    this.persistentCommonStorageUtilityForUsageCostDetail.dropMessageToPersistentStorage(message);
+  }
 }

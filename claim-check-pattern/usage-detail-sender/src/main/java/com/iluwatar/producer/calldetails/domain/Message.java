@@ -35,7 +35,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Message<T> {
-    private MessageHeader messageHeader;
-    private MessageData<T> messageData;
+
+  private MessageHeader messageHeader;
+  
+  private MessageData<T> messageData;
 
 }

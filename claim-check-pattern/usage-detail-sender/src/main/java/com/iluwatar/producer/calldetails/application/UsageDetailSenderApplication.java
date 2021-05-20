@@ -27,16 +27,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 /**
- * 
  * This is main class of spring boot application.
- *
  */
+
 @SpringBootApplication
-@ComponentScan({ "com.iluwatar.producer.calldetails.application", "com.iluwatar.producer.calldetails.utility" })
+@ComponentScan({ "com.iluwatar.producer.calldetails.application", 
+    "com.iluwatar.producer.calldetails.utility" })
 public class UsageDetailSenderApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(UsageDetailSenderApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(UsageDetailSenderApplication.class, args);
+  }
 
 }
