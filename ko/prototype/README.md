@@ -2,8 +2,9 @@
 layout: pattern
 title: Prototype
 folder: prototype
-permalink: "/patterns/prototype/"
+permalink: /patterns/prototype/ko
 categories: Creational
+language: ko
 tags:
 - Gang Of Four
 - Instantiation

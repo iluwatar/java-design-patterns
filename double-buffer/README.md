@@ -4,6 +4,7 @@ title: Double Buffer
 folder:  double-buffer  
 permalink: /patterns/double-buffer/  
 categories: Behavioral
+language: en
 tags:  
  - Performance
  - Game programming  

@@ -2,8 +2,9 @@
 layout: pattern
 title: Bridge
 folder: bridge
-permalink: /patterns/bridge/
+permalink: /patterns/bridge/zh
 categories: Structural
+language: zh
 tags:
  - Gang of Four
 ---

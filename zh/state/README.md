@@ -2,8 +2,9 @@
 layout: pattern
 title: State
 folder: state
-permalink: /patterns/state/
+permalink: /patterns/state/zh
 categories: Behavioral
+language: zh
 tags:
  - Gang of Four
 ---

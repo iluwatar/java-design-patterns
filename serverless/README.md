@@ -4,6 +4,7 @@ title: Serverless
 folder: serverless
 permalink: /patterns/serverless/
 categories: Architectural
+language: en
 tags:
  - Cloud distributed
 ---

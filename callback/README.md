@@ -4,6 +4,7 @@ title: Callback
 folder: callback
 permalink: /patterns/callback/
 categories: Idiom
+language: en
 tags:
  - Reactive
 ---

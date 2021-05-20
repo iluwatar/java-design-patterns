@@ -4,6 +4,7 @@ title: EIP Wire Tap
 folder: eip-wire-tap
 permalink: /patterns/eip-wire-tap/
 categories: Integration
+language: en
 tags:
  - Enterprise Integration Pattern
 ---

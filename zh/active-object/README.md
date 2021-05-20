@@ -2,8 +2,9 @@
 layout: pattern
 title: Active Object
 folder: active-object
-permalink: /patterns/active-object/
+permalink: /patterns/active-object/zh
 categories: Concurrency
+language: zh
 tags:
  - Performance
 ---

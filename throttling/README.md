@@ -4,6 +4,7 @@ title: Throttling
 folder: throttling
 permalink: /patterns/throttling/
 categories: Behavioral
+language: en
 tags:
  - Performance
  - Cloud distributed

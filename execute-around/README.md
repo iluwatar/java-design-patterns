@@ -4,6 +4,7 @@ title: Execute Around
 folder: execute-around
 permalink: /patterns/execute-around/
 categories: Idiom
+language: en
 tags:
  - Extensibility
 ---

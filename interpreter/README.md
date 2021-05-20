@@ -4,6 +4,7 @@ title: Interpreter
 folder: interpreter
 permalink: /patterns/interpreter/
 categories: Behavioral
+language: en
 tags:
  - Gang of Four
 ---

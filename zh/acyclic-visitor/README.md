@@ -2,8 +2,9 @@
 layout: pattern
 title: Acyclic Visitor
 folder: acyclic-visitor
-permalink: /patterns/acyclic-visitor/
+permalink: /patterns/acyclic-visitor/zh
 categories: Behavioral
+language: zh
 tags:
  - Extensibility
 ---

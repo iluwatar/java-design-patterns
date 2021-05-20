@@ -4,6 +4,7 @@ title: Bridge
 folder: bridge
 permalink: /patterns/bridge/
 categories: Structural
+language: en
 tags:
  - Gang of Four
 ---

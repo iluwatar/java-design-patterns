@@ -2,8 +2,9 @@
 layout: pattern
 title: Caching
 folder: caching
-permalink: /patterns/caching/
+permalink: /patterns/caching/zh
 categories: Behavioral
+language: zh
 tags:
   - Performance
   - Cloud distributed

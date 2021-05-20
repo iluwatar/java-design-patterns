@@ -4,6 +4,7 @@ title: CQRS
 folder: cqrs
 permalink: /patterns/cqrs/
 categories: Architectural
+language: en
 tags:
   - Performance
   - Cloud distributed

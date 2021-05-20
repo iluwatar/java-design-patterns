@@ -4,6 +4,7 @@ title: Event Aggregator
 folder: event-aggregator
 permalink: /patterns/event-aggregator/
 categories: Structural
+language: en
 tags:
  - Reactive
 ---

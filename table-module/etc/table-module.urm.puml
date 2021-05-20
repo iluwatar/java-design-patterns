@@ -1,0 +1,38 @@
+@startuml
+package com.iluwatar.tablemodule {
+  class App {
+    - DB_URL : String {static}
+    - LOGGER : Logger {static}
+    - App()
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteSchema(dataSource : DataSource) {static}
+    + main(args : String[]) {static}
+  }
+  class User {
+    - id : int
+    - password : String
+    - username : String
+    + User(id : int, username : String, password : String)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getId() : int
+    + getPassword() : String
+    + getUsername() : String
+    + hashCode() : int
+    + setId(id : int)
+    + setPassword(password : String)
+    + setUsername(username : String)
+    + toString() : String
+  }
+  class UserTableModule {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    - LOGGER : Logger {static}
+    - dataSource : DataSource
+    + UserTableModule(userDataSource : DataSource)
+    + login(username : String, password : String) : int
+    + registerUser(user : User) : int
+  }
+}
+@enduml
