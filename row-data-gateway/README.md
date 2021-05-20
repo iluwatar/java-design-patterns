@@ -1,30 +1,26 @@
 ---
 layout: pattern
-title: Table Module
-folder: table-module
-permalink: /patterns/table-module/
+title: Row Data Gateway
+folder: row-data-gateway
+permalink: /patterns/row-data-gateway/
 categories: Structural
 tags:
  - Data access
 ---
 ## Intent
-Table Module organizes domain logic with one class per table in the database, and a single instance of a class contains the various procedures that will act on the data.
+An object that acts as a Gateway to a single record in a data source. There is one instance per row. Here Gateway means an object that encapsulates access to an external system or resource. This object does not contain domain logic methods. If you introduce other methods (in particular domain logic) the object becomes an Active Record Pattern.
 
 ## Explanation
 
-Real world example
-
-> When dealing with a user system, we need some operations on the user table. We can use the table module pattern in this scenario. We can create a class named UserTableModule and initialize a instance of that class to handle the business logic for all rows in the user table.
-
 In plain words
 
-> A single instance that handles the business logic for all rows in a database table or view.
+> A Row Data Gateway gives you objects that look exactly like the record in your record structure but can be accessed with the regular mechanisms of your programming language. All details of data source access are hidden behind this interface.
 
 Programmatic Example
 
-In the example of the user system, we need to deal with the domain logic of user login and user registration. We can use the table module pattern and create an instance of the class `UserTableModule` to handle the business logic for all rows in the user table.
+A Row Data Gateway acts as an object that exactly mimics a single record, such as one database row. For example, `Person` class has id, firstName and lastName fields. 
 
-Here is the basic `User` entity.
+The `Person` class:
 
 ```java
 @Setter
@@ -32,103 +28,57 @@ Here is the basic `User` entity.
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-public class User {
+public class Person {
   private int id;
-  private String username;
-  private String password;
+  private String firstName;
+  private String lastName;
 }
 ```
 
-Here is the `UserTableModule` class.
+This pattern holds the data about a row so that a client can then access the Row Data Gateway directly. The gateway acts as a good interface for each row of data. This approach works particularly well for Transaction Scripts.
+
+The `PersonGateway` class:
 
 ```java
-public class UserTableModule {
+public class PersonGateway {
   private final DataSource dataSource;
-  private Connection connection = null;
-  private ResultSet resultSet = null;
-  private PreparedStatement preparedStatement = null;
+  private final Person person;
 
-  public UserTableModule(final DataSource userDataSource) {
-    this.dataSource = userDataSource;
+  public PersonGateway(final Person person1, final DataSource dataSource1) {
+    this.person = person1;
+    this.dataSource = dataSource1;
+  }
+
+  public int insert() throws SQLException {
+	...
   }
   
-  /**
-   * Login using username and password.
-   *
-   * @param username the username of a user
-   * @param password the password of a user
-   * @return the execution result of the method
-   * @throws SQLException if any error
-   */
-  public int login(final String username, final String password) throws SQLException {
-  		// Method implementation.
-
+  public int update() throws SQLException {
+	...
   }
 
-  /**
-   * Register a new user.
-   *
-   * @param user a user instance
-   * @return the execution result of the method
-   * @throws SQLException if any error
-   */
-  public int registerUser(final User user) throws SQLException {
-  		// Method implementation.
+  public int delete() throws SQLException {
+ 	...
   }
 }
-```
-
-In the class `App`, we use an instance of the `UserTableModule` to handle user login and registration.
-
-```java
-// Create data source and create the user table.
-final var dataSource = createDataSource();
-createSchema(dataSource);
-userTableModule = new UserTableModule(dataSource);
-
-//Initialize two users.
-var user1 = new User(1, "123456", "123456");
-var user2 = new User(2, "test", "password");
-
-//Login and register using the instance of userTableModule.
-userTableModule.registerUser(user1);
-userTableModule.login(user1.getUsername(), user1.getPassword());
-userTableModule.login(user2.getUsername(), user2.getPassword());
-userTableModule.registerUser(user2);
-userTableModule.login(user2.getUsername(), user2.getPassword());
-
-deleteSchema(dataSource);
-```
-
-The program output:
-
-```java
-12:22:13.095 [main] INFO com.iluwatar.tablemodule.UserTableModule - Register successfully!
-12:22:13.117 [main] INFO com.iluwatar.tablemodule.UserTableModule - Login successfully!
-12:22:13.128 [main] INFO com.iluwatar.tablemodule.UserTableModule - Fail to login!
-12:22:13.136 [main] INFO com.iluwatar.tablemodule.UserTableModule - Register successfully!
-12:22:13.144 [main] INFO com.iluwatar.tablemodule.UserTableModule - Login successfully!
 ```
 
 ## Class diagram
 
-![](./etc/table-module.urm.png "table module")
+![](./etc/row-data-gateway.urm.png)
 
 ## Applicability
 
-Use the Table Module Pattern when
-
-- Domain logic is simple and data is in tabular form.
-- The application only uses a few shared common table-oriented data structures.
+This Row Data Gateway is widely used with Transaction Script pattern. In this case, it nicely factors out the database access code and allows it to be reused easily by different Transaction Scripts.
 
 ## Related patterns
 
+- Active Record Pattern
+
 - [Transaction Script](https://java-design-patterns.com/patterns/transaction-script/)
 
-- Domain Model
 
 ## Credits
 
-* [Table Module Pattern](http://wiki3.cosc.canterbury.ac.nz/index.php/Table_module_pattern)
+* [Row Data Gateway Pattern](https://www.sourcecodeexamples.net/2018/04/row-data-gateway.html)
 * [Patterns of Enterprise Application Architecture](https://www.amazon.com/gp/product/0321127420/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0321127420&linkId=18acc13ba60d66690009505577c45c04)
-* [Architecture patterns: domain model and friends](https://inviqa.com/blog/architecture-patterns-domain-model-and-friends)
