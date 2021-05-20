@@ -1,6 +1,7 @@
-package com.iluwatar.clientserver;
+package com.iluwatar.collectorstate;
 
 import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * This is a simple client-server design model implemented by multithreaded
@@ -18,9 +19,9 @@ public final class App {
    * @param args command line args
    */
   public static void main(final String[] args) {
-    final var server = new RunnableSocket("Server");
-    server.start();
-    final var client = new RunnableSocket("Client");
-    client.start();
+    int expectedDigit = 8;
+    int minimumDigit = 1;
+    var collectorState = new DigitCollectorState(expectedDigit, minimumDigit);
+    LOGGER.info(collectorState.getDescription());
   }
 }
