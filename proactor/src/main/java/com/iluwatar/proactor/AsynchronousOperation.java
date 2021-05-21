@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 public class AsynchronousOperation {
 
   /**
-   *  Logger
+   *  Logger.
    */
   private static final Logger LOGGER = LoggerFactory.getLogger(AsynchronousOperation.class);
 
