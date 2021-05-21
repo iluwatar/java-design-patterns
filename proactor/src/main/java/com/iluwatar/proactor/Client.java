@@ -4,10 +4,19 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Client side.
  */
 public class Client {
+
+  /**
+   *  Logger.
+   */
+  private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
+
   /**
    * Normally use internet to communicate between server and client.
    */
@@ -18,7 +27,7 @@ public class Client {
       try {
         return op.register("task1", c1);
       } catch (Exception e) {
-        e.printStackTrace();
+        LOGGER.info("context", e);
       }
       return null;
     }, executor);
@@ -31,7 +40,7 @@ public class Client {
       try {
         return op.register("task2", c2);
       } catch (Exception e) {
-        e.printStackTrace();
+        LOGGER.info("context", e);
       }
       return null;
     }, executor);
