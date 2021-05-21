@@ -7,7 +7,7 @@
         <artifactId>java-design-patterns</artifactId>
         <version>1.25.0-SNAPSHOT</version>
     </parent>
-    <artifactId>collector-state</artifactId>
+    <artifactId>client-server</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

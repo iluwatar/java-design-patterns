@@ -1,4 +1,4 @@
-package com.iluwatar.collectorstate;
+package com.iluwatar.clientserver;
 
 import org.junit.jupiter.api.Test;
 
