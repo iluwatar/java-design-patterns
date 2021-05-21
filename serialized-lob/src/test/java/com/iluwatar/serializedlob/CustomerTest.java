@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CustomerTest {
+class CustomerTest {
   private static final String DB_URL = "jdbc:h2:~/test";
 
   private static DataSource createDataSource() {

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+import javax.xml.XMLConstants;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jdom2.Element;
@@ -58,6 +59,8 @@ public class Customer {
           throws IOException, JDOMException {
     var stringReader = new StringReader(xmlstr);
     var builder = new SAXBuilder();
+    builder.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+    builder.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
     var doc = builder.build(stringReader);
     var elem = doc.getRootElement();
     return elem.detach();
