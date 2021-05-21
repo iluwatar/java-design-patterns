@@ -1,5 +1,6 @@
 package com.iluwatar.proactor;
 
+import java.io.NotActiveException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,11 +24,11 @@ public class ConcreteCompletionHandler implements CompletionHandler {
    */
 
   @Override
-  public String handleEvent(Handle handle) throws Exception {
-    if (this.handle.handleName.equals(handle.handleName)) {
+  public String handleEvent(Handle handle) throws NotActiveException {
+    if (ConcreteCompletionHandler.handle.handleName.equals(handle.handleName)) {
       LOGGER.info(handle.handleName);
       return handle.handleName + " done";
     }
-    throw new Exception("error");
+    throw new NotActiveException("error");
   }
 }

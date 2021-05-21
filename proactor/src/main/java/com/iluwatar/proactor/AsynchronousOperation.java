@@ -1,5 +1,6 @@
 package com.iluwatar.proactor;
 
+import java.io.NotActiveException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +20,7 @@ public class AsynchronousOperation {
    * @param operation task to do
    * @return the handler
    */
-  public Handle execute(String operation) throws Exception {
+  public Handle execute(String operation) throws NotActiveException, InterruptedException {
     if ("task1".equals(operation)) {
       LOGGER.info("task1 started!");
       Thread.sleep(500);
@@ -31,6 +32,6 @@ public class AsynchronousOperation {
       LOGGER.info("task2 finished!");
       return new Handle("long");
     }
-    throw new Exception("error");
+    throw new NotActiveException("error");
   }
 }

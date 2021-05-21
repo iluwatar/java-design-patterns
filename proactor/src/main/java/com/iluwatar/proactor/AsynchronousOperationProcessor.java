@@ -1,5 +1,7 @@
 package com.iluwatar.proactor;
 
+import java.io.NotActiveException;
+
 /**
  * To execute AsynchronousOperation and dispatch handler to proactor.
  */
@@ -12,9 +14,10 @@ public class AsynchronousOperationProcessor {
    * @param handler   handle Client needed
    * @return result to client
    */
-  public String register(String operation, ConcreteCompletionHandler handler) throws Exception {
-    final Proactor proactor = new Proactor();
-    final AsynchronousOperation op = new AsynchronousOperation();
+  public String register(String operation, ConcreteCompletionHandler handler) throws
+      NotActiveException, InterruptedException {
+    final var proactor = new Proactor();
+    final var op = new AsynchronousOperation();
     final Handle get = op.execute(operation);
     return proactor.handleEvent(get, handler);
   }

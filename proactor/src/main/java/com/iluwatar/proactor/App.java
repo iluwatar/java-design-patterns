@@ -16,8 +16,8 @@ public class App {
    * @param args system input
    */
   public static void main(String[] args) throws Exception {
-    AsynchronousOperationProcessor operationProcessor = new AsynchronousOperationProcessor();
-    Client client = new Client();
+    var operationProcessor = new AsynchronousOperationProcessor();
+    var client = new Client();
     client.run(operationProcessor);
   }
 }
