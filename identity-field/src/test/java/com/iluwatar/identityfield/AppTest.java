@@ -35,13 +35,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * The type App test.
+ * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1298
  */
 public class AppTest {
   /**
    * App test.
    */
   @Test
-  public void AppTest() {
+  public void shouldExecuteWithoutException() {
     assertDoesNotThrow(() -> App.main(new String[]{}));
 
   }

@@ -23,9 +23,15 @@
 
 package com.iluwatar.identityfield;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * The type Pearson.
+ *
  */
+@Getter
+@Setter
 public class Person {
   private long id;
   private String name;
@@ -41,30 +47,4 @@ public class Person {
     this.name = name;
   }
 
-  /**
-   * Gets id.
-   *
-   * @return the id
-   */
-  public long getId() {
-    return id;
-  }
-
-  /**
-   * Gets name.
-   *
-   * @return the name
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Sets name.
-   *
-   * @param t the t
-   */
-  public void setName(String t) {
-    this.name = t;
-  }
 }

@@ -38,7 +38,7 @@ public class ArtistTest {
   public void ClassTest() {
     Artist temp = new Artist(1, "artist");
     Assert.assertEquals("artist", temp.getName());
-    String t = "artist" + Integer.toString(1);
+    var t = "artist" + Integer.toString(1);
     temp.setName(t);
     Assert.assertEquals("artist1", temp.getName());
 

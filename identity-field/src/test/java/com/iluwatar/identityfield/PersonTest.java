@@ -30,17 +30,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * The type Pearson test.
+ * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1298
  */
 public class PersonTest {
   /**
    * Pearson test.
    */
   @Test
-  public void PearsonTest() {
+  public void ClassTest() {
     Person temp = new Person(1, "pearson");
     assertEquals(1, temp.getId());
     assertEquals("pearson", temp.getName());
-    String t = "pearson" + Integer.toString(1);
+    var t = "pearson" + Integer.toString(1);
     temp.setName(t);
     assertEquals("pearson1", temp.getName());
 

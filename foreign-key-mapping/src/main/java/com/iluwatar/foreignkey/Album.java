@@ -24,12 +24,15 @@
 package com.iluwatar.foreignkey;
 
 
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * The type Album.
- * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1296
+ *
  */
-
+@Getter
+@Setter
 class Album {
   private long id;
   private String title;
@@ -48,39 +51,4 @@ class Album {
     this.artist = artist;
   }
 
-  /**
-   * Gets title.
-   *
-   * @return the title
-   */
-  public String getTitle() {
-    return title;
-  }
-
-  /**
-   * Sets title.
-   *
-   * @param title the title
-   */
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  /**
-   * Gets artist.
-   *
-   * @return the artist
-   */
-  public Artist getArtist() {
-    return artist;
-  }
-
-  /**
-   * Sets artist.
-   *
-   * @param artist the artist
-   */
-  public void setArtist(Artist artist) {
-    this.artist = artist;
-  }
 }

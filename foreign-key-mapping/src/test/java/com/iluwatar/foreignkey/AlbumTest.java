@@ -38,12 +38,12 @@ public class AlbumTest {
   public void ClassTest() {
     Artist temp = new Artist(1, "artist");
     Artist temp2 = new Artist(1, "artist");
-    String t = "artist" + 1;
+    var t = "artist" + 1;
     temp.setName(t);
     Album temp1 = new Album(1, "album", temp);
     Assert.assertEquals("artist1", temp1.getArtist().getName());
     Assert.assertEquals("album", temp1.getTitle());
-    String t1 = "Album" + 1;
+    var t1 = "Album" + 1;
     temp1.setTitle(t1);
     Assert.assertEquals("Album1", temp1.getTitle());
     temp1.setArtist(temp2);

@@ -23,10 +23,15 @@
 
 package com.iluwatar.foreignkey;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * The type Artist.
- * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1296
  */
+
+@Getter
+@Setter
 public class Artist {
   private long id;
   private String name;
@@ -39,24 +44,6 @@ public class Artist {
    */
   public Artist(long id, String name) {
     this.id = id;
-    this.name = name;
-  }
-
-  /**
-   * Gets name.
-   *
-   * @return the name
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Sets name.
-   *
-   * @param name the name
-   */
-  public void setName(String name) {
     this.name = name;
   }
 }

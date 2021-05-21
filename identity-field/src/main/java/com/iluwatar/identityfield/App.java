@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * The type App.
+ * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1298
  */
 @Slf4j
 public class App {
@@ -40,10 +41,9 @@ public class App {
    */
   public static void main(String[] args) {
     List<Person> pearsonList = new LinkedList<>();
-
     for (var i = 0; i < 5; i++) {
       var person = new Person(i, "pearson");
-      String t = "pearson" + i;
+      var t = "pearson" + i;
       person.setName(t);
       pearsonList.add(person);
     }

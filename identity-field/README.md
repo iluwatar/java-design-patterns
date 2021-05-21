@@ -3,15 +3,15 @@ layout: pattern
 title: Identity-Field
 folder: identity-field
 permalink: /patterns/identity-fields/
-categories: Object-Relational Structural
+categories: Structural
 tags:
-- Identity-Field
+- Data access
 ---
 
 ## Intent
 Saves a database ID field in an object to maintain an identity between an in-memory object and a database row.
 
-Representing the Identity Field in an Object:
+### Representing the Identity Field in an Object:
 
 The simplest form of Identity Field is a field that matches the type of key in the database. Thus, if you use a simple integral key, an integral field will work very nicely.
 

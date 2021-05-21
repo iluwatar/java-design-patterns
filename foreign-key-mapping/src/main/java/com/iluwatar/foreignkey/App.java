@@ -31,7 +31,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * The type App.
- * CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1296
+ * Initialize artist and store it in one linked list,
+ * initialize album and store it in another linked list.
+ * Artist is the foreign key of the album, so you can access artist through the foreign key.
  */
 @Slf4j
 public class App {
@@ -40,15 +42,15 @@ public class App {
    *
    * @param args the input arguments
    *
-   * Initialize artist and store it in one linked list, initialize album and store it in another linked list.
-   * Artist is the foreign key of the album, so you can access artist through the foreign key.
+   *
+   *
    */
   public static void main(String[] args) {
     List<Artist> artistList = new LinkedList<Artist>();
     List<Album> albumList = new LinkedList<Album>();
     for (int i = 0; i < 5; i++) {
       Artist temp = new Artist(i, "artist");
-      String t = "artist" + Integer.toString(i);
+      var t = "artist" + Integer.toString(i);
       temp.setName(t);
       artistList.add(temp);
     }

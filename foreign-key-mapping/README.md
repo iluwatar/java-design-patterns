@@ -3,13 +3,13 @@ layout: pattern
 title: Foreign-Key-Mapping
 folder: foreign-key-mapping
 permalink: /patterns/foreign-key-mapping/
-categories: Object-Relational Structural
+categories: Structural
 tags:
-- foreign-key
+- Data access
 ---
 
 ## Intent
-Maps an association between objects to a foreign key reference between tables.
+Also known as,maps an association between objects to a foreign key reference between tables.
 
 Key points:
 
@@ -22,6 +22,10 @@ Key points:
 - In a relational database, a FOREIGN KEY is a field (or collection of fields) in one table that refers to the PRIMARY KEY in another table.
 
 - The table containing the foreign key is called the child table, and the table containing the candidate key is called the referenced or parent table.
+
+
+By simulating the outer chain of database between two classes, one class can store the information of another class, similar to reading the information of another table in one table
+
 
 ## Class diagram
 ![alt text](./etc/foreign-key-mapping.png "Foreign-Key-Mapping")
