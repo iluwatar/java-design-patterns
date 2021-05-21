@@ -1,0 +1,39 @@
+@startuml
+package com.iluwatar.serializedlob {
+  class App {
+    - DB_URL : String {static}
+    - LOGGER : Logger {static}
+    - App()
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteSchema(dataSource : DataSource) {static}
+    + main(args : String[]) {static}
+  }
+  class Customer {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    - LOGGER : Logger {static}
+    - departments : ArrayList<Department>
+    - id : long
+    - name : String
+    + Customer(name1 : String, id1 : long)
+    # addDepartment(department : Department)
+    # departmentsToXmlElement() : Element
+    # elementToString(element : Element) : String {static}
+    # insert(dataSource : DataSource) : long
+    # load(id : long, dataSource : DataSource) : Element
+    ~ readDepartments(source : Element)
+    # stringToElement(xmlstr : String) : Element {static}
+  }
+  class Department {
+    - name : String
+    - subsidiaries : ArrayList<Department>
+    # Department(name1 : String)
+    # addSubsidiary(department : Department)
+    # readXml(source : Element) : Department {static}
+    # toXmlElement() : Element
+  }
+}
+Department -->  "-subsidiaries" Department
+Customer -->  "-departments" Department
+@enduml
