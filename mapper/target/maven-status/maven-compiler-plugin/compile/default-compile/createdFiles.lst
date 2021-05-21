@@ -1,0 +1,8 @@
+com\iluwatar\mapper\Lease.class
+com\iluwatar\mapper\Customer.class
+com\iluwatar\mapper\pricing\LeaseRepository.class
+com\iluwatar\mapper\pricing\PricingCategory.class
+com\iluwatar\mapper\App.class
+com\iluwatar\mapper\Pricing.class
+com\iluwatar\mapper\PricingMapper.class
+com\iluwatar\mapper\Asset.class
