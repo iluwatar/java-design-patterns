@@ -228,6 +228,7 @@
         <module>table-module</module>
         <module>presentation</module>
         <module>lockable-object</module>
+        <module>gate-keeper</module>
     </modules>
 
     <repositories>
