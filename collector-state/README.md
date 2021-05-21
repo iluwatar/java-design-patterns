@@ -1,19 +1,17 @@
 ---
 layout: pattern
-title: client-server
-folder: client-server
-permalink: /patterns/client-server/
+title: collector-state
+folder: collector-state
+permalink: /patterns/collector-state/
 categories: Architectural
-tags:
- - Decoupling
 ---
 
 ## Intent
 
 Client-server pattern consists of two parties; a server and multiple clients. The server component will provide services to multiple client components. Clients request services from the server and the server provides relevant services to those clients.```
 
-
-## Explanation
+Explanation
+## 
 
 Real world example
 

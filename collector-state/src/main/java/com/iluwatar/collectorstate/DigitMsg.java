@@ -13,9 +13,6 @@ public class DigitMsg {
    * @return digit
    */
   public String getDigit() {
-    if (pointer == digits.length) {
-      return "";
-    }
     String result = digits[pointer++];
     return result;
   }

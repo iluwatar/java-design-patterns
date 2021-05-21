@@ -11,7 +11,7 @@ package com.iluwatar.collectorstate;
  */
 
 public final class DigitCollectorState {
-  int receivedDigits;               // Count of received digits
+  int receivedDigits = 0;               // Count of received digits
   final int expectedDigits;         // Total number of expected digits
   final int minimumDigits;  // Minimum number of expected digits
   String description;
@@ -41,16 +41,15 @@ public final class DigitCollectorState {
    */
   public void onDigit(StateMachine m, DigitMsg message) {
     // Save the digit and increment the received digit counter
-    m.digits[receivedDigits++] = message.getDigit();
-
+    m.digits[receivedDigits] = message.getDigit();
+    this.receivedDigits++;
     // Now check if the message explicitly signals the last digit, or if
     // expected number of digits have been received.
     if (message.isLastDigit() || (receivedDigits == expectedDigits)) {
       // Digit collection has been completed, so proceed to call routing
       m.changeState(State.CallRoutingState);
     } else {
-      // More digits are expected, so restart the digit timer
-      restartDigitTimer();
+      // More digits are expected, continue
     }
   }
 
