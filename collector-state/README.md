@@ -3,53 +3,41 @@ layout: pattern
 title: collector-state
 folder: collector-state
 permalink: /patterns/collector-state/
-categories: Architectural
+categories: Behavioral
 ---
 
 ## Intent
 
-Client-server pattern consists of two parties; a server and multiple clients. The server component will provide services to multiple client components. Clients request services from the server and the server provides relevant services to those clients.```
+The main intention here is to manage sequence of events of same type. For example, a Call object needs to collect all the digits to perform call routing. This will involve activities like a timer start before each digit, digit collection, timer stop at each digit collection, timeout on complete digit collection and call routing on complete digit collection.
 
-Explanation
 ## 
 
-Real world example
-
-> Email, World Wide Web, etc.
 
 In plain words
 
-> In the client-server pattern the server provides services to multiple clients.
+> An object change its behavior when its internal state changes. In this case it's in collector state.
 
 Wikipedia says
 
-> **Client–server model** is a [distributed application](https://en.wikipedia.org/wiki/Distributed_application) structure that partitions tasks or workloads between the providers of a resource or service, called servers, and service requesters, called clients. Often clients and servers communicate over a computer network on separate hardware, but both client and server may reside in the same system. A server [host](https://en.wikipedia.org/wiki/Host_(network)) runs one or more server programs, which share their resources with clients. A client usually does not share any of its resources, but it requests content or service from a server. 
+> The state pattern is a behavioral software design pattern that allows an object to alter its behavior when its internal state changes. This pattern is close to the concept of finite-state machines. The state pattern can be interpreted as a strategy pattern, which is able to switch a strategy through invocations of methods defined in the pattern's interface.
 
 ## Model diagram
 
-![alt text](./etc/clientserver.png "Client-Server")
+![alt text](./etc/collector_state.png)
 
 ## Applicability
 
-Use the Client-Server pattern when
+Use the Collector-state pattern when
 
-* A server may receive requests from many distinct clients in a short period of time.
-* a service is an abstraction of computer resources and a client does not have to be concerned with how the server performs while fulfilling the request and delivering the response.
-
-## Real world examples
-
-* java.net.ServerSocket
-* java.net.Socket
+* An object should change its behavior when its internal state changes.
+* State-specific behavior should be defined independently. That is, adding new states should not affect the behavior of existing states.
 
 
 ## Consequences
 
-* Clients are prone to viruses, Trojans and worms if present in the Server or uploaded into the Server.
-* Server are prone to Denial of Service (DOS) attacks.
-* Data packets may be spoofed or modified during transmission.
-* Phishing or capturing login credentials or other useful information of the user are common and MITM(Man in the Middle) attacks are common.
-
+* The collector state pattern is used in computer programming to encapsulate varying behavior for the same object, based on its internal state. 
+* This can be a cleaner way for an object to change its behavior at runtime without resorting to conditional statements and thus improve maintainability.
 ## Credits
 
-* [Client-Server Model](https://www.geeksforgeeks.org/client-server-model/)
+* [State_pattern](https://en.wikipedia.org/wiki/State_pattern)
 * [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
