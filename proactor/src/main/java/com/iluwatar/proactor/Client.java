@@ -28,6 +28,7 @@ public class Client {
         return op.register("task1", c1);
       } catch (NotActiveException | InterruptedException e) {
         LOGGER.info("context", e);
+        Thread.currentThread().interrupt();
       }
       return null;
     }, executor);
@@ -41,6 +42,7 @@ public class Client {
         return op.register("task2", c2);
       } catch (NotActiveException | InterruptedException e) {
         LOGGER.info("context", e);
+        Thread.currentThread().interrupt();
       }
       return null;
     }, executor);
