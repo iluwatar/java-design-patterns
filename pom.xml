@@ -219,7 +219,7 @@
         <module>parameter-object</module>
         <module>active-object</module>
         <module>model-view-viewmodel</module>
-        <module>query-object</module>
+        <module>component-object</module>
     </modules>
 
     <repositories>
