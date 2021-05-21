@@ -4,6 +4,7 @@ title: Event-based Asynchronous
 folder: event-asynchronous
 permalink: /patterns/event-asynchronous/
 categories: Concurrency
+language: en
 tags:
  - Reactive
 ---

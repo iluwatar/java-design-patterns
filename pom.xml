@@ -39,7 +39,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
         <hibernate.version>5.2.18.Final</hibernate.version>
-        <spring.version>5.0.13.RELEASE</spring.version>
+        <spring.version>5.0.17.RELEASE</spring.version>
         <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
         <spring-data.version>2.0.14.RELEASE</spring-data.version>
         <h2.version>1.4.190</h2.version>
@@ -60,7 +60,7 @@
         <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
         <aws-java-sdk-dynamodb.version>1.11.289</aws-java-sdk-dynamodb.version>
         <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
-        <jackson.version>2.10.2</jackson.version>
+        <jackson.version>2.12.3</jackson.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-impl.version>2.3.2</jaxb-impl.version>
         <annotation-api.version>1.3.2</annotation-api.version>
@@ -75,7 +75,7 @@
         <directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
         <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
-	<commons-io.version>2.6</commons-io.version>
+	<commons-io.version>2.7</commons-io.version>
 
         <!-- SonarCloud -->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -224,6 +224,10 @@
         <module>parameter-object</module>
         <module>active-object</module>
         <module>model-view-viewmodel</module>
+        <module>composite-entity</module>
+        <module>table-module</module>
+        <module>presentation</module>
+        <module>lockable-object</module>
     </modules>
 
     <repositories>

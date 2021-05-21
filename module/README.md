@@ -4,6 +4,7 @@ title: Module
 folder: module
 permalink: /patterns/module/
 categories: Structural
+language: en
 tags:
  - Decoupling
 ---

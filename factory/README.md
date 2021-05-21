@@ -4,6 +4,7 @@ title: Factory
 folder: factory
 permalink: /patterns/factory/
 categories: Creational
+language: en
 tags:
  - Gang of Four
 ---

@@ -2,8 +2,9 @@
 layout: pattern
 title: Delegation
 folder: delegation
-permalink: /patterns/delegation/
+permalink: /patterns/delegation/zh
 categories: Structural
+language: zh
 tags:
  - Decoupling
 ---

@@ -4,6 +4,7 @@ title: Converter
 folder: converter
 permalink: /patterns/converter/
 categories: Creational
+language: en
 tags:
  - Decoupling
 ---

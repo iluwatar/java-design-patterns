@@ -4,6 +4,7 @@ title: Data Transfer Object
 folder: data-transfer-object
 permalink: /patterns/data-transfer-object/
 categories: Architectural
+language: en
 tags:
  - Performance
 ---

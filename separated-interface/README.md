@@ -4,6 +4,7 @@ title: Separated Interface
 folder: separated-interface
 permalink: /patterns/separated-interface/
 categories: Structural
+language: en
 tags:
  - Decoupling
 ---

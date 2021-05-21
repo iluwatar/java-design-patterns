@@ -5,6 +5,7 @@ folder: reactor
 permalink: /patterns/reactor/
 pumlformat: svg
 categories: Concurrency
+language: en
 tags:
  - Performance
  - Reactive

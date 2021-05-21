@@ -2,8 +2,9 @@
 layout: pattern
 title: Factory Method
 folder: factory-method
-permalink: /patterns/factory-method/
+permalink: /patterns/factory-method/zh
 categories: Creational
+language: zh
 tags:
  - Extensibility
  - Gang Of Four

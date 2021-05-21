@@ -4,6 +4,7 @@ title: Repository
 folder: repository
 permalink: /patterns/repository/
 categories: Architectural
+language: en
 tags:
  - Data access
 ---

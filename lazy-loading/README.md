@@ -4,6 +4,7 @@ title: Lazy Loading
 folder: lazy-loading
 permalink: /patterns/lazy-loading/
 categories: Idiom
+language: en
 tags:
  - Performance
 ---

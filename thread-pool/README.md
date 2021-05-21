@@ -4,6 +4,7 @@ title: Thread Pool
 folder: thread-pool
 permalink: /patterns/thread-pool/
 categories: Concurrency
+language: en
 tags:
  - Performance
 ---

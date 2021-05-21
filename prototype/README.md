@@ -4,6 +4,7 @@ title: Prototype
 folder: prototype
 permalink: /patterns/prototype/
 categories: Creational
+language: en
 tags: 
  - Gang Of Four
  - Instantiation

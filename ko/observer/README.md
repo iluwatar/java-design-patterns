@@ -2,8 +2,9 @@
 layout: pattern
 title: Observer
 folder: observer
-permalink: "/patterns/observer/"
+permalink: /patterns/observer/ko
 categories: Behavioral
+language: ko
 tags:
 - Gang Of Four
 - Reactive

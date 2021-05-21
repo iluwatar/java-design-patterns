@@ -4,6 +4,7 @@ title: Strategy
 folder: strategy
 permalink: /patterns/strategy/
 categories: Behavioral
+language: en
 tags:
  - Gang of Four
 ---

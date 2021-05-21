@@ -4,6 +4,7 @@ title: Update Method
 folder: update-method  
 permalink: /patterns/update-method/  
 categories: Behavioral
+language: en
 tags:  
  - Game programming
 ---  

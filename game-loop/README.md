@@ -4,6 +4,7 @@ title: Game Loop
 folder:  game-loop  
 permalink: /patterns/game-loop/  
 categories: Behavioral
+language: en
 tags:  
  - Game programming
 ---  

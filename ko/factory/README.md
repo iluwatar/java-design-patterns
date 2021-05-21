@@ -2,8 +2,9 @@
 layout: pattern
 title: Factory
 folder: factory
-permalink: "/patterns/factory/"
+permalink: /patterns/factory/ko
 categories: Creational
+language: ko
 tags:
 - Gang of Four
 ---

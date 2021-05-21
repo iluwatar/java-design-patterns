@@ -4,6 +4,7 @@ title: Caching
 folder: caching
 permalink: /patterns/caching/
 categories: Behavioral
+language: en
 tags:
   - Performance
   - Cloud distributed

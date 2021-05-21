@@ -1451,6 +1451,78 @@
         "review",
         "code"
       ]
+    },
+    {
+      "login": "eas5",
+      "name": "Elvys Soares",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50836521?v=4",
+      "profile": "https://github.com/eas5",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "zWeBrain",
+      "name": "zWeBrain",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46642512?v=4",
+      "profile": "https://github.com/zWeBrain",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Al-assad",
+      "name": "余林颖",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22493821?v=4",
+      "profile": "https://al-assad.github.io/notion/",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "STudio26",
+      "name": "Alain",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6988911?v=4",
+      "profile": "https://github.com/STudio26",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "DEV-VRUPER",
+      "name": "VR",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30525467?v=4",
+      "profile": "https://github.com/DEV-VRUPER",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "JackieNim",
+      "name": "JackieNim",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4138836?v=4",
+      "profile": "https://github.com/JackieNim",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "EdisonE3",
+      "name": "EdisonE3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52118917?v=4",
+      "profile": "https://github.com/EdisonE3",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "tao-sun2",
+      "name": "Tao",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66189688?v=4",
+      "profile": "https://github.com/tao-sun2",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,

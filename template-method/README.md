@@ -4,6 +4,7 @@ title: Template method
 folder: template-method
 permalink: /patterns/template-method/
 categories: Behavioral
+language: en
 tags:
  - Gang of Four
 ---

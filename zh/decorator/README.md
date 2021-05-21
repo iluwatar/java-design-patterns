@@ -2,8 +2,9 @@
 layout: pattern
 title: Decorator
 folder: decorator
-permalink: /patterns/decorator/
+permalink: /patterns/decorator/zh
 categories: Structural
+language: zh
 tags:
  - Gang Of Four
  - Extensibility
