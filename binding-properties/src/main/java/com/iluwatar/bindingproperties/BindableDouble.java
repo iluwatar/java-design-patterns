@@ -13,6 +13,9 @@ public class BindableDouble extends BindableField<Double> {
     notifyMap = new HashMap<>();
   }
 
+  /**
+   * Set the value of this double-precession float point number.
+   */
   @Override
   public void setValue(Double newValue) {
     if (blockPropagation) {
@@ -22,6 +25,9 @@ public class BindableDouble extends BindableField<Double> {
     value = newValue;
   }
 
+  /**
+   * Get the value of this double-precession number float point number.
+   */
   @Override
   public Double getValue() {
     return value;

@@ -53,18 +53,30 @@ public class MyLittleWarrior {
             myHpPercentage.getValue(), myMpPercentage.getValue(), remainLives.getValue());
   }
 
+  /**
+   * Deal some damage to the warrior.
+   */
   public void damage(double value) {
     myHp.setValue(Math.min(Math.max(myHp.getValue() - value, 0), maxHp));
   }
 
+  /**
+   * Heal the warrior.
+   */
   public void heal(double value) {
     myHp.setValue(Math.min(Math.max(myHp.getValue() + value, 0), maxHp));
   }
 
+  /**
+   * Use some MP to cast a spell.
+   */
   public void castSpell(double cost) {
     myMp.setValue(Math.min(Math.max(myMp.getValue() - cost, 0), maxMp));
   }
 
+  /**
+   * Check the remaining lives of the warrior.
+   */
   public int getRemainLives() {
     return remainLives.getValue();
   }

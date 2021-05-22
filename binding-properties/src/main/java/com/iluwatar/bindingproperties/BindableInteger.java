@@ -12,6 +12,9 @@ public class BindableInteger extends BindableField<Integer> {
     notifyMap = new HashMap<>();
   }
 
+  /**
+   * Set the value of this integer.
+   */
   @Override
   public void setValue(Integer newValue) {
     if (blockPropagation) {
@@ -21,6 +24,9 @@ public class BindableInteger extends BindableField<Integer> {
     value = newValue;
   }
 
+  /**
+   * Get the value of this integer.
+   */
   @Override
   public Integer getValue() {
     return value;

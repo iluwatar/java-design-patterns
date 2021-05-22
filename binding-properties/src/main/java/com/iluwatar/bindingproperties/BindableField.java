@@ -52,8 +52,6 @@ public abstract class BindableField<T> {
     target.bind(this);
   }
 
-
-
   /**
    * Bind this field with another field, whenever this filed changes, another
    *  field will change too, and vise versa.
@@ -87,8 +85,16 @@ public abstract class BindableField<T> {
     blockPropagation = false;
   }
 
+  /**
+   * Set the value of this property, the implementations may depends
+   *  on the property itself.
+   */
   public abstract void setValue(T newValue);
 
+  /**
+   * Get the value of this property, the implementations may depends
+   *  on the property itself.
+   */
   public abstract T getValue();
 
 

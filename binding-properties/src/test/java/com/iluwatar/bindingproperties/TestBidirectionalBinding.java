@@ -5,12 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestBidirectionalBinding {
-
-    /**
-     * Test double Binding, whenever one of the double bind item
-     * changes, another one should change along with it.
-     */
-    @Test
+  /**
+   * Test double Binding, whenever one of the double bind item
+   * changes, another one should change along with it.
+   */
+  @Test
   void testWithBidirectionalBinding() {
     BindableDouble a = new BindableDouble(0.0);
     BindableDouble b = new BindableDouble(0.0);
