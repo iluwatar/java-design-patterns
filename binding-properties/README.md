@@ -164,7 +164,7 @@ public class MyLittleWarrior {
 }
 ```
 
-Now we can let his advanture begin to check whether the data changing dependencies are correctly built.</br>
+Now we can let his advanture begin to check whether the data changing dependencies are correctly built:</br>
 
 
 ## Class diagram

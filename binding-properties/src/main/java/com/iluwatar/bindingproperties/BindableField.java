@@ -27,19 +27,6 @@ public abstract class BindableField<T> {
 
   /**
    * Bind this field with another field, whenever this filed changes, another
-   *  field will change too, and vise versa. The new value of another field
-   *  is equal to the new value of this field.
-   *
-   * @param target another bindable field.
-   *
-   */
-  public void bidirectionalBind(BindableField<T> target) {
-    notifyMap.put(target, (newValue) -> newValue);
-    target.bind(this);
-  }
-
-  /**
-   * Bind this field with another field, whenever this filed changes, another
    *  field will change too, but not vise versa. The changing behavior is
    * defined by the second parameter.
    *
@@ -51,6 +38,21 @@ public abstract class BindableField<T> {
   public <M> void bind(BindableField<M> target, Function<T, M> onChangeFunction) {
     notifyMap.put(target, onChangeFunction);
   }
+
+  /**
+   * Bind this field with another field, whenever this filed changes, another
+   *  field will change too, and vise versa. The new value of another field
+   *  is equal to the new value of this field.
+   *
+   * @param target another bindable field.
+   *
+   */
+  public void bidirectionalBind(BindableField<T> target) {
+    notifyMap.put(target, (newValue) -> newValue);
+    target.bind(this);
+  }
+
+
 
   /**
    * Bind this field with another field, whenever this filed changes, another
