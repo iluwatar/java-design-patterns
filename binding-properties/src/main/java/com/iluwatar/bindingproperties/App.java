@@ -16,10 +16,10 @@ public class App {
    * @param args The command line argument. In this example it is not used.
    */
   public static void main(String[] args) {
-    MyLittleWarrior me = new MyLittleWarrior(50.0, 50.0, 2);
-    double waspDamage = 20.0;
-    double spellCost = 10.0;
-    double heal = 50.0;
+    var me = new MyLittleWarrior(50.0, 50.0, 2);
+    var waspDamage = 20.0;
+    var spellCost = 10.0;
+    var heal = 50.0;
     while (true) {
       me.displayMyStatus();
       LOGGER.info("I am attacked by a furious wasp! HP - {}", waspDamage);

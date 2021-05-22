@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestMuiltBinding {
+class TestMuiltBinding {
   /**
    * Test multiple Binding, whenever one of the binded item
    * among a, b and c changes, another one should change along with it.
@@ -20,18 +20,18 @@ public class TestMuiltBinding {
     b.bidirectionalBind(target);
     c.bidirectionalBind(target);
     a.setValue(1.0);
-    assertEquals(b.getValue(), 1.0);
-    assertEquals(c.getValue(), 1.0);
-    assertEquals(target.getValue(), 1.0);
+    assertEquals(1.0, b.getValue());
+    assertEquals(1.0, c.getValue());
+    assertEquals(1.0, target.getValue());
 
     b.setValue(2.0);
-    assertEquals(a.getValue(), 2.0);
-    assertEquals(c.getValue(), 2.0);
-    assertEquals(target.getValue(), 2.0);
+    assertEquals(2.0, a.getValue());
+    assertEquals(2.0, c.getValue());
+    assertEquals(2.0, target.getValue());
 
     c.setValue(3.0);
-    assertEquals(b.getValue(), 3.0);
-    assertEquals(c.getValue(), 3.0);
-    assertEquals(target.getValue(), 3.0);
+    assertEquals(3.0, b.getValue());
+    assertEquals(3.0, c.getValue());
+    assertEquals(3.0, target.getValue());
   }
 }

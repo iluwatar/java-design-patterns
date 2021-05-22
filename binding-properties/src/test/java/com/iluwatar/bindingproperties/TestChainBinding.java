@@ -18,10 +18,10 @@ class TestChainBinding {
     c.bind(d);
 
     a.setValue(2.0);
-    assertEquals(a.getValue(), 2.0);
-    assertEquals(b.getValue(), 2.0);
-    assertEquals(c.getValue(), 2.0);
-    assertEquals(d.getValue(), 2.0);
+    assertEquals(2.0, a.getValue());
+    assertEquals(2.0, b.getValue());
+    assertEquals(2.0, c.getValue());
+    assertEquals(2.0, d.getValue());
   }
 
   /**
@@ -35,14 +35,14 @@ class TestChainBinding {
     BindableDouble c = new BindableDouble(0.0);
     BindableDouble d = new BindableDouble(0.0);
 
-    a.bind(b, (newValue) -> (int)Math.round(newValue));
-    b.bind(c, (newValue) -> (double)newValue);
+    a.bind(b, newValue -> (int)Math.round(newValue));
+    b.bind(c, newValue -> (double)newValue);
     c.bind(d);
 
     a.setValue(2.0);
-    assertEquals(a.getValue(), 2.0);
-    assertEquals(b.getValue(), 2);
-    assertEquals(c.getValue(), 2.0);
-    assertEquals(d.getValue(), 2.0);
+    assertEquals(2.0, a.getValue());
+    assertEquals(2, b.getValue());
+    assertEquals(2.0, c.getValue());
+    assertEquals(2.0, d.getValue());
   }
 }

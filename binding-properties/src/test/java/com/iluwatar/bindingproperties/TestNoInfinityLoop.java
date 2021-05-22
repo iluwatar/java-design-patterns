@@ -14,15 +14,15 @@ class TestNoInfinityLoop {
     BindableInteger b = new BindableInteger(0);
     BindableDouble c = new BindableDouble(0.0);
     BindableDouble d = new BindableDouble(0.0);
-    a.bind(b, (newValue) -> (int)Math.round(newValue));
-    b.bind(c, (newValue) -> (double)newValue);
+    a.bind(b, newValue -> (int)Math.round(newValue));
+    b.bind(c, newValue -> (double)newValue);
     c.bind(d);
     d.bind(a);
     b.setValue(2);
-    assertEquals(a.getValue(), 2.0);
-    assertEquals(b.getValue(), 2);
-    assertEquals(c.getValue(), 2.0);
-    assertEquals(d.getValue(), 2.0);
+    assertEquals(2.0, a.getValue());
+    assertEquals(2, b.getValue());
+    assertEquals(2.0, c.getValue());
+    assertEquals(2.0, d.getValue());
   }
 
   /**
@@ -31,9 +31,9 @@ class TestNoInfinityLoop {
   @Test
   void testWithSelfBinding(){
     BindableDouble a = new BindableDouble(3.0);
-    a.bind(a, (newValue) -> 0.0);
+    a.bind(a, newValue -> 0.0);
     a.setValue(5.0);
-    assertEquals(a.getValue(), 5.0);
+    assertEquals(5.0, a.getValue());
   }
 
 }

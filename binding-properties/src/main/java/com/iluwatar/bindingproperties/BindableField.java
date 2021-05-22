@@ -22,7 +22,7 @@ public abstract class BindableField<T> {
    *
    */
   public void bind(BindableField<T> target) {
-    notifyMap.put(target, (newValue) -> newValue);
+    notifyMap.put(target, newValue -> newValue);
   }
 
   /**
@@ -48,7 +48,7 @@ public abstract class BindableField<T> {
    *
    */
   public void bidirectionalBind(BindableField<T> target) {
-    notifyMap.put(target, (newValue) -> newValue);
+    notifyMap.put(target, newValue -> newValue);
     target.bind(this);
   }
 
