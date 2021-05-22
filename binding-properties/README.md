@@ -164,7 +164,7 @@ public class MyLittleWarrior {
 }
 ```
 
-Now we can let his advanture begin to check whether the data changing dependencies are correctly built:</br>
+Now we can let his advanture begin to check whether the data changing dependencies are correctly built.</br>
 
 
 ## Class diagram
@@ -173,9 +173,7 @@ Now we can let his advanture begin to check whether the data changing dependenci
 ## Applicability
 Use this design pattern when
 
-* Your data access middleware might encounter various types of queries.
-* You need to allow users to perform queries without knowing the database schema through your middleware.
-
+* Your want to keep multiple properties syncronized according to certain rules.
 ## Known uses
 [Binding interface in JavaFX](https://docs.oracle.com/javafx/2/api/javafx/beans/binding/Binding.html)
 [BindableObject class in .NET Xamarin](https://docs.microsoft.com/en-us/dotnet/api/xamarin.forms.bindableobject?view=xamarin-forms)
