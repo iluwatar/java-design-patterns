@@ -33,15 +33,15 @@ public class MyLittleWarrior {
     myHpPercentage = new BindableDouble(100.0);
     myMpPercentage = new BindableDouble(100.0);
     myHp.bind(myMp,
-            (newHp) -> Math.min(Math.max(myMp.getValue() + (newHp - myHp.getValue()), 0), maxMp));
+        (newHp) -> Math.min(Math.max(myMp.getValue() + (newHp - myHp.getValue()), 0), maxMp));
     myHp.bidirectionalBind(myHpPercentage,
-            (newHp) -> Math.min(Math.max((newHp / maxHp) * 100.0, 0.0), 100.0),
-            (newPercentage) -> Math.min(Math.max(newPercentage / 100.0 * maxHp, 0.0), 50.0));
+        (newHp) -> Math.min(Math.max((newHp / maxHp) * 100.0, 0.0), 100.0),
+        (newPercentage) -> Math.min(Math.max(newPercentage / 100.0 * maxHp, 0.0), 50.0));
     myMp.bidirectionalBind(myMpPercentage,
-            (newMp) -> Math.min(Math.max((newMp / maxMp) * 100.0, 0.0), 100.0),
-            (newPercentage) -> Math.min(Math.max(newPercentage / 100.0 * maxMp, 0.0), 50.0));
+        (newMp) -> Math.min(Math.max((newMp / maxMp) * 100.0, 0.0), 100.0),
+        (newPercentage) -> Math.min(Math.max(newPercentage / 100.0 * maxMp, 0.0), 50.0));
     myHp.bind(remainLives,
-            newHp -> newHp <= 0.0 ? remainLives.getValue() - 1 : remainLives.getValue());
+        newHp -> newHp <= 0.0 ? remainLives.getValue() - 1 : remainLives.getValue());
   }
 
   /**
