@@ -1,0 +1,58 @@
+@startuml
+package com.iluwatar.thelayersupertypepattern {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  ~class Comment {
+    # author : String
+    # content : String
+    # id : String
+    + Comment(content : String, author : String)
+    + getAuthor() : String
+    + getContent() : String
+    + getId() : String
+    + setAuthor(author : String)
+    + setContent(content : String)
+    + setId(id : String)
+  }
+  interface CommentInterface {
+    + getAuthor() : String {abstract}
+    + getContent() : String {abstract}
+    + getId() : String {abstract}
+    + setAuthor(String) {abstract}
+    + setContent(String) {abstract}
+    + setId(String) {abstract}
+  }
+  class Post {
+    # comments : ArrayList<CommentInterface>
+    # content : String
+    # id : String
+    # title : String
+    + Post(title : String, content : String)
+    + getComments() : ArrayList<CommentInterface>
+    + getContent() : String
+    + getId() : String
+    + getTitle() : String
+    + setComment(comment : CommentInterface)
+    + setComments(comments : CommentInterface[])
+    + setContent(content : String)
+    + setId(id : String)
+    + setTitle(title : String)
+  }
+  interface PostInterface {
+    + getComments() : ArrayList<CommentInterface> {abstract}
+    + getContent() : String {abstract}
+    + getId() : String {abstract}
+    + getTitle() : String {abstract}
+    + setComment(CommentInterface) {abstract}
+    + setComments(CommentInterface[]) {abstract}
+    + setContent(String) {abstract}
+    + setId(String) {abstract}
+    + setTitle(String) {abstract}
+  }
+}
+Post -->  "-comments" CommentInterface
+Comment ..|> CommentInterface 
+Post ..|> PostInterface 
+@enduml
