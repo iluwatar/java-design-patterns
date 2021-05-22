@@ -1,0 +1,82 @@
+@startuml
+package com.iluwatar.mapper.pricing {
+  class LeaseRepository {
+    - repository : ArrayList<Pricing>
+    + LeaseRepository()
+    + findLease(id : int) : Pricing
+    + query() : ArrayList<Pricing>
+  }
+  class PricingCategory {
+    - prices : ArrayList<Pricing>
+    + PricingCategory()
+    + findObject(name : String) : Pricing
+    + query() : ArrayList<Pricing>
+  }
+}
+package com.iluwatar.mapper {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Asset {
+    - pricingMapper : PricingMapper
+    + Asset(pricingMapper : PricingMapper)
+    + addObject(pricing : Pricing) : boolean
+    + modifyObject(name : String, newPricing : Pricing) : boolean
+    + queryCategory() : ArrayList<Pricing>
+    + removeObject(name : String) : boolean
+  }
+  class Customer {
+    - pricingMapper : PricingMapper
+    + Customer(pricingMapper : PricingMapper)
+    + queryCategory() : ArrayList<Pricing>
+    + queryRepository() : ArrayList<Pricing>
+  }
+  class Lease {
+    - pricingMapper : PricingMapper
+    + Lease(pricingMapper : PricingMapper)
+    + addLease(pricing : Pricing)
+    + leaseObject(id : int) : boolean
+    + queryLease() : ArrayList<Pricing>
+    + removeLease(id : int) : boolean
+    + returnObject(id : int) : boolean
+  }
+  class Pricing {
+    - id : int
+    - leased : boolean
+    - name : String
+    - price : int
+    + Pricing(name : String, price : int)
+    + getId() : int
+    + getLeased() : boolean
+    + getName() : String
+    + getPrice() : int
+    + setId(id : int)
+    + setLeased(leased : boolean)
+    + setName(name : String)
+    + setPrice(price : int)
+  }
+  class PricingMapper {
+    - leaseRepository : LeaseRepository
+    - pricingCategory : PricingCategory
+    + PricingMapper()
+    + addLease(pricing : Pricing)
+    + addObject(pricing : Pricing) : boolean
+    + leaseObject(id : int) : boolean
+    + modifyObject(name : String, newPricing : Pricing) : boolean
+    + queryCategory() : ArrayList<Pricing>
+    + queryRepository() : ArrayList<Pricing>
+    + removeLease(id : int) : boolean
+    + removeObject(name : String) : boolean
+    + returnObject(id : int) : boolean
+  }
+}
+PricingMapper -->  "-pricingCategory" PricingCategory
+PricingMapper -->  "-leaseRepository" LeaseRepository
+Customer -->  "-pricingMapper" PricingMapper
+Asset -->  "-pricingMapper" PricingMapper
+PricingCategory -->  "-prices" Pricing
+Lease -->  "-pricingMapper" PricingMapper
+LeaseRepository -->  "-repository" Pricing
+@enduml
