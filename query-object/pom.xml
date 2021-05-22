@@ -9,9 +9,9 @@
         <artifactId>java-design-patterns</artifactId>
         <version>1.25.0-SNAPSHOT</version>
     </parent>
-    <groupId>org.example</groupId>
+    
     <artifactId>query-object</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    
 
     <dependencies>
         <dependency>
