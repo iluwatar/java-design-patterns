@@ -6,7 +6,7 @@
 
 ![Java CI](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=ncloc)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns) 
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=ncloc)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
@@ -15,7 +15,7 @@
 
 <br/>
 
-Read in different language : [![CN](/assets/flags/CN.png)**CN**](/zh/README.md), [![KR](/assets/flags/KR.png)**KR**](/ko/README.md), [![FR](/assets/flags/FR.png)**FR**](/fr/README.md), [![TR](/assets/flags/TR.png)**TR**](/tr/README.md), [![AR](/assets/flags/AR.png)**AR**](/ar/README.md)
+Read in different language : [**zh**](/localization/zh/README.md), [**ko**](/localization/ko/README.md), [**fr**](/localization/fr/README.md), [**tr**](/localization/tr/README.md), [**ar**](/localization/ar/README.md), [**es**](/localization/es/README.md)
 
 <br/>
 
@@ -34,7 +34,7 @@ are familiar with the patterns.
 # Getting started
 
 This site showcases Java Design Patterns. The solutions have been developed by
-experienced programmers and architects from the open source community. The 
+experienced programmers and architects from the open source community. The
 patterns can be browsed by their high level descriptions or by looking at their
 source code. The source code examples are well commented and can be thought as
 programming tutorials on how to implement a specific pattern. We use the most
@@ -49,7 +49,7 @@ patterns should only be introduced when they are needed for practical
 extensibility.
 
 Once you are familiar with these concepts you can start drilling down into the
-[available design patterns](https://java-design-patterns.com/patterns/) by any 
+[available design patterns](https://java-design-patterns.com/patterns/) by any
 of the following approaches
 
  - Search for a specific pattern by name. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
@@ -61,8 +61,8 @@ in your architectures and have as much fun learning them as we had developing th
 
 # How to contribute
 
-If you are willing to contribute to the project you will find the relevant information in 
-our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help 
+If you are willing to contribute to the project you will find the relevant information in
+our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help
 you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
 # License
