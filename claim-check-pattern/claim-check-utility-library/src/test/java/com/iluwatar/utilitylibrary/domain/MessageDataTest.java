@@ -21,21 +21,34 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.consumer.callcostprocessor.domain;
+package com.iluwatar.utilitylibrary.domain;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.iluwatar.consumer.callcostprocessor.domain.UsageDetail;
+import lombok.Data;
 
 @RunWith(Parameterized.class)
-public class UsageDetailTest {
+public class MessageDataTest {
+	@Data
+	class UsageDetail {
+
+	  private String userId;
+
+	  private long duration;
+
+	  private long data;
+
+	}
 	
 	@Parameters(name = "{index}: fun({0},{1},\"{2}\")={3}")
     public static Iterable<Object[]> data() {
@@ -43,31 +56,35 @@ public class UsageDetailTest {
                  { 10, 1, "Sam", false }, { 1, 10, "Sam", false }, { 1, 1, "Sam Com", false }
            });
     }
-
-    private UsageDetail usageDetail;
-	private String userId;
-	private long data;
+    private String userId;
 	private long duration;
-    private boolean expected;
-    
-    public UsageDetailTest(long data, long duration, String userId, boolean expected) {
-    	this.userId = userId;
-    	this.data = data;
-    	this.duration = duration;
-    	this.expected = expected;
-    	
-    	this.usageDetail = new UsageDetail();
+	private long data;
+	private UsageDetail usageDetail;
+	private MessageData<UsageDetail> messageData;
+	
+	public MessageDataTest(long data, long duration, String userId, boolean expected) {
+		this.userId = userId;
+		this.data = data;
+		this.duration = duration;
+		
+		this.usageDetail = new UsageDetail();
 		this.usageDetail.setUserId("Sam");
 		this.usageDetail.setData(1);
 		this.usageDetail.setDuration(1);
-    }
-    
-    @Test
-	public void testNotEqualsObject() {
-		UsageDetail tempUsageDetail = new UsageDetail();
-		tempUsageDetail.setData(this.data);
-		tempUsageDetail.setDuration(this.duration);
-		tempUsageDetail.setUserId(this.userId);
-		assertEquals(this.expected,this.usageDetail.equals(tempUsageDetail));
+		
+		this.messageData = new MessageData<>(this.usageDetail);
 	}
+	
+	@Test
+	public void testNotEqualsObject() {
+		UsageDetail usageDetail1 = new UsageDetail();
+		usageDetail1.setData(this.data);
+		usageDetail1.setDuration(this.duration);
+		usageDetail1.setUserId(this.userId);
+		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(usageDetail1);
+		
+		assertEquals(false,this.messageData.equals(messageData1));
+	}
+
+
 }

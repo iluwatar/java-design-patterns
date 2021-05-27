@@ -21,86 +21,85 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.producer.calldetails.application;
+package com.iluwatar.utilitylibrary.implementation;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.cloud.stream.messaging.Source;
-import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.support.MessageBuilder;
 
-import com.iluwatar.producer.calldetails.domain.UsageDetail;
+import com.iluwatar.utilitylibrary.domain.Message;
+import com.iluwatar.utilitylibrary.domain.MessageData;
 import com.iluwatar.utilitylibrary.domain.MessageHeader;
 import com.iluwatar.utilitylibrary.interfaces.IPersistentCommonStorageUtility;
 
+import lombok.Data;
 
-public class UsageDetailSenderTest {
+public class PersistentLocalStorageUtilityTest {
 
-	@Mock
-	private IPersistentCommonStorageUtility persistentCommonStorageUtility;
+	@Data
+	class UsageDetail {
+
+	  private String userId;
+
+	  private long duration;
+
+	  private long data;
+
+	}
 	
-	@Mock 
-	private MessageChannel messageChannel;
-	
-	@Mock 
-	private Source source;
-	
-	@InjectMocks
-	private UsageDetailSender usageDetailSender;
-	
-	private MessageHeader messageHeader;
 	private UsageDetail usageDetail;
-//	private Message<UsageDetail> messageUsageDetail;
-//	private Message<UsageDetail> messageUsageCostDetail;
+	private MessageHeader messageHeader;
+	private Message<UsageDetail> messageForUsageDetail;
 	
+	private IPersistentCommonStorageUtility persistentCommonStorageUtility; 
 	
 	@Before
 	public void setUp() throws Exception {
-		
-		MockitoAnnotations.initMocks(this);
-		
+ 
 		this.messageHeader = new MessageHeader();
 		this.messageHeader.setDataFileName("input.json");
-		this.messageHeader.setDataLocation(null);
-		this.messageHeader.setOperataionName(null);
+		this.messageHeader.setDataLocation("C://tmp");
+		this.messageHeader.setOperataionName("Testing of PersistentLocalStorageUtility class");
 		
 		this.usageDetail = new UsageDetail();
 		this.usageDetail.setUserId("Alan");
 		this.usageDetail.setData(1);
 		this.usageDetail.setDuration(10);
 		
+		this.messageForUsageDetail = new Message<>(messageHeader, new MessageData<UsageDetail>(this.usageDetail));
 		
-//		this.messageUsageDetail = new Message<>(messageHeader, new MessageData<UsageDetail>(this.usageDetail));
-
-//		this.messageUsageCostDetail = new Message<>(messageHeader, null);
+		this.persistentCommonStorageUtility = new PersistentLocalStorageUtility();
+		
 		
 	}
-
-
+	
 	@Test
-	public void testSendEvents() {
-
-		doNothing().when(this.persistentCommonStorageUtility).dropMessageToPersistentStorage(null);
-		
+	public void testDropMessageToPersistentStorage() {
 		
 		try {
-			when(this.source.output()).thenReturn(this.messageChannel);
-			
-			when(this.messageChannel.send(MessageBuilder.withPayload(this.messageHeader).build())).thenReturn(true);
-			
-			this.usageDetailSender.sendEvents();
-			
-		} catch (Exception e) {
-			fail("Sending Events to kafka topic failed: "+e.getMessage());
+			this.persistentCommonStorageUtility.dropMessageToPersistentStorage(this.messageForUsageDetail);
+		}catch(Exception e) {
+
+			fail("File drop failed : "+e.getStackTrace());
 		}
-		
 	}
+
+	@Test
+	public void testReadMessageFromPersistentStorage() {
+		
+		this.persistentCommonStorageUtility.dropMessageToPersistentStorage(this.messageForUsageDetail);
+		
+		try {
+			Message message = this.persistentCommonStorageUtility.readMessageFromPersistentStorage(this.messageHeader);
+			assertNotNull(message);
+		}catch(Exception e) {
+
+			fail("File read failed : "+e.getStackTrace());
+		}
+	}
+
+	
 
 }

@@ -21,22 +21,21 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.consumer.callcostprocessor.application;
+package com.iluwatar.utilitylibrary.domain;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
- * This is main class of spring boot application.
- *
+ * MessageData is body of Message class.
+ * This class stores all actual data.
+ * @param <T> where T is actual data class.
  */
 
-@SpringBootApplication
-@ComponentScan({ "com.iluwatar.consumer.callcostprocessor.application"})
-//"com.iluwatar.utilitylibrary.implementation" })
-public class UsageCostProcessorApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(UsageCostProcessorApplication.class, args);
-  }
+@Data
+@AllArgsConstructor
+public class MessageData<T> {
+
+  private T data;
 
 }

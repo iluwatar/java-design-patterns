@@ -24,11 +24,11 @@
 
 package com.iluwatar.producer.calldetails.application;
 
-import com.iluwatar.producer.calldetails.domain.Message;
-import com.iluwatar.producer.calldetails.domain.MessageData;
-import com.iluwatar.producer.calldetails.domain.MessageHeader;
 import com.iluwatar.producer.calldetails.domain.UsageDetail;
-import com.iluwatar.producer.calldetails.interfaces.IPersistentCommonStorageUtility;
+import com.iluwatar.utilitylibrary.domain.Message;
+import com.iluwatar.utilitylibrary.domain.MessageData;
+import com.iluwatar.utilitylibrary.domain.MessageHeader;
+import com.iluwatar.utilitylibrary.interfaces.IPersistentCommonStorageUtility;
 import java.security.SecureRandom;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;

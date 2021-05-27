@@ -21,22 +21,22 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.consumer.callcostprocessor.application;
+package com.iluwatar.utilitylibrary.domain;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import lombok.Data;
+
 /**
- * This is main class of spring boot application.
- *
+ * This is header of Message class
+ * which contains message drop location.
  */
+@Data
+public class MessageHeader {
 
-@SpringBootApplication
-@ComponentScan({ "com.iluwatar.consumer.callcostprocessor.application"})
-//"com.iluwatar.utilitylibrary.implementation" })
-public class UsageCostProcessorApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(UsageCostProcessorApplication.class, args);
-  }
+  private String dataLocation;
+  
+  private String dataFileName;
+  
+  private String operataionName;
 
+  
 }

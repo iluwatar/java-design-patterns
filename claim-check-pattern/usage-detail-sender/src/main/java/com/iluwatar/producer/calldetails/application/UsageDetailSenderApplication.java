@@ -32,7 +32,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan({ "com.iluwatar.producer.calldetails.application", 
-    "com.iluwatar.producer.calldetails.utility" })
+    "com.iluwatar.utilitylibrary.implementation" })
 public class UsageDetailSenderApplication {
 
   public static void main(String[] args) {

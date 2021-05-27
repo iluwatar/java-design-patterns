@@ -23,20 +23,29 @@
 
 package com.iluwatar.consumer.callcostprocessor.application;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-/**
- * This is main class of spring boot application.
- *
+import com.iluwatar.consumer.callcostprocessor.domain.UsageCostDetail;
+import com.iluwatar.consumer.callcostprocessor.domain.UsageDetail;
+import com.iluwatar.utilitylibrary.implementation.PersistentLocalStorageUtility;
+import com.iluwatar.utilitylibrary.interfaces.IPersistentCommonStorageUtility;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**.Z
+ * DKJHF
  */
 
-@SpringBootApplication
-@ComponentScan({ "com.iluwatar.consumer.callcostprocessor.application"})
-//"com.iluwatar.utilitylibrary.implementation" })
-public class UsageCostProcessorApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(UsageCostProcessorApplication.class, args);
+@Configuration
+public class UsageCostConfiguration {
+
+  @Bean
+  public IPersistentCommonStorageUtility<UsageDetail> usageDetailIPersistentCommonStorageUtility() {
+    return new PersistentLocalStorageUtility<UsageDetail>();
   }
+
+  @Bean
+  public IPersistentCommonStorageUtility<UsageCostDetail> usageCostDetailIPersistentCommonStorageUtility() {
+    return new PersistentLocalStorageUtility<UsageCostDetail>();
+  }
+
 
 }

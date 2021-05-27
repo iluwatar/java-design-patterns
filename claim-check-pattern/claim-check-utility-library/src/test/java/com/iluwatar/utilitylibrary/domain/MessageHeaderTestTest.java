@@ -21,113 +21,110 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.producer.calldetails.domain;
+package com.iluwatar.utilitylibrary.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.iluwatar.producer.calldetails.domain.UsageDetail;
-
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 
-public class UsageDetailTestTest {
+public class MessageHeaderTestTest {
 
-	private UsageDetail usageDetail;
-	
-	public UsageDetailTestTest() {
-	}
-	
+	private MessageHeader messageHeader;
 	@Before
 	public void setUp() throws Exception {
-		this.usageDetail = new UsageDetail();
-		this.usageDetail.setData(1);
-		this.usageDetail.setDuration(1);
-		this.usageDetail.setUserId("Marry");
+		this.messageHeader = new MessageHeader();
+		this.messageHeader.setDataFileName("input.json");
+		this.messageHeader.setDataLocation("C://tmp");
+		this.messageHeader.setOperataionName("Cost Calculator");
 	}
 
 	@Test
 	public void testHashCode() {
-
-		UsageDetail usageDetail1 = new UsageDetail();
-		usageDetail1.setData(1);
-		usageDetail1.setDuration(1);
-		usageDetail1.setUserId("Marry");
+		MessageHeader messageHeader1 = new MessageHeader();
+		messageHeader1.setDataFileName("input.json");
+		messageHeader1.setDataLocation("C://tmp");
+		messageHeader1.setOperataionName("Cost Calculator");
 		
-		assertEquals(this.usageDetail.hashCode(), usageDetail1.hashCode());
+		assertEquals(this.messageHeader.hashCode(), messageHeader1.hashCode());
 	}
 
 	@Test
-	public void testGetUserId() {
-		assertEquals("Marry", this.usageDetail.getUserId());
+	public void testGetDataLocation() {
+		assertNotNull(this.messageHeader.getDataLocation());
 	}
 
 	@Test
-	public void testGetDuration() {
-		assertEquals(1, this.usageDetail.getDuration());
+	public void testGetDataFileName() {
+		assertNotNull(this.messageHeader.getDataFileName());
 	}
 
 	@Test
-	public void testGetData() {
-		assertEquals(1, this.usageDetail.getData());
+	public void testGetOperataionName() {
+		assertNotNull(this.messageHeader.getOperataionName());
 	}
 
 	@Test
-	public void testSetUserId() {
+	public void testSetDataLocation() {
 		try {
-			this.usageDetail.setUserId("Marry");
+			this.messageHeader.setDataLocation("C://tmp");
 		} catch (Exception e) {
-			fail("Setting userid failed: "+e.getMessage());
+			fail("Setting data location failed: "+e.getMessage());
 		}
 	}
 
 	@Test
-	public void testSetDuration() {
+	public void testSetDataFileName() {
 		try {
-			this.usageDetail.setDuration(1);
+			this.messageHeader.setDataFileName("input.json");
 		} catch (Exception e) {
-			fail("Setting duration failed: "+e.getMessage());
+			fail("Setting data file name failed: "+e.getMessage());
 		}
 	}
 
 	@Test
-	public void testSetData() {
+	public void testSetOperataionName() {
 		try {
-			this.usageDetail.setData(1);
+			this.messageHeader.setOperataionName("Cost Calculator");
 		} catch (Exception e) {
-			fail("Setting data failed: "+e.getMessage());
+			fail("Setting data location failed: "+e.getMessage());
 		}
 	}
 
 	@Test
 	public void testEqualsObject() {
-		EqualsVerifier.forClass( UsageDetail.class )
+		
+		EqualsVerifier.forClass( MessageHeader.class )
         .suppress( Warning.STRICT_INHERITANCE ).suppress(Warning.NONFINAL_FIELDS)
         .verify();
-		assertEquals(true,this.usageDetail.equals(this.usageDetail));
+		
+		assertEquals(true,this.messageHeader.equals(this.messageHeader));
 	}
-	
 	@Test
 	public void testNotEqualsObject() {
-		assertEquals(false,this.usageDetail.equals(null));
+		assertEquals(false,this.messageHeader.equals(null));
 	}
-	
 	@Test
 	public void testNotEqualsObject1() {
-		assertEquals(false,this.usageDetail.equals(new Object()));
+		assertEquals(false,this.messageHeader.equals(new Object()));
+	}
+
+	@Test
+	public void testCanEqual() {
+		assertEquals(true,this.messageHeader.canEqual(this.messageHeader));
 	}
 
 	@Test
 	public void testToString() {
-		assertNotNull(this.usageDetail.toString());
+		assertNotNull(this.messageHeader.toString());
 	}
 
 	@Test
-	public void testUsageDetail() {
-		assertNotNull(new UsageDetail());
+	public void testMessageHeader() {
+		assertNotNull(new MessageHeader());
 	}
+
+
 }

@@ -21,22 +21,20 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.consumer.callcostprocessor.application;
+package com.iluwatar.utilitylibrary.interfaces;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import com.iluwatar.utilitylibrary.domain.Message;
+import com.iluwatar.utilitylibrary.domain.MessageHeader;
+
 /**
- * This is main class of spring boot application.
- *
+ * This is generic persistent storage interface.
+ * It contains 2 methods. First one is to read message from storage.
+ * Second method is to drop message to storage.
  */
+public interface IPersistentCommonStorageUtility<T> {
 
-@SpringBootApplication
-@ComponentScan({ "com.iluwatar.consumer.callcostprocessor.application"})
-//"com.iluwatar.utilitylibrary.implementation" })
-public class UsageCostProcessorApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(UsageCostProcessorApplication.class, args);
-  }
+  public Message<T> readMessageFromPersistentStorage(MessageHeader messageHeader);
+  
+  public void dropMessageToPersistentStorage(Message<T> message);
 
 }

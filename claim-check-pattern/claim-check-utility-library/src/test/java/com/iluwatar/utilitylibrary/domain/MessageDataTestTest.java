@@ -21,83 +21,63 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.producer.calldetails.domain;
+package com.iluwatar.utilitylibrary.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.iluwatar.producer.calldetails.domain.UsageDetail;
-
+import lombok.Data;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 
-public class UsageDetailTestTest {
-
-	private UsageDetail usageDetail;
+public class MessageDataTestTest {
 	
-	public UsageDetailTestTest() {
+	@Data
+	class UsageDetail {
+
+	  private String userId;
+
+	  private long duration;
+
+	  private long data;
+
 	}
+	private UsageDetail usageDetail;
+	private MessageData<UsageDetail> messageData;
 	
 	@Before
 	public void setUp() throws Exception {
+		
 		this.usageDetail = new UsageDetail();
 		this.usageDetail.setData(1);
 		this.usageDetail.setDuration(1);
 		this.usageDetail.setUserId("Marry");
+		
+		this.messageData = new MessageData<UsageDetail>(this.usageDetail);
 	}
 
 	@Test
 	public void testHashCode() {
-
+		
 		UsageDetail usageDetail1 = new UsageDetail();
 		usageDetail1.setData(1);
 		usageDetail1.setDuration(1);
 		usageDetail1.setUserId("Marry");
-		
-		assertEquals(this.usageDetail.hashCode(), usageDetail1.hashCode());
-	}
+		MessageData<UsageDetail> messageData1 = new MessageData<UsageDetail>(this.usageDetail);
 
-	@Test
-	public void testGetUserId() {
-		assertEquals("Marry", this.usageDetail.getUserId());
-	}
-
-	@Test
-	public void testGetDuration() {
-		assertEquals(1, this.usageDetail.getDuration());
+		assertEquals(this.messageData.hashCode(), messageData1.hashCode());
 	}
 
 	@Test
 	public void testGetData() {
-		assertEquals(1, this.usageDetail.getData());
-	}
-
-	@Test
-	public void testSetUserId() {
-		try {
-			this.usageDetail.setUserId("Marry");
-		} catch (Exception e) {
-			fail("Setting userid failed: "+e.getMessage());
-		}
-	}
-
-	@Test
-	public void testSetDuration() {
-		try {
-			this.usageDetail.setDuration(1);
-		} catch (Exception e) {
-			fail("Setting duration failed: "+e.getMessage());
-		}
+		assertNotNull(this.messageData.getData());
 	}
 
 	@Test
 	public void testSetData() {
 		try {
-			this.usageDetail.setData(1);
+			this.messageData.setData(this.usageDetail);
 		} catch (Exception e) {
 			fail("Setting data failed: "+e.getMessage());
 		}
@@ -105,29 +85,32 @@ public class UsageDetailTestTest {
 
 	@Test
 	public void testEqualsObject() {
-		EqualsVerifier.forClass( UsageDetail.class )
+		
+		EqualsVerifier.forClass( MessageData.class )
         .suppress( Warning.STRICT_INHERITANCE ).suppress(Warning.NONFINAL_FIELDS)
         .verify();
-		assertEquals(true,this.usageDetail.equals(this.usageDetail));
-	}
-	
-	@Test
-	public void testNotEqualsObject() {
-		assertEquals(false,this.usageDetail.equals(null));
+		assertEquals(true,this.messageData.equals(this.messageData));
 	}
 	
 	@Test
 	public void testNotEqualsObject1() {
-		assertEquals(false,this.usageDetail.equals(new Object()));
+		assertEquals(false,this.messageData.equals(new Object()));
+	}
+
+	@Test
+	public void testCanEqual() {
+		assertEquals(true,this.messageData.canEqual(this.messageData));
 	}
 
 	@Test
 	public void testToString() {
-		assertNotNull(this.usageDetail.toString());
+		assertNotNull(this.messageData.toString());
 	}
 
 	@Test
-	public void testUsageDetail() {
-		assertNotNull(new UsageDetail());
+	public void testMessageData() {
+		assertNotNull(new MessageData<UsageDetail>(this.usageDetail));
 	}
+
+
 }
