@@ -516,12 +516,12 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <version>${license-maven-plugin.version}</version>
                 <configuration>
-                    <header>${maven.multiModuleProjectDirectory}/LICENSE.md</header>
+                    <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
                     <aggregate>true</aggregate>
                     <properties>
                         <owner>Ilkka Seppälä</owner>
                     </properties>
-                    <skipExistingHeaders>false</skipExistingHeaders>
+                    <skipExistingHeaders>true</skipExistingHeaders>
                     <headerDefinitions>
                         <headerDefinition>license-plugin-header-style.xml</headerDefinition>
                     </headerDefinitions>
