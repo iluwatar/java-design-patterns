@@ -517,7 +517,6 @@
                 <version>${license-maven-plugin.version}</version>
                 <configuration>
                     <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
-                    <aggregate>true</aggregate>
                     <properties>
                         <owner>Ilkka Seppälä</owner>
                     </properties>
