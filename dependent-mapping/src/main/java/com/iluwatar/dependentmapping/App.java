@@ -15,6 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
+  /**
+   * Init database database.
+   *
+   * @return the database
+   */
   public static Database initDatabase() {
     DatabaseAlbum databaseAlbum1 = new DatabaseAlbum("album1");
     DatabaseAlbum databaseAlbum2 = new DatabaseAlbum("album2");
