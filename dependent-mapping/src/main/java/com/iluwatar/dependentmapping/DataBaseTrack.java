@@ -1,26 +1,17 @@
 package com.iluwatar.dependentmapping;
 
-/**
- * The type Db track.
- */
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Getter;
+
+@Data
+@Getter(AccessLevel.PACKAGE)
 class DataBaseTrack {
+
   private final String name;
 
-  /**
-   * Instantiates a new Db track.
-   *
-   * @param name the name
-   */
   DataBaseTrack(String name) {
     this.name = name;
   }
 
-  /**
-   * Gets name.
-   *
-   * @return the name
-   */
-  String getName() {
-    return name;
-  }
 }

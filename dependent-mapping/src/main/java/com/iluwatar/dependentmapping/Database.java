@@ -2,62 +2,42 @@ package com.iluwatar.dependentmapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
+import lombok.Data;
+
 
 /**
  * The type Database.
  */
+@Data
 class Database {
+
   private final List<DataBaseTrack> allTracks = new ArrayList<>();
   private final List<DatabaseAlbum> allAlbum = new ArrayList<>();
 
-  /**
-   * Add tracks.
-   *
-   * @param newTrack the new track
-   */
+  public Database() {
+  }
+
   void addTracks(DataBaseTrack newTrack) {
     allTracks.add(newTrack);
   }
 
-  /**
-   * Add album.
-   *
-   * @param newAlbum the new album
-   */
+
   void addAlbum(DatabaseAlbum newAlbum) {
     allAlbum.add(newAlbum);
   }
 
-  /**
-   * Gets tracks.
-   *
-   * @param trackName the track name
-   * @return the tracks
-   */
   DataBaseTrack getTracks(String trackName) {
-    for (DataBaseTrack t : allTracks) {
-      if (t.getName().equals(trackName)) {
-        return t;
-      }
-    }
-    return null;
+    return allTracks.stream()
+      .filter(t -> t.getName().equals(trackName))
+      .findFirst()
+      .orElse(null);
   }
 
-  /**
-   * Gets album.
-   *
-   * @param index the index
-   * @return the album
-   */
   DatabaseAlbum getAlbum(int index) {
     return allAlbum.get(index);
   }
 
-  /**
-   * Remove album.
-   *
-   * @param index the index
-   */
   void removeAlbum(int index) {
     if (index == -1) {
       return;
@@ -72,11 +52,7 @@ class Database {
    * @return the album index
    */
   int getAlbumIndex(String albumName) {
-    for (int i = 0; i < allAlbum.size(); i++) {
-      if (allAlbum.get(i).getName().equals(albumName)) {
-        return i;
-      }
-    }
-    return -1;
+    return IntStream.range(0, allAlbum.size())
+      .filter(i -> allAlbum.get(i).getName().equals(albumName)).findFirst().orElse(-1);
   }
 }

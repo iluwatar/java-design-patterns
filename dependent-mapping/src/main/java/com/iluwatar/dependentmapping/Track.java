@@ -1,26 +1,20 @@
 package com.iluwatar.dependentmapping;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Getter;
+
 /**
  * The type Track.
  */
+@Data
+@Getter(AccessLevel.PACKAGE)
 class Track {
+
   private final String name;
 
-  /**
-   * Instantiates a new Track.
-   *
-   * @param name the name
-   */
   Track(String name) {
     this.name = name;
   }
 
-  /**
-   * Gets name.
-   *
-   * @return the name
-   */
-  String getName() {
-    return name;
-  }
 }
