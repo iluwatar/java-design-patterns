@@ -21,18 +21,18 @@ public class App {
    * @return the database
    */
   public static Database initDatabase() {
-    DatabaseAlbum databaseAlbum1 = new DatabaseAlbum("album1");
-    DatabaseAlbum databaseAlbum2 = new DatabaseAlbum("album2");
+    var databaseAlbum1 = new DatabaseAlbum("album1");
+    var databaseAlbum2 = new DatabaseAlbum("album2");
 
-    DataBaseTrack dataBaseTrack1 = new DataBaseTrack("track1");
-    DataBaseTrack dataBaseTrack2 = new DataBaseTrack("track2");
-    DataBaseTrack dataBaseTrack3 = new DataBaseTrack("track3");
+    var dataBaseTrack1 = new DataBaseTrack("track1");
+    var dataBaseTrack2 = new DataBaseTrack("track2");
+    var dataBaseTrack3 = new DataBaseTrack("track3");
 
     databaseAlbum1.addTrack(dataBaseTrack1);
     databaseAlbum1.addTrack(dataBaseTrack2);
     databaseAlbum2.addTrack(dataBaseTrack3);
 
-    Database database = new Database();
+    var database = new Database();
     database.addAlbum(databaseAlbum1);
     database.addAlbum(databaseAlbum2);
     database.addTracks(dataBaseTrack1);

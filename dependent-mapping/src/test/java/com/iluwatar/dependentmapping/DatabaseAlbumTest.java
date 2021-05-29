@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type DatabaseAlbum test.
  */
-public class DatabaseAlbumTest {
+class DatabaseAlbumTest {
   /**
    * Make album.
    */

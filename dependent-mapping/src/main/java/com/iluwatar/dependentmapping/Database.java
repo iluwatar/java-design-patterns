@@ -15,9 +15,6 @@ class Database {
   private final List<DataBaseTrack> allTracks = new ArrayList<>();
   private final List<DatabaseAlbum> allAlbum = new ArrayList<>();
 
-  public Database() {
-  }
-
   void addTracks(DataBaseTrack newTrack) {
     allTracks.add(newTrack);
   }

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type DatabaseTrack test.
  */
-public class DataBaseTrackTest {
+class DataBaseTrackTest {
   /**
    * Make track.
    */

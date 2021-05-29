@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type Track test.
  */
-public class TrackTest {
+class TrackTest {
   /**
    * Make track.
    */

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type Database test.
  */
-public class DatabaseTest {
+class DatabaseTest {
   /**
    * Add get tracks test.
    */

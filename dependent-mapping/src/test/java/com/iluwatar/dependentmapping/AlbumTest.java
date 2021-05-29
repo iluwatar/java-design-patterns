@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * The type Album test.
  */
-public class AlbumTest {
+class AlbumTest {
 
   /**
    * Make album.

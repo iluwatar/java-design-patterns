@@ -23,9 +23,9 @@ class AlbumMapper {
    */
   Album loadAlbum(int index) {
     DatabaseAlbum album = database.getAlbum(index);
-    Album result = new Album(album.getName());
+    var result = new Album(album.getName());
     for (DataBaseTrack track : album.getAllTrack()) {
-      Track newTrack = new Track(track.getName());
+      var newTrack = new Track(track.getName());
       result.addTrack(newTrack);
     }
     return result;
@@ -39,10 +39,10 @@ class AlbumMapper {
   void updateAlbum(Album album) {
     int index = database.getAlbumIndex(album.getName());
     database.removeAlbum(index);
-    DatabaseAlbum databaseAlbum = new DatabaseAlbum(album.getName());
+    var databaseAlbum = new DatabaseAlbum(album.getName());
     for (Track track : album.getAllTrack()) {
       String trackName = track.getName();
-      DataBaseTrack dataBaseTrack = database.getTracks(trackName);
+      var dataBaseTrack = database.getTracks(trackName);
       if (dataBaseTrack == null) {
         dataBaseTrack = new DataBaseTrack(trackName);
         database.addTracks(dataBaseTrack);
