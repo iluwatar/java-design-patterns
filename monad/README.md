@@ -4,6 +4,7 @@ title: Monad
 folder: monad
 permalink: /patterns/monad/
 categories: Functional
+language: en
 tags:
  - Reactive
 ---

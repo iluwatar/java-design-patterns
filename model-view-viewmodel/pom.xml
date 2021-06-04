@@ -2,7 +2,6 @@
 <!--
 
     The MIT License (MIT)
-
     Copyright © 2014-2021 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,6 +19,7 @@
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
@@ -34,11 +34,11 @@
 	<parent>
 		<artifactId>java-design-patterns</artifactId>
 		<groupId>com.iluwatar</groupId>
-		<version>1.24.0-SNAPSHOT</version>
+		<version>1.25.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.iluwatar</groupId>
 	<artifactId>model-view-viewmodel</artifactId>
-	<version>1.24.0-SNAPSHOT</version>
+	<version>1.25.0-SNAPSHOT</version>
 	<properties>
 		<zk.version>9.0.0</zk.version>
 		<guava.version>19.0</guava.version>

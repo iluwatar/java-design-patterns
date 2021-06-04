@@ -4,6 +4,7 @@ title: Model-View-ViewModel
 folder: model-view-viewmodel
 permalink: /patterns/model-view-viewmodel/
 categories: Architectural
+language: en
 tags:
  - Decoupling
 ---

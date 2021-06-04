@@ -4,6 +4,7 @@ title: Singleton
 folder: singleton
 permalink: /patterns/singleton/
 categories: Creational
+language: en
 tags:
  - Gang of Four
 ---

@@ -4,6 +4,7 @@ title: Twin
 folder: twin
 permalink: /patterns/twin/
 categories: Structural
+language: en
 tags:
  - Extensibility
 ---

@@ -4,6 +4,7 @@ title: Fluent Interface
 folder: fluentinterface
 permalink: /patterns/fluentinterface/
 categories: Functional
+language: en
 tags: 
  - Reactive
 ---

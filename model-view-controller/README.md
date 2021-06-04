@@ -4,6 +4,7 @@ title: Model-View-Controller
 folder: model-view-controller
 permalink: /patterns/model-view-controller/
 categories: Architectural
+language: en
 tags:
  - Decoupling
 ---

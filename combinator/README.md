@@ -4,6 +4,7 @@ title: Combinator
 folder: combinator
 permalink: /patterns/combinator/
 categories: Idiom
+language: en
 tags:
  - Reactive
 ---

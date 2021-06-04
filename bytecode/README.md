@@ -4,6 +4,7 @@ title: Bytecode
 folder: bytecode
 permalink: /patterns/bytecode/
 categories: Behavioral
+language: en
 tags:
  - Game programming
 ---

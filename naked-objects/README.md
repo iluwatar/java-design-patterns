@@ -4,6 +4,7 @@ title: Naked Objects
 folder: naked-objects
 permalink: /patterns/naked-objects/
 categories: Architectural
+language: en
 tags:
  - Decoupling
 ---

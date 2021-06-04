@@ -4,6 +4,7 @@ title: API Gateway
 folder: api-gateway
 permalink: /patterns/api-gateway/
 categories: Architectural
+language: en
 tags:
   - Cloud distributed
   - Decoupling

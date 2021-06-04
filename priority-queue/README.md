@@ -4,6 +4,7 @@ title: Priority Queue Pattern
 folder: priority-queue
 permalink: /patterns/priority-queue/
 categories: Behavioral
+language: en
 tags:
  - Decoupling
  - Cloud distributed

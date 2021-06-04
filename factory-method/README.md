@@ -4,6 +4,7 @@ title: Factory Method
 folder: factory-method
 permalink: /patterns/factory-method/
 categories: Creational
+language: en
 tags:
  - Extensibility
  - Gang Of Four

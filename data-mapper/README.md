@@ -4,6 +4,7 @@ title: Data Mapper
 folder: data-mapper
 permalink: /patterns/data-mapper/
 categories: Architectural
+language: en
 tags:
  - Decoupling
 ---

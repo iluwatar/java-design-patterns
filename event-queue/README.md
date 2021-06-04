@@ -4,6 +4,7 @@ title: Event Queue
 folder: event-queue
 permalink: /patterns/event-queue/
 categories: Concurrency
+language: en
 tags:
  - Game programming
 ---

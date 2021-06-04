@@ -4,6 +4,7 @@ title: Chain of responsibility
 folder: chain
 permalink: /patterns/chain/
 categories: Behavioral
+language: en
 tags:
  - Gang of Four
 ---

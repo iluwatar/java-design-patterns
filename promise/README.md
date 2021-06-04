@@ -4,6 +4,7 @@ title: Promise
 folder: promise
 permalink: /patterns/promise/
 categories: Concurrency
+language: en
 tags:
  - Reactive
 ---

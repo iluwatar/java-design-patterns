@@ -4,6 +4,7 @@ title: Transaction Script
 folder: transaction-script
 permalink: /patterns/transaction-script/
 categories: Behavioral
+language: en
 tags:
  - Data access
 ---

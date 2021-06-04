@@ -4,6 +4,7 @@ title: Property
 folder: property
 permalink: /patterns/property/
 categories: Creational
+language: en
 tags:
  - Instantiation
 ---

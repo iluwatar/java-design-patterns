@@ -4,6 +4,7 @@ title: Registry
 folder: registry
 permalink: /patterns/registry/
 categories: Creational
+language: en
 tags:
  - Instantiation
 ---
