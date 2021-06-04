@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-168-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-169-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -326,6 +326,9 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/EdisonE3"><img src="https://avatars.githubusercontent.com/u/52118917?v=4?s=100" width="100px;" alt=""/><br /><sub><b>EdisonE3</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=EdisonE3" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/tao-sun2"><img src="https://avatars.githubusercontent.com/u/66189688?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tao</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=tao-sun2" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/JuanManuelAbate"><img src="https://avatars.githubusercontent.com/u/16357060?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Juan Manuel Abate</b></sub></a><br /><a href="#translation-JuanManuelAbate" title="Translation">🌍</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Xenilo137"><img src="https://avatars.githubusercontent.com/u/24865069?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Xenilo137</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Xenilo137" title="Code">💻</a></td>
   </tr>
 </table>
 
