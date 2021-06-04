@@ -1523,6 +1523,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "JuanManuelAbate",
+      "name": "Juan Manuel Abate",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16357060?v=4",
+      "profile": "https://github.com/JuanManuelAbate",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 4,
