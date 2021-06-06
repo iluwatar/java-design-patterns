@@ -35,7 +35,8 @@ public abstract class BindableField<T> {
   public abstract T getValue();
 }
 ```
-In real-world examples, binding properties pattern is used along with event handlers. Here we use an implementation of functional interface for calculating the new value to substitute the event handler. Whenever the set method is invoked, it should notify all the binded properties to change according to a giving function. We then add unidirectional and bidirectional bind methods for it. The default changing behaviour is to let a pair of binded properties to keep mutually equal.</br>
+In real-world examples, binding properties pattern is used along with event handlers. Here we use an implementation of a functional interface for calculating the new value to substitute the event handler. Whenever the set method is invoked, it should notify all the bound properties to change according to a given function. We then add unidirectional and bidirectional bind methods for it. The default changing behavior is to let a pair of bound properties keep mutually equal.</br>
+
 
 What if we want to define some behaviors other than keeping the properties same? We can add the following code into the abstract class:</br>
 ```java
