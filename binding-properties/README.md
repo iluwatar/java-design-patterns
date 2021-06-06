@@ -15,7 +15,8 @@ Binding properties pattern is used to bind different properties (fields) of obje
 Usually, when we want some properties to change along with another property, we shall use the observer pattern. But in some of the cases, these changing dependencies are much more complicated. For example, a GUI program has color of window background, color value in a text area and predifined color value that shall be updated by a checkbox. Any change of the properties above may result in changes in remaning properties, updating the checkbox or input a new color to the text area will immediately change the background color, also make the text area or the checkbox synchronized. This requires us to apply another mechanism to deal with complicated changing behavoiur dependencies. The required solotion here is **Binding Properties Pattern**, which is widely used in real-world GUI programming.
 
 **Programmatic Example**
-To avoid introtucing complexity, here we will not use a GUI framework like JavaFX to illustrate. Instead, we will build a simple scene for this pattern.</br>
+To avoid introducing complexity, here we will not use a GUI framework like JavaFX to illustrate. Instead, we will build a simple scene for this pattern.</br>
+
 First, prepare the abstract class for bindable:</br>
 ```java
 public abstract class BindableField<T> {
