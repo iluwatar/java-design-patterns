@@ -1541,6 +1541,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "samuelpsouza",
+      "name": "Samuel Souza",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17254162?v=4",
+      "profile": "https://www.linkedin.com/in/souzasamuel/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
