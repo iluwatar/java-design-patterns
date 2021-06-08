@@ -33,7 +33,7 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
 /**
- * Test class
+ * Tests for the adapter pattern.
  */
 class AdapterPatternTest {
 
