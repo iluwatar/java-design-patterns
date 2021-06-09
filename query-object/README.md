@@ -10,7 +10,8 @@ tags:
 ---
 
 ## Intent
-Query Object Pattern allows data sources to handle various types of customized query by instantiating objects containing different query conditions instead of implementing each types of queries by adding a fixed method in data accessing middleware (In reality, it can be data repositories provided by ORM or a raw database interface like connection through JDBC) without revealing the schema of it to users. 
+Query Object Pattern allows data sources to handle various types of customized queries by instantiating objects containing different query conditions instead of implementing each type of queries by adding a fixed method in data accessing middleware (In reality, it can be data repositories provided by ORM or a raw database interface like a connection through JDBC) without revealing the schema of it to users. 
+
 
 ## Class diagram
 ![alt text](./etc/query_object.PNG "Query Object Pattern")
