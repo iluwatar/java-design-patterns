@@ -66,7 +66,8 @@ protected void unBlock() {
   blockPropagation = false;
 }
 ```
-If the propagation is block, the set method invocation should be ignored.</br>
+If the propagation is blocked, the set method invocation should be ignored.</br>
+
 
 Inherit the class to build concrete bindable properties:</br>
 ```java
