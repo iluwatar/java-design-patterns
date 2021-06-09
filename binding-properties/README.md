@@ -113,7 +113,8 @@ public class BindableInteger extends BindableField<Integer> {
   }
 }
 ```
-Now we can make use of our binding properties. We have a little warrior that has HP, MP (for casting spells) and some remaining lives. Every time the little warrior's HP is healed or damaged, he will gain the same amount of recovering or damaging on MP. Whenever the HP is lower than 0, he must respawn himself until he does not have remaining lives. Besides, we need to display his HP and MP percentages on the screen. Now we need a mechanism to let all the values changes simultaneously. So we let his HP, MP, HP percentage, MP percentage to be bindable:</br>
+Now we can make use of our binding properties. We have a little warrior that has HP, MP (for casting spells), and some remaining lives. Every time the little warrior's HP is healed or damaged, he will gain the same amount of recovering or damaging on MP. Whenever the HP is lower than 0, he must respawn himself until he does not have remaining lives. Besides, we need to display his HP and MP percentages on the screen. Now we need a mechanism to let all the values change simultaneously. So we let his HP, MP, HP percentage, MP percentage be bindable:</br>
+
 ```java
 public class MyLittleWarrior {
   private BindableInteger remainLives;
