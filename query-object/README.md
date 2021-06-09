@@ -1,6 +1,7 @@
 ---
 layout: pattern
-title: Query Object Pattern
+title: Query Object
+
 folder: query-object
 permalink: /patterns/query-object/
 categories: Behavioral
