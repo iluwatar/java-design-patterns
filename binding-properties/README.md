@@ -54,7 +54,8 @@ public <M> void bidirectionalBind(BindableField<M> target,
   target.bind(this, oppositeOnChangeFunction);
 }
 ```
-Becareful, circulate bindings might introduce infinity loops. Here we can allow the property to resist changing temporarily:</br>
+Be careful, circulate bindings might introduce infinite loops. Here we can allow the property to resist changing temporarily:</br>
+
 ```java
 protected boolean blockPropagation;
 protected void block() {
