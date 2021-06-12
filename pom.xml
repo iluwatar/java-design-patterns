@@ -105,7 +105,7 @@
         <module>facade</module>
         <module>flyweight</module>
         <module>proxy</module>
-        <module>chain</module>
+        <module>chain-of-responsibility</module>
         <module>command</module>
         <module>interpreter</module>
         <module>iterator</module>
