@@ -220,14 +220,11 @@ common in information systems that support transactions. A transaction encapsula
 changes. The Command pattern offers a way to model transactions. Commands have a common interface,
 letting you invoke all transactions the same way. The pattern also makes it easy to extend the
 system with new transactions.
+* Keep a history of requests.
+* Implement callback functionality.
+* Implement the undo functionality.
 
-## Typical Use Case
-
-* To keep a history of requests
-* Implement callback functionality
-* Implement the undo functionality
-
-## Real-world examples
+## Known uses
 
 * [java.lang.Runnable](http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html)
 * [org.junit.runners.model.Statement](https://github.com/junit-team/junit4/blob/master/src/main/java/org/junit/runners/model/Statement.java)

@@ -134,7 +134,7 @@ Use the Builder pattern when
 * The algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
 * The construction process must allow different representations for the object that's constructed
 
-## Real-world examples
+## Known uses
 
 * [java.lang.StringBuilder](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
 * [java.nio.ByteBuffer](http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html#put-byte-) as well as similar buffers such as FloatBuffer, IntBuffer and so on.
