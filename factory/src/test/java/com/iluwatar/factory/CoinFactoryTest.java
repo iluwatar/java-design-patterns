@@ -23,11 +23,15 @@
 
 package com.iluwatar.factory;
 
-/**
- * Car interface.
- */
-public interface Car {
+import static org.junit.jupiter.api.Assertions.*;
 
-  String getDescription();
+import org.junit.jupiter.api.Test;
 
+class CoinFactoryTest {
+
+  @Test
+  void shouldReturnGoldCoinInstance() {
+    final var goldCoin = CoinFactory.getCoin(CoinType.GOLD);
+    assertTrue(goldCoin instanceof GoldCoin);
+  }
 }
