@@ -39,6 +39,6 @@ public class Sentence extends LetterComposite {
 
   @Override
   protected void printThisAfter() {
-    System.out.print(".");
+    System.out.print(".\n");
   }
 }
