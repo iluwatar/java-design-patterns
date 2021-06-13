@@ -44,4 +44,8 @@ public class ElfBlacksmith implements Blacksmith {
     return ELFARSENAL.get(weaponType);
   }
 
+  @Override
+  public String toString() {
+    return "The elf blacksmith";
+  }
 }
