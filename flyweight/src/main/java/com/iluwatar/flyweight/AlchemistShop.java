@@ -78,12 +78,12 @@ public class AlchemistShop {
   }
 
   /**
-   * Enumerate potions.
+   * Drink all the potions.
    */
-  public void enumerate() {
-    LOGGER.info("Enumerating top shelf potions\n");
+  public void drinkPotions() {
+    LOGGER.info("Drinking top shelf potions");
     topShelf.forEach(Potion::drink);
-    LOGGER.info("Enumerating bottom shelf potions\n");
+    LOGGER.info("Drinking bottom shelf potions");
     bottomShelf.forEach(Potion::drink);
   }
 }

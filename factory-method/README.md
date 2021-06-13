@@ -7,7 +7,7 @@ categories: Creational
 language: en
 tags:
  - Extensibility
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as
