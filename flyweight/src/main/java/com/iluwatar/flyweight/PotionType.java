@@ -28,5 +28,40 @@ package com.iluwatar.flyweight;
  */
 public enum PotionType {
 
-  HEALING, INVISIBILITY, STRENGTH, HOLY_WATER, POISON
+  HEALING {
+    @Override
+    public Potion getPotion() {
+      return new HealingPotion();
+    }
+  },
+
+  INVISIBILITY {
+    @Override
+    public Potion getPotion() {
+      return new InvisibilityPotion();
+    }
+  },
+  STRENGTH {
+    @Override
+    public Potion getPotion() {
+      return new StrengthPotion();
+    }
+  },
+
+  HOLY_WATER {
+    @Override
+    public Potion getPotion() {
+      return new HolyWaterPotion();
+    }
+  },
+
+  POISON {
+    @Override
+    public Potion getPotion() {
+      return new PoisonPotion();
+    }
+  }
+  ;
+
+  public abstract Potion getPotion();
 }
