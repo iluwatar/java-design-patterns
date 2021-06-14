@@ -18,7 +18,8 @@ Query Object Pattern allows data sources to handle various types of customized q
 
 ## Explanation
 **Programmatic Example**
-Now you are holding a dataset of customers, each of them has name and orders he has made, each of the order has many deals with its own quantity and unit price. You then mapped them into java objects, the schema in java may be look like this:</br>
+Holding a dataset of customers each having a name and orders made, each of the orders can have multiple order details with quantity and unit price. When mapped into Java objects, the schema looks like this:</br>
+
 ```java
 public class Customer {
   public final String name;
