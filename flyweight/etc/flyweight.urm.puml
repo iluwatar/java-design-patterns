@@ -49,6 +49,7 @@ package com.iluwatar.flyweight {
     + STRENGTH {static}
     + valueOf(name : String) : PotionType {static}
     + values() : PotionType[] {static}
+    + getPotion() : {abstract} Potion
   }
   class StrengthPotion {
     - LOGGER : Logger {static}
@@ -57,9 +58,9 @@ package com.iluwatar.flyweight {
   }
 }
 AlchemistShop -->  "-topShelf" Potion
-HealingPotion ..|> Potion 
-HolyWaterPotion ..|> Potion 
-InvisibilityPotion ..|> Potion 
-PoisonPotion ..|> Potion 
-StrengthPotion ..|> Potion 
+HealingPotion ..|> Potion
+HolyWaterPotion ..|> Potion
+InvisibilityPotion ..|> Potion
+PoisonPotion ..|> Potion
+StrengthPotion ..|> Potion
 @enduml

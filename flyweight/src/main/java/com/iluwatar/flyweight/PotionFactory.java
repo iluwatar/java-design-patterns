@@ -24,6 +24,7 @@
 package com.iluwatar.flyweight;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -41,31 +42,10 @@ public class PotionFactory {
 
   Potion createPotion(PotionType type) {
     var potion = potions.get(type);
+
     if (potion == null) {
-      switch (type) {
-        case HEALING:
-          potion = new HealingPotion();
-          potions.put(type, potion);
-          break;
-        case HOLY_WATER:
-          potion = new HolyWaterPotion();
-          potions.put(type, potion);
-          break;
-        case INVISIBILITY:
-          potion = new InvisibilityPotion();
-          potions.put(type, potion);
-          break;
-        case POISON:
-          potion = new PoisonPotion();
-          potions.put(type, potion);
-          break;
-        case STRENGTH:
-          potion = new StrengthPotion();
-          potions.put(type, potion);
-          break;
-        default:
-          break;
-      }
+      potion = type.getPotion();
+      potions.put(type, potion);
     }
     return potion;
   }
