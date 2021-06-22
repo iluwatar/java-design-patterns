@@ -117,7 +117,7 @@ public class OrcCommander extends RequestHandler {
 
 ```
 
-Th Orc King gives the orders and forms the chain.
+The Orc King gives the orders and forms the chain.
 
 ```java
 public class OrcKing {
