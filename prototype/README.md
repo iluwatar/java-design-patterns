@@ -17,17 +17,17 @@ copying this prototype.
 
 ## Explanation
 
-First it should be noted that Prototype pattern is not used to gain performance benefits. It's only 
-used for creating new objects from prototype instance.
+First, it should be noted that the Prototype pattern is not used to gain performance benefits. It's only 
+used for creating new objects from prototype instances.
 
-Real world example
+Real-world example
 
 > Remember Dolly? The sheep that was cloned! Lets not get into the details but the key point here is 
 > that it is all about cloning.
 
 In plain words
 
-> Create object based on an existing object through cloning.
+> Create an object based on an existing object through cloning.
 
 Wikipedia says
 
@@ -40,35 +40,127 @@ of going through the trouble of creating an object from scratch and setting it u
 
 **Programmatic Example**
 
-In Java, it can be easily done by implementing `Cloneable` and overriding `clone` from `Object`
+In Java, the prototype pattern is recommended to be implemented as follows. First, create an
+interface with a method for cloning objects. In this example, `Prototype` interface accomplishes
+this with its `copy` method.
 
 ```java
-class Sheep implements Cloneable {
-  private String name;
-  public Sheep(String name) { this.name = name; }
-  public void setName(String name) { this.name = name; }
-  public String getName() { return name; }
+public interface Prototype {
+  Object copy();
+}
+```
+
+Our example contains a hierarchy of different creatures. For example, let's look at `Beast` and
+`OrcBeast` classes.
+
+```java
+@EqualsAndHashCode
+@NoArgsConstructor
+public abstract class Beast implements Prototype {
+
+  public Beast(Beast source) {
+  }
+
   @Override
-  public Sheep clone() {
-    try {
-      return (Sheep)super.clone();
-    } catch(CloneNotSuportedException) {
-      throw new InternalError();
-    }
+  public abstract Beast copy();
+}
+
+@EqualsAndHashCode(callSuper = false)
+@RequiredArgsConstructor
+public class OrcBeast extends Beast {
+
+  private final String weapon;
+
+  public OrcBeast(OrcBeast orcBeast) {
+    super(orcBeast);
+    this.weapon = orcBeast.weapon;
+  }
+
+  @Override
+  public OrcBeast copy() {
+    return new OrcBeast(this);
+  }
+
+  @Override
+  public String toString() {
+    return "Orcish wolf attacks with " + weapon;
   }
 }
 ```
 
-Then it can be cloned like below:
+We don't want to go into too much details, but the full example contains also base classes `Mage`
+and `Warlord` and there are specialized implementations for those for elves in addition to orcs.
+
+To take full advantage of the prototype pattern, we create `HeroFactory` and `HeroFactoryImpl`
+classes to produce different kinds of creatures from prototypes.
 
 ```java
-var original = new Sheep("Jolly");
-System.out.println(original.getName()); // Jolly
+public interface HeroFactory {
+  
+  Mage createMage();
+  Warlord createWarlord();
+  Beast createBeast();
+}
 
-// Clone and modify what is required
-var cloned = original.clone();
-cloned.setName("Dolly");
-System.out.println(cloned.getName()); // Dolly
+@RequiredArgsConstructor
+public class HeroFactoryImpl implements HeroFactory {
+
+  private final Mage mage;
+  private final Warlord warlord;
+  private final Beast beast;
+
+  public Mage createMage() {
+    return mage.copy();
+  }
+
+  public Warlord createWarlord() {
+    return warlord.copy();
+  }
+
+  public Beast createBeast() {
+    return beast.copy();
+  }
+}
+```
+
+Now, we are able to show the full prototype pattern in action producing new creatures by cloning
+existing instances.
+
+```java
+    var factory = new HeroFactoryImpl(
+        new ElfMage("cooking"),
+        new ElfWarlord("cleaning"),
+        new ElfBeast("protecting")
+    );
+    var mage = factory.createMage();
+    var warlord = factory.createWarlord();
+    var beast = factory.createBeast();
+    LOGGER.info(mage.toString());
+    LOGGER.info(warlord.toString());
+    LOGGER.info(beast.toString());
+
+    factory = new HeroFactoryImpl(
+        new OrcMage("axe"),
+        new OrcWarlord("sword"),
+        new OrcBeast("laser")
+    );
+    mage = factory.createMage();
+    warlord = factory.createWarlord();
+    beast = factory.createBeast();
+    LOGGER.info(mage.toString());
+    LOGGER.info(warlord.toString());
+    LOGGER.info(beast.toString());
+```
+
+Here's the console output from running the example.
+
+```
+Elven mage helps in cooking
+Elven warlord helps in cleaning
+Elven eagle helps in protecting
+Orcish mage attacks with axe
+Orcish warlord attacks with sword
+Orcish wolf attacks with laser
 ```
 
 ## Class diagram
@@ -87,7 +179,7 @@ more convenient to install a corresponding number of prototypes and clone them r
 instantiating the class manually, each time with the appropriate state.
 * When object creation is expensive compared to cloning.
 
-## Real world examples
+## Known uses
 
 * [java.lang.Object#clone()](http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#clone%28%29)
 
