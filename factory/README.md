@@ -16,16 +16,17 @@ tags:
 
 ## Intent
 
-Providing a static method encapsulated in a class called factory, in order to hide the 
-implementation logic and makes client code focus on usage rather then initialization new objects.
+Providing a static method encapsulated in a class called the factory, to hide the implementation 
+logic and make client code focus on usage rather than initializing new objects.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> Lets say we have a web application connected to SQLServer, but now we want to switch to Oracle. To 
-> do so without modifying existing source code, we need to implements Simple Factory pattern, in 
-> which a static method can be invoked to create connection to a given database.
+> Imagine an alchemist who is about to manufacture coins. The alchemist must be able to create both 
+> gold and copper coins and switching between them must be possible without modifying the existing 
+> source code. The factory pattern makes it possible by providing a static construction method which 
+> can be called with relevant parameters.
 
 Wikipedia says
 
@@ -34,16 +35,16 @@ Wikipedia says
 
 **Programmatic Example**
 
-We have an interface `Car` and two implementations `Ford` and `Ferrari`.
+We have an interface `Coin` and two implementations `GoldCoin` and `CopperCoin`.
 
 ```java
-public interface Car {
+public interface Coin {
   String getDescription();
 }
 
-public class Ford implements Car {
+public class GoldCoin implements Coin {
 
-  static final String DESCRIPTION = "This is Ford.";
+  static final String DESCRIPTION = "This is a gold coin.";
 
   @Override
   public String getDescription() {
@@ -51,9 +52,9 @@ public class Ford implements Car {
   }
 }
 
-public class Ferrari implements Car {
+public class CopperCoin implements Coin {
    
-  static final String DESCRIPTION = "This is Ferrari.";
+  static final String DESCRIPTION = "This is a copper coin.";
 
   @Override
   public String getDescription() {
@@ -62,51 +63,48 @@ public class Ferrari implements Car {
 }
 ```
 
-Enumeration above represents types of cars that we support (`Ford` and `Ferrari`).
+Enumeration above represents types of coins that we support (`GoldCoin` and `CopperCoin`).
 
 ```java
-public enum CarType {
-  
-  FORD(Ford::new), 
-  FERRARI(Ferrari::new);
-  
-  private final Supplier<Car> constructor; 
-  
-  CarType(Supplier<Car> constructor) {
-    this.constructor = constructor;
-  }
-  
-  public Supplier<Car> getConstructor() {
-    return this.constructor;
-  }
+@RequiredArgsConstructor
+@Getter
+public enum CoinType {
+
+  COPPER(CopperCoin::new),
+  GOLD(GoldCoin::new);
+
+  private final Supplier<Coin> constructor;
 }
 ```
-Then we have the static method `getCar` to create car objects encapsulated in the factory class 
-`CarsFactory`.
+
+Then we have the static method `getCoin` to create coin objects encapsulated in the factory class 
+`CoinFactory`.
 
 ```java
-public class CarsFactory {
-  
-  public static Car getCar(CarType type) {
+public class CoinFactory {
+
+  public static Coin getCoin(CoinType type) {
     return type.getConstructor().get();
   }
 }
 ```
 
-Now on the client code we can create different types of cars using the factory class.
+Now on the client code we can create different types of coins using the factory class.
 
 ```java
-var car1 = CarsFactory.getCar(CarType.FORD);
-var car2 = CarsFactory.getCar(CarType.FERRARI);
-LOGGER.info(car1.getDescription());
-LOGGER.info(car2.getDescription());
+LOGGER.info("The alchemist begins his work.");
+var coin1 = CoinFactory.getCoin(CoinType.COPPER);
+var coin2 = CoinFactory.getCoin(CoinType.GOLD);
+LOGGER.info(coin1.getDescription());
+LOGGER.info(coin2.getDescription());
 ```
 
 Program output:
 
 ```java
-This is Ford.
-This is Ferrari.
+The alchemist begins his work.
+This is a copper coin.
+This is a gold coin.
 ```
 
 ## Class Diagram
@@ -115,7 +113,7 @@ This is Ferrari.
 
 ## Applicability
 
-Use the Simple Factory pattern when you only care about the creation of a object, not how to create 
+Use the factory pattern when you only care about the creation of a object, not how to create 
 and manage it.
 
 Pros
@@ -127,13 +125,13 @@ Cons
 
 * The code becomes more complicated than it should be. 
 
-## Real world examples
+## Known uses
 
 * [java.util.Calendar#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
 * [java.util.ResourceBundle#getBundle()](https://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
 * [java.text.NumberFormat#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html#getInstance--)
 * [java.nio.charset.Charset#forName()](https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html#forName-java.lang.String-)
-* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)](https://docs.oracle.com/javase/8/docs/api/java/net/URLStreamHandlerFactory.html) (Returns different singleton objects, depending on a protocol)
+* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)](https://docs.oracle.com/javase/8/docs/api/java/net/URLStreamHandlerFactory.html) (returns different singleton objects, depending on a protocol)
 * [java.util.EnumSet#of()](https://docs.oracle.com/javase/8/docs/api/java/util/EnumSet.html#of(E))
 * [javax.xml.bind.JAXBContext#createMarshaller()](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/JAXBContext.html#createMarshaller--) and other similar methods.
 

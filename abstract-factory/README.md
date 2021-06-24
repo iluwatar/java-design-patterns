@@ -196,13 +196,13 @@ Example use cases
 * Unit test case writing becomes much easier
 * UI tools for different OS
 
-## Consequences:
+## Consequences
 
 * Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
 * While the pattern is great when creating predefined objects, adding the new ones might be challenging.
 * The code becomes more complicated than it should be since a lot of new interfaces and classes are introduced along with the pattern.
 
-## Tutorial
+## Tutorials
 
 * [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
 
