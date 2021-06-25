@@ -38,7 +38,7 @@ tutoriais de programação sobre como implementar um padrão específico. Nós u
 populares tecnologias Java de código aberto comprovadas em batalhas.
 
 Antes de mergulhar no material, você deve estar familiarizado com vários
-[Princípios de design de software] (https://java-design-patterns.com/principles/).
+[Princípios de design de software](https://java-design-patterns.com/principles/).
 
 Todos os projetos devem ser o mais simples possível. Você deve começar com KISS, YAGNI,
 e fazer a coisa mais simples que poderia funcionar com os princípios. Complexidade e
@@ -46,10 +46,10 @@ os padrões só devem ser introduzidos quando são necessários para fins práti
 extensibilidade.
 
 Assim que estiver familiarizado com esses conceitos, você pode começar a se aprofundar nos
-[padrões de projeto disponíveis] (https://java-design-patterns.com/patterns/) por qualquer
+[padrões de projeto disponíveis](https://java-design-patterns.com/patterns/) por qualquer
 das seguintes abordagens
 
- - Pesquise um padrão específico por nome. Não consegue encontrar um? Informe um novo padrão [aqui] (https://github.com/iluwatar/java-design-patterns/issues).
+ - Pesquise um padrão específico por nome. Não consegue encontrar um? Informe um novo padrão [aqui](https://github.com/iluwatar/java-design-patterns/issues).
  - Usando tags como `Performance`,` Gang of Four` ou `Acesso de dados`.
  - Usando categorias de padrões, `Criacional`,` Comportamental` e outros.
 
@@ -58,7 +58,7 @@ em suas arquiteturas e divirta-se as aprendendo tanto quanto nos divertimos ao d
 
 # Como contribuir
 
-Se você estiver disposto a contribuir para o projeto, você encontrará as informações mais relevantes em nossa [wiki do desenvolvedor] (https://github.com/iluwatar/java-design-patterns/wiki). Ajudaremos você e responderemos as suas perguntas na [sala de bate-papo do Gitter] (https://gitter.im/iluwatar/java-design-patterns).
+Se você estiver disposto a contribuir para o projeto, você encontrará as informações mais relevantes em nossa [wiki do desenvolvedor](https://github.com/iluwatar/java-design-patterns/wiki). Ajudaremos você e responderemos as suas perguntas na [sala de bate-papo do Gitter](https://gitter.im/iluwatar/java-design-patterns).
 
 # Licença
 
