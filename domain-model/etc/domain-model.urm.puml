@@ -1,0 +1,87 @@
+@startuml
+package com.iluwatar.domainmodel {
+  class App {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    + H2_DB_URL : String {static}
+    + App()
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteSchema(dataSource : DataSource) {static}
+    + main(args : String[]) {static}
+  }
+  class Customer {
+    - customerDao : CustomerDao
+    - money : Double
+    - name : String
+    - purchases : List<Product>
+    ~ Customer(customerDao : CustomerDao, purchases : List<Product>, name : String, money : Double)
+    + builder() : CustomerBuilder {static}
+    + buyProduct(product : Product)
+    + getCustomerDao() : CustomerDao
+    + getMoney() : Double
+    + getName() : String
+    + getPurchases() : List<Product>
+    - receiveMoney(amount : Double)
+    + returnProduct(product : Product)
+    + save()
+    + setMoney(money : Double)
+    + setName(name : String)
+    + setPurchases(purchases : List<Product>)
+    + showBalance()
+    + showPurchases()
+    - withdraw(amount : Double)
+  }
+  interface CustomerDao {
+    + addProduct(Product, Customer) {abstract}
+    + deleteProduct(Product, Customer) {abstract}
+    + findByName(String) : Optional<Customer> {abstract}
+    + save(Customer) {abstract}
+    + update(Customer) {abstract}
+  }
+  class CustomerDaoImpl {
+    - dataSource : DataSource
+    + CustomerDaoImpl(userDataSource : DataSource)
+    + addProduct(product : Product, customer : Customer)
+    + deleteProduct(product : Product, customer : Customer)
+    + findByName(name : String) : Optional<Customer>
+    + save(customer : Customer)
+    + update(customer : Customer)
+  }
+  class Product {
+    - expirationDate : LocalDate
+    - name : String
+    - price : Double
+    - productDao : ProductDao
+    + Product(productDao : ProductDao, name : String, price : Double, expirationDate : LocalDate)
+    + builder() : ProductBuilder {static}
+    - calculateDiscount() : double
+    + getExpirationDate() : LocalDate
+    + getName() : String
+    + getPrice() : Double
+    + getProductDao() : ProductDao
+    + getSalePrice() : double
+    + save()
+    + setExpirationDate(expirationDate : LocalDate)
+    + setName(name : String)
+    + setPrice(price : Double)
+  }
+  interface ProductDao {
+    + findByName(String) : Optional<Product> {abstract}
+    + save(Product) {abstract}
+    + update(Product) {abstract}
+  }
+  class ProductDaoImpl {
+    - dataSource : DataSource
+    + ProductDaoImpl(userDataSource : DataSource)
+    + findByName(name : String) : Optional<Product>
+    + save(product : Product)
+    + update(product : Product)
+  }
+}
+Product -->  ProductDao
+Customer -->  CustomerDao
+Customer -->  Product
+CustomerDaoImpl ..|> CustomerDao 
+ProductDaoImpl ..|> ProductDao 
+@enduml

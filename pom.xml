@@ -232,6 +232,7 @@
         <module>table-module</module>
         <module>presentation</module>
         <module>lockable-object</module>
+        <module>domain-model</module>
     </modules>
 
     <repositories>
@@ -379,12 +380,12 @@
                 <version>${system-lambda.version}</version>
                 <scope>test</scope>
             </dependency>
-		    <dependency>
-			    <groupId>commons-io</groupId>
-			    <artifactId>commons-io</artifactId>
-			    <version>${commons-io.version}</version>
-		        </dependency>
-            </dependencies>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
     <dependencies>
         <dependency>
