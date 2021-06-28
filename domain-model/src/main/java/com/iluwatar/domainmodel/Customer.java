@@ -119,15 +119,15 @@ public class Customer {
    * Print customer's purchases.
    */
   public void showPurchases() {
-    if (purchases.isEmpty()) {
-      LOGGER.info(name + " didn't buy anything");
+    Optional<String> purchasesToShow =
+        purchases.stream()
+            .map(p -> p.getName() + " - $" + p.getSalePrice())
+            .reduce((p1, p2) -> p1 + ", " + p2);
+
+    if (purchasesToShow.isPresent()) {
+      LOGGER.info(name + " bought: " + purchasesToShow.get());
     } else {
-      LOGGER.info(
-          name + " bought: "
-               + purchases.stream()
-                  .map(p -> p.getName() + " - $" + p.getSalePrice())
-                  .reduce((p1, p2) -> p1 + ", " + p2)
-                  .get());
+      LOGGER.info(name + "didn't bought anything");
     }
   }
 
