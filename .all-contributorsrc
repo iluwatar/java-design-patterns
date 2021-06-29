@@ -1551,6 +1551,15 @@
         "code"
       ]
     }
+     {
+      "login": "ChathushkaRodrigo",
+      "name": "Chathushka Rodrigo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72795289?v=4",
+      "profile": "https://github.com/ChathushkaRodrigo",
+      "contributions": [
+        "review"
+      ]
+    }
   ],
   "contributorsPerLine": 4,
   "projectName": "java-design-patterns",

@@ -56,3 +56,4 @@ public class App {
     LOGGER.info("Is statA and statC equal : {}", statA.equals(statC));
   }
 }
+//End of Main Class

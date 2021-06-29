@@ -84,3 +84,4 @@ public class App implements Runnable {
     kingdom.setArmy(kingdomFactory.createArmy());
   }
 }
+//End of Main Class
