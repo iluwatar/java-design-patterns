@@ -4,6 +4,7 @@ title: Binding Properties Pattern
 folder: binding-properties
 permalink: /patterns/query-object/
 categories: Behavioral
+language: en
 tags:
  - Reactive
 ---
