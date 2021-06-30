@@ -2,7 +2,7 @@ package com.iluwatar.bindingproperties;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestNoInfinityLoop {
+class TestNoInfiniteLoop {
 
   /**
    * Circulate binding should be performed correctly without being trapped
