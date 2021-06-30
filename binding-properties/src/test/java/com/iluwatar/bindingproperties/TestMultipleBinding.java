@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestMuiltBinding {
+class TestMultipleBinding {
   /**
    * Test multiple Binding, whenever one of the binded item
    * among a, b and c changes, another one should change along with it.
