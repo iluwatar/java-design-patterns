@@ -1,0 +1,27 @@
+@startuml
+package com.iluwatar.datatransfer {
+  class CustomerClientApp {
+    - LOGGER : Logger {static}
+    + CustomerClientApp()
+    + main(args : String[]) {static}
+    - printCustomerDetails(allCustomers : List<CustomerDto>) {static}
+  }
+  class CustomerDto {
+    - firstName : String
+    - id : String
+    - lastName : String
+    + CustomerDto(id : String, firstName : String, lastName : String)
+    + getFirstName() : String
+    + getId() : String
+    + getLastName() : String
+  }
+  class CustomerResource {
+    - customers : List<CustomerDto>
+    + CustomerResource(customers : List<CustomerDto>)
+    + delete(customerId : String)
+    + getAllCustomers() : List<CustomerDto>
+    + save(customer : CustomerDto)
+  }
+}
+CustomerResource -->  "-customers" CustomerDto
+@enduml

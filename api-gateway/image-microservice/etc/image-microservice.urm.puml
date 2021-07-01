@@ -1,0 +1,12 @@
+@startuml
+package com.iluwatar.image.microservice {
+  class ImageApplication {
+    + ImageApplication()
+    + main(args : String[]) {static}
+  }
+  class ImageController {
+    + ImageController()
+    + getImagePath() : String
+  }
+}
+@enduml

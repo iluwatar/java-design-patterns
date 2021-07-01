@@ -1,0 +1,36 @@
+@startuml
+package com.iluwatar.factory {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface Coin {
+    + getDescription() : String {abstract}
+  }
+  class CoinFactory {
+    + CoinFactory()
+    + getCoin(type : CoinType) : Coin {static}
+  }
+  enum CoinType {
+    + COPPER {static}
+    + GOLD {static}
+    - constructor : Supplier<Coin>
+    + getConstructor() : Supplier<Coin>
+    + valueOf(name : String) : CoinType {static}
+    + values() : CoinType[] {static}
+  }
+  class CopperCoin {
+    ~ DESCRIPTION : String {static}
+    + CopperCoin()
+    + getDescription() : String
+  }
+  class GoldCoin {
+    ~ DESCRIPTION : String {static}
+    + GoldCoin()
+    + getDescription() : String
+  }
+}
+CopperCoin ..|> Coin 
+GoldCoin ..|> Coin 
+@enduml

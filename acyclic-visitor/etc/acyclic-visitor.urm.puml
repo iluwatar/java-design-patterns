@@ -1,0 +1,53 @@
+@startuml
+package com.iluwatar.acyclicvisitor {
+  interface AllModemVisitor {
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class ConfigureForDosVisitor {
+    - LOGGER : Logger {static}
+    + ConfigureForDosVisitor()
+    + visit(hayes : Hayes)
+    + visit(zoom : Zoom)
+  }
+  class ConfigureForUnixVisitor {
+    - LOGGER : Logger {static}
+    + ConfigureForUnixVisitor()
+    + visit(zoom : Zoom)
+  }
+  class Hayes {
+    - LOGGER : Logger {static}
+    + Hayes()
+    + accept(modemVisitor : ModemVisitor)
+    + toString() : String
+  }
+  interface HayesVisitor {
+    + visit(Hayes) {abstract}
+  }
+  abstract class Modem {
+    + Modem()
+    + accept(ModemVisitor) {abstract}
+  }
+  interface ModemVisitor {
+  }
+  class Zoom {
+    - LOGGER : Logger {static}
+    + Zoom()
+    + accept(modemVisitor : ModemVisitor)
+    + toString() : String
+  }
+  interface ZoomVisitor {
+    + visit(Zoom) {abstract}
+  }
+}
+AllModemVisitor --|> ZoomVisitor 
+AllModemVisitor --|> HayesVisitor 
+ConfigureForDosVisitor ..|> AllModemVisitor 
+ConfigureForUnixVisitor ..|> ZoomVisitor 
+Hayes --|> Modem 
+HayesVisitor --|> ModemVisitor 
+Zoom --|> Modem 
+ZoomVisitor --|> ModemVisitor 
+@enduml

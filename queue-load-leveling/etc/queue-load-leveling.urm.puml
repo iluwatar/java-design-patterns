@@ -1,0 +1,44 @@
+@startuml
+package com.iluwatar.queue.load.leveling {
+  class App {
+    - LOGGER : Logger {static}
+    - SHUTDOWN_TIME : int {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Message {
+    - msg : String
+    + Message(msg : String)
+    + getMsg() : String
+    + toString() : String
+  }
+  class MessageQueue {
+    - LOGGER : Logger {static}
+    - blkQueue : BlockingQueue<Message>
+    + MessageQueue()
+    + retrieveMsg() : Message
+    + submitMsg(msg : Message)
+  }
+  class ServiceExecutor {
+    - LOGGER : Logger {static}
+    - msgQueue : MessageQueue
+    + ServiceExecutor(msgQueue : MessageQueue)
+    + run()
+  }
+  interface Task {
+    + submit(Message) {abstract}
+  }
+  class TaskGenerator {
+    - LOGGER : Logger {static}
+    - msgCount : int
+    - msgQueue : MessageQueue
+    + TaskGenerator(msgQueue : MessageQueue, msgCount : int)
+    + run()
+    + submit(msg : Message)
+  }
+}
+MessageQueue -->  "-blkQueue" Message
+ServiceExecutor -->  "-msgQueue" MessageQueue
+TaskGenerator -->  "-msgQueue" MessageQueue
+TaskGenerator ..|> Task 
+@enduml

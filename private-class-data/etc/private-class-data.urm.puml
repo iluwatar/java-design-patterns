@@ -1,0 +1,36 @@
+@startuml
+package com.iluwatar.privateclassdata {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class ImmutableStew {
+    - LOGGER : Logger {static}
+    - data : StewData
+    + ImmutableStew(numPotatoes : int, numCarrots : int, numMeat : int, numPeppers : int)
+    + mix()
+  }
+  class Stew {
+    - LOGGER : Logger {static}
+    - numCarrots : int
+    - numMeat : int
+    - numPeppers : int
+    - numPotatoes : int
+    + Stew(numPotatoes : int, numCarrots : int, numMeat : int, numPeppers : int)
+    + mix()
+    + taste()
+  }
+  class StewData {
+    - numCarrots : int
+    - numMeat : int
+    - numPeppers : int
+    - numPotatoes : int
+    + StewData(numPotatoes : int, numCarrots : int, numMeat : int, numPeppers : int)
+    + getNumCarrots() : int
+    + getNumMeat() : int
+    + getNumPeppers() : int
+    + getNumPotatoes() : int
+  }
+}
+ImmutableStew -->  "-data" StewData
+@enduml

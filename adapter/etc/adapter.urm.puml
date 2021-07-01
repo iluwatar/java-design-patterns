@@ -1,0 +1,31 @@
+@startuml
+package com.iluwatar.adapter {
+  class App {
+    - App()
+    + main(args : String[]) {static}
+  }
+  class Captain {
+    - rowingBoat : RowingBoat
+    + Captain()
+    + Captain(boat : RowingBoat)
+    ~ row()
+    ~ setRowingBoat(boat : RowingBoat)
+  }
+  ~class FishingBoat {
+    - LOGGER : Logger {static}
+    ~ FishingBoat()
+    ~ sail()
+  }
+  class FishingBoatAdapter {
+    - boat : FishingBoat
+    + FishingBoatAdapter()
+    + row()
+  }
+  interface RowingBoat {
+    + row() {abstract}
+  }
+}
+FishingBoatAdapter -->  "-boat" FishingBoat
+Captain -->  "-rowingBoat" RowingBoat
+FishingBoatAdapter ..|> RowingBoat 
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+package com.iluwatar.delegation.simple.printers {
+  class CanonPrinter {
+    - LOGGER : Logger {static}
+    + CanonPrinter()
+    + print(message : String)
+  }
+  class EpsonPrinter {
+    - LOGGER : Logger {static}
+    + EpsonPrinter()
+    + print(message : String)
+  }
+  class HpPrinter {
+    - LOGGER : Logger {static}
+    + HpPrinter()
+    + print(message : String)
+  }
+}
+package com.iluwatar.delegation.simple {
+  class App {
+    - MESSAGE_TO_PRINT : String {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface Printer {
+    + print(String) {abstract}
+  }
+  class PrinterController {
+    - printer : Printer
+    + PrinterController(printer : Printer)
+    + print(message : String)
+  }
+}
+PrinterController -->  "-printer" Printer
+PrinterController ..|> Printer 
+CanonPrinter ..|> Printer 
+EpsonPrinter ..|> Printer 
+HpPrinter ..|> Printer 
+@enduml

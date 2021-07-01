@@ -1,0 +1,46 @@
+@startuml
+package com.iluwatar.business.delegate {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class BusinessDelegate {
+    - lookupService : BusinessLookup
+    + BusinessDelegate()
+    + playbackMovie(movie : String)
+    + setLookupService(lookupService : BusinessLookup)
+  }
+  class BusinessLookup {
+    - netflixService : NetflixService
+    - youTubeService : YouTubeService
+    + BusinessLookup()
+    + getBusinessService(movie : String) : VideoStreamingService
+    + setNetflixService(netflixService : NetflixService)
+    + setYouTubeService(youTubeService : YouTubeService)
+  }
+  class MobileClient {
+    - businessDelegate : BusinessDelegate
+    + MobileClient(businessDelegate : BusinessDelegate)
+    + playbackMovie(movie : String)
+  }
+  class NetflixService {
+    - LOGGER : Logger {static}
+    + NetflixService()
+    + doProcessing()
+  }
+  interface VideoStreamingService {
+    + doProcessing() {abstract}
+  }
+  class YouTubeService {
+    - LOGGER : Logger {static}
+    + YouTubeService()
+    + doProcessing()
+  }
+}
+BusinessLookup -->  "-netflixService" NetflixService
+BusinessLookup -->  "-youTubeService" YouTubeService
+MobileClient -->  "-businessDelegate" BusinessDelegate
+BusinessDelegate -->  "-lookupService" BusinessLookup
+NetflixService ..|> VideoStreamingService 
+YouTubeService ..|> VideoStreamingService 
+@enduml

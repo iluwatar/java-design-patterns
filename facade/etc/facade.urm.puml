@@ -1,0 +1,60 @@
+@startuml
+package com.iluwatar.facade {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class DwarvenCartOperator {
+    - LOGGER : Logger {static}
+    + DwarvenCartOperator()
+    + name() : String
+    + work()
+  }
+  class DwarvenGoldDigger {
+    - LOGGER : Logger {static}
+    + DwarvenGoldDigger()
+    + name() : String
+    + work()
+  }
+  class DwarvenGoldmineFacade {
+    - workers : List<DwarvenMineWorker>
+    + DwarvenGoldmineFacade()
+    + digOutGold()
+    + endDay()
+    - makeActions(workers : Collection<DwarvenMineWorker>, actions : Action[]) {static}
+    + startNewDay()
+  }
+  abstract class DwarvenMineWorker {
+    - LOGGER : Logger {static}
+    + DwarvenMineWorker()
+    - action(action : Action)
+    + action(actions : Action[])
+    + goHome()
+    + goToMine()
+    + goToSleep()
+    + name() : String {abstract}
+    + wakeUp()
+    + work() {abstract}
+  }
+  ~enum Action {
+    + GO_HOME {static}
+    + GO_TO_MINE {static}
+    + GO_TO_SLEEP {static}
+    + WAKE_UP {static}
+    + WORK {static}
+    + valueOf(name : String) : Action {static}
+    + values() : Action[] {static}
+  }
+  class DwarvenTunnelDigger {
+    - LOGGER : Logger {static}
+    + DwarvenTunnelDigger()
+    + name() : String
+    + work()
+  }
+}
+DwarvenGoldmineFacade -->  "-workers" DwarvenMineWorker
+Action ..+ DwarvenMineWorker
+DwarvenCartOperator --|> DwarvenMineWorker 
+DwarvenGoldDigger --|> DwarvenMineWorker 
+DwarvenTunnelDigger --|> DwarvenMineWorker 
+@enduml
