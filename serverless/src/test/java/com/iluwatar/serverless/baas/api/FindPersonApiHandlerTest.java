@@ -42,7 +42,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 /**
  * Unit tests for FindPersonApiHandler Created by dheeraj.mummar on 3/5/18.
  */
-public class FindPersonApiHandlerTest {
+class FindPersonApiHandlerTest {
 
   private FindPersonApiHandler findPersonApiHandler;
 
@@ -57,7 +57,7 @@ public class FindPersonApiHandlerTest {
   }
 
   @Test
-  public void handleRequest() {
+  void handleRequest() {
     findPersonApiHandler.handleRequest(apiGatewayProxyRequestEvent(), mock(Context.class));
     verify(dynamoDbMapper, times(1)).load(Person.class, "37e7a1fe-3544-473d-b764-18128f02d72d");
   }

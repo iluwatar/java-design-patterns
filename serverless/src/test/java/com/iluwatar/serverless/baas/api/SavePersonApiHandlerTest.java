@@ -36,7 +36,6 @@ import com.iluwatar.serverless.baas.model.Address;
 import com.iluwatar.serverless.baas.model.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -46,7 +45,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 /**
  * Unit tests for SavePersonApiHandler Created by dheeraj.mummar on 3/4/18.
  */
-public class SavePersonApiHandlerTest {
+class SavePersonApiHandlerTest {
 
   private SavePersonApiHandler savePersonApiHandler;
 
@@ -63,7 +62,7 @@ public class SavePersonApiHandlerTest {
   }
 
   @Test
-  public void handleRequestSavePersonSuccessful() throws JsonProcessingException {
+  void handleRequestSavePersonSuccessful() throws JsonProcessingException {
     var person = newPerson();
     var body = objectMapper.writeValueAsString(person);
     var request = apiGatewayProxyRequestEvent(body);
@@ -75,7 +74,7 @@ public class SavePersonApiHandlerTest {
   }
 
   @Test
-  public void handleRequestSavePersonException() {
+  void handleRequestSavePersonException() {
     var request = apiGatewayProxyRequestEvent("invalid sample request");
     var ctx = mock(Context.class);
     var apiGatewayProxyResponseEvent = this.savePersonApiHandler.handleRequest(request, ctx);
