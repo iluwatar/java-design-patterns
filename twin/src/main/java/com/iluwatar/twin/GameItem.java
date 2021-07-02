@@ -34,7 +34,7 @@ public abstract class GameItem {
   /**
    * Template method, do some common logic before draw.
    */
-  public void draw() {
+  public final void draw() {
     LOGGER.info("draw");
     doDraw();
   }
