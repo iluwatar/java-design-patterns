@@ -1,15 +1,22 @@
 package com.iluwatar.bindingproperties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * This is a simple test case for binding properties pattern.
+ * This is a simple example for binding properties pattern,
+ * which is used to bind different properties (fields) of objects
+ * together, to allow them change simultaneously.
+ * Here we summon a warrior and always display his information including
+ * his health point and it's remaining percentage, mana point and it's
+ * remaining percentage. Everytime his HP/MP changes, its percentage
+ * will also change. Whenever his HP is decreased to 0, a chance of
+ * is then reduced. Therefore, we bind these properties together to
+ * ensure that whenever one of the data changes, some other data should
+ * change immediately according to our given rules.
  */
 
+@Slf4j
 public class App {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
   /**
    * The program entry point.
    *
@@ -20,29 +27,28 @@ public class App {
     var waspDamage = 20.0;
     var spellCost = 10.0;
     var heal = 50.0;
-    while (true) {
+    while (me.getRemainLives() > 0) {
       me.displayMyStatus();
-      LOGGER.info("I am attacked by a furious wasp! HP - {}", waspDamage);
+      log.info("I am attacked by a furious wasp! HP - {}", waspDamage);
       me.damage(waspDamage);
       me.displayMyStatus();
 
-      LOGGER.info("I cast a spell to kill the wasp! MP - {}", spellCost);
+      log.info("I cast a spell to kill the wasp! MP - {}", spellCost);
       me.castSpell(spellCost);
       me.displayMyStatus();
 
-      LOGGER.info("I drink healing potion! HP + {}", heal);
+      log.info("I drink healing potion! HP + {}", heal);
       me.heal(heal);
       me.displayMyStatus();
 
-      LOGGER.info("I am attacked by a furious dragon! HP - 99999");
+      log.info("I am attacked by a furious dragon! HP - 99999");
       me.damage(99999.0);
       me.displayMyStatus();
 
       if (me.getRemainLives() <= 0) {
-        LOGGER.info("I am dead, no extra lives!");
-        break;
+        log.info("I am dead, no extra lives!");
       } else {
-        LOGGER.info("I am dead, now I should respawn!");
+        log.info("I am dead, now I should respawn!");
         me.heal(99999.0);
         me.displayMyStatus();
       }
