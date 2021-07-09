@@ -1,0 +1,27 @@
+@startuml
+package com.iluwatar.composemethod {
+  class AddImpl {
+    + AddImpl()
+    + addPositiveNodesOriginal(head : Node) : int {static}
+    + addPositiveNodesRefined(head : Node) : int {static}
+    + grow(nums : int[]) : int {static}
+    + isPositive(a : int) : boolean {static}
+    + lengthDetect(tail : Node) : boolean {static}
+    + nextNode(tail : Node) : Node {static}
+    + nodeDetect(tail : Node) : boolean {static}
+    + numGrow(adder : int) : int {static}
+    + numberGrowth(tail : Node) : int {static}
+  }
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Node {
+    ~ next : Node
+    ~ nums : int[]
+    + Node()
+  }
+}
+Node -->  "-next" Node
+@enduml
