@@ -62,7 +62,7 @@
         <slf4j.version>1.7.30</slf4j.version>
         <logback.version>1.2.3</logback.version>
         <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
-        <aws-java-sdk-dynamodb.version>1.11.289</aws-java-sdk-dynamodb.version>
+        <aws-java-sdk-dynamodb.version>1.12.13</aws-java-sdk-dynamodb.version>
         <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
         <jackson.version>2.12.3</jackson.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
@@ -72,7 +72,7 @@
         <urm.version>2.0.0</urm.version>
         <mockito-junit-jupiter.version>3.5.0</mockito-junit-jupiter.version>
         <lombok.version>1.18.14</lombok.version>
-        <byte-buddy.version>1.10.21</byte-buddy.version>
+        <byte-buddy.version>1.11.5</byte-buddy.version>
         <javassist.version>3.27.0-GA</javassist.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
