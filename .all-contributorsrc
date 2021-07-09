@@ -1550,6 +1550,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "marlo2222",
+      "name": "Marlo Henrique",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40809563?v=4",
+      "profile": "https://github.com/marlo2222",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 4,
