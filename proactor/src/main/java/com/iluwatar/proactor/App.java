@@ -11,7 +11,7 @@ package com.iluwatar.proactor;
  */
 public class App {
   /**
-   * Execute the pattern.
+   * Execute the pattern. Create a client to run the function defined in function run.
    *
    * @param args system input
    */

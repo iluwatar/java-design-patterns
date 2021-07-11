@@ -28,7 +28,7 @@ public class AsynchronousOperation {
       return new Handle("short");
     } else if ("task2".equals(operation)) {
       LOGGER.info("task2 started!");
-      Thread.sleep(500);
+      Thread.sleep(600);
       LOGGER.info("task2 finished!");
       return new Handle("long");
     }

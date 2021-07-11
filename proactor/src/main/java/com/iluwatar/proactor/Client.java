@@ -17,9 +17,6 @@ public class Client {
    */
   private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
 
-  /**
-   * Normally use internet to communicate between server and client.
-   */
   public void run(AsynchronousOperationProcessor op) throws InterruptedException {
     final var c1 = new ConcreteCompletionHandler("short");
     ExecutorService executor = Executors.newFixedThreadPool(3);
