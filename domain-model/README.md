@@ -2,7 +2,7 @@
 layout: pattern
 title: Domain Model
 folder: domain-model
-permalink: /patterns/domain-module/
+permalink: /patterns/domain-model/
 categories: Structural
 tags:
  - Data access
@@ -13,7 +13,7 @@ Domain model pattern provides an object-oriented way of dealing with complicated
 
 Real world example
 
-> Let's assume that we need to build e-commerce web application. While analyzing requirements you will notice that there are few nouns you talk about repeatedly. It’s your Customer, and a Product the customer looks for. These two are your domain-specific classes and each of that classes will include some business logic specific to its domain.
+> Let's assume that we need to build an e-commerce web application. While analyzing requirements you will notice that there are few nouns you talk about repeatedly. It’s your Customer, and a Product the customer looks for. These two are your domain-specific classes and each of that classes will include some business logic specific to its domain.
 
 In plain words
 
@@ -21,7 +21,7 @@ In plain words
 
 Programmatic Example
 
-In the example of the e-commerce app, we need to deal with the domain logic of customers who want to buy products and return them if they want. We can use the domain module pattern and create classes `Customer` and `Product` where every single instance of that class incorporates both behavior and data and represents only one record in the underlying table.
+In the example of the e-commerce app, we need to deal with the domain logic of customers who want to buy products and return them if they want. We can use the domain model pattern and create classes `Customer` and `Product` where every single instance of that class incorporates both behavior and data and represents only one record in the underlying table.
 
 Here is the `Product` domain class with fields `name`, `price`, `expirationDate` which is specific for each product, `productDao` for working with DB, `save` method for saving product and `getSalePrice` method which return price for this product with discount.
 
@@ -304,6 +304,8 @@ Use a Domain model pattern when your domain logic is complex and that complexity
 - [Transaction Script](https://java-design-patterns.com/patterns/transaction-script/)
 
 - [Table Module](https://java-design-patterns.com/patterns/table-module/)
+  
+- [Service Layer](https://java-design-patterns.com/patterns/service-layer/)
 
 ## Credits
 
