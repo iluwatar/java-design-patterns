@@ -81,9 +81,9 @@ public class AlchemistShop {
    * Drink all the potions.
    */
   public void drinkPotions() {
-    LOGGER.info("Drinking top shelf potions");
+    log.info("Drinking top shelf potions");
     topShelf.forEach(Potion::drink);
-    LOGGER.info("Drinking bottom shelf potions");
+    log.info("Drinking bottom shelf potions");
     bottomShelf.forEach(Potion::drink);
   }
 }
