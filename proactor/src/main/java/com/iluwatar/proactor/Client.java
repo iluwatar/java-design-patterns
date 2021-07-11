@@ -17,6 +17,9 @@ public class Client {
    */
   private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
 
+  /**
+   * A function to be run.
+   */
   public void run(AsynchronousOperationProcessor op) throws InterruptedException {
     final var c1 = new ConcreteCompletionHandler("short");
     ExecutorService executor = Executors.newFixedThreadPool(3);
