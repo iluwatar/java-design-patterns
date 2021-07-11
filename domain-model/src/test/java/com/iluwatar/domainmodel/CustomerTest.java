@@ -23,6 +23,8 @@
 
 package com.iluwatar.domainmodel;
 
+import org.joda.money.CurrencyUnit;
+import org.joda.money.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 
+import static org.joda.money.CurrencyUnit.USD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -47,13 +50,13 @@ public class CustomerTest {
 
         customer = Customer.builder()
                 .name("customer")
-                .money(100.0)
+                .money(Money.of(CurrencyUnit.USD, 100.0))
                 .customerDao(customerDao)
                 .build();
 
         product = Product.builder()
                 .name("product")
-                .price(100.0)
+                .price(Money.of(USD, 100.0))
                 .expirationDate(LocalDate.now().plusDays(10))
                 .productDao(mock(ProductDao.class))
                 .build();
@@ -76,19 +79,19 @@ public class CustomerTest {
 
     @Test
     void buyProductTest() {
-        product.setPrice(200.0);
+        product.setPrice(Money.of(USD, 200.0));
 
         customer.buyProduct(product);
 
         assertEquals(customer.getPurchases(), new ArrayList<>());
-        assertEquals(customer.getMoney(), 100);
+        assertEquals(customer.getMoney(), Money.of(USD,100));
 
-        product.setPrice(100.0);
+        product.setPrice(Money.of(USD, 100.0));
 
         customer.buyProduct(product);
 
         assertEquals(customer.getPurchases(), new ArrayList<>(Arrays.asList(product)));
-        assertEquals(customer.getMoney(), 0);
+        assertEquals(customer.getMoney(), Money.zero(USD));
     }
 
     @Test
@@ -98,12 +101,12 @@ public class CustomerTest {
         customer.returnProduct(product);
 
         assertEquals(customer.getPurchases(), new ArrayList<>());
-        assertEquals(customer.getMoney(), 200);
+        assertEquals(customer.getMoney(), Money.of(USD, 200));
 
         customer.returnProduct(product);
 
         assertEquals(customer.getPurchases(), new ArrayList<>());
-        assertEquals(customer.getMoney(), 200);
+        assertEquals(customer.getMoney(), Money.of(USD, 200));
     }
 }
 

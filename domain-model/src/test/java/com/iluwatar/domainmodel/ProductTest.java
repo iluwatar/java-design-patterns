@@ -23,6 +23,7 @@
 
 package com.iluwatar.domainmodel;
 
+import org.joda.money.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +31,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import static org.joda.money.CurrencyUnit.USD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -44,7 +46,7 @@ public class ProductTest {
 
         product = Product.builder()
                 .name("product")
-                .price(100.0)
+                .price(Money.of(USD, 100.0))
                 .expirationDate(LocalDate.now().plusDays(10))
                 .productDao(productDao)
                 .build();
@@ -67,10 +69,10 @@ public class ProductTest {
 
     @Test
     void getSalePriceTest() {
-        assertEquals(product.getSalePrice(), 100);
+        assertEquals(product.getSalePrice(), Money.of(USD, 100));
 
         product.setExpirationDate(LocalDate.now().plusDays(2));
 
-        assertEquals(product.getSalePrice(), 80);
+        assertEquals(product.getSalePrice(), Money.of(USD, 80));
     }
 }

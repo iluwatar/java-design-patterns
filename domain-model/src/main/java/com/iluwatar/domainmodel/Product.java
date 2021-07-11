@@ -23,6 +23,9 @@
 
 package com.iluwatar.domainmodel;
 
+import static org.joda.money.CurrencyUnit.USD;
+
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -34,6 +37,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.joda.money.Money;
 
 /**
  * This class organizes domain logic of product.
@@ -52,7 +56,7 @@ public class Product {
 
   @NonNull private final ProductDao productDao;
   @NonNull private String name;
-  @NonNull private Double price;
+  @NonNull private Money price;
   @NonNull private LocalDate expirationDate;
 
   /**
@@ -74,17 +78,17 @@ public class Product {
   /**
    * Calculate sale price of product with discount.
    */
-  public double getSalePrice() {
-    return price - calculateDiscount();
+  public Money getSalePrice() {
+    return price.minus(calculateDiscount());
   }
 
-  private double calculateDiscount() {
+  private Money calculateDiscount() {
     if (ChronoUnit.DAYS.between(LocalDate.now(), expirationDate)
             < DAYS_UNTIL_EXPIRATION_WHEN_DISCOUNT_ACTIVE) {
 
-      return price * DISCOUNT_RATE;
+      return price.multipliedBy(DISCOUNT_RATE, RoundingMode.DOWN);
     }
 
-    return 0;
+    return Money.zero(USD);
   }
 }

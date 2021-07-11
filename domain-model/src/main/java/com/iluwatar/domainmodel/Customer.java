@@ -33,7 +33,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-
+import org.joda.money.Money;
 
 /**
  * This class organizes domain logic of customer.
@@ -49,7 +49,7 @@ public class Customer {
   @NonNull private final CustomerDao customerDao;
   @Builder.Default private List<Product> purchases = new ArrayList<>();
   @NonNull private String name;
-  @NonNull private Double money;
+  @NonNull private Money money;
 
   /**
    * Save customer or update if customer already exist.
@@ -75,7 +75,8 @@ public class Customer {
   public void buyProduct(Product product) {
     LOGGER.info(
         String.format(
-            "%s want to buy %s($%.2f)...", name, product.getName(), product.getSalePrice()));
+            "%s want to buy %s($%.2f)...",
+            name, product.getName(), product.getSalePrice().getAmount()));
     try {
       try {
         withdraw(product.getSalePrice());
@@ -100,7 +101,8 @@ public class Customer {
   public void returnProduct(Product product) {
     LOGGER.info(
         String.format(
-            "%s want to return %s($%.2f)...", name, product.getName(), product.getSalePrice()));
+            "%s want to return %s($%.2f)...",
+            name, product.getName(), product.getSalePrice().getAmount()));
     if (purchases.contains(product)) {
       try {
         customerDao.deleteProduct(product, this);
@@ -121,13 +123,13 @@ public class Customer {
   public void showPurchases() {
     Optional<String> purchasesToShow =
         purchases.stream()
-            .map(p -> p.getName() + " - $" + p.getSalePrice())
+            .map(p -> p.getName() + " - $" + p.getSalePrice().getAmount())
             .reduce((p1, p2) -> p1 + ", " + p2);
 
     if (purchasesToShow.isPresent()) {
       LOGGER.info(name + " bought: " + purchasesToShow.get());
     } else {
-      LOGGER.info(name + "didn't bought anything");
+      LOGGER.info(name + " didn't bought anything");
     }
   }
 
@@ -135,17 +137,17 @@ public class Customer {
    * Print customer's money balance.
    */
   public void showBalance() {
-    LOGGER.info(name + " balance: $" + money);
+    LOGGER.info(name + " balance: " + money);
   }
 
-  private void withdraw(Double amount) throws IllegalArgumentException {
-    if (money - amount < 0) {
+  private void withdraw(Money amount) throws IllegalArgumentException {
+    if (money.compareTo(amount) < 0) {
       throw new IllegalArgumentException("Not enough money!");
     }
-    money -= amount;
+    money = money.minus(amount);
   }
 
-  private void receiveMoney(Double amount) {
-    money += amount;
+  private void receiveMoney(Money amount) {
+    money = money.plus(amount);
   }
 }

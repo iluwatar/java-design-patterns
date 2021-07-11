@@ -23,10 +23,14 @@
 
 package com.iluwatar.domainmodel;
 
+import static org.joda.money.CurrencyUnit.USD;
+
 import java.time.LocalDate;
 import javax.sql.DataSource;
 
 import org.h2.jdbcx.JdbcDataSource;
+import org.joda.money.Money;
+
 
 /**
  * Domain Model pattern is a more complex solution for organizing domain logic than Transaction
@@ -74,7 +78,12 @@ public class App {
     // create customer
     var customerDao = new CustomerDaoImpl(dataSource);
 
-    var tom = Customer.builder().name("Tom").money(30.0).customerDao(customerDao).build();
+    var tom =
+        Customer.builder()
+            .name("Tom")
+            .money(Money.of(USD, 30))
+            .customerDao(customerDao)
+            .build();
 
     tom.save();
 
@@ -84,7 +93,7 @@ public class App {
     var eggs =
         Product.builder()
             .name("Eggs")
-            .price(10.0)
+            .price(Money.of(USD, 10.0))
             .expirationDate(LocalDate.now().plusDays(7))
             .productDao(productDao)
             .build();
@@ -92,7 +101,7 @@ public class App {
     var butter =
         Product.builder()
             .name("Butter")
-            .price(20.00)
+            .price(Money.of(USD, 20.00))
             .expirationDate(LocalDate.now().plusDays(9))
             .productDao(productDao)
             .build();
@@ -100,7 +109,7 @@ public class App {
     var cheese =
         Product.builder()
             .name("Cheese")
-            .price(25.0)
+            .price(Money.of(USD, 25.0))
             .expirationDate(LocalDate.now().plusDays(2))
             .productDao(productDao)
             .build();

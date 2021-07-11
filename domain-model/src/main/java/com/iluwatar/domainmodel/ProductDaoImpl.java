@@ -23,11 +23,16 @@
 
 package com.iluwatar.domainmodel;
 
+import static org.joda.money.CurrencyUnit.USD;
+
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import javax.sql.DataSource;
+
+import org.joda.money.Money;
+
 
 public class ProductDaoImpl implements ProductDao {
 
@@ -51,7 +56,7 @@ public class ProductDaoImpl implements ProductDao {
         return Optional.of(
             Product.builder()
                 .name(rs.getString("name"))
-                .price(rs.getDouble("price"))
+                .price(Money.of(USD, rs.getDouble("price")))
                 .expirationDate(rs.getDate("expiration_date").toLocalDate())
                 .productDao(this)
                 .build());
@@ -67,7 +72,7 @@ public class ProductDaoImpl implements ProductDao {
     try (var connection = dataSource.getConnection();
         var preparedStatement = connection.prepareStatement(sql)) {
       preparedStatement.setString(1, product.getName());
-      preparedStatement.setDouble(2, product.getPrice());
+      preparedStatement.setBigDecimal(2, product.getPrice().getAmount());
       preparedStatement.setDate(3, Date.valueOf(product.getExpirationDate()));
       preparedStatement.executeUpdate();
     }
@@ -78,7 +83,7 @@ public class ProductDaoImpl implements ProductDao {
     var sql = "update PRODUCTS set price = ?, expiration_date = ? where name = ?;";
     try (var connection = dataSource.getConnection();
         var preparedStatement = connection.prepareStatement(sql)) {
-      preparedStatement.setDouble(1, product.getPrice());
+      preparedStatement.setBigDecimal(1, product.getPrice().getAmount());
       preparedStatement.setDate(2, Date.valueOf(product.getExpirationDate()));
       preparedStatement.setString(3, product.getName());
       preparedStatement.executeUpdate();

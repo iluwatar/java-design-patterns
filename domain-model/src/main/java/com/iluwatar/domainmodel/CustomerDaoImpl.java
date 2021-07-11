@@ -23,10 +23,14 @@
 
 package com.iluwatar.domainmodel;
 
+import static org.joda.money.CurrencyUnit.USD;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import javax.sql.DataSource;
+
+import org.joda.money.Money;
 
 public class CustomerDaoImpl implements CustomerDao {
 
@@ -50,7 +54,7 @@ public class CustomerDaoImpl implements CustomerDao {
         return Optional.of(
             Customer.builder()
                 .name(rs.getString("name"))
-                .money(rs.getDouble("money"))
+                .money(Money.of(USD, rs.getDouble("money")))
                 .customerDao(this)
                 .build());
       } else {
@@ -64,7 +68,7 @@ public class CustomerDaoImpl implements CustomerDao {
     var sql = "update CUSTOMERS set money = ? where name = ?;";
     try (var connection = dataSource.getConnection();
         var preparedStatement = connection.prepareStatement(sql)) {
-      preparedStatement.setDouble(1, customer.getMoney());
+      preparedStatement.setBigDecimal(1, customer.getMoney().getAmount());
       preparedStatement.setString(2, customer.getName());
       preparedStatement.executeUpdate();
     }
@@ -76,7 +80,7 @@ public class CustomerDaoImpl implements CustomerDao {
     try (var connection = dataSource.getConnection();
         var preparedStatement = connection.prepareStatement(sql)) {
       preparedStatement.setString(1, customer.getName());
-      preparedStatement.setDouble(2, customer.getMoney());
+      preparedStatement.setBigDecimal(2, customer.getMoney().getAmount());
       preparedStatement.executeUpdate();
     }
   }

@@ -23,6 +23,8 @@
 
 package com.iluwatar.domainmodel;
 
+import org.joda.money.CurrencyUnit;
+import org.joda.money.Money;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +34,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import static org.joda.money.CurrencyUnit.USD;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomerDaoImplTest {
@@ -59,12 +62,12 @@ public class CustomerDaoImplTest {
     // setup objects
     customerDao = new CustomerDaoImpl(dataSource);
 
-    customer = Customer.builder().name("customer").money(100.0).customerDao(customerDao).build();
+    customer = Customer.builder().name("customer").money(Money.of(CurrencyUnit.USD,100.0)).customerDao(customerDao).build();
 
     product =
         Product.builder()
             .name("product")
-            .price(100.0)
+            .price(Money.of(USD, 100.0))
             .expirationDate(LocalDate.parse("2021-06-27"))
             .productDao(new ProductDaoImpl(dataSource))
             .build();
@@ -87,7 +90,7 @@ public class CustomerDaoImplTest {
 
     assertTrue(customer.isPresent());
     assertEquals(customer.get().getName(), "customer");
-    assertEquals(customer.get().getMoney(), 100);
+    assertEquals(customer.get().getMoney(), Money.of(USD, 100));
   }
 
   @Test
@@ -100,7 +103,7 @@ public class CustomerDaoImplTest {
 
       assertTrue(rs.next());
       assertEquals(rs.getString("name"), customer.getName());
-      assertEquals(rs.getInt("money"), customer.getMoney());
+      assertEquals(Money.of(USD, rs.getInt("money")), customer.getMoney());
     }
 
     assertThrows(SQLException.class, () -> customerDao.save(customer));
@@ -110,7 +113,7 @@ public class CustomerDaoImplTest {
   void updateTest() throws SQLException {
     TestUtils.executeSQL(INSERT_CUSTOMER_SQL, dataSource);
 
-    customer.setMoney(99.0);
+    customer.setMoney(Money.of(CurrencyUnit.USD, 99));
 
     customerDao.update(customer);
 
@@ -120,7 +123,7 @@ public class CustomerDaoImplTest {
 
       assertTrue(rs.next());
       assertEquals(rs.getString("name"), customer.getName());
-      assertEquals(rs.getDouble("money"), customer.getMoney());
+      assertEquals(Money.of(USD, rs.getDouble("money")), customer.getMoney());
       assertFalse(rs.next());
     }
   }
