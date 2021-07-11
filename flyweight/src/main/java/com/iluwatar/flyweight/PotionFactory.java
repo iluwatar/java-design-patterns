@@ -39,7 +39,7 @@ public class PotionFactory {
     potions = new EnumMap<>(PotionType.class);
   }
 
-  Potion createPotion(PotionType type) {
+  public Potion createPotion(PotionType type) {
     var potion = potions.get(type);
     if (potion == null) {
       switch (type) {
