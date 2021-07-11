@@ -79,7 +79,7 @@ public class CustomerDaoImplTest {
   }
 
   @Test
-  void findByNameTest() throws SQLException {
+  void shouldFindCustomerByName() throws SQLException {
     var customer = customerDao.findByName("customer");
 
     assertTrue(customer.isEmpty());
@@ -94,7 +94,7 @@ public class CustomerDaoImplTest {
   }
 
   @Test
-  void saveTest() throws SQLException {
+  void shouldSaveCustomer() throws SQLException {
     customerDao.save(customer);
 
     try (var connection = dataSource.getConnection();
@@ -110,7 +110,7 @@ public class CustomerDaoImplTest {
   }
 
   @Test
-  void updateTest() throws SQLException {
+  void shouldUpdateCustomer() throws SQLException {
     TestUtils.executeSQL(INSERT_CUSTOMER_SQL, dataSource);
 
     customer.setMoney(Money.of(CurrencyUnit.USD, 99));
@@ -129,7 +129,7 @@ public class CustomerDaoImplTest {
   }
 
   @Test
-  void addProductTest() throws SQLException {
+  void shouldAddProductToPurchases() throws SQLException {
     TestUtils.executeSQL(INSERT_CUSTOMER_SQL, dataSource);
     TestUtils.executeSQL(ProductDaoImplTest.INSERT_PRODUCT_SQL, dataSource);
 
@@ -147,7 +147,7 @@ public class CustomerDaoImplTest {
   }
 
   @Test
-  void deleteProductTest() throws SQLException {
+  void shouldDeleteProductFromPurchases() throws SQLException {
     TestUtils.executeSQL(INSERT_CUSTOMER_SQL, dataSource);
     TestUtils.executeSQL(ProductDaoImplTest.INSERT_PRODUCT_SQL, dataSource);
     TestUtils.executeSQL(INSERT_PURCHASES_SQL, dataSource);

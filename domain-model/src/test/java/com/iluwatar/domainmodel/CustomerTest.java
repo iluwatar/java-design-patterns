@@ -63,7 +63,7 @@ public class CustomerTest {
     }
 
     @Test
-    void saveTest() throws SQLException {
+    void shouldSaveCustomer() throws SQLException {
         when(customerDao.findByName("customer")).thenReturn(Optional.empty());
 
         customer.save();
@@ -78,7 +78,7 @@ public class CustomerTest {
     }
 
     @Test
-    void buyProductTest() {
+    void shouldAddProductToPurchases() {
         product.setPrice(Money.of(USD, 200.0));
 
         customer.buyProduct(product);
@@ -95,7 +95,7 @@ public class CustomerTest {
     }
 
     @Test
-    void returnProductTest() {
+    void shouldRemoveProductFromPurchases() {
         customer.setPurchases(new ArrayList<>(Arrays.asList(product)));
 
         customer.returnProduct(product);

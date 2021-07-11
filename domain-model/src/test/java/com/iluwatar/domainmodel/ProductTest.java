@@ -53,7 +53,7 @@ public class ProductTest {
     }
 
     @Test
-    void saveTest() throws SQLException {
+    void shouldSaveProduct() throws SQLException {
         when(productDao.findByName("product")).thenReturn(Optional.empty());
 
         product.save();
@@ -68,7 +68,7 @@ public class ProductTest {
     }
 
     @Test
-    void getSalePriceTest() {
+    void shouldGetSalePriceOfProduct() {
         assertEquals(product.getSalePrice(), Money.of(USD, 100));
 
         product.setExpirationDate(LocalDate.now().plusDays(2));

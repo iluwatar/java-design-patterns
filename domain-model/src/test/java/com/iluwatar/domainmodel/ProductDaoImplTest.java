@@ -73,7 +73,7 @@ public class ProductDaoImplTest {
     }
 
     @Test
-    void findByNameTest() throws SQLException {
+    void shouldFindProductByName() throws SQLException {
         var product = productDao.findByName("product");
 
         assertTrue(product.isEmpty());
@@ -89,7 +89,7 @@ public class ProductDaoImplTest {
     }
 
     @Test
-    void saveTest() throws SQLException {
+    void shouldSaveProduct() throws SQLException {
 
         productDao.save(product);
 
@@ -107,7 +107,7 @@ public class ProductDaoImplTest {
     }
 
     @Test
-    void updateTest() throws SQLException {
+    void shouldUpdateProduct() throws SQLException {
         TestUtils.executeSQL(INSERT_PRODUCT_SQL, dataSource);
 
         product.setPrice(Money.of(USD, 99.0));
