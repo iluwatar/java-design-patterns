@@ -25,6 +25,7 @@ package com.iluwatar.domainmodel;
 
 import static org.joda.money.CurrencyUnit.USD;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.sql.DataSource;
 
@@ -51,15 +52,15 @@ public class App {
   public static final String H2_DB_URL = "jdbc:h2:~/test";
 
   public static final String CREATE_SCHEMA_SQL =
-      "CREATE TABLE CUSTOMERS (name varchar primary key, money int);\n"
-          + "CREATE TABLE PRODUCTS (name varchar primary key, price int, expiration_date date);\n"
-          + "CREATE TABLE PURCHASES (\n"
-          + "product_name varchar references PRODUCTS(name),\n"
+      "CREATE TABLE CUSTOMERS (name varchar primary key, money decimal);"
+          + "CREATE TABLE PRODUCTS (name varchar primary key, price decimal, expiration_date date);"
+          + "CREATE TABLE PURCHASES ("
+          + "product_name varchar references PRODUCTS(name),"
           + "customer_name varchar references CUSTOMERS(name));";
 
   public static final String DELETE_SCHEMA_SQL =
-      "DROP TABLE CUSTOMERS IF EXISTS;\n"
-          + "DROP TABLE PURCHASES IF EXISTS;\n"
+      "DROP TABLE CUSTOMERS IF EXISTS;"
+          + "DROP TABLE PURCHASES IF EXISTS;"
           + "DROP TABLE PRODUCTS IF EXISTS;";
 
   /**
@@ -156,19 +157,17 @@ public class App {
     return dataSource;
   }
 
-  private static void deleteSchema(DataSource dataSource) throws java.sql.SQLException {
+  private static void deleteSchema(DataSource dataSource) throws SQLException {
     try (var connection = dataSource.getConnection();
         var statement = connection.createStatement()) {
       statement.execute(DELETE_SCHEMA_SQL);
     }
   }
 
-  private static void createSchema(DataSource dataSource) throws Exception {
+  private static void createSchema(DataSource dataSource) throws SQLException {
     try (var connection = dataSource.getConnection();
         var statement = connection.createStatement()) {
       statement.execute(CREATE_SCHEMA_SQL);
-    } catch (Exception e) {
-      throw new Exception(e.getMessage(), e);
     }
   }
 }

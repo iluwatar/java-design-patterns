@@ -35,7 +35,7 @@ import static org.joda.money.CurrencyUnit.USD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ProductTest {
+class ProductTest {
 
     private ProductDao productDao;
     private Product product;
@@ -69,10 +69,10 @@ public class ProductTest {
 
     @Test
     void shouldGetSalePriceOfProduct() {
-        assertEquals(product.getSalePrice(), Money.of(USD, 100));
+        assertEquals(Money.of(USD, 100), product.getSalePrice());
 
         product.setExpirationDate(LocalDate.now().plusDays(2));
 
-        assertEquals(product.getSalePrice(), Money.of(USD, 80));
+        assertEquals(Money.of(USD, 80), product.getSalePrice());
     }
 }

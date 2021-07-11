@@ -78,12 +78,12 @@ public class Customer {
             "%s want to buy %s($%.2f)...",
             name, product.getName(), product.getSalePrice().getAmount()));
     try {
-      try {
-        withdraw(product.getSalePrice());
-      } catch (IllegalArgumentException ex) {
-        LOGGER.error(ex.getMessage());
-        return;
-      }
+      withdraw(product.getSalePrice());
+    } catch (IllegalArgumentException ex) {
+      LOGGER.error(ex.getMessage());
+      return;
+    }
+    try {
       customerDao.addProduct(product, this);
       purchases.add(product);
       LOGGER.info(String.format("%s bought %s!", name, product.getName()));

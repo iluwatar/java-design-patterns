@@ -54,7 +54,7 @@ public class CustomerDaoImpl implements CustomerDao {
         return Optional.of(
             Customer.builder()
                 .name(rs.getString("name"))
-                .money(Money.of(USD, rs.getDouble("money")))
+                .money(Money.of(USD, rs.getBigDecimal("money")))
                 .customerDao(this)
                 .build());
       } else {

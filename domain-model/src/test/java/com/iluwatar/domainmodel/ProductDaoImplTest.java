@@ -36,7 +36,7 @@ import java.time.LocalDate;
 import static org.joda.money.CurrencyUnit.USD;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ProductDaoImplTest {
+class ProductDaoImplTest {
 
     public static final String INSERT_PRODUCT_SQL =
             "insert into PRODUCTS values('product', 100, DATE '2021-06-27')";
@@ -83,9 +83,9 @@ public class ProductDaoImplTest {
         product = productDao.findByName("product");
 
         assertTrue(product.isPresent());
-        assertEquals(product.get().getName(), "product");
-        assertEquals(product.get().getPrice(), Money.of(USD, 100));
-        assertEquals(product.get().getExpirationDate(), LocalDate.parse("2021-06-27"));
+        assertEquals("product", product.get().getName());
+        assertEquals(Money.of(USD, 100), product.get().getPrice());
+        assertEquals(LocalDate.parse("2021-06-27"), product.get().getExpirationDate());
     }
 
     @Test
@@ -98,9 +98,9 @@ public class ProductDaoImplTest {
              ResultSet rs = statement.executeQuery(SELECT_PRODUCTS_SQL)) {
 
             assertTrue(rs.next());
-            assertEquals(rs.getString("name"), product.getName());
-            assertEquals(Money.of(USD, rs.getInt("price")), product.getPrice());
-            assertEquals(rs.getDate("expiration_date").toLocalDate(), product.getExpirationDate());
+            assertEquals(product.getName(), rs.getString("name"));
+            assertEquals(product.getPrice(), Money.of(USD, rs.getBigDecimal("price")));
+            assertEquals(product.getExpirationDate(), rs.getDate("expiration_date").toLocalDate());
         }
 
         assertThrows(SQLException.class, () -> productDao.save(product));
@@ -119,9 +119,9 @@ public class ProductDaoImplTest {
              ResultSet rs = statement.executeQuery(SELECT_PRODUCTS_SQL)) {
 
             assertTrue(rs.next());
-            assertEquals(rs.getString("name"), product.getName());
-            assertEquals(Money.of(USD, rs.getDouble("price")), product.getPrice());
-            assertEquals(rs.getDate("expiration_date").toLocalDate(), product.getExpirationDate());
+            assertEquals(product.getName(), rs.getString("name"));
+            assertEquals(product.getPrice(), Money.of(USD, rs.getBigDecimal("price")));
+            assertEquals(product.getExpirationDate(), rs.getDate("expiration_date").toLocalDate());
         }
     }
 }

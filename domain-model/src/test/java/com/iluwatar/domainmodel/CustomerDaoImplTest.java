@@ -37,7 +37,7 @@ import java.time.LocalDate;
 import static org.joda.money.CurrencyUnit.USD;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CustomerDaoImplTest {
+class CustomerDaoImplTest {
 
   public static final String INSERT_CUSTOMER_SQL = "insert into CUSTOMERS values('customer', 100)";
   public static final String SELECT_CUSTOMERS_SQL = "select name, money from CUSTOMERS";
@@ -89,8 +89,8 @@ public class CustomerDaoImplTest {
     customer = customerDao.findByName("customer");
 
     assertTrue(customer.isPresent());
-    assertEquals(customer.get().getName(), "customer");
-    assertEquals(customer.get().getMoney(), Money.of(USD, 100));
+    assertEquals("customer", customer.get().getName());
+    assertEquals(Money.of(USD, 100), customer.get().getMoney());
   }
 
   @Test
@@ -102,8 +102,8 @@ public class CustomerDaoImplTest {
         ResultSet rs = statement.executeQuery(SELECT_CUSTOMERS_SQL)) {
 
       assertTrue(rs.next());
-      assertEquals(rs.getString("name"), customer.getName());
-      assertEquals(Money.of(USD, rs.getInt("money")), customer.getMoney());
+      assertEquals(customer.getName(), rs.getString("name"));
+      assertEquals(customer.getMoney(), Money.of(USD, rs.getBigDecimal("money")));
     }
 
     assertThrows(SQLException.class, () -> customerDao.save(customer));
@@ -122,8 +122,8 @@ public class CustomerDaoImplTest {
         ResultSet rs = statement.executeQuery(SELECT_CUSTOMERS_SQL)) {
 
       assertTrue(rs.next());
-      assertEquals(rs.getString("name"), customer.getName());
-      assertEquals(Money.of(USD, rs.getDouble("money")), customer.getMoney());
+      assertEquals(customer.getName(), rs.getString("name"));
+      assertEquals(customer.getMoney(), Money.of(USD, rs.getBigDecimal("money")));
       assertFalse(rs.next());
     }
   }
@@ -140,8 +140,8 @@ public class CustomerDaoImplTest {
         ResultSet rs = statement.executeQuery(SELECT_PURCHASES_SQL)) {
 
       assertTrue(rs.next());
-      assertEquals(rs.getString("product_name"), product.getName());
-      assertEquals(rs.getString("customer_name"), customer.getName());
+      assertEquals(product.getName(), rs.getString("product_name"));
+      assertEquals(customer.getName(), rs.getString("customer_name"));
       assertFalse(rs.next());
     }
   }

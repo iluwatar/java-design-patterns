@@ -38,7 +38,7 @@ import static org.joda.money.CurrencyUnit.USD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class CustomerTest {
+class CustomerTest {
 
     private CustomerDao customerDao;
     private Customer customer;
@@ -90,8 +90,8 @@ public class CustomerTest {
 
         customer.buyProduct(product);
 
-        assertEquals(customer.getPurchases(), new ArrayList<>(Arrays.asList(product)));
-        assertEquals(customer.getMoney(), Money.zero(USD));
+        assertEquals(new ArrayList<>(Arrays.asList(product)), customer.getPurchases());
+        assertEquals(Money.zero(USD), customer.getMoney());
     }
 
     @Test
@@ -100,13 +100,13 @@ public class CustomerTest {
 
         customer.returnProduct(product);
 
-        assertEquals(customer.getPurchases(), new ArrayList<>());
-        assertEquals(customer.getMoney(), Money.of(USD, 200));
+        assertEquals(new ArrayList<>(), customer.getPurchases());
+        assertEquals(Money.of(USD, 200), customer.getMoney());
 
         customer.returnProduct(product);
 
-        assertEquals(customer.getPurchases(), new ArrayList<>());
-        assertEquals(customer.getMoney(), Money.of(USD, 200));
+        assertEquals(new ArrayList<>(), customer.getPurchases());
+        assertEquals(Money.of(USD, 200), customer.getMoney());
     }
 }
 

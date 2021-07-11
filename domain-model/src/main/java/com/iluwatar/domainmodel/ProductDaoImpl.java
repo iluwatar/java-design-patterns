@@ -56,7 +56,7 @@ public class ProductDaoImpl implements ProductDao {
         return Optional.of(
             Product.builder()
                 .name(rs.getString("name"))
-                .price(Money.of(USD, rs.getDouble("price")))
+                .price(Money.of(USD, rs.getBigDecimal("price")))
                 .expirationDate(rs.getDate("expiration_date").toLocalDate())
                 .productDao(this)
                 .build());
