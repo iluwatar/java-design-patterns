@@ -29,26 +29,26 @@ public class App {
     var heal = 50.0;
     while (me.getRemainLives() > 0) {
       me.displayMyStatus();
-      log.info("I am attacked by a furious wasp! HP - {}", waspDamage);
+      LOGGER.info("I am attacked by a furious wasp! HP - {}", waspDamage);
       me.damage(waspDamage);
       me.displayMyStatus();
 
-      log.info("I cast a spell to kill the wasp! MP - {}", spellCost);
+      LOGGER.info("I cast a spell to kill the wasp! MP - {}", spellCost);
       me.castSpell(spellCost);
       me.displayMyStatus();
 
-      log.info("I drink healing potion! HP + {}", heal);
+      LOGGER.info("I drink healing potion! HP + {}", heal);
       me.heal(heal);
       me.displayMyStatus();
 
-      log.info("I am attacked by a furious dragon! HP - 99999");
+      LOGGER.info("I am attacked by a furious dragon! HP - 99999");
       me.damage(99999.0);
       me.displayMyStatus();
 
       if (me.getRemainLives() <= 0) {
-        log.info("I am dead, no extra lives!");
+        LOGGER.info("I am dead, no extra lives!");
       } else {
-        log.info("I am dead, now I should respawn!");
+        LOGGER.info("I am dead, now I should respawn!");
         me.heal(99999.0);
         me.displayMyStatus();
       }
