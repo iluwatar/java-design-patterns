@@ -1,0 +1,151 @@
+@startuml
+package com.iluwatar.microkernel.microkernel {
+  class BudgetMicrokernel {
+    - accountCounter : int
+    - accounts : Map<Integer, Account>
+    - internalServer : AccounterServer
+    + BudgetMicrokernel(accounts : Map<Integer, Account>)
+    - callInternalServer(transaction : Transaction)
+    - createHandle()
+    + executeMechanism(transaction : Transaction)
+    - findReceiver(request : String) : ResultProcessorServer
+    - getAccountKey(account : Account) : Integer
+    + getCurrentAccounts() : List<Account>
+    + getRecentYearsAccounts() : List<Account>
+    + initCommunication(request : String) : ResultProcessorServer
+    + makeTransaction(account : Account, transaction : Transaction)
+    - sendMessage()
+  }
+}
+package com.iluwatar.microkernel.clients {
+  class Client {
+    - adapter : Adapter
+    + Client()
+    - initBudgetAccounts() : Map<Integer, Account>
+    + printForecast()
+    + printReport()
+  }
+}
+package com.iluwatar.microkernel.externals {
+  class ForecastServer {
+    - incomes : Map<Integer, Double>
+    - microkernel : BudgetMicrokernel
+    - outgoings : Map<Integer, Double>
+    + ForecastServer(microkernel : BudgetMicrokernel)
+    - calculateForecast(results : Map<Integer, Double>) : double
+    + dispatchRequest()
+    + executeService()
+    + receiveRequest()
+  }
+  interface ResultProcessorServer {
+    + dispatchRequest() {abstract}
+    + executeService() {abstract}
+    + receiveRequest() {abstract}
+  }
+  class ResultReportServer {
+    - PROFIT_TAX : double {static}
+    - microkernel : BudgetMicrokernel
+    - untaxedProfit : Map<Integer, Double>
+    + ResultReportServer(microkernel : BudgetMicrokernel)
+    + dispatchRequest()
+    + executeService()
+    + receiveRequest()
+  }
+}
+package com.iluwatar.microkernel.adapters {
+  class Adapter {
+    - microkernel : BudgetMicrokernel
+    + Adapter(microkernel : BudgetMicrokernel)
+    + callService(request : String)
+    - createRequest(request : String)
+  }
+}
+package com.iluwatar.microkernel.models {
+  class Account {
+    - accountNumber : int
+    - active : boolean
+    - closed : boolean
+    - currentValue : double
+    - name : String
+    - transactions : List<Transaction>
+    - year : int
+    + Account(transactions : List<Transaction>, accountNumber : int, name : String, year : int, closed : boolean, active : boolean, currentValue : double)
+    + getAccountNumber() : int
+    + getCurrentValue() : double
+    + getName() : String
+    + getTransactions() : List<Transaction>
+    + getYear() : int
+    + isActive() : boolean
+    + isClosed() : boolean
+    + setAccountNumber(accountNumber : int)
+    + setActive(active : boolean)
+    + setClosed(closed : boolean)
+    + setCurrentValue(currentValue : double)
+    + setName(name : String)
+    + setTransactions(transactions : List<Transaction>)
+    + setYear(year : int)
+  }
+  enum FlowingType {
+    + CREDIT {static}
+    + DEBIT {static}
+    + valueOf(name : String) : FlowingType {static}
+    + values() : FlowingType[] {static}
+  }
+  class Transaction {
+    - date : LocalDate
+    - description : String
+    - flowingtype : FlowingType
+    - relatedAccountNumber : int
+    - value : double
+    + Transaction(description : String, date : LocalDate, value : double, flowingtype : FlowingType)
+    + getDate() : LocalDate
+    + getDescription() : String
+    + getFlowingtype() : FlowingType
+    + getRelatedAccountNumber() : int
+    + getValue() : double
+    + setDate(date : LocalDate)
+    + setDescription(description : String)
+    + setFlowingtype(flowingtype : FlowingType)
+    + setRelatedAccountNumber(relatedAccountNumber : int)
+    + setValue(value : double)
+  }
+}
+package com.iluwatar.microkernel.internals {
+  class AccounterServer {
+    + AccounterServer()
+    - executeService(account : Account, transaction : Transaction) : Account
+    + receiveRequest(account : Account, transaction : Transaction) : Account
+  }
+}
+package com.iluwatar.microkernel.utils {
+  class AccountUtil {
+    + INCOME : int {static}
+    + INCOME_NAME : String {static}
+    + OUTGOING : int {static}
+    + OUTGOING_NAME : String {static}
+    + TAX : int {static}
+    + TAX_NAME : String {static}
+    + AccountUtil()
+  }
+  class RequestUtil {
+    + FORECAST : String {static}
+    + RESULT : String {static}
+    + RequestUtil()
+  }
+}
+package com.iluwatar.microkernel {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+ForecastServer -->  "-microkernel" BudgetMicrokernel
+Client -->  "-adapter" Adapter
+BudgetMicrokernel -->  "-internalServer" AccounterServer
+Adapter -->  "-microkernel" BudgetMicrokernel
+ResultReportServer -->  "-microkernel" BudgetMicrokernel
+Account -->  "-transactions" Transaction
+Transaction -->  "-flowingtype" FlowingType
+ForecastServer ..|> ResultProcessorServer 
+ResultReportServer ..|> ResultProcessorServer 
+@enduml
