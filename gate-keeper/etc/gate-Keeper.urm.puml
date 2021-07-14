@@ -1,0 +1,40 @@
+@startuml
+package com.iluwatar.gatekeeper {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class GateKeeper {
+    - LOGGER : Logger {static}
+    + GateKeeper()
+    + beginRequest(request : Request)
+    + checkRequest(request : Request) : boolean
+    + endRequest(request : Request)
+    + validateAndForwardRequest(request : Request)
+  }
+  class HackRequest {
+    + HackRequest(action : String)
+  }
+  class LoginRequest {
+    - account : String
+    - password : String
+    + LoginRequest(action : String, account : String, password : String)
+    + getAccount() : String
+    + getPassword() : String
+  }
+  abstract class Request {
+    ~ action : String
+    + Request(action : String)
+    + getAction() : String
+  }
+  class TrustRole {
+    - LOGGER : Logger {static}
+    + TrustRole()
+    + handleLogin(request : LoginRequest)
+    + handleRequest(request : Request)
+  }
+}
+HackRequest --|> Request 
+LoginRequest --|> Request 
+@enduml
