@@ -1,0 +1,12 @@
+@startuml
+
+Class data_transfer_hash {
+    +key
+    -value
+    +getVelue(key)
+}
+class Business_objects
+class Presentation_tier_objects
+data_transfer_hash<--Business_objects : create or use
+data_transfer_hash<--Presentation_tier_objects : create or use
+@enduml
