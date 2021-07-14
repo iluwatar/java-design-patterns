@@ -1,0 +1,30 @@
+@startuml
+package com.iluwatar.identity.map {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class IdentityMapUtility {
+    - staffMap : Map<K, V> {static}
+    - IdentityMapUtility()
+    + addStaff(staff : Staff) {static}
+    + getStaff(id : String) : Staff {static}
+  }
+  class Staff {
+    - firstName : String
+    - lastName : String
+    - staffID : String
+    - Staff(firstNameParam : String, lastNameParam : String, staffIDParam : String)
+    + createStaff(firstName : String, lastName : String, staffID : String) : Staff {static}
+    + getFirstName() : String
+    + getLastName() : String
+    + getStaffID() : String
+  }
+  class StaffDataBase {
+    - staffData : Staff[]
+    + StaffDataBase()
+    + finder(id : String) : Staff
+  }
+}
+@enduml
