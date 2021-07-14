@@ -1,0 +1,41 @@
+@startuml
+package com.iluwatar.rowdatagateway {
+  class App {
+    - DB_URL : String {static}
+    - LOGGER : Logger {static}
+    - App()
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteSchema(dataSource : DataSource) {static}
+    + main(args : String[]) {static}
+  }
+  class Person {
+    - firstName : String
+    - id : int
+    - lastName : String
+    + Person(id : int, firstName : String, lastName : String)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getFirstName() : String
+    + getId() : int
+    + getLastName() : String
+    + hashCode() : int
+    + setFirstName(firstName : String)
+    + setId(id : int)
+    + setLastName(lastName : String)
+    + toString() : String
+  }
+  class PersonGateway {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    - LOGGER : Logger {static}
+    - dataSource : DataSource
+    - person : Person
+    + PersonGateway(person1 : Person, dataSource1 : DataSource)
+    + delete() : int
+    + insert() : int
+    + update() : int
+  }
+}
+PersonGateway -->  "-person" Person
+@enduml
