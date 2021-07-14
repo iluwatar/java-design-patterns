@@ -23,84 +23,64 @@
 
 package domainapp.dom.modules.simple;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
 
 import com.google.common.collect.Lists;
-import java.util.List;
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
-import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2.Mode;
-import org.jmock.Expectations;
-import org.jmock.Sequence;
-import org.jmock.auto.Mock;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 /**
  * Test for SimpleObjects
  */
 public class SimpleObjectsTest {
 
-  @Rule
-  public JUnitRuleMockery2 context = JUnitRuleMockery2.createFor(Mode.INTERFACES_AND_CLASSES);
+    DomainObjectContainer mockContainer;
 
-  @Mock
-  DomainObjectContainer mockContainer;
+    SimpleObjects simpleObjects;
 
-  SimpleObjects simpleObjects;
+    @BeforeEach
+    public void setUp() {
+        mockContainer = Mockito.mock(DomainObjectContainer.class);
 
-  @Before
-  public void setUp() {
-    simpleObjects = new SimpleObjects();
-    simpleObjects.container = mockContainer;
-  }
+        simpleObjects = new SimpleObjects();
+        simpleObjects.container = mockContainer;
+    }
 
-  @Test
-  public void testCreate() {
+    @Test
+    public void testCreate() {
 
-    // given
-    final SimpleObject simpleObject = new SimpleObject();
+        // given
+        final SimpleObject simpleObject = new SimpleObject();
+        // and
+        when(mockContainer.newTransientInstance(SimpleObject.class)).thenReturn(simpleObject);
 
-    final Sequence seq = context.sequence("create");
-    context.checking(new Expectations() {
-      {
-        oneOf(mockContainer).newTransientInstance(SimpleObject.class);
-        inSequence(seq);
-        will(returnValue(simpleObject));
+        // when
+        String objectName = "Foobar";
+        final SimpleObject obj = simpleObjects.create(objectName);
 
-        oneOf(mockContainer).persistIfNotAlready(simpleObject);
-        inSequence(seq);
-      }
-    });
+        // then
+        assertEquals(simpleObject, obj);
+        assertEquals(objectName, obj.getName());
+    }
 
-    // when
-    String objectName = "Foobar";
-    final SimpleObject obj = simpleObjects.create(objectName);
+    @Test
+    public void testListAll() {
 
-    // then
-    assertEquals(simpleObject, obj);
-    assertEquals(objectName, obj.getName());
-  }
+        // given
+        final List<SimpleObject> all = Lists.newArrayList();
+        // and
+        when(mockContainer.allInstances(SimpleObject.class)).thenReturn(all);
 
-  @Test
-  public void testListAll() {
+        // when
+        final List<SimpleObject> list = simpleObjects.listAll();
 
-    // given
-    final List<SimpleObject> all = Lists.newArrayList();
-
-    context.checking(new Expectations() {
-      {
-        oneOf(mockContainer).allInstances(SimpleObject.class);
-        will(returnValue(all));
-      }
-    });
-
-    // when
-    final List<SimpleObject> list = simpleObjects.listAll();
-
-    // then
-    assertEquals(all, list);
-  }
+        // then
+        assertEquals(all, list);
+    }
 
 }
