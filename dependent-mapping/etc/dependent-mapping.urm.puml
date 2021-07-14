@@ -1,0 +1,42 @@
+@startuml
+package com.iluwatar.dependentmapping {
+class App {
+  + App()
+  + main(args : String[]) {static}
+}
+
+class Album{
+  - tracks: Track[]
+  - name: String
+}
+
+class AlbumMapper {
+  - database: Database
+}
+
+class Database {
+  - allTracks: DataBaseTrack[]
+  - allAlbum: DataBaseAlbum[]
+}
+
+class DataBaseAlbum {
+  - tracks: DataBaseTrack[]
+  - name: String
+}
+
+class DataBaseTrack {
+  - name: String
+}
+
+class Track {
+  - name: String
+}
+
+
+Album o--> Track
+DataBaseAlbum o--> DataBaseTrack
+Database o--> DataBaseTrack
+Database o--> DataBaseAlbum
+AlbumMapper -right-> Database
+}
+@enduml
