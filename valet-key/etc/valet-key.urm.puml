@@ -1,0 +1,72 @@
+@startuml
+package com.iluwatar.valet.key {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Application {
+    - LOGGER : Logger {static}
+    + Application()
+    # generateToken(request : boolean) : Token
+  }
+  class Resource {
+    - LOGGER : Logger {static}
+    + Resource()
+    # checkToken(token : Token, target : int) : boolean
+  }
+  class Token {
+    - target : int
+    - valid : boolean
+    + Token(valid : boolean, target : int)
+    + getTarget() : int
+    + isValid() : boolean
+  }
+  class User {
+    - LOGGER : Logger {static}
+    - application : Application
+    - resource : Resource
+    - token : Token
+    + User(token : Token, application : Application, resource : Resource)
+    - accessResource(target : int) : boolean
+    + requestResource(validRequest : boolean, target : int) : boolean
+  }
+}
+package com.iluwatar.valetKey {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Application {
+    - LOGGER : Logger {static}
+    + Application()
+    # generateToken(request : boolean) : Token
+  }
+  class Resource {
+    - LOGGER : Logger {static}
+    + Resource()
+    # checkToken(token : Token, target : int) : boolean
+  }
+  class Token {
+    - target : int
+    - valid : boolean
+    + Token(valid : boolean, target : int)
+    + getTarget() : int
+    + isValid() : boolean
+  }
+  class User {
+    - LOGGER : Logger {static}
+    - application : Application
+    - resource : Resource
+    - token : Token
+    + User(token : Token, application : Application, resource : Resource)
+    - accessResource(target : int) : boolean
+    + requestResource(validRequest : boolean, target : int) : boolean
+  }
+}
+User -->  "-application" Application
+User -->  "-resource" Resource
+User -->  "-application" Application
+User -->  "-token" Token
+User -->  "-resource" Resource
+User -->  "-token" Token
+@enduml
