@@ -16,6 +16,8 @@ public class App {
    * @param args system input
    */
   public static void main(String[] args) throws Exception {
+    // Create an operationProcessor as a global object,
+    // and make client running using the operationProcessor.
     var operationProcessor = new AsynchronousOperationProcessor();
     var client = new Client();
     client.run(operationProcessor);
