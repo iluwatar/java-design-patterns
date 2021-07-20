@@ -3,7 +3,7 @@ layout: pattern
 title: Domain Model
 folder: domain-model
 permalink: /patterns/domain-model/
-categories: Structural
+categories: Architectural
 tags:
  - Domain
 ---
