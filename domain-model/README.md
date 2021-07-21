@@ -38,7 +38,7 @@ public class Product {
 
     @NonNull private final ProductDao productDao;
     @NonNull private String name;
-    @NonNull private Double price;
+    @NonNull private Money price;
     @NonNull private LocalDate expirationDate;
 
     /**
@@ -60,18 +60,18 @@ public class Product {
     /**
      * Calculate sale price of product with discount.
      */
-    public double getSalePrice() {
-        return price - calculateDiscount();
+    public Money getSalePrice() {
+        return price.minus(calculateDiscount());
     }
 
-    private double calculateDiscount() {
+    private Money calculateDiscount() {
         if (ChronoUnit.DAYS.between(LocalDate.now(), expirationDate)
                 < DAYS_UNTIL_EXPIRATION_WHEN_DISCOUNT_ACTIVE) {
 
-            return price * DISCOUNT_RATE;
+            return price.multipliedBy(DISCOUNT_RATE, RoundingMode.DOWN);
         }
 
-        return 0;
+        return Money.zero(USD);
     }
 }
 ```
@@ -88,7 +88,7 @@ public class Customer {
     @NonNull private final CustomerDao customerDao;
     @Builder.Default private List<Product> purchases = new ArrayList<>();
     @NonNull private String name;
-    @NonNull private Double money;
+    @NonNull private Money money;
 
     /**
      * Save customer or update if customer already exist.
@@ -114,14 +114,15 @@ public class Customer {
     public void buyProduct(Product product) {
         LOGGER.info(
                 String.format(
-                        "%s want to buy %s($%.2f)...", name, product.getName(), product.getSalePrice()));
+                        "%s want to buy %s($%.2f)...",
+                        name, product.getName(), product.getSalePrice().getAmount()));
         try {
-            try {
-                withdraw(product.getSalePrice());
-            } catch (IllegalArgumentException ex) {
-                LOGGER.error(ex.getMessage());
-                return;
-            }
+            withdraw(product.getSalePrice());
+        } catch (IllegalArgumentException ex) {
+            LOGGER.error(ex.getMessage());
+            return;
+        }
+        try {
             customerDao.addProduct(product, this);
             purchases.add(product);
             LOGGER.info(String.format("%s bought %s!", name, product.getName()));
@@ -139,13 +140,14 @@ public class Customer {
     public void returnProduct(Product product) {
         LOGGER.info(
                 String.format(
-                        "%s want to return %s($%.2f)...", name, product.getName(), product.getSalePrice()));
+                        "%s want to return %s($%.2f)...",
+                        name, product.getName(), product.getSalePrice().getAmount()));
         if (purchases.contains(product)) {
             try {
                 customerDao.deleteProduct(product, this);
                 purchases.remove(product);
                 receiveMoney(product.getSalePrice());
-                LOGGER.info(String.format("%s return %s!", name, product.getName()));
+                LOGGER.info(String.format("%s returned %s!", name, product.getName()));
             } catch (SQLException ex) {
                 LOGGER.error(ex.getMessage());
             }
@@ -158,15 +160,15 @@ public class Customer {
      * Print customer's purchases.
      */
     public void showPurchases() {
-        if (purchases.isEmpty()) {
-            LOGGER.info(name + " didn't buy anything");
+        Optional<String> purchasesToShow =
+                purchases.stream()
+                        .map(p -> p.getName() + " - $" + p.getSalePrice().getAmount())
+                        .reduce((p1, p2) -> p1 + ", " + p2);
+
+        if (purchasesToShow.isPresent()) {
+            LOGGER.info(name + " bought: " + purchasesToShow.get());
         } else {
-            LOGGER.info(
-                    name + " bought: "
-                            + purchases.stream()
-                            .map(p -> p.getName() + " - $" + p.getSalePrice())
-                            .reduce((p1, p2) -> p1 + ", " + p2)
-                            .get());
+            LOGGER.info(name + " didn't bought anything");
         }
     }
 
@@ -174,19 +176,20 @@ public class Customer {
      * Print customer's money balance.
      */
     public void showBalance() {
-        LOGGER.info(name + " balance: $" + money);
+        LOGGER.info(name + " balance: " + money);
     }
 
-    private void withdraw(Double amount) throws IllegalArgumentException {
-        if (money - amount < 0) {
+    private void withdraw(Money amount) throws IllegalArgumentException {
+        if (money.compareTo(amount) < 0) {
             throw new IllegalArgumentException("Not enough money!");
         }
-        money -= amount;
+        money = money.minus(amount);
     }
 
-    private void receiveMoney(Double amount) {
-        money += amount;
+    private void receiveMoney(Money amount) {
+        money = money.plus(amount);
     }
+}
 ```
 
 In the class `App`, we create a new instance of class Customer which represents customer Tom and handle data and actions of that customer and creating three products that Tom wants to buy.
@@ -199,9 +202,14 @@ deleteSchema(dataSource);
 createSchema(dataSource);
 
 // create customer
-// var customerDao = new CustomerDaoImpl(dataSource);
+var customerDao = new CustomerDaoImpl(dataSource);
 
-var tom = Customer.builder().name("Tom").money(30.0).customerDao(customerDao).build();
+var tom =
+    Customer.builder()
+        .name("Tom")
+        .money(Money.of(USD, 30))
+        .customerDao(customerDao)
+        .build();
 
 tom.save();
 
@@ -211,7 +219,7 @@ var productDao = new ProductDaoImpl(dataSource);
 var eggs =
     Product.builder()
         .name("Eggs")
-        .price(10.0)
+        .price(Money.of(USD, 10.0))
         .expirationDate(LocalDate.now().plusDays(7))
         .productDao(productDao)
         .build();
@@ -219,7 +227,7 @@ var eggs =
 var butter =
     Product.builder()
         .name("Butter")
-        .price(20.00)
+        .price(Money.of(USD, 20.00))
         .expirationDate(LocalDate.now().plusDays(9))
         .productDao(productDao)
         .build();
@@ -227,7 +235,7 @@ var butter =
 var cheese =
     Product.builder()
         .name("Cheese")
-        .price(25.0)
+        .price(Money.of(USD, 25.0))
         .expirationDate(LocalDate.now().plusDays(2))
         .productDao(productDao)
         .build();
@@ -271,24 +279,24 @@ tom.showPurchases();
 The program output:
 
 ```java
-16:33:58.602 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: $30.0
-16:33:58.608 [main] INFO com.iluwatar.domainmodel.Customer - Tom didn't buy anything
-16:33:58.616 [main] INFO com.iluwatar.domainmodel.Customer - Tom want to buy Eggs($10.00)...
-16:33:58.631 [main] INFO com.iluwatar.domainmodel.Customer - Tom bought Eggs!
-16:33:58.631 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: $20.0
-16:33:58.631 [main] INFO com.iluwatar.domainmodel.Customer - Tom want to buy Butter($20.00)...
-16:33:58.639 [main] INFO com.iluwatar.domainmodel.Customer - Tom bought Butter!
-16:33:58.639 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: $0.0
-16:33:58.639 [main] INFO com.iluwatar.domainmodel.Customer - Tom want to buy Cheese($20.00)...
-16:33:58.639 [main] ERROR com.iluwatar.domainmodel.Customer - Not enough money!
-16:33:58.639 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: $0.0
-16:33:58.639 [main] INFO com.iluwatar.domainmodel.Customer - Tom want to return Butter($20.00)...
-16:33:58.649 [main] INFO com.iluwatar.domainmodel.Customer - Tom returned Butter!
-16:33:58.649 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: $20.0
-16:33:58.650 [main] INFO com.iluwatar.domainmodel.Customer - Tom want to buy Cheese($20.00)...
-16:33:58.657 [main] INFO com.iluwatar.domainmodel.Customer - Tom bought Cheese!
-16:33:58.669 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: $0.0
-16:33:58.674 [main] INFO com.iluwatar.domainmodel.Customer - Tom bought: Eggs - $10.0, Cheese - $20.0
+17:52:28.690 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: USD 30.00
+17:52:28.695 [main] INFO com.iluwatar.domainmodel.Customer - Tom didn't bought anything
+17:52:28.699 [main] INFO com.iluwatar.domainmodel.Customer - Tom want to buy Eggs($10.00)...
+17:52:28.705 [main] INFO com.iluwatar.domainmodel.Customer - Tom bought Eggs!
+17:52:28.705 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: USD 20.00
+17:52:28.705 [main] INFO com.iluwatar.domainmodel.Customer - Tom want to buy Butter($20.00)...
+17:52:28.712 [main] INFO com.iluwatar.domainmodel.Customer - Tom bought Butter!
+17:52:28.712 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: USD 0.00
+17:52:28.712 [main] INFO com.iluwatar.domainmodel.Customer - Tom want to buy Cheese($20.00)...
+17:52:28.712 [main] ERROR com.iluwatar.domainmodel.Customer - Not enough money!
+17:52:28.712 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: USD 0.00
+17:52:28.712 [main] INFO com.iluwatar.domainmodel.Customer - Tom want to return Butter($20.00)...
+17:52:28.721 [main] INFO com.iluwatar.domainmodel.Customer - Tom returned Butter!
+17:52:28.721 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: USD 20.00
+17:52:28.721 [main] INFO com.iluwatar.domainmodel.Customer - Tom want to buy Cheese($20.00)...
+17:52:28.726 [main] INFO com.iluwatar.domainmodel.Customer - Tom bought Cheese!
+17:52:28.737 [main] INFO com.iluwatar.domainmodel.Customer - Tom balance: USD 0.00
+17:52:28.738 [main] INFO com.iluwatar.domainmodel.Customer - Tom bought: Eggs - $10.00, Cheese - $20.00
 ```
 
 ## Class diagram

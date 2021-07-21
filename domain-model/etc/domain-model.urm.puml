@@ -12,25 +12,25 @@ package com.iluwatar.domainmodel {
   }
   class Customer {
     - customerDao : CustomerDao
-    - money : Double
+    - money : Money
     - name : String
     - purchases : List<Product>
-    ~ Customer(customerDao : CustomerDao, purchases : List<Product>, name : String, money : Double)
+    ~ Customer(customerDao : CustomerDao, purchases : List<Product>, name : String, money : Money)
     + builder() : CustomerBuilder {static}
     + buyProduct(product : Product)
     + getCustomerDao() : CustomerDao
-    + getMoney() : Double
+    + getMoney() : Money
     + getName() : String
     + getPurchases() : List<Product>
-    - receiveMoney(amount : Double)
+    - receiveMoney(amount : Money)
     + returnProduct(product : Product)
     + save()
-    + setMoney(money : Double)
+    + setMoney(money : Money)
     + setName(name : String)
     + setPurchases(purchases : List<Product>)
     + showBalance()
     + showPurchases()
-    - withdraw(amount : Double)
+    - withdraw(amount : Money)
   }
   interface CustomerDao {
     + addProduct(Product, Customer) {abstract}
@@ -51,20 +51,20 @@ package com.iluwatar.domainmodel {
   class Product {
     - expirationDate : LocalDate
     - name : String
-    - price : Double
+    - price : Money
     - productDao : ProductDao
-    + Product(productDao : ProductDao, name : String, price : Double, expirationDate : LocalDate)
+    + Product(productDao : ProductDao, name : String, price : Money, expirationDate : LocalDate)
     + builder() : ProductBuilder {static}
-    - calculateDiscount() : double
+    - calculateDiscount() : Money
     + getExpirationDate() : LocalDate
     + getName() : String
-    + getPrice() : Double
+    + getPrice() : Money
     + getProductDao() : ProductDao
-    + getSalePrice() : double
+    + getSalePrice() : Money
     + save()
     + setExpirationDate(expirationDate : LocalDate)
     + setName(name : String)
-    + setPrice(price : Double)
+    + setPrice(price : Money)
   }
   interface ProductDao {
     + findByName(String) : Optional<Product> {abstract}
