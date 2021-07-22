@@ -125,7 +125,7 @@ Use the Table Module Pattern when
 
 - [Transaction Script](https://java-design-patterns.com/patterns/transaction-script/)
 
-- Domain Model
+- [Domain Model](https://java-design-patterns.com/patterns/domain-model/)
 
 ## Credits
 
