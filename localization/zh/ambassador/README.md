@@ -4,6 +4,7 @@ title: Ambassador
 folder: ambassador
 permalink: /patterns/ambassador/
 categories: Structural
+language: zh
 tags:
   - Decoupling
   - Cloud distributed
@@ -166,7 +167,7 @@ Service result: -1
 
 ## 类图
 
-![alt text](../../ambassador/etc/ambassador.urm.png "Ambassador class diagram")
+![alt text](../../../ambassador/etc/ambassador.urm.png "Ambassador class diagram")
 
 ## 适用性
 

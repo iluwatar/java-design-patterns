@@ -8,6 +8,7 @@ description: Entity versioning with version number
 categories:
  - Concurrency
 
+language: zh
 tags:
  - Data access
  - Microservices
@@ -134,7 +135,7 @@ Exception: Tried to update stale version 0 while actual version is 1
 
 ## 类图
 
-![alt text](../../version-number/etc/version-number.urm.png "Version Number pattern class diagram")
+![alt text](../../../version-number/etc/version-number.urm.png "Version Number pattern class diagram")
 
 ## 适用性
 

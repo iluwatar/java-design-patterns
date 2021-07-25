@@ -135,7 +135,7 @@ public class Mammoth {
 ```
 
 ## 类图
-![alt text](../../state/etc/state_urm.png "State")
+![alt text](../../../state/etc/state_urm.png "State")
 
 ## 适用性
 

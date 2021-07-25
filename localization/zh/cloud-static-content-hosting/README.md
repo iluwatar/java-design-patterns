@@ -4,6 +4,7 @@ title: Static Content Hosting
 folder: cloud-static-content-hosting
 permalink: /patterns/cloud-static-content-hosting/
 categories: Cloud
+language: zh
 tags:
 - Cloud distributed
 ---
@@ -29,7 +30,7 @@ tags:
 
 **示例**
 
-![alt text](../../cloud-static-content-hosting/etc/static-content-hosting.png "Static Content Hosting")
+![alt text](../../../cloud-static-content-hosting/etc/static-content-hosting.png "Static Content Hosting")
 
 在这个例子中我们使用AWS S3创建一个静态网站，并利用 AWS Cloudfront 在全球范围内分发内容。
 

@@ -94,7 +94,7 @@ captain.row();
 ```
 
 ## 类图
-![alt text](../../adapter/etc/adapter.urm.png "Adapter class diagram")
+![alt text](../../../adapter/etc/adapter.urm.png "Adapter class diagram")
 
 
 ## 应用

@@ -4,6 +4,7 @@ title: Async Method Invocation
 folder: async-method-invocation
 permalink: /patterns/async-method-invocation/
 categories: Concurrency
+language: zh
 tags:
  - Reactive
 ---
@@ -141,7 +142,7 @@ public static void main(String[] args) throws Exception {
 
 # 类图
 
-![alt text](../../async-method-invocation/etc/async-method-invocation.png "Async Method Invocation")
+![alt text](../../../async-method-invocation/etc/async-method-invocation.png "Async Method Invocation")
 
 ## 适用性
 

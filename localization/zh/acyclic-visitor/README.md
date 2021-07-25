@@ -4,6 +4,7 @@ title: Acyclic Visitor
 folder: acyclic-visitor
 permalink: /patterns/acyclic-visitor/
 categories: Behavioral
+language: zh
 tags:
  - Extensibility
 ---
@@ -122,7 +123,7 @@ public class ConfigureForUnixVisitor implements ZoomVisitor {
 
 ## 类图
 
-![alt text](../../acyclic-visitor/etc/acyclic-visitor.png "Acyclic Visitor")
+![alt text](../../../acyclic-visitor/etc/acyclic-visitor.png "Acyclic Visitor")
 
 ## 适用性
 

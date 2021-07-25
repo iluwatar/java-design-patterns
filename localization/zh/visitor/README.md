@@ -201,7 +201,7 @@ Good to see you commander
 
 ## Class diagram
 
-![alt text](../../visitor/etc/visitor_1.png "Visitor")
+![alt text](../../../visitor/etc/visitor_1.png "Visitor")
 
 ## 适用性
 

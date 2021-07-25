@@ -4,6 +4,7 @@ title: Business Delegate
 folder: business-delegate
 permalink: /patterns/business-delegate/
 categories: Structural
+language: zh
 tags:
  - Decoupling
 ---
@@ -131,7 +132,7 @@ public class MobileClient {
 
 ## 类图
 
-![alt text](../../business-delegate/etc/business-delegate.urm.png "Business Delegate")
+![alt text](../../../business-delegate/etc/business-delegate.urm.png "Business Delegate")
 
 ## 相关模式
 

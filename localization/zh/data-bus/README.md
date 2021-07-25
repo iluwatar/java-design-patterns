@@ -3,8 +3,8 @@ layout: pattern
 title: Data Bus
 folder: data-bus
 permalink: /patterns/data-bus/
-
 categories: Architectural
+language: zh
 tags:
  - Decoupling
 ---
@@ -14,7 +14,7 @@ tags:
 数据总线模式（译者：实际上，就是 Event-Bus 消息总线模式）允许在一个应用程序的组件之间收发消息/事件，而不需要这些组件相互感知，它们只需要知道所发送/接收的消息/事件的类型即可。
 
 ## 类图
-![data bus pattern uml diagram](../../data-bus/etc/data-bus.urm.png "Data Bus pattern")
+![data bus pattern uml diagram](../../../data-bus/etc/data-bus.urm.png "Data Bus pattern")
 
 ## 适用场景
 可以在以下场景使用数据总线模式：
