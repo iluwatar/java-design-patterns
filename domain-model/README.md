@@ -4,11 +4,15 @@ title: Domain Model
 folder: domain-model
 permalink: /patterns/domain-model/
 categories: Architectural
+language: en
 tags:
  - Domain
 ---
+
 ## Intent
+
 Domain model pattern provides an object-oriented way of dealing with complicated logic. Instead of having one procedure that handles all business logic for a user action there are multiple objects and each of them handles a slice of domain logic that is relevant to it.
+
 ## Explanation
 
 Real world example
