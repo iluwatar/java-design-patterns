@@ -4,6 +4,7 @@ title: Thread Local Storage
 folder: tls
 permalink: /patterns/tls/
 categories: Idiom
+language: en
 tags:
  - Performance
 ---

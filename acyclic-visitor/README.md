@@ -4,6 +4,7 @@ title: Acyclic Visitor
 folder: acyclic-visitor
 permalink: /patterns/acyclic-visitor/
 categories: Behavioral
+language: en
 tags:
  - Extensibility
 ---

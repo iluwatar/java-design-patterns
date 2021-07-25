@@ -1,0 +1,94 @@
+@startuml
+package com.iluwatar.lockableobject.domain {
+  abstract class Creature {
+    - LOGGER : Logger {static}
+    - damage : int
+    - health : int
+    ~ instruments : Set<Lockable>
+    - name : String
+    - type : CreatureType
+    + Creature(name : String)
+    + acquire(lockable : Lockable) : boolean
+    + attack(creature : Creature)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getDamage() : int
+    + getHealth() : int
+    + getInstruments() : Set<Lockable>
+    + getName() : String
+    + getType() : CreatureType
+    + hashCode() : int
+    + hit(damage : int)
+    + isAlive() : boolean
+    + kill()
+    + setDamage(damage : int)
+    + setHealth(health : int)
+    + setInstruments(instruments : Set<Lockable>)
+    + setName(name : String)
+    + setType(type : CreatureType)
+    + toString() : String
+  }
+  enum CreatureType {
+    + ELF {static}
+    + HUMAN {static}
+    + ORC {static}
+    + valueOf(name : String) : CreatureType {static}
+    + values() : CreatureType[] {static}
+  }
+  class Elf {
+    + Elf(name : String)
+  }
+  class Feind {
+    - LOGGER : Logger {static}
+    - feind : Creature
+    - target : Lockable
+    + Feind(feind : Creature, target : Lockable)
+    - fightForTheSword(reacher : Creature, holder : Creature, sword : Lockable)
+    + run()
+  }
+  class Human {
+    + Human(name : String)
+  }
+  class Orc {
+    + Orc(name : String)
+  }
+}
+package com.iluwatar.lockableobject {
+  class App {
+    - LOGGER : Logger {static}
+    - MULTIPLICATION_FACTOR : int {static}
+    - WAIT_TIME : int {static}
+    - WORKERS : int {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface Lockable {
+    + getLocker() : Creature {abstract}
+    + getName() : String {abstract}
+    + isLocked() : boolean {abstract}
+    + lock(Creature) : boolean {abstract}
+    + unlock(Creature) {abstract}
+  }
+  class SwordOfAragorn {
+    - LOGGER : Logger {static}
+    - NAME : String {static}
+    - locker : Creature
+    - synchronizer : Object
+    + SwordOfAragorn()
+    + getLocker() : Creature
+    + getName() : String
+    + isLocked() : boolean
+    + lock(creature : Creature) : boolean
+    + unlock(creature : Creature)
+  }
+}
+Creature -->  "-type" CreatureType
+Creature -->  "-instruments" Lockable
+Feind -->  "-feind" Creature
+Feind -->  "-target" Lockable
+SwordOfAragorn -->  "-locker" Creature
+SwordOfAragorn ..|> Lockable 
+Elf --|> Creature 
+Human --|> Creature 
+Orc --|> Creature 
+@enduml

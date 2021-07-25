@@ -43,7 +43,7 @@ public class Sword implements Weapon {
 
   @Override
   public void swing() {
-    LOGGER.info("The sword is swinged.");
+    LOGGER.info("The sword is swung.");
     enchantment.apply();
   }
 

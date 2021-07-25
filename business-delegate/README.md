@@ -4,6 +4,7 @@ title: Business Delegate
 folder: business-delegate
 permalink: /patterns/business-delegate/
 categories: Structural
+language: en
 tags:
  - Decoupling
 ---

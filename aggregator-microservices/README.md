@@ -4,6 +4,7 @@ title: Aggregator Microservices
 folder: aggregator-microservices
 permalink: /patterns/aggregator-microservices/
 categories: Architectural
+language: en
 tags:
 - Cloud distributed
 - Decoupling

@@ -4,6 +4,7 @@ title: Sharding
 folder: sharding  
 permalink: /patterns/sharding/  
 categories: Behavioral
+language: en
 tags:  
  - Performance
  - Cloud distributed

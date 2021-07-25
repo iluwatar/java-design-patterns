@@ -4,6 +4,7 @@ title: Event Sourcing
 folder: event-sourcing
 permalink: /patterns/event-sourcing/
 categories: Architectural
+language: en
 tags:
   - Performance
   - Cloud distributed

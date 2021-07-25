@@ -43,7 +43,7 @@ public class Hammer implements Weapon {
 
   @Override
   public void swing() {
-    LOGGER.info("The hammer is swinged.");
+    LOGGER.info("The hammer is swung.");
     enchantment.apply();
   }
 

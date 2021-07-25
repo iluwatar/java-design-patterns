@@ -30,8 +30,8 @@ import lombok.extern.slf4j.Slf4j;
  * create and return objects of varying classes, in order to hide the implementation logic 
  * and makes client code focus on usage rather then objects initialization and management.
  *
- * <p>In this example the CarFactory is the factory class and it provides a static method to 
- * create different cars.
+ * <p>In this example an alchemist manufactures coins. CoinFactory is the factory class and it
+ * provides a static method to create different types of coins.
  */
 
 @Slf4j
@@ -41,9 +41,10 @@ public class App {
    * Program main entry point.
    */
   public static void main(String[] args) {
-    var car1 = CarsFactory.getCar(CarType.FORD);
-    var car2 = CarsFactory.getCar(CarType.FERRARI);
-    LOGGER.info(car1.getDescription());
-    LOGGER.info(car2.getDescription());
+    LOGGER.info("The alchemist begins his work.");
+    var coin1 = CoinFactory.getCoin(CoinType.COPPER);
+    var coin2 = CoinFactory.getCoin(CoinType.GOLD);
+    LOGGER.info(coin1.getDescription());
+    LOGGER.info(coin2.getDescription());
   }
 }

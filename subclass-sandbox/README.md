@@ -4,6 +4,7 @@ title: Subclass Sandbox
 folder:  subclass-sandbox  
 permalink: /patterns/subclass-sandbox/  
 categories: Behavioral
+language: en
 tags:  
  - Game programming
 ---  

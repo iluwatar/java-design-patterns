@@ -37,6 +37,6 @@ public class OrcWeapon implements Weapon {
 
   @Override
   public String toString() {
-    return "Orcish " + weaponType;
+    return "an orcish " + weaponType;
   }
 }

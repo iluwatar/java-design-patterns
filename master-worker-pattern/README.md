@@ -4,6 +4,7 @@ title: Master-Worker
 folder: master-worker-pattern
 permalink: /patterns/master-worker-pattern/
 categories: Concurrency
+language: en
 tags:
  - Performance
 ---

@@ -4,6 +4,7 @@ title: Trampoline
 folder: trampoline
 permalink: /patterns/trampoline/
 categories: Behavioral
+language: en
 tags:
  - Performance
 ---
