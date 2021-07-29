@@ -2,7 +2,8 @@
 layout: pattern
 title: Binding Properties Pattern
 folder: binding-properties
-permalink: /patterns/query-object/
+permalink: /patterns/binding-properties/
+
 categories: Behavioral
 language: en
 tags:
