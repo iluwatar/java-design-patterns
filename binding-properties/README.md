@@ -1,6 +1,7 @@
 ---
 layout: pattern
-title: Binding Properties Pattern
+title: Binding Properties
+
 folder: binding-properties
 permalink: /patterns/binding-properties/
 
