@@ -24,14 +24,10 @@
 package com.iluwatar.factory;
 
 /**
- * Factory of cars.
+ * Coin interface.
  */
-public class CarsFactory {
+public interface Coin {
 
-  /**
-   * Factory method takes as parameter a car type and initiate the appropriate class.
-   */
-  public static Car getCar(CarType type) {
-    return type.getConstructor().get();
-  }
+  String getDescription();
+
 }

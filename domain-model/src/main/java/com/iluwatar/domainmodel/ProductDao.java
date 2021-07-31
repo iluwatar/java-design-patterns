@@ -21,13 +21,16 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.factory;
+package com.iluwatar.domainmodel;
 
-/**
- * Car interface.
- */
-public interface Car {
+import java.sql.SQLException;
+import java.util.Optional;
 
-  String getDescription();
+public interface ProductDao {
 
+  Optional<Product> findByName(String name) throws SQLException;
+
+  void save(Product product) throws SQLException;
+
+  void update(Product product) throws SQLException;
 }

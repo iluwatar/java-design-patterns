@@ -23,20 +23,15 @@
 
 package com.iluwatar.factory;
 
-import java.util.function.Supplier;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 /**
- * Enumeration for different types of cars.
+ * CopperCoin implementation.
  */
-@RequiredArgsConstructor
-@Getter
-public enum CarType {
+public class CopperCoin implements Coin {
 
-  FORD(Ford::new),
-  FERRARI(Ferrari::new);
+  static final String DESCRIPTION = "This is a copper coin.";
 
-  private final Supplier<Car> constructor;
-
+  @Override
+  public String getDescription() {
+    return DESCRIPTION;
+  }
 }

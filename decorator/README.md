@@ -6,7 +6,7 @@ permalink: /patterns/decorator/
 categories: Structural
 language: en
 tags:
- - Gang Of Four
+ - Gang of Four
  - Extensibility
 ---
 
@@ -21,9 +21,9 @@ alternative to subclassing for extending functionality.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> There is an angry troll living in the nearby hills. Usually it goes bare handed but sometimes it 
+> There is an angry troll living in the nearby hills. Usually, it goes bare-handed but sometimes it 
 > has a weapon. To arm the troll it's not necessary to create a new troll but to decorate it 
 > dynamically with a suitable weapon.
 
@@ -72,7 +72,7 @@ public class SimpleTroll implements Troll {
 }
 ```
 
-Next we want to add club for the troll. We can do it dynamically by using a decorator:
+Next, we want to add a club for the troll. We can do it dynamically by using a decorator:
 
 ```java
 @Slf4j
@@ -106,23 +106,33 @@ Here's the troll in action:
 
 ```java
 // simple troll
+LOGGER.info("A simple looking troll approaches.");
 var troll = new SimpleTroll();
-troll.attack(); // The troll tries to grab you!
-troll.fleeBattle(); // The troll shrieks in horror and runs away!
+troll.attack();
+troll.fleeBattle();
+LOGGER.info("Simple troll power: {}.\n", troll.getAttackPower());
 
 // change the behavior of the simple troll by adding a decorator
+LOGGER.info("A troll with huge club surprises you.");
 var clubbedTroll = new ClubbedTroll(troll);
-clubbedTroll.attack(); // The troll tries to grab you! The troll swings at you with a club!
-clubbedTroll.fleeBattle(); // The troll shrieks in horror and runs away!
+clubbedTroll.attack();
+clubbedTroll.fleeBattle();
+LOGGER.info("Clubbed troll power: {}.\n", clubbedTroll.getAttackPower());
 ```
 
 Program output:
 
 ```java
+A simple looking troll approaches.
 The troll tries to grab you!
 The troll shrieks in horror and runs away!
-The troll tries to grab you! The troll swings at you with a club!
+Simple troll power: 10.
+
+A troll with huge club surprises you.
+The troll tries to grab you!
+The troll swings at you with a club!
 The troll shrieks in horror and runs away!
+Clubbed troll power: 20.
 ```
 
 ## Class diagram
@@ -140,11 +150,11 @@ affecting other objects.
 are possible and would produce an explosion of subclasses to support every combination. Or a class 
 definition may be hidden or otherwise unavailable for subclassing.
 
-## Tutorial
+## Tutorials
 
 * [Decorator Pattern Tutorial](https://www.journaldev.com/1540/decorator-design-pattern-in-java-example)
 
-## Real world examples
+## Known uses
 
  * [java.io.InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html), [java.io.OutputStream](http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html),
  [java.io.Reader](http://docs.oracle.com/javase/8/docs/api/java/io/Reader.html) and [java.io.Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)

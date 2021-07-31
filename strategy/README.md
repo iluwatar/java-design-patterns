@@ -16,18 +16,18 @@ Policy
 ## Intent
 
 Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets 
-the algorithm vary independently from clients that use it.
+the algorithm vary independently from the clients that use it.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> Slaying dragons is a dangerous job. With experience it becomes easier. Veteran 
+> Slaying dragons is a dangerous job. With experience, it becomes easier. Veteran 
 > dragonslayers have developed different fighting strategies against different types of dragons.         
 
 In plain words
 
-> Strategy pattern allows choosing the best suited algorithm at runtime.   
+> Strategy pattern allows choosing the best-suited algorithm at runtime.   
 
 Wikipedia says
 
@@ -36,7 +36,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Let's first introduce the dragon slaying strategy interface and its implementations.
+Let's first introduce the dragon-slaying strategy interface and its implementations.
 
 ```java
 @FunctionalInterface
@@ -73,7 +73,7 @@ public class SpellStrategy implements DragonSlayingStrategy {
 }
 ```
 
-And here is the mighty dragonslayer, who is able to pick his fighting strategy based on the 
+And here is the mighty dragonslayer, who can pick his fighting strategy based on the 
 opponent.
 
 ```java
@@ -95,7 +95,7 @@ public class DragonSlayer {
 }
 ```
 
-Finally here's the dragonslayer in action.
+Finally, here's the dragonslayer in action.
 
 ```java
     LOGGER.info("Green dragon spotted ahead!");
@@ -120,7 +120,7 @@ Program output:
     You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
 ```
 
-What's more, the new feature Lambda Expressions in Java 8 provides another approach for the implementation:
+What's more, the lambda expressions in Java 8 provides another approach for the implementation:
 
 ```java
 public class LambdaStrategy {
@@ -163,7 +163,7 @@ And here's the dragonslayer in action.
     dragonSlayer.goToBattle();
 ```
 
-Program output is the same as above one.
+The program output is the same as the above one.
 
 ## Class diagram
 
@@ -175,8 +175,8 @@ Use the Strategy pattern when
 
 * Many related classes differ only in their behavior. Strategies provide a way to configure a class either one of many behaviors
 * You need different variants of an algorithm. for example, you might define algorithms reflecting different space/time trade-offs. Strategies can be used when these variants are implemented as a class hierarchy of algorithms
-* An algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex, algorithm-specific data structures
-* A class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move related conditional branches into their own Strategy class
+* An algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex algorithm-specific data structures
+* A class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move the related conditional branches into their own Strategy class
 
 ## Tutorial 
 

@@ -29,14 +29,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test for abstract factory.
+ * Tests for abstract factory.
  */
 class AbstractFactoryTest {
 
   private final App app = new App();
 
   @Test
-  void king() {
+  void verifyKingCreation() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
@@ -51,7 +51,7 @@ class AbstractFactoryTest {
   }
 
   @Test
-  void castle() {
+  void verifyCastleCreation() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
@@ -66,7 +66,7 @@ class AbstractFactoryTest {
   }
 
   @Test
-  void army() {
+  void verifyArmyCreation() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
@@ -81,7 +81,7 @@ class AbstractFactoryTest {
   }
 
   @Test
-  void createElfKingdom() {
+  void verifyElfKingdomCreation() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 
@@ -97,7 +97,7 @@ class AbstractFactoryTest {
   }
 
   @Test
-  void createOrcKingdom() {
+  void verifyOrcKingdomCreation() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
     final var kingdom = app.getKingdom();
 

@@ -45,14 +45,13 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+
+    var messenger = new Messenger();
+
     LOGGER.info("Message from the orcs: ");
+    messenger.messageFromOrcs().print();
 
-    var orcMessage = new Messenger().messageFromOrcs();
-    orcMessage.print();
-
-    LOGGER.info("\nMessage from the elves: ");
-
-    var elfMessage = new Messenger().messageFromElves();
-    elfMessage.print();
+    LOGGER.info("Message from the elves: ");
+    messenger.messageFromElves().print();
   }
 }

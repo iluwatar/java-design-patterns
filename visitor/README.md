@@ -16,11 +16,11 @@ define a new operation without changing the classes of the elements on which it 
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Consider a tree structure with army units. Commander has two sergeants under it and each sergeant 
 > has three soldiers under them. Given that the hierarchy implements the visitor pattern, we can 
-> easily create new objects that interact with the commander, sergeants, soldiers or all of them. 
+> easily create new objects that interact with the commander, sergeants, soldiers, or all of them. 
 
 In plain words
 
@@ -214,7 +214,7 @@ Use the Visitor pattern when
 * Many distinct and unrelated operations need to be performed on objects in an object structure, and you want to avoid "polluting" their classes with these operations. Visitor lets you keep related operations together by defining them in one class. When the object structure is shared by many applications, use Visitor to put operations in just those applications that need them.
 * The classes defining the object structure rarely change, but you often want to define new operations over the structure. Changing the object structure classes requires redefining the interface to all visitors, which is potentially costly. If the object structure classes change often, then it's probably better to define the operations in those classes.
 
-## Real world examples
+## Known uses
 
 * [Apache Wicket](https://github.com/apache/wicket) component tree, see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
 * [javax.lang.model.element.AnnotationValue](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValue.html) and [AnnotationValueVisitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValueVisitor.html)
