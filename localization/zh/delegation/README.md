@@ -2,7 +2,7 @@
 layout: pattern
 title: Delegation
 folder: delegation
-permalink: /patterns/delegation/zh
+permalink: /patterns/delegation/
 categories: Structural
 language: zh
 tags:

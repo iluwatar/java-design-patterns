@@ -2,7 +2,7 @@
 layout: pattern
 title: Interpreter
 folder: interpreter
-permalink: /patterns/interpreter/zh
+permalink: /patterns/interpreter/
 categories: Behavioral
 language: zh
 tags:

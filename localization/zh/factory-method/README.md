@@ -2,7 +2,7 @@
 layout: pattern
 title: Factory Method
 folder: factory-method
-permalink: /patterns/factory-method/zh
+permalink: /patterns/factory-method/
 categories: Creational
 language: zh
 tags:

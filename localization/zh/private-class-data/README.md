@@ -2,7 +2,7 @@
 layout: pattern
 title: Private Class Data
 folder: private-class-data
-permalink: /patterns/private-class-data/zh
+permalink: /patterns/private-class-data/
 categories: Idiom
 language: zh
 tags:

@@ -2,7 +2,7 @@
 layout: pattern
 title: Proxy
 folder: proxy
-permalink: /patterns/proxy/zh
+permalink: /patterns/proxy/
 categories: Structural
 language: zh
 tags:

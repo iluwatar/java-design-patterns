@@ -2,7 +2,7 @@
 layout: pattern
 title: Bridge
 folder: bridge
-permalink: /patterns/bridge/zh
+permalink: /patterns/bridge/
 categories: Structural
 language: zh
 tags:

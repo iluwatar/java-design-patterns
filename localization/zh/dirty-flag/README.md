@@ -2,7 +2,7 @@
 layout: pattern
 title: Dirty Flag
 folder: dirty-flag
-permalink: /patterns/dirty-flag/zh
+permalink: /patterns/dirty-flag/
 categories: Behavioral
 language: zh
 tags:

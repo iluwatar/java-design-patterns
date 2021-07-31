@@ -2,7 +2,7 @@
 layout: pattern
 title: Iterator
 folder: iterator
-permalink: /patterns/iterator/zh
+permalink: /patterns/iterator/
 categories: Behavioral
 language: zh
 tags:

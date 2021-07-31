@@ -2,7 +2,7 @@
 layout: pattern
 title: Strategy
 folder: strategy
-permalink: /patterns/strategy/zh
+permalink: /patterns/strategy/
 categories: Behavioral
 language: zh
 tags:

@@ -2,7 +2,7 @@
 layout: pattern
 title: Builder
 folder: builder
-permalink: /patterns/builder/zh
+permalink: /patterns/builder/
 categories: Creational
 language: zh
 tags:

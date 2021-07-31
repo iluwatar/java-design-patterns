@@ -2,7 +2,7 @@
 layout: pattern
 title: Converter
 folder: converter
-permalink: /patterns/converter/zh
+permalink: /patterns/converter/
 categories: Creational
 language: zh
 tags:

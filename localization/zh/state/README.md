@@ -2,7 +2,7 @@
 layout: pattern
 title: State
 folder: state
-permalink: /patterns/state/zh
+permalink: /patterns/state/
 categories: Behavioral
 language: zh
 tags:

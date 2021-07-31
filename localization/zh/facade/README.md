@@ -2,7 +2,7 @@
 layout: pattern
 title: Facade
 folder: facade
-permalink: /patterns/facade/zh
+permalink: /patterns/facade/
 categories: Structural
 language: zh
 tags:

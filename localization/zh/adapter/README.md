@@ -2,7 +2,7 @@
 layout: pattern
 title: Adapter
 folder: adapter
-permalink: /patterns/adapter/zh
+permalink: /patterns/adapter/
 categories: Structural
 language: zh
 tags:

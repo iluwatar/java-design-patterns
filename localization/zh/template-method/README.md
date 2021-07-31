@@ -2,7 +2,7 @@
 layout: pattern
 title: Template method
 folder: template-method
-permalink: /patterns/template-method/zh
+permalink: /patterns/template-method/
 categories: Behavioral
 language: zh
 tags:

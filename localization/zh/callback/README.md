@@ -2,7 +2,7 @@
 layout: pattern
 title: Callback
 folder: callback
-permalink: /patterns/callback/zh
+permalink: /patterns/callback/
 categories: Idiom
 language: zh
 tags:

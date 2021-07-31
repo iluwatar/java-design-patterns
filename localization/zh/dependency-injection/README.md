@@ -2,7 +2,7 @@
 layout: pattern
 title: Dependency Injection
 folder: dependency-injection
-permalink: /patterns/dependency-injection/zh
+permalink: /patterns/dependency-injection/
 categories: Creational
 language: zh
 tags:

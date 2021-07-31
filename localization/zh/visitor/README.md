@@ -2,7 +2,7 @@
 layout: pattern
 title: Visitor
 folder: visitor
-permalink: /patterns/visitor/zh
+permalink: /patterns/visitor/
 categories: Behavioral
 language: zh
 tags:

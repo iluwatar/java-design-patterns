@@ -2,7 +2,7 @@
 layout: pattern
 title: Caching
 folder: caching
-permalink: /patterns/caching/zh
+permalink: /patterns/caching/
 categories: Behavioral
 language: zh
 tags:

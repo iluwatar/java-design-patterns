@@ -2,7 +2,7 @@
 layout: pattern
 title: Observer
 folder: observer
-permalink: /patterns/observer/zh
+permalink: /patterns/observer/
 categories: Behavioral
 language: zh
 tags:

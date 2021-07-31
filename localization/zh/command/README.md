@@ -2,7 +2,7 @@
 layout: pattern
 title: Command
 folder: command
-permalink: /patterns/command/zh
+permalink: /patterns/command/
 categories: Behavioral
 language: zh
 tags:

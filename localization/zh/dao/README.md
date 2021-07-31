@@ -2,7 +2,7 @@
 layout: pattern
 title: Data Access Object
 folder: dao
-permalink: /patterns/dao/zh
+permalink: /patterns/dao/
 categories: Architectural
 language: zh
 tags:

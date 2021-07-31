@@ -2,7 +2,7 @@
 layout: pattern
 title: Decorator
 folder: decorator
-permalink: /patterns/decorator/zh
+permalink: /patterns/decorator/
 categories: Structural
 language: zh
 tags:

@@ -2,7 +2,7 @@
 layout: pattern
 title: Chain of responsibility
 folder: chain
-permalink: /patterns/chain/zh
+permalink: /patterns/chain/
 categories: Behavioral
 language: zh
 tags:

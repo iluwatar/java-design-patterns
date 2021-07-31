@@ -2,7 +2,7 @@
 layout: pattern
 title: Composite
 folder: composite
-permalink: /patterns/composite/zh
+permalink: /patterns/composite/
 categories: Structural
 language: zh
 tags:
