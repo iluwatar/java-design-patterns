@@ -24,14 +24,14 @@
 package com.iluwatar.factory;
 
 /**
- * Ferrari implementation.
+ * Factory of coins.
  */
-public class Ferrari implements Car {
+public class CoinFactory {
 
-  static final String DESCRIPTION = "This is Ferrari.";
-
-  @Override
-  public String getDescription() {
-    return DESCRIPTION;
+  /**
+   * Factory method takes as a parameter the coin type and calls the appropriate class.
+   */
+  public static Coin getCoin(CoinType type) {
+    return type.getConstructor().get();
   }
 }

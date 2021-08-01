@@ -10,12 +10,12 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-169-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-172-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
 
-Read in different language : [**zh**](/localization/zh/README.md), [**ko**](/localization/ko/README.md), [**fr**](/localization/fr/README.md), [**tr**](/localization/tr/README.md), [**ar**](/localization/ar/README.md), [**es**](/localization/es/README.md)
+Read in different language : [**zh**](/localization/zh/README.md), [**ko**](/localization/ko/README.md), [**fr**](/localization/fr/README.md), [**tr**](/localization/tr/README.md), [**ar**](/localization/ar/README.md), [**es**](/localization/es/README.md), [**pt**](/localization/pt/README.md)
 
 <br/>
 
@@ -329,6 +329,9 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/Xenilo137"><img src="https://avatars.githubusercontent.com/u/24865069?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Xenilo137</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Xenilo137" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/souzasamuel/"><img src="https://avatars.githubusercontent.com/u/17254162?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Samuel Souza</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=samuelpsouza" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/marlo2222"><img src="https://avatars.githubusercontent.com/u/40809563?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marlo Henrique</b></sub></a><br /><a href="#translation-marlo2222" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/AndriyPyzh"><img src="https://avatars.githubusercontent.com/u/57706635?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AndriyPyzh</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=AndriyPyzh" title="Code">💻</a></td>
   </tr>
 </table>
 

@@ -17,7 +17,7 @@ interface that makes the subsystem easier to use.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > How does a goldmine work? "Well, the miners go down there and dig gold!" you say. That is what you 
 > believe because you are using a simple interface that goldmine provides on the outside, internally 

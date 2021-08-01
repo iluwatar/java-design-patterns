@@ -2,7 +2,7 @@
 layout: pattern
 title: Dirty Flag
 folder: dirty-flag
-permalink: /patterns/dirty-flag/zh
+permalink: /patterns/dirty-flag/
 categories: Behavioral
 language: zh
 tags:
@@ -17,7 +17,7 @@ tags:
 避免昂贵资源的重新获取。资源保留其身份，保留在某些快速访问的存储中，并被重新使用以避免再次获取它们。
 
 ## 类图
-![alt text](../../dirty-flag/etc/dirty-flag.png "Dirty Flag")
+![alt text](../../../dirty-flag/etc/dirty-flag.png "Dirty Flag")
 
 ## 适用性
 在以下情况下使用脏标志模式

@@ -23,16 +23,19 @@
 
 package com.iluwatar.factory;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.function.Supplier;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-import org.junit.jupiter.api.Test;
+/**
+ * Enumeration for different types of coins.
+ */
+@RequiredArgsConstructor
+@Getter
+public enum CoinType {
 
-class CarsFactoryTest {
+  COPPER(CopperCoin::new),
+  GOLD(GoldCoin::new);
 
-  @Test
-  void shouldReturnFerrariInstance() {
-    final var ferrari = CarsFactory.getCar(CarType.FERRARI);
-    assertTrue(ferrari instanceof Ferrari);
-  }
-
+  private final Supplier<Coin> constructor;
 }

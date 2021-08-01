@@ -2,7 +2,7 @@
 layout: pattern
 title: Visitor
 folder: visitor
-permalink: /patterns/visitor/zh
+permalink: /patterns/visitor/
 categories: Behavioral
 language: zh
 tags:
@@ -201,7 +201,7 @@ Good to see you commander
 
 ## Class diagram
 
-![alt text](../../visitor/etc/visitor_1.png "Visitor")
+![alt text](../../../visitor/etc/visitor_1.png "Visitor")
 
 ## 适用性
 

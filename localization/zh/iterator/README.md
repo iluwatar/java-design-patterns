@@ -2,7 +2,7 @@
 layout: pattern
 title: Iterator
 folder: iterator
-permalink: /patterns/iterator/zh
+permalink: /patterns/iterator/
 categories: Behavioral
 language: zh
 tags:
@@ -115,7 +115,7 @@ while (itemIterator.hasNext()) {
 ```
 
 ## 类图
-![alt text](../../iterator/etc/iterator_1.png "Iterator")
+![alt text](../../../iterator/etc/iterator_1.png "Iterator")
 
 ## 适用性
 以下情况使用迭代器模式

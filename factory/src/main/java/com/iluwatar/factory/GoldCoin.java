@@ -24,11 +24,11 @@
 package com.iluwatar.factory;
 
 /**
- * Ford implementation.
+ * GoldCoin implementation.
  */
-public class Ford implements Car {
+public class GoldCoin implements Coin {
 
-  static final String DESCRIPTION = "This is Ford.";
+  static final String DESCRIPTION = "This is a gold coin.";
 
   @Override
   public String getDescription() {

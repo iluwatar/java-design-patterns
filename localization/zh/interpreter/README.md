@@ -2,7 +2,7 @@
 layout: pattern
 title: Interpreter
 folder: interpreter
-permalink: /patterns/interpreter/zh
+permalink: /patterns/interpreter/
 categories: Behavioral
 language: zh
 tags:
@@ -13,7 +13,7 @@ tags:
 给定一种语言，请定义其语法的表示形式，以及使用该表示形式来解释该语言中的句子的解释器。
 
 ## 类图
-![alt text](../../interpreter/etc/interpreter_1.png "Interpreter")
+![alt text](../../../interpreter/etc/interpreter_1.png "Interpreter")
 
 ## 适用性
 有一种要解释的语言时，请使用解释器模式，并且可以将语言中的语句表示为抽象语法树。解释器模式在以下情况下效果最佳
