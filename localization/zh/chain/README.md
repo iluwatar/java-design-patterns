@@ -2,7 +2,7 @@
 layout: pattern
 title: Chain of responsibility
 folder: chain
-permalink: /patterns/chain/zh
+permalink: /patterns/chain/
 categories: Behavioral
 language: zh
 tags:
@@ -139,7 +139,7 @@ king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax")); // Orc so
 ```
 
 ## 类图
-![alt text](../../chain/etc/chain.urm.png "Chain of Responsibility class diagram")
+![alt text](../../../chain/etc/chain.urm.png "Chain of Responsibility class diagram")
 
 ## 适用性
 使用责任链模式当

@@ -2,7 +2,7 @@
 layout: pattern
 title: Adapter
 folder: adapter
-permalink: /patterns/adapter/zh
+permalink: /patterns/adapter/
 categories: Structural
 language: zh
 tags:
@@ -94,7 +94,7 @@ captain.row();
 ```
 
 ## 类图
-![alt text](../../adapter/etc/adapter.urm.png "Adapter class diagram")
+![alt text](../../../adapter/etc/adapter.urm.png "Adapter class diagram")
 
 
 ## 应用

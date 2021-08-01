@@ -4,36 +4,32 @@ title: Business Delegate
 folder: business-delegate
 permalink: /patterns/business-delegate/
 categories: Structural
+language: zh
 tags:
  - Decoupling
 ---
 
-## 含义
+## 意图
 
-业务委托模式（译者：国内也有翻译成业务代表模式）在表现层和业务层之间增加了一个抽象层。通过使用该模式，我们获得了各层之间的松散耦合，并封装了关于如何定位、连接和与构成应用程序的业务对象进行交互的知识。
+业务委托模式在表示层和业务层之间添加了一个抽象层。 通过使用该模式，我们获得了各层之间的松散耦合，并封装了有关如何定位，连接到组成应用程序的业务对象以及与之交互的逻辑。
 
 ## 解释
 
-真实世界的案例
+真实世界例子
 
-> 一个手机应用程序承诺将现有的任何电影传输到你的手机上。它捕获了用户的搜索关键字内容，并将其传递给业务委托层。业务委托层选择最合适的视频流服务，并从该服务进行视频播放。
+> 手机应用程序承诺将现有的任何电影流式传输到您的手机。它捕获用户的搜索字符串，并将其传递给业务委托层。业务委托层选择最合适的视频流服务，然后从那里播放视频。
 
-简而言之
+通俗的说
 
-> 业务委托模式在表现层和业务层之间增加了一个抽象层。
+> 业务委托模式在表示层和业务层之间添加了一个抽象层。 
 
-维基百科的解释
+维基百科说
 
-> Business delegate is a Java EE design pattern. This pattern is directing to reduce the coupling 
-> in between business services and the connected presentation tier, and to hide the implementation 
-> details of services (including lookup and accessibility of EJB architecture). Business delegates 
-> acts as an adaptor to invoke business objects from the presentation tier.
->
-> 业务委托模式是一种 Java EE 设计模式。这种模式旨在减少业务服务和所连接的表现层之间的耦合度，并隐藏服务的实现细节（包括 EJB 架构的查询和可访问性）。业务代表作为一个适配器，从表现层调用业务对象。
+> 业务委托是一种Java EE设计模式。 该模式旨在减少业务服务与连接的表示层之间的耦合，并隐藏服务的实现细节（包括EJB体系结构的查找和可访问性）。 业务代表充当适配器，以从表示层调用业务对象。
 
-**编程示例**
+**程序示例**
 
-首先，我们实现了一个视频流服务的抽象，和几个具体实现。
+首先，我们有视频流服务的抽象类和一些它的实现。
 
 ```java
 public interface VideoStreamingService {
@@ -57,7 +53,7 @@ public class YouTubeService implements VideoStreamingService {
 }
 ```
 
-接下来，我们实现一个查询服务，用于决定使用哪个视频流服务。
+然后我们有一个查找服务来决定我们使用哪个视频流服务。
 
 ```java
 @Setter
@@ -76,7 +72,7 @@ public class BusinessLookup {
 }
 ```
 
-业务委托层使用业务查询，将电影播放请求路由到合适的视频流服务。
+业务委托类使用业务查找服务将电影播放请求路由到合适的视频流服务。
 
 ```java
 @Setter
@@ -108,7 +104,7 @@ public class MobileClient {
 }
 ```
 
-最后，我们展示一下这个示例完整的操作。
+最后我们展示完整示例。
 
 ```java
   public static void main(String[] args) {
@@ -127,7 +123,7 @@ public class MobileClient {
   }
 ```
 
-以下是终端输出的内容。
+这是控制台的输出。
 
 ```
 21:15:33.790 [main] INFO com.iluwatar.business.delegate.NetflixService - NetflixService is now processing
@@ -136,25 +132,25 @@ public class MobileClient {
 
 ## 类图
 
-![alt text](../../business-delegate/etc/business-delegate.urm.png "Business Delegate")
+![alt text](../../../business-delegate/etc/business-delegate.urm.png "Business Delegate")
 
 ## 相关模式
 
-* [Service locator pattern](https://java-design-patterns.com/patterns/service-locator/)
+* [服务定位器模式](https://java-design-patterns.com/patterns/service-locator/)
 
-## 适用场景
+## 适用性
 
-业务委托模式的适用场景：
+使用业务委托模式当
 
-* 你希望表现层和业务层之间是松耦合的。
-* 你想要协调对多个业务服务的调用。
-* 你想要对服务查询、服务调用进行封装。
+* 你希望表示层和业务层之间的松散耦合
+* 你想编排对多个业务服务的调用
+* 你希望封装查找服务和服务调用
 
 ## 教程
 
 * [Business Delegate Pattern at TutorialsPoint](https://www.tutorialspoint.com/design_pattern/business_delegate_pattern.htm)
 
-## 引用
+## 鸣谢
 
 * [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://www.amazon.com/gp/product/0130648841/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0130648841&linkId=a0100de2b28c71ede8db1757fb2b5947)

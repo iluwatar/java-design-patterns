@@ -2,7 +2,7 @@
 layout: pattern
 title: Converter
 folder: converter
-permalink: /patterns/converter/zh
+permalink: /patterns/converter/
 categories: Creational
 language: zh
 tags:
@@ -86,7 +86,7 @@ var user = userConverter.convertFromDto(dtoUser);
 
 ## 类图
 
-![alt text](../../converter/etc/converter.png "Converter Pattern")
+![alt text](../../../converter/etc/converter.png "Converter Pattern")
 
 ## 适用性
 

@@ -2,7 +2,7 @@
 layout: pattern
 title: Active Object
 folder: active-object
-permalink: /patterns/active-object/zh
+permalink: /patterns/active-object/
 categories: Concurrency
 language: zh
 tags:
@@ -122,4 +122,4 @@ public class Orc extends ActiveCreature {
 
 ## 类图
 
-![alt text](../../active-object/etc/active-object.urm.PNG "Active Object class diagram")
+![alt text](../../../active-object/etc/active-object.urm.PNG "Active Object class diagram")

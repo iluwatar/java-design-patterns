@@ -2,7 +2,7 @@
 layout: pattern
 title: Callback
 folder: callback
-permalink: /patterns/callback/zh
+permalink: /patterns/callback/
 categories: Idiom
 language: zh
 tags:
@@ -69,7 +69,7 @@ public final class SimpleTask extends Task {
     task.executeWith(() -> LOGGER.info("I'm done now."));
 ```
 ## 类图
-![alt text](../../callback/etc/callback.png "Callback")
+![alt text](../../../callback/etc/callback.png "Callback")
 
 ## 适用性
 使用回调模式当
