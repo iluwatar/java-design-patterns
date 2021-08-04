@@ -13,9 +13,17 @@ tags:
 
 Proactor pattern supports the demultiplexing and dispatching of multiple event handlers, which are triggered by the
 completion of asynchronous events. This pattern simplifies asynchronous application development by integrating the
-demultiplexing of completion events and the dispatching of their corresponding event handlers. When there is an internet
+demultiplexing of completion events and the dispatching of their corresponding event handlers. 
+
+In plain words
+
+>When there is an internet
 service program which needs to deal with many requests at the same time, an unblocking pattern just like proactor 
 pattern is needed.
+
+Wikipedia says
+
+>Proactor is a software design pattern for event handling in which long running activities are running in an asynchronous part. A completion handler is called after the asynchronous part has terminated. The proactor pattern can be considered to be an asynchronous variant of the synchronous reactor pattern.
 
 ## Class diagram
 
