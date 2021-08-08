@@ -232,6 +232,7 @@
         <module>table-module</module>
         <module>presentation</module>
         <module>lockable-object</module>
+        <module>fanout-fanin</module>
         <module>domain-model</module>
     </modules>
 
