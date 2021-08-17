@@ -43,9 +43,7 @@ class CachingTest {
     // to avoid Maven compilation errors. Set flag to true to run the
     // tests with MongoDB (provided that MongoDB is installed and socket
     // connection is open).
-    AppManager.initDb(false);
-    AppManager.initCacheCapacity(3);
-    app = new App();
+    app = new App(false);
   }
 
   @Test
