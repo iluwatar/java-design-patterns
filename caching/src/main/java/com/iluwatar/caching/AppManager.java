@@ -29,28 +29,41 @@ import com.iluwatar.caching.database.DbManager;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * AppManager helps to bridge the gap in communication between the main class and the application's
- * back-end. DB connection is initialized through this class. The chosen caching strategy/policy is
- * also initialized here. Before the cache can be used, the size of the cache has to be set.
- * Depending on the chosen caching policy, AppManager will call the appropriate function in the
- * CacheStore class.
+ * AppManager helps to bridge the gap in communication between the main class
+ * and the application's back-end. DB connection is initialized through this
+ * class. The chosen  caching strategy/policy is also initialized here.
+ * Before the cache can be used, the size of the  cache has to be set.
+ * Depending on the chosen caching policy, AppManager will call the
+ * appropriate function in the CacheStore class.
  */
 @Slf4j
 public class AppManager {
-
+  /**
+   * Caching Policy.
+   */
   private static CachingPolicy cachingPolicy;
+  /**
+   * Database Manager.
+   */
   private final DbManager dbManager;
+  /**
+   * Cache Store.
+   */
   private final CacheStore cacheStore;
 
-  public AppManager(DbManager dbManager) {
-    this.dbManager = dbManager;
-    this.cacheStore = new CacheStore(dbManager);
+  /**
+   * Constructor.
+   * @param newDbManager database manager
+   */
+  public AppManager(final DbManager newDbManager) {
+    this.dbManager = newDbManager;
+    this.cacheStore = new CacheStore(newDbManager);
   }
 
   /**
-   * Developer/Tester is able to choose whether the application should use MongoDB as its underlying
-   * data storage or a simple Java data structure to (temporarily) store the data/objects during
-   * runtime.
+   * Developer/Tester is able to choose whether the application should use
+   * MongoDB as its underlying data storage or a simple Java data structure
+   * to (temporarily) store the data/objects during runtime.
    */
   public void initDb() {
      dbManager.connect();
@@ -58,8 +71,9 @@ public class AppManager {
 
   /**
    * Initialize caching policy.
+   * @param policy is a {@link CachingPolicy}
    */
-  public void initCachingPolicy(CachingPolicy policy) {
+  public void initCachingPolicy(final CachingPolicy policy) {
     cachingPolicy = policy;
     if (cachingPolicy == CachingPolicy.BEHIND) {
       Runtime.getRuntime().addShutdownHook(new Thread(cacheStore::flushCache));
@@ -69,10 +83,13 @@ public class AppManager {
 
   /**
    * Find user account.
+   * @param userId String
+   * @return {@link UserAccount}
    */
-  public UserAccount find(String userId) {
+  public UserAccount find(final String userId) {
     LOGGER.info("Trying to find {} in cache", userId);
-    if (cachingPolicy == CachingPolicy.THROUGH || cachingPolicy == CachingPolicy.AROUND) {
+    if (cachingPolicy == CachingPolicy.THROUGH
+            || cachingPolicy == CachingPolicy.AROUND) {
       return cacheStore.readThrough(userId);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
       return cacheStore.readThroughWithWriteBackPolicy(userId);
@@ -84,8 +101,9 @@ public class AppManager {
 
   /**
    * Save user account.
+   * @param userAccount {@link UserAccount}
    */
-  public void save(UserAccount userAccount) {
+  public void save(final UserAccount userAccount) {
     LOGGER.info("Save record!");
     if (cachingPolicy == CachingPolicy.THROUGH) {
       cacheStore.writeThrough(userAccount);
@@ -98,25 +116,33 @@ public class AppManager {
     }
   }
 
+  /**
+   * Returns String.
+   * @return String
+   */
   public String printCacheContent() {
     return cacheStore.print();
   }
 
   /**
    * Cache-Aside save user account helper.
+   * @param userAccount {@link UserAccount}
    */
-  private void saveAside(UserAccount userAccount) {
+  private void saveAside(final UserAccount userAccount) {
     dbManager.updateDb(userAccount);
     cacheStore.invalidate(userAccount.getUserId());
   }
 
   /**
    * Cache-Aside find user account helper.
+   * @param userId String
+   * @return {@link UserAccount}
    */
-  private UserAccount findAside(String userId) {
+  private UserAccount findAside(final String userId) {
     return Optional.ofNullable(cacheStore.get(userId))
         .or(() -> {
-          Optional<UserAccount> userAccount = Optional.ofNullable(dbManager.readFromDb(userId));
+          Optional<UserAccount> userAccount =
+                  Optional.ofNullable(dbManager.readFromDb(userId));
           userAccount.ifPresent(account -> cacheStore.set(userId, account));
           return userAccount;
         })
