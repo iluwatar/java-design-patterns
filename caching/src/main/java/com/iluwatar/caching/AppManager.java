@@ -71,6 +71,7 @@ public class AppManager {
    * Find user account.
    */
   public UserAccount find(String userId) {
+    LOGGER.info("Trying to find {} in cache", userId);
     if (cachingPolicy == CachingPolicy.THROUGH || cachingPolicy == CachingPolicy.AROUND) {
       return cacheStore.readThrough(userId);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
@@ -85,6 +86,7 @@ public class AppManager {
    * Save user account.
    */
   public void save(UserAccount userAccount) {
+    LOGGER.info("Save record!");
     if (cachingPolicy == CachingPolicy.THROUGH) {
       cacheStore.writeThrough(userAccount);
     } else if (cachingPolicy == CachingPolicy.AROUND) {

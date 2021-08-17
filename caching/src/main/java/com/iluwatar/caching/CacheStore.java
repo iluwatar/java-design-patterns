@@ -61,10 +61,10 @@ public class CacheStore {
    */
   public UserAccount readThrough(String userId) {
     if (cache.contains(userId)) {
-      LOGGER.info("# Cache Hit!");
+      LOGGER.info("# Found in Cache!");
       return cache.get(userId);
     }
-    LOGGER.info("# Cache Miss!");
+    LOGGER.info("# Not found in cache! Go to DB!!");
     UserAccount userAccount = dbManager.readFromDb(userId);
     cache.set(userId, userAccount);
     return userAccount;
@@ -100,10 +100,10 @@ public class CacheStore {
    */
   public UserAccount readThroughWithWriteBackPolicy(String userId) {
     if (cache.contains(userId)) {
-      LOGGER.info("# Cache Hit!");
+      LOGGER.info("# Found in cache!");
       return cache.get(userId);
     }
-    LOGGER.info("# Cache Miss!");
+    LOGGER.info("# Not found in Cache!");
     UserAccount userAccount = dbManager.readFromDb(userId);
     if (cache.isFull()) {
       LOGGER.info("# Cache is FULL! Writing LRU data to DB...");
@@ -155,7 +155,7 @@ public class CacheStore {
         .orElse(List.of())
         .stream()
         .map(userAccount -> userAccount.toString() + "\n")
-        .collect(Collectors.joining("", "\n--CACHE CONTENT--\n", "----\n"));
+        .collect(Collectors.joining("", "\n--CACHE CONTENT--\n", "----"));
   }
 
   /**

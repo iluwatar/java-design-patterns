@@ -69,11 +69,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
     private static final String USE_MONGO_DB = "--mongo";
-    private DbManager dbManager;
     private AppManager appManager;
 
     public App(boolean isMongo) {
-        dbManager = DbManagerFactory.initDb(isMongo);
+        DbManager dbManager = DbManagerFactory.initDb(isMongo);
         appManager = new AppManager(dbManager);
         appManager.initDb();
     }
@@ -90,9 +89,13 @@ public class App {
         // installed and socket connection is open).
         App app = new App(isDbMongo(args));
         app.useReadAndWriteThroughStrategy();
+        System.out.println("=====================================================");
         app.useReadThroughAndWriteAroundStrategy();
+        System.out.println("=====================================================");
         app.useReadThroughAndWriteBehindStrategy();
+        System.out.println("=====================================================");
         app.useCacheAsideStategy();
+        System.out.println("=====================================================");
     }
 
     /**
