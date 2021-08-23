@@ -10,35 +10,61 @@ import java.util.Map;
  * implements base methods to work with hashMap as database.
  */
 public class VirtualDb implements DbManager {
+    /**
+     * Virtual DataBase.
+     */
     private Map<String, UserAccount> virtualDB;
 
+    /**
+     * Creates new HashMap.
+     */
     @Override
     public void connect() {
         virtualDB = new HashMap<>();
     }
 
+    /**
+     * Read from Db.
+     * @param userId {@link String}
+     * @return {@link UserAccount}
+     */
     @Override
-    public UserAccount readFromDb(String userId) {
+    public UserAccount readFromDb(final String userId) {
         if (virtualDB.containsKey(userId)) {
             return virtualDB.get(userId);
         }
         return null;
     }
 
+    /**
+     * Write to DB.
+     * @param userAccount {@link UserAccount}
+     * @return {@link UserAccount}
+     */
     @Override
-    public UserAccount writeToDb(UserAccount userAccount) {
+    public UserAccount writeToDb(final UserAccount userAccount) {
         virtualDB.put(userAccount.getUserId(), userAccount);
         return userAccount;
     }
 
+    /**
+     * Update reecord in DB.
+     * @param userAccount {@link UserAccount}
+     * @return {@link UserAccount}
+     */
     @Override
-    public UserAccount updateDb(UserAccount userAccount) {
+    public UserAccount updateDb(final UserAccount userAccount) {
         virtualDB.put(userAccount.getUserId(), userAccount);
         return userAccount;
     }
 
+    /**
+     * Update.
+     * @param userAccount {@link UserAccount}
+     * @return {@link UserAccount}
+     */
     @Override
-    public UserAccount upsertDb(UserAccount userAccount) {
+    public UserAccount upsertDb(final UserAccount userAccount) {
         return updateDb(userAccount);
     }
 }

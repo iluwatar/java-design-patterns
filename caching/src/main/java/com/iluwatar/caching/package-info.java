@@ -1,4 +1,4 @@
-/*
+/**
  * The MIT License
  * Copyright © 2014-2021 Ilkka Seppälä
  *
@@ -20,5 +20,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.caching;

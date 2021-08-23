@@ -1,4 +1,4 @@
 /**
- * Database classes
+ * Database classes.
  */
 package com.iluwatar.caching.database;

@@ -36,7 +36,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class UserAccount {
+  /**
+   * User Id.
+   */
   private String userId;
+  /**
+   * User Name.
+   */
   private String userName;
+  /**
+   * Additional Info.
+   */
   private String additionalInfo;
 }
