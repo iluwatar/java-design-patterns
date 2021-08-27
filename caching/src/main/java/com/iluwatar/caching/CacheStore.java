@@ -23,11 +23,11 @@
 
 package com.iluwatar.caching;
 
+import com.iluwatar.caching.database.DbManager;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.iluwatar.caching.database.DbManager;
 import lombok.extern.slf4j.Slf4j;
 
 /**

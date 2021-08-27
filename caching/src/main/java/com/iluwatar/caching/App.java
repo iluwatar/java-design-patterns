@@ -54,155 +54,155 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class App {
-    /**
-     * Constant parameter name to use mongoDB.
-     */
-    private static final String USE_MONGO_DB = "--mongo";
-    /**
-     * Application manager.
-     */
-    private final AppManager appManager;
+  /**
+   * Constant parameter name to use mongoDB.
+   */
+  private static final String USE_MONGO_DB = "--mongo";
+  /**
+   * Application manager.
+   */
+  private final AppManager appManager;
 
-    /**
-     * Constructor of current App.
-     * @param isMongo boolean
-     */
-    public App(final boolean isMongo) {
-        DbManager dbManager = DbManagerFactory.initDb(isMongo);
-        appManager = new AppManager(dbManager);
-        appManager.initDb();
+  /**
+   * Constructor of current App.
+   * @param isMongo boolean
+   */
+  public App(final boolean isMongo) {
+    DbManager dbManager = DbManagerFactory.initDb(isMongo);
+    appManager = new AppManager(dbManager);
+    appManager.initDb();
+  }
+
+  /**
+   * Program entry point.
+   *
+   * @param args command line args
+   */
+  public static void main(final String[] args) {
+    // VirtualDB (instead of MongoDB) was used in running the JUnit tests
+    // and the App class to avoid Maven compilation errors. Set flag to
+    // true to run the tests with MongoDB (provided that MongoDB is
+    // installed and socket connection is open).
+    App app = new App(isDbMongo(args));
+    app.useReadAndWriteThroughStrategy();
+    String splitLine = "==============================================";
+    LOGGER.info(splitLine);
+    app.useReadThroughAndWriteAroundStrategy();
+    LOGGER.info(splitLine);
+    app.useReadThroughAndWriteBehindStrategy();
+    LOGGER.info(splitLine);
+    app.useCacheAsideStategy();
+    LOGGER.info(splitLine);
+  }
+
+  /**
+   * Check the input parameters. if
+   * @param args input params
+   * @return true if there is "--mongo" parameter in arguments
+   */
+  private static boolean isDbMongo(final String[] args) {
+    for (String arg : args) {
+      if (arg.equals(USE_MONGO_DB)) {
+        return true;
+      }
     }
+    return false;
+  }
 
-    /**
-     * Program entry point.
-     *
-     * @param args command line args
-     */
-    public static void main(final String[] args) {
-        // VirtualDB (instead of MongoDB) was used in running the JUnit tests
-        // and the App class to avoid Maven compilation errors. Set flag to
-        // true to run the tests with MongoDB (provided that MongoDB is
-        // installed and socket connection is open).
-        App app = new App(isDbMongo(args));
-        app.useReadAndWriteThroughStrategy();
-        String splitLine = "==============================================";
-        LOGGER.info(splitLine);
-        app.useReadThroughAndWriteAroundStrategy();
-        LOGGER.info(splitLine);
-        app.useReadThroughAndWriteBehindStrategy();
-        LOGGER.info(splitLine);
-        app.useCacheAsideStategy();
-        LOGGER.info(splitLine);
-    }
+  /**
+   * Read-through and write-through.
+   */
+  public void useReadAndWriteThroughStrategy() {
+    LOGGER.info("# CachingPolicy.THROUGH");
+    appManager.initCachingPolicy(CachingPolicy.THROUGH);
 
-    /**
-     * Check the input parameters. if
-     * @param args input params
-     * @return true if there is "--mongo" parameter in arguments
-     */
-    private static boolean isDbMongo(final String[] args) {
-        for (String arg : args) {
-            if (arg.equals(USE_MONGO_DB)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    var userAccount1 = new UserAccount("001", "John", "He is a boy.");
 
-    /**
-     * Read-through and write-through.
-     */
-    public void useReadAndWriteThroughStrategy() {
-        LOGGER.info("# CachingPolicy.THROUGH");
-        appManager.initCachingPolicy(CachingPolicy.THROUGH);
+    appManager.save(userAccount1);
+    LOGGER.info(appManager.printCacheContent());
+    appManager.find("001");
+    appManager.find("001");
+  }
 
-        var userAccount1 = new UserAccount("001", "John", "He is a boy.");
+  /**
+   * Read-through and write-around.
+   */
+  public void useReadThroughAndWriteAroundStrategy() {
+    LOGGER.info("# CachingPolicy.AROUND");
+    appManager.initCachingPolicy(CachingPolicy.AROUND);
 
-        appManager.save(userAccount1);
-        LOGGER.info(appManager.printCacheContent());
-        appManager.find("001");
-        appManager.find("001");
-    }
+    var userAccount2 = new UserAccount("002", "Jane", "She is a girl.");
 
-    /**
-     * Read-through and write-around.
-     */
-    public void useReadThroughAndWriteAroundStrategy() {
-        LOGGER.info("# CachingPolicy.AROUND");
-        appManager.initCachingPolicy(CachingPolicy.AROUND);
+    appManager.save(userAccount2);
+    LOGGER.info(appManager.printCacheContent());
+    appManager.find("002");
+    LOGGER.info(appManager.printCacheContent());
+    userAccount2 = appManager.find("002");
+    userAccount2.setUserName("Jane G.");
+    appManager.save(userAccount2);
+    LOGGER.info(appManager.printCacheContent());
+    appManager.find("002");
+    LOGGER.info(appManager.printCacheContent());
+    appManager.find("002");
+  }
 
-        var userAccount2 = new UserAccount("002", "Jane", "She is a girl.");
+  /**
+   * Read-through and write-behind.
+   */
+  public void useReadThroughAndWriteBehindStrategy() {
+    LOGGER.info("# CachingPolicy.BEHIND");
+    appManager.initCachingPolicy(CachingPolicy.BEHIND);
 
-        appManager.save(userAccount2);
-        LOGGER.info(appManager.printCacheContent());
-        appManager.find("002");
-        LOGGER.info(appManager.printCacheContent());
-        userAccount2 = appManager.find("002");
-        userAccount2.setUserName("Jane G.");
-        appManager.save(userAccount2);
-        LOGGER.info(appManager.printCacheContent());
-        appManager.find("002");
-        LOGGER.info(appManager.printCacheContent());
-        appManager.find("002");
-    }
+    var userAccount3 = new UserAccount("003",
+            "Adam",
+            "He likes food.");
+    var userAccount4 = new UserAccount("004",
+            "Rita",
+            "She hates cats.");
+    var userAccount5 = new UserAccount("005",
+            "Isaac",
+            "He is allergic to mustard.");
 
-    /**
-     * Read-through and write-behind.
-     */
-    public void useReadThroughAndWriteBehindStrategy() {
-        LOGGER.info("# CachingPolicy.BEHIND");
-        appManager.initCachingPolicy(CachingPolicy.BEHIND);
+    appManager.save(userAccount3);
+    appManager.save(userAccount4);
+    appManager.save(userAccount5);
+    LOGGER.info(appManager.printCacheContent());
+    appManager.find("003");
+    LOGGER.info(appManager.printCacheContent());
+    UserAccount userAccount6 = new UserAccount("006",
+            "Yasha",
+            "She is an only child.");
+    appManager.save(userAccount6);
+    LOGGER.info(appManager.printCacheContent());
+    appManager.find("004");
+    LOGGER.info(appManager.printCacheContent());
+  }
 
-        var userAccount3 = new UserAccount("003",
-                "Adam",
-                "He likes food.");
-        var userAccount4 = new UserAccount("004",
-                "Rita",
-                "She hates cats.");
-        var userAccount5 = new UserAccount("005",
-                "Isaac",
-                "He is allergic to mustard.");
+  /**
+   * Cache-Aside.
+   */
+  public void useCacheAsideStategy() {
+    LOGGER.info("# CachingPolicy.ASIDE");
+    appManager.initCachingPolicy(CachingPolicy.ASIDE);
+    LOGGER.info(appManager.printCacheContent());
 
-        appManager.save(userAccount3);
-        appManager.save(userAccount4);
-        appManager.save(userAccount5);
-        LOGGER.info(appManager.printCacheContent());
-        appManager.find("003");
-        LOGGER.info(appManager.printCacheContent());
-        UserAccount userAccount6 = new UserAccount("006",
-                "Yasha",
-                "She is an only child.");
-        appManager.save(userAccount6);
-        LOGGER.info(appManager.printCacheContent());
-        appManager.find("004");
-        LOGGER.info(appManager.printCacheContent());
-    }
+    var userAccount3 = new UserAccount("003",
+            "Adam",
+            "He likes food.");
+    var userAccount4 = new UserAccount("004",
+            "Rita",
+            "She hates cats.");
+    var userAccount5 = new UserAccount("005",
+            "Isaac",
+            "He is allergic to mustard.");
+    appManager.save(userAccount3);
+    appManager.save(userAccount4);
+    appManager.save(userAccount5);
 
-    /**
-     * Cache-Aside.
-     */
-    public void useCacheAsideStategy() {
-        LOGGER.info("# CachingPolicy.ASIDE");
-        appManager.initCachingPolicy(CachingPolicy.ASIDE);
-        LOGGER.info(appManager.printCacheContent());
-
-        var userAccount3 = new UserAccount("003",
-                "Adam",
-                "He likes food.");
-        var userAccount4 = new UserAccount("004",
-                "Rita",
-                "She hates cats.");
-        var userAccount5 = new UserAccount("005",
-                "Isaac",
-                "He is allergic to mustard.");
-        appManager.save(userAccount3);
-        appManager.save(userAccount4);
-        appManager.save(userAccount5);
-
-        LOGGER.info(appManager.printCacheContent());
-        appManager.find("003");
-        LOGGER.info(appManager.printCacheContent());
-        appManager.find("004");
-        LOGGER.info(appManager.printCacheContent());
-    }
+    LOGGER.info(appManager.printCacheContent());
+    appManager.find("003");
+    LOGGER.info(appManager.printCacheContent());
+    appManager.find("004");
+    LOGGER.info(appManager.printCacheContent());
+  }
 }

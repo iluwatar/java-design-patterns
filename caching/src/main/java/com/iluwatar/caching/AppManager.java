@@ -23,9 +23,9 @@
 
 package com.iluwatar.caching;
 
+import com.iluwatar.caching.database.DbManager;
 import java.util.Optional;
 
-import com.iluwatar.caching.database.DbManager;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -68,7 +68,7 @@ public class AppManager {
    * to (temporarily) store the data/objects during runtime.
    */
   public void initDb() {
-     dbManager.connect();
+    dbManager.connect();
   }
 
   /**

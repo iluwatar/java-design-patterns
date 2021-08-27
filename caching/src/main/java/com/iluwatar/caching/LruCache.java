@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
+
 /**
  * Data structure/implementation of the application's cache. The data structure
  * consists of a hash table attached with a doubly linked-list. The linked-list
@@ -62,7 +63,8 @@ public class LruCache {
 
     /**
      * Node definition.
-     * @param id String
+     *
+     * @param id      String
      * @param account {@link UserAccount}
      */
     Node(final String id, final UserAccount account) {
@@ -90,6 +92,7 @@ public class LruCache {
 
   /**
    * Constructor.
+   *
    * @param cap Integer.
    */
   public LruCache(final int cap) {
@@ -98,6 +101,7 @@ public class LruCache {
 
   /**
    * Get user account.
+   *
    * @param userId String
    * @return {@link UserAccount}
    */
@@ -113,6 +117,7 @@ public class LruCache {
 
   /**
    * Remove node from linked list.
+   *
    * @param node {@link Node}
    */
   public void remove(final Node node) {
@@ -130,6 +135,7 @@ public class LruCache {
 
   /**
    * Move node to the front of the list.
+   *
    * @param node {@link Node}
    */
   public void setHead(final Node node) {
@@ -146,8 +152,9 @@ public class LruCache {
 
   /**
    * Set user account.
+   *
    * @param userAccount {@link UserAccount}
-   * @param userId {@link String}
+   * @param userId      {@link String}
    */
   public void set(final String userId, final UserAccount userAccount) {
     if (cache.containsKey(userId)) {
@@ -169,19 +176,21 @@ public class LruCache {
     }
   }
 
-    /**
-     * Che if Cache cintains the userId.
-     * @param userId {@link String}
-     * @return boolean
-     */
+  /**
+   * Che if Cache cintains the userId.
+   *
+   * @param userId {@link String}
+   * @return boolean
+   */
   public boolean contains(final String userId) {
     return cache.containsKey(userId);
   }
 
-    /**
-     *  Invalidate cache for user.
-     * @param userId {@link String}
-     */
+  /**
+   * Invalidate cache for user.
+   *
+   * @param userId {@link String}
+   */
   public void invalidate(final String userId) {
     var toBeRemoved = cache.remove(userId);
     if (toBeRemoved != null) {
@@ -191,18 +200,19 @@ public class LruCache {
     }
   }
 
-    /**
-     * Is cache full?
-     * @return boolean
-     */
+  /**
+   * Check if the cache is full.
+   * @return boolean
+   */
   public boolean isFull() {
     return cache.size() >= capacity;
   }
 
-    /**
-     * Get LRU data.
-     * @return {@link UserAccount}
-     */
+  /**
+   * Get LRU data.
+   *
+   * @return {@link UserAccount}
+   */
   public UserAccount getLruData() {
     return end.userAccount;
   }
@@ -218,6 +228,7 @@ public class LruCache {
 
   /**
    * Returns cache data in list form.
+   *
    * @return {@link List}
    */
   public List<UserAccount> getCacheDataInListForm() {
@@ -232,6 +243,7 @@ public class LruCache {
 
   /**
    * Set cache capacity.
+   *
    * @param newCapacity int
    */
   public void setCapacity(final int newCapacity) {
