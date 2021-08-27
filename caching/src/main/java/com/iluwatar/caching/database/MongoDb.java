@@ -45,7 +45,7 @@ public class MongoDb implements DbManager {
         var iterable = db
                 .getCollection(CachingConstants.USER_ACCOUNT)
                 .find(new Document(USER_ID, userId));
-        if (iterable == null) {
+        if (iterable.first()==null) {
             return null;
         }
         Document doc = iterable.first();

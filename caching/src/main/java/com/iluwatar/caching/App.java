@@ -85,13 +85,14 @@ public class App {
         // installed and socket connection is open).
         App app = new App(isDbMongo(args));
         app.useReadAndWriteThroughStrategy();
-        System.out.println("==============================================");
+        String splitLine = "==============================================";
+        LOGGER.info(splitLine);
         app.useReadThroughAndWriteAroundStrategy();
-        System.out.println("==============================================");
+        LOGGER.info(splitLine);
         app.useReadThroughAndWriteBehindStrategy();
-        System.out.println("==============================================");
+        LOGGER.info(splitLine);
         app.useCacheAsideStategy();
-        System.out.println("==============================================");
+        LOGGER.info(splitLine);
     }
 
     /**

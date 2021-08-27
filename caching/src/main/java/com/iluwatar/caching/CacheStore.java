@@ -43,11 +43,11 @@ public class CacheStore {
   /**
    * Lru cache see {@link LruCache}.
    */
-  private static LruCache cache;
+  private LruCache cache;
   /**
    * DbManager.
    */
-  private DbManager dbManager;
+  private final DbManager dbManager;
 
   /**
    * Cache Store.

@@ -26,6 +26,7 @@ package com.iluwatar.caching;
 import java.util.Optional;
 
 import com.iluwatar.caching.database.DbManager;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -37,11 +38,12 @@ import lombok.extern.slf4j.Slf4j;
  * appropriate function in the CacheStore class.
  */
 @Slf4j
+@Data
 public class AppManager {
   /**
    * Caching Policy.
    */
-  private static CachingPolicy cachingPolicy;
+  private CachingPolicy cachingPolicy;
   /**
    * Database Manager.
    */

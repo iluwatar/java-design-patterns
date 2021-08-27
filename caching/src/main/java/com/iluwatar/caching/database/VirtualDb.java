@@ -13,14 +13,14 @@ public class VirtualDb implements DbManager {
     /**
      * Virtual DataBase.
      */
-    private Map<String, UserAccount> virtualDB;
+    private Map<String, UserAccount> db;
 
     /**
      * Creates new HashMap.
      */
     @Override
     public void connect() {
-        virtualDB = new HashMap<>();
+        db = new HashMap<>();
     }
 
     /**
@@ -30,8 +30,8 @@ public class VirtualDb implements DbManager {
      */
     @Override
     public UserAccount readFromDb(final String userId) {
-        if (virtualDB.containsKey(userId)) {
-            return virtualDB.get(userId);
+        if (db.containsKey(userId)) {
+            return db.get(userId);
         }
         return null;
     }
@@ -43,7 +43,7 @@ public class VirtualDb implements DbManager {
      */
     @Override
     public UserAccount writeToDb(final UserAccount userAccount) {
-        virtualDB.put(userAccount.getUserId(), userAccount);
+        db.put(userAccount.getUserId(), userAccount);
         return userAccount;
     }
 
@@ -54,8 +54,7 @@ public class VirtualDb implements DbManager {
      */
     @Override
     public UserAccount updateDb(final UserAccount userAccount) {
-        virtualDB.put(userAccount.getUserId(), userAccount);
-        return userAccount;
+        return writeToDb(userAccount);
     }
 
     /**
