@@ -24,6 +24,7 @@
 package com.iluwatar.caching;
 
 import com.iluwatar.caching.database.DbManager;
+import com.iluwatar.caching.database.exceptions.DatabaseConnectionException;
 import java.util.Optional;
 
 import lombok.Data;
@@ -68,7 +69,11 @@ public class AppManager {
    * to (temporarily) store the data/objects during runtime.
    */
   public void initDb() {
-    dbManager.connect();
+    try {
+      dbManager.connect();
+    } catch (DatabaseConnectionException e) {
+      LOGGER.error("Could not connect to DB: {}", e.getMessage());
+    }
   }
 
   /**

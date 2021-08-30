@@ -1,6 +1,7 @@
 package com.iluwatar.caching.database;
 
 import com.iluwatar.caching.UserAccount;
+import com.iluwatar.caching.database.exceptions.DatabaseConnectionException;
 
 /**
  * <p>DBManager handles the communication with the underlying data store i.e.
@@ -11,7 +12,7 @@ public interface DbManager {
   /**
    * Connect to DB.
    */
-  void connect();
+  void connect() throws DatabaseConnectionException;
 
   /**
    * Read from DB.
