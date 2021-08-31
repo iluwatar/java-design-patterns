@@ -34,6 +34,9 @@ import lombok.extern.slf4j.Slf4j;
  * since it uses only the generic interfaces of their products. This pattern separates the details
  * of implementation of a set of objects from their general usage and relies on object composition,
  * as object creation is implemented in methods exposed in the factory interface.
+ * 抽象工厂模式提供了一种方式来封装一组具有公共主题的独立工厂，而无需指定它们的具体类。在正常使用中，客户端软件创建抽象工厂的具体实现，
+ * 然后使用工厂的通用接口创建作为主题一部分的具体对象。客户端不知道(或不关心)它从每个内部工厂获得了哪些具体对象，因为它只使用它们产品的通用接口。
+ * 该模式将一组对象的实现细节与它们的一般用法分离，并依赖于对象组合，因为对象创建是在工厂接口中公开的方法中实现的。
  *
  * <p>The essence of the Abstract Factory pattern is a factory interface ({@link KingdomFactory})
  * and its implementations ( {@link ElfKingdomFactory}, {@link OrcKingdomFactory}). The example uses

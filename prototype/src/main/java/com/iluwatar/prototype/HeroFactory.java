@@ -25,6 +25,7 @@ package com.iluwatar.prototype;
 
 /**
  * Interface for the factory class.
+ * 英雄
  */
 public interface HeroFactory {
 

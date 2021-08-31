@@ -25,6 +25,7 @@ package com.iluwatar.builder;
 
 /**
  * Hero, the class with many parameters.
+ * 英雄
  */
 public final class Hero {
 

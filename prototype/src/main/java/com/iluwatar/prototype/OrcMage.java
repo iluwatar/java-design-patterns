@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * OrcMage.
+ * 兽人法师
  */
 @EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor

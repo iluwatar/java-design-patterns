@@ -27,6 +27,7 @@ import java.util.function.Supplier;
 
 /**
  * Functional interface that allows adding builder with name to the factory.
+ * 允许在工厂中添加带名称的构建器的功能接口。
  */
 public interface Builder {
   void add(WeaponType name, Supplier<Weapon> supplier);

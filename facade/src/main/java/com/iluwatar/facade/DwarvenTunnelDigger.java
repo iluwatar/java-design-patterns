@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * DwarvenTunnelDigger is one of the goldmine subsystems.
+ * 矮人隧道挖掘者
  */
 @Slf4j
 public class DwarvenTunnelDigger extends DwarvenMineWorker {

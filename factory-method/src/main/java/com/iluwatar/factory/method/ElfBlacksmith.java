@@ -29,6 +29,8 @@ import java.util.Map;
 
 /**
  * Concrete subclass for creating new objects.
+ * 用于创建新对象的具体子类。
+ * 精灵铁匠
  */
 public class ElfBlacksmith implements Blacksmith {
 

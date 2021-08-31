@@ -25,9 +25,12 @@ package com.iluwatar.factory.method;
 
 /**
  * The interface containing method for producing objects.
+ * 包含产生对象的方法的接口。
+ * 铁匠
  */
 public interface Blacksmith {
 
+  // 制作武器方法
   Weapon manufactureWeapon(WeaponType weaponType);
 
 }

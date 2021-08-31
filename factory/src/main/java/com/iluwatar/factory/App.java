@@ -29,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
  * Factory is an object for creating other objects, it providing Providing a static method to 
  * create and return objects of varying classes, in order to hide the implementation logic 
  * and makes client code focus on usage rather then objects initialization and management.
+ * Factory是一个用于创建其他对象的对象，它提供了一个静态方法来创建和返回各种类的对象，以隐藏实现逻辑，使客户端代码专注于使用而不是对象的初始化和管理。
  *
  * <p>In this example an alchemist manufactures coins. CoinFactory is the factory class and it
  * provides a static method to create different types of coins.

@@ -29,9 +29,11 @@ import java.util.List;
 /**
  * DwarvenGoldmineFacade provides a single interface through which users can operate the
  * subsystems.
+ * DwarvenGoldmineFacade提供了单个接口，用户可以通过该接口操作子系统。
  *
  * <p>This makes the goldmine easier to operate and cuts the dependencies from the goldmine user to
  * the subsystems.
+ * 这使得金矿更容易操作，并减少了金矿用户对子系统的依赖关系。
  */
 public class DwarvenGoldmineFacade {
 
@@ -50,7 +52,7 @@ public class DwarvenGoldmineFacade {
   public void startNewDay() {
     makeActions(workers, DwarvenMineWorker.Action.WAKE_UP, DwarvenMineWorker.Action.GO_TO_MINE);
   }
-
+  // 挖黄金
   public void digOutGold() {
     makeActions(workers, DwarvenMineWorker.Action.WORK);
   }

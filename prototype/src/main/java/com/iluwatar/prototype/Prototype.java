@@ -25,6 +25,7 @@ package com.iluwatar.prototype;
 
 /**
  * Prototype.
+ * 原型
  */
 public interface Prototype {
 

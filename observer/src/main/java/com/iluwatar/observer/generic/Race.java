@@ -27,6 +27,7 @@ import com.iluwatar.observer.WeatherType;
 
 /**
  * Race.
+ * 种族
  */
 public interface Race extends Observer<GWeather, Race, WeatherType> {
 }

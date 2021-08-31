@@ -26,6 +26,7 @@ package com.iluwatar.compositeentity;
 /**
  * Composite entity is the coarse-grained entity bean which may be the coarse-grained object, or may
  * contain a reference to the coarse-grained object.
+ * 组合实体是粗粒度实体bean，它可以是粗粒度对象，也可以包含对粗粒度对象的引用。
  */
 
 public class CompositeEntity {

@@ -27,6 +27,7 @@ import java.util.List;
 
 /**
  * Word.
+ * 单词
  */
 public class Word extends LetterComposite {
 

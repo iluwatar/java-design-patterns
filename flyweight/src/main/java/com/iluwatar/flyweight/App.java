@@ -26,14 +26,18 @@ package com.iluwatar.flyweight;
 /**
  * Flyweight pattern is useful when the program needs a huge amount of objects. It provides means to
  * decrease resource usage by sharing object instances.
+ * 享元模式在程序需要大量对象时非常有用。它提供了通过共享对象实例来减少资源使用的方法。
  *
  * <p>In this example {@link AlchemistShop} has great amount of potions on its shelves. To fill the
  * shelves {@link AlchemistShop} uses {@link PotionFactory} (which represents the Flyweight in this
  * example). Internally {@link PotionFactory} holds a map of the potions and lazily creates new ones
  * when requested.
+ * 在这个例子中{@link AlchemistShop}的货架上有大量的药水。为了填充货架，{@link AlchemistShop}使用{@link PotionFactory}(它代表了本例中的Flyweight)。
+ * 在内部{@link PotionFactory}持有药水地图，并在请求时惰性地创建新药水。
  *
  * <p>To enable safe sharing, between clients and threads, Flyweight objects must be immutable.
  * Flyweight objects are by definition value objects.
+ * 为了在客户端和线程之间实现安全共享，Flyweight对象必须是不可变的。按定义，Flyweight对象是值对象。
  */
 public class App {
 

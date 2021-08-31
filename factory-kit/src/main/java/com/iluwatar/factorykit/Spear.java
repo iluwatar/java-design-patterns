@@ -25,6 +25,7 @@ package com.iluwatar.factorykit;
 
 /**
  * Class representing Spear.
+ * 矛
  */
 public class Spear implements Weapon {
   @Override

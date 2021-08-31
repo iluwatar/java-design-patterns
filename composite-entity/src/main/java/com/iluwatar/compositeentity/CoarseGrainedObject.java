@@ -30,6 +30,7 @@ import java.util.stream.IntStream;
  * A coarse-grained object is an object with its own life cycle manages its own relationships to
  * other objects. It can be an object contained in the composite entity, or, composite entity itself
  * can be the coarse-grained object which holds dependent objects.
+ * 粗粒度对象是具有自己生命周期的对象，管理自己与其他对象的关系。它可以是包含在复合实体中的对象，或者，复合实体本身可以是包含依赖对象的粗粒度对象。
  */
 
 public abstract class CoarseGrainedObject<T> {

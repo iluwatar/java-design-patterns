@@ -27,6 +27,7 @@ import java.util.List;
 
 /**
  * Messenger.
+ * 送信者
  */
 public class Messenger {
 

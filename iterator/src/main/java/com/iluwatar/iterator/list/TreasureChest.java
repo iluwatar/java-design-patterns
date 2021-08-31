@@ -29,6 +29,7 @@ import java.util.List;
 
 /**
  * TreasureChest, the collection class.
+ * 宝箱
  */
 public class TreasureChest {
 

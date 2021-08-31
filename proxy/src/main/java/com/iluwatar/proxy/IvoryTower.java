@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * The object to be proxied.
+ * 象牙塔
  */
 @Slf4j
 public class IvoryTower implements WizardTower {

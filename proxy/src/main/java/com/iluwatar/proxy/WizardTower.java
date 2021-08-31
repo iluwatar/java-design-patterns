@@ -25,6 +25,7 @@ package com.iluwatar.proxy;
 
 /**
  * WizardTower interface.
+ * 巫师塔
  */
 public interface WizardTower {
 

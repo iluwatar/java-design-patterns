@@ -25,6 +25,7 @@ package com.iluwatar.builder;
 
 /**
  * Weapon enumeration.
+ * 武器
  */
 public enum Weapon {
 

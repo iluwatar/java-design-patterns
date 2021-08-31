@@ -27,6 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * StealingMethod defines skeleton for the algorithm.
+ * StealingMethod定义了算法的框架。
+ * 偷窃方法
  */
 @Slf4j
 public abstract class StealingMethod {

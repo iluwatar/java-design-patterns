@@ -29,14 +29,17 @@ import lombok.extern.slf4j.Slf4j;
  * Composition over inheritance. The Bridge pattern can also be thought of as two layers of
  * abstraction. With Bridge, you can decouple an abstraction from its implementation so that the two
  * can vary independently.
+ * 组合大于继承。桥接模式也可以看作是两个抽象层。使用Bridge，您可以将抽象与其实现解耦，以便两者可以独立变化。
  *
  * <p>In Bridge pattern both abstraction ({@link Weapon}) and implementation ( {@link Enchantment})
  * have their own class hierarchies. The interface of the implementations can be changed without
  * affecting the clients.
+ * 在桥模式中，抽象({@link Weapon})和实现({@link Enchantment})都有自己的类层次结构。可以在不影响客户机的情况下更改实现的接口。
  *
  * <p>In this example we have two class hierarchies. One of weapons and another one of
  * enchantments. We can easily combine any weapon with any enchantment using composition instead of
  * creating deep class hierarchy.
+ * 在这个例子中，我们有两个类层次结构。一个是武器，一个是魔法。我们可以很容易地使用合成将任何武器和任何附魔结合起来，而不是创建深层次的职业层次。
  */
 @Slf4j
 public class App {

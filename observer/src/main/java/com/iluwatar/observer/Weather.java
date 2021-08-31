@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Weather can be observed by implementing {@link WeatherObserver} interface and registering as
  * listener.
+ * 可以通过实现{@link WeatherObserver}接口并注册为监听器来观察天气。
  */
 @Slf4j
 public class Weather {

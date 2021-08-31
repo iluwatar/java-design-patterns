@@ -25,6 +25,7 @@ package com.iluwatar.flyweight;
 
 /**
  * Interface for Potions.
+ * 药水
  */
 public interface Potion {
 

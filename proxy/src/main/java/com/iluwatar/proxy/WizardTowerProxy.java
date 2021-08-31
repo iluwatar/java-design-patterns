@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * The proxy controlling access to the {@link IvoryTower}.
+ * 巫师塔代理
  */
 @Slf4j
 public class WizardTowerProxy implements WizardTower {

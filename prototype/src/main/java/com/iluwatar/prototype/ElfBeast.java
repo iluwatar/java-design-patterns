@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * ElfBeast.
+ * 精灵野兽
  */
 @EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor

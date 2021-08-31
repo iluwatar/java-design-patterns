@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * SubtleMethod implementation of {@link StealingMethod}.
+ * 精细的方法
  */
 @Slf4j
 public class SubtleMethod extends StealingMethod {
@@ -38,11 +39,13 @@ public class SubtleMethod extends StealingMethod {
 
   @Override
   protected void confuseTarget(String target) {
+    // 奔向跑着眼泪的店主，拥抱他!
     LOGGER.info("Approach the {} with tears running and hug him!", target);
   }
 
   @Override
   protected void stealTheItem(String target) {
+    // 在近距离接触中抓住店主的钱包。
     LOGGER.info("While in close contact grab the {}'s wallet.", target);
   }
 }

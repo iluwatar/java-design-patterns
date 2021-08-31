@@ -25,6 +25,7 @@ package com.iluwatar.abstractfactory;
 
 /**
  * OrcCastle.
+ * 兽人的城堡
  */
 public class OrcCastle implements Castle {
 

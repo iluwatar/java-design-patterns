@@ -30,6 +30,8 @@ package com.iluwatar.facade;
  * interface to the client. It typically involves a single wrapper class which contains a set of
  * members required by client. These members access the system on behalf of the facade client and
  * hide the implementation details.
+ * 当系统非常复杂或难以理解时，通常使用Facade设计模式，因为系统有大量相互依赖的类，或者它的源代码不可用。此模式隐藏了较大系统的复杂性，并为客户机提供了更简单的接口。
+ * 它通常涉及一个包含客户端所需的一组成员的包装器类。这些成员代表facade客户端访问系统并隐藏实现细节。
  *
  * <p>In this example the Facade is ({@link DwarvenGoldmineFacade}) and it provides a simpler
  * interface to the goldmine subsystem.

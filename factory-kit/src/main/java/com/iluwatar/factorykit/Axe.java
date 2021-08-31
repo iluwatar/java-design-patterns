@@ -25,6 +25,7 @@ package com.iluwatar.factorykit;
 
 /**
  * Class representing Axe.
+ * 斧
  */
 public class Axe implements Weapon {
   @Override

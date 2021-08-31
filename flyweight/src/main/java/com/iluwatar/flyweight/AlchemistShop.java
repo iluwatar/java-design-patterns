@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * AlchemistShop holds potions on its shelves. It uses PotionFactory to provide the potions.
+ * 炼金术士商店的架子上放着药水。它使用PotionFactory提供药水。
  */
 @Slf4j
 public class AlchemistShop {

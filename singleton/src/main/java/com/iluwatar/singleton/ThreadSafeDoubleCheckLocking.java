@@ -58,6 +58,7 @@ public final class ThreadSafeDoubleCheckLocking {
   public static ThreadSafeDoubleCheckLocking getInstance() {
     // local variable increases performance by 25 percent
     // Joshua Bloch "Effective Java, Second Edition", p. 283-284
+    // 本地变量增加25%的性能,Joshua Bloch《Effective Java, Second Edition》，第283-284页
 
     var result = instance;
     // Check if singleton instance is initialized.
@@ -65,17 +66,23 @@ public final class ThreadSafeDoubleCheckLocking {
     if (result == null) {
       // It is not initialized but we cannot be sure because some other thread might have
       // initialized it in the meanwhile.
+      // 它没有初始化，但我们不能确定，因为其他线程可能已经在同时初始化了它。
       // So to make sure we need to lock on an object to get mutual exclusion.
+      // 为了确保我们需要锁定一个对象来获得互斥。
       synchronized (ThreadSafeDoubleCheckLocking.class) {
         // Again assign the instance to local variable to check if it was initialized by some
         // other thread while current thread was blocked to enter the locked zone.
+        // 再次将实例赋值给局部变量，以检查当当前线程被阻塞进入锁定区域时，它是否被其他线程初始化。
+
         // If it was initialized then we can return the previously created instance
         // just like the previous null check.
+        // 如果它已经初始化，那么我们可以返回先前创建的实例，就像先前的null检查一样。
         result = instance;
         if (result == null) {
           // The instance is still not initialized so we can safely
           // (no other thread can enter this zone)
           // create an instance and make it our singleton instance.
+          // 实例仍然没有初始化，所以我们可以安全地(没有其他线程可以进入这个区域)创建一个实例，使它成为我们的单例实例。
           instance = result = new ThreadSafeDoubleCheckLocking();
         }
       }

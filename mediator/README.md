@@ -16,6 +16,8 @@ Define an object that encapsulates how a set of objects interact. Mediator promo
 by keeping objects from referring to each other explicitly, and it lets you vary their interaction 
 independently.
 
+定义一个对象来封装一组对象如何交互。Mediator通过防止对象显式地相互引用来促进松耦合，并且它允许独立地改变它们的交互。
+
 ## Explanation
 
 Real-world example
@@ -23,11 +25,15 @@ Real-world example
 > Rogue, wizard, hobbit, and hunter have decided to join their forces and travel in the same
 > party. To avoid coupling each member with each other, they use the party interface to
 > communicate with each other.
+> 
+> 盗贼、巫师、霍比特人和猎人决定加入他们的部队，并在同一个队伍中旅行。为了避免每个成员之间的耦合，它们使用团队接口来相互通信。
 
 In plain words
 
 > Mediator decouples a set of classes by forcing their communications flow through a mediating
 > object.
+> 
+> 中介通过强制类的通信流通过中介对象来解耦一组类。
 
 Wikipedia says
 
@@ -42,14 +48,20 @@ Wikipedia says
 > between objects is encapsulated within a mediator object. Objects no longer communicate directly 
 > with each other, but instead communicate through the mediator. This reduces the dependencies 
 > between communicating objects, thereby reducing coupling.
+> 
+> 在软件工程中，中介模式定义了一个对象，该对象封装了一组对象如何交互。这种模式被认为是一种行为模式，因为它可以改变程序的运行行为。在面向对象编程中，程序通常由许多类组成。业务逻辑和计算分布在这些类中。然而，随着越来越多的类被添加到程序中，特别是在维护和/或重构期间，这些类之间的通信问题可能会变得更加复杂。这使得程序更难阅读和维护。此外，更改程序会变得很困难，因为任何更改都可能影响其他几个类中的代码。使用中介模式，对象之间的通信封装在中介对象中。对象之间不再直接通信，而是通过中介进行通信。这减少了通信对象之间的依赖关系，从而减少了耦合。
 
 **Programmatic Example**
 
 In this example, the mediator encapsulates how a set of objects interact. Instead of referring to 
 each other directly they use the mediator interface.
 
+在本例中，中介封装了一组对象如何交互。它们不是直接引用彼此，而是使用中介接口。
+
 The party members `Rogue`, `Wizard`, `Hobbit`, and `Hunter` all inherit from the `PartyMemberBase`
 implementing the `PartyMember` interface.
+
+团队成员Rogue、Wizard、Hobbit和Hunter都继承了实现了PartyMember接口的PartyMemberBase。
 
 ```java
 public interface PartyMember {
@@ -102,6 +114,8 @@ public class Rogue extends PartyMemberBase {
 
 Our mediator system consists of `Party` interface and its implementation.
 
+我们的mediator系统由Party接口组成以及由其实现。
+
 ```java
 public interface Party {
 
@@ -137,6 +151,8 @@ public class PartyImpl implements Party {
 
 Here's a demo showing the mediator pattern in action.
 
+下面的demo演示了中介者模式的作用。
+
 ```java
     // create party and members
     Party party = new PartyImpl();
@@ -160,6 +176,8 @@ Here's a demo showing the mediator pattern in action.
 ```
 
 Here's the console output from running the example.
+
+下面是运行示例的控制台输出。
 
 ```
 Hobbit joins the party
@@ -193,8 +211,11 @@ Rogue arrives for dinner
 Use the Mediator pattern when
 
 * A set of objects communicate in well-defined but complex ways. The resulting interdependencies are unstructured and difficult to understand
+一组对象以定义良好但复杂的方式进行通信。由此产生的相互依赖关系是非结构化的，难以理解
 * Reusing an object is difficult because it refers to and communicates with many other objects
+  重用一个对象很困难，因为它引用许多其他对象并与之通信
 * A behavior that's distributed between several classes should be customizable without a lot of subclassing
+  一个分布在几个类之间的行为应该是可定制的，而不需要大量的子类化
 
 ## Known uses
 

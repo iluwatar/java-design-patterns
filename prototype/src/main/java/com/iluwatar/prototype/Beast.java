@@ -28,6 +28,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Beast.
+ * 野兽
  */
 @EqualsAndHashCode
 @NoArgsConstructor

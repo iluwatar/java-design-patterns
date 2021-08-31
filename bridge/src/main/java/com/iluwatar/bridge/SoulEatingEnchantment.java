@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * SoulEatingEnchantment.
+ * 灵魂吃魔法
  */
 @Slf4j
 public class SoulEatingEnchantment implements Enchantment {

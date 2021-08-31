@@ -25,11 +25,13 @@ package com.iluwatar.singleton;
 
 /**
  * Singleton class. Eagerly initialized static instance guarantees thread safety.
+ * Singleton class. 急切地 initialized static instance 保证 thread safety.
  */
 public final class IvoryTower {
 
   /**
    * Private constructor so nobody can instantiate the class.
+   * 私有构造函数，这样没有人可以实例化类。
    */
   private IvoryTower() {
   }
@@ -41,6 +43,7 @@ public final class IvoryTower {
 
   /**
    * To be called by user to obtain instance of the class.
+   * 由用户调用以获取类的实例。
    *
    * @return instance of the singleton.
    */

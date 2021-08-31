@@ -31,9 +31,12 @@ import lombok.extern.slf4j.Slf4j;
  * of a composite is to "compose" objects into tree structures to represent part-whole hierarchies.
  * Implementing the Composite pattern lets clients treat individual objects and compositions
  * uniformly.
+ * 组合模式是一种分区设计模式。Composite模式描述了将一组对象作为对象的单个实例进行处理的方式。组合的目的是将对象“组合”成树结构，以表示部分-整体层次结构。
+ * 实现Composite模式让客户端能够统一对待单个对象和组合。
  *
  * <p>In this example we have sentences composed of words composed of letters. All of the objects
  * can be treated through the same interface ({@link LetterComposite}).
+ * 在这个例子中，我们有由字母组成的单词组成的句子。所有的对象都可以通过相同的接口来处理({@link LetterComposite})。
  *
  */
 @Slf4j

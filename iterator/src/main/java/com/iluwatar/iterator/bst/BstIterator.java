@@ -30,9 +30,11 @@ import java.util.NoSuchElementException;
 /**
  * An in-order implementation of a BST Iterator. For example, given a BST with Integer values,
  * expect to retrieve TreeNodes according to the Integer's natural ordering (1, 2, 3...)
+ * BST迭代器的有序实现。例如，给定一个具有Integer值的BST，期望根据Integer的自然顺序(1,2,3…)检索TreeNodes
  *
  * @param <T> This Iterator has been implemented with generic typing to allow for TreeNodes of
  *            different value types
+ *           这个迭代器是用泛型类型实现的，允许使用不同值类型的TreeNodes
  */
 public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T>> {
 
@@ -47,8 +49,10 @@ public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T
    * This BstIterator manages to use O(h) extra space, where h is the height of the tree It achieves
    * this by maintaining a stack of the nodes to handle (pushing all left nodes first), before
    * handling self or right node.
+   * 这个BstIterator设法使用O(h)额外的空间，其中h是树的高度。它通过维护一个要处理的节点堆栈(首先推入所有左节点)来实现这一点，然后再处理self或右节点。
    *
    * @param node TreeNode that acts as root of the subtree we're interested in.
+   *             TreeNode作为我们感兴趣的子树的根。
    */
   private void pushPathToNextSmallest(TreeNode<T> node) {
     while (node != null) {
@@ -59,8 +63,10 @@ public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T
 
   /**
    * Checks if there exists next element.
+   * 检查是否存在下一个元素。
    *
    * @return true if this iterator has a "next" element
+   *      如果该迭代器具有“next”元素，则为True
    */
   @Override
   public boolean hasNext() {
@@ -71,6 +77,7 @@ public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T
    * Gets the next element.
    *
    * @return TreeNode next. The next element according to our in-order traversal of the given BST
+   *                        根据给定BST的顺序遍历下一个元素
    * @throws NoSuchElementException if this iterator does not have a next element
    */
   @Override

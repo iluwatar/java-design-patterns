@@ -26,9 +26,11 @@ package com.iluwatar.templatemethod;
 /**
  * Template Method defines a skeleton for an algorithm. The algorithm subclasses provide
  * implementation for the blank parts.
+ * 模板方法定义了算法的框架。算法的子类为空白部分提供实现。
  *
  * <p>In this example {@link HalflingThief} contains {@link StealingMethod} that can be changed.
  * First the thief hits with {@link HitAndRunMethod} and then with {@link SubtleMethod}.
+ * 在这个例子中{@link HalflingThief}包含了{@link StealingMethod}，可以更改。首先小偷使用{@link HitAndRunMethod}，然后使用{@link SubtleMethod}。
  */
 public class App {
 

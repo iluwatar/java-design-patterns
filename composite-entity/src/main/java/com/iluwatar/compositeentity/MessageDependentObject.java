@@ -25,6 +25,7 @@ package com.iluwatar.compositeentity;
 
 /**
  * The first DependentObject to show message.
+ * 显示消息的第一个DependentObject。
  */
 
 public class MessageDependentObject extends DependentObject<String> {

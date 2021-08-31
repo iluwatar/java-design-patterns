@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * OrcWarlord.
+ * 兽人军阀
  */
 @EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor

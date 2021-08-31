@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * OrcWeapon.
+ * 兽人的武器
  */
 @RequiredArgsConstructor
 @Getter

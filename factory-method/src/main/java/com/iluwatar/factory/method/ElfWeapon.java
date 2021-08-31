@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * ElfWeapon.
+ * 精灵武器
  */
 @RequiredArgsConstructor
 @Getter

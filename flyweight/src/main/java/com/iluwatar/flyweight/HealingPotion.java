@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * HealingPotion.
+ * 治疗药水
  */
 @Slf4j
 public class HealingPotion implements Potion {

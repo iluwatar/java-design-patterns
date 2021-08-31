@@ -29,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * The Memento pattern is a software design pattern that provides the ability to restore an object
  * to its previous state (undo via rollback).
+ * Memento模式是一种软件设计模式，它能够将对象恢复到以前的状态(通过回滚撤消)。
  *
  * <p>The Memento pattern is implemented with three objects: the originator, a caretaker and a
  * memento. The originator is some object that has an internal state. The caretaker is going to do
@@ -38,10 +39,14 @@ import lombok.extern.slf4j.Slf4j;
  * object to the originator. The memento object itself is an opaque object (one which the caretaker
  * cannot, or should not, change). When using this pattern, care should be taken if the originator
  * may change other objects or resources - the memento pattern operates on a single object.
+ * Memento模式由三个对象实现:发起者、管理员和备忘录。发起者是某个具有内部状态的对象。管理员会对发起者做一些事情，但希望能够撤销更改。
+ * 看门人首先向发起人索要一件纪念品。然后它执行它要执行的任何操作(或操作序列)。为了回滚到操作之前的状态，它将memento对象返回给发起者。
+ * memento对象本身是一个不透明的对象(管理员不能或不应该更改的对象)。当使用此模式时，如果发起者可能会更改其他对象或资源，则应谨慎处理——纪念品模式操作于单个对象。
  *
  * <p>In this example the object ({@link Star}) gives out a "memento" ({@link StarMemento}) that
  * contains the state of the object. Later on the memento can be set back to the object restoring
  * the state.
+ * 在这个例子中，对象({@link Star})给出了一个包含对象状态的“memento”({@link StarMemento})。稍后，可以将纪念品设置回恢复状态的对象。
  */
 @Slf4j
 public class App {

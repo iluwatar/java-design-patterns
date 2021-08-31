@@ -29,11 +29,13 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Wizard is the invoker of the commands.
+ * 巫师
  */
 @Slf4j
 public class Wizard {
-
+  // 撤销
   private final Deque<Runnable> undoStack = new LinkedList<>();
+  // 重做
   private final Deque<Runnable> redoStack = new LinkedList<>();
 
   public Wizard() {
@@ -41,17 +43,21 @@ public class Wizard {
 
   /**
    * Cast spell.
+   * 施展法术
    */
   public void castSpell(Runnable runnable) {
     runnable.run();
+    // 往最后增加一条
     undoStack.offerLast(runnable);
   }
 
   /**
    * Undo last spell.
+   * 撤销最后一个法术
    */
   public void undoLastSpell() {
     if (!undoStack.isEmpty()) {
+      // 拿出并删除最后一条
       var previousSpell = undoStack.pollLast();
       redoStack.offerLast(previousSpell);
       previousSpell.run();
@@ -60,6 +66,7 @@ public class Wizard {
 
   /**
    * Redo last spell.
+   * 重做最后一个法术
    */
   public void redoLastSpell() {
     if (!redoStack.isEmpty()) {

@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * SoldierVisitor.
+ * 士兵访问者
  */
 @Slf4j
 public class SoldierVisitor implements UnitVisitor {

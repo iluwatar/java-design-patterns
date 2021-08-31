@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * GHobbits.
+ * G霍比特人
  */
 @Slf4j
 public class GHobbits implements Race {

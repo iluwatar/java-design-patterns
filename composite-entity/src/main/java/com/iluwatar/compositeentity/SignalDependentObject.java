@@ -25,6 +25,7 @@ package com.iluwatar.compositeentity;
 
 /**
  * The second DependentObject to show message.
+ * 显示消息的第二个DependentObject。
  */
 
 public class SignalDependentObject extends DependentObject<String> {

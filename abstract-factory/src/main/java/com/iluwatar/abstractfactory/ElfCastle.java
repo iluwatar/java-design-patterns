@@ -25,6 +25,7 @@ package com.iluwatar.abstractfactory;
 
 /**
  * ElfCastle.
+ * 精灵城堡
  */
 public class ElfCastle implements Castle {
 

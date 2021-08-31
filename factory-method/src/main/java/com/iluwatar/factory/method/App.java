@@ -31,12 +31,15 @@ import lombok.extern.slf4j.Slf4j;
  * This is done by creating objects via calling a factory method either specified in an interface
  * and implemented by child classes, or implemented in a base class and optionally overridden by
  * derived classes—rather than by calling a constructor.
+ * 工厂方法是一个创建设计模式，它使用工厂方法来处理创建对象的问题，而不指定将要创建的对象的确切类。
+ * 通过调用工厂方法来创建对象，工厂方法可以在接口中指定并由子类实现，也可以在基类中实现并可选地由派生类覆盖——而不是调用构造函数。
  *
  * <p>In this Factory Method example we have an interface ({@link Blacksmith}) with a method for
  * creating objects ({@link Blacksmith#manufactureWeapon}). The concrete subclasses (
  * {@link OrcBlacksmith}, {@link ElfBlacksmith}) then override the method to produce objects of
  * their liking.
- *
+ * 在这个工厂方法示例中，我们有一个接口({@link Blacksmith}) 和一个创建对象({@link Blacksmith#manufactureWeapon})的方法。然后具体的
+ * 子类{@link OrcBlacksmith}, {@link ElfBlacksmith})重写该方法以生成自己喜欢的对象。
  */
 @Slf4j
 public class App {

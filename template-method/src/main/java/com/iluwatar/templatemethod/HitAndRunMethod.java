@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * HitAndRunMethod implementation of {@link StealingMethod}.
+ * 打了就跑方法
  */
 @Slf4j
 public class HitAndRunMethod extends StealingMethod {
@@ -38,11 +39,13 @@ public class HitAndRunMethod extends StealingMethod {
 
   @Override
   protected void confuseTarget(String target) {
+    // 从后面接近老妇妖精
     LOGGER.info("Approach the {} from behind.", target);
   }
 
   @Override
   protected void stealTheItem(String target) {
+    // 抓住手提包，赶快跑!
     LOGGER.info("Grab the handbag and run away fast!");
   }
 }

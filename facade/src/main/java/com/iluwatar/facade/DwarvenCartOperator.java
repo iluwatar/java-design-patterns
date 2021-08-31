@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * DwarvenCartOperator is one of the goldmine subsystems.
+ * 矮人车操作者
  */
 @Slf4j
 public class DwarvenCartOperator extends DwarvenMineWorker {

@@ -27,6 +27,7 @@ import java.util.Arrays;
 
 /**
  * Interface for the nodes in hierarchy.
+ * 接口，用于层次结构中的节点。
  */
 public abstract class Unit {
 

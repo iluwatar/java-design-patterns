@@ -27,6 +27,7 @@ import java.util.List;
 
 /**
  * Sentence.
+ * 句子
  */
 public class Sentence extends LetterComposite {
 

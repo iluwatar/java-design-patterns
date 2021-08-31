@@ -27,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * Letter.
+ * 字母
  */
 @RequiredArgsConstructor
 public class Letter extends LetterComposite {

@@ -29,6 +29,8 @@ import lombok.Setter;
 
 /**
  * The Captain uses {@link RowingBoat} to sail. <br> This is the client in the pattern.
+ * 船长使用{@link RowingBoat}航行。 这是模式中的client。
+ * 船长
  */
 @Setter
 @NoArgsConstructor

@@ -28,6 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Decorator that adds a club for the troll.
+ * 为巨魔添加棍棒的装饰器。
+ * 棒状的巨魔
  */
 @Slf4j
 @RequiredArgsConstructor

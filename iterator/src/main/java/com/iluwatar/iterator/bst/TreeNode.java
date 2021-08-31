@@ -26,6 +26,7 @@ package com.iluwatar.iterator.bst;
 /**
  * TreeNode Class, representing one node in a Binary Search Tree. Allows for a generically typed
  * value.
+ * 树节点类，表示二叉搜索树中的一个节点。允许泛型值。
  *
  * @param <T> generically typed to accept various data types for the val property
  */
@@ -68,6 +69,7 @@ public class TreeNode<T extends Comparable<T>> {
 
   /**
    * Inserts new TreeNode based on a given value into the subtree represented by self.
+   * 将基于给定值的新TreeNode插入由self表示的子树中。
    *
    * @param valToInsert The value to insert as a new TreeNode
    */
@@ -78,8 +80,10 @@ public class TreeNode<T extends Comparable<T>> {
 
   /**
    * Fetch the Parent TreeNode for a given value to insert into the BST.
+   * 获取给定值的 Parent TreeNode以插入到 BST 中。
    *
    * @param valToInsert Value of the new TreeNode to be inserted
+   *                    要插入的新TreeNode的值
    * @return Parent TreeNode of `valToInsert`
    */
   private TreeNode<T> getParentNodeOfValueToBeInserted(T valToInsert) {
@@ -97,9 +101,12 @@ public class TreeNode<T extends Comparable<T>> {
   /**
    * Returns left or right child of self based on a value that would be inserted; maintaining the
    * integrity of the BST.
+   * 根据将要插入的值返回self的左或右子元素;维护BST的完整性。
    *
    * @param value The value of the TreeNode that would be inserted beneath self
+   *              将插入self下面的TreeNode的值
    * @return The child TreeNode of self which represents the subtree where `value` would be inserted
+   *        self的子TreeNode表示将插入' value '的子树
    */
   private TreeNode<T> traverseOneLevelDown(T value) {
     if (this.isGreaterThan(value)) {
@@ -112,6 +119,7 @@ public class TreeNode<T extends Comparable<T>> {
    * Add a new Child TreeNode of given value to self. WARNING: This method is destructive (will
    * overwrite existing tree structure, if any), and should be called only by this class's insert()
    * method.
+   * 给self添加一个给定值的子树节点。警告:此方法是破坏性的(将覆盖现有的树结构，如果有的话)，应该仅由该类的insert()方法调用。
    *
    * @param valToInsert Value of the new TreeNode to be inserted
    */

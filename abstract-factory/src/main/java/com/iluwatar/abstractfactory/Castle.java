@@ -25,6 +25,7 @@ package com.iluwatar.abstractfactory;
 
 /**
  * Castle interface.
+ * 城堡
  */
 public interface Castle {
 

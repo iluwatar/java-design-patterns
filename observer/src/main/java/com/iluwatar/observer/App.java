@@ -35,9 +35,12 @@ import lombok.extern.slf4j.Slf4j;
  * distributed event handling systems. The Observer pattern is also a key part in the familiar
  * model–view–controller (MVC) architectural pattern. The Observer pattern is implemented in
  * numerous programming libraries and systems, including almost all GUI toolkits.
+ * 观察者模式是一种软件设计模式，在这种模式中，一个称为主体的对象维护一个称为观察者的依赖项列表，并在任何状态更改时自动通知它们(通常通过调用它们的一个方法)。
+ * 它主要用于实现分布式事件处理系统。观察者模式也是常见的模型-视图-控制器(MVC)体系结构模式中的关键部分。观察者模式在许多编程库和系统中实现，包括几乎所有的GUI工具包。
  *
  * <p>In this example {@link Weather} has a state that can be observed. The {@link Orcs} and {@link
  * Hobbits} register as observers and receive notifications when the {@link Weather} changes.
+ * 在这个例子中，{@link Weather}有一个可以观察到的状态。{@link Orcs}和{@link Hobbits}注册为观察者，并在{@link Weather}变化时接收通知。
  */
 @Slf4j
 public class App {

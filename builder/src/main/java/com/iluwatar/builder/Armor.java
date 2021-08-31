@@ -27,6 +27,7 @@ import lombok.AllArgsConstructor;
 
 /**
  * Armor enumeration.
+ * 护甲
  */
 @AllArgsConstructor
 public enum Armor {

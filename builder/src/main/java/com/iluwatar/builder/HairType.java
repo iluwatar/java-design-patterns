@@ -27,6 +27,7 @@ import lombok.AllArgsConstructor;
 
 /**
  * HairType enumeration.
+ * 头发类型
  */
 @AllArgsConstructor
 public enum HairType {

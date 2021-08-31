@@ -25,6 +25,7 @@ package com.iluwatar.visitor;
 
 /**
  * Commander.
+ * 指挥官
  */
 public class Commander extends Unit {
 

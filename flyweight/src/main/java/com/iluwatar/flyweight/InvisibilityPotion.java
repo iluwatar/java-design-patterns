@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * InvisibilityPotion.
+ * 隐身药水
  */
 @Slf4j
 public class InvisibilityPotion implements Potion {

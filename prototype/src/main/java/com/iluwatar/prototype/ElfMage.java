@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * ElfMage.
+ * 精灵法师
  */
 @EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor

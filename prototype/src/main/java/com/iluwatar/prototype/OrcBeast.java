@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * OrcBeast.
+ * 兽人野兽
  */
 @EqualsAndHashCode(callSuper = false)
 @RequiredArgsConstructor

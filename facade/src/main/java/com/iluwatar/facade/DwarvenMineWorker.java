@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * DwarvenMineWorker is one of the goldmine subsystems.
+ * 矮人矿工
  */
 @Slf4j
 public abstract class DwarvenMineWorker {

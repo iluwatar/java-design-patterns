@@ -27,6 +27,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * ElfWarlord.
+ * 精灵军阀
  */
 @EqualsAndHashCode
 public class ElfWarlord extends Warlord {

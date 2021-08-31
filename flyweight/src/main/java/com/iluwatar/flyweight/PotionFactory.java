@@ -30,6 +30,7 @@ import java.util.Map;
  * PotionFactory is the Flyweight in this example. It minimizes memory use by sharing object
  * instances. It holds a map of potion instances and new potions are created only when none of the
  * type already exists.
+ * PotionFactory是本例中的Flyweight。它通过共享对象实例最小化内存使用。它包含了药剂实例的map，并且只有当这些药剂类型都不存在时才会创造出新的药剂。
  */
 public class PotionFactory {
 

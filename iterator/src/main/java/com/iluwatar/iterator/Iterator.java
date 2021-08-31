@@ -25,6 +25,7 @@ package com.iluwatar.iterator;
 
 /**
  * Iterator interface to be implemented by iterators over various data structures.
+ * 迭代器接口，由不同数据结构上的迭代器实现。
  *
  * @param <T> generically typed for various objects
  */

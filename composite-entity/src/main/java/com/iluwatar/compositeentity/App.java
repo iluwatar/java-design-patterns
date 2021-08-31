@@ -31,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  * Composite entity is a Java EE Software design pattern and it is used to model, represent, and
  * manage a set of interrelated persistent objects rather than representing them as individual
  * fine-grained entity beans, and also a composite entity bean represents a graph of objects.
+ * 组合实体是一种Java EE Software设计模式，它用于建模、表示和管理一组相互关联的持久对象，而不是将它们表示为单独的细粒度实体bean，复合实体bean还表示对象图。
  */
 @Slf4j
 public class App {
@@ -38,6 +39,7 @@ public class App {
 
   /**
    * An instance that a console manages two related objects.
+   * 一个控制台管理两个相关对象的实例。
    */
   public App(String message, String signal) {
     var console = new CompositeEntity();

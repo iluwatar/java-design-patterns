@@ -25,6 +25,7 @@ package com.iluwatar.factorykit;
 
 /**
  * Class representing Bows.
+ * 弓
  */
 public class Bow implements Weapon {
   @Override

@@ -31,8 +31,12 @@ import java.util.function.Supplier;
  * Functional interface, an example of the factory-kit design pattern.
  * <br>Instance created locally gives an opportunity to strictly define
  * which objects types the instance of a factory will be able to create.
+ * 功能接口，factory-kit设计模式的一个例子。
+ * 本地创建的实例提供了严格定义工厂实例将能够创建的对象类型的机会。
+ *
  * <br>Factory is a placeholder for {@link Builder}s
  * with {@link WeaponFactory#create(WeaponType)} method to initialize new objects.
+ * Factory是{@link Builder}的一个占位符，带有{@link WeaponFactory#create(WeaponType)}方法来初始化新对象。
  */
 public interface WeaponFactory {
 
@@ -46,6 +50,7 @@ public interface WeaponFactory {
 
   /**
    * Creates factory - placeholder for specified {@link Builder}s.
+   * 为指定的{@link Builder}创建工厂占位符。
    *
    * @param consumer for the new builder to the factory.
    * @return factory with specified {@link Builder}s

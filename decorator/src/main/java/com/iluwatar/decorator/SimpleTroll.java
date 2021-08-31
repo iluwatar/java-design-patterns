@@ -27,6 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * SimpleTroll implements {@link Troll} interface directly.
+ * SimpleTroll直接实现{@link Troll}接口。
+ * 简单的巨魔
  */
 @Slf4j
 public class SimpleTroll implements Troll {

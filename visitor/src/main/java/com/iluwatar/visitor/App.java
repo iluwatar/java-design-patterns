@@ -26,10 +26,12 @@ package com.iluwatar.visitor;
 /**
  * <p>Visitor pattern defines a mechanism to apply operations on nodes in a hierarchy. New
  * operations can be added without altering the node interface.</p>
+ * 访问者模式定义了一种在层次结构中的节点上应用操作的机制。可以在不改变节点接口的情况下添加新的操作
  *
  * <p>In this example there is a unit hierarchy beginning from {@link Commander}. This hierarchy is
  * traversed by visitors. {@link SoldierVisitor} applies its operation on {@link Soldier}s, {@link
  * SergeantVisitor} on {@link Sergeant}s and so on.</p>
+ * 在这个例子中，有一个从{@link Commander}开始的单位层次结构。这个层次结构由访问者遍历。{@link SoldierVisitor}对{@link Soldier}、{@link SergeantVisitor}对{@link Sergeant}等应用其操作
  */
 public class App {
 

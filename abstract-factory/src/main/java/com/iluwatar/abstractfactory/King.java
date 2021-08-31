@@ -25,6 +25,7 @@ package com.iluwatar.abstractfactory;
 
 /**
  * King interface.
+ * 国王
  */
 public interface King {
 

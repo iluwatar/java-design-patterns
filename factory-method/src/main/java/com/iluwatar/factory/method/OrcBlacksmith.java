@@ -29,6 +29,7 @@ import java.util.Map;
 
 /**
  * Concrete subclass for creating new objects.
+ * 兽人铁匠
  */
 public class OrcBlacksmith implements Blacksmith {
 

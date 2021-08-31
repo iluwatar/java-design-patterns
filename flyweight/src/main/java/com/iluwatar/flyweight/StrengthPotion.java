@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * StrengthPotion.
+ * 力量药水
  */
 @Slf4j
 public class StrengthPotion implements Potion {

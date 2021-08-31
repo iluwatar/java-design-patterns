@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Orcs.
+ * 兽人
  */
 @Slf4j
 public class Orcs implements WeatherObserver {

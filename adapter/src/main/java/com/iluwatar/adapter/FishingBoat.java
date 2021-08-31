@@ -28,6 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Device class (adaptee in the pattern). We want to reuse this class. Fishing boat moves by
  * sailing.
+ * 设备类(模式中可适配的)。我们想重用这个类。渔船靠航行前进。
+ * 渔船
  */
 @Slf4j
 final class FishingBoat {

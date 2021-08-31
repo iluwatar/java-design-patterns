@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * FlyingEnchantment.
+ * 飞行魔法
  */
 @Slf4j
 public class FlyingEnchantment implements Enchantment {

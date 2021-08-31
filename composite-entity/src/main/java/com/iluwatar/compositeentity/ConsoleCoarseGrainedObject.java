@@ -25,6 +25,7 @@ package com.iluwatar.compositeentity;
 
 /**
  * A specific CoarseGrainedObject to implement a console.
+ * 实现控制台的特定的CoarseGrainedObject。
  */
 
 public class ConsoleCoarseGrainedObject extends CoarseGrainedObject<String> {

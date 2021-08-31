@@ -31,9 +31,14 @@ import lombok.extern.slf4j.Slf4j;
  * new objects. This pattern is used to: - avoid subclasses of an object creator in the client
  * application, like the abstract factory pattern, does. - avoid the inherent cost of creating a new
  * object in the standard way (e.g., using the 'new' keyword)
+ * 原型模式是软件开发中的一种创造性设计模式。当要创建的对象类型由一个原型实例确定时，就会使用它，这个原型实例被克隆以产生新的对象。
+ * 这个模式用于:
+ * -避免在客户端应用程序中创建对象的子类，就像抽象工厂模式那样。
+ * -避免以标准方式创建新对象的固有成本(例如，使用'new'关键字)
  *
  * <p>In this example we have a factory class ({@link HeroFactoryImpl}) producing objects by
  * cloning the existing ones. The factory's prototype objects are given as constructor parameters.
+ * 在这个例子中，我们有一个工厂类({@link HeroFactoryImpl})通过克隆现有对象来产生对象。工厂的原型对象作为构造函数参数给出。
  */
 @Slf4j
 public class App {
