@@ -25,6 +25,7 @@ package com.iluwatar.interpreter;
 
 /**
  * PlusExpression.
+ * 加法表达式
  */
 public class PlusExpression extends Expression {
 

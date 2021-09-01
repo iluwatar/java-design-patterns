@@ -29,13 +29,16 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>The Strategy pattern (also known as the policy pattern) is a software design pattern that
  * enables an algorithm's behavior to be selected at runtime.</p>
+ * 策略模式(也称为策略模式)是一种软件设计模式，它允许在运行时选择算法的行为。
  *
  * <p>Before Java 8 the Strategies needed to be separate classes forcing the developer
  * to write lots of boilerplate code. With modern Java, it is easy to pass behavior
  * with method references and lambdas making the code shorter and more readable.</p>
+ * 在Java 8之前，策略需要是独立的类，迫使开发人员编写大量样板代码。使用现代Java，可以很容易地通过方法引用和lambda传递行为，这使得代码更短，可读性更强
  *
  * <p>In this example ({@link DragonSlayingStrategy}) encapsulates an algorithm. The containing
  * object ({@link DragonSlayer}) can alter its behavior by changing its strategy.</p>
+ * 在这个例子中({@link DragonSlayingStrategy})封装了一个算法。包含的对象({@link DragonSlayer})可以通过改变策略来改变其行为
  *
  */
 @Slf4j
@@ -48,12 +51,15 @@ public class App {
    */
   public static void main(String[] args) {
     // GoF Strategy pattern
+    // 绿龙在前面
     LOGGER.info("Green dragon spotted ahead!");
     var dragonSlayer = new DragonSlayer(new MeleeStrategy());
     dragonSlayer.goToBattle();
+    // 红龙出现
     LOGGER.info("Red dragon emerges.");
     dragonSlayer.changeStrategy(new ProjectileStrategy());
     dragonSlayer.goToBattle();
+    // 黑龙在你前面着陆
     LOGGER.info("Black dragon lands before you.");
     dragonSlayer.changeStrategy(new SpellStrategy());
     dragonSlayer.goToBattle();

@@ -25,6 +25,7 @@ package com.iluwatar.chain;
 
 /**
  * OrcKing makes requests that are handled by the chain.
+ * 兽人王的请求由链处理。
  */
 public class OrcKing {
 

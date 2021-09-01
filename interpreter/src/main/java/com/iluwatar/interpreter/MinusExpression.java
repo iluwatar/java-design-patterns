@@ -25,6 +25,7 @@ package com.iluwatar.interpreter;
 
 /**
  * MinusExpression.
+ * 减法表达式
  */
 public class MinusExpression extends Expression {
 

@@ -33,22 +33,26 @@ public class Request {
   /**
    * The type of this request, used by each item in the chain to see if they should or can handle
    * this particular request.
+   * 此请求的类型，由链中的每个项使用，以查看它们是否应该或能够处理此特定请求。
    */
   private final RequestType requestType;
 
   /**
    * A description of the request.
+   * 请求的描述。
    */
   private final String requestDescription;
 
   /**
    * Indicates if the request is handled or not. A request can only switch state from unhandled to
    * handled, there's no way to 'unhandle' a request.
+   * 指示请求是否被处理。请求只能从未处理状态切换到已处理状态，没有办法“unhandle”请求。
    */
   private boolean handled;
 
   /**
    * Create a new request of the given type and accompanied description.
+   * 创建给定类型和附带说明的新请求。
    *
    * @param requestType        The type of request
    * @param requestDescription The description of the request
@@ -60,6 +64,7 @@ public class Request {
 
   /**
    * Get a description of the request.
+   * 获取请求的描述。
    *
    * @return A human readable description of the request
    */
@@ -70,6 +75,7 @@ public class Request {
   /**
    * Get the type of this request, used by each person in the chain of command to see if they should
    * or can handle this particular request.
+   * 获取此请求的类型，命令链中的每个人使用该类型，以查看他们是否应该或能够处理此特定请求。
    *
    * @return The request type
    */
@@ -79,6 +85,7 @@ public class Request {
 
   /**
    * Mark the request as handled.
+   * 将请求标记为已处理。
    */
   public void markHandled() {
     this.handled = true;
@@ -86,6 +93,7 @@ public class Request {
 
   /**
    * Indicates if this request is handled or not.
+   * 指示是否处理此请求。
    *
    * @return <tt>true</tt> when the request is handled, <tt>false</tt> if not
    */

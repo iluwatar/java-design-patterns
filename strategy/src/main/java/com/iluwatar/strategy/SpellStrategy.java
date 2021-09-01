@@ -27,12 +27,14 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Spell strategy.
+ * 咒语的策略
  */
 @Slf4j
 public class SpellStrategy implements DragonSlayingStrategy {
 
   @Override
   public void execute() {
+    // 你施下瓦解咒龙就会化为一堆尘土!
     LOGGER.info("You cast the spell of disintegration and the dragon vaporizes in a pile of dust!");
   }
 

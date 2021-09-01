@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Angry state.
+ * 愤怒的状态。
  */
 @Slf4j
 public class AngryState implements State {

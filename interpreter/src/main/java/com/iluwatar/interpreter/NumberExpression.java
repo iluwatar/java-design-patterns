@@ -25,6 +25,7 @@ package com.iluwatar.interpreter;
 
 /**
  * NumberExpression.
+ * 数字表达式
  */
 public class NumberExpression extends Expression {
 
@@ -45,6 +46,6 @@ public class NumberExpression extends Expression {
 
   @Override
   public String toString() {
-    return "number";
+    return ""+number;
   }
 }

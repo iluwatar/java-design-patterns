@@ -25,6 +25,7 @@ package com.iluwatar.state;
 
 /**
  * Mammoth has internal state that defines its behavior.
+ * 长毛象的内部状态决定了它的行为。
  */
 public class Mammoth {
 

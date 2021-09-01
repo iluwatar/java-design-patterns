@@ -25,6 +25,7 @@ package com.iluwatar.interpreter;
 
 /**
  * MultiplyExpression.
+ * 乘法表达式
  */
 public class MultiplyExpression extends Expression {
 

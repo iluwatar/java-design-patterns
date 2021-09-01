@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * RequestHandler.
+ * 请求处理者
  */
 @Slf4j
 @AllArgsConstructor

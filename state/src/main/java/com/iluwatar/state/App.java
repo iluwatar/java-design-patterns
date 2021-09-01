@@ -26,11 +26,14 @@ package com.iluwatar.state;
 /**
  * In the State pattern, the container object has an internal state object that defines the current
  * behavior. The state object can be changed to alter the behavior.
+ * 在State模式中，容器对象有一个定义当前行为的内部状态对象。可以通过改变状态对象来改变行为。
  *
  * <p>This can be a cleaner way for an object to change its behavior at runtime without resorting
  * to large monolithic conditional statements and thus improves maintainability.
+ * 对于对象来说，这是一种更清晰的方式，可以在运行时改变其行为，而无需求助于大型单块条件语句，从而提高了可维护性。
  *
  * <p>In this example the {@link Mammoth} changes its behavior as time passes by.
+ * 在这个例子中，随着时间的推移，{@link Mammoth}会改变它的行为。
  */
 public class App {
 
