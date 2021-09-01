@@ -46,6 +46,6 @@ public class NumberExpression extends Expression {
 
   @Override
   public String toString() {
-    return ""+number;
+    return "number";
   }
 }

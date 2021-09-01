@@ -67,7 +67,6 @@ public class App {
     // 对字符串进行标记，并逐个遍历它们
     var tokenList = tokenString.split(" ");
     for (var s : tokenList) {
-      LOGGER.info("stack : {}", stack);
       if (isOperator(s)) {
         // when an operator is encountered we expect that the numbers can be popped from the top of
         // the stack
