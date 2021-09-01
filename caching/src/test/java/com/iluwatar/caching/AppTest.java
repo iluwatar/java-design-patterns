@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Tests that Caching example runs without errors.
@@ -43,7 +44,14 @@ class AppTest {
 
   @Test
   void shouldExecuteApplicationWithoutException() {
-
     assertDoesNotThrow(() -> App.main(new String[]{}));
+  }
+
+  @Test
+  void executeAppWithException(){
+    assertThrows(
+      NoClassDefFoundError.class,
+      () -> App.main(new String[]{"--mongo"})
+    );
   }
 }
