@@ -166,6 +166,7 @@ public class CacheStore {
         .map(LruCache::getCacheDataInListForm)
         .orElse(List.of())
         .forEach(dbManager::updateDb);
+    dbManager.disconnect();
   }
 
   /**

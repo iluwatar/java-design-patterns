@@ -23,6 +23,11 @@ public class VirtualDb implements DbManager {
     db = new HashMap<>();
   }
 
+  @Override
+  public void disconnect() {
+    db = null;
+  }
+
   /**
    * Read from Db.
    *

@@ -24,10 +24,9 @@
 package com.iluwatar.caching;
 
 import com.iluwatar.caching.database.DbManager;
-import com.iluwatar.caching.database.exceptions.DatabaseConnectionException;
+
 import java.util.Optional;
 
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -39,7 +38,6 @@ import lombok.extern.slf4j.Slf4j;
  * appropriate function in the CacheStore class.
  */
 @Slf4j
-@Data
 public class AppManager {
   /**
    * Caching Policy.
@@ -56,6 +54,7 @@ public class AppManager {
 
   /**
    * Constructor.
+   *
    * @param newDbManager database manager
    */
   public AppManager(final DbManager newDbManager) {
@@ -69,15 +68,12 @@ public class AppManager {
    * to (temporarily) store the data/objects during runtime.
    */
   public void initDb() {
-    try {
-      dbManager.connect();
-    } catch (DatabaseConnectionException e) {
-      LOGGER.error("Could not connect to DB: {}", e.getMessage());
-    }
+    dbManager.connect();
   }
 
   /**
    * Initialize caching policy.
+   *
    * @param policy is a {@link CachingPolicy}
    */
   public void initCachingPolicy(final CachingPolicy policy) {
@@ -90,6 +86,7 @@ public class AppManager {
 
   /**
    * Find user account.
+   *
    * @param userId String
    * @return {@link UserAccount}
    */
@@ -108,6 +105,7 @@ public class AppManager {
 
   /**
    * Save user account.
+   *
    * @param userAccount {@link UserAccount}
    */
   public void save(final UserAccount userAccount) {
@@ -125,6 +123,7 @@ public class AppManager {
 
   /**
    * Returns String.
+   *
    * @return String
    */
   public String printCacheContent() {
@@ -133,6 +132,7 @@ public class AppManager {
 
   /**
    * Cache-Aside save user account helper.
+   *
    * @param userAccount {@link UserAccount}
    */
   private void saveAside(final UserAccount userAccount) {
@@ -142,17 +142,18 @@ public class AppManager {
 
   /**
    * Cache-Aside find user account helper.
+   *
    * @param userId String
    * @return {@link UserAccount}
    */
   private UserAccount findAside(final String userId) {
     return Optional.ofNullable(cacheStore.get(userId))
-        .or(() -> {
-          Optional<UserAccount> userAccount =
-                  Optional.ofNullable(dbManager.readFromDb(userId));
-          userAccount.ifPresent(account -> cacheStore.set(userId, account));
-          return userAccount;
-        })
-        .orElse(null);
+            .or(() -> {
+              Optional<UserAccount> userAccount =
+                      Optional.ofNullable(dbManager.readFromDb(userId));
+              userAccount.ifPresent(account -> cacheStore.set(userId, account));
+              return userAccount;
+            })
+            .orElse(null);
   }
 }

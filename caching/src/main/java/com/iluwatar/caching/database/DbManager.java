@@ -1,7 +1,6 @@
 package com.iluwatar.caching.database;
 
 import com.iluwatar.caching.UserAccount;
-import com.iluwatar.caching.database.exceptions.DatabaseConnectionException;
 
 /**
  * <p>DBManager handles the communication with the underlying data store i.e.
@@ -12,10 +11,16 @@ public interface DbManager {
   /**
    * Connect to DB.
    */
-  void connect() throws DatabaseConnectionException;
+  void connect();
+
+  /**
+   * Disconnect from DB.
+   */
+  void disconnect();
 
   /**
    * Read from DB.
+   *
    * @param userId {@link String}
    * @return {@link UserAccount}
    */
@@ -23,6 +28,7 @@ public interface DbManager {
 
   /**
    * Write to DB.
+   *
    * @param userAccount {@link UserAccount}
    * @return {@link UserAccount}
    */
@@ -30,6 +36,7 @@ public interface DbManager {
 
   /**
    * Update record.
+   *
    * @param userAccount {@link UserAccount}
    * @return {@link UserAccount}
    */
@@ -37,6 +44,7 @@ public interface DbManager {
 
   /**
    * Update record or Insert if not exists.
+   *
    * @param userAccount {@link UserAccount}
    * @return {@link UserAccount}
    */

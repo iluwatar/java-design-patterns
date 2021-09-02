@@ -7,10 +7,13 @@ import static com.iluwatar.caching.constants.CachingConstants.USER_NAME;
 
 import com.iluwatar.caching.UserAccount;
 import com.iluwatar.caching.constants.CachingConstants;
-import com.iluwatar.caching.database.exceptions.DatabaseConnectionException;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 
@@ -20,18 +23,28 @@ import org.bson.Document;
  */
 @Slf4j
 public class MongoDb implements DbManager {
-  private static final String DATABASE_NAME = "test";
+  private static final String DATABASE_NAME = "admin";
+  private static final String MONGO_USER = "root";
+  private static final String MONGO_PASSWORD = "rootpassword";
+  private MongoClient client;
+  private MongoDatabase db;
 
   /**
    * Connect to Db. Check th connection
    */
   @Override
-  public void connect() throws DatabaseConnectionException {
-    try (MongoClient mongoClient = new MongoClient()) {
-      mongoClient.getDatabase("test");
-    } catch (NoClassDefFoundError e) {
-      throw new DatabaseConnectionException("Could not connect to DB.");
-    }
+  public void connect() {
+    MongoCredential mongoCredential = MongoCredential.createCredential(MONGO_USER,
+                    DATABASE_NAME,
+                    MONGO_PASSWORD.toCharArray());
+    MongoClientOptions options = MongoClientOptions.builder().build();
+    client = new MongoClient(new ServerAddress(), List.of(mongoCredential), options);
+    db = client.getDatabase(DATABASE_NAME);
+  }
+
+  @Override
+  public void disconnect() {
+    client.close();
   }
 
   /**
@@ -42,22 +55,19 @@ public class MongoDb implements DbManager {
    */
   @Override
   public UserAccount readFromDb(final String userId) {
-    try (MongoClient mongoClient = new MongoClient()) {
-      MongoDatabase db = mongoClient.getDatabase(DATABASE_NAME);
-      var iterable = db
-              .getCollection(CachingConstants.USER_ACCOUNT)
-              .find(new Document(USER_ID, userId));
-      if (iterable.first() == null) {
-        return null;
-      }
-      Document doc = iterable.first();
-      if (doc != null) {
-        String userName = doc.getString(USER_NAME);
-        String appInfo = doc.getString(ADD_INFO);
-        return new UserAccount(userId, userName, appInfo);
-      } else {
-        return null;
-      }
+    var iterable = db
+            .getCollection(CachingConstants.USER_ACCOUNT)
+            .find(new Document(USER_ID, userId));
+    if (iterable.first() == null) {
+      return null;
+    }
+    Document doc = iterable.first();
+    if (doc != null) {
+      String userName = doc.getString(USER_NAME);
+      String appInfo = doc.getString(ADD_INFO);
+      return new UserAccount(userId, userName, appInfo);
+    } else {
+      return null;
     }
   }
 
@@ -69,15 +79,12 @@ public class MongoDb implements DbManager {
    */
   @Override
   public UserAccount writeToDb(final UserAccount userAccount) {
-    try (MongoClient mongoClient = new MongoClient()) {
-      MongoDatabase db = mongoClient.getDatabase(DATABASE_NAME);
-      db.getCollection(USER_ACCOUNT).insertOne(
-              new Document(USER_ID, userAccount.getUserId())
-                      .append(USER_NAME, userAccount.getUserName())
-                      .append(ADD_INFO, userAccount.getAdditionalInfo())
-      );
-      return userAccount;
-    }
+    db.getCollection(USER_ACCOUNT).insertOne(
+            new Document(USER_ID, userAccount.getUserId())
+                    .append(USER_NAME, userAccount.getUserName())
+                    .append(ADD_INFO, userAccount.getAdditionalInfo())
+    );
+    return userAccount;
   }
 
   /**
@@ -88,15 +95,12 @@ public class MongoDb implements DbManager {
    */
   @Override
   public UserAccount updateDb(final UserAccount userAccount) {
-    try (MongoClient mongoClient = new MongoClient()) {
-      MongoDatabase db = mongoClient.getDatabase(DATABASE_NAME);
-      Document id = new Document(USER_ID, userAccount.getUserId());
-      Document dataSet = new Document(USER_NAME, userAccount.getUserName())
-              .append(ADD_INFO, userAccount.getAdditionalInfo());
-      db.getCollection(CachingConstants.USER_ACCOUNT)
-              .updateOne(id, new Document("$set", dataSet));
-      return userAccount;
-    }
+    Document id = new Document(USER_ID, userAccount.getUserId());
+    Document dataSet = new Document(USER_NAME, userAccount.getUserName())
+            .append(ADD_INFO, userAccount.getAdditionalInfo());
+    db.getCollection(CachingConstants.USER_ACCOUNT)
+            .updateOne(id, new Document("$set", dataSet));
+    return userAccount;
   }
 
   /**
@@ -107,21 +111,18 @@ public class MongoDb implements DbManager {
    */
   @Override
   public UserAccount upsertDb(final UserAccount userAccount) {
-    try (MongoClient mongoClient = new MongoClient()) {
-      MongoDatabase db = mongoClient.getDatabase(DATABASE_NAME);
-      String userId = userAccount.getUserId();
-      String userName = userAccount.getUserName();
-      String additionalInfo = userAccount.getAdditionalInfo();
-      db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
-              new Document(USER_ID, userId),
-              new Document("$set",
-                      new Document(USER_ID, userId)
-                              .append(USER_NAME, userName)
-                              .append(ADD_INFO, additionalInfo)
-              ),
-              new UpdateOptions().upsert(true)
-      );
-      return userAccount;
-    }
+    String userId = userAccount.getUserId();
+    String userName = userAccount.getUserName();
+    String additionalInfo = userAccount.getAdditionalInfo();
+    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
+            new Document(USER_ID, userId),
+            new Document("$set",
+                    new Document(USER_ID, userId)
+                            .append(USER_NAME, userName)
+                            .append(ADD_INFO, additionalInfo)
+            ),
+            new UpdateOptions().upsert(true)
+    );
+    return userAccount;
   }
 }

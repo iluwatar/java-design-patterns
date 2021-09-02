@@ -40,12 +40,12 @@ import lombok.extern.slf4j.Slf4j;
  * the preferred caching policy/strategy).
  * <p>
  * <i>{@literal App --> AppManager --> CacheStore/LRUCache/CachingPolicy -->
- *     DBManager} </i>
+ * DBManager} </i>
  * </p>
  *
  * <p>
- *     To run the application with MongoDb, just start it with parameter --mongo
- *     Example: java -jar app.jar --mongo
+ * To run the application with MongoDb, just start it with parameter --mongo
+ * Example: java -jar app.jar --mongo
  * </p>
  *
  * @see CacheStore
@@ -65,6 +65,7 @@ public class App {
 
   /**
    * Constructor of current App.
+   *
    * @param isMongo boolean
    */
   public App(final boolean isMongo) {
@@ -97,6 +98,7 @@ public class App {
 
   /**
    * Check the input parameters. if
+   *
    * @param args input params
    * @return true if there is "--mongo" parameter in arguments
    */
