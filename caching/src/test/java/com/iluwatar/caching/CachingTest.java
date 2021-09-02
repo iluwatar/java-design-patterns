@@ -23,10 +23,10 @@
 
 package com.iluwatar.caching;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Application test
@@ -48,25 +48,25 @@ class CachingTest {
 
   @Test
   void testReadAndWriteThroughStrategy() {
-	assertNotNull(app);
+    assertNotNull(app);
     app.useReadAndWriteThroughStrategy();
   }
 
   @Test
   void testReadThroughAndWriteAroundStrategy() {
-	assertNotNull(app);
+    assertNotNull(app);
     app.useReadThroughAndWriteAroundStrategy();
   }
 
   @Test
   void testReadThroughAndWriteBehindStrategy() {
-	assertNotNull(app);
+    assertNotNull(app);
     app.useReadThroughAndWriteBehindStrategy();
   }
 
   @Test
   void testCacheAsideStrategy() {
-	assertNotNull(app);
+    assertNotNull(app);
     app.useCacheAsideStategy();
   }
 }
