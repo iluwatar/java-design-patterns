@@ -44,7 +44,9 @@ import lombok.extern.slf4j.Slf4j;
  * </p>
  *
  * <p>
- * To run the application with MongoDb, just start it with parameter --mongo
+ * To run the application with MongoDb:
+ * 1. Launch mongoDB in docker container with command: docker-compose up
+ * 2. Start application with parameter --mongo
  * Example: java -jar app.jar --mongo
  * </p>
  *
