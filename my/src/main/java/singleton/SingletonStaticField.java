@@ -126,14 +126,16 @@ class SingletonLazyDoubleCheck {
     }
 
     public static SingletonLazyDoubleCheck getInstance() {
-        if (INSTANCE == null) {
+        var result = INSTANCE;
+        if (result == null) {
             synchronized (SingletonLazyDoubleCheck.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new SingletonLazyDoubleCheck();
+                result = INSTANCE;
+                if (result == null) {
+                    INSTANCE = result = new SingletonLazyDoubleCheck();
                 }
             }
         }
-        return INSTANCE;
+        return result;
     }
 }
 
