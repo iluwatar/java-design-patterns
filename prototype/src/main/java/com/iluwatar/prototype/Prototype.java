@@ -23,11 +23,21 @@
 
 package com.iluwatar.prototype;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Prototype.
  */
-public interface Prototype {
+@Slf4j
+public abstract class Prototype<H> implements Cloneable {
 
-  Object copy();
+    public H copy() {
+        try {
+            return (H) super.clone();
+        } catch (CloneNotSupportedException e) {
+            LOGGER.error("Failed to clone {}!", this.getClass().getName());
+        }
+        return null;
+    }
 
 }

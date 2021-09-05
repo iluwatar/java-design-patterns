@@ -35,25 +35,15 @@ public class HeroFactoryImpl implements HeroFactory {
   private final Warlord warlord;
   private final Beast beast;
 
-  /**
-   * Create mage.
-   */
-  public Mage createMage() {
-    return mage.copy();
+  public <T> T create(HeroTypes type) {
+    switch (type) {
+      case BEAST:
+        return (T) beast.copy();
+      case MAGE:
+        return (T) mage.copy();
+      case WARLORD:
+        return (T) warlord.copy();
+    }
+    return null;
   }
-
-  /**
-   * Create warlord.
-   */
-  public Warlord createWarlord() {
-    return warlord.copy();
-  }
-
-  /**
-   * Create beast.
-   */
-  public Beast createBeast() {
-    return beast.copy();
-  }
-
 }

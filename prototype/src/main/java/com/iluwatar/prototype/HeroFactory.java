@@ -28,10 +28,6 @@ package com.iluwatar.prototype;
  */
 public interface HeroFactory {
 
-  Mage createMage();
-
-  Warlord createWarlord();
-
-  Beast createBeast();
+  <T> T create(HeroTypes type);
 
 }

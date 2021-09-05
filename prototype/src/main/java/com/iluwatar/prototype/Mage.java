@@ -31,12 +31,6 @@ import lombok.NoArgsConstructor;
  */
 @EqualsAndHashCode
 @NoArgsConstructor
-public abstract class Mage implements Prototype {
-
-  public Mage(Mage source) {
-  }
-
-  @Override
-  public abstract Mage copy();
+public abstract class Mage extends Prototype<Mage> {
 
 }

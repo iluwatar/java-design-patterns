@@ -49,9 +49,10 @@ public class App {
         new ElfWarlord("cleaning"),
         new ElfBeast("protecting")
     );
-    var mage = factory.createMage();
-    var warlord = factory.createWarlord();
-    var beast = factory.createBeast();
+
+    var mage = factory.create(HeroTypes.MAGE);
+    var warlord = factory.create(HeroTypes.WARLORD);
+    var beast = factory.create(HeroTypes.BEAST);
     LOGGER.info(mage.toString());
     LOGGER.info(warlord.toString());
     LOGGER.info(beast.toString());
@@ -61,9 +62,10 @@ public class App {
         new OrcWarlord("sword"),
         new OrcBeast("laser")
     );
-    mage = factory.createMage();
-    warlord = factory.createWarlord();
-    beast = factory.createBeast();
+
+    mage = factory.create(HeroTypes.MAGE);
+    warlord = factory.create(HeroTypes.WARLORD);
+    beast = factory.create(HeroTypes.BEAST);
     LOGGER.info(mage.toString());
     LOGGER.info(warlord.toString());
     LOGGER.info(beast.toString());
