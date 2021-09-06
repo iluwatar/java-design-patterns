@@ -28,6 +28,6 @@ package com.iluwatar.prototype;
  */
 public interface HeroFactory {
 
-  <T> T create(HeroTypes type);
+    <T> T create(HeroTypes type);
 
 }
