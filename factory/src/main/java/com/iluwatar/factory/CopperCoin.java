@@ -25,6 +25,7 @@ package com.iluwatar.factory;
 
 /**
  * CopperCoin implementation.
+ * 铜币
  */
 public class CopperCoin implements Coin {
 

@@ -29,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * Enumeration for different types of coins.
+ * 枚举不同类型的硬币。
  */
 @RequiredArgsConstructor
 @Getter

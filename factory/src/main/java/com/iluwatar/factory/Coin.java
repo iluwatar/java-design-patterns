@@ -25,6 +25,7 @@ package com.iluwatar.factory;
 
 /**
  * Coin interface.
+ * 硬币接口
  */
 public interface Coin {
 

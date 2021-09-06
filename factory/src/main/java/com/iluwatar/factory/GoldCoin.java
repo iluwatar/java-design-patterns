@@ -25,6 +25,7 @@ package com.iluwatar.factory;
 
 /**
  * GoldCoin implementation.
+ * 金币
  */
 public class GoldCoin implements Coin {
 

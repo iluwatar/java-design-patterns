@@ -30,6 +30,7 @@ public class CoinFactory {
 
   /**
    * Factory method takes as a parameter the coin type and calls the appropriate class.
+   * Factory方法接受硬币类型作为参数，并调用适当的类。
    */
   public static Coin getCoin(CoinType type) {
     return type.getConstructor().get();

@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>In this example an alchemist manufactures coins. CoinFactory is the factory class and it
  * provides a static method to create different types of coins.
+ * 在这个例子中，一个炼金术士制造硬币。CoinFactory是一个工厂类，它提供了一个静态方法来创建不同类型的硬币。
  */
 
 @Slf4j

@@ -84,11 +84,14 @@ Use the Singleton pattern when
 
 Some typical use cases for the Singleton
 
+Singleton的一些典型用例
+
 * The logging class
 * Managing a connection to a database
 * File manager
 
 ## Known uses
+已知使用
 
 * [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29)
 * [java.awt.Desktop#getDesktop()](http://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--)

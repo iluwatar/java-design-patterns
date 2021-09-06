@@ -99,7 +99,7 @@ Use the Factory Method pattern when:
 * Classes delegate responsibility to one of several helper subclasses, and you want to localize the 
 knowledge of which helper subclass is the delegate.
 
-## Known uses
+Known uses
 
 * [java.util.Calendar](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
 * [java.util.ResourceBundle](http://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
