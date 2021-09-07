@@ -36,16 +36,12 @@ public final class ThreadSafeDoubleCheckLocking {
 
   private static volatile ThreadSafeDoubleCheckLocking instance;
 
-  private static boolean flag = true;
-
   /**
    * private constructor to prevent client from instantiating.
    */
   private ThreadSafeDoubleCheckLocking() {
     // to prevent instantiating by Reflection call
-    if (flag) {
-      flag = false;
-    } else {
+    if (instance != null) {
       throw new IllegalStateException("Already initialized.");
     }
   }
