@@ -28,5 +28,5 @@ In this pattern, parallel processing is performed using a system consisting of a
 
 ## Credits
 
-* [https://docs.gigaspaces.com/sbp/master-worker-pattern.html]
-* [http://www.cs.sjsu.edu/~pearce/oom/patterns/behavioral/masterslave.htm]
+* [Master-Worker Pattern](https://docs.gigaspaces.com/sbp/master-worker-pattern.html)
+* [The Master-Slave Design Pattern](https://www.cs.sjsu.edu/~pearce/oom/patterns/behavioral/masterslave.htm)
