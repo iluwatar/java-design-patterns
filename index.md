@@ -1,73 +1,73 @@
-| Pattern                                            | Category               | Tags                              |
-| :---                                               | :---                   | :---                              |
-| [Abstract Document](abstract-document)             | Structural             | Extensibility                     |
-| Abstract Factory|Creational|Gang of Four |
-| Active Object|Concurrency|Performance |
-| Acyclic Visitor|Behavioral|Extensibility |
-| Adapter|Structural|Gang of Four |
-| Aggregator Microservices|Architectural|Cloud distributed |
-| Ambassador|Structural|Decoupling |
-| API Gateway|Architectural|Cloud distributed, Decoupling |
-| Arrange/Act/Assert|Idiom|Testing |
-| Async Method Invocation|Concurrency|Reactive |
-| Balking|Concurrency|Decoupling |
-| Bridge|Structural|Gang of Four |
-| Builder|Creational|Gang of Four |
-| Business Delegate|Structural|Decoupling |
-| Bytecode|Behavioral|Game programming |
-| Caching|Behavioral|Performance |
-| Callback|Idiom|Reactive |
-| Chain of Responsibility|Behavioral|Gang of Four |
-| Circuit Breaker|Behavioral|Performance, Decoupling |
-| Cloud Static Content Hosting|Cloud|Cloud distributed |
-| Collection Pipeline|Functional|Reactive |
-| Combinator|Idiom|Reactive |
-| Command|Behavioral|Gang of Four |
-| Commander|Concurrency|Cloud distributed |
-| Composite|Structural|Gang of Four |
-| Composite Entity|Structural|Enterprise Integration Pattern |
-| Converter|Creational|Decoupling |
-| Command Query Responsibility Segregation|Architectural|Performance, Cloud distributed |
-| Data Access Object|Architectural|Data access |
-| Data Bus|Architectural|Decoupling |
-| Data Locality|Behavioral|Performance, Game programming |
-| Data Mapper|Architectural|Decoupling |
-| Data Transfer Object|Architectural|Performance |
-| Decorator|Structural|Gang of Four, Extensibility |
-| Delegation|Structural|Decoupling |
-| Dependency Injection|Creational|Decoupling |
-| Dirty Flag|Behavioral|Performance, Game programming |
-| Double Buffer|Behavioral|Performance, Game programming |
-| Double Checked Locking|Idiom|Performance |
-| Double Dispatch|Idiom|Extensibility |
-| EIP Aggregator|Integration|Enterprise Integration Pattern |
-| EIP Message Channel|Integration|Enterprise Integration Pattern |
-| EIP Publish and Subscribe|Integration|Enterprise Integration Pattern |
-| EIP Splitter|Integration|Enterprise Integration Pattern |
-| EIP Wire Tap|Integration|Enterprise Integration Pattern |
-| Event Aggregator|Structural|Reactive |
-| Event Based Asynchronous|Concurrency|Reactive |
-| Event Driven Architecture|Architectural|Reactive |
-| Event Queue|Concurrency|Game programming |
-| Event Sourcing|Architectural|Performance |
-| Execute Around|Idiom|Extensibility |
-| Extension Objects|Behavioral|Extensibility |
-| Facade|Structural|Gang of Four, Decoupling |
-| Factory|Creational|Gang of Four |
-| Factory kit|Creational|Extensibility |
-| Factory Method|Creational|Gang of Four, Extensibility |
-| Fan-Out/Fan-In|Integration|Microservices |
-| Feature Toggle|Behavioral|Extensibility |
-| Filterer|Functional|Extensibility |
-| Fluent Interface|Functional|Reactive |
-| Flux|Structural|Decoupling |
-| Flyweight|Structural|Gang of Four, Performance |
-| Front Controller|Structural|Decoupling |
-| Game Loop|Behavioral|Game programming |
-| Guarded Suspension|Concurrency|Decoupling |
-| Half-Sync Half-Async|Concurrency|Performance |
-| Hexagonal|Architectural|Decoupling |
-| Intercepting Filter|Behavioral|Decoupling |
+| Pattern                                                                              | Category               | Tags                              |
+| :---                                                                                 | :---                   | :---                              |
+| [Abstract Document](abstract-document)                                               | Structural             | Extensibility                     |
+| [Abstract Factory](abstract-factory)                                                 | Creational             | Gang of Four                      |
+| [Active Object](active-object)                                                       | Concurrency            | Performance                       |
+| [Acyclic Visitor](acyclic-visitor)                                                   | Behavioral             | Extensibility                     |
+| [Adapter](adapter)                                                                   | Structural             | Gang of Four                      |
+| [Aggregator Microservices](aggregator-microservices)                                 | Architectural          | Cloud distributed                 |
+| [Ambassador](ambassador)                                                             | Structural             | Decoupling                        |
+| [API Gateway](api-gateway)                                                           | Architectural          | Cloud distributed, Decoupling     |
+| [Arrange/Act/Assert](arrange-act-assert)                                             | Idiom                  | Testing                           |
+| [Async Method Invocation](async-method-invocation)                                   | Concurrency            | Reactive                          |
+| [Balking](balking)                                                                   | Concurrency            | Decoupling                        |
+| [Bridge](bridge)                                                                     | Structural             | Gang of Four                      |
+| [Builder](builder)                                                                   | Creational             | Gang of Four                      |
+| [Business Delegate](business-delegate)                                               | Structural             | Decoupling                        |
+| [Bytecode](bytecode)                                                                 | Behavioral             | Game programming                  |
+| [Caching](caching)                                                                   | Behavioral             | Performance                       |
+| [Callback](callback)                                                                 | Idiom                  | Reactive                          |
+| [Chain of Responsibility](chain-of-responsibility)                                   | Behavioral             | Gang of Four                      |
+| [Circuit Breaker](circuit-breaker)                                                   | Behavioral             | Performance, Decoupling           |
+| [Cloud Static Content Hosting](cloud-static-content-hosting)                         | Cloud                  | Cloud distributed                 |
+| [Collection Pipeline](collection-pipeline)                                           | Functional             | Reactive                          |
+| [Combinator](combinator)                                                             | Idiom                  | Reactive                          |
+| [Command](command)                                                                   | Behavioral             | Gang of Four                      |
+| [Commander](commander)                                                               | Concurrency            | Cloud distributed                 |
+| [Composite](composite)                                                               | Structural             | Gang of Four                      |
+| [Composite Entity](composite-entity)                                                 | Structural             | Enterprise Integration Pattern    |
+| [Converter](converter)                                                               | Creational             | Decoupling                        |
+| [Command Query Responsibility Segregation](command-query-responsibility-segregation) | Architectural          | Performance, Cloud distributed    |
+| [Data Access Object](data-access-object)                                             | Architectural          | Data access                       |
+| [Data Bus](data-bus)                                                                 | Architectural          | Decoupling                        |
+| [Data Locality](data-locality)                                                       | Behavioral             | Performance, Game programming     |
+| [Data Mapper](data-mapper)                                                           | Architectural          | Decoupling                        |
+| [Data Transfer Object](data-transfer-object)                                         | Architectural          | Performance                       |
+| [Decorator](decorator)                                                               | Structural             | Gang of Four, Extensibility       |
+| [Delegation](delegation)                                                             | Structural             | Decoupling                        |
+| [Dependency Injection](dependency-injection)                                         | Creational             | Decoupling                        |
+| [Dirty Flag](dirty-flag)                                                             | Behavioral             | Performance, Game programming     |
+| [Double Buffer](double-buffer)                                                       | Behavioral             | Performance, Game programming     |
+| [Double Checked Locking](double-checked-locking)                                     | Idiom                  | Performance                       |
+| [Double Dispatch](double-dispatch)                                                   | Idiom                  | Extensibility                     |
+| [EIP Aggregator](eip-aggregator)                                                     | Integration            | Enterprise Integration Pattern    |
+| [EIP Message Channel](eip-message-channel)                                           | Integration            | Enterprise Integration Pattern    |
+| [EIP Publish and Subscribe](eip-publish-and-subscribe)                               | Integration            | Enterprise Integration Pattern    |
+| [EIP Splitter](eip-splitter)                                                         | Integration            | Enterprise Integration Pattern    |
+| [EIP Wire Tap](eip-wire-tap)                                                         | Integration            | Enterprise Integration Pattern    |
+| [Event Aggregator](event-aggregator)                                                 | Structural             | Reactive                          |
+| [Event Based Asynchronous](event-based-asynchronous)                                 | Concurrency            | Reactive                          |
+| [Event Driven Architecture](event-driven-architecture)                               | Architectural          | Reactive                          |
+| [Event Queue](event-queue)                                                           | Concurrency            | Game programming                  |
+| [Event Sourcing](event-sourcing)                                                     | Architectural          | Performance                       |
+| [Execute Around](execute-around)                                                     | Idiom                  | Extensibility                     |
+| [Extension Objects](extension-objects)                                               | Behavioral             | Extensibility                     |
+| [Facade](facade)                                                                     | Structural             | Gang of Four, Decoupling          |
+| [Factory](factory)                                                                   | Creational             | Gang of Four                      |
+| [Factory kit](factory-kit)                                                           | Creational             | Extensibility                     |
+| [Factory Method](factory-method)                                                     | Creational             | Gang of Four, Extensibility       |
+| [Fan-Out/Fan-In](fanout-fanin)                                                       | Integration            | Microservices                     |
+| [Feature Toggle](feature-toggle)                                                     | Behavioral             | Extensibility                     |
+| [Filterer](filterer)                                                                 | Functional             | Extensibility                     |
+| [Fluent Interface](fluent-interface)                                                 | Functional             | Reactive                          |
+| [Flux](flux)                                                                         | Structural             | Decoupling                        |
+| [Flyweight](flyweight)                                                               | Structural             | Gang of Four, Performance         |
+| [Front Controller](front-controller)                                                 | Structural             | Decoupling                        |
+| [Game Loop](game-loop)                                                               | Behavioral             | Game programming                  |
+| [Guarded Suspension](guarded-suspension)                                             | Concurrency            | Decoupling                        |
+| [Half-Sync Half-Async](half-sync-half-async)                                         | Concurrency            | Performance                       |
+| [Hexagonal](hexagonal)                                                               | Architectural          | Decoupling                        |
+| [Intercepting Filter](intercepting-filter)                                           | Behavioral             | Decoupling                        |
 | Interpreter|Behavioral|Gang of Four |
 | Iterator|Behavioral|Gang of Four |
 | Layers|Architectural|Decoupling |
