@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Strategy
-folder: strategy
-permalink: /patterns/strategy/
-categories: Behavioral
+category: Behavioral
 language: zh
 tags:
  - Gang of Four

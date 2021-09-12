@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Ambassador
-folder: ambassador
-permalink: /patterns/ambassador/
-categories: Structural
+category: Structural
 language: zh
 tags:
   - Decoupling

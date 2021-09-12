@@ -1,12 +1,8 @@
 ---
-layout: pattern
 title: Filterer
-folder: filterer
-permalink: /patterns/filterer/
 description: Design pattern that helps container-like objects to return filtered version of themselves.# short meta description that shows in Google search results
 language: en
-categories:
- - Functional
+category: Functional
 tags:
  - Extensibility
 ---

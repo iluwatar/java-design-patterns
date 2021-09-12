@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Acyclic Visitor
-folder: acyclic-visitor
-permalink: /patterns/acyclic-visitor/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Extensibility

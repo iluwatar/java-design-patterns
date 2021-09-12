@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Priority Queue Pattern
-folder: priority-queue
-permalink: /patterns/priority-queue/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Decoupling

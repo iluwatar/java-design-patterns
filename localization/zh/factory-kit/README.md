@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Factory Kit
-folder: factory-kit
-permalink: /patterns/factory-kit/
-categories: Creational
+category: Creational
 language: zh
 tags:
  - Extensibility

@@ -1,11 +1,7 @@
 ---
-layout: pattern
 title: Version Number
-folder: versionnumber
-permalink: /patterns/versionnumber/
 description: Entity versioning with version number
-
-categories: Concurrency
+category: Concurrency
 language: en
 tags:
  - Data access

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Presentation
-folder: presentation
-permalink: /patterns/presentation/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Decoupling

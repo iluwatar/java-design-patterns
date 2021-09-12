@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Singleton
-folder: singleton
-permalink: /patterns/singleton/ko
-categories: Creational
+category: Creational
 language: ko
 tags:
 - Gang of Four

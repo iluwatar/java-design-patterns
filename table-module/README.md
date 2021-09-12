@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Table Module
-folder: table-module
-permalink: /patterns/table-module/
-categories: Structural
+category: Structural
 tags:
  - Data access
 ---

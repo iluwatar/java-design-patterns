@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Event Aggregator
-folder: event-aggregator
-permalink: /patterns/event-aggregator/
-categories: Structural
+category: Structural
 language: en
 tags:
  - Reactive

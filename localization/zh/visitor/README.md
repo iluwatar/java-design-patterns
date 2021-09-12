@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Visitor
-folder: visitor
-permalink: /patterns/visitor/
-categories: Behavioral
+category: Behavioral
 language: zh
 tags:
  - Gang of Four

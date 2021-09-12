@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Builder
-folder: builder
-permalink: /patterns/builder/
-categories: Creational
+category: Creational
 language: zh
 tags:
  - Gang of Four

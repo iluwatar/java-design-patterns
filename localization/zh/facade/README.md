@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Facade
-folder: facade
-permalink: /patterns/facade/
-categories: Structural
+category: Structural
 language: zh
 tags:
  - Gang Of Four

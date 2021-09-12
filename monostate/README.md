@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: MonoState
-folder: monostate
-permalink: /patterns/monostate/
-categories: Creational
+category: Creational
 language: en
 tags:
  - Instantiation

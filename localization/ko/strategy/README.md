@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Strategy
-folder: strategy
-permalink: /patterns/strategy/ko
-categories: Behavioral
+category: Behavioral
 language: ko
 tags:
  - Gang of Four

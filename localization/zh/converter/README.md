@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Converter
-folder: converter
-permalink: /patterns/converter/
-categories: Creational
+category: Creational
 language: zh
 tags:
  - Decoupling

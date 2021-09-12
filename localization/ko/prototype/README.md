@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Prototype
-folder: prototype
-permalink: /patterns/prototype/ko
-categories: Creational
+category: Creational
 language: ko
 tags:
 - Gang Of Four

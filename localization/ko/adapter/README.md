@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Adapter
-folder: adapter
-permalink: /patterns/adapter/ko
-categories: Structural
+category: Structural
 language: ko
 tags:
 - Gang of Four

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Thread Pool
-folder: thread-pool
-permalink: /patterns/thread-pool/
-categories: Concurrency
+category: Concurrency
 language: en
 tags:
  - Performance
