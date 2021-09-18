@@ -25,6 +25,7 @@ package com.iluwatar.mediator;
 
 /**
  * Wizard party member.
+ * 巫师
  */
 public class Wizard extends PartyMemberBase {
 

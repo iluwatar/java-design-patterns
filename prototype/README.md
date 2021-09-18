@@ -43,7 +43,7 @@ Wikipedia says
 > type of objects to create is determined by a prototypical instance, which is cloned to produce new 
 > objects.
 > 
-> 原型模式是软件开发中的一种创造性设计模式。当要创建的对象类型由原型实例决定时使用它，原型实例被克隆以生成新对象。
+> 原型模式是软件开发中的一种创造性设计模式。当要创建的对象类型由原型实例确定时，将使用该实例，原型实例将被克隆以生成新对象。
 
 In short, it allows you to create a copy of an existing object and modify it to your needs, instead 
 of going through the trouble of creating an object from scratch and setting it up.
@@ -107,10 +107,10 @@ public class OrcBeast extends Beast {
 We don't want to go into too much details, but the full example contains also base classes `Mage`
 and `Warlord` and there are specialized implementations for those for elves in addition to orcs.
 
-我们不想透露太多细节，但是完整的例子还包含了基础类“法师”和“战神”，除了半兽人之外，精灵还有专门的实现。
+我们不想透露太多细节，但是完整的例子还包含了基类“法师”和“军阀”，除了兽人之外，精灵还有专门的实现。
 
 To take full advantage of the prototype pattern, we create `HeroFactory` and `HeroFactoryImpl`
-classes to produce different kinds of creatures from prototypes.
+classes to produce different kinds of creatures from proto　types.
 
 为了充分利用原型模式，我们创建了“HeroFactory”和“HeroFactoryImpl”类来从原型中生成不同种类的生物。
 

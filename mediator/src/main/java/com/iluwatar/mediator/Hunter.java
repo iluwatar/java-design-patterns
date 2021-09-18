@@ -25,6 +25,7 @@ package com.iluwatar.mediator;
 
 /**
  * Hunter party member.
+ * 猎人
  */
 public class Hunter extends PartyMemberBase {
 

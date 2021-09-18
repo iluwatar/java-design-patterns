@@ -25,6 +25,7 @@ package com.iluwatar.mediator;
 
 /**
  * Hobbit party member.
+ * 霍比特人
  */
 public class Hobbit extends PartyMemberBase {
 

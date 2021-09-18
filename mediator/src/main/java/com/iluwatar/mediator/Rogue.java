@@ -25,6 +25,7 @@ package com.iluwatar.mediator;
 
 /**
  * Rogue party member.
+ * 盗贼
  */
 public class Rogue extends PartyMemberBase {
 

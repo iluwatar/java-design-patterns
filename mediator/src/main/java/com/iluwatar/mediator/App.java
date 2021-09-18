@@ -70,12 +70,17 @@ public class App {
     party.addMember(wizard);
     party.addMember(rogue);
     party.addMember(hunter);
+    System.out.println();
 
     // perform actions -> the other party members
     // are notified by the party
+    // 执行行动->其他成员被party通知
     hobbit.act(Action.ENEMY);
+    System.out.println();
     wizard.act(Action.TALE);
+    System.out.println();
     rogue.act(Action.GOLD);
+    System.out.println();
     hunter.act(Action.HUNT);
   }
 }

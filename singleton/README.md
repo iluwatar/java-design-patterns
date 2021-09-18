@@ -80,7 +80,7 @@ Use the Singleton pattern when
 * There must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
 * 一个类必须只有一个实例，并且客户端必须可以从一个众所周知的访问点访问它
 * When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code
-* 当唯一的实例应该通过子类化来扩展，并且客户端应该能够使用扩展的实例而不修改他们的代码时
+* 当这个唯一的实例需要通过子类扩展，而且要求客户不需要修改代码就可以使用这个扩展的的实例时。
 
 Some typical use cases for the Singleton
 

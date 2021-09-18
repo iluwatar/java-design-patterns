@@ -27,14 +27,15 @@ package com.iluwatar.mediator;
  * Action enumeration.
  */
 public enum Action {
-  // 猎杀：猎杀一只兔子，来吃晚饭
+  // 猎杀：title = 猎杀一只兔子，description = 来吃晚饭
   HUNT("hunted a rabbit", "arrives for dinner"),
-  // 故事：讲述一个故事，来听
+  // 故事：title = 讲述一个故事，description = 过来听
   TALE("tells a tale", "comes to listen"),
-  // 黄金：发现黄金，拿走了他的那份金子
+  // 黄金：title = 发现黄金，description = 拿走了他的那份金子
   GOLD("found gold", "takes his share of the gold"),
-  // 敌人：发现敌人，躲避
+  // 敌人：title = 发现敌人，description = 躲避
   ENEMY("spotted enemies", "runs for cover"),
+  // 无：title = ，description =
   NONE("", "");
 
   private final String title;
