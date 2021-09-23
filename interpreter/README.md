@@ -173,6 +173,7 @@ result: 8
 ![alt text](./etc/interpreter_1.png "Interpreter")
 
 ## Applicability
+适用性
 
 Use the Interpreter pattern when there is a language to interpret, and you can represent statements 
 in the language as abstract syntax trees. The Interpreter pattern works best when
@@ -180,11 +181,12 @@ in the language as abstract syntax trees. The Interpreter pattern works best whe
 当存在要解释的语言时，使用解释器模式，并且可以将语言中的语句表示为抽象语法树。解释器模式在以下情况下工作得最好
 
 * The grammar is simple. For complex grammars, the class hierarchy for the grammar becomes large and unmanageable. Tools such as parser generators are a better alternative in such cases. They can interpret expressions without building abstract syntax trees, which can save space and possibly time
-  语法很简单。对于复杂的语法，语法的类层次结构变得很大且难以管理。在这种情况下，诸如解析器生成器之类的工具是更好的选择。它们可以在不构建抽象语法树的情况下解释表达式，这可以节省空间和时间
+* 语法很简单。对于复杂的语法，语法的类层次结构变得很大且难以管理。在这种情况下，诸如解析器生成器之类的工具是更好的选择。它们可以在不构建抽象语法树的情况下解释表达式，这可以节省空间和时间
 * Efficiency is not a critical concern. The most efficient interpreters are usually not implemented by interpreting parse trees directly but by first translating them into another form. For example, regular expressions are often transformed into state machines. But even then, the translator can be implemented by the Interpreter pattern, so the pattern is still applicable
-  效率不是一个关键问题。最有效的解释器通常不是直接解释解析树，而是首先将它们翻译成另一种形式。例如，正则表达式经常被转换成状态机。但即使这样，翻译程序也可以通过Interpreter模式实现，因此该模式仍然适用
+* 效率不是一个关键问题。最有效的解释器通常不是直接解释解析树，而是首先将它们翻译成另一种形式。例如，正则表达式经常被转换成状态机。但即使这样，翻译程序也可以通过Interpreter模式实现，因此该模式仍然适用
 
 ## Known uses
+已知使用
 
 * [java.util.Pattern](http://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
 * [java.text.Normalizer](http://docs.oracle.com/javase/8/docs/api/java/text/Normalizer.html)

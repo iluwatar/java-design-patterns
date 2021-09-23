@@ -13,6 +13,8 @@ tags:
 
 Token
 
+快照
+
 ## Intent
 
 Without violating encapsulation, capture and externalize an object's internal state so that the 
@@ -63,7 +65,7 @@ public enum StarType {
 Next, let's jump straight to the essentials. Here's the `Star` class along with the mementos that we 
 need to manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
 
-接下来，让我们直入主题。这是Star类以及我们需要操作的纪念品。特别要注意getMemento和setMemento方法。
+接下来，让我们直入主题。这是Star类以及我们需要操作的备忘录。特别要注意getMemento和setMemento方法。
 
 ```java
 public interface StarMemento {
@@ -140,7 +142,7 @@ public class Star {
 
 And finally here's how we use the mementos to store and restore star states.
 
-最后是我们如何使用这些纪念品来存储和恢复星州。
+最后是我们如何使用这些备忘录来存储和恢复星州。
 
 ```java
     var states = new Stack<>();
@@ -183,16 +185,20 @@ sun age: 10000000 years mass: 500000 tons
 ![alt text](./etc/memento.png "Memento")
 
 ## Applicability
+适用性
 
 Use the Memento pattern when
 
+以下情况使用备忘录模式
+
 * A snapshot of an object's state must be saved so that it can be restored to that state later, and
-  必须保存对象状态的快照，以便稍后可以将其恢复到该状态
+* 必须保存对象状态的快照，以便稍后可以将其恢复到该状态
 * A direct interface to obtaining the state would expose implementation details and break the 
 object's encapsulation
-  获取状态的直接接口将公开实现细节，并破坏对象的封装
+* 获取状态的直接接口将公开实现细节，并破坏对象的封装
 
 ## Known uses
+已知使用
 
 * [java.util.Date](http://docs.oracle.com/javase/8/docs/api/java/util/Date.html)
 
