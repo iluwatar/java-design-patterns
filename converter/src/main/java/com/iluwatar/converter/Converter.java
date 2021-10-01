@@ -68,9 +68,9 @@ public class Converter<T, U> {
   /**
    * Converts list of DTOs to list of Entities.
    *
-   * @param dtos collection of DTO entities
+   * @param dtos collection of DTO entities.
    * @return List of domain representation of provided entities retrieved by mapping each of them
-   *     with the conversion function
+   *     with the conversion function.
    */
   public final List<U> createFromDtos(final Collection<T> dtos) {
     return dtos.stream().map(this::convertFromDto).collect(Collectors.toList());
