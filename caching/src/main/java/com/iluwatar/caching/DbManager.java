@@ -50,6 +50,7 @@ public final class DbManager {
   private static boolean useMongoDB;
 
   private static Map<String, UserAccount> virtualDB;
+  private static final String ERROR_MESSAGE_LOG = "Error connecting to MongoDB";
 
   private DbManager() {
   }
@@ -85,7 +86,7 @@ public final class DbManager {
       try {
         connect();
       } catch (ParseException e) {
-        LOGGER.error("Error connecting to MongoDB", e);
+        LOGGER.error(ERROR_MESSAGE_LOG, e);
       }
     }
     var iterable = db
@@ -112,7 +113,7 @@ public final class DbManager {
       try {
         connect();
       } catch (ParseException e) {
-        LOGGER.error("Error connecting to MongoDB", e);
+        LOGGER.error(ERROR_MESSAGE_LOG, e);
       }
     }
     db.getCollection(CachingConstants.USER_ACCOUNT).insertOne(
@@ -134,7 +135,7 @@ public final class DbManager {
       try {
         connect();
       } catch (ParseException e) {
-        LOGGER.error("Error connecting to MongoDB", e);
+        LOGGER.error(ERROR_MESSAGE_LOG, e);
       }
     }
     db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
@@ -155,7 +156,7 @@ public final class DbManager {
       try {
         connect();
       } catch (ParseException e) {
-        LOGGER.error("Error connecting to MongoDB", e);
+        LOGGER.error(ERROR_MESSAGE_LOG, e);
       }
     }
     db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
