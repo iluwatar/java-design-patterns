@@ -59,7 +59,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  private static final String SPACE_ROCKET_LAUNCH_LOG_PATTERN = "Space rocket <%s> launched successfully";
+  private static final String ROCKET_LAUNCH_LOG_PATTERN = "Space rocket <%s> launched successfully";
 
   /**
    * Program entry point.
@@ -90,9 +90,9 @@ public class App {
     asyncResult5.await();
 
     // log the results of the tasks, callbacks log immediately when complete
-    log(String.format(SPACE_ROCKET_LAUNCH_LOG_PATTERN, result1));
-    log(String.format(SPACE_ROCKET_LAUNCH_LOG_PATTERN, result2));
-    log(String.format(SPACE_ROCKET_LAUNCH_LOG_PATTERN, result3));
+    log(String.format(ROCKET_LAUNCH_LOG_PATTERN, result1));
+    log(String.format(ROCKET_LAUNCH_LOG_PATTERN, result2));
+    log(String.format(ROCKET_LAUNCH_LOG_PATTERN, result3));
   }
 
   /**
@@ -105,7 +105,7 @@ public class App {
   private static <T> Callable<T> lazyval(T value, long delayMillis) {
     return () -> {
       Thread.sleep(delayMillis);
-      log(String.format(SPACE_ROCKET_LAUNCH_LOG_PATTERN, value));
+      log(String.format(ROCKET_LAUNCH_LOG_PATTERN, value));
       return value;
     };
   }
