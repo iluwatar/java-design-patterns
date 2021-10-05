@@ -28,7 +28,7 @@ import lombok.EqualsAndHashCode;
 /**
  * ElfWarlord.
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 public class ElfWarlord extends Warlord {
 
   private final String helpType;
@@ -43,8 +43,8 @@ public class ElfWarlord extends Warlord {
   }
 
   @Override
-  public ElfWarlord copy() {
-    return new ElfWarlord(this);
+  public ElfWarlord clone() {
+    return (ElfWarlord) super.clone();
   }
 
   @Override

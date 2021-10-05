@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * OrcBeast.
  */
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor
 public class OrcBeast extends Beast {
 
@@ -41,8 +41,8 @@ public class OrcBeast extends Beast {
   }
 
   @Override
-  public OrcBeast copy() {
-    return new OrcBeast(this);
+  public OrcBeast clone() {
+    return (OrcBeast) super.clone();
   }
 
   @Override

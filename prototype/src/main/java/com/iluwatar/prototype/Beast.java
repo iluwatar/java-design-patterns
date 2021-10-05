@@ -37,6 +37,12 @@ public abstract class Beast implements Prototype {
   }
 
   @Override
-  public abstract Beast copy();
+  public Beast clone() {
+    try {
+      return (Beast) super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
 }

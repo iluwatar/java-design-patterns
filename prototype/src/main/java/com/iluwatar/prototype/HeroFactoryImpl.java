@@ -39,21 +39,21 @@ public class HeroFactoryImpl implements HeroFactory {
    * Create mage.
    */
   public Mage createMage() {
-    return mage.copy();
+    return mage.clone();
   }
 
   /**
    * Create warlord.
    */
   public Warlord createWarlord() {
-    return warlord.copy();
+    return warlord.clone();
   }
 
   /**
    * Create beast.
    */
   public Beast createBeast() {
-    return beast.copy();
+    return beast.clone();
   }
 
 }

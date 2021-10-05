@@ -56,7 +56,7 @@ class PrototypeTest<P extends Prototype> {
   void testPrototype(P testedPrototype, String expectedToString) {
     assertEquals(expectedToString, testedPrototype.toString());
 
-    final var clone = testedPrototype.copy();
+    final var clone = testedPrototype.clone();
     assertNotNull(clone);
     assertNotSame(clone, testedPrototype);
     assertSame(testedPrototype.getClass(), clone.getClass());

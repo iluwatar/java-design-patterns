@@ -26,8 +26,8 @@ package com.iluwatar.prototype;
 /**
  * Prototype.
  */
-public interface Prototype {
+public interface Prototype extends Cloneable {
 
-  Object copy();
+  Prototype clone();
 
 }

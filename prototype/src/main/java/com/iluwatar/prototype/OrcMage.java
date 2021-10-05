@@ -41,8 +41,8 @@ public class OrcMage extends Mage {
   }
 
   @Override
-  public OrcMage copy() {
-    return new OrcMage(this);
+  public OrcMage clone() {
+    return (OrcMage) super.clone();
   }
 
   @Override

@@ -41,8 +41,8 @@ public class ElfMage extends Mage {
   }
 
   @Override
-  public ElfMage copy() {
-    return new ElfMage(this);
+  public ElfMage clone() {
+    return (ElfMage) super.clone();
   }
 
   @Override

@@ -37,6 +37,12 @@ public abstract class Mage implements Prototype {
   }
 
   @Override
-  public abstract Mage copy();
+  public Mage clone() {
+    try {
+      return (Mage) super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
 }

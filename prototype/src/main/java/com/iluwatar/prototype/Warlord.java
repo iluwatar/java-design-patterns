@@ -37,6 +37,12 @@ public abstract class Warlord implements Prototype {
   }
 
   @Override
-  public abstract Warlord copy();
+  public Warlord clone() {
+    try {
+      return (Warlord) super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
 }

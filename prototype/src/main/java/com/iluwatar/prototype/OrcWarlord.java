@@ -41,8 +41,8 @@ public class OrcWarlord extends Warlord {
   }
 
   @Override
-  public OrcWarlord copy() {
-    return new OrcWarlord(this);
+  public OrcWarlord clone() {
+    return (OrcWarlord) super.clone();
   }
 
   @Override

@@ -41,8 +41,8 @@ public class ElfBeast extends Beast {
   }
 
   @Override
-  public ElfBeast copy() {
-    return new ElfBeast(this);
+  public ElfBeast clone() {
+    return (ElfBeast) super.clone();
   }
 
   @Override
