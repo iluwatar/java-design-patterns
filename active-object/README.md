@@ -16,7 +16,7 @@ The active object design pattern decouples method execution from method invocati
 ## Explanation
 
 The class that implements the active object pattern will contain a self-synchronization mechanism without using 'synchronized' methods.
-
+Synchronized Methods:-Synchronized method is used to lock an object for any shared resource. When a thread invokes a synchronized method, it automatically acquires the lock for that object and releases it when the thread completes its task.
 Real-world example
 
 >The Orcs are known for their wildness and untameable soul. It seems like they have their own thread of control based on previous behavior.
