@@ -1595,6 +1595,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "frascu",
+      "name": "Francesco Scuccimarri",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7107651?v=4",
+      "profile": "http://scuccimarri.it",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
