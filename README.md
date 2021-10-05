@@ -39,7 +39,7 @@ patterns can be browsed by their high level descriptions or by looking at their
 source code. The source code examples are well commented and can be thought as
 programming tutorials on how to implement a specific pattern. We use the most
 popular battle-proven open source Java technologies.
-
+There must be proper documentation.
 Before you dive into the material, you should be familiar with various
 [Software Design Principles](https://java-design-patterns.com/principles/).
 
