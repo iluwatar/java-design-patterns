@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CacheStore {
   /**
-   * Cach capacity.
+   * Cache capacity.
    */
   private static final int CAPACITY = 3;
 

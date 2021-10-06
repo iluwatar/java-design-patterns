@@ -177,7 +177,7 @@ public class LruCache {
   }
 
   /**
-   * Che if Cache cintains the userId.
+   * Check if Cache contains the userId.
    *
    * @param userId {@link String}
    * @return boolean

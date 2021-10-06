@@ -44,10 +44,19 @@ import lombok.extern.slf4j.Slf4j;
  * </p>
  *
  * <p>
- * To run the application with MongoDb:
- * 1. Launch mongoDB in docker container with command: docker-compose up
- * 2. Start application with parameter --mongo
- * Example: java -jar app.jar --mongo
+ * There are 2 ways to launch the application.
+ *  - to use "in Memory" database.
+ *  - to use the MongoDb as a database
+ *
+ * To run the application with "in Memory" database, just launch it without parameters
+ * Example: 'java -jar app.jar'
+ *
+ * To run the application with MongoDb you need to be installed the MongoDb
+ * in your system, or to launch it in the docker container.
+ * You may launch docker container from the root of current module with command:
+ * 'docker-compose up'
+ * Then you can start the application with parameter --mongo
+ * Example: 'java -jar app.jar --mongo'
  * </p>
  *
  * @see CacheStore
@@ -86,7 +95,13 @@ public class App {
     // and the App class to avoid Maven compilation errors. Set flag to
     // true to run the tests with MongoDB (provided that MongoDB is
     // installed and socket connection is open).
-    App app = new App(isDbMongo(args));
+    boolean isDbMongo = isDbMongo(args);
+    if (isDbMongo) {
+      LOGGER.info("Using the Mongo database engine to run the application.");
+    } else {
+      LOGGER.info("Using the 'in Memory' database to run the application.");
+    }
+    App app = new App(isDbMongo);
     app.useReadAndWriteThroughStrategy();
     String splitLine = "==============================================";
     LOGGER.info(splitLine);
