@@ -1613,6 +1613,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "muklasr",
+      "name": "Muklas Rahmanto",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43443753?v=4",
+      "profile": "http://muklasr.medium.com",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 4,
