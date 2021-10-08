@@ -2,7 +2,7 @@
      that smart and dearly wants an empty line before a heading to be able to
      display it as such, e.g. website) -->
 
-# Design patterns implemented in Java
+# Implementasi design patterns pada Java
 
 ![Java CI](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
@@ -10,64 +10,50 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-177-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-176-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
 
-Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md)
+Baca dalam bahasa lain : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md)
 
 <br/>
 
-# Introduction
+# Pengenalan
 
-Design patterns are the best formalized practices a programmer can use to
-solve common problems when designing an application or system.
+Design patterns adalah best practice yang dapat digunakan programmer untuk memecahkan masalah umum saat merancang aplikasi atau sistem.
 
-Design patterns can speed up the development process by providing tested, proven
-development paradigms.
+Design patterns dapat mempercepat proses pengembangan dengan menyediakan kode yang teruji, terbukti paradigma pengembangan.
 
-Reusing design patterns help prevent subtle issues that cause major
-problems, and it also improves code readability for coders and architects who
-are familiar with the patterns.
+Menggunakan kembali design patterns membantu mencegah masalah-masalah kecil yang dapat menyebabkan masalah yang lebih besar, dan juga meningkatkan keterbacaan kode untuk programmer dan arsitek yang
+familiar dengan pola.
 
-# Getting started
 
-This site showcases Java Design Patterns. The solutions have been developed by
-experienced programmers and architects from the open source community. The
-patterns can be browsed by their high level descriptions or by looking at their
-source code. The source code examples are well commented and can be thought as
-programming tutorials on how to implement a specific pattern. We use the most
-popular battle-proven open source Java technologies.
+# Mulai
 
-Before you dive into the material, you should be familiar with various
-[Software Design Principles](https://java-design-patterns.com/principles/).
+Situs ini menampilkan Design Patterns pada Java. Solusi-solusi yang terdapat pada situs ini telah dikembangkan oleh programmer dan arsitek  yang berpengalaman dari komunitas open source. Pola-polanya dapat dilihat pada deskripsi atau dengan melihat source code mereka. Contoh-contoh source code memiliki komentar yang baik dan dapat dianggap sebagai tutorial pemrograman tentang cara menerapkan pola tertentu. Kami menggunakan teknologi Java open source yang populer dan telah terbukti.
 
-All designs should be as simple as possible. You should start with KISS, YAGNI,
-and Do The Simplest Thing That Could Possibly Work principles. Complexity and
-patterns should only be introduced when they are needed for practical
-extensibility.
+Sebelum anda masuk kedalam materinya, anda harus familiar dengan macam-macam [Software Design Principles](https://java-design-patterns.com/principles/).
 
-Once you are familiar with these concepts you can start drilling down into the
-[available design patterns](https://java-design-patterns.com/patterns/) by any
-of the following approaches
+Semua desain seharusnya sesimpel mungkin. Anda harus mulai dengan KISS, YAGNI, dan prinsip Do The Simples Thing That Could Possibly Work. hanya boleh diperkenalkan ketika dibutuhkan untuk praktik
+kemungkinan diperpanjang.
 
- - Search for a specific pattern by name. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
- - Using tags such as `Performance`, `Gang of Four` or `Data access`.
- - Using pattern categories, `Creational`, `Behavioral`, and others.
+Setelah Anda terbiasa dengan konsep-konsep ini, Anda dapat mulai belajar
+[design patterns yang tersedia](https://java-design-patterns.com/patterns/) menggunakan cara-cara berikut
 
-Hopefully you find the object oriented solutions presented on this site useful
-in your architectures and have as much fun learning them as we had developing them.
+ - Cari spesifik pattern berdasarkan namanya. Apabila tidak menemukannya tolong lapor pattern baru [disini](https://github.com/iluwatar/java-design-patterns/issues).
+ - Gunakan tag-tag seperti `Performance`, `Gang of Four` atau `Data access`.
+ - Gunakan kategori dari pattern, `Creational`, `Behavioral`, dan sebagainya.
 
-# How to contribute
+Semoga Anda menemukan solusi Object-Oriented yang bermanfaat untuk arsitektur Anda dari yang disajikan di situs ini dan mempelajarinya dengan senang seperti kami mengembangkannya.
 
-If you are willing to contribute to the project you will find the relevant information in
-our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help
-you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
+# Cara berkontribusi
+
+Jika anda memiliki keinginan untuk berkontribusi pada proyek ini anda akan menemukan informasi yang revelan pada halaman [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). Kami akan membantu anda dan menjawab pertanyaan anda pada [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
 # License
 
-This project is licensed under the terms of the MIT license.
+Proyek ini dilisensikan di bawah ketentuan lisensi MIT.
 
 # Contributors
 
@@ -338,9 +324,6 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/mortezaadi"><img src="https://avatars.githubusercontent.com/u/1329687?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Morteza Adigozalpour</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mortezaadi" title="Code">💻</a></td>
     <td align="center"><a href="https://stackoverflow.com/users/308565/nagaraj-tantri"><img src="https://avatars.githubusercontent.com/u/3784194?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nagaraj Tantri</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=tan31989" title="Code">💻</a></td>
     <td align="center"><a href="http://scuccimarri.it"><img src="https://avatars.githubusercontent.com/u/7107651?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Francesco Scuccimarri</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=frascu" title="Code">💻</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/Conhan93"><img src="https://avatars.githubusercontent.com/u/71334757?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Conny Hansson</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Conhan93" title="Documentation">📖</a></td>
   </tr>
 </table>
 
