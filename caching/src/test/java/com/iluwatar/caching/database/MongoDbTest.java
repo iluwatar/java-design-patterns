@@ -16,7 +16,6 @@ import static com.iluwatar.caching.constants.CachingConstants.USER_ID;
 import static com.iluwatar.caching.constants.CachingConstants.USER_NAME;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class MongoDbTest {
