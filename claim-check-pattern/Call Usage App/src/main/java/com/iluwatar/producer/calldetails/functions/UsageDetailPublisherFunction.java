@@ -1,6 +1,5 @@
 package com.iluwatar.producer.calldetails.functions;
 
-import com.azure.core.util.BinaryData;
 import com.azure.messaging.eventgrid.EventGridEvent;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationEventData;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationResponse;
@@ -19,7 +18,6 @@ import com.microsoft.azure.functions.HttpStatus;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
-
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +29,6 @@ import java.util.UUID;
  * Azure Functions with HTTP Trigger.
  */
 public class UsageDetailPublisherFunction {
-    /**
-     * This function listens at endpoint "/api/HttpExample". Two ways to invoke it using "curl" command in bash:
-     * 1. curl -d "HTTP Body" {your host}/api/HttpExample
-     * 2. curl "{your host}/api/HttpExample?name=HTTP%20Query"
-     */
     @FunctionName("UsageDetailPublisherFunction")
     public HttpResponseMessage run(
             @HttpTrigger(
@@ -44,8 +37,6 @@ public class UsageDetailPublisherFunction {
                 authLevel = AuthorizationLevel.ANONYMOUS)
                 HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
-        context.getLogger().info("Java HTTP trigger processed a request."+request.getBody().toString());
-        
         String eventGridJsonString = request.getBody().get();
         List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(eventGridJsonString);
 
@@ -101,6 +92,7 @@ public class UsageDetailPublisherFunction {
                 EventHandlerUtility<MessageHeader> eventHandlerUtility = new EventHandlerUtility<>();
                 eventHandlerUtility.publishEvent(messageHeader,context.getLogger());
 
+                context.getLogger().info("Message is dropped and event is published successfully");
                 return request.createResponseBuilder(HttpStatus.OK).body(message).build();
             }
         }

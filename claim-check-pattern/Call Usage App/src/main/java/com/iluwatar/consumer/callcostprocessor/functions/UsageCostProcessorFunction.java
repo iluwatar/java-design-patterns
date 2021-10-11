@@ -2,9 +2,9 @@ package com.iluwatar.consumer.callcostprocessor.functions;
 
 import java.time.OffsetDateTime;
 import java.util.*;
-import java.util.function.Supplier;
-
 import com.microsoft.azure.functions.annotation.*;
+import com.azure.core.util.BinaryData;
+import com.azure.core.util.serializer.TypeReference;
 import com.azure.messaging.eventgrid.EventGridEvent;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationEventData;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationResponse;
@@ -30,8 +30,6 @@ public class UsageCostProcessorFunction {
                 authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) 
     {
-        context.getLogger().info("Java HTTP trigger processed a request."+request.getBody().toString());
-
         String eventGridJsonString = request.getBody().get();
         List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(eventGridJsonString);
 
@@ -57,8 +55,7 @@ public class UsageCostProcessorFunction {
                 Message<UsageDetail> message = messageHandlerUtility.readFromPersistantStorage(messageReference,context.getLogger());
 
                 // Get Data and generate cost details
-                List<UsageDetail> usageDetailsList = message.getMessageBody().getData();
-                context.getLogger().info(new Gson().toJson(usageDetailsList.get(0)));
+                List<UsageDetail> usageDetailsList =  BinaryData.fromObject(message.getMessageBody().getData()).toObject(new TypeReference<List<UsageDetail>>() { });
                 List<UsageCostDetail> usageCostDetailsList = this.calculateUsageCostDetails(usageDetailsList);
                 context.getLogger().info(new Gson().toJson(usageCostDetailsList));
 
@@ -86,6 +83,7 @@ public class UsageCostProcessorFunction {
                 MessageHandlerUtility<UsageCostDetail> nweMessageHandlerUtility = new MessageHandlerUtility<>();
                 nweMessageHandlerUtility.dropToPersistantStorage(newMessage,context.getLogger());
 
+                context.getLogger().info("Message is dropped successfully");
                 return request.createResponseBuilder(HttpStatus.OK).body(null).build();
             }
         }

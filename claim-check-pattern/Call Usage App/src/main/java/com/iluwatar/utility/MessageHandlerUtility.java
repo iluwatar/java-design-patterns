@@ -33,8 +33,7 @@ public class MessageHandlerUtility<T>{
             BlobClient blobClient = containerClient.getBlobClient(blobName);
             
             // download the blob
-            final ObjectSerializer serializer = new MyJsonSerializer();
-            message = blobClient.downloadContent().toObject(new TypeReference<Message<T>>() { }, serializer);
+            message = blobClient.downloadContent().toObject(new TypeReference<Message<T>>() { });
         }
         catch(Exception e){
             logger.info(e.getMessage());
