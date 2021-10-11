@@ -162,13 +162,11 @@ public abstract class AbstractNioChannel {
     if (pendingWrites == null) {
       synchronized (this.channelToPendingWrites) {
         pendingWrites = this.channelToPendingWrites.get(key.channel());
-        if (pendingWrites == null) {
-          pendingWrites = new ConcurrentLinkedQueue<>();
-          this.channelToPendingWrites.put(key.channel(), pendingWrites);
-        }
+        this.channelToPendingWrites.putIfAbsent(key.channel(), new ConcurrentLinkedQueue<>();
       }
     }
     pendingWrites.add(data);
     reactor.changeOps(key, SelectionKey.OP_WRITE);
   }
 }
+f
