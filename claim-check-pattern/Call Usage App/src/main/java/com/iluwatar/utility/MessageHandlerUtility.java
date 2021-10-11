@@ -2,7 +2,6 @@ package com.iluwatar.utility;
 
 import java.util.logging.Logger;
 import com.azure.core.util.BinaryData;
-import com.azure.core.util.serializer.ObjectSerializer;
 import com.azure.core.util.serializer.TypeReference;
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
