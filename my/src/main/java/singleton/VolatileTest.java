@@ -109,6 +109,7 @@ public class VolatileTest {
 
     private void ordering() throws InterruptedException {
         for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            // 如果在本线程内观察，所有操作都是有序的；如果在一个线程中观察另一个线程，所有操作都是无序的，因此开两个线程
             Thread t1 = new Thread(() -> {
                 // 有可能发生重排，即 先执行 change = true，再执行 a = 1
                 a = 1; // 1
@@ -147,7 +148,26 @@ public class VolatileTest {
         }
         // 结果：
         // -未加volatile：会发生重排，会退出循环；执行几百万次后（最近一次是136Ｗ），有可能退出循环
-        // -加了volatile：给change加上volatile后，保证change前面的不会重排，不会退出循环
+        // -加了volatile：给change加上volatile后，保证change前面的不会重排，正确
+        // 如下原理是保证每个时刻是有一个线程执行同步代码，相当于是让线程顺序执行同步代码，自然就保证了有序性。
+        // -采用synchronized：正确
+        // -采用Lock：正确
+    }
+
+    // 单例模式的双重锁为什么要加volatile
+    // 因为，第5行实际操作为（a.分配内存，b.初始化对象，c.赋值），它可能会发生重排序，导致执行顺序为：a c b
+    // 如果再来一个线程调用此方法，则先执行第2行，因为已经赋值过（执行过c），所以会直接进行返回，但是此时还没有执行b（初始化操作），所以会返回一个未初始化的对象。
+    private volatile static VolatileTest instance;
+
+    public static VolatileTest getInstance() {      // 1
+        if (instance == null) {                     // 2
+            synchronized (VolatileTest.class) {     // 3
+                if (instance == null) {             // 4
+                    instance = new VolatileTest();  // 5
+                }
+            }
+        }
+        return instance;                            // 6
     }
 
     private void safetySleep(int millis) {
