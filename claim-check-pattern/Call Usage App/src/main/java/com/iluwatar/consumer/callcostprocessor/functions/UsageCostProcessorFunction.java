@@ -57,7 +57,6 @@ public class UsageCostProcessorFunction {
                 // Get Data and generate cost details
                 List<UsageDetail> usageDetailsList =  BinaryData.fromObject(message.getMessageBody().getData()).toObject(new TypeReference<List<UsageDetail>>() { });
                 List<UsageCostDetail> usageCostDetailsList = this.calculateUsageCostDetails(usageDetailsList);
-                context.getLogger().info(new Gson().toJson(usageCostDetailsList));
 
                 // Create message body
                 MessageBody<UsageCostDetail> newMessageBody = new MessageBody<UsageCostDetail>();
