@@ -4,9 +4,11 @@ title: Table Module
 folder: table-module
 permalink: /patterns/table-module/
 categories: Structural
+language: en
 tags:
  - Data access
 ---
+
 ## Intent
 Table Module organizes domain logic with one class per table in the database, and a single instance of a class contains the various procedures that will act on the data.
 
