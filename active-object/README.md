@@ -8,7 +8,7 @@ tags:
 
 
 ## Intent
-The active object design pattern decouples method execution from method invocation for objects that each reside in their thread of control. The goal is to introduce concurrency, by using asynchronous method invocation and a scheduler for handling requests.
+The active object design pattern decouples method execution from method invocation for objects that each reside in their thread of control. The goal is to introduce concurrency, by using asynchronous method invocation, and a scheduler for handling requests.
 
 ## Explanation
 
@@ -67,7 +67,7 @@ public abstract class ActiveCreature{
     requests.put(new Runnable() {
         @Override
         public void run() { 
-          logger.info("{} has started to roam and the wastelands.",name());
+          logger.info("{} has started to roam the wastelands.",name());
         }
       }
     );
@@ -79,7 +79,7 @@ public abstract class ActiveCreature{
 }
 ```
 
-We can see that any class that will extend the ActiveCreature class will have its own thread of control to execute and invocate methods.
+We can see that any class that will extend the ActiveCreature class will have its own thread of control to invoke and execute methods.
 
 For example, the Orc class:
 
@@ -93,7 +93,7 @@ public class Orc extends ActiveCreature {
 }
 ```
 
-Now, we can create multiple creatures such as Orcs, tell them to eat and roam and they will execute it on their own thread of control:
+Now, we can create multiple creatures such as Orcs, tell them to eat and roam, and they will execute it on their own thread of control:
 
 ```java
   public static void main(String[] args) {  

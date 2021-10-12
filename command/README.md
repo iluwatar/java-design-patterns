@@ -4,7 +4,6 @@ category: Behavioral
 language: en
 tags:
  - Gang of Four
----
 
 ## Also known as
 
