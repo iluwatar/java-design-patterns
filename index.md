@@ -68,80 +68,80 @@
 | [Half-Sync Half-Async](half-sync-half-async)                                         | Concurrency            | Performance                       |
 | [Hexagonal](hexagonal)                                                               | Architectural          | Decoupling                        |
 | [Intercepting Filter](intercepting-filter)                                           | Behavioral             | Decoupling                        |
-| Interpreter|Behavioral|Gang of Four |
-| Iterator|Behavioral|Gang of Four |
-| Layers|Architectural|Decoupling |
-| Lazy Loading|Idiom|Performance |
-| Leader Election|Behavioral|Cloud distributed |
-| Leader Followers|Concurrency|Performance |
-| Lockable Object|Concurrency|Performance |
-| Marker Interface|Structural|Decoupling |
-| Master Worker|Concurrency|Performance |
-| Mediator|Behavioral|Gang of Four, Decoupling |
-| Memento|Behavioral|Gang of Four |
-| Model View Controller|Architectural|Decoupling |
-| Model View Presenter|Architectural|Decoupling |
-| Model View ViewModel|Architectural|Decoupling |
-| Module|Structural|Decoupling |
-| Monad|Functional|Reactive |
-| Monostate|Creational|Instantiation |
-| Multiton|Creational|Instantiation |
-| Mute Idiom|Idiom|Decoupling |
-| Naked Objects|Architectural|Decoupling |
-| Null Object|Behavioral|Extensibility |
-| Object Mother|Creational|Instantiation |
-| Object Pool|Creational|Performance, Game programming |
-| Observer|Behavioral|Gang of Four, Reactive |
-| Page Object|Structural|Decoupling |
-| Parameter Object|Behavioral|Extensibility |
-| Partial Response|Behavioral|Decoupling |
-| Pipeline|Behavioral|Decoupling |
-| Poison Pill|Behavioral|Cloud distributed, Reactive |
-| Presentation Model|Behavioral|Decoupling |
-| Priority Queue|Behavioral|Decoupling |
-| Private Class Data|Idiom|Data access |
-| Producer Consumer|Concurrency|Reactive |
-| Promise|Concurrency|Reactive |
-| Property|Creational|Instantiation |
-| Prototype|Creational|Gang of Four, Instantiation |
-| Proxy|Structural|Gang of Four, Decoupling |
-| Queue Based Load Leveling|Concurrency|Performance, Decoupling |
-| Reactor|Concurrency|Performance, Reactive |
-| Reader Writer Lock|Concurrency|Performance |
-| Registry|Creational|Instantiation |
-| Repository|Architectural|Data access |
-| Resource Acquisition Is Initialization|Idiom|Data access |
-| Retry|Behavioral|Performance |
-| Role Object|Structural|Extensibility |
-| Saga|Concurrency|Cloud distributed |
-| Semaphore|Concurrency|Performance |
-| Separated Interface|Structural|Decoupling |
-| Servant|Behavioral|Decoupling |
-| Serverless|Architectural|Cloud distributed |
-| Service Layer|Architectural|Data access |
-| Service Locator|Architectural|Performance, Game programming |
-| Sharding|Behavioral|Performance, Cloud distributed |
-| Singleton|Creational|Gang of Four |
-| Spatial Partitiion|Behavioral|Performance, Game programming |
-| Special Case|Behavioral|Extensibility |
-| Specification|Behavioral|Data access |
-| State|Behavioral|Gang of Four |
-| Step Builder|Creational|Instantiation |
-| Strangler|Structural|Cloud distributed, Extensibility |
-| Strategy|Behavioral|Gang of Four |
-| Subclass Sandbox|Behavioral|Game programming |
-| Table Module|Structural|Data access |
-| Template Method|Behavioral|Gang of Four |
-| Thread Pool|Concurrency|Performance |
-| Throttling|Behavioral|Performance |
-| Thread Local Storage|Idiom|Performance |
-| Tolerant Reader|Integration|Decoupling |
-| Trampoline|Behavioral|Performance |
-| Transaction Script|Behavioral|Data access |
-| Twin|Structural|Extensibility |
-| Type Object|Behavioral|Game programming, Extensibility |
-| Unit of Work|Architectural|Data access |
-| Update Method|Behavioral|Game programming |
-| Value Object|Creational|Instantiation |
-| Version Number|Concurrency|Data access, Microservices |
-| Visitor|Behavioral|Gang of Four |
+| [Interpreter](interpreter)                                                           | Behavioral             | Gang of Four                      |
+| [Iterator](iterator)                                                                 | Behavioral             | Gang of Four                      |
+| [Layers](layers)                                                                     | Architectural          | Decoupling                        |
+| [Lazy Loading](lazy-loading)                                                         | Idiom                  | Performance                       |
+| [Leader Election](leader-election)                                                   | Behavioral             | Cloud distributed                 |
+| [Leader Followers](leader-followers)                                                 | Concurrency            | Performance                       |
+| [Lockable Object](lockable-object)                                                   | Concurrency            | Performance                       |
+| [Marker Interface](marker-interface)                                                 | Structural             | Decoupling                        |
+| [Master Worker](master-worker)                                                       | Concurrency            | Performance                       |
+| [Mediator](mediator)                                                                 | Behavioral             | Gang of Four, Decoupling          |
+| [Memento](memento)                                                                   | Behavioral             | Gang of Four                      |
+| [Model View Controller](model-view-controller)                                       | Architectural          | Decoupling                        |
+| [Model View Presenter](model-view-presenter)                                         | Architectural          | Decoupling                        |
+| [Model View ViewModel](model-view-viewmodel)                                         | Architectural          | Decoupling                        |
+| [Module](module)                                                                     | Structural             | Decoupling                        |
+| [Monad](monad)                                                                       | Functional             | Reactive                          |
+| [Monostate](monostate)                                                               | Creational             | Instantiation                     |
+| [Multiton](multiton)                                                                 | Creational             | Instantiation                     |
+| [Mute Idiom](mute-idiom)                                                             | Idiom                  | Decoupling                        |
+| [Naked Objects](naked-objects)                                                       | Architectural          | Decoupling                        |
+| [Null Object](null-object)                                                           | Behavioral             | Extensibility                     |
+| [Object Mother](object-mother)                                                       | Creational             | Instantiation                     |
+| [Object Pool](object-pool)                                                           | Creational             | Performance, Game programming     |
+| [Observer](observer)                                                                 | Behavioral             | Gang of Four, Reactive            |
+| [Page Object](page-object)                                                           | Structural             | Decoupling                        |
+| [Parameter Object](parameter-object)                                                 | Behavioral             | Extensibility                     |
+| [Partial Response](partial-response)                                                 | Behavioral             | Decoupling                        |
+| [Pipeline](pipeline)                                                                 | Behavioral             | Decoupling                        |
+| [Poison Pill](poison-pill)                                                           | Behavioral             | Cloud distributed, Reactive       |
+| [Presentation Model](presentation-model)                                             | Behavioral             | Decoupling                        |
+| [Priority Queue](priority-queue)                                                     | Behavioral             | Decoupling                        |
+| [Private Class Data](private-class-data)                                             | Idiom                  | Data access                       |
+| [Producer Consumer](producer-consumer)                                               | Concurrency            | Reactive                          |
+| [Promise](promise)                                                                   | Concurrency            | Reactive                          |
+| [Property](property)                                                                 | Creational             | Instantiation                     |
+| [Prototype](prototype)                                                               | Creational             | Gang of Four, Instantiation       |
+| [Proxy](proxy)                                                                       | Structural             | Gang of Four, Decoupling          |
+| [Queue Based Load Leveling](queue-based-load-leveling)                               | Concurrency            | Performance, Decoupling           |
+| [Reactor](reactor)                                                                   | Concurrency            | Performance, Reactive             |
+| [Reader Writer Lock](reader-writer-lock)                                             | Concurrency            | Performance                       |
+| [Registry](registry)                                                                 | Creational             | Instantiation                     |
+| [Repository](repository)                                                             | Architectural          | Data access                       |
+| [Resource Acquisition Is Initialization](resource-acquisition-is-initialization)     | Idiom                  | Data access                       |
+| [Retry](retry)                                                                       | Behavioral             | Performance                       |
+| [Role Object](role-object)                                                           | Structural             | Extensibility                     |
+| [Saga](saga)                                                                         | Concurrency            | Cloud distributed                 |
+| [Semaphore](semaphore)                                                               | Concurrency            | Performance                       |
+| [Separated Interface](separated-interface)                                           | Structural             | Decoupling                        |
+| [Servant](servant)                                                                   | Behavioral             | Decoupling                        |
+| [Serverless](serverless)                                                             | Architectural          | Cloud distributed                 |
+| [Service Layer](service-layer)                                                       | Architectural          | Data access                       |
+| [Service Locator](service-locator)                                                   | Architectural          | Performance, Game programming     |
+| [Sharding](sharding)                                                                 | Behavioral             | Performance, Cloud distributed    |
+| [Singleton](singleton)                                                               | Creational             | Gang of Four                      |
+| [Spatial Partition](spatial-partition)                                               | Behavioral             | Performance, Game programming     |
+| [Special Case](special-case)                                                         | Behavioral             | Extensibility                     |
+| [Specification](specification)                                                       | Behavioral             | Data access                       |
+| [State](state)                                                                       | Behavioral             | Gang of Four                      |
+| [Step Builder](step-builder)                                                         | Creational             | Instantiation                     |
+| [Strangler](strangler)                                                               | Structural             | Cloud distributed, Extensibility  |
+| [Strategy](strategy)                                                                 | Behavioral             | Gang of Four                      |
+| [Subclass Sandbox](subclass-sandbox)                                                 | Behavioral             | Game programming                  |
+| [Table Module](table-module)                                                         | Structural             | Data access                       |
+| [Template Method](table-module)                                                      | Behavioral             | Gang of Four                      |
+| [Thread Pool](thread-pool)                                                           | Concurrency            | Performance                       |
+| [Throttling](throttling)                                                             | Behavioral             | Performance                       |
+| [Thread Local Storage](thread-local-storage)                                         | Idiom                  | Performance                       |
+| [Tolerant Reader](tolerant-reader)                                                   | Integration            | Decoupling                        |
+| [Trampoline](trampoline)                                                             | Behavioral             | Performance                       |
+| [Transaction Script](transaction-script)                                             | Behavioral             | Data access                       |
+| [Twin](twin)                                                                         | Structural             | Extensibility                     |
+| [Type Object](type-object)                                                           | Behavioral             | Game programming, Extensibility   |
+| [Unit of Work](unit-of-work)                                                         | Architectural          | Data access                       |
+| [Update Method](update-method)                                                       | Behavioral             | Game programming                  |
+| [Value Object](value-object)                                                         | Creational             | Instantiation                     |
+| [Version Number](version-number)                                                     | Concurrency            | Data access, Microservices        |
+| [Visitor](visitor)                                                                   | Behavioral             | Gang of Four                      |
