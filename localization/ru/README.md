@@ -2,7 +2,7 @@
      that smart and dearly wants an empty line before a heading to be able to
      display it as such, e.g. website) -->
 
-# Design patterns implemented in Java
+# Шаблоны проектирования на Java
 
 ![Java CI](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
@@ -10,66 +10,60 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-179-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-178-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-<br/>
+# Введение
+Шаблоны проектирования - лучший метод для решения проблем, возникающих
+во время разработки приложения или системы.
 
-Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md) 
+Шаблоны проектирования могут ускорить процесс разработку путем предоставления
+проверенных моделей/парадигм.
 
-<br/>
+Использование шаблонов повторно поможет избежать частых проблем, из-за которых
+происходят проблемы. А еще это повысит читаемость кода для программистов и 
+архитекторов, знакомых с шаблонами.
 
-# Introduction
+# Начало работы
 
-Design patterns are the best formalized practices a programmer can use to
-solve common problems when designing an application or system.
+В этом репозитории размещены шаблоны проектирования на Java. Они были разработаны
+программистами из open source сообщества. Шаблон может быть выбран 
+из его описания или просмотром его исходного кода. Код хорошо задокументирован,
+его можно рассматривать, как учебник по программированию о конкретном шаблоне.
+Мы используем самые популярные (прошедшие огонь, воду и медные трубы) технологии,
+основанные только на ПО с открытым исходным кодом.
 
-Design patterns can speed up the development process by providing tested, proven
-development paradigms.
+Преждем чем нырнуть в материал, тебе следует ознакомиться с различными
+[принципами разработки ПО(англ)](https://java-design-patterns.com/principles/).
 
-Reusing design patterns help prevent subtle issues that cause major
-problems, and it also improves code readability for coders and architects who
-are familiar with the patterns.
+Все конструкции должны быть максимально простыми. Не делай лишнюю функциональность,
+которая скорей всего не пригодиться, а просто создай простую штуку, что сможет
+работать. Усложнять и вводить паттерны необходимо, лишь когда масштабируемость
+действительно нужна.
 
-# Getting started
+Как только ознакомитесь с этими концепциями, приступайте к изучению
+[доступных шаблонов проектирования(англ)](https://java-design-patterns.com/patterns/) любым
+из следующих методов:
 
-This site showcases Java Design Patterns. The solutions have been developed by
-experienced programmers and architects from the open source community. The
-patterns can be browsed by their high level descriptions or by looking at their
-source code. The source code examples are well commented and can be thought as
-programming tutorials on how to implement a specific pattern. We use the most
-popular battle-proven open source Java technologies.
+- Ищите шаблон по имени. Не смогли найти такой? Сообщите об этом [здесь](https://github.com/iluwatar/java-design-patterns/issues).
+- Используя тэги, например `Performance`, `Gang of Four` или `Data access`.
+- Используя категории шаблонов `Creational`, `Behavioral` и другие.
 
-Before you dive into the material, you should be familiar with various
-[Software Design Principles](https://java-design-patterns.com/principles/).
+Надеемся объективно-ориентированные решения, представленные здесь будут вам 
+полезны и найдут место в ваших проектах, а также вы получите такое же удовольствие 
+от их изучения, какое получили мы во время их разработки.
 
-All designs should be as simple as possible. You should start with KISS, YAGNI,
-and Do The Simplest Thing That Could Possibly Work principles. Complexity and
-patterns should only be introduced when they are needed for practical
-extensibility.
+# Как принять участие в разработке
 
-Once you are familiar with these concepts you can start drilling down into the
-[available design patterns](https://java-design-patterns.com/patterns/) by any
-of the following approaches
+Если вы захотите принять участие в жизни проекта, вся полезная информация находится на 
+нашей [вики(англ)](https://github.com/iluwatar/java-design-patterns/wiki). Мы можем помочь
+и ответить на твои вопросы в чате [Gitter](https://gitter.im/iluwatar/java-design-patterns).
 
- - Search for a specific pattern by name. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
- - Using tags such as `Performance`, `Gang of Four` or `Data access`.
- - Using pattern categories, `Creational`, `Behavioral`, and others.
+# Лицензия
 
-Hopefully you find the object oriented solutions presented on this site useful
-in your architectures and have as much fun learning them as we had developing them.
+Проект основывается на тезисах лицензии MIT.
 
-# How to contribute
-
-If you are willing to contribute to the project you will find the relevant information in
-our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help
-you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
-
-# License
-
-This project is licensed under the terms of the MIT license.
-
-# Contributors
+# Разработчики
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -342,7 +336,6 @@ This project is licensed under the terms of the MIT license.
   <tr>
     <td align="center"><a href="https://github.com/Conhan93"><img src="https://avatars.githubusercontent.com/u/71334757?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Conny Hansson</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Conhan93" title="Documentation">📖</a></td>
     <td align="center"><a href="http://muklasr.medium.com"><img src="https://avatars.githubusercontent.com/u/43443753?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Muklas Rahmanto</b></sub></a><br /><a href="#translation-muklasr" title="Translation">🌍</a></td>
-    <td align="center"><a href="https://github.com/VxDxK"><img src="https://avatars.githubusercontent.com/u/38704817?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vadim</b></sub></a><br /><a href="#translation-VxDxK" title="Translation">🌍</a></td>
   </tr>
 </table>
 
