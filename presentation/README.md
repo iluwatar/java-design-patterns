@@ -8,6 +8,7 @@ language: en
 tags:
  - Decoupling
 ---
+
 ## Also known as
 Application Model
 
