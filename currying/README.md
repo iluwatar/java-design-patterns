@@ -1,0 +1,24 @@
+---
+layout: pattern
+title: Currying
+folder: currying
+permalink: /patterns/currying/
+categories: Architectural
+tags:
+- Java
+- Difficulty-Intermediate
+---
+
+## Intent
+Currying pattern is a function that returns another function which only takes 1 parameter at a time.
+
+![alt text](./etc/dao.png "Data Access Object")
+
+## Applicability
+Use the currying pattern in any of the following situations
+
+* when you want to break a function with many arguments into many functions with single argument 
+
+## Credits
+
+* [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)
