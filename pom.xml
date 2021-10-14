@@ -152,6 +152,7 @@
         <module>eip-splitter</module>
         <module>eip-aggregator</module>
         <module>retry</module>
+        <module>currying</module>
     </modules>
 
     <dependencyManagement>
