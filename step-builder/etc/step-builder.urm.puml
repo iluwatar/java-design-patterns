@@ -1,0 +1,91 @@
+@startuml
+package com.iluwatar.stepbuilder {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Character {
+    - abilities : List<String>
+    - fighterClass : String
+    - name : String
+    - spell : String
+    - weapon : String
+    - wizardClass : String
+    + Character(name : String)
+    + getAbilities() : List<String>
+    + getFighterClass() : String
+    + getName() : String
+    + getSpell() : String
+    + getWeapon() : String
+    + getWizardClass() : String
+    + setAbilities(abilities : List<String>)
+    + setFighterClass(fighterClass : String)
+    + setName(name : String)
+    + setSpell(spell : String)
+    + setWeapon(weapon : String)
+    + setWizardClass(wizardClass : String)
+    + toString() : String
+  }
+  class CharacterStepBuilder {
+    - CharacterStepBuilder()
+    + newBuilder() : NameStep {static}
+  }
+  interface AbilityStep {
+    + noAbilities() : BuildStep {abstract}
+    + noMoreAbilities() : BuildStep {abstract}
+    + withAbility(String) : AbilityStep {abstract}
+  }
+  interface BuildStep {
+    + build() : Character {abstract}
+  }
+  -class CharacterSteps {
+    - abilities : List<String>
+    - fighterClass : String
+    - name : String
+    - spell : String
+    - weapon : String
+    - wizardClass : String
+    - CharacterSteps()
+    + build() : Character
+    + fighterClass(fighterClass : String) : WeaponStep
+    + name(name : String) : ClassStep
+    + noAbilities() : BuildStep
+    + noMoreAbilities() : BuildStep
+    + noSpell() : BuildStep
+    + noWeapon() : BuildStep
+    + withAbility(ability : String) : AbilityStep
+    + withSpell(spell : String) : AbilityStep
+    + withWeapon(weapon : String) : AbilityStep
+    + wizardClass(wizardClass : String) : SpellStep
+  }
+  interface ClassStep {
+    + fighterClass(String) : WeaponStep {abstract}
+    + wizardClass(String) : SpellStep {abstract}
+  }
+  interface NameStep {
+    + name(String) : ClassStep {abstract}
+  }
+  interface SpellStep {
+    + noSpell() : BuildStep {abstract}
+    + withSpell(String) : AbilityStep {abstract}
+  }
+  interface WeaponStep {
+    + noWeapon() : BuildStep {abstract}
+    + withWeapon(String) : AbilityStep {abstract}
+  }
+}
+WeaponStep ..+ CharacterStepBuilder
+AbilityStep ..+ CharacterStepBuilder
+ClassStep ..+ CharacterStepBuilder
+CharacterSteps ..+ CharacterStepBuilder
+SpellStep ..+ CharacterStepBuilder
+BuildStep ..+ CharacterStepBuilder
+NameStep ..+ CharacterStepBuilder
+CharacterSteps ..|> NameStep 
+CharacterSteps ..|> ClassStep 
+CharacterSteps ..|> WeaponStep 
+CharacterSteps ..|> SpellStep 
+CharacterSteps ..|> AbilityStep 
+CharacterSteps ..|> BuildStep 
+@enduml

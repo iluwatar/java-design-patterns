@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.databus;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+package com.iluwatar.databus;
 
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.never;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 /**
  * Tests for {@link DataBus}.
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
-public class DataBusTest {
+class DataBusTest {
 
   @Mock
   private Member member;
@@ -43,15 +44,15 @@ public class DataBusTest {
   @Mock
   private DataType event;
 
-  @Before
-  public void setUp() {
-    MockitoAnnotations.initMocks(this);
+  @BeforeEach
+  void setUp() {
+    MockitoAnnotations.openMocks(this);
   }
 
   @Test
-  public void publishedEventIsReceivedBySubscribedMember() {
+  void publishedEventIsReceivedBySubscribedMember() {
     //given
-    final DataBus dataBus = DataBus.getInstance();
+    final var dataBus = DataBus.getInstance();
     dataBus.subscribe(member);
     //when
     dataBus.publish(event);
@@ -60,9 +61,9 @@ public class DataBusTest {
   }
 
   @Test
-  public void publishedEventIsNotReceivedByMemberAfterUnsubscribing() {
+  void publishedEventIsNotReceivedByMemberAfterUnsubscribing() {
     //given
-    final DataBus dataBus = DataBus.getInstance();
+    final var dataBus = DataBus.getInstance();
     dataBus.subscribe(member);
     dataBus.unsubscribe(member);
     //when

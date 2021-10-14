@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,31 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.lazy.loading;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
  * Simple implementation of the lazy loading idiom. However, this is not thread safe.
- *
  */
+@Slf4j
 public class HolderNaive {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(HolderNaive.class);
 
   private Heavy heavy;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public HolderNaive() {
     LOGGER.info("HolderNaive created");
   }
 
   /**
-   * Get heavy object
+   * Get heavy object.
    */
   public Heavy getHeavy() {
     if (heavy == null) {

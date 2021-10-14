@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.tolerantreader;
 
+import lombok.Getter;
+
 /**
- * 
- * RainbowFishV2 is the evolved schema
- *
+ * RainbowFishV2 is the evolved schema.
  */
+@Getter
 public class RainbowFishV2 extends RainbowFish {
 
   private static final long serialVersionUID = 1L;
@@ -40,25 +42,14 @@ public class RainbowFishV2 extends RainbowFish {
   }
 
   /**
-   * Constructor
+   * Constructor.
    */
   public RainbowFishV2(String name, int age, int lengthMeters, int weightTons, boolean sleeping,
-      boolean hungry, boolean angry) {
+                       boolean hungry, boolean angry) {
     this(name, age, lengthMeters, weightTons);
     this.sleeping = sleeping;
     this.hungry = hungry;
     this.angry = angry;
   }
 
-  public boolean getSleeping() {
-    return sleeping;
-  }
-
-  public boolean getHungry() {
-    return hungry;
-  }
-
-  public boolean getAngry() {
-    return angry;
-  }
 }

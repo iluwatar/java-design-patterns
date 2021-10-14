@@ -1,7 +1,6 @@
 /*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014-2017 Gopinath Langote
+ * The MIT License
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,44 +9,46 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
 package com.iluwatar.partialresponse;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * tests {@link FieldJsonMapper}.
  */
-public class FieldJsonMapperTest {
-  private FieldJsonMapper mapper;
+class FieldJsonMapperTest {
+  private static FieldJsonMapper mapper;
 
-  @Before
-  public void setUp() {
+  @BeforeAll
+  static void setUp() {
     mapper = new FieldJsonMapper();
   }
 
   @Test
-  public void shouldReturnJsonForSpecifiedFieldsInVideo() throws Exception {
-    String[] fields = new String[]{"id", "title", "length"};
-    Video video = new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|", "Hideaki Anno", "Japanese");
+  void shouldReturnJsonForSpecifiedFieldsInVideo() throws Exception {
+    var fields = new String[]{"id", "title", "length"};
+    var video = new Video(
+        2, "Godzilla Resurgence", 120,
+        "Action & drama movie|", "Hideaki Anno", "Japanese"
+    );
 
-    String jsonFieldResponse = mapper.toJson(video, fields);
+    var jsonFieldResponse = mapper.toJson(video, fields);
 
-    String expectedDetails = "{\"id\": 2,\"title\": \"Godzilla Resurgence\",\"length\": 120}";
-    assertEquals(expectedDetails, jsonFieldResponse);
+    var expectedDetails = "{\"id\": 2,\"title\": \"Godzilla Resurgence\",\"length\": 120}";
+    Assertions.assertEquals(expectedDetails, jsonFieldResponse);
   }
 }

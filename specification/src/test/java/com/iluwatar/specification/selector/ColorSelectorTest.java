@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,37 +20,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.specification.selector;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Color;
-
-import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 7:35 PM
  *
  * @author Jeroen Meulemeester
  */
-public class ColorSelectorTest {
+class ColorSelectorTest {
 
   /**
    * Verify if the color selector gives the correct results
    */
   @Test
-  public void testColor() {
-    final Creature greenCreature = mock(Creature.class);
+  void testColor() {
+    final var greenCreature = mock(Creature.class);
     when(greenCreature.getColor()).thenReturn(Color.GREEN);
 
-    final Creature redCreature = mock(Creature.class);
+    final var redCreature = mock(Creature.class);
     when(redCreature.getColor()).thenReturn(Color.RED);
 
-    final ColorSelector greenSelector = new ColorSelector(Color.GREEN);
+    final var greenSelector = new ColorSelector(Color.GREEN);
     assertTrue(greenSelector.test(greenCreature));
     assertFalse(greenSelector.test(redCreature));
 

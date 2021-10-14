@@ -4,10 +4,9 @@ title: Event-based Asynchronous
 folder: event-asynchronous
 permalink: /patterns/event-asynchronous/
 categories: Concurrency
+language: en
 tags:
- - difficulty-intermediate
- - performance
- - Java
+ - Reactive
 ---
 
 ## Intent
@@ -19,6 +18,7 @@ of the complex issues inherent in multithreaded design. Using a class that suppo
 3. Wait for resources to become available without stopping ("hanging") your application.
 4. Communicate with pending asynchronous operations using the familiar events-and-delegates model.
 
+## Class diagram
 ![alt text](./etc/event-asynchronous.png "Event-based Asynchronous")
 
 ## Applicability

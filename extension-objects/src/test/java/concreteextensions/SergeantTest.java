@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package concreteextensions;
 
-import org.junit.Test;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 import units.SergeantUnit;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by Srdjan on 03-May-17.
  */
-public class SergeantTest {
-  @Test
-  public void sergeantReady() throws Exception {
-    final Sergeant sergeant = new Sergeant(new SergeantUnit("SergeantUnitTest"));
+class SergeantTest {
 
+  @Test
+  void sergeantReady() {
+
+    Logger sergeantLogger = (Logger) LoggerFactory.getLogger(Sergeant.class);
+
+    ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
+    listAppender.start();
+
+    sergeantLogger.addAppender(listAppender);
+
+    final var sergeant = new Sergeant(new SergeantUnit("SergeantUnitTest"));
     sergeant.sergeantReady();
+
+    List<ILoggingEvent> logsList = listAppender.list;
+    assertEquals("[Sergeant] " + sergeant.getUnit().getName() + " is ready!", logsList.get(0)
+        .getMessage());
+    assertEquals(Level.INFO, logsList.get(0)
+        .getLevel());
   }
 
 }

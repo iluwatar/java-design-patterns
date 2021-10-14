@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,53 +20,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.servant;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/28/15 - 9:40 PM
  *
  * @author Jeroen Meulemeester
  */
-public class KingTest {
+class KingTest {
 
   @Test
-  public void testHungrySoberUncomplimentedKing() {
-    final King king = new King();
+  void testHungrySoberUncomplimentedKing() {
+    final var king = new King();
     king.changeMood();
     assertFalse(king.getMood());
   }
 
   @Test
-  public void testFedSoberUncomplimentedKing() {
-    final King king = new King();
+  void testFedSoberUncomplimentedKing() {
+    final var king = new King();
     king.getFed();
     king.changeMood();
     assertFalse(king.getMood());
   }
 
   @Test
-  public void testHungryDrunkUncomplimentedKing() {
-    final King king = new King();
+  void testHungryDrunkUncomplimentedKing() {
+    final var king = new King();
     king.getDrink();
     king.changeMood();
     assertFalse(king.getMood());
   }
 
   @Test
-  public void testHungrySoberComplimentedKing() {
-    final King king = new King();
+  void testHungrySoberComplimentedKing() {
+    final var king = new King();
     king.receiveCompliments();
     king.changeMood();
     assertFalse(king.getMood());
   }
 
   @Test
-  public void testFedDrunkUncomplimentedKing() {
-    final King king = new King();
+  void testFedDrunkUncomplimentedKing() {
+    final var king = new King();
     king.getFed();
     king.getDrink();
     king.changeMood();
@@ -74,8 +76,8 @@ public class KingTest {
   }
 
   @Test
-  public void testFedSoberComplimentedKing() {
-    final King king = new King();
+  void testFedSoberComplimentedKing() {
+    final var king = new King();
     king.getFed();
     king.receiveCompliments();
     king.changeMood();
@@ -83,8 +85,8 @@ public class KingTest {
   }
 
   @Test
-  public void testFedDrunkComplimentedKing() {
-    final King king = new King();
+  void testFedDrunkComplimentedKing() {
+    final var king = new King();
     king.getFed();
     king.getDrink();
     king.receiveCompliments();
@@ -93,7 +95,7 @@ public class KingTest {
   }
 
   @Test
-  public void testHungryDrunkComplimentedKing() {
+  void testHungryDrunkComplimentedKing() {
     final King king = new King();
     king.getDrink();
     king.receiveCompliments();

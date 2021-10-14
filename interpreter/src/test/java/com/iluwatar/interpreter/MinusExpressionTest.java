@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.interpreter;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
-import java.util.List;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.provider.Arguments;
 
 /**
  * Date: 12/14/15 - 12:08 PM
  *
  * @author Jeroen Meulemeester
  */
-@RunWith(Parameterized.class)
 public class MinusExpressionTest extends ExpressionTest<MinusExpression> {
 
   /**
@@ -41,20 +38,16 @@ public class MinusExpressionTest extends ExpressionTest<MinusExpression> {
    *
    * @return The list of parameters used during this test
    */
-  @Parameters
-  public static List<Object[]> data() {
+  @Override
+  public Stream<Arguments> expressionProvider() {
     return prepareParameters((f, s) -> f - s);
   }
 
   /**
    * Create a new test instance using the given test parameters and expected result
-   *
-   * @param first  The first expression parameter
-   * @param second The second expression parameter
-   * @param result The expected result
    */
-  public MinusExpressionTest(final NumberExpression first, final NumberExpression second, final int result) {
-    super(first, second, result, "-", MinusExpression::new);
+  public MinusExpressionTest() {
+    super("-", MinusExpression::new);
   }
 
 }

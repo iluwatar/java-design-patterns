@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/**
- * 
- */
+
 package com.iluwatar.throttling.timer;
 
+import com.iluwatar.throttling.CallsCount;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import com.iluwatar.throttling.CallsCount;
 
 /**
  * Implementation of throttler interface. This class resets the counter every second.
@@ -37,21 +34,24 @@ import com.iluwatar.throttling.CallsCount;
  */
 public class ThrottleTimerImpl implements Throttler {
 
-  private int throttlePeriod;
-  
-  public ThrottleTimerImpl(int throttlePeriod) {
+  private final int throttlePeriod;
+  private final CallsCount callsCount;
+
+  public ThrottleTimerImpl(int throttlePeriod, CallsCount callsCount) {
     this.throttlePeriod = throttlePeriod;
+    this.callsCount = callsCount;
   }
-  
+
   /**
    * A timer is initiated with this method. The timer runs every second and resets the
    * counter.
    */
+  @Override
   public void start() {
     new Timer(true).schedule(new TimerTask() {
       @Override
       public void run() {
-        CallsCount.reset();
+        callsCount.reset();
       }
     }, 0, throttlePeriod);
   }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,45 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.doubledispatch;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 /**
- * 
  * Rectangle has coordinates and can be checked for overlap against other Rectangles.
- *
  */
+@Getter
+@RequiredArgsConstructor
 public class Rectangle {
 
-  private int left;
-  private int top;
-  private int right;
-  private int bottom;
-
-  /**
-   * Constructor
-   */
-  public Rectangle(int left, int top, int right, int bottom) {
-    this.left = left;
-    this.top = top;
-    this.right = right;
-    this.bottom = bottom;
-  }
-
-  public int getLeft() {
-    return left;
-  }
-
-  public int getTop() {
-    return top;
-  }
-
-  public int getRight() {
-    return right;
-  }
-
-  public int getBottom() {
-    return bottom;
-  }
+  private final int left;
+  private final int top;
+  private final int right;
+  private final int bottom;
 
   boolean intersectsWith(Rectangle r) {
     return !(r.getLeft() > getRight() || r.getRight() < getLeft() || r.getTop() > getBottom() || r

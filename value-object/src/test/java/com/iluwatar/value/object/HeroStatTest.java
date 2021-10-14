@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,32 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.value.object;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
-
 import static org.junit.Assert.assertThat;
 
 import com.google.common.testing.EqualsTester;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for HeroStat.
  */
-public class HeroStatTest {
+class HeroStatTest {
 
   /**
    * Tester for equals() and hashCode() methods of a class. Using guava's EqualsTester.
-   * 
-   * @see http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/
-   *      EqualsTester.html
+   *
+   * @see <a href="http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/EqualsTester.html">
+   * http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/EqualsTester.html
+   * </a>
    */
   @Test
-  public void testEquals() {
-    HeroStat heroStatA = HeroStat.valueOf(3, 9, 2);
-    HeroStat heroStatB = HeroStat.valueOf(3, 9, 2);
+  void testEquals() {
+    var heroStatA = HeroStat.valueOf(3, 9, 2);
+    var heroStatB = HeroStat.valueOf(3, 9, 2);
     new EqualsTester().addEqualityGroup(heroStatA, heroStatB).testEquals();
   }
 
@@ -54,10 +54,10 @@ public class HeroStatTest {
    * different.
    */
   @Test
-  public void testToString() {
-    HeroStat heroStatA = HeroStat.valueOf(3, 9, 2);
-    HeroStat heroStatB = HeroStat.valueOf(3, 9, 2);
-    HeroStat heroStatC = HeroStat.valueOf(3, 9, 8);
+  void testToString() {
+    var heroStatA = HeroStat.valueOf(3, 9, 2);
+    var heroStatB = HeroStat.valueOf(3, 9, 2);
+    var heroStatC = HeroStat.valueOf(3, 9, 8);
 
     assertThat(heroStatA.toString(), is(heroStatB.toString()));
     assertThat(heroStatA.toString(), is(not(heroStatC.toString())));

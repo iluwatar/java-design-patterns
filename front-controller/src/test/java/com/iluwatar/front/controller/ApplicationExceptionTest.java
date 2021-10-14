@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.front.controller;
 
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/13/15 - 1:35 PM
@@ -34,8 +35,8 @@ import org.junit.Test;
 public class ApplicationExceptionTest {
 
   @Test
-  public void testCause() throws Exception {
-    final Exception cause = new Exception();
+  void testCause() {
+    final var cause = new Exception();
     assertSame(cause, new ApplicationException(cause).getCause());
   }
 

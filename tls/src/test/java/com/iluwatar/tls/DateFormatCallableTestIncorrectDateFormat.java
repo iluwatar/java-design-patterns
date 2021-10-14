@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2016 Thomas Bauer
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,74 +23,66 @@
 
 package com.iluwatar.tls;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import java.util.List;
+import java.util.concurrent.Executors;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
- * 
  * Test of the Callable
- * 
- * In this test {@link DateFormatCallable} is tested with only one thread (i.e. without concurrency situation)
  * <p>
- * An incorrect formatted date is passed to the Callable
- * After a successful run 0 date values and 5 exceptions should be in the result object. 
- * 
- * @author Thomas Bauer, January 2017
+ * In this test {@link DateFormatCallable} is tested with only one thread (i.e. without concurrency
+ * situation)
+ * <p>
+ * An incorrect formatted date is passed to the Callable After a successful run 0 date values and 5
+ * exceptions should be in the result object.
  *
+ * @author Thomas Bauer, January 2017
  */
 public class DateFormatCallableTestIncorrectDateFormat {
 
   // Class variables used in setup() have to be static because setup() has to be static
   /**
-   * Result object given back by DateFormatCallable
-   *   -- Array with converted date values
-   *   -- Array with thrown exceptions
+   * Result object given back by DateFormatCallable -- Array with converted date values -- Array
+   * with thrown exceptions
    */
-  static Result result;
-
-  /**
-   * The date values created by the run of DateFormatRunnalbe. List will be filled in the setup() method
-   */
-  static List<String> createdExceptions = new ArrayList<String>();
+  private static Result result;
 
   /**
    * Expected number of date values in the date value list created by the run of DateFormatRunnalbe
    */
-  int expectedCounterDateValues = 0;
+  private final int expectedCounterDateValues = 0;
 
   /**
-   * Expected number of exceptions in the exception list created by the run of DateFormatRunnalbe. 
+   * Expected number of exceptions in the exception list created by the run of DateFormatRunnalbe.
    */
-  int expectedCounterExceptions = 5;
+  private final int expectedCounterExceptions = 5;
 
   /**
-   * Expected content of the list containing the exceptions created by the run of DateFormatRunnalbe
+   * Expected content of the list containing the exceptions created by the run of
+   * DateFormatRunnalbe
    */
-  List<String> expectedExceptions = Arrays.asList("class java.text.ParseException: Unparseable date: \"15.12.2015\"",
+  private final List<String> expectedExceptions = List.of(
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
-      "class java.text.ParseException: Unparseable date: \"15.12.2015\"");
+      "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
+      "class java.text.ParseException: Unparseable date: \"15.12.2015\""
+  );
 
   /**
    * Run Callable and prepare results for usage in the test methods
    */
-  @BeforeClass
+  @BeforeAll
   public static void setup() {
     // Create a callable. Pass a string date value not matching the format string
-    DateFormatCallable callableDf = new DateFormatCallable("dd/MM/yyyy", "15.12.2015");
+    var callableDf = new DateFormatCallable("dd/MM/yyyy", "15.12.2015");
     // start thread using the Callable instance
-    ExecutorService executor = Executors.newCachedThreadPool();
-    Future<Result> futureResult = executor.submit(callableDf);
+    var executor = Executors.newCachedThreadPool();
+    var futureResult = executor.submit(callableDf);
     try {
       result = futureResult.get();
     } catch (Exception e) {
@@ -104,24 +96,25 @@ public class DateFormatCallableTestIncorrectDateFormat {
    * same exception
    */
   @Test
-  public void testExecptions() {
+  void testExceptions() {
     assertEquals(expectedExceptions, result.getExceptionList());
   }
 
   /**
-   * Test number of dates in the list after the run of DateFormatRunnalbe. A correct run should deliver no date values
+   * Test number of dates in the list after the run of DateFormatRunnalbe. A correct run should
+   * deliver no date values
    */
   @Test
-  public void testCounterDateValues() {
+  void testCounterDateValues() {
     assertEquals(expectedCounterDateValues, result.getDateList().size());
   }
 
   /**
-   * Test number of Exceptions in the list after the run of DateFormatRunnalbe. A correct run should 
+   * Test number of Exceptions in the list after the run of DateFormatRunnalbe. A correct run should
    * deliver 5 exceptions
    */
   @Test
-  public void testCounterExceptions() {
+  void testCounterExceptions() {
     assertEquals(expectedCounterExceptions, result.getExceptionList().size());
   }
 }

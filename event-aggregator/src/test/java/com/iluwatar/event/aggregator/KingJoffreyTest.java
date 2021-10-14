@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,37 +20,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.LoggerFactory;
-
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import java.util.stream.IntStream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
 /**
  * Date: 12/12/15 - 3:04 PM
  *
  * @author Jeroen Meulemeester
  */
-public class KingJoffreyTest {
+class KingJoffreyTest {
 
   private InMemoryAppender appender;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     appender = new InMemoryAppender(KingJoffrey.class);
   }
 
-  @After
-  public void tearDown() {
+  @AfterEach
+  void tearDown() {
     appender.stop();
   }
 
@@ -58,25 +59,24 @@ public class KingJoffreyTest {
    * Test if {@link KingJoffrey} tells us what event he received
    */
   @Test
-  public void testOnEvent() {
-    final KingJoffrey kingJoffrey = new KingJoffrey();
+  void testOnEvent() {
+    final var kingJoffrey = new KingJoffrey();
 
-    for (int i = 0; i < Event.values().length; ++i) {
+    IntStream.range(0, Event.values().length).forEach(i -> {
       assertEquals(i, appender.getLogSize());
-      Event event = Event.values()[i];
+      var event = Event.values()[i];
       kingJoffrey.onEvent(event);
-
-      final String expectedMessage = "Received event from the King's Hand: " + event.toString();
+      final var expectedMessage = "Received event from the King's Hand: " + event.toString();
       assertEquals(expectedMessage, appender.getLastMessage());
       assertEquals(i + 1, appender.getLogSize());
-    }
+    });
 
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
-    public InMemoryAppender(Class clazz) {
+    public InMemoryAppender(Class<?> clazz) {
       ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
       start();
     }

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.lazy.loading;
 
 import java.lang.reflect.Field;
@@ -35,7 +36,7 @@ public class HolderThreadSafeTest extends AbstractHolderTest {
 
   @Override
   Heavy getInternalHeavyValue() throws Exception {
-    final Field holderField = HolderThreadSafe.class.getDeclaredField("heavy");
+    final var holderField = HolderThreadSafe.class.getDeclaredField("heavy");
     holderField.setAccessible(true);
     return (Heavy) holderField.get(this.holder);
   }

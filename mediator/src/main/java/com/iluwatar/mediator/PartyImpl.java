@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.mediator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * Party implementation.
- *
  */
 public class PartyImpl implements Party {
 
@@ -40,7 +39,7 @@ public class PartyImpl implements Party {
 
   @Override
   public void act(PartyMember actor, Action action) {
-    for (PartyMember member : members) {
+    for (var member : members) {
       if (!member.equals(actor)) {
         member.partyAction(action);
       }

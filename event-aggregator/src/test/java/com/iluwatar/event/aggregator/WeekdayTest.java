@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 2:12 PM
  *
  * @author Jeroen Meulemeester
  */
-public class WeekdayTest {
+class WeekdayTest {
 
   @Test
-  public void testToString() throws Exception {
-    for (final Weekday weekday : Weekday.values()) {
+  void testToString() {
+    Arrays.stream(Weekday.values()).forEach(weekday -> {
       final String toString = weekday.toString();
       assertNotNull(toString);
       assertEquals(weekday.name(), toString.toUpperCase());
-    }
+    });
   }
 
 }

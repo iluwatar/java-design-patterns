@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +20,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.stepbuilder;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Step Builder Pattern
  *
- * <p>
- * <b>Intent</b> <br/>
+ * <p><b>Intent</b> <br>
  * An extension of the Builder pattern that fully guides the user through the creation of the object
- * with no chances of confusion. <br/>
- * The user experience will be much more improved by the fact that he will only see the next step
- * methods available, NO build method until is the right time to build the object.
+ * with no chances of confusion. <br> The user experience will be much more improved by the fact
+ * that he will only see the next step methods available, NO build method until is the right time to
+ * build the object.
  *
- * <p>
- * <b>Implementation</b>
- * <ul>
+ * <p><b>Implementation</b> <br>
  * The concept is simple:
+ * <ul>
  *
  * <li>Write creational steps inner classes or interfaces where each method knows what can be
  * displayed next.</li>
@@ -48,41 +46,53 @@ import org.slf4j.LoggerFactory;
  * <li>Last step is the BuildStep, in charge of creating the object you need to build.</li>
  * </ul>
  *
- * <p>
- * <b>Applicability</b> <br/>
+ * <p><b>Applicability</b> <br>
  * Use the Step Builder pattern when the algorithm for creating a complex object should be
  * independent of the parts that make up the object and how they're assembled the construction
  * process must allow different representations for the object that's constructed when in the
  * process of constructing the order is important.
- * <p>
- * http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html
+ * <br>
+ *
+ * @see <a href="http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html">http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html</a>
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
   /**
-   * Program entry point
-   * 
+   * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
 
-    Character warrior =
-        CharacterStepBuilder.newBuilder().name("Amberjill").fighterClass("Paladin")
-            .withWeapon("Sword").noAbilities().build();
+    var warrior = CharacterStepBuilder
+        .newBuilder()
+        .name("Amberjill")
+        .fighterClass("Paladin")
+        .withWeapon("Sword")
+        .noAbilities()
+        .build();
 
     LOGGER.info(warrior.toString());
 
-    Character mage =
-        CharacterStepBuilder.newBuilder().name("Riobard").wizardClass("Sorcerer")
-            .withSpell("Fireball").withAbility("Fire Aura").withAbility("Teleport")
-            .noMoreAbilities().build();
+    var mage = CharacterStepBuilder
+        .newBuilder()
+        .name("Riobard")
+        .wizardClass("Sorcerer")
+        .withSpell("Fireball")
+        .withAbility("Fire Aura")
+        .withAbility("Teleport")
+        .noMoreAbilities()
+        .build();
 
     LOGGER.info(mage.toString());
 
-    Character thief =
-        CharacterStepBuilder.newBuilder().name("Desmond").fighterClass("Rogue").noWeapon().build();
+    var thief = CharacterStepBuilder
+        .newBuilder()
+        .name("Desmond")
+        .fighterClass("Rogue")
+        .noWeapon()
+        .build();
 
     LOGGER.info(thief.toString());
   }

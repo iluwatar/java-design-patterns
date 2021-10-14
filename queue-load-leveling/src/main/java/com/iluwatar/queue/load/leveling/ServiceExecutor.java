@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,14 @@
 
 package com.iluwatar.queue.load.leveling;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
- *  ServiceExecuotr class.
- *  This class will pick up Messages one by one from 
- *  the Blocking Queue and process them.
+ * ServiceExecuotr class. This class will pick up Messages one by one from the Blocking Queue and
+ * process them.
  */
+@Slf4j
 public class ServiceExecutor implements Runnable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private final MessageQueue msgQueue;
 
@@ -48,7 +44,7 @@ public class ServiceExecutor implements Runnable {
   public void run() {
     try {
       while (!Thread.currentThread().isInterrupted()) {
-        Message msg = msgQueue.retrieveMsg();
+        var msg = msgQueue.retrieveMsg();
 
         if (null != msg) {
           LOGGER.info(msg.toString() + " is served.");
@@ -58,8 +54,6 @@ public class ServiceExecutor implements Runnable {
 
         Thread.sleep(1000);
       }
-    } catch (InterruptedException ie) {
-      LOGGER.error(ie.getMessage());
     } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }

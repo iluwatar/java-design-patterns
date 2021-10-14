@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.mediator;
 
 /**
- * 
  * Action enumeration.
- *
  */
 public enum Action {
+  HUNT("hunted a rabbit", "arrives for dinner"),
+  TALE("tells a tale", "comes to listen"),
+  GOLD("found gold", "takes his share of the gold"),
+  ENEMY("spotted enemies", "runs for cover"),
+  NONE("", "");
 
-  HUNT("hunted a rabbit", "arrives for dinner"), TALE("tells a tale", "comes to listen"), GOLD(
-      "found gold", "takes his share of the gold"), ENEMY("spotted enemies", "runs for cover"), NONE(
-      "", "");
-
-  private String title;
-  private String description;
+  private final String title;
+  private final String description;
 
   Action(String title, String description) {
     this.title = title;

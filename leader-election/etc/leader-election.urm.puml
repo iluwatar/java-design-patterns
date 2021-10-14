@@ -1,0 +1,120 @@
+@startuml
+package com.iluwatar.leaderelection.ring {
+  class RingApp {
+    + RingApp()
+    + main(args : String[]) {static}
+  }
+  class RingInstance {
+    - LOGGER : Logger {static}
+    + RingInstance(messageManager : MessageManager, localId : int, leaderId : int)
+    # handleElectionInvokeMessage()
+    # handleElectionMessage(message : Message)
+    # handleHeartbeatInvokeMessage()
+    # handleHeartbeatMessage(message : Message)
+    # handleLeaderInvokeMessage()
+    # handleLeaderMessage(message : Message)
+  }
+  class RingMessageManager {
+    + RingMessageManager(instanceMap : Map<Integer, Instance>)
+    + sendElectionMessage(currentId : int, content : String) : boolean
+    + sendHeartbeatInvokeMessage(currentId : int)
+    + sendHeartbeatMessage(leaderId : int) : boolean
+    + sendLeaderMessage(currentId : int, leaderId : int) : boolean
+  }
+}
+package com.iluwatar.leaderelection {
+  abstract class AbstractInstance {
+    # HEARTBEAT_INTERVAL : int {static}
+    - LOGGER : Logger {static}
+    # alive : boolean
+    # leaderId : int
+    # localId : int
+    # messageManager : MessageManager
+    # messageQueue : Queue<Message>
+    + AbstractInstance(messageManager : MessageManager, localId : int, leaderId : int)
+    # handleElectionInvokeMessage() {abstract}
+    # handleElectionMessage(Message) {abstract}
+    # handleHeartbeatInvokeMessage() {abstract}
+    # handleHeartbeatMessage(Message) {abstract}
+    # handleLeaderInvokeMessage() {abstract}
+    # handleLeaderMessage(Message) {abstract}
+    + isAlive() : boolean
+    + onMessage(message : Message)
+    - processMessage(message : Message)
+    + run()
+    + setAlive(alive : boolean)
+  }
+  abstract class AbstractMessageManager {
+    # instanceMap : Map<Integer, Instance>
+    + AbstractMessageManager(instanceMap : Map<Integer, Instance>)
+    # findNextInstance(currentId : int) : Instance
+  }
+  interface Instance {
+    + isAlive() : boolean {abstract}
+    + onMessage(Message) {abstract}
+    + setAlive(boolean) {abstract}
+  }
+  class Message {
+    - content : String
+    - type : MessageType
+    + Message()
+    + Message(type : MessageType, content : String)
+    + equals(o : Object) : boolean
+    + getContent() : String
+    + getType() : MessageType
+    + hashCode() : int
+    + setContent(content : String)
+    + setType(type : MessageType)
+  }
+  interface MessageManager {
+    + sendElectionMessage(int, String) : boolean {abstract}
+    + sendHeartbeatInvokeMessage(int) {abstract}
+    + sendHeartbeatMessage(int) : boolean {abstract}
+    + sendLeaderMessage(int, int) : boolean {abstract}
+  }
+  enum MessageType {
+    + ELECTION {static}
+    + ELECTION_INVOKE {static}
+    + HEARTBEAT {static}
+    + HEARTBEAT_INVOKE {static}
+    + LEADER {static}
+    + LEADER_INVOKE {static}
+    + valueOf(name : String) : MessageType {static}
+    + values() : MessageType[] {static}
+  }
+}
+package com.iluwatar.leaderelection.bully {
+  class BullyApp {
+    + BullyApp()
+    + main(args : String[]) {static}
+  }
+  class BullyInstance {
+    - LOGGER : Logger {static}
+    + BullyInstance(messageManager : MessageManager, localId : int, leaderId : int)
+    # handleElectionInvokeMessage()
+    # handleElectionMessage(message : Message)
+    # handleHeartbeatInvokeMessage()
+    # handleHeartbeatMessage(message : Message)
+    # handleLeaderInvokeMessage()
+    # handleLeaderMessage(message : Message)
+    - isLeader() : boolean
+  }
+  class BullyMessageManager {
+    + BullyMessageManager(instanceMap : Map<Integer, Instance>)
+    - findElectionCandidateInstanceList(currentId : int) : List<Integer>
+    + sendElectionMessage(currentId : int, content : String) : boolean
+    + sendHeartbeatInvokeMessage(currentId : int)
+    + sendHeartbeatMessage(leaderId : int) : boolean
+    + sendLeaderMessage(currentId : int, leaderId : int) : boolean
+  }
+}
+AbstractInstance -->  "-messageQueue" Message
+Message -->  "-type" MessageType
+AbstractInstance -->  "-messageManager" MessageManager
+AbstractInstance ..|> Instance 
+AbstractMessageManager ..|> MessageManager 
+BullyInstance --|> AbstractInstance 
+BullyMessageManager --|> AbstractMessageManager 
+RingInstance --|> AbstractInstance 
+RingMessageManager --|> AbstractMessageManager 
+@enduml

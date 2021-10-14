@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.prototype;
 
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+
 /**
- * 
- * ElfMage
- *
+ * ElfMage.
  */
+@EqualsAndHashCode(callSuper = true)
+@RequiredArgsConstructor
 public class ElfMage extends Mage {
 
-  public ElfMage() {}
+  private final String helpType;
+
+  public ElfMage(ElfMage elfMage) {
+    super(elfMage);
+    this.helpType = elfMage.helpType;
+  }
 
   @Override
-  public Mage clone() throws CloneNotSupportedException {
-    return new ElfMage();
+  public ElfMage copy() {
+    return new ElfMage(this);
   }
 
   @Override
   public String toString() {
-    return "Elven mage";
+    return "Elven mage helps in " + helpType;
   }
 
 }

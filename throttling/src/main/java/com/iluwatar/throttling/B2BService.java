@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,39 +20,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.throttling;
 
+import com.iluwatar.throttling.timer.Throttler;
+import java.util.concurrent.ThreadLocalRandom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.iluwatar.throttling.timer.Throttler;
-
-import java.util.concurrent.ThreadLocalRandom;
-
 /**
- * A service which accepts a tenant and throttles the resource based on the time given to the tenant.
+ * A service which accepts a tenant and throttles the resource based on the time given to the
+ * tenant.
  */
 class B2BService {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(B2BService.class);
+  private final CallsCount callsCount;
 
-  public B2BService(Throttler timer) {
+  public B2BService(Throttler timer, CallsCount callsCount) {
+    this.callsCount = callsCount;
     timer.start();
   }
 
   /**
+   * Calls dummy customer api.
    *
    * @return customer id which is randomly generated
    */
   public int dummyCustomerApi(Tenant tenant) {
-    String tenantName = tenant.getName();
-    long count = CallsCount.getCount(tenantName);
+    var tenantName = tenant.getName();
+    var count = callsCount.getCount(tenantName);
     LOGGER.debug("Counter for {} : {} ", tenant.getName(), count);
     if (count >= tenant.getAllowedCallsPerSecond()) {
       LOGGER.error("API access per second limit reached for: {}", tenantName);
       return -1;
     }
-    CallsCount.incrementCount(tenantName);
+    callsCount.incrementCount(tenantName);
     return getRandomCustomerId();
   }
 

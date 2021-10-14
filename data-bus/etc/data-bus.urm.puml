@@ -1,0 +1,82 @@
+@startuml
+package com.iluwatar.databus {
+  class AbstractDataType {
+    - dataBus : DataBus
+    + AbstractDataType()
+    + getDataBus() : DataBus
+    + setDataBus(dataBus : DataBus)
+  }
+  ~class App {
+    ~ App()
+    + main(args : String[]) {static}
+  }
+  class DataBus {
+    - INSTANCE : DataBus {static}
+    - listeners : Set<Member>
+    + DataBus()
+    + getInstance() : DataBus {static}
+    + publish(event : DataType)
+    + subscribe(member : Member)
+    + unsubscribe(member : Member)
+  }
+  interface DataType {
+    + getDataBus() : DataBus {abstract}
+    + setDataBus(DataBus) {abstract}
+  }
+  interface Member {
+    + accept(DataType) {abstract}
+  }
+}
+package com.iluwatar.databus.data {
+  class MessageData {
+    - message : String
+    + MessageData(message : String)
+    + getMessage() : String
+    + of(message : String) : DataType {static}
+  }
+  class StartingData {
+    - when : LocalDateTime
+    + StartingData(when : LocalDateTime)
+    + getWhen() : LocalDateTime
+    + of(when : LocalDateTime) : DataType {static}
+  }
+  class StoppingData {
+    - when : LocalDateTime
+    + StoppingData(when : LocalDateTime)
+    + getWhen() : LocalDateTime
+    + of(when : LocalDateTime) : DataType {static}
+  }
+}
+package com.iluwatar.databus.members {
+  class MessageCollectorMember {
+    - LOGGER : Logger {static}
+    - messages : List<String>
+    - name : String
+    + MessageCollectorMember(name : String)
+    + accept(data : DataType)
+    + getMessages() : List<String>
+    - handleEvent(data : MessageData)
+  }
+  class StatusMember {
+    - LOGGER : Logger {static}
+    - id : int
+    - started : LocalDateTime
+    - stopped : LocalDateTime
+    + StatusMember(id : int)
+    + accept(data : DataType)
+    + getStarted() : LocalDateTime
+    + getStopped() : LocalDateTime
+    - handleEvent(data : StartingData)
+    - handleEvent(data : StoppingData)
+  }
+}
+AbstractDataType -->  "-dataBus" DataBus
+DataBus -->  "-INSTANCE" DataBus
+DataBus -->  "-listeners" Member
+AbstractDataType ..|> DataType 
+MessageData --|> AbstractDataType 
+StartingData --|> AbstractDataType 
+StoppingData --|> AbstractDataType 
+MessageCollectorMember ..|> Member 
+StatusMember ..|> Member 
+@enduml

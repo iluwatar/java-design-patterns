@@ -1,0 +1,36 @@
+@startuml
+package com.iluwatar.pipeline {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  ~class ConvertToCharArrayHandler {
+    - LOGGER : Logger {static}
+    ~ ConvertToCharArrayHandler()
+    + process(input : String) : char[]
+  }
+  ~interface Handler<I, O> {
+    + process(I) : O {abstract}
+  }
+  ~class Pipeline<I, O> {
+    - currentHandler : Handler<I, O>
+    ~ Pipeline<I, O>(currentHandler : Handler<I, O>)
+    ~ addHandler(newHandler : Handler<O, K>) : Pipeline<I, K>
+    ~ execute(input : I) : O
+  }
+  ~class RemoveAlphabetsHandler {
+    - LOGGER : Logger {static}
+    ~ RemoveAlphabetsHandler()
+    + process(input : String) : String
+  }
+  ~class RemoveDigitsHandler {
+    - LOGGER : Logger {static}
+    ~ RemoveDigitsHandler()
+    + process(input : String) : String
+  }
+}
+Pipeline -->  "-currentHandler" Handler
+ConvertToCharArrayHandler ..|> Handler 
+RemoveAlphabetsHandler ..|> Handler 
+RemoveDigitsHandler ..|> Handler 
+@enduml

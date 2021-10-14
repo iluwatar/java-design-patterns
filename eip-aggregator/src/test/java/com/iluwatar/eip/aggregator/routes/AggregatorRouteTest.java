@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,35 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.eip.aggregator.routes;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.Assert.assertEquals;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * Test class for <i>AggregatorRoute</i>.
  * <p>
- * In order for it to work we have to mock endpoints we want to read/write to. To mock those we need to substitute
- * original endpoint names to mocks.
+ * In order for it to work we have to mock endpoints we want to read/write to. To mock those we need
+ * to substitute original endpoint names to mocks.
  * </p>
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = AggregatorRouteTest.class)
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = AggregatorRouteTest.class)
 @ActiveProfiles("test")
 @EnableAutoConfiguration
 @ComponentScan
-public class AggregatorRouteTest {
+class AggregatorRouteTest {
 
   @EndpointInject(uri = "{{entry}}")
   private ProducerTemplate entry;
@@ -58,11 +59,12 @@ public class AggregatorRouteTest {
 
   /**
    * Test if endpoint receives three separate messages.
+   *
    * @throws Exception in case of en exception during the test
    */
   @Test
   @DirtiesContext
-  public void testSplitter() throws Exception {
+  void testSplitter() throws Exception {
 
     // Three items in one entry message
     entry.sendBody("TEST1");
@@ -75,10 +77,10 @@ public class AggregatorRouteTest {
     endpoint.expectedMessageCount(2);
     endpoint.assertIsSatisfied();
 
-    String body = (String) endpoint.getReceivedExchanges().get(0).getIn().getBody();
+    var body = (String) endpoint.getReceivedExchanges().get(0).getIn().getBody();
     assertEquals(3, body.split(";").length);
 
-    String body2 = (String) endpoint.getReceivedExchanges().get(1).getIn().getBody();
+    var body2 = (String) endpoint.getReceivedExchanges().get(1).getIn().getBody();
     assertEquals(2, body2.split(";").length);
   }
 }

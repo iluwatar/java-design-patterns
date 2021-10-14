@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.reactor.app;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.reactor.app;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -38,38 +35,38 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Represents the clients of Reactor pattern. Multiple clients are run concurrently and send logging
  * requests to Reactor.
  */
+@Slf4j
 public class AppClient {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AppClient.class);
 
   private final ExecutorService service = Executors.newFixedThreadPool(4);
 
   /**
    * App client entry.
-   * 
+   *
    * @throws IOException if any I/O error occurs.
    */
   public static void main(String[] args) throws IOException {
-    AppClient appClient = new AppClient();
+    var appClient = new AppClient();
     appClient.start();
   }
 
   /**
    * Starts the logging clients.
-   * 
+   *
    * @throws IOException if any I/O error occurs.
    */
   public void start() throws IOException {
     LOGGER.info("Starting logging clients");
-    service.execute(new TcpLoggingClient("Client 1", 6666));
-    service.execute(new TcpLoggingClient("Client 2", 6667));
-    service.execute(new UdpLoggingClient("Client 3", 6668));
-    service.execute(new UdpLoggingClient("Client 4", 6668));
+    service.execute(new TcpLoggingClient("Client 1", 16666));
+    service.execute(new TcpLoggingClient("Client 2", 16667));
+    service.execute(new UdpLoggingClient("Client 3", 16668));
+    service.execute(new UdpLoggingClient("Client 4", 16669));
   }
 
   /**
@@ -106,19 +103,20 @@ public class AppClient {
 
     /**
      * Creates a new TCP logging client.
-     * 
+     *
      * @param clientName the name of the client to be sent in logging requests.
-     * @param port the port on which client will send logging requests.
+     * @param serverPort the port on which client will send logging requests.
      */
     public TcpLoggingClient(String clientName, int serverPort) {
       this.clientName = clientName;
       this.serverPort = serverPort;
     }
 
+    @Override
     public void run() {
-      try (Socket socket = new Socket(InetAddress.getLocalHost(), serverPort)) {
-        OutputStream outputStream = socket.getOutputStream();
-        PrintWriter writer = new PrintWriter(outputStream);
+      try (var socket = new Socket(InetAddress.getLocalHost(), serverPort)) {
+        var outputStream = socket.getOutputStream();
+        var writer = new PrintWriter(outputStream);
         sendLogRequests(writer, socket.getInputStream());
       } catch (IOException e) {
         LOGGER.error("error sending requests", e);
@@ -127,12 +125,12 @@ public class AppClient {
     }
 
     private void sendLogRequests(PrintWriter writer, InputStream inputStream) throws IOException {
-      for (int i = 0; i < 4; i++) {
+      for (var i = 0; i < 4; i++) {
         writer.println(clientName + " - Log request: " + i);
         writer.flush();
 
-        byte[] data = new byte[1024];
-        int read = inputStream.read(data, 0, data.length);
+        var data = new byte[1024];
+        var read = inputStream.read(data, 0, data.length);
         if (read == 0) {
           LOGGER.info("Read zero bytes");
         } else {
@@ -154,9 +152,9 @@ public class AppClient {
 
     /**
      * Creates a new UDP logging client.
-     * 
+     *
      * @param clientName the name of the client to be sent in logging requests.
-     * @param port the port on which client will send logging requests.
+     * @param port       the port on which client will send logging requests.
      * @throws UnknownHostException if localhost is unknown
      */
     public UdpLoggingClient(String clientName, int port) throws UnknownHostException {
@@ -166,17 +164,17 @@ public class AppClient {
 
     @Override
     public void run() {
-      try (DatagramSocket socket = new DatagramSocket()) {
-        for (int i = 0; i < 4; i++) {
+      try (var socket = new DatagramSocket()) {
+        for (var i = 0; i < 4; i++) {
 
-          String message = clientName + " - Log request: " + i;
-          DatagramPacket request =
-              new DatagramPacket(message.getBytes(), message.getBytes().length, remoteAddress);
+          var message = clientName + " - Log request: " + i;
+          var bytes = message.getBytes();
+          var request = new DatagramPacket(bytes, bytes.length, remoteAddress);
 
           socket.send(request);
 
-          byte[] data = new byte[1024];
-          DatagramPacket reply = new DatagramPacket(data, data.length);
+          var data = new byte[1024];
+          var reply = new DatagramPacket(data, data.length);
           socket.receive(reply);
           if (reply.getLength() == 0) {
             LOGGER.info("Read zero bytes");

@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.command;
 
+import lombok.RequiredArgsConstructor;
+
 /**
- * 
  * Enumeration for target visibility.
- *
  */
+@RequiredArgsConstructor
 public enum Visibility {
 
-  VISIBLE("visible"), INVISIBLE("invisible");
+  VISIBLE("visible"),
+  INVISIBLE("invisible");
 
-  private String title;
-
-  Visibility(String title) {
-    this.title = title;
-  }
+  private final String title;
 
   @Override
   public String toString() {

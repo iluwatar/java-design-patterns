@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.halfsynchalfasync;
 
 import java.util.concurrent.BlockingQueue;
@@ -28,6 +29,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is the asynchronous layer which does not block when a new request arrives. It just passes
@@ -36,15 +38,15 @@ import java.util.concurrent.TimeUnit;
  * thread picks up the task and executes it synchronously in background and the result is posted
  * back to the caller via callback.
  */
+@Slf4j
 public class AsynchronousService {
-
   /*
    * This represents the queuing layer as well as synchronous layer of the pattern. The thread pool
    * contains worker threads which execute the tasks in blocking/synchronous manner. Long running
    * tasks should be performed in the background which does not affect the performance of main
    * thread.
    */
-  private ExecutorService service;
+  private final ExecutorService service;
 
   /**
    * Creates an asynchronous service using {@code workQueue} as communication channel between
@@ -58,13 +60,14 @@ public class AsynchronousService {
 
   /**
    * A non-blocking method which performs the task provided in background and returns immediately.
-   * <p>
-   * On successful completion of task the result is posted back using callback method
-   * {@link AsyncTask#onPostCall(Object)}, if task execution is unable to complete normally due to
-   * some exception then the reason for error is posted back using callback method
-   * {@link AsyncTask#onError(Throwable)}.
-   * <p>
-   * NOTE: The results are posted back in the context of background thread in this implementation.
+   *
+   * <p>On successful completion of task the result is posted back using callback method {@link
+   * AsyncTask#onPostCall(Object)}, if task execution is unable to complete normally due to some
+   * exception then the reason for error is posted back using callback method {@link
+   * AsyncTask#onError(Throwable)}.
+   *
+   * <p>NOTE: The results are posted back in the context of background thread in this
+   * implementation.
    */
   public <T> void execute(final AsyncTask<T> task) {
     try {
@@ -94,5 +97,17 @@ public class AsynchronousService {
         }
       }
     });
+  }
+
+  /**
+   * Stops the pool of workers. This is a blocking call to wait for all tasks to be completed.
+   */
+  public void close() {
+    service.shutdown();
+    try {
+      service.awaitTermination(10, TimeUnit.SECONDS);
+    } catch (InterruptedException ie) {
+      LOGGER.error("Error waiting for executor service shutdown!");
+    }
   }
 }

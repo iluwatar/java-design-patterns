@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.dependency.injection;
 
 /**
- * 
  * Naive Wizard implementation violating the inversion of control principle. It should depend on
  * abstraction instead.
- *
  */
 public class SimpleWizard implements Wizard {
 
-  private OldTobyTobacco tobacco = new OldTobyTobacco();
+  private final OldTobyTobacco tobacco = new OldTobyTobacco();
 
   public void smoke() {
     tobacco.smoke(this);

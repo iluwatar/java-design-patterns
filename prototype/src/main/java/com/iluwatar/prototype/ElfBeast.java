@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.prototype;
 
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+
 /**
- * 
- * ElfBeast
- *
+ * ElfBeast.
  */
+@EqualsAndHashCode(callSuper = true)
+@RequiredArgsConstructor
 public class ElfBeast extends Beast {
 
-  public ElfBeast() {}
+  private final String helpType;
+
+  public ElfBeast(ElfBeast elfBeast) {
+    super(elfBeast);
+    this.helpType = elfBeast.helpType;
+  }
 
   @Override
-  public Beast clone() throws CloneNotSupportedException {
-    return new ElfBeast();
+  public ElfBeast copy() {
+    return new ElfBeast(this);
   }
 
   @Override
   public String toString() {
-    return "Elven eagle";
+    return "Elven eagle helps in " + helpType;
   }
 
 }

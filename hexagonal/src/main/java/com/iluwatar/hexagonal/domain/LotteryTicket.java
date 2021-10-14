@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,65 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.hexagonal.domain;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
 /**
- * 
  * Immutable value object representing lottery ticket.
- *
  */
+@Getter
+@ToString
+@RequiredArgsConstructor
 public class LotteryTicket {
 
-  private LotteryTicketId id;
+  private final LotteryTicketId id;
   private final PlayerDetails playerDetails;
   private final LotteryNumbers lotteryNumbers;
 
-  /**
-   * Constructor.
-   */
-  public LotteryTicket(LotteryTicketId id, PlayerDetails details, LotteryNumbers numbers) {
-    this.id = id;
-    playerDetails = details;
-    lotteryNumbers = numbers;
-  }
-
-  /**
-   * @return player details
-   */
-  public PlayerDetails getPlayerDetails() {
-    return playerDetails;
-  }
-  
-  /**
-   * @return lottery numbers
-   */
-  public LotteryNumbers getNumbers() {
-    return lotteryNumbers;
-  }
-
-  /**
-   * @return id
-   */
-  public LotteryTicketId getId() {
-    return id;
-  }
-
-  /**
-   * set id
-   */
-  public void setId(LotteryTicketId id) {
-    this.id = id;
-  }
-
-  @Override
-  public String toString() {
-    return playerDetails.toString() + " " + lotteryNumbers.toString();
-  }
-
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
+    final var prime = 31;
+    var result = 1;
     result = prime * result + ((lotteryNumbers == null) ? 0 : lotteryNumbers.hashCode());
     result = prime * result + ((playerDetails == null) ? 0 : playerDetails.hashCode());
     return result;
@@ -95,7 +59,7 @@ public class LotteryTicket {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    LotteryTicket other = (LotteryTicket) obj;
+    var other = (LotteryTicket) obj;
     if (lotteryNumbers == null) {
       if (other.lotteryNumbers != null) {
         return false;
@@ -104,12 +68,10 @@ public class LotteryTicket {
       return false;
     }
     if (playerDetails == null) {
-      if (other.playerDetails != null) {
-        return false;
-      }
-    } else if (!playerDetails.equals(other.playerDetails)) {
-      return false;
+      return other.playerDetails == null;
+    } else {
+      return playerDetails.equals(other.playerDetails);
     }
-    return true;
   }
+
 }

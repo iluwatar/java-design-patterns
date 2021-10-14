@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.adapter;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,9 +34,8 @@ import static org.mockito.Mockito.verify;
 
 /**
  * Test class
- * 
  */
-public class AdapterPatternTest {
+class AdapterPatternTest {
 
   private Map<String, Object> beans;
 
@@ -46,33 +46,33 @@ public class AdapterPatternTest {
   /**
    * This method runs before the test execution and sets the bean objects in the beans Map.
    */
-  @Before
+  @BeforeEach
   public void setup() {
     beans = new HashMap<>();
 
-    FishingBoatAdapter fishingBoatAdapter = spy(new FishingBoatAdapter());
+    var fishingBoatAdapter = spy(new FishingBoatAdapter());
     beans.put(FISHING_BEAN, fishingBoatAdapter);
 
-    Captain captain = new Captain();
+    var captain = new Captain();
     captain.setRowingBoat((FishingBoatAdapter) beans.get(FISHING_BEAN));
     beans.put(ROWING_BEAN, captain);
   }
 
   /**
-   * This test asserts that when we use the row() method on a captain bean(client), it is
-   * internally calling sail method on the fishing boat object. The Adapter ({@link FishingBoatAdapter}
-   * ) converts the interface of the target class ( {@link FishingBoat}) into a suitable one
-   * expected by the client ({@link Captain} ).
+   * This test asserts that when we use the row() method on a captain bean(client), it is internally
+   * calling sail method on the fishing boat object. The Adapter ({@link FishingBoatAdapter} )
+   * converts the interface of the target class ( {@link FishingBoat}) into a suitable one expected
+   * by the client ({@link Captain} ).
    */
   @Test
-  public void testAdapter() {
-    RowingBoat captain = (RowingBoat) beans.get(ROWING_BEAN);
+  void testAdapter() {
+    var captain = (Captain) beans.get(ROWING_BEAN);
 
     // when captain moves
     captain.row();
 
     // the captain internally calls the battleship object to move
-    RowingBoat adapter = (RowingBoat) beans.get(FISHING_BEAN);
+    var adapter = (RowingBoat) beans.get(FISHING_BEAN);
     verify(adapter).row();
   }
 }

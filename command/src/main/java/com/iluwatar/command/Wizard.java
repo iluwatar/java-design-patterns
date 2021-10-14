@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,60 +20,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.command;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.iluwatar.command;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
- * Wizard is the invoker of the commands
- *
+ * Wizard is the invoker of the commands.
  */
+@Slf4j
 public class Wizard {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
-
-  private Deque<Command> undoStack = new LinkedList<>();
-  private Deque<Command> redoStack = new LinkedList<>();
+  private final Deque<Runnable> undoStack = new LinkedList<>();
+  private final Deque<Runnable> redoStack = new LinkedList<>();
 
   public Wizard() {
-    // comment to ignore sonar issue: LEVEL critical
   }
 
   /**
-   * Cast spell
+   * Cast spell.
    */
-  public void castSpell(Command command, Target target) {
-    LOGGER.info("{} casts {} at {}", this, command, target);
-    command.execute(target);
-    undoStack.offerLast(command);
+  public void castSpell(Runnable runnable) {
+    runnable.run();
+    undoStack.offerLast(runnable);
   }
 
   /**
-   * Undo last spell
+   * Undo last spell.
    */
   public void undoLastSpell() {
     if (!undoStack.isEmpty()) {
-      Command previousSpell = undoStack.pollLast();
+      var previousSpell = undoStack.pollLast();
       redoStack.offerLast(previousSpell);
-      LOGGER.info("{} undoes {}", this, previousSpell);
-      previousSpell.undo();
+      previousSpell.run();
     }
   }
 
   /**
-   * Redo last spell
+   * Redo last spell.
    */
   public void redoLastSpell() {
     if (!redoStack.isEmpty()) {
-      Command previousSpell = redoStack.pollLast();
+      var previousSpell = redoStack.pollLast();
       undoStack.offerLast(previousSpell);
-      LOGGER.info("{} redoes {}", this, previousSpell);
-      previousSpell.redo();
+      previousSpell.run();
     }
   }
 

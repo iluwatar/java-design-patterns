@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.intercepting.filter;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/13/15 - 3:01 PM
@@ -40,21 +41,21 @@ import static org.mockito.Mockito.when;
 public class FilterManagerTest {
 
   @Test
-  public void testFilterRequest() throws Exception {
-    final Target target = mock(Target.class);
-    final FilterManager filterManager = new FilterManager();
+  void testFilterRequest() {
+    final var target = mock(Target.class);
+    final var filterManager = new FilterManager();
     assertEquals("RUNNING...", filterManager.filterRequest(mock(Order.class)));
     verifyZeroInteractions(target);
   }
 
   @Test
-  public void testAddFilter() throws Exception {
-    final Target target = mock(Target.class);
-    final FilterManager filterManager = new FilterManager();
+  void testAddFilter() {
+    final var target = mock(Target.class);
+    final var filterManager = new FilterManager();
 
     verifyZeroInteractions(target);
 
-    final Filter filter = mock(Filter.class);
+    final var filter = mock(Filter.class);
     when(filter.execute(any(Order.class))).thenReturn("filter");
 
     filterManager.addFilter(filter);

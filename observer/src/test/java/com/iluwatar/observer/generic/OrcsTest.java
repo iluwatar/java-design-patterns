@@ -1,6 +1,6 @@
-/**
+/*
  * The MIT License
- * Copyright (c) 2014-2016 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -36,27 +33,23 @@ import java.util.List;
  *
  * @author Jeroen Meulemeester
  */
-@RunWith(Parameterized.class)
 public class OrcsTest extends ObserverTest<GOrcs> {
 
-  @Parameterized.Parameters
-  public static Collection<Object[]> data() {
-    final List<Object[]> testData = new ArrayList<>();
-    testData.add(new Object[]{WeatherType.SUNNY, "The sun hurts the orcs' eyes."});
-    testData.add(new Object[]{WeatherType.RAINY, "The orcs are dripping wet."});
-    testData.add(new Object[]{WeatherType.WINDY, "The orc smell almost vanishes in the wind."});
-    testData.add(new Object[]{WeatherType.COLD, "The orcs are freezing cold."});
-    return testData;
+  @Override
+  public Collection<Object[]> dataProvider() {
+    return List.of(
+        new Object[]{WeatherType.SUNNY, "The orcs are facing Sunny weather now"},
+        new Object[]{WeatherType.RAINY, "The orcs are facing Rainy weather now"},
+        new Object[]{WeatherType.WINDY, "The orcs are facing Windy weather now"},
+        new Object[]{WeatherType.COLD, "The orcs are facing Cold weather now"}
+    );
   }
 
   /**
    * Create a new test with the given weather and expected response
-   *
-   * @param weather  The weather that should be unleashed on the observer
-   * @param response The expected response from the observer
    */
-  public OrcsTest(final WeatherType weather, final String response) {
-    super(weather, response, GOrcs::new);
+  public OrcsTest() {
+    super(GOrcs::new);
   }
 
 }

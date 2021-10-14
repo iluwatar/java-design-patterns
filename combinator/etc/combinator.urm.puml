@@ -1,0 +1,26 @@
+@startuml
+package com.iluwatar.combinator {
+  class CombinatorApp {
+    - LOGGER : Logger {static}
+    + CombinatorApp()
+    + main(args : String[]) {static}
+    - text() : String {static}
+  }
+  interface Finder {
+    + and(andFinder : Finder) : Finder
+    + contains(word : String) : Finder {static}
+    + find(String) : List<String> {abstract}
+    + not(notFinder : Finder) : Finder
+    + or(orFinder : Finder) : Finder
+  }
+  class Finders {
+    - Finders()
+    + advancedFinder(query : String, orQuery : String, notQuery : String) : Finder {static}
+    + expandedFinder(queries : String[]) : Finder {static}
+    + filteredFinder(query : String, excludeQueries : String[]) : Finder {static}
+    - identMult() : Finder {static}
+    - identSum() : Finder {static}
+    + specializedFinder(queries : String[]) : Finder {static}
+  }
+}
+@enduml
