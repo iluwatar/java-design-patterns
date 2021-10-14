@@ -32,9 +32,15 @@ public class Staff {
         return Objects.hash(firstName, lastName, gender, email, dateOfBirth);
     }
 
+    /**
+     * Use {@link Function} for currying
+     */
     static Function<String, Function<String, Function<Gender, Function<String, Function<LocalDate, Staff>>>>> CREATOR =
             firstName -> lastName -> gender -> email -> dateOfBirth -> new Staff(firstName, lastName, gender, email, dateOfBirth);
 
+    /**
+     * Use functional interfaces for currying
+     */
     static AddFirstName builder() {
         return firstName -> lastName -> gender -> email -> dateOfBirth -> new Staff(firstName, lastName, gender, email, dateOfBirth);
     }
