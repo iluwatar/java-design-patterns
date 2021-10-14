@@ -4,6 +4,7 @@ title: Monitor
 folder: monitor
 permalink: /patterns/monitor/
 categories: Concurrency
+language: en
 tags:
  - Performance
 ---
