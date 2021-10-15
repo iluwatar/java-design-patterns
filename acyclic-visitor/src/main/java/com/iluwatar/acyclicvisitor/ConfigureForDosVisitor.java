@@ -31,14 +31,16 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ConfigureForDosVisitor implements AllModemVisitor {
+  
+  private static final String USED_WITH_DOS_CONFIGURATOR = " used with Dos configurator.";
 
   @Override
   public void visit(Hayes hayes) {
-    LOGGER.info(hayes + " used with Dos configurator.");
+    LOGGER.info(hayes + USED_WITH_DOS_CONFIGURATOR);
   }
 
   @Override
   public void visit(Zoom zoom) {
-    LOGGER.info(zoom + " used with Dos configurator.");
+    LOGGER.info(zoom + USED_WITH_DOS_CONFIGURATOR);
   }
 }
