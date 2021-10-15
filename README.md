@@ -348,6 +348,9 @@ This project is licensed under the terms of the MIT license.
   <tr>
     <td align="center"><a href="https://programacionymas.com"><img src="https://avatars.githubusercontent.com/u/3101238?v=4?s=100" width="100px;" alt=""/><br /><sub><b>JCarlos</b></sub></a><br /><a href="#translation-JCarlosR" title="Translation">🌍</a></td>
   </tr>
+   <tr>
+    <td align="center"><a href="https://programacionymas.com"><img src="https://avatars.githubusercontent.com/spao234?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wanderson</b></sub></a><br /><a href="#translation-JCarlosR" title="Translation">🌍</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
