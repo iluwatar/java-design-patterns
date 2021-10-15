@@ -1640,6 +1640,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "JCarlosR",
+      "name": "JCarlos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3101238?v=4",
+      "profile": "https://programacionymas.com",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 4,
