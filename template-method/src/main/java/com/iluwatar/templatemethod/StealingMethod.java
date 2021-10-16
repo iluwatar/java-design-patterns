@@ -40,7 +40,7 @@ public abstract class StealingMethod {
   /**
    * Steal.
    */
-  public void steal() {
+  public final void steal() {
     var target = pickTarget();
     LOGGER.info("The target has been chosen as {}.", target);
     confuseTarget(target);
