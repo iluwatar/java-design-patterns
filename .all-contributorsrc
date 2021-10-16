@@ -1649,6 +1649,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Dev-AliGhasemi",
+      "name": "Ali Ghasemi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60359433?v=4",
+      "profile": "https://www.mrmoshkel.ir",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 4,
