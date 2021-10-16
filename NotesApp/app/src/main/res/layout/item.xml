@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="312dp"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        tools:text="Text"
+        android:textSize="25sp"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:id="@+id/dltBtn"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:src="@drawable/delete_icon"
+        android:layout_margin="10dp"
+        android:text="Delete" />
+
+</RelativeLayout>
