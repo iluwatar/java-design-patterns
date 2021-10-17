@@ -23,93 +23,79 @@
     THE SOFTWARE.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-
-	<parent>
-		<groupId>com.iluwatar</groupId>
-		<artifactId>naked-objects</artifactId>
-		<version>1.25.0-SNAPSHOT</version>
-	</parent>
-
-	<artifactId>naked-objects-integtests</artifactId>
-
-	<build>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-			</testResource>
-			<testResource>
-				<directory>src/test/java</directory>
-				<includes>
-					<include>**</include>
-				</includes>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</testResource>
-		</testResources>
-	</build>
-	<dependencies>
-
-		<!-- other modules in this project -->
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>naked-objects-fixture</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.isis.core</groupId>
-			<artifactId>isis-core-unittestsupport</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.isis.core</groupId>
-			<artifactId>isis-core-integtestsupport</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.isis.core</groupId>
-			<artifactId>isis-core-specsupport</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-library</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.isis.core</groupId>
-			<artifactId>isis-core-wrapper</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.isis.core</groupId>
-			<artifactId>isis-core-runtime</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.junit.vintage</groupId>
-			<artifactId>junit-vintage-engine</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>javax.annotation-api</artifactId>
-		</dependency>
-
-        <!-- 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.iluwatar</groupId>
+    <artifactId>naked-objects</artifactId>
+    <version>1.25.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>naked-objects-integtests</artifactId>
+  <build>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+      <testResource>
+        <directory>src/test/java</directory>
+        <includes>
+          <include>**</include>
+        </includes>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </testResource>
+    </testResources>
+  </build>
+  <dependencies>
+    <!-- other modules in this project -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>naked-objects-fixture</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.isis.core</groupId>
+      <artifactId>isis-core-unittestsupport</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.isis.core</groupId>
+      <artifactId>isis-core-integtestsupport</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.isis.core</groupId>
+      <artifactId>isis-core-specsupport</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.isis.core</groupId>
+      <artifactId>isis-core-wrapper</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.isis.core</groupId>
+      <artifactId>isis-core-runtime</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+    </dependency>
+    <!-- 
         uncomment to enable enhanced cucumber-jvm reporting
         http://www.masterthought.net/section/cucumber-reporting
         <dependency>  
@@ -129,9 +115,8 @@
             <version>0.0.4</version>
         </dependency>  
         -->
-    </dependencies>
-
-    <!-- 
+  </dependencies>
+  <!-- 
     uncomment for enhanced cucumber-jvm reporting
     http://www.masterthought.net/section/cucumber-reporting
     <repositories>  
@@ -141,5 +126,4 @@
         </repository>  
     </repositories>  
      -->
-
 </project>
