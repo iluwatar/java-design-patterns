@@ -10,7 +10,7 @@ tags:
 ---
 
 ## Intent
-Currying pattern is a function that returns another function which only takes 1 parameter at a time.
+Currying pattern transforms an arbitrary arity into a sequence of unary functions.
 
 ![alt text](./etc/dao.png "Data Access Object")
 
@@ -18,3 +18,11 @@ Currying pattern is a function that returns another function which only takes 1 
 Use the currying pattern in any of the following situations
 
 * when you want to break a function with many arguments into many functions with single argument 
+
+## Tutorials
+
+* [Currying in Java](https://www.baeldung.com/java-currying)
+
+## Credits
+
+* [Baeldung](https://www.baeldung.com/)
