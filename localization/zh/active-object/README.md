@@ -122,4 +122,4 @@ public class Orc extends ActiveCreature {
 
 ## 类图
 
-![alt text](../../../active-object/etc/active-object.urm.PNG "Active Object class diagram")
+![alt text](../../../active-object/etc/active-object.urm.png "Active Object class diagram")

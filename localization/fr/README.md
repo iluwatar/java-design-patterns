@@ -48,7 +48,7 @@ que lorsqu’ils sont nécessaires pour une extensibilité pratique.
 
 Une fois que vous êtes familiarisé avec ces concepts, vous pouvez commencer à explorer les
 [modèles de conception disponibles](https://java-design-patterns.com/patterns/)
-par n’importe laquelle les approches suivantes&nbsp:
+par n’importe laquelle des approches suivantes&nbsp;:
 
 - Recherchez un modèle spécifique par son nom.
   Vous n’en trouvez pas&nbsp;? Veuillez signaler un nouveau modèle [ici](https://github.com/iluwatar/java-design-patterns/issues).
