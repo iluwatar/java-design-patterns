@@ -3,7 +3,7 @@ layout: pattern
 title: Currying
 folder: currying
 permalink: /patterns/currying/
-categories: Architectural
+categories: Functional
 tags:
 - Decoupling
 ---
