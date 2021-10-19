@@ -5,8 +5,7 @@ folder: currying
 permalink: /patterns/currying/
 categories: Architectural
 tags:
-- Java
-- Difficulty-Intermediate
+- Decoupling
 ---
 
 ## Intent
