@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     The MIT License
@@ -28,14 +28,15 @@
  but it adds an empty line after the last line, so the package name can be "separated from the previous statement",
  according to Google's Checkstyle format -->
 <additionalHeaders>
-    <slashstar_custom_style>
-        <firstLine>/*</firstLine>
-        <beforeEachLine> * </beforeEachLine>
-        <endLine> */EOL</endLine><!-- Added EOL here -->
-        <firstLineDetectionPattern>(\\s|\\t)*/\\*.*$</firstLineDetectionPattern>
-        <lastLineDetectionPattern>.*\\*/(\\s|\\t)*$</lastLineDetectionPattern>
-        <allowBlankLines>false</allowBlankLines>
-        <isMultiline>true</isMultiline>
-        <padLines>false</padLines>
-    </slashstar_custom_style>
+  <slashstar_custom_style>
+    <firstLine>/*</firstLine>
+    <beforeEachLine>*</beforeEachLine>
+    <endLine>*/EOL</endLine>
+    <!-- Added EOL here -->
+    <firstLineDetectionPattern>(\\s|\\t)*/\\*.*$</firstLineDetectionPattern>
+    <lastLineDetectionPattern>.*\\*/(\\s|\\t)*$</lastLineDetectionPattern>
+    <allowBlankLines>false</allowBlankLines>
+    <isMultiline>true</isMultiline>
+    <padLines>false</padLines>
+  </slashstar_custom_style>
 </additionalHeaders>
