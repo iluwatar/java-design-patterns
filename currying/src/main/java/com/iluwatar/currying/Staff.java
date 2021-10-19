@@ -103,4 +103,34 @@ public class Staff {
   enum Gender {
     Male, Female
   }
+
+  /**
+   * Main method for maven-assembly-plugin.
+   */
+  public static void main(String[] args) {
+    final String firstName = "Janus";
+    final String lastName = "Lin";
+    final Staff.Gender gender = Staff.Gender.Male;
+    final String email = "example@gmail.com";
+    final LocalDate dateOfBirth = LocalDate.now();
+
+    Staff staff1 = Staff.CREATOR
+            .apply(firstName)
+            .apply(lastName)
+            .apply(gender)
+            .apply(email)
+            .apply(dateOfBirth);
+
+    System.out.println(String.format("Staff created with basic currying: %s", staff1));
+
+    Staff staff2 = Staff.builder()
+            .withReturnFirstName(firstName)
+            .withReturnLastName(lastName)
+            .withReturnGender(gender)
+            .withReturnEmail(email)
+            .withReturnDateOfBirth(dateOfBirth);
+
+    System.out.println(
+            String.format("Staff created with currying and functional interfaces: %s", staff2));
+  }
 }
