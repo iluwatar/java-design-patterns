@@ -306,8 +306,6 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="http://muklasr.medium.com"><img src="https://avatars.githubusercontent.com/u/43443753?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Muklas Rahmanto</b></sub></a><br /><a href="#translation-muklasr" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/VxDxK"><img src="https://avatars.githubusercontent.com/u/38704817?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vadim</b></sub></a><br /><a href="#translation-VxDxK" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/sims-keshri"><img src="https://avatars.githubusercontent.com/u/62168475?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Simran Keshri</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=sims-keshri" title="Code">💻</a></td>
-  </tr>
-  <tr>
     <td align="center"><a href="https://programacionymas.com"><img src="https://avatars.githubusercontent.com/u/3101238?v=4?s=100" width="100px;" alt=""/><br /><sub><b>JCarlos</b></sub></a><br /><a href="#translation-JCarlosR" title="Translation">🌍</a></td>
     <td align="center"><a href="https://www.mrmoshkel.ir"><img src="https://avatars.githubusercontent.com/u/60359433?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ali Ghasemi</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Dev-AliGhasemi" title="Code">💻</a></td>
   </tr>
