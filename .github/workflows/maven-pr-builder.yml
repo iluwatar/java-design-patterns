@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        java-version: [ 11.0.3, 11, 17, 18-ea ]
+        java-version: [ 11.0.3, 11 ]
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
