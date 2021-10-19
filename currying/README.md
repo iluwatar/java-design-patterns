@@ -4,6 +4,7 @@ title: Currying
 folder: currying
 permalink: /patterns/currying/
 categories: Functional
+language: en
 tags:
 - Decoupling
 ---
