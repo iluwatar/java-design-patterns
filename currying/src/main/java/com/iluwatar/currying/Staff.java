@@ -1,5 +1,8 @@
 package com.iluwatar.currying;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.function.Function;
@@ -7,54 +10,14 @@ import java.util.function.Function;
 /**
  * Staff Object for demonstrating how to use currying pattern.
  */
+@AllArgsConstructor
+@Data
 public class Staff {
   private String firstName;
   private String lastName;
   private Gender gender;
   private String email;
   private LocalDate dateOfBirth;
-
-  /**
-   * Contractor.
-
-   * @param firstName first name.
-   * @param lastName last name.
-   * @param gender gender.
-   * @param email email.
-   * @param dateOfBirth date of birth.
-   */
-  public Staff(String firstName,
-               String lastName,
-               Gender gender,
-               String email,
-               LocalDate dateOfBirth) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.gender = gender;
-    this.email = email;
-    this.dateOfBirth = dateOfBirth;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Staff staff = (Staff) o;
-    return firstName.equals(staff.firstName)
-            && lastName.equals(staff.lastName)
-            && gender == staff.gender
-            && email.equals(staff.email)
-            && dateOfBirth.equals(staff.dateOfBirth);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(firstName, lastName, gender, email, dateOfBirth);
-  }
 
   /**
    * Use {@link Function} for currying.
