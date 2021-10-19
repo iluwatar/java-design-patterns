@@ -35,4 +35,9 @@ public class StaffTest {
                 .withReturnDateOfBirth(dateOfBirth);
         Assert.assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void mainTest() {
+        Staff.main(new String[]{});
+    }
 }
