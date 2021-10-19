@@ -20,19 +20,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package com.iluwatar.fanout.fanin;
 
-package com.iluwatar.factory;
-
-import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class CarsFactoryTest {
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+class FanOutFanInTest {
 
   @Test
-  void shouldReturnFerrariInstance() {
-    final var ferrari = CarsFactory.getCar(CarType.FERRARI);
-    assertTrue(ferrari instanceof Ferrari);
-  }
+  void fanOutFanInTest() {
+    final List<Long> numbers = Arrays.asList(1L, 3L, 4L, 7L, 8L);
 
+    final List<SquareNumberRequest> requests =
+        numbers.stream().map(SquareNumberRequest::new).collect(Collectors.toList());
+
+    final Consumer consumer = new Consumer(0L);
+
+    final Long sumOfSquaredNumbers = FanOutFanIn.fanOutFanIn(requests, consumer);
+
+    Assertions.assertEquals(139, sumOfSquaredNumbers);
+  }
 }

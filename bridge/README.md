@@ -19,7 +19,7 @@ Decouple an abstraction from its implementation so that the two can vary indepen
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Consider you have a weapon with different enchantments, and you are supposed to allow mixing 
 > different weapons with different enchantments. What would you do? Create multiple copies of each 
@@ -161,27 +161,36 @@ public class SoulEatingEnchantment implements Enchantment {
 Here are both hierarchies in action:
 
 ```java
+LOGGER.info("The knight receives an enchanted sword.");
 var enchantedSword = new Sword(new SoulEatingEnchantment());
 enchantedSword.wield();
 enchantedSword.swing();
 enchantedSword.unwield();
-// The sword is wielded.
-// The item spreads bloodlust.
-// The sword is swinged.
-// The item eats the soul of enemies.
-// The sword is unwielded.
-// Bloodlust slowly disappears.
 
+LOGGER.info("The valkyrie receives an enchanted hammer.");
 var hammer = new Hammer(new FlyingEnchantment());
 hammer.wield();
 hammer.swing();
 hammer.unwield();
-// The hammer is wielded.
-// The item begins to glow faintly.
-// The hammer is swinged.
-// The item flies and strikes the enemies finally returning to owner's hand.
-// The hammer is unwielded.
-// The item's glow fades.
+```
+
+Here's the console output.
+
+```
+The knight receives an enchanted sword.
+The sword is wielded.
+The item spreads bloodlust.
+The sword is swung.
+The item eats the soul of enemies.
+The sword is unwielded.
+Bloodlust slowly disappears.
+The valkyrie receives an enchanted hammer.
+The hammer is wielded.
+The item begins to glow faintly.
+The hammer is swung.
+The item flies and strikes the enemies finally returning to owner's hand.
+The hammer is unwielded.
+The item's glow fades.
 ```
 
 ## Class diagram

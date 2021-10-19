@@ -2,7 +2,7 @@
 layout: pattern
 title: Acyclic Visitor
 folder: acyclic-visitor
-permalink: /patterns/acyclic-visitor/zh
+permalink: /patterns/acyclic-visitor/
 categories: Behavioral
 language: zh
 tags:
@@ -123,7 +123,7 @@ public class ConfigureForUnixVisitor implements ZoomVisitor {
 
 ## 类图
 
-![alt text](../../acyclic-visitor/etc/acyclic-visitor.png "Acyclic Visitor")
+![alt text](../../../acyclic-visitor/etc/acyclic-visitor.png "Acyclic Visitor")
 
 ## 适用性
 

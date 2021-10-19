@@ -4,6 +4,7 @@ title: Factory
 folder: factory
 permalink: /patterns/factory/
 categories: Creational
+language: zh
 tags:
  - Gang of Four
 ---
@@ -108,7 +109,7 @@ This is Ferrari.
 
 ## 类图
 
-![alt text](../../factory/etc/factory.urm.png "Factory pattern class diagram")
+![alt text](../../../factory/etc/factory.urm.png "Factory pattern class diagram")
 
 ## 适用场景
 

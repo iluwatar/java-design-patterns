@@ -37,6 +37,6 @@ public class ElfWeapon implements Weapon {
 
   @Override
   public String toString() {
-    return "Elven " + weaponType;
+    return "an elven " + weaponType;
   }
 }

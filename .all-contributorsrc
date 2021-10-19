@@ -1550,9 +1550,117 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "marlo2222",
+      "name": "Marlo Henrique",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40809563?v=4",
+      "profile": "https://github.com/marlo2222",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "AndriyPyzh",
+      "name": "AndriyPyzh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57706635?v=4",
+      "profile": "https://github.com/AndriyPyzh",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "karthikbhat13",
+      "name": "karthikbhat13",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22431014?v=4",
+      "profile": "https://github.com/karthikbhat13",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mortezaadi",
+      "name": "Morteza Adigozalpour",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1329687?v=4",
+      "profile": "https://github.com/mortezaadi",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "tan31989",
+      "name": "Nagaraj Tantri",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3784194?v=4",
+      "profile": "https://stackoverflow.com/users/308565/nagaraj-tantri",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "frascu",
+      "name": "Francesco Scuccimarri",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7107651?v=4",
+      "profile": "http://scuccimarri.it",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Conhan93",
+      "name": "Conny Hansson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71334757?v=4",
+      "profile": "https://github.com/Conhan93",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "muklasr",
+      "name": "Muklas Rahmanto",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43443753?v=4",
+      "profile": "http://muklasr.medium.com",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "VxDxK",
+      "name": "Vadim",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38704817?v=4",
+      "profile": "https://github.com/VxDxK",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "sims-keshri",
+      "name": "Simran Keshri",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62168475?v=4",
+      "profile": "https://github.com/sims-keshri",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "JCarlosR",
+      "name": "JCarlos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3101238?v=4",
+      "profile": "https://programacionymas.com",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Dev-AliGhasemi",
+      "name": "Ali Ghasemi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60359433?v=4",
+      "profile": "https://www.mrmoshkel.ir",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "contributorsPerLine": 4,
+  "contributorsPerLine": 7,
   "projectName": "java-design-patterns",
   "projectOwner": "iluwatar",
   "repoType": "github",

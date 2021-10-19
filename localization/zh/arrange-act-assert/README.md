@@ -2,7 +2,7 @@
 layout: pattern
 title: Arrange/Act/Assert
 folder: arrange-act-assert
-permalink: /patterns/arrange-act-assert/zh
+permalink: /patterns/arrange-act-assert/
 categories: Idiom
 language: zh
 tags:
@@ -73,10 +73,7 @@ public class Cash {
 }
 ```
 
-Then we write our unit tests according to Arrange/Act/Assert pattern. Notice the clearly
-separated steps for each unit test.
-
-然后我们根据Arrange / Act / Assert模式编写单元测试。 注意每个单元测试的步骤是分开的清晰的。
+然后我们根据安排/ 执行 / 断言模式编写单元测试。 注意每个单元测试的步骤是分开的清晰的。
 
 ```java
 class CashAAATest {
@@ -129,9 +126,8 @@ class CashAAATest {
 
 ## 适用性
 
-使用 Arrange/Act/Assert 模式当
+使用 安排/执行/断言 模式当
 
-* You need to structure your unit tests so that they're easier to read, maintain, and enhance. 
 * 你需要结构化你的单元测试代码这样它们可以更好的阅读，维护和增强。
 
 ## 鸣谢

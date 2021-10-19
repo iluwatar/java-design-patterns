@@ -58,7 +58,7 @@ public class App {
     weather.timePasses();
     weather.timePasses();
 
-    // Generic observer inspired by Java Generics and Collection by Naftalin & Wadler
+    // Generic observer inspired by Java Generics and Collections by Naftalin & Wadler
     LOGGER.info("--Running generic version--");
     var genericWeather = new GWeather();
     genericWeather.addObserver(new GOrcs());

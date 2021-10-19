@@ -24,10 +24,14 @@
 package com.iluwatar.factory;
 
 /**
- * Car interface.
+ * GoldCoin implementation.
  */
-public interface Car {
+public class GoldCoin implements Coin {
 
-  String getDescription();
+  static final String DESCRIPTION = "This is a gold coin.";
 
+  @Override
+  public String getDescription() {
+    return DESCRIPTION;
+  }
 }

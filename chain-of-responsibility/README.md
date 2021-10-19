@@ -1,8 +1,8 @@
 ---
 layout: pattern
 title: Chain of responsibility
-folder: chain
-permalink: /patterns/chain/
+folder: chain-of-responsibility
+permalink: /patterns/chain-of-responsibility/
 categories: Behavioral
 language: en
 tags:
@@ -10,16 +10,17 @@ tags:
 ---
 
 ## Intent
+
 Avoid coupling the sender of a request to its receiver by giving more than one object a chance to 
 handle the request. Chain the receiving objects and pass the request along the chain until an object 
 handles it.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > The Orc King gives loud orders to his army. The closest one to react is the commander, then 
-> officer and then soldier. The commander, officer and soldier here form a chain of responsibility.
+> an officer, and then a soldier. The commander, officer, and soldier form a chain of responsibility.
 
 In plain words
 
@@ -35,7 +36,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Translating our example with the orcs from above. First we have the `Request` class:
+Translating our example with the orcs from above. First, we have the `Request` class:
 
 ```java
 public class Request {
@@ -66,7 +67,7 @@ public enum RequestType {
 }
 ```
 
-Then the request handler hierarchy
+Next, we show the request handler hierarchy.
 
 ```java
 @Slf4j
@@ -116,7 +117,7 @@ public class OrcCommander extends RequestHandler {
 
 ```
 
-Then we have the Orc King who gives the orders and forms the chain
+The Orc King gives the orders and forms the chain.
 
 ```java
 public class OrcKing {
@@ -136,18 +137,26 @@ public class OrcKing {
 }
 ```
 
-Then it is used as follows
+The chain of responsibility in action.
 
 ```java
 var king = new OrcKing();
-king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle")); // Orc commander handling request "defend castle"
-king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner")); // Orc officer handling request "torture prisoner"
-king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax")); // Orc soldier handling request "collect tax"
+king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle"));
+king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner"));
+king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax"));
+```
+
+The console output.
+
+```
+Orc commander handling request "defend castle"
+Orc officer handling request "torture prisoner"
+Orc soldier handling request "collect tax"
 ```
 
 ## Class diagram
 
-![alt text](./etc/chain.urm.png "Chain of Responsibility class diagram")
+![alt text](./etc/chain-of-responsibility.urm.png "Chain of Responsibility class diagram")
 
 ## Applicability
 
@@ -157,7 +166,7 @@ Use Chain of Responsibility when
 * You want to issue a request to one of several objects without specifying the receiver explicitly.
 * The set of objects that can handle a request should be specified dynamically.
 
-## Real world examples
+## Known uses
 
 * [java.util.logging.Logger#log()](http://docs.oracle.com/javase/8/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29)
 * [Apache Commons Chain](https://commons.apache.org/proper/commons-chain/index.html)

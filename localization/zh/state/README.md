@@ -2,7 +2,7 @@
 layout: pattern
 title: State
 folder: state
-permalink: /patterns/state/zh
+permalink: /patterns/state/
 categories: Behavioral
 language: zh
 tags:
@@ -135,7 +135,7 @@ public class Mammoth {
 ```
 
 ## 类图
-![alt text](../../state/etc/state_urm.png "State")
+![alt text](../../../state/etc/state_urm.png "State")
 
 ## 适用性
 

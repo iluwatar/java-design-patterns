@@ -2,7 +2,7 @@
 layout: pattern
 title: Observer
 folder: observer
-permalink: /patterns/observer/zh
+permalink: /patterns/observer/
 categories: Behavioral
 language: zh
 tags:
@@ -129,7 +129,7 @@ public class Weather {
 ```
 
 ## Class diagram
-![alt text](../../observer/etc/observer.png "Observer")
+![alt text](../../../observer/etc/observer.png "Observer")
 
 ## 应用
 在下面任何一种情况下都可以使用观察者模式

@@ -23,15 +23,19 @@
 
 package com.iluwatar.factory;
 
+import java.util.function.Supplier;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 /**
- * Ford implementation.
+ * Enumeration for different types of coins.
  */
-public class Ford implements Car {
+@RequiredArgsConstructor
+@Getter
+public enum CoinType {
 
-  static final String DESCRIPTION = "This is Ford.";
+  COPPER(CopperCoin::new),
+  GOLD(GoldCoin::new);
 
-  @Override
-  public String getDescription() {
-    return DESCRIPTION;
-  }
+  private final Supplier<Coin> constructor;
 }
