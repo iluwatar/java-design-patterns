@@ -17,6 +17,17 @@
       ]
     },
     {
+      "login": "ohbus",
+      "name": "Subhrodip Mohanta",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13291222?v=4",
+      "profile": "http://subho.xyz",
+      "contributions": [
+        "code",
+        "review",
+        "maintenance"
+      ]
+    },
+    {
       "login": "amit1307",
       "name": "amit1307",
       "avatar_url": "https://avatars0.githubusercontent.com/u/23420222?v=4",
@@ -1126,17 +1137,6 @@
       ]
     },
     {
-      "login": "ohbus",
-      "name": "Subhrodip Mohanta",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/13291222?v=4",
-      "profile": "http://subho.xyz",
-      "contributions": [
-        "code",
-        "review",
-        "maintenance"
-      ]
-    },
-    {
       "login": "nahteb",
       "name": "Bethan Palmer",
       "avatar_url": "https://avatars3.githubusercontent.com/u/13121570?v=4",
@@ -1655,6 +1655,15 @@
       "name": "Ali Ghasemi",
       "avatar_url": "https://avatars.githubusercontent.com/u/60359433?v=4",
       "profile": "https://www.mrmoshkel.ir",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "carldea",
+      "name": "Carl Dea",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1594624?v=4",
+      "profile": "http://carlfx.wordpress.com",
       "contributions": [
         "code"
       ]
