@@ -19,7 +19,7 @@ public class UsageCostProcessorFunctionTest {
     void testRun() {
         // Setup
         @SuppressWarnings("unchecked")
-        final HttpRequestMessage<List<EventGridEvent>> req = mock(HttpRequestMessage.class);
+        final HttpRequestMessage<Optional<List<EventGridEvent>>> req = mock(HttpRequestMessage.class);
 
         final Map<String, String> queryParams = new HashMap<>();
         queryParams.put("name", "Azure");
@@ -30,8 +30,8 @@ public class UsageCostProcessorFunctionTest {
                 BinaryData.fromObject(subscriptionValidationEventData), "dataVersion");
         List<EventGridEvent> eventGridEvents = new ArrayList<>();
         eventGridEvents.add(eventGridEvent);
-        Optional<List<EventGridEvent>> queryBody = Optional.of(eventGridEvents);
-        doReturn(queryBody.get()).when(req).getBody();
+        Optional<List<EventGridEvent>> requestBody = Optional.of(eventGridEvents);
+        doReturn(requestBody).when(req).getBody();
         doAnswer(new Answer<HttpResponseMessage.Builder>() {
             @Override
             public HttpResponseMessage.Builder answer(InvocationOnMock invocation) {

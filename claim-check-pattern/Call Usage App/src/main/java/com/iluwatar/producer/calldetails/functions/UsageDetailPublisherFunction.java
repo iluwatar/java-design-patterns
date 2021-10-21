@@ -21,6 +21,7 @@ import com.microsoft.azure.functions.annotation.HttpTrigger;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
@@ -29,10 +30,13 @@ import java.util.UUID;
  */
 public class UsageDetailPublisherFunction {
     @FunctionName("UsageDetailPublisherFunction")
-    public HttpResponseMessage run(@HttpTrigger(name = "req", methods = { HttpMethod.GET,
-            HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<List<EventGridEvent>> request,
+    public HttpResponseMessage run(@HttpTrigger(name = "request", methods = { HttpMethod.GET,
+            HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<List<EventGridEvent>>> request,
             final ExecutionContext context) {
-        List<EventGridEvent> eventGridEvents = request.getBody();
+
+        context.getLogger().info(request.getBody().get().toString());
+        context.getLogger().info(request.getBody().get().size() + "");
+        List<EventGridEvent> eventGridEvents = request.getBody().get();
 
         for (EventGridEvent eventGridEvent : eventGridEvents) {
             // Handle system events

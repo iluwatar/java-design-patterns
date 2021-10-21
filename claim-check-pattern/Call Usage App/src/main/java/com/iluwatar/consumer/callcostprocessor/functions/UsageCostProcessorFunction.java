@@ -23,10 +23,10 @@ import com.microsoft.azure.functions.*;
 public class UsageCostProcessorFunction {
     @FunctionName("UsageCostProcessorFunction")
     public HttpResponseMessage run(@HttpTrigger(name = "req", methods = { HttpMethod.GET,
-            HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<List<EventGridEvent>> request,
+            HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<List<EventGridEvent>>> request,
             final ExecutionContext context) {
 
-        List<EventGridEvent> eventGridEvents = request.getBody();
+        List<EventGridEvent> eventGridEvents = request.getBody().get();
         for (EventGridEvent eventGridEvent : eventGridEvents) {
             // Handle system events
             if (eventGridEvent.getEventType().equals("Microsoft.EventGrid.SubscriptionValidationEvent")) {
