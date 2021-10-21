@@ -12,12 +12,21 @@ import com.iluwatar.domain.MessageReference;
 
 public class MessageHandlerUtility<T>{
 
+    private BlobServiceClient blobServiceClient;
+
+    public MessageHandlerUtility(BlobServiceClient blobServiceClient) {
+        this.blobServiceClient = blobServiceClient;
+    }
+
+    public MessageHandlerUtility() {
+        // Create a BlobServiceClient object which will be used to create a container client
+        this.blobServiceClient = new BlobServiceClientBuilder().connectionString(System.getenv("BlobStorageConnectionString")).buildClient();
+
+    }
+    
     public Message<T> readFromPersistantStorage(MessageReference messageReference, Logger logger){
         Message<T> message = null;
         try{
-
-            // Create a BlobServiceClient object which will be used to create a container client
-            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(System.getenv("BlobStorageConnectionString")).buildClient();
 
             // Get container name from message reference
             String containerName = messageReference.getDataLocation();
@@ -44,9 +53,6 @@ public class MessageHandlerUtility<T>{
     public void dropToPersistantStorage(Message<T> message, Logger logger){
         try{
 
-            // Create a BlobServiceClient object which will be used to create a container client
-            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(System.getenv("BlobStorageConnectionString")).buildClient();
-
             // Get message reference 
             MessageReference messageReference = (MessageReference)message.getMessageHeader().getData();
 
@@ -54,7 +60,7 @@ public class MessageHandlerUtility<T>{
             String containerName = messageReference.getDataLocation();
 
             // Create the container and return a container client object
-            BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+            BlobContainerClient containerClient = this.blobServiceClient.getBlobContainerClient(containerName);
             if(!containerClient.exists()){
                 containerClient.create();
             }

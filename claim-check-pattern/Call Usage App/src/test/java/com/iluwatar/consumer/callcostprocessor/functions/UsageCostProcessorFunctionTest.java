@@ -1,5 +1,6 @@
-package com.iluwatar.producer.calldetails.functions;
+package com.iluwatar.consumer.callcostprocessor.functions;
 
+import org.junit.jupiter.api.Test;
 import com.azure.core.util.BinaryData;
 import com.azure.messaging.eventgrid.EventGridEvent;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationEventData;
@@ -9,21 +10,13 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import java.util.*;
 import java.util.logging.Logger;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-/**
- * Unit test for Function class.
- */
-public class UsageDetailPublisherFunctionTest {
-    /**
-     * Unit test for HttpTriggerJava method.
-     */
+public class UsageCostProcessorFunctionTest {
     @Test
-    public void testHttpTriggerJava() throws Exception {
-
+    void testRun() {
         // Setup
         @SuppressWarnings("unchecked")
         final HttpRequestMessage<List<EventGridEvent>> req = mock(HttpRequestMessage.class);
@@ -51,7 +44,7 @@ public class UsageDetailPublisherFunctionTest {
         doReturn(Logger.getGlobal()).when(context).getLogger();
 
         // Invoke
-        final HttpResponseMessage ret = new UsageDetailPublisherFunction().run(req, context);
+        final HttpResponseMessage ret = new UsageCostProcessorFunction().run(req, context);
 
         // Verify
         assertEquals(ret.getStatus(), HttpStatus.OK);

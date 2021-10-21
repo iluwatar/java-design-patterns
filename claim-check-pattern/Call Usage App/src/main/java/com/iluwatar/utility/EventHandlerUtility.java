@@ -8,20 +8,24 @@ import com.azure.messaging.eventgrid.EventGridPublisherClientBuilder;
 
 public class EventHandlerUtility<T> {
 
-    public void publishEvent(T event, Logger logger){
-        try{
-            EventGridPublisherClient<BinaryData> customEventClient = new EventGridPublisherClientBuilder()
+    private EventGridPublisherClient<BinaryData> customEventClient;
+
+    public EventHandlerUtility() {
+        this.customEventClient = new EventGridPublisherClientBuilder()
                 .endpoint(System.getenv("EventGridURL"))
                 .credential(new AzureKeyCredential(System.getenv("EventGridKey")))
                 .buildCustomEventPublisherClient();
-            customEventClient.sendEvent(BinaryData.fromObject(event));
+    }
+
+    public EventHandlerUtility(EventGridPublisherClient<BinaryData> customEventClient) {
+        this.customEventClient = customEventClient;
+    }
+
+    public void publishEvent(T customEvent, Logger logger){
+        try{
+            customEventClient.sendEvent(BinaryData.fromObject(customEvent));
         }catch(Exception e){
             logger.info(e.getMessage());
         }
-    }
-
-    public void receiveEvent(T object){
-        
-    }
-    
+    }    
 }

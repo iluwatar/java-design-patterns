@@ -8,7 +8,6 @@ import com.azure.core.util.serializer.TypeReference;
 import com.azure.messaging.eventgrid.EventGridEvent;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationEventData;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationResponse;
-import com.google.gson.Gson;
 import com.iluwatar.domain.Message;
 import com.iluwatar.domain.MessageBody;
 import com.iluwatar.domain.MessageHeader;
@@ -23,39 +22,34 @@ import com.microsoft.azure.functions.*;
  */
 public class UsageCostProcessorFunction {
     @FunctionName("UsageCostProcessorFunction")
-    public HttpResponseMessage run(
-            @HttpTrigger(
-                name = "req", 
-                methods = {HttpMethod.GET, HttpMethod.POST}, 
-                authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
-            final ExecutionContext context) 
-    {
-        String eventGridJsonString = request.getBody().get();
-        List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(eventGridJsonString);
+    public HttpResponseMessage run(@HttpTrigger(name = "req", methods = { HttpMethod.GET,
+            HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<List<EventGridEvent>> request,
+            final ExecutionContext context) {
 
-        for(EventGridEvent eventGridEvent : eventGridEvents)
-        {
+        List<EventGridEvent> eventGridEvents = request.getBody();
+        for (EventGridEvent eventGridEvent : eventGridEvents) {
             // Handle system events
-            if(eventGridEvent.getEventType().equals("Microsoft.EventGrid.SubscriptionValidationEvent"))
-            {
-                SubscriptionValidationEventData subscriptionValidationEventData = eventGridEvent.getData().toObject(SubscriptionValidationEventData.class);
+            if (eventGridEvent.getEventType().equals("Microsoft.EventGrid.SubscriptionValidationEvent")) {
+                SubscriptionValidationEventData subscriptionValidationEventData = eventGridEvent.getData()
+                        .toObject(SubscriptionValidationEventData.class);
                 // Handle the subscription validation event
                 SubscriptionValidationResponse responseData = new SubscriptionValidationResponse();
                 responseData.setValidationResponse(subscriptionValidationEventData.getValidationCode());
                 return request.createResponseBuilder(HttpStatus.OK).body(responseData).build();
-                
-            }
-            else if(eventGridEvent.getEventType().equals("UsageDetail"))
-            {
+
+            } else if (eventGridEvent.getEventType().equals("UsageDetail")) {
                 // Get message header and reference
                 MessageReference messageReference = eventGridEvent.getData().toObject(MessageReference.class);
 
                 // Read message from persistant storage
                 MessageHandlerUtility<UsageDetail> messageHandlerUtility = new MessageHandlerUtility<>();
-                Message<UsageDetail> message = messageHandlerUtility.readFromPersistantStorage(messageReference,context.getLogger());
+                Message<UsageDetail> message = messageHandlerUtility.readFromPersistantStorage(messageReference,
+                        context.getLogger());
 
                 // Get Data and generate cost details
-                List<UsageDetail> usageDetailsList =  BinaryData.fromObject(message.getMessageBody().getData()).toObject(new TypeReference<List<UsageDetail>>() { });
+                List<UsageDetail> usageDetailsList = BinaryData.fromObject(message.getMessageBody().getData())
+                        .toObject(new TypeReference<List<UsageDetail>>() {
+                        });
                 List<UsageCostDetail> usageCostDetailsList = this.calculateUsageCostDetails(usageDetailsList);
 
                 // Create message body
@@ -63,7 +57,8 @@ public class UsageCostProcessorFunction {
                 newMessageBody.setData(usageCostDetailsList);
 
                 // Create message header
-                MessageReference newMessageReference = new MessageReference("callusageapp",eventGridEvent.getId()+"/output.json");
+                MessageReference newMessageReference = new MessageReference("callusageapp",
+                        eventGridEvent.getId() + "/output.json");
                 MessageHeader newMessageHeader = new MessageHeader();
                 newMessageHeader.setId(eventGridEvent.getId());
                 newMessageHeader.setSubject("UsageCostProcessor");
@@ -80,7 +75,7 @@ public class UsageCostProcessorFunction {
 
                 // Drop data to persistent storage
                 MessageHandlerUtility<UsageCostDetail> nweMessageHandlerUtility = new MessageHandlerUtility<>();
-                nweMessageHandlerUtility.dropToPersistantStorage(newMessage,context.getLogger());
+                nweMessageHandlerUtility.dropToPersistantStorage(newMessage, context.getLogger());
 
                 context.getLogger().info("Message is dropped successfully");
                 return request.createResponseBuilder(HttpStatus.OK).body(null).build();
@@ -89,15 +84,14 @@ public class UsageCostProcessorFunction {
         return request.createResponseBuilder(HttpStatus.OK).body(null).build();
     }
 
-    private List<UsageCostDetail> calculateUsageCostDetails(List<UsageDetail> usageDetailsList)
-    {
+    private List<UsageCostDetail> calculateUsageCostDetails(List<UsageDetail> usageDetailsList) {
         List<UsageCostDetail> usageCostDetailsList = new ArrayList<>();
 
         usageDetailsList.forEach(usageDetail -> {
             UsageCostDetail usageCostDetail = new UsageCostDetail();
             usageCostDetail.setUserId(usageDetail.getUserId());
-            usageCostDetail.setCallCost(usageDetail.getDuration()*0.30); // 0.30₹ per minute
-            usageCostDetail.setDataCost(usageDetail.getData()*0.20); // 0.20₹ per MB
+            usageCostDetail.setCallCost(usageDetail.getDuration() * 0.30); // 0.30₹ per minute
+            usageCostDetail.setDataCost(usageDetail.getData() * 0.20); // 0.20₹ per MB
 
             usageCostDetailsList.add(usageCostDetail);
         });

@@ -1,4 +1,4 @@
-package com.iluwatar.producer.calldetails.functions;
+package com.iluwatar;
 
 import com.microsoft.azure.functions.*;
 
