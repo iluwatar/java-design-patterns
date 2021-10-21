@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-183-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-185-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -312,6 +312,7 @@ This project is licensed under the terms of the MIT license.
   <tr>
     <td align="center"><a href="http://carlfx.wordpress.com"><img src="https://avatars.githubusercontent.com/u/1594624?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Carl Dea</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=carldea" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Mozartuss"><img src="https://avatars.githubusercontent.com/u/32893711?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mozartus</b></sub></a><br /><a href="#translation-Mozartuss" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/ManviGoel26"><img src="https://avatars.githubusercontent.com/u/55682355?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Manvi Goel</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ManviGoel26" title="Documentation">📖</a></td>
   </tr>
 </table>
 
