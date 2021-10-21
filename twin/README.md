@@ -34,7 +34,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Take our game ball example from above. Consider we have a game in which the ball needs to be both a GameItem and Thread. 
+Take our game ball example from above. Consider we have a game in which the ball needs to be both a `GameItem` and `Thread`. 
 First of all, we have the `GameItem` class given below and the `Thread` class.
 
 
@@ -138,7 +138,7 @@ public class BallThread extends Thread {
 
 ``` 
 
-Now, when we need the ball, we can instantiate objects from both the Ball Thread and Ball Item as a pair and pass them to its pair object so they can act together as appropriate.
+Now, when we need the ball, we can instantiate objects from both the `BallThread` and `BallItem` as a pair and pass them to its pair object so they can act together as appropriate.
 
 ```java
 
