@@ -1658,6 +1658,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Mozartuss",
+      "name": "Mozartus",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32893711?v=4",
+      "profile": "https://github.com/Mozartuss",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
