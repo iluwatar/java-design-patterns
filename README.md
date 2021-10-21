@@ -310,6 +310,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://www.mrmoshkel.ir"><img src="https://avatars.githubusercontent.com/u/60359433?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ali Ghasemi</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Dev-AliGhasemi" title="Code">💻</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="http://carlfx.wordpress.com"><img src="https://avatars.githubusercontent.com/u/1594624?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Carl Dea</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=carldea" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Mozartuss"><img src="https://avatars.githubusercontent.com/u/32893711?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mozartus</b></sub></a><br /><a href="#translation-Mozartuss" title="Translation">🌍</a></td>
   </tr>
 </table>
