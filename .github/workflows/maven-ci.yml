@@ -36,7 +36,9 @@ jobs:
   build:
 
     runs-on: ubuntu-20.04
-
+    strategy:
+      matrix:
+        java-version: [ 11.0.3, 11 ]
     steps:
 
     - name: Checkout Code
@@ -45,11 +47,11 @@ jobs:
         # Disabling shallow clone for improving relevancy of SonarQube reporting
         fetch-depth: 0
 
-    - name: Set up JDK 11
+    - name: Set up JDK ${{ matrix.java-version }}
       uses: actions/setup-java@v2
       with:
-        java-version: 11
-        distribution: 'adopt'
+        java-version: ${{ matrix.java-version }}
+        distribution: 'zulu'
 
     - name: Cache SonarCloud packages
       uses: actions/cache@v2
