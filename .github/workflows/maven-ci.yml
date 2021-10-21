@@ -33,12 +33,10 @@ on:
 
 jobs:
 
-  build:
+  build-and-analyze:
 
+    name: Build and Run Sonar Analysis
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        java-version: [ 11.0.3, 11 ]
     steps:
 
     - name: Checkout Code
@@ -47,11 +45,12 @@ jobs:
         # Disabling shallow clone for improving relevancy of SonarQube reporting
         fetch-depth: 0
 
-    - name: Set up JDK ${{ matrix.java-version }}
+    - name: Set up JDK 11.0.3
       uses: actions/setup-java@v2
       with:
-        java-version: ${{ matrix.java-version }}
+        java-version: 11.0.3
         distribution: 'zulu'
+        cache: 'maven'
 
     - name: Cache SonarCloud packages
       uses: actions/cache@v2
@@ -59,14 +58,6 @@ jobs:
         path: ~/.sonar/cache
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar
-
-    - name: Cache Maven dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
 
     # Some tests need screen access
     - name: Install xvfb
@@ -78,3 +69,27 @@ jobs:
         # These two env variables are needed for sonar analysis
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  
+  build-and-test:
+
+    name: Build and Test on JDK 11 (Latest Build)
+    runs-on: ubuntu-20.04
+    steps:
+
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11 (Latest)
+      uses: actions/setup-java@v2
+      with:
+        java-version: 11
+        distribution: 'zulu'
+        cache: 'maven'
+
+    # Some tests need screen access
+    - name: Install xvfb
+      run: sudo apt-get install -y xvfb
+
+    - name: Build with Maven
+      run: xvfb-run ./mvnw clean verify
