@@ -56,7 +56,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.dao.App</mainClass>
+                  <mainClass>com.iluwatar.currying.Staff</mainClass>
                 </manifest>
               </archive>
             </configuration>
