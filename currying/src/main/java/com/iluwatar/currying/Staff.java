@@ -1,10 +1,9 @@
 package com.iluwatar.currying;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 import java.time.LocalDate;
 import java.util.function.Function;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  * Staff Object for demonstrating how to use currying pattern.
