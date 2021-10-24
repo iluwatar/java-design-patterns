@@ -138,6 +138,10 @@ This pattern can be used:
 * When the visited class hierarchy will be frequently extended with new derivatives of the Element class.
 * When the recompilation, relinking, retesting or redistribution of the derivatives of Element is very expensive.
 
+## Tutorial
+
+* [Acyclic Visitor Pattern Example](https://codecrafter.blogspot.com/2012/12/the-acyclic-visitor-pattern.html)
+
 ## Consequences
 
 The good:
