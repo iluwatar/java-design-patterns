@@ -4,33 +4,32 @@ title: Async Method Invocation
 folder: async-method-invocation
 permalink: /patterns/async-method-invocation/
 categories: Concurrency
+language: zh
 tags:
  - Reactive
 ---
 
-## 含义
+## 意图
 
-异步方法是一种调用线程在等待任务结果时候不会被阻塞的模式。该模式提供了对多个任务的并行处理，并通过回调或等待，在所有任务完成后在提供结果读取。
+异步方法调用是一个调用线程在等待任务结果时不会阻塞的模式。模式为多个独立的任务提供并行的处理方式并且通过回调或等到它们全部完成来接收任务结果。
 
 ## 解释
 
-真实世界案例
+真实世界例子
 
-> 发射太空火箭是一项令人兴奋的事业。在任务指挥部下达发射命令后， 经过一些未确定的时间，火箭要么成功发射，要么重演挑战者悲剧。
+> 发射火箭是一项令人激动的事务。任务指挥官发出了发射命令，经过一段不确定的时间后，火箭要么成功发射，要么惨遭失败。
 
-简而言之
+通俗地说
 
-> 异步方法调用开始任务处理并，在任务结果准备好之前立即返回。任务处理的结果会在稍后再返回给调用者。
+> 异步方法调用开始任务处理，并在任务完成之前立即返回。 任务处理的结果稍后返回给调用方。
 
-维基百科的解释
+维基百科说
 
-> 在多线程计算机编程中，异步方法调用（AMI），也被称为异步方法调用或异步模式。这是一种设计模式，在这种模式下，调用点在等待被调用代码完成时不会被阻塞。相反，当返回点到达时，调用线程会得到通知。轮询结果是一种不受欢迎的选择。
+> 在多线程计算机编程中，异步方法调用（AMI），也称为异步方法调用或异步模式，是一种设计模式，其中在等待被调用的代码完成时不会阻塞调用站点。 而是在执行结果到达时通知调用线程。轮询调用结果是不希望的选项。
 
-**编程示例**
+**程序示例**
 
-在这个例子中，我们正在发射太空火箭和部署月球车。
-
-该应用演示了异步方法调用模式。该模式的关键部分是 `AsyncResult`，它是一个异步计算值的中间容器，`AsyncCallback` 可以在任务完成时提供执行行动作，`AsyncExecutor` 负责管理异步任务的执行。
+在此示例中，我们正在发射太空火箭并部署月球漫游车。该应用演示了异步方法调用模式。 模式的关键部分是`AsyncResult`（用于异步评估值的中间容器），`AsyncCallback`（可以在任务完成时被执行）和`AsyncExecutor`（用于管理异步任务的执行）。
 
 ```java
 public interface AsyncResult<T> {
@@ -54,7 +53,7 @@ public interface AsyncExecutor {
 }
 ```
 
-`ThreadAsyncExecutor` 是 `AsyncExecutor` 的一个实现。接下来将着重说明它的一些关键部分。
+`ThreadAsyncExecutor`是`AsyncExecutor`的实现。 接下来将突出显示其一些关键部分。
 
 ```java
 public class ThreadAsyncExecutor implements AsyncExecutor {
@@ -91,14 +90,14 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 }
 ```
 
-然后我们准备发射一些火箭，看看所有东西是如何一起运作的。
+然后，我们准备发射一些火箭，看看一切是如何协同工作的。
 
 ```java
 public static void main(String[] args) throws Exception {
-  // construct a new executor that will run async tasks
+  // 构造一个将执行异步任务的新执行程序
   var executor = new ThreadAsyncExecutor();
 
-  // start few async tasks with varying processing times, two last with callback handlers
+  // 以不同的处理时间开始一些异步任务，最后两个使用回调处理程序
   final var asyncResult1 = executor.startProcess(lazyval(10, 500));
   final var asyncResult2 = executor.startProcess(lazyval("test", 300));
   final var asyncResult3 = executor.startProcess(lazyval(50L, 700));
@@ -106,11 +105,11 @@ public static void main(String[] args) throws Exception {
   final var asyncResult5 =
       executor.startProcess(lazyval("callback", 600), callback("Deploying lunar rover"));
 
-  // emulate processing in the current thread while async tasks are running in their own threads
-  Thread.sleep(350); // Oh boy, we are working hard here
+  // 在当前线程中模拟异步任务正在它们自己的线程中执行
+  Thread.sleep(350); // 哦，兄弟，我们在这很辛苦
   log("Mission command is sipping coffee");
 
-  // wait for completion of the tasks
+  // 等待任务完成
   final var result1 = executor.endProcess(asyncResult1);
   final var result2 = executor.endProcess(asyncResult2);
   final var result3 = executor.endProcess(asyncResult3);
@@ -118,13 +117,14 @@ public static void main(String[] args) throws Exception {
   asyncResult5.await();
 
   // log the results of the tasks, callbacks log immediately when complete
+  // 记录任务结果的日志， 回调的日志会在回调完成时立刻记录
   log("Space rocket <" + result1 + "> launch complete");
   log("Space rocket <" + result2 + "> launch complete");
   log("Space rocket <" + result3 + "> launch complete");
 }
 ```
 
-以下是控制台输出。
+这是程序控制台的输出。
 
 ```java
 21:47:08.227 [executor-2] INFO com.iluwatar.async.method.invocation.App - Space rocket <test> launched successfully
@@ -140,22 +140,21 @@ public static void main(String[] args) throws Exception {
 21:47:08.618 [main] INFO com.iluwatar.async.method.invocation.App - Space rocket <50> launch complete
 ```
 
-## 类图
+# 类图
 
-![alt text](../../async-method-invocation/etc/async-method-invocation.png "Async Method Invocation")
+![alt text](../../../async-method-invocation/etc/async-method-invocation.png "Async Method Invocation")
 
-## 适用场景
+## 适用性
 
-在以下场景可以使用异步调用模式
+在以下情况下使用异步方法调用模式
 
-* 你有多有可以并行执行的独立任务
-* 你需要提高一组串行任务的性能
-* 你的处理能力有限、或者有长期运行的任务，调用者不应该等待任务所有任务运行结束
+* 您有多个可以并行运行的独立任务
+* 您需要提高一组顺序任务的性能
+* 您的处理能力或长时间运行的任务数量有限，并且调用方不应等待任务执行完毕
 
-## 现实示例
+## 真实世界例子
 
 * [FutureTask](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/FutureTask.html)
 * [CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)
 * [ExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html)
 * [Task-based Asynchronous Pattern](https://msdn.microsoft.com/en-us/library/hh873175.aspx)
-

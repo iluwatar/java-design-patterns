@@ -4,33 +4,34 @@ title: Balking
 folder: balking
 permalink: /patterns/balking/
 categories: Concurrency
+language: zh
 tags:
  - Decoupling
 ---
 
-## 含义
+## 意图
 
-阻止模式用于防止一个对象在不完整或不适当的状态下执行某段代码。
+止步模式用于防止对象在不完整或不合适的状态下执行某些代码。
 
 ## 解释
 
-真实世界的案例
+真实世界例子
 
-> 洗衣机里有一个用于启动衣物洗涤的启动按钮。当洗衣机没有启动时，该按钮可以正常按下生效，但如果洗衣机已经在洗衣服了，再按下按钮就不生效了。
+> 洗衣机中有一个开始按钮，用于启动衣物洗涤。当洗衣机处于非活动状态时，按钮将按预期工作，但是如果已经在洗涤，则按钮将不起任何作用。
 
-简而言之
+通俗地说
 
-> 使用阻止模式，只有当对象处于特定状态时，才会执行某段代码。
+> 使用止步模式，仅当对象处于特定状态时才执行特定代码。
 
-维基百科的解释
+维基百科说
 
-> 阻止模式是一种软件设计模式，它只在对象处于特定状态时对其执行动作。例如，如果一个对象读取 ZIP 文件，当 ZIP 文件没有打开时，如果一个方法在该对象上调用一个获取方法，该对象就会对阻止这个请求。
+> 禁止模式是一种软件设计模式，仅当对象处于特定状态时才对对象执行操作。例如，一个对象读取zip压缩文件并在压缩文件没打开的时候调用get方法，对象将在请求的时候”止步“。
 
-**编程示例**
+**程序示例**
 
-在这个例子的实现中，`WashingMachine` 对象存在 2 种状态： `ENABLED` 和 `WASHING`。如果该对象处于 `ENABLED` 状态，则使用一个线程安全的方法可以其状态改变为 `WASHING`。在另一方面，如果它已经处于 `WASHING` 状态，而任何其他线程执行了 `wash()`，它不会执行该指令，而是什么都不做就返回。
+在此示例中，` WashingMachine`是一个具有两个状态的对象，可以处于两种状态：ENABLED和WASHING。 如果机器已启用，则使用线程安全方法将状态更改为WASHING。 另一方面，如果已经进行了清洗并且任何其他线程执行`wash（）`，则它将不执行该操作，而是不执行任何操作而返回。
 
-以下是 `WashingMachine` 类的相关代码。
+这里是`WashingMachine` 类相关的部分。
 
 ```java
 @Slf4j
@@ -69,7 +70,7 @@ public class WashingMachine {
 }
 ```
 
-以下是 `WashingMachine` 使用的简单 `DelayProvider` 接口。
+这里是一个`WashingMachine`所使用的`DelayProvider`简单接口。
 
 ```java
 public interface DelayProvider {
@@ -77,7 +78,7 @@ public interface DelayProvider {
 }
 ```
 
-现在我们介绍一下使用  `WashingMachine` 的应用。
+现在，我们使用`WashingMachine`介绍该应用程序。
 
 ```java
   public static void main(String... args) {
@@ -96,7 +97,7 @@ public interface DelayProvider {
   }
 ```
 
-以下是程序的控制台输出。
+下面是程序的输出。
 
 ```
 14:02:52.268 [pool-1-thread-2] INFO com.iluwatar.balking.WashingMachine - pool-1-thread-2: Actual machine state: ENABLED
@@ -110,20 +111,21 @@ public interface DelayProvider {
 
 ## 类图
 
-![alt text](../../balking/etc/balking.png "Balking")
+![alt text](../../../balking/etc/balking.png "Balking")
 
-## 适用场景
+## 适用性
 
-在以下情况下可以使用阻止模式：
 
-* 你想要在某个对象上调用一个动作，只有当该对象处于特定状态时才允许该调用。
-* 对象一般只处于容易暂时阻止的状态，只不过该时间是未知的。
+使用止步模式当
 
-## 教学
+* 您只想在对象处于特定状态时才对其调用操作
+* 对象通常仅处于容易暂时停止但状态未知的状态
 
-* [Guarded Suspension Pattern](https://java-design-patterns.com/patterns/guarded-suspension/)
-* [Double Checked Locking Pattern](https://java-design-patterns.com/patterns/double-checked-locking/)
+## 相关模式
 
-## 引用
+* [保护性暂挂模式](https://java-design-patterns.com/patterns/guarded-suspension/)
+* [双重检查锁模式](https://java-design-patterns.com/patterns/double-checked-locking/)
+
+## 鸣谢
 
 * [Patterns in Java: A Catalog of Reusable Design Patterns Illustrated with UML, 2nd Edition, Volume 1](https://www.amazon.com/gp/product/0471227293/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0471227293&linkId=0e39a59ffaab93fb476036fecb637b99)

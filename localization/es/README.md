@@ -34,13 +34,13 @@ Todos los diseños deben ser lo más simples posible. Deberías comenzar con los
 Una vez que esté familiarizado con estos conceptos, puedes comenzar a profundizar con los
 [patrones de diseño disponibles](https://java-design-patterns.com/patterns/) por cualquiera de los siguientes enfoques
 
- - Buscar un patrón específico por su nombre. ¿No puedes encontrar uno? Informe un nuevo patrón [aquí](https://github.com/iluwatar/java-design-patterns/issues).
+ - Buscar un patrón específico por su nombre. ¿No puedes encontrar uno? Informa de un nuevo patrón [aquí](https://github.com/iluwatar/java-design-patterns/issues).
  - Usando etiquetas como `Performance`, `Gang of Four` ó `Data access`.
  - Usando categorías de patrones, `Creational`, `Behavioral` y otras.
 
-Esperamos que las soluciones orientadas a objetos presentadas en este sitio le resulten útiles en sus arquitecturas y se divierta aprendiéndolas tanto como nosotros desarrollándolas.
+Esperamos que las soluciones orientadas a objetos presentadas en este sitio te resulten útiles en sus arquitecturas y se divierta aprendiéndolas tanto como nosotros desarrollándolas.
 
-# Como contribuir
+# Cómo contribuir
 
 Si estás dispuesto a contribuir al proyecto encontrarás la información relevante en nuestra [wiki del desarrollador](https://github.com/iluwatar/java-design-patterns/wiki). Te ayudaremos y responderemos tus preguntas en la [sala de chat de Gitter](https://gitter.im/iluwatar/java-design-patterns).
 

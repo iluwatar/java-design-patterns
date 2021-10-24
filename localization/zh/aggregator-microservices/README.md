@@ -2,7 +2,7 @@
 layout: pattern
 title: Aggregator Microservices
 folder: aggregator-microservices
-permalink: /patterns/aggregator-microservices/zh
+permalink: /patterns/aggregator-microservices/
 categories: Architectural
 language: zh
 tags:
@@ -95,7 +95,7 @@ curl http://localhost:50004/product
 
 ## 类图
 
-![alt text](../../aggregator-microservices/aggregator-service/etc/aggregator-service.png "Aggregator Microservice")
+![alt text](../../../aggregator-microservices/aggregator-service/etc/aggregator-service.png "Aggregator Microservice")
 
 ## 适用性
 

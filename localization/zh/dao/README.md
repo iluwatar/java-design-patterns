@@ -2,7 +2,7 @@
 layout: pattern
 title: Data Access Object
 folder: dao
-permalink: /patterns/dao/zh
+permalink: /patterns/dao/
 categories: Architectural
 language: zh
 tags:
@@ -149,7 +149,7 @@ customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@6ec8211c
 
 ## 类图
 
-![alt text](../../dao/etc/dao.png "Data Access Object")
+![alt text](../../../dao/etc/dao.png "Data Access Object")
 
 ## 适用性
 

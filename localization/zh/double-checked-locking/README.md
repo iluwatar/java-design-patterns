@@ -4,6 +4,7 @@ title: Double Checked Locking
 folder: double-checked-locking
 permalink: /patterns/double-checked-locking/
 categories: Idiom
+language: zh
 tags:
  - Performance
 ---
@@ -12,7 +13,7 @@ tags:
 通过先测试锁定标准（"锁提示"）而不实际获取锁的方式来减少获取锁的开销。只有当锁定标准检查表明需要锁定时，才进行实际的锁定逻辑。
 
 ## 类图
-![alt text](../../double-checked-locking/etc/double_checked_locking_1.png "Double Checked Locking")
+![alt text](../../../double-checked-locking/etc/double_checked_locking_1.png "Double Checked Locking")
 
 ## 适用场景
 在以下场景适合使用双重锁检查模式：

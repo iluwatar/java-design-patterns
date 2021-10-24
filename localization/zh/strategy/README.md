@@ -2,7 +2,7 @@
 layout: pattern
 title: Strategy
 folder: strategy
-permalink: /patterns/strategy/zh
+permalink: /patterns/strategy/
 categories: Behavioral
 language: zh
 tags:
@@ -112,7 +112,7 @@ public class DragonSlayer {
 ```
 
 ## 类图
-![alt text](../../strategy/etc/strategy_1.png "Strategy")
+![alt text](../../../strategy/etc/strategy_urm.png "Strategy")
 
 ## 应用
 使用策略模式当

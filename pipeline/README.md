@@ -114,7 +114,7 @@ the [Single Responsibility Principle (SRP)](https://java-design-patterns.com/pri
 
 ## Related patterns
 
-* [Chain of Responsibility](https://java-design-patterns.com/patterns/chain/)
+* [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/)
 
 ## Credits
 

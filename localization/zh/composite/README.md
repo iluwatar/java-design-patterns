@@ -2,7 +2,7 @@
 layout: pattern
 title: Composite
 folder: composite
-permalink: /patterns/composite/zh
+permalink: /patterns/composite/
 categories: Structural
 language: zh
 tags:
@@ -154,7 +154,7 @@ elfMessage.print(); // Much wind pours from your mouth.
 
 ## 类图
 
-![alt text](../../composite/etc/composite.urm.png "Composite class diagram")
+![alt text](../../../composite/etc/composite.urm.png "Composite class diagram")
 
 ## 适用性
 

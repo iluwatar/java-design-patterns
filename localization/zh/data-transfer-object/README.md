@@ -2,7 +2,7 @@
 layout: pattern
 title: Data Transfer Object
 folder: data-transfer-object
-permalink: /patterns/data-transfer-object/zh
+permalink: /patterns/data-transfer-object/
 categories: Architectural
 language: zh
 tags:
@@ -94,7 +94,7 @@ public class CustomerResource {
 
 ## 类图
 
-![alt text](../../data-transfer-object/etc/data-transfer-object.urm.png "data-transfer-object")
+![alt text](../../../data-transfer-object/etc/data-transfer-object.urm.png "data-transfer-object")
 
 ## 适用性
 

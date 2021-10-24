@@ -2,7 +2,7 @@
 layout: pattern
 title: Builder
 folder: builder
-permalink: /patterns/builder/zh
+permalink: /patterns/builder/
 categories: Creational
 language: zh
 tags:
@@ -114,7 +114,7 @@ var mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.
 
 ## 类图
 
-![alt text](../../builder/etc/builder.urm.png "Builder class diagram")
+![alt text](../../../builder/etc/builder.urm.png "Builder class diagram")
 
 ## 适用性
 

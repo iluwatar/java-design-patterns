@@ -1,4 +1,4 @@
- ---
+---
 layout: pattern
 title: Command
 folder: command

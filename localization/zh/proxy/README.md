@@ -2,7 +2,7 @@
 layout: pattern
 title: Proxy
 folder: proxy
-permalink: /patterns/proxy/zh
+permalink: /patterns/proxy/
 categories: Structural
 language: zh
 tags:
@@ -123,7 +123,7 @@ Brown wizard is not allowed to enter!
 
 ## 类图
 
-![alt text](../../proxy/etc/proxy.urm.png "Proxy pattern class diagram")
+![alt text](../../../proxy/etc/proxy.urm.png "Proxy pattern class diagram")
 
 ## 适用性
 
