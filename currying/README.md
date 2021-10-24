@@ -12,8 +12,6 @@ tags:
 ## Intent
 Currying pattern transforms an arbitrary arity into a sequence of unary functions.
 
-![alt text](./etc/dao.png "Data Access Object")
-
 ## Applicability
 Use the currying pattern in any of the following situations
 
