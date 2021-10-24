@@ -1694,6 +1694,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "uh-zz",
+      "name": "Reo Uehara",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47747828?v=4",
+      "profile": "https://uh-zz.github.io/blog/",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
