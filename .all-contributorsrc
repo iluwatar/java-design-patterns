@@ -1703,6 +1703,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Fiordy",
+      "name": "Fiordy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53420573?v=4",
+      "profile": "https://github.com/Fiordy",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
