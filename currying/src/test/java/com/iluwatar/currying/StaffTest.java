@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 
+import static org.junit.Assert.*;
+
 public class StaffTest {
     private final String firstName = "Janus";
     private final String lastName = "Lin";
@@ -22,7 +24,7 @@ public class StaffTest {
                 .apply(gender)
                 .apply(email)
                 .apply(dateOfBirth);
-        Assert.assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -33,11 +35,24 @@ public class StaffTest {
                 .withReturnGender(gender)
                 .withReturnEmail(email)
                 .withReturnDateOfBirth(dateOfBirth);
-        Assert.assertEquals(expectedResult, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
     public void mainTest() {
         Staff.main(new String[]{});
+    }
+
+    @Test
+    public void hashTest() {
+        expectedResult.hashCode();
+    }
+
+    @Test
+    public void equalTest() {
+        assertTrue(expectedResult.equals(expectedResult));
+        assertFalse(expectedResult.equals(new Integer(1)));
+        Staff o2 = new Staff(firstName, lastName, gender, email, dateOfBirth);
+        assertTrue(expectedResult.equals(o2));
     }
 }
