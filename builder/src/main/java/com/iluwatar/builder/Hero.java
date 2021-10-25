@@ -20,12 +20,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+import lombok.Getter;
 
 package com.iluwatar.builder;
 
 /**
  * Hero, the class with many parameters.
  */
+@Getter
 public final class Hero {
 
   private final Profession profession;
@@ -42,30 +44,6 @@ public final class Hero {
     this.hairType = builder.hairType;
     this.weapon = builder.weapon;
     this.armor = builder.armor;
-  }
-
-  public Profession getProfession() {
-    return profession;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public HairType getHairType() {
-    return hairType;
-  }
-
-  public HairColor getHairColor() {
-    return hairColor;
-  }
-
-  public Armor getArmor() {
-    return armor;
-  }
-
-  public Weapon getWeapon() {
-    return weapon;
   }
 
   @Override
