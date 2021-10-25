@@ -1,9 +1,11 @@
 package com.iluwatar;
 
-import com.microsoft.azure.functions.*;
+import com.microsoft.azure.functions.HttpResponseMessage;
+import com.microsoft.azure.functions.HttpStatus;
+import com.microsoft.azure.functions.HttpStatusType;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The mock for HttpResponseMessage, can be used in unit tests to verify if the

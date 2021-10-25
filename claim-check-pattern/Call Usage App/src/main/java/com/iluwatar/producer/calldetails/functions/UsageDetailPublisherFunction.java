@@ -3,6 +3,7 @@ package com.iluwatar.producer.calldetails.functions;
 import com.azure.messaging.eventgrid.EventGridEvent;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationEventData;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationResponse;
+import com.google.gson.Gson;
 import com.iluwatar.domain.Message;
 import com.iluwatar.domain.MessageBody;
 import com.iluwatar.domain.MessageHeader;
@@ -29,14 +30,26 @@ import java.util.UUID;
  * Azure Functions with HTTP Trigger.
  */
 public class UsageDetailPublisherFunction {
+
+    private MessageHandlerUtility<UsageDetail> messageHandlerUtility;
+    private EventHandlerUtility<MessageHeader> eventHandlerUtility;
+
+    public UsageDetailPublisherFunction() {
+    }
+
+    public UsageDetailPublisherFunction(MessageHandlerUtility<UsageDetail> messageHandlerUtility,
+            EventHandlerUtility<MessageHeader> eventHandlerUtility) {
+        this.messageHandlerUtility = messageHandlerUtility;
+        this.eventHandlerUtility = eventHandlerUtility;
+    }
+
     @FunctionName("UsageDetailPublisherFunction")
-    public HttpResponseMessage run(@HttpTrigger(name = "request", methods = { HttpMethod.GET,
-            HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<List<EventGridEvent>>> request,
+    public HttpResponseMessage run(@HttpTrigger(name = "req", methods = {
+            HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
 
-        context.getLogger().info(request.getBody().get().toString());
-        context.getLogger().info(request.getBody().get().size() + "");
-        List<EventGridEvent> eventGridEvents = request.getBody().get();
+        context.getLogger().info(new Gson().toJson(request));
+        List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(request.getBody().get());
 
         for (EventGridEvent eventGridEvent : eventGridEvents) {
             // Handle system events
@@ -81,11 +94,11 @@ public class UsageDetailPublisherFunction {
                 message.setMessageBody(messageBody);
 
                 // Drop data to persistent storage
-                MessageHandlerUtility<UsageDetail> messageHandlerUtility = new MessageHandlerUtility<>();
+                this.messageHandlerUtility = new MessageHandlerUtility<>();
                 messageHandlerUtility.dropToPersistantStorage(message, context.getLogger());
 
                 // Publish event to event grid topic
-                EventHandlerUtility<MessageHeader> eventHandlerUtility = new EventHandlerUtility<>();
+                this.eventHandlerUtility = new EventHandlerUtility<>();
                 eventHandlerUtility.publishEvent(messageHeader, context.getLogger());
 
                 context.getLogger().info("Message is dropped and event is published successfully");

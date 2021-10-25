@@ -1,13 +1,17 @@
 package com.iluwatar.consumer.callcostprocessor.functions;
 
 import java.time.OffsetDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import com.microsoft.azure.functions.annotation.*;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.serializer.TypeReference;
 import com.azure.messaging.eventgrid.EventGridEvent;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationEventData;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationResponse;
+import com.google.gson.Gson;
 import com.iluwatar.domain.Message;
 import com.iluwatar.domain.MessageBody;
 import com.iluwatar.domain.MessageHeader;
@@ -21,12 +25,26 @@ import com.microsoft.azure.functions.*;
  * Azure Functions with HTTP Trigger.
  */
 public class UsageCostProcessorFunction {
+
+    private MessageHandlerUtility<UsageDetail> messageHandlerUtilityForUsageDetail;
+    private MessageHandlerUtility<UsageCostDetail> messageHandlerUtilityForUsageCostDetail;
+
+    public UsageCostProcessorFunction() {
+    }
+
+    public UsageCostProcessorFunction(MessageHandlerUtility<UsageDetail> messageHandlerUtilityForUsageDetail,
+            MessageHandlerUtility<UsageCostDetail> messageHandlerUtilityForUsageCostDetail) {
+        this.messageHandlerUtilityForUsageDetail = messageHandlerUtilityForUsageDetail;
+        this.messageHandlerUtilityForUsageCostDetail = messageHandlerUtilityForUsageCostDetail;
+    }
+
     @FunctionName("UsageCostProcessorFunction")
     public HttpResponseMessage run(@HttpTrigger(name = "req", methods = { HttpMethod.GET,
-            HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<List<EventGridEvent>>> request,
+            HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
 
-        List<EventGridEvent> eventGridEvents = request.getBody().get();
+        context.getLogger().info(new Gson().toJson(request));
+        List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(request.getBody().get());
         for (EventGridEvent eventGridEvent : eventGridEvents) {
             // Handle system events
             if (eventGridEvent.getEventType().equals("Microsoft.EventGrid.SubscriptionValidationEvent")) {
@@ -42,9 +60,9 @@ public class UsageCostProcessorFunction {
                 MessageReference messageReference = eventGridEvent.getData().toObject(MessageReference.class);
 
                 // Read message from persistant storage
-                MessageHandlerUtility<UsageDetail> messageHandlerUtility = new MessageHandlerUtility<>();
-                Message<UsageDetail> message = messageHandlerUtility.readFromPersistantStorage(messageReference,
-                        context.getLogger());
+                this.messageHandlerUtilityForUsageDetail = new MessageHandlerUtility<>();
+                Message<UsageDetail> message = this.messageHandlerUtilityForUsageDetail
+                        .readFromPersistantStorage(messageReference, context.getLogger());
 
                 // Get Data and generate cost details
                 List<UsageDetail> usageDetailsList = BinaryData.fromObject(message.getMessageBody().getData())
@@ -74,8 +92,8 @@ public class UsageCostProcessorFunction {
                 newMessage.setMessageBody(newMessageBody);
 
                 // Drop data to persistent storage
-                MessageHandlerUtility<UsageCostDetail> nweMessageHandlerUtility = new MessageHandlerUtility<>();
-                nweMessageHandlerUtility.dropToPersistantStorage(newMessage, context.getLogger());
+                this.messageHandlerUtilityForUsageCostDetail = new MessageHandlerUtility<>();
+                this.messageHandlerUtilityForUsageCostDetail.dropToPersistantStorage(newMessage, context.getLogger());
 
                 context.getLogger().info("Message is dropped successfully");
                 return request.createResponseBuilder(HttpStatus.OK).body(null).build();
