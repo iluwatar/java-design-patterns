@@ -20,9 +20,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import lombok.Getter;
-
 package com.iluwatar.builder;
+
+import lombok.Getter;
 
 /**
  * Hero, the class with many parameters.
