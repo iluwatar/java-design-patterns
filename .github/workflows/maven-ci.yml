@@ -24,6 +24,9 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
+# We are using two jobs here for testing our code on the latest JDK 11 build as well as a more satble build version of 11.0.3
+# You can see the full discussion here https://github.com/iluwatar/java-design-patterns/pull/1868#issue-1029459688
+
 name: Java CI
 
 on:
@@ -33,9 +36,10 @@ on:
 
 jobs:
 
+  # This Workflow Job will build this project and run Sonar analysis using JDK 11.0.3
   build-and-analyze:
 
-    name: Build and Run Sonar Analysis
+    name: Build and Run Sonar analysis on JDK 11.0.3
     runs-on: ubuntu-20.04
     steps:
 
@@ -52,6 +56,7 @@ jobs:
         distribution: 'zulu'
         cache: 'maven'
 
+    # Cache Sonar packages which as used to run anaylysis and collect metrics
     - name: Cache SonarCloud packages
       uses: actions/cache@v2
       with:
@@ -71,9 +76,10 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   
-  build-and-test:
+  # This Workflow Job is going to build the project on the latest stable JDK 11
+  build:
 
-    name: Build and Test on JDK 11 (Latest Build)
+    name: Build and Test on JDK 11
     runs-on: ubuntu-20.04
     steps:
 
