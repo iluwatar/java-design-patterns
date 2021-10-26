@@ -32,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SpaceStationMir extends GameObject {
 
+  private final String IS_DAMAGED = " {} is damaged!";
   public SpaceStationMir(int left, int top, int right, int bottom) {
     super(left, top, right, bottom);
   }
@@ -43,7 +44,7 @@ public class SpaceStationMir extends GameObject {
 
   @Override
   public void collisionResolve(FlamingAsteroid asteroid) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged! {} is set on fire!", asteroid.getClass()
+    LOGGER.info(AppConstants.HITS + IS_DAMAGED + " {} is set on fire!", asteroid.getClass()
             .getSimpleName(),
         this.getClass().getSimpleName(), this.getClass().getSimpleName(), this.getClass()
             .getSimpleName());
@@ -53,21 +54,21 @@ public class SpaceStationMir extends GameObject {
 
   @Override
   public void collisionResolve(Meteoroid meteoroid) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged!", meteoroid.getClass().getSimpleName(),
+    LOGGER.info(AppConstants.HITS + IS_DAMAGED, meteoroid.getClass().getSimpleName(),
         this.getClass().getSimpleName(), this.getClass().getSimpleName());
     setDamaged(true);
   }
 
   @Override
   public void collisionResolve(SpaceStationMir mir) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged!", mir.getClass().getSimpleName(),
+    LOGGER.info(AppConstants.HITS + IS_DAMAGED, mir.getClass().getSimpleName(),
         this.getClass().getSimpleName(), this.getClass().getSimpleName());
     setDamaged(true);
   }
 
   @Override
   public void collisionResolve(SpaceStationIss iss) {
-    LOGGER.info(AppConstants.HITS, " {} is damaged!", iss.getClass().getSimpleName(),
+    LOGGER.info(AppConstants.HITS, IS_DAMAGED, iss.getClass().getSimpleName(),
         this.getClass().getSimpleName(), this.getClass().getSimpleName());
     setDamaged(true);
   }
