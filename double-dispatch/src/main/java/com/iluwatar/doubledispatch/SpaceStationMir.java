@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SpaceStationMir extends GameObject {
 
   private static final String IS_DAMAGED = " {} is damaged!";
+
   public SpaceStationMir(int left, int top, int right, int bottom) {
     super(left, top, right, bottom);
   }
