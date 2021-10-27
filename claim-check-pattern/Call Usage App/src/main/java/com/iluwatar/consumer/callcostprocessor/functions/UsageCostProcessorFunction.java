@@ -65,8 +65,6 @@ public class UsageCostProcessorFunction {
                             .readFromPersistantStorage(messageReference, context.getLogger());
 
                     // Get Data and generate cost details
-                    System.out.println("actual message: " + message.getMessageBody().getData().get(0).getData());
-
                     List<UsageDetail> usageDetailsList = BinaryData.fromObject(message.getMessageBody().getData())
                             .toObject(new TypeReference<List<UsageDetail>>() {
                             });
@@ -103,6 +101,7 @@ public class UsageCostProcessorFunction {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            context.getLogger().info(e.getStackTrace().toString());
         }
 
         return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(null).build();
