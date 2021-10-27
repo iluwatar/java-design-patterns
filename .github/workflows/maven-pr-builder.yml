@@ -34,11 +34,13 @@ on:
 jobs:
   build:
 
+    name: Build JDP
     runs-on: ubuntu-20.04
     strategy:
       matrix:
         java-version: [ 11.0.3, 11 ]
     steps:
+    
     - name: Checkout Code
       uses: actions/checkout@v2
     
@@ -47,14 +49,7 @@ jobs:
       with:
         java-version: ${{ matrix.java-version }}
         distribution: 'zulu'
-    
-    - name: Cache Maven Dependecies
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
+        cache: 'maven'
     
     # Some tests need screen access
     - name: Install xvfb
