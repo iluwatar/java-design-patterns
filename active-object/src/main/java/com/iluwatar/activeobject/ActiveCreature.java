@@ -82,7 +82,7 @@ public abstract class ActiveCreature {
   }
 
   /**
-   * Roam in the wastelands.
+   * Roam the wastelands.
    * @throws InterruptedException due to firing a new Runnable.
    */
   public void roam() throws InterruptedException {

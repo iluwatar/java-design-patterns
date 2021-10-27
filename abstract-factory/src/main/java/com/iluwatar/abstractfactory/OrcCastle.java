@@ -28,7 +28,7 @@ package com.iluwatar.abstractfactory;
  */
 public class OrcCastle implements Castle {
 
-  static final String DESCRIPTION = "This is the Orc castle!";
+  static final String DESCRIPTION = "This is the orc castle!";
 
   @Override
   public String getDescription() {

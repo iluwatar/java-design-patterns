@@ -43,4 +43,9 @@ public class OrcBlacksmith implements Blacksmith {
   public Weapon manufactureWeapon(WeaponType weaponType) {
     return ORCARSENAL.get(weaponType);
   }
+
+  @Override
+  public String toString() {
+    return "The orc blacksmith";
+  }
 }

@@ -34,9 +34,7 @@ public final class ThreadSafeLazyLoadedIvoryTower {
 
   private ThreadSafeLazyLoadedIvoryTower() {
     // Protect against instantiation via reflection
-    if (instance == null) {
-      instance = this;
-    } else {
+    if (instance != null) {
       throw new IllegalStateException("Already initialized.");
     }
   }

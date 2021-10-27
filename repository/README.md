@@ -39,7 +39,13 @@ In plain words
 Let's first look at the person entity that we need to persist. 
 
 ```java
+
+@ToString
+@EqualsAndHashCode
+@Setter
+@Getter
 @Entity
+@NoArgsConstructor
 public class Person {
 
   @Id
@@ -49,17 +55,15 @@ public class Person {
   private String surname;
   private int age;
 
-  public Person() {
-  }
-
+  /**
+   * Constructor.
+   */
   public Person(String name, String surname, int age) {
     this.name = name;
     this.surname = surname;
     this.age = age;
   }
 
-  // getters and setters ->
-  ...
 }
 ```
 
