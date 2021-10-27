@@ -4,14 +4,12 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import com.microsoft.azure.functions.annotation.*;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.serializer.TypeReference;
 import com.azure.messaging.eventgrid.EventGridEvent;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationEventData;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationResponse;
-import com.google.gson.Gson;
 import com.iluwatar.domain.Message;
 import com.iluwatar.domain.MessageBody;
 import com.iluwatar.domain.MessageHeader;

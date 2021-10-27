@@ -3,7 +3,6 @@ package com.iluwatar.producer.calldetails.functions;
 import com.azure.messaging.eventgrid.EventGridEvent;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationEventData;
 import com.azure.messaging.eventgrid.systemevents.SubscriptionValidationResponse;
-import com.google.gson.Gson;
 import com.iluwatar.domain.Message;
 import com.iluwatar.domain.MessageBody;
 import com.iluwatar.domain.MessageHeader;
