@@ -167,11 +167,6 @@ public class UsageCostProcessorFunctionTest {
         }).when(req).createResponseBuilder(any(HttpStatus.class));
 
         assertNotNull(this.mockMessageHandlerUtilityForUsageADetail);
-
-        System.out.println("this.message: " + this.messageToRead);
-        System.out.println("read message: " + this.mockMessageHandlerUtilityForUsageADetail
-                .readFromPersistantStorage(new MessageReference(), Logger.getGlobal()));
-
         assertEquals(this.messageToRead, this.mockMessageHandlerUtilityForUsageADetail
                 .readFromPersistantStorage(this.messageReference, Logger.getGlobal()));
 
@@ -180,8 +175,6 @@ public class UsageCostProcessorFunctionTest {
 
         // Verify
         assertEquals(HttpStatus.OK, ret.getStatus());
-        System.out.println("return body: " + messageToDrop);
-        System.out.println("actual return body: " + ret.getBody());
         assertEquals("Message is dropped successfully", ret.getBody());
     }
 

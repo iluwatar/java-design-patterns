@@ -81,7 +81,6 @@ public class UsageDetailPublisherFunction {
       final ExecutionContext context) {
     try {
 
-      // context.getLogger().info(new Gson().toJson(request));
       List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(request.getBody().get());
 
       for (EventGridEvent eventGridEvent : eventGridEvents) {

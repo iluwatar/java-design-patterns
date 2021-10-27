@@ -24,17 +24,15 @@
 package com.iluwatar.claimcheckpattern.domain;
 
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MessageBody<T> {
 
   private List<T> data;
-
-  public List<T> getData() {
-    return data;
-  }
-
-  public void setData(List<T> data) {
-    this.data = data;
-  }
 
 }
