@@ -71,12 +71,7 @@ public class MessageHandlerUtilityTest {
         this.messageToPublish.setMessageHeader(messageHeader);
         this.messageToPublish.setMessageBody(messageBody);
 
-        // when(mockContainerClient.exists()).thenReturn(true);
-        // doNothing().when(mockContainerClient).create();
-        //
         when(mockContainerClient.getBlobClient(anyString())).thenReturn(mockBlobClient);
-        // doNothing().when(mockBlobClient).upload(any());
-        //
         when(mockBlobServiceClient.getBlobContainerClient(anyString())).thenReturn(mockContainerClient);
     }
 

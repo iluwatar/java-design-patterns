@@ -35,6 +35,8 @@ public class UsageDetailPublisherFunction {
     private EventHandlerUtility<MessageHeader> eventHandlerUtility;
 
     public UsageDetailPublisherFunction() {
+        this.messageHandlerUtility = new MessageHandlerUtility<>();
+        this.eventHandlerUtility = new EventHandlerUtility<>();
     }
 
     public UsageDetailPublisherFunction(MessageHandlerUtility<UsageDetail> messageHandlerUtility,
@@ -47,64 +49,67 @@ public class UsageDetailPublisherFunction {
     public HttpResponseMessage run(@HttpTrigger(name = "req", methods = {
             HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
+        try {
 
-        context.getLogger().info(new Gson().toJson(request));
-        List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(request.getBody().get());
+            // context.getLogger().info(new Gson().toJson(request));
+            List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(request.getBody().get());
 
-        for (EventGridEvent eventGridEvent : eventGridEvents) {
-            // Handle system events
-            if (eventGridEvent.getEventType().equals("Microsoft.EventGrid.SubscriptionValidationEvent")) {
-                SubscriptionValidationEventData subscriptionValidationEventData = eventGridEvent.getData()
-                        .toObject(SubscriptionValidationEventData.class);
-                // Handle the subscription validation event
-                SubscriptionValidationResponse responseData = new SubscriptionValidationResponse();
-                responseData.setValidationResponse(subscriptionValidationEventData.getValidationCode());
-                return request.createResponseBuilder(HttpStatus.OK).body(responseData).build();
+            for (EventGridEvent eventGridEvent : eventGridEvents) {
+                // Handle system events
+                if (eventGridEvent.getEventType().equals("Microsoft.EventGrid.SubscriptionValidationEvent")) {
+                    SubscriptionValidationEventData subscriptionValidationEventData = eventGridEvent.getData()
+                            .toObject(SubscriptionValidationEventData.class);
+                    // Handle the subscription validation event
+                    SubscriptionValidationResponse responseData = new SubscriptionValidationResponse();
+                    responseData.setValidationResponse(subscriptionValidationEventData.getValidationCode());
+                    return request.createResponseBuilder(HttpStatus.OK).body(responseData).build();
 
-            } else if (eventGridEvent.getEventType().equals("UsageDetail")) {
-                // Create message body
-                MessageBody<UsageDetail> messageBody = new MessageBody<UsageDetail>();
-                List<UsageDetail> usageDetailsList = new ArrayList<UsageDetail>();
-                Random random = new Random();
-                for (int i = 0; i < 51; i++) {
-                    UsageDetail usageDetail = new UsageDetail();
-                    usageDetail.setUserId("userId" + i);
-                    usageDetail.setData(random.nextInt(500));
-                    usageDetail.setDuration(random.nextInt(500));
+                } else if (eventGridEvent.getEventType().equals("UsageDetail")) {
+                    // Create message body
+                    MessageBody<UsageDetail> messageBody = new MessageBody<UsageDetail>();
+                    List<UsageDetail> usageDetailsList = new ArrayList<UsageDetail>();
+                    Random random = new Random();
+                    for (int i = 0; i < 51; i++) {
+                        UsageDetail usageDetail = new UsageDetail();
+                        usageDetail.setUserId("userId" + i);
+                        usageDetail.setData(random.nextInt(500));
+                        usageDetail.setDuration(random.nextInt(500));
 
-                    usageDetailsList.add(usageDetail);
+                        usageDetailsList.add(usageDetail);
+                    }
+                    messageBody.setData(usageDetailsList);
+
+                    // Create message header
+                    MessageHeader messageHeader = new MessageHeader();
+                    messageHeader.setId(UUID.randomUUID().toString());
+                    messageHeader.setSubject("UsageDetailPublisher");
+                    messageHeader.setTopic("usagecostprocessorfunction-topic");
+                    messageHeader.setEventType("UsageDetail");
+                    messageHeader.setEventTime(OffsetDateTime.now().toString());
+                    MessageReference messageReference = new MessageReference("callusageapp",
+                            messageHeader.getId() + "/input.json");
+                    messageHeader.setData(messageReference);
+                    messageHeader.setDataVersion("v1.0");
+
+                    // Create entire message
+                    Message<UsageDetail> message = new Message<>();
+                    message.setMessageHeader(messageHeader);
+                    message.setMessageBody(messageBody);
+
+                    // Drop data to persistent storage
+                    this.messageHandlerUtility.dropToPersistantStorage(message, context.getLogger());
+
+                    // Publish event to event grid topic
+                    eventHandlerUtility.publishEvent(messageHeader, context.getLogger());
+
+                    context.getLogger().info("Message is dropped and event is published successfully");
+                    return request.createResponseBuilder(HttpStatus.OK).body(message).build();
                 }
-                messageBody.setData(usageDetailsList);
-
-                // Create message header
-                MessageHeader messageHeader = new MessageHeader();
-                messageHeader.setId(UUID.randomUUID().toString());
-                messageHeader.setSubject("UsageDetailPublisher");
-                messageHeader.setTopic("usagecostprocessorfunction-topic");
-                messageHeader.setEventType("UsageDetail");
-                messageHeader.setEventTime(OffsetDateTime.now().toString());
-                MessageReference messageReference = new MessageReference("callusageapp",
-                        messageHeader.getId() + "/input.json");
-                messageHeader.setData(messageReference);
-                messageHeader.setDataVersion("v1.0");
-
-                // Create entire message
-                Message<UsageDetail> message = new Message<>();
-                message.setMessageHeader(messageHeader);
-                message.setMessageBody(messageBody);
-
-                // Drop data to persistent storage
-                this.messageHandlerUtility = new MessageHandlerUtility<>();
-                messageHandlerUtility.dropToPersistantStorage(message, context.getLogger());
-
-                // Publish event to event grid topic
-                this.eventHandlerUtility = new EventHandlerUtility<>();
-                eventHandlerUtility.publishEvent(messageHeader, context.getLogger());
-
-                context.getLogger().info("Message is dropped and event is published successfully");
-                return request.createResponseBuilder(HttpStatus.OK).body(message).build();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return request.createResponseBuilder(HttpStatus.OK).body(null).build();
     }
 }

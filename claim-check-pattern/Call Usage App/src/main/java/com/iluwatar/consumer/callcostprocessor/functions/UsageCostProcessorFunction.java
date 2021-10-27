@@ -30,6 +30,8 @@ public class UsageCostProcessorFunction {
     private MessageHandlerUtility<UsageCostDetail> messageHandlerUtilityForUsageCostDetail;
 
     public UsageCostProcessorFunction() {
+        this.messageHandlerUtilityForUsageDetail = new MessageHandlerUtility<>();
+        this.messageHandlerUtilityForUsageCostDetail = new MessageHandlerUtility<>();
     }
 
     public UsageCostProcessorFunction(MessageHandlerUtility<UsageDetail> messageHandlerUtilityForUsageDetail,
@@ -42,67 +44,74 @@ public class UsageCostProcessorFunction {
     public HttpResponseMessage run(@HttpTrigger(name = "req", methods = { HttpMethod.GET,
             HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
+        try {
+            List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(request.getBody().get());
+            for (EventGridEvent eventGridEvent : eventGridEvents) {
+                // Handle system events
+                if (eventGridEvent.getEventType().equals("Microsoft.EventGrid.SubscriptionValidationEvent")) {
+                    SubscriptionValidationEventData subscriptionValidationEventData = eventGridEvent.getData()
+                            .toObject(SubscriptionValidationEventData.class);
+                    // Handle the subscription validation event
+                    SubscriptionValidationResponse responseData = new SubscriptionValidationResponse();
+                    responseData.setValidationResponse(subscriptionValidationEventData.getValidationCode());
+                    return request.createResponseBuilder(HttpStatus.OK).body(responseData).build();
 
-        context.getLogger().info(new Gson().toJson(request));
-        List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(request.getBody().get());
-        for (EventGridEvent eventGridEvent : eventGridEvents) {
-            // Handle system events
-            if (eventGridEvent.getEventType().equals("Microsoft.EventGrid.SubscriptionValidationEvent")) {
-                SubscriptionValidationEventData subscriptionValidationEventData = eventGridEvent.getData()
-                        .toObject(SubscriptionValidationEventData.class);
-                // Handle the subscription validation event
-                SubscriptionValidationResponse responseData = new SubscriptionValidationResponse();
-                responseData.setValidationResponse(subscriptionValidationEventData.getValidationCode());
-                return request.createResponseBuilder(HttpStatus.OK).body(responseData).build();
+                } else if (eventGridEvent.getEventType().equals("UsageDetail")) {
+                    // Get message header and reference
+                    MessageReference messageReference = eventGridEvent.getData().toObject(MessageReference.class);
 
-            } else if (eventGridEvent.getEventType().equals("UsageDetail")) {
-                // Get message header and reference
-                MessageReference messageReference = eventGridEvent.getData().toObject(MessageReference.class);
+                    // Read message from persistant storage
+                    Message<UsageDetail> message = this.messageHandlerUtilityForUsageDetail
+                            .readFromPersistantStorage(messageReference, context.getLogger());
 
-                // Read message from persistant storage
-                this.messageHandlerUtilityForUsageDetail = new MessageHandlerUtility<>();
-                Message<UsageDetail> message = this.messageHandlerUtilityForUsageDetail
-                        .readFromPersistantStorage(messageReference, context.getLogger());
+                    // Get Data and generate cost details
+                    System.out.println("actual message: " + message.getMessageBody().getData().get(0).getData());
 
-                // Get Data and generate cost details
-                List<UsageDetail> usageDetailsList = BinaryData.fromObject(message.getMessageBody().getData())
-                        .toObject(new TypeReference<List<UsageDetail>>() {
-                        });
-                List<UsageCostDetail> usageCostDetailsList = this.calculateUsageCostDetails(usageDetailsList);
+                    List<UsageDetail> usageDetailsList = BinaryData.fromObject(message.getMessageBody().getData())
+                            .toObject(new TypeReference<List<UsageDetail>>() {
+                            });
+                    List<UsageCostDetail> usageCostDetailsList = this.calculateUsageCostDetails(usageDetailsList);
 
-                // Create message body
-                MessageBody<UsageCostDetail> newMessageBody = new MessageBody<UsageCostDetail>();
-                newMessageBody.setData(usageCostDetailsList);
+                    // Create message body
+                    MessageBody<UsageCostDetail> newMessageBody = new MessageBody<UsageCostDetail>();
+                    newMessageBody.setData(usageCostDetailsList);
 
-                // Create message header
-                MessageReference newMessageReference = new MessageReference("callusageapp",
-                        eventGridEvent.getId() + "/output.json");
-                MessageHeader newMessageHeader = new MessageHeader();
-                newMessageHeader.setId(eventGridEvent.getId());
-                newMessageHeader.setSubject("UsageCostProcessor");
-                newMessageHeader.setTopic("");
-                newMessageHeader.setEventType("UsageCostDetail");
-                newMessageHeader.setEventTime(OffsetDateTime.now().toString());
-                newMessageHeader.setData(newMessageReference);
-                newMessageHeader.setDataVersion("v1.0");
+                    // Create message header
+                    MessageReference newMessageReference = new MessageReference("callusageapp",
+                            eventGridEvent.getId() + "/output.json");
+                    MessageHeader newMessageHeader = new MessageHeader();
+                    newMessageHeader.setId(eventGridEvent.getId());
+                    newMessageHeader.setSubject("UsageCostProcessor");
+                    newMessageHeader.setTopic("");
+                    newMessageHeader.setEventType("UsageCostDetail");
+                    newMessageHeader.setEventTime(OffsetDateTime.now().toString());
+                    newMessageHeader.setData(newMessageReference);
+                    newMessageHeader.setDataVersion("v1.0");
 
-                // Create entire message
-                Message<UsageCostDetail> newMessage = new Message<>();
-                newMessage.setMessageHeader(newMessageHeader);
-                newMessage.setMessageBody(newMessageBody);
+                    // Create entire message
+                    Message<UsageCostDetail> newMessage = new Message<>();
+                    newMessage.setMessageHeader(newMessageHeader);
+                    newMessage.setMessageBody(newMessageBody);
 
-                // Drop data to persistent storage
-                this.messageHandlerUtilityForUsageCostDetail = new MessageHandlerUtility<>();
-                this.messageHandlerUtilityForUsageCostDetail.dropToPersistantStorage(newMessage, context.getLogger());
+                    // Drop data to persistent storage
+                    this.messageHandlerUtilityForUsageCostDetail.dropToPersistantStorage(newMessage,
+                            context.getLogger());
 
-                context.getLogger().info("Message is dropped successfully");
-                return request.createResponseBuilder(HttpStatus.OK).body(null).build();
+                    context.getLogger().info("Message is dropped successfully");
+                    return request.createResponseBuilder(HttpStatus.OK).body("Message is dropped successfully").build();
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return request.createResponseBuilder(HttpStatus.OK).body(null).build();
+
+        return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(null).build();
     }
 
     private List<UsageCostDetail> calculateUsageCostDetails(List<UsageDetail> usageDetailsList) {
+        if (usageDetailsList == null) {
+            return null;
+        }
         List<UsageCostDetail> usageCostDetailsList = new ArrayList<>();
 
         usageDetailsList.forEach(usageDetail -> {
