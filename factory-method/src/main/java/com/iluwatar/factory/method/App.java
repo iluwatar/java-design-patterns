@@ -42,6 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 public class App {
 
   private static final String MANUFACTURED = "{} manufactured {}";
+
   /**
    * Program entry point.
    * @param args command line args
