@@ -1,5 +1,4 @@
 /*
-
  * The MIT License (MIT)
  *
  * Copyright © 2014-2021 Ilkka Seppälä
@@ -31,7 +30,9 @@ package com.iluwatar.model.view.viewmodel;
 import java.util.List;
 
 public interface BookService {
-  /* List all books
+  /*
+   * List all books
+   * 
    * @return all books
    */
   public List<Book> load();
