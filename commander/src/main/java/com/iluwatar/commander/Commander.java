@@ -92,8 +92,10 @@ public class Commander {
 
   private static final String ORDER = "Order ";
   private static final String REQUEST_ID = " request Id: ";
-  private static final String ERROR_CONNECTING_MSG_SVC = ": Error in connecting to messaging service ";
-  private static final String TRY_CONNECTING_MSG_SVC = ": Trying to connect to messaging service..";
+  private static final String ERROR_CONNECTING_MSG_SVC =
+          ": Error in connecting to messaging service ";
+  private static final String TRY_CONNECTING_MSG_SVC =
+          ": Trying to connect to messaging service..";
 
   Commander(EmployeeHandle empDb, PaymentService paymentService, ShippingService shippingService,
             MessagingService messagingService, QueueDatabase qdb, int numOfRetries,
