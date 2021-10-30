@@ -91,6 +91,7 @@ public class Commander {
   //we could also have another db where it stores all orders
 
   private static final String ORDER = "Order ";
+  private static final String ERROR_CONNECTING_MSG_SVC = ": Error in connecting to messaging service ";
 
   Commander(EmployeeHandle empDb, PaymentService paymentService, ShippingService shippingService,
             MessagingService messagingService, QueueDatabase qdb, int numOfRetries,
@@ -366,7 +367,7 @@ public class Commander {
     return (l) -> {
       if (!l.isEmpty()) {
         if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-          LOG.debug(ORDER + order.id + ": Error in connecting to messaging service "
+          LOG.debug(ORDER + order.id + ERROR_CONNECTING_MSG_SVC
               + "(Payment Success msg), trying again..");
         } else {
           LOG.debug(ORDER + order.id + ": Error in creating Payment Success"
@@ -423,7 +424,7 @@ public class Commander {
   private void handlePaymentFailureRetryOperation(Order order, List<Exception> l) throws Exception {
     if (!l.isEmpty()) {
       if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-        LOG.debug(ORDER + order.id + ": Error in connecting to messaging service "
+        LOG.debug(ORDER + order.id + ERROR_CONNECTING_MSG_SVC
             + "(Payment Failure msg), trying again..");
       } else {
         LOG.debug(ORDER + order.id + ": Error in creating Payment Failure"
@@ -480,7 +481,7 @@ public class Commander {
       throws Exception {
     if (!l.isEmpty()) {
       if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-        LOG.debug(ORDER + order.id + ": Error in connecting to messaging service "
+        LOG.debug(ORDER + order.id + ERROR_CONNECTING_MSG_SVC
             + "(Payment Error msg), trying again..");
       } else {
         LOG.debug(ORDER + order.id + ": Error in creating Payment Error"
