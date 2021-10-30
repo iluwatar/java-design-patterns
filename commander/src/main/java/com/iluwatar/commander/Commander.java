@@ -90,6 +90,8 @@ public class Commander {
   private static final Logger LOG = LoggerFactory.getLogger(Commander.class);
   //we could also have another db where it stores all orders
 
+  private static final String ORDER = "Order ";
+
   Commander(EmployeeHandle empDb, PaymentService paymentService, ShippingService shippingService,
             MessagingService messagingService, QueueDatabase qdb, int numOfRetries,
             long retryDuration, long queueTime, long queueTaskTime, long paymentTime,
@@ -118,16 +120,16 @@ public class Commander {
     Retry.Operation op = (l) -> {
       if (!l.isEmpty()) {
         if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-          LOG.debug("Order " + order.id + ": Error in connecting to shipping service, "
+          LOG.debug(ORDER + order.id + ": Error in connecting to shipping service, "
               + "trying again..");
         } else {
-          LOG.debug("Order " + order.id + ": Error in creating shipping request..");
+          LOG.debug(ORDER + order.id + ": Error in creating shipping request..");
         }
         throw l.remove(0);
       }
       String transactionId = shippingService.receiveRequest(order.item, order.user.address);
       //could save this transaction id in a db too
-      LOG.info("Order " + order.id + ": Shipping placed successfully, transaction id: "
+      LOG.info(ORDER + order.id + ": Shipping placed successfully, transaction id: "
           + transactionId);
       LOG.info("Order has been placed and will be shipped to you. Please wait while we make your"
           + " payment... ");
@@ -138,19 +140,19 @@ public class Commander {
         LOG.info("Shipping is currently not possible to your address. We are working on the problem"
             + " and will get back to you asap.");
         finalSiteMsgShown = true;
-        LOG.info("Order " + order.id + ": Shipping not possible to address, trying to add problem "
+        LOG.info(ORDER + order.id + ": Shipping not possible to address, trying to add problem "
             + "to employee db..");
         employeeHandleIssue(o);
       } else if (ItemUnavailableException.class.isAssignableFrom(err.getClass())) {
         LOG.info("This item is currently unavailable. We will inform you as soon as the item "
             + "becomes available again.");
         finalSiteMsgShown = true;
-        LOG.info("Order " + order.id + ": Item " + order.item + " unavailable, trying to add "
+        LOG.info(ORDER + order.id + ": Item " + order.item + " unavailable, trying to add "
             + "problem to employee handle..");
         employeeHandleIssue(o);
       } else {
         LOG.info("Sorry, there was a problem in creating your order. Please try later.");
-        LOG.error("Order " + order.id + ": Shipping service unavailable, order not placed..");
+        LOG.error(ORDER + order.id + ": Shipping service unavailable, order not placed..");
         finalSiteMsgShown = true;
       }
     };
@@ -164,7 +166,7 @@ public class Commander {
       if (order.paid.equals(PaymentStatus.TRYING)) {
         order.paid = PaymentStatus.NOT_DONE;
         sendPaymentFailureMessage(order);
-        LOG.error("Order " + order.id + ": Payment time for order over, failed and returning..");
+        LOG.error(ORDER + order.id + ": Payment time for order over, failed and returning..");
       } //if succeeded or failed, would have been dequeued, no attempt to make payment     
       return;
     }
@@ -173,17 +175,17 @@ public class Commander {
       Retry.Operation op = (l) -> {
         if (!l.isEmpty()) {
           if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-            LOG.debug("Order " + order.id + ": Error in connecting to payment service,"
+            LOG.debug(ORDER + order.id + ": Error in connecting to payment service,"
                 + " trying again..");
           } else {
-            LOG.debug("Order " + order.id + ": Error in creating payment request..");
+            LOG.debug(ORDER + order.id + ": Error in creating payment request..");
           }
           throw l.remove(0);
         }
         if (order.paid.equals(PaymentStatus.TRYING)) {
           var transactionId = paymentService.receiveRequest(order.price);
           order.paid = PaymentStatus.DONE;
-          LOG.info("Order " + order.id + ": Payment successful, transaction Id: " + transactionId);
+          LOG.info(ORDER + order.id + ": Payment successful, transaction Id: " + transactionId);
           if (!finalSiteMsgShown) {
             LOG.info("Payment made successfully, thank you for shopping with us!!");
             finalSiteMsgShown = true;
@@ -199,7 +201,7 @@ public class Commander {
                 + "Meanwhile, your order has been converted to COD and will be shipped.");
             finalSiteMsgShown = true;
           }
-          LOG.error("Order " + order.id + ": Payment details incorrect, failed..");
+          LOG.error(ORDER + order.id + ": Payment details incorrect, failed..");
           o.paid = PaymentStatus.NOT_DONE;
           sendPaymentFailureMessage(o);
         } else {
@@ -209,7 +211,7 @@ public class Commander {
                   + "asap. Don't worry, your order has been placed and will be shipped.");
               finalSiteMsgShown = true;
             }
-            LOG.warn("Order " + order.id + ": Payment error, going to queue..");
+            LOG.warn(ORDER + order.id + ": Payment error, going to queue..");
             sendPaymentPossibleErrorMsg(o);
           }
           if (o.paid.equals(PaymentStatus.TRYING) && System
@@ -234,7 +236,7 @@ public class Commander {
     if (System.currentTimeMillis() - qt.order.createdTime >= this.queueTime) {
       // since payment time is lesser than queuetime it would have already failed..
       // additional check not needed
-      LOG.trace("Order " + qt.order.id + ": Queue time for order over, failed..");
+      LOG.trace(ORDER + qt.order.id + ": Queue time for order over, failed..");
       return;
     } else if (qt.taskType.equals(TaskType.PAYMENT) && !qt.order.paid.equals(PaymentStatus.TRYING)
         || qt.taskType.equals(TaskType.MESSAGING) && (qt.messageType == 1
@@ -242,29 +244,29 @@ public class Commander {
         || qt.order.messageSent.equals(MessageSent.PAYMENT_FAIL)
         || qt.order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL))
         || qt.taskType.equals(TaskType.EMPLOYEE_DB) && qt.order.addedToEmployeeHandle) {
-      LOG.trace("Order " + qt.order.id + ": Not queueing task since task already done..");
+      LOG.trace(ORDER + qt.order.id + ": Not queueing task since task already done..");
       return;
     }
     var list = queue.exceptionsList;
     Thread t = new Thread(() -> {
       Retry.Operation op = (list1) -> {
         if (!list1.isEmpty()) {
-          LOG.warn("Order " + qt.order.id + ": Error in connecting to queue db, trying again..");
+          LOG.warn(ORDER + qt.order.id + ": Error in connecting to queue db, trying again..");
           throw list1.remove(0);
         }
         queue.add(qt);
         queueItems++;
-        LOG.info("Order " + qt.order.id + ": " + qt.getType() + " task enqueued..");
+        LOG.info(ORDER + qt.order.id + ": " + qt.getType() + " task enqueued..");
         tryDoingTasksInQueue();
       };
       Retry.HandleErrorIssue<QueueTask> handleError = (qt1, err) -> {
         if (qt1.taskType.equals(TaskType.PAYMENT)) {
           qt1.order.paid = PaymentStatus.NOT_DONE;
           sendPaymentFailureMessage(qt1.order);
-          LOG.error("Order " + qt1.order.id + ": Unable to enqueue payment task,"
+          LOG.error(ORDER + qt1.order.id + ": Unable to enqueue payment task,"
               + " payment failed..");
         }
-        LOG.error("Order " + qt1.order.id + ": Unable to enqueue task of type " + qt1.getType()
+        LOG.error(ORDER + qt1.order.id + ": Unable to enqueue task of type " + qt1.getType()
             + ", trying to add to employee handle..");
         employeeHandleIssue(qt1.order);
       };
@@ -328,7 +330,7 @@ public class Commander {
 
   private void sendSuccessMessage(Order order) {
     if (System.currentTimeMillis() - order.createdTime >= this.messageTime) {
-      LOG.trace("Order " + order.id + ": Message time for order over, returning..");
+      LOG.trace(ORDER + order.id + ": Message time for order over, returning..");
       return;
     }
     var list = messagingService.exceptionsList;
@@ -354,7 +356,7 @@ public class Commander {
         && System.currentTimeMillis() - o.createdTime < messageTime) {
       var qt = new QueueTask(order, TaskType.MESSAGING, 2);
       updateQueue(qt);
-      LOG.info("Order " + order.id + ": Error in sending Payment Success message, trying to"
+      LOG.info(ORDER + order.id + ": Error in sending Payment Success message, trying to"
           + " queue task and add to employee handle..");
       employeeHandleIssue(order);
     }
@@ -364,10 +366,10 @@ public class Commander {
     return (l) -> {
       if (!l.isEmpty()) {
         if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-          LOG.debug("Order " + order.id + ": Error in connecting to messaging service "
+          LOG.debug(ORDER + order.id + ": Error in connecting to messaging service "
               + "(Payment Success msg), trying again..");
         } else {
-          LOG.debug("Order " + order.id + ": Error in creating Payment Success"
+          LOG.debug(ORDER + order.id + ": Error in creating Payment Success"
               + " messaging request..");
         }
         throw l.remove(0);
@@ -376,7 +378,7 @@ public class Commander {
           && !order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL)) {
         var requestId = messagingService.receiveRequest(2);
         order.messageSent = MessageSent.PAYMENT_SUCCESSFUL;
-        LOG.info("Order " + order.id + ": Payment Success message sent,"
+        LOG.info(ORDER + order.id + ": Payment Success message sent,"
             + " request Id: " + requestId);
       }
     };
@@ -384,7 +386,7 @@ public class Commander {
 
   private void sendPaymentFailureMessage(Order order) {
     if (System.currentTimeMillis() - order.createdTime >= this.messageTime) {
-      LOG.trace("Order " + order.id + ": Message time for order over, returning..");
+      LOG.trace(ORDER + order.id + ": Message time for order over, returning..");
       return;
     }
     var list = messagingService.exceptionsList;
@@ -412,7 +414,7 @@ public class Commander {
         && System.currentTimeMillis() - o.createdTime < messageTime) {
       var qt = new QueueTask(order, TaskType.MESSAGING, 0);
       updateQueue(qt);
-      LOG.warn("Order " + order.id + ": Error in sending Payment Failure message, "
+      LOG.warn(ORDER + order.id + ": Error in sending Payment Failure message, "
           + "trying to queue task and add to employee handle..");
       employeeHandleIssue(o);
     }
@@ -421,10 +423,10 @@ public class Commander {
   private void handlePaymentFailureRetryOperation(Order order, List<Exception> l) throws Exception {
     if (!l.isEmpty()) {
       if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-        LOG.debug("Order " + order.id + ": Error in connecting to messaging service "
+        LOG.debug(ORDER + order.id + ": Error in connecting to messaging service "
             + "(Payment Failure msg), trying again..");
       } else {
-        LOG.debug("Order " + order.id + ": Error in creating Payment Failure"
+        LOG.debug(ORDER + order.id + ": Error in creating Payment Failure"
             + " message request..");
       }
       throw l.remove(0);
@@ -433,7 +435,7 @@ public class Commander {
         && !order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL)) {
       var requestId = messagingService.receiveRequest(0);
       order.messageSent = MessageSent.PAYMENT_FAIL;
-      LOG.info("Order " + order.id + ": Payment Failure message sent successfully,"
+      LOG.info(ORDER + order.id + ": Payment Failure message sent successfully,"
           + " request Id: " + requestId);
     }
   }
@@ -468,7 +470,7 @@ public class Commander {
         && System.currentTimeMillis() - o.createdTime < messageTime) {
       var qt = new QueueTask(order, TaskType.MESSAGING, 1);
       updateQueue(qt);
-      LOG.warn("Order " + order.id + ": Error in sending Payment Error message, "
+      LOG.warn(ORDER + order.id + ": Error in sending Payment Error message, "
           + "trying to queue task and add to employee handle..");
       employeeHandleIssue(o);
     }
@@ -478,10 +480,10 @@ public class Commander {
       throws Exception {
     if (!l.isEmpty()) {
       if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-        LOG.debug("Order " + order.id + ": Error in connecting to messaging service "
+        LOG.debug(ORDER + order.id + ": Error in connecting to messaging service "
             + "(Payment Error msg), trying again..");
       } else {
-        LOG.debug("Order " + order.id + ": Error in creating Payment Error"
+        LOG.debug(ORDER + order.id + ": Error in creating Payment Error"
             + " messaging request..");
       }
       throw l.remove(0);
@@ -490,28 +492,28 @@ public class Commander {
         .equals(MessageSent.NONE_SENT)) {
       var requestId = messagingService.receiveRequest(1);
       order.messageSent = MessageSent.PAYMENT_TRYING;
-      LOG.info("Order " + order.id + ": Payment Error message sent successfully,"
+      LOG.info(ORDER + order.id + ": Payment Error message sent successfully,"
           + " request Id: " + requestId);
     }
   }
 
   private void employeeHandleIssue(Order order) {
     if (System.currentTimeMillis() - order.createdTime >= this.employeeTime) {
-      LOG.trace("Order " + order.id + ": Employee handle time for order over, returning..");
+      LOG.trace(ORDER + order.id + ": Employee handle time for order over, returning..");
       return;
     }
     var list = employeeDb.exceptionsList;
     var t = new Thread(() -> {
       Retry.Operation op = (l) -> {
         if (!l.isEmpty()) {
-          LOG.warn("Order " + order.id + ": Error in connecting to employee handle,"
+          LOG.warn(ORDER + order.id + ": Error in connecting to employee handle,"
               + " trying again..");
           throw l.remove(0);
         }
         if (!order.addedToEmployeeHandle) {
           employeeDb.receiveRequest(order);
           order.addedToEmployeeHandle = true;
-          LOG.info("Order " + order.id + ": Added order to employee database");
+          LOG.info(ORDER + order.id + ": Added order to employee database");
         }
       };
       Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
@@ -519,7 +521,7 @@ public class Commander {
             .currentTimeMillis() - order.createdTime < employeeTime) {
           var qt = new QueueTask(order, TaskType.EMPLOYEE_DB, -1);
           updateQueue(qt);
-          LOG.warn("Order " + order.id + ": Error in adding to employee db,"
+          LOG.warn(ORDER + order.id + ": Error in adding to employee db,"
               + " trying to queue task..");
         }
       };
@@ -538,51 +540,51 @@ public class Commander {
     if (queueItems != 0) {
       var qt = queue.peek(); //this should probably be cloned here
       //this is why we have retry for doTasksInQueue
-      LOG.trace("Order " + qt.order.id + ": Started doing task of type " + qt.getType());
+      LOG.trace(ORDER + qt.order.id + ": Started doing task of type " + qt.getType());
       if (qt.getFirstAttemptTime() == -1) {
         qt.setFirstAttemptTime(System.currentTimeMillis());
       }
       if (System.currentTimeMillis() - qt.getFirstAttemptTime() >= queueTaskTime) {
         tryDequeue();
-        LOG.trace("Order " + qt.order.id + ": This queue task of type " + qt.getType()
+        LOG.trace(ORDER + qt.order.id + ": This queue task of type " + qt.getType()
             + " does not need to be done anymore (timeout), dequeue..");
       } else {
         if (qt.taskType.equals(TaskType.PAYMENT)) {
           if (!qt.order.paid.equals(PaymentStatus.TRYING)) {
             tryDequeue();
-            LOG.trace("Order " + qt.order.id + ": This payment task already done, dequeueing..");
+            LOG.trace(ORDER + qt.order.id + ": This payment task already done, dequeueing..");
           } else {
             sendPaymentRequest(qt.order);
-            LOG.debug("Order " + qt.order.id + ": Trying to connect to payment service..");
+            LOG.debug(ORDER + qt.order.id + ": Trying to connect to payment service..");
           }
         } else if (qt.taskType.equals(TaskType.MESSAGING)) {
           if (qt.order.messageSent.equals(MessageSent.PAYMENT_FAIL)
               || qt.order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL)) {
             tryDequeue();
-            LOG.trace("Order " + qt.order.id + ": This messaging task already done, dequeue..");
+            LOG.trace(ORDER + qt.order.id + ": This messaging task already done, dequeue..");
           } else if (qt.messageType == 1 && (!qt.order.messageSent.equals(MessageSent.NONE_SENT)
               || !qt.order.paid.equals(PaymentStatus.TRYING))) {
             tryDequeue();
-            LOG.trace("Order " + qt.order.id + ": This messaging task does not need to be done,"
+            LOG.trace(ORDER + qt.order.id + ": This messaging task does not need to be done,"
                 + " dequeue..");
           } else if (qt.messageType == 0) {
             sendPaymentFailureMessage(qt.order);
-            LOG.debug("Order " + qt.order.id + ": Trying to connect to messaging service..");
+            LOG.debug(ORDER + qt.order.id + ": Trying to connect to messaging service..");
           } else if (qt.messageType == 1) {
             sendPaymentPossibleErrorMsg(qt.order);
-            LOG.debug("Order " + qt.order.id + ": Trying to connect to messaging service..");
+            LOG.debug(ORDER + qt.order.id + ": Trying to connect to messaging service..");
           } else if (qt.messageType == 2) {
             sendSuccessMessage(qt.order);
-            LOG.debug("Order " + qt.order.id + ": Trying to connect to messaging service..");
+            LOG.debug(ORDER + qt.order.id + ": Trying to connect to messaging service..");
           }
         } else if (qt.taskType.equals(TaskType.EMPLOYEE_DB)) {
           if (qt.order.addedToEmployeeHandle) {
             tryDequeue();
-            LOG.trace("Order " + qt.order.id + ": This employee handle task already done,"
+            LOG.trace(ORDER + qt.order.id + ": This employee handle task already done,"
                 + " dequeue..");
           } else {
             employeeHandleIssue(qt.order);
-            LOG.debug("Order " + qt.order.id + ": Trying to connect to employee handle..");
+            LOG.debug(ORDER + qt.order.id + ": Trying to connect to employee handle..");
           }
         }
       }
