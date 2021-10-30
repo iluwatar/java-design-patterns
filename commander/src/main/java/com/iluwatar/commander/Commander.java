@@ -91,6 +91,7 @@ public class Commander {
   //we could also have another db where it stores all orders
 
   private static final String ORDER = "Order ";
+  private static final String REQUEST_ID = " request Id: ";
   private static final String ERROR_CONNECTING_MSG_SVC = ": Error in connecting to messaging service ";
 
   Commander(EmployeeHandle empDb, PaymentService paymentService, ShippingService shippingService,
@@ -380,7 +381,7 @@ public class Commander {
         var requestId = messagingService.receiveRequest(2);
         order.messageSent = MessageSent.PAYMENT_SUCCESSFUL;
         LOG.info(ORDER + order.id + ": Payment Success message sent,"
-            + " request Id: " + requestId);
+            + REQUEST_ID + requestId);
       }
     };
   }
@@ -437,7 +438,7 @@ public class Commander {
       var requestId = messagingService.receiveRequest(0);
       order.messageSent = MessageSent.PAYMENT_FAIL;
       LOG.info(ORDER + order.id + ": Payment Failure message sent successfully,"
-          + " request Id: " + requestId);
+          + REQUEST_ID + requestId);
     }
   }
 
@@ -494,7 +495,7 @@ public class Commander {
       var requestId = messagingService.receiveRequest(1);
       order.messageSent = MessageSent.PAYMENT_TRYING;
       LOG.info(ORDER + order.id + ": Payment Error message sent successfully,"
-          + " request Id: " + requestId);
+          + REQUEST_ID + requestId);
     }
   }
 
