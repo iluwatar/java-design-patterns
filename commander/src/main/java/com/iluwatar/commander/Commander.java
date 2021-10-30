@@ -93,6 +93,7 @@ public class Commander {
   private static final String ORDER = "Order ";
   private static final String REQUEST_ID = " request Id: ";
   private static final String ERROR_CONNECTING_MSG_SVC = ": Error in connecting to messaging service ";
+  private static final String TRY_CONNECTING_MSG_SVC = ": Trying to connect to messaging service..";
 
   Commander(EmployeeHandle empDb, PaymentService paymentService, ShippingService shippingService,
             MessagingService messagingService, QueueDatabase qdb, int numOfRetries,
@@ -571,13 +572,13 @@ public class Commander {
                 + " dequeue..");
           } else if (qt.messageType == 0) {
             sendPaymentFailureMessage(qt.order);
-            LOG.debug(ORDER + qt.order.id + ": Trying to connect to messaging service..");
+            LOG.debug(ORDER + qt.order.id + TRY_CONNECTING_MSG_SVC);
           } else if (qt.messageType == 1) {
             sendPaymentPossibleErrorMsg(qt.order);
-            LOG.debug(ORDER + qt.order.id + ": Trying to connect to messaging service..");
+            LOG.debug(ORDER + qt.order.id + TRY_CONNECTING_MSG_SVC);
           } else if (qt.messageType == 2) {
             sendSuccessMessage(qt.order);
-            LOG.debug(ORDER + qt.order.id + ": Trying to connect to messaging service..");
+            LOG.debug(ORDER + qt.order.id + TRY_CONNECTING_MSG_SVC);
           }
         } else if (qt.taskType.equals(TaskType.EMPLOYEE_DB)) {
           if (qt.order.addedToEmployeeHandle) {
