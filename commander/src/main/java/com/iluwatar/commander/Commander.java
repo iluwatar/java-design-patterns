@@ -262,7 +262,7 @@ public class Commander {
         }
         queue.add(qt);
         queueItems++;
-        LOG.info(ORDER_ID + ": " + qt.getType() + " task enqueued..", qt.order.id);
+        LOG.info(ORDER_ID + ": {}" + " task enqueued..", qt.order.id, qt.getType());
         tryDoingTasksInQueue();
       };
       Retry.HandleErrorIssue<QueueTask> handleError = (qt1, err) -> {
@@ -546,14 +546,14 @@ public class Commander {
     if (queueItems != 0) {
       var qt = queue.peek(); //this should probably be cloned here
       //this is why we have retry for doTasksInQueue
-      LOG.trace(ORDER_ID + ": Started doing task of type " + qt.getType(), qt.order.id);
+      LOG.trace(ORDER_ID + ": Started doing task of type {}", qt.order.id, qt.getType());
       if (qt.getFirstAttemptTime() == -1) {
         qt.setFirstAttemptTime(System.currentTimeMillis());
       }
       if (System.currentTimeMillis() - qt.getFirstAttemptTime() >= queueTaskTime) {
         tryDequeue();
-        LOG.trace(ORDER_ID + ": This queue task of type " + qt.getType()
-            + " does not need to be done anymore (timeout), dequeue..", qt.order.id);
+        LOG.trace(ORDER_ID + ": This queue task of type {}"
+            + " does not need to be done anymore (timeout), dequeue..", qt.order.id, qt.getType());
       } else {
         if (qt.taskType.equals(TaskType.PAYMENT)) {
           if (!qt.order.paid.equals(PaymentStatus.TRYING)) {
