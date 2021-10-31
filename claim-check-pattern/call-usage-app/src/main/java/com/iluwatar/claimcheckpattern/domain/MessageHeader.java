@@ -27,6 +27,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This is message header or event which is sent to Event Grid.
+ * Its structure is same as Azure Event Grid Event Class.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

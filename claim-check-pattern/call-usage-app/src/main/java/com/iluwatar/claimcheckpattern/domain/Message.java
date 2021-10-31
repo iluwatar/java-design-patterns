@@ -27,6 +27,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * It is the message which gets dropped or read by Producer or Consumer Azure functions.
+ * It is stored in the json format.
+ * @param <T> represents UsageDetail or UsageCostDetail
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -28,6 +28,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * It is message body of the message.
+ * It stores actual data in our case UsageCostDetail or UsageDetail.
+ * @param <T> represents UsageDetail or UsageCostDetail
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

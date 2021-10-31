@@ -27,6 +27,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This is call cost details class.
+ * It stores userId of the caller, call duration cost and data cost.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

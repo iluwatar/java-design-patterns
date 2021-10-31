@@ -65,11 +65,11 @@ public class MessageHandlerUtilityTest {
     public void setUp() {
         System.setProperty("BlobStorageConnectionString", "https://www.dummyEndpoint.com/api/blobs");
 
-        MessageBody<UsageDetail> messageBody = new MessageBody<UsageDetail>();
-        List<UsageDetail> usageDetailsList = new ArrayList<UsageDetail>();
-        Random random = new Random();
+        var messageBody = new MessageBody<UsageDetail>();
+        var usageDetailsList = new ArrayList<UsageDetail>();
+        var random = new Random();
         for (int i = 0; i < 51; i++) {
-            UsageDetail usageDetail = new UsageDetail();
+            var usageDetail = new UsageDetail();
             usageDetail.setUserId("userId" + i);
             usageDetail.setData(random.nextInt(500));
             usageDetail.setDuration(random.nextInt(500));
@@ -79,7 +79,7 @@ public class MessageHandlerUtilityTest {
         messageBody.setData(usageDetailsList);
 
         // Create message header
-        MessageHeader messageHeader = new MessageHeader();
+        var messageHeader = new MessageHeader();
         messageHeader.setId(UUID.randomUUID().toString());
         messageHeader.setSubject("UsageDetailPublisher");
         messageHeader.setTopic("usagecostprocessorfunction-topic");
@@ -99,14 +99,14 @@ public class MessageHandlerUtilityTest {
     }
 
     @Test
-    void testDropToPersistantStorage() {
+    void shouldDropMessageToPersistantStorage() {
         messageHandlerUtility.dropToPersistantStorage(messageToPublish, Logger.getLogger("logger"));
         verify(mockBlobServiceClient, times(1)).getBlobContainerClient(anyString());
         // verify(mockContainerClient, times(0)).exists();
     }
 
     @Test
-    void testReadFromPersistantStorage() {
+    void shouldReadMessageFromPersistantStorage() {
 
         messageHandlerUtility.readFromPersistantStorage(messageReference, Logger.getLogger("logger"));
         verify(mockBlobServiceClient, times(1)).getBlobContainerClient(anyString());

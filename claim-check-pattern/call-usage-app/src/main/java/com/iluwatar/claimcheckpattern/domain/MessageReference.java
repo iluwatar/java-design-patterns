@@ -27,6 +27,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This is claim/message reference class.
+ * It contains the information about data where it is stored in persistent storage
+ * and file name.
+ * dataLocation is blob storage container name.
+ * dataFileName is file name in above container.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

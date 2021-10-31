@@ -27,6 +27,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This is call usage detail calls.
+ * It stores userId of the caller, call duration and data used.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

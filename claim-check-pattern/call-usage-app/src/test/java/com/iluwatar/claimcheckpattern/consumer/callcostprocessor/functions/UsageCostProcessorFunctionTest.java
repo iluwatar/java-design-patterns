@@ -66,27 +66,27 @@ public class UsageCostProcessorFunctionTest {
     @Mock
     ExecutionContext context;
 
-    Message<UsageDetail> messageToRead;
     Message<UsageCostDetail> messageToDrop;
+    Message<UsageDetail> messageToRead;
     MessageReference messageReference;
     @InjectMocks
     UsageCostProcessorFunction usageCostProcessorFunction;
 
     @BeforeEach
     public void setUp() {
-        MessageBody<UsageDetail> messageBodyUsageDetail = new MessageBody<>();
-        List<UsageDetail> usageDetailsList = new ArrayList<>();
+        var messageBodyUsageDetail = new MessageBody<UsageDetail>();
+        var usageDetailsList = new ArrayList<UsageDetail>();
 
-        MessageBody<UsageCostDetail> messageBodyUsageCostDetail = new MessageBody<>();
-        List<UsageCostDetail> usageCostDetailsList = new ArrayList<>();
+        var messageBodyUsageCostDetail = new MessageBody<UsageCostDetail>();
+        var usageCostDetailsList = new ArrayList<UsageCostDetail>();
         for (int i = 0; i < 2; i++) {
-            UsageDetail usageDetail = new UsageDetail();
+            var usageDetail = new UsageDetail();
             usageDetail.setUserId("userId" + i);
             usageDetail.setData(i + 1);
             usageDetail.setDuration(i + 1);
             usageDetailsList.add(usageDetail);
 
-            UsageCostDetail usageCostDetail = new UsageCostDetail();
+            var usageCostDetail = new UsageCostDetail();
             usageCostDetail.setUserId(usageDetail.getUserId());
             usageCostDetail.setDataCost(usageDetail.getData() * 0.20);
             usageCostDetail.setCallCost(usageDetail.getDuration() * 0.30);
@@ -96,7 +96,7 @@ public class UsageCostProcessorFunctionTest {
         messageBodyUsageCostDetail.setData(usageCostDetailsList);
 
         // Create message header
-        MessageHeader messageHeader = new MessageHeader();
+        var messageHeader = new MessageHeader();
         messageHeader.setId(UUID.randomUUID().toString());
         messageHeader.setSubject("UsageDetailPublisher");
         messageHeader.setTopic("usagecostprocessorfunction-topic");
@@ -121,7 +121,7 @@ public class UsageCostProcessorFunctionTest {
      * Unit test for HttpTriggerJava method.
      */
     @Test
-    public void testHttpTriggerJavaWithSubscriptionValidationEventType() throws Exception {
+    public void shouldTriggerHttpAzureFunctionJavaWithSubscriptionValidationEventType() throws Exception {
 
         // Setup
         @SuppressWarnings("unchecked")
@@ -147,7 +147,7 @@ public class UsageCostProcessorFunctionTest {
     }
 
     @Test
-    public void testHttpTriggerJavaWithUsageDetailEventType() throws Exception {
+    public void shouldTriggerHttpAzureFunctionJavaWithUsageDetailEventType() throws Exception {
         // Setup
         @SuppressWarnings("unchecked")
         final HttpRequestMessage<Optional<String>> req = mock(HttpRequestMessage.class);

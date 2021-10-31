@@ -39,7 +39,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>11</java.version>
         <azure.functions.maven.plugin.version>1.14.0</azure.functions.maven.plugin.version>
         <azure.functions.java.library.version>1.4.2</azure.functions.java.library.version>
         <functionAppName>CallUsageApp</functionAppName>
@@ -84,15 +83,8 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.32</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
 
         <!-- Test -->
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
@@ -107,7 +99,6 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.0.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -129,16 +120,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>com.microsoft.azure</groupId>
                 <artifactId>azure-functions-maven-plugin</artifactId>

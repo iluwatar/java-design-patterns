@@ -55,7 +55,7 @@ public class EventHandlerUtilityTest {
     }
 
     @Test
-    void testPublishEvent() {
+    void shouldPublishEvent() {
         doNothing().when(mockCustomEventClient).sendEvent(any(BinaryData.class));
         eventHandlerUtility.publishEvent(null, Logger.getLogger("logger"));
         verify(mockCustomEventClient, times(1)).sendEvent(any(BinaryData.class));
@@ -63,7 +63,7 @@ public class EventHandlerUtilityTest {
     }
 
     @Test
-    void testPublishEvent1() {
+    void shouldPublishEventWithNullLogger() {
         eventHandlerUtility.publishEvent(null, null);
         verify(mockCustomEventClient, times(1)).sendEvent(any(BinaryData.class));
     }

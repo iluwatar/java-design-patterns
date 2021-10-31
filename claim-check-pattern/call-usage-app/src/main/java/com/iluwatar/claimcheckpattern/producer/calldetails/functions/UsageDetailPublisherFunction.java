@@ -50,6 +50,7 @@ import java.util.UUID;
 
 /**
  * Azure Functions with HTTP Trigger.
+ * This is Producer class.
  */
 public class UsageDetailPublisherFunction {
 
@@ -81,7 +82,7 @@ public class UsageDetailPublisherFunction {
       final ExecutionContext context) {
     try {
 
-      List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(request.getBody().get());
+      var eventGridEvents = EventGridEvent.fromString(request.getBody().get());
 
       for (EventGridEvent eventGridEvent : eventGridEvents) {
         // Handle system events
@@ -90,17 +91,17 @@ public class UsageDetailPublisherFunction {
           SubscriptionValidationEventData subscriptionValidationEventData = eventGridEvent.getData()
               .toObject(SubscriptionValidationEventData.class);
           // Handle the subscription validation event
-          SubscriptionValidationResponse responseData = new SubscriptionValidationResponse();
+          var responseData = new SubscriptionValidationResponse();
           responseData.setValidationResponse(subscriptionValidationEventData.getValidationCode());
           return request.createResponseBuilder(HttpStatus.OK).body(responseData).build();
 
         } else if (eventGridEvent.getEventType().equals("UsageDetail")) {
           // Create message body
-          MessageBody<UsageDetail> messageBody = new MessageBody<>();
-          List<UsageDetail> usageDetailsList = new ArrayList<>();
-          Random random = new Random();
+          var messageBody = new MessageBody<UsageDetail>();
+          var usageDetailsList = new ArrayList<UsageDetail>();
+          var random = new Random();
           for (int i = 0; i < 51; i++) {
-            UsageDetail usageDetail = new UsageDetail();
+            var usageDetail = new UsageDetail();
             usageDetail.setUserId("userId" + i);
             usageDetail.setData(random.nextInt(500));
             usageDetail.setDuration(random.nextInt(500));
@@ -110,19 +111,19 @@ public class UsageDetailPublisherFunction {
           messageBody.setData(usageDetailsList);
 
           // Create message header
-          MessageHeader messageHeader = new MessageHeader();
+          var messageHeader = new MessageHeader();
           messageHeader.setId(UUID.randomUUID().toString());
           messageHeader.setSubject("UsageDetailPublisher");
           messageHeader.setTopic("usagecostprocessorfunction-topic");
           messageHeader.setEventType("UsageDetail");
           messageHeader.setEventTime(OffsetDateTime.now().toString());
-          MessageReference messageReference = new MessageReference("callusageapp",
+          var messageReference = new MessageReference("callusageapp",
               messageHeader.getId() + "/input.json");
           messageHeader.setData(messageReference);
           messageHeader.setDataVersion("v1.0");
 
           // Create entire message
-          Message<UsageDetail> message = new Message<>();
+          var message = new Message<UsageDetail>();
           message.setMessageHeader(messageHeader);
           message.setMessageBody(messageBody);
 
@@ -137,7 +138,7 @@ public class UsageDetailPublisherFunction {
         }
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      context.getLogger().warning(e.getMessage());
     }
 
     return request.createResponseBuilder(HttpStatus.OK).body(null).build();

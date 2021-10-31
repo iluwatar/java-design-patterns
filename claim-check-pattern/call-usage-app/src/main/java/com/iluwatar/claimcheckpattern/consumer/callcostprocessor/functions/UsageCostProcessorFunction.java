@@ -50,6 +50,7 @@ import java.util.Optional;
 
 /**
  * Azure Functions with HTTP Trigger.
+ * This is Consumer class.
  */
 public class UsageCostProcessorFunction {
 
@@ -82,25 +83,25 @@ public class UsageCostProcessorFunction {
                                        HttpRequestMessage<Optional<String>> request,
                                  final ExecutionContext context) {
     try {
-      List<EventGridEvent> eventGridEvents = EventGridEvent.fromString(request.getBody().get());
-      for (EventGridEvent eventGridEvent : eventGridEvents) {
+      var eventGridEvents = EventGridEvent.fromString(request.getBody().get());
+      for (var eventGridEvent : eventGridEvents) {
         // Handle system events
         if (eventGridEvent.getEventType()
             .equals("Microsoft.EventGrid.SubscriptionValidationEvent")) {
           SubscriptionValidationEventData subscriptionValidationEventData = eventGridEvent.getData()
               .toObject(SubscriptionValidationEventData.class);
           // Handle the subscription validation event
-          SubscriptionValidationResponse responseData = new SubscriptionValidationResponse();
+          var responseData = new SubscriptionValidationResponse();
           responseData.setValidationResponse(subscriptionValidationEventData.getValidationCode());
           return request.createResponseBuilder(HttpStatus.OK).body(responseData).build();
 
         } else if (eventGridEvent.getEventType().equals("UsageDetail")) {
           // Get message header and reference
-          MessageReference messageReference = eventGridEvent.getData()
+          var messageReference = eventGridEvent.getData()
               .toObject(MessageReference.class);
 
           // Read message from persistent storage
-          Message<UsageDetail> message = this.messageHandlerUtilityForUsageDetail
+          var message = this.messageHandlerUtilityForUsageDetail
               .readFromPersistantStorage(messageReference, context.getLogger());
 
           // Get Data and generate cost details
@@ -108,16 +109,16 @@ public class UsageCostProcessorFunction {
               message.getMessageBody().getData())
               .toObject(new TypeReference<>() {
               });
-          List<UsageCostDetail> usageCostDetailsList = calculateUsageCostDetails(usageDetailsList);
+          var usageCostDetailsList = calculateUsageCostDetails(usageDetailsList);
 
           // Create message body
-          MessageBody<UsageCostDetail> newMessageBody = new MessageBody<>();
+          var newMessageBody = new MessageBody<UsageCostDetail>();
           newMessageBody.setData(usageCostDetailsList);
 
           // Create message header
-          MessageReference newMessageReference = new MessageReference("callusageapp",
+          var newMessageReference = new MessageReference("callusageapp",
               eventGridEvent.getId() + "/output.json");
-          MessageHeader newMessageHeader = new MessageHeader();
+          var newMessageHeader = new MessageHeader();
           newMessageHeader.setId(eventGridEvent.getId());
           newMessageHeader.setSubject("UsageCostProcessor");
           newMessageHeader.setTopic("");
@@ -127,7 +128,7 @@ public class UsageCostProcessorFunction {
           newMessageHeader.setDataVersion("v1.0");
 
           // Create entire message
-          Message<UsageCostDetail> newMessage = new Message<>();
+          var newMessage = new Message<UsageCostDetail>();
           newMessage.setMessageHeader(newMessageHeader);
           newMessage.setMessageBody(newMessageBody);
 
@@ -141,7 +142,7 @@ public class UsageCostProcessorFunction {
         }
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      context.getLogger().warning(e.getMessage());
     }
 
     return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(null).build();
@@ -151,10 +152,10 @@ public class UsageCostProcessorFunction {
     if (usageDetailsList == null) {
       return null;
     }
-    List<UsageCostDetail> usageCostDetailsList = new ArrayList<>();
+    var usageCostDetailsList = new ArrayList<UsageCostDetail>();
 
     usageDetailsList.forEach(usageDetail -> {
-      UsageCostDetail usageCostDetail = new UsageCostDetail();
+      var usageCostDetail = new UsageCostDetail();
       usageCostDetail.setUserId(usageDetail.getUserId());
       usageCostDetail.setCallCost(usageDetail.getDuration() * 0.30); // 0.30₹ per minute
       usageCostDetail.setDataCost(usageDetail.getData() * 0.20); // 0.20₹ per MB

@@ -64,7 +64,7 @@ public class UsageDetailPublisherFunctionTest {
      * Unit test for HttpTriggerJava method.
      */
     @Test
-    public void testHttpTriggerJavaWithSubscriptionValidationEventType() throws Exception {
+    public void shouldTriggerHttpAzureFunctionJavaWithSubscriptionValidationEventType() throws Exception {
 
         // Setup
         @SuppressWarnings("unchecked")
@@ -90,7 +90,7 @@ public class UsageDetailPublisherFunctionTest {
     }
 
     @Test
-    public void testHttpTriggerJavaWithUsageDetailEventType() throws Exception {
+    public void shouldTriggerHttpAzureFunctionJavaWithUsageDetailEventType() throws Exception {
 
         // Setup
         @SuppressWarnings("unchecked")
