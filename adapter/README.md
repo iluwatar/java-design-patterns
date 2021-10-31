@@ -105,6 +105,12 @@ Use the Adapter pattern when
 * you need to use several existing subclasses, but it's impractical to adapt their interface by subclassing every one. An object adapter can adapt the interface of its parent class.
 * most of the applications using third party libraries use adapters as a middle layer between the application and the 3rd party library to decouple the application from the library. If another library has to be used only an adapter for the new library is required without having to change the application code.
 
+## Tutorials
+
+* [Dzone](https://dzone.com/articles/adapter-design-pattern-in-java)
+* [Refactoring Guru](https://refactoring.guru/design-patterns/adapter/java/example)
+* [Baeldung](https://www.baeldung.com/java-adapter-pattern)
+
 ## Consequences
 Class and object adapters have different trade-offs. A class adapter
 

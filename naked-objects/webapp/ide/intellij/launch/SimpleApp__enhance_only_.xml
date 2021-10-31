@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     The MIT License
@@ -23,7 +24,8 @@
 
 -->
 <component name="ProjectRunConfigurationManager">
-s  <configuration default="false" name="SimpleApp (enhance only)" type="Application" factoryName="Application">
+  s
+  <configuration default="false" name="SimpleApp (enhance only)" type="Application" factoryName="Application">
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     <option name="MAIN_CLASS_NAME" value="org.apache.isis.Dummy" />
     <option name="VM_PARAMETERS" value="" />

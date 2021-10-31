@@ -134,6 +134,12 @@ Use the Builder pattern when
 * The algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
 * The construction process must allow different representations for the object that's constructed
 
+## Tutorials
+
+* [Refactoring Guru](https://refactoring.guru/design-patterns/builder)
+* [Oracle Blog](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)
+* [Journal Dev](https://www.journaldev.com/1425/builder-design-pattern-in-java)
+
 ## Known uses
 
 * [java.lang.StringBuilder](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
