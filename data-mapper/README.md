@@ -21,6 +21,12 @@ Use the Data Mapper in any of the following situations
 * when you want to decouple data objects from DB access layer 
 * when you want to write multiple data retrieval/persistence implementations
 
+## Tutorials
+
+* [Spring Boot RowMapper](https://zetcode.com/springboot/rowmapper/)
+* [Spring BeanPropertyRowMapper tutorial](https://zetcode.com/spring/beanpropertyrowmapper/)
+* [Data Transfer Object Pattern in Java - Implementation and Mapping (Tutorial for Model Mapper & MapStruct)](https://stackabuse.com/data-transfer-object-pattern-in-java-implementation-and-mapping/)
+
 ## Credits
 
 * [Data Mapper](http://richard.jp.leguen.ca/tutoring/soen343-f2010/tutorials/implementing-data-mapper/)
