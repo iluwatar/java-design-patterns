@@ -72,19 +72,14 @@ We are building a call cost calculator system. Producer class(UsageDetailPublish
 - Install Visual Studio Code.
 - Install [extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for Azure function in Visual studio code to deploy.
 
-### Run your services
-
-1. Open Spring Tool Suite
-2. Import existing project as POM file
-3. Run usage-detail-sender as spring boot application
-4. Run usage-cost-processor as spring boot application
-
-### Events check command
-
 ### Storage Data
 
 The data is stored in the Azure blob storage in the container `callusageapp`. For every trigger, one GUID is created. Under the `GUID folder`, 2 files will be created `input.json` and `output.json`.
 `Input.json` is dropped `producer` azure function which contains call usage details.` Output.json` contains call cost details which are dropped by the `consumer` azure function.
+
+### Demo
+
+[Demo Link](https://drive.google.com/file/d/1pJ3pw82i_7yqCCgIl7vEpvU-uZfDNsXu/view?usp=sharing)
 
 ## Known uses
 
