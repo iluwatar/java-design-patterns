@@ -81,7 +81,7 @@ public class AdvancedWizard implements Wizard {
 
 ## 类图
 
-![alt text](../../../dependency-injection/etc/dependency-injection.png "Dependency Injection")
+![alt text](etc/dependency-injection.png "Dependency Injection")
 
 ## 适用性
 
