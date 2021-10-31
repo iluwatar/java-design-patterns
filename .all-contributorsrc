@@ -1712,6 +1712,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "harshalkh",
+      "name": "Harshal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37841724?v=4",
+      "profile": "https://github.com/harshalkh",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
