@@ -134,8 +134,8 @@ public class Commander {
       }
       String transactionId = shippingService.receiveRequest(order.item, order.user.address);
       //could save this transaction id in a db too
-      LOG.info(ORDER_ID + ": Shipping placed successfully, transaction id: "
-          + transactionId, order.id);
+      LOG.info(ORDER_ID + ": Shipping placed successfully, transaction id: {}",
+              order.id, transactionId);
       LOG.info("Order has been placed and will be shipped to you. Please wait while we make your"
           + " payment... ");
       sendPaymentRequest(order);
@@ -152,8 +152,8 @@ public class Commander {
         LOG.info("This item is currently unavailable. We will inform you as soon as the item "
             + "becomes available again.");
         finalSiteMsgShown = true;
-        LOG.info(ORDER_ID + ": Item " + order.item + " unavailable, trying to add "
-            + "problem to employee handle..", order.id);
+        LOG.info(ORDER_ID + ": Item {}" + " unavailable, trying to add "
+            + "problem to employee handle..", order.id, order.item);
         employeeHandleIssue(o);
       } else {
         LOG.info("Sorry, there was a problem in creating your order. Please try later.");
@@ -190,7 +190,8 @@ public class Commander {
         if (order.paid.equals(PaymentStatus.TRYING)) {
           var transactionId = paymentService.receiveRequest(order.price);
           order.paid = PaymentStatus.DONE;
-          LOG.info(ORDER_ID + ": Payment successful, transaction Id: " + transactionId, order.id);
+          LOG.info(ORDER_ID + ": Payment successful, transaction Id: {}",
+                  order.id, transactionId);
           if (!finalSiteMsgShown) {
             LOG.info("Payment made successfully, thank you for shopping with us!!");
             finalSiteMsgShown = true;
@@ -271,8 +272,8 @@ public class Commander {
           LOG.error(ORDER_ID + ": Unable to enqueue payment task,"
               + " payment failed..", qt1.order.id);
         }
-        LOG.error(ORDER_ID + ": Unable to enqueue task of type " + qt1.getType()
-            + ", trying to add to employee handle..", qt1.order.id);
+        LOG.error(ORDER_ID + ": Unable to enqueue task of type {}"
+                + ", trying to add to employee handle..", qt1.order.id, qt1.getType());
         employeeHandleIssue(qt1.order);
       };
       var r = new Retry<>(op, handleError, numOfRetries, retryDuration,
