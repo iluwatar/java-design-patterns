@@ -227,6 +227,7 @@
     <module>lockable-object</module>
     <module>fanout-fanin</module>
     <module>domain-model</module>
+    <module>notification</module>
   </modules>
   <repositories>
     <repository>
