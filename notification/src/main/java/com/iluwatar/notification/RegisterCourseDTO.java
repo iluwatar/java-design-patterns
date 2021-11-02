@@ -1,6 +1,6 @@
 package com.iluwatar.notification;
 
-public class RegisterCourseDTO {
+public class RegisterCourseDTO extends DataTransferObject {
     private String courseID;
     private String department;
     private String semester;
