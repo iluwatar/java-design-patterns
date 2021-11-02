@@ -1,0 +1,54 @@
+package com.iluwatar.choreography.servicepackage;
+
+import com.iluwatar.choreography.MainService;
+import com.iluwatar.choreography.SagaService;
+import com.iluwatar.choreography.events.DeliveryFailureEvent;
+import com.iluwatar.choreography.events.PackageEvent;
+import com.iluwatar.choreography.events.RequestScheduleDeliveryEvent;
+import com.iluwatar.choreography.response.Response;
+
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicLong;
+
+import static com.iluwatar.choreography.Util.performAction;
+
+public class PackageService implements SagaService {
+    final AtomicLong counter = new AtomicLong();
+    private final MainService mainService;
+    Random random = new Random();
+
+    public PackageService(MainService mainService) {
+        this.mainService = mainService;
+    }
+
+    long getNextId() {
+        return counter.getAndIncrement();
+    }
+
+    boolean checkItemIsInStock() {
+        return Math.abs(random.nextInt() % 3) != 0;
+    }
+
+    public Response getPackage(RequestScheduleDeliveryEvent event) {
+        performAction(event, "Gathering items...");
+        if (checkItemIsInStock()) {
+            long id = getNextId();
+            performAction(event, "Gathering packing materials...");
+            performAction(event, "Packing...");
+            performAction(event, "Addressing to " + event.getAddress() + "...");
+            performAction(event, "Moving package " + id + " to pickup location in warehouse. ");
+            return mainService.post(new PackageEvent(event.getSagaId(), new Package(id, event.getAddress())));
+        } else {
+            return mainService.post(new DeliveryFailureEvent(event.getSagaId(),
+                    null,
+                    null,
+                    "Delivery failed! Item is not in stock!"));
+        }
+    }
+
+    @Override
+    public void onSagaFailure(DeliveryFailureEvent failureEvent) {
+        failureEvent.getaPackage().ifPresent(aPackage ->
+                performAction(failureEvent, "Putting items from package " + aPackage.getId() + " back..."));
+    }
+}
