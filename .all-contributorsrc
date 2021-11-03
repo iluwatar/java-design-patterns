@@ -17,6 +17,17 @@
       ]
     },
     {
+      "login": "ohbus",
+      "name": "Subhrodip Mohanta",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13291222?v=4",
+      "profile": "http://subho.xyz",
+      "contributions": [
+        "code",
+        "review",
+        "maintenance"
+      ]
+    },
+    {
       "login": "amit1307",
       "name": "amit1307",
       "avatar_url": "https://avatars0.githubusercontent.com/u/23420222?v=4",
@@ -1126,17 +1137,6 @@
       ]
     },
     {
-      "login": "ohbus",
-      "name": "Subhrodip Mohanta",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/13291222?v=4",
-      "profile": "http://subho.xyz",
-      "contributions": [
-        "code",
-        "review",
-        "maintenance"
-      ]
-    },
-    {
       "login": "nahteb",
       "name": "Bethan Palmer",
       "avatar_url": "https://avatars3.githubusercontent.com/u/13121570?v=4",
@@ -1640,9 +1640,90 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "JCarlosR",
+      "name": "JCarlos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3101238?v=4",
+      "profile": "https://programacionymas.com",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Dev-AliGhasemi",
+      "name": "Ali Ghasemi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60359433?v=4",
+      "profile": "https://www.mrmoshkel.ir",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "carldea",
+      "name": "Carl Dea",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1594624?v=4",
+      "profile": "http://carlfx.wordpress.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Mozartuss",
+      "name": "Mozartus",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32893711?v=4",
+      "profile": "https://github.com/Mozartuss",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "ManviGoel26",
+      "name": "Manvi Goel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55682355?v=4",
+      "profile": "https://github.com/ManviGoel26",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "blueberry404",
+      "name": "Anum Amin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39243539?v=4",
+      "profile": "https://github.com/blueberry404",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "uh-zz",
+      "name": "Reo Uehara",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47747828?v=4",
+      "profile": "https://uh-zz.github.io/blog/",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Fiordy",
+      "name": "Fiordy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53420573?v=4",
+      "profile": "https://github.com/Fiordy",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "harshalkh",
+      "name": "Harshal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37841724?v=4",
+      "profile": "https://github.com/harshalkh",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "contributorsPerLine": 4,
+  "contributorsPerLine": 7,
   "projectName": "java-design-patterns",
   "projectOwner": "iluwatar",
   "repoType": "github",
