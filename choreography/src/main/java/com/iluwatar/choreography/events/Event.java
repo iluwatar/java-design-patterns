@@ -1,5 +1,7 @@
 package com.iluwatar.choreography.events;
 
+import static com.iluwatar.choreography.Util.*;
+
 public class Event {
     private final int sagaId;
 
@@ -22,11 +24,6 @@ public class Event {
         }
         return "Unknown| ";
     }
-
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BG_RED = "\u001B[41m";
-    public static final String ANSI_BG_GREEN = "\u001B[42m";
-    public static final String ANSI_BG_BLUE = "\u001B[44m";
 }
 
 

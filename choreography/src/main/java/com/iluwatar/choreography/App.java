@@ -58,7 +58,7 @@ public class App {
 
     /**
      * Program entry point.
-     *
+     * <p>
      * This starts the delivery process for 3 random addresses.
      *
      * @param args command line args

@@ -8,7 +8,7 @@ public class DroneEvent extends Event {
     private final Drone drone;
     private final Package aPackage;
 
-    public DroneEvent( int sagaId, Drone drone, Package aPackage) {
+    public DroneEvent(int sagaId, Drone drone, Package aPackage) {
         super(sagaId);
         this.drone = drone;
         this.aPackage = aPackage;
