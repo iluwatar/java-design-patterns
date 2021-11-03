@@ -25,7 +25,6 @@ package com.iluwatar.choreography;
 
 import com.iluwatar.choreography.response.Response;
 import com.iluwatar.choreography.servicedelivery.DeliveryService;
-
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -35,62 +34,61 @@ import java.util.concurrent.ExecutionException;
  * The choreography pattern is a way of managing operations in a microservice architecture.
  * </p>
  * <p>
- * When an operation requires multiple microservices to be completed, that is called a "Saga".
- * The microservices need to have a coordinator which will keep track of the information returned from each service,
- * and which services still owe it information.
+ * When an operation requires multiple microservices to be completed, that is called a "Saga". The
+ * microservices need to have a coordinator which will keep track of the information returned from
+ * each service, and which services still owe it information.
  * </p>
  * There are 2 main ways of creating sagas<ol>
  * <li>the orchestrator pattern</li>
  * <li>the choreography pattern</li>
  * </ol>
  * <p>
- * They differ in their approach.
- * The orchestrator pattern dictates everything that should happen, procedurally.
- * The analogy is that an orchestra only moves forwards when the conductor bids them to -
- * they should not try to do anything unless the conductor asks for it.
- * In contrast, the choreographer announces to a central queue that events have happened,
- * and trusts that each microservice will be able to figure out what to do next based on that knowledge.
+ * They differ in their approach. The orchestrator pattern dictates everything that should happen,
+ * procedurally. The analogy is that an orchestra only moves forwards when the conductor bids them
+ * to - they should not try to do anything unless the conductor asks for it. In contrast, the
+ * choreographer announces to a central queue that events have happened, and trusts that each
+ * microservice will be able to figure out what to do next based on that knowledge.
  * </p>
  */
 public class App {
 
-    static String INVALID_ADDRESS = "'Middle of Nowhere'";
+  static String INVALID_ADDRESS = "'Middle of Nowhere'";
 
-    /**
-     * Program entry point.
-     * <p>
-     * This starts the delivery process for 3 random addresses.
-     *
-     * @param args command line args
-     */
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        MainService mainService = new MainService();
-        CompletableFuture.allOf(
-                CompletableFuture.runAsync(() -> {
-                    Response post = mainService.requestDeliveryTo(getSampleAddress());
-                    System.out.println(post.getMessage());
-                }),
-                CompletableFuture.runAsync(() -> {
-                    Response post = mainService.requestDeliveryTo(getSampleAddress());
-                    System.out.println(post.getMessage());
-                }),
-                CompletableFuture.runAsync(() -> {
-                    Response post = mainService.requestDeliveryTo(getSampleAddress());
-                    System.out.println(post.getMessage());
-                })
-        ).get();
-    }
+  /**
+   * Program entry point.
+   * <p>
+   * This starts the delivery process for 3 random addresses.
+   *
+   * @param args command line args
+   */
+  public static void main(String[] args) throws ExecutionException, InterruptedException {
+    MainService mainService = new MainService();
+    CompletableFuture.allOf(
+        CompletableFuture.runAsync(() -> {
+          Response post = mainService.requestDeliveryTo(getSampleAddress());
+          System.out.println(post.getMessage());
+        }),
+        CompletableFuture.runAsync(() -> {
+          Response post = mainService.requestDeliveryTo(getSampleAddress());
+          System.out.println(post.getMessage());
+        }),
+        CompletableFuture.runAsync(() -> {
+          Response post = mainService.requestDeliveryTo(getSampleAddress());
+          System.out.println(post.getMessage());
+        })
+    ).get();
+  }
 
-    static String getSampleAddress() {
-        switch (Math.abs(new Random().nextInt()) % 3) {
-            case 0:
-                return DeliveryService.WALLABY_WAY;
-            case 1:
-                return DeliveryService.BUCKINGHAM;
-            case 2:
-                return INVALID_ADDRESS;
-        }
-        return null;
+  static String getSampleAddress() {
+    switch (Math.abs(new Random().nextInt()) % 3) {
+      case 0:
+        return DeliveryService.WALLABY_WAY;
+      case 1:
+        return DeliveryService.BUCKINGHAM;
+      case 2:
+        return INVALID_ADDRESS;
     }
+    return null;
+  }
 }
 
