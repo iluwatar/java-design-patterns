@@ -26,9 +26,9 @@ package com.iluwatar.factory;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Factory is an object for creating other objects, it providing Providing a static method to 
+ * Factory is an object for creating other objects. It provides a static method to 
  * create and return objects of varying classes, in order to hide the implementation logic 
- * and makes client code focus on usage rather then objects initialization and management.
+ * and makes client code focus on usage rather than objects initialization and management.
  *
  * <p>In this example an alchemist manufactures coins. CoinFactory is the factory class and it
  * provides a static method to create different types of coins.

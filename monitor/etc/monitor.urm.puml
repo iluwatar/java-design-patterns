@@ -1,0 +1,12 @@
+@startuml
+Main - Bank : use
+class Main{
+    + main(args : String[]) : void
+}
+class Bank{
+    - accounts : int[]
+    + Bank (accountNum : int , baseAccount : int)
+    + transfer(accountA : int , accountB : int , amount : int) : void {synchronized}
+    - getBalance() : void {synchronized}
+}
+@enduml

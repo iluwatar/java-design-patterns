@@ -24,19 +24,28 @@
 package com.iluwatar.caching;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
  * Entity class (stored in cache and DB) used in the application.
  */
-@Setter
-@Getter
+@Data
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class UserAccount {
+  /**
+   * User Id.
+   */
   private String userId;
+  /**
+   * User Name.
+   */
   private String userName;
+  /**
+   * Additional Info.
+   */
   private String additionalInfo;
 }
