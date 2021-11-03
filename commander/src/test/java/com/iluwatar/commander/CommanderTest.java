@@ -12,6 +12,9 @@ import com.iluwatar.commander.shippingservice.ShippingDatabase;
 import com.iluwatar.commander.shippingservice.ShippingService;
 
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.StringUtils;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class CommanderTest {
 
@@ -82,6 +85,7 @@ class CommanderTest {
         Commander c = buildCommanderObject();
         var order = new Order(new User("K", "J"), "pen", 1f);
         c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
     }
 
     @Test
@@ -89,6 +93,7 @@ class CommanderTest {
         Commander c = buildCommanderObjectWithoutPaymentDB();
         var order = new Order(new User("K", null), "pen", 1f);
         c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
     }
 
     @Test
@@ -96,5 +101,6 @@ class CommanderTest {
         Commander c = buildCommanderObjectWithoutPaymentDB(true);
         var order = new Order(new User("K", null), "pen", 1f);
         c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
     }
 }
