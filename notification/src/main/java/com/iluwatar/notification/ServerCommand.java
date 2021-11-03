@@ -7,7 +7,8 @@ public class ServerCommand {
         this.data = data;
     }
 
-    protected Notification getnotification() {
+    protected Notification getNotification() {
         return this.data.getNotification();
     }
+
 }

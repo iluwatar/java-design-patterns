@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Notification {
-    private List errors = new ArrayList();
+    private List<Error> errors = new ArrayList();
 
-    public List getErrors() {
+    public List<Error> getErrors() {
          return this.errors;
     }
 
-    public void setErrors(String error) {
+    public void setErrors(Error error) {
         this.errors.add(error);
     }
 
@@ -18,11 +18,5 @@ public class Notification {
        return 0 != this.errors.size();
     }
 
-    class Error{
-        private String message;
-        public Error(String message) {
-            this.message = message;
-        }
-    }
 
 }
