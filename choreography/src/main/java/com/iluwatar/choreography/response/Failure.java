@@ -11,7 +11,7 @@ public class Failure implements Response {
   }
 
   public Failure(DeliveryFailureEvent event) {
-    this.message = event.prettyPrintSagaId() + event.getMessage();
+    this.message = event.getPrettySagaId() + event.getMessage();
   }
 
   @Override

@@ -17,7 +17,12 @@ public class Event {
     return sagaId;
   }
 
-  public String prettyPrintSagaId() {
+  /**
+   * Returns a string that represents the current saga id.
+   *
+   * @return colored string that represents the saga id.
+   */
+  public String getPrettySagaId() {
     switch (getSagaId()) {
       case 0:
         return (ANSI_BG_RED + "Saga 1 " + ANSI_RESET + "| ");
@@ -25,8 +30,9 @@ public class Event {
         return (ANSI_BG_GREEN + "Saga 2 " + ANSI_RESET + "| ");
       case 2:
         return (ANSI_BG_BLUE + "Saga 3 " + ANSI_RESET + "| ");
+      default:
+        return "Unknown| ";
     }
-    return "Unknown| ";
   }
 }
 

@@ -15,7 +15,7 @@ public class DeliveryService implements SagaService {
   public static String WALLABY_WAY = "42 Wallaby Way, Sydney, Australia";
 
   public static String BUCKINGHAM = "Buckingham Palace, London, England";
-  final private List<String> validAddresses = List.of(
+  private final List<String> validAddresses = List.of(
       WALLABY_WAY,
       BUCKINGHAM
   );
@@ -26,17 +26,23 @@ public class DeliveryService implements SagaService {
     this.mainService = mainService;
   }
 
+  /**
+   * Performs the final transaction in the saga.
+   *
+   * @param e the event that was received.
+   * @return a response that either signifies the whole saga was a success, or a failure.
+   */
   public Response completeDelivery(DroneEvent e) {
-    String address = e.getaPackage().getAddress();
+    String address = e.getLocalPackage().getAddress();
     if (validAddresses.contains(address)) {
       performAction(e, "Drone " + e.getDrone().getId() + " is flying to " + address + "...");
-      performAction(e, "Dropping off package " + e.getaPackage().getId() + "...");
+      performAction(e, "Dropping off package " + e.getLocalPackage().getId() + "...");
       performAction(e, "Returning to base...");
       return mainService.post(new DeliverySuccessEvent(e.getSagaId(), "Delivery Completed"));
     } else {
       return mainService.post(new DeliveryFailureEvent(e.getSagaId(),
           e.getDrone(),
-          e.getaPackage(),
+          e.getLocalPackage(),
           "Could not complete delivery! Address not found."));
     }
   }

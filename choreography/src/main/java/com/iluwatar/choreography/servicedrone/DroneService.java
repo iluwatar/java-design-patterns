@@ -23,11 +23,17 @@ public class DroneService implements SagaService {
     return counter.getAndIncrement();
   }
 
+  /**
+   * Provisions a drone.
+   *
+   * @param e the event that was received.
+   * @return a response with either the drone id or a failure.
+   */
   public Response getDrone(PackageEvent e) {
     int id = getNextId();
     performAction(e, "Contacting drone " + id + " at base...");
     performAction(e, "Drone " + id + " is preparing for pickup...");
-    return mainService.post(new DroneEvent(e.getSagaId(), new Drone(id), e.getaPackage()));
+    return mainService.post(new DroneEvent(e.getSagaId(), new Drone(id), e.getLocalPackage()));
   }
 
   @Override

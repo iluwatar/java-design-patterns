@@ -29,10 +29,16 @@ public class PackageService implements SagaService {
     return Math.abs(random.nextInt() % 3) != 0;
   }
 
+  /**
+   * Creates a package in response to a RequestScheduleDeliveryEvent event.
+   *
+   * @param event the event that was received
+   * @return a response with either the id of the generated package, or a failure
+   */
   public Response getPackage(RequestScheduleDeliveryEvent event) {
     performAction(event, "Gathering items...");
     if (checkItemIsInStock()) {
-      long id = getNextId();
+      final long id = getNextId();
       performAction(event, "Gathering packing materials...");
       performAction(event, "Packing...");
       performAction(event, "Addressing to " + event.getAddress() + "...");
@@ -49,7 +55,8 @@ public class PackageService implements SagaService {
 
   @Override
   public void onSagaFailure(DeliveryFailureEvent failureEvent) {
-    failureEvent.getaPackage().ifPresent(aPackage ->
-        performAction(failureEvent, "Putting items from package " + aPackage.getId() + " back..."));
+    failureEvent.getLocalPackage().ifPresent(localPackage ->
+        performAction(failureEvent,
+            "Putting items from package " + localPackage.getId() + " back..."));
   }
 }

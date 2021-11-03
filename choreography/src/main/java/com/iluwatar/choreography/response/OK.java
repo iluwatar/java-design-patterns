@@ -7,7 +7,7 @@ public class OK implements Response {
   private final String message;
 
   public OK(DeliverySuccessEvent event) {
-    this.message = event.prettyPrintSagaId() + event.getMessage();
+    this.message = event.getPrettySagaId() + event.getMessage();
   }
 
   @Override

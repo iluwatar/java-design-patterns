@@ -8,13 +8,21 @@ public class DeliveryFailureEvent extends Event {
 
   private final String message;
   private final Drone drone;
-  private final Package aPackage;
+  private final Package localPackage;
 
-  public DeliveryFailureEvent(int sagaId, Drone drone, Package aPackage, String message) {
+  /**
+   * An event for announcing that the entire saga has failed.
+   *
+   * @param sagaId       the id of the current saga
+   * @param drone        the id of the drone
+   * @param localPackage the id of the package
+   * @param message      the failure message
+   */
+  public DeliveryFailureEvent(int sagaId, Drone drone, Package localPackage, String message) {
     super(sagaId);
     this.message = message;
     this.drone = drone;
-    this.aPackage = aPackage;
+    this.localPackage = localPackage;
   }
 
   public String getMessage() {
@@ -25,7 +33,7 @@ public class DeliveryFailureEvent extends Event {
     return Optional.ofNullable(drone);
   }
 
-  public Optional<Package> getaPackage() {
-    return Optional.ofNullable(aPackage);
+  public Optional<Package> getLocalPackage() {
+    return Optional.ofNullable(localPackage);
   }
 }

@@ -56,8 +56,7 @@ public class App {
 
   /**
    * Program entry point.
-   * <p>
-   * This starts the delivery process for 3 random addresses.
+   * <p>This starts the delivery process for 3 random addresses.</p>
    *
    * @param args command line args
    */
@@ -87,8 +86,9 @@ public class App {
         return DeliveryService.BUCKINGHAM;
       case 2:
         return INVALID_ADDRESS;
+      default:
+        return null;
     }
-    return null;
   }
 }
 

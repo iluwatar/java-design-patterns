@@ -10,6 +10,6 @@ public class Util {
   public static final String ANSI_BG_BLUE = "\u001B[44m";
 
   public static void performAction(Event e, String s) {
-    System.out.println(e.prettyPrintSagaId() + s);
+    System.out.println(e.getPrettySagaId() + s);
   }
 }

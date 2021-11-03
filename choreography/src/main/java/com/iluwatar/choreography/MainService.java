@@ -25,29 +25,29 @@ public class MainService {
    */
 
   /**
-   * A service for getting a drone
+   * A service for getting a drone.
    */
   final DroneService droneService = new DroneService(this);
 
   /**
-   * A service for sending drones with packages out to delivery
+   * A service for sending drones with packages out to delivery.
    */
   final DeliveryService deliveryService = new DeliveryService(this);
 
   /**
-   * A service for creating a package
+   * A service for creating a package.
    */
   final PackageService packageService = new PackageService(this);
 
   /**
    * Generates new sagaId values, through which we can track the flow of events through multiple
-   * microservices
+   * microservices.
    */
   private final AtomicInteger sagaCounter = new AtomicInteger();
 
   /**
    * The method call that kicks off the whole flow. It creates a sagaId, and submits the first
-   * event
+   * event.
    *
    * @param address the address that we will be sending a package to
    * @return the response that comes back after the saga completes - either OK or Failure
@@ -57,10 +57,11 @@ public class MainService {
   }
 
   /**
-   * The message queue
-   * <p>
-   * Events get fed into here, and other services are notified of the event The other services are
-   * able to submit events back to the queue as well
+   * The message queue.
+   *
+   * <p>Events get fed into here, and other services are notified of the event The other services
+   * are able to submit events back to the queue as well
+   * </p>
    *
    * @param event an event that signifies that some piece of work is complete
    * @return the result of all the work that the current microservice has completed
@@ -92,14 +93,14 @@ public class MainService {
         });
       } else {
         deferredResponse = CompletableFuture.supplyAsync(
-            () -> new Failure(event.prettyPrintSagaId() + "Could not handle that type of event!"));
+            () -> new Failure(event.getPrettySagaId() + "Could not handle that type of event!"));
       }
       return getResponse(deferredResponse);
     }
   }
 
   /**
-   * Helper method to await for the future to complete
+   * Helper method to await for the future to complete.
    *
    * @param deferredResponse the response that we are waiting for
    * @return the response that was promised

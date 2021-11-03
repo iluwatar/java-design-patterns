@@ -4,14 +4,14 @@ import com.iluwatar.choreography.servicepackage.Package;
 
 public class PackageEvent extends Event {
 
-  private final Package aPackage;
+  private final Package localPackage;
 
-  public PackageEvent(int sagaId, Package aPackage) {
+  public PackageEvent(int sagaId, Package localPackage) {
     super(sagaId);
-    this.aPackage = aPackage;
+    this.localPackage = localPackage;
   }
 
-  public Package getaPackage() {
-    return aPackage;
+  public Package getLocalPackage() {
+    return localPackage;
   }
 }
