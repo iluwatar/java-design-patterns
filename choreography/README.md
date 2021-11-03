@@ -1,9 +1,12 @@
 ---
-layout: pattern title: Choreography folder: choreography permalink: /patterns/choreography/ categories: Microservices
-language: en tags:
-
+layout: pattern 
+title: Choreography 
+folder: choreography 
+permalink: /patterns/choreography/ 
+categories: Microservices
+language: en 
+tags:
 - Microservices
-
 ---
 
 ## Intent
