@@ -24,12 +24,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class CommanderTest {
 
     private final int numOfRetries = 1;
-    private final long retryDuration = 10_000;
-    private final long queueTime = 1_000;
-    private final long queueTaskTime = 10_000;
-    private final long paymentTime = 60_000;
-    private final long messageTime = 50_000;
-    private final long employeeTime = 20_000;
+    private final long retryDuration = 1_000;
+    private final long queueTime = 1_00;
+    private final long queueTaskTime = 1_000;
+    private final long paymentTime = 6_000;
+    private final long messageTime = 5_000;
+    private final long employeeTime = 2_000;
 
     private Commander buildCommanderObject() {
         PaymentService paymentService = new PaymentService
@@ -50,6 +50,52 @@ class CommanderTest {
                         new DatabaseUnavailableException(), new DatabaseUnavailableException());
         return new Commander(employeeHandle, paymentService, shippingService,
                 messagingService, qdb, numOfRetries, retryDuration,
+                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    }
+
+    private Commander buildCommanderObject2() {
+        PaymentService paymentService = new PaymentService
+                (new PaymentDatabase(), new IllegalStateException());
+        var shippingService = new ShippingService(new ShippingDatabase());
+        var messagingService = new MessagingService(new MessagingDatabase());
+        var employeeHandle = new EmployeeHandle
+                (new EmployeeDatabase(), new IllegalStateException());
+        var qdb = new QueueDatabase
+                (new DatabaseUnavailableException(), new IllegalStateException());
+        return new Commander(employeeHandle, paymentService, shippingService,
+                messagingService, qdb, numOfRetries, retryDuration,
+                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    }
+
+    private Commander buildCommanderObjectWithDB() {
+        return buildCommanderObjectWithoutDB(false, false, new IllegalStateException());
+    }
+
+    private Commander buildCommanderObjectWithDB(boolean includeException, boolean includeDBException, Exception e) {
+        var l = includeDBException ? new DatabaseUnavailableException() : e;
+        PaymentService paymentService;
+        ShippingService shippingService;
+        MessagingService messagingService;
+        EmployeeHandle employeeHandle;
+        if (includeException) {
+            paymentService = new PaymentService
+                    (new PaymentDatabase(), l);
+            shippingService = new ShippingService(new ShippingDatabase(), l);
+            messagingService = new MessagingService(new MessagingDatabase(), l);
+            employeeHandle = new EmployeeHandle
+                    (new EmployeeDatabase(), l);
+        } else {
+            paymentService = new PaymentService
+                    (null);
+            shippingService = new ShippingService(null);
+            messagingService = new MessagingService(null);
+            employeeHandle = new EmployeeHandle
+                    (null);
+        }
+
+
+        return new Commander(employeeHandle, paymentService, shippingService,
+                messagingService, null, numOfRetries, retryDuration,
                 queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     }
 
@@ -94,7 +140,65 @@ class CommanderTest {
     }
 
     @Test
-    void testPlaceOrderWithServiceException() throws Exception {
+    void testPlaceOrder2() throws Exception {
+        Commander c = buildCommanderObject2();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderShortDuration() throws Exception {
+        Commander c = buildCommanderObject();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        Thread.sleep(paymentTime);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderWithDatabase() throws Exception {
+        Commander c = buildCommanderObjectWithDB();
+        var order = new Order(new User("K", null), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderWithDatabaseAndExceptions() throws Exception {
+
+        List<Exception> l = new ArrayList<Exception>();
+        l.add(new DatabaseUnavailableException());
+        l.add(new ShippingNotPossibleException());
+        l.add(new ItemUnavailableException());
+        l.add(new IllegalStateException());
+
+        for (Exception e : l) {
+
+            Commander c = buildCommanderObjectWithDB(true, true, e);
+            var order = new Order(new User("K", null), "pen", 1f);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+
+            c = buildCommanderObjectWithDB(true, false, e);
+            order = new Order(new User("K", null), "pen", 1f);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+
+            c = buildCommanderObjectWithDB(false, false, e);
+            order = new Order(new User("K", null), "pen", 1f);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+
+            c = buildCommanderObjectWithDB(false, true, e);
+            order = new Order(new User("K", null), "pen", 1f);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
+    }
+
+    @Test
+    void testPlaceOrderWithoutDatabase() throws Exception {
         Commander c = buildCommanderObjectWithoutDB();
         var order = new Order(new User("K", null), "pen", 1f);
         c.placeOrder(order);
@@ -102,9 +206,9 @@ class CommanderTest {
     }
 
     @Test
-    void testPlaceOrderWithServiceExceptionAndList() throws Exception {
+    void testPlaceOrderWithoutDatabaseAndExceptions() throws Exception {
 
-        List<Exception> l = new ArrayList<Exception>();
+        List<Exception> l = new ArrayList<>();
         l.add(new ShippingNotPossibleException());
         l.add(new ItemUnavailableException());
         l.add(new IllegalStateException());
