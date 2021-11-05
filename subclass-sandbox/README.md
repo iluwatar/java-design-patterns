@@ -4,6 +4,7 @@ title: Subclass Sandbox
 folder:  subclass-sandbox  
 permalink: /patterns/subclass-sandbox/  
 categories: Behavioral
+language: en
 tags:  
  - Game programming
 ---  
@@ -24,4 +25,4 @@ The Subclass Sandbox pattern is a very simple, common pattern lurking in lots of
   
 ## Credits  
   
-* [Game Programming Patterns - Subclass Sandbox]([http://gameprogrammingpatterns.com/subclass-sandbox.html](http://gameprogrammingpatterns.com/subclass-sandbox.html))
+* [Game Programming Patterns - Subclass Sandbox](https://gameprogrammingpatterns.com/subclass-sandbox.html)

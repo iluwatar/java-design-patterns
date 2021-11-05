@@ -23,10 +23,10 @@
 
 package com.iluwatar.caching;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Application test
@@ -43,32 +43,30 @@ class CachingTest {
     // to avoid Maven compilation errors. Set flag to true to run the
     // tests with MongoDB (provided that MongoDB is installed and socket
     // connection is open).
-    AppManager.initDb(false);
-    AppManager.initCacheCapacity(3);
-    app = new App();
+    app = new App(false);
   }
 
   @Test
   void testReadAndWriteThroughStrategy() {
-	assertNotNull(app);
+    assertNotNull(app);
     app.useReadAndWriteThroughStrategy();
   }
 
   @Test
   void testReadThroughAndWriteAroundStrategy() {
-	assertNotNull(app);
+    assertNotNull(app);
     app.useReadThroughAndWriteAroundStrategy();
   }
 
   @Test
   void testReadThroughAndWriteBehindStrategy() {
-	assertNotNull(app);
+    assertNotNull(app);
     app.useReadThroughAndWriteBehindStrategy();
   }
 
   @Test
   void testCacheAsideStrategy() {
-	assertNotNull(app);
+    assertNotNull(app);
     app.useCacheAsideStategy();
   }
 }

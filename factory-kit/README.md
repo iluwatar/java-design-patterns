@@ -4,6 +4,7 @@ title: Factory Kit
 folder: factory-kit
 permalink: /patterns/factory-kit/
 categories: Creational
+language: en
 tags:
  - Extensibility
 ---

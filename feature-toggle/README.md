@@ -4,6 +4,7 @@ title: Feature Toggle
 folder: feature-toggle
 permalink: /patterns/feature-toggle/
 categories: Behavioral
+language: en
 tags:
  - Extensibility
 ---

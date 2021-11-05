@@ -4,6 +4,7 @@ title: Strangler
 folder: strangler
 permalink: /patterns/strangler/
 categories: Structural
+language: en
 tags:
  - Extensibility
  - Cloud distributed

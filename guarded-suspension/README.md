@@ -4,6 +4,7 @@ title: Guarded Suspension
 folder: guarded-suspension
 permalink: /patterns/guarded-suspension/
 categories: Concurrency
+language: en
 tags:
  - Decoupling
 ---

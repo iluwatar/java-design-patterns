@@ -5,6 +5,7 @@ folder: hexagonal
 permalink: /patterns/hexagonal/
 pumlformat: svg
 categories: Architectural
+language: en
 tags:
  - Decoupling
 ---

@@ -4,9 +4,11 @@ title: Presentation
 folder: presentation
 permalink: /patterns/presentation/
 categories: Behavioral
+language: en
 tags:
  - Decoupling
 ---
+
 ## Also known as
 Application Model
 

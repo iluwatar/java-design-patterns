@@ -23,19 +23,16 @@
 
 package com.iluwatar.parameter.object;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Application test
  */
 class AppTest {
-  private static final Logger LOGGER = LoggerFactory.getLogger(AppTest.class);
-
   @Test
   void shouldExecuteApplicationWithoutException() {
-    App.main(new String[]{});
-    LOGGER.info("Executed successfully without exception.");
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

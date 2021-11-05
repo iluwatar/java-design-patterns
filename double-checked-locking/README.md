@@ -4,6 +4,7 @@ title: Double Checked Locking
 folder: double-checked-locking
 permalink: /patterns/double-checked-locking/
 categories: Idiom
+language: en
 tags:
  - Performance
 ---

@@ -23,16 +23,19 @@
 
 package com.iluwatar.monostate;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.Test;
 
 /**
  * Application Test Entry
  */
-public class AppTest {
+
+class AppTest {
 
   @Test
-  void testMain() {
-    App.main(new String[]{});
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 
 }

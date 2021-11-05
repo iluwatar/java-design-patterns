@@ -4,6 +4,7 @@ title: Ambassador
 folder: ambassador
 permalink: /patterns/ambassador/
 categories: Structural
+language: en
 tags:
   - Decoupling
   - Cloud distributed

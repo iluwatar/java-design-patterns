@@ -4,6 +4,7 @@ title: MonoState
 folder: monostate
 permalink: /patterns/monostate/
 categories: Creational
+language: en
 tags:
  - Instantiation
 ---
