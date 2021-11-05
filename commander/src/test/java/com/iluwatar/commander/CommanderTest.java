@@ -32,13 +32,27 @@ class CommanderTest {
     private final long employeeTime = 2_000;
 
     private Commander buildCommanderObject() {
+        return buildCommanderObject(false);
+    }
+
+    private Commander buildCommanderObject(boolean nonPaymentException) {
         PaymentService paymentService = new PaymentService
                 (new PaymentDatabase(), new DatabaseUnavailableException(),
                         new DatabaseUnavailableException(), new DatabaseUnavailableException(),
                         new DatabaseUnavailableException(), new DatabaseUnavailableException(),
                         new DatabaseUnavailableException());
-        var shippingService = new ShippingService(new ShippingDatabase());
-        var messagingService = new MessagingService(new MessagingDatabase());
+
+        ShippingService shippingService;
+        MessagingService messagingService;
+        if (nonPaymentException) {
+            shippingService = new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException());
+            messagingService = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
+
+        } else {
+            shippingService = new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException());
+            messagingService = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
+
+        }
         var employeeHandle = new EmployeeHandle
                 (new EmployeeDatabase(), new DatabaseUnavailableException(),
                         new DatabaseUnavailableException(), new DatabaseUnavailableException(),
@@ -67,11 +81,39 @@ class CommanderTest {
                 queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     }
 
-    private Commander buildCommanderObjectNoException() {
+    private Commander buildCommanderObjectNoPaymentException1() {
         PaymentService paymentService = new PaymentService
                 (new PaymentDatabase());
         var shippingService = new ShippingService(new ShippingDatabase());
         var messagingService = new MessagingService(new MessagingDatabase());
+        var employeeHandle = new EmployeeHandle
+                (new EmployeeDatabase(), new IllegalStateException());
+        var qdb = new QueueDatabase
+                (new DatabaseUnavailableException(), new IllegalStateException());
+        return new Commander(employeeHandle, paymentService, shippingService,
+                messagingService, qdb, numOfRetries, retryDuration,
+                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    }
+
+    private Commander buildCommanderObjectNoPaymentException2() {
+        PaymentService paymentService = new PaymentService
+                (new PaymentDatabase());
+        var shippingService = new ShippingService(new ShippingDatabase());
+        var messagingService = new MessagingService(new MessagingDatabase(), new IllegalStateException());
+        var employeeHandle = new EmployeeHandle
+                (new EmployeeDatabase(), new IllegalStateException());
+        var qdb = new QueueDatabase
+                (new DatabaseUnavailableException(), new IllegalStateException());
+        return new Commander(employeeHandle, paymentService, shippingService,
+                messagingService, qdb, numOfRetries, retryDuration,
+                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    }
+
+    private Commander buildCommanderObjectNoPaymentException3() {
+        PaymentService paymentService = new PaymentService
+                (new PaymentDatabase());
+        var shippingService = new ShippingService(new ShippingDatabase());
+        var messagingService = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
         var employeeHandle = new EmployeeHandle
                 (new EmployeeDatabase(), new IllegalStateException());
         var qdb = new QueueDatabase
@@ -145,18 +187,61 @@ class CommanderTest {
                 queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     }
 
+    private void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            //no-op
+        }
+    }
+
     @Test
     void testPlaceOrder() throws Exception {
-        Commander c = buildCommanderObject();
+        Commander c = buildCommanderObject(true);
         var order = new Order(new User("K", "J"), "pen", 1f);
         c.placeOrder(order);
         assertFalse(StringUtils.isBlank(order.id));
     }
 
     @Test
-    void testPlaceOrderNoException() throws Exception {
-        Commander c = buildCommanderObjectNoException();
+    void testPlaceOrder2() throws Exception {
+        Commander c = buildCommanderObject(false);
         var order = new Order(new User("K", "J"), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderNoException1() throws Exception {
+        Commander c = buildCommanderObjectNoPaymentException1();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderNoException2() throws Exception {
+        Commander c = buildCommanderObjectNoPaymentException2();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderNoException3() throws Exception {
+        Commander c = buildCommanderObjectNoPaymentException3();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderNoException4() throws Exception {
+        Commander c = buildCommanderObjectNoPaymentException3();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        sleep(queueTaskTime / 10);
+        c.placeOrder(order);
+        c.placeOrder(order);
         c.placeOrder(order);
         assertFalse(StringUtils.isBlank(order.id));
     }
@@ -171,18 +256,36 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderShortDuration() throws Exception {
-        Commander c = buildCommanderObject();
+        Commander c = buildCommanderObject(true);
         var order = new Order(new User("K", "J"), "pen", 1f);
-        Thread.sleep(paymentTime);
+        sleep(paymentTime);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderShortDuration2() throws Exception {
+        Commander c = buildCommanderObject(false);
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        sleep(paymentTime);
         c.placeOrder(order);
         assertFalse(StringUtils.isBlank(order.id));
     }
 
     @Test
     void testPlaceOrderNoExceptionShortMsgDuration() throws Exception {
-        Commander c = buildCommanderObjectNoException();
+        Commander c = buildCommanderObjectNoPaymentException1();
         var order = new Order(new User("K", "J"), "pen", 1f);
-        Thread.sleep(messageTime);
+        sleep(messageTime);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderNoExceptionShortQueueDuration() throws Exception {
+        Commander c = buildCommanderObjectUnknownException();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        sleep(queueTime);
         c.placeOrder(order);
         assertFalse(StringUtils.isBlank(order.id));
     }
