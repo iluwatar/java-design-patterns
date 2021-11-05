@@ -53,9 +53,23 @@ class CommanderTest {
                 queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     }
 
-    private Commander buildCommanderObject2() {
+    private Commander buildCommanderObjectUnknownException() {
         PaymentService paymentService = new PaymentService
                 (new PaymentDatabase(), new IllegalStateException());
+        var shippingService = new ShippingService(new ShippingDatabase());
+        var messagingService = new MessagingService(new MessagingDatabase());
+        var employeeHandle = new EmployeeHandle
+                (new EmployeeDatabase(), new IllegalStateException());
+        var qdb = new QueueDatabase
+                (new DatabaseUnavailableException(), new IllegalStateException());
+        return new Commander(employeeHandle, paymentService, shippingService,
+                messagingService, qdb, numOfRetries, retryDuration,
+                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    }
+
+    private Commander buildCommanderObjectNoException() {
+        PaymentService paymentService = new PaymentService
+                (new PaymentDatabase());
         var shippingService = new ShippingService(new ShippingDatabase());
         var messagingService = new MessagingService(new MessagingDatabase());
         var employeeHandle = new EmployeeHandle
@@ -140,8 +154,16 @@ class CommanderTest {
     }
 
     @Test
-    void testPlaceOrder2() throws Exception {
-        Commander c = buildCommanderObject2();
+    void testPlaceOrderNoException() throws Exception {
+        Commander c = buildCommanderObjectNoException();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderUnknownException() throws Exception {
+        Commander c = buildCommanderObjectUnknownException();
         var order = new Order(new User("K", "J"), "pen", 1f);
         c.placeOrder(order);
         assertFalse(StringUtils.isBlank(order.id));
