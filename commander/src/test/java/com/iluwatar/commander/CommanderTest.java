@@ -179,6 +179,15 @@ class CommanderTest {
     }
 
     @Test
+    void testPlaceOrderNoExceptionShortMsgDuration() throws Exception {
+        Commander c = buildCommanderObjectNoException();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        Thread.sleep(messageTime);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
     void testPlaceOrderWithDatabase() throws Exception {
         Commander c = buildCommanderObjectWithDB();
         var order = new Order(new User("K", null), "pen", 1f);
