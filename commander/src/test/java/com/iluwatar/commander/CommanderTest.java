@@ -4,6 +4,7 @@ import com.iluwatar.commander.employeehandle.EmployeeDatabase;
 import com.iluwatar.commander.employeehandle.EmployeeHandle;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.ItemUnavailableException;
+import com.iluwatar.commander.exceptions.PaymentDetailsErrorException;
 import com.iluwatar.commander.exceptions.ShippingNotPossibleException;
 import com.iluwatar.commander.messagingservice.MessagingDatabase;
 import com.iluwatar.commander.messagingservice.MessagingService;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CommanderTest {
 
@@ -30,6 +32,16 @@ class CommanderTest {
     private final long paymentTime = 6_000;
     private final long messageTime = 5_000;
     private final long employeeTime = 2_000;
+
+    private static List<Exception> exceptionList = new ArrayList<>();
+
+    static {
+        exceptionList.add(new DatabaseUnavailableException());
+        exceptionList.add(new ShippingNotPossibleException());
+        exceptionList.add(new ItemUnavailableException());
+        exceptionList.add(new PaymentDetailsErrorException());
+        exceptionList.add(new IllegalStateException());
+    }
 
     private Commander buildCommanderObject() {
         return buildCommanderObject(false);
@@ -301,13 +313,7 @@ class CommanderTest {
     @Test
     void testPlaceOrderWithDatabaseAndExceptions() throws Exception {
 
-        List<Exception> l = new ArrayList<Exception>();
-        l.add(new DatabaseUnavailableException());
-        l.add(new ShippingNotPossibleException());
-        l.add(new ItemUnavailableException());
-        l.add(new IllegalStateException());
-
-        for (Exception e : l) {
+        for (Exception e : exceptionList) {
 
             Commander c = buildCommanderObjectWithDB(true, true, e);
             var order = new Order(new User("K", null), "pen", 1f);
@@ -342,12 +348,7 @@ class CommanderTest {
     @Test
     void testPlaceOrderWithoutDatabaseAndExceptions() throws Exception {
 
-        List<Exception> l = new ArrayList<>();
-        l.add(new ShippingNotPossibleException());
-        l.add(new ItemUnavailableException());
-        l.add(new IllegalStateException());
-
-        for (Exception e : l) {
+        for (Exception e : exceptionList) {
 
             Commander c = buildCommanderObjectWithoutDB(true, true, e);
             var order = new Order(new User("K", null), "pen", 1f);
